@@ -1150,7 +1150,7 @@
   <string name="RatingManager_rate_now">اب درجہ بندی کریں!</string>
   <string name="RatingManager_no_thanks">نہیں شکریہ</string>
   <string name="RatingManager_later">بعد میں</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوپس ، پلے سٹور ایپ آپ کی ڈیوائس پر انسٹال ہوتے دکھائی نہیں دیتی ہے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوپس ، پلے سٹور ایپ آپ کی ڈیوائس پر انسٹال ہوتے دکھائی نہیں دیتی ہے۔</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">سب. %1$d</string>
   <!--ReactionsConversationView-->

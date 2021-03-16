@@ -1209,7 +1209,7 @@
   <string name="RatingManager_rate_now">Ocijeni sada!</string>
   <string name="RatingManager_no_thanks">Ne, hvala</string>
   <string name="RatingManager_later">Kasnije</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uh, izgleda da Play Store nije instaliran na Vašem uređaju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uh, izgleda da Play Store nije instaliran na Vašem uređaju.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Sve · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1860,11 +1860,19 @@
   <string name="HelpFragment__include_debug_log">Uvrstiti zapis za ispravljanje grešaka.</string>
   <string name="HelpFragment__whats_this">Šta je ovo?</string>
   <string name="HelpFragment__how_do_you_feel">Kako se osjećate u vezi s ovim? (neobavezno)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Kažite nam zašto tražite pomoć.</string>
   <string name="HelpFragment__support_info">Informacije o podršci</string>
   <string name="HelpFragment__signal_android_support_request">Zahtjev za pomoć (Signal Android)</string>
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Nešto ne funkcioniše</item>
+    <item>Zahtjev za novim funkcijama</item>
+    <item>Pitanje</item>
+    <item>Povratna informacija</item>
+    <item>Drugo</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
@@ -2320,9 +2328,13 @@
   <string name="backup_enable_dialog__folder">Direktorij</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisao/la sam ovu lozinku. Bez nje neću moći vratiti podatke iz rezervne kopije.</string>
   <string name="registration_activity__restore_backup">Vrati podatke</string>
+  <string name="registration_activity__transfer_or_restore_account">Prenesi ili vrati račun</string>
+  <string name="registration_activity__transfer_account">Prenesi račun</string>
   <string name="registration_activity__skip">Preskoči</string>
   <string name="preferences_chats__chat_backups">Rezervne kopije poruka</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Pohrani rezervne kopije poruka u memoriju uređaja</string>
+  <string name="preferences_chats__transfer_account">Prenesi račun</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenesi račun na novi Android uređaj</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Unesite lozinku za rezervne kopije</string>
   <string name="RegistrationActivity_restore">Vrati</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ne mogu se preuzeti podaci iz rezervnih kopija kreiranih u novijoj verziji Signala.</string>
@@ -2397,24 +2409,116 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">PRITISNITE DA OTKLJUČATE</string>
   <string name="Recipient_unknown">Nepoznato</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Prenesi ili vrati račun</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ako imate odranije registrovan Signal račun, možete prenijeti ili vratiti svoj račun i poruke</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Prenesi sa Android uređaja</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Prenesite svoj račun i historiju poruka sa starog Android uređaja. Morate imati pristup tom svom starom uređaju.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Morate imati pristup svom starom uređaju.</string> -->
+  <string name="TransferOrRestoreFragment__restore_from_backup">Vrati iz rezervne kopije</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Vratite svoje poruke i priloge iz lokalne rezervne kopije. Ako to ne učinite sada, nećete moći vratiti podatke kasnije.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otvorite Signal na svom starom Android telefonu</string>
   <string name="NewDeviceTransferInstructions__continue">Nastavi</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Pritisnite sliku svog profila gore lijevo da otvorite Podešavanja</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Pritisnite \"Razgovori\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Pritisnite \"Prenesi račun\" a potom \"Nastavi\" na oba uređaja</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">U toku su pripreme za povezivanje sa starim Android uređajem…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Trenutak, uskoro će biti spremno</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekam na stari Android uređaj da se poveže…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Povezivanje sa starim Android uređajem…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signalu je potrebno dopuštenje za pristup lokaciji kako bi pronašao i povezao se s Vašim starim Android uređajem.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signalu je potrebno da lokacija na telefonu bude aktivna kako bi mogao pronaći i povezati se s Vašim starim Android uređajem.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signalu je potrebno da Wi-Fi konekcija bude aktivna kako bi mogao pronaći i povezati se sa Vašim starim Android uređajem. Wi-Fi treba biti uključen, ali ne mora biti povezan na Wi-Fi mrežu.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Nažalost, izgleda da ovaj uređaj ne podržava Wi-Fi Direct. Signal koristi Wi-Fi Direct da pronađe i poveže se s Vašim starim Android uređajem. I dalje možete vratiti podatke iz rezervne kopije kako biste prenijeli račun sa svog starog Android uređaja.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Vrati podatke iz rezervne kopije</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Došlo je do neočekivane greške prilikom pokušaja da se poveže s Vašim starim Android uređajem.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Tražim Vaš novi Android uređaj…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Povezivanje s novim Android uređajem…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signalu je potrebno dopuštenje za pristup lokaciji kako bi pronašao i povezao se s Vašim novim Android uređajem.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signalu je potrebno da lokacija na telefonu bude aktivna kako bi mogao pronaći i povezati se s Vašim novim Android uređajem.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signalu je potrebno da Wi-Fi konekcija bude aktivna kako bi mogao 
+pronaći i povezati se sa Vašim novim Android uređajem. Wi-Fi treba biti
+ uključen, ali ne mora biti povezan na Wi-Fi mrežu.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Nažalost, izgleda da ovaj uređaj ne podržava Wi-Fi Direct. Signal 
+koristi Wi-Fi Direct da pronađe i poveže se s Vašim novim Android 
+uređajem. I dalje možete kreirati rezervnu kopiju podataka kako biste 
+prenijeli račun na svoj novi Android uređaj.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Kreiraj rezervnu kopiju</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Došlo je do neočekivane greške prilikom pokušaja da se poveže s Vašim novim Android uređajem.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nije moguće otvoriti Wi-Fi podešavanja. Molimo, ručno aktivirajte Wi-Fi.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Dopustite pristup lokaciji</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Aktiviraj lokaciju telefona</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Nije moguće otvoriti podešavanja lokacije</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Uključi Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Greška prilikom povezivanja</string>
   <string name="DeviceTransferSetup__retry">Pokušaj</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Podnesite izvještaj o greškama</string>
+  <string name="DeviceTransferSetup__verify_code">Potvrdi kōd</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Potvrdite da je kōd naveden ispod isti na oba Vaša uređaja. Potom pritisnite Nastavi.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Brojevi se ne podudaraju</string>
   <string name="DeviceTransferSetup__continue">Nastavi</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Broj nije identičan</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ako se brojevi na Vašim uređajima ne podudaraju, moguće je da ste se povezali na pogrešan uređaj. Da biste to ispravili, prekinite prenos i pokušajte ponovo, držeći oba uređaja u blizini.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Prekini prenos</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Nije pronađen stari uređaj</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Nije pronađen novi uređaj</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Provjerite i potvrdite da su sljedeće ovlasti i servisi aktivni:</string>
+  <string name="DeviceTransferSetup__location_permission">Dopuštenje pristupa lokaciji</string>
+  <string name="DeviceTransferSetup__location_services">Lokacija</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na WiFi Direct prikazu uklonite sve memorisane grupe i prekinite vezu sa pozvanim ili povezanim uređajima.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct prikaz</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Pokušajte na oba uređaja isključiti pa uključiti Wi-Fi.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Provjerite i potvrdite da su oba uređaja u \"transfer\" načinu rada.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Otvorite stranicu za podršku</string>
   <string name="DeviceTransferSetup__try_again">Pokušajte ponovo</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nije moguće prenijeti sa novije verzije Signala</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Prenos podataka</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Držite oba uređaja u blizini. Ne isključujte uređaje i držite Signal otvorenim. Prenos podataka je šifriran.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d poruka do sada…</string>
   <string name="DeviceTransfer__cancel">Prekini</string>
   <string name="DeviceTransfer__try_again">Pokušajte ponovo</string>
+  <string name="DeviceTransfer__stop_transfer_question">Prekinuti prenos?</string>
+  <string name="DeviceTransfer__stop_transfer">Prekini prenos</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Sve preneseno bit će poništeno.</string>
+  <string name="DeviceTransfer__transfer_failed">Prenos nije uspio</string>
+  <string name="DeviceTransfer__unable_to_transfer">Prenos nije moguć</string>
   <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Prenesi račun</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Svoj Signal račun možete prenijeti prilikom podešavanja Signala na novom Android uređaju. Prije nego što nastavite:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Instalirajte Signal na svoj novi Android uređaj</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Pritisnite \"Prenesi ili vrati račun\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Izaberite \"Prenesi sa Android uređaja\" kad budete upitani, a potom pritisnite \"Nastavi\". Držite oba uređaja u blizini.</string>
   <string name="OldDeviceTransferInstructions__continue">Nastavi</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Prenos je završen</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Otvorite svoj novi uređaj</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Vaši Signal podaci preneseni su na Vaš novi uređaj. Da biste okončali prenos, morate nastaviti s registracijom na svom novom uređaju.</string>
   <string name="OldDeviceTransferComplete__close">Zatvori</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Prenos je uspio</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Prenos je završen</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Da okončate prenos, morate nastaviti s registracijom.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Nastavi registraciju</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Prenos računa</string>
+  <string name="DeviceToDeviceTransferService_status_ready">U pripremi je povezivanje s Vašim drugim Android uređajem…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">U pripremi je povezivanje s Vašim drugim Android uređajem…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Tražim Vaš drugi Android uređaj…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Povezivanje s Vašim drugim Android uređajem…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Potrebna je potvrda</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Prenos računa…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>

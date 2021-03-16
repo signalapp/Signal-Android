@@ -1154,7 +1154,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RatingManager_rate_now">Vlerësojeni që tani!</string>
   <string name="RatingManager_no_thanks">Jo, faleminderit</string>
   <string name="RatingManager_later">Më vonë</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hëm, aplikacioni Play Store s\’duket të jetë i instaluar në pajisjen tuaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hëm, aplikacioni Play Store s\’duket të jetë i instaluar në pajisjen tuaj.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Krejt · %1$d</string>
   <!--ReactionsConversationView-->

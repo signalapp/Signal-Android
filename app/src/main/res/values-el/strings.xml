@@ -3,7 +3,7 @@
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
-  <string name="please_wait">Παρακαλώ περιμένετε…</string>
+  <string name="please_wait">Παρακαλώ περίμενε…</string>
   <string name="save">Αποθήκευση</string>
   <string name="note_to_self">Μήνυμα σε μένα</string>
   <!--AbstractNotificationBuilder-->
@@ -70,7 +70,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Αποκλεισμένοι χρήστες/τριες</string>
   <string name="BlockedUsersActivity__add_blocked_user">Προσθήκη αποκλεισμένου/ης χρήστη/τριας</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Οι αποκλεισμένοι χρήστες δεν θα μπορούν να σας καλέσουν ή να σας στείλουν μηνύματα.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Οι αποκλεισμένοι χρήστες δεν θα μπορούν να σε καλέσουν ή να σου στείλουν μηνύματα.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Δεν υπάρχουν αποκλεισμένοι χρήστες/τριες</string>
   <string name="BlockedUsersActivity__block_user">Αποκλεισμός χρήστη/τριας;</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">Ο/Η \"%1$s\" δεν θα μπορεί να σε καλέσει ή να σου στείλει μηνύματα.</string>
@@ -99,7 +99,7 @@
   <string name="BucketedThreadMedia_Medium">Μεσαίο</string>
   <string name="BucketedThreadMedia_Small">Μικρό</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Πατήστε για φωτογραφία, παρατεταμένα για βίντεο</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Πάτα για φωτογραφία, παρατεταμένα για βίντεο</string>
   <string name="CameraXFragment_capture_description">Λήψη</string>
   <string name="CameraXFragment_change_camera_description">Αλλαγή κάμερας</string>
   <string name="CameraXFragment_open_gallery_description">Άνοιγμα πινακοθήκης</string>
@@ -124,7 +124,7 @@
   <string name="ClientDeprecatedActivity_update">Ενημέρωση</string>
   <string name="ClientDeprecatedActivity_dont_update">Να μην αναβαθμιστεί</string>
   <string name="ClientDeprecatedActivity_warning">Προσοχή</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Η έκδοση του Signal έχει λήξει. Μπορείτε να δείτε το ιστορικό μηνυμάτων αλλά δεν θα μπορείτε να στείλετε ή να λάβετε μηνύματα μέχρι να την αναβάθμιση.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Η έκδοση του Signal έχει λήξει. Μπορείς να δεις το ιστορικό μηνυμάτων αλλά δεν θα μπορείς να στείλεις ή να λάβεις μηνύματα μέχρι να την αναβάθμιση.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε περιηγητής.</string>
   <string name="CommunicationActions_send_email">Αποστολή email</string>
@@ -198,7 +198,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal %1$s</string>
-  <string name="ConversationActivity_specify_recipient">Παρακαλούμε επιλέξτε επαφή</string>
+  <string name="ConversationActivity_specify_recipient">Παρακαλούμε επέλεξε επαφή</string>
   <string name="ConversationActivity_unblock">Κατάργηση φραγής</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συνημμένο υπερβαίνει τα όρια μεγέθους για τον τύπο μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
@@ -1150,7 +1150,7 @@
   <string name="RatingManager_rate_now">Βαθμολόγηση τώρα!</string>
   <string name="RatingManager_no_thanks">Όχι, ευχαριστώ</string>
   <string name="RatingManager_later">Αργότερα</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ουπς, δε φαίνεται να έχεις εγκατεστημένη την εφαρμογή Play Store στην συσκευή σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ουπς, δε φαίνεται να έχεις εγκατεστημένη την εφαρμογή Play Store στην συσκευή σου.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Όλα · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1783,11 +1783,19 @@
   <string name="HelpFragment__include_debug_log">Συμπερίληψη αρχείου εντοπισμού σφαλμάτων.</string>
   <string name="HelpFragment__whats_this">Τι είναι αυτό;</string>
   <string name="HelpFragment__how_do_you_feel">Πώς αισθάνεσαι; (Προαιρετικό)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Πες μας γιατί επικοινωνείς μαζί μας.</string>
   <string name="HelpFragment__support_info">Πληροφορίες υποστήριξης</string>
   <string name="HelpFragment__signal_android_support_request">Αίτημα υποστήριξης Signal Android</string>
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Κάτι δε δουλεύει</item>
+    <item>Αίτημα νέας δυνατότητας</item>
+    <item>Ερώτηση</item>
+    <item>Σχόλια</item>
+    <item>Άλλο</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -2235,9 +2243,13 @@
   <string name="backup_enable_dialog__folder">Φάκελος</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Σημείωσα σε χαρτί αυτό το συνθηματικό. Χωρίς αυτό, δε θα μπορέσω να επανακτήσω το αντίγραφο ασφαλείας.</string>
   <string name="registration_activity__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
+  <string name="registration_activity__transfer_or_restore_account">Μεταφορά ή επαναφορά λογαριασμού</string>
+  <string name="registration_activity__transfer_account">Μεταφορά λογαριασμού</string>
   <string name="registration_activity__skip">Παράλειψη</string>
   <string name="preferences_chats__chat_backups">Αντίγραφα ασφαλείας συνομιλιών</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Δημιουργία αντίγραφου ασφαλείας συνομιλιών στην εξωτερική μνήμη</string>
+  <string name="preferences_chats__transfer_account">Μεταφορά λογαριασμού</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Μεταφορά λογαριασμού σε νέα συσκευή Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Εισαγωγή συνθηματικό αντίγραφου ασφαλείας</string>
   <string name="RegistrationActivity_restore">Επαναφορά</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Δεν μπορούμε να εισάγουμε αντίγραφα ασφαλείας από νεότερες εκδόσεις του Signal</string>
@@ -2312,26 +2324,111 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ΠΑΤΑ ΓΙΑ ΞΕΚΛΕΙΔΩΜΑ</string>
   <string name="Recipient_unknown">Άγνωστο</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Μεταφορά ή επαναφορά λογαριασμού</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Αν έχεις ήδη δημιουργήσει έναν λογαριασμό Signal στο παρελθόν, μπορείς να μεταφέρεις ή να επαναφέρεις τον λογαριασμό σου και τα μηνύματα</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Μεταφορά από συσκευή Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Μετέφερε τον λογαριασμό σου και το ιστορικό μηνυμάτων από τη παλιά συσκευή Android σου. Χρειάζεται να έχεις πρόσβαση στη παλιά σου συσκευή.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Χρειάζεται να έχεις πρόσβαση στη παλιά σου συσκευή.</string> -->
+  <string name="TransferOrRestoreFragment__restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Επανέφερε τα μηνύματα και τα πολυμέσα σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δεν θα μπορείς να τα επαναφέρεις στο μέλλον.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Άνοιξε το Signal στη παλιά σου συσκευή Android</string>
   <string name="NewDeviceTransferInstructions__continue">Συνέχεια</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Πάτα στη φωτογραφία προφίλ σου πάνω αριστερά για να ανοίξεις τις Ρυθμίσεις</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Πάτα στις \"Συνομιλίες\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Πάτα \"Μεταφορά λογαριασμού\" και μετά \"Συνέχεια\" και στις δύο συσκευές</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Προετοιμαζόμαστε να συνδεθούμε με τη παλιά συσκευή Android…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Θα πάρει μερικές στιγμές, θα είμαστε έτοιμοι σύντομα</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Περιμένουμε να συνδεθεί η παλιά συσκευή Android…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Συνδεόμαστε στη παλιά συσκευή Android…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Το Signal χρειάζεται την άδεια τοποθεσίας για να ανακαλύψει και να συνδεθεί στη παλιά σου συσκευή Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Το Signal χρειάζεται να έχεις την τοποθεσία ενεργοποιημένη για να ανακαλύψει και να συνδεθεί στη παλιά σου συσκευή Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Το Signal χρειάζεται ενεργοποιημένο το Wi-Fi για να ανακαλύψει και να συνδεθεί στη παλιά σου συσκευή Android. Το Wi-Fi χρειάζεται να είναι ενεργοποιημένο αλλά δεν χρειάζεται να είναι συνδεδεμένο σε κάποιο δίκτυο Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Συγγνώμη, φαίνεται πως αυτή η συσκευή δεν υποστηρίζει το Wi-Fi Direct. Το Signal χρησιμοποιεί το Wi-Fi Direct για να ανακαλύψει και να συνδεθεί με τη παλιά σου συσκευή Android. Μπορείς παρ\' όλα αυτά να επαναφέρεις ένα αντίγραφο ασφαλείας, για να επαναφέρεις τον λογαριασμό σου από τη παλιά σου συσκευή Android.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Επαναφορά αντίγραφου ασφαλείας</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Συνέβη ένα μη αναμενόμενο σφάλμα κατά την απόπειρα σύνδεσης στη παλιά σου συσκευή Android.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Αναζητούμε τη νέα σου συσκευή Android…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Συνδεόμαστε στη νέα σου συσκευή Android…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Το Signal χρειάζεται την άδεια τοποθεσίας για να ανακαλύψει και να συνδεθεί στη νέα σου συσκευή Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Το Signal χρειάζεται να έχεις την τοποθεσία ενεργοποιημένη για να ανακαλύψει και να συνδεθεί στη νέα σου συσκευή Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Το Signal χρειάζεται ενεργοποιημένο το Wi-Fi για να ανακαλύψει και να συνδεθεί στη νέα σου συσκευή Android. Το Wi-Fi χρειάζεται να είναι ενεργοποιημένο αλλά δεν χρειάζεται να είναι συνδεδεμένο σε κάποιο δίκτυο Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Συγγνώμη, φαίνεται πως αυτή η συσκευή δεν υποστηρίζει το Wi-Fi Direct. Το Signal χρησιμοποιεί το Wi-Fi Direct για να ανακαλύψει και να συνδεθεί με τη νέα σου συσκευή Android. Μπορείς παρ\' όλα αυτά να επαναφέρεις ένα αντίγραφο ασφαλείας, για να επαναφέρεις τον λογαριασμό σου από τη παλιά σου συσκευή Android.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Δημιουργία αντίγραφου ασφαλείας</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Συνέβη ένα μη αναμενόμενο σφάλμα κατά την απόπειρα σύνδεσης στη νέα σου συσκευή Android.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Δεν μπορέσαμε να ανοίξουμε τις Ρυθμίσεις Wi-Fi. Παρακαλώ ενεργοποίησε το Wi-Fi χειροκίνητα.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Παραχώρηση άδειας τοποθεσίας</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Ενεργοποίηση υπηρεσιών τοποθεσίας</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Αδυναμία ανοίγματος ρυθμίσεων τοποθεσίας.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Ενεργοποίηση Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Σφάλμα σύνδεσης</string>
   <string name="DeviceTransferSetup__retry">Ξαναδοκίμασε</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Αποστολή αρχείων συμβάντων αποσφαλμάτωσης</string>
+  <string name="DeviceTransferSetup__verify_code">Επιβεβαίωση κωδικού</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Επιβεβαίωσε πως ο παρακάτω κωδικός είναι ίδιος και στις δύο συσκευές. Μετά πάτα συνέχεια.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Οι αριθμοί δεν ταιριάζουν.</string>
   <string name="DeviceTransferSetup__continue">Συνέχεια</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Ο αριθμός δεν είναι ο ίδιος</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Αν οι αριθμοι στις συσκευές σου δεν είναι ο ίδιος, είναι πιθανό πως συνδέθηκες στη λάθος συσκευή. Για να το φτιάξεις, σταμάτησε τη μεταφορά και προσπάθησε ξανά έχοντας τις δυο συσκευές κοντά τη μια στην άλλη.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Ακυρωση μεταφοράς</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Αδυναμία ανακάλυψης παλιάς συσκευής</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Αδυναμία ανακάλυψης νέας συσκευής</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Επιβεβαίωσε πως οι ακόλουθες υπηρεσίες και δικαιώματα είναι ενεργοποιημένα:</string>
+  <string name="DeviceTransferSetup__location_permission">Δικαιώματα τοποθεσίας</string>
+  <string name="DeviceTransferSetup__location_services">Υπηρεσίες τοποθεσίας</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Στην οθόνη του Wi-Fi Direct, αφαίρεσε όλες τις ομάδες στη μνήμη και αποσύνδεσε οποιαδήποτε προσκεκλημένη ή συνδεδεμένη συσκευή.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Οθόνη Wi-Fi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Δοκίμασε να κλείσεις και να ξανανοίξεις το Wi-Fi και στις δύο συσκευές.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Επιβεβαίωσε πως και οι δύο συσκευές είναι στη κατάσταση μεταφοράς.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Πήγαινε στη σελίδα υποστήριξης</string>
   <string name="DeviceTransferSetup__try_again">Ξαναπροσπάθησε</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Δεν μπορεί να γίνει μεταφορά από νεότερη έκδοση του Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Μεταφορά δεδομένων</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Κράτα και τις δύο συσκευές κοντά τη μια στην άλλη. Μην απενεργοποιήσεις τις συσκευές και άφησε το Signal ανοιχτό. Οι μεταφορές είναι κρυπτογραφημένες από άκρο σε άκρο.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d μηνύματα μέχρι τώρα…</string>
   <string name="DeviceTransfer__cancel">Ακύρωση</string>
   <string name="DeviceTransfer__try_again">Ξαναπροσπάθησε</string>
+  <string name="DeviceTransfer__stop_transfer_question">Ακύρωση μεταφοράς;</string>
+  <string name="DeviceTransfer__stop_transfer">Ακυρωση μεταφοράς</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Θα χαθεί όλη η πρόοδος της μεταφοράς.</string>
+  <string name="DeviceTransfer__transfer_failed">Η μεταφορά απέτυχε</string>
+  <string name="DeviceTransfer__unable_to_transfer">Αδυναμία μεταφοράς</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Μεταφορά Λογαριασμού</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Μπορείς να μεταφέρεις τον λογαριασμό Signal σου όταν παραμετροποιείς το Signal σε μια νέα συσκευή Android. Πριν συνεχίσεις:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Κατέβασε το Signal στη νέα σου συσκευή Android</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Πάτα \"Μεταφορά ή επαναφορά λογαριασμού\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Επέλεξε \"Μεταφορά από συσκευή Android\" όταν σου ζητηθεί, και μετά \"Συνέχεια\". Κράτα τις δυο συσκευές κοντά τη μια στην άλλη.</string>
   <string name="OldDeviceTransferInstructions__continue">Συνέχεια</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Η μεταφορά ολοκληρώθηκε</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Πήγαινε στη νέα σου συσκευή</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Τα δεδομένα του Signal σου έχουν μεταφερθεί στη νέα σου συσκευή. Για να ολοκληρώσεις τη διαδικασία μεταφοράς, πρέπει να συνεχίσεις την εγγραφή στη νέα σου συσκευή.</string>
   <string name="OldDeviceTransferComplete__close">Κλείσιμο</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Επιτυχία μεταφοράς</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Η μεταφορά ολοκληρώθηκε</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Για να ολοκληρώσεις τη διαδικασία μεταφοράς, πρέπει να συνεχίσεις με την εγγραφή.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Συνέχεια εγγραφής</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Μεταφορά λογαριασμού</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Προετοιμάζουμε τη σύνδεση στην άλλη σου συσκευή Android…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Προετοιμάζουμε τη σύνδεση στην άλλη σου συσκευή Android…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Αναζητούμε την άλλη σου συσκευή Android…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Σύνδεόμαστε στην άλλη σου συσκευή Android…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Απαιτείται επαλήθευση</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Μεταφέρουμε τον λογαριασμό…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Φραγή</string>
   <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>

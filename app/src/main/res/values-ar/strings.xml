@@ -1384,7 +1384,7 @@
   <string name="RatingManager_rate_now">قَيّم الآن</string>
   <string name="RatingManager_no_thanks">لا، شكرا</string>
   <string name="RatingManager_later">لاحقا</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">عفوا، يبدو أنّ تطبيق Play Store غير مثبّت على جهازك. </string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">عفوا، يبدو أنّ تطبيق Play Store غير مثبّت على جهازك. </string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">الكل · %1$d </string>
   <!--ReactionsConversationView-->

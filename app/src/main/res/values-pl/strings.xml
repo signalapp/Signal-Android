@@ -1266,7 +1266,7 @@
   <string name="RatingManager_rate_now">Oceń teraz!</string>
   <string name="RatingManager_no_thanks">Nie dzięki</string>
   <string name="RatingManager_later">Później</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, prawdopodobnie aplikacja Google Play nie jest zainstalowana na Twoim urządzeniu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, prawdopodobnie aplikacja Google Play nie jest zainstalowana na Twoim urządzeniu.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Wszystko · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1924,11 +1924,19 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__include_debug_log">Dołącz logi debugowania.</string>
   <string name="HelpFragment__whats_this">Co to jest?</string>
   <string name="HelpFragment__how_do_you_feel">Jak się czujesz (opcjonalne)?</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Powiedz nam, w czym problem.</string>
   <string name="HelpFragment__support_info">Informacje dodatkowe</string>
   <string name="HelpFragment__signal_android_support_request">Zgłoszenie pomocy technicznej Signal Android</string>
   <string name="HelpFragment__debug_log">Logi debugowania:</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Coś nie działa</item>
+    <item>Prośba o dodanie funkcji</item>
+    <item>Pytanie</item>
+    <item>Opinia</item>
+    <item>Inne</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
@@ -2476,10 +2484,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Przenieś lub przywróć konto</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jeśli poprzednio zarejestrowałeś(aś) konto Signal, możesz przenieść lub przywrócić swoje konto i wiadomości</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Przenieś z urządzenia z systemem Android</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Przenieś swoje konto i wiadomości ze swojego starego urządzenia z systemem Android. Musisz mieć dostęp do starego urządzenia.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Musisz mieć dostęp do swojego, starego urządzenia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Przenieś swoje konto i wiadomości ze swojego starego urządzenia z systemem Android. Musisz mieć dostęp do starego urządzenia.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Musisz mieć dostęp do swojego, starego urządzenia.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Przywróć z kopii zapasowej</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Przywróć swoje wiadomości i multimedia z lokalnej kopii zapasowej. Jeśli nie zrobisz tego teraz, nie będzie można przywrócić ich później.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Przywróć swoje wiadomości i multimedia z lokalnej kopii zapasowej. Jeśli nie zrobisz tego teraz, nie będzie można przywrócić ich później.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otwórz Signal na swoim starym telefonie telefonie z systemem Android</string>
   <string name="NewDeviceTransferInstructions__continue">Kontynuuj</string>
@@ -2493,7 +2501,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Przygotowywanie do połączenia ze starym urządzeniem z systemem Android…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">To chwilę potrwa, wkrótce wszystko powinno być gotowe</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Czekanie na połączenie ze starym urządzeniem z systemem Android…</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Łączenie ze starym urządzeniem z systemem Android…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Łączenie ze starym urządzeniem z systemem Android…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal potrzebuje pozwolenia na dostęp do lokalizacji, aby znaleźć i połączyć się ze starym urządzeniem z systemem Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal potrzebuje włączonych usług lokalizacji, aby znaleźć i połączyć się ze starym urządzeniem z systemem Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal potrzebuje Wi-Fi, aby znaleźć i połączyć się ze starym urządzeniem z systemem Android. Wi-Fi musi być włączone, ale nie musi być połączone z siecią Wi-Fi.</string>
@@ -2502,7 +2510,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Podczas próby połączenia z Twoim, starym urządzeniem z systemem Android, wystąpił nieoczekiwany błąd.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Wyszukiwanie Twojego, nowego urządzenia z systemem Android…</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Łączenie z nowym urządzeniem z systemem Android…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Łączenie z nowym urządzeniem z systemem Android…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal potrzebuje pozwolenia na dostęp do lokalizacji, aby znaleźć i połączyć się z nowym urządzeniem z systemem Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal potrzebuje włączonych usług lokalizacji, aby znaleźć i połączyć się z nowym urządzeniem z systemem Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal potrzebuje Wi-Fi, aby znaleźć i połączyć się z nowym urządzeniem z systemem Android. Wi-Fi musi być włączone, ale nie musi być połączone z siecią Wi-Fi.</string>
@@ -2556,7 +2564,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Pobierz Signal na swoje nowe urządzenie z systemem Android</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Stuknij \"Przenieś lub przywróć konto:</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Stuknij \"Przenieś lub przywróć konto\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Stuknij \"Przenieś z urządzenia z systemem Android\", a następnie \"Kontynuuj\", na obu urządzeniach. Oba urządzenia powinny znajdować się blisko siebie.</string>
   <string name="OldDeviceTransferInstructions__continue">Kontynuuj</string>

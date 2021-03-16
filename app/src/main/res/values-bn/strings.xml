@@ -811,7 +811,7 @@
   <string name="RatingManager_rate_now">এখন রেটিং দিন!</string>
   <string name="RatingManager_no_thanks">না ধন্যবাদ</string>
   <string name="RatingManager_later">পরবর্তীতে</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ওহো, প্লে স্টোর অ্যাপ আপনার ডিভাইস এ ইনস্টল করা আছে বলে মনে হচ্ছে না।</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ওহো, প্লে স্টোর অ্যাপ আপনার ডিভাইস এ ইনস্টল করা আছে বলে মনে হচ্ছে না।</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">সবগুলো। %1$d</string>
   <!--ReactionsConversationView-->

@@ -610,7 +610,7 @@
   <string name="RatingManager_rate_now">Sukani peringkat sakmenika!</string>
   <string name="RatingManager_no_thanks">Mboten usah</string>
   <string name="RatingManager_later">Mangke</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <!--ReactionsRecipientAdapter-->

@@ -1092,7 +1092,7 @@
   <string name="RatingManager_rate_now">지금 평가해 주세요!</string>
   <string name="RatingManager_no_thanks">아니요</string>
   <string name="RatingManager_later">나중에</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">이런, 기기에 Play Store 앱이 설치되지 않은 것 같습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">이런, 기기에 Play Store 앱이 설치되지 않은 것 같습니다.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">모두: %1$d</string>
   <!--ReactionsConversationView-->

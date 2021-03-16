@@ -1151,7 +1151,7 @@
   <string name="RatingManager_rate_now">Avaliar agora!</string>
   <string name="RatingManager_no_thanks">Não, obrigado</string>
   <string name="RatingManager_later">Mais tarde</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ops, o aplicativo Play Store parece não estar instalado no seu dispositivo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ops, o aplicativo Play Store parece não estar instalado no seu dispositivo.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Todos · %1$d</string>
   <!--ReactionsConversationView-->

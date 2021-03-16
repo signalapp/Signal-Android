@@ -1159,7 +1159,7 @@
   <string name="RatingManager_rate_now">ఇప్పుడు రేటు!</string>
   <string name="RatingManager_no_thanks">వద్దు ధన్యవాదాలు</string>
   <string name="RatingManager_later">తర్వాత</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">అయ్యో, </string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">అయ్యో, </string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">అన్నీ · %1$d</string>
   <!--ReactionsConversationView-->

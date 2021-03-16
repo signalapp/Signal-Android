@@ -1152,7 +1152,7 @@
   <string name="RatingManager_rate_now">Bedøm nu!</string>
   <string name="RatingManager_no_thanks">Nej tak</string>
   <string name="RatingManager_later">Senere</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, det ser ud til at Play Butik ikke er installeret på din enhed</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, det ser ud til at Play Butik ikke er installeret på din enhed</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1788,11 +1788,19 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__include_debug_log">Inkludér fejllog</string>
   <string name="HelpFragment__whats_this">Hvad er det?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan har du det? (Frivilligt)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Fortæl os hvorfor du har kontaktet os.</string>
   <string name="HelpFragment__support_info">Support Info</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android support spørgsmål</string>
   <string name="HelpFragment__debug_log">Fejllog:</string>
   <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
+  <string-array name="HelpFragment__categories">
+    <item>Noget virker ikke</item>
+    <item>Funktionsanmodning</item>
+    <item>Spørgsmål</item>
+    <item>Feedback</item>
+    <item>Andet</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -2324,10 +2332,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gendan konto</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Hvis du tidligere har registreret en Signal-konto, kan du overføre eller gendanne din konto og beskeder</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Overfør fra Android-enhed</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Overfør din konto og din beskedhistorik fra din gamle Android-enhed. Du skal have adgang til din gamle enhed.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Du skal have adgang til din gamle enhed.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Overfør din konto og din beskedhistorik fra din gamle Android-enhed. Du skal have adgang til din gamle enhed.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Du skal have adgang til din gamle enhed.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Gendan fra sikkerhedskopi</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Gendan dine beskeder og medier fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu, kan du ikke gøre det senere.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Gendan dine beskeder og medier fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu, kan du ikke gøre det senere.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Åbn Signal på din gamle Android-telefon.</string>
   <string name="NewDeviceTransferInstructions__continue">Fortsæt</string>
@@ -2341,7 +2349,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Forbereder forbindelse til den gamle Android-enhed…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tager et øjeblik, vil snart være klar</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Venter på, at den gamle Android-enhed forbinder…</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Forbinder til den gamle Android-enhed…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Forbinder til den gamle Android-enhed…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal kræver placeringstilladelsen for at opspore og forbinde din gamle Android-enhed.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal kræver placeringstjenester aktiveret for at opspore og forbinde med din gamle Android-enhed.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal kræver Wi-Fi til for at opspore og forbinde med din gamle Android-enhed. Wi-Fi skal være tændt, men det behøver ikke at være forbundet til et Wi-Fi-netværk.</string>
@@ -2350,7 +2358,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Der opstod en uventet fejl under forbindelsesforsøg til din gamle Android-enhed.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Søger efter din nye Android-enhed…</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Forbinder til den nye Android-enhed…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Forbinder til den nye Android-enhed…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal kræver placeringstilladelsen for at opspore og forbinde med din nye Android-enhed.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal kræver placeringstjenester aktiveret for at opspore og forbinde med din nye Android-enhed.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal kræver Wi-Fi til for at opspore og forbinde med din nye Android-enhed. Wi-Fi skal være tændt, men det behøver ikke at være forbundet til et Wi-Fi-netværk.</string>

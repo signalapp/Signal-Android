@@ -500,7 +500,7 @@
   <string name="RatingManager_rate_now">Оцінити зараз!</string>
   <string name="RatingManager_no_thanks">Ні, дякую</string>
   <string name="RatingManager_later">Пізніше</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Прикро, але схоже що Play Store не встановлений на вашому пристрої.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Прикро, але схоже що Play Store не встановлений на вашому пристрої.</string> -->
   <!--RecipientPreferencesActivity-->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокувати контакт?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ви більше не одержуватимете повідомлення та виклики від цього контакту.</string> -->

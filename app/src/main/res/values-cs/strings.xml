@@ -1266,7 +1266,7 @@
   <string name="RatingManager_rate_now">Ohodnotit teď!</string>
   <string name="RatingManager_no_thanks">Ne, díky</string>
   <string name="RatingManager_later">Později</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ajaj, vypadá to, že aplikace Obchod Play není nainstalována na vašem zařízení.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ajaj, vypadá to, že aplikace Obchod Play není nainstalována na vašem zařízení.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Vše · %1$d</string>
   <!--ReactionsConversationView-->

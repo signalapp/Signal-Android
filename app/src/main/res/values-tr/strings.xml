@@ -1151,7 +1151,7 @@
   <string name="RatingManager_rate_now">Şimdi puan ver!</string>
   <string name="RatingManager_no_thanks">Hayır teşekkürler</string>
   <string name="RatingManager_later">Sonra</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aman aman, Play Store uygulaması nereye gitmiş, cihazınızda yüklü gözükmüyor.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aman aman, Play Store uygulaması nereye gitmiş, cihazınızda yüklü gözükmüyor.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Tümü · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1786,11 +1786,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__include_debug_log">Hata ayıklama günlüğünü ekleyin</string>
   <string name="HelpFragment__whats_this">Bu nedir?</string>
   <string name="HelpFragment__how_do_you_feel">Nasıl hissediyorsunuz?</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Neden bize ulaştığınızı söyleyin.</string>
   <string name="HelpFragment__support_info">Destek Bilgisi</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android Destek İsteği</string>
   <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Çalışmayan bir şey var</item>
+    <item>Özellik İsteği</item>
+    <item>Soru</item>
+    <item>Geri Dönüt</item>
+    <item>Diğer</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
@@ -2322,10 +2330,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Hesabı aktar veya geri yükle</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Eğer önceden Signal hesabı oluşturduysanız, hesabınızı ve iletilerinizi aktarabilir veya geri yükleyebilirsiniz</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android cihazdan aktar</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Eski Android cihazınızdan hesabınızı ve ileti geçmişinizi aktarın. Eski cihazınıza erişiminizin olması gereklidir.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Eski cihazınıza erişiminizin olması gereklidir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Eski Android cihazınızdan hesabınızı ve ileti geçmişinizi aktarın. Eski cihazınıza erişiminizin olması gereklidir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Eski cihazınıza erişiminizin olması gereklidir.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Yedekten geri yükle</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">İletilerinizi ve içeriği yerel bir yedekten geri yükleyin. Eğer şimdi geri yüklemezseniz, ileride geri yükleyemezsiniz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">İletilerinizi ve içeriği yerel bir yedekten geri yükleyin. Eğer şimdi geri yüklemezseniz, ileride geri yükleyemezsiniz.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Eski Android cihazınızda Signal\'i açın</string>
   <string name="NewDeviceTransferInstructions__continue">Devam Et</string>
@@ -2339,7 +2347,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Eski Android cihaza bağlanmaya hazırlanılıyor…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Biraz bekleyin, yakında hazır olacak</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Eski Android cihazın bağlanması bekleniyor…</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Eski Android cihaza bağlanılıyor…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Eski Android cihaza bağlanılıyor…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
@@ -2348,7 +2356,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Eski Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Yeni Android cihazınız aranıyor…</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Yeni Android cihaza bağlanılıyor…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Yeni Android cihaza bağlanılıyor…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
@@ -2357,24 +2365,73 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Yeni Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Kablosuz ayarları açılamadı. Lütfen kablosuzu açın.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Konum izni ver</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Konum hizmetlerini aç</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Konum ayarları açılamadı.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Kablosuzu aç</string>
+  <string name="DeviceTransferSetup__error_connecting">Bağlanırken Hata</string>
   <string name="DeviceTransferSetup__retry">Tekrar dene</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Hata ayıklama günlüklerini gönder</string>
+  <string name="DeviceTransferSetup__verify_code">Kodu doğrula</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Aşağıdaki kodun iki cihazınızda da aynı olduğunu doğrulayın. Sonrasında devam et seçeneğine dokunun.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numaralar eşleşmiyor</string>
   <string name="DeviceTransferSetup__continue">Devam Et</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Numara aynı değil</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Eğer cihazlarınızdaki numaralar eşleşmiyorsa, yanlış bir cihazı bağlamış olabilirsiniz. Bunu düzeltmek için aktarmayı durdurun ve tekrar deneyin, ve işlem sırasında cihazlarınızı yakın tutun.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Aktarmayı durdur</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Eski cihaz keşfedilemedi</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Yeni cihaz keşfedilemedi</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Aşağıdaki izin ve hizmetlerin etkin olduğundan emin olun:</string>
+  <string name="DeviceTransferSetup__location_permission">Konum izni</string>
+  <string name="DeviceTransferSetup__location_services">Konum hizmetleri</string>
   <string name="DeviceTransferSetup__wifi">Kablosuz Ağ</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct ekranında, tüm hatırlanan grupları kaldırın ve herhangi bir davetli veya bağlantılı aygıtı kaldırın.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct ekranı</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Wi-Fi\'yi her iki aygıtta kapatıp açmayı deneyin</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Her iki aygıtın aktarım kipinde olduğundan emin olun.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Destek sayfasına git</string>
   <string name="DeviceTransferSetup__try_again">Tekrar dene</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Daha yeni bir Signal sürümünden aktarım yapılamaz</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Veri aktarılıyor</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Her iki aygıtı birbirine yakın tutun. Aygıtları kapatmayın ve Signal\'i açık tutun. Aktarımlar uçtan uça şifrelidir.</string>
+  <string name="DeviceTransfer__d_messages_so_far">Şimdiye kadar %1$d ileti…</string>
   <string name="DeviceTransfer__cancel">İptal</string>
   <string name="DeviceTransfer__try_again">Tekrar dene</string>
+  <string name="DeviceTransfer__stop_transfer_question">Aktarımı durdur?</string>
+  <string name="DeviceTransfer__stop_transfer">Aktarmayı durdur</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Tüm aktarım süreci kaybolacaktır.</string>
+  <string name="DeviceTransfer__transfer_failed">Aktarım başarısız oldu</string>
+  <string name="DeviceTransfer__unable_to_transfer">Aktarım yapılamıyor</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Hesabı Aktar</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Signal\'i yeni bir Android aygıtına kurarken, Signal hesabınızı aktarabilirsiniz. Devam etmeden önce:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Signal\'i yeni Android aygıtınıza indirin</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"Hesabı aktar veya geri yükle\"ye dokunun</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Sorulduğunda önce \"Android aygıtından aktar\", daha sonra \"Devam\" deyin. Her iki aygıtı birbirine yakın tutun.</string>
   <string name="OldDeviceTransferInstructions__continue">Devam Et</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Aktarım tamamlandı</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Yeni aygıtınıza gidin</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal verinin yeni aygıtınıza aktarıldı. Aktarım sürecini tamamlamak için, yeni aygıtınızda kayıt sürecine devam etmeniz gerekiyor.</string>
   <string name="OldDeviceTransferComplete__close">Kapat</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Aktarım başarılı</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Aktarım tamamlandı</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Aktarım sürecini tamamlamak için, kayda devam etmeniz gerekiyor.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Kayda devam et</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Hesap aktarımı</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Diğer Android aygıtına bağlanmaya hazırlanılıyor…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Diğer Android aygıtına bağlanmaya hazırlanılıyor…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Diğer Android aygıtınız aranıyor…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Diğer Android aygıtınıza bağlanılıyor…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Doğrulama gerekli</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Hesap aktarılıyor…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>

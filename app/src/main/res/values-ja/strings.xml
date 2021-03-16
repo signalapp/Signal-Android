@@ -1092,7 +1092,7 @@
   <string name="RatingManager_rate_now">評価する！</string>
   <string name="RatingManager_no_thanks">今はしない</string>
   <string name="RatingManager_later">あとで</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">おっと、Playストアアプリはこの端末にインストールされていないようです。</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">おっと、Playストアアプリはこの端末にインストールされていないようです。</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">すべて · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1706,11 +1706,19 @@
   <string name="HelpFragment__include_debug_log">デバッグログを添付する</string>
   <string name="HelpFragment__whats_this">これは何ですか？</string>
   <string name="HelpFragment__how_do_you_feel">どう感じていますか？ (任意)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">連絡を取りたい理由を教えてください。</string>
   <string name="HelpFragment__support_info">サポート情報</string>
   <string name="HelpFragment__signal_android_support_request">Signal Androidサポートリクエスト</string>
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
+  <string-array name="HelpFragment__categories">
+    <item>機能の不具合</item>
+    <item>機能のリクエスト</item>
+    <item>質問</item>
+    <item>フィードバック</item>
+    <item>その他</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -2150,11 +2158,13 @@
   <string name="backup_enable_dialog__folder">フォルダ</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">パスフレーズを書き留めました。パスフレーズがなければ、バックアップは復元できません。</string>
   <string name="registration_activity__restore_backup">バックアップを復元する</string>
-  <string name="registration_activity__transfer_account">アカウントの移転</string>
+  <string name="registration_activity__transfer_or_restore_account">アカウントの移行または復元</string>
+  <string name="registration_activity__transfer_account">アカウントの移行</string>
   <string name="registration_activity__skip">スキップする</string>
   <string name="preferences_chats__chat_backups">チャットのバックアップ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">外部ストレージにチャットをバックアップします</string>
-  <string name="preferences_chats__transfer_account">アカウントの移転</string>
+  <string name="preferences_chats__transfer_account">アカウントの移行</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">新しいAndroid端末にアカウントを移行します</string>
   <string name="RegistrationActivity_enter_backup_passphrase">バックアップ用パスフレーズを入力してください</string>
   <string name="RegistrationActivity_restore">復元する</string>
   <string name="RegistrationActivity_backup_failure_downgrade">より新しいバージョンのSignalからはバックアップをインポートできません</string>
@@ -2229,7 +2239,15 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>
   <string name="Recipient_unknown">不明</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">アカウントの移行または復元</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">以前に登録したSignalアカウントがある場合、アカウントやメッセージを移行または復元できます。</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android端末から移行</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">あなたの古いAndroid端末から、アカウントとメッセージ履歴を移行します。古い端末にアクセスする必要があります。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">古い端末へのアクセスが必要です。</string> -->
+  <string name="TransferOrRestoreFragment__restore_from_backup">バックアップから復元</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">ローカルバックアップからメッセージやメディアを復元します。いま復元しないと、あとから復元することはできません。</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">古いAndroid端末でSignalを開きます</string>
   <string name="NewDeviceTransferInstructions__continue">続ける</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">左上の写真をタップして、設定を開きます</string>
@@ -2238,28 +2256,69 @@
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">両方の端末で「アカウントの移転」、「続ける」の順にタップします</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">古いAndroid端末への接続を準備しています…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">しばらくお待ちください</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">古いAndroid端末との接続を待っています…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">古いAndroid端末へ接続しています…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">新しいAndroid端末を検索しています…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">新しいAndroid端末へ接続しています…</string> -->
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fiを有効にしてください</string>
+  <string name="DeviceTransferSetup__error_connecting">接続エラー</string>
   <string name="DeviceTransferSetup__retry">再試行</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">番号が一致しません</string>
   <string name="DeviceTransferSetup__continue">続ける</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">番号が異なります</string>
+  <string name="DeviceTransferSetup__stop_transfer">移行を停止</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">古い端末が見つかりません</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">新しい端末が見つかりません</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">以下のアクセス許可とサービスが有効であることを確認してください:</string>
+  <string name="DeviceTransferSetup__location_permission">位置情報へのアクセス許可</string>
+  <string name="DeviceTransferSetup__location_services">位置情報サービス</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct画面</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">両方の端末が移行モードであることを確認してください。</string>
   <string name="DeviceTransferSetup__try_again">もう一度試す</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">より新しいバージョンのSignalからは移行できません</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">データを転送しています</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">端末同士を近づけてください。どちらの端末も電源を切らず、Signalを開いたままにしてください。転送はエンドツーエンドで暗号化されます。</string>
+  <string name="DeviceTransfer__d_messages_so_far">これまで%1$d件のメッセージ…</string>
   <string name="DeviceTransfer__cancel">キャンセル</string>
   <string name="DeviceTransfer__try_again">もう一度試す</string>
+  <string name="DeviceTransfer__stop_transfer_question">移行を停止しますか？</string>
+  <string name="DeviceTransfer__stop_transfer">移行を停止する</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">すべての移行作業が失われます。</string>
+  <string name="DeviceTransfer__transfer_failed">移行に失敗しました</string>
+  <string name="DeviceTransfer__unable_to_transfer">移行できません</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">アカウントの移行</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">アカウントの移転</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップ</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」、「続ける」を選択します。端末同士を近づけてください。</string>
   <string name="OldDeviceTransferInstructions__continue">続ける</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">移行が完了しました</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">あなたのSignalデータは、新しい端末に転送されました。移行を完了するには、新しい端末で登録を継続する必要があります。</string>
   <string name="OldDeviceTransferComplete__close">閉じる</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">移行に成功しました</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">移行が完了しました</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">移行を完了するには、登録を継続する必要があります。</string>
   <!--DeviceToDeviceTransferService-->
-  <string name="DeviceToDeviceTransferService_status_service_connected">アカウントを移転しています…</string>
+  <string name="DeviceToDeviceTransferService_content_title">アカウントの移行</string>
+  <string name="DeviceToDeviceTransferService_status_ready">他のAndroid端末への接続を準備しています…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">他のAndroid端末への接続を準備しています…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">他のAndroid端末を検索しています…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">認証が必要です</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">アカウントを移行しています…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ブロック</string>
   <string name="RecipientBottomSheet_unblock">ブロック解除</string>

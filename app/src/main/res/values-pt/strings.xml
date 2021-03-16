@@ -1150,7 +1150,7 @@
   <string name="RatingManager_rate_now">Avaliar agora!</string>
   <string name="RatingManager_no_thanks">Não, obrigado</string>
   <string name="RatingManager_later">Mais tarde</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, a aplicação Play Store parece não estar instalada no seu dispositivo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, a aplicação Play Store parece não estar instalada no seu dispositivo.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Todos os · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1787,11 +1787,19 @@
   <string name="HelpFragment__include_debug_log">Incluir registo de depuração.</string>
   <string name="HelpFragment__whats_this">O que é isto?</string>
   <string name="HelpFragment__how_do_you_feel">Como se sente? (Opcional)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Diga-nos porque nos está a contactar.</string>
   <string name="HelpFragment__support_info">Informação de suporte</string>
   <string name="HelpFragment__signal_android_support_request">Pedido de Suporte do Signal para Android</string>
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Algo não está a funcionar</item>
+    <item>Pedido de recurso</item>
+    <item>Questão</item>
+    <item>Feedback</item>
+    <item>Outro</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -2323,30 +2331,108 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transferir ou restaurar conta</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se já registou uma conta Signal, você pode transferir ou restaurar a sua conta e mensagens </string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transferir de um dispositivo Android</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Transfira a sua conta e o histórico de mensagens a partir do seu dispositivo antigo Android. Você deverá ter acesso ao seu dispositivo antigo.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Você deverá ter acesso ao seu dispositivo antigo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Transfira a sua conta e o histórico de mensagens a partir do seu dispositivo antigo Android. Você deverá ter acesso ao seu dispositivo antigo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Você deverá ter acesso ao seu dispositivo antigo.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar a partir da cópia de segurança</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restore as suas mensagens e multimédia a partir de uma cópia de segurança local. Se não as restaurar agora, não será capaz de as restaurar mais tarde.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restore as suas mensagens e multimédia a partir de uma cópia de segurança local. Se não as restaurar agora, não será capaz de as restaurar mais tarde.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Abra o Signal no seu telemóvel Android antigo</string>
   <string name="NewDeviceTransferInstructions__continue">Continuar</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toque na sua fotografia de perfil no canto superior esquerdo para abrir as \'Definições\'</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Toque em \'Conversas\'</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toque em \'Transferir conta\' e depois em \'Continuar\' em ambos os dispositivos</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">A preparar para ligar para um dispositivo Android antigo…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Aguarde um momento, deverá estar pronto muito em breve</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">A aguardar pelo dispositivo Android antigo para ligar…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">A ligar ao dispositivo Android antigo…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">O Signal necessita da permissão de localização para poder encontrar e depois ligar-se ao seu dispositivo Android antigo.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">O Signal necessita que os serviços de localização se encontrem ativos para poder encontrar e depois ligar-se ao seu dispositivo Android antigo.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">O Signal necessita de Wi-Fi para poder descobrir e ligar-se ao seu dispositivo Android antigo. O Wi-Fi precisa estar ligado, mas não precisa estar ligado a uma rede Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Parece que este dispositivo não é compatível com Wi-Fi Direct. O Signal usa o Wi-Fi Direct para descobrir e ligar-se ao seu dispositivo Android antigo. Você ainda pode restaurar uma cópia de segurança para restaurar a sua conta do seu dispositivo Android antigo.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Restaurar uma cópia de segurança</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ocorreu um erro inesperado ao tentar ligar ao seu dispositivo Android antigo.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">A pesquisar pelo seu dispositivo Android novo…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">A ligar ao dispositivo Android novo…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">O Signal necessita da permissão de localização para poder encontrar e depois ligar-se ao seu dispositivo Android novo.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">O Signal necessita que os serviços de localização se encontrem ativos para poder encontrar e depois ligar-se ao seu dispositivo Android novo.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">O Signal necessita de Wi-Fi para poder descobrir e ligar-se ao seu dispositivo Android novo. O Wi-Fi precisa estar ligado, mas não precisa estar ligado a uma rede Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Parece que este dispositivo não é compatível com Wi-Fi Direct. O Signal usa o Wi-Fi Direct para descobrir e ligar-se ao seu dispositivo Android novo. Você ainda pode criar uma cópia de segurança para restaurar a sua conta no seu dispositivo Android novo.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Criar uma cópia de segurança</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ocorreu um erro inesperado ao tentar ligar ao seu dispositivo Android novo.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Não foi possível abrir as \'Definições Wi-Fi\'. Por favor, ative o Wi-Fi manualmente.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Conceder permissão de localização</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Ativar os serviços de localização</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Não foi possível abrir as definições de localização.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Ativar o Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Erro de ligação</string>
   <string name="DeviceTransferSetup__retry">Tentar novamente</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Submeter registos de depuração</string>
+  <string name="DeviceTransferSetup__verify_code">Verificar código</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirme que o código abaixo coincide em ambos os seus dispositivos. Depois, toque em continuar.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Os números não coincidem</string>
   <string name="DeviceTransferSetup__continue">Continuar</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">O número não é o mesmo</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Se os números nos seus dispositivos não corresponderem, é possível que você se tenha ligado ao dispositivo errado. Para corrigir isso, pare a transferência e tente novamente, mantendo os dois dispositivos próximos. </string>
+  <string name="DeviceTransferSetup__stop_transfer">Parar transferência</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Não foi possível encontrar o dispositivo antigo</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Não foi possível encontrar o dispositivo novo</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Assegure-se de que as permissões e serviços seguintes se encontram ativos:</string>
+  <string name="DeviceTransferSetup__location_permission">Permissão de localização</string>
+  <string name="DeviceTransferSetup__location_services">Serviços de localização</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">No ecrã do Wi-Fi Direct, remova todos os grupos guardados e desligue-se de todos os dispositivos convidados ou ligados.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Ecrã do Wi-Fi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Experimente desativar e ativar o Wi-Fi, em ambos os dispositivos.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assegure-se que ambos os dispostivos se encontram no modo de transferência. </string>
+  <string name="DeviceTransferSetup__go_to_support_page">Ir para a página de suporte</string>
   <string name="DeviceTransferSetup__try_again">Tentar novamente</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Não é possível transferir a partir de versões mais recentes do Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">A transferir dados</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantenha ambos o dispositivos próximos um do outro. Não desligue os dispositivos e mantenha o Signal aberto. As transferÊncia são encriptadas ponta-a-ponta.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mensagens até ao momento…</string>
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Tentar novamente</string>
+  <string name="DeviceTransfer__stop_transfer_question">Parar transferência?</string>
+  <string name="DeviceTransfer__stop_transfer">Parar transferência</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Todo o progresso de transferência será perdido.</string>
+  <string name="DeviceTransfer__transfer_failed">Falha de transferência</string>
+  <string name="DeviceTransfer__unable_to_transfer">Impossível transferir</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transferir conta</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Pode transferir a sua conta do Signal ao configurar o Signal num dispositivo Android novo. Antes de continuar:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Faça o download do Signal no seu dispositivo Android novo</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Toque em \'Transferir ou restaurar conta\'</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Selecione \'Transferir de um dispositivo Android\', quando solicitado carregue em \'Continuar\'. Mantenha os dois dispositivos próximos.</string>
   <string name="OldDeviceTransferInstructions__continue">Continuar</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transferência completa</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Vá para o seu dispositivo novo</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Os seus dados do Signal foram transferidos para o seu novo dispositivo. Para terminar o processo de transferência, você deverá continuar o registo no seu novo dispositivo.</string>
   <string name="OldDeviceTransferComplete__close">Fechar</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Transferência efetuada com sucesso</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Transferência completa</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Para terminar o seu processo de transferÊncia, deverá continuar com o registo.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Continuar registo</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Transferir conta</string>
+  <string name="DeviceToDeviceTransferService_status_ready">A preparar para se ligar ao seu outro dispositivo Android…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">A preparar para se ligar ao seu outro dispositivo Android…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">A procurar o seu outro dispositivo Android…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">A ligar ao seu outro dispositivo Android…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Necessária verificação</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">A transferir conta…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>

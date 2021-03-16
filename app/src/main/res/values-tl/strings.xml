@@ -664,7 +664,7 @@
   <string name="RatingManager_rate_now">I-rate ngayon!</string>
   <string name="RatingManager_no_thanks">Ayaw ko, salamat na lang</string>
   <string name="RatingManager_later">Mamaya na</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Sandali lang, mukhang hindi naka-install ang Play Store app sa iyong device.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Sandali lang, mukhang hindi naka-install ang Play Store app sa iyong device.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>

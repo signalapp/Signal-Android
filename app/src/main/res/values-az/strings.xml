@@ -485,7 +485,7 @@
   <string name="RatingManager_rate_now">İndi qiymətləndir!</string>
   <string name="RatingManager_no_thanks">Yox, təşəkkür edirəm</string>
   <string name="RatingManager_later">Daha sonra</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Bıy, belə görünür ki, cihazında Play Store aplikasıyası quraşdırılmamışdır.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Bıy, belə görünür ki, cihazında Play Store aplikasıyası quraşdırılmamışdır.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->

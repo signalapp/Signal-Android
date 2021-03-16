@@ -1151,7 +1151,7 @@
   <string name="RatingManager_rate_now">Ktazel tura!</string>
   <string name="RatingManager_no_thanks">Uhu tanemmirt</string>
   <string name="RatingManager_later">Tikkelt nniḍen</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Suref-aɣ, asnas Play Store ur yettban ara yettusbedd ɣef yibenk-inek·inem.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Suref-aɣ, asnas Play Store ur yettban ara yettusbedd ɣef yibenk-inek·inem.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Meṛṛa · %1$d</string>
   <!--ReactionsConversationView-->

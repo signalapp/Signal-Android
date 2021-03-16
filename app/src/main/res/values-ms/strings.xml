@@ -534,7 +534,7 @@
   <string name="RatingManager_rate_now">Nilaikan sekarang!</string>
   <string name="RatingManager_no_thanks">Tidak, terima kasih</string>
   <string name="RatingManager_later">Nanti</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, aplikasi Play Store tidak kelihatan dipasang pada peranti anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, aplikasi Play Store tidak kelihatan dipasang pada peranti anda.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <!--ReactionsRecipientAdapter-->

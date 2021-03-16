@@ -621,7 +621,7 @@
   <string name="RatingManager_rate_now">Yaba mana yanzu!</string>
   <string name="RatingManager_no_thanks">A\'a Nagode</string>
   <string name="RatingManager_later">Anjima</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Kash! Babu manhajar Google Play Store a wannan na\'urar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Kash! Babu manhajar Google Play Store a wannan na\'urar.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <!--ReactionsRecipientAdapter-->

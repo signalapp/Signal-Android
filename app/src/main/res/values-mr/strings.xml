@@ -1149,7 +1149,7 @@
   <string name="RatingManager_rate_now">आता रेट करा!</string>
   <string name="RatingManager_no_thanks">नाही धन्यवाद</string>
   <string name="RatingManager_later">नंतर</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">अरेरे, प्ले स्टोअर अॅप आपल्या डिव्हाईस वर स्थापित केलेले दिसत नाही.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">अरेरे, प्ले स्टोअर अॅप आपल्या डिव्हाईस वर स्थापित केलेले दिसत नाही.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">सर्व · %1$d</string>
   <!--ReactionsConversationView-->

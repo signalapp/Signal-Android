@@ -438,7 +438,7 @@
   <string name="RatingManager_rate_now">¡Kunan taripapay!</string>
   <string name="RatingManager_no_thanks">Manara, yupaychani</string>
   <string name="RatingManager_later">Ashata kashpa</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uuuh mana Play Store aplicacionta charinkichu yarin kikinpa antahillaypi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uuuh mana Play Store aplicacionta charinkichu yarin kikinpa antahillaypi.</string> -->
   <!--RecipientPreferencesActivity-->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Kay yupaymashita pakankapa munankichu</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Kay yupaymashimanta ña mana chaskita, kayachitapash chaskinkichu.</string> -->

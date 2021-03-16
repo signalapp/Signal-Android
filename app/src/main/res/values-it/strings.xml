@@ -1151,7 +1151,7 @@
   <string name="RatingManager_rate_now">Vota ora!</string>
   <string name="RatingManager_no_thanks">No grazie</string>
   <string name="RatingManager_later">Più tardi</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, sembra che l\'app del Play Store non sia installata sul tuo dispositivo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, sembra che l\'app del Play Store non sia installata sul tuo dispositivo.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Tutte · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1788,11 +1788,19 @@
   <string name="HelpFragment__include_debug_log">Includi log di debug.</string>
   <string name="HelpFragment__whats_this">Cos\'è?</string>
   <string name="HelpFragment__how_do_you_feel">Come ti senti? (Facoltativo)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Spiegaci perché ci stai contattando.</string>
   <string name="HelpFragment__support_info">Informazioni supporto</string>
   <string name="HelpFragment__signal_android_support_request">Richiesta di supporto Signal Android</string>
   <string name="HelpFragment__debug_log">Log di debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Qualcosa non funziona</item>
+    <item>Richiesta di funzionalità</item>
+    <item>Domanda</item>
+    <item>Opinione</item>
+    <item>Altro</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Questo messaggio</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usate di recente</string>
@@ -2324,10 +2332,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Trasferisci o ripristina account</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se hai precedentemente registrato un account Signal, puoi trasferire o ripristinare il tuo account e i tuoi messaggi</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Trasferisci da dispositivo Android</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Trasferisci il tuo account e la cronologia dei messaggi dal tuo vecchio dispositivo Android. Devi avere accesso al tuo vecchio dispositivo.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Devi avere accesso al tuo vecchio dispositivo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Trasferisci il tuo account e la cronologia dei messaggi dal tuo vecchio dispositivo Android. Devi avere accesso al tuo vecchio dispositivo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Devi avere accesso al tuo vecchio dispositivo.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Ripristina da backup</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Ripristina i tuoi messaggi e contenuti multimediali da un backup locale. Se non lo ripristini ora, non sarai in grado di ripristinarlo in seguito.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Ripristina i tuoi messaggi e contenuti multimediali da un backup locale. Se non lo ripristini ora, non sarai in grado di ripristinarlo in seguito.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Apri Signal sul tuo vecchio telefono Android</string>
   <string name="NewDeviceTransferInstructions__continue">Continua</string>
@@ -2341,7 +2349,7 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparazione alla connessione al vecchio dispositivo Android…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Ci vorrà un momento, dovrebbe essere pronto tra poco</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">In attesa che il vecchio dispositivo Android si connetta…</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Connessione al vecchio dispositivo Android…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Connessione al vecchio dispositivo Android…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal necessita dell\'autorizzazione alla posizione per trovare e connettersi al tuo vecchio dispositivo Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal ha bisogno che i servizi di localizzazione siano attivi per trovare e connettersi con il tuo vecchio dispositivo Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal ha bisogno che il Wi-Fi sia attivo per trovare e connettersi con il tuo vecchio dispositivo Android. Il Wi-Fi deve essere attivo ma non è necessario che sia connesso a una rete Wi-Fi.</string>
@@ -2350,7 +2358,7 @@
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Si è verificato un errore imprevisto durante il tentativo di connessione al tuo vecchio dispositivo Android.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Ricerca del tuo nuovo dispositivo Android…</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Connessione al nuovo dispositivo Android…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Connessione al nuovo dispositivo Android…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal necessita dell\'autorizzazione alla posizione per trovare e connettersi al tuo nuovo dispositivo Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal ha bisogno che i servizi di localizzazione siano attivi per trovare e connettersi con il tuo nuovo dispositivo Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal ha bisogno che il Wi-Fi sia attivo per trovare e connettersi con il tuo nuovo dispositivo Android. Il Wi-Fi deve essere attivo ma non è necessario che sia connesso a una rete Wi-Fi.</string>

@@ -1153,7 +1153,7 @@
   <string name="RatingManager_rate_now">Nu beoordelen</string>
   <string name="RatingManager_no_thanks">Nee bedankt</string>
   <string name="RatingManager_later">Later</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oeps, het lijkt er op dat de Play Store-app niet geïnstalleerd is op dit apparaat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oeps, het lijkt er op dat de Play Store-app niet geïnstalleerd is op dit apparaat.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1792,11 +1792,19 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__include_debug_log">Foutopsporingslog bijvoegen.</string>
   <string name="HelpFragment__whats_this">Wat is dit?</string>
   <string name="HelpFragment__how_do_you_feel">Hoe voel je je? (Optioneel)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Laat ons weten waarom je contact zoekt.</string>
   <string name="HelpFragment__support_info">Ondersteuningsinformatie</string>
   <string name="HelpFragment__signal_android_support_request">Signal-Android ondersteuningsverzoek</string>
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Er werkt iets niet</item>
+    <item>Verzoek voor nieuwe functionaliteit</item>
+    <item>Vraag</item>
+    <item>Terugkoppeling</item>
+    <item>Iets anders</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -2328,13 +2336,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Signalgegevens herstellen of overzetten</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Als je dit al op een ander apparaat hebt geregistreerd voor Signal met het zelfde telefoonnummer, dan kun je als je Signal-gegevens en berichten overzetten</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Overzetten vanaf een Android-apparaat</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Hiermee zet je all je instellingen, je profielinformatie en al je berichten over vanuit je oude Android apparaat. Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Hiermee zet je all je instellingen, je profielinformatie en al je berichten over vanuit je oude Android apparaat. Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-up-bestand terugzetten</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
-  <string name="NewDeviceTransferInstructions__continue">Gesprek voortzetten</string>
+  <string name="NewDeviceTransferInstructions__continue">Doorgaan</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in the linksbovenhoek op je profielfoto om de instellingen te openen</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
@@ -2345,7 +2353,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Aan het voorbereiden om verbinding te maken met je oude Android-apparaat …</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Een moment, dit duurt niet lang</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude oude Android-apparaat verbinding maakt …</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Verbinding aan het maken met je oude Android-apparaat …</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Verbinding aan het maken met je oude Android-apparaat …</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android apparaat te kunnen detecteren en om er verbinding mee te maken heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android apparaat te kunnen detecteren en om er verbinding mee te maken is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je oude Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
@@ -2354,7 +2362,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je oude Android-apparaat.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat …</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Verbinding aan het maken met je nieuw Android-apparaat …</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Verbinding aan het maken met je nieuw Android-apparaat …</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om je nieuwe Android apparaat te kunnen detecteren en om er verbinding mee te maken heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om je nieuwe Android apparaat te kunnen detecteren en om er verbinding mee te maken is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je nieuwe Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
@@ -2373,7 +2381,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DeviceTransferSetup__verify_code">Verificatiecode</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Ga na dat de code hieronder het zelfde is op beide apparaten. Als dat zo is, tik dan op ‘Doorgaan’.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">De telefoonnummers komen niet overeen</string>
-  <string name="DeviceTransferSetup__continue">Gesprek voortzetten</string>
+  <string name="DeviceTransferSetup__continue">Doorgaan</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Telefoonnummer is niet het zelfde</string>
   <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Als de getallen op je apparaten niet overeenkomen dan is het mogelijk dat je bent verbonden met het verkeerde apparaat. Tik op ‘Overzetten annuleren’ en probeer het opnieuw. Houd je apparaten bij elkaar in de buurt.</string>
   <string name="DeviceTransferSetup__stop_transfer">Overzetten annuleren</string>
@@ -2411,7 +2419,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tik op ‘Signalgegevens herstellen of overzetten’</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Kies wanneer de optie wordt weergegeven ‘Overzetten van een Android-apparaat’. Tik dan op ‘Doorgaan’. Houd de apparaten bij elkaar in de buurt.</string>
-  <string name="OldDeviceTransferInstructions__continue">Gesprek voortzetten</string>
+  <string name="OldDeviceTransferInstructions__continue">Doorgaan</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Overzetten voltooid</string>
   <string name="OldDeviceTransferComplete__go_to_your_new_device">Ga verder op je nieuwe apparaat</string>

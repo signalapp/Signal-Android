@@ -1267,7 +1267,7 @@
   <string name="RatingManager_rate_now">דרג עכשיו!</string>
   <string name="RatingManager_no_thanks">לא תודה</string>
   <string name="RatingManager_later">מאוחר יותר</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שיישום חנות Play אינו מותקן במכשיר שלך.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שיישום חנות Play אינו מותקן במכשיר שלך.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">כל ה־%1$d</string>
   <!--ReactionsConversationView-->
@@ -1932,11 +1932,19 @@
   <string name="HelpFragment__include_debug_log">כלול יומן ניפוי תקלים.</string>
   <string name="HelpFragment__whats_this">מה זה?</string>
   <string name="HelpFragment__how_do_you_feel">איך אתה מרגיש? (רשותי)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">ספר לנו מדוע אתה יוצר קשר.</string>
   <string name="HelpFragment__support_info">מידע תמיכה</string>
   <string name="HelpFragment__signal_android_support_request">בקשת תמיכה של Signal Android</string>
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
+  <string-array name="HelpFragment__categories">
+    <item>משהו לא עובד</item>
+    <item>בקשת מאפיין</item>
+    <item>שאלה</item>
+    <item>משוב</item>
+    <item>אחר</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -2400,9 +2408,13 @@
   <string name="backup_enable_dialog__folder">תיקייה</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
   <string name="registration_activity__restore_backup">שחזר גיבוי</string>
+  <string name="registration_activity__transfer_or_restore_account">העבר או שחזר חשבון</string>
+  <string name="registration_activity__transfer_account">העבר חשבון</string>
   <string name="registration_activity__skip">דלג</string>
   <string name="preferences_chats__chat_backups">גיבויי התכתבויות</string>
   <string name="preferences_chats__backup_chats_to_external_storage">גבה התכתבויות באחסון חיצוני</string>
+  <string name="preferences_chats__transfer_account">העבר חשבון</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">העבר חשבון אל מכשיר Android חדש</string>
   <string name="RegistrationActivity_enter_backup_passphrase">הכנס משפט־סיסמה של גיבוי</string>
   <string name="RegistrationActivity_restore">שחזר</string>
   <string name="RegistrationActivity_backup_failure_downgrade">לא ניתן לייבא גיבויים מגרסאות חדשות יותר של Signal</string>
@@ -2477,26 +2489,111 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לשחרר נעילה</string>
   <string name="Recipient_unknown">בלתי ידוע</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">העבר או שחזר חשבון</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">במקרה שנרשמת קודם לכן אל חשבון Signal, אתה יכול להעביר או לשחזר את החשבון וההודעות שלך.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">העבר ממכשיר Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">העבר את החשבון והיסטורית ההודעות שלך ממכשיר Android ישן שלך. אתה חייב גישה אל המכשיר הישן שלך.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">אתה חייב גישה אל המכשיר הישן שלך.</string> -->
+  <string name="TransferOrRestoreFragment__restore_from_backup">שחזר מגיבוי</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">שחזר את ההודעות והמדיה שלך מגיבוי מקומי. אם לא תשחזר עכשיו, לא תוכל לשחזר מאוחר יותר.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">פתח את Signal בטלפון Android הישן שלך</string>
   <string name="NewDeviceTransferInstructions__continue">המשך</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">הקש על תמונת הפרופיל שלך בקצה העליון השמאלי כדי לפתוח הגדרות</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">הקש על \"התכתבויות\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">הקש על \"העבר חשבון\" ואז \"המשך\" בשני המכשירים</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">מתכונן להתחבר אל מכשיר Android ישן…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">רק רגע, זה יהיה מוכן בקרוב</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">ממתין אל מכשיר Android ישן שיתחבר…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">מתחבר אל מכשיר Android ישן…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal צריך את הרשאת המיקום כדי לגלות ולהתחבר אל מכשיר ה־Android הישן שלך.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal צריך שירותי מיקום מופעלים כדי לגלות ולהתחבר אל מכשיר ה־Android הישן שלך.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal צריך Wi-Fi מופעל כדי לגלות להתחבר אל מכשיר ה־Android הישן שלך. Wi-Fi צריך להיות מופעל אבל הוא לא חייב להיות מחובר אל רשת Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">סליחה, נראה שמכשיר זה אינו תומך ב־Wi-Fi Direct. היישום Signal משתמש ב־Wi-Fi Direct כדי לגלות להתחבר אל מכשיר Android הישן שלך. אתה עדין יכול לשחזר גיבוי כדי לשחזר את החשבון שלך ממכשיר ה־Android הישן שלך.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">שחזר גיבוי</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">שגיאה בלתי צפויה התרחשה בזמן ניסיון להתחבר אל מכשיר ה־Android הישן שלך.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">מחפש את מכשיר ה־Android הישן שלך…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">מתחבר אל מכשיר Android חדש…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal צריך את הרשאת המיקום כדי לגלות ולהתחבר אל מכשיר ה־Android החדש שלך.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal צריך שירותי מיקום מופעלים כדי לגלות ולהתחבר אל מכשיר ה־Android החדש שלך.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal צריך Wi-Fi מופעל כדי לגלות להתחבר אל מכשיר ה־Android החדש שלך. Wi-Fi צריך להיות מופעל אבל הוא לא חייב להיות מחובר אל רשת Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">סליחה, נראה שמכשיר זה אינו תומך ב־Wi-Fi Direct. היישום Signal משתמש ב־Wi-Fi Direct כדי לגלות להתחבר אל מכשיר Android החדש שלך. אתה עדין יכול ליצור גיבוי כדי לשחזר את החשבון שלך במכשיר ה־Android החדש שלך.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">צור גיבוי</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">שגיאה בלתי צפויה התרחשה בזמן ניסיון להתחבר אל מכשיר ה־Android החדש שלך.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">לא היה ניתן לפתוח הגדרות Wi-Fi. אנא הפעל Wi-Fi באופן ידני.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">הענק הרשאת מיקום</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">הפעל שירותי מיקום</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">לא היה ניתן לפתוח הגדרות מיקום.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">הפעל Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">שגיאה בהתחברות</string>
   <string name="DeviceTransferSetup__retry">נסה שוב</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">הגש יומני ניפוי תקלים</string>
+  <string name="DeviceTransferSetup__verify_code">וודא קוד</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">וודא שהקוד למטה תואם בשני המכשירים שלך. לאחר מכן הקש על המשך.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">המספרים אינם תואמים</string>
   <string name="DeviceTransferSetup__continue">המשך</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">המספר אינו זהה</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">אם המספרים במכשירים שלך אינם תואמים, ייתכן שהתחברת אל מכשיר לא נכון. כדי לתקן זאת, הפסק את ההעברה ונסה שוב, והשאר את שני המכשירים שלך קרובים.</string>
+  <string name="DeviceTransferSetup__stop_transfer">הפסק העברה</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">לא היה ניתן לגלות מכשיר ישן</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">לא היה ניתן לגלות מכשיר חדש</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">וודא שההרשאות הבאות מאופשרות ושהחיבורים הבאים מאופשרים:</string>
+  <string name="DeviceTransferSetup__location_permission">הרשאת מיקום</string>
+  <string name="DeviceTransferSetup__location_services">שירותי מיקום</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">במסך WiFi Direct, הסר את כל הקבוצות הזכורות ובטל קישור של מכשירים מוזמנים או מחוברים כלשהם.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">מסך WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">נסה לכבות Wi-Fi ולהפעיל אותו, בשני המכשירים.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">וודא ששני המכשירים במצב העברה.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">לך אל דף התמיכה</string>
   <string name="DeviceTransferSetup__try_again">נסה שוב</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">לא ניתן להעביר מגרסאות חדשות יותר של Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">מעביר נתונים</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">השאר את שני המכשירים קרובים אחד לשני. אל תכבה את המכשירים והשאר את Signal פתוח. העברות מוצפנות מקצה־אל־קצה.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d הודעות עד כה…</string>
   <string name="DeviceTransfer__cancel">בטל</string>
   <string name="DeviceTransfer__try_again">נסה שוב</string>
+  <string name="DeviceTransfer__stop_transfer_question">להפסיק העברה?</string>
+  <string name="DeviceTransfer__stop_transfer">הפסק העברה</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">כל תהליך ההעברה יאבד.</string>
+  <string name="DeviceTransfer__transfer_failed">העברה נכשלה</string>
+  <string name="DeviceTransfer__unable_to_transfer">לא היה ניתן להעביר</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">העבר חשבון</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">אתה יכול להעביר את חשבון Signal שלך בזמן הגדרת Signal על מכשיר Android חדש. לפני המשכה:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">הורד את Signal במכשיר Android החדש שלך</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">הקש על \"העבר או שחזר חשבון\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">בחר \"העבר ממכשיר Android\" כאשר תיודע ולאחר מכן \"המשך\". השאר את שני המכשירים בקרבת מקום.</string>
   <string name="OldDeviceTransferInstructions__continue">המשך</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">העברה הושלמה</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">לך אל המכשיר החדש שלך</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">נתוני Signal שלך הועברו אל המכשיר החדש שלך. כדי להשלים את תהליך ההעברה, אתה חייב להמשיך את ההרשמה במכשיר החדש שלך.</string>
   <string name="OldDeviceTransferComplete__close">סגור</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">העברה מוצלחת</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">העברה הושלמה</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">כדי להשלים את תהליך ההרשמה, אתה חייב להמשיך את ההרשמה.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">המשך הרשמה</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">העברת חשבון</string>
+  <string name="DeviceToDeviceTransferService_status_ready">מתכונן להתחבר אל מכשיר Android האחר שלך…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">מתכונן להתחבר אל מכשיר Android האחר שלך…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">מחפש את מכשיר Android האחר שלך…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">מתחבר אל מכשיר Android האחר שלך…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">וידוא נדרש</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">מעביר חשבון…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">חסום</string>
   <string name="RecipientBottomSheet_unblock">שחרר חסימה</string>

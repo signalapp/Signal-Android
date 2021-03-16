@@ -1151,7 +1151,7 @@
   <string name="RatingManager_rate_now">ଏବେ ମୂଲ୍ୟାଙ୍କନ କର!</string>
   <string name="RatingManager_no_thanks">ନା ଧନ୍ୟବାଦ</string>
   <string name="RatingManager_later">ପରେ</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ଓହୋ,ପ୍ଲେ-ଷ୍ଟୋର୍ ଆପ୍ ଆପଣଙ୍କ ଉପକରଣ ରେ ସଂସ୍ଥାପିତ ହୋଇଥିବା ପରି ଦେଖାଯାଉ ନାହିଁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ଓହୋ,ପ୍ଲେ-ଷ୍ଟୋର୍ ଆପ୍ ଆପଣଙ୍କ ଉପକରଣ ରେ ସଂସ୍ଥାପିତ ହୋଇଥିବା ପରି ଦେଖାଯାଉ ନାହିଁ</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">ସମସ୍ତ%1$d</string>
   <!--ReactionsConversationView-->

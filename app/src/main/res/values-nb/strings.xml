@@ -1150,7 +1150,7 @@
   <string name="RatingManager_rate_now">Gi vurdering nå.</string>
   <string name="RatingManager_no_thanks">Nei takk</string>
   <string name="RatingManager_later">Senere</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops. Programmet Play Butikk ser ikke ut til å være installert på denne enheten.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops. Programmet Play Butikk ser ikke ut til å være installert på denne enheten.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->

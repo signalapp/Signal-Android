@@ -1266,7 +1266,7 @@
   <string name="RatingManager_rate_now">Ohodnotiť teraz!</string>
   <string name="RatingManager_no_thanks">Nie, ďakujem</string>
   <string name="RatingManager_later">Neskôr</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Joj, vyzerá to, že Obchod Google Play nie je nainštalovaný na vašom zariadení.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Joj, vyzerá to, že Obchod Google Play nie je nainštalovaný na vašom zariadení.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Všetky · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1931,11 +1931,19 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__include_debug_log">Pripojte aj denník ladenia.</string>
   <string name="HelpFragment__whats_this">Čo je toto?</string>
   <string name="HelpFragment__how_do_you_feel">Ako sa cítite? (voliteľné)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Povedzte nám, prečo píšete.</string>
   <string name="HelpFragment__support_info">Podporné informácie</string>
   <string name="HelpFragment__signal_android_support_request">Žiadosť o podporu pre Signal Android</string>
   <string name="HelpFragment__debug_log">Denník ladenia:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodarilo sa nahrať denníky</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Niečo nefunguje</item>
+    <item>Požiadať o novú funkciu</item>
+    <item>Otázka</item>
+    <item>Spätná väzba</item>
+    <item>Iné</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Táto správa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -2251,7 +2259,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Prehľady</string>
   <string name="InsightsDashboardFragment__title">Prehľady</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol za posledných %2$d dní automaticky ochránil %1$d%% vašich odchádzajúcich správ. Konverzácie medzi používateľmi Signalu sú vždy end-to-end šifrované.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol za posledných %2$d dní automaticky ochránil %1$d%% vašich odchádzajúcich správ. Konverzácie medzi používateľmi Signalu sú vždy koncovo šifrované.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Vylepšenie Signalu</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatok údajov</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Percentuálna hodnota vašich Prehľadov sa vypočítava na základe odchádzajúcich správ za posledných %1$d dní, ktoré nezmizli, ani neboli odstránené.</string>
@@ -2399,9 +2407,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="backup_enable_dialog__folder">Priečinok</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Heslo som si zapísal/a, bez hesla nebudem schopný/á obnoviť zálohy.</string>
   <string name="registration_activity__restore_backup">Obnoviť zálohu</string>
+  <string name="registration_activity__transfer_or_restore_account">Preniesť alebo obnoviť účet</string>
+  <string name="registration_activity__transfer_account">Preniesť účet</string>
   <string name="registration_activity__skip">Preskočiť</string>
   <string name="preferences_chats__chat_backups">Zálohy chatu</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Zálohovať chaty na úložisko</string>
+  <string name="preferences_chats__transfer_account">Preniesť účet</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Preniesť účet do nového Android zariadenia</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
   <string name="RegistrationActivity_restore">Obnovenie</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novšej verzie Signal sa nedajú importovať.</string>
@@ -2476,26 +2488,111 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="prompt_passphrase_activity__tap_to_unlock">ŤUKNUTÍM ODOMKNITE</string>
   <string name="Recipient_unknown">Neznáme</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Preniesť alebo obnoviť účet</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ak ste si v minulosti zaregistrovali Signal účet, môžete tento účet a správy presunúť alebo obnoviť</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Presunúť z Android zariadenia</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Presuňte svoj účet a históriu správ z vášho starého Android zariadenia. Musíte mať prístup do svojho starého zariadenia.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Musíte mať prístup do svojho starého zariadenia.</string> -->
+  <string name="TransferOrRestoreFragment__restore_from_backup">Obnoviť zo zálohy</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Obnoviť vaše správy a médiá z lokálnej zálohy. Ak ich neobnovíte teraz, neskôr už nebudete mať možnosť.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otvorte Signal na svojom starom Android zariadení.</string>
   <string name="NewDeviceTransferInstructions__continue">Pokračovať</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ťuknite na svoju profilovú fotku v ľavom hornom rohu pre otvorenie Nastavení</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Ťuknite na \"Chaty\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ťuknite \"Presunúť účet\" a potom \"Pokračovať\" na oboch zariadeniach</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Pripravuje sa pripojenie do starého Android zariadenia…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Chvíľku strpenia, onedlho by malo byť hotovo</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čaká sa na pripojenie starého Android zariadenia…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Pripája sa ku starému Android zariadeniu…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal potrebuje prístup k polohe, aby mohol objaviť a pripojiť sa k vášmu starému Android zariadeniu.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Aby Signal mohol objaviť a pripojiť sa k vášmu starému Android zariadeniu, musia byť zapnuté služby polohy.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal potrebuje Wi-Fi, aby mohol objaviť a pripojiť sa k vášmu starému Android zariadeniu. Wi-Fi musí byť zapnuté, ale nemusí byť pripojené k žiadnej Wi-Fi sieti.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Je nám ľúto, ale vyzerá to, že toto zariadenie nepodporuje Wi-Fi Direct. Signal používa Wi-Fi Direct na objavenie a pripojenie sa ku vášmu starému Android zariadeniu. Môžete ale urobiť obnovu zo zálohy a tým obnoviť vaše konto zo svojho starého Android zariadenia.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Obnoviť zálohu</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Počas pripájania sa k vášmu starému Android zariadeniu sa stala neočakávaná chyba.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Hľadá sa vaše nové Android zariadenie…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Pripája sa k novému Android zariadeniu…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal potrebuje prístup k polohe, aby mohol objaviť a pripojiť sa k vášmu novému Android zariadeniu.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Aby Signal mohol objaviť a pripojiť sa k vášmu novému Android zariadeniu, musia byť zapnuté služby polohy.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal potrebuje Wi-Fi, aby mohol objaviť a pripojiť sa k vášmu novému Android zariadeniu. Wi-Fi musí byť zapnuté, ale nemusí byť pripojené k žiadnej Wi-Fi sieti.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Je nám ľúto, ale vyzerá to, že toto zariadenie nepodporuje Wi-Fi Direct. Signal používa Wi-Fi Direct na objavenie a pripojenie sa ku vášmu novému Android zariadeniu. Môžete ale urobiť obnovu zo zálohy a tým obnoviť vaše konto do svojho nového Android zariadenia.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Vytvoriť zálohu</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Počas pripájania sa k vášmu novému Android zariadeniu sa stala neočakávaná chyba.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nie je možné otvoriť Wi-Fi nastavenia. Prosím, zapnite Wi-Fi.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Povoliť prístup k polohe</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Zapnúť služby polohy</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Nie je možné otvoriť nastavenia polohy.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Zapnúť Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Chyba pripojenia</string>
   <string name="DeviceTransferSetup__retry">Skúsiť znovu</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Odoslať ladiaci záznam</string>
+  <string name="DeviceTransferSetup__verify_code">Overiť kód</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Overte, že doleuvedený kód je rovnaký na oboch zariadeniach. Potom ťuknite pre pokračovanie.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Čísla sa nezhodujú</string>
   <string name="DeviceTransferSetup__continue">Pokračovať</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Číslo sa nezhoduje</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ak sa čísla na vašich zariadeniach nezhodujú, je možné, že ste pripojený/á k zlému zariadeniu. Pre nápravu zastavte presun a skúste ho znova, pričom svoje zariadenia držte blízko pri sebe.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Zastaviť prenos</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Nie je možné nájsť staré zariadenie</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Nie je možné nájsť nové zariadenie</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Uistite sa, že sú povolené nasledujúce oprávnenia a služby:</string>
+  <string name="DeviceTransferSetup__location_permission">Prístup k polohe</string>
+  <string name="DeviceTransferSetup__location_services">Služby polohy</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na obrazovke Wi-Fi Direct odstráňte všetky uložené skupiny a odpojte všetky pozvánky alebo pripojené zariadenia.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Wi-Fi Direct obrazovka</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Skúste vypnúť a zapnúť Wi-Fi na oboch zariadeniach.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Uistite sa, že obe zariadenia sú v režime prenosu účtu.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Ísť na stránku podpory</string>
   <string name="DeviceTransferSetup__try_again">Skúsiť znova</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Presun nie je možný z novších verzií aplikácie Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Prenášajú sa dáta</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Ponechajte obe zariadenia blízko seba. Nevypínajte zariadenia a nechajte Signal otvorený. Prenosy sú zabezpečené prostredníctvom koncového šifrovania.</string>
+  <string name="DeviceTransfer__d_messages_so_far">Zatiaľ %1$d správ…</string>
   <string name="DeviceTransfer__cancel">Zrušiť</string>
   <string name="DeviceTransfer__try_again">Skúsiť znova</string>
+  <string name="DeviceTransfer__stop_transfer_question">Zastaviť prenos?</string>
+  <string name="DeviceTransfer__stop_transfer">Zastaviť prenos</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Celý priebeh presunu bude stratený.</string>
+  <string name="DeviceTransfer__transfer_failed">Presun zlyhal</string>
+  <string name="DeviceTransfer__unable_to_transfer">Nemožno presunúť</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Preniesť účet</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Pri prvom nastavení Signalu na novom zariadení naň môžete presunúť svoj Signal účet. Predtým, než budete pokračovať:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Stiahnite Signal na svojom novom Android zariadení</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Ťuknite na \"Preniesť alebo obnoviť účet\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Keď budete požiadaný/á, kliknite na \"Presunúť z Android zariadenia\" a potom na \"Pokračovať\". Obe zariadenia držte blízko seba.</string>
   <string name="OldDeviceTransferInstructions__continue">Pokračovať</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Presun hotový</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Choďte ku svojmu novému zariadeniu</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Vaše Signal dáta boli presunuté do vášho nového zariadenia. Pre ukončenie procesu presunu sa musíte zaregistrovať na vašom novom zariadení.</string>
   <string name="OldDeviceTransferComplete__close">Zatvoriť</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Presun úspešný</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Presun hotový</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Pre ukončenie procesu prenosu musíte pokračovať registráciou.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Pokračovať v registrácii</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Presun účtu</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Pripravuje sa pripojenie do vášho druhého Android zariadenia…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Pripravuje sa pripojenie do vášho druhého Android zariadenia…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Hľadá sa vaše druhé Android zariadenie…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Pripája sa k vášmu druhému Android zariadeniu…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Vyžaduje sa overenie</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Prenáša sa účet…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokovať</string>
   <string name="RecipientBottomSheet_unblock">Odblokovať</string>

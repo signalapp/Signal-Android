@@ -1269,7 +1269,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RatingManager_rate_now">Graddio nawr!</string>
   <string name="RatingManager_no_thanks">Dim diolch</string>
   <string name="RatingManager_later">Yn hwyrach</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Wps, nid yw ap y Play Store i weld wedi cael ei osod ar eich dyfais.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Wps, nid yw ap y Play Store i weld wedi cael ei osod ar eich dyfais.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Y cyfan o %1$d</string>
   <!--ReactionsConversationView-->
@@ -1934,11 +1934,19 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__include_debug_log">Cynhwyswch cofnod dadfygio.</string>
   <string name="HelpFragment__whats_this">Beth yw hwn?</string>
   <string name="HelpFragment__how_do_you_feel">Sut ydych ch\'n teimlo? (Dewisol)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Dywedwch wrthym pam rydych yn cysylltu â ni.</string>
   <string name="HelpFragment__support_info">Gwybodaeth Gymorth</string>
   <string name="HelpFragment__signal_android_support_request">Cais Cymorth Cymorth Android Signal</string>
   <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Mae Rhywbeth Wedi Torri</item>
+    <item>Cais am Nodwedd</item>
+    <item>Cwestiwn</item>
+    <item>Adborth</item>
+    <item>Arall</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
@@ -2402,9 +2410,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="backup_enable_dialog__folder">Ffolder</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Rwy wedi ysgrifennu\'r cyfrinymadrodd hwn i lawr. Hebddo, fydda i ddim yn gallu adfer copi wrth gefn.</string>
   <string name="registration_activity__restore_backup">Adfer y copi wrth gefn</string>
+  <string name="registration_activity__transfer_or_restore_account">Trosglwyddo neu adfer cyfrif</string>
+  <string name="registration_activity__transfer_account">Trosglwyddo Cyfrif</string>
   <string name="registration_activity__skip">Hepgor</string>
   <string name="preferences_chats__chat_backups">Copïau wrth gefn o sgyrsiau</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Cadw sgyrsiau wrth gefn i storfa allanol</string>
+  <string name="preferences_chats__transfer_account">Trosglwyddo Cyfrif</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Trosglwyddo cyfrif i ddyfais Android newydd</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Rhoi\'r cyfrinymadrodd wrth gefn</string>
   <string name="RegistrationActivity_restore">Adfer</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Methu mewnforio o fersiynau mwy diweddar o Signal</string>
@@ -2479,26 +2491,111 @@ Send neges heb ei ddiogelu?</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPIO I DDATGLOI</string>
   <string name="Recipient_unknown">Anhysbys</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Trosglwyddo neu adfer cyfrif</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Os ydych wedi cofrestru cyfrif Signal o\'r blaen, gallwch drosglwyddo neu adfer eich cyfrif a\'ch negeseuon</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Trosglwyddo o ddyfais Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Trosglwyddwch hanes eich cyfrif a\'ch neges o\'ch hen ddyfais Android. Rhaid bod gennych fynediad i\'ch hen ddyfais.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Rhaid bod gennych fynediad i\'ch hen ddyfais.</string> -->
+  <string name="TransferOrRestoreFragment__restore_from_backup">Adfer o\'r copi wrth gefn</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Adferwch eich negeseuon a\'ch cyfryngau o gopi wrth gefn lleol. Os na fyddwch chi\'n ei adfer nawr, fyddwch chi ddim yn gallu ei adfer yn nes ymlaen.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Arwydd Signal ar eich hen ffôn Android</string>
   <string name="NewDeviceTransferInstructions__continue">Parhau</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tapiwch eich llun proffil yn y chwith uchaf i agor y Gosodiadau</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Tapiwch ar \"Sgwrs\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tapiwch \"Trosglwyddo Cyfrif\" ac yna \"Parhau\" ar y ddau ddyfais</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Yn paratoi i gysylltu â hen ddyfais Android…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Dylai cymryd eiliad, bydd yn barod cyn bo hir</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Yn aros i hen ddyfais Android i gysylltu…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Yn cysylltu â hen ddyfais Android…</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Mae angen caniatâd lleoliad ar Signal i ddarganfod a chysylltu â\'ch hen ddyfais Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Mae angen gwasanaethau lleoliad ar Signal sydd wedi\'u galluogi i ddarganfod a chysylltu â\'ch hen ddyfais Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Mae angen diwifr ar Signal i ddarganfod a chysylltu â\'ch hen ddyfais Android. Mae angen i\'r diwifr fod ymlaen ond nid oes rhaid ei gysylltu â rhwydwaith diwifr.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Ymddiheuriadau, mae\'n ymddangos nad yw\'r ddyfais hon yn cefnogi Wi-Fi Direct. Mae Signal yn defnyddio Wi-Fi Direct i ddarganfod a chysylltu â\'ch hen ddyfais Android. Gallwch barhau i adfer copi wrth gefn i adfer eich cyfrif o\'ch hen ddyfais Android.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Adfer y copi wrth gefn</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Digwyddodd gwall annisgwyl wrth geisio cysylltu â\'ch hen ddyfais Android.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Yn chwilio am eich dyfais Android newydd…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Yn cysylltu â dyfais Android newydd…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Mae angen caniatâd lleoliad ar Signal i ddarganfod a chysylltu â\'ch dyfais Android newydd.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Mae angen gwasanaethau lleoliad ar Signal sydd wedi\'u galluogi i ddarganfod a chysylltu â\'ch dyfais Android newydd.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Mae angen diwifr ar Signal i ddarganfod a chysylltu â\'ch dyfais Android newydd. Mae angen i ddiwifr fod ymlaen ond nid oes rhaid ei gysylltu â rhwydwaith diwifr.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Ymddiheuriadau, mae\'n ymddangos nad yw\'r ddyfais hon yn cefnogi Wi-Fi Direct. Mae Signal yn defnyddio Wi-Fi Direct i ddarganfod a chysylltu â\'ch dyfais Android newydd. Gallwch barhau i greu copi wrth gefn i adfer eich cyfrif ar eich dyfais Android newydd.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Creu copi wrth gefn</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Digwyddodd gwall annisgwyl wrth geisio cysylltu â\'ch dyfais Android newydd.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Methu agor Gosodiadau Diwifr. Trowch y diwifr ymlaen â llaw.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Rhowch ganiatâd lleoliad</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Trowch y gwasanaethau lleoliad ymlaen</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Methu agor gosodiadau lleoliad.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Trowch y Diwifr ymlaen</string>
+  <string name="DeviceTransferSetup__error_connecting">Gwall Cysylltu</string>
   <string name="DeviceTransferSetup__retry">Ailgynnig</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Cyflwynwch gofnodion dadfygio</string>
+  <string name="DeviceTransferSetup__verify_code">Gwirio cod</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Gwiriwch fod y cod isod yn cyd-fynd â\'r ddau o\'ch dyfeisiau. Yna tapiwch i barhau.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Nid yw\'r rhifau\'n cyfateb</string>
   <string name="DeviceTransferSetup__continue">Parhau</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Nid yw\'r rhifau\'r un peth</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Os nad yw\'r rhifau ar eich dyfeisiau yn cyfateb, mae\'n bosibl eich bod wedi cysylltu â\'r ddyfais anghywir. I gywiro hyn, stopiwch y trosglwyddiad a rhoi cynnig arall arni, a chadw\'r ddau ddyfais yn agos.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Stopio\'r trosglwyddo</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Methu darganfod yr hen ddyfais</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Methu darganfod y dyfais newydd</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sicrhewch fod y caniatâd a\'r gwasanaethau canlynol wedi\'u galluogi:</string>
+  <string name="DeviceTransferSetup__location_permission">Caniatâd lleoliad</string>
+  <string name="DeviceTransferSetup__location_services">Gwasanaethau lleoliad</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Ar sgrin WiFi Direct, tynnwch yr holl grwpiau sy\'n cael eu cofio a datgysylltwch unrhyw ddyfeisiau gwahoddedig neu gysylltiedig.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Sgrin WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Ceisiwch ddiffodd y diwifr a\'i droi nôl ymlaen ar y ddwy ddyfais.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sicrhewch fod y ddwy ddyfais yn y modd trosglwyddo.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Mynd i\'r dudalen cymorth</string>
   <string name="DeviceTransferSetup__try_again">Ceisio eto</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nid oes modd trosglwyddo o fersiynau mwy newydd o Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Yn trosglwyddo data</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Cadwch y ddwy ddyfais yn agos at ei gilydd. Peidiwch â diffodd y dyfeisiau a chadwch Signal ar agor. Mae trosglwyddiadau wedi\'u hamgryptio o\'r dechrau i\'r diwedd.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d neges hyd yma…</string>
   <string name="DeviceTransfer__cancel">Canslo</string>
   <string name="DeviceTransfer__try_again">Ceisio eto</string>
+  <string name="DeviceTransfer__stop_transfer_question">Stopio\'r trosglwyddo?</string>
+  <string name="DeviceTransfer__stop_transfer">Stopio\'r trosglwyddo</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Bydd yr holl gynnydd trosglwyddo yn cael ei golli.</string>
+  <string name="DeviceTransfer__transfer_failed">Methodd y trosglwyddo</string>
+  <string name="DeviceTransfer__unable_to_transfer">Methu trosglwyddo</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Trosglwyddo Cyfrif</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Gallwch drosglwyddo\'ch cyfrif Signal wrth osod Signal ar ddyfais Android newydd. Cyn parhau:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Llwythwch Signal ar i\'ch dyfais Android newydd</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tapiwch ar \"Trosglwyddo neu adfer cyfrif\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Dewiswch \"Trosglwyddo o ddyfais Android\" pan fydd yn gofyn i chi ac yna \"Parhau\". Cadwch y ddwy ddyfais gerllaw.</string>
   <string name="OldDeviceTransferInstructions__continue">Parhau</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Y trosglwyddo wedi\'i gwblhau</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Ewch i\'ch dyfais newydd</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Mae eich data Signal wedi\'i drosglwyddo i\'ch dyfais newydd. I gwblhau\'r broses drosglwyddo, rhaid i chi barhau i gofrestru ar eich dyfais newydd.</string>
   <string name="OldDeviceTransferComplete__close">Cau</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Y trosglwyddo yn llwyddiannus</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Y trosglwyddo wedi\'i gwblhau</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">I gwblhau\'r broses drosglwyddo, rhaid i chi barhau i gofrestru.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Parhau i gofrestru</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Trosglwyddo cyfrif</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Yn paratoi i gysylltu â\'ch dyfais Android arall …</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Yn paratoi i gysylltu â\'ch dyfais Android arall…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Yn chwilio am eich dyfais Android arall…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Yn cysylltu â\'ch dyfais Android arall…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Mae angen dilysu</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Yn trosglwyddo cyfrif…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Rhwystro</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>

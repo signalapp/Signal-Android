@@ -440,7 +440,7 @@
   <string name="RatingManager_rate_now">ယခုပင် အမှတ်ပေးလိုက်ပါ!</string>
   <string name="RatingManager_no_thanks">မလုပ်လိုပါ</string>
   <string name="RatingManager_later">နောက်မှလုပ်မည်</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">အမလေး! သင့်ဖုန်းတွင် Play Store app အားထည့်သွင်းထားပုံ မရပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">အမလေး! သင့်ဖုန်းတွင် Play Store app အားထည့်သွင်းထားပုံ မရပါ။</string> -->
   <!--RecipientPreferencesActivity-->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">ဒီလူကို Block လုပ်မလား?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">ဒီလူထံမှ စာများ၊ ဖုန်းများအား လက်ခံရရှိတော့မည် မဟုတ်ပါ။</string> -->

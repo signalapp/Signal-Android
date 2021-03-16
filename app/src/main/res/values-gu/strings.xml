@@ -620,7 +620,7 @@
   <string name="RatingManager_rate_now">હમણાં રેટ આપો!</string>
   <string name="RatingManager_no_thanks">ના આભાર</string>
   <string name="RatingManager_later">પછી</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">અરેરે, Play Store એપ્લિકેશન તમારા ડિવાઇસ પર ઇન્સ્ટોલ કરેલી દેખાતી નથી.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">અરેરે, Play Store એપ્લિકેશન તમારા ડિવાઇસ પર ઇન્સ્ટોલ કરેલી દેખાતી નથી.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <!--ReactionsRecipientAdapter-->

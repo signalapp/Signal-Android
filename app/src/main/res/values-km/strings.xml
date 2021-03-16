@@ -888,7 +888,7 @@
   <string name="RatingManager_rate_now">ដាក់ពិន្ទុឥលូវ!</string>
   <string name="RatingManager_no_thanks">ទេ អរគុណ</string>
   <string name="RatingManager_later">ពេលក្រោយ</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ចុម កម្មវិធី Play Store មានសម្រាប់ដំឡើងក្នុងឧបករណ៍របស់អ្នកទេ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ចុម កម្មវិធី Play Store មានសម្រាប់ដំឡើងក្នុងឧបករណ៍របស់អ្នកទេ។</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">ទាំងអស់ · %1$d</string>
   <!--ReactionsConversationView-->

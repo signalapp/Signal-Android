@@ -972,7 +972,7 @@
   <string name="RatingManager_rate_now">ให้คะแนนตอนนี้!</string>
   <string name="RatingManager_no_thanks">ไม่ ขอบคุณ</string>
   <string name="RatingManager_later">ไว้คราวหน้า</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">โอ๊ะ ไม่พบว่าแอป Play Store ถูกติดตั้งบนอุปกรณ์ของคุณ</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">โอ๊ะ ไม่พบว่าแอป Play Store ถูกติดตั้งบนอุปกรณ์ของคุณ</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">ทั้งหมด · %1$d</string>
   <!--ReactionsConversationView-->

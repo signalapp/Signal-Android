@@ -4,7 +4,7 @@
   <string name="no">خیر</string>
   <string name="delete">حذف</string>
   <string name="please_wait">لطفاً صبر کنید…</string>
-  <string name="save">ذخیره‌</string>
+  <string name="save">ذخیره</string>
   <string name="note_to_self">یادداشت شخصی</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز گذرواژه‌ای تنظیم نکرده‌اید!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">غیرفعال کردن گذرواژه؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن قفل سیگنال و اعلان‌های پیام به صورت دائمی خواهد شد.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن دائمی قفل سیگنال و اعلان‌ها‌ی پیام خواهد شد.</string>
   <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
   <string name="ApplicationPreferencesActivity_unregistering">لغو عضویت</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">لغو عضویت از پیام‌‌ها و تماس‌‌های سیگنال…</string>
@@ -710,7 +710,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">شما از پیش عضو هستید</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">پیوستن</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">درخواست پیوستن</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً‌ بعداً دوباره امتحان کنید</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً‌ دوباره امتحان کنید</string>
@@ -1151,7 +1151,7 @@
   <string name="RatingManager_rate_now">همین حالا امتیاز بدهید!</string>
   <string name="RatingManager_no_thanks">نه ممنون</string>
   <string name="RatingManager_later">بعدا</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوه، به نظر می‌رسد برنامهٔ فروشگاه Play بر روی دستگاه شما نصب نشده است.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوه، به نظر می‌رسد برنامهٔ فروشگاه Play بر روی دستگاه شما نصب نشده است.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">همه · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1786,11 +1786,19 @@
   <string name="HelpFragment__include_debug_log">شامل گزارش اشکال‌زدایی</string>
   <string name="HelpFragment__whats_this">توضیحات</string>
   <string name="HelpFragment__how_do_you_feel">چه حسی دارید؟ (اختیاری)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">به ما دلیل تماس‌تان را بگویید</string>
   <string name="HelpFragment__support_info">اطلاعات پشتیبانی</string>
   <string name="HelpFragment__signal_android_support_request">درخواست پشتیبانی برای سیگنال اندروید</string>
   <string name="HelpFragment__debug_log">گزارش اشکال‌زدایی:</string>
-  <string name="HelpFragment__could_not_upload_logs"> گزارش‌ها ارسال نشدند</string>
+  <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توضیح هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
+  <string-array name="HelpFragment__categories">
+    <item>یک چیز کار نمی‌کند</item>
+    <item>درخواست قابلیت</item>
+    <item>پرسش</item>
+    <item>بازخورد</item>
+    <item>سایر</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">اخیراً استفاده شده</string>
@@ -2244,6 +2252,7 @@
   <string name="preferences_chats__chat_backups">پشتیبان‌های گفتگو</string>
   <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
   <string name="preferences_chats__transfer_account">انتقال حساب کاربری</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">انتقال حساب کاربری به یک دستگاه اندروید جدید</string>
   <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
   <string name="RegistrationActivity_restore">بازگردانی</string>
   <string name="RegistrationActivity_backup_failure_downgrade">عدم توانایی در وارد کردن پشتیبان‌ها از نسخه‌های جدیدتر سیگنال</string>
@@ -2265,7 +2274,7 @@
   <string name="BackupDialog_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
   <string name="BackupDialog_no_file_picker_available">انتخاب کنندهٔ فایل در دسترس نیست.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">گذرواژهٔ پشتیبان را برای تأیید وارد کنید</string>
-  <string name="BackupDialog_verify">تآیید</string>
+  <string name="BackupDialog_verify">تأیید</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>
   <string name="BackupDialog_passphrase_was_not_correct">گذرواژه نادرست بود</string>
   <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
@@ -2285,7 +2294,7 @@
   <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شمارهٔ همراه</string>
   <string name="PhoneNumberPrivacy_everyone">همه</string>
   <string name="PhoneNumberPrivacy_my_contacts">مخاطبین من</string>
-  <string name="PhoneNumberPrivacy_nobody">هیچ کس</string>
+  <string name="PhoneNumberPrivacy_nobody">هیچ‌کس</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">شماره‌ٔ همراه شما برای همهٔ افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل رؤیت خواهد بود.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">هرکسی که شمارهٔ همراه شما را در مخاطبین خود داشته باشد، شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند شما را در جستجو پیدا کنند.</string>
   <string name="preferences_app_protection__screen_lock">قفل صفحه‌نمایش</string>
@@ -2321,10 +2330,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">اگر از قبل یک حساب کاربری سیگنال باز کرده‌اید، می‌توانید حساب کاربری و پیام‌های خود را انتقال داده یا بازگردانی کنید</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">انتقال از دستگاه اندروید</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">حساب کاربری و تاریخچهٔ پیام خود را از دستگاه اندروید قدیمی‌تان انتقال دهید. شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">حساب کاربری و تاریخچهٔ پیام خود را از دستگاه اندروید قدیمی‌تان انتقال دهید. شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">بازگردانی از پشتیبان</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">سیگنال را روی گوشی اندروید خود باز کنید</string>
   <string name="NewDeviceTransferInstructions__continue">ادامه</string>
@@ -2335,27 +2344,94 @@
   <string name="NewDeviceTransferInstructions__third_bullet">۳.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">روی «انتقال حساب کاربری» و سپس «ادامه» در هر دو دستگاه ضربه بزنید</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">آماده‌سازی برای اتصال به دستگاه اندروید قدیمی</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">در حال آماده شدن برای اتصال به دستگاه اندروید قدیمی…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">چند لحظه، بزودی آماده می‌شود</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">در حال انتظار برای اتصال به دستگاه اندروید قدیمی</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">در حال اتصال به دستگاه اندروید قدیمی</string> -->
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">سیگنال به مجوز مکان برای یافتن و اتصال به دستگاه اندروید قدیمی شما نیاز دارد</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه قدیمی اندروید شما نیاز دارد</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید قدیمی شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">متأسفانه، به نظر می‌رسد این دستگاه از Wi-Fi Direct پشتیبانی نمی‌کند. سیگنال از Wi-Fi Direct برای کشف و اتصال به دستگاه قدیمی اندروید شما استفاده می‌کند. شما هنوز می‌توانید برای بازگرداندن حساب کاربری‌تان از دستگاه قدیمی اندروید خود یک پشتیبان را بازگردانی کنید.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">بازگردانی یک پشتیبان</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید قدیمی شما رخ داد.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">در حال جستجو برای دستگاه اندروید جدید شما…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">در حال اتصال به دستگاه اندروید جدید شما…</string> -->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">سیگنال به مجوز مکان برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">متأسفانه، به نظر می‌رسد این دستگاه از Wi-Fi Direct پشتیبانی نمی‌کند. سیگنال از Wi-Fi Direct برای کشف و اتصال به دستگاه قدیمی اندروید شما استفاده می‌کند. شما هنوز می‌توانید برای بازگرداندن حساب کاربری‌تان در دستگاه اندروید جدید خود یک پشتیبان ایجاد کنید.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">ایجاد یک پشتیبان</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید جدید شما رخ داد.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">باز کردن تنظیمات Wi-Fi ممکن نبود. لطفاً Wi-Fi را به صورت دستی روشن کنید.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">اعطای مجوز مکان</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">سرویس‌های مکان را روشن کنید</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">باز کردن تنظیمات مکان ممکن نبود.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">روشن کردن Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">خطا در اتصال</string>
   <string name="DeviceTransferSetup__retry">تلاش مجدد</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">ارسال گزارش‌های اشکال‌زدایی</string>
+  <string name="DeviceTransferSetup__verify_code">تأیید کد</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">تأیید کنید که کد زیر روی هر دو دستگاه شما همخوانی دارد. سپس روی ادامه ضربه بزنید.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">شماره‌ها همخوانی ندارند</string>
   <string name="DeviceTransferSetup__continue">ادامه</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">شماره یکسان نیست</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">اگر شماره‌ها در دستگاه‌های شما همخوانی ندارند، ممکن است به دستگاه اشتباهی وصل شده باشید. برای برطرف کردن، انتقال را متوقف و دوباره امتحان کنید، و هر دو دستگاه خود را نزدیک به هم نگه دارید.</string>
+  <string name="DeviceTransferSetup__stop_transfer">توقف انتقال</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">کشف دستگاه قدیمی ممکن نبود</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">کشف دستگاه جدید ممکن نبود</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">مطمئن شوید که مجوزها و سرویس‌های زیر فعال شده‌اند:</string>
+  <string name="DeviceTransferSetup__location_permission">مجوز مکان</string>
+  <string name="DeviceTransferSetup__location_services">سرویس‌های مکان</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">در صفحهٔ WiFi Direct، همهٔ گروه‌های ذخیره شده را پاک و هر دستگاه دعوت شده یا متصلی را جدا کنید.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">صفحهٔ WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">خاموش و روشن کردن Wi-Fi را، روی هر دو دستگاه امتحان کنید.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">مطمئن شوید هر دو دستگاه در حالت انتقال قرار دارند.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">برو به صفحهٔ پشتیبانی</string>
   <string name="DeviceTransferSetup__try_again">دوباره امتحان کنید</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">انتقال از نسخه‌ٔ جدیدتر سیگنال ممکن نیست</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">در حال انتقال داده‌ها</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">هر دو دستگاه را نزدیک به یکدیگر نگه دارید. دستگاه‌ها را خاموش نکنید و سیگنال را باز نگه دارید. انتقال‌ها سرتاسر رمزگذاری شده هستند.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d پیام تا کنون…</string>
   <string name="DeviceTransfer__cancel">لغو</string>
   <string name="DeviceTransfer__try_again">دوباره امتحان کنید</string>
+  <string name="DeviceTransfer__stop_transfer_question">توقف انتقال؟</string>
+  <string name="DeviceTransfer__stop_transfer">توقف انتقال</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">کل پیشرفت انتقال از دست خواهد رفت.</string>
+  <string name="DeviceTransfer__transfer_failed">انتقال موفق نبود</string>
+  <string name="DeviceTransfer__unable_to_transfer">انتقال ممکن نبود</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">انتقال حساب کاربری</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">شما می‌توانید هنگام برپایی یک دستگاه اندروید جدید حساب کاربری سیگنال خود را انتقال دهید. قبل از ادامه دادن:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">۱.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">سیگنال رو روی دستگاه اندروید جدید خود بارگیری کنید</string>
   <string name="OldDeviceTransferInstructions__second_bullet">۲.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">روی «انتقال یا بازگردانی حساب کاربری» ضربه بزنید</string>
   <string name="OldDeviceTransferInstructions__third_bullet">۳.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">هنگام پرسیده شدن «انتقال از دستگاه اندروید» و سپس «ادامه» را انتخاب کنید. هر دو دستگاه را نزدیک نگه دارید.</string>
   <string name="OldDeviceTransferInstructions__continue">ادامه</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">انتقال کامل شد</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">به دستگاه جدیدتان بروید</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">داده‌های سیگنال شما به دستگاه جدید شما انتقال داده شده‌اند. برای تکمیل فرایند انتقال، شما باید ثبت‌نام را در دستگاه جدید خود ادامه دهید.</string>
   <string name="OldDeviceTransferComplete__close">بستن</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">انتقال موفق بود</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">انتقال کامل شد</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">برای تکمیل فرایند انتقال، شما باید به ثبت‌نام ادامه دهید.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">ادامهٔ ثبت‌نام</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">انتقال حساب کاربری</string>
+  <string name="DeviceToDeviceTransferService_status_ready">در حال آماده شدن برای اتصال به دستگاه اندروید دیگر…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">در حال آماده شدن برای اتصال به دستگاه اندروید دیگر…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">در حال جستجو برای دستگاه اندروید دیگر شما…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">در حال اتصال به دستگاه اندروید دیگر شما…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">تأیید لازم است</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">در حال انتقال حساب کاربری…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>

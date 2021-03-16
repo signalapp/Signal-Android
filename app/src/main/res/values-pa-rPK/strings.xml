@@ -628,7 +628,7 @@
   <string name="RatingManager_rate_now">ہونڑی درجہ بندی کرو!</string>
   <string name="RatingManager_no_thanks">نئیں شکریہ</string>
   <string name="RatingManager_later">بعد اچ</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اووہ لگدا اے کہ پلے اسٹور ایپ تہادے آلے تے انسٹال نئیں اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اووہ لگدا اے کہ پلے اسٹور ایپ تہادے آلے تے انسٹال نئیں اے۔</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>

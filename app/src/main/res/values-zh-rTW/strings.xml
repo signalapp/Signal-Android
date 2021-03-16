@@ -1092,7 +1092,7 @@
   <string name="RatingManager_rate_now">立即評分！</string>
   <string name="RatingManager_no_thanks">不用了，謝謝</string>
   <string name="RatingManager_later">稍後</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕，您的設備上未安裝 Google Play 商店。</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕，您的設備上未安裝 Google Play 商店。</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">全部 · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1712,11 +1712,19 @@
   <string name="HelpFragment__include_debug_log">包括偵錯紀錄。</string>
   <string name="HelpFragment__whats_this">這是什麼？</string>
   <string name="HelpFragment__how_do_you_feel">你覺得如何?(可選項目)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">告訴我們你為什麼要伸出援手。</string>
   <string name="HelpFragment__support_info">支援訊息</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android 支援要求</string>
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
+  <string-array name="HelpFragment__categories">
+    <item>某些功能不起作用</item>
+    <item>功能要求</item>
+    <item>問題</item>
+    <item>反應</item>
+    <item>其他</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>
@@ -2240,10 +2248,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">移轉或還原帳號</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">如果你以前註冊過Signal帳號，則可以轉移或還原你的帳號和訊息</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">從Android裝置轉移</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息歷史記錄。你必須有權訪問舊裝置。</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">你必須有權使用舊裝置。</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息歷史記錄。你必須有權訪問舊裝置。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">你必須有權使用舊裝置。</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">從本地備份還原你的訊息和媒體檔。 如果你現在不還原，則以後將無法還原。</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">從本地備份還原你的訊息和媒體檔。 如果你現在不還原，則以後將無法還原。</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在舊的Android手機上開啟Signal</string>
   <string name="NewDeviceTransferInstructions__continue">繼續</string>
@@ -2257,7 +2265,7 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">正在準備連結到舊的Android裝置…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">稍等片刻，應快準備好了</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">正在等待舊的Android裝置連接…</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">正在連接到舊的Android裝置…</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">正在連接到舊的Android裝置…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal需要位置權限才能發現並連接到舊的Android裝置。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal需要啟用位置服務才能發現你的舊Android裝置並與之連接。</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal需要啟用Wi-Fi才能發現你的舊Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
@@ -2266,7 +2274,7 @@
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到舊的Android裝置時發生未預期的錯誤。</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜尋你的新Android裝置…</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">正在搜尋你的新Android裝置…</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">正在搜尋你的新Android裝置…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal需要位置權限才能發現並連接到新的Android裝置。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal須要開啟定位服務才能發現新的Android裝置並與之連接。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal需要開啟Wi-Fi才能發現新的Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>

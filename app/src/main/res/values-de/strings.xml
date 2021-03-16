@@ -1149,7 +1149,7 @@
   <string name="RatingManager_rate_now">Jetzt bewerten!</string>
   <string name="RatingManager_no_thanks">Nein danke</string>
   <string name="RatingManager_later">Später</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play-Store-App scheint nicht auf deinem Gerät installiert zu sein.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play-Store-App scheint nicht auf deinem Gerät installiert zu sein.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1777,11 +1777,19 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__include_debug_log">Diagnoseprotokoll beifügen.</string>
   <string name="HelpFragment__whats_this">Was ist das?</string>
   <string name="HelpFragment__how_do_you_feel">Wie fühlst du dich? (optional)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Teil uns mit, warum du dich an uns wendest.</string>
   <string name="HelpFragment__support_info">Supportinformationen</string>
   <string name="HelpFragment__signal_android_support_request">Supportanfrage für Signal Android</string>
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Etwas funktioniert nicht</item>
+    <item>Featurewunsch</item>
+    <item>Frage</item>
+    <item>Feedback</item>
+    <item>Sonstiges</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -2313,10 +2321,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Konto übertragen oder wiederherstellen</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Falls du zuvor ein Signal-Konto registriert hast, kannst du dieses und deine Nachrichten übertragen oder wiederherstellen </string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Von Android-Gerät übertragen</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Übertrage dein Konto und deinen Nachrichtenverlauf von deinem alten Android-Gerät. Du musst auf dein altes Gerät zugreifen können.</string>
-  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Du musst auf dein altes Gerät zugreifen können.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Übertrage dein Konto und deinen Nachrichtenverlauf von deinem alten Android-Gerät. Du musst auf dein altes Gerät zugreifen können.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Du musst auf dein altes Gerät zugreifen können.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Aus Datensicherung wiederherstellen</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
+  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Öffne Signal auf deinem alten Android-Mobiltelefon</string>
   <string name="NewDeviceTransferInstructions__continue">Fortfahren</string>
@@ -2330,7 +2338,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Verbindung zum alten Android-Gerät wird vorbereitet …</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Etwas Geduld bitte, sollte bald bereit sein</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Warten auf Verbindung mit altem Android-Gerät …</string>
-  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Altes Android-Gerät wird verbunden …</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Altes Android-Gerät wird verbunden …</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal benötigt die Berechtigung »Standort«, um dein altes Android-Gerät zu erkennen und zu verbinden.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal benötigt aktivierte Standortdienste, um dein altes Android-Gerät zu erkennen und zu verbinden.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal benötigt eingeschaltetes WLAN, um dein altes Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>
@@ -2339,7 +2347,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Beim Versuch, eine Verbindung zu deinem alten Android-Gerät herzustellen, ist ein unerwarteter Fehler aufgetreten. </string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Nach deinem neuen Android-Gerät wird gesucht …</string>
-  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Neues Android-Gerät wird verbunden …</string>
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Neues Android-Gerät wird verbunden …</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal benötigt die Berechtigung »Standort«, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal benötigt aktivierte Standortdienste, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal benötigt eingeschaltetes WLAN, um dein neues Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>

@@ -865,7 +865,7 @@
   <string name="RatingManager_rate_now">ಈಗ ರೇಟಿಂಗ್ ಮಾಡಿ!</string>
   <string name="RatingManager_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
   <string name="RatingManager_later">ನಂತರ</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ಓಹ್, ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಪ್ಲೇ ಸ್ಟೋರ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ಓಹ್, ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಪ್ಲೇ ಸ್ಟೋರ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>

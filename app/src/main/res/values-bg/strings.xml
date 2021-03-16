@@ -1148,7 +1148,7 @@
   <string name="RatingManager_rate_now">Оцени сега!</string>
   <string name="RatingManager_no_thanks">Не, благодаря</string>
   <string name="RatingManager_later">По-късно</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Опа, Play Store приложението не е инсталирано на устройството Ви.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Опа, Play Store приложението не е инсталирано на устройството Ви.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Всички · %1$d</string>
   <!--ReactionsConversationView-->

@@ -452,7 +452,7 @@
   <string name="RatingManager_rate_now">Tabhair do mheas anois!</string>
   <string name="RatingManager_no_thanks">Ní raibh maith agaibh</string>
   <string name="RatingManager_later">Níos déanaí</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoips, ní thaibhsítear dom go bhfuil an aip Play Store suiteáilte ar do ghléas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoips, ní thaibhsítear dom go bhfuil an aip Play Store suiteáilte ar do ghléas.</string> -->
   <!--RecipientPreferencesActivity-->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Cuir bac ar an teagmhálaí seo?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ní gheobhaidh tú teachtaireachtaí ná glaonna ón teagmhálaí seo a thuilleadh.</string> -->

@@ -789,7 +789,7 @@
   <string name="RatingManager_rate_now">Novērtēsiet tagad!</string>
   <string name="RatingManager_no_thanks">Nē, paldies</string>
   <string name="RatingManager_later">Vēlāk</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Forši! Šķiet, ka Jums nav ierīcē instalēta spiegojošā Goolge Play Store lietotne.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Forši! Šķiet, ka Jums nav ierīcē instalēta spiegojošā Goolge Play Store lietotne.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Visi - %1$d</string>
   <!--ReactionsConversationView-->

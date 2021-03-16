@@ -1150,7 +1150,7 @@
   <string name="RatingManager_rate_now">Arvostele nyt!</string>
   <string name="RatingManager_no_thanks">Ei kiitos</string>
   <string name="RatingManager_later">Myöhemmin</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hups, Play Kauppa -sovellusta ei ole asennettu laitteeseen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hups, Play Kauppa -sovellusta ei ole asennettu laitteeseen.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Kaikki · %1$d</string>
   <!--ReactionsConversationView-->
