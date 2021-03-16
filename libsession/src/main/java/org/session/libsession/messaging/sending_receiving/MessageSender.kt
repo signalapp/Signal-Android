@@ -12,9 +12,6 @@ import org.session.libsession.messaging.messages.control.ClosedGroupControlMessa
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
-import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
 import org.session.libsession.messaging.threads.Address
@@ -24,11 +21,15 @@ import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeConfiguration
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
+import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 
 
 object MessageSender {
@@ -118,7 +119,7 @@ object MessageSender {
             // Convert it to protobuf
             val proto = message.toProto() ?: throw Error.ProtoConversionFailed
             // Serialize the protobuf
-            val plaintext = proto.toByteArray()
+            val plaintext = PushTransportDetails.getPaddedMessageBody(proto.toByteArray())
             // Encrypt the serialized protobuf
             val ciphertext: ByteArray
             when (destination) {
