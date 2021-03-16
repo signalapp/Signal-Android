@@ -11,6 +11,7 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
@@ -152,4 +153,7 @@ interface StorageProtocol {
     // Message Handling
     /// Returns the ID of the `TSIncomingMessage` that was constructed.
     fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long?
+
+    // Data Extraction Notification
+    fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, groupID: String?, sentTimestamp: Long)
 }

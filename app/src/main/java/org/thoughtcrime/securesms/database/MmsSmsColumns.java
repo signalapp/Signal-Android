@@ -70,6 +70,10 @@ public interface MmsSmsColumns {
     protected static final long GROUP_UPDATE_BIT            = 0x10000;
     protected static final long GROUP_QUIT_BIT              = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
+    protected static final long GROUP_CREATION_BIT          = 0x80000;
+    protected static final long GROUP_NAME_UPDATE_BIT       = 0x16000;
+    protected static final long GROUP_MEMBER_ADDED_BIT      = 0x32000;
+    protected static final long GROUP_MEMBER_REMOVED_BIT    = 0x64000;
 
     // Encrypted Storage Information XXX
     public    static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -84,6 +88,8 @@ public interface MmsSmsColumns {
     // Loki
     protected static final long ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT = 0x01000000;
     protected static final long ENCRYPTION_LOKI_SESSION_RESTORE_DONE_BIT = 0x00100000;
+    protected static final long DATA_EXTRACTION_SCREENSHOT_BIT           = 0x00010000;
+    protected static final long DATA_EXTRACTION_MEDIA_SAVED_BIT          = 0x00001000;
 
     public static boolean isDraftMessageType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_DRAFT_TYPE;
@@ -197,6 +203,16 @@ public interface MmsSmsColumns {
       return (type & EXPIRATION_TIMER_UPDATE_BIT) != 0;
     }
 
+    // DATA EXTRACTION NOTIFICATION
+
+    public static boolean isDataExtractionScreenshotUpdate(long type) {
+      return (type & DATA_EXTRACTION_SCREENSHOT_BIT) != 0;
+    }
+
+    public static boolean isDataExtractionMediaSavedUpdate(long type) {
+      return (type & DATA_EXTRACTION_MEDIA_SAVED_BIT) != 0;
+    }
+
     public static boolean isIncomingCall(long type) {
       return type == INCOMING_CALL_TYPE;
     }
@@ -209,13 +225,33 @@ public interface MmsSmsColumns {
       return type == MISSED_CALL_TYPE;
     }
 
+    // GROUPS EXPLICIT UPDATES
+
     public static boolean isGroupUpdate(long type) {
       return (type & GROUP_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isGroupCreation(long type) {
+      return (type & GROUP_CREATION_BIT) != 0;
+    }
+
+    public static boolean isGroupNameUpdate(long type) {
+      return (type & GROUP_NAME_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isGroupMemberAdded(long type) {
+      return (type & GROUP_MEMBER_ADDED_BIT) != 0;
+    }
+
+    public static boolean isGroupMemberRemoved(long type) {
+      return (type & GROUP_MEMBER_REMOVED_BIT) != 0;
     }
 
     public static boolean isGroupQuit(long type) {
       return (type & GROUP_QUIT_BIT) != 0;
     }
+
+
 
     public static boolean isFailedDecryptType(long type) {
       return (type & ENCRYPTION_REMOTE_FAILED_BIT) != 0;

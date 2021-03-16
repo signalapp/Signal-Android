@@ -272,6 +272,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                    Optional.absent(),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
+                                                                   Optional.absent(),
                                                                    Optional.absent());
 
       database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
@@ -371,9 +372,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
     } else {
+      // FIXME handle DataExtraction parameter below where Optional.absent() is
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
-              quote, sharedContacts, linkPreviews);
+              quote, sharedContacts, linkPreviews, Optional.absent());
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
       database.beginTransaction();
 

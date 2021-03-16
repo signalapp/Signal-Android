@@ -8,18 +8,23 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.Address.Companion.fromSerialized
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
@@ -29,21 +34,13 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.logging.Log
-import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
-import org.session.libsession.messaging.messages.signal.IncomingMediaMessage
-import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
-import org.session.libsession.messaging.messages.signal.IncomingTextMessage
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -125,17 +122,21 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                     PointerAttachment.forPointer(Optional.of(it)).orNull()
                 }
                 val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), attachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
-                mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
+                mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID
+                        ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
                 val attachments: Optional<List<SignalServiceAttachment>> = Optional.of(message.attachmentIDs.mapNotNull {
                     DatabaseFactory.getAttachmentProvider(context).getSignalAttachmentPointer(it)
                 })
-                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, attachments, quote, linkPreviews)
+                // FIXME deal with DataExtraction parameter
+                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, attachments, quote, linkPreviews, Optional.absent())
                 if (group.isPresent) {
-                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
+                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID
+                            ?: -1, message.sentTimestamp!!)
                 } else {
-                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1)
+                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID
+                            ?: -1)
                 }
             }
             if (insertResult.isPresent) {
@@ -157,7 +158,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                     }
                 }
                 val textMessage = OutgoingTextMessage.from(message, Recipient.from(context, targetAddress, false))
-                smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
+                smsDatabase.insertMessageOutbox(message.threadID
+                        ?: -1, textMessage, message.sentTimestamp!!)
             } else {
                 val textMessage = IncomingTextMessage.from(message, senderAddress, group, senderRecipient.expireMessages * 1000L)
                 if (group.isPresent) {
@@ -417,7 +419,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTimestamp, 0, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
-        if (mmsSmsDB.getMessageFor(sentTimestamp,userPublicKey) != null) return
+        if (mmsSmsDB.getMessageFor(sentTimestamp, userPublicKey) != null) return
         val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
         mmsDB.markAsSent(infoMessageID, true)
     }
@@ -537,5 +539,31 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getAttachmentThumbnailUri(attachmentId: AttachmentId): Uri {
         return PartAuthority.getAttachmentThumbnailUri(attachmentId)
+    }
+
+    // Data Extraction Notification
+    override fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, groupID: String?, sentTimestamp: Long) {
+        val database = DatabaseFactory.getMmsDatabase(context)
+        val address = fromSerialized(senderPublicKey)
+        val recipient = Recipient.from(context, address, false)
+
+        if (recipient.isBlocked) return
+
+        var groupInfo = Optional.absent<SignalServiceGroup?>()
+        if (groupID != null) {
+            groupInfo = Optional.of(SignalServiceGroup(groupID.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
+        }
+        val mediaMessage = IncomingMediaMessage(address, sentTimestamp, -1,
+                0, false,
+                false,
+                Optional.absent(),
+                groupInfo,
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.of(message))
+
+        database.insertSecureDecryptedMessageInbox(mediaMessage, -1)
     }
 }
