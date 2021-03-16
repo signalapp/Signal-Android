@@ -34,7 +34,7 @@ import org.session.libsignal.utilities.logging.Log
 object MessageSender {
 
     // Error
-    sealed class Error(val description: String) : Exception() {
+    sealed class Error(val description: String) : Exception(description) {
         object InvalidMessage : Error("Invalid message.")
         object ProtoConversionFailed : Error("Couldn't convert message to proto.")
         object ProofOfWorkCalculationFailed : Error("Proof of work calculation failed.")
@@ -202,6 +202,11 @@ object MessageSender {
         val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
         message.sender = storage.getUserPublicKey()
+        // Set the failure handler (need it here already for precondition failure handling)
+        fun handleFailure(error: Exception) {
+            handleFailedMessageSend(message, error)
+            deferred.reject(error)
+        }
         try {
             val server: String
             val channel: Long
@@ -214,19 +219,12 @@ object MessageSender {
                     channel = destination.channel
                 }
             }
-            // Set the failure handler (need it here already for precondition failure handling)
-            fun handleFailure(error: Exception) {
-                handleFailedMessageSend(message, error)
-                deferred.reject(error)
-            }
             // Validate the message
             if (message !is VisibleMessage || !message.isValid()) {
-                handleFailure(Error.InvalidMessage)
                 throw Error.InvalidMessage
             }
             // Convert the message to an open group message
             val openGroupMessage = OpenGroupMessage.from(message, server) ?: kotlin.run {
-                handleFailure(Error.InvalidMessage)
                 throw Error.InvalidMessage
             }
             // Send the result
@@ -238,7 +236,7 @@ object MessageSender {
                 handleFailure(it)
             }
         } catch (exception: Exception) {
-            deferred.reject(exception)
+            handleFailure(exception)
         }
         return deferred.promise
     }

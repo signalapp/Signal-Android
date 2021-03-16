@@ -44,6 +44,7 @@ import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
+import org.session.libsignal.service.loki.utilities.prettifiedDescription
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -367,6 +368,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
             smsDatabase.markAsSentFailed(messageRecord.getId())
+        }
+        if (error.localizedMessage != null) {
+            DatabaseFactory.getLokiMessageDatabase(context).setErrorMessage(messageRecord.getId(), error.localizedMessage!!)
+        } else {
+            DatabaseFactory.getLokiMessageDatabase(context).setErrorMessage(messageRecord.getId(), error.javaClass.simpleName)
         }
     }
 
