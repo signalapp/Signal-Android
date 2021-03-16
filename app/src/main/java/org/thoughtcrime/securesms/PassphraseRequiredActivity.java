@@ -49,6 +49,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   private static final int STATE_CREATE_PROFILE_NAME = 6;
   private static final int STATE_CREATE_SIGNAL_PIN   = 7;
   private static final int STATE_TRANSFER_ONGOING    = 8;
+  private static final int STATE_TRANSFER_LOCKED     = 9;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -151,6 +152,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       case STATE_CREATE_SIGNAL_PIN:   return getCreateSignalPinIntent();
       case STATE_CREATE_PROFILE_NAME: return getCreateProfileNameIntent();
       case STATE_TRANSFER_ONGOING:    return getOldDeviceTransferIntent();
+      case STATE_TRANSFER_LOCKED:     return getOldDeviceTransferLockedIntent();
       default:                        return null;
     }
   }
@@ -172,6 +174,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_CREATE_SIGNAL_PIN;
     } else if (EventBus.getDefault().getStickyEvent(TransferStatus.class) != null && getClass() != OldDeviceTransferActivity.class) {
       return STATE_TRANSFER_ONGOING;
+    } else if (SignalStore.misc().isOldDeviceTransferLocked()) {
+      return STATE_TRANSFER_LOCKED;
     } else {
       return STATE_NORMAL;
     }
@@ -230,6 +234,13 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     Intent intent = new Intent(this, OldDeviceTransferActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     return intent;
+  }
+
+  private @Nullable Intent getOldDeviceTransferLockedIntent() {
+    if (getClass() == MainActivity.class) {
+      return null;
+    }
+    return MainActivity.clearTop(this);
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {

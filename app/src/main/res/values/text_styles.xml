@@ -63,7 +63,9 @@
         <item name="android:color">@color/signal_text_primary</item>
     </style>
 
-    <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title">
+    <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title" />
+
+    <style name="TextAppearance.Signal.Title2.Bold">
         <item name="android:textStyle">bold</item>
     </style>
 

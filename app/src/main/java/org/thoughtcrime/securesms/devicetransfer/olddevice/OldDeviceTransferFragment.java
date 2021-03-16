@@ -15,6 +15,7 @@ import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferFragment;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 /**
  * Shows transfer progress on the old device. Most logic is in {@link DeviceTransferFragment}
@@ -54,6 +55,7 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
         ignoreTransferStatusEvents();
         EventBus.getDefault().removeStickyEvent(TransferStatus.class);
         DeviceToDeviceTransferService.stop(requireContext());
+        SignalStore.misc().markOldDeviceTransferLocked();
         NavHostFragment.findNavController(OldDeviceTransferFragment.this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
       } else {
         status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));

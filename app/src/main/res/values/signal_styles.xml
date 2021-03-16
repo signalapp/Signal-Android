@@ -86,6 +86,24 @@
         <item name="colorControlNormal">@color/core_grey_50</item>
     </style>
 
+    <style name="Signal.Widget.Button.Dialog" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textAppearance">@style/Signal.TextAppearance.Button.Dialog</item>
+        <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
+    </style>
+
+    <style name="Signal.TextAppearance.Button.Dialog" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Signal.ShapeOverlay.Rounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="Signal.MaterialAlertDialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
+    </style>
+
     <style name="Signal.DayNight.Popup" parent="@style/ThemeOverlay.AppCompat.Light" />
 
     <style name="Signal.DayNight.Toolbar.Overflow" parent="@style/Signal.Toolbar.Overflow.Light" />
@@ -94,5 +112,14 @@
 
     <style name="Signal.DayNight.Dialog.FullScreen" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
+    </style>
+
+    <style name="Signal.ThemeOverlay.Dialog.Rounded" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
+        <item name="android:background">@color/signal_background_dialog</item>
+        <item name="android:textColorPrimary">@color/signal_text_primary_dialog</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
     </style>
 </resources>

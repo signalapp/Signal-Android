@@ -2787,7 +2787,7 @@
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">An unexpected error occurred while attempting to connect to your old Android device.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
-    <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Searching for your new Android device…</string>
+    <string name="OldDeviceTransferSetup__searching_for_new_android_device">Searching for new Android device…</string>
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal needs the location permission to discover and connect to your new Android device.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal needs location services enabled to discover and connect with your new Android device.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal needs Wi-Fi on to discover and connect with your new Android device. Wi-Fi needs to be on but it does not have to be connected to a Wi-Fi network.</string>
@@ -2873,6 +2873,12 @@
     <string name="DeviceToDeviceTransferService_status_network_connected">Connecting to your other Android device…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Verification required</string>
     <string name="DeviceToDeviceTransferService_status_service_connected">Transferring account…</string>
+
+    <!-- OldDeviceTransferLockedDialog -->
+    <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Complete registration on your new device</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Your Signal account has been transferred to your new device, but you must complete registration on it to continue. Signal will be inactive on this device.</string>
+    <string name="OldDeviceTransferLockedDialog__done">Done</string>
+    <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancel and activate this device</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Block</string>

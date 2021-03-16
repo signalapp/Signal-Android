@@ -14,7 +14,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:text="@string/GroupsLearnMore_legacy_vs_new_groups"
-        android:textAppearance="@style/TextAppearance.Signal.Title2"
+        android:textAppearance="@style/TextAppearance.Signal.Title2.Bold"
         android:textColor="@color/signal_text_primary"
         app:layout_constraintBottom_toTopOf="@+id/lbs_paragraph_1_header"
         app:layout_constraintEnd_toEndOf="parent"

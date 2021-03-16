@@ -35,7 +35,7 @@
 
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:textAppearance="@style/TextAppearance.Signal.Title2"
+                      android:textAppearance="@style/TextAppearance.Signal.Title2.Bold"
                       android:text="@string/InviteActivity_friends_dont_let_friends_text_unencrypted"
                       android:textColor="@color/signal_text_primary"
                       android:gravity="center_horizontal"
