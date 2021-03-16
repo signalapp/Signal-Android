@@ -90,13 +90,7 @@ dependencyVerification {
         ['com.madgag.spongycastle:prov:1.58.0.0',
          '092fd09e7006b0814980513b013d4c2b3ffd24a49a635ab4b2d204bb51af1727'],
 
-        ['junit:junit:4.12',
-         '59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a'],
-
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
-
-        ['org.hamcrest:hamcrest-core:1.3',
-         '66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9'],
     ]
 }

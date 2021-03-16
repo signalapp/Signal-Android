@@ -30,9 +30,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation project(':core-util')
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
-    implementation 'com.madgag.spongycastle:prov:1.58.0.0'
-    implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
-    implementation 'com.madgag.spongycastle:pg:1.54.0.0'
+    implementation('com.madgag.spongycastle:prov:1.58.0.0') {
+        exclude group: 'junit'
+    }
+    implementation('com.madgag.spongycastle:pkix:1.54.0.0') {
+        exclude group: 'junit'
+    }
+    implementation('com.madgag.spongycastle:pg:1.54.0.0') {
+        exclude group: 'junit'
+    }
     api 'org.greenrobot:eventbus:3.0.0'
 
     testImplementation 'junit:junit:4.12'
