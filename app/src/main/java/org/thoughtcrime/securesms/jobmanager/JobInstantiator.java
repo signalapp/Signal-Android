@@ -14,8 +14,15 @@ class JobInstantiator {
   }
 
   public @NonNull Job instantiate(@NonNull String jobFactoryKey, @NonNull Job.Parameters parameters, @NonNull Data data) {
-    if (jobFactories.containsKey(jobFactoryKey)) {
-      return jobFactories.get(jobFactoryKey).create(parameters, data);
+    Job.Factory factory = jobFactories.get(jobFactoryKey);
+    if (factory != null) {
+      Job job = factory.create(parameters, data);
+
+      if (!job.getId().equals(parameters.getId())) {
+        throw new AssertionError("Parameters not supplied to job during creation");
+      }
+
+      return job;
     } else {
       throw new IllegalStateException("Tried to instantiate a job with key '" + jobFactoryKey + "', but no matching factory was found.");
     }
