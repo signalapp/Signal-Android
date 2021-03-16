@@ -29,6 +29,10 @@ public class StorageId {
     return new StorageId(type, raw);
   }
 
+  public boolean isUnknown() {
+    return !isKnownType(type);
+  }
+
   private StorageId(int type, byte[] raw) {
     this.type = type;
     this.raw  = raw;

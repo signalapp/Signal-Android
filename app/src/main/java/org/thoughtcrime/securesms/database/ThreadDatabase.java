@@ -514,7 +514,6 @@ public class ThreadDatabase extends Database {
     }
 
     Cursor cursor = cursors.size() > 1 ? new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) : cursors.get(0);
-    setNotifyConversationListListeners(cursor);
     return cursor;
   }
 
@@ -707,8 +706,6 @@ public class ThreadDatabase extends Database {
 
     Cursor cursor = db.rawQuery(query, new String[]{});
 
-    setNotifyConversationListListeners(cursor);
-
     return cursor;
   }
 
@@ -716,8 +713,6 @@ public class ThreadDatabase extends Database {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
     String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", offset, limit, false);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
-
-    setNotifyConversationListListeners(cursor);
 
     return cursor;
   }
@@ -1225,12 +1220,13 @@ public class ThreadDatabase extends Database {
 
   private void applyStorageSyncUpdate(@NonNull RecipientId recipientId, boolean archived, boolean forcedUnread) {
     ContentValues values = new ContentValues();
-    values.put(ARCHIVED, archived);
+    values.put(ARCHIVED, archived ? 1 : 0);
+
+    Long threadId = getThreadIdFor(recipientId);
 
     if (forcedUnread) {
       values.put(READ, ReadStatus.FORCED_UNREAD.serialize());
     } else {
-      Long threadId = getThreadIdFor(recipientId);
       if (threadId != null) {
         int unreadCount = DatabaseFactory.getMmsSmsDatabase(context).getUnreadCount(threadId);
 
@@ -1240,6 +1236,10 @@ public class ThreadDatabase extends Database {
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(recipientId));
+
+    if (threadId != null) {
+      notifyConversationListeners(threadId);
+    }
   }
 
   public boolean update(long threadId, boolean unarchive) {

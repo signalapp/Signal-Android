@@ -10,6 +10,8 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public final class SignalContactRecord implements SignalRecord {
@@ -41,6 +43,75 @@ public final class SignalContactRecord implements SignalRecord {
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  @Override
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forContact(this);
+  }
+
+  @Override
+  public String describeDiff(SignalRecord other) {
+    if (other instanceof SignalContactRecord) {
+      SignalContactRecord that = (SignalContactRecord) other;
+      List<String>        diff = new LinkedList<>();
+
+      if (!Objects.equals(this.getAddress().getNumber(), that.getAddress().getNumber())) {
+        diff.add("E164");
+      }
+
+      if (!Objects.equals(this.getAddress().getUuid(), that.getAddress().getUuid())) {
+        diff.add("UUID");
+      }
+
+      if (!Objects.equals(this.givenName, that.givenName)) {
+        diff.add("GivenName");
+      }
+
+      if (!Objects.equals(this.familyName, that.familyName)) {
+        diff.add("FamilyName");
+      }
+
+      if (!OptionalUtil.byteArrayEquals(this.profileKey, that.profileKey)) {
+        diff.add("ProfileKey");
+      }
+
+      if (!Objects.equals(this.username, that.username)) {
+        diff.add("Username");
+      }
+
+      if (!OptionalUtil.byteArrayEquals(this.identityKey, that.identityKey)) {
+        diff.add("IdentityKey");
+      }
+
+      if (!Objects.equals(this.getIdentityState(), that.getIdentityState())) {
+        diff.add("IdentityState");
+      }
+
+      if (!Objects.equals(this.isBlocked(), that.isBlocked())) {
+        diff.add("Blocked");
+      }
+
+      if (!Objects.equals(this.isProfileSharingEnabled(), that.isProfileSharingEnabled())) {
+        diff.add("ProfileSharing");
+      }
+
+      if (!Objects.equals(this.isArchived(), that.isArchived())) {
+        diff.add("Archived");
+      }
+
+      if (!Objects.equals(this.isForcedUnread(), that.isForcedUnread())) {
+        diff.add("ForcedUnread");
+      }
+
+      if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
+        diff.add("UnknownFields");
+      }
+
+      return diff.toString();
+    } else {
+      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
+    }
   }
 
   public boolean hasUnknownFields() {

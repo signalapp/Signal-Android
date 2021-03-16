@@ -117,8 +117,6 @@ public final class DatabaseObserver {
         listener.onChanged();
       }
     });
-
-    application.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
   }
 
   public void notifyPaymentListeners(@NonNull UUID paymentId) {

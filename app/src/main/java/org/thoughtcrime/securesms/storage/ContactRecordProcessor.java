@@ -1,13 +1,15 @@
 package org.thoughtcrime.securesms.storage;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -15,88 +17,63 @@ import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.Id
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
-class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalContactRecord> {
+public class ContactRecordProcessor extends DefaultStorageRecordProcessor<SignalContactRecord> {
 
-  private static final String TAG = Log.tag(ContactConflictMerger.class);
+  private static final String TAG = Log.tag(ContactRecordProcessor.class);
 
-  private final Map<UUID, SignalContactRecord>   localByUuid = new HashMap<>();
-  private final Map<String, SignalContactRecord> localByE164 = new HashMap<>();
+  private final Recipient         self;
+  private final RecipientDatabase recipientDatabase;
 
-  private final Recipient self;
+  public ContactRecordProcessor(@NonNull Context context, @NonNull Recipient self) {
+    this(self, DatabaseFactory.getRecipientDatabase(context));
+  }
 
-  ContactConflictMerger(@NonNull Collection<SignalContactRecord> localOnly, @NonNull Recipient self) {
-    for (SignalContactRecord contact : localOnly) {
-      if (contact.getAddress().getUuid().isPresent()) {
-        localByUuid.put(contact.getAddress().getUuid().get(), contact);
-      }
-      if (contact.getAddress().getNumber().isPresent()) {
-        localByE164.put(contact.getAddress().getNumber().get(), contact);
-      }
+  ContactRecordProcessor(@NonNull Recipient self, @NonNull RecipientDatabase recipientDatabase) {
+    this.self              = self;
+    this.recipientDatabase = recipientDatabase;
+  }
+
+  /**
+   * Error cases:
+   * - You can't have a contact record without an address component.
+   * - You can't have a contact record for yourself. That should be an account record.
+   *
+   * Note: This method could be written more succinctly, but the logs are useful :)
+   */
+  @Override
+  boolean isInvalid(@NonNull SignalContactRecord remote) {
+    SignalServiceAddress address = remote.getAddress();
+
+    if (address == null) {
+      Log.w(TAG, "No address on the ContentRecord -- marking as invalid.");
+      return true;
+    } else if ((self.getUuid().isPresent() && address.getUuid().equals(self.getUuid())) ||
+               (self.getE164().isPresent() && address.getNumber().equals(self.getE164())))
+    {
+      Log.w(TAG, "Found a ContactRecord for ourselves -- marking as invalid.");
+      return true;
+    } else {
+      return false;
     }
-
-    this.self = self.resolve();
   }
 
   @Override
-  public @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord record) {
-    SignalContactRecord localUuid = record.getAddress().getUuid().isPresent()   ? localByUuid.get(record.getAddress().getUuid().get())   : null;
-    SignalContactRecord localE164 = record.getAddress().getNumber().isPresent() ? localByE164.get(record.getAddress().getNumber().get()) : null;
+  @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote) {
+    SignalServiceAddress  address = remote.getAddress();
+    Optional<RecipientId> byUuid  = address.getUuid().isPresent() ? recipientDatabase.getByUuid(address.getUuid().get()) : Optional.absent();
+    Optional<RecipientId> byE164  = address.getNumber().isPresent() ? recipientDatabase.getByE164(address.getNumber().get()) : Optional.absent();
 
-    return Optional.fromNullable(localUuid).or(Optional.fromNullable(localE164));
+    return byUuid.or(byE164).transform(recipientDatabase::getRecipientSettingsForSync)
+                            .transform(StorageSyncModels::localToRemoteRecord)
+                            .transform(r -> r.getContact().get());
   }
 
-  @Override
-  public @NonNull Collection<SignalContactRecord> getInvalidEntries(@NonNull Collection<SignalContactRecord> remoteRecords) {
-    Map<String, Set<SignalContactRecord>> localIdToRemoteRecords = new HashMap<>();
-
-    for (SignalContactRecord remote : remoteRecords) {
-      Optional<SignalContactRecord> local = getMatching(remote);
-
-      if (local.isPresent()) {
-        String                   serializedLocalId = Base64.encodeBytes(local.get().getId().getRaw());
-        Set<SignalContactRecord> matches           = localIdToRemoteRecords.get(serializedLocalId);
-
-        if (matches == null) {
-          matches = new HashSet<>();
-        }
-
-        matches.add(remote);
-        localIdToRemoteRecords.put(serializedLocalId, matches);
-      }
-    }
-
-    Set<SignalContactRecord> duplicates = new HashSet<>();
-    for (Set<SignalContactRecord> matches : localIdToRemoteRecords.values()) {
-      if (matches.size() > 1) {
-        duplicates.addAll(matches);
-      }
-    }
-
-    List<SignalContactRecord> selfRecords = Stream.of(remoteRecords)
-                                                  .filter(r -> r.getAddress().getUuid().equals(self.getUuid()) || r.getAddress().getNumber().equals(self.getE164()))
-                                                  .toList();
-
-    Set<SignalContactRecord> invalid = new HashSet<>();
-    invalid.addAll(selfRecords);
-    invalid.addAll(duplicates);
-
-    if (invalid.size() > 0) {
-      Log.w(TAG, "Found invalid contact entries! Self Records: " + selfRecords.size() + ", Duplicates: " + duplicates.size());
-    }
-
-    return invalid;
-  }
-
-  @Override
-  public @NonNull SignalContactRecord merge(@NonNull SignalContactRecord remote, @NonNull SignalContactRecord local, @NonNull StorageKeyGenerator keyGenerator) {
+  @NonNull SignalContactRecord merge(@NonNull SignalContactRecord remote, @NonNull SignalContactRecord local, @NonNull StorageKeyGenerator keyGenerator) {
     String givenName;
     String familyName;
 
@@ -140,6 +117,28 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
                                     .setProfileSharingEnabled(profileSharing)
                                     .setForcedUnread(forcedUnread)
                                     .build();
+    }
+  }
+
+  @Override
+  void insertLocal(@NonNull SignalContactRecord record) {
+    recipientDatabase.applyStorageSyncContactInsert(record);
+  }
+
+  @Override
+  void updateLocal(@NonNull StorageRecordUpdate<SignalContactRecord> update) {
+    Log.i(TAG, "Local contact update: " + update.toString());
+    recipientDatabase.applyStorageSyncContactUpdate(update);
+  }
+
+  @Override
+  public int compare(@NonNull SignalContactRecord lhs, @NonNull SignalContactRecord rhs) {
+    if (Objects.equals(lhs.getAddress().getUuid(), rhs.getAddress().getUuid()) ||
+        Objects.equals(lhs.getAddress().getNumber(), rhs.getAddress().getNumber()))
+    {
+      return 0;
+    } else {
+      return lhs.getAddress().getIdentifier().compareTo(rhs.getAddress().getIdentifier());
     }
   }
 

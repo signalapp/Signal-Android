@@ -7,14 +7,20 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.SqlUtil;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -79,26 +85,39 @@ public class StorageKeyDatabase extends Database {
 
     db.beginTransaction();
     try {
-      for (SignalStorageRecord insert : inserts) {
-        ContentValues values = new ContentValues();
-        values.put(TYPE, insert.getType());
-        values.put(STORAGE_ID, Base64.encodeBytes(insert.getId().getRaw()));
-
-        db.insert(TABLE_NAME, null, values);
-      }
-
-      String deleteQuery = STORAGE_ID + " = ?";
-
-      for (SignalStorageRecord delete : deletes) {
-        String[] args = new String[] { Base64.encodeBytes(delete.getId().getRaw()) };
-        db.delete(TABLE_NAME, deleteQuery, args);
-      }
+      insert(inserts);
+      delete(Stream.of(deletes).map(SignalStorageRecord::getId).toList());
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
+  }
 
+  public void insert(@NonNull Collection<SignalStorageRecord> inserts) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    Preconditions.checkArgument(db.inTransaction(), "Must be in a transaction!");
+
+    for (SignalStorageRecord insert : inserts) {
+      ContentValues values = new ContentValues();
+      values.put(TYPE, insert.getType());
+      values.put(STORAGE_ID, Base64.encodeBytes(insert.getId().getRaw()));
+
+      db.insert(TABLE_NAME, null, values);
+    }
+  }
+
+  public void delete(@NonNull Collection<StorageId> deletes) {
+    SQLiteDatabase db          = databaseHelper.getWritableDatabase();
+    String         deleteQuery = STORAGE_ID + " = ?";
+
+    Preconditions.checkArgument(db.inTransaction(), "Must be in a transaction!");
+
+    for (StorageId id : deletes) {
+      String[] args = SqlUtil.buildArgs(Base64.encodeBytes(id.getRaw()));
+      db.delete(TABLE_NAME, deleteQuery, args);
+    }
   }
 
   public void deleteByType(int type) {

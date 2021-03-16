@@ -74,6 +74,7 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
+  private static final String STORAGE_SYNC_V2                   = "android.storageSyncV2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -104,7 +105,8 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_MEMORY,
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
-      MESSAGE_PROCESSOR_DELAY
+      MESSAGE_PROCESSOR_DELAY,
+      STORAGE_SYNC_V2
   );
 
   @VisibleForTesting
@@ -147,7 +149,8 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      GV1_FORCED_MIGRATE
+      GV1_FORCED_MIGRATE,
+      STORAGE_SYNC_V2
   );
 
   /**
@@ -332,6 +335,11 @@ public final class FeatureFlags {
   /** The minimum total memory for rendering animated stickers in the keyboard and such */
   public static int animatedStickerMinimumTotalMemoryMb() {
     return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
+  }
+
+  /** Whether or not to use {@link org.thoughtcrime.securesms.jobs.StorageSyncJobV2}. */
+  public static boolean storageSyncV2() {
+    return getBoolean(STORAGE_SYNC_V2, false);
   }
 
   /** Only for rendering debug info. */

@@ -569,12 +569,12 @@ public final class StorageSyncHelperTest {
     return new SignalGroupV2Record.Builder(byteArray(key), byteArray(groupId, 42)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
   }
 
-  private static <E extends SignalRecord> StorageSyncHelper.RecordUpdate<E> update(E oldRecord, E newRecord) {
-    return new StorageSyncHelper.RecordUpdate<>(oldRecord, newRecord);
+  private static <E extends SignalRecord> StorageRecordUpdate<E> update(E oldRecord, E newRecord) {
+    return new StorageRecordUpdate<>(oldRecord, newRecord);
   }
 
-  private static <E extends SignalRecord> StorageSyncHelper.RecordUpdate<SignalStorageRecord> recordUpdate(E oldContact, E newContact) {
-    return new StorageSyncHelper.RecordUpdate<>(record(oldContact), record(newContact));
+  private static <E extends SignalRecord> StorageRecordUpdate<SignalStorageRecord> recordUpdate(E oldContact, E newContact) {
+    return new StorageRecordUpdate<>(record(oldContact), record(newContact));
   }
 
   private static SignalStorageRecord unknown(int key) {
@@ -605,7 +605,7 @@ public final class StorageSyncHelperTest {
     return StorageId.forType(byteArray(val), UNKNOWN_TYPE);
   }
 
-  private static class TestGenerator implements StorageSyncHelper.KeyGenerator {
+  private static class TestGenerator implements StorageKeyGenerator {
     private final int[] keys;
 
     private int index = 0;

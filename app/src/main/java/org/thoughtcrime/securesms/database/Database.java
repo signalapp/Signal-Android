@@ -61,7 +61,6 @@ public abstract class Database {
 
   protected void notifyConversationListListeners() {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
-    context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
   }
 
   protected void notifyStickerListeners() {
@@ -85,11 +84,6 @@ public abstract class Database {
   @Deprecated
   protected void setNotifyVerboseConversationListeners(Cursor cursor, long threadId) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId));
-  }
-
-  @Deprecated
-  protected void setNotifyConversationListListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.ConversationList.CONTENT_URI);
   }
 
   @Deprecated

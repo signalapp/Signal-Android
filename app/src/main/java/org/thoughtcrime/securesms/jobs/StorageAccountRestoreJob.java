@@ -99,8 +99,7 @@ public class StorageAccountRestoreJob extends BaseJob {
 
 
     Log.i(TAG, "Applying changes locally...");
-    StorageId selfStorageId = StorageId.forAccount(Recipient.self().getStorageServiceId());
-    StorageSyncHelper.applyAccountStorageSyncUpdates(context, selfStorageId, accountRecord, false);
+    StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
 
     JobManager jobManager = ApplicationDependencies.getJobManager();
 

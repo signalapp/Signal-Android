@@ -35,7 +35,7 @@ final class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<Si
   }
 
   @Override
-  public @NonNull SignalGroupV2Record merge(@NonNull SignalGroupV2Record remote, @NonNull SignalGroupV2Record local, @NonNull StorageSyncHelper.KeyGenerator keyGenerator) {
+  public @NonNull SignalGroupV2Record merge(@NonNull SignalGroupV2Record remote, @NonNull SignalGroupV2Record local, @NonNull StorageKeyGenerator keyGenerator) {
     byte[]  unknownFields  = remote.serializeUnknownFields();
     boolean blocked        = remote.isBlocked();
     boolean profileSharing = remote.isProfileSharingEnabled();

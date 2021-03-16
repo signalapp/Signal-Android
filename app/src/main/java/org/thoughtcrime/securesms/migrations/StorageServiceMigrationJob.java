@@ -41,12 +41,12 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Multi-device.");
-      jobManager.startChain(new StorageSyncJob())
+      jobManager.startChain(StorageSyncJob.create())
                 .then(new MultiDeviceKeysUpdateJob())
                 .enqueue();
     } else {
       Log.i(TAG, "Single-device.");
-      jobManager.add(new StorageSyncJob());
+      jobManager.add(StorageSyncJob.create());
     }
   }
 

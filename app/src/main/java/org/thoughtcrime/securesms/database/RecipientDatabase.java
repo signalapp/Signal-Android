@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.RecordUpdate;
+import org.thoughtcrime.securesms.storage.StorageRecordUpdate;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Bitmask;
@@ -61,12 +61,15 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
+import org.whispersystems.signalservice.api.storage.SignalRecord;
+import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -812,12 +815,170 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public boolean applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
-                                         @NonNull Collection<RecordUpdate<SignalContactRecord>> contactUpdates,
-                                         @NonNull Collection<SignalGroupV1Record>               groupV1Inserts,
-                                         @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates,
-                                         @NonNull Collection<SignalGroupV2Record>               groupV2Inserts,
-                                         @NonNull Collection<RecordUpdate<SignalGroupV2Record>> groupV2Updates)
+  public void applyStorageSyncContactInsert(@NonNull SignalContactRecord insert) {
+    SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
+    ThreadDatabase   threadDatabase   = DatabaseFactory.getThreadDatabase(context);
+
+    ContentValues values      = getValuesForStorageContact(insert, true);
+    long          id          = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+    RecipientId   recipientId = null;
+
+    if (id < 0) {
+      Log.w(TAG,  "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.");
+      recipientId = getAndPossiblyMerge(insert.getAddress().getUuid().get(), insert.getAddress().getNumber().get(), true);
+      db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
+    } else {
+      recipientId = RecipientId.from(id);
+    }
+
+    if (insert.getIdentityKey().isPresent()) {
+      try {
+        IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
+
+        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
+      } catch (InvalidKeyException e) {
+        Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+      }
+    }
+
+    threadDatabase.applyStorageSyncUpdate(recipientId, insert);
+  }
+
+  public void applyStorageSyncContactUpdate(@NonNull StorageRecordUpdate<SignalContactRecord> update) {
+    SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
+    IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+    ContentValues    values           = getValuesForStorageContact(update.getNew(), false);
+
+    try {
+      int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+      if (updateCount < 1) {
+        throw new AssertionError("Had an update, but it didn't match any rows!");
+      }
+    } catch (SQLiteConstraintException e) {
+      Log.w(TAG,  "[applyStorageSyncContactUpdate] Failed to update a user by storageId.");
+
+      RecipientId recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getOld().getId().getRaw())).get();
+      Log.w(TAG,  "[applyStorageSyncContactUpdate] Found user " + recipientId + ". Possibly merging.");
+
+      recipientId = getAndPossiblyMerge(update.getNew().getAddress().getUuid().orNull(), update.getNew().getAddress().getNumber().orNull(), true);
+      Log.w(TAG,  "[applyStorageSyncContactUpdate] Merged into " + recipientId);
+
+      db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
+    }
+
+    RecipientId recipientId = getByStorageKeyOrThrow(update.getNew().getId().getRaw());
+
+    if (StorageSyncHelper.profileKeyChanged(update)) {
+      ContentValues clearValues = new ContentValues(1);
+      clearValues.putNull(PROFILE_KEY_CREDENTIAL);
+      db.update(TABLE_NAME, clearValues, ID_WHERE, SqlUtil.buildArgs(recipientId));
+    }
+
+    try {
+      Optional<IdentityRecord> oldIdentityRecord = identityDatabase.getIdentity(recipientId);
+
+      if (update.getNew().getIdentityKey().isPresent()) {
+        IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
+        DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
+      }
+
+      Optional<IdentityRecord> newIdentityRecord = identityDatabase.getIdentity(recipientId);
+
+      if ((newIdentityRecord.isPresent() && newIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED) &&
+          (!oldIdentityRecord.isPresent() || oldIdentityRecord.get().getVerifiedStatus() != VerifiedStatus.VERIFIED))
+      {
+        IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
+      } else if ((newIdentityRecord.isPresent() && newIdentityRecord.get().getVerifiedStatus() != VerifiedStatus.VERIFIED) &&
+          (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
+      {
+        IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), false, true);
+      }
+    } catch (InvalidKeyException e) {
+      Log.w(TAG, "Failed to process identity key during update! Skipping.", e);
+    }
+
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipientId, update.getNew());
+
+    Recipient.live(recipientId).refresh();
+  }
+
+  public void applyStorageSyncGroupV1Insert(@NonNull SignalGroupV1Record insert) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    long        id          = db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
+    RecipientId recipientId = RecipientId.from(id);
+
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipientId, insert);
+
+    Recipient.live(recipientId).refresh();
+  }
+
+  public void applyStorageSyncGroupV1Update(@NonNull StorageRecordUpdate<SignalGroupV1Record> update) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    ContentValues values      = getValuesForStorageGroupV1(update.getNew());
+    int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+
+    if (updateCount < 1) {
+      throw new AssertionError("Had an update, but it didn't match any rows!");
+    }
+
+    Recipient recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(update.getOld().getGroupId()));
+
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipient.getId(), update.getNew());
+
+    recipient.live().refresh();
+  }
+
+  public void applyStorageSyncGroupV2Insert(@NonNull SignalGroupV2Record insert) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    GroupMasterKey masterKey = insert.getMasterKeyOrThrow();
+    GroupId.V2     groupId   = GroupId.v2(masterKey);
+    ContentValues  values    = getValuesForStorageGroupV2(insert);
+    long           id        = db.insertOrThrow(TABLE_NAME, null, values);
+    Recipient      recipient = Recipient.externalGroupExact(context, groupId);
+
+    Log.i(TAG, "Creating restore placeholder for " + groupId);
+    DatabaseFactory.getGroupDatabase(context)
+                   .create(masterKey,
+                           DecryptedGroup.newBuilder()
+                                         .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+                                         .build());
+
+    Log.i(TAG, "Scheduling request for latest group info for " + groupId);
+
+    ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
+
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipient.getId(), insert);
+
+    recipient.live().refresh();
+  }
+
+  public void applyStorageSyncGroupV2Update(@NonNull StorageRecordUpdate<SignalGroupV2Record> update) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    ContentValues values      = getValuesForStorageGroupV2(update.getNew());
+    int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+
+    if (updateCount < 1) {
+      throw new AssertionError("Had an update, but it didn't match any rows!");
+    }
+
+    GroupMasterKey masterKey = update.getOld().getMasterKeyOrThrow();
+    Recipient      recipient = Recipient.externalGroupExact(context, GroupId.v2(masterKey));
+
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipient.getId(), update.getNew());
+
+    recipient.live().refresh();
+  }
+
+  public boolean applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>                      contactInserts,
+                                         @NonNull Collection<StorageRecordUpdate<SignalContactRecord>> contactUpdates,
+                                         @NonNull Collection<SignalGroupV1Record>                      groupV1Inserts,
+                                         @NonNull Collection<StorageRecordUpdate<SignalGroupV1Record>> groupV1Updates,
+                                         @NonNull Collection<SignalGroupV2Record>                      groupV2Inserts,
+                                         @NonNull Collection<StorageRecordUpdate<SignalGroupV2Record>> groupV2Updates)
   {
     SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
@@ -889,7 +1050,7 @@ public class RecipientDatabase extends Database {
         needsRefresh.add(recipientId);
       }
 
-      for (RecordUpdate<SignalContactRecord> update : contactUpdates) {
+      for (StorageRecordUpdate<SignalContactRecord> update : contactUpdates) {
         ContentValues values = getValuesForStorageContact(update.getNew(), false);
 
         try {
@@ -932,7 +1093,7 @@ public class RecipientDatabase extends Database {
           {
             IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
           } else if ((newIdentityRecord.isPresent() && newIdentityRecord.get().getVerifiedStatus() != VerifiedStatus.VERIFIED) &&
-                     (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
+              (oldIdentityRecord.isPresent() && oldIdentityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED))
           {
             IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), false, true);
           }
@@ -958,7 +1119,7 @@ public class RecipientDatabase extends Database {
         }
       }
 
-      for (RecordUpdate<SignalGroupV1Record> update : groupV1Updates) {
+      for (StorageRecordUpdate<SignalGroupV1Record> update : groupV1Updates) {
         ContentValues values      = getValuesForStorageGroupV1(update.getNew());
         int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
@@ -971,7 +1132,7 @@ public class RecipientDatabase extends Database {
         threadDatabase.applyStorageSyncUpdate(recipient.getId(), update.getNew());
         needsRefresh.add(recipient.getId());
       }
-      
+
       for (SignalGroupV2Record insert : groupV2Inserts) {
         GroupMasterKey masterKey = insert.getMasterKeyOrThrow();
         GroupId.V2     groupId   = GroupId.v2(masterKey);
@@ -988,9 +1149,9 @@ public class RecipientDatabase extends Database {
         Log.i(TAG, "Creating restore placeholder for " + groupId);
         DatabaseFactory.getGroupDatabase(context)
                        .create(masterKey,
-                               DecryptedGroup.newBuilder()
-                                             .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
-                                             .build());
+                           DecryptedGroup.newBuilder()
+                                         .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+                                         .build());
 
         Log.i(TAG, "Scheduling request for latest group info for " + groupId);
 
@@ -1000,7 +1161,7 @@ public class RecipientDatabase extends Database {
         needsRefresh.add(recipient.getId());
       }
 
-      for (RecordUpdate<SignalGroupV2Record> update : groupV2Updates) {
+      for (StorageRecordUpdate<SignalGroupV2Record> update : groupV2Updates) {
         ContentValues values      = getValuesForStorageGroupV2(update.getNew());
         int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
@@ -2568,6 +2729,22 @@ public class RecipientDatabase extends Database {
 
     for (RecipientId id : keys.keySet()) {
       Recipient.live(id).refresh();
+    }
+  }
+
+  public void clearDirtyStateForRecords(@NonNull List<SignalStorageRecord> records) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    Preconditions.checkArgument(db.inTransaction(), "Database should already be in a transaction.");
+
+    ContentValues values = new ContentValues();
+    values.put(DIRTY, DirtyState.CLEAN.getId());
+
+    String query = STORAGE_SERVICE_ID + " = ?";
+
+    for (SignalRecord record : records) {
+      String[] args = SqlUtil.buildArgs(Base64.encodeBytes(record.getId().getRaw()));
+      db.update(TABLE_NAME, values, query, args);
     }
   }
 

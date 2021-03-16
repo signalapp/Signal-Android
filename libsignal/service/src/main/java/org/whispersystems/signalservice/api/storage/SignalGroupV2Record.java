@@ -7,6 +7,9 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public final class SignalGroupV2Record implements SignalRecord {
@@ -26,6 +29,47 @@ public final class SignalGroupV2Record implements SignalRecord {
   @Override
   public StorageId getId() {
     return id;
+  }
+
+  @Override
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forGroupV2(this);
+  }
+
+  @Override
+  public String describeDiff(SignalRecord other) {
+    if (other instanceof SignalGroupV2Record) {
+      SignalGroupV2Record that = (SignalGroupV2Record) other;
+      List<String>        diff = new LinkedList<>();
+
+      if (!Arrays.equals(this.getMasterKeyBytes(), that.getMasterKeyBytes())) {
+        diff.add("MasterKey");
+      }
+
+      if (!Objects.equals(this.isBlocked(), that.isBlocked())) {
+        diff.add("Blocked");
+      }
+
+      if (!Objects.equals(this.isProfileSharingEnabled(), that.isProfileSharingEnabled())) {
+        diff.add("ProfileSharing");
+      }
+
+      if (!Objects.equals(this.isArchived(), that.isArchived())) {
+        diff.add("Archived");
+      }
+
+      if (!Objects.equals(this.isForcedUnread(), that.isForcedUnread())) {
+        diff.add("ForcedUnread");
+      }
+
+      if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
+        diff.add("UnknownFields");
+      }
+
+      return diff.toString();
+    } else {
+      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
+    }
   }
 
   public boolean hasUnknownFields() {

@@ -55,13 +55,13 @@ public final class StorageSyncValidations {
       throw new DuplicateRawIdError();
     }
 
+    if (inserts.size() > insertSet.size()) {
+      throw new DuplicateInsertInWriteError();
+    }
+
     int accountCount = 0;
     for (StorageId id : manifest.getStorageIds()) {
       accountCount += id.getType() == ManifestRecord.Identifier.Type.ACCOUNT_VALUE ? 1 : 0;
-    }
-
-    if (inserts.size() > insertSet.size()) {
-      throw new DuplicateInsertInWriteError();
     }
 
     if (accountCount > 1) {

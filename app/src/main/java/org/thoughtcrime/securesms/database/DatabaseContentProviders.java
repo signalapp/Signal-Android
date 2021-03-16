@@ -16,13 +16,6 @@ import org.thoughtcrime.securesms.BuildConfig;
  */
 public class DatabaseContentProviders {
 
-  public static class ConversationList extends NoopContentProvider {
-    private static final String CONTENT_AUTHORITY  = BuildConfig.APPLICATION_ID + ".database.conversationlist";
-    private static final String CONTENT_URI_STRING = "content://" + CONTENT_AUTHORITY;
-
-    public static final Uri CONTENT_URI = Uri.parse(CONTENT_URI_STRING);
-  }
-
   public static class Conversation extends NoopContentProvider {
     private static final String CONTENT_AUTHORITY  = BuildConfig.APPLICATION_ID + ".database.conversation";
     private static final String CONTENT_URI_STRING = "content://" + CONTENT_AUTHORITY + "/";

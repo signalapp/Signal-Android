@@ -83,7 +83,7 @@ public class PinRestoreRepository {
         ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
         stopwatch.split("AccountRestore");
 
-        ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJob(), TimeUnit.SECONDS.toMillis(10));
+        ApplicationDependencies.getJobManager().runSynchronously(StorageSyncJob.create(), TimeUnit.SECONDS.toMillis(10));
         stopwatch.split("ContactRestore");
 
         stopwatch.stop(TAG);

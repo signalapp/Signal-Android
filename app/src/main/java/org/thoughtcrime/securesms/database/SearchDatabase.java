@@ -133,11 +133,7 @@ public class SearchDatabase extends Database {
       return null;
     }
 
-    Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { fullTextSearchQuery,
-                                                               fullTextSearchQuery });
-
-    setNotifyConversationListListeners(cursor);
-    return cursor;
+    return db.rawQuery(MESSAGES_QUERY, new String[] { fullTextSearchQuery, fullTextSearchQuery });
   }
 
   public Cursor queryMessages(@NonNull String query, long threadId) {
@@ -148,13 +144,10 @@ public class SearchDatabase extends Database {
       return null;
     }
 
-    Cursor cursor = db.rawQuery(MESSAGES_FOR_THREAD_QUERY, new String[] { fullTextSearchQuery,
-                                                                          String.valueOf(threadId),
-                                                                          fullTextSearchQuery,
-                                                                          String.valueOf(threadId) });
-
-    setNotifyConversationListListeners(cursor);
-    return cursor;
+    return db.rawQuery(MESSAGES_FOR_THREAD_QUERY, new String[] { fullTextSearchQuery,
+                                                                 String.valueOf(threadId),
+                                                                 fullTextSearchQuery,
+                                                                 String.valueOf(threadId) });
   }
 
   private static String createFullTextSearchQuery(@NonNull String query) {
