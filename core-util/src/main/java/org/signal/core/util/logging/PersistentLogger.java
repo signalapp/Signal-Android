@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -39,7 +40,7 @@ public final class PersistentLogger extends Log.Logger {
   private static final String           FILENAME_PREFIX = "log-";
   private static final int              MAX_LOG_FILES   = 7;
   private static final int              MAX_LOG_SIZE    = 300 * 1024;
-  private static final SimpleDateFormat DATE_FORMAT     = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz");
+  private static final SimpleDateFormat DATE_FORMAT     = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US);
 
   private final Context  context;
   private final Executor executor;
