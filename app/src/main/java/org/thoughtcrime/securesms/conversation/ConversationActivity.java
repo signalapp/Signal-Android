@@ -400,6 +400,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
 
+  private volatile boolean screenInitialized = false;
+
   private       IdentityRecordList identityRecords = new IdentityRecordList(Collections.emptyList());
   private final DynamicTheme       dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage    dynamicLanguage = new DynamicLanguage();
@@ -449,6 +451,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
+        if (isFinishing()) {
+          Log.w(TAG, "Activity is finishing. Not proceeding with initialization.");
+          return;
+        }
+
         initializeProfiles();
         initializeGv1Migration();
         initializeDraft(args).addListener(new AssertedSuccessListener<Boolean>() {
@@ -469,6 +476,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
               composeText.addTextChangedListener(typingTextWatcher);
             }
             composeText.setSelection(composeText.length(), composeText.length());
+
+            screenInitialized = true;
           }
         });
       }
@@ -483,6 +492,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
     
     if (isFinishing()) {
       Log.w(TAG, "Activity is finishing...");
+      return;
+    }
+
+    if (!screenInitialized) {
+      Log.w(TAG, "Activity is in the middle of initialization. Restarting.");
+      finish();
+      startActivity(intent);
       return;
     }
 
