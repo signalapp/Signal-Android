@@ -40,7 +40,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 27;
+  public static final int CURRENT_VERSION = 28;
 
   private static final class Version {
     static final int LEGACY              = 1;
