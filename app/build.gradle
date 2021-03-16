@@ -157,7 +157,7 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.2'
 }
 
-def canonicalVersionCode = 146
+def canonicalVersionCode = 147
 def canonicalVersionName = "1.9.0"
 
 def postFixSize = 10
@@ -235,7 +235,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard/proguard-dagger.pro',
