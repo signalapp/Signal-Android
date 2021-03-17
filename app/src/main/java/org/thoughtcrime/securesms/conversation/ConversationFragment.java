@@ -57,6 +57,7 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.messages.control.DataExtractionNotification;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.opengroups.OpenGroupAPI;
@@ -745,6 +746,8 @@ public class ConversationFragment extends Fragment
                 if (!Util.isEmpty(attachments)) {
                   SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
                   saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
+                  // Sending a Data extraction notification
+                  sendMediaSavedNotificationIfNeeded();
                   return;
                 }
 
@@ -755,6 +758,11 @@ public class ConversationFragment extends Fragment
               })
               .execute();
     });
+  }
+
+  private void sendMediaSavedNotificationIfNeeded() {
+    DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
+    MessageSender.send(message, recipient.getAddress());
   }
 
   @Override

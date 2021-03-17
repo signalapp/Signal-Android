@@ -53,6 +53,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.session.libsession.messaging.messages.control.DataExtractionNotification;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
@@ -353,9 +355,16 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                 saveTask.executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR,
                         new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
+                // Sending a Data extraction notification
+                sendMediaSavedNotificationIfNeeded();
               })
               .execute();
     });
+  }
+
+  private void sendMediaSavedNotificationIfNeeded() {
+    DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
+    MessageSender.send(message, conversationRecipient.getAddress());
   }
 
   @SuppressLint("StaticFieldLeak")
