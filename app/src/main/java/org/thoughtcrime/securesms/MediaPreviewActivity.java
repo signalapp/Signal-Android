@@ -362,6 +362,9 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     });
   }
 
+  /**
+   * Send a MediaSaved notification to the recipient
+   */
   private void sendMediaSavedNotificationIfNeeded() {
     DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
     MessageSender.send(message, conversationRecipient.getAddress());

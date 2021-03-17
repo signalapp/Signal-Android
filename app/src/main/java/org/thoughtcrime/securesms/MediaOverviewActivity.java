@@ -52,6 +52,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 import com.google.android.material.tabs.TabLayout;
 
+import org.session.libsession.messaging.messages.control.DataExtractionNotification;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase;
@@ -351,11 +353,21 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
                       saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
                               attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
                       actionMode.finish();
+                      // Sending a Data extraction notification
+                      sendMediaSavedNotificationIfNeeded();
                     }
                   }.execute();
                 })
                 .execute();
       }, mediaRecords.size());
+    }
+
+    /**
+     * Send a MediaSaved notification to the recipient
+     */
+    private void sendMediaSavedNotificationIfNeeded() {
+      DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
+      MessageSender.send(message, recipient.getAddress());
     }
 
     @SuppressLint("StaticFieldLeak")
