@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.devicetransfer.newdevice;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -26,8 +27,12 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
     view.findViewById(R.id.transfer_or_restore_fragment_transfer)
         .setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_new_device_transfer_instructions));
 
-    view.findViewById(R.id.transfer_or_restore_fragment_restore)
-        .setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_choose_backup));
+    View restoreBackup = view.findViewById(R.id.transfer_or_restore_fragment_restore);
+    if (Build.VERSION.SDK_INT >= 21) {
+      restoreBackup.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_choose_backup));
+    } else {
+      restoreBackup.setVisibility(View.GONE);
+    }
 
     String description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device);
     String toBold      = getString(R.string.TransferOrRestoreFragment__you_need_access_to_your_old_device);

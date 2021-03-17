@@ -109,7 +109,7 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static @NonNull InputStream getInputStream(@NonNull Context context, @NonNull Uri uri) throws IOException{
-    if (BackupUtil.isUserSelectionRequired(context)) {
+    if (BackupUtil.isUserSelectionRequired(context) || uri.getScheme().equals("content")) {
       return Objects.requireNonNull(context.getContentResolver().openInputStream(uri));
     } else {
       return new FileInputStream(new File(Objects.requireNonNull(uri.getPath())));

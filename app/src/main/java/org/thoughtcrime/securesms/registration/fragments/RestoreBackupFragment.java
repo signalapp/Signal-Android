@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
@@ -108,7 +109,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }
 
     RestoreBackupFragmentArgs args = RestoreBackupFragmentArgs.fromBundle(requireArguments());
-    if (BackupUtil.isUserSelectionRequired(requireContext()) && args.getUri() != null) {
+    if ((Build.VERSION.SDK_INT < 29 || BackupUtil.isUserSelectionRequired(requireContext())) && args.getUri() != null) {
       Log.i(TAG, "Restoring backup from passed uri");
       initializeBackupForUri(view, args.getUri());
 
@@ -142,7 +143,6 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }
   }
 
-  @RequiresApi(29)
   private void initializeBackupForUri(@NonNull View view, @NonNull Uri uri) {
     getFromUri(requireContext(), uri, backup -> handleBackupInfo(view, backup));
   }
@@ -197,7 +197,6 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }.execute();
   }
 
-  @RequiresApi(29)
   static void getFromUri(@NonNull Context context,
                          @NonNull Uri backupUri,
                          @NonNull OnBackupSearchResultListener listener)

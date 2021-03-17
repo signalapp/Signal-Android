@@ -166,7 +166,6 @@ public class BackupUtil {
     return backups;
   }
 
-  @RequiresApi(29)
   public static @Nullable BackupInfo getBackupInfoFromSingleUri(@NonNull Context context, @NonNull Uri singleUri) {
     DocumentFile documentFile = DocumentFile.fromSingleUri(context, singleUri);
 
