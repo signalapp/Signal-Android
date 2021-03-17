@@ -41,9 +41,11 @@
             android:persistent="true"
             android:entries="@array/pref_data_and_storage_call_bandwidth_values"
             android:entryValues="@array/pref_data_and_storage_call_bandwidth_values" />
-    </PreferenceCategory>
 
-    <Preference android:layout="@layout/preference_data_and_storage_call_bandwidth_notice" />
+        <Preference
+            android:layout="@layout/preference_data_and_storage_call_bandwidth_notice"
+            android:enabled="false" />
+    </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
