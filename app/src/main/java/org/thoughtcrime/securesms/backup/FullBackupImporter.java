@@ -88,7 +88,8 @@ public class FullBackupImporter extends FullBackupBase {
       BackupFrame frame;
 
       while (!(frame = inputStream.readFrame()).getEnd()) {
-        if (count++ % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+        if (count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+        count++;
 
         if      (frame.hasVersion())    processVersion(db, frame.getVersion());
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
@@ -96,6 +97,7 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
         else if (frame.hasSticker())    processSticker(context, attachmentSecret, db, frame.getSticker(), inputStream);
         else if (frame.hasAvatar())     processAvatar(context, db, frame.getAvatar(), inputStream);
+        else                            count--;
       }
 
       db.setTransactionSuccessful();
