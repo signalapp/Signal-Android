@@ -126,8 +126,8 @@ public final class GenericForegroundService extends Service {
    * <p>
    * The delayed notification controller can also shown on demand and promoted to a regular notification controller to update the message etc.
    */
-  public static DelayedNotificationController startForegroundTaskDelayed(@NonNull Context context, @NonNull String task, long delayMillis) {
-    return DelayedNotificationController.create(delayMillis, () -> startForegroundTask(context, task));
+  public static DelayedNotificationController startForegroundTaskDelayed(@NonNull Context context, @NonNull String task, long delayMillis, @DrawableRes int iconRes) {
+    return DelayedNotificationController.create(delayMillis, () -> startForegroundTask(context, task, DEFAULTS.channelId, iconRes));
   }
 
   public static NotificationController startForegroundTask(@NonNull Context context, @NonNull String task) {
