@@ -1151,7 +1151,6 @@
   <string name="RatingManager_rate_now">Hinda nüüd!</string>
   <string name="RatingManager_no_thanks">Tänan, ei</string>
   <string name="RatingManager_later">Hiljem</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, tundub et Play poe rakendus puudub sinu seadmest.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Kõik · %1$d</string>
   <!--ReactionsConversationView-->

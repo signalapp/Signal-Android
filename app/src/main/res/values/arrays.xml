@@ -73,6 +73,7 @@
 <!-- te --><item>Telugu తెలుగు</item>
 <!-- th --><item>Thai ภาษาไทย</item>
 <!-- tr --><item>Türkçe</item>
+<!-- ug --><item>Uyghurche / ئۇيغۇرچە‎</item>
 <!-- uk --><item>Ukrainian Українська</item>
 <!-- ur --><item>Urdu اردو‎</item>
 <!-- vi --><item>Vietnamese Tiếng Việt</item>
@@ -150,6 +151,7 @@
       <item>te</item>
       <item>th</item>
       <item>tr</item>
+      <item>ug</item>
       <item>uk</item>
       <item>ur</item>
       <item>vi</item>

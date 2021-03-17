@@ -1092,7 +1092,6 @@
   <string name="RatingManager_rate_now">評価する！</string>
   <string name="RatingManager_no_thanks">今はしない</string>
   <string name="RatingManager_later">あとで</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">おっと、Playストアアプリはこの端末にインストールされていないようです。</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">すべて · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2242,10 +2241,7 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">アカウントの移行または復元</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">以前に登録したSignalアカウントがある場合、アカウントやメッセージを移行または復元できます。</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android端末から移行</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">あなたの古いAndroid端末から、アカウントとメッセージ履歴を移行します。古い端末にアクセスする必要があります。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">古い端末へのアクセスが必要です。</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">バックアップから復元</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">ローカルバックアップからメッセージやメディアを復元します。いま復元しないと、あとから復元することはできません。</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">古いAndroid端末でSignalを開きます</string>
   <string name="NewDeviceTransferInstructions__continue">続ける</string>
@@ -2259,13 +2255,11 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">古いAndroid端末への接続を準備しています…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">しばらくお待ちください</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">古いAndroid端末との接続を待っています…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">古いAndroid端末へ接続しています…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">新しいAndroid端末を検索しています…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">新しいAndroid端末へ接続しています…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">新しいAndroid端末を検索しています…</string> -->
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fiを有効にしてください</string>
   <string name="DeviceTransferSetup__error_connecting">接続エラー</string>

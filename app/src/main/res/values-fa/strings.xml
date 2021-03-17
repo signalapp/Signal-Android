@@ -174,7 +174,7 @@
   <string name="ConversationItem_from_s">از %s</string>
   <string name="ConversationItem_to_s">به %s</string>
   <string name="ConversationItem_read_more">  بیشتر بخوانید</string>
-  <string name="ConversationItem_download_more"> دانلود بیشتر</string>
+  <string name="ConversationItem_download_more"> بارگیری بیشتر</string>
   <string name="ConversationItem_pending">  در انتظار</string>
   <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
   <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید.</string>
@@ -844,8 +844,8 @@
   <string name="NotificationsMegaphone_not_now">حالا نه</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام چندرسانه‌ای</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای…</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در دریافت پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">در حال بارگیری فراپیام</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در بارگیری پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">ارسال به %s</string>
   <string name="MediaPickerActivity__menu_open_camera">باز کردن دوربین</string>
@@ -1151,7 +1151,6 @@
   <string name="RatingManager_rate_now">همین حالا امتیاز بدهید!</string>
   <string name="RatingManager_no_thanks">نه ممنون</string>
   <string name="RatingManager_later">بعدا</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوه، به نظر می‌رسد برنامهٔ فروشگاه Play بر روی دستگاه شما نصب نشده است.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">همه · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1599,7 +1598,7 @@
   <string name="ConversationUpdateItem_invite_friends">دعوت دوستان</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … وقفه</string>
-  <string name="audio_view__download_accessibility_description">دریافت</string>
+  <string name="audio_view__download_accessibility_description">بارگیری</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">ویدئو</string>
@@ -1936,7 +1935,7 @@
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
   <string name="preferences_chats__when_roaming">هنگام رومینگ</string>
-  <string name="preferences_chats__media_auto_download">دریافت خودکار رسانه</string>
+  <string name="preferences_chats__media_auto_download">بارگیری خودکار رسانه</string>
   <string name="preferences_chats__message_history">تاریخچهٔ پیام</string>
   <string name="preferences_storage__storage_usage">حافظهٔ مورد استفاده</string>
   <string name="preferences_storage__photos">تصاویر</string>
@@ -2330,10 +2329,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">اگر از قبل یک حساب کاربری سیگنال باز کرده‌اید، می‌توانید حساب کاربری و پیام‌های خود را انتقال داده یا بازگردانی کنید</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">انتقال از دستگاه اندروید</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">حساب کاربری و تاریخچهٔ پیام خود را از دستگاه اندروید قدیمی‌تان انتقال دهید. شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string> -->
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">حساب کاربری و پیام‌های خود را از دستگاه اندروید قدیمی خود انتقال دهید. به دسترسی به دستگاه قدیمی خود نیاز دارید.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">به دسترسی به دستگاه قدیمی خود نیاز دارید.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">بازگردانی از پشتیبان</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود.</string> -->
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">پیام‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، در آینده قادر به بازگردانی نخواهید بود.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">سیگنال را روی گوشی اندروید خود باز کنید</string>
   <string name="NewDeviceTransferInstructions__continue">ادامه</string>
@@ -2347,7 +2346,6 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">در حال آماده شدن برای اتصال به دستگاه اندروید قدیمی…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">چند لحظه، بزودی آماده می‌شود</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">در حال انتظار برای اتصال به دستگاه اندروید قدیمی</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">در حال اتصال به دستگاه اندروید قدیمی</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">سیگنال به مجوز مکان برای یافتن و اتصال به دستگاه اندروید قدیمی شما نیاز دارد</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه قدیمی اندروید شما نیاز دارد</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید قدیمی شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
@@ -2355,8 +2353,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">بازگردانی یک پشتیبان</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید قدیمی شما رخ داد.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">در حال جستجو برای دستگاه اندروید جدید شما…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">در حال اتصال به دستگاه اندروید جدید شما…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">در حال جستجو برای دستگاه اندروید جدید شما…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">سیگنال به مجوز مکان برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
@@ -2391,6 +2388,9 @@
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">مطمئن شوید هر دو دستگاه در حالت انتقال قرار دارند.</string>
   <string name="DeviceTransferSetup__go_to_support_page">برو به صفحهٔ پشتیبانی</string>
   <string name="DeviceTransferSetup__try_again">دوباره امتحان کنید</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">در حال انتظار برای دستگاه دیگر</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">برای آغاز انتقال در دستگاه دیگرتان روی ادامه ضربه بزنید.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">در دستگاه دیگرتان روی ادامه ضربه بزنید…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">انتقال از نسخه‌ٔ جدیدتر سیگنال ممکن نیست</string>
   <!--DeviceTransferFragment-->
@@ -2408,7 +2408,7 @@
   <string name="OldDeviceTransferInstructions__transfer_account">انتقال حساب کاربری</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">شما می‌توانید هنگام برپایی یک دستگاه اندروید جدید حساب کاربری سیگنال خود را انتقال دهید. قبل از ادامه دادن:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">۱.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">سیگنال رو روی دستگاه اندروید جدید خود بارگیری کنید</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">سیگنال را روی دستگاه اندروید جدید خود بارگیری کنید</string>
   <string name="OldDeviceTransferInstructions__second_bullet">۲.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">روی «انتقال یا بازگردانی حساب کاربری» ضربه بزنید</string>
   <string name="OldDeviceTransferInstructions__third_bullet">۳.</string>

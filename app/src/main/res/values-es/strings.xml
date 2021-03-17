@@ -528,11 +528,11 @@
   <string name="PendingMembersActivity_pending_group_invites">Invitaciones pendientes</string>
   <string name="PendingMembersActivity_requests">Solicitudes</string>
   <string name="PendingMembersActivity_invites">Invitaciones</string>
-  <string name="PendingMembersActivity_people_you_invited">Personas que has invitado</string>
+  <string name="PendingMembersActivity_people_you_invited">Personas que has invitado tú</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Invitaciones de otr@s participantes</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Otras personas que han sido invitadas</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otr@s participantes.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr@s participantes del grupo. Sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr@s participantes del grupo. Las personas invitadas sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar en el grupo.</string>
   <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
   <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -1151,7 +1151,6 @@
   <string name="RatingManager_rate_now">¡Valorar ahora!</string>
   <string name="RatingManager_no_thanks">No, gracias</string>
   <string name="RatingManager_later">Más tarde</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Vaya, la aplicación de la Play Store no parece estar instalada.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Todas · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2332,10 +2331,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transferir o restaurar cuenta</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Si ya tienes una cuenta en Signal, podrás transferir o restaurar de forma segura tu cuenta y mensajes.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transferir desde dispositivo Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Transfiere tu cuenta y mensajes desde tu dispositivo de Android antiguo. Necesitas acceso a tu dispositivo antiguo. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Debes tener acceso a tu dispositivo antiguo.</string> -->
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfiere tu cuenta y mensajes desde tu dispositivo de Android antiguo. Necesitas acceso a tu dispositivo antiguo. </string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Debes tener acceso a tu dispositivo antiguo.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar desde copia de seguridad</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restaura tus mensajes y adjuntos desde una copia de seguridad. Si no lo haces ahora, no podrás hacerlo más tarde.</string> -->
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaura tus mensajes y adjuntos desde una copia de seguridad local. Si no lo haces ahora, no podrás restaurar más tarde.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Abre Signal en tu dispositivo Android antiguo</string>
   <string name="NewDeviceTransferInstructions__continue">Adelante</string>
@@ -2349,7 +2348,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparando la conexión con tu dispositivo Android antiguo …</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Sólo necesita un momento, debería estar listo pronto</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Esperando a la conexión del dispositivo Android antiguo …</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Conectándose al dispositivo Android antiguo …</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal necesita acceso a la ubicación para encontrar y conectarse a tu dispositivo Android antiguo.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal necesita acceso a los servicios de localización para encontrar y conectarse con tu dispositivo Android antiguo.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal necesita la Wi-Fi activa para encontrar y conectarse con tu dispositivo Android antiguo. La Wi-Fi debe estar activa pero el dispositivo no necesita estar conectado a una red Wi-Fi concreta.</string>
@@ -2357,8 +2355,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaurar copia de seguridad</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Fallo al conectar con tu dispositivo Android antiguo.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Buscando tu dispositivo Android nuevo …</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Conectándose al dispositivo Android nuevo …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Buscando tu dispositivo Android nuevo …</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal necesita acceso a la ubicación para encontrar y conectarse a tu dispositivo Android nuevo.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal necesita acceso a los servicios de localización para encontrar y conectarse con tu dispositivo Android nuevo.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal necesita la Wi-Fi activa para encontrar y conectarse con tu dispositivo Android nuevo. La Wi-Fi debe estar activa pero el dispositivo no necesita estar conectado a una red Wi-Fi concreta.</string>
@@ -2393,6 +2390,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Asegúrate que ambos dispositivos están en modo de transferencia.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Ve a la página de soporte</string>
   <string name="DeviceTransferSetup__try_again">Inténtalo de nuevo</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Esperando por el otro dispositivo</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toca «Adelante» en tu otro dispositivo para comenzar con la transferencia.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toca «Adelante» en tu otro dispositivo …</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">No se puede transferir desde una versión más nueva de Signal</string>
   <!--DeviceTransferFragment-->

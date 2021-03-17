@@ -1152,7 +1152,6 @@
   <string name="RatingManager_rate_now">Оцени веднаш!</string>
   <string name="RatingManager_no_thanks">Не, благодарам</string>
   <string name="RatingManager_later">Подоцна</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ајдеее, изгледа дека Play Store апликацијата не е инсталирана на Вашиот уред. Ајдеее.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Сите · %1$d</string>
   <!--ReactionsConversationView-->

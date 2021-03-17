@@ -1093,7 +1093,6 @@
   <string name="RatingManager_rate_now">立刻评价！</string>
   <string name="RatingManager_no_thanks">不，谢谢。</string>
   <string name="RatingManager_later">稍后</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕, 你的设备上未安装 Google Play 商店。</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">全部 · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2253,10 +2252,7 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">转移或还原帐户</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">如果之前已注册 Signal 帐户，可转移或还原您的帐户和消息</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">从 Android 设备转移</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">从旧的 Android 设备转移帐户和消息记录，必须可访问旧设备。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">必须可访问旧设备。</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">从备份还原</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">从本地备份还原消息和媒体。如果现在不进行还原，之后将无法还原。</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在旧的 Android 手机上打开 Signal</string>
   <string name="NewDeviceTransferInstructions__continue">继续</string>
@@ -2270,7 +2266,6 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">正在准备连接至旧的 Android 设备…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">请稍等，将很快准备就绪</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">正在等待旧的 Android 设备连接…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">正在连接旧的 Android 设备…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal 需位置权限，以发现并连接旧的 Android 设备。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal 需已启用的位置服务，以发现并连接旧的 Android 设备。</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal 需开启的 Wi-Fi，以发现并连接旧的 Android 设备。Wi-Fi 需开启但不必连接 Wi-Fi 网络。</string>
@@ -2278,8 +2273,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">还原备份</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">尝试连接旧的 Android 设备时，发生意外错误。</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜索新的 Android 设备…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">正在连接新的 Android 设备…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜索新的 Android 设备…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal 需位置权限，以发现并连接新的 Android 设备。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal 需已启用的位置服务，以发现并连接新的 Android 设备。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal 需开启的 Wi-Fi，以发现并连接新的 Android 设备。Wi-Fi 需开启但不必连接 Wi-Fi 网络。</string>

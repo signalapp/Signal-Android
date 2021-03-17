@@ -1065,7 +1065,6 @@
   <string name="RatingManager_rate_now">Aniha puan bide!</string>
   <string name="RatingManager_no_thanks">Na, spas</string>
   <string name="RatingManager_later">Piştre</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Weylaw! Ka sepana Play Storeê li ku ye, xuya ye li cîhaza te nesazkirî ye.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Hemû . %1$d</string>
   <!--ReactionsConversationView-->

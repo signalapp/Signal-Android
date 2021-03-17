@@ -1092,7 +1092,6 @@
   <string name="RatingManager_rate_now">立即評分！</string>
   <string name="RatingManager_no_thanks">不用了，謝謝</string>
   <string name="RatingManager_later">稍後</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕，您的設備上未安裝 Google Play 商店。</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">全部 · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2248,10 +2247,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">移轉或還原帳號</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">如果你以前註冊過Signal帳號，則可以轉移或還原你的帳號和訊息</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">從Android裝置轉移</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息歷史記錄。你必須有權訪問舊裝置。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">你必須有權使用舊裝置。</string> -->
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息。你需要連結舊裝置。</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">你需要連結舊裝置。</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">從本地備份還原你的訊息和媒體檔。 如果你現在不還原，則以後將無法還原。</string> -->
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">從本地備份還原你的訊息。 如果你現在不還原，則以後將無法還原。</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在舊的Android手機上開啟Signal</string>
   <string name="NewDeviceTransferInstructions__continue">繼續</string>
@@ -2265,7 +2264,6 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">正在準備連結到舊的Android裝置…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">稍等片刻，應快準備好了</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">正在等待舊的Android裝置連接…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">正在連接到舊的Android裝置…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal需要位置權限才能發現並連接到舊的Android裝置。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal需要啟用位置服務才能發現你的舊Android裝置並與之連接。</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal需要啟用Wi-Fi才能發現你的舊Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
@@ -2273,8 +2271,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">還原備份</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到舊的Android裝置時發生未預期的錯誤。</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜尋你的新Android裝置…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">正在搜尋你的新Android裝置…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜尋你的新Android裝置…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal需要位置權限才能發現並連接到新的Android裝置。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal須要開啟定位服務才能發現新的Android裝置並與之連接。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal需要開啟Wi-Fi才能發現新的Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
@@ -2309,6 +2306,9 @@
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">確保兩個裝置都處於轉移模式。</string>
   <string name="DeviceTransferSetup__go_to_support_page">轉到支援網頁</string>
   <string name="DeviceTransferSetup__try_again">再試一次</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">等待其他裝置</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">在其他裝置上點擊繼續以開始傳輸。</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">在其他裝置上點擊繼續…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">無法從較新版本的Signal進行轉移</string>
   <!--DeviceTransferFragment-->

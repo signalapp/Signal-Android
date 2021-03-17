@@ -1209,7 +1209,6 @@
   <string name="RatingManager_rate_now">Evaluați acum!</string>
   <string name="RatingManager_no_thanks">Nu, mulţumesc</string>
   <string name="RatingManager_later">Mai târziu</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uuups, se pare că aplicația Magazinul Play nu este instalată pe dispozitivul tău.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Toate · %1$d</string>
   <!--ReactionsConversationView-->

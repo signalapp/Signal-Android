@@ -1267,7 +1267,6 @@
   <string name="RatingManager_rate_now">Įvertinti dabar!</string>
   <string name="RatingManager_no_thanks">Ne, ačiū</string>
   <string name="RatingManager_later">Vėliau</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oi, atrodo, kad Play Store programėlė nėra įdiegta jūsų įrenginyje.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Visi · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2485,10 +2484,7 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Perkelti ar atkurti paskyrą</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jeigu Signal paskyrą jau esate užregistravę anksčiau, galite perkelti ar atkurti savo paskyrą ir žinutes</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Perkelti iš „Android“ įrenginio</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Perkelkite savo paskyrą ir žinučių istoriją iš senojo „Android“ įrenginio. Privalote turėti prieigą prie savo senojo įrenginio.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Privalote turėti prieigą prie savo senojo įrenginio.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Atkurti iš atsarginės kopijos</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Atkurkite savo žinutes ir mediją iš vietinės atsarginės kopijos. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Savo senajame „Android“ telefone atverkite Signal</string>
   <string name="NewDeviceTransferInstructions__continue">Tęsti</string>
@@ -2502,19 +2498,25 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Ruošiamasi prisijungti prie senojo „Android“ įrenginio…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Dar minutėlę, netrukus turėtų būti paruošta</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Laukiama, kol prisijungs senasis „Android“ įrenginys…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Jungiamasi prie senojo Android įrenginio…</string> -->
+  <string name="NewDeviceTransferSetup__restore_a_backup">Atkurti atsarginę kopiją</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Ieškoma jūsų naujojo „Android“ įrenginio…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Jungiamasi prie naujojo „Android“ įrenginio…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Ieškoma jūsų naujojo „Android“ įrenginio…</string> -->
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__retry">Bandyti dar kartą</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Pateikti derinimo žurnalus</string>
   <string name="DeviceTransferSetup__continue">Tęsti</string>
   <string name="DeviceTransferSetup__stop_transfer">Stabdyti perkėlimą</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Nepavyko atrasti senojo įrenginio</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Nepavyko atrasti naujojo įrenginio</string>
   <string name="DeviceTransferSetup__wifi">Belaidis (Wi-Fi)</string>
   <string name="DeviceTransferSetup__try_again">Bandykite dar kartą</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Laukiama kito įrenginio</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Norėdami pradėti perkėlimą, kitame įrenginyje bakstelėkite „Tęsti“.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Kitame įrenginyje bakstelėkite „Tęsti“…</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Duomenų perkėlimas</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Laikykite įrenginius vieną šalia kito. Neišjunkite įrenginių ir palikite Signal atvertą. Perkėlimai yra šifruoti ištisiniu būdu.</string>
   <string name="DeviceTransfer__cancel">Atsisakyti</string>
   <string name="DeviceTransfer__try_again">Bandykite dar kartą</string>
   <string name="DeviceTransfer__stop_transfer_question">Stabdyti perkėlimą?</string>
@@ -2529,9 +2531,16 @@
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Tęsti</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Perkėlimas užbaigtas</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Jūsų Signal duomenys perkelti į naująjį įrenginį. Norėdami užbaigti perkėlimo procesą, privalote tęsti registraciją naujajame įrenginyje.</string>
   <string name="OldDeviceTransferComplete__close">Užverti</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Perkėlimas sėkmingas</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Perkėlimas užbaigtas</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Norėdami užbaigti perkėlimo procesą, privalote tęsti registraciją.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Tęsti registraciją</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Paskyros perkėlimas</string>
   <string name="DeviceToDeviceTransferService_status_discovery">Ieškoma jūsų kito „Android“ įrenginio…</string>
   <string name="DeviceToDeviceTransferService_status_network_connected">Jungiamasi prie jūsų kito „Android“ įrenginio…</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Perkeliama paskyra…</string>

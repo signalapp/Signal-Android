@@ -1093,7 +1093,6 @@
   <string name="RatingManager_rate_now">Nilai sekarang!</string>
   <string name="RatingManager_no_thanks">Tidak, terima kasih</string>
   <string name="RatingManager_later">Nanti</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Eiittts, aplikasi Play Store nampaknya tidak terpasang pada perangkat anda.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Semua · %1$d</string>
   <!--ReactionsConversationView-->

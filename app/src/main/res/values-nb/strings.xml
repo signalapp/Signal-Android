@@ -385,9 +385,9 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Uten navn</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
+  <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drives av folk som deg. Vis din støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Doner</string>
+  <string name="DonateMegaphone_donate">Donér</string>
   <string name="DonateMegaphone_no_thanks">Nei takk</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi introduserer gruppesamtaler</string>
@@ -788,7 +788,7 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Dette vil slette den valgte filen permanent. All meldingstekst tilknyttet dette elementet vil også bli slettet.</item>
-    <item quantity="other">Dette vil slette alt permanent %1$d valgte filer. All meldingstekst tilknyttet disse elementene vil også bli slettet.</item>
+    <item quantity="other">Dette vil permanent slette alle %1$d valgte filer. All meldingstekst tilknyttet disse elementene vil også bli slettet.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger…</string>
@@ -1150,7 +1150,6 @@
   <string name="RatingManager_rate_now">Gi vurdering nå.</string>
   <string name="RatingManager_no_thanks">Nei takk</string>
   <string name="RatingManager_later">Senere</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops. Programmet Play Butikk ser ikke ut til å være installert på denne enheten.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1879,7 +1878,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__slow">Langsomt</string>
   <string name="preferences__help">Hjelp</string>
   <string name="preferences__advanced">Avansert</string>
-  <string name="preferences__donate_to_signal">Doner til Signal</string>
+  <string name="preferences__donate_to_signal">Donér til Signal</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelt MMS-oppsett</string>
@@ -2427,9 +2426,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>
   <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
   <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Signal konto og tilbakestille applikasjonen. Appen vil lukkes etter prosessen er fullført.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Signal-konto og tilbakestille applikasjonen. Appen vil lukkes etter prosessen er fullført.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Klarte ikke slette konto. Har du nettverksforbindelse?</string>
-  <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokal data. Du kan manuelt slette den i systemet applikasjonsinnstillinger.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokale data. Du kan manuelt slette dem i systemets applikasjonsinnstillinger.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Åpne App Innstillinger</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Søk Land</string>

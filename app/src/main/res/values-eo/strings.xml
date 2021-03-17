@@ -1151,7 +1151,6 @@
   <string name="RatingManager_rate_now">Pritaksi nun!</string>
   <string name="RatingManager_no_thanks">Ne, dankon</string>
   <string name="RatingManager_later">Poste</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Nu, la aplikaĵo „Play Store“ ŝajne ne estas instalita sur via aparato.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Ĉiuj · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2331,10 +2330,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transigo aŭ restaŭro de konto</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se vi antaŭe registris Signal-konton, vi povas transigi aŭ restaŭri vian konton kaj viaj mesaĝojn.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transigi el Android-aparato</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Elpreni vian konton kaj viajn mesaĝojn el via antaŭa Android-aparato. Vi devas havi vian antaŭan aparaton.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Vi devas havi vian aparaton.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaŭri el savkopio</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restaŭri viajn mesaĝojn kaj aŭdvidaĵojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Malfermi Signal ĉe via antaŭa Android-aparato.</string>
   <string name="NewDeviceTransferInstructions__continue">Daŭrigi</string>
@@ -2348,7 +2344,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparado de la konekto al la antaŭa Android-aparato…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Atendu momenton, baldaŭ estos preta</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Atendo de la konekto el la antaŭa Android-aparato…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Konektado al la antaŭa Android-aparato…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal bezonas la Pozicio-permeson por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal bezonas, ke la pozicio-servoj estas ŝaltitaj por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal bezonas vifion por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi. Vifio devas esti ŝaltita, sed ĝi ne bezonas esti konektita al vifia reto.</string>
@@ -2356,8 +2351,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaŭri savkopion</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Neatendita eraro okazis dum provo konekti al via antaŭa Android-aparato.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Serĉo de via nova Android-aparato…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Konektado al nova Android-aparato…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Serĉo de via nova Android-aparato…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal bezonas la Pozicio-permeson por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal bezonas, ke la pozicio-servoj estas ŝaltitaj por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal bezonas vifion por malkovri vian novan Android-aparaton kaj konekti al ĝi. Vifio devas esti ŝaltita, sed ĝi ne bezonas esti konektita al vifia reto.</string>

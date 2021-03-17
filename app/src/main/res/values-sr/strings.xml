@@ -1208,7 +1208,6 @@
   <string name="RatingManager_rate_now">Оцени одмах!</string>
   <string name="RatingManager_no_thanks">Не, хвала</string>
   <string name="RatingManager_later">Касније</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Упс, изгледа да апликација Плеј продавница није инсталирана на вашем уређају.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Све · %1$d</string>
   <!--ReactionsConversationView-->

@@ -897,7 +897,6 @@
   <string name="RatingManager_rate_now">ਹੁਣ ਰੇਟ ਕਰੋ!</string>
   <string name="RatingManager_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <string name="RatingManager_later">ਬਾਅਦ ਵਿੱਚ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ਓਹੋ, Play Store ਐਪ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੇ ਸਥਾਪਤ ਨਹੀਂ ਹੈ</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">ਸਭ · %1$d</string>
   <!--ReactionsConversationView-->

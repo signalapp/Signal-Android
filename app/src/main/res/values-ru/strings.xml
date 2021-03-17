@@ -1266,7 +1266,6 @@
   <string name="RatingManager_rate_now">Оценить сейчас!</string>
   <string name="RatingManager_no_thanks">Нет, спасибо</string>
   <string name="RatingManager_later">Позже</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Похоже, приложение «Play Маркет» не установлено на вашем устройстве.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Все · %1$d</string>
   <!--ReactionsConversationView-->
@@ -2485,10 +2484,7 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенести или восстановить учётную запись</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Если вы уже регистрировали учётную запись Signal ранее, вы можете перенести или восстановить свои учётную запись и сообщения</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Перенести с Android-устройства</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Перенести учётную запись и историю сообщений с вашего старого Android-устройства. У вас должен быть доступ к своему старому устройству.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">У вас должен быть доступ к своему старому устройству.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Восстановить из резервной копии</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Восстановить сообщения и медиафайлы из локальной резервной копии. Если вы не сделаете этого сейчас, вы не сможете восстановить их позже.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Откройте Signal на своём старом Android-устройстве</string>
   <string name="NewDeviceTransferInstructions__continue">Продолжить</string>
@@ -2502,7 +2498,6 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Подготовка к подключению к вашему старому Android-устройству…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Подождите, скоро будет готово</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ожидание подключения старого Android-устройства…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Подключение к старому Android-устройству…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal требуется разрешение на доступ к местоположению, чтобы обнаружить ваше старое Android-устройство и подключиться к нему.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Службы геолокации должны быть включены, чтобы Signal смог обнаружить ваше старое Android-устройство и соединиться с ним.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Wi-Fi должен быть включён, чтобы Signal смог обнаружить ваше старое Android-устройство и соединиться с ним. При этом подключаться к какой-либо сети Wi-Fi не обязательно.</string>
@@ -2510,8 +2505,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">Восстановить резервную копию</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">При попытке подключения к вашему старому Android-устройству произошла неожиданная ошибка.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Поиск вашего нового Android-устройства…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Подключение к новому Android-устройству…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Поиск вашего нового Android-устройства…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal требуется разрешение на доступ к местоположению, чтобы обнаружить ваше новое Android-устройство и подключиться к нему.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Службы геолокации должны быть включены, чтобы Signal смог обнаружить ваше новое Android-устройство и соединиться с ним.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Wi-Fi должен быть включён, чтобы Signal смог обнаружить ваше новое Android-устройство и соединиться с ним. При этом подключаться к какой-либо сети Wi-Fi не обязательно.</string>

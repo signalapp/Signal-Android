@@ -1150,7 +1150,6 @@
   <string name="RatingManager_rate_now">ഇപ്പോൾ വിലയിരുത്തുക!</string>
   <string name="RatingManager_no_thanks">വേണ്ട, നന്ദി</string>
   <string name="RatingManager_later">പിന്നീട്</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ക്ഷമിക്കണം, നിങ്ങളുടെ ഉപകരണത്തിൽ Play Store അപ്ലിക്കേഷൻ ഇൻസ്റ്റാളുചെയ്‌തതായി തോന്നുന്നില്ല.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">എല്ലാം · %1$d</string>
   <!--ReactionsConversationView-->

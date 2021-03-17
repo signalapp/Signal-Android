@@ -233,6 +233,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">มีตัวเลือกอีกใน \"การตั้งค่ากลุ่ม\"</string>
   <string name="ConversationActivity_join">เข้าร่วม</string>
   <string name="ConversationActivity_full">เต็ม</string>
+  <string name="ConversationActivity_error_sending_media">เกิดข้อผิดพลาดในการส่งสื่อ</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>
@@ -489,6 +490,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">หยุดใช้</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">แสดงตัวอย่างทุกลิงก์</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">ตอนนี้ท่านสามารถเรียกคืนลิงค์ภาพตัวอย่างจากเว็บไซต์ใดๆ ซึ่งท่านได้ส่งผ่านข้อความไปได้โดยตรง</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">ไม่มีผลลิงค์ที่ใช้ได้</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ลิงค์กลุ่มนี้ไม่มีความเคลื่อนไหว</string>
@@ -595,6 +597,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">นี่คือกลุ่ม Legacy เพื่อเข้าถึงคุณลักษณะใหม่เช่น @mentions และผู้ดูแลกลุ่ม</string>
   <string name="ManageGroupActivity_legacy_group_too_large">กลุ่ม Legacy นี้ไม่สามารถอัปเกรดให้เป็น New Group ได้เพราะมีขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
   <string name="ManageGroupActivity_upgrade_this_group">ปรับรุ่นกลุ่มนี้</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">กลุ่ม MMS นี้ไม่ปลอดภัย หากต้องการแชตเป็นการส่วนตัว ท่านจะต้องเชิญผู้ติดต่อของท่านมายัง Signal</string>
   <string name="ManageGroupActivity_invite_now">เชิญเดี๋ยวนี้</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">แจ้งให้ฉันรู้สำหรับ Mentions</string>
@@ -657,10 +660,16 @@
   <string name="ShareableGroupLinkDialogFragment__member_requests">คำขอเป็นสมาชิก</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">อนุมัติสมาชิกใหม่</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ผู้ดูแลต้องยอมรับให้สมาชิกใหม่เข้าร่วมกลุ่มผ่านลิงก์กลุ่ม</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">ึุ๊คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตลิงก์กลุ่มนี้? หากท่านรีเซ็ต จะทำให้คนอื่นไม่สามารถเข้าร่วมกลุ่มผ่านลิงก์ปัจจุบันได้</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">รหัส QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ผู้ที่สามารถสแกนรหัสนี้จะสามารถเข้าร่วมกลุ่มของคุณได้ ซึ่งผู้ดูแลยังคงต้องอนุมัติให้สมาชิกใหม่อยู่ หากท่านได้เปิดการตั้งค่านี้ไว้</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">แบ่งปันรหัส</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">คุณต้องการยกเลิกคำเชิญที่คุณส่งให้ %1$s หรือไม่?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="other">คุณต้องการยกเลิกคำเชิญของ %2$d ซึ่งเชิญโดย %1$s หรือไม่?</item>
+  </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">คุณเป็นสมาชิกอยู่แล้ว</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">เข้าร่วม</string>
@@ -668,17 +677,26 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ไม่สามารถเข้าร่วมกลุ่ม กรุณาลองอีกครั้งภายหลัง</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ลิงค์กลุ่มนี้ไม่มีความเคลื่อนไหว</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ไม่สามารถเข้าถึงข้อมูลกลุ่มได้ กรุณาลองอีกครั้งภายหลัง</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">คุณต้องการเข้าร่วมกลุ่มและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">ผู้ดูแลของกลุ่มนี้จะต้องอนุมัติคำขอเข้าร่วมของคุณก่อนที่คุณจะสามารถเข้าร่วมกลุ่มนี้ได้ เมื่อคุณส่งคำร้องขอเข้าร่วม ชื่อและรูปของคุณจะสามารถเห็นได้โดยสมาชิกคนอื่น</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="other">กลุ่ม · %1$d สมาชิก</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ปรับปรุง Signal เพื่อใช้ลิงก์กลุ่ม</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">เวอร์ชั่นของ Signal ที่คุณใช้อยู่ไม่รองรับลิงก์กลุ่มนี้ กรุณาอัพเดทเป็นเวอร์ชั่นล่าสุดเพื่อเข้าร่วมกลุ่มผ่านลิงก์นี้</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">ปรับปรุง Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">หนึ่งในอุปกรณ์ของคุณที่เชื่อมโยงอยู่กำลังใช้ Signal ในเวอร์ชั่นที่ไม่รองรับลิงก์กลุ่มนี้ กรุณาอัพเดท Signal บนอุปกรณ์ที่คุณเชื่อมโยงอยู่เพื่อเข้าร่วมกลุ่มนี้</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ลิงก์กลุ่มไม่ถูกต้อง</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">เชิญเพื่อน</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">แชร์ลิงค์ให้เพื่อนของคุณเพื่อให้พวกเขาสามารถเข้าร่วมกลุ่มนี้ได้อย่างรวดเร็ว</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">เปิดใช้งานและแชร์ลิงค์</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">แบ่งปันลิงก์</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ไม่สามารถเปิดใช้งานลิงก์กลุ่มได้ กรุณาลองอีกครั้งภายหลัง</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">คุณไม่มีสิทธิในการเปิดใช้งานลิงก์กลุ่มนี้ได้ กรุณาติดต่อผู้ดูแล</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">คุณไม่ได้เป็นสมาชิกของกลุ่มดังกล่าว</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">เพิ่ม “%1$s” เข้ากลุ่มหรือไม่?</string>
@@ -778,6 +796,7 @@
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">เปิดการแจ้งเตือน?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">คุณจะไม่พลาดข้อความจากผู้ติดต่อและกลุ่มของคุณอีกต่อไป</string>
   <string name="NotificationsMegaphone_turn_on">เปิด</string>
   <string name="NotificationsMegaphone_not_now">ไม่ใช่ตอนนี้</string>
   <!--NotificationMmsMessageRecord-->
@@ -811,6 +830,7 @@
   <string name="MessageRecord_you_updated_group">คุณได้อัปเดตกลุ่ม</string>
   <string name="MessageRecord_the_group_was_updated">กลุ่มถูกปรับปรุงแล้ว</string>
   <string name="MessageRecord_you_called_date">คุณได้โทรหา · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">โทรแบบเสียงที่ไม่ได้รับ %1$s</string>
   <string name="MessageRecord_missed_video_call_date">โทรเห็นหน้าที่ไม่ได้รับ · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ได้อัปเดตกลุ่ม</string>
   <string name="MessageRecord_s_called_you_date">%1$s ได้โทรหาคุณ · %2$s</string>
@@ -819,11 +839,24 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">คุณได้ตั้งเวลาให้ข้อความลบตัวเองไว้ที่ %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ตั้งเวลาให้ข้อความลบตัวเองไว้ที่ %2$s</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">เวลาลบข้อความตัวเองถูกตั้งค่าไว้ที่ %1$s</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">กลุ่มนี้ได้รับการปรับปรุงเป็นกลุ่มใหม่</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">คุณไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกรับเชิญให้เข้าร่วมกลุ่ม</string>
   <string name="MessageRecord_chat_session_refreshed">การแชตเริ่มต้นใหม่</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="other">สมาชิก %1$s ไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกรับเชิญให้เข้าร่วมกลุ่ม</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="other">สมาชิก %1$s ไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกลบออกจากกลุ่ม</item>
+  </plurals>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s เปลี่ยนชื่อโปรไฟล์เป็น %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ได้เปลี่ยนชื่อโปรไฟล์จาก %2$s เป็น %3$s</string>
+  <string name="MessageRecord_changed_their_profile">%1$s ได้เปลี่ยนโปรไฟล์ใหม่</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">คุณได้สร้างกลุ่มแล้ว</string>
   <string name="MessageRecord_group_updated">ปรับปรุงกลุ่ม</string>
+  <string name="MessageRecord_invite_friends_to_this_group">เชิญเพื่อนของคุณมายังกลุ่มนี้ผ่านลิงก์กลุ่ม</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">คุณได้เพิ่ม %1$s</string>
   <string name="MessageRecord_s_added_s">%1$s ได้เพิ่ม %2$s</string>
@@ -837,6 +870,7 @@
   <string name="MessageRecord_you_left_the_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_s_left_the_group">%1$s ออกจากกลุ่ม</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">คุณไม่ได้อยู่ในกลุ่มอีกต่อไปแล้ว</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ไม่ได้อยู่ในกลุ่มนี้แล้ว</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">คุณได้ตั้ง %1$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ได้ตั้ง %2$s เป็นผู้ดูแล</string>
@@ -844,7 +878,9 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ไม่ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">คุณไม่ได้เป็นผู้ดูแลอีกต่อไปแล้ว</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">คุณได้เชิญ %1$s เข้ากลุ่ม</string>
@@ -853,6 +889,9 @@
     <item quantity="other">%1$s ได้เชิญ %2$d คนเข้ากลุ่ม</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">คุณถูกเชิญเข้ากลุ่ม</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="other">มีผู้ได้รับเชิญ %1$d คนได้รับเชิญมายังกลุ่มนี้</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="other">คุณได้เพิกถอน %1$d คำเชิญเข้ากลุ่ม</item>
@@ -862,22 +901,57 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ใครบางคนได้ปฏิเสธคำเชิญเข้าร่วมกลุ่ม</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">คุณได้ปฏิเสธคำเชิญเข้ากลุ่ม</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ได้ยกเลิกคำเชิญเข้าร่วมกลุ่มของคุณ</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ผู้ดูแลได้ยกเลิกคำเชิญเข้าร่วมกลุ่มของคุณ</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="other">คำเชิญเข้าร่วมกลุ่มของ %1$d ได้ถูกยกเลิก</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">คุณได้ตอบรับคำเชิญเข้ากลุ่ม</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ตอบรับคำเชิญเข้ากลุ่ม</string>
   <string name="MessageRecord_you_added_invited_member_s">คุณได้เพิ่มสมาชิกที่ถูกเชิญ %1$s</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s ได้เพิ่มสมาชิกที่ถูกเชิญ %2$s</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">คุณได้เปลี่ยนชื่อกลุ่มเป็น \"%1$s\"</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ได้เปลี่ยนชื่อกลุ่มเป็น \"%2$s\"</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">ชื่อกลุ่มได้ถูกเปลี่ยนเป็น \"%1$s\"</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">คุณได้เปลี่ยนอวตารของกลุ่ม</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ได้เปลี่ยนภาพประจำตัวของกลุ่ม</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">ภาพประจำตัวของกลุ่มได้ถูกเปลี่ยนแปลง</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">คุณได้เปลี่ยนบุคคลที่สามารถแก้ไขข้อมูลกลุ่มเป็น \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ได้เปลี่ยนบุคคลที่สามารถแก้ไขข้อมูลกลุ่มเป็น \"%2$s\"</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">บุคคลที่สามารถแก้ไขข้อมูลกลุ่มได้เปลี่ยนเป็น \"%1$s\"</string>
   <!--GV2 membership access level change-->
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">คุณได้เปิดลิงก์กลุ่มโดยได้ตั้งปิดการอนุมัติโดยผู้ดูแลไว้</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">คุณได้เปิดลิงก์กลุ่มโดยได้ตั้งเปิดการอนุมัติโดยผู้ดูแลไว้</string>
   <string name="MessageRecord_you_turned_off_the_group_link">คุณได้ปิดลิงก์กลุ่ม</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ได้เปิดลิงก์กลุ่มโดยได้ตั้งปิดการอนุมัติโดยผู้ดูแลไว้</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ได้เปิดลิงค์กลุ่มโดยได้ตั้งเปิดการอนุมัติโดยผู้ดูแลไว้</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s ได้ปิดลิงก์กลุ่ม</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ลิงก์กลุ่มได้ถูกเปิดแล้วโดยได้ตั้งปิดการอนุมัติโดยผู้ดูแลไว้</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ลิงค์กลุ่มได้ถูกเปิดแล้วโดยได้ตั้งเปิดการอนุมัติโดยผู้ดูแลไว้</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">ลิงค์กลุ่มได้ถูกปิดแล้ว</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">คุณได้ตั้งค่าปิดการอนุมัติโดยผู้ดูแลสำหรับลิงก์กลุ่มนี้</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ได้ตั้งค่าปิดการอนุมัติโดยผู้ดูแลสำหรับลิงก์กลุ่มนี้</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">การอนุมัติโดยผู้ดูแลสำหรับลิงก์กลุ่มนี้ได้ถูกปิดไว้แล้ว</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">คุณได้เปิดการอนุมัติโดยผู้ดูแลสำหรับลิงก์กลุ่มนี้แล้ว</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ได้เปิดการอนุมัติโดยผู้ดูแลสำหรับลิงก์กลุ่มนี้</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">การอนุมัติโดยผู้ดูแลสำหรับลิงก์กลุ่มนี้ได้ถูกเปิดไว้แล้ว</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">คุณได้รีเซ็ตลิงก์กลุ่มนี้</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s ได้รีเซ็ตลิงก์กลุ่มนี้</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">ลิงก์กลุ่มได้ถูกรีเซ็ตใหม่</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">คุณได้เข้าร่วมกลุ่มผ่านลิงก์กลุ่ม</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ได้เข้าร่วมกลุ่มผ่านลิงก์กลุ่ม</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">คุณได้ส่งคำร้องขอเข้าร่วมกลุ่ม</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ได้ขอเข้าร่วมกลุ่มผ่านลิงก์กลุ่ม</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ได้อนุมัติคำขอเพื่อเข้าร่วมกลุ่มของคุณ</string>
   <!--GV2 group link deny-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป</string>
@@ -972,7 +1046,6 @@
   <string name="RatingManager_rate_now">ให้คะแนนตอนนี้!</string>
   <string name="RatingManager_no_thanks">ไม่ ขอบคุณ</string>
   <string name="RatingManager_later">ไว้คราวหน้า</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">โอ๊ะ ไม่พบว่าแอป Play Store ถูกติดตั้งบนอุปกรณ์ของคุณ</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">ทั้งหมด · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1962,6 +2035,26 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ได้ถูกล็อก</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">แตะเพื่อปลดล็อก</string>
   <string name="Recipient_unknown">ไม่ทราบ</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">ทำต่อ</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">ลองใหม่</string>
+  <string name="DeviceTransferSetup__continue">ทำต่อ</string>
+  <string name="DeviceTransferSetup__try_again">ลองอีกครั้ง</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">ยกเลิก</string>
+  <string name="DeviceTransfer__try_again">ลองอีกครั้ง</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">ถ่ายโอนบัญชี</string>
+  <string name="OldDeviceTransferInstructions__continue">ทำต่อ</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">ปิด</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ปิดกั้น</string>
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>

@@ -1267,7 +1267,6 @@
   <string name="RatingManager_rate_now">דרג עכשיו!</string>
   <string name="RatingManager_no_thanks">לא תודה</string>
   <string name="RatingManager_later">מאוחר יותר</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שיישום חנות Play אינו מותקן במכשיר שלך.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">כל ה־%1$d</string>
   <!--ReactionsConversationView-->
@@ -2492,10 +2491,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">העבר או שחזר חשבון</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">במקרה שנרשמת קודם לכן אל חשבון Signal, אתה יכול להעביר או לשחזר את החשבון וההודעות שלך.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">העבר ממכשיר Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">העבר את החשבון והיסטורית ההודעות שלך ממכשיר Android ישן שלך. אתה חייב גישה אל המכשיר הישן שלך.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">אתה חייב גישה אל המכשיר הישן שלך.</string> -->
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">העבר את החשבון וההודעות שלך ממכשיר Android ישן שלך. אתה צריך גישה אל המכשיר הישן שלך.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">אתה צריך גישה אל המכשיר הישן שלך.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">שחזר מגיבוי</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">שחזר את ההודעות והמדיה שלך מגיבוי מקומי. אם לא תשחזר עכשיו, לא תוכל לשחזר מאוחר יותר.</string> -->
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">שחזר את ההודעות שלך מגיבוי מקומי. אם לא תשחזר עכשיו, לא תוכל לשחזר מאוחר יותר.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">פתח את Signal בטלפון Android הישן שלך</string>
   <string name="NewDeviceTransferInstructions__continue">המשך</string>
@@ -2509,7 +2508,6 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">מתכונן להתחבר אל מכשיר Android ישן…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">רק רגע, זה יהיה מוכן בקרוב</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">ממתין אל מכשיר Android ישן שיתחבר…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">מתחבר אל מכשיר Android ישן…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal צריך את הרשאת המיקום כדי לגלות ולהתחבר אל מכשיר ה־Android הישן שלך.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal צריך שירותי מיקום מופעלים כדי לגלות ולהתחבר אל מכשיר ה־Android הישן שלך.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal צריך Wi-Fi מופעל כדי לגלות להתחבר אל מכשיר ה־Android הישן שלך. Wi-Fi צריך להיות מופעל אבל הוא לא חייב להיות מחובר אל רשת Wi-Fi.</string>
@@ -2517,8 +2515,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">שחזר גיבוי</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">שגיאה בלתי צפויה התרחשה בזמן ניסיון להתחבר אל מכשיר ה־Android הישן שלך.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">מחפש את מכשיר ה־Android הישן שלך…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">מתחבר אל מכשיר Android חדש…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">מחפש את מכשיר ה־Android הישן שלך…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal צריך את הרשאת המיקום כדי לגלות ולהתחבר אל מכשיר ה־Android החדש שלך.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal צריך שירותי מיקום מופעלים כדי לגלות ולהתחבר אל מכשיר ה־Android החדש שלך.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal צריך Wi-Fi מופעל כדי לגלות להתחבר אל מכשיר ה־Android החדש שלך. Wi-Fi צריך להיות מופעל אבל הוא לא חייב להיות מחובר אל רשת Wi-Fi.</string>
@@ -2553,6 +2550,9 @@
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">וודא ששני המכשירים במצב העברה.</string>
   <string name="DeviceTransferSetup__go_to_support_page">לך אל דף התמיכה</string>
   <string name="DeviceTransferSetup__try_again">נסה שוב</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">ממתין אל המכשיר האחר</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">הקש על המסך במכשיר האחר שלך כדי להתחיל את ההעברה.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">הקש על המשך במכשיר האחר שלך…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">לא ניתן להעביר מגרסאות חדשות יותר של Signal</string>
   <!--DeviceTransferFragment-->

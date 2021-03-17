@@ -1157,7 +1157,6 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="RatingManager_rate_now">Gje vurdering no.</string>
   <string name="RatingManager_no_thanks">Nei takk</string>
   <string name="RatingManager_later">Seinare</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uff då. Programmet Play Store ser ikkje ut til å vera installert på denne eininga.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->

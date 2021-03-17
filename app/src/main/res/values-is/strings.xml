@@ -279,6 +279,7 @@
   <string name="ConversationFragment_verify">Sannreyna</string>
   <string name="ConversationFragment_not_now">Ekki núna</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Öryggisnúmer þitt með %s hefur breyst</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Öryggisnúmer þitt með %s hefur breyst, líklega vegna þess að viðkomandi hefur sett Signal upp aftur eða hefur skipt um tæki. Ýttu á \'Sannreyna\' til að sannreyna nýja öryggisnúmerið. Þetta er valkvætt.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Eyða völdu samtali?</item>
     <item quantity="other">Eyða völdum samtölum?</item>
@@ -299,6 +300,7 @@
     <item quantity="other">Færði %d samtöl í innhólf</item>
   </plurals>
   <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Skilaboð fyrir lyklaskipti</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Samtöl í geymslu (%d)</string>
   <!--ConversationTitleView-->
@@ -353,6 +355,7 @@
   <string name="DateUtils_yesterday">Í gær</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Spjallseta endurlesin</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal notar enda-í-enda dulritun og gæti þurft öðru hvoru að endurlesa spjallferilinn þinn. Þetta hefur ekki áhrif á öryggi spjallsins þíns, en þú gætir hafa misst af skilaboðum frá þessum tengilið og þú ættir kannski að biðja viðkomandi um að endursenda skilaboðin.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Aftengja \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Með því að aftengja þetta tæki mun það ekki lengur geta tekið á móti eða sent skilaboðum.</string>
@@ -599,6 +602,7 @@
     <item quantity="other">%d meðlimum bætt við.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Þú ert ekki með heimildir til að gera þetta</string>
+  <string name="ManageGroupActivity_not_capable">Einhver sem þú bættir við er ekki með stuðning við nýju gerðina af hópum og þarf því að uppfæra Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Mistókst að uppfæra hópinn</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Þú ert ekki meðlimur í þessum hópi</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Mistókst að uppfæra hópinn, prófaðu aftur síðar</string>
@@ -743,6 +747,7 @@
     <item quantity="other">Senda %d SMS boð?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Skiptum yfir í Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Það lítur út eins og þú sért ekki með nein forrit sem hægt sé að deila til.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vinir láta vini sína ekki spjalla án dulritunar.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Kanna nánar</string>
@@ -762,6 +767,10 @@
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Eyða völdu atriði?</item>
     <item quantity="other">Eyða völdum atriðum?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Þetta mun endanlega eyða völdum skránni. Öllum texta skilaboða sem tengjast þessu atrið verður einnig eytt.</item>
+    <item quantity="other">Þetta mun endanlega eyða öllum %1$d völdum skrám. Öllum texta skilaboða sem tengjast þessum atriðum verður einnig eytt.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Eyði</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Eyði skilaboðum…</string>
@@ -823,6 +832,7 @@
   <string name="MediaPickerActivity__menu_open_camera">Opna myndavél</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Bættu við skýringatexta…</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Atriði var fjarlægt þar sem það fór fram yfir stærðarmörk</string>
   <string name="MediaSendActivity_camera_unavailable">Myndavél ekki tiltæk.</string>
   <string name="MediaSendActivity_message_to_s">Skilaboð til %s</string>
   <string name="MediaSendActivity_message">Skilaboð</string>
@@ -840,6 +850,7 @@
   <string name="MediaRepository__camera">Myndavél</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Óþekkt</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tók við skilaboðum sem dulrituð voru í eldri útgáfu Signal sem ekki er lengur studd. Biddu sendandann um að uppfæra hjá sér og senda svo skilaboðin aftur.</string>
   <string name="MessageRecord_left_group">Þú hefur yfirgefið hópinn.</string>
   <string name="MessageRecord_you_updated_group">Þú uppfærðir hópinn.</string>
   <string name="MessageRecord_the_group_was_updated">Hópurinn var uppfærður.</string>
@@ -1120,7 +1131,6 @@
   <string name="RatingManager_rate_now">Gefðu einkunn núna!</string>
   <string name="RatingManager_no_thanks">Nei takk</string>
   <string name="RatingManager_later">Seinna</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Vá, það lítur úr fyrir að Play Store forritið sé ekki uppsett á tækinu þínu.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Allt · %1$d</string>
   <!--ReactionsConversationView-->
@@ -1140,6 +1150,7 @@
   <string name="RedPhone_recipient_unavailable">Viðtakandi ekki tiltækur</string>
   <string name="RedPhone_network_failed">Netkerfi brást!</string>
   <string name="RedPhone_number_not_registered">Númer er ekki skráð!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Númerið sem þú hringdir í styður ekki öruggt tal!</string>
   <string name="RedPhone_got_it">Náði því!</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ýta hér til að virkja myndmerkið þitt</string>
@@ -1265,9 +1276,16 @@
   <string name="Slide_audio">Hljóð</string>
   <string name="Slide_video">Myndskeið</string>
   <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Tók við skemmdum
+        skilaboðum fyrir lyklaskipti!
+    </string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+        Tók við skilaboðum vegna lyklaskipta fyrir ógilda útgáfu samskiptamáta.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Tók við skilaboðum með nýju öryggisnúmeri. Ýttu til að meðhöndla og birta.</string>
   <string name="SmsMessageRecord_secure_session_reset">Þú endurstilltir öruggu setuna.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s endurstillti öruggu setuna.</string>
   <string name="SmsMessageRecord_duplicate_message">Tvítekin skilaboð.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ekki var hægt að meðhöndla þessi skilaboð því þau voru send úr eldri útgáfu Signal. Þú getur beðið tengiliðinn þinn um að senda þau aftur þegar þú hefur uppfært hjá þér.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Villa við að meðhöndla skilaboð sem bárust.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Límmerki</string>
@@ -1293,6 +1311,7 @@
   <string name="SubmitDebugLogActivity_submit">Senda</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Mistókst að senda inn atvikaskrár</string>
   <string name="SubmitDebugLogActivity_success">Tókst!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Afritaðu þessa slóð og bættu henni í verkbeiðnina þína eða tölvupóst með beiðni um aðstoð:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Deila</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Sía:</string>
@@ -1354,6 +1373,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Notendanöfn mega ekki byrja á tölustaf.</string>
   <string name="UsernameEditFragment_username_is_invalid">Notandanafnið er ógilt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Notendanöfn verða að vera á milli %1$d og %2$d stafa löng.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Notendanöfn eru valfrjáls á Signal. Ef þú kýst að útbúa notandanafn munu aðrir notendur Signal geta fundið þig með þessu notandanafni og haft samband við þig án þess að þekkja símanúmerið þitt.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d tengiliður notar Signal!</item>
     <item quantity="other">%d tengiliðir nota Signal!</item>
@@ -1361,10 +1381,14 @@
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Tengiliður þinn er að nota gamla útgáfu af Signal. Hann þarf að uppfæra hjá sér áður en þú getur sannreynt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Tengiliður þinn er að nota nýja útgáfu af Signal með ósamhæfðu sniði QR-kóða. Uppfærðu hjá þér til að bera saman.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skannaði QR-kóðinn er ekki rétt formaður staðfestingarkóði fyrir öryggisnúmer. Prófaðu að skanna aftur.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Deila öryggisnúmeri með…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal-öryggisnúmerið okkar:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Það lítur út eins og þú sért ekki með nein forrit sem hægt sé að deila til.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ekkert öryggisnúmer til samanburðar fannst á klippispjaldinu</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal þarf heimild til að nota myndavélina til að geta skannað QR-kóða, en því hefur verið varanlega neitað. Farðu í kjörstillingar forritsins, veldu \"Heimildir\", og virkjaðu \"Myndavél\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Get ekki skannað QR-kóða án heimildar til að nota myndavélina</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Þú þarft fyrst að skiptast á skilaboðum við %1$s til að sjá öryggisnúmer hans.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1810,6 +1834,9 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Læsa skjá og tilkynningum með lykilorði</string>
   <string name="preferences__screen_security">Öryggi skjás</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Koma í veg fyrir að skjámyndir séu teknar innan forrits og í lista yfir nýleg atriði</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Læsa Signal sjálfvirkt eftir tiltekinn tíma í aðgerðaleysi</string>
+  <string name="preferences__inactivity_timeout_passphrase">Lykilorð læsingar við aðgerðaleysi</string>
+  <string name="preferences__inactivity_timeout_interval">Tímamörk í aðgerðaleysi</string>
   <string name="preferences__notifications">Tilkynningar</string>
   <string name="preferences__led_color">Litur LED-ljósa</string>
   <string name="preferences__led_color_unknown">Óþekkt</string>
@@ -2255,10 +2282,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Yfirfæra eða endurheimta aðgang</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ef þú hefur áður skráð Signal-aðgang, geturðu yfirfært eða endurheimt notandaaðganginn þinn og skilaboð.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Yfirfæra af Android-tæki</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Yfirfærðu notandaaðgang og skilaboðaferil af gamla Android-tækinu þínu. Þú verður að hafa aðgang að gamla tækinu þínu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Þú verður að hafa aðgang að gamla tækinu þínu.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Endurheimta úr öryggisafriti</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Endurheimtu skilaboðin þín og myndefni úr öryggisafriti á tækinu. Ef þú endurheimtir ekki núna verður það ekki hægt síðar.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Opnaðu Signal á gamla Android-símanum þínum</string>
   <string name="NewDeviceTransferInstructions__continue">Halda áfram</string>
@@ -2269,12 +2293,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Undirbý að tengjast við gamla Android-tækið…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tekur smá tíma, ætti að klárast bráðum</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Bíð eftir að gamla Android-tækið tengist…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Tengist við gamla Android-tækið…</string> -->
   <string name="NewDeviceTransferSetup__restore_a_backup">Endurheimta öryggisafrit</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Óvænt villa kom upp þegar reynt var að tengjast við gamla Android-tækið þitt.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Leita að nýja Android-tækinu þínu…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Tengist við nýja Android-tækið…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Leita að nýja Android-tækinu þínu…</string> -->
   <string name="OldDeviceTransferSetup__create_a_backup">Útbúa öryggisafrit</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Óvænt villa kom upp þegar reynt var að tengjast við nýja Android-tækið þitt.</string>
   <!--DeviceTransferSetupFragment-->

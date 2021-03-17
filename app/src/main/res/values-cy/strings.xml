@@ -1269,7 +1269,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="RatingManager_rate_now">Graddio nawr!</string>
   <string name="RatingManager_no_thanks">Dim diolch</string>
   <string name="RatingManager_later">Yn hwyrach</string>
-  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Wps, nid yw ap y Play Store i weld wedi cael ei osod ar eich dyfais.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Y cyfan o %1$d</string>
   <!--ReactionsConversationView-->
@@ -2494,10 +2493,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Trosglwyddo neu adfer cyfrif</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Os ydych wedi cofrestru cyfrif Signal o\'r blaen, gallwch drosglwyddo neu adfer eich cyfrif a\'ch negeseuon</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Trosglwyddo o ddyfais Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Trosglwyddwch hanes eich cyfrif a\'ch neges o\'ch hen ddyfais Android. Rhaid bod gennych fynediad i\'ch hen ddyfais.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Rhaid bod gennych fynediad i\'ch hen ddyfais.</string> -->
   <string name="TransferOrRestoreFragment__restore_from_backup">Adfer o\'r copi wrth gefn</string>
-  <!-- Removed by excludeNonTranslatables <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Adferwch eich negeseuon a\'ch cyfryngau o gopi wrth gefn lleol. Os na fyddwch chi\'n ei adfer nawr, fyddwch chi ddim yn gallu ei adfer yn nes ymlaen.</string> -->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Arwydd Signal ar eich hen ffôn Android</string>
   <string name="NewDeviceTransferInstructions__continue">Parhau</string>
@@ -2511,7 +2507,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Yn paratoi i gysylltu â hen ddyfais Android…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Dylai cymryd eiliad, bydd yn barod cyn bo hir</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Yn aros i hen ddyfais Android i gysylltu…</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Yn cysylltu â hen ddyfais Android…</string> -->
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Mae angen caniatâd lleoliad ar Signal i ddarganfod a chysylltu â\'ch hen ddyfais Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Mae angen gwasanaethau lleoliad ar Signal sydd wedi\'u galluogi i ddarganfod a chysylltu â\'ch hen ddyfais Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Mae angen diwifr ar Signal i ddarganfod a chysylltu â\'ch hen ddyfais Android. Mae angen i\'r diwifr fod ymlaen ond nid oes rhaid ei gysylltu â rhwydwaith diwifr.</string>
@@ -2519,8 +2514,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Adfer y copi wrth gefn</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Digwyddodd gwall annisgwyl wrth geisio cysylltu â\'ch hen ddyfais Android.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Yn chwilio am eich dyfais Android newydd…</string>
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Yn cysylltu â dyfais Android newydd…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Yn chwilio am eich dyfais Android newydd…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Mae angen caniatâd lleoliad ar Signal i ddarganfod a chysylltu â\'ch dyfais Android newydd.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Mae angen gwasanaethau lleoliad ar Signal sydd wedi\'u galluogi i ddarganfod a chysylltu â\'ch dyfais Android newydd.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Mae angen diwifr ar Signal i ddarganfod a chysylltu â\'ch dyfais Android newydd. Mae angen i ddiwifr fod ymlaen ond nid oes rhaid ei gysylltu â rhwydwaith diwifr.</string>
