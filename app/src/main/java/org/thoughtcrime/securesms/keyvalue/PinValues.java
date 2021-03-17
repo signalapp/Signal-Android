@@ -9,6 +9,9 @@ import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Specifically handles just the UI/UX state around PINs. For actual keys, see {@link KbsValues}.
  */
@@ -28,6 +31,11 @@ public final class PinValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public void onEntrySuccess(@NonNull String pin) {

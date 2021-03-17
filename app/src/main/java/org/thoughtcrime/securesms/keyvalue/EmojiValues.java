@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 
+import java.util.Collections;
+import java.util.List;
+
 public class EmojiValues extends SignalStoreValues {
 
   private static final String PREFIX = "emojiPref__";
@@ -15,6 +18,11 @@ public class EmojiValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
 
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public void setPreferredVariation(@NonNull String emoji) {

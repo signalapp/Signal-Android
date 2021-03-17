@@ -9,4 +9,5 @@ interface KeyValueReader {
   int getInteger(@NonNull String key, int defaultValue);
   long getLong(@NonNull String key, long defaultValue);
   String getString(@NonNull String key, String defaultValue);
+  boolean containsKey(@NonNull String key);
 }

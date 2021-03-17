@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.whispersystems.libsignal.util.Medium;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -278,6 +279,12 @@ public class TextSecurePreferences {
     }
 
     return backupProtos;
+  }
+
+  public static void onPostBackupRestore(@NonNull Context context) {
+    if (NotificationChannels.supported() && PreferenceManager.getDefaultSharedPreferences(context).contains(VIBRATE_PREF)) {
+      NotificationChannels.updateMessageVibrate(context, isNotificationVibrateEnabled(context));
+    }
   }
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {

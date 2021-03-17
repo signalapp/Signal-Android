@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
 abstract class SignalStoreValues {
 
   private final KeyValueStore store;
@@ -15,6 +17,8 @@ abstract class SignalStoreValues {
   }
 
   abstract void onFirstEverAppLaunch();
+
+  abstract @NonNull List<String> getKeysToIncludeInBackup();
 
   String getString(String key, String defaultValue) {
     return store.getString(key, defaultValue);

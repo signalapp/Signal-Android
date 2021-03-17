@@ -8,6 +8,9 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
+import java.util.Arrays;
+import java.util.List;
+
 public final class SettingsValues extends SignalStoreValues {
 
   public static final String LINK_PREVIEWS          = "settings.link_previews";
@@ -29,9 +32,21 @@ public final class SettingsValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
-    getStore().beginWrite()
-              .putBoolean(LINK_PREVIEWS, true)
-              .apply();
+    if (!getStore().containsKey(LINK_PREVIEWS)) {
+      getStore().beginWrite()
+                .putBoolean(LINK_PREVIEWS, true)
+                .apply();
+    }
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Arrays.asList(LINK_PREVIEWS,
+                         KEEP_MESSAGES_DURATION,
+                         PREFER_SYSTEM_CONTACT_PHOTOS,
+                         CALL_BANDWIDTH_MODE,
+                         THREAD_TRIM_LENGTH,
+                         THREAD_TRIM_ENABLED);
   }
 
   public boolean isLinkPreviewsEnabled() {

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
@@ -33,6 +34,9 @@ import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -64,7 +68,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class FullBackupExporter extends FullBackupBase {
 
-  @SuppressWarnings("unused")
   private static final String TAG = FullBackupExporter.class.getSimpleName();
 
   private static final Set<String> BLACKLISTED_TABLES = SetUtil.newHashSet(
@@ -164,6 +167,10 @@ public class FullBackupExporter extends FullBackupBase {
       }
 
       stopwatch.split("prefs");
+
+      count = exportKeyValues(outputStream, SignalStore.getKeysToIncludeInBackup(), count, cancellationSignal);
+
+      stopwatch.split("key_values");
 
       for (AvatarHelper.Avatar avatar : AvatarHelper.getAvatars(context)) {
         throwIfCanceled(cancellationSignal);
@@ -351,6 +358,46 @@ public class FullBackupExporter extends FullBackupBase {
     return result;
   }
 
+  private static int exportKeyValues(@NonNull BackupFrameOutputStream outputStream,
+                                     @NonNull List<String> keysToIncludeInBackup,
+                                     int count,
+                                     BackupCancellationSignal cancellationSignal) throws IOException
+  {
+    KeyValueDataSet dataSet = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication())
+                                              .getDataSet();
+
+    for (String key : keysToIncludeInBackup) {
+      throwIfCanceled(cancellationSignal);
+      if (!dataSet.containsKey(key)) {
+        continue;
+      }
+      BackupProtos.KeyValue.Builder builder = BackupProtos.KeyValue.newBuilder()
+                                                                   .setKey(key);
+
+      Class<?> type = dataSet.getType(key);
+      if (type == byte[].class) {
+        builder.setBlobValue(ByteString.copyFrom(dataSet.getBlob(key, null)));
+      } else if (type == Boolean.class) {
+        builder.setBooleanValue(dataSet.getBoolean(key, false));
+      } else if (type == Float.class) {
+        builder.setFloatValue(dataSet.getFloat(key, 0));
+      } else if (type == Integer.class) {
+        builder.setIntegerValue(dataSet.getInteger(key, 0));
+      } else if (type == Long.class) {
+        builder.setLongValue(dataSet.getLong(key, 0));
+      } else if (type == String.class) {
+        builder.setStringValue(dataSet.getString(key, null));
+      } else {
+        throw new AssertionError("Unknown type: " + type);
+      }
+
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+      outputStream.write(builder.build());
+    }
+
+    return count;
+  }
+
   private static boolean isNonExpiringMmsMessage(@NonNull Cursor cursor) {
     return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0 &&
            cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))    <= 0;
@@ -420,6 +467,10 @@ public class FullBackupExporter extends FullBackupBase {
 
     public void write(BackupProtos.SharedPreference preference) throws IOException {
       write(outputStream, BackupProtos.BackupFrame.newBuilder().setPreference(preference).build());
+    }
+
+    public void write(BackupProtos.KeyValue keyValue) throws IOException {
+      write(outputStream, BackupProtos.BackupFrame.newBuilder().setKeyValue(keyValue).build());
     }
 
     public void write(BackupProtos.SqlStatement statement) throws IOException {

@@ -11,6 +11,8 @@ import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Collections;
+import java.util.List;
 
 public final class KbsValues extends SignalStoreValues {
 
@@ -28,6 +30,11 @@ public final class KbsValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   /**

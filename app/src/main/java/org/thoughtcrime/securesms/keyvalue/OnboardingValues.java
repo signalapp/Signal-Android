@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.Collections;
+import java.util.List;
+
 public final class OnboardingValues extends SignalStoreValues {
 
   private static final String SHOW_NEW_GROUP      = "onboarding.new_group";
@@ -22,6 +25,11 @@ public final class OnboardingValues extends SignalStoreValues {
     putBoolean(SHOW_NEW_GROUP, true);
     putBoolean(SHOW_INVITE_FRIENDS, true);
     putBoolean(SHOW_SMS, true);
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public void clearAll() {

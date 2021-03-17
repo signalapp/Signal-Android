@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 
 import org.whispersystems.signalservice.api.storage.StorageKey;
 
+import java.util.Collections;
+import java.util.List;
+
 public class StorageServiceValues extends SignalStoreValues {
 
   private static final String LAST_SYNC_TIME        = "storage.last_sync_time";
@@ -15,6 +18,11 @@ public class StorageServiceValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public synchronized StorageKey getOrCreateStorageKey() {

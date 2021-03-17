@@ -26,8 +26,11 @@ import org.thoughtcrime.securesms.backup.BackupProtos.Sticker;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -45,6 +48,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -78,10 +82,12 @@ public class FullBackupImporter extends FullBackupBase {
   {
     int count = 0;
 
+    SQLiteDatabase keyValueDatabase = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication()).getSqlCipherDatabase();
     try {
       BackupRecordInputStream inputStream = new BackupRecordInputStream(is, passphrase);
 
       db.beginTransaction();
+      keyValueDatabase.beginTransaction();
 
       dropAllTables(db);
 
@@ -97,12 +103,15 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
         else if (frame.hasSticker())    processSticker(context, attachmentSecret, db, frame.getSticker(), inputStream);
         else if (frame.hasAvatar())     processAvatar(context, db, frame.getAvatar(), inputStream);
+        else if (frame.hasKeyValue())   processKeyValue(frame.getKeyValue());
         else                            count--;
       }
 
       db.setTransactionSuccessful();
+      keyValueDatabase.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+      keyValueDatabase.endTransaction();
     }
 
     EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count));
@@ -211,6 +220,29 @@ public class FullBackupImporter extends FullBackupBase {
 
       inputStream.readAttachmentTo(new ByteArrayOutputStream(), avatar.getLength());
     }
+  }
+
+  private static void processKeyValue(BackupProtos.KeyValue keyValue) {
+    KeyValueDataSet dataSet = new KeyValueDataSet();
+
+    if (keyValue.hasBlobValue()) {
+      dataSet.putBlob(keyValue.getKey(), keyValue.getBlobValue().toByteArray());
+    } else if (keyValue.hasBooleanValue()) {
+      dataSet.putBoolean(keyValue.getKey(), keyValue.getBooleanValue());
+    } else if (keyValue.hasFloatValue()) {
+      dataSet.putFloat(keyValue.getKey(), keyValue.getFloatValue());
+    } else if (keyValue.hasIntegerValue()) {
+      dataSet.putInteger(keyValue.getKey(), keyValue.getIntegerValue());
+    } else if (keyValue.hasLongValue()) {
+      dataSet.putLong(keyValue.getKey(), keyValue.getLongValue());
+    } else if (keyValue.hasStringValue()) {
+      dataSet.putString(keyValue.getKey(), keyValue.getStringValue());
+    } else {
+      Log.i(TAG, "Unknown KeyValue backup value, skipping");
+      return;
+    }
+
+    KeyValueDatabase.getInstance(ApplicationDependencies.getApplication()).writeDataSet(dataSet, Collections.emptyList());
   }
 
   @SuppressLint("ApplySharedPref")

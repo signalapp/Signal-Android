@@ -1,6 +1,11 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.util.FeatureFlags;
+
+import java.util.Collections;
+import java.util.List;
 
 public final class InternalValues extends SignalStoreValues {
 
@@ -19,6 +24,11 @@ public final class InternalValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   /**

@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
+import java.util.List;
+
 public final class MiscellaneousValues extends SignalStoreValues {
 
   private static final String LAST_PREKEY_REFRESH_TIME        = "last_prekey_refresh_time";
@@ -19,6 +22,11 @@ public final class MiscellaneousValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public long getLastPrekeyRefreshTime() {

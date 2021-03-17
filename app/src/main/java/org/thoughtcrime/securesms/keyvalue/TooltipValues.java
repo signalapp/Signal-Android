@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
+import java.util.List;
+
 public class TooltipValues extends SignalStoreValues {
 
   private static final int GROUP_CALLING_MAX_TOOLTIP_DISPLAY_COUNT = 3;
@@ -17,6 +20,11 @@ public class TooltipValues extends SignalStoreValues {
 
   @Override
   public void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public boolean hasSeenBlurHudIconTooltip() {
