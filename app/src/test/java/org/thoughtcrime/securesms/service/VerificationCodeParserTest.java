@@ -50,7 +50,34 @@ public class VerificationCodeParserTest extends BaseUnitTest {
         {"hi 1234-5678\n\nsgnl://verify/1234-5678\n\naAbBcCdDeEf", "12345678"},
         {"howdy 1234-5678\n\nsgnl://verify/1234-5678\n\naAbBcCdDeEf", "12345678"},
         {"test 1234-5678\n\nsgnl://verify/1234-5678", "12345678"},
-        {"%#($#&@**$@(@*1234-5678\naAbBcCdDeEf", "12345678"}
+        {"%#($#&@**$@(@*1234-5678\naAbBcCdDeEf", "12345678"},
+
+        {"<#>あなたのSignal 認証コード： 832985\nabAbCDEFO1g", "832985"},
+        {"<#>あなたのSignal 認証コード： 832-985\nabAbCDEFO1g", "832985"},
+        {"<#>Kode verifikasi Signal anda adalah: 832985\nabAbCDEFO1g", "832985"},
+        {"<#>Kode verifikasi Signal anda adalah: 832-985\nabAbCDEFO1g", "832985"},
+        {"<#>Ваш проверочный код Signal: 832985\nabAbCDEFO1g", "832985"},
+        {"<#>Ваш проверочный код Signal: 832-985\nabAbCDEFO1g", "832985"},
+        {"<#>आपका Signal सत्यापन कोड है: 832985\nabAbCDEFO1g", "832985"},
+        {"<#>आपका Signal सत्यापन कोड है: 832-985\nabAbCDEFO1g", "832985"},
+
+        {"<#>Votre code de vérification Signal est: 490941\nabAbCDEFO1g", "490941"},
+        {"<#>Kode verifikasi Signal anda adalah: 490941\nabAbCDEFO1g", "490941"},
+        {"<#>Kode verifikasi Signal anda adalah: 490-941\nabAbCDEFO1g", "490941"},
+        {"<#>\u202Bرمز تعريفك الخاص ب Signal هو 490941\u202C\nabAbCDEFO1g", "490941"},
+        {"<#>\u202Bرمز تعريفك الخاص ب Signal هو 490-941\u202C\nabAbCDEFO1g", "490941"},
+        {"<#>您的 Signal 驗證代碼是：490941\nabAbCDEFO1g", "490941"},
+        {"<#>(Signal) קוד האימות שלך הוא 490941\nabAbCDEFO1g", "490941"},
+        {"<#>(Signal) קוד האימות שלך הוא 490-941\nabAbCDEFO1g", "490941"},
+
+        {"<#>Your Signal verification code is: 445477\nabAbCDEFO1g", "445477"},
+
+        {"<#>Ο Signal κωδικός σας επιβεβαίωσης είναι: 054247\nabAbCDEFO1g", "054247"},
+        {"<#>Ο Signal κωδικός σας επιβεβαίωσης είναι: 054-247\nabAbCDEFO1g", "054247"},
+        {"<#>El teu Signal codi de verificació és: 054247\nabAbCDEFO1g", "054247"},
+        {"<#>Ang iyong pamberipikasyong code sa Signal ay: 054247\nabAbCDEFO1g", "054247"},
+        {"<#>Ang iyong pamberipikasyong code sa Signal ay: 054-247\nabAbCDEFO1g", "054247"},
+        {"<#>Jou Signal verifikasiekode is: 054247\nabAbCDEFO1g", "054247"}
     });
   }
 
