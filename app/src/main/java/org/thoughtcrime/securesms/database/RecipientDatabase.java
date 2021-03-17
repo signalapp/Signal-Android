@@ -812,17 +812,18 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
-                                      @NonNull Collection<RecordUpdate<SignalContactRecord>> contactUpdates,
-                                      @NonNull Collection<SignalGroupV1Record>               groupV1Inserts,
-                                      @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates,
-                                      @NonNull Collection<SignalGroupV2Record>               groupV2Inserts,
-                                      @NonNull Collection<RecordUpdate<SignalGroupV2Record>> groupV2Updates)
+  public boolean applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
+                                         @NonNull Collection<RecordUpdate<SignalContactRecord>> contactUpdates,
+                                         @NonNull Collection<SignalGroupV1Record>               groupV1Inserts,
+                                         @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates,
+                                         @NonNull Collection<SignalGroupV2Record>               groupV2Inserts,
+                                         @NonNull Collection<RecordUpdate<SignalGroupV2Record>> groupV2Updates)
   {
     SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
     ThreadDatabase   threadDatabase   = DatabaseFactory.getThreadDatabase(context);
     Set<RecipientId> needsRefresh     = new HashSet<>();
+    boolean          forcePush        = false;
 
     db.beginTransaction();
 
@@ -944,12 +945,17 @@ public class RecipientDatabase extends Database {
       }
 
       for (SignalGroupV1Record insert : groupV1Inserts) {
-        db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
+        long id = db.insertWithOnConflict(TABLE_NAME, null, getValuesForStorageGroupV1(insert), SQLiteDatabase.CONFLICT_IGNORE);
 
-        Recipient recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(insert.getGroupId()));
+        if (id < 0) {
+          Log.w(TAG, "Duplicate GV1 entry detected! Ignoring, suggesting force-push.");
+          forcePush = true;
+        } else {
+          Recipient recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(insert.getGroupId()));
 
-        threadDatabase.applyStorageSyncUpdate(recipient.getId(), insert);
-        needsRefresh.add(recipient.getId());
+          threadDatabase.applyStorageSyncUpdate(recipient.getId(), insert);
+          needsRefresh.add(recipient.getId());
+        }
       }
 
       for (RecordUpdate<SignalGroupV1Record> update : groupV1Updates) {
@@ -1017,6 +1023,8 @@ public class RecipientDatabase extends Database {
     for (RecipientId id : needsRefresh) {
       Recipient.live(id).refresh();
     }
+
+    return forcePush;
   }
 
   public void applyStorageSyncUpdates(@NonNull StorageId storageId, SignalAccountRecord update) {
