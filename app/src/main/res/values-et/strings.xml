@@ -2342,6 +2342,8 @@
   <string name="OldDeviceTransferComplete__close">Sulge</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Tehtud</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokeeri</string>
   <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>

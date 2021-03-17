@@ -2326,6 +2326,8 @@
   <string name="OldDeviceTransferComplete__close">بند کریں</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">ہو گیا</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">بلاک</string>
   <string name="RecipientBottomSheet_unblock">ان بلاک</string>

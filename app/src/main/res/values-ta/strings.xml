@@ -2334,6 +2334,8 @@
   <string name="OldDeviceTransferComplete__close">நெருக்கமான</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">முடிந்தது</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">தடு </string>
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>

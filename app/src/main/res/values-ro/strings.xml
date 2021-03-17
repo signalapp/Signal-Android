@@ -2435,6 +2435,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_status_verification_required">Este necesară o verificare</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Gata</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blochează</string>
   <string name="RecipientBottomSheet_unblock">Deblochează</string>

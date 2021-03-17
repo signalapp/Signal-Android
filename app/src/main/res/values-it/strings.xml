@@ -2355,7 +2355,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">Ripristina un backup</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Si è verificato un errore imprevisto durante il tentativo di connessione al tuo vecchio dispositivo Android.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Ricerca del tuo nuovo dispositivo Android…</string> -->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Ricerca del nuovo dispositivo Android…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal necessita dell\'autorizzazione alla posizione per trovare e connettersi al tuo nuovo dispositivo Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal ha bisogno che i servizi di localizzazione siano attivi per trovare e connettersi con il tuo nuovo dispositivo Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal ha bisogno che il Wi-Fi sia attivo per trovare e connettersi con il tuo nuovo dispositivo Android. Il Wi-Fi deve essere attivo ma non è necessario che sia connesso a una rete Wi-Fi.</string>
@@ -2434,6 +2434,11 @@
   <string name="DeviceToDeviceTransferService_status_network_connected">Connessione all\'altro tuo dispositivo Android…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Verifica richiesta</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Trasferimento account…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Completa la registrazione sul tuo nuovo dispositivo</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Il tuo account Signal è stato trasferito sul tuo nuovo dispositivo, ma devi completare la registrazione per continuare. Signal sarà inattivo su questo dispositivo.</string>
+  <string name="OldDeviceTransferLockedDialog__done">Fatto</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annulla e attiva questo dispositivo</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blocca</string>
   <string name="RecipientBottomSheet_unblock">Sblocca</string>

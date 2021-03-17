@@ -2357,6 +2357,8 @@
   <string name="DeviceToDeviceTransferService_content_title">Трансфер на сметка</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Потребна е проверка</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Префрлување на сметката…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>

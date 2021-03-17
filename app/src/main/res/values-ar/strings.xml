@@ -2653,6 +2653,8 @@
   <string name="OldDeviceTransferComplete__close">إغلاق</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">تمّ</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">حظر</string>
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>

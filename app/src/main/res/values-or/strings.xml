@@ -2327,6 +2327,8 @@
   <!--OldDeviceTransferComplete-->
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">ହେଇଗଲା</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="RecipientBottomSheet_unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>

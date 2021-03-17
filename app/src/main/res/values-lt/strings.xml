@@ -2500,7 +2500,6 @@
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Laukiama, kol prisijungs senasis „Android“ įrenginys…</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Atkurti atsarginę kopiją</string>
   <!--OldDeviceTransferSetupFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Ieškoma jūsų naujojo „Android“ įrenginio…</string> -->
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__retry">Bandyti dar kartą</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Pateikti derinimo žurnalus</string>
@@ -2544,6 +2543,8 @@
   <string name="DeviceToDeviceTransferService_status_discovery">Ieškoma jūsų kito „Android“ įrenginio…</string>
   <string name="DeviceToDeviceTransferService_status_network_connected">Jungiamasi prie jūsų kito „Android“ įrenginio…</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Perkeliama paskyra…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Atlikta</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>

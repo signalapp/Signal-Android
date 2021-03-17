@@ -2271,7 +2271,6 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">還原備份</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到舊的Android裝置時發生未預期的錯誤。</string>
   <!--OldDeviceTransferSetupFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜尋你的新Android裝置…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal需要位置權限才能發現並連接到新的Android裝置。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal須要開啟定位服務才能發現新的Android裝置並與之連接。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal需要開啟Wi-Fi才能發現新的Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
@@ -2350,6 +2349,8 @@
   <string name="DeviceToDeviceTransferService_status_network_connected">正在連接到你的其他Android裝置…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">需要驗證</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">正在轉移帳號…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">完成</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>

@@ -1987,6 +1987,8 @@
   <string name="OldDeviceTransferComplete__close">ਬੰਦ ਕਰੋ</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">ਹੋ ਗਿਆ</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ਬਲਾਕ</string>
   <string name="RecipientBottomSheet_unblock">ਅਨਬਲੌਕ</string>

@@ -2255,6 +2255,8 @@
   <string name="OldDeviceTransferComplete__close">닫기</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">확인</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">차단</string>
   <string name="RecipientBottomSheet_unblock">차단 해제</string>

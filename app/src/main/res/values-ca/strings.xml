@@ -1781,6 +1781,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__include_debug_log">Inclou el registre de depuració.</string>
   <string name="HelpFragment__whats_this">Què és això?</string>
   <string name="HelpFragment__how_do_you_feel">Com us sentiu? (opcional)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Expliqueu-nos per què us poseu en contacte.</string>
   <string name="HelpFragment__support_info">Informació de suport</string>
   <string name="HelpFragment__signal_android_support_request">Petició de suport de Signal d\'Android</string>
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
@@ -2233,9 +2234,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="backup_enable_dialog__folder">Carpeta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotat aquesta contrasenya. Sense, no podré restaurar cap còpia de seguretat.</string>
   <string name="registration_activity__restore_backup">Restaura la còpia de seguretat</string>
+  <string name="registration_activity__transfer_or_restore_account">Transfereix o restaura el compte</string>
+  <string name="registration_activity__transfer_account">Transfereix el compte</string>
   <string name="registration_activity__skip">Omet</string>
   <string name="preferences_chats__chat_backups">Còpies de seguretat de converses</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Fes una còpia de seguretat de les converses a l\'emmagatzematge extern</string>
+  <string name="preferences_chats__transfer_account">Transfereix el compte</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfereix el compte a un dispositiu d\'Android nou</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Escriviu la contrasenya de la còpia de seguretat.</string>
   <string name="RegistrationActivity_restore">Restaura</string>
   <string name="RegistrationActivity_backup_failure_downgrade">No es poden importar còpies de seguretat de versions més noves del Signal.</string>
@@ -2310,26 +2315,117 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER DESBLOCAR-LO</string>
   <string name="Recipient_unknown">Desconegut</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfereix o restaura el compte</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Si prèviament heu registrat un compte del Signal, podeu transferir o restaurar el compte i els missatges.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Transfereix des d\'un dispositiu d\'Android</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfereix el compte i els missatges des del dispositiu d\'Android antic. Cal accés al dispositiu antic.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Us cal accés al dispositiu antic.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Restaura des d\'una còpia de seguretat</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaureu els missatges des d\'una còpia de seguretat local. Si no la restaureu ara, no podreu restaurar-la més tard.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Obriu el Signal a l\'antic telèfon Android.</string>
   <string name="NewDeviceTransferInstructions__continue">Continua</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toqueu la foto del perfil a la part superior esquerra per obrir-ne la Configuració.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Toqueu Converses</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toqueu Transfereix el compte i, a continuació, Continua, als dos dispositius.</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Es prepara la connexió amb un dispositiu Android antic…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Un moment, hauria d’estar llest aviat…</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">S\'espera que el dispositiu Android antic es connecti…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">El Signal necessita el permís d’ubicació per descobrir i connectar-se al dispositiu antic d\'Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">El Signal necessita els serveis d’ubicació habilitats per descobrir i connectar-se al dispositiu antic d\'Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">El Signal necessita la connexió Wi-Fi per descobrir i connectar-se al dispositiu antic d\'Android. La Wi-Fi ha d’estar activa, però no ha d’estar connectat a una xarxa Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sembla que aquest dispositiu no admet Wi-Fi Direct. El Signal usa Wi-Fi Direct per descobrir i connectar-se al dispositiu antic d\'Android. Encara podeu restaurar una còpia de seguretat per restaurar el compte des del dispositiu d\'Android antic.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Restaura una còpia de seguretat</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">S\'ha produït un error inesperat en intentar connectar al dispositiu d\'Android antic.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se cerca un dispositiu d\'Android nou…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">El Signal necessita el permís d’ubicació per descobrir i connectar-se al dispositiu d\'Android nou.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">El Signal necessita els serveis d’ubicació habilitats per descobrir i connectar-se al dispositiu d\'Android nou.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">El Signal necessita la connexió Wi-Fi per descobrir i connectar-se al dispositiu d\'Android nou. La Wi-Fi ha d’estar activa, però no ha d’estar connectat a una xarxa Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sembla que aquest dispositiu no admet Wi-Fi Direct. El Signal usa Wi-Fi Direct per descobrir i connectar-se al dispositiu d\'Android nou. Encara podeu restaurar una còpia de seguretat per restaurar el compte des del dispositiu d\'Android nou.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Crea una còpia de seguretat</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">S\'ha produït un error inesperat en intentar connectar al dispositiu d\'Android nou.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">No es pot obrir la configuració de la Wi-Fi. Activeu-la manualment.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Concedeix el permís d\'ubicació</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Activa els serveis d\'ubicació</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">No es pot obrir la configuració d\'ubicació.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Activa la Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Error en connectar</string>
   <string name="DeviceTransferSetup__retry">Troneu a provar-ho</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Envieu registres de depuració</string>
+  <string name="DeviceTransferSetup__verify_code">Verifiqueu el codi</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifiqueu que el codi següent coincideixi als dos dispositius. A continuació, toqueu Continuar.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Els números no coincideixen.</string>
   <string name="DeviceTransferSetup__continue">Continua</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">El número no és el mateix.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Si els números dels dispositius no coincideixen, és possible que us connecteu al dispositiu equivocat. Per solucionar-ho, atureu la transferència i torneu-ho a provar i manteniu els dos dispositius a prop.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Atura la trasnferència</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">No es pot descobrir el dispositiu antic.</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">No es pot descobrir el dispositiu nou.</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Assegureu-vos que els permisos i serveis següents estiguin habilitats:</string>
+  <string name="DeviceTransferSetup__location_permission">Permís d\'ubicació</string>
+  <string name="DeviceTransferSetup__location_services">Serveis d\'ubicació</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A la pantalla de WiFi Direct, elimineu tots els grups recordats i desenllaceu els dispositius convidats o connectats.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Pantalla de WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Proveu de desactivar i activar la Wi-Fi en tots dos dispositius.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assegureu-vos que tots dos dispositius estiguin en mode de transferència.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Ves a la pàgina d\'assistència</string>
   <string name="DeviceTransferSetup__try_again">Torna a provar-ho</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">S\'espera un altre dispositiu</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toqueu Continua a l’altre dispositiu per iniciar la transferència.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toqueu Continua a l’altre dispositiu…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">No es pot fer la transferència des de versions més recents del Signal.</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Es transfereixen dades</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantingueu els dos dispositius a prop l’un de l’altre. No els apagueu i mantingueu el Signal obert. Les transferències estan encriptades d\'extrem a extrem.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d missatges fins ara…</string>
   <string name="DeviceTransfer__cancel">Cancel·la</string>
   <string name="DeviceTransfer__try_again">Torna a provar-ho</string>
+  <string name="DeviceTransfer__stop_transfer_question">Aturo la transferència?</string>
+  <string name="DeviceTransfer__stop_transfer">Atura la trasnferència</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Tot el progrés de la transferència es perdrà.</string>
+  <string name="DeviceTransfer__transfer_failed">Ha fallat la transferència.</string>
+  <string name="DeviceTransfer__unable_to_transfer">No es pot fer la transferència.</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transfereix el compte</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Podeu transferir el compte del Signal quan el configureu en un dispositiu d\'Android nou. Abans de continuar:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Baixeu el Signal al dispositiu d\'Android nou.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Toqueu Transfereix o restaura el compte</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Seleccioneu Transfereix des del dispositiu Android, quan se us demani i, a continuació, Continua. Mantingueu els dos dispositius a prop.</string>
   <string name="OldDeviceTransferInstructions__continue">Continua</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transferència completa</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Aneu al dispositiu nou.</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Les dades del Signal s\'han transferit al dispositiu nou. Per completar el procés de transferència, heu de continuar registrant-vos al dispositiu nou.</string>
   <string name="OldDeviceTransferComplete__close">Tanca</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Transferència correcta</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Transferència completa</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Per completar el procés de transferència, heu de continuar el registre.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Continua el registre</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Transferència del compte</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Es prepara la connexió amb l\'altre dispositiu d\'Android…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Es prepara la connexió amb l\'altre dispositiu d\'Android…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Se cerca un altre dispositiu d\'Android…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Es connecta a un altre dispositiu d\'Android…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Cal verificació</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Es transfereix el compte…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Completeu el registre al dispositiu nou.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">El compte de Signal s\'ha transferit al dispositiu nou, però heu de completar el registre per continuar. El Signal estarà inactiu en aquest dispositiu.</string>
+  <string name="OldDeviceTransferLockedDialog__done">Fet</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancel·la-ho i activa aquest dispositiu</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloca</string>
   <string name="RecipientBottomSheet_unblock">Desbloca</string>

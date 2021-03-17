@@ -2331,6 +2331,8 @@
   <string name="OldDeviceTransferComplete__close">बंद करा</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">ठीक</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">अवरोधित करा</string>
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>

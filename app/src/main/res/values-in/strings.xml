@@ -2256,6 +2256,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="OldDeviceTransferComplete__close">Tutup</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Selesai</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokir</string>
   <string name="RecipientBottomSheet_unblock">Buka blokir</string>

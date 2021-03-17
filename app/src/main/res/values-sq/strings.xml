@@ -2340,6 +2340,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="OldDeviceTransferComplete__close">Mbylle</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">U bë</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>

@@ -2339,6 +2339,8 @@
   <string name="OldDeviceTransferComplete__close">మూసివెయ్యి</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">పూర్తి</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">నిరోధించు</string>
   <string name="RecipientBottomSheet_unblock">అనుమతించు</string>

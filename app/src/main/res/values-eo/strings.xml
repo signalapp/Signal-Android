@@ -2351,7 +2351,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaŭri savkopion</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Neatendita eraro okazis dum provo konekti al via antaŭa Android-aparato.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Serĉo de via nova Android-aparato…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal bezonas la Pozicio-permeson por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal bezonas, ke la pozicio-servoj estas ŝaltitaj por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal bezonas vifion por malkovri vian novan Android-aparaton kaj konekti al ĝi. Vifio devas esti ŝaltita, sed ĝi ne bezonas esti konektita al vifia reto.</string>
@@ -2427,6 +2426,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeviceToDeviceTransferService_status_network_connected">Konektado al via alia Android-aparato…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Kontrolo bezonata</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Transigo de la konto…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Farita</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>

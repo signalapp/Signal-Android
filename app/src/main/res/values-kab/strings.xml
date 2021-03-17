@@ -2332,6 +2332,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--OldDeviceTransferComplete-->
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Yemmed</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Sewḥel</string>
   <string name="RecipientBottomSheet_unblock">Serreḥ</string>

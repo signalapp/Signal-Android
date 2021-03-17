@@ -2259,7 +2259,6 @@
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
   <!--OldDeviceTransferSetupFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">新しいAndroid端末を検索しています…</string> -->
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fiを有効にしてください</string>
   <string name="DeviceTransferSetup__error_connecting">接続エラー</string>
@@ -2313,6 +2312,8 @@
   <string name="DeviceToDeviceTransferService_status_discovery">他のAndroid端末を検索しています…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">認証が必要です</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">アカウントを移行しています…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">完了</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ブロック</string>
   <string name="RecipientBottomSheet_unblock">ブロック解除</string>

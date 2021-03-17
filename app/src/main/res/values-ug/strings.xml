@@ -2129,6 +2129,8 @@
   <!--OldDeviceTransferComplete-->
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">بولدى</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">چەكلەش</string>
   <string name="RecipientBottomSheet_unblock">قالدۇرۇش</string>

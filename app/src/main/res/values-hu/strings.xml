@@ -2338,6 +2338,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="OldDeviceTransferComplete__close">Bezárás</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Befejezés</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Letiltás</string>
   <string name="RecipientBottomSheet_unblock">Tiltás feloldása</string>

@@ -2328,6 +2328,8 @@
   <string name="OldDeviceTransferComplete__close">Затвори</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокиране</string>
   <string name="RecipientBottomSheet_unblock">Отблокиране</string>

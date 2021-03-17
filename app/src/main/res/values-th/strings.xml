@@ -2055,6 +2055,8 @@
   <string name="OldDeviceTransferComplete__close">ปิด</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">เสร็จสิ้น</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ปิดกั้น</string>
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>

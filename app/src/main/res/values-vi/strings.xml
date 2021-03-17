@@ -2268,6 +2268,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="OldDeviceTransferComplete__close">Đóng</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">Xong</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Chặn</string>
   <string name="RecipientBottomSheet_unblock">Bỏ chặn</string>

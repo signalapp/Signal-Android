@@ -2353,7 +2353,6 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">بازگردانی یک پشتیبان</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید قدیمی شما رخ داد.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">در حال جستجو برای دستگاه اندروید جدید شما…</string> -->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">سیگنال به مجوز مکان برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
@@ -2432,6 +2431,8 @@
   <string name="DeviceToDeviceTransferService_status_network_connected">در حال اتصال به دستگاه اندروید دیگر شما…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">تأیید لازم است</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">در حال انتقال حساب کاربری…</string>
+  <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__done">انجام شد</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
