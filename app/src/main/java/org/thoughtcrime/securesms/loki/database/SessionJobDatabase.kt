@@ -85,10 +85,7 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 }
 
-class SessionJobHelper() {
-
-    companion object {
-        val dataSerializer: Data.Serializer = JsonDataSerializer()
-        val sessionJobInstantiator: SessionJobInstantiator = SessionJobInstantiator(SessionJobManagerFactories.getSessionJobFactories())
-    }
+object SessionJobHelper {
+    val dataSerializer: Data.Serializer = JsonDataSerializer()
+    val sessionJobInstantiator: SessionJobInstantiator = SessionJobInstantiator(SessionJobManagerFactories.getSessionJobFactories())
 }
