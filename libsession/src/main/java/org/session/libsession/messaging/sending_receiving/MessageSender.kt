@@ -246,7 +246,8 @@ object MessageSender {
     // Result Handling
     fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false) {
         val storage = MessagingConfiguration.shared.storage
-        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
+        val userPublicKey = storage.getUserPublicKey()!!
+        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
         storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
         // Track the open group server message ID
@@ -254,17 +255,16 @@ object MessageSender {
             storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
         }
         // Mark the message as sent
-        storage.markAsSent(message.sentTimestamp!!, message.sender!!)
-        storage.markUnidentified(message.sentTimestamp!!, message.sender!!)
+        storage.markAsSent(message.sentTimestamp!!, message.sender?:userPublicKey)
+        storage.markUnidentified(message.sentTimestamp!!, message.sender?:userPublicKey)
         // Start the disappearing messages timer if needed
         if (message is VisibleMessage && !isSyncMessage) {
-            SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender!!)
+            SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender?:userPublicKey)
         }
         // Sync the message if:
         // • it's a visible message
         // • the destination was a contact
         // • we didn't sync it already
-        val userPublicKey = storage.getUserPublicKey()!!
         if (destination is Destination.Contact && !isSyncMessage) {
             if (message is VisibleMessage) { message.syncTarget = destination.publicKey }
             if (message is ExpirationTimerUpdate) { message.syncTarget = destination.publicKey }
@@ -274,7 +274,8 @@ object MessageSender {
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
         val storage = MessagingConfiguration.shared.storage
-        storage.setErrorMessage(message.sentTimestamp!!, message.sender!!, error)
+        val userPublicKey = storage.getUserPublicKey()!!
+        storage.setErrorMessage(message.sentTimestamp!!, message.sender?:userPublicKey, error)
     }
 
     // Convenience
