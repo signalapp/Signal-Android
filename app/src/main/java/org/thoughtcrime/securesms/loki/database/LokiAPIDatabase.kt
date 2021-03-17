@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
@@ -11,10 +12,8 @@ import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
-import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
