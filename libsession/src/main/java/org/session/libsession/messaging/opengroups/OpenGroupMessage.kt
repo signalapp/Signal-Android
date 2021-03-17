@@ -34,10 +34,8 @@ data class OpenGroupMessage(
                 val quote = message.quote
                 if (quote != null && quote.isValid()) {
                     val quotedMessageBody = quote.text ?: quote.timestamp!!.toString()
-                    val quotedAttachmentID = quote.attachmentID
-                    if (quotedAttachmentID != null) { attachmentIDs.remove(quotedAttachmentID) }
-                    // FIXME: For some reason the server always returns a 500 if quotedMessageServerID is set...
-                    Quote(quote.timestamp!!, quote.publicKey!!, quotedMessageBody, null)
+                    val serverID = storage.getQuoteServerID(quote.timestamp!!, quote.publicKey!!)
+                    Quote(quote.timestamp!!, quote.publicKey!!, quotedMessageBody, serverID)
                 } else {
                     null
                 }
@@ -51,18 +49,18 @@ data class OpenGroupMessage(
             linkPreview?.let {
                 if (!linkPreview.isValid()) { return@let }
                 val attachmentID = linkPreview.attachmentID ?: return@let
-                val attachment = MessagingConfiguration.shared.messageDataProvider.getAttachmentPointer(attachmentID) ?: return@let
+                val attachment = MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID) ?: return@let
                 val openGroupLinkPreview = Attachment(
                         Attachment.Kind.LinkPreview,
                         server,
                         attachment.id,
                         attachment.contentType!!,
                         attachment.size.get(),
-                        attachment.fileName.get(),
+                        attachment.fileName.orNull(),
                         0,
                         attachment.width,
                         attachment.height,
-                        attachment.caption.get(),
+                        attachment.caption.orNull(),
                         attachment.url,
                         linkPreview.url,
                         linkPreview.title)
@@ -77,7 +75,7 @@ data class OpenGroupMessage(
                         attachment.id,
                         attachment.contentType!!,
                         attachment.size.orNull(),
-                        attachment.fileName.orNull(),
+                        attachment.fileName.orNull() ?: "",
                         0,
                         attachment.width,
                         attachment.height,

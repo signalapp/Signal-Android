@@ -59,6 +59,7 @@ import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -79,7 +80,7 @@ import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -93,7 +94,6 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
@@ -407,7 +407,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = isPublicChat && PublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
+      boolean userCanModerate = isPublicChat && OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
       boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       // allow banning if moderating a public chat and only one user's messages are selected
       boolean isBanOptionVisible = isPublicChat && userCanModerate && !areAllSentByUser && uniqueUserSet.size() == 1;
@@ -523,7 +523,6 @@ public class ConversationFragment extends Fragment
               ArrayList<Long> ignoredMessages = new ArrayList<>();
               ArrayList<Long> failedMessages = new ArrayList<>();
               boolean isSentByUser = true;
-              PublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getPublicChatAPI();
               for (MessageRecord messageRecord : messageRecords) {
                 isSentByUser = isSentByUser && messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
@@ -533,8 +532,8 @@ public class ConversationFragment extends Fragment
                   ignoredMessages.add(messageRecord.getId());
                 }
               }
-              if (publicChat != null && publicChatAPI != null) {
-                publicChatAPI
+              if (publicChat != null) {
+                OpenGroupAPI
                 .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
                 .success(l -> {
                   for (MessageRecord messageRecord : messageRecords) {
@@ -604,9 +603,7 @@ public class ConversationFragment extends Fragment
         protected Void doInBackground(String... userPublicKeyParam) {
           String userPublicKey = userPublicKeyParam[0];
           if (publicChat != null) {
-            PublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getPublicChatAPI();
-            if (publicChat != null && publicChatAPI != null) {
-              publicChatAPI
+              OpenGroupAPI
                       .ban(userPublicKey, publicChat.getServer())
                       .success(l -> {
                         Log.d("Loki", "User banned");
@@ -615,7 +612,6 @@ public class ConversationFragment extends Fragment
                 Log.d("Loki", "Couldn't ban user due to error: " + e.toString() + ".");
                 return null;
               });
-            }
           } else {
             Log.d("Loki", "Tried to ban user from a non-public chat");
           }

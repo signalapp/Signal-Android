@@ -4,6 +4,9 @@ import com.goterl.lazycode.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
@@ -102,11 +105,28 @@ class VisibleMessage : Message()  {
         }
         val attachmentPointers = attachments.mapNotNull { Attachment.createAttachmentPointer(it) }
         dataMessage.addAllAttachments(attachmentPointers)
+        // TODO Contact
+        // Expiration timer
+        // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
+        // if it receives a message without the current expiration timer value attached to it...
+        val storage = MessagingConfiguration.shared.storage
+        val context = MessagingConfiguration.shared.context
+        val expiration = if (storage.isClosedGroup(recipient!!)) Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
+                         else Recipient.from(context, Address.fromSerialized(recipient!!), false).expireMessages
+        dataMessage.expireTimer = expiration
+        // Group context
+        if (storage.isClosedGroup(recipient!!)) {
+            try {
+                setGroupContext(dataMessage)
+            } catch(e: Exception) {
+                Log.w(TAG, "Couldn't construct visible message proto from: $this")
+                return null
+            }
+        }
         // Sync target
         if (syncTarget != null) {
             dataMessage.syncTarget = syncTarget
         }
-        // TODO Contact
         // Build
         try {
             proto.dataMessage = dataMessage.build()

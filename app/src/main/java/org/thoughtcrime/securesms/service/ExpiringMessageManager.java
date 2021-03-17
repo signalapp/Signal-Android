@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 
 import java.util.Comparator;
@@ -70,6 +70,9 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
       Address              address      = Address.fromSerialized(senderPublicKey);
       Recipient            recipient    = Recipient.from(context, address, false);
+
+      if (recipient.isBlocked()) return;
+
       Optional<SignalServiceGroup> groupInfo = Optional.absent();
       if (content.getDataMessage().hasGroup()) {
         GroupContext groupContext = content.getDataMessage().getGroup();

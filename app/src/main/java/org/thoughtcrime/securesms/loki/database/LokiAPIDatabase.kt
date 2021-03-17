@@ -11,6 +11,7 @@ import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil

@@ -58,6 +58,8 @@ interface StorageProtocol {
     fun getThreadID(openGroupID: String): String?
     fun getAllOpenGroups(): Map<Long, PublicChat>
     fun addOpenGroup(server: String, channel: Long)
+    fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
+    fun getQuoteServerID(quoteID: Long, publicKey: String): Long?
 
     // Open Group Public Keys
     fun getOpenGroupPublicKey(server: String): String?
@@ -94,7 +96,6 @@ interface StorageProtocol {
     fun getAttachmentsForMessage(messageId: Long): List<DatabaseAttachment>
 
     fun getMessageIdInDatabase(timestamp: Long, author: String): Long?
-    fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
     fun markAsSent(timestamp: Long, author: String)
     fun markUnidentified(timestamp: Long, author: String)
     fun setErrorMessage(timestamp: Long, author: String, error: Exception)
@@ -112,9 +113,9 @@ interface StorageProtocol {
     fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String)
     fun removeAllClosedGroupEncryptionKeyPairs(groupPublicKey: String)
     fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type,
-                                  name: String, members: Collection<String>, admins: Collection<String>)
+                                  name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long)
     fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
-                                  members: Collection<String>, admins: Collection<String>, threadID: Long)
+                                  members: Collection<String>, admins: Collection<String>, threadID: Long, sentTimestamp: Long)
     fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?

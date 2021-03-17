@@ -1,7 +1,9 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ExpirationTimerUpdate() : ControlMessage() {
 
@@ -40,6 +42,16 @@ class ExpirationTimerUpdate() : ControlMessage() {
         val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
         dataMessageProto.flags = SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE
         dataMessageProto.expireTimer = duration
+        syncTarget?.let { dataMessageProto.syncTarget = it }
+        // Group context
+        if (MessagingConfiguration.shared.storage.isClosedGroup(recipient!!)) {
+            try {
+                setGroupContext(dataMessageProto)
+            } catch(e: Exception) {
+                Log.w(VisibleMessage.TAG, "Couldn't construct visible message proto from: $this")
+                return null
+            }
+        }
         val contentProto = SignalServiceProtos.Content.newBuilder()
         try {
             contentProto.dataMessage = dataMessageProto.build()

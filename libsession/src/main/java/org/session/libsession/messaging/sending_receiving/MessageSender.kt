@@ -21,6 +21,7 @@ import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeConfiguration
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
+import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
@@ -32,7 +33,6 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as S
 
 
 object MessageSender {
-    const val groupSizeLimit = 100
 
     // Error
     sealed class Error(val description: String) : Exception() {
@@ -77,20 +77,20 @@ object MessageSender {
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
         message.sender = userPublicKey
+        val isSelfSend = (message.recipient == userPublicKey)
+        // Set the failure handler (need it here already for precondition failure handling)
+        fun handleFailure(error: Exception) {
+            handleFailedMessageSend(message, error)
+            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
+            }
+            deferred.reject(error)
+        }
         try {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
                 is Destination.OpenGroup -> throw preconditionFailure
-            }
-            val isSelfSend = (message.recipient == userPublicKey)
-            // Set the failure handler (need it here already for precondition failure handling)
-            fun handleFailure(error: Exception) {
-                handleFailedMessageSend(message, error)
-                if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                    SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
-                }
-                deferred.reject(error)
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -119,7 +119,7 @@ object MessageSender {
             // Convert it to protobuf
             val proto = message.toProto() ?: throw Error.ProtoConversionFailed
             // Serialize the protobuf
-            val plaintext = proto.toByteArray()
+            val plaintext = PushTransportDetails.getPaddedMessageBody(proto.toByteArray())
             // Encrypt the serialized protobuf
             val ciphertext: ByteArray
             when (destination) {
@@ -183,15 +183,14 @@ object MessageSender {
                         errorCount += 1
                         if (errorCount != promiseCount) { return@fail } // Only error out if all promises failed
                         handleFailure(it)
-                        deferred.reject(it)
                     }
                 }
             }.fail {
                 Log.d("Loki", "Couldn't send message due to error: $it.")
-                deferred.reject(it)
+                handleFailure(it)
             }
         } catch (exception: Exception) {
-            deferred.reject(exception)
+            handleFailure(exception)
         }
         return promise
     }

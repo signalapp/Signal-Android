@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJobV2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +31,6 @@ public final class JobManagerFactories {
     HashMap<String, Job.Factory> factoryHashMap = new HashMap<String, Job.Factory>() {{
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
-      put(ClosedGroupUpdateMessageSendJobV2.KEY,     new ClosedGroupUpdateMessageSendJobV2.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.session.libsession.messaging.messages.signal;
 
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;

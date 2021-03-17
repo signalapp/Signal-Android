@@ -34,7 +34,7 @@ import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.session.libsession.utilities.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -59,15 +59,14 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage;
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.messages.SignalServiceContent;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
@@ -84,8 +83,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
@@ -101,8 +98,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private long smsMessageId;
 
   private MessageNotifier messageNotifier;
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public PushDecryptJob(Context context) {
     this(context, -1);
@@ -457,10 +452,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Recipient   originalRecipient = getMessageDestination(content, message);
     Recipient   masterRecipient   = getMessageMasterDestination(content.getSender());
     String      syncTarget        = message.getSyncTarget().orNull();
-
-    if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
-      handleExpirationUpdate(content, message, Optional.absent());
-    }
 
     Long threadId = null;
 

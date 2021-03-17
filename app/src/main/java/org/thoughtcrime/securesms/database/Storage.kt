@@ -33,16 +33,16 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage
+import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
@@ -327,6 +327,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID)
     }
 
+    override fun getQuoteServerID(quoteID: Long, publicKey: String): Long? {
+        return DatabaseFactory.getLokiMessageDatabase(context).getQuoteServerID(quoteID, publicKey)
+    }
+
     override fun markAsSent(timestamp: Long, author: String) {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
         val messageRecord = database.getMessageFor(timestamp, author) ?: return
@@ -384,7 +388,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getGroupDatabase(context).updateMembers(groupID, members)
     }
 
-    override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>) {
+    override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
                 .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
                 .setType(type0)
@@ -392,13 +396,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 .addAllMembers(members)
                 .addAllAdmins(admins)
         val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
-        val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
+        val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
         val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
     }
 
-    override fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String, members: Collection<String>, admins: Collection<String>, threadID: Long) {
+    override fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String, members: Collection<String>, admins: Collection<String>, threadID: Long, sentTimestamp: Long) {
+        val userPublicKey = getUserPublicKey()
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
                 .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
@@ -406,8 +411,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, 0, null, listOf(), listOf())
+        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTimestamp, 0, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
+        val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
+        if (mmsSmsDB.getMessageFor(sentTimestamp,userPublicKey) != null) return
         val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
         mmsDB.markAsSent(infoMessageID, true)
     }

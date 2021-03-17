@@ -22,31 +22,37 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.session.libsession.utilities.*
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
+import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.session.libsession.utilities.GroupUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.loki.dialogs.*
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
-import org.session.libsignal.utilities.ThreadUtils
-import org.session.libsignal.service.loki.utilities.toHexString
-import org.thoughtcrime.securesms.loki.dialogs.*
 import java.io.IOException
 
-class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity(),
+        ConversationClickListener,
+        SeedReminderViewDelegate,
+        NewConversationButtonSetViewDelegate {
 
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
@@ -57,8 +63,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
 
     // region Lifecycle
-    constructor() : super()
-
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         // Double check that the long poller is up
@@ -71,9 +75,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         glide = GlideApp.with(this)
         // Set up toolbar buttons
         profileButton.glide = glide
-        profileButton.publicKey = publicKey
-        profileButton.displayName = TextSecurePreferences.getProfileName(this)
-        profileButton.update()
+        updateProfileButton()
         profileButton.setOnClickListener { openSettings() }
         pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
@@ -149,11 +151,19 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
+        lifecycleScope.launch {
+            // update things based on TextSecurePrefs (profile info etc)
+            TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
+                updateProfileButton()
+            }
+        }
+        EventBus.getDefault().register(this@HomeActivity)
     }
 
     override fun onResume() {
         super.onResume()
-        if (TextSecurePreferences.getLocalNumber(this) == null) { return; } // This can be the case after a secondary device is auto-cleared
+        if (TextSecurePreferences.getLocalNumber(this) == null) {
+            return; } // This can be the case after a secondary device is auto-cleared
         profileButton.recycle() // clear cached image before update tje profilePictureView
         profileButton.update()
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
@@ -162,16 +172,25 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         showKeyPairMigrationSheetIfNeeded()
         showKeyPairMigrationSuccessSheetIfNeeded()
+        if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
+            }
+        }
     }
 
     private fun showKeyPairMigrationSheetIfNeeded() {
-        if (KeyPairUtilities.hasV2KeyPair(this)) { return }
+        if (KeyPairUtilities.hasV2KeyPair(this)) {
+            return
+        }
         val keyPairMigrationSheet = KeyPairMigrationBottomSheet()
         keyPairMigrationSheet.show(supportFragmentManager, keyPairMigrationSheet.tag)
     }
 
     private fun showKeyPairMigrationSuccessSheetIfNeeded() {
-        if (!KeyPairUtilities.hasV2KeyPair(this) || !TextSecurePreferences.getIsMigratingKeyPair(this)) { return }
+        if (!KeyPairUtilities.hasV2KeyPair(this) || !TextSecurePreferences.getIsMigratingKeyPair(this)) {
+            return
+        }
         val keyPairMigrationSuccessSheet = KeyPairMigrationSuccessBottomSheet()
         keyPairMigrationSuccessSheet.show(supportFragmentManager, keyPairMigrationSuccessSheet.tag)
         TextSecurePreferences.setIsMigratingKeyPair(this, false)
@@ -190,6 +209,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver)
         }
         super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
     // endregion
 
@@ -197,6 +217,20 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     private fun updateEmptyState() {
         val threadCount = (recyclerView.adapter as HomeAdapter).itemCount
         emptyStateContainer.visibility = if (threadCount == 0) View.VISIBLE else View.GONE
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onUpdateProfileEvent(event: ProfilePictureModifiedEvent) {
+        if (event.recipient.isLocalNumber) {
+            updateProfileButton()
+        }
+    }
+
+    private fun updateProfileButton() {
+        profileButton.publicKey = publicKey
+        profileButton.displayName = TextSecurePreferences.getProfileName(this)
+        profileButton.recycle()
+        profileButton.update()
     }
     // endregion
 
@@ -244,34 +278,34 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun blockConversation(thread: ThreadRecord) {
         AlertDialog.Builder(this)
-            .setTitle(R.string.RecipientPreferenceActivity_block_this_contact_question)
-            .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact)
-            .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
-                ThreadUtils.queue {
-                    DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
-                    Util.runOnMain {
-                        recyclerView.adapter!!.notifyDataSetChanged()
-                        dialog.dismiss()
+                .setTitle(R.string.RecipientPreferenceActivity_block_this_contact_question)
+                .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
+                    ThreadUtils.queue {
+                        DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
+                        Util.runOnMain {
+                            recyclerView.adapter!!.notifyDataSetChanged()
+                            dialog.dismiss()
+                        }
                     }
-                }
-            }.show()
+                }.show()
     }
 
     private fun unblockConversation(thread: ThreadRecord) {
         AlertDialog.Builder(this)
-            .setTitle(R.string.RecipientPreferenceActivity_unblock_this_contact_question)
-            .setMessage(R.string.RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
-            .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
-                ThreadUtils.queue {
-                    DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
-                    Util.runOnMain {
-                        recyclerView.adapter!!.notifyDataSetChanged()
-                        dialog.dismiss()
+                .setTitle(R.string.RecipientPreferenceActivity_unblock_this_contact_question)
+                .setMessage(R.string.RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
+                    ThreadUtils.queue {
+                        DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
+                        Util.runOnMain {
+                            recyclerView.adapter!!.notifyDataSetChanged()
+                            dialog.dismiss()
+                        }
                     }
-                }
-            }.show()
+                }.show()
     }
 
     private fun deleteConversation(thread: ThreadRecord) {
@@ -291,52 +325,54 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         val dialog = AlertDialog.Builder(this)
         dialog.setMessage(dialogMessage)
-        dialog.setPositiveButton(R.string.yes) { _, _ -> lifecycleScope.launch(Dispatchers.Main) {
-            val context = this@HomeActivity as Context
+        dialog.setPositiveButton(R.string.yes) { _, _ ->
+            lifecycleScope.launch(Dispatchers.Main) {
+                val context = this@HomeActivity as Context
 
-            // Send a leave group message if this is an active closed group
-            if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
-                var isClosedGroup: Boolean
-                var groupPublicKey: String?
-                try {
-                    groupPublicKey = GroupUtil.doubleDecodeGroupID(recipient.address.toString()).toHexString()
-                    isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)
-                } catch (e: IOException) {
-                    groupPublicKey = null
-                    isClosedGroup = false
+                // Send a leave group message if this is an active closed group
+                if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
+                    var isClosedGroup: Boolean
+                    var groupPublicKey: String?
+                    try {
+                        groupPublicKey = GroupUtil.doubleDecodeGroupID(recipient.address.toString()).toHexString()
+                        isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)
+                    } catch (e: IOException) {
+                        groupPublicKey = null
+                        isClosedGroup = false
+                    }
+                    if (isClosedGroup) {
+                        MessageSender.explicitLeave(groupPublicKey!!)
+                    } else {
+                        Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
+                        return@launch
+                    }
                 }
-                if (isClosedGroup) {
-                    MessageSender.explicitLeave(groupPublicKey!!)
-                } else {
-                    Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
-                    return@launch
+
+                withContext(Dispatchers.IO) {
+                    val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+                    //TODO Move open group related logic to OpenGroupUtilities / PublicChatManager / GroupManager
+                    if (publicChat != null) {
+                        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+                        apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
+                        apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
+                        apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
+
+                        ApplicationContext.getInstance(context).publicChatAPI!!
+                                .leave(publicChat.channel, publicChat.server)
+
+                        ApplicationContext.getInstance(context).publicChatManager
+                                .removeChat(publicChat.server, publicChat.channel)
+                    } else {
+                        threadDB.deleteConversation(threadID)
+                    }
+                    ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)
                 }
+
+                // Notify the user
+                val toastMessage = if (recipient.isGroupRecipient) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
             }
-
-            withContext(Dispatchers.IO) {
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-                //TODO Move open group related logic to OpenGroupUtilities / PublicChatManager / GroupManager
-                if (publicChat != null) {
-                    val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
-                    apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
-                    apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
-                    apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
-
-                    ApplicationContext.getInstance(context).publicChatAPI!!
-                            .leave(publicChat.channel, publicChat.server)
-
-                    ApplicationContext.getInstance(context).publicChatManager
-                            .removeChat(publicChat.server, publicChat.channel)
-                } else {
-                    threadDB.deleteConversation(threadID)
-                }
-                ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)
-            }
-
-            // Notify the user
-            val toastMessage = if (recipient.isGroupRecipient) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
-            Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
-        }}
+        }
         dialog.setNegativeButton(R.string.no) { _, _ ->
             // Do nothing
         }
@@ -356,7 +392,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun openSettings() {
         val intent = Intent(this, SettingsActivity::class.java)
-        show(intent)
+        show(intent, isForResult = true)
     }
 
     private fun showPath() {

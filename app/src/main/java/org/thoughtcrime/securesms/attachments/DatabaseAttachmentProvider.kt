@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.IOException
 import java.io.InputStream
@@ -157,7 +156,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
                 val resized = constraints.getResizedMedia(context, attachment)
                 attachmentDatabase.updateAttachmentData(attachment, resized)
             } else {
-                throw UndeliverableMessageException("Size constraints could not be met!")
+                throw Exception("Size constraints could not be met!")
             }
         } catch (e: Exception) {
             return null
