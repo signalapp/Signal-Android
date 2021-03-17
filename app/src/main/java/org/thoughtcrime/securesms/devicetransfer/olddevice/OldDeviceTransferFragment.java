@@ -5,7 +5,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -15,7 +14,6 @@ import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferFragment;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 /**
  * Shows transfer progress on the old device. Most logic is in {@link DeviceTransferFragment}
@@ -48,14 +46,19 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
     requireActivity().finish();
   }
 
+  @Override
+  protected void navigateToTransferComplete() {
+    NavHostFragment.findNavController(this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
+  }
+
   private class ClientTaskListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(@NonNull OldDeviceClientTask.Status event) {
       if (event.isDone()) {
+        transferFinished = true;
         ignoreTransferStatusEvents();
         EventBus.getDefault().removeStickyEvent(TransferStatus.class);
         DeviceToDeviceTransferService.stop(requireContext());
-        SignalStore.misc().markOldDeviceTransferLocked();
         NavHostFragment.findNavController(OldDeviceTransferFragment.this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
       } else {
         status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));

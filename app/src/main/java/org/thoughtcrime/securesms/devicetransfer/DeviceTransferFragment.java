@@ -27,6 +27,8 @@ import org.thoughtcrime.securesms.R;
  */
 public abstract class DeviceTransferFragment extends LoggingFragment {
 
+  private static final String TRANSFER_FINISHED_KEY = "transfer_finished";
+
   private final OnBackPressed        onBackPressed        = new OnBackPressed();
   private final TransferModeListener transferModeListener = new TransferModeListener();
 
@@ -36,9 +38,32 @@ public abstract class DeviceTransferFragment extends LoggingFragment {
   protected View     progress;
   protected View     alert;
   protected TextView status;
+  protected boolean  transferFinished;
 
   public DeviceTransferFragment() {
     super(R.layout.device_transfer_fragment);
+  }
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    if (savedInstanceState != null) {
+      transferFinished = savedInstanceState.getBoolean(TRANSFER_FINISHED_KEY);
+    }
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    if (transferFinished) {
+      navigateToTransferComplete();
+    }
+  }
+
+  @Override
+  public void onSaveInstanceState(@NonNull Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putBoolean(TRANSFER_FINISHED_KEY, transferFinished);
   }
 
   @Override
@@ -92,6 +117,8 @@ public abstract class DeviceTransferFragment extends LoggingFragment {
   protected abstract void navigateToRestartTransfer();
 
   protected abstract void navigateAwayFromTransfer();
+
+  protected abstract void navigateToTransferComplete();
 
   private class TransferModeListener {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

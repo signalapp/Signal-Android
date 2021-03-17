@@ -46,6 +46,11 @@ public final class NewDeviceTransferFragment extends DeviceTransferFragment {
                    .navigate(R.id.action_restart_to_welcomeFragment);
   }
 
+  @Override
+  protected void navigateToTransferComplete() {
+    NavHostFragment.findNavController(this).navigate(R.id.action_newDeviceTransfer_to_newDeviceTransferComplete);
+  }
+
   private class ServerTaskListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(@NonNull NewDeviceServerTask.Status event) {
@@ -54,8 +59,9 @@ public final class NewDeviceTransferFragment extends DeviceTransferFragment {
         case IN_PROGRESS:
           break;
         case SUCCESS:
+          transferFinished = true;
           DeviceToDeviceTransferService.stop(requireContext());
-          NavHostFragment.findNavController(NewDeviceTransferFragment.this).navigate(R.id.action_newDeviceTransfer_to_newDeviceTransferComplete);
+          navigateToTransferComplete();
           break;
         case FAILURE_VERSION_DOWNGRADE:
           abort(R.string.NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal);

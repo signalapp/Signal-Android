@@ -88,7 +88,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   @Override
   public void onCreate() {
     super.onCreate();
-    Log.e(TAG, "onCreate");
+    Log.v(TAG, "onCreate");
 
     EventBus.getDefault().register(this);
   }
@@ -100,7 +100,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
   @Override
   public void onDestroy() {
-    Log.e(TAG, "onDestroy");
+    Log.v(TAG, "onDestroy");
 
     EventBus.getDefault().unregister(this);
 
@@ -219,6 +219,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
       case UNAVAILABLE:
       case FAILED:
       case SERVICE_DISCONNECTED:
+      case SHUTDOWN:
         Log.d(TAG, "Intentionally no notification text for: " + transferStatus.getTransferMode());
         break;
       default:
