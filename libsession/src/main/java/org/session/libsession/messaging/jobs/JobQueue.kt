@@ -35,6 +35,7 @@ class JobQueue : JobDelegate {
     }
 
     companion object {
+        @JvmStatic
         val shared: JobQueue by lazy { JobQueue() }
     }
 

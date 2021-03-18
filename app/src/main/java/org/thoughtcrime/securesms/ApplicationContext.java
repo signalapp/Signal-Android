@@ -32,6 +32,7 @@ import androidx.multidex.MultiDexApplication;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.messaging.threads.Address;
@@ -344,6 +345,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                 .setDependencyInjector(this)
                 .build());
+        JobQueue.getShared().resumePendingJobs();
     }
 
     private void initializeDependencyInjection() {
