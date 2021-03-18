@@ -104,6 +104,10 @@ public class IncomingMessageObserver {
     }, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
   }
 
+  public synchronized void notifyRegistrationChanged() {
+    notifyAll();
+  }
+
   public synchronized void addDecryptionDrainedListener(@NonNull Runnable listener) {
     decryptionDrainedListeners.add(listener);
     if (decryptionDrained) {

@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupProtos;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
@@ -919,6 +920,7 @@ public class TextSecurePreferences {
   public static void setPushRegistered(Context context, boolean registered) {
     Log.i(TAG, "Setting push registered: " + registered);
     setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
+    ApplicationDependencies.getIncomingMessageObserver().notifyRegistrationChanged();
   }
 
   public static boolean isShowInviteReminders(Context context) {
