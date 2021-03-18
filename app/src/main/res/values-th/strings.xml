@@ -924,6 +924,9 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ได้เปลี่ยนบุคคลที่สามารถแก้ไขข้อมูลกลุ่มเป็น \"%2$s\"</string>
   <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">บุคคลที่สามารถแก้ไขข้อมูลกลุ่มได้เปลี่ยนเป็น \"%1$s\"</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">คุณได้เปลี่ยนว่าใครสามารถแก้ไขสมาชิกภาพเป็น \"%1$s\"</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ได้เปลี่ยนแปลงว่าใครสามารถแก้ไขสมาชิกภาพกลุ่มเป็น \"%2$s\"</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">บุคคลที่สามารถแก้ไขสมาชิกภาพได้เปลี่ยนเป็น \"%1$s\"</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">คุณได้เปิดลิงก์กลุ่มโดยได้ตั้งปิดการอนุมัติโดยผู้ดูแลไว้</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">คุณได้เปิดลิงก์กลุ่มโดยได้ตั้งเปิดการอนุมัติโดยผู้ดูแลไว้</string>
@@ -952,7 +955,16 @@
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ได้ขอเข้าร่วมกลุ่มผ่านลิงก์กลุ่ม</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ได้อนุมัติคำขอเพื่อเข้าร่วมกลุ่มของคุณ</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ได้อนุมัติคำขอเข้าร่วมกลุ่มของ %2$s</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">คุณได้อนุมัติคำขอเข้าร่วมกลุ่มของ %1$s</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">คำขอเข้าร่วมกลุ่มของคุณได้รับการอนุมัติ</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">คำขอเข้าร่วมกลุ่มของ %1$s ได้รับการอนุมัติ</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">คำขอเข้าร่วมกลุ่มของคุณถูกปฏิเศษโดยผู้ดูแล</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ได้ปฏิเศษคำขอเข้าร่วมกลุ่มของ %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">คำขอเข้าร่วมกลุ่มของ %1$s ถูกปฏิเศษ</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">คุณได้ยกเลิกคำขอเข้าร่วมกลุ่มนี้</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ได้ยกเลิกคำขอเข้าร่วมกลุ่มของเขา</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %s ถูกตรวจยืนยันแล้ว</string>
@@ -960,15 +972,37 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s อยู่ในการโทรแบบกลุ่ม %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">คุณอยู่ในการโทรแบบกลุ่ม %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s และ %2$s ได้อยู่ในการโทรแบบกลุ่ม  %3$s</string>
   <string name="MessageRecord_group_call_s">โทรกลุ่ม · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s ได้เริ่มการโทรแบบกลุ่ม</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s อยู่ในการโทรแบบกลุ่ม</string>
   <string name="MessageRecord_you_are_in_the_group_call">คุณอยู่ในการโทรแบบกลุ่ม</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s และ %2$s ได้อยู่ในการโทรแบบกลุ่ม</string>
+  <string name="MessageRecord_group_call">โทรกลุ่ม</string>
   <string name="MessageRecord_you">คุณ</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="other">%1$s  %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรแบบกลุ่ม %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="other">%1$s  %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรแบบกลุ่ม</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">ยอมรับ</string>
   <string name="MessageRequestBottomView_continue">ทำต่อ</string>
   <string name="MessageRequestBottomView_delete">ลบ</string>
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">อนุญาติให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาติให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ต้องการสนทนาภายในกลุ่มนี้ต่อไปและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">กลุ่ม Legacy นี้ไม่สามารถใช้งานได้อีกต่อไปเนื่องจากขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ต้องการสนทนากับ %1$s ต่อและเปิดเผยชื่อและรูปภาพให้พวกเขาเห็นหรือไม่?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ต้องการเข้าร่วมกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">คุณต้องการเข้าร่วมกลุ่มนี้หรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาแล้วจนกว่าคุณจะตอบรับ</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">คุณต้องการเลิกปิดกั้นกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
   <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">สมาชิกของ %1$s และ %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">สมาชิกของ %1$s%2$s และ %3$s</string>
@@ -1011,6 +1045,10 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ปรับปรุงเดี๋ยวนี้</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal เวอร์ชั่นนี้จะมีหมดอายุวันนี้ โปรดปรับปรุงเป็นเวอร์ชั่นล่าสุด</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="other">Signal เวอร์ชั่นนี้จะมีหมดอายุใน  %d วัน โปรดปรับปรุงเป็นเวอร์ชั่นล่าสุด</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">ใส่วลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
@@ -1027,18 +1065,25 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">รหัส PIN ไม่ถูกต้อง </string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">ข้ามการใส่รหัส PIN หรือไม่?</string>
   <string name="PinRestoreEntryFragment_need_help">ต้องการความช่วยเหลือหรือไม่?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">รหัส PIN ของคุณคือรหัส %1$d+ หลักที่คุณสร้างไว้โดยอาจจะเป็นตัวเลขหรือตัวอักษรและตัวเลข ถ้าคุณไม่สามารถจำรหัส PIN ได้ คุณสามารถสร้างรหัส PIN ใหม่ คุณสามารถลงทะเบียนและใช้บัญชีของคุณได้ แต่คุณจะสูญเสียการตั้งค่าเดิมเช่นข้อมูลโปรไฟล์ของคุณ</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">ถ้าคุณไม่สามารถจำรหัส PIN ได้ คุณสามารถสร้างรหัส PIN ใหม่ คุณสามารถลงทะเบียนและใช้บัญชีของคุณได้ แต่คุณจะสูญเสียการตั้งค่าเดิมเช่นข้อมูลโปรไฟล์ของคุณ</string>
   <string name="PinRestoreEntryFragment_create_new_pin">สร้างรหัส PIN ใหม่</string>
   <string name="PinRestoreEntryFragment_contact_support">ติดต่อการสนับสนุน</string>
   <string name="PinRestoreEntryFragment_cancel">ยกเลิก</string>
   <string name="PinRestoreEntryFragment_skip">ข้าม</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="other">คุณสามารถลองได้อีก %1$d ครั้ง ถ้าคุณลองจนครบจำนวนครั้งแล้วคุณสามารถสร้างรหัส PIN ใหม่ คุณสามารถลงทะเบียนและใช้บัญชีของคุณได้ แต่คุณจะสูญเสียการตั้งค่าเดิมเช่นข้อมูลโปรไฟล์ของคุณ</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ใส่รหัส PIN ด้วยตัวอักษรและตัวเลข</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">ใส่รหัส PIN ด้วยตัวเลข</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">สร้างรหัส PIN ของคุณ</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">คุณได้เดารหัส PIN จนครบจำนวนแล้ว แต่คุณยังสามารถเข้าถึงบัญชี Signal ของคุณได้ด้วยการสร้าง รหัส PIN ใหม่ เพื่อความเป็นส่วนตัวและความปลอดภัยของคุณ บัญชีของคุณจะถูกกู้คืนมาโดยปราศจากข้อมูลโปรไฟล์หรือการตั้งค่าที่คุณบันทึกไว้</string>
   <string name="PinRestoreLockedFragment_create_new_pin">สร้างรหัส PIN ใหม่</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">คำเตือน</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดการใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณสมัครบัญชี Signal ใหม่ นอกจากว่าคุณได้แบ็คอัพข้อมูลและกู้มันคืนมา คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ถูกปิดการใข้งานไว้อยู่</string>
   <string name="PinOptOutDialog_disable_pin">ปิดใช้งาน PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ให้คะแนนแอปนี้</string>
@@ -1069,6 +1114,7 @@
   <string name="RedPhone_got_it">เข้าใจแล้ว</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">แตะเพื่อเปิดวิดีโอของคุณ</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">เพื่อจะโทรหา %1$s Signal จำเป็นต้องเข้าถึงกล้องของคุณ</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
   <!--WebRtcCallView-->
@@ -1077,18 +1123,36 @@
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
   <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">จำนวนผู้เข้าร่วมสูงสุดได้เข้าร่วมเต็ม %1$d คนแล้ว โปรดลองอีกครั้งภายหลัง</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" โทรกลุ่ม</string>
+  <string name="WebRtcCallView__view_participants_list">ดูผู้เข้าร่วม</string>
   <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
   <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
   <string name="WebRtcCallView__joining">กำลังเข้าร่วม…</string>
   <string name="WebRtcCallView__disconnected">เลิกการเชื่อมต่อแล้ว</string>
   <string name="WebRtcCallView__no_one_else_is_here">ไม่มีใครที่นี่</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s อยู่ในการโทรนี้</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s และ %2$s อยู่ในการโทรนี้</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="other">มีผู้เข้าร่วมการโทร %1$d คน</item>
+  </plurals>
   <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s ได้ถูกปิดกั้นแล้ว</string>
   <string name="CallParticipantView__more_info">ข้อมูลเพิ่มเติม</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">คุณจะไม่ได้รับเสียงและวิดีโอ และพวกเขาจะไม่ได้รับเสียงและวิดีโอของคุณ</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรเห็นหน้าจาก %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรเห็นหน้าจาก %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">เหตุนี้อาจเกิดขึ้นเนื่องจากพวกเขายังไม่ได้ตรวจยืนยันหมายเลขความปลอดภัยของคุณ อุปกรณ์ของพวกเขามีปัญหา หรือพวกเขาได้ปิดกั้นคุณไว้</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">เซิร์ฟเวอร์พร็อกซี</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">ที่อยู่พร็อกซี</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">คุณต้องการใช้ที่อยู่พร็อกซีนี้หรือไม่?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">ใช้พร็อกซี</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">เชื่อมต่อพร็อกซีสำเร็จ</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">เลือกประเทศของคุณ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">คุณต้องระบุรหัส
@@ -1101,6 +1165,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">หมายที่คุณ
         ระบุ (%s) ไม่ถูกต้อง
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">รหัสยืนยันจะถูกส่งไปที่:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">คุณจะได้รับสายโทรเข้าเพื่อยืนยันหมายเลขนี้</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">หมายเลขโทรศัพท์ข้างบนของท่านถูกต้องหรือไม่?</string>
+  <string name="RegistrationActivity_edit_number">แก้ไขหมายเลข</string>
   <string name="RegistrationActivity_missing_google_play_services">ไม่พบ Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">อุปกรณ์นี้ไม่มี Google Play Services คุณยังสามารถใช้งาน Signal ได้ แต่การตั้งค่าจะได้เสถียรภาพหรือประสิทธิภาพที่ลดลง\n\nหากคุณไม่ได้เป็นผู้ใช้งานขั้นสูง หรือไม่ได้ใช้ Android ROM จากผู้ผลิตอื่น หรือเชื่อว่าคุณได้เห็นข้อความนี้เนื่องจากความผิดพลาด โปรดติดต่อ support@signal.org สำหรับความช่วยเหลือในการแก้ปัญหา</string>
   <string name="RegistrationActivity_i_understand">ฉันเข้าใจ</string>
@@ -1108,6 +1176,8 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังอัปเดตหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
   <string name="RegistrationActivity_terms_and_privacy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ต้องการเข้าถึงสื่อและผู้ติดต่อที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal ต้องการเข้าถึงผู้ติดต่อที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
+  <string name="RegistrationActivity_rate_limited_to_service">คุณได้พยายามสมัครด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองใหม่อีกครั้งภายหลัง</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">เหลืออีก %d ขั้นตอนในการส่งปูมดีบัก</item>
@@ -1117,12 +1187,16 @@
   <string name="RegistrationActivity_continue">ดำเนินการต่อ</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">นำความเป็นส่วนตัวไปกับคุณทุกที่ \nเป็นตัวคุณในทุกข้อความ</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ใส่หมายเลขโทรศัพท์ของคุณเพื่อเริ่มต้นใช้งาน</string>
+  <string name="RegistrationActivity_enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสตรวจยืนยัน ซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ใส่รหัสที่เราส่งไปให้ %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ตรวจสอบให้แน่ใจว่าโทรศัพท์ของคุณมีสัญญาณเซลลูลาร์เพื่อรับ SMS หรือการโทร</string>
   <string name="RegistrationActivity_phone_number_description">หมายเลขโทรศัพท์</string>
   <string name="RegistrationActivity_country_code_description">รหัสประเทศ</string>
   <string name="RegistrationActivity_call">โทร</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">เปิดกุญแจลงทะเบียนหรือไม่?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">ปิดกุญแจลงทะเบียนหรือไม่?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">ถ้าคุณลืมรหัส PIN ของคุณตอนที่คุณลงทะเบียนกับ Signal อีกครั้ง คุณจะถูกล็อกจากบัญชีของคุณเป็นเวลา 7 วัน</string>
   <string name="RegistrationLockV2Dialog_turn_on">เปิด</string>
   <string name="RegistrationLockV2Dialog_turn_off">ปิด</string>
@@ -1152,6 +1226,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">เราจะเตือนคุณอีกครั้งในอีกไม่กี่วัน</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">เราจะเตือนคุณอีกครั้งภายในหนึ่งสัปดาห์</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">เราจะเตือนคุณอีกครั้งภายในอีกไม่กี่สัปดาห์</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">เราจะเตือนคุณอีกครั้งภายในหนึ่งเดือน</string>
   <!--Slide-->
   <string name="Slide_image">รูปภาพ</string>
   <string name="Slide_sticker">สติกเกอร์</string>
@@ -1197,6 +1272,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">คัดลอก URL และเพิ่มมันในรายงานปัญหาหรืออีเมลปรึกษาปัญหา:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">ตัวกรอง:</string>
   <string name="SupportEmailUtil_device_info">ข้อมูลอุปกรณ์:</string>
   <string name="SupportEmailUtil_android_version">รุ่นแอนดรอยด์:</string>
   <string name="SupportEmailUtil_signal_version">รุ่น Signal:</string>
@@ -1210,6 +1286,7 @@
   <string name="ThreadRecord_draft">ร่าง:</string>
   <string name="ThreadRecord_called">คุณได้โทรหา</string>
   <string name="ThreadRecord_called_you">โทรหาคุณ</string>
+  <string name="ThreadRecord_missed_audio_call">โทรแบบเสียงที่ไม่ได้รับ</string>
   <string name="ThreadRecord_missed_video_call">โทรเห็นหน้าที่ไม่ได้รับ</string>
   <string name="ThreadRecord_media_message">ข้อความสื่อ</string>
   <string name="ThreadRecord_sticker">สติกเกอร์</string>
@@ -1250,10 +1327,14 @@
   <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
   <string name="UsernameEditFragment_this_username_is_available">ใช้ชื่อผู้ใช้นี้ได้</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
   <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">ชื่อผู้ใช้ใน Signal นั้นจะมีหรือไม่ก็ได้ ถ้าคุณเลือกสร้างชื่อผู้ใช้ ผู้ใช้ Signal คนอื่นจะสามารถหาและติดต่อคุณได้จากชื่อผู้ใช้นี้โดยไม่จำเป็นต้องรู้หมายเลขโทรศัพท์ของคุณ</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="other">มีผู้ติดต่อ %d คนใช้งาน Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Signal รุ่นเก่า กรุณาขอให้เขาปรับปรุงก่อนที่จะตรวจยืนยันหมายเลขความปลอดภัยของคุณ</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Signal รุ่นใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาปรับปรุงเพื่อให้ใช้งานด้วยกันได้</string>
@@ -1264,6 +1345,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ไม่พบหมายเลขความปลอดภัยที่จะเปรียบเทียบในคลิปบอร์ด</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">สแกนรหัส QR ไม่ได้ หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">คุณจะต้องแลกเปลี่ยนข้อความกันก่อนเพื่อที่จะดูหมายเลขความปลอดภัยของ %1$s</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1291,6 +1373,8 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">ลบข้อความหรือไม่?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ถึง %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">สื่อตัวนี้ไม่มีอยู่แล้ว</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่ค้นพบแอปที่สามารถแชร์สื่อนี้ได้</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d การสนทนา</string>
   <string name="MessageNotifier_most_recent_from_s">ล่าสุดจาก: %1$s</string>
@@ -1315,6 +1399,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">ตอบสนอง %1$s ต่อรูปภาพของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ตอบสนอง %1$s ต่อแฟ้มของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ตอบสนอง %1$s ต่อเสียงของคุณ</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">ตอบสนอง %1$s กับสื่อที่ดูได้ครั้งเดียวของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">ตอบสนอง %1$s ต่อสติกเกอร์ของคุณ</string>
   <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <!--Notification Channels-->
@@ -1327,6 +1412,7 @@
   <string name="NotificationChannel_other">อื่น</string>
   <string name="NotificationChannel_group_messages">ข้อความ</string>
   <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
+  <string name="NotificationChannel_voice_notes">ข้อความเสียง</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อคอยู่</string>
@@ -1355,12 +1441,19 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">เพื่อที่จะรับสายโทรเข้าจาก %s อนุญาตให้ Signal เข้าถึงไมโครโฟนของคุณ</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">เพื่อที่จะโทรออกและรับสาย Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">มีการรับสายบนอุปกรณ์ที่เชื่อมโยงอยู่</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">ปฏิเศษรับสายบนอุปกรณ์ที่เชื่อมโยงอยู่</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">ติดสายบนอุปกรณ์ที่เชื่อมโยงอยู่</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">มีคนเข้าร่วมการโทรนี้ด้วยหมายเลขความปลอดภัยที่มีการเปลี่ยนแปลง</string>
   <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">ปัดขึ้นเพื่อเปลี่ยนมุมมอง</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">ปฏิเสธ</string>
   <string name="WebRtcCallScreen__answer">รับสาย</string>
   <string name="WebRtcCallScreen__answer_without_video">ตอบรับโดยไม่ใช้วิดีโอ</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__audio_output">ช่องรับสัญญาณเสียง</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">หูฟังโทรศัพท์</string>
   <string name="WebRtcAudioOutputToggle__speaker">ลำโพง</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">บลูทูธ</string>
   <string name="WebRtcCallControls_answer_call_description">รับสาย</string>
@@ -1387,6 +1480,9 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
   <string name="ContactSelectionListFragment_username_not_found">ไม่พบชื่อผู้ใช้</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">คุณไม่จำเป็นต้องเพิ่มตัวเองเข้าไปในกลุ่ม</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">จำนวนสมาชิกในกลุ่มถึงจำนวนจำกัดแล้ว</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">กลุ่ม Signal สามารถมีจำนวนสมาชิกได้สูงสุดถึง %1$d คน</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">กลุ่มของ Signal ทำงานได้ดีที่สุดเมื่อมีสมาชิกไม่เกิน %1$d ราย การเพิ่มสมาชิกจะทำให้การส่งและรับข้อความล่าช้าขึ้น</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="other">%1$d สมาชิก</item>
@@ -1711,6 +1807,7 @@
   <string name="preferences__chat_wallpaper">ภาพพื้นหลังของแชต</string>
   <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
   <string name="preferences__enable_pin">เปิดใช้งาน PIN</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดการใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณสมัครบัญชี Signal ใหม่ นอกจากว่าคุณได้แบ็คอัพข้อมูลและกู้มันคืนมา คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ถูกปิดการใข้งานไว้อยู่</string>
   <string name="preferences__system_default">ค่าปริยายของระบบ</string>
   <string name="preferences__language">ภาษา</string>
   <string name="preferences__signal_messages_and_calls">ข้อความและการโทร Signal</string>
@@ -1763,8 +1860,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
   <string name="preferences_communication__sealed_sender_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="preferences_use_proxy">ใช้พร็อกซี</string>
   <string name="preferences_off">ปิด</string>
   <string name="preferences_on">เปิด</string>
+  <string name="preferences_proxy_address">ที่อยู่พร็อกซี</string>
   <string name="preferences_share">แบ่งปัน</string>
   <string name="preferences_save">บันทึก</string>
   <!--Internal only preferences-->
@@ -2096,6 +2195,7 @@
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipant__you">คุณ</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
   <string name="DeleteAccountFragment__delete_account">ลบบัญชี</string>
   <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ</string>
   <!--DeleteAccountCountryPickerFragment-->

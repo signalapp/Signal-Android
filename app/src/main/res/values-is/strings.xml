@@ -110,6 +110,7 @@
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Þú getur deilt með að hámarki haft %d samtölum.</string>
   <string name="CameraContacts_select_signal_recipients">Veldu viðtakendur með Signal</string>
   <string name="CameraContacts_no_signal_contacts">Engir Signal-tengiliðir</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Þú getur bara notað myndavélarhnappinn til að senda myndir til Signal-tengiliða.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Finnurðu ekki það sem þú leitar að?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Bjóddu tengilið að koma á Signal</string>
   <string name="CameraContacts__menu_search">Leita</string>
@@ -162,6 +163,7 @@
   <string name="ConversationItem_error_not_sent_tap_for_details">Ekki sent, ýttu fyrir nánari upplýsingar</string>
   <string name="ConversationItem_error_partially_not_delivered">Sent að hluta, ýttu fyrir nánari upplýsingar</string>
   <string name="ConversationItem_error_network_not_delivered">Sending mistókst</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tók við skilaboðum vegna lyklaskipta, ýttu til að meðhöndla.</string>
   <string name="ConversationItem_group_action_left">%1$s hefur yfirgefið hópinn.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sending mistókst, ýttu fyrir óörugga varaleið</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nota ódulritað SMS til vara?</string>
@@ -178,6 +180,7 @@
   <string name="ConversationItem_you_deleted_this_message">Þú eyddir þessum skilaboðum</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Endurstilla örugga setu?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Þetta gæti hjálpað er þú ert í vandræðum með dulritun í þessu samtali. Skilaboðunum þínum verður haldið.</string>
   <string name="ConversationActivity_reset">Endurstilla</string>
   <string name="ConversationActivity_add_attachment">Bæta við viðhengi</string>
   <string name="ConversationActivity_select_contact_info">Velja upplýsingar um tengilið</string>
@@ -1904,6 +1907,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ef leskvittanir eru óvirkar hjá þér, muntu ekki geta sé leskvittanir frá öðrum.</string>
   <string name="preferences__typing_indicators">Merki um framvindu ritunar</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ef merki um framvindu ritunar eru óvirk hjá þér, muntu ekki geta sé framvindu ritunar frá öðrum.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Biðja lyklaborð um að gera notandamiðaða aðlögun óvirka. Þessi stilling er ekki trygging fyrir að hætt sé söfnun upplýsinga um hegðun notandans, því lyklaborðið gæti hunsað þessa beiðni.</string>
   <string name="preferences_app_protection__blocked_users">Útilokaðir notendur</string>
   <string name="preferences_chats__when_using_mobile_data">Þegar gagnaáskrift er notuð</string>
   <string name="preferences_chats__when_using_wifi">Þegar Wi-Fi er notað</string>
@@ -1922,6 +1926,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Þessi aðgerð mun eyða skilaboðum í öllum samtölum, nema þeim %1$s nýjustu. </string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Þetta mun endanlega eyða öllum ferli skilaboða og myndefnis af tækinu þínu.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ertu viss um að vilja eyða öllum ferli skilaboða?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Öllum ferli skilaboða verður endanlega eytt. Þessa aðgerð er ekki hægt að afturkalla.</string>
   <string name="preferences_storage__delete_all_now">Eyða öllu núna</string>
   <string name="preferences_storage__forever">Að eilífu</string>
   <string name="preferences_storage__one_year">1 ár</string>
@@ -1931,6 +1936,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences_storage__s_messages">%1$s skilaboð</string>
   <string name="preferences_storage__custom">Sérsniðið</string>
   <string name="preferences_advanced__use_system_emoji">Nota emoji-tákn af kerfinu</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gera innbyggðan stuðning Signal við emoji-tákn óvirkan</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Senda símtöl áfram í gegnum netþjóna Signal til að minnka líkur á að IP-vistfang þitt verði opinbert. Að virkja þennan möguleika mun minnka gæði símtals.</string>
   <string name="preferences_advanced__always_relay_calls">Alltaf endurbeina símtölum</string>
   <string name="preferences_app_protection__who_can">Hver getur…</string>
@@ -1957,6 +1963,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences_notifications__priority">Forgangur</string>
   <string name="preferences_communication__category_sealed_sender">Innsiglaður sendandi</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Skjámerki</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Birta stöðutákn þegar þú velur \"Nánar um skilaboð\" á skilaboðum sem borist hafa frá innsigluðum notanda (sealed sender).</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Leyfa frá hverjum sem er</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Virkja innsiglun sendenda á þau skilaboð sem berast frá fólki sem er ekki í tengiliðaskránni þinni og fólki sem þú hefur ekki deilt notandasniðinu þínu með.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Kanna nánar</string>

@@ -3,7 +3,7 @@
   <string name="yes">ਹਾਂ</string>
   <string name="no">ਨਹੀਂ </string>
   <string name="delete">ਹਟਾਓ</string>
-  <string name="please_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਰੁਕੋ …</string>
+  <string name="please_wait">ਕਿਰਪਾ ਕਰਕੇ ਠਹਿਰੋ…</string>
   <string name="save">ਸੰਭਾਲੋ</string>
   <string name="note_to_self">ਆਪਣੇ ਆਪ ਨੂੰ ਨੋਟ </string>
   <!--AbstractNotificationBuilder-->
@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">ਮੀਡੀਆ ਅਪਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
   <string name="AttachmentUploadJob_compressing_video_start">ਕੰਪ੍ਰੈਸਿੰਗ ਵੀਡੀਓ …</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">…ਸੁਨੇਹਿਆਂ ਦੀ ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ਪਾਬੰਦੀ ਲਾਏ ਵਰਤੋਂਕਾਰ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ਪਾਬੰਦੀ ਲਾਇਆ ਵਰਤੋਂਕਾਰ ਜੋੜੋ</string>
@@ -512,6 +513,7 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_member_requests_and_invites">ਮੈਂਬਰ ਬੇਨਤੀਆਂ ਅਤੇ ਸੱਦੇ</string>
   <string name="ManageGroupActivity_add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ManageGroupActivity_edit_group_info">ਸਮੂਹ ਜਾਣਕਾਰੀ ਸੋਧੋ</string>
   <string name="ManageGroupActivity_who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਜੋੜ ਸਕਦਾ ਹੈ?</string>
@@ -523,6 +525,7 @@
   <string name="ManageGroupActivity_mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
   <string name="ManageGroupActivity_custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <string name="ManageGroupActivity_mentions">ਜ਼ਿਕਰ</string>
+  <string name="ManageGroupActivity_chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <string name="ManageGroupActivity_until_s">%1$s ਤੱਕ</string>
   <string name="ManageGroupActivity_off">ਬੰਦ </string>
   <string name="ManageGroupActivity_on">ਚਲਾਓ </string>
@@ -544,14 +547,18 @@
   <string name="GroupMentionSettingDialog_always_notify_me">ਮੈਨੂੰ ਹਮੇਸ਼ਾਂ ਸੂਚਿਤ ਕਰੋ</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">ਮੈਨੂੰ ਸੂਚਿਤ ਨਾ ਕਰੋ</string>
   <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">ਪਰੋਫਾਇਲ ਦਾ ਨਾਂ</string>
   <string name="ManageProfileFragment_username">ਯੂਜ਼ਰਨੇਮ</string>
   <string name="ManageProfileFragment_about">ਇਸ ਬਾਰੇ</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">ਆਪਣੇ ਬਾਰੇ ਕੁਝ ਸ਼ਬਦ ਲਿਖੋ</string>
   <string name="ManageProfileFragment_your_name">ਤੁਹਾਡਾ ਨਾਮ</string>
+  <string name="ManageProfileFragment_your_username">ਤੁਹਾਡਾ ਵਰਤੋਂਕਾਰ-ਨਾਂ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">ਸਿਸਟਮ ਸੰਪਰਕਾਂ ਵਿੱਚ ਜੋੜੋ</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ਇਹ ਉਪਭੋਗਤਾ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਹੈ</string>
   <string name="ManageRecipientActivity_disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
   <string name="ManageRecipientActivity_chat_color">ਗੱਲਬਾਤ ਦਾ ਰੰਗ</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <string name="ManageRecipientActivity_block">ਬਲੌਕ ਕਰੋ</string>
   <string name="ManageRecipientActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string>
   <string name="ManageRecipientActivity_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
@@ -607,6 +614,7 @@
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">ਲਿੰਕ ਸਮਰੱਥ ਅਤੇ ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">ਲਿੰਕ ਸਾਂਝਾ ਕਰੋ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ਨੈਟਵਰਕ ਤਰੁਟੀ ਹੋਈ.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” ਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਜੋੜਨਾ ਹੈ?</string>
@@ -867,6 +875,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">ਪਾਸਫਰੇਜ ਦਰਜ ਕਰੋ</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ਗਲਤ ਪਾਸਫਰੇਜ!</string>
   <string name="PassphrasePromptActivity_unlock_signal">ਅਨਲੌਕ Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - ਲਾਕ ਸਕਰੀਨ</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ਨਕਸ਼ਾ</string>
   <string name="PlacePickerActivity_drop_pin">ਡ੍ਰੌਪ ਪਿੰਨ</string>
@@ -875,6 +884,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ਤੁਹਾਡੇ ਵੱਲੋਂ ਸਥਾਪਿਤ ਕੀਤੇ Google Play ਸੇਵਾਵਾਂ ਦਾ ਵਰਜਨ ਸਹੀ ਢੰਗ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ Google Play ਸੇਵਾਵਾਂ ਮੁੜ ਸਥਾਪਿਤ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">ਗਲਤ ਪਿਨ</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">ਪਿੰਨ ਐਂਟਰੀ ਛੱਡਣੀ ਹੈ?</string>
   <string name="PinRestoreEntryFragment_need_help">ਮਦਦ ਚਾਹੀਦੀ ਹੈ?</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">ਜੇ ਤੁਸੀਂ ਆਪਣਾ ਪਿਨ ਯਾਦ ਨਹੀਂ ਰੱਖ ਸਕਦੇ, ਤਾਂ ਤੁਸੀਂ ਨਵਾਂ ਸਿਰਜ ਸਕਦੇ ਹੋ. ਤੁਸੀਂ ਰਜਿਸਟਰ ਕਰਕੇ ਆਪਣਾ ਖਾਤਾ ਵਰਤ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਸਹੇਜੀ ਗਈ ਕੁਝ ਜਾਣਕਾਰੀ ਖੋ ਬੈਠੋਗੇ ਜਿਵੇਂ ਕਿ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਦੀ ਜਾਣਕਾਰੀ.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ਨਵਾਂ ਪਿਨ ਸਿਰਜੋ</string>
@@ -933,8 +943,10 @@
   <string name="WebRtcCallView__view_participants_list">ਹਿੱਸਾ ਲੈਣ ਵਾਲੇ ਵੇਖੋ</string>
   <string name="WebRtcCallView__your_video_is_off">ਤੁਹਾਡੀ ਵੀਡੀਓ ਬੰਦ ਹੈ</string>
   <string name="WebRtcCallView__reconnecting">ਦੁਬਾਰਾ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
+  <string name="WebRtcCallView__joining">ਜੁਆਇਨ ਕਰ ਰਹੇ ਹਾਂ…</string>
   <string name="WebRtcCallView__disconnected">ਕੁਨੈਕਸ਼ਨ ਬੰਦ</string>
   <string name="WebRtcCallView__no_one_else_is_here">ਇੱਥੇ ਕੋਈ ਨਹੀਂ ਹੈ</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s ਇਸ ਕਾਲ ਵਿੱਚ ਹੈ</string>
   <!--CallParticipantsListDialog-->
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">ਹੋਰ ਜਾਣਕਾਰੀ</string>
@@ -1585,6 +1597,7 @@
   <string name="preferences__dark_theme">ਹਨੇਰਾ </string>
   <string name="preferences__appearance">ਦਿਖਾਵਾ </string>
   <string name="preferences__theme">ਥੀਮ</string>
+  <string name="preferences__chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <string name="preferences__disable_pin">ਪਿੰਨ ਅਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__enable_pin">ਪਿੰਨ ਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ ਪਿੰਨ ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਡਾ ਡਾਟਾ ਗੁਆ ਦਿਓਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕ-ਅਪ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਨਹੀਂ ਕਰਦੇ। ਪਿੰਨ ਅਸਮੱਥ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟਰੇਸ਼ਨ ਚਾਲੂ ਨਹੀਂ ਕਰ ਸਕਦੇ ਹੋ।</string>
@@ -2073,12 +2086,18 @@
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">ਸੁਨੇਹਾ ਅੱਗੇ ਭੇਜੋ</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__contact_name">ਸੰਪਰਕ ਦਾ ਨਾਂ</string>
   <string name="ChatWallpaperFragment__reset">ਮੁੜ-ਸੈੱਟ ਕਰੋ</string>
+  <string name="ChatWallpaperFragment__clear">ਮਿਟਾਓ</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s ਲਈ ਵਾਲਪੇਪਰ ਲਾਓ</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ਤੁਹਾਡੀ ਗੈਲਰੀ ਵੇਖਣ ਲਈ ਸਟੋਰੇਜ਼ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">ਵਾਲਪੇਪਰ ਤਸਵੀਰ ਚੁਣੋ</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s ਲਈ ਵਾਲਪੇਪਰ ਲਾਓ।</string>
   <!--EOF-->
 </resources>

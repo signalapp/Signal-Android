@@ -1051,7 +1051,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که مسدودیت او را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمه با این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال‌سازی قابلیت‌های جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال‌سازی قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمه با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
@@ -1420,8 +1420,8 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
   <string name="ApplicationMigrationService_importing_text_messages">در حال وارد کردن پیام‌های متنی</string>
-  <string name="ApplicationMigrationService_import_complete">وارد کردن به پایان رسید</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">وارد کردن پایگاه دادهٔ سیستم به پایان رسید.</string>
+  <string name="ApplicationMigrationService_import_complete">وارد کردن به کامل شد</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">وارد کردن پایگاه دادهٔ سیستم کامل شد.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">برای باز کردن لمس کنید.</string>
   <string name="KeyCachingService_passphrase_cached">سیگنال از قفل خارج شد</string>
@@ -1683,7 +1683,7 @@
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پایگاه دادهٔ پيش‌‌فرض سيستم به هيچ شکلی تغییر نخواهد کرد.</string>
   <string name="database_migration_activity__skip">رد کردن</string>
   <string name="database_migration_activity__import">وارد کردن</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی زمان ببرد. لطفاً صبور باشید، هنگامی که فرایند وارد کردن به پایان برسد به شما اطلاع می‌دهیم.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی زمان ببرد. لطفاً صبور باشید، هنگامی که فرایند وارد کردن کامل شود به شما اطلاع می‌دهیم.</string>
   <string name="database_migration_activity__importing">وارد کردن</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">دیدن مکالمهٔ کامل</string>
@@ -2353,6 +2353,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">بازگردانی یک پشتیبان</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید قدیمی شما رخ داد.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">در جستجوی دستگاه اندروید جدید…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">سیگنال به مجوز مکان برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید جدید شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
@@ -2432,7 +2433,10 @@
   <string name="DeviceToDeviceTransferService_status_verification_required">تأیید لازم است</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">در حال انتقال حساب کاربری…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">ثبت‌نام را در دستگاه جدید خود کامل کنید</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">حساب کاربری سیگنال شما به دستگاه جدید شما انتقال یافت، اما برای ادامه باید ثبت‌نام را در آن کامل کنید. سیگنال روی این دستگاه غیرفعال خواهد بود.</string>
   <string name="OldDeviceTransferLockedDialog__done">انجام شد</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">لغو و فعال‌سازی این دستگاه</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
@@ -2529,7 +2533,7 @@
   <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
   <string name="DeleteAccountFragment__the_phone_number">شمارهٔ همراهی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
   <string name="DeleteAccountFragment__are_you_sure">آیا از حذف حساب کاربری خود اطمینان دارید؟</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری سیگنال شما را حذف کرده و برنامه را بازنشانی می‌کند.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری سیگنال شما را حذف کرده و برنامه را بازنشانی می‌کند. برنامه پس از تکمیل فرایند بسته می‌شود.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
   <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>

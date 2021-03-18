@@ -1810,6 +1810,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">نەرسە</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">بەلگە</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">بايراق</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ھېسسىيات ئىپادىلىرى</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">كۆڭۈلدىكىنى ئىشلىتىش</string>
   <string name="arrays__use_custom">ئىختىيارىي ئىشلىتىش</string>
@@ -1863,7 +1864,13 @@
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ئەگەر Signal ئىشلەتمىگەن ھالەتتە مۇئەييەن ۋاقىت تۇرسا، ئۆزلۈكىدىن قۇلۇپلىنىدۇ</string>
   <string name="preferences__inactivity_timeout_passphrase">ئىشلەتمىگەندە ۋاقىت ھالقىش ئىم</string>
   <string name="preferences__inactivity_timeout_interval">ئىشلەتمىگەندە ۋاقىت ھالقىش ۋاقتى</string>
+  <string name="preferences__notifications">ئۇقتۇرۇشلار</string>
+  <string name="preferences__led_color">LED رەڭگى</string>
   <string name="preferences__led_color_unknown">نامەلۇم</string>
+  <string name="preferences__pref_led_blink_title">LED چاقناش شەكلى</string>
+  <string name="preferences__sound">ئاۋاز</string>
+  <string name="preferences__silent">تىنچ</string>
+  <string name="preferences__repeat_alerts">تەكرار ئاگاھلاندۇرۇش</string>
   <string name="preferences__never">ھەرگىز</string>
   <string name="preferences__one_time">بىر قېتىم</string>
   <string name="preferences__two_times">ئىككى قېتىم</string>
@@ -1874,36 +1881,126 @@
   <string name="preferences__green">يېشىل</string>
   <string name="preferences__red">قىزىل</string>
   <string name="preferences__blue">كۆك</string>
+  <string name="preferences__orange">قىزغۇچ</string>
+  <string name="preferences__cyan">كۆكۈچ</string>
+  <string name="preferences__magenta">ئاچ قىزىل</string>
   <string name="preferences__white">ئاق</string>
   <string name="preferences__none">ھېچنېمە</string>
   <string name="preferences__fast">تېز</string>
   <string name="preferences__normal">نورمال</string>
   <string name="preferences__slow">ئاستا</string>
   <string name="preferences__help">ياردەم</string>
+  <string name="preferences__advanced">ئالىي</string>
   <string name="preferences__donate_to_signal">Signal غا ئىئانە قىلىڭ</string>
+  <string name="preferences__privacy">مەخپىيەتلىك</string>
+  <string name="preferences__mms_user_agent">MMS ئىشلەتكۈچى ۋەكىلى</string>
+  <string name="preferences__advanced_mms_access_point_names">MMS نىڭ قولدا تەڭشەكلىرى</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMS ۋاكالەتچى باش كومپيۇتېر</string>
+  <string name="preferences__mms_proxy_port">MMS ۋاكالەتچى پورتى</string>
+  <string name="preferences__mmsc_username">MMSC ئىشلەتكۈچى</string>
+  <string name="preferences__mmsc_password">MMSC پارولى</string>
+  <string name="preferences__sms_delivery_reports">SMS يەتكۈزۈش دوكلاتلىرى</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ئەۋەتكەن ھەر بىر SMS ئۇچۇرى ئۈچۈن بىر يەتكۈزۈش دوكلاتى تەلەپ قىلىش</string>
+  <string name="preferences__data_and_storage">مەلۇمات ۋە ساقلىغۇچ</string>
+  <string name="preferences__storage">ساقلىغۇچ</string>
+  <string name="preferences__conversation_length_limit">سۆزلىشىش ئۈزۈنلۇق چېكى</string>
+  <string name="preferences__keep_messages">ئۇچۇرلارنى ساقلاپ قېلىش</string>
+  <string name="preferences__clear_message_history">ئۇچۇر تارىخىنى تازىلا</string>
   <string name="preferences__linked_devices">باغلانغان ئۈسكۈنىلەر</string>
+  <string name="preferences__light_theme">يورۇق</string>
+  <string name="preferences__dark_theme">قاراڭغۇ</string>
+  <string name="preferences__appearance">كۆرۈنۈش</string>
+  <string name="preferences__theme">ئۇسلۇب</string>
   <string name="preferences__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <string name="preferences__disable_pin">PIN چەكلە</string>
+  <string name="preferences__enable_pin">PIN نى قوزغات</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ئەگەر PIN نى چەكلىسىڭىز، Signal غا قايتا تىزىملاتقاندا ئۆزىڭىز زاپاسلاپ ۋە ئەسلىگە كەلتۈرمىگۈچە ھەممە سانلىق مەلۇماتلىرىڭىز يوقىلىدۇ، PIN چەكلەنسە تىزىملىتىش قۇلۇپىنى ئاچالمايسىز.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINلەر Signalدا ساقلانغان ئۇچۇرلارنى مەخپىيلەشتۈرۈپ ساقلايدۇ. شۇڭا سىزلا زىيارەت قىلالايسىز. ئارخىپىڭىز، سەپلىمىلىرىڭىز ۋە ئالاقەداشلىرىڭىز Signal نى قايتا قاچىلىغىنىڭىزدا ئەسلىگە كەلتۈرىلىدۇ. ئەپنى ئېچىش PIN نىڭىز كېرەك ئەمەس.</string>
+  <string name="preferences__system_default">كۆڭۈلدىكى سىستېما</string>
+  <string name="preferences__language">تىل</string>
+  <string name="preferences__signal_messages_and_calls">Signal ئۇچۇر ۋە چاقىرىشلىرى</string>
+  <string name="preferences__advanced_pin_settings">ئالىي PIN تەڭشەكلىرى</string>
+  <string name="preferences__free_private_messages_and_calls">Signal ئىشلەتكۈچىلىرىگە ھەقسىز شەخسىي ئۇچۇرلار ۋە چاقىرىقلار</string>
   <string name="preferences__submit_debug_log">سازلاش خاتىرە يوللا</string>
+  <string name="preferences__delete_account">ھېساباتنى ئۆچۈر</string>
+  <string name="preferences__support_wifi_calling">\'WiFi چاقىرىقى\' ماشلىشىشچان ھالىتى</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ئۈسكىنىڭىز WiFi  ئۈستىدىن SMS/MMS يەتكۈزەلىسە قوزغىتىڭ (پەقەت ئۈسكىنىڭىزدە \'WiFi چاقىرىقى\' ئاكتىپ بولسا قوزغىتىڭ)</string>
+  <string name="preferences__incognito_keyboard">يوشۇرۇن كۇنۇپكا تاختىسى</string>
+  <string name="preferences__read_receipts">ئوقۇلدى ئىشارىتى</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ئەگەر ئوقۇلدى ئىشارىتى ئېتىك بولسا، باشقىلارنىڭ ئوقۇلدى ئىشارەتلىرىنىمۇ كۆرەلمەيسىز.</string>
+  <string name="preferences__typing_indicators">بېسىۋاتىدۇ كۆرسەتكۈچى</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ئەگەر بېسىۋاتىدۇ كۆرسەتكۈچى ئېتىك بولسا، باشقىلارنىڭ بېسىۋاتىدۇ كۆرسەتكۈچىنىمۇ كۆرەلمەيسىز.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">كۇنۇپكا تاختىسىنىڭ خاسلاشتۇرما ئۆگىنىشىنى ئېتىۋېتىشىنى تەلەپ قىل. بۇ تەڭشەك كاپالەتلىك ئەمەس، كۇنۇپكا تاختىڭىز بۇنىڭغا پەرۋا قىلماسلىقى مۈمكىن.</string>
   <string name="preferences_app_protection__blocked_users">چەكلەنگەن قوللانغۇچىلار</string>
+  <string name="preferences_chats__when_using_mobile_data">كۆچمە مەلۇمات ئىشلەتكەندە</string>
+  <string name="preferences_chats__when_using_wifi">Wi-Fi ئىشلەتكەندە</string>
+  <string name="preferences_chats__when_roaming">كەزمە ۋاقتىدە</string>
+  <string name="preferences_chats__media_auto_download">مېدىيالارنى ئاپتۇماتىك چۈشۈر</string>
+  <string name="preferences_chats__message_history">ئۇچۇر تارىخى</string>
+  <string name="preferences_storage__storage_usage">ساقلىغۇچ ئىشلىتىلىشى</string>
+  <string name="preferences_storage__photos">سۈرەتلەر</string>
+  <string name="preferences_storage__videos">سىنلەر</string>
   <string name="preferences_storage__files">ھۆججەتلەر</string>
   <string name="preferences_storage__audio">ئۈن</string>
+  <string name="preferences_storage__review_storage">ساقلىغۇچ تەكشۈرۈش</string>
+  <string name="preferences_storage__delete_older_messages">كونا ئۇچۇرلارنى ئۆچۈرەمسىز؟</string>
+  <string name="preferences_storage__clear_message_history">ئۇچۇر تارىخىنى تازىلامسىز؟</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">بۇ ئۈسكىنىڭىزدىكى %1$s دىن بۇرۇنقى بارلىق ئۇچۇر ۋە مېدىيالارنى مەڭگۈلۈك ئۆچۈرىۋېتىدۇ.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">بۇ بارلىق سۆھبەتلەرنىڭ ئەڭ يېقىنقى %1$s ئۇچۇرغىچە بولغانلىرىنى قىرقىۋېتىدۇ.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">بۇ ئۈسكىنىڭىزدىكى بارلىق ئۇچۇر تارىخى ۋە مېدىيالارنى مەڭگۈلۈك ئۆچۈرىۋېتىدۇ.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">راستلا بارلىق ئۇچۇر تارىخنى ئۆچۈرىۋېتەمسىز؟</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">بارلىق ئۇچۇر تارىخى مەڭگۈلۈك ئۆچۈرىۋېتىلىدۇ. بۇ ھەرىكەتتىن كەينىگە يېنىۋالالمايسىز.</string>
+  <string name="preferences_storage__delete_all_now">ھازىرلا ھەممىنى ئۆچۈر</string>
+  <string name="preferences_storage__forever">مەڭگۈ</string>
+  <string name="preferences_storage__one_year">1 يىل</string>
+  <string name="preferences_storage__six_months">6 ئاي</string>
+  <string name="preferences_storage__thirty_days">30 كۈن</string>
   <string name="preferences_storage__none">ھېچنېمە</string>
+  <string name="preferences_storage__s_messages">%1$s ئۇچۇرلار</string>
+  <string name="preferences_storage__custom">ئۆزلەشتۈرمە</string>
   <string name="preferences_advanced__use_system_emoji">سېستىما ئىپادىسىنى قوللان</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal نىڭ ئىچكى ئىپادە قوللاشلىرىنى ئېتىۋەت</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP ئادرېسىڭىزنىڭ باشقىلارغا كۆرۈنۈپ قېلىشىدىن ساقلىنىش ئۈچۈن، بارلىق چاقىرىقلارنى Signal مۇلازىمېتىر ئارقىلىق ئالاقىداشلىرىڭىزغا ئۇلاپ يوللاڭ. قوزغاتسىڭىز چاقىرىق سۈپىتىنى تۆۋەنلىتىشى مۈمكىن.</string>
+  <string name="preferences_advanced__always_relay_calls">چاقىرىقلارنى دائىم ئۇلاپ يوللا</string>
+  <string name="preferences_app_protection__who_can">كىم قىلالايدۇ…</string>
+  <string name="preferences_app_protection__app_access">ئەپ ھوقۇقلىرى</string>
+  <string name="preferences_app_protection__communication">خەۋەرلىشىش</string>
+  <string name="preferences_chats__chats">سۆھبەتلەر</string>
+  <string name="preferences_data_and_storage__manage_storage">ساقلىغۇچ باشقۇرۇش</string>
   <string name="preferences_data_and_storage__calls">چاقىرىشلار</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">چاقىرىقلار ئۈچۈن ئازراق مەلۇمات ئىشلىتىش</string>
   <string name="preferences_data_and_storage__never">ھەرگىز</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ۋە يانفون تورى</string>
+  <string name="preferences_data_and_storage__cellular_only">پەقەتلا يانفون تورى</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ئاز مەلۇمات ئىشلىتىش ناچار تور شارائىتىدىكى چاقىرىقنى ياخشىلايدۇ</string>
   <string name="preferences_notifications__messages">ئۇچۇرلار</string>
+  <string name="preferences_notifications__events">ھادىسىلەر</string>
+  <string name="preferences_notifications__in_chat_sounds">سۆھبەت-ئىچى ئاۋاز</string>
+  <string name="preferences_notifications__show">كۆرسەت</string>
   <string name="preferences_notifications__calls">چاقىرىشلار</string>
   <string name="preferences_notifications__ringtone">قوڭغۇراق ئاۋازى</string>
+  <string name="preferences_chats__show_invitation_prompts">تەكلىپ ئەسكەرتىشلىرىنى كۆرسەت </string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">سىگنال ئىشلەتمىگەن ئالاقەداشلارغا تەكلىپ ئەسكەرتىشلەرنى كۆرسەت</string>
+  <string name="preferences_chats__message_text_size">ئۇچۇر خەت چوڭلۇقى</string>
+  <string name="preferences_events__contact_joined_signal">ئالاقاداش Signal غا قېتىلدى</string>
+  <string name="preferences_notifications__priority">مۇھىملىقى</string>
+  <string name="preferences_communication__category_sealed_sender">مۆھۈرلەنگەن ئەۋەتكۈچى</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">ئېكران كۆرسەتكۈچىلىرى</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">مۆھۈرلەنگەن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلاردا \"ئۇچۇر تەپسىلاتى\" تاللانغاندا، ھالەت سىمبەلگىسىنى كۆرسەت.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">ھەممىسىدن قوبۇل قىل</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ئالاقەداشلىرىڭ ئارىسىدا بولمىغان ياكى ئارخىپىڭنى ھەمبەھرلىمىگەن كىشىلەردىن، ئەۋەتكۈچىسى مۆھۈرلەنگەنلەرنىڭمۇ ئۇچۇرلىرىنى قوبۇل قىلىشنى ئاكتىپ قىل. </string>
   <string name="preferences_communication__sealed_sender_learn_more">كۆپرەك ئۆگىنىش</string>
+  <string name="preferences_setup_a_username">بىز ئىشلەتكۈچى ئىسمى سەپلە</string>
+  <string name="preferences_proxy">ۋاكالەتچى</string>
   <string name="preferences_use_proxy">ۋاكالەتچى ئىشلىتىش</string>
   <string name="preferences_off">ئەت</string>
   <string name="preferences_on">ئاچ</string>
   <string name="preferences_proxy_address">ۋاكالەتچى ئادرېس</string>
+  <string name="preferences_only_use_a_proxy_if">پەقەت Wi-Fi  ياكى يانفون تورى بىلەن Signal غا ئۇلىنىش مۈمكىن بولمىغاندا، ۋاكالەتچى ئىشلىتىڭ.</string>
   <string name="preferences_share">ئورتاقلاش</string>
   <string name="preferences_save">ساقلاش</string>
+  <string name="preferences_connecting_to_proxy">ۋاكالەتچىگە ئۇلىنىۋاتىدۇ…</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1923,8 +2020,10 @@
   <!--conversation_insecure-->
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_select_all">ھەممىنى تاللا</string>
+  <string name="conversation_list_batch__menu_mark_as_read">ئوقۇلدى دەپ ئىشارەتلە</string>
   <!--conversation_list-->
   <string name="conversation_list_search_description">ئاقتۇرۇش</string>
+  <string name="conversation_list__chats">سۆھبەتلەر</string>
   <!--conversation_list_item_view-->
   <!--conversation_list_fragment-->
   <!--conversation_secure_verified-->
@@ -1981,6 +2080,7 @@
   <string name="KbsReminderDialog__forgot_pin">PINنى ئۇنۇتتىڭىز؟</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN  خاتا، قايتا سىناڭ</string>
   <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ھېسابىڭىز شەخسىي مەخپىيەتلىكىڭىزنى قوغداش ۋە بىخەتەرلىك يۈزىسىدىن قۇلۇپلاندى. ھېسابىڭىز %1$d كۈنگىچە مەشغۇلاتسىزلىقتا تۇرغاندىن كېيىن بۇ تېلېفون نومۇرىڭىزنى ئىشلىتىپ، PIN ئىشلەتمەي قايتا تىزىملىتالايسىز. بارلىق مەزمۇنلار ئۆچۈرۈلگۈسى.  </string>
   <string name="AccountLockedFragment__next">كېيىنكىسى</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">PIN ڭىزنى كىرگۈزۈڭ</string>
@@ -1995,7 +2095,7 @@
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal تىزىملىتىش - Android نىڭ PIN ى بىلەن ياردەمگە موھتاج (v1 PIN)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal تىزىملىتىش - Android نىڭ PIN ى بىلەن ياردەمگە موھتاج (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d day of inactivity. In this case, your account will be wiped and all content deleted.</item>
+    <item quantity="one">شەخسىي مەخپىيەتلىكىڭىز ۋە بىخەتەرلىكىڭىز ئۈچۈن PIN ڭىزنى ئەسلىگە كەلتۈرۈشكە ھېچقانداق ئامال يوق. ئەگەر PIN نى ئەسلىيەلمىسىڭىز ، %1$d كۈن ھېچقانداق مەشغۇلات قىلمىغاندىن كېيىن، قىسقا ئۇچۇر ئارقىلىق قايتا دەلىللىيەلەيسىز.</item>
     <item quantity="other">شەخسىي مەخپىيەتلىكىڭىز ۋە بىخەتەرلىكىڭىز ئۈچۈن PIN ڭىزنى ئەسلىگە كەلتۈرۈشكە ھېچقانداق ئامال يوق. ئەگەر PIN نى ئەسلىيەلمىسىڭىز ، %1$d كۈن ھېچقانداق مەشغۇلات قىلمىغاندىن كېيىن، قىسقا ئۇچۇر ئارقىلىق قايتا دەلىللىيەلەيسىز.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -2021,6 +2121,7 @@
   <string name="ResearchMegaphone_learn_more">كۆپرەك ئۆگىنىش</string>
   <string name="ResearchMegaphone_dismiss">تارقىتىۋېتىش</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal تەتقىقاتى</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>مەخپىيەتلىكىڭىزگە ئىشىنىمىز.</b></p><p> Signal سىزنىڭ ئىزىڭىزغا چۈشمەيدۇ ياكى سانلىق مەلۇماتلىرىڭىزنى توپلىمايدۇ. Signal نى ھەممەيلەن ئۈچۈن ياخشىلاش ئۈچۈن، ئىشلەتكۈچىلەرنىڭ پىكىر-تەكلىلىرىگە ئېھتىياجلىقمىز. <b>ھەم سىلەرنى ياىشى كۆرىمىز</b></p><p> Signal نى قانداق ئىشلەتكىنىڭلارنى بىلىش ئۈچۈن بىز بىر راي-سىناش قىلىۋاتىمىز. بىز سىزنىڭ كىملىگىڭىزنى ئايرىغۇدەك ھېچقانداق مەلۇمات تەلەپ قىلمايمىز. ئەگەر سىزنىڭ قوشۇمچە پىكىر-تەكلىپ بەرگۈڭىز بولسا، ئالاقە ئۇچۇرلىرىرىڭىزنى تەمىنلىگۈدەك تاللاش بىلەن تەمىنلەيمىز.</p><p>ئەگەر بىرنەچچە مىنۇت ۋاقىت چىقىرىپ پىكىر-تەكلىپ بەرسىڭىز، بىز سىزنىڭ پىكىرلىرىڭىزنى ئاڭلاشقا تەشنامىز. ]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">راي سىناشقا قاتنىشىش</string>
   <string name="ResearchMegaphoneDialog_no_thanks">ياق، رەھمەت</string>
   <!--transport_selection_list_item-->
@@ -2110,12 +2211,33 @@
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">بەك كۆپ ئۇرۇندىڭىز، بىردەم ساقلاپ قايتا سىناڭ.</string>
   <string name="RegistrationActivity_error_connecting_to_service">مۇلازىمەتكە باغلىنىشتا خاتالىق</string>
   <string name="preferences_chats__backups">زاپاسلار</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal قۇلۇپلاندى</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">چېكىلسە قۇلۇپ ئاچىدۇ</string>
   <string name="Recipient_unknown">نامەلۇم</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">ھېساپاتنى ئەۋەت ياكى ئەسلىگە كەلتۈر</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">ئەگەر سىز ئىلگىرى Signal غا خەتلەتكەن بولسىڭىز، ھېسابات ۋە ئۇچۇرلىرىڭىزنى يۆتكەپ ياكى ئەسلىگە قايتۇرالايسىز.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android ئۈسكۈنىسىدىن يۆتكەيدۇ</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">ھېسابات ۋە ئۇچۇرلىرىڭىزنى كونا Android ئۈسكۈنىڭىزدىن يۆتكەيدۇ.  كونا ئۈسكۈنىڭىزنى زىيارەت قىلالىشىڭىز كېرەك.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">كونا ئۈسكۈنىڭىزنى زىيارەت قىلالىشىڭىز كېرەك.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">زاپاستىن ئەسلىگە كەلتۈرىدۇ</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ئۇچۇرلىرىڭىزنى يەرلىك زاپاستىن ئەسلىگە كەلتۈرىدۇ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">كونا Android تېلېفونىڭىزدا Signal نى ئېچىڭ</string>
   <string name="NewDeviceTransferInstructions__continue">داۋاملىق</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">سول ئۈستىدىكى سەپلىمە ھۆججەت سۈرىتى چېكىلسە تەڭشەكلەر ئېچىلىدۇ</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">«سۆھبەتلەر» نى چېكىڭ</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">ئىككى ئۈسكۈنىدە «ھېسابات يۆتكە» ئاندىن «داۋاملاشتۇر» نى چېكىڭ</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">كونا Android ئۈسكۈنىگە باغلاشقا تەييارلىنىۋاتىدۇ…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">سەل كۈتۈڭ، تېزلا تەييار بولىدۇ</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">كونا Android ئۈسكۈنىنىڭ باغلىنىشىنى كۈتۈۋاتىدۇ…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal كونا Android ئۈسكۈنىنى بايقاپ ۋە باغلىنىشى ئۈچۈن ئورۇن ھوقۇقىغا ئېھتىياجلىق.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal كونا Android ئۈسكۈنىڭىزنى بايقاپ ۋە باغلىنىشى ئۈچۈن ئورۇن مۇلازىمىتى قوزغىتىلغان بولۇشى كېرەك.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal كونا Android ئۈسكۈنىڭىزنى بايقاپ ۋە باغلىنىشى ئۈچۈن Wi-Fi قوزغىتىلغان بولۇشى كېرەك. Wi-Fi قوزغىتىلغان بولۇشى ئەمما Wi-Fi تورغا باغلانمىغان بولسىمۇ بولىدۇ.</string>
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__continue">داۋاملىق</string>
@@ -2125,6 +2247,9 @@
   <string name="DeviceTransfer__cancel">ۋاز كەچ</string>
   <string name="DeviceTransfer__try_again">قايتا سىناڭ</string>
   <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">داۋاملىق</string>
   <!--OldDeviceTransferComplete-->
   <!--NewDeviceTransferComplete-->
@@ -2168,6 +2293,7 @@
   <string name="CallParticipant__you">سىز</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__enter_your_phone_number">تېلېفون نومۇرىڭىزنى كىرگۈزۈڭ</string>
+  <string name="DeleteAccountFragment__delete_account">ھېساباتنى ئۆچۈر</string>
   <!--DeleteAccountCountryPickerFragment-->
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ئاتلاش</string>

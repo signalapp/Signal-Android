@@ -2344,6 +2344,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NewDeviceTransferSetup__restore_a_backup">Eine Datensicherung wiederherstellen</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Beim Versuch, eine Verbindung zu deinem alten Android-Gerät herzustellen, ist ein unerwarteter Fehler aufgetreten. </string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Nach neuem Android-Gerät wird gesucht …</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal benötigt die Berechtigung »Standort«, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal benötigt aktivierte Standortdienste, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal benötigt eingeschaltetes WLAN, um dein neues Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>
@@ -2423,7 +2424,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeviceToDeviceTransferService_status_verification_required">Bestätigung erforderlich</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Konto wird übertragen …</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Schließe die Registrierung auf deinem neuen Gerät ab</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Dein Signal-Konto wurde auf dein neues Gerät übertragen, du musst jedoch dort die Registrierung abschließen, um fortzufahren. Signal wird auf diesem Gerät deaktiviert.</string>
   <string name="OldDeviceTransferLockedDialog__done">Fertig</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Abbrechen und dieses Gerät aktivieren</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockieren</string>
   <string name="RecipientBottomSheet_unblock">Freigeben</string>

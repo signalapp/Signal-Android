@@ -2359,6 +2359,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferSetup__restore_a_backup">Back-up-gegevens terugzetten</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je oude Android-apparaat.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat …</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om je nieuwe Android apparaat te kunnen detecteren en om er verbinding mee te maken heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om je nieuwe Android apparaat te kunnen detecteren en om er verbinding mee te maken is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je nieuwe Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
@@ -2438,7 +2439,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DeviceToDeviceTransferService_status_verification_required">Verificatie vereist</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Alle Signalgegevens aan het overzetten …</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Rond op je nieuwe Android-apparaat de stappen voor registratie af.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Je Signalgegevens zijn overgezet naar je nieuwe apparaat, maar om oh overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
   <string name="OldDeviceTransferLockedDialog__done">Klaar</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuleren en dit apparaat activeren</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
