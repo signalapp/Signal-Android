@@ -10,6 +10,7 @@ public class PushMediaConstraints extends MediaConstraints {
   private static final int MAX_IMAGE_DIMEN        = 1600;
   private static final int KB                     = 1024;
   private static final int MB                     = 1024 * KB;
+  private static final int GB                     = 1024 * GB;
 
   private static final int[] FALLBACKS        = { MAX_IMAGE_DIMEN, 1024, 768, 512 };
   private static final int[] FALLBACKS_LOWMEM = { MAX_IMAGE_DIMEN_LOWMEM, 512 };
@@ -42,7 +43,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getVideoMaxSize(Context context) {
-    return 100 * MB;
+    return 1 * GB;
   }
 
   @Override
@@ -64,6 +65,6 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getDocumentMaxSize(Context context) {
-    return 100 * MB;
+    return 1 * GB;
   }
 }
