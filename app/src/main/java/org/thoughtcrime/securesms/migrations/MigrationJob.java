@@ -47,7 +47,7 @@ abstract class MigrationJob extends Job {
     } catch (Exception e) {
       if (shouldRetry(e)) {
         Log.w(TAG, JobLogger.format(this, "Encountered a retryable exception."), e);
-        return Result.retry(BackoffUtil.exponentialBackoff(getRunAttempt(), FeatureFlags.getDefaultMaxBackoff()));
+        return Result.retry(BackoffUtil.exponentialBackoff(getRunAttempt() + 1, FeatureFlags.getDefaultMaxBackoff()));
       } else {
         Log.w(TAG, JobLogger.format(this, "Encountered a non-runtime fatal exception."), e);
         throw new FailedMigrationError(e);
