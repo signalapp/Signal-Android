@@ -34,6 +34,7 @@ interface StorageProtocol {
     fun getUserProfilePictureURL(): String?
 
     fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
+    fun getDisplayNameForRecipient(recipientPublicKey: String): String?
 
     // Signal Protocol
 

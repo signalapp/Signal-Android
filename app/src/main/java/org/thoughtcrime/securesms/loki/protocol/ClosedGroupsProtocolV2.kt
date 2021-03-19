@@ -33,6 +33,7 @@ import org.session.libsignal.utilities.Hex
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 
@@ -361,7 +362,7 @@ object ClosedGroupsProtocolV2 {
         apiDB.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
         // Notify the user (if we didn't make the group)
         if (userPublicKey != senderPublicKey) {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.NEW_GROUP, name, members, admins, sentTimestamp)
         } else if (prevGroup == null) {
             // only notify if we created this group
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
@@ -415,12 +416,12 @@ object ClosedGroupsProtocolV2 {
         }
         val (contextType, signalType) =
                 if (senderLeft) GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
-                else GroupContext.Type.UPDATE to SignalServiceGroup.Type.UPDATE
+                else GroupContext.Type.UPDATE to SignalServiceGroup.Type.MEMBER_REMOVED
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
             insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, sentTimestamp)
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, updateMembers, admins, sentTimestamp)
         }
     }
 
@@ -450,7 +451,7 @@ object ClosedGroupsProtocolV2 {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.MEMBER_ADDED, name, updateMembers, admins, sentTimestamp)
         }
         if (userPublicKey in admins) {
             // send current encryption key to the latest added members
@@ -489,7 +490,7 @@ object ClosedGroupsProtocolV2 {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.NAME_CHANGE, name, members, admins, sentTimestamp)
         }
     }
 
@@ -608,7 +609,8 @@ object ClosedGroupsProtocolV2 {
                 .addAllAdmins(admins)
         val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
-        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
+        val messageBody = UpdateMessageBuilder.buildGroupUpdateMessage(context, group, senderPublicKey)
+        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), messageBody)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
     }

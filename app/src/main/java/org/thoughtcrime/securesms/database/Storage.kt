@@ -19,6 +19,7 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.ECKeyPair
@@ -77,6 +78,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val address = Address.fromSerialized(recipientPublicKey)
         val recipient = Recipient.from(context, address, false)
         return recipient.profileKey
+    }
+
+    override fun getDisplayNameForRecipient(recipientPublicKey: String): String? {
+        val database = DatabaseFactory.getLokiUserDatabase(context)
+        return database.getDisplayName(recipientPublicKey)
     }
 
     override fun getOrGenerateRegistrationID(): Int {
@@ -397,7 +403,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 .addAllAdmins(admins)
         val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
-        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
+        val messageBody = UpdateMessageBuilder.buildGroupUpdateMessage(context, group, senderPublicKey)
+        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), messageBody)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
     }
