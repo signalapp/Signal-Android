@@ -37,11 +37,7 @@ public class SignalServiceGroup {
     UPDATE,
     DELIVER,
     QUIT,
-    REQUEST_INFO,
-    NEW,
-    NAME_UPDATE,
-    MEMBER_ADDED,
-    MEMBER_REMOVED
+    REQUEST_INFO
   }
 
   private final byte[]                            groupId;

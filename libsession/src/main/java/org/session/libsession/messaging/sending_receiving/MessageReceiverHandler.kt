@@ -256,7 +256,7 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
                             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
         // Notify the user
-        storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NEW, name, members, admins, sentTimestamp)
+        storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
     }
     storage.setProfileSharing(Address.fromSerialized(groupID), true)
     // Add the group to the user's set of public keys to poll for
@@ -373,7 +373,7 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
     val name = kind.name
     storage.updateTitle(groupID, name)
 
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NAME_UPDATE, name, members, admins, message.sentTimestamp!!)
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupControlMessage) {
@@ -401,7 +401,7 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
         storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
     } else {
-        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.MEMBER_ADDED, name, members, admins, message.sentTimestamp!!)
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
     }
     if (userPublicKey in admins) {
         // send current encryption key to the latest added members
@@ -462,7 +462,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     }
     val (contextType, signalType) =
             if (senderLeft) SignalServiceProtos.GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
-            else SignalServiceProtos.GroupContext.Type.UPDATE to SignalServiceGroup.Type.MEMBER_REMOVED
+            else SignalServiceProtos.GroupContext.Type.UPDATE to SignalServiceGroup.Type.UPDATE
 
     storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, message.sentTimestamp!!)
 }

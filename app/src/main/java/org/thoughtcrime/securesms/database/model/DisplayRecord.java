@@ -113,14 +113,6 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isGroupUpdate(type);
   }
 
-  public boolean isGroupCreation() { return MmsSmsColumns.Types.isGroupCreation(type); }
-
-  public boolean isGroupNameUpdate() { return MmsSmsColumns.Types.isGroupNameUpdate(type); }
-
-  public boolean isGroupMemberAdded() { return MmsSmsColumns.Types.isGroupMemberAdded(type); }
-
-  public boolean isGroupMemberRemoved() { return MmsSmsColumns.Types.isGroupMemberRemoved(type); }
-
   public boolean isGroupQuit() {
     return SmsDatabase.Types.isGroupQuit(type);
   }
@@ -131,14 +123,6 @@ public abstract class DisplayRecord {
 
   public boolean isExpirationTimerUpdate() {
     return SmsDatabase.Types.isExpirationTimerUpdate(type);
-  }
-
-  public boolean isDataExtractionScreenshot() {
-    return MmsSmsColumns.Types.isDataExtractionScreenshotUpdate(type);
-  }
-
-  public boolean isDataExtractionMediaSaved() {
-    return MmsSmsColumns.Types.isDataExtractionMediaSavedUpdate(type);
   }
 
   public boolean isCallLog() {
