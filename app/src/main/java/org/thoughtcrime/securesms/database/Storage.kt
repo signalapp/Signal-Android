@@ -8,10 +8,7 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
-import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage
-import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
-import org.session.libsession.messaging.messages.signal.IncomingTextMessage
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
+import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
@@ -23,6 +20,7 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.ECKeyPair
@@ -31,18 +29,13 @@ import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.logging.Log
-import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
-import org.session.libsession.messaging.messages.signal.IncomingMediaMessage
-import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
@@ -104,7 +97,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val senderRecipient = Recipient.from(context, senderAddress, false)
         val group: Optional<SignalServiceGroup> = when {
             openGroupID != null -> Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
-            groupPublicKey != null -> Optional.of(SignalServiceGroup(groupPublicKey.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
+            groupPublicKey != null -> {
+                val doubleEncoded = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+                Optional.of(SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(doubleEncoded), SignalServiceGroup.GroupType.SIGNAL))
+            }
             else -> Optional.absent()
         }
         val pointerAttachments = attachments.mapNotNull {
@@ -453,8 +449,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeAllClosedGroupEncryptionKeyPairs(groupPublicKey)
     }
 
-    override fun getAllOpenGroups(): Map<Long, PublicChat> {
-        return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
+    override fun getAllOpenGroups(): Map<Long, OpenGroup> {
+        return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().mapValues { (_,chat)->
+            OpenGroup(chat.channel, chat.server, chat.displayName, chat.isDeletable)
+        }
     }
 
     override fun addOpenGroup(server: String, channel: Long) {
@@ -481,7 +479,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val recipient = Recipient.from(context, Address.fromSerialized(openGroupID), false)
             return database.getOrCreateThreadIdFor(recipient)
         } else if (!groupPublicKey.isNullOrEmpty()) {
-            val recipient = Recipient.from(context, Address.fromSerialized(groupPublicKey), false)
+            val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(groupPublicKey)), false)
             return database.getOrCreateThreadIdFor(recipient)
         } else {
             val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)

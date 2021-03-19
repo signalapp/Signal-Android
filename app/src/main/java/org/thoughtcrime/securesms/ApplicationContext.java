@@ -34,6 +34,7 @@ import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.snode.SnodeConfiguration;
@@ -69,7 +70,6 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
@@ -478,10 +478,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         SwarmAPI.Companion.configureIfNeeded(apiDB);
-    SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
-    poller = new Poller();
-        ClosedGroupPoller.Companion.configureIfNeeded(this);
-        closedGroupPoller = ClosedGroupPoller.Companion.getShared();
+        SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
+        poller = new Poller();
+        closedGroupPoller = new ClosedGroupPoller();
     }
 
     public void startPollingIfNeeded() {

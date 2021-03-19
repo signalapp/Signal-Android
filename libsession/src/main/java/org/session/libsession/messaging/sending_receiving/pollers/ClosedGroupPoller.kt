@@ -4,17 +4,15 @@ import android.os.Handler
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
-
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsignal.utilities.successBackground
-
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.utilities.getRandomElementOrNull
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.successBackground
 
 class ClosedGroupPoller {
     private var isPolling = false
@@ -24,7 +22,7 @@ class ClosedGroupPoller {
 
         override fun run() {
             poll()
-            handler.postDelayed(this, ClosedGroupPoller.pollInterval)
+            handler.postDelayed(this, pollInterval)
         }
     }
 

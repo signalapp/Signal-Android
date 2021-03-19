@@ -186,8 +186,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     // Parse stickers if needed
     // Persist the message
-    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.NoThread
     message.threadID = threadID
+    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.NoThread
     // Parse & persist attachments
     // Start attachment downloads if needed
     storage.getAttachmentsForMessage(messageID).forEach { attachment ->

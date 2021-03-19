@@ -7,12 +7,12 @@ import androidx.work.*
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.loki.api.SnodeAPI
+import org.session.libsignal.utilities.logging.Log
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -76,8 +76,8 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             promises.add(privateChatsPromise)
 
             // Closed groups
-            ClosedGroupPoller.configureIfNeeded(context)
-            promises.addAll(ClosedGroupPoller.shared.pollOnce())
+//            ClosedGroupPoller.configureIfNeeded(context)
+//            promises.addAll(ClosedGroupPoller.shared.pollOnce())
 
             // Open Groups
             val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }

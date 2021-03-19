@@ -20,7 +20,6 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 interface StorageProtocol {
 
@@ -56,7 +55,7 @@ interface StorageProtocol {
     // Open Groups
     fun getOpenGroup(threadID: String): OpenGroup?
     fun getThreadID(openGroupID: String): String?
-    fun getAllOpenGroups(): Map<Long, PublicChat>
+    fun getAllOpenGroups(): Map<Long, OpenGroup>
     fun addOpenGroup(server: String, channel: Long)
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
     fun getQuoteServerID(quoteID: Long, publicKey: String): Long?

@@ -4,6 +4,7 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -50,7 +51,7 @@ object MessageReceiver {
         // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
         // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
         // for this issue.
-        if (storage.isMessageDuplicated(envelope.timestamp, envelope.source) && !isRetry) throw Error.DuplicateMessage
+        if (storage.isMessageDuplicated(envelope.timestamp, GroupUtil.doubleEncodeGroupID(envelope.source)) && !isRetry) throw Error.DuplicateMessage
         storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
@@ -70,7 +71,7 @@ object MessageReceiver {
                 }
                 SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT -> {
                     val hexEncodedGroupPublicKey = envelope.source
-                    if (hexEncodedGroupPublicKey == null || MessagingConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
+                    if (hexEncodedGroupPublicKey == null || !MessagingConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
                         throw Error.InvalidGroupPublicKey
                     }
                     val encryptionKeyPairs = MessagingConfiguration.shared.storage.getClosedGroupEncryptionKeyPairs(hexEncodedGroupPublicKey)

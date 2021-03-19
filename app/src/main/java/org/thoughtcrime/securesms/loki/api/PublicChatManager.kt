@@ -5,20 +5,22 @@ import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
+import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.Util
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.loki.api.opengroups.PublicChatInfo
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.BitmapUtil
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.api.opengroups.PublicChatInfo
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
-import kotlin.jvm.Throws
 
 class PublicChatManager(private val context: Context) {
-  private var chats = mutableMapOf<Long, PublicChat>()
-  private val pollers = mutableMapOf<Long, PublicChatPoller>()
+  private var chats = mutableMapOf<Long, OpenGroup>()
+  private val pollers = mutableMapOf<Long, OpenGroupPoller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
 
@@ -35,7 +37,7 @@ class PublicChatManager(private val context: Context) {
   public fun markAllAsNotCaughtUp() {
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
-      val poller = pollers[threadID] ?: PublicChatPoller(context, chat)
+      val poller = pollers[threadID] ?: OpenGroupPoller(chat)
       poller.isCaughtUp = false
     }
   }
@@ -44,7 +46,7 @@ class PublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
 
     for ((threadId, chat) in chats) {
-      val poller = pollers[threadId] ?: PublicChatPoller(context, chat)
+      val poller = pollers[threadId] ?: OpenGroupPoller(chat)
       poller.startIfNeeded()
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
@@ -109,7 +111,8 @@ class PublicChatManager(private val context: Context) {
   }
 
   private fun refreshChatsAndPollers() {
-    val chatsInDB = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
+    val storage = MessagingConfiguration.shared.storage
+    val chatsInDB = storage.getAllOpenGroups()
     val removedChatThreadIds = chats.keys.filter { !chatsInDB.keys.contains(it) }
     removedChatThreadIds.forEach { pollers.remove(it)?.stop() }
 
