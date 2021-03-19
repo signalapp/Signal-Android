@@ -94,7 +94,8 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 iceServers,
                                                 hideIp,
                                                 NetworkUtil.getCallingBandwidthMode(context),
-                                                false);
+                                                false,
+                                                currentState.getCallSetupState().isMobileDataAllowed());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
     }

@@ -46,7 +46,8 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
                                                                             BuildConfig.SIGNAL_SFU_URL,
                                                                             currentState.getVideoState().requireEglBase(),
-                                                                            webRtcInteractor.getGroupCallObserver());
+                                                                            webRtcInteractor.getGroupCallObserver(),
+                                                                            currentState.getCallSetupState().isMobileDataAllowed());
 
     return currentState.builder()
                        .changeCallInfoState()

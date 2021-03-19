@@ -143,6 +143,11 @@ public class WebRtcServiceStateBuilder {
       toBuild.sentJoinedMessage = sentJoinedMessage;
       return this;
     }
+
+    public @NonNull CallSetupStateBuilder mobileDataAllowed(boolean mobileDataAllowed) {
+      toBuild.mobileDataAllowed = mobileDataAllowed;
+      return this;
+    }
   }
 
   public class VideoStateBuilder {

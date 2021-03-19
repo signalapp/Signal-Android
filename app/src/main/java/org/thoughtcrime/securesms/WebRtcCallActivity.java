@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePo
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
+import org.thoughtcrime.securesms.components.webrtc.MobileCallNotAllowedDialog;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
@@ -60,6 +61,7 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
@@ -211,13 +213,19 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void processIntent(@NonNull Intent intent) {
-    if (ANSWER_ACTION.equals(intent.getAction())) {
+    final String action = intent.getAction();
+    if (ANSWER_ACTION.equals(action)) {
       viewModel.setRecipient(EventBus.getDefault().getStickyEvent(WebRtcViewModel.class).getRecipient());
       handleAnswerWithAudio();
-    } else if (DENY_ACTION.equals(intent.getAction())) {
+    } else if (DENY_ACTION.equals(action)) {
       handleDenyCall();
-    } else if (END_CALL_ACTION.equals(intent.getAction())) {
+    } else if (END_CALL_ACTION.equals(action)) {
       handleEndCall();
+    } else if (action == null) {
+      // Handle incoming call
+      if (!TextSecurePreferences.isCallMobileDataAllowed(this) && NetworkUtil.isConnectedMobile(this)) {
+        MobileCallNotAllowedDialog.show(this);
+      }
     }
   }
 
@@ -635,6 +643,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void startCall(boolean isVideoCall) {
+    if (!TextSecurePreferences.isCallMobileDataAllowed(this) && NetworkUtil.isConnectedMobile(this)) {
+      MobileCallNotAllowedDialog.show(this);
+      return;
+    }
+
     enableVideoIfAvailable = isVideoCall;
 
     Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);

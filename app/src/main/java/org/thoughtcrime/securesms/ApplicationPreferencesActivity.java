@@ -70,6 +70,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   public static final String LAUNCH_TO_HELP_FRAGMENT          = "launch.to.help.fragment";
   public static final String LAUNCH_TO_PROXY_FRAGMENT         = "launch.to.proxy.fragment";
   public static final String LAUNCH_TO_NOTIFICATIONS_FRAGMENT = "launch.to.notifications.fragment";
+  public static final String LAUNCH_TO_DATA_AND_STORAGE_FRAGMENT = "launch.to.data_and_storage.fragment";
 
   @SuppressWarnings("unused")
   private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
@@ -115,6 +116,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       initFragment(android.R.id.content, EditProxyFragment.newInstance());
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_NOTIFICATIONS_FRAGMENT, false)) {
       initFragment(android.R.id.content, new NotificationsPreferenceFragment());
+    } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_DATA_AND_STORAGE_FRAGMENT, false)) {
+      initFragment(android.R.id.content, new DataAndStoragePreferenceFragment());
     } else if (icicle == null) {
       initFragment(android.R.id.content, new ApplicationPreferenceFragment());
     } else {
