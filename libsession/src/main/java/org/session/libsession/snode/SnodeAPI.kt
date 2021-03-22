@@ -45,7 +45,7 @@ object SnodeAPI {
     internal var powDifficulty = 1
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object Generic : Error("An error occurred.")
         object ClockOutOfSync : Error("The user's clock is out of sync with the service node network.")
         object RandomSnodePoolUpdatingFailed : Error("Failed to update random service node pool.")

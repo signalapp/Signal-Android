@@ -30,6 +30,7 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.utilities.*
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -139,6 +140,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
             application.publicChatManager.startPollersIfNeeded()
+            JobQueue.shared.resumePendingJobs()
         }
         IP2Country.configureIfNeeded(this)
         application.registerForFCMIfNeeded(false)
