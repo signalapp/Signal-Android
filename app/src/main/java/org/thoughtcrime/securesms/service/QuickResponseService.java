@@ -7,11 +7,13 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import network.loki.messenger.R;
+
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;
@@ -47,13 +49,11 @@ public class QuickResponseService extends IntentService {
         number = URLDecoder.decode(number);
       }
 
-      Address   address        = Address.fromExternal(this, number);
-      Recipient recipient      = Recipient.from(this, address, false);
-      int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-      long      expiresIn      = recipient.getExpireMessages() * 1000L;
-
       if (!TextUtils.isEmpty(content)) {
-        MessageSender.send(this, new OutgoingTextMessage(recipient, content, expiresIn, subscriptionId), -1, false, null);
+        VisibleMessage message = new VisibleMessage();
+        message.setText(content);
+        message.setSentTimestamp(System.currentTimeMillis());
+        MessageSender.send(message, Address.fromExternal(this, number));
       }
     } catch (URISyntaxException e) {
       Toast.makeText(this, R.string.QuickResponseService_problem_sending_message, Toast.LENGTH_LONG).show();

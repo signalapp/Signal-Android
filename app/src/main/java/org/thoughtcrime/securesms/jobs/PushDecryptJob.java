@@ -15,6 +15,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.ProtocolInvalidMessageException;
 import org.session.libsignal.service.api.crypto.SignalServiceCipher;
@@ -33,8 +34,7 @@ import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.session.libsession.utilities.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -59,15 +59,14 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage;
+import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.messages.SignalServiceContent;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
@@ -84,8 +83,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
@@ -101,8 +98,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private long smsMessageId;
 
   private MessageNotifier messageNotifier;
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public PushDecryptJob(Context context) {
     this(context, -1);
@@ -232,16 +227,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           handleTextMessage(content, message, smsMessageId, Optional.absent());
         }
 
-        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
-          handleUnknownGroupMessage(content, message.getGroupInfo().get());
-        }
-
         if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
           SessionMetaProtocol.handleProfileKeyUpdate(context, content);
-        }
-
-        if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.fromSerialized(content.getSender()))) {
-          handleNeedsDeliveryReceipt(content, message);
         }
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
@@ -265,16 +252,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
     } catch (InvalidMetadataMessageException e) {
       Log.w(TAG, e);
-    }
-  }
-
-  private void handleUnknownGroupMessage(@NonNull SignalServiceContent content,
-                                         @NonNull SignalServiceGroup group)
-  {
-    if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
-      ApplicationContext.getInstance(context)
-              .getJobManager()
-              .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
     }
   }
 
@@ -346,7 +323,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               attachments,
               message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000,
-              ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
+              DistributionTypes.DEFAULT, quote.orNull(),
               sharedContacts.or(Collections.emptyList()),
               linkPreviews.or(Collections.emptyList()),
               Collections.emptyList(), Collections.emptyList());
@@ -476,10 +453,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Recipient   masterRecipient   = getMessageMasterDestination(content.getSender());
     String      syncTarget        = message.getSyncTarget().orNull();
 
-    if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
-      handleExpirationUpdate(content, message, Optional.absent());
-    }
-
     Long threadId = null;
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
@@ -606,14 +579,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         smsDatabase.markAsDecryptFailed(smsMessageId.get());
       }
     }
-  }
-
-  private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
-                                          @NonNull SignalServiceDataMessage message)
-  {
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new SendDeliveryReceiptJob(Address.fromSerialized(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")

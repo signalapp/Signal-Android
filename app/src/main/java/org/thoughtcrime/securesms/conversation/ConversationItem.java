@@ -53,6 +53,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
@@ -1003,10 +1004,10 @@ public class ConversationItem extends LinearLayout
     if (messageRecord.isMms()) {
       TextSlide slide = ((MmsMessageRecord) messageRecord).getSlideDeck().getTextSlide();
 
-      if (slide != null && slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+      if (slide != null && slide.asAttachment().getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_DONE) {
         message = getResources().getString(R.string.ConversationItem_read_more);
         action  = () -> eventListener.onMoreTextClicked(conversationRecipient.getAddress(), messageRecord.getId(), messageRecord.isMms());
-      } else if (slide != null && slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
+      } else if (slide != null && slide.asAttachment().getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED) {
         message = getResources().getString(R.string.ConversationItem_pending);
         action  = () -> {};
       } else if (slide != null) {

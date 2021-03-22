@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreiview
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -17,6 +18,14 @@ class LinkPreview() {
             val title = proto.title
             val url = proto.url
             return LinkPreview(title, url, null)
+        }
+
+        fun from(signalLinkPreview: SignalLinkPreiview?): LinkPreview? {
+            return if (signalLinkPreview == null) {
+                null
+            } else {
+                LinkPreview(signalLinkPreview.title, signalLinkPreview.url, signalLinkPreview.attachmentId?.rowId)
+            }
         }
     }
 
@@ -44,8 +53,10 @@ class LinkPreview() {
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(attachmentID)
-            attachmentProto?.let { linkPreviewProto.image = attachmentProto.toProto() }
+            MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID)?.let {
+                val attachmentProto = Attachment.createAttachmentPointer(it)
+                linkPreviewProto.image = attachmentProto
+            }
         }
         // Build
         try {

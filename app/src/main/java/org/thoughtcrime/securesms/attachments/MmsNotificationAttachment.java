@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.attachments;
 import android.net.Uri;
 import androidx.annotation.Nullable;
 
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
@@ -30,11 +31,11 @@ public class MmsNotificationAttachment extends Attachment {
     if (status == MmsDatabase.Status.DOWNLOAD_INITIALIZED ||
         status == MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY)
     {
-      return AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
+      return AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING;
     } else if (status == MmsDatabase.Status.DOWNLOAD_CONNECTING) {
-      return AttachmentDatabase.TRANSFER_PROGRESS_STARTED;
+      return AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED;
     } else {
-      return AttachmentDatabase.TRANSFER_PROGRESS_FAILED;
+      return AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED;
     }
   }
 }

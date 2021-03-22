@@ -50,7 +50,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
 
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
     val context = MessagingConfiguration.shared.context
-    SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!.asList(), message.receivedTimestamp!!)
+    SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!, message.receivedTimestamp!!)
 }
 
 private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {
@@ -110,7 +110,7 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
     val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
     for (closeGroup in message.closedGroups) {
         if (allClosedGroupPublicKeys.contains(closeGroup.publicKey)) continue
-        handleNewClosedGroup(message.sender!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
+        handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair!!, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
     for (openGroup in message.openGroups) {
@@ -212,8 +212,8 @@ private fun MessageReceiver.handleClosedGroupControlMessage(message: ClosedGroup
         is ClosedGroupControlMessage.Kind.NameChange -> handleClosedGroupNameChanged(message)
         is ClosedGroupControlMessage.Kind.MembersAdded -> handleClosedGroupMembersAdded(message)
         is ClosedGroupControlMessage.Kind.MembersRemoved -> handleClosedGroupMembersRemoved(message)
-        ClosedGroupControlMessage.Kind.MemberLeft -> handleClosedGroupMemberLeft(message)
-        ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest -> handleClosedGroupEncryptionKeyPairRequest(message)
+        is ClosedGroupControlMessage.Kind.MemberLeft -> handleClosedGroupMemberLeft(message)
+        is ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest -> handleClosedGroupEncryptionKeyPairRequest(message)
     }
 }
 
@@ -222,11 +222,11 @@ private fun MessageReceiver.handleNewClosedGroup(message: ClosedGroupControlMess
     val groupPublicKey = kind.publicKey.toByteArray().toHexString()
     val members = kind.members.map { it.toByteArray().toHexString() }
     val admins = kind.admins.map { it.toByteArray().toHexString() }
-    handleNewClosedGroup(message.sender!!, groupPublicKey, kind.name, kind.encryptionKeyPair, members, admins, message.sentTimestamp!!)
+    handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, groupPublicKey, kind.name, kind.encryptionKeyPair!!, members, admins, message.sentTimestamp!!)
 }
 
 // Parameter @sender:String is just for inserting incoming info message
-private fun handleNewClosedGroup(sender: String, groupPublicKey: String, name: String, encryptionKeyPair: ECKeyPair, members: List<String>, admins: List<String>, formationTimestamp: Long) {
+private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPublicKey: String, name: String, encryptionKeyPair: ECKeyPair, members: List<String>, admins: List<String>, formationTimestamp: Long) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     // Create the group
@@ -239,7 +239,7 @@ private fun handleNewClosedGroup(sender: String, groupPublicKey: String, name: S
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
                             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
         // Notify the user
-        storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NEW_GROUP, name, members, admins)
+        storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NEW_GROUP, name, members, admins, sentTimestamp)
     }
     storage.setProfileSharing(Address.fromSerialized(groupID), true)
     // Add the group to the user's set of public keys to poll for
@@ -297,7 +297,7 @@ private fun MessageReceiver.handleClosedGroupUpdated(message: ClosedGroupControl
     val wasSenderRemoved = !members.contains(senderPublicKey)
     val type0 = if (wasSenderRemoved) SignalServiceProtos.GroupContext.Type.QUIT else SignalServiceProtos.GroupContext.Type.UPDATE
     val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, group.admins.map { it.toString() })
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, group.admins.map { it.toString() }, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGroupControlMessage) {
@@ -315,7 +315,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
         return
     }
     if (!group.members.map { it.toString() }.contains(senderPublicKey)) {
-        android.util.Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
+        Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
         return
     }
     // Find our wrapper and decrypt it if possible
@@ -356,12 +356,13 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
     val name = kind.name
     storage.updateTitle(groupID, name)
 
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NAME_CHANGE, name, members, admins)
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NAME_CHANGE, name, members, admins, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupControlMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
+    val userPublicKey = storage.getUserPublicKey()!!
     val senderPublicKey = message.sender ?: return
     val kind = message.kind!! as? ClosedGroupControlMessage.Kind.MembersAdded ?: return
     val groupPublicKey = message.groupPublicKey ?: return
@@ -370,9 +371,7 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
-    if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) {
-        return
-    }
+    if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
     val name = group.title
     // Check common group update logic
     val members = group.members.map { it.serialize() }
@@ -381,14 +380,25 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
-    // Send the latest encryption key pair to the added members if the current user is the admin of the group
-    val isCurrentUserAdmin = admins.contains(storage.getUserPublicKey()!!)
-    if (isCurrentUserAdmin) {
-        for (member in updateMembers) {
-            MessageSender.sendLatestEncryptionKeyPair(member, groupPublicKey)
+    if (userPublicKey == senderPublicKey) {
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
+    } else {
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
+    }
+    if (userPublicKey in admins) {
+        // send current encryption key to the latest added members
+        val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+                ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+        if (encryptionKeyPair == null) {
+            android.util.Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+        } else {
+            for (user in updateMembers) {
+                MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(user), targetUser = user, force = false)
+            }
         }
     }
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.MEMBER_ADDED, name, updateMembers, admins)
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.MEMBER_ADDED, name, members, admins, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroupControlMessage) {
@@ -437,7 +447,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
             if (senderLeft) SignalServiceProtos.GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
             else SignalServiceProtos.GroupContext.Type.UPDATE to SignalServiceGroup.Type.MEMBER_REMOVED
 
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, updateMembers, admins)
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupControlMessage) {
@@ -472,7 +482,7 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
             MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMemberList)
         }
     }
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins)
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: ClosedGroupControlMessage) {
@@ -491,7 +501,13 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: C
         return
     }
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
-    MessageSender.sendLatestEncryptionKeyPair(senderPublicKey, groupPublicKey)
+    val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+            ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+    if (encryptionKeyPair == null) {
+        Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+    } else {
+        MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(senderPublicKey), targetUser = senderPublicKey, force = false)
+    }
 }
 
 private fun isValidGroupUpdate(group: GroupRecord,

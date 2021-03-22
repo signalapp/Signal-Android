@@ -14,10 +14,12 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
-class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>, val contacts: List<Contact>, val displayName: String, val profilePicture: String?, val profileKey: ByteArray): ControlMessage() {
+class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: List<String>, var contacts: List<Contact>, var displayName: String, var profilePicture: String?, var profileKey: ByteArray): ControlMessage() {
 
-    class ClosedGroup(val publicKey: String, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<String>, val admins: List<String>) {
+    class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
+
+        internal constructor(): this("", "", null, listOf(), listOf())
 
         override fun toString(): String {
             return name
@@ -30,7 +32,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
                 val name = proto.name
                 val encryptionKeyPairAsProto = proto.encryptionKeyPair
                 val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray().removing05PrefixIfNeeded()),
-                                                  DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
+                        DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                 val members = proto.membersList.map { it.toByteArray().toHexString() }
                 val admins = proto.adminsList.map { it.toByteArray().toHexString() }
                 return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins)
@@ -42,8 +44,8 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.name = name
             val encryptionKeyPairAsProto = SignalServiceProtos.KeyPair.newBuilder()
-            encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
-            encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
+            encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
+            encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(encryptionKeyPair!!.privateKey.serialize())
             result.encryptionKeyPair = encryptionKeyPairAsProto.build()
             result.addAllMembers(members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
             result.addAllAdmins(admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
@@ -51,7 +53,10 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         }
     }
 
-    class Contact(val publicKey: String, val name: String, val profilePicture: String?, val profileKey: ByteArray?) {
+    class Contact(var publicKey: String, var name: String, var profilePicture: String?, var profileKey: ByteArray?) {
+
+        internal constructor(): this("", "", null, null)
+
         companion object {
             fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.Contact): Contact? {
                 if (!proto.hasName() || !proto.hasProfileKey()) return null
@@ -123,9 +128,12 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             val displayName = configurationProto.displayName
             val profilePicture = configurationProto.profilePicture
             val profileKey = configurationProto.profileKey
-            return ConfigurationMessage(closedGroups, openGroups, listOf(), displayName, profilePicture, profileKey.toByteArray())
+            val contacts = configurationProto.contactsList.mapNotNull { Contact.fromProto(it) }
+            return ConfigurationMessage(closedGroups, openGroups, contacts, displayName, profilePicture, profileKey.toByteArray())
         }
     }
+
+    internal constructor(): this(listOf(), listOf(), listOf(), "", null, byteArrayOf())
 
     override fun toProto(): SignalServiceProtos.Content? {
         val configurationProto = SignalServiceProtos.ConfigurationMessage.newBuilder()

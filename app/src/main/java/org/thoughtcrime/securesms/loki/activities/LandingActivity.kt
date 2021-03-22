@@ -3,11 +3,9 @@ package org.thoughtcrime.securesms.loki.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.views.FakeChatView
@@ -23,20 +21,15 @@ class LandingActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_landing)
         setUpActionBarSessionLogo(true)
         findViewById<FakeChatView>(R.id.fakeChatView).startAnimating()
-
         findViewById<View>(R.id.registerButton).setOnClickListener { register() }
-        findViewById<View>(R.id.restoreButton).setOnClickListener { restoreFromRecoveryPhrase() }
-        findViewById<View>(R.id.restoreBackupButton).setOnClickListener { restoreFromBackup() }
-
-        // Setup essentials for a new user.
+        findViewById<View>(R.id.restoreButton).setOnClickListener { restore() }
+        findViewById<View>(R.id.linkButton).setOnClickListener { link() }
         IdentityKeyUtil.generateIdentityKeyPair(this)
-
         TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCanonicalVersionCode())
         TextSecurePreferences.setPasswordDisabled(this, true)
         TextSecurePreferences.setReadReceiptsEnabled(this, true)
         TextSecurePreferences.setTypingIndicatorsEnabled(this, true)
-
-        //AC: This is a temporary workaround to trick the old code that the screen is unlocked.
+        // AC: This is a temporary workaround to trick the old code that the screen is unlocked.
         KeyCachingService.setMasterSecret(applicationContext, Object())
     }
 
@@ -45,21 +38,13 @@ class LandingActivity : BaseActionBarActivity() {
         push(intent)
     }
 
-    private fun restoreFromRecoveryPhrase() {
+    private fun restore() {
         val intent = Intent(this, RecoveryPhraseRestoreActivity::class.java)
         push(intent)
     }
 
-    private fun restoreFromBackup() {
-        val intent = Intent(this, BackupRestoreActivity::class.java)
+    private fun link() {
+        val intent = Intent(this, LinkDeviceActivity::class.java)
         push(intent)
-    }
-
-    private fun reset() {
-        IdentityKeyUtil.delete(this, IdentityKeyUtil.LOKI_SEED)
-        TextSecurePreferences.removeLocalNumber(this)
-        TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
-        val application = ApplicationContext.getInstance(this)
-        application.stopPolling()
     }
 }

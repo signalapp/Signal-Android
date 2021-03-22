@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.dialog_clear_all_data.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
-import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
+import org.session.libsession.utilities.KeyPairUtilities
 
 class ClearAllDataDialog : DialogFragment() {
 

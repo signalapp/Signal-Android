@@ -7,6 +7,7 @@ import androidx.annotation.VisibleForTesting;
 
 import org.greenrobot.eventbus.EventBus;
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
@@ -96,11 +97,11 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
     final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
-    final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+    final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentTransferProgress.TRANSFER_PROGRESS_DONE;
 
     if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
       Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
-      database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
+      database.setTransferState(messageId, attachmentId, AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED);
     }
   }
 
@@ -129,12 +130,12 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
 
     if (!manual && !AttachmentUtil.isAutoDownloadPermitted(context, attachment)) {
       Log.w(TAG, "Attachment can't be auto downloaded...");
-      database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_PENDING);
+      database.setTransferState(messageId, attachmentId, AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING);
       return;
     }
 
     Log.i(TAG, "Downloading push part " + attachmentId);
-    database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
+    database.setTransferState(messageId, attachmentId, AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED);
 
     retrieveAttachment(messageId, attachmentId, attachment);
   }

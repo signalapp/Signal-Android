@@ -7,12 +7,11 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional

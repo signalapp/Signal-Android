@@ -41,6 +41,7 @@ object OpenGroupAPI: DotNetAPI() {
         return listOf() // Don't auto-join any open groups right now
     }
 
+    @JvmStatic
     fun isUserModerator(hexEncodedPublicKey: String, channel: Long, server: String): Boolean {
         if (moderators[server] != null && moderators[server]!![channel] != null) {
             return moderators[server]!![channel]!!.contains(hexEncodedPublicKey)
@@ -113,7 +114,7 @@ object OpenGroupAPI: DotNetAPI() {
                                 val id = attachmentAsJSON["id"] as? Long ?: (attachmentAsJSON["id"] as? Int)?.toLong() ?: (attachmentAsJSON["id"] as String).toLong()
                                 val contentType = attachmentAsJSON["contentType"] as String
                                 val size = attachmentAsJSON["size"] as? Int ?: (attachmentAsJSON["size"] as? Long)?.toInt() ?: (attachmentAsJSON["size"] as String).toInt()
-                                val fileName = attachmentAsJSON["fileName"] as String
+                                val fileName = attachmentAsJSON["fileName"] as? String
                                 val flags = 0
                                 val url = attachmentAsJSON["url"] as String
                                 val caption = attachmentAsJSON["caption"] as? String
@@ -209,8 +210,7 @@ object OpenGroupAPI: DotNetAPI() {
                             format.timeZone = TimeZone.getTimeZone("GMT")
                             val dateAsString = data["created_at"] as String
                             val timestamp = format.parse(dateAsString).time
-                            @Suppress("NAME_SHADOWING") val message = OpenGroupMessage(serverID, userKeyPair.first, userDisplayName, text, timestamp, openGroupMessageType, message.quote, message.attachments, null, signedMessage.signature, timestamp)
-                            message
+                            OpenGroupMessage(serverID, userKeyPair.first, userDisplayName, text, timestamp, openGroupMessageType, message.quote, message.attachments, null, signedMessage.signature, timestamp)
                         } catch (exception: Exception) {
                             Log.d("Loki", "Couldn't parse message for open group with ID: $channel on server: $server.")
                             throw exception
@@ -238,6 +238,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun deleteMessages(messageServerIDs: List<Long>, channel: Long, server: String, isSentByUser: Boolean): Promise<List<Long>, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val isModerationRequest = !isSentByUser
@@ -338,6 +339,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun ban(publicKey: String, server: String): Promise<Unit,Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.POST, server, "/loki/v1/moderation/blacklist/@$publicKey").then {

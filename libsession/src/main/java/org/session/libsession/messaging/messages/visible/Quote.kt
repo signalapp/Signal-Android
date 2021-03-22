@@ -2,6 +2,8 @@ package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -20,6 +22,15 @@ class Quote() {
             val publicKey = proto.author
             val text = proto.text
             return Quote(timestamp, publicKey, text, null)
+        }
+
+        fun from(signalQuote: SignalQuote?): Quote? {
+            return if (signalQuote == null) {
+                null
+            } else {
+                val attachmentID = (signalQuote.attachments?.firstOrNull() as? DatabaseAttachment)?.attachmentId?.rowId
+                Quote(signalQuote.id, signalQuote.author.serialize(), signalQuote.text, attachmentID)
+            }
         }
     }
 
@@ -58,13 +69,13 @@ class Quote() {
     }
 
     private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
-        val attachmentID = attachmentID ?: return
-        val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(attachmentID)
-        if (attachmentProto == null) {
+        if (attachmentID == null) return
+        val attachment = MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID!!)
+        if (attachment == null) {
             Log.w(TAG, "Ignoring invalid attachment for quoted message.")
             return
         }
-        if (!attachmentProto.isUploaded) {
+        if (attachment.url.isNullOrEmpty()) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure
                 Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
@@ -72,10 +83,9 @@ class Quote() {
             }
         }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
-        quotedAttachmentProto.contentType = attachmentProto.contentType
-        val fileName = attachmentProto.fileName?.get()
-        fileName?.let { quotedAttachmentProto.fileName = fileName }
-        quotedAttachmentProto.thumbnail = attachmentProto.toProto()
+        quotedAttachmentProto.contentType = attachment.contentType
+        if (attachment.fileName.isPresent) quotedAttachmentProto.fileName = attachment.fileName.get()
+        quotedAttachmentProto.thumbnail = Attachment.createAttachmentPointer(attachment)
         try {
             quoteProto.addAttachments(quotedAttachmentProto.build())
         } catch (e: Exception) {

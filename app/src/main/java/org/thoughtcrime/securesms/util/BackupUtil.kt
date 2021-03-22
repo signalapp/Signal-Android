@@ -7,34 +7,72 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
-import org.session.libsignal.utilities.logging.Log
 import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.documentfile.provider.DocumentFile
 import androidx.fragment.app.Fragment
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.libsignal.util.ByteUtil
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.backup.BackupPassphrase
+import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference
 import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.database.BackupFileRecord
 import org.thoughtcrime.securesms.service.LocalBackupListener
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.util.ByteUtil
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.jvm.Throws
 
 object BackupUtil {
+    private const val MASTER_SECRET_UTIL_PREFERENCES_NAME = "SecureSMS-Preferences"
     private const val TAG = "BackupUtil"
     const val BACKUP_FILE_MIME_TYPE = "application/session-backup"
     const val BACKUP_PASSPHRASE_LENGTH = 30
+
+    fun getBackupRecords(context: Context): List<SharedPreference> {
+        val prefName = MASTER_SECRET_UTIL_PREFERENCES_NAME
+        val preferences = context.getSharedPreferences(prefName, 0)
+        val prefList = LinkedList<SharedPreference>()
+        prefList.add(SharedPreference.newBuilder()
+                .setFile(prefName)
+                .setKey(IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF)
+                .setValue(preferences.getString(IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, null))
+                .build())
+        prefList.add(SharedPreference.newBuilder()
+                .setFile(prefName)
+                .setKey(IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF)
+                .setValue(preferences.getString(IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, null))
+                .build())
+        if (preferences.contains(IdentityKeyUtil.ED25519_PUBLIC_KEY)) {
+            prefList.add(SharedPreference.newBuilder()
+                    .setFile(prefName)
+                    .setKey(IdentityKeyUtil.ED25519_PUBLIC_KEY)
+                    .setValue(preferences.getString(IdentityKeyUtil.ED25519_PUBLIC_KEY, null))
+                    .build())
+        }
+        if (preferences.contains(IdentityKeyUtil.ED25519_SECRET_KEY)) {
+            prefList.add(SharedPreference.newBuilder()
+                    .setFile(prefName)
+                    .setKey(IdentityKeyUtil.ED25519_SECRET_KEY)
+                    .setValue(preferences.getString(IdentityKeyUtil.ED25519_SECRET_KEY, null))
+                    .build())
+        }
+        prefList.add(SharedPreference.newBuilder()
+                .setFile(prefName)
+                .setKey(IdentityKeyUtil.LOKI_SEED)
+                .setValue(preferences.getString(IdentityKeyUtil.LOKI_SEED, null))
+                .build())
+        return prefList
+    }
 
     /**
      * Set app-wide configuration to enable the backups and schedule them.
@@ -91,7 +129,7 @@ object BackupUtil {
     @JvmStatic
     fun generateBackupPassphrase(): Array<String> {
         val random = ByteArray(BACKUP_PASSPHRASE_LENGTH).also { SecureRandom().nextBytes(it) }
-        return Array(6) {i ->
+        return Array(6) { i ->
             String.format("%05d", ByteUtil.byteArray5ToLong(random, i * 5) % 100000)
         }
     }

@@ -17,17 +17,6 @@ interface SessionProtocol {
         object DecryptionFailed : Exception("Couldn't decrypt message.")
         object InvalidSignature : Exception("Invalid message signature.")
     }
-
-    /**
-     * Encrypts `plaintext` using the Session protocol for `hexEncodedX25519PublicKey`.
-     *
-     * @param plaintext the plaintext to encrypt. Must already be padded.
-     * @param recipientHexEncodedX25519PublicKey the X25519 public key to encrypt for. Could be the Session ID of a user, or the public key of a closed group.
-     *
-     * @return the encrypted message.
-     */
-    fun encrypt(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray
-
     /**
      * Decrypts `ciphertext` using the Session protocol and `x25519KeyPair`.
      *

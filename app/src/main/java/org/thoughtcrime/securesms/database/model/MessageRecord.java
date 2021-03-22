@@ -26,8 +26,8 @@ import android.text.style.StyleSpan;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.NetworkFailure;
 
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.ExpirationUtil;
@@ -158,16 +158,8 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isIdentityDefault(type);
   }
 
-  public boolean isIdentityMismatchFailure() {
-    return mismatches != null && !mismatches.isEmpty();
-  }
-
   public boolean isBundleKeyExchange() {
     return SmsDatabase.Types.isBundleKeyExchange(type);
-  }
-
-  public boolean isContentBundleKeyExchange() {
-    return SmsDatabase.Types.isContentBundleKeyExchange(type);
   }
 
   public boolean isIdentityUpdate() {
@@ -195,10 +187,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return individualRecipient;
   }
 
-  public int getRecipientDeviceId() {
-    return recipientDeviceId;
-  }
-
   public long getType() {
     return type;
   }
@@ -209,10 +197,6 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public List<NetworkFailure> getNetworkFailures() {
     return networkFailures;
-  }
-
-  public boolean hasNetworkFailures() {
-    return networkFailures != null && !networkFailures.isEmpty();
   }
 
   protected SpannableString emphasisAdded(String sequence) {
@@ -232,10 +216,6 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public int hashCode() {
     return (int)getId();
-  }
-
-  public int getSubscriptionId() {
-    return subscriptionId;
   }
 
   public long getExpiresIn() {

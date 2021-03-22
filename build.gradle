@@ -58,6 +58,7 @@ allprojects {
     }
 
     project.ext {
+        kotlin_version = "1.4.31"
         androidBuildToolsVersion = '29.0.3'
         androidCompileSdkVersion = 29   // This is also our target SDK.
         androidMinSdkVersion = 21

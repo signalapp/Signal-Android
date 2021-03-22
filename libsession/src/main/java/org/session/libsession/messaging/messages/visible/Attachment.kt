@@ -2,8 +2,11 @@ package org.session.libsession.messaging.messages.visible
 
 import android.util.Size
 import android.webkit.MimeTypeMap
-import org.session.libsession.database.MessageDataProvider
+import com.google.protobuf.ByteString
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
 
@@ -32,7 +35,7 @@ class Attachment {
             result.contentType = proto.contentType ?: inferContentType()
             result.key = proto.key.toByteArray()
             result.digest = proto.digest.toByteArray()
-            val kind: Kind = if (proto.hasFlags() && (proto.flags and SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) { //TODO validate that 'and' operator = swift '&'
+            val kind: Kind = if (proto.hasFlags() && proto.flags.and(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) {
                 Kind.VOICE_MESSAGE
             } else {
                 Kind.GENERIC
@@ -42,12 +45,41 @@ class Attachment {
             val size: Size = if (proto.hasWidth() && proto.width > 0 && proto.hasHeight() && proto.height > 0) {
                 Size(proto.width, proto.height)
             } else {
-                Size(0,0) //TODO check that it's equivalent to swift: CGSize.zero
+                Size(0,0)
             }
             result.size = size
             result.sizeInBytes = if (proto.size > 0) proto.size else null
             result. url = proto.url
             return result
+        }
+
+        fun createAttachmentPointer(attachment: SignalServiceAttachmentPointer): SignalServiceProtos.AttachmentPointer? {
+            val builder = SignalServiceProtos.AttachmentPointer.newBuilder()
+                    .setContentType(attachment.contentType)
+                    .setId(attachment.id)
+                    .setKey(ByteString.copyFrom(attachment.key))
+                    .setDigest(ByteString.copyFrom(attachment.digest.get()))
+                    .setSize(attachment.size.get())
+                    .setUrl(attachment.url)
+            if (attachment.fileName.isPresent) {
+                builder.fileName = attachment.fileName.get()
+            }
+            if (attachment.preview.isPresent) {
+                builder.thumbnail = ByteString.copyFrom(attachment.preview.get())
+            }
+            if (attachment.width > 0) {
+                builder.width = attachment.width
+            }
+            if (attachment.height > 0) {
+                builder.height = attachment.height
+            }
+            if (attachment.voiceNote) {
+                builder.flags = SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE
+            }
+            if (attachment.caption.isPresent) {
+                builder.caption = attachment.caption.get()
+            }
+            return builder.build()
         }
     }
 
@@ -66,8 +98,9 @@ class Attachment {
         TODO("Not implemented")
     }
 
-    fun toDatabaseAttachment(): org.session.libsession.messaging.sending_receiving.attachments.Attachment {
-        return DatabaseAttachment(null, 0, true, true, contentType, 0,
+    fun toSignalAttachment(): SignalAttachment? {
+        if (!isValid()) return null
+        return DatabaseAttachment(null, 0, false, false, contentType, 0,
                 sizeInBytes?.toLong() ?: 0, fileName, null, key.toString(), null, digest, null, kind == Kind.VOICE_MESSAGE,
                 size?.width ?: 0, size?.height ?: 0, false, caption, url)
     }

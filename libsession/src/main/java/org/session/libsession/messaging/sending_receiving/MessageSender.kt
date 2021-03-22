@@ -1,37 +1,41 @@
 package org.session.libsession.messaging.sending_receiving
 
-import android.util.Size
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
-import org.session.libsession.messaging.messages.visible.Attachment
-import org.session.libsession.messaging.messages.visible.Profile
-import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
+import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
+import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
+import org.session.libsession.snode.SnodeConfiguration
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
+import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 
 
 object MessageSender {
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    sealed class Error(val description: String) : Exception() {
         object InvalidMessage : Error("Invalid message.")
         object ProtoConversionFailed : Error("Couldn't convert message to proto.")
         object ProofOfWorkCalculationFailed : Error("Proof of work calculation failed.")
@@ -55,29 +59,6 @@ object MessageSender {
         }
     }
 
-    // Preparation
-    fun prep(signalAttachments: List<SignalServiceAttachment>, message: VisibleMessage) {
-        // TODO: Deal with SignalServiceAttachmentStream
-        val attachments = mutableListOf<Attachment>()
-        for (signalAttachment in signalAttachments) {
-            val attachment = Attachment()
-            if (signalAttachment.isPointer) {
-                val signalAttachmentPointer = signalAttachment.asPointer()
-                attachment.fileName = signalAttachmentPointer.fileName.orNull()
-                attachment.caption = signalAttachmentPointer.caption.orNull()
-                attachment.contentType = signalAttachmentPointer.contentType
-                attachment.digest = signalAttachmentPointer.digest.orNull()
-                attachment.key = signalAttachmentPointer.key
-                attachment.sizeInBytes = signalAttachmentPointer.size.orNull()
-                attachment.url = signalAttachmentPointer.url
-                attachment.size = Size(signalAttachmentPointer.width, signalAttachmentPointer.height)
-                attachments.add(attachment)
-            }
-        }
-        val attachmentIDs = MessagingConfiguration.shared.storage.persistAttachments(message.id ?: 0, attachments)
-        message.attachmentIDs.addAll(attachmentIDs)
-    }
-
     // Convenience
     fun send(message: Message, destination: Destination): Promise<Unit, Exception> {
         if (destination is Destination.OpenGroup) {
@@ -87,30 +68,29 @@ object MessageSender {
     }
 
     // One-on-One Chats & Closed Groups
-    fun sendToSnodeDestination(destination: Destination, message: Message, isSyncMessage: Boolean = false): Promise<Unit, Exception> {
+    private fun sendToSnodeDestination(destination: Destination, message: Message, isSyncMessage: Boolean = false): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val preconditionFailure = Exception("Destination should not be open groups!")
-        var snodeMessage: SnodeMessage? = null
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
         message.sender = userPublicKey
+        val isSelfSend = (message.recipient == userPublicKey)
+        // Set the failure handler (need it here already for precondition failure handling)
+        fun handleFailure(error: Exception) {
+            handleFailedMessageSend(message, error)
+            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
+            }
+            deferred.reject(error)
+        }
         try {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
                 is Destination.OpenGroup -> throw preconditionFailure
-            }
-            val isSelfSend = (message.recipient == userPublicKey)
-            // Set the failure handler (need it here already for precondition failure handling)
-            fun handleFailure(error: Exception) {
-                handleFailedMessageSend(message, error)
-                if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                    //TODO Notify user for send failure
-                }
-                deferred.reject(error)
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -139,11 +119,8 @@ object MessageSender {
             // Convert it to protobuf
             val proto = message.toProto() ?: throw Error.ProtoConversionFailed
             // Serialize the protobuf
-            val plaintext = proto.toByteArray()
+            val plaintext = PushTransportDetails.getPaddedMessageBody(proto.toByteArray())
             // Encrypt the serialized protobuf
-            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                //TODO Notify user for encrypting message
-            }
             val ciphertext: ByteArray
             when (destination) {
                 is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
@@ -170,14 +147,17 @@ object MessageSender {
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Calculate proof of work
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                //TODO Notify user for proof of work calculating
+                SnodeConfiguration.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
             }
             val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
             val timestamp = System.currentTimeMillis()
             val nonce = ProofOfWork.calculate(base64EncodedData, recipient, timestamp, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
-            snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
+            }
             SnodeAPI.sendMessage(snodeMessage).success { promises: Set<RawResponsePromise> ->
                 var isSuccess = false
                 val promiseCount = promises.size
@@ -187,7 +167,7 @@ object MessageSender {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                            //TODO Notify user for message sent
+                            SnodeConfiguration.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
                         }
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)
@@ -199,27 +179,25 @@ object MessageSender {
                             JobQueue.shared.add(notifyPNServerJob)
                             deferred.resolve(Unit)
                         }
-
                     }
                     promise.fail {
                         errorCount += 1
                         if (errorCount != promiseCount) { return@fail } // Only error out if all promises failed
                         handleFailure(it)
-                        deferred.reject(it)
                     }
                 }
             }.fail {
                 Log.d("Loki", "Couldn't send message due to error: $it.")
-                deferred.reject(it)
+                handleFailure(it)
             }
         } catch (exception: Exception) {
-            deferred.reject(exception)
+            handleFailure(exception)
         }
         return promise
     }
 
     // Open Groups
-    fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
+    private fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val storage = MessagingConfiguration.shared.storage
         val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
@@ -277,23 +255,89 @@ object MessageSender {
             storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
         }
         // Mark the message as sent
-        storage.markAsSent(messageId)
-        storage.markUnidentified(messageId)
+        storage.markAsSent(message.sentTimestamp!!, message.sender!!)
+        storage.markUnidentified(message.sentTimestamp!!, message.sender!!)
         // Start the disappearing messages timer if needed
-        SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(messageId)
+        if (message is VisibleMessage && !isSyncMessage) {
+            SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender!!)
+        }
         // Sync the message if:
         // • it's a visible message
         // • the destination was a contact
         // • we didn't sync it already
         val userPublicKey = storage.getUserPublicKey()!!
-        if (destination is Destination.Contact && !isSyncMessage && message is VisibleMessage) {
-            sendToSnodeDestination(Destination.Contact(userPublicKey), message, true).get()
+        if (destination is Destination.Contact && !isSyncMessage) {
+            if (message is VisibleMessage) { message.syncTarget = destination.publicKey }
+            if (message is ExpirationTimerUpdate) { message.syncTarget = destination.publicKey }
+            sendToSnodeDestination(Destination.Contact(userPublicKey), message, true)
         }
     }
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
         val storage = MessagingConfiguration.shared.storage
-        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
-        storage.setErrorMessage(messageId, error)
+        storage.setErrorMessage(message.sentTimestamp!!, message.sender!!, error)
+    }
+
+    // Convenience
+    @JvmStatic
+    fun send(message: VisibleMessage, address: Address, attachments: List<SignalAttachment>, quote: SignalQuote?, linkPreview: SignalLinkPreview?) {
+        val dataProvider = MessagingConfiguration.shared.messageDataProvider
+        val attachmentIDs = dataProvider.getAttachmentIDsFor(message.id!!)
+        message.attachmentIDs.addAll(attachmentIDs)
+        message.quote = Quote.from(quote)
+        message.linkPreview = LinkPreview.from(linkPreview)
+        message.linkPreview?.let {
+            if (it.attachmentID == null) {
+                dataProvider.getLinkPreviewAttachmentIDFor(message.id!!)?.let {
+                    message.linkPreview!!.attachmentID = it
+                    message.attachmentIDs.remove(it)
+                }
+            }
+        }
+        send(message, address)
+    }
+
+    @JvmStatic
+    fun send(message: Message, address: Address) {
+        val threadID = MessagingConfiguration.shared.storage.getOrCreateThreadIdFor(address)
+        message.threadID = threadID
+        val destination = Destination.from(address)
+        val job = MessageSendJob(message, destination)
+        JobQueue.shared.add(job)
+    }
+
+    fun sendNonDurably(message: VisibleMessage, attachments: List<SignalAttachment>, address: Address): Promise<Unit, Exception> {
+        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
+        message.attachmentIDs.addAll(attachmentIDs)
+        return sendNonDurably(message, address)
+    }
+
+    fun sendNonDurably(message: Message, address: Address): Promise<Unit, Exception> {
+        val threadID = MessagingConfiguration.shared.storage.getOrCreateThreadIdFor(address)
+        message.threadID = threadID
+        val destination = Destination.from(address)
+        return send(message, destination)
+    }
+
+    // Closed groups
+    fun createClosedGroup(name: String, members: Collection<String>): Promise<String, Exception> {
+        return create(name, members)
+    }
+
+    fun explicitNameChange(groupPublicKey: String, newName: String) {
+        return setName(groupPublicKey, newName)
+    }
+
+    fun explicitAddMembers(groupPublicKey: String, membersToAdd: List<String>) {
+        return addMembers(groupPublicKey, membersToAdd)
+    }
+
+    fun explicitRemoveMembers(groupPublicKey: String, membersToRemove: List<String>) {
+        return removeMembers(groupPublicKey, membersToRemove)
+    }
+
+    @JvmStatic
+    fun explicitLeave(groupPublicKey: String): Promise<Unit, Exception> {
+        return leave(groupPublicKey)
     }
 }
