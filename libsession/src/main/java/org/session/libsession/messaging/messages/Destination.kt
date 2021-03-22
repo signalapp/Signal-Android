@@ -7,25 +7,14 @@ import org.session.libsignal.service.loki.utilities.toHexString
 
 sealed class Destination {
 
-    class Contact() : Destination() {
-        var publicKey: String = ""
-        internal constructor(publicKey: String): this() {
-            this.publicKey = publicKey
-        }
+    class Contact(var publicKey: String) : Destination() {
+        internal constructor(): this("")
     }
-    class ClosedGroup() : Destination() {
-        var groupPublicKey: String = ""
-        internal constructor(groupPublicKey: String): this() {
-            this.groupPublicKey = groupPublicKey
-        }
+    class ClosedGroup(var groupPublicKey: String) : Destination() {
+        internal constructor(): this("")
     }
-    class OpenGroup() : Destination() {
-        var channel: Long = 0
-        var server: String = ""
-        internal constructor(channel: Long, server: String): this() {
-            this.channel = channel
-            this.server = server
-        }
+    class OpenGroup(var channel: Long, var server: String) : Destination() {
+        internal constructor(): this(0, "")
     }
 
     companion object {

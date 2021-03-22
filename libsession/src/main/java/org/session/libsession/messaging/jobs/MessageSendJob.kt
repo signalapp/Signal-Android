@@ -83,14 +83,14 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         //serialize Message and Destination properties
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
-        val serializedMessage = ByteArray(4096)
-        val serializedDestination = ByteArray(4096)
-        var output = Output(serializedMessage)
+        val output = Output(ByteArray(4096), -1) // maxBufferSize '-1' will dynamically grow internally if we run out of room serializing the message
         kryo.writeClassAndObject(output, message)
         output.close()
-        output = Output(serializedDestination)
+        val serializedMessage = output.toBytes()
+        output.clear()
         kryo.writeClassAndObject(output, destination)
         output.close()
+        val serializedDestination = output.toBytes()
         return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
                 .putByteArray(KEY_DESTINATION, serializedDestination)
                 .build();
