@@ -89,6 +89,7 @@ import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.threads.DistributionTypes;
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
@@ -808,7 +809,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
           ExpirationTimerUpdate message = new ExpirationTimerUpdate(expirationTime);
           message.setSentTimestamp(System.currentTimeMillis());
-          OutgoingExpirationUpdateMessage outgoingMessage = OutgoingExpirationUpdateMessage.from(message, recipient);
+          String displayedMessage = UpdateMessageBuilder.INSTANCE.buildExpirationTimerMessage(getApplicationContext(), expirationTime, null, false);
+          OutgoingExpirationUpdateMessage outgoingMessage = OutgoingExpirationUpdateMessage.from(message, recipient, displayedMessage);
           try {
             message.setId(DatabaseFactory.getMmsDatabase(ConversationActivity.this).insertMessageOutbox(outgoingMessage, getAllocatedThreadId(ConversationActivity.this), false, null));
             MessageSender.send(message, recipient.getAddress());

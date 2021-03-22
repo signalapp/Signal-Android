@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
@@ -78,10 +79,11 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
         GroupContext groupContext = content.getDataMessage().getGroup();
         groupInfo = Optional.of(new SignalServiceGroup(groupContext.getId().toByteArray(), SignalServiceGroup.GroupType.SIGNAL));
       }
+      String updateMessage = UpdateMessageBuilder.INSTANCE.buildExpirationTimerMessage(context, duration, senderPublicKey, false);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, content.getDataMessage().getTimestamp(), -1,
               duration * 1000L, true,
               false,
-              Optional.absent(),
+              Optional.of(updateMessage),
               groupInfo,
               Optional.absent(),
               Optional.absent(),

@@ -495,6 +495,7 @@
     <string name="MessageRecord_s_added_s_to_the_group">%1$s added %2$s to the group.</string>
     <string name="MessageRecord_you_removed_s_from_the_group">You removed %1$s from the group.</string>
     <string name="MessageRecord_s_removed_s_from_the_group">%1$s removed %2$s from the group.</string>
+    <string name="MessageRecord_you_were_removed_from_the_group">You were removed from the group.</string>
     <string name="MessageRecord_you_called">You called</string>
     <string name="MessageRecord_called_you">Contact called</string>
     <string name="MessageRecord_missed_call">Missed call</string>

@@ -10,15 +10,15 @@ import java.util.LinkedList;
 
 public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage {
 
-  public OutgoingExpirationUpdateMessage(Recipient recipient, long sentTimeMillis, long expiresIn) {
-    super(recipient, "", new LinkedList<Attachment>(), sentTimeMillis,
+  public OutgoingExpirationUpdateMessage(Recipient recipient, String body, long sentTimeMillis, long expiresIn) {
+    super(recipient, body, new LinkedList<Attachment>(), sentTimeMillis,
           DistributionTypes.CONVERSATION, expiresIn, null, Collections.emptyList(),
           Collections.emptyList());
   }
 
   public static OutgoingExpirationUpdateMessage from(ExpirationTimerUpdate message,
-                                          Recipient recipient) {
-    return new OutgoingExpirationUpdateMessage(recipient, message.getSentTimestamp(), message.getDuration() * 1000);
+                                          Recipient recipient, String body) {
+    return new OutgoingExpirationUpdateMessage(recipient, body, message.getSentTimestamp(), message.getDuration() * 1000);
   }
 
   @Override

@@ -390,7 +390,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     values.put(REPLY_PATH_PRESENT, message.isReplyPathPresent());
     values.put(SERVICE_CENTER, message.getServiceCenterAddress());
-    values.put(BODY, message.getMessageBody());
+    values.put(BODY, message.getMessageBody()); //TODO Brice: is that encoded?
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
 
