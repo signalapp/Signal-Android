@@ -25,7 +25,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     override var failureCount: Int = 0
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object NoAttachment : Error("No such attachment.")
     }
 
