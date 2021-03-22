@@ -38,7 +38,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
         object MemberLeft : Kind()
         object EncryptionKeyPairRequest: Kind()
 
-        val description: String = run {
+        val description: String =
             when(this) {
                 is New -> "new"
                 is Update -> "update"
@@ -49,7 +49,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 MemberLeft -> "memberLeft"
                 EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
             }
-        }
     }
 
     companion object {

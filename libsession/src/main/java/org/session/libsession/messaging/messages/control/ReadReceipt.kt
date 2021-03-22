@@ -35,7 +35,7 @@ class ReadReceipt() : ControlMessage() {
     override fun toProto(): SignalServiceProtos.Content? {
         val timestamps = timestamps
         if (timestamps == null) {
-            Log.w(ExpirationTimerUpdate.TAG, "Couldn't construct read receipt proto from: $this")
+            Log.w(TAG, "Couldn't construct read receipt proto from: $this")
             return null
         }
         val receiptProto = SignalServiceProtos.ReceiptMessage.newBuilder()
@@ -46,7 +46,7 @@ class ReadReceipt() : ControlMessage() {
             contentProto.receiptMessage = receiptProto.build()
             return contentProto.build()
         } catch (e: Exception) {
-            Log.w(ExpirationTimerUpdate.TAG, "Couldn't construct read receipt proto from: $this")
+            Log.w(TAG, "Couldn't construct read receipt proto from: $this")
             return null
         }
     }

@@ -14,12 +14,11 @@ class DataExtractionNotification(): ControlMessage() {
         class Screenshot() : Kind()
         class MediaSaved(val timestanp: Long) : Kind()
 
-        val description: String = run {
+        val description: String =
             when(this) {
                 is Screenshot -> "screenshot"
                 is MediaSaved -> "mediaSaved"
             }
-        }
     }
 
     companion object {
@@ -27,12 +26,11 @@ class DataExtractionNotification(): ControlMessage() {
 
         fun fromProto(proto: SignalServiceProtos.Content): DataExtractionNotification? {
             val dataExtractionNotification = proto.dataExtractionNotification ?: return null
-            val kind: Kind
-            when(dataExtractionNotification.type) {
-                SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT -> kind = Kind.Screenshot()
+            val kind: Kind = when(dataExtractionNotification.type) {
+                SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT -> Kind.Screenshot()
                 SignalServiceProtos.DataExtractionNotification.Type.MEDIA_SAVED -> {
-                    val timestamp = if (dataExtractionNotification.hasTimestamp()) dataExtractionNotification.timestamp else 0
-                    kind = Kind.MediaSaved(timestamp)
+                    val timestamp = if (dataExtractionNotification.hasTimestamp()) dataExtractionNotification.timestamp else return null
+                    Kind.MediaSaved(timestamp)
                 }
             }
             return DataExtractionNotification(kind)
