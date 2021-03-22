@@ -264,6 +264,10 @@ private fun MessageReceiver.handleClosedGroupUpdated(message: ClosedGroupControl
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
     val oldMembers = group.members.map { it.serialize() }
     // Check common group update logic
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) {
@@ -312,6 +316,10 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
     if (!group.members.map { it.toString() }.contains(senderPublicKey)) {
         Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
         return
@@ -345,6 +353,10 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
     // Check common group update logic
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) {
         return
@@ -367,6 +379,10 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        return
+    }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
         return
     }
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
@@ -409,6 +425,10 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        return
+    }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
         return
     }
     val name = group.title
@@ -458,6 +478,10 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        return
+    }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
         return
     }
     val name = group.title

@@ -102,11 +102,13 @@ interface StorageProtocol {
     // Closed Groups
     fun getGroup(groupID: String): GroupRecord?
     fun createGroup(groupID: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>, formationTimestamp: Long)
+    fun isGroupActive(groupPublicKey: String): Boolean
     fun setActive(groupID: String, value: Boolean)
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)
     // Closed Group
     fun getAllClosedGroupPublicKeys(): Set<String>
+    fun getAllActiveClosedGroupPublicKeys(): Set<String>
     fun addClosedGroupPublicKey(groupPublicKey: String)
     fun removeClosedGroupPublicKey(groupPublicKey: String)
     fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String)

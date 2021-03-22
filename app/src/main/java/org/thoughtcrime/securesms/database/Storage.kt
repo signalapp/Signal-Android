@@ -372,6 +372,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getGroupDatabase(context).create(groupId, title, members, avatar, relay, admins, formationTimestamp)
     }
 
+    override fun isGroupActive(groupPublicKey: String): Boolean {
+        return DatabaseFactory.getGroupDatabase(context).getGroup(GroupUtil.doubleEncodeGroupID(groupPublicKey)).orNull()?.isActive == true
+    }
+
     override fun setActive(groupID: String, value: Boolean) {
         DatabaseFactory.getGroupDatabase(context).setActive(groupID, value)
     }
@@ -431,6 +435,12 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getAllClosedGroupPublicKeys(): Set<String> {
         return DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
+    }
+
+    override fun getAllActiveClosedGroupPublicKeys(): Set<String> {
+        return DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys().filter {
+            getGroup(GroupUtil.doubleEncodeGroupID(it))?.isActive == true
+        }.toSet()
     }
 
     override fun addClosedGroupPublicKey(groupPublicKey: String) {

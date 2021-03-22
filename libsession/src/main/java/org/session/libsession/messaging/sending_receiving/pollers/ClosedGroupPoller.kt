@@ -59,7 +59,7 @@ class ClosedGroupPoller {
     // region Private API
     private fun poll(): List<Promise<Unit, Exception>> {
         if (!isPolling) { return listOf() }
-        val publicKeys = MessagingConfiguration.shared.storage.getAllClosedGroupPublicKeys()
+        val publicKeys = MessagingConfiguration.shared.storage.getAllActiveClosedGroupPublicKeys()
         return publicKeys.map { publicKey ->
             val promise = SnodeAPI.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
@@ -67,6 +67,10 @@ class ClosedGroupPoller {
                 SnodeAPI.getRawMessages(snode, publicKey).map {SnodeAPI.parseRawMessagesResponse(it, snode, publicKey) }
             }
             promise.successBackground { messages ->
+                if (!MessagingConfiguration.shared.storage.isGroupActive(publicKey)) {
+                    // ignore inactive group's messages
+                    return@successBackground
+                }
                 if (messages.isNotEmpty()) {
                     Log.d("Loki", "Received ${messages.count()} new message(s) in closed group with public key: $publicKey.")
                 }

@@ -337,6 +337,6 @@ object MessageSender {
 
     @JvmStatic
     fun explicitLeave(groupPublicKey: String): Promise<Unit, Exception> {
-        return leave(groupPublicKey)
+        return leave(groupPublicKey, false)
     }
 }

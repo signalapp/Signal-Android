@@ -209,6 +209,7 @@ fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Pro
         val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.MemberLeft())
         val sentTime = System.currentTimeMillis()
         closedGroupControlMessage.sentTimestamp = sentTime
+        storage.setActive(groupID, false)
         sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
             // Notify the user
             val infoType = SignalServiceProtos.GroupContext.Type.QUIT
@@ -219,6 +220,8 @@ fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Pro
             // Remove the group private key and unsubscribe from PNs
             MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
             deferred.resolve(Unit)
+        }.fail {
+            storage.setActive(groupID, true)
         }
     }
     return deferred.promise

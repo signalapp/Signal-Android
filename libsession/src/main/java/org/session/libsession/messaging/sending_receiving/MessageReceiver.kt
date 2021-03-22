@@ -99,6 +99,8 @@ object MessageReceiver {
                 else -> throw Error.UnknownEnvelopeType
             }
         }
+        // Don't process the envelope any further if the message has been handled already
+        if (storage.isMessageDuplicated(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
         // Don't process the envelope any further if the sender is blocked
         if (isBlock(sender!!)) throw Error.SenderBlocked
         // Parse the proto
