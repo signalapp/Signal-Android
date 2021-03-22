@@ -7,10 +7,10 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
-import org.session.libsession.snode.Snode
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeConfiguration
 
+import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 

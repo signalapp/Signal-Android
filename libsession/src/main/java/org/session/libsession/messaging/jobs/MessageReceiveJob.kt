@@ -15,7 +15,8 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     // Settings
     override val maxFailureCount: Int = 10
     companion object {
-        val TAG = MessageReceiveJob::class.qualifiedName
+
+        val TAG = MessageReceiveJob::class.simpleName
         val KEY: String = "MessageReceiveJob"
 
         //keys used for database storage purpose
@@ -75,7 +76,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     }
 
     override fun getFactoryKey(): String {
-        return AttachmentDownloadJob.KEY
+        return KEY
     }
 
     class Factory: Job.Factory<MessageReceiveJob> {

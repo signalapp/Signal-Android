@@ -12,6 +12,7 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Hex
 
 import org.session.libsignal.libsignal.ecc.Curve
@@ -25,9 +26,10 @@ import org.session.libsignal.utilities.logging.Log
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
-private val pendingKeyPair = ConcurrentHashMap<String, Optional<ECKeyPair>>()
+const val groupSizeLimit = 100
+val pendingKeyPair = ConcurrentHashMap<String, Optional<ECKeyPair>>()
 
-fun MessageSender.createClosedGroup(name: String, members: Collection<String>): Promise<String, Exception> {
+fun MessageSender.create(name: String, members: Collection<String>): Promise<String, Exception> {
     val deferred = deferred<String, Exception>()
     ThreadUtils.queue {
         // Prepare
@@ -48,9 +50,11 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
         storage.setProfileSharing(Address.fromSerialized(groupID), true)
         // Send a closed group update message to all members individually
         val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
+        val sentTime = System.currentTimeMillis()
         for (member in members) {
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
-            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).get()
+            closedGroupControlMessage.sentTimestamp = sentTime
+            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member)).get()
         }
         // Add the group to the user's set of public keys to poll for
         storage.addClosedGroupPublicKey(groupPublicKey)
@@ -58,7 +62,7 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
         storage.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
         // Notify the user
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID)
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, sentTime)
         // Notify the PN server
         PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
         // Fulfill the promise
@@ -68,7 +72,7 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
     return deferred.promise
 }
 
-fun MessageSender.v2_update(groupPublicKey: String, members: List<String>, name: String) {
+fun MessageSender.update(groupPublicKey: String, members: List<String>, name: String) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
@@ -98,14 +102,16 @@ fun MessageSender.setName(groupPublicKey: String, newName: String) {
     val admins = group.admins.map { it.serialize() }
     // Send the update to the group
     val kind = ClosedGroupControlMessage.Kind.NameChange(newName)
+    val sentTime = System.currentTimeMillis()
     val closedGroupControlMessage = ClosedGroupControlMessage(kind)
+    closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
     // Update the group
     storage.updateTitle(groupID, newName)
     // Notify the user
     val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID)
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID, sentTime)
 }
 
 fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>) {
@@ -134,18 +140,21 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
     val name = group.title
     // Send the update to the group
     val memberUpdateKind = ClosedGroupControlMessage.Kind.MembersAdded(newMembersAsData)
+    val sentTime = System.currentTimeMillis()
     val closedGroupControlMessage = ClosedGroupControlMessage(memberUpdateKind)
+    closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
     // Send closed group update messages to any new members individually
     for (member in membersToAdd) {
         val closedGroupNewKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
         val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupNewKind)
+        closedGroupControlMessage.sentTimestamp = sentTime
         send(closedGroupControlMessage, Address.fromSerialized(member))
     }
     // Notify the user
     val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
 }
 
 fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<String>) {
@@ -173,7 +182,9 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
     val name = group.title
     // Send the update to the group
     val memberUpdateKind = ClosedGroupControlMessage.Kind.MembersRemoved(removeMembersAsData)
+    val sentTime = System.currentTimeMillis()
     val closedGroupControlMessage = ClosedGroupControlMessage(memberUpdateKind)
+    closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
     val isCurrentUserAdmin = admins.contains(userPublicKey)
     if (isCurrentUserAdmin) {
@@ -182,31 +193,37 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
     // Notify the user
     val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
 }
 
-fun MessageSender.v2_leave(groupPublicKey: String) {
-    val context = MessagingConfiguration.shared.context
-    val storage = MessagingConfiguration.shared.storage
-    val userPublicKey = storage.getUserPublicKey()!!
-    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-    val group = storage.getGroup(groupID) ?: run {
-        Log.d("Loki", "Can't leave nonexistent closed group.")
-        throw Error.NoThread
+fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
+    val deferred = deferred<Unit, Exception>()
+    ThreadUtils.queue {
+        val context = MessagingConfiguration.shared.context
+        val storage = MessagingConfiguration.shared.storage
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
+        val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+        val group = storage.getGroup(groupID) ?: return@queue deferred.reject(Error.NoThread)
+        val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
+        val admins = group.admins.map { it.serialize() }
+        val name = group.title
+        // Send the update to the group
+        val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.MemberLeft())
+        val sentTime = System.currentTimeMillis()
+        closedGroupControlMessage.sentTimestamp = sentTime
+        sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
+            // Notify the user
+            val infoType = SignalServiceProtos.GroupContext.Type.QUIT
+            val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+            if (notifyUser) {
+                storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+            }
+            // Remove the group private key and unsubscribe from PNs
+            MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
+            deferred.resolve(Unit)
+        }
     }
-    val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
-    val admins = group.admins.map { it.serialize() }
-    val name = group.title
-    // Send the update to the group
-    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.MemberLeft)
-    sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
-        // Remove the group private key and unsubscribe from PNs
-        MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
-    }
-    // Notify the user
-    val infoType = SignalServiceProtos.GroupContext.Type.QUIT
-    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+    return deferred.promise
 }
 
 fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, targetMembers: Collection<String>) {
@@ -230,6 +247,15 @@ fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, ta
         // make sure we set the pendingKeyPair or wait until it is not null
     } while (!pendingKeyPair.replace(groupPublicKey,Optional.absent(),Optional.fromNullable(newKeyPair)))
     // Distribute it
+    sendEncryptionKeyPair(groupPublicKey, newKeyPair, targetMembers)?.success {
+        // Store it * after * having sent out the message to the group
+        storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+        pendingKeyPair[groupPublicKey] = Optional.absent()
+    }
+}
+
+fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, targetUser: String? = null, force: Boolean = true): Promise<Unit, Exception>? {
+    val destination = targetUser ?: GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val proto = SignalServiceProtos.KeyPair.newBuilder()
     proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
     proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
@@ -238,12 +264,15 @@ fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, ta
         val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
         ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
     }
-    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(null, wrappers)
+    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), wrappers)
+    val sentTime = System.currentTimeMillis()
     val closedGroupControlMessage = ClosedGroupControlMessage(kind)
-    sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
-        // Store it * after * having sent out the message to the group
-        storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
-        pendingKeyPair[groupPublicKey] = Optional.absent()
+    closedGroupControlMessage.sentTimestamp = sentTime
+    return if (force) {
+        MessageSender.sendNonDurably(closedGroupControlMessage, Address.fromSerialized(destination))
+    } else {
+        MessageSender.send(closedGroupControlMessage, Address.fromSerialized(destination))
+        null
     }
 }
 
@@ -258,34 +287,8 @@ fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
     val members = group.members.map { it.serialize() }.toSet()
     if (!members.contains(storage.getUserPublicKey()!!)) return
     // Send the request to the group
-    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest)
+    val sentTime = System.currentTimeMillis()
+    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest())
+    closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
-}
-
-fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey: String) {
-    val storage = MessagingConfiguration.shared.storage
-    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-    val group = storage.getGroup(groupID) ?: run {
-        Log.d("Loki", "Can't send encryption key pair for nonexistent closed group.")
-        throw Error.NoThread
-    }
-    val members = group.members.map { it.serialize() }
-    if (!members.contains(publicKey)) {
-        Log.d("Loki", "Refusing to send latest encryption key pair to non-member.")
-        return
-    }
-    // Get the latest encryption key pair
-    val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
-            ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: return
-    // Send it
-    val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize())
-    proto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
-    val plaintext = proto.build().toByteArray()
-    val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
-    Log.d("Loki", "Sending latest encryption key pair to: $publicKey.")
-    val wrapper = ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
-    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), listOf(wrapper))
-    val closedGroupControlMessage = ClosedGroupControlMessage(kind)
-    MessageSender.send(closedGroupControlMessage, Address.fromSerialized(publicKey))
 }

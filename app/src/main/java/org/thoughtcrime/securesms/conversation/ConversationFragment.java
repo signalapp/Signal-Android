@@ -57,6 +57,9 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.messages.visible.Quote;
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -77,22 +80,21 @@ import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
@@ -405,7 +407,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = isPublicChat && PublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
+      boolean userCanModerate = isPublicChat && OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
       boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       // allow banning if moderating a public chat and only one user's messages are selected
       boolean isBanOptionVisible = isPublicChat && userCanModerate && !areAllSentByUser && uniqueUserSet.size() == 1;
@@ -521,7 +523,6 @@ public class ConversationFragment extends Fragment
               ArrayList<Long> ignoredMessages = new ArrayList<>();
               ArrayList<Long> failedMessages = new ArrayList<>();
               boolean isSentByUser = true;
-              PublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getPublicChatAPI();
               for (MessageRecord messageRecord : messageRecords) {
                 isSentByUser = isSentByUser && messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
@@ -531,8 +532,8 @@ public class ConversationFragment extends Fragment
                   ignoredMessages.add(messageRecord.getId());
                 }
               }
-              if (publicChat != null && publicChatAPI != null) {
-                publicChatAPI
+              if (publicChat != null) {
+                OpenGroupAPI
                 .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
                 .success(l -> {
                   for (MessageRecord messageRecord : messageRecords) {
@@ -602,9 +603,7 @@ public class ConversationFragment extends Fragment
         protected Void doInBackground(String... userPublicKeyParam) {
           String userPublicKey = userPublicKeyParam[0];
           if (publicChat != null) {
-            PublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getPublicChatAPI();
-            if (publicChat != null && publicChatAPI != null) {
-              publicChatAPI
+              OpenGroupAPI
                       .ban(userPublicKey, publicChat.getServer())
                       .success(l -> {
                         Log.d("Loki", "User banned");
@@ -613,7 +612,6 @@ public class ConversationFragment extends Fragment
                 Log.d("Loki", "Couldn't ban user due to error: " + e.toString() + ".");
                 return null;
               });
-            }
           } else {
             Log.d("Loki", "Tried to ban user from a non-public chat");
           }
@@ -696,11 +694,32 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleResendMessage(final MessageRecord message) {
-    final Context context = getActivity().getApplicationContext();
     new AsyncTask<MessageRecord, Void, Void>() {
       @Override
       protected Void doInBackground(MessageRecord... messageRecords) {
-        MessageSender.resend(context, messageRecords[0]);
+        MessageRecord messageRecord = messageRecords[0];
+        Recipient recipient = messageRecord.getRecipient();
+        VisibleMessage message = new VisibleMessage();
+        message.setId(messageRecord.getId());
+        message.setText(messageRecord.getBody());
+        message.setSentTimestamp(messageRecord.getTimestamp());
+        if (recipient.isGroupRecipient()) {
+          message.setGroupPublicKey(recipient.getAddress().toGroupString());
+        } else {
+          message.setRecipient(messageRecord.getRecipient().getAddress().serialize());
+        }
+        message.setThreadID(messageRecord.getThreadId());
+        if (messageRecord.isMms()) {
+          MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
+          if (!mmsMessageRecord.getLinkPreviews().isEmpty()) {
+            message.setLinkPreview(org.session.libsession.messaging.messages.visible.LinkPreview.Companion.from(mmsMessageRecord.getLinkPreviews().get(0)));
+          }
+          if (mmsMessageRecord.getQuote() != null) {
+            message.setQuote(Quote.Companion.from(mmsMessageRecord.getQuote().getQuoteModel()));
+          }
+          message.addSignalAttachments(mmsMessageRecord.getSlideDeck().asAttachments());
+        }
+        MessageSender.send(message, recipient.getAddress());
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);

@@ -1,12 +1,15 @@
 package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
-
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
-
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 
 class VisibleMessage : Message()  {
 
@@ -46,6 +49,14 @@ class VisibleMessage : Message()  {
         }
     }
 
+    fun addSignalAttachments(signalAttachments: List<SignalAttachment>) {
+        val attachmentIDs = signalAttachments.map {
+            val databaseAttachment = it as DatabaseAttachment
+            databaseAttachment.attachmentId.rowId
+        }
+        this.attachmentIDs = attachmentIDs as ArrayList<Long>
+    }
+
     fun isMediaMessage(): Boolean {
         return attachmentIDs.isNotEmpty() || quote != null || linkPreview != null || contact != null
     }
@@ -61,7 +72,6 @@ class VisibleMessage : Message()  {
 
     override fun toProto(): SignalServiceProtos.Content? {
         val proto = SignalServiceProtos.Content.newBuilder()
-        var attachmentIDs = this.attachmentIDs
         val dataMessage: SignalServiceProtos.DataMessage.Builder
         // Profile
         val profile = profile
@@ -74,44 +84,49 @@ class VisibleMessage : Message()  {
         // Text
         text?.let { dataMessage.body = text }
         // Quote
-        val quotedAttachmentID = quote?.attachmentID
-        quotedAttachmentID?.let {
-            val index = attachmentIDs.indexOf(quotedAttachmentID)
-            if (index >= 0) { attachmentIDs.removeAt(index) }
-        }
-        val quote = quote
         quote?.let {
-            val quoteProto = quote.toProto()
+            val quoteProto = it.toProto()
             if (quoteProto != null) dataMessage.quote = quoteProto
         }
         //Link preview
-        val linkPreviewAttachmentID = linkPreview?.attachmentID
-        linkPreviewAttachmentID?.let {
-            val index = attachmentIDs.indexOf(quotedAttachmentID)
-            if (index >= 0) { attachmentIDs.removeAt(index) }
-        }
-        val linkPreview = linkPreview
         linkPreview?.let {
-            val linkPreviewProto = linkPreview.toProto()
+            val linkPreviewProto = it.toProto()
             linkPreviewProto?.let {
                 dataMessage.addAllPreview(listOf(linkPreviewProto))
             }
         }
         //Attachments
-        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(it) }
-        if (!attachments.all { it.isUploaded }) {
+        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) }
+        if (!attachments.all { !it.url.isNullOrEmpty() }) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure
-                Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
+                Log.d(TAG, "Sending a message before all associated attachments have been uploaded.")
             }
         }
-        val attachmentProtos = attachments.mapNotNull { it.toProto() }
-        dataMessage.addAllAttachments(attachmentProtos)
+        val attachmentPointers = attachments.mapNotNull { Attachment.createAttachmentPointer(it) }
+        dataMessage.addAllAttachments(attachmentPointers)
+        // TODO Contact
+        // Expiration timer
+        // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
+        // if it receives a message without the current expiration timer value attached to it...
+        val storage = MessagingConfiguration.shared.storage
+        val context = MessagingConfiguration.shared.context
+        val expiration = if (storage.isClosedGroup(recipient!!)) Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
+                         else Recipient.from(context, Address.fromSerialized(recipient!!), false).expireMessages
+        dataMessage.expireTimer = expiration
+        // Group context
+        if (storage.isClosedGroup(recipient!!)) {
+            try {
+                setGroupContext(dataMessage)
+            } catch(e: Exception) {
+                Log.w(TAG, "Couldn't construct visible message proto from: $this")
+                return null
+            }
+        }
         // Sync target
         if (syncTarget != null) {
             dataMessage.syncTarget = syncTarget
         }
-        // TODO Contact
         // Build
         try {
             proto.dataMessage = dataMessage.build()

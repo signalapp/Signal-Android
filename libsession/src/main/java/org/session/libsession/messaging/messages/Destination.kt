@@ -3,26 +3,39 @@ package org.session.libsession.messaging.messages
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsignal.service.loki.utilities.toHexString
 
 sealed class Destination {
 
-    class Contact(val publicKey: String) : Destination()
-    class ClosedGroup(val groupPublicKey: String) : Destination()
-    class OpenGroup(val channel: Long, val server: String) : Destination()
+    class Contact(var publicKey: String) : Destination() {
+        internal constructor(): this("")
+    }
+    class ClosedGroup(var groupPublicKey: String) : Destination() {
+        internal constructor(): this("")
+    }
+    class OpenGroup(var channel: Long, var server: String) : Destination() {
+        internal constructor(): this(0, "")
+    }
 
     companion object {
         fun from(address: Address): Destination {
-            if (address.isContact) {
-                return Contact(address.contactIdentifier())
-            } else if (address.isClosedGroup) {
-                val groupID = address.contactIdentifier()
-                val groupPublicKey = GroupUtil.getDecodedGroupID(groupID)
-                return ClosedGroup(groupPublicKey)
-            } else if (address.isOpenGroup) {
-                val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(address.contactIdentifier())!!
-                return OpenGroup(openGroup.channel, openGroup.server)
-            } else {
-                throw Exception("TODO: Handle legacy closed groups.")
+            return when {
+                address.isContact -> {
+                    Contact(address.contactIdentifier())
+                }
+                address.isClosedGroup -> {
+                    val groupID = address.toGroupString()
+                    val groupPublicKey = GroupUtil.doubleDecodeGroupID(groupID).toHexString()
+                    ClosedGroup(groupPublicKey)
+                }
+                address.isOpenGroup -> {
+                    val threadID = MessagingConfiguration.shared.storage.getThreadID(address.contactIdentifier())!!
+                    val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)!!
+                    OpenGroup(openGroup.channel, openGroup.server)
+                }
+                else -> {
+                    throw Exception("TODO: Handle legacy closed groups.")
+                }
             }
         }
     }

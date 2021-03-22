@@ -10,6 +10,9 @@ import org.session.libsession.snode.utilities.getRandomElement
 
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.loki.api.utilities.HTTP
+import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.utilities.Broadcaster
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
@@ -17,10 +20,11 @@ import org.session.libsignal.utilities.*
 import java.security.SecureRandom
 
 object SnodeAPI {
-    val database = SnodeConfiguration.shared.storage
-    val broadcaster = SnodeConfiguration.shared.broadcaster
+    val database: LokiAPIDatabaseProtocol
+        get() = SnodeConfiguration.shared.storage
+    val broadcaster: Broadcaster
+        get() = SnodeConfiguration.shared.broadcaster
     val sharedContext = Kovenant.createContext()
-    val messageSendingContext = Kovenant.createContext()
     val messagePollingContext = Kovenant.createContext()
 
     internal var snodeFailureCount: MutableMap<Snode, Int> = mutableMapOf()
@@ -41,7 +45,7 @@ object SnodeAPI {
     internal var powDifficulty = 1
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object Generic : Error("An error occurred.")
         object ClockOutOfSync : Error("The user's clock is out of sync with the service node network.")
         object RandomSnodePoolUpdatingFailed : Error("Failed to update random service node pool.")
@@ -158,7 +162,7 @@ object SnodeAPI {
             val parameters = mapOf( "pubKey" to publicKey )
             return getRandomSnode().bind {
                 invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
-            }.map(SnodeAPI.sharedContext) {
+            }.map(sharedContext) {
                 parseSnodes(it).toSet()
             }.success {
                 database.setSwarm(publicKey, it)
@@ -182,19 +186,12 @@ object SnodeAPI {
 
     fun sendMessage(message: SnodeMessage): Promise<Set<RawResponsePromise>, Exception> {
         val destination = message.recipient
-        fun broadcast(event: String) {
-            val dayInMs: Long = 86400000
-            if (message.ttl != dayInMs && message.ttl != 4 * dayInMs) { return }
-            broadcaster.broadcast(event, message.timestamp)
-        }
-        broadcast("calculatingPoW")
         return retryIfNeeded(maxRetryCount) {
-            getTargetSnodes(destination).map(messageSendingContext) { swarm ->
+            getTargetSnodes(destination).map { swarm ->
                 swarm.map { snode ->
-                    broadcast("sendingMessage")
                     val parameters = message.toJSON()
                     retryIfNeeded(maxRetryCount) {
-                        invoke(Snode.Method.SendMessage, snode, destination, parameters).map(messageSendingContext) { rawResponse ->
+                        invoke(Snode.Method.SendMessage, snode, destination, parameters).map { rawResponse ->
                             val json = rawResponse as? Map<*, *>
                             val powDifficulty = json?.get("difficulty") as? Int
                             if (powDifficulty != null) {

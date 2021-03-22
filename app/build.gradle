@@ -157,8 +157,8 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.2'
 }
 
-def canonicalVersionCode = 143
-def canonicalVersionName = "1.8.0"
+def canonicalVersionCode = 147
+def canonicalVersionName = "1.9.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
@@ -235,7 +235,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard/proguard-dagger.pro',

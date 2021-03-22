@@ -18,7 +18,6 @@ import org.session.libsession.utilities.Conversions
 import org.thoughtcrime.securesms.backup.BackupProtos.*
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.database.*
 import org.session.libsignal.utilities.logging.Log
@@ -91,7 +90,7 @@ object FullBackupExporter {
                         }
                     }
                 }
-                for (preference in IdentityKeyUtil.getBackupRecords(context)) {
+                for (preference in BackupUtil.getBackupRecords(context)) {
                     EventBus.getDefault().post(BackupEvent.createProgress(++count))
                     outputStream.writePreferenceEntry(preference)
                 }

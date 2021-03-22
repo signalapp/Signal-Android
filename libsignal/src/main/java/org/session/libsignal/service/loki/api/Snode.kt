@@ -4,7 +4,7 @@ public class Snode(val address: String, val port: Int, val publicKeySet: KeySet?
 
     val ip: String get() = address.removePrefix("https://")
 
-    internal enum class Method(val rawValue: String) {
+    enum class Method(val rawValue: String) {
         /**
          * Only supported by snode targets.
          */

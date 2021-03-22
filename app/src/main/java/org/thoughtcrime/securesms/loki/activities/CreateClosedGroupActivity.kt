@@ -13,18 +13,18 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.successUi
+import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -104,13 +104,13 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         if (selectedMembers.count() < 1) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
-        if (selectedMembers.count() >= ClosedGroupsProtocolV2.groupSizeLimit) { // Minus one because we're going to include self later
+        if (selectedMembers.count() >= groupSizeLimit) { // Minus one because we're going to include self later
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
         isLoading = true
         loaderContainer.fadeIn()
-        ClosedGroupsProtocolV2.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
+        MessageSender.createClosedGroup(name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
             loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
@@ -128,7 +128,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
 private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
     val intent = Intent(context, ConversationActivity::class.java)
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
+    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
     context.startActivity(intent)
 }

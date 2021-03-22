@@ -29,7 +29,6 @@ class FileServerAPI(public val server: String, userPublicKey: String, userPrivat
          * possible after proof of work has been calculated and the onion request encryption has happened, which takes several seconds.
          */
         public val fileSizeORMultiplier = 2 // TODO: It should be possible to set this to 1.5?
-        val server = "https://file.getsession.org"
         public val fileStorageBucketURL = "https://file-static.lokinet.org"
         // endregion
 

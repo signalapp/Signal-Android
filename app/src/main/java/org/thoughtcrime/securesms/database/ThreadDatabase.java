@@ -30,6 +30,7 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
@@ -596,14 +597,6 @@ public class ThreadDatabase extends Database {
 
   public Reader readerFor(Cursor cursor) {
     return new Reader(cursor);
-  }
-
-  public static class DistributionTypes {
-    public static final int DEFAULT      = 2;
-    public static final int BROADCAST    = 1;
-    public static final int CONVERSATION = 2;
-    public static final int ARCHIVE      = 3;
-    public static final int INBOX_ZERO   = 4;
   }
 
   public class Reader implements Closeable {

@@ -10,7 +10,7 @@ import java.security.SecureRandom
 object MessageWrapper {
 
     // region Types
-    sealed class Error(val description: String) : Exception() {
+    sealed class Error(val description: String) : Exception(description) {
         object FailedToWrapData : Error("Failed to wrap data.")
         object FailedToWrapMessageInEnvelope : Error("Failed to wrap message in envelope.")
         object FailedToWrapEnvelopeInWebSocketMessage : Error("Failed to wrap envelope in web socket message.")

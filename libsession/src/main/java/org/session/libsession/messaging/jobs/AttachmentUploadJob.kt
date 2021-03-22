@@ -8,11 +8,15 @@ import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.DotNetAPI
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
+import org.session.libsignal.service.internal.crypto.PaddingInputStream
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.service.internal.util.Util
 import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory
+import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.logging.Log
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
 
@@ -21,14 +25,14 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     override var failureCount: Int = 0
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object NoAttachment : Error("No such attachment.")
     }
 
     // Settings
     override val maxFailureCount: Int = 20
     companion object {
-        val TAG = AttachmentUploadJob::class.qualifiedName
+        val TAG = AttachmentUploadJob::class.simpleName
         val KEY: String = "AttachmentUploadJob"
 
         val maxFailureCount: Int = 20
@@ -41,46 +45,54 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     override fun execute() {
-        try {
-            val attachmentStream = MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(attachmentID)
-                    ?: return handleFailure(Error.NoAttachment)
+        ThreadUtils.queue {
+            try {
+                val attachment = MessagingConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
+                        ?: return@queue handleFailure(Error.NoAttachment)
 
-            val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
-            val server = openGroup?.server ?: FileServerAPI.server
+                var server = FileServerAPI.shared.server
+                var shouldEncrypt = true
+                val usePadding = false
+                val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
+                openGroup?.let {
+                    server = it.server
+                    shouldEncrypt = false
+                }
 
-            //TODO add some encryption stuff here
-            val isEncryptionRequired = false
-            //val isEncryptionRequired = (server == FileServerAPI.server)
+                val attachmentKey = Util.getSecretBytes(64)
+                val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
+                val dataStream = if (usePadding) PaddingInputStream(attachment.inputStream, attachment.length) else attachment.inputStream
+                val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(paddedLength) else attachment.length
 
-            val attachmentKey = Util.getSecretBytes(64)
-            val outputStreamFactory = if (isEncryptionRequired) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
-            val ciphertextLength = attachmentStream.length
+                val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
+                val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
 
-            val attachmentData = PushAttachmentData(attachmentStream.contentType, attachmentStream.inputStream, ciphertextLength, outputStreamFactory, attachmentStream.listener)
+                val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
+                handleSuccess(attachment, attachmentKey, uploadResult)
 
-            FileServerAPI.shared.uploadAttachment(server, attachmentData)
-
-        } catch (e: java.lang.Exception) {
-            if (e is Error && e == Error.NoAttachment) {
-                this.handlePermanentFailure(e)
-            } else if (e is DotNetAPI.Error && !e.isRetryable) {
-                this.handlePermanentFailure(e)
-            } else {
-                this.handleFailure(e)
+            } catch (e: java.lang.Exception) {
+                if (e is Error && e == Error.NoAttachment) {
+                    this.handlePermanentFailure(e)
+                } else if (e is DotNetAPI.Error && !e.isRetryable) {
+                    this.handlePermanentFailure(e)
+                } else {
+                    this.handleFailure(e)
+                }
             }
         }
     }
 
-    private fun handleSuccess() {
+    private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
         Log.w(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
+        MessagingConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadSucceeded(attachmentID, attachment, attachmentKey, uploadResult)
         MessagingConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
-        //TODO interaction stuff, not sure how to deal with that
     }
 
     private fun handlePermanentFailure(e: Exception) {
         Log.w(TAG, "Attachment upload failed permanently due to error: $this.")
         delegate?.handleJobFailedPermanently(this, e)
+        MessagingConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadFailed(attachmentID)
         failAssociatedMessageSendJob(e)
     }
 
@@ -95,7 +107,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     private fun failAssociatedMessageSendJob(e: Exception) {
         val storage = MessagingConfiguration.shared.storage
         val messageSendJob = storage.getMessageSendJob(messageSendJobID)
-        MessageSender.handleFailedMessageSend(this.message!!, e)
+        MessageSender.handleFailedMessageSend(this.message, e)
         if (messageSendJob != null) {
             storage.markJobAsFailed(messageSendJob)
         }
@@ -119,7 +131,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     override fun getFactoryKey(): String {
-        return AttachmentDownloadJob.KEY
+        return KEY
     }
 
     class Factory: Job.Factory<AttachmentUploadJob> {
