@@ -29,7 +29,9 @@ class VisibleMessage : Message()  {
         fun fromProto(proto: SignalServiceProtos.Content): VisibleMessage? {
             val dataMessage = if (proto.hasDataMessage()) proto.dataMessage else return null
             val result = VisibleMessage()
-            result.syncTarget = dataMessage.syncTarget
+            if (dataMessage.hasSyncTarget()) {
+                result.syncTarget = dataMessage.syncTarget
+            }
             result.text = dataMessage.body
             // Attachments are handled in MessageReceiver
             val quoteProto = if (dataMessage.hasQuote()) dataMessage.quote else null
