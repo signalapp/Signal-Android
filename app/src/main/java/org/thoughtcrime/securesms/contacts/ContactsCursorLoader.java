@@ -224,8 +224,10 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private Cursor getContactsHeaderCursor() {
     MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(getContext());
+    Integer contactCount = recipientDatabase != null ? recipientDatabase.getRegistered().size() : 0;
     contactsHeader.addRow(new Object[] { null,
-                                         getContext().getString(R.string.ContactsCursorLoader_contacts),
+                                         getContext().getString(R.string.ContactsCursorLoader_contacts, contactCount),
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",

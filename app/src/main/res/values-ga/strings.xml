@@ -112,7 +112,7 @@
   <string name="ConfirmIdentityDialog_accept">Glac leis</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Comhráite le deanaí</string>
-  <string name="ContactsCursorLoader_contacts">Teagmhálaithe</string>
+  <string name="ContactsCursorLoader_contacts">Teagmhálaithe (%d)</string>
   <string name="ContactsCursorLoader_groups">Baiclí</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Teachtaireacht %s</string>

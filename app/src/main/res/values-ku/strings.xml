@@ -139,7 +139,7 @@
   <string name="ConfirmIdentityDialog_accept">Baş e</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Gotûbêjên dawî</string>
-  <string name="ContactsCursorLoader_contacts">Navnivîsk</string>
+  <string name="ContactsCursorLoader_contacts">Navnivîsk (%d)</string>
   <string name="ContactsCursorLoader_groups">Kom</string>
   <string name="ContactsCursorLoader_phone_number_search">Li nimreya telefonê bigere</string>
   <string name="ContactsCursorLoader_username_search">Li navê bikarhêner bigere</string>

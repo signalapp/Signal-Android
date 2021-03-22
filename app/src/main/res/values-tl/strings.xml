@@ -132,7 +132,7 @@
   <string name="ConfirmIdentityDialog_accept">Tanggapin</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Mga kamakailang chat</string>
-  <string name="ContactsCursorLoader_contacts">Mga Kontak</string>
+  <string name="ContactsCursorLoader_contacts">Mga Kontak (%d)</string>
   <string name="ContactsCursorLoader_groups">Mga Grupo</string>
   <string name="ContactsCursorLoader_phone_number_search">Maghanap ng numero ng telepono</string>
   <string name="ContactsCursorLoader_username_search">Maghanap ng Username</string>

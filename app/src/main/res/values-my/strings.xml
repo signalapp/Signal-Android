@@ -101,7 +101,7 @@
   <string name="ConfirmIdentityDialog_accept">လက်ခံသည် </string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">လတ်တလော စကားစမြည်ပြောဆိုမှုများ</string>
-  <string name="ContactsCursorLoader_contacts">အဆက်အသွယ်များ</string>
+  <string name="ContactsCursorLoader_contacts">အဆက်အသွယ်များ (%d)</string>
   <string name="ContactsCursorLoader_groups">အဖွဲ့များ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">စာတို %s </string>

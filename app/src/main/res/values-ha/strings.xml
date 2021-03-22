@@ -123,7 +123,7 @@
   <string name="ConfirmIdentityDialog_accept">Yarda</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Sabon hira</string>
-  <string name="ContactsCursorLoader_contacts">Lambobin sadarwa</string>
+  <string name="ContactsCursorLoader_contacts">Lambobin sadarwa (%d)</string>
   <string name="ContactsCursorLoader_groups">Rukunoni.</string>
   <string name="ContactsCursorLoader_phone_number_search">Binciko lambar waya</string>
   <string name="ContactsCursorLoader_username_search">Duba sunan maiamfani</string>

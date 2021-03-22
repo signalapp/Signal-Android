@@ -97,7 +97,7 @@
   <string name="ConfirmIdentityDialog_accept">Qəbul et</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Ən son söhbətlər</string>
-  <string name="ContactsCursorLoader_contacts">Əlaqələr</string>
+  <string name="ContactsCursorLoader_contacts">Əlaqələr (%d)</string>
   <string name="ContactsCursorLoader_groups">Qruplar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s Mesaj</string>
