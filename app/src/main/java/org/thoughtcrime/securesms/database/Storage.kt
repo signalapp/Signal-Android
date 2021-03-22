@@ -44,8 +44,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.service.loki.utilities.prettifiedDescription
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
