@@ -15,7 +15,6 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     // Settings
     override val maxFailureCount: Int = 10
     companion object {
-
         val TAG = MessageReceiveJob::class.simpleName
         val KEY: String = "MessageReceiveJob"
 
