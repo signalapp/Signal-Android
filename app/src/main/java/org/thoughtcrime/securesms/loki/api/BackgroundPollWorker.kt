@@ -7,12 +7,14 @@ import androidx.work.*
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
+import org.session.libsession.messaging.jobs.MessageReceiveJob
+import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.loki.api.SnodeAPI
 import org.session.libsignal.utilities.logging.Log
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -69,20 +71,21 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             // Private chats
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
             val privateChatsPromise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
-                envelopes.forEach {
-                    PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
+                envelopes.map { envelope ->
+                    MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
                 }
             }
-            promises.add(privateChatsPromise)
+            promises.addAll(privateChatsPromise.get())
 
             // Closed groups
-//            ClosedGroupPoller.configureIfNeeded(context)
-//            promises.addAll(ClosedGroupPoller.shared.pollOnce())
+            promises.addAll(ApplicationContext.getInstance(context).closedGroupPoller.pollOnce())
 
             // Open Groups
-            val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
+            val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { (_,chat)->
+                OpenGroup(chat.channel, chat.server, chat.displayName, chat.isDeletable)
+            }
             for (openGroup in openGroups) {
-                val poller = PublicChatPoller(context, openGroup)
+                val poller = OpenGroupPoller(openGroup)
                 promises.add(poller.pollForNewMessages())
             }
 
