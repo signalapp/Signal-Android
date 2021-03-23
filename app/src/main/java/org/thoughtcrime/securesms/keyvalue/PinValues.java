@@ -35,7 +35,7 @@ public final class PinValues extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Collections.emptyList();
+    return Collections.singletonList(PIN_REMINDERS_ENABLED);
   }
 
   public void onEntrySuccess(@NonNull String pin) {
