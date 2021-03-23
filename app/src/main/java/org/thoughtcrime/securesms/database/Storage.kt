@@ -274,12 +274,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun isMessageDuplicated(timestamp: Long, sender: String): Boolean {
-        val database = DatabaseFactory.getMmsSmsDatabase(context)
-        return if (sender.isEmpty()) {
-            database.getMessageForTimestamp(timestamp) != null
-        } else {
-            database.getMessageFor(timestamp, sender) != null
-        }
+        return getReceivedMessageTimestamps().contains(timestamp)
     }
 
     override fun setUserCount(group: Long, server: String, newValue: Int) {

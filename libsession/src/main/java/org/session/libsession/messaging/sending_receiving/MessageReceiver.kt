@@ -52,7 +52,6 @@ object MessageReceiver {
         // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
         // for this issue.
         if (storage.isMessageDuplicated(envelope.timestamp, GroupUtil.doubleEncodeGroupID(envelope.source)) && !isRetry) throw Error.DuplicateMessage
-        storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
         var plaintext: ByteArray? = null
@@ -101,6 +100,7 @@ object MessageReceiver {
         }
         // Don't process the envelope any further if the message has been handled already
         if (storage.isMessageDuplicated(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
+        storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Don't process the envelope any further if the sender is blocked
         if (isBlock(sender!!)) throw Error.SenderBlocked
         // Parse the proto
