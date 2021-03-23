@@ -10,6 +10,11 @@
         <item name="android:navigationBarColor">@color/core_grey_95</item>
     </style>
 
+    <style name="TextSecure.DarkClearNavbarTheme" parent="@style/TextSecure.BaseDarkTheme">
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
+    </style>
+
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
         <item name="android:statusBarColor">@color/core_grey_95</item>
         <item name="android:navigationBarColor">@color/core_grey_95</item>
@@ -19,7 +24,6 @@
     <style name="TextSecure.LightNoActionBar" parent="TextSecure.BaseLightNoActionBar">
         <item name="android:statusBarColor">@color/core_grey_60</item>
     </style>
-
 
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
         <item name="android:statusBarColor">@color/core_grey_60</item>
@@ -42,6 +46,12 @@
 
     <style name="Theme.Signal.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
+    </style>
+
+    <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">
+        <item name="android:windowAnimationStyle">@style/FadeScale</item>
         <item name="android:statusBarColor">@color/core_grey_95</item>
         <item name="android:navigationBarColor">@color/transparent</item>
     </style>
