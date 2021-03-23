@@ -36,10 +36,11 @@ message TypingMessage {
 }
 
 message Content {
-  optional DataMessage          dataMessage          = 1;
-  optional ReceiptMessage       receiptMessage       = 5;
-  optional TypingMessage        typingMessage        = 6;
-  optional ConfigurationMessage configurationMessage = 7;
+  optional DataMessage                dataMessage          = 1;
+  optional ReceiptMessage             receiptMessage       = 5;
+  optional TypingMessage              typingMessage        = 6;
+  optional ConfigurationMessage       configurationMessage = 7;
+  optional DataExtractionNotification dataExtractionNotification = 82;
 }
 
 message ClosedGroupCiphertextMessageWrapper {
@@ -54,6 +55,18 @@ message KeyPair {
   required bytes publicKey  = 1;
   // @required
   required bytes privateKey = 2;
+}
+
+message DataExtractionNotification {
+
+  enum Type {
+    SCREENSHOT  = 1;
+    MEDIA_SAVED = 2; // timestamp
+  }
+
+  // @required
+  required Type   type      = 1;
+  optional uint64 timestamp = 2;
 }
 
 message DataMessage {

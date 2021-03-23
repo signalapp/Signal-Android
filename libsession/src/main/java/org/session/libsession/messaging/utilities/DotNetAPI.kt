@@ -42,7 +42,7 @@ open class DotNetAPI {
     internal enum class HTTPVerb { GET, PUT, POST, DELETE, PATCH }
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object Generic : Error("An error occurred.")
         object InvalidURL : Error("Invalid URL.")
         object ParsingFailed : Error("Invalid file server response.")

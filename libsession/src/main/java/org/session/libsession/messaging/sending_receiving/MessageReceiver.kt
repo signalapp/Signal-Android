@@ -12,7 +12,7 @@ object MessageReceiver {
 
     private val lastEncryptionKeyPairRequest = mutableMapOf<String, Long>()
 
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object DuplicateMessage: Error("Duplicate message.")
         object InvalidMessage: Error("Invalid message.")
         object UnknownMessage: Error("Unknown message type.")
@@ -109,6 +109,7 @@ object MessageReceiver {
         val message: Message = ReadReceipt.fromProto(proto) ?:
                                TypingIndicator.fromProto(proto) ?:
                                ClosedGroupControlMessage.fromProto(proto) ?:
+                               DataExtractionNotification.fromProto(proto) ?:
                                ExpirationTimerUpdate.fromProto(proto) ?:
                                ConfigurationMessage.fromProto(proto) ?:
                                VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage

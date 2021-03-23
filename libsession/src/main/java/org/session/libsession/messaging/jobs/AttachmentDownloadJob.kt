@@ -19,7 +19,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     private val MAX_ATTACHMENT_SIZE = 10 * 1024 * 1024
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object NoAttachment : Error("No such attachment.")
     }
 
