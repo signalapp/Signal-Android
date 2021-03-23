@@ -24,7 +24,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
@@ -44,6 +43,8 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
+import org.session.libsignal.service.loki.utilities.prettifiedDescription
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
