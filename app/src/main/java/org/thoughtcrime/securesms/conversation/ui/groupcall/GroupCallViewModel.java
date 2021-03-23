@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.ui.groupcall;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Objects;
@@ -84,7 +84,7 @@ public class GroupCallViewModel extends ViewModel {
   }
 
   private static boolean isGroupCallCapable(@Nullable Recipient recipient) {
-    return recipient != null && recipient.isActiveGroup() && recipient.isPushV2Group() && FeatureFlags.groupCalling();
+    return recipient != null && recipient.isActiveGroup() && recipient.isPushV2Group() && Build.VERSION.SDK_INT > 19;
   }
 
   public static final class Factory implements ViewModelProvider.Factory {

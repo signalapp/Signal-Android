@@ -257,7 +257,6 @@ import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -865,7 +864,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
       else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
-      if (isActiveV2Group && FeatureFlags.groupCalling()) {
+      if (isActiveV2Group && Build.VERSION.SDK_INT > 19) {
         inflater.inflate(R.menu.conversation_callable_groupv2, menu);
         if (groupCallViewModel != null && Boolean.TRUE.equals(groupCallViewModel.hasActiveGroupCall().getValue())) {
           hideMenuItem(menu, R.id.menu_video_secure);
@@ -2223,7 +2222,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void showGroupCallingTooltip() {
-    if (!FeatureFlags.groupCalling() || !SignalStore.tooltips().shouldShowGroupCallingTooltip() || callingTooltipShown) {
+    if (Build.VERSION.SDK_INT == 19 || !SignalStore.tooltips().shouldShowGroupCallingTooltip() || callingTooltipShown) {
       return;
     }
 

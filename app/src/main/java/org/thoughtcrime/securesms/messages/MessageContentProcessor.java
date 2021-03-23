@@ -229,15 +229,15 @@ public final class MessageContentProcessor {
           }
         }
 
-        if      (isInvalidMessage(message))                                               handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
-        else if (message.isEndSession())                                                  handleEndSessionMessage(content, smsMessageId);
-        else if (message.isGroupV1Update())                                               handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1());
-        else if (message.isExpirationUpdate())                                            handleExpirationUpdate(content, message, smsMessageId, groupId);
-        else if (message.getReaction().isPresent())                                       handleReaction(content, message);
-        else if (message.getRemoteDelete().isPresent())                                   handleRemoteDelete(content, message);
-        else if (isMediaMessage)                                                          handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent())                                           handleTextMessage(content, message, smsMessageId, groupId);
-        else if (FeatureFlags.groupCalling() && message.getGroupCallUpdate().isPresent()) handleGroupCallUpdateMessage(content, message, groupId);
+        if      (isInvalidMessage(message))                                              handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
+        else if (message.isEndSession())                                                 handleEndSessionMessage(content, smsMessageId);
+        else if (message.isGroupV1Update())                                              handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1());
+        else if (message.isExpirationUpdate())                                           handleExpirationUpdate(content, message, smsMessageId, groupId);
+        else if (message.getReaction().isPresent())                                      handleReaction(content, message);
+        else if (message.getRemoteDelete().isPresent())                                  handleRemoteDelete(content, message);
+        else if (isMediaMessage)                                                         handleMediaMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent())                                          handleTextMessage(content, message, smsMessageId, groupId);
+        else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent()) handleGroupCallUpdateMessage(content, message, groupId);
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           handleUnknownGroupMessage(content, message.getGroupContext().get());
@@ -858,7 +858,7 @@ public final class MessageContentProcessor {
       } else if (message.getMessage().isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
-      } else if (FeatureFlags.groupCalling() && message.getMessage().getGroupCallUpdate().isPresent()) {
+      } else if (Build.VERSION.SDK_INT > 19 && message.getMessage().getGroupCallUpdate().isPresent()) {
         handleGroupCallUpdateMessage(content, message.getMessage(), GroupUtil.idFromGroupContext(message.getMessage().getGroupContext()));
       } else if (message.getMessage().isEmptyGroupV2Message()) {
         // Do nothing
