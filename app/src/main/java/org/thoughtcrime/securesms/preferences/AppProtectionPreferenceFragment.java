@@ -13,6 +13,7 @@ import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -254,7 +255,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      new TimeDurationPickerDialog(getContext(), (view, duration) -> {
+      final long minDurationInSeconds = 60;
+
+      TimeDurationPickerDialog timeDurationPickerDialog = new TimeDurationPickerDialog(getContext(), (view, duration) -> {
         if (duration == 0) {
           TextSecurePreferences.setScreenLockTimeout(getContext(), 0);
         } else {
@@ -263,7 +266,21 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         }
 
         initializeScreenLockTimeoutSummary();
-      }, 0).show();
+      }, 0);
+
+      timeDurationPickerDialog.setOnShowListener(dialog -> {
+        long durationInMilliSeconds = TextSecurePreferences.getScreenLockTimeout(getContext()) * 1000L ;
+        timeDurationPickerDialog.getDurationInput().setDuration(durationInMilliSeconds );
+        Button button = timeDurationPickerDialog.getButton(timeDurationPickerDialog.BUTTON_POSITIVE);
+        button.setEnabled(durationInMilliSeconds >= minDurationInSeconds * 1000L || durationInMilliSeconds == 0);
+      });
+
+      timeDurationPickerDialog.getDurationInput().setOnDurationChangeListener((view, durationInMilliSeconds) -> {
+        Button button = timeDurationPickerDialog.getButton(timeDurationPickerDialog.BUTTON_POSITIVE);
+        button.setEnabled(durationInMilliSeconds >= minDurationInSeconds * 1000L || durationInMilliSeconds == 0);
+      });
+
+      timeDurationPickerDialog.show();
 
       return true;
     }
