@@ -68,17 +68,17 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
 
     override fun getMessageForQuote(timestamp: Long, author: Address): Long? {
         val messagingDatabase = DatabaseFactory.getMmsSmsDatabase(context)
-        return messagingDatabase.getMessageFor(timestamp, author)?.id
+        val message = messagingDatabase.getMessageFor(timestamp, author)
+        return message?.id
     }
 
-    override fun getAttachmentsAndLinkPreviewFor(messageID: Long): List<Attachment> {
-        val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
-        return attachmentDatabase.getAttachmentsForMessage(messageID)
+    override fun getAttachmentsAndLinkPreviewFor(mmsId: Long): List<Attachment> {
+        return DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(mmsId)
     }
 
-    override fun getMessageBodyFor(messageID: Long): String {
-        val messagingDatabase = DatabaseFactory.getSmsDatabase(context)
-        return messagingDatabase.getMessage(messageID).body
+    override fun getMessageBodyFor(timestamp: Long, author: String): String {
+        val messagingDatabase = DatabaseFactory.getMmsSmsDatabase(context)
+        return messagingDatabase.getMessageFor(timestamp, author)!!.body
     }
 
     override fun getAttachmentIDsFor(messageID: Long): List<Long> {

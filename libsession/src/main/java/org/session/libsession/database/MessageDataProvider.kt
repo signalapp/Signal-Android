@@ -32,8 +32,8 @@ interface MessageDataProvider {
 
     // Quotes
     fun getMessageForQuote(timestamp: Long, author: Address): Long?
-    fun getAttachmentsAndLinkPreviewFor(messageID: Long): List<Attachment>
-    fun getMessageBodyFor(messageID: Long): String
+    fun getAttachmentsAndLinkPreviewFor(mmsId: Long): List<Attachment>
+    fun getMessageBodyFor(timestamp: Long, author: String): String
 
     fun getAttachmentIDsFor(messageID: Long): List<Long>
     fun getLinkPreviewAttachmentIDFor(messageID: Long): Long?

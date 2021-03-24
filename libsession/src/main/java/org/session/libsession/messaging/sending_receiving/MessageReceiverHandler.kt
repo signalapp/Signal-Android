@@ -154,8 +154,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         val author = Address.fromSerialized(quote.author)
         val messageID = MessagingConfiguration.shared.messageDataProvider.getMessageForQuote(quote.id, author)
         if (messageID != null) {
-            val attachmentsWithLinkPreview = MessagingConfiguration.shared.messageDataProvider.getAttachmentsAndLinkPreviewFor(messageID)
-            quoteModel = QuoteModel(quote.id, author, MessagingConfiguration.shared.messageDataProvider.getMessageBodyFor(messageID), false, attachmentsWithLinkPreview)
+            val attachments = MessagingConfiguration.shared.messageDataProvider.getAttachmentsAndLinkPreviewFor(messageID)
+            quoteModel = QuoteModel(quote.id, author, MessagingConfiguration.shared.messageDataProvider.getMessageBodyFor(quote.id, quote.author), false, attachments)
         } else {
             quoteModel = QuoteModel(quote.id, author, quote.text, true, PointerAttachment.forPointers(proto.dataMessage.quote.attachmentsList))
         }

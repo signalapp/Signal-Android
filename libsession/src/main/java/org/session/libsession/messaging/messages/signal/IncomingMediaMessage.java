@@ -72,7 +72,7 @@ public class IncomingMediaMessage {
                                           Optional<QuoteModel> quote,
                                           Optional<List<LinkPreview>> linkPreviews)
   {
-    return new IncomingMediaMessage(from, message.getReceivedTimestamp(), -1, expiresIn, false,
+    return new IncomingMediaMessage(from, message.getSentTimestamp(), -1, expiresIn, false,
             false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews);
   }
 
