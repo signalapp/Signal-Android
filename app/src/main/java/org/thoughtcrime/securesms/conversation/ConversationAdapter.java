@@ -595,7 +595,12 @@ public class ConversationAdapter
   }
 
   public @Nullable ConversationMessage getLastVisibleConversationMessage(int position) {
-    return getItem(position - ((hasFooter() && position == getItemCount() - 1) ? 1 : 0));
+    try {
+      return getItem(position - ((hasFooter() && position == getItemCount() - 1) ? 1 : 0));
+    } catch (IndexOutOfBoundsException e) {
+      Log.w(TAG, "Race condition changed size of conversation", e);
+      return null;
+    }
   }
 
   public void setMessageRequestAccepted(boolean messageRequestAccepted) {
