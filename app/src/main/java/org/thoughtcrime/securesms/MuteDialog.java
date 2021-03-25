@@ -38,10 +38,10 @@ public class MuteDialog extends AlertDialog {
 
         switch (which) {
           case 0:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1);  break;
-          case 1:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(2);  break;
+          case 1:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(8);  break;
           case 2:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1);   break;
           case 3:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7);   break;
-          case 4:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365); break;
+          case 4:  muteUntil = Long.MAX_VALUE;                                           break;
           default: muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1);  break;
         }
 

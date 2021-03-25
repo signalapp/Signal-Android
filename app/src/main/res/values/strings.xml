@@ -709,6 +709,7 @@
     <string name="ManageGroupActivity_mentions">Mentions</string>
     <string name="ManageGroupActivity_chat_wallpaper">Chat wallpaper</string>
     <string name="ManageGroupActivity_until_s">Until %1$s</string>
+    <string name="ManageGroupActivity_always">Always</string>
     <string name="ManageGroupActivity_off">Off</string>
     <string name="ManageGroupActivity_on">On</string>
     <string name="ManageGroupActivity_view_all_members">View all members</string>
@@ -766,6 +767,7 @@
     <string name="ManageRecipientActivity_mute_notifications">Mute notifications</string>
     <string name="ManageRecipientActivity_custom_notifications">Custom notifications</string>
     <string name="ManageRecipientActivity_until_s">Until %1$s</string>
+    <string name="ManageRecipientActivity_always">Always</string>
     <string name="ManageRecipientActivity_off">Off</string>
     <string name="ManageRecipientActivity_on">On</string>
     <string name="ManageRecipientActivity_add_to_a_group">Add to a group</string>
@@ -2147,10 +2149,10 @@
     <string name="arrays__use_custom">Use custom</string>
 
     <string name="arrays__mute_for_one_hour">Mute for 1 hour</string>
-    <string name="arrays__mute_for_two_hours">Mute for 2 hours</string>
+    <string name="arrays__mute_for_eight_hours">Mute for 8 hours</string>
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
-    <string name="arrays__mute_for_one_year">Mute for 1 year</string>
+    <string name="arrays__always">Always</string>
 
     <string name="arrays__settings_default">Settings default</string>
     <string name="arrays__enabled">Enabled</string>

@@ -333,10 +333,14 @@ public class ManageGroupFragment extends LoggingFragment {
       muteNotificationsUntilLabel.setVisibility(muteState.isMuted() ? View.VISIBLE : View.GONE);
 
       if (muteState.isMuted()) {
-        muteNotificationsUntilLabel.setText(getString(R.string.ManageGroupActivity_until_s,
-                                                      DateUtils.getTimeString(requireContext(),
-                                                                              Locale.getDefault(),
-                                                                              muteState.getMutedUntil())));
+        if (muteState.getMutedUntil() == Long.MAX_VALUE) {
+          muteNotificationsUntilLabel.setText(R.string.ManageGroupActivity_always);
+        } else {
+          muteNotificationsUntilLabel.setText(getString(R.string.ManageGroupActivity_until_s,
+                                                        DateUtils.getTimeString(requireContext(),
+                                                                                Locale.getDefault(),
+                                                                                muteState.getMutedUntil())));
+        }
       }
     });
 
