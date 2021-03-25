@@ -41,7 +41,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ReadReceipt -> handleReadReceipt(message)
         is TypingIndicator -> handleTypingIndicator(message)
         is ClosedGroupControlMessage -> handleClosedGroupControlMessage(message)
-        is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message, proto)
+        is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
         is ConfigurationMessage -> handleConfigurationMessage(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
@@ -80,25 +80,12 @@ fun MessageReceiver.cancelTypingIndicatorsIfNeeded(senderPublicKey: String) {
     SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID, address, 1)
 }
 
-private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
+private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate) {
     if (message.duration!! > 0) {
-        setExpirationTimer(message, proto)
+        SSKEnvironment.shared.messageExpirationManager.setExpirationTimer(message)
     } else {
-        disableExpirationTimer(message, proto)
+        SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(message)
     }
-}
-
-fun MessageReceiver.setExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
-    val id = message.id
-    val duration = message.duration!!
-    val senderPublicKey = message.sender!!
-    SSKEnvironment.shared.messageExpirationManager.setExpirationTimer(id, duration, senderPublicKey, proto)
-}
-
-fun MessageReceiver.disableExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
-    val id = message.id
-    val senderPublicKey = message.sender!!
-    SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(id, senderPublicKey, proto)
 }
 
 private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMessage) {
