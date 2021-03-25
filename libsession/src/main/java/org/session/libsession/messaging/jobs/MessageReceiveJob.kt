@@ -18,6 +18,8 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         val TAG = MessageReceiveJob::class.simpleName
         val KEY: String = "MessageReceiveJob"
 
+        private val RECEIVE_LOCK = Object()
+
         //keys used for database storage purpose
         private val KEY_DATA = "data"
         private val KEY_IS_BACKGROUND_POLL = "is_background_poll"
@@ -34,7 +36,9 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         try {
             val isRetry: Boolean = failureCount != 0
             val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID, isRetry)
-            MessageReceiver.handle(message, proto, this.openGroupID)
+            synchronized(RECEIVE_LOCK) {
+                MessageReceiver.handle(message, proto, this.openGroupID)
+            }
             this.handleSuccess()
             deferred.resolve(Unit)
         } catch (e: Exception) {
