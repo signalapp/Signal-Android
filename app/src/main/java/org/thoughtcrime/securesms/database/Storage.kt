@@ -131,7 +131,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 val signalServiceAttachments = attachments.mapNotNull {
                     it.toSignalPointer()
                 }
-                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
+                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, message.expiry * 1000L, group, signalServiceAttachments, quote, linkPreviews)
                 mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp ?: 0)
             }
@@ -156,7 +156,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 val textMessage = OutgoingTextMessage.from(message, Recipient.from(context, targetAddress, false))
                 smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
             } else {
-                val textMessage = IncomingTextMessage.from(message, senderAddress, group, senderRecipient.expireMessages * 1000L)
+                val textMessage = IncomingTextMessage.from(message, senderAddress, group, message.expiry * 1000L)
                 val encrypted = IncomingEncryptedMessage(textMessage, textMessage.messageBody)
                 smsDatabase.insertMessageInbox(encrypted, message.sentTimestamp ?: 0)
             }
