@@ -30,7 +30,6 @@ import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
@@ -95,7 +94,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long? {
         var messageID: Long? = null
         val senderAddress = Address.fromSerialized(message.sender!!)
-        val senderRecipient = Recipient.from(context, senderAddress, false)
         val group: Optional<SignalServiceGroup> = when {
             openGroupID != null -> Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
             groupPublicKey != null -> {
@@ -107,23 +105,22 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val pointerAttachments = attachments.mapNotNull {
             it.toSignalAttachment()
         }
+        val targetAddress = if (senderAddress.serialize() == getUserPublicKey() && message.syncTarget != null) {
+            Address.fromSerialized(message.syncTarget!!)
+        } else if (group.isPresent) {
+            Address.fromSerialized(GroupUtil.getEncodedId(group.get()))
+        } else {
+            senderAddress
+        }
+        val targetRecipient = Recipient.from(context, targetAddress, false)
+
         if (message.isMediaMessage() || attachments.isNotEmpty()) {
             val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val insertResult = if (message.sender == getUserPublicKey()) {
-                val targetAddress = if (message.syncTarget != null) {
-                    Address.fromSerialized(message.syncTarget!!)
-                } else {
-                    if (group.isPresent) {
-                        Address.fromSerialized(GroupUtil.getEncodedId(group.get()))
-                    } else {
-                        Log.d("Loki", "Cannot handle message from self.")
-                        return null
-                    }
-                }
 
-                val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), pointerAttachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
+                val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointerAttachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
                 mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
@@ -131,7 +128,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 val signalServiceAttachments = attachments.mapNotNull {
                     it.toSignalPointer()
                 }
-                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, message.expiry * 1000L, group, signalServiceAttachments, quote, linkPreviews)
+                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, targetRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
                 mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp ?: 0)
             }
@@ -143,20 +140,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
             val insertResult = if (message.sender == getUserPublicKey()) {
-                val targetAddress = if (message.syncTarget != null) {
-                    Address.fromSerialized(message.syncTarget!!)
-                } else {
-                    if (group.isPresent) {
-                        Address.fromSerialized(GroupUtil.getEncodedId(group.get()))
-                    } else {
-                        Log.d("Loki", "Cannot handle message from self.")
-                        return null
-                    }
-                }
-                val textMessage = OutgoingTextMessage.from(message, Recipient.from(context, targetAddress, false))
+                val textMessage = OutgoingTextMessage.from(message, targetRecipient)
                 smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
             } else {
-                val textMessage = IncomingTextMessage.from(message, senderAddress, group, message.expiry * 1000L)
+                val textMessage = IncomingTextMessage.from(message, senderAddress, group, targetRecipient.expireMessages * 1000L)
                 val encrypted = IncomingEncryptedMessage(textMessage, textMessage.messageBody)
                 smsDatabase.insertMessageInbox(encrypted, message.sentTimestamp ?: 0)
             }

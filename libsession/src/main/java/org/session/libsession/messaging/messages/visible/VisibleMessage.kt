@@ -20,7 +20,6 @@ class VisibleMessage : Message()  {
     var linkPreview: LinkPreview? = null
     var contact: Contact? = null
     var profile: Profile? = null
-    var expiry: Int = 0
 
     override val isSelfSendValid: Boolean = true
 
@@ -48,9 +47,6 @@ class VisibleMessage : Message()  {
             // TODO Contact
             val profile = Profile.fromProto(dataMessage)
             profile?.let { result.profile = profile }
-            if (dataMessage.hasExpireTimer()) {
-                result.expiry = dataMessage.expireTimer
-            }
             return  result
         }
     }
