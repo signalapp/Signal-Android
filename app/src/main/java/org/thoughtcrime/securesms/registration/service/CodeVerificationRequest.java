@@ -238,7 +238,7 @@ public final class CodeVerificationRequest {
     }
 
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    RecipientId       selfId            = recipientDatabase.getOrInsertFromE164(credentials.getE164number());
+    RecipientId       selfId            = Recipient.externalPush(context, uuid, credentials.getE164number(), true).getId();
 
     recipientDatabase.setProfileSharing(selfId, true);
     recipientDatabase.markRegisteredOrThrow(selfId, uuid);
