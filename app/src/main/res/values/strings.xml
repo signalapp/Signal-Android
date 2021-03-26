@@ -2211,6 +2211,7 @@
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__silent">Silent</string>
+    <string name="preferences__default">Default</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
     <string name="preferences__never">Never</string>
     <string name="preferences__one_time">One time</string>
