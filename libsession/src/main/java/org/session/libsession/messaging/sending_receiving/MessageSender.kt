@@ -178,8 +178,8 @@ object MessageSender {
                         if (shouldNotify) {
                             val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
                             JobQueue.shared.add(notifyPNServerJob)
-                            deferred.resolve(Unit)
                         }
+                        deferred.resolve(Unit)
                     }
                     promise.fail {
                         errorCount += 1
@@ -336,7 +336,7 @@ object MessageSender {
     }
 
     @JvmStatic
-    fun explicitLeave(groupPublicKey: String): Promise<Unit, Exception> {
-        return leave(groupPublicKey, false)
+    fun explicitLeave(groupPublicKey: String, notifyUser: Boolean): Promise<Unit, Exception> {
+        return leave(groupPublicKey, notifyUser)
     }
 }

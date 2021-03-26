@@ -343,7 +343,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                         isClosedGroup = false
                     }
                     if (isClosedGroup) {
-                        MessageSender.explicitLeave(groupPublicKey!!)
+                        MessageSender.explicitLeave(groupPublicKey!!, false)
                     } else {
                         Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                         return@launch

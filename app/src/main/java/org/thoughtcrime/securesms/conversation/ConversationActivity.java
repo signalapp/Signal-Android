@@ -1011,7 +1011,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       try {
         if (isClosedGroup) {
-          MessageSender.explicitLeave(groupPublicKey);
+          MessageSender.explicitLeave(groupPublicKey, true);
           initializeEnabledCheck();
         } else {
           Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
