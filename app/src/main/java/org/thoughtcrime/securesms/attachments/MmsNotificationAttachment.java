@@ -20,6 +20,12 @@ public class MmsNotificationAttachment extends Attachment {
     return null;
   }
 
+  @Nullable
+  @Override
+  public Uri getPublicUri() {
+    return null;
+  }
+
   private static int getTransferStateFromStatus(int status) {
     if (status == MmsDatabase.Status.DOWNLOAD_INITIALIZED ||
         status == MmsDatabase.Status.DOWNLOAD_NO_CONNECTIVITY)

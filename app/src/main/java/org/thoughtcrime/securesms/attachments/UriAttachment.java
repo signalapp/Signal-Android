@@ -59,6 +59,12 @@ public class UriAttachment extends Attachment {
   }
 
   @Override
+  @Nullable
+  public Uri getPublicUri() {
+    return null;
+  }
+
+  @Override
   public boolean equals(Object other) {
     return other != null && other instanceof UriAttachment && ((UriAttachment) other).dataUri.equals(this.dataUri);
   }

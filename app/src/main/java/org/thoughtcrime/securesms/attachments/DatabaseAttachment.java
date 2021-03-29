@@ -65,6 +65,16 @@ public class DatabaseAttachment extends Attachment {
     }
   }
 
+  @Override
+  @Nullable
+  public Uri getPublicUri() {
+    if (hasData) {
+      return PartAuthority.getAttachmentPublicUri(getUri());
+    } else {
+      return null;
+    }
+  }
+
   public AttachmentId getAttachmentId() {
     return attachmentId;
   }

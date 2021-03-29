@@ -55,6 +55,11 @@ public abstract class Slide {
     return attachment.getUri();
   }
 
+  @Nullable
+  public Uri getPublicUri() {
+    return attachment.getPublicUri();
+  }
+
   @NonNull
   public Optional<String> getBody() {
     return Optional.absent();
