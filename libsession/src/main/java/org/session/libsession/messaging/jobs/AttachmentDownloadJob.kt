@@ -34,41 +34,44 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     override fun execute() {
-        val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
-        messageDataProvider.getDatabaseAttachment(attachmentID)
-        val attachment = messageDataProvider.getDatabaseAttachment(attachmentID) ?: return handleFailure(Error.NoAttachment)
-        messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
-        val tempFile = createTempFile()
-        val handleFailure: (java.lang.Exception) -> Unit = { exception ->
-            tempFile.delete()
-            if(exception is Error && exception == Error.NoAttachment) {
-                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
-                this.handlePermanentFailure(exception)
-            } else if (exception is DotNetAPI.Error && exception == DotNetAPI.Error.ParsingFailed) {
-                // No need to retry if the response is invalid. Most likely this means we (incorrectly)
-                // got a "Cannot GET ..." error from the file server.
-                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
-                this.handlePermanentFailure(exception)
-            } else {
-                this.handleFailure(exception)
-            }
-        }
         try {
-            FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
-        } catch (e: Exception) {
-            return handleFailure(e)
-        }
+            val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
+            val attachment = messageDataProvider.getDatabaseAttachment(attachmentID) ?: return handleFailure(Error.NoAttachment)
+            messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
+            val tempFile = createTempFile()
+            val handleFailure: (java.lang.Exception) -> Unit = { exception ->
+                tempFile.delete()
+                if(exception is Error && exception == Error.NoAttachment) {
+                    MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                    this.handlePermanentFailure(exception)
+                } else if (exception is DotNetAPI.Error && exception == DotNetAPI.Error.ParsingFailed) {
+                    // No need to retry if the response is invalid. Most likely this means we (incorrectly)
+                    // got a "Cannot GET ..." error from the file server.
+                    MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                    this.handlePermanentFailure(exception)
+                } else {
+                    this.handleFailure(exception)
+                }
+            }
+            try {
+                FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
+            } catch (e: Exception) {
+                return handleFailure(e)
+            }
 
-        // DECRYPTION
+            // DECRYPTION
 
-        // Assume we're retrieving an attachment for an open group server if the digest is not set
-        val stream = if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
+            // Assume we're retrieving an attachment for an open group server if the digest is not set
+            val stream = if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
             else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
 
-        messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)
+            messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)
 
-        tempFile.delete()
-        handleSuccess()
+            tempFile.delete()
+            handleSuccess()
+        } catch (e: Exception) {
+            handleFailure(e)
+        }
     }
 
     private fun handleSuccess() {

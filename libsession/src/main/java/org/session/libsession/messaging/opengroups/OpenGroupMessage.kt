@@ -42,7 +42,8 @@ data class OpenGroupMessage(
             }()
             // Message
             val displayname = storage.getUserDisplayName() ?: "Anonymous"
-            val body = message.text ?: message.sentTimestamp.toString() // The back-end doesn't accept messages without a body so we use this as a workaround
+            val text = message.text
+            val body = if (text.isNullOrEmpty()) message.sentTimestamp.toString() else text // The back-end doesn't accept messages without a body so we use this as a workaround
             val result = OpenGroupMessage(null, userPublicKey, displayname, body, message.sentTimestamp!!, OpenGroupAPI.openGroupMessageType, quote, mutableListOf(), null, null, 0)
             // Link preview
             val linkPreview = message.linkPreview

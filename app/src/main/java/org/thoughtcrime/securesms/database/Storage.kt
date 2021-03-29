@@ -182,8 +182,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {
         val job = DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID) ?: return
-        job.delegate = JobQueue.shared
-        job.execute()
+        JobQueue.shared.add(job)
     }
 
     override fun isJobCanceled(job: Job): Boolean {
