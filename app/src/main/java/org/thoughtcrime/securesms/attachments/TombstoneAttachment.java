@@ -23,4 +23,9 @@ public class TombstoneAttachment extends Attachment {
   public @Nullable Uri getUri() {
     return null;
   }
+
+  @Override
+  public @Nullable Uri getPublicUri() {
+    return null;
+  }
 }
