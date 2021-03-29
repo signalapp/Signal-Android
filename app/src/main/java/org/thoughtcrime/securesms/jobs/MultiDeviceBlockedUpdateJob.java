@@ -31,7 +31,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
   public static final String KEY = "MultiDeviceBlockedUpdateJob";
 
   @SuppressWarnings("unused")
-  private static final String TAG = MultiDeviceBlockedUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceBlockedUpdateJob.class);
 
   public MultiDeviceBlockedUpdateJob() {
     this(new Job.Parameters.Builder()

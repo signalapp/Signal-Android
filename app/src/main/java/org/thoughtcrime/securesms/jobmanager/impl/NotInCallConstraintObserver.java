@@ -5,12 +5,13 @@ import androidx.annotation.NonNull;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
 public final class NotInCallConstraintObserver implements ConstraintObserver {
 
-  private static final String REASON = NotInCallConstraintObserver.class.getSimpleName();
+  private static final String REASON = Log.tag(NotInCallConstraintObserver.class);
 
   @Override
   public void register(@NonNull Notifier notifier) {

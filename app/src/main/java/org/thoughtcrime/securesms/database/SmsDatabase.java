@@ -82,7 +82,7 @@ import java.util.UUID;
  */
 public class SmsDatabase extends MessageDatabase {
 
-  private static final String TAG = SmsDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(SmsDatabase.class);
 
   public  static final String TABLE_NAME         = "sms";
   public  static final String PERSON             = "person";

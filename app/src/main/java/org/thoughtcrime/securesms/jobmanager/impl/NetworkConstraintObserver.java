@@ -9,11 +9,12 @@ import android.net.ConnectivityManager;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
 public class NetworkConstraintObserver implements ConstraintObserver {
 
-  private static final String REASON = NetworkConstraintObserver.class.getSimpleName();
+  private static final String REASON = Log.tag(NetworkConstraintObserver.class);
 
   private final Application application;
 

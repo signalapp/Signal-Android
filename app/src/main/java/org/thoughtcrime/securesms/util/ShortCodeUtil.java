@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class ShortCodeUtil {
 
-  private static final String TAG = ShortCodeUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(ShortCodeUtil.class);
 
   private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
     add("NU");

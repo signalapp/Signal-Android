@@ -34,7 +34,7 @@ public class SendReadReceiptJob extends BaseJob {
 
   public static final String KEY = "SendReadReceiptJob";
 
-  private static final String TAG = SendReadReceiptJob.class.getSimpleName();
+  private static final String TAG = Log.tag(SendReadReceiptJob.class);
 
   static final int MAX_TIMESTAMPS = 500;
 

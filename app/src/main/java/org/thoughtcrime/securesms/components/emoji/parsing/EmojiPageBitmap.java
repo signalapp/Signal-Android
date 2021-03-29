@@ -23,7 +23,7 @@ import java.util.concurrent.Callable;
 
 public class EmojiPageBitmap {
 
-  private static final String TAG = EmojiPageBitmap.class.getSimpleName();
+  private static final String TAG = Log.tag(EmojiPageBitmap.class);
 
   private final Context        context;
   private final EmojiPageModel model;

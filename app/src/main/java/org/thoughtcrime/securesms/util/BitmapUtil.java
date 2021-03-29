@@ -41,7 +41,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 
 public class BitmapUtil {
 
-  private static final String TAG = BitmapUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(BitmapUtil.class);
 
   private static final int MAX_COMPRESSION_QUALITY          = 90;
   private static final int MIN_COMPRESSION_QUALITY          = 45;

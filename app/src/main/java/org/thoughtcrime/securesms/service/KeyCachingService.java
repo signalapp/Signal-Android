@@ -58,7 +58,7 @@ import java.util.concurrent.TimeUnit;
 
 public class KeyCachingService extends Service {
 
-  private static final String TAG = KeyCachingService.class.getSimpleName();
+  private static final String TAG = Log.tag(KeyCachingService.class);
 
   public static final int SERVICE_RUNNING_ID = 4141;
 

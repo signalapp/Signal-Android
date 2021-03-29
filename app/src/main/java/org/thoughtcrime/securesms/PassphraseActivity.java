@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
  */
 public abstract class PassphraseActivity extends BaseActivity {
 
-  private static final String TAG = PassphraseActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(PassphraseActivity.class);
 
   private KeyCachingService keyCachingService;
   private MasterSecret masterSecret;

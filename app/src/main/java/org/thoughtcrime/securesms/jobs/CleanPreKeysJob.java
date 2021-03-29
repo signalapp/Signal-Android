@@ -24,7 +24,7 @@ public class CleanPreKeysJob extends BaseJob {
 
   public static final String KEY = "CleanPreKeysJob";
 
-  private static final String TAG = CleanPreKeysJob.class.getSimpleName();
+  private static final String TAG = Log.tag(CleanPreKeysJob.class);
 
   private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(30);
 

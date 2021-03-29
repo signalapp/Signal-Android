@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class IncomingRinger {
 
-  private static final String TAG = IncomingRinger.class.getSimpleName();
+  private static final String TAG = Log.tag(IncomingRinger.class);
 
   private static final long[] VIBRATE_PATTERN = {0, 1000, 1000};
 

@@ -29,7 +29,7 @@ import okhttp3.Response;
 
 public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
 
-  private static final String TAG = GiphyLoader.class.getSimpleName();
+  private static final String TAG = Log.tag(GiphyLoader.class);
 
   public static int PAGE_SIZE = 100;
 

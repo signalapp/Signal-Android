@@ -97,7 +97,7 @@ import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
 public class MmsDatabase extends MessageDatabase {
 
-  private static final String TAG = MmsDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsDatabase.class);
 
   public  static final String TABLE_NAME         = "mms";
           static final String DATE_SENT          = "date";

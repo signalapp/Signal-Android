@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
@@ -28,7 +29,7 @@ import static android.app.Activity.RESULT_OK;
 public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   @SuppressWarnings("unused")
-  private static final String TAG = NotificationsPreferenceFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(NotificationsPreferenceFragment.class);
 
   @Override
   public void onCreate(Bundle paramBundle) {

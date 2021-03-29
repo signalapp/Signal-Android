@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -37,7 +38,7 @@ import java.util.List;
 public class PreKeyUtil {
 
   @SuppressWarnings("unused")
-  private static final String TAG = PreKeyUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(PreKeyUtil.class);
 
   private static final int BATCH_SIZE = 100;
 

@@ -18,7 +18,7 @@ import okhttp3.OkHttpClient;
 
 class ChunkedImageUrlFetcher implements DataFetcher<InputStream> {
 
-  private static final String TAG = ChunkedImageUrlFetcher.class.getSimpleName();
+  private static final String TAG = Log.tag(ChunkedImageUrlFetcher.class);
 
   private final OkHttpClient    client;
   private final ChunkedImageUrl url;

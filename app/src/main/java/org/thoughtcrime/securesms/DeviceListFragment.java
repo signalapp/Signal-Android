@@ -40,7 +40,7 @@ public class DeviceListFragment extends ListFragment
                ListView.OnItemClickListener, Button.OnClickListener
 {
 
-  private static final String TAG = DeviceListFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(DeviceListFragment.class);
 
   private SignalServiceAccountManager accountManager;
   private Locale                      locale;

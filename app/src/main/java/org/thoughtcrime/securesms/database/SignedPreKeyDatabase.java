@@ -24,7 +24,7 @@ import java.util.List;
 
 public class SignedPreKeyDatabase extends Database {
 
-  private static final String TAG = SignedPreKeyDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(SignedPreKeyDatabase.class);
 
   public static final String TABLE_NAME = "signed_prekeys";
 

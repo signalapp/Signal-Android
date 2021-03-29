@@ -39,7 +39,7 @@ import java.util.concurrent.locks.LockSupport;
  * @CreateDate: 2019/3/27
  */
 public abstract class FrameSeqDecoder<R extends Reader, W extends Writer> {
-    private static final String TAG = FrameSeqDecoder.class.getSimpleName();
+    private static final String TAG = Log.tag(FrameSeqDecoder.class);
     private final int taskId;
 
     private final Loader mLoader;

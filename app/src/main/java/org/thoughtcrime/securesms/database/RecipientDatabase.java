@@ -90,7 +90,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RecipientDatabase extends Database {
 
-  private static final String TAG = RecipientDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(RecipientDatabase.class);
 
           static final String TABLE_NAME                = "recipient";
   public  static final String ID                        = "_id";

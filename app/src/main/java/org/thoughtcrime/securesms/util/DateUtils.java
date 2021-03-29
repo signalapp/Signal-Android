@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 public class DateUtils extends android.text.format.DateUtils {
 
   @SuppressWarnings("unused")
-  private static final String                        TAG                = DateUtils.class.getSimpleName();
+  private static final String                        TAG                = Log.tag(DateUtils.class);
   private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT        = new ThreadLocal<>();
   private static final ThreadLocal<SimpleDateFormat> BRIEF_EXACT_FORMAT = new ThreadLocal<>();
 

@@ -45,7 +45,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
     implements Button.OnClickListener, ScanListener, DeviceLinkFragment.LinkClickedListener
 {
 
-  private static final String TAG = DeviceActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(DeviceActivity.class);
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();

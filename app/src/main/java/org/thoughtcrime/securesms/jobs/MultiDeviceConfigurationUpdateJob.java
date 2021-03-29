@@ -23,7 +23,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceConfigurationUpdateJob";
 
-  private static final String TAG = MultiDeviceConfigurationUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceConfigurationUpdateJob.class);
 
   private static final String KEY_READ_RECEIPTS_ENABLED                    = "read_receipts_enabled";
   private static final String KEY_TYPING_INDICATORS_ENABLED                = "typing_indicators_enabled";

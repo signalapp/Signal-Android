@@ -19,7 +19,7 @@ import java.io.InputStream;
 
 public class AttachmentRegionDecoder implements ImageRegionDecoder {
 
-  private static final String TAG = AttachmentRegionDecoder.class.getSimpleName();
+  private static final String TAG = Log.tag(AttachmentRegionDecoder.class);
 
   private SkiaImageRegionDecoder passthrough;
 

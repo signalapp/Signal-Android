@@ -33,7 +33,7 @@ import java.util.Objects;
 
 public class BackupUtil {
 
-  private static final String TAG = BackupUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(BackupUtil.class);
 
   public static final int PASSPHRASE_LENGTH = 30;
 

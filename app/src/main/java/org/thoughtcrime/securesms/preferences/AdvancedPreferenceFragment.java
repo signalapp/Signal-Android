@@ -45,7 +45,7 @@ import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedE
 import java.io.IOException;
 
 public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
-  private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(AdvancedPreferenceFragment.class);
 
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";

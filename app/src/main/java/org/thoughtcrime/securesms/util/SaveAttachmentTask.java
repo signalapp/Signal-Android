@@ -36,7 +36,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
-  private static final String TAG = SaveAttachmentTask.class.getSimpleName();
+  private static final String TAG = Log.tag(SaveAttachmentTask.class);
 
           static final int SUCCESS              = 0;
   private static final int FAILURE              = 1;

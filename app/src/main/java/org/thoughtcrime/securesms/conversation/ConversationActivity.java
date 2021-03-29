@@ -324,7 +324,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
 
-  private static final String TAG = ConversationActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(ConversationActivity.class);
 
   private static final String STATE_REACT_WITH_ANY_PAGE = "STATE_REACT_WITH_ANY_PAGE";
 

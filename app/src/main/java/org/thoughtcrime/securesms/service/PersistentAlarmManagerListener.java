@@ -11,7 +11,7 @@ import org.signal.core.util.logging.Log;
 
 public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 
-  private static final String TAG = PersistentAlarmManagerListener.class.getSimpleName();
+  private static final String TAG = Log.tag(PersistentAlarmManagerListener.class);
 
   protected abstract long getNextScheduledExecutionTime(Context context);
   protected abstract long onAlarm(Context context, long scheduledTime);

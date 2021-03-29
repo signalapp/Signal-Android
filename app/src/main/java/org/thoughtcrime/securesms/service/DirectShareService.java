@@ -44,7 +44,7 @@ import java.util.concurrent.ExecutionException;
 public class DirectShareService extends ChooserTargetService {
 
 
-  private static final String TAG         = DirectShareService.class.getSimpleName();
+  private static final String TAG         = Log.tag(DirectShareService.class);
   private static final int    MAX_TARGETS = 10;
 
   @Override

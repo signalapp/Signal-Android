@@ -8,6 +8,8 @@ import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.util.ContentLengthInputStream;
 
+import org.signal.core.util.logging.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -22,7 +24,7 @@ import okhttp3.ResponseBody;
  */
 class OkHttpStreamFetcher implements DataFetcher<InputStream> {
 
-  private static final String TAG = OkHttpStreamFetcher.class.getSimpleName();
+  private static final String TAG = Log.tag(OkHttpStreamFetcher.class);
 
   private final OkHttpClient client;
   private final GlideUrl     url;

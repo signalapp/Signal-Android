@@ -143,7 +143,7 @@ import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
     RecipientForeverObserver
 {
-  private static final String TAG = ConversationItem.class.getSimpleName();
+  private static final String TAG = Log.tag(ConversationItem.class);
 
   private static final int MAX_MEASURE_CALLS       = 3;
   private static final int MAX_BODY_DISPLAY_LENGTH = 1000;

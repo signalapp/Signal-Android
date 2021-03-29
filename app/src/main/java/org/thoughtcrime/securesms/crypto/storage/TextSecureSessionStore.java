@@ -21,7 +21,7 @@ import java.util.List;
 
 public class TextSecureSessionStore implements SignalServiceSessionStore {
 
-  private static final String TAG = TextSecureSessionStore.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecureSessionStore.class);
 
   @NonNull  private final Context context;
 

@@ -96,7 +96,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
         GroupCall.Observer
 {
 
-  private static final String TAG = WebRtcCallService.class.getSimpleName();
+  private static final String TAG = Log.tag(WebRtcCallService.class);
 
   public static final String EXTRA_MUTE                       = "mute_value";
   public static final String EXTRA_AVAILABLE                  = "enabled_value";

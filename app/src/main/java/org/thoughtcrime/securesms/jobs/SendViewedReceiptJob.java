@@ -32,7 +32,7 @@ public class SendViewedReceiptJob extends BaseJob {
 
   public static final String KEY = "SendViewedReceiptJob";
 
-  private static final String TAG = SendViewedReceiptJob.class.getSimpleName();
+  private static final String TAG = Log.tag(SendViewedReceiptJob.class);
 
   private static final String KEY_THREAD          = "thread";
   private static final String KEY_ADDRESS         = "address";

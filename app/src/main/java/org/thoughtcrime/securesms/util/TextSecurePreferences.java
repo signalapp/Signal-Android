@@ -38,7 +38,7 @@ import java.util.UUID;
 
 public class TextSecurePreferences {
 
-  private static final String TAG = TextSecurePreferences.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecurePreferences.class);
 
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";

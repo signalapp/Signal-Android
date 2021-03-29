@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class OneTimePreKeyDatabase extends Database {
 
-  private static final String TAG = OneTimePreKeyDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(OneTimePreKeyDatabase.class);
 
   public  static final String TABLE_NAME  = "one_time_prekeys";
   private static final String ID          = "_id";

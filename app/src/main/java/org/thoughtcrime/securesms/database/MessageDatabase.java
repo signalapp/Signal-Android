@@ -55,7 +55,7 @@ import java.util.UUID;
 
 public abstract class MessageDatabase extends Database implements MmsSmsColumns {
 
-  private static final String TAG = MessageDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(MessageDatabase.class);
 
   public MessageDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);

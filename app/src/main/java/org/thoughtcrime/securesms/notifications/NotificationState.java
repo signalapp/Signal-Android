@@ -23,7 +23,7 @@ import java.util.List;
 
 public class NotificationState {
 
-  private static final String TAG = NotificationState.class.getSimpleName();
+  private static final String TAG = Log.tag(NotificationState.class);
 
   private final Comparator<NotificationItem> notificationItemComparator = (a, b) -> -Long.compare(a.getTimestamp(), b.getTimestamp());
   private final List<NotificationItem>       notifications              = new LinkedList<>();

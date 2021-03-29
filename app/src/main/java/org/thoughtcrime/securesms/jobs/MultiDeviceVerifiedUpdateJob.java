@@ -31,7 +31,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceVerifiedUpdateJob";
 
-  private static final String TAG = MultiDeviceVerifiedUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceVerifiedUpdateJob.class);
 
   private static final String KEY_DESTINATION     = "destination";
   private static final String KEY_IDENTITY_KEY    = "identity_key";

@@ -47,7 +47,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 public class ThumbnailView extends FrameLayout {
 
-  private static final String TAG        = ThumbnailView.class.getSimpleName();
+  private static final String TAG        = Log.tag(ThumbnailView.class);
   private static final int    WIDTH      = 0;
   private static final int    HEIGHT     = 1;
   private static final int    MIN_WIDTH  = 0;

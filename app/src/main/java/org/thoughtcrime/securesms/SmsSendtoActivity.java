@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 
 public class SmsSendtoActivity extends Activity {
 
-  private static final String TAG = SmsSendtoActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(SmsSendtoActivity.class);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

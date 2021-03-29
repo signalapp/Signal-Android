@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -41,7 +42,7 @@ public class PushTextSendJob extends PushSendJob {
 
   public static final String KEY = "PushTextSendJob";
 
-  private static final String TAG = PushTextSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(PushTextSendJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 

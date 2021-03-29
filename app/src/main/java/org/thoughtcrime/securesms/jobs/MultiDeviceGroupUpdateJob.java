@@ -43,7 +43,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceGroupUpdateJob";
 
-  private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceGroupUpdateJob.class);
 
   public MultiDeviceGroupUpdateJob() {
     this(new Job.Parameters.Builder()

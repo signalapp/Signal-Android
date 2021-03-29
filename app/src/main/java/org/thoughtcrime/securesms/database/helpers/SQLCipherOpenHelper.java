@@ -81,7 +81,7 @@ import java.util.Set;
 public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatabase {
 
   @SuppressWarnings("unused")
-  private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
+  private static final String TAG = Log.tag(SQLCipherOpenHelper.class);
 
   private static final int RECIPIENT_CALL_RINGTONE_VERSION  = 2;
   private static final int MIGRATE_PREKEYS_VERSION          = 3;

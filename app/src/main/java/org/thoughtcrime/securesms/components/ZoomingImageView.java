@@ -35,7 +35,7 @@ import java.io.InputStream;
 
 public class ZoomingImageView extends FrameLayout {
 
-  private static final String TAG = ZoomingImageView.class.getSimpleName();
+  private static final String TAG = Log.tag(ZoomingImageView.class);
 
   private static final int ZOOM_TRANSITION_DURATION = 300;
 

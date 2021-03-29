@@ -47,7 +47,7 @@ import java.util.Set;
 public class MmsSmsDatabase extends Database {
 
   @SuppressWarnings("unused")
-  private static final String TAG = MmsSmsDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsSmsDatabase.class);
 
   public static final String TRANSPORT     = "transport_type";
   public static final String MMS_TRANSPORT = "mms";

@@ -72,7 +72,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
   public static final String KEY = "PushGroupSendJob";
 
-  private static final String TAG = PushGroupSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(PushGroupSendJob.class);
 
   private static final String KEY_MESSAGE_ID       = "message_id";
   private static final String KEY_FILTER_RECIPIENT = "filter_recipient";

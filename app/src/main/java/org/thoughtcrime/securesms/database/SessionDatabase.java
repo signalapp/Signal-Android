@@ -23,7 +23,7 @@ import java.util.List;
 
 public class SessionDatabase extends Database {
 
-  private static final String TAG = SessionDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(SessionDatabase.class);
 
   public static final String TABLE_NAME = "sessions";
 

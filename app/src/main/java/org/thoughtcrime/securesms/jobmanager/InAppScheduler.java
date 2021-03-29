@@ -24,7 +24,7 @@ import java.util.List;
  */
 class InAppScheduler implements Scheduler {
 
-  private static final String TAG = InAppScheduler.class.getSimpleName();
+  private static final String TAG = Log.tag(InAppScheduler.class);
 
   private final JobManager jobManager;
   private final Handler     handler;

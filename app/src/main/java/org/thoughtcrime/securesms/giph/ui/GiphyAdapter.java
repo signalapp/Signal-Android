@@ -38,7 +38,7 @@ import java.util.concurrent.ExecutionException;
 
 class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
 
-  private static final String TAG = GiphyAdapter.class.getSimpleName();
+  private static final String TAG = Log.tag(GiphyAdapter.class);
 
   private final Context       context;
   private final GlideRequests glideRequests;

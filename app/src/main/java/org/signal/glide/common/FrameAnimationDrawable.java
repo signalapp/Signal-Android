@@ -35,7 +35,7 @@ import java.util.Set;
  * @CreateDate: 2019/3/27
  */
 public abstract class FrameAnimationDrawable<Decoder extends FrameSeqDecoder> extends Drawable implements Animatable2Compat, FrameSeqDecoder.RenderListener {
-    private static final String TAG = FrameAnimationDrawable.class.getSimpleName();
+    private static final String TAG = Log.tag(FrameAnimationDrawable.class);
     private final Paint paint = new Paint();
     private final Decoder frameSeqDecoder;
     private DrawFilter drawFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);

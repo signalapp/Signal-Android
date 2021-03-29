@@ -41,7 +41,7 @@ import java.io.IOException;
 
 @SuppressWarnings("deprecation")
 public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements OutgoingMmsConnection {
-  private final static String TAG = OutgoingLegacyMmsConnection.class.getSimpleName();
+  private final static String TAG = Log.tag(OutgoingLegacyMmsConnection.class);
 
   public OutgoingLegacyMmsConnection(Context context) throws ApnUnavailableException {
     super(context);

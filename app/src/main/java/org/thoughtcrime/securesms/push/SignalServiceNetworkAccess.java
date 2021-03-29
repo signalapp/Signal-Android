@@ -7,6 +7,7 @@ import com.annimon.stream.Stream;
 
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.CustomDns;
@@ -44,7 +45,7 @@ import okhttp3.TlsVersion;
 public class SignalServiceNetworkAccess {
 
   @SuppressWarnings("unused")
-  private static final String TAG = SignalServiceNetworkAccess.class.getSimpleName();
+  private static final String TAG = Log.tag(SignalServiceNetworkAccess.class);
 
   public static final Dns DNS = new SequentialDns(Dns.SYSTEM, new CustomDns("1.1.1.1"));
 

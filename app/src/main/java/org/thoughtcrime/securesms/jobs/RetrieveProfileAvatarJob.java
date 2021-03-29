@@ -31,7 +31,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
-  private static final String TAG = RetrieveProfileAvatarJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RetrieveProfileAvatarJob.class);
 
   private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
 

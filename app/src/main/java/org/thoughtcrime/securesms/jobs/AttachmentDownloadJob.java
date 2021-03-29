@@ -46,7 +46,7 @@ public final class AttachmentDownloadJob extends BaseJob {
   public static final String KEY = "AttachmentDownloadJob";
 
   private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
-  private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
+  private static final String TAG                  = Log.tag(AttachmentDownloadJob.class);
 
   private static final String KEY_MESSAGE_ID    = "message_id";
   private static final String KEY_PART_ROW_ID   = "part_row_id";

@@ -37,7 +37,7 @@ import static org.thoughtcrime.securesms.devicelist.DeviceNameProtos.DeviceName;
 
 public class DeviceListLoader extends AsyncLoader<List<Device>> {
 
-  private static final String TAG = DeviceListLoader.class.getSimpleName();
+  private static final String TAG = Log.tag(DeviceListLoader.class);
 
   private final SignalServiceAccountManager accountManager;
 

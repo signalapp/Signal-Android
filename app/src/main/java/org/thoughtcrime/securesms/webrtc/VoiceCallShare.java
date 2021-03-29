@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -16,7 +17,7 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 public class VoiceCallShare extends Activity {
   
-  private static final String TAG = VoiceCallShare.class.getSimpleName();
+  private static final String TAG = Log.tag(VoiceCallShare.class);
   
   @Override
   public void onCreate(Bundle icicle) {

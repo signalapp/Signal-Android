@@ -39,7 +39,7 @@ import java.util.StringTokenizer;
 
 public class SmsMigrator {
 
-  private static final String TAG = SmsMigrator.class.getSimpleName();
+  private static final String TAG = Log.tag(SmsMigrator.class);
 
   private static class SystemColumns {
     private static final String ADDRESS            = "address";

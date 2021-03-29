@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
-  private static final String TAG = QuoteView.class.getSimpleName();
+  private static final String TAG = Log.tag(QuoteView.class);
 
   private static final int MESSAGE_TYPE_PREVIEW  = 0;
   private static final int MESSAGE_TYPE_OUTGOING = 1;

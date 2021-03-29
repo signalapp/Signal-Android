@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 
 public class PhoneNumberFormatter {
 
-  private static final String TAG = PhoneNumberFormatter.class.getSimpleName();
+  private static final String TAG = Log.tag(PhoneNumberFormatter.class);
 
   private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
     add("NU");

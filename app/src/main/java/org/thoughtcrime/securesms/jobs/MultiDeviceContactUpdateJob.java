@@ -56,7 +56,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceContactUpdateJob";
 
-  private static final String TAG = MultiDeviceContactUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceContactUpdateJob.class);
 
   private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
 

@@ -32,7 +32,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_TIMESTAMP  = "timestamp";
 
-  private static final String TAG = SendReadReceiptJob.class.getSimpleName();
+  private static final String TAG = Log.tag(SendReadReceiptJob.class);
 
   private RecipientId recipientId;
   private long        messageId;

@@ -47,7 +47,7 @@ import java.util.List;
  */
 public class ContactsCursorLoader extends AbstractContactsCursorLoader {
 
-  private static final String TAG = ContactsCursorLoader.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactsCursorLoader.class);
 
   public static final class DisplayMode {
     public static final int FLAG_PUSH            = 1;

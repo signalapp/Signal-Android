@@ -30,7 +30,7 @@ public class TrimThreadJob extends BaseJob {
 
   public static final String KEY = "TrimThreadJob";
 
-  private static final String TAG = TrimThreadJob.class.getSimpleName();
+  private static final String TAG = Log.tag(TrimThreadJob.class);
 
   private static final String KEY_THREAD_ID = "thread_id";
 

@@ -37,7 +37,7 @@ public class PushGroupUpdateJob extends BaseJob {
 
   public static final String KEY = "PushGroupUpdateJob";
 
-  private static final String TAG = PushGroupUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(PushGroupUpdateJob.class);
 
   private static final String KEY_SOURCE   = "source";
   private static final String KEY_GROUP_ID = "group_id";

@@ -10,11 +10,12 @@ import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 
 public class DeliveryStatusView extends FrameLayout {
 
-  private static final String TAG = DeliveryStatusView.class.getSimpleName();
+  private static final String TAG = Log.tag(DeliveryStatusView.class);
 
   private static final RotateAnimation ROTATION_ANIMATION = new RotateAnimation(0, 360f,
                                                                                 Animation.RELATIVE_TO_SELF, 0.5f,

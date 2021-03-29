@@ -29,6 +29,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioWaveForm;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
@@ -42,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class AudioView extends FrameLayout {
 
-  private static final String TAG = AudioView.class.getSimpleName();
+  private static final String TAG = Log.tag(AudioView.class);
 
   private static final int FORWARDS =  1;
   private static final int REVERSE  = -1;

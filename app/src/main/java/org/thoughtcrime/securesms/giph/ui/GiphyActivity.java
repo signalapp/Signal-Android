@@ -40,7 +40,7 @@ public class GiphyActivity extends PassphraseRequiredActivity
                GiphyAdapter.OnItemClickListener
 {
 
-  private static final String TAG = GiphyActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(GiphyActivity.class);
 
   public static final String EXTRA_IS_MMS     = "extra_is_mms";
   public static final String EXTRA_WIDTH      = "extra_width";

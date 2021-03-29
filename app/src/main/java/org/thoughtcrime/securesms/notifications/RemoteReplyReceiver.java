@@ -27,6 +27,7 @@ import android.os.Bundle;
 import androidx.core.app.RemoteInput;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -46,7 +47,7 @@ import java.util.List;
  */
 public class RemoteReplyReceiver extends BroadcastReceiver {
 
-  public static final String TAG             = RemoteReplyReceiver.class.getSimpleName();
+  public static final String TAG             = Log.tag(RemoteReplyReceiver.class);
   public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
   public static final String RECIPIENT_EXTRA = "recipient_extra";
   public static final String REPLY_METHOD    = "reply_method";

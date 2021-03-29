@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public abstract class GiphyFragment extends LoggingFragment implements LoaderManager.LoaderCallbacks<List<GiphyImage>>, GiphyAdapter.OnItemClickListener {
 
-  private static final String TAG = GiphyFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(GiphyFragment.class);
 
   private GiphyAdapter                     giphyAdapter;
   private RecyclerView                     recyclerView;

@@ -6,10 +6,12 @@ import android.view.Window;
 
 import androidx.appcompat.app.AlertDialog;
 
+import org.signal.core.util.logging.Log;
+
 public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
 
   @SuppressWarnings("unused")
-  private static final String TAG = DeviceProvisioningActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(DeviceProvisioningActivity.class);
 
   @Override
   protected void onPreCreate() {

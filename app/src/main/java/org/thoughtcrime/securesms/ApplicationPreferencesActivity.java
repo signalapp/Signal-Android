@@ -31,6 +31,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.help.HelpFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
@@ -72,7 +73,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   public static final String LAUNCH_TO_NOTIFICATIONS_FRAGMENT = "launch.to.notifications.fragment";
 
   @SuppressWarnings("unused")
-  private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(ApplicationPreferencesActivity.class);
 
   private static final String PREFERENCE_CATEGORY_PROFILE        = "preference_category_profile";
   private static final String PREFERENCE_CATEGORY_USERNAME       = "preference_category_username";

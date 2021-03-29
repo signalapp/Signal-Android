@@ -51,7 +51,7 @@ import java.util.concurrent.ExecutionException;
 public final class ConversationUpdateItem extends FrameLayout
                                           implements BindableConversationItem
 {
-  private static final String TAG = ConversationUpdateItem.class.getSimpleName();
+  private static final String TAG = Log.tag(ConversationUpdateItem.class);
 
   private Set<ConversationMessage> batchSelected;
 
