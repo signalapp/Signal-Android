@@ -169,4 +169,25 @@ public class PointerAttachment extends Attachment {
             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
             thumbnail != null ? thumbnail.asPointer().getUrl() : ""));
   }
+
+  /**
+   * Converts a Session Attachment to a Signal Attachment
+   * @param attachment Session Attachment
+   * @return Signal Attachment
+   */
+  public static Attachment forAttachment(org.session.libsession.messaging.messages.visible.Attachment attachment) {
+    return new PointerAttachment(attachment.getContentType(),
+            AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING,
+            attachment.getSizeInBytes(),
+            attachment.getFileName(),
+            null, Base64.encodeBytes(attachment.getKey()),
+            null,
+            attachment.getDigest(),
+            null,
+            attachment.getKind() == org.session.libsession.messaging.messages.visible.Attachment.Kind.VOICE_MESSAGE,
+            attachment.getSize() != null ? attachment.getSize().getWidth() : 0,
+            attachment.getSize() != null ? attachment.getSize().getHeight() : 0,
+            attachment.getCaption(),
+            attachment.getUrl());
+  }
 }
