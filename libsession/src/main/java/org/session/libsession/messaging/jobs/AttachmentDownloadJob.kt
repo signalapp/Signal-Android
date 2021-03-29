@@ -62,7 +62,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         // DECRYPTION
 
         // Assume we're retrieving an attachment for an open group server if the digest is not set
-        val stream = if (attachment.digest == null || attachment.key == null) FileInputStream(tempFile)
+        val stream = if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
             else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
 
         messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)

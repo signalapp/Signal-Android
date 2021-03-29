@@ -191,16 +191,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         // Set application UI mode (day/night theme) to the user selected one.
         UiModeUtilities.setupUiModeToUserSelected(this);
         // ========
-        initializeJobManager();
         initializeExpiringMessageManager();
         initializeTypingStatusRepository();
         initializeTypingStatusSender();
         initializeReadReceiptManager();
         initializeProfileManager();
         initializePeriodicTasks();
+        SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
+        initializeJobManager();
         initializeWebRtc();
         initializeBlobProvider();
-        SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
     }
 
     @Override

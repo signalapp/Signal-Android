@@ -17,12 +17,14 @@ import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.BitmapUtil
+import java.util.concurrent.Executors
 
 class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, OpenGroup>()
   private val pollers = mutableMapOf<Long, OpenGroupPoller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
+  private val executorService = Executors.newScheduledThreadPool(16)
 
   public fun areAllCaughtUp(): Boolean {
     var areAllCaughtUp = true
@@ -37,7 +39,7 @@ class PublicChatManager(private val context: Context) {
   public fun markAllAsNotCaughtUp() {
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
-      val poller = pollers[threadID] ?: OpenGroupPoller(chat)
+      val poller = pollers[threadID] ?: OpenGroupPoller(chat, executorService)
       poller.isCaughtUp = false
     }
   }
@@ -46,7 +48,7 @@ class PublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
 
     for ((threadId, chat) in chats) {
-      val poller = pollers[threadId] ?: OpenGroupPoller(chat)
+      val poller = pollers[threadId] ?: OpenGroupPoller(chat, executorService)
       poller.startIfNeeded()
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
@@ -57,6 +59,7 @@ class PublicChatManager(private val context: Context) {
   public fun stopPollers() {
     pollers.values.forEach { it.stop() }
     isPolling = false
+    executorService.shutdown()
   }
 
   //TODO Declare a specific type of checked exception instead of "Exception".

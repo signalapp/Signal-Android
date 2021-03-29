@@ -94,6 +94,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long? {
         var messageID: Long? = null
         val senderAddress = Address.fromSerialized(message.sender!!)
+        val isUserSender = message.sender!! == getUserPublicKey()
         val group: Optional<SignalServiceGroup> = when {
             openGroupID != null -> Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
             groupPublicKey != null -> {
@@ -105,7 +106,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val pointerAttachments = attachments.mapNotNull {
             it.toSignalAttachment()
         }
-        val targetAddress = if (senderAddress.serialize() == getUserPublicKey() && message.syncTarget != null) {
+        val targetAddress = if (isUserSender && !message.syncTarget.isNullOrEmpty()) {
             Address.fromSerialized(message.syncTarget!!)
         } else if (group.isPresent) {
             Address.fromSerialized(GroupUtil.getEncodedId(group.get()))
@@ -130,7 +131,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 }
                 val mediaMessage = IncomingMediaMessage.from(message, senderAddress, targetRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
                 mmsDatabase.beginTransaction()
-                mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp ?: 0)
+                mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.receivedTimestamp ?: 0)
             }
             if (insertResult.isPresent) {
                 mmsDatabase.setTransactionSuccessful()
@@ -145,7 +146,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             } else {
                 val textMessage = IncomingTextMessage.from(message, senderAddress, group, targetRecipient.expireMessages * 1000L)
                 val encrypted = IncomingEncryptedMessage(textMessage, textMessage.messageBody)
-                smsDatabase.insertMessageInbox(encrypted, message.sentTimestamp ?: 0)
+                smsDatabase.insertMessageInbox(encrypted, message.receivedTimestamp ?: 0)
             }
             insertResult.orNull()?.let { result ->
                 messageID = result.messageId
@@ -474,7 +475,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long {
         val database = DatabaseFactory.getThreadDatabase(context)
         if (!openGroupID.isNullOrEmpty()) {
-            val recipient = Recipient.from(context, Address.fromSerialized(openGroupID), false)
+            val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())), false)
             return database.getOrCreateThreadIdFor(recipient)
         } else if (!groupPublicKey.isNullOrEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(groupPublicKey)), false)
