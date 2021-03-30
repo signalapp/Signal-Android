@@ -29,6 +29,7 @@ import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.logging.Log
 import java.security.MessageDigest
 import java.util.*
+import kotlin.collections.ArrayList
 
 internal fun MessageReceiver.isBlock(publicKey: String): Boolean {
     val context = MessagingConfiguration.shared.context
@@ -139,9 +140,9 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     if (message.quote != null && proto.dataMessage.hasQuote()) {
         val quote = proto.dataMessage.quote
         val author = Address.fromSerialized(quote.author)
-        val messageID = MessagingConfiguration.shared.messageDataProvider.getMessageForQuote(quote.id, author)
-        if (messageID != null) {
-            val attachments = MessagingConfiguration.shared.messageDataProvider.getAttachmentsAndLinkPreviewFor(messageID)
+        val messageInfo = MessagingConfiguration.shared.messageDataProvider.getMessageForQuote(quote.id, author)
+        if (messageInfo != null) {
+            val attachments = if (messageInfo.second) MessagingConfiguration.shared.messageDataProvider.getAttachmentsAndLinkPreviewFor(messageInfo.first) else ArrayList()
             quoteModel = QuoteModel(quote.id, author, MessagingConfiguration.shared.messageDataProvider.getMessageBodyFor(quote.id, quote.author), false, attachments)
         } else {
             quoteModel = QuoteModel(quote.id, author, quote.text, true, PointerAttachment.forPointers(proto.dataMessage.quote.attachmentsList))
