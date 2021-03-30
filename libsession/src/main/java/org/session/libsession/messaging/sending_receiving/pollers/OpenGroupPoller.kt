@@ -30,13 +30,6 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     private var displayNameUpdates = setOf<String>()
     // endregion
 
-    // region Tasks
-    private val pollForNewMessagesTask = Runnable { pollForNewMessages() }
-    private val pollForDeletedMessagesTask = Runnable { pollForDeletedMessages() }
-    private val pollForModeratorsTask = Runnable { pollForModerators() }
-    private val pollForDisplayNamesTask = Runnable { pollForDisplayNames() }
-    // endregion
-
     // region Settings
     companion object {
         private val pollForNewMessagesInterval: Long = 10 * 1000
@@ -50,10 +43,10 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     fun startIfNeeded() {
         if (hasStarted || executorService == null) return
         cancellableFutures += listOf(
-                executorService.scheduleAtFixedRate(pollForNewMessagesTask,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(pollForDeletedMessagesTask,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(pollForModeratorsTask,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(pollForDisplayNamesTask,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
+                executorService.scheduleAtFixedRate(::pollForNewMessages,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
+                executorService.scheduleAtFixedRate(::pollForDeletedMessages,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
+                executorService.scheduleAtFixedRate(::pollForModerators,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
+                executorService.scheduleAtFixedRate(::pollForDisplayNames,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
         )
         hasStarted = true
     }
@@ -191,6 +184,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                 }
             }
             displayNameUpdates = displayNameUpdates + messages.map { it.senderPublicKey }.toSet() - userHexEncodedPublicKey
+            executorService?.schedule(::pollForDisplayNames, 0, TimeUnit.MILLISECONDS)
             isCaughtUp = true
             isPollOngoing = false
             deferred.resolve(Unit)
