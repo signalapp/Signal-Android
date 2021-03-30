@@ -6,6 +6,7 @@ import android.net.Uri
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
@@ -30,8 +31,10 @@ interface StorageProtocol {
     fun getUserDisplayName(): String?
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
+    fun setUserProfilePictureUrl(newProfilePicture: String)
 
     fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
+    fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray)
 
     // Signal Protocol
 
@@ -140,11 +143,13 @@ interface StorageProtocol {
 
     // Loki User
     fun getDisplayName(publicKey: String): String?
+    fun setDisplayName(publicKey: String, newName: String)
     fun getServerDisplayName(serverID: String, publicKey: String): String?
     fun getProfilePictureURL(publicKey: String): String?
 
     // Recipient
     fun getRecipientSettings(address: Address): RecipientSettings?
+    fun addContacts(contacts: List<ConfigurationMessage.Contact>)
 
     // PartAuthority
     fun getAttachmentDataUri(attachmentId: AttachmentId): Uri

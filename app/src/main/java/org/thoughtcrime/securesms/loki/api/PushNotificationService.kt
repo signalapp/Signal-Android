@@ -4,13 +4,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
-import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.api.messages.SignalServiceEnvelope
-import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.MessageWrapper
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
+import org.thoughtcrime.securesms.notifications.NotificationChannels
 
 class PushNotificationService : FirebaseMessagingService() {
 
@@ -27,8 +27,7 @@ class PushNotificationService : FirebaseMessagingService() {
         val data = base64EncodedData?.let { Base64.decode(it) }
         if (data != null) {
             try {
-                val envelope = MessageWrapper.unwrap(data)
-                PushContentReceiveJob(this).processEnvelope(SignalServiceEnvelope(envelope), true)
+                JobQueue.shared.add(MessageReceiveJob(MessageWrapper.unwrap(data).toByteArray(),true))
             } catch (e: Exception) {
                 Log.d("Loki", "Failed to unwrap data for message due to error: $e.")
             }

@@ -230,14 +230,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (closedGroupPoller != null) {
             closedGroupPoller.stopIfNeeded();
         }
-        if (publicChatManager != null) {
-            publicChatManager.stopPollers();
-        }
     }
 
     @Override
     public void onTerminate() {
         stopKovenant(); // Loki
+        if (publicChatManager != null) {
+            publicChatManager.stopPollers();
+        }
         super.onTerminate();
     }
 

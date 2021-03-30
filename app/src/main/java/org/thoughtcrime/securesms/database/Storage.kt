@@ -8,6 +8,7 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
@@ -30,7 +31,9 @@ import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
@@ -65,10 +68,25 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return TextSecurePreferences.getProfilePictureURL(context)
     }
 
+    override fun setUserProfilePictureUrl(newProfilePicture: String) {
+        val ourRecipient = Address.fromSerialized(getUserPublicKey()!!).let {
+            Recipient.from(context, it, false)
+        }
+        TextSecurePreferences.setProfilePictureURL(context, newProfilePicture)
+        RetrieveProfileAvatarJob(ourRecipient, newProfilePicture)
+        ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, newProfilePicture))
+    }
+
     override fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray? {
         val address = Address.fromSerialized(recipientPublicKey)
         val recipient = Recipient.from(context, address, false)
         return recipient.profileKey
+    }
+
+    override fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray) {
+        val address = Address.fromSerialized(recipientPublicKey)
+        val recipient = Recipient.from(context, address, false)
+        DatabaseFactory.getRecipientDatabase(context).setProfileKey(recipient, profileKey)
     }
 
     override fun getOrGenerateRegistrationID(): Int {
@@ -511,6 +529,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
     }
 
+    override fun setDisplayName(publicKey: String, newName: String) {
+        DatabaseFactory.getLokiUserDatabase(context).setDisplayName(publicKey, newName)
+    }
+
     override fun getServerDisplayName(serverID: String, publicKey: String): String? {
         return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverID, publicKey)
     }
@@ -522,6 +544,31 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun getRecipientSettings(address: Address): Recipient.RecipientSettings? {
         val recipientSettings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettings(address)
         return if (recipientSettings.isPresent) { recipientSettings.get() } else null
+    }
+
+    override fun addContacts(contacts: List<ConfigurationMessage.Contact>) {
+        val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+        val threadDatabase = DatabaseFactory.getThreadDatabase(context)
+        for (contact in contacts) {
+            val address = Address.fromSerialized(contact.publicKey)
+            val recipient = Recipient.from(context, address, true)
+            if (!contact.profilePicture.isNullOrEmpty()) {
+                recipientDatabase.setProfileAvatar(recipient, contact.profilePicture)
+            }
+            if (contact.profileKey?.isNotEmpty() == true) {
+                recipientDatabase.setProfileKey(recipient, contact.profileKey)
+            }
+            if (contact.name.isNotEmpty()) {
+                recipientDatabase.setProfileName(recipient, contact.name)
+            }
+            recipientDatabase.setProfileSharing(recipient, true)
+            recipientDatabase.setRegistered(recipient, Recipient.RegisteredState.REGISTERED)
+            // create Thread if needed
+            threadDatabase.getOrCreateThreadIdFor(recipient)
+        }
+        if (contacts.isNotEmpty()) {
+            threadDatabase.notifyUpdatedFromConfig()
+        }
     }
 
     override fun getAttachmentDataUri(attachmentId: AttachmentId): Uri {

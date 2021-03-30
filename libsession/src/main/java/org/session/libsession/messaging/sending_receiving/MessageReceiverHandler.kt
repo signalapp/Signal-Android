@@ -18,6 +18,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
@@ -26,6 +27,7 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import java.security.MessageDigest
 import java.util.*
@@ -91,8 +93,11 @@ private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimer
 private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
-    if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
-    if (message.sender != storage.getUserPublicKey()) return
+    if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, message.sentTimestamp!!)) return
+    val userPublicKey = storage.getUserPublicKey()
+    if (userPublicKey == null || message.sender != storage.getUserPublicKey()) return
+    TextSecurePreferences.setConfigurationMessageSynced(context, true)
+    TextSecurePreferences.setLastProfileUpdateTime(context, message.sentTimestamp!!)
     val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
     for (closeGroup in message.closedGroups) {
         if (allClosedGroupPublicKeys.contains(closeGroup.publicKey)) continue
@@ -103,8 +108,20 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
         if (allOpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)
     }
-    // TODO: in future handle the latest in config messages
-    TextSecurePreferences.setConfigurationMessageSynced(context, true)
+    if (message.displayName.isNotEmpty()) {
+        TextSecurePreferences.setProfileName(context, message.displayName)
+        storage.setDisplayName(userPublicKey, message.displayName)
+    }
+    if (message.profileKey.isNotEmpty()) {
+        val profileKey = Base64.encodeBytes(message.profileKey)
+        ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
+        storage.setProfileKeyForRecipient(userPublicKey, message.profileKey)
+        // handle profile photo
+        if (!message.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
+            storage.setUserProfilePictureUrl(message.profilePicture!!)
+        }
+    }
+    storage.addContacts(message.contacts)
 }
 
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
@@ -112,7 +129,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val context = MessagingConfiguration.shared.context
     // Update profile if needed
     val newProfile = message.profile
-    if (newProfile != null) {
+    if (newProfile != null && openGroupID.isNullOrEmpty()) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!

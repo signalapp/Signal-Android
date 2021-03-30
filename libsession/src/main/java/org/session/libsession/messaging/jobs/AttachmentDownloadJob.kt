@@ -34,30 +34,26 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     override fun execute() {
+        val handleFailure: (java.lang.Exception) -> Unit = { exception ->
+            if(exception is Error && exception == Error.NoAttachment) {
+                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                this.handlePermanentFailure(exception)
+            } else if (exception is DotNetAPI.Error && exception == DotNetAPI.Error.ParsingFailed) {
+                // No need to retry if the response is invalid. Most likely this means we (incorrectly)
+                // got a "Cannot GET ..." error from the file server.
+                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                this.handlePermanentFailure(exception)
+            } else {
+                this.handleFailure(exception)
+            }
+        }
         try {
             val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
             val attachment = messageDataProvider.getDatabaseAttachment(attachmentID) ?: return handleFailure(Error.NoAttachment)
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
             val tempFile = createTempFile()
-            val handleFailure: (java.lang.Exception) -> Unit = { exception ->
-                tempFile.delete()
-                if(exception is Error && exception == Error.NoAttachment) {
-                    MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
-                    this.handlePermanentFailure(exception)
-                } else if (exception is DotNetAPI.Error && exception == DotNetAPI.Error.ParsingFailed) {
-                    // No need to retry if the response is invalid. Most likely this means we (incorrectly)
-                    // got a "Cannot GET ..." error from the file server.
-                    MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
-                    this.handlePermanentFailure(exception)
-                } else {
-                    this.handleFailure(exception)
-                }
-            }
-            try {
-                FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
-            } catch (e: Exception) {
-                return handleFailure(e)
-            }
+
+            FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
 
             // DECRYPTION
 
@@ -70,7 +66,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             tempFile.delete()
             handleSuccess()
         } catch (e: Exception) {
-            handleFailure(e)
+            return handleFailure(e)
         }
     }
 

@@ -16,19 +16,17 @@ import kotlin.math.roundToLong
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
 
-    private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
 
     init {
         // process jobs
-        scope.launch {
+        scope.launch(dispatcher) {
             while (isActive) {
                 queue.receive().let { job ->
-                    launch(dispatcher) {
-                        job.delegate = this@JobQueue
-                        job.execute()
-                    }
+                    job.delegate = this@JobQueue
+                    job.execute()
                 }
             }
         }
@@ -44,7 +42,7 @@ class JobQueue : JobDelegate {
         queue.offer(job) // offer always called on unlimited capacity
     }
 
-    fun addWithoutExecuting(job: Job) {
+    private fun addWithoutExecuting(job: Job) {
         job.id = System.currentTimeMillis().toString()
         MessagingConfiguration.shared.storage.persistJob(job)
     }

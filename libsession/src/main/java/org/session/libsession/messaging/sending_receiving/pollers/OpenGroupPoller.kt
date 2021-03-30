@@ -83,10 +83,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
             messages.forEach { message ->
                 try {
                     val senderPublicKey = message.senderPublicKey
-                    fun generateDisplayName(rawDisplayName: String): String {
-                        return "${rawDisplayName} (${senderPublicKey.takeLast(8)})"
-                    }
-                    val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.channel, openGroup.server) ?: generateDisplayName("Anonymous")
+                    val senderDisplayName = message.displayName
                     val id = openGroup.id.toByteArray()
                     // Main message
                     val dataMessageProto = DataMessage.newBuilder()
@@ -145,7 +142,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                     val messageServerID = message.serverID
                     // Profile
                     val profileProto = DataMessage.LokiProfile.newBuilder()
-                    profileProto.setDisplayName(message.displayName)
+                    profileProto.setDisplayName(senderDisplayName)
                     val profilePicture = message.profilePicture
                     if (profilePicture != null) {
                         profileProto.setProfilePicture(profilePicture.url)
