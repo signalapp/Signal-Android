@@ -130,7 +130,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val context = MessagingConfiguration.shared.context
     // Update profile if needed
     val newProfile = message.profile
-    if (newProfile != null && openGroupID.isNullOrEmpty()) {
+    if (newProfile != null) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!

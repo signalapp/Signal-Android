@@ -83,7 +83,10 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
             messages.forEach { message ->
                 try {
                     val senderPublicKey = message.senderPublicKey
-                    val senderDisplayName = message.displayName
+                    fun generateDisplayName(rawDisplayName: String): String {
+                        return "$rawDisplayName (...${senderPublicKey.takeLast(8)})"
+                    }
+                    val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.channel, openGroup.server) ?: generateDisplayName(message.displayName)
                     val id = openGroup.id.toByteArray()
                     // Main message
                     val dataMessageProto = DataMessage.newBuilder()
@@ -187,6 +190,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                     Log.e("Loki", "Exception parsing message", e)
                 }
             }
+            displayNameUpdates = displayNameUpdates + messages.map { it.senderPublicKey }.toSet() - userHexEncodedPublicKey
             isCaughtUp = true
             isPollOngoing = false
             deferred.resolve(Unit)
