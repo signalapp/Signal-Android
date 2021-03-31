@@ -640,7 +640,7 @@
         <item quantity="one">Error revoking invite</item>
         <item quantity="other">Error revoking invites</item>
     </plurals>
-    
+
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Pending member requests</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">No member requests to show.</string>
@@ -799,7 +799,7 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
-    
+
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
     <string name="ShareableGroupLinkDialogFragment__manage_and_share">Manage &amp; share</string>
@@ -1722,7 +1722,7 @@
     <string name="NotificationChannel_group_messages">Messages</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
     <string name="NotificationChannel_voice_notes">Voice Notes</string>
-
+    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No activity available to open notification channel settings.</string>
     <!-- ProfileEditNameFragment -->
 
     <!-- QuickResponseService -->
@@ -1871,6 +1871,7 @@
     <string name="ConversationUpdateItem_return_to_call">Return to call</string>
     <string name="ConversationUpdateItem_call_is_full">Call is full</string>
     <string name="ConversationUpdateItem_invite_friends">Invite friends</string>
+    <string name="ConversationUpdateItem_enable_call_notifications">Enable Call Notifications</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -1898,6 +1899,19 @@
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">The following people may have reinstalled or changed devices. Verify your safety number with them to ensure privacy.</string>
     <string name="safety_number_change_dialog__view">View</string>
     <string name="safety_number_change_dialog__previous_verified">Previous verified</string>
+
+    <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
+    <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Call notifications enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Enable call notifications</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Enable background activity</string>
+    <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Everything looks good now!</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">To receive call notifications, tap here and turn on \"Show notifications.\"</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">To receive call notifications, tap here and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">To receive call notifications, tap here and enable background activity in \"Battery\" settings. </string>
+    <string name="EnableCallNotificationSettingsDialog__settings">Settings</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">To receive call notifications, tap Settings and turn on \"Show notifications.\"</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">To receive call notifications, tap Settings and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">To receive call notifications, tap Settings and enable background activity in \"Battery\" settings.</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries…</string>

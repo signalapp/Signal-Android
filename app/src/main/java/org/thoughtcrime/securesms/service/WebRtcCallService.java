@@ -31,10 +31,8 @@ import org.signal.ringrtc.HttpHeader;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.zkgroup.VerificationFailedException;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -57,6 +55,7 @@ import org.thoughtcrime.securesms.service.webrtc.IdleActionProcessor;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcInteractor;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcUtil;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -90,10 +89,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.GroupCallState.IDLE;
+import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOMING;
+
 public class WebRtcCallService extends Service implements CallManager.Observer,
-        BluetoothStateManager.BluetoothStateListener,
-        CameraEventListener,
-        GroupCall.Observer
+                                                          BluetoothStateManager.BluetoothStateListener,
+                                                          CameraEventListener,
+                                                          GroupCall.Observer,
+                                                          AppForegroundObserver.Listener
 {
 
   private static final String TAG = Log.tag(WebRtcCallService.class);
@@ -275,6 +278,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                             lockManager,
                                             new SignalAudioManager(this),
                                             bluetoothStateManager,
+                                            this,
                                             this,
                                             this);
     return true;
@@ -479,15 +483,16 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     return listenableFutureTask;
   }
 
-  public void startCallCardActivityIfPossible() {
+  public boolean startCallCardActivityIfPossible() {
     if (Build.VERSION.SDK_INT >= 29 && !ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
-      return;
+      return false;
     }
 
     Intent activityIntent = new Intent();
     activityIntent.setClass(this, WebRtcCallActivity.class);
     activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(activityIntent);
+    return true;
   }
 
   private static @NonNull OfferMessage.Type getOfferTypeFromCallMediaType(@NonNull CallManager.CallMediaType mediaType) {
@@ -515,6 +520,18 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public @Nullable IBinder onBind(@NonNull Intent intent) {
     return null;
   }
+
+  @Override
+  public void onForeground() {
+    WebRtcViewModel.State callState = serviceState.getCallInfoState().getCallState();
+    if (callState == CALL_INCOMING && serviceState.getCallInfoState().getGroupCallState() == IDLE) {
+      startCallCardActivityIfPossible();
+    }
+    ApplicationDependencies.getAppForegroundObserver().removeListener(this);
+  }
+
+  @Override
+  public void onBackground() { }
 
   private static class WiredHeadsetStateReceiver extends BroadcastReceiver {
     @Override

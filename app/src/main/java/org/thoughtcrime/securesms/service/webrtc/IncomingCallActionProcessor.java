@@ -12,6 +12,7 @@ import org.signal.ringrtc.CallId;
 import org.thoughtcrime.securesms.components.webrtc.OrientationAwareVideoSink;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
@@ -157,7 +158,11 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
     if (shouldDisturbUserWithCall) {
-      webRtcInteractor.startWebRtcCallActivityIfPossible();
+      boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
+      if (!started) {
+        Log.i(TAG, "Unable to start call activity due to OS version or not being in the foreground");
+        ApplicationDependencies.getAppForegroundObserver().addListener(webRtcInteractor.getForegroundListener());
+      }
     }
 
     webRtcInteractor.initializeAudioForCall();

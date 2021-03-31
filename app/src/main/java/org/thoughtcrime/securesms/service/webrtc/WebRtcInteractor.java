@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.webrtc.audio.BluetoothStateManager;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -29,13 +30,14 @@ import java.util.UUID;
  */
 public class WebRtcInteractor {
 
-  @NonNull private final WebRtcCallService     webRtcCallService;
-  @NonNull private final CallManager           callManager;
-  @NonNull private final LockManager           lockManager;
-  @NonNull private final SignalAudioManager    audioManager;
-  @NonNull private final BluetoothStateManager bluetoothStateManager;
-  @NonNull private final CameraEventListener   cameraEventListener;
-  @NonNull private final GroupCall.Observer    groupCallObserver;
+  @NonNull private final WebRtcCallService              webRtcCallService;
+  @NonNull private final CallManager                    callManager;
+  @NonNull private final LockManager                    lockManager;
+  @NonNull private final SignalAudioManager             audioManager;
+  @NonNull private final BluetoothStateManager          bluetoothStateManager;
+  @NonNull private final CameraEventListener            cameraEventListener;
+  @NonNull private final GroupCall.Observer             groupCallObserver;
+  @NonNull private final AppForegroundObserver.Listener foregroundListener;
 
   public WebRtcInteractor(@NonNull WebRtcCallService webRtcCallService,
                           @NonNull CallManager callManager,
@@ -43,7 +45,8 @@ public class WebRtcInteractor {
                           @NonNull SignalAudioManager audioManager,
                           @NonNull BluetoothStateManager bluetoothStateManager,
                           @NonNull CameraEventListener cameraEventListener,
-                          @NonNull GroupCall.Observer groupCallObserver)
+                          @NonNull GroupCall.Observer groupCallObserver,
+                          @NonNull AppForegroundObserver.Listener foregroundListener)
   {
     this.webRtcCallService     = webRtcCallService;
     this.callManager           = callManager;
@@ -52,6 +55,7 @@ public class WebRtcInteractor {
     this.bluetoothStateManager = bluetoothStateManager;
     this.cameraEventListener   = cameraEventListener;
     this.groupCallObserver     = groupCallObserver;
+    this.foregroundListener    = foregroundListener;
   }
 
   @NonNull CameraEventListener getCameraEventListener() {
@@ -68,6 +72,10 @@ public class WebRtcInteractor {
 
   @NonNull GroupCall.Observer getGroupCallObserver() {
     return groupCallObserver;
+  }
+
+  @NonNull AppForegroundObserver.Listener getForegroundListener() {
+    return foregroundListener;
   }
 
   void setWantsBluetoothConnection(boolean enabled) {
@@ -118,8 +126,8 @@ public class WebRtcInteractor {
     webRtcCallService.insertMissedCall(remotePeer, signal, timestamp, isVideoOffer);
   }
 
-  void startWebRtcCallActivityIfPossible() {
-    webRtcCallService.startCallCardActivityIfPossible();
+  boolean startWebRtcCallActivityIfPossible() {
+    return webRtcCallService.startCallCardActivityIfPossible();
   }
 
   void registerPowerButtonReceiver() {

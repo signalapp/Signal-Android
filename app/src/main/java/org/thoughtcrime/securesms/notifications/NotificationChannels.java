@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -219,10 +221,15 @@ public class NotificationChannels {
       return;
     }
 
-    Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-    intent.putExtra(Settings.EXTRA_CHANNEL_ID, channelId);
-    intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-    context.startActivity(intent);
+    try {
+      Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+      intent.putExtra(Settings.EXTRA_CHANNEL_ID, channelId);
+      intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+      context.startActivity(intent);
+    } catch (ActivityNotFoundException e) {
+      Log.w(TAG, "Channel settings activity not found", e);
+      Toast.makeText(context, R.string.NotificationChannels__no_activity_available_to_open_notification_channel_settings, Toast.LENGTH_SHORT).show();
+    }
   }
 
   /**
@@ -413,6 +420,16 @@ public class NotificationChannels {
     return group != null && !group.isBlocked();
   }
 
+  public static boolean isCallsChannelValid(@NonNull Context context) {
+    if (!supported()) {
+      return true;
+    }
+
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationChannel channel             = notificationManager.getNotificationChannel(CALLS);
+
+    return channel != null && channel.getImportance() == NotificationManager.IMPORTANCE_HIGH;
+  }
 
   /**
    * Whether or not notifications for the entire app are enabled.

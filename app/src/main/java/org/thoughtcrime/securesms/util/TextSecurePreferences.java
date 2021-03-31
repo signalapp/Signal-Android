@@ -987,6 +987,10 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
   }
 
+  public static void setCallNotificationsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, CALL_NOTIFICATIONS_PREF, enabled);
+  }
+
   public static boolean isCallNotificationsEnabled(Context context) {
     return getBooleanPreference(context, CALL_NOTIFICATIONS_PREF, true);
   }
