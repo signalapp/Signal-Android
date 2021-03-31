@@ -10,6 +10,8 @@ class ExpirationTimerUpdate() : ControlMessage() {
     var syncTarget: String? = null
     var duration: Int? = 0
 
+    override val isSelfSendValid: Boolean = true
+
     companion object {
         const val TAG = "ExpirationTimerUpdate"
 
