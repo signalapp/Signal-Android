@@ -21,9 +21,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
@@ -33,6 +33,7 @@ import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.jobs.JobQueue;
+import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
@@ -50,14 +51,12 @@ import org.session.libsignal.service.loki.api.PushNotificationAPI;
 import org.session.libsignal.service.loki.api.SnodeAPI;
 import org.session.libsignal.service.loki.api.SwarmAPI;
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.utilities.logging.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
@@ -140,10 +139,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     public Poller poller = null;
     public ClosedGroupPoller closedGroupPoller = null;
     public PublicChatManager publicChatManager = null;
-    private PublicChatAPI publicChatAPI = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
+    private Handler threadNotificationHandler;
 
     private volatile boolean isAppVisible;
 
@@ -151,7 +150,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         return (ApplicationContext) context.getApplicationContext();
     }
 
-    @Override
+    public Handler getThreadNotificationHandler() {
+        return this.threadNotificationHandler;
+    }
+
+@Override
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, "onCreate()");
@@ -166,6 +169,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         // ========
         messageNotifier = new OptimizedMessageNotifier(new DefaultMessageNotifier());
         broadcaster = new Broadcaster(this);
+        threadNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
         LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
@@ -285,22 +289,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     // Loki
-    public @Nullable
-    PublicChatAPI getPublicChatAPI() {
-        if (publicChatAPI != null || !IdentityKeyUtil.hasIdentityKey(this)) {
-            return publicChatAPI;
-        }
-        String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-        if (userPublicKey == null) {
-            return publicChatAPI;
-        }
-        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
-        LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
-        GroupDatabase groupDB = DatabaseFactory.getGroupDatabase(this);
-        publicChatAPI = new PublicChatAPI(userPublicKey, userPrivateKey, apiDB, userDB, groupDB);
-        return publicChatAPI;
-    }
 
     private void initializeSecurityProvider() {
         try {
@@ -531,21 +519,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
     public void updateOpenGroupProfilePicturesIfNeeded() {
         AsyncTask.execute(() -> {
-            PublicChatAPI publicChatAPI = null;
-            try {
-                publicChatAPI = getPublicChatAPI();
-            } catch (Exception e) {
-                // Do nothing
-            }
-            if (publicChatAPI == null) {
-                return;
-            }
             byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
             String url = TextSecurePreferences.getProfilePictureURL(this);
             Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
             for (String server : servers) {
                 if (profileKey != null) {
-                    publicChatAPI.setProfilePicture(server, profileKey, url);
+                    OpenGroupAPI.setProfilePicture(server, profileKey, url);
                 }
             }
         });

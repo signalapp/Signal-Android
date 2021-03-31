@@ -16,11 +16,15 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 
+import org.session.libsession.utilities.Debouncer;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.util.Set;
@@ -31,10 +35,13 @@ public abstract class Database {
 
   protected       SQLCipherOpenHelper databaseHelper;
   protected final Context             context;
+  private final Debouncer threadNotificationDebouncer;
 
+  @SuppressLint("WrongConstant")
   public Database(Context context, SQLCipherOpenHelper databaseHelper) {
     this.context        = context;
     this.databaseHelper = databaseHelper;
+    this.threadNotificationDebouncer = new Debouncer(ApplicationContext.getInstance(context).getThreadNotificationHandler(), 1000);
   }
 
   protected void notifyConversationListeners(Set<Long> threadIds) {
@@ -47,7 +54,7 @@ public abstract class Database {
   }
 
   protected void notifyConversationListListeners() {
-    context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
+    threadNotificationDebouncer.publish(()->context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null));
   }
 
   protected void notifyStickerListeners() {

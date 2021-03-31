@@ -101,7 +101,6 @@ object MessageReceiver {
         }
         // Don't process the envelope any further if the message has been handled already
         if (storage.isMessageDuplicated(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
-        storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Don't process the envelope any further if the sender is blocked
         if (isBlock(sender!!)) throw Error.SenderBlocked
         // Parse the proto

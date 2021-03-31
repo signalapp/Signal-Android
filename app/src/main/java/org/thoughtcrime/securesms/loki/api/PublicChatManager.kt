@@ -7,12 +7,12 @@ import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.opengroups.OpenGroupInfo
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
-import org.session.libsignal.service.loki.api.opengroups.PublicChatInfo
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -65,27 +65,23 @@ class PublicChatManager(private val context: Context) {
   //TODO Declare a specific type of checked exception instead of "Exception".
   @WorkerThread
   @Throws(java.lang.Exception::class)
-  public fun addChat(server: String, channel: Long): PublicChat {
-    val groupChatAPI = ApplicationContext.getInstance(context).publicChatAPI
-            ?: throw IllegalStateException("LokiPublicChatAPI is not set!")
-
+  public fun addChat(server: String, channel: Long): OpenGroup {
     // Ensure the auth token is acquired.
-    groupChatAPI.getAuthToken(server).get()
+    OpenGroupAPI.getAuthToken(server).get()
 
-    val channelInfo = groupChatAPI.getChannelInfo(channel, server).get()
+    val channelInfo = OpenGroupAPI.getChannelInfo(channel, server).get()
     return addChat(server, channel, channelInfo)
   }
 
   @WorkerThread
-  public fun addChat(server: String, channel: Long, info: PublicChatInfo): PublicChat {
+  public fun addChat(server: String, channel: Long, info: OpenGroupInfo): OpenGroup {
     val chat = PublicChat(channel, server, info.displayName, true)
     var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     // Create the group if we don't have one
     if (threadID < 0) {
       if (info.profilePictureURL.isNotEmpty()) {
-        val profilePictureAsByteArray = ApplicationContext.getInstance(context).publicChatAPI
-                ?.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
+        val profilePictureAsByteArray = OpenGroupAPI.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
         profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
       }
       val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, chat.displayName)
@@ -95,12 +91,12 @@ class PublicChatManager(private val context: Context) {
     // Set our name on the server
     val displayName = TextSecurePreferences.getProfileName(context)
     if (!TextUtils.isEmpty(displayName)) {
-      ApplicationContext.getInstance(context).publicChatAPI?.setDisplayName(displayName, server)
+      OpenGroupAPI.setDisplayName(displayName, server)
     }
     // Start polling
     Util.runOnMain { startPollersIfNeeded() }
 
-    return chat
+    return OpenGroup.from(chat)
   }
 
   public fun removeChat(server: String, channel: Long) {
