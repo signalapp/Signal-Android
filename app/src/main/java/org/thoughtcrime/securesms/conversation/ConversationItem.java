@@ -1528,6 +1528,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
         intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, false);
 
+        if (slide.hasVideo()) {
+          eventListener.onVideoMessagePlay();
+        }
+
         context.startActivity(intent);
       } else if (slide.getUri() != null) {
         Log.i(TAG, "Clicked: " + slide.getUri() + " , " + slide.getContentType());
