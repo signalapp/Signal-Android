@@ -1802,10 +1802,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="arrays__use_default">Käytä oletusta</string>
   <string name="arrays__use_custom">Käytä mukautettua</string>
   <string name="arrays__mute_for_one_hour">1 tunniksi</string>
-  <string name="arrays__mute_for_two_hours">2 tunniksi</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 tunniksi</string> -->
   <string name="arrays__mute_for_one_day">1 vuorokaudeksi</string>
   <string name="arrays__mute_for_seven_days">7 vuorokaudeksi</string>
-  <string name="arrays__mute_for_one_year">1 vuodeksi</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 vuodeksi</string> -->
   <string name="arrays__settings_default">Oletus</string>
   <string name="arrays__enabled">Päällä</string>
   <string name="arrays__disabled">Poissa</string>
@@ -1956,7 +1956,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__chats">Keskustelut</string>
   <string name="preferences_data_and_storage__manage_storage">Tallennustilan hallinta</string>
   <string name="preferences_data_and_storage__calls">Puhelut</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">Käytä vähemmän dataa puheluihin</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Vähennä puhelujen datankäyttöä</string>
   <string name="preferences_data_and_storage__never">ei koskaan</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi ja mobiiliverkko</string>
   <string name="preferences_data_and_storage__cellular_only">Vain mobiiliverkko</string>

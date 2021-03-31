@@ -1701,10 +1701,10 @@
   <string name="arrays__use_default">Ya jixweber bi kar bîne</string>
   <string name="arrays__use_custom">Ya taybet bi kar bîne</string>
   <string name="arrays__mute_for_one_hour">Ji bo saetekê bêdeng bike</string>
-  <string name="arrays__mute_for_two_hours">Ji bo 2 saetan bêdeng bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Ji bo 2 saetan bêdeng bike</string> -->
   <string name="arrays__mute_for_one_day">Ji bo rojekê bêdeng bike</string>
   <string name="arrays__mute_for_seven_days">Ji bo 7 rojan bêdeng bike</string>
-  <string name="arrays__mute_for_one_year">Ji bo salekê bêdeng bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Ji bo salekê bêdeng bike</string> -->
   <string name="arrays__settings_default">Sazkariyên jixweber</string>
   <string name="arrays__enabled">Çalak</string>
   <string name="arrays__disabled">Neçalak</string>

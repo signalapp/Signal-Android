@@ -1745,10 +1745,10 @@
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用自定义</string>
   <string name="arrays__mute_for_one_hour">静音 1 小时</string>
-  <string name="arrays__mute_for_two_hours">静音 2 小时</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">静音 2 小时</string> -->
   <string name="arrays__mute_for_one_day">静音 1 天</string>
   <string name="arrays__mute_for_seven_days">静音 7 天</string>
-  <string name="arrays__mute_for_one_year">静音 1 年</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">静音 1 年</string> -->
   <string name="arrays__settings_default">默认设置</string>
   <string name="arrays__enabled">启用</string>
   <string name="arrays__disabled">禁用</string>

@@ -1002,10 +1002,10 @@
   <string name="arrays__use_default">Mövcud olanı istifadə et</string>
   <string name="arrays__use_custom">Seçilmişi istifadə et</string>
   <string name="arrays__mute_for_one_hour">1 saat səssiz olsun</string>
-  <string name="arrays__mute_for_two_hours">2 saat səssiz olsun</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 saat səssiz olsun</string> -->
   <string name="arrays__mute_for_one_day">1 gün səssiz olsun</string>
   <string name="arrays__mute_for_seven_days">7 gün səssiz olsun</string>
-  <string name="arrays__mute_for_one_year">1 il səssiz olsun</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 il səssiz olsun</string> -->
   <string name="arrays__settings_default">Mövcud parametrlər</string>
   <string name="arrays__enabled">Aktiv et</string>
   <string name="arrays__disabled">Deaktiv et</string>

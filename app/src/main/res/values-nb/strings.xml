@@ -63,7 +63,7 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal krever tillatelse fra systemet for å kunne legge til kontaktinformasjon, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal krever tillatelse fra systemet for å kunne legge til posisjonsdata, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Posisjon».</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Laster opp media…</string>
+  <string name="AttachmentUploadJob_uploading_media">Laster opp medier…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">Ser etter meldinger…</string>
@@ -1263,7 +1263,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RevealableMessageView_view_photo">Se bilde</string>
   <string name="RevealableMessageView_view_video">Se video</string>
   <string name="RevealableMessageView_viewed">Sett</string>
-  <string name="RevealableMessageView_media">Media</string>
+  <string name="RevealableMessageView_media">Medier</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Ingen resultater funnet for \'%s\'</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
@@ -1781,11 +1781,19 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__include_debug_log">Inkluder feilsøkingslogg.</string>
   <string name="HelpFragment__whats_this">Hva er dette?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan føler du deg? (Valgfri)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Fortell oss hvorfor du tar kontakt.</string>
   <string name="HelpFragment__support_info">Brukterstøtteinformasjon</string>
   <string name="HelpFragment__signal_android_support_request">Kontakt Signal Android support</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Det er noe som ikke virker</item>
+    <item>Foreslå nye funksjoner</item>
+    <item>Hvordan kan jeg … ?</item>
+    <item>Tilbakemeldinger</item>
+    <item>Annet</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
@@ -1802,10 +1810,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
   <string name="arrays__use_custom">Bruk selvvalgt</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
-  <string name="arrays__mute_for_two_hours">Demp i 2 timer</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Demp i 2 timer</string> -->
   <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp i 7 dager</string>
-  <string name="arrays__mute_for_one_year">Demp i 1 år</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Demp i 1 år</string> -->
   <string name="arrays__settings_default">Standardoppsett</string>
   <string name="arrays__enabled">Slått på</string>
   <string name="arrays__disabled">Slått av</string>
@@ -1930,7 +1938,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__videos">Videoer</string>
   <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Lyd</string>
-  <string name="preferences_storage__review_storage">Gå gjennom lagring</string>
+  <string name="preferences_storage__review_storage">Se gjennom lagring</string>
   <string name="preferences_storage__delete_older_messages">Slett eldre meldinger?</string>
   <string name="preferences_storage__clear_message_history">Slett meldingshistorikk?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette all meldingshistorikk og media som er eldre enn %1$sfra denne din enhet.</string>
@@ -1960,7 +1968,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_data_and_storage__never">Aldri</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi og mobildata</string>
   <string name="preferences_data_and_storage__cellular_only">Kun mobildata</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre anrop på dårlige nettverk</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre samtaler på dårlige nettverk</string>
   <string name="preferences_notifications__messages">Meldinger</string>
   <string name="preferences_notifications__events">Hendelser</string>
   <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
@@ -2233,9 +2241,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="backup_enable_dialog__folder">Folder</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har notert passordfrasen. Uten denne blir det umulig å bruke sikkerhetskopien til gjenoppretting.</string>
   <string name="registration_activity__restore_backup">Gjenopprett fra sikkerhetskopi</string>
+  <string name="registration_activity__transfer_or_restore_account">Overfør eller gjenopprett konto</string>
+  <string name="registration_activity__transfer_account">Overfør konto</string>
   <string name="registration_activity__skip">Hopp over</string>
   <string name="preferences_chats__chat_backups">Sikkerhetskopi av samtaler</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sikkerhetskopier samtaler til ekstern lagringsenhet</string>
+  <string name="preferences_chats__transfer_account">Overfør konto</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til ny Android-enhet</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv inn passordfrase for sikkerhetskopi</string>
   <string name="RegistrationActivity_restore">Gjenopprett</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere sikkerhetskopier fra nyere versjoner av Signal.</string>
@@ -2310,12 +2322,29 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSE OPP</string>
   <string name="Recipient_unknown">Ukjent</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gjenopprett konto</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Hvis du tidligere har registrert en Signal-konto kan du overføre eller gjenopprette kontoen og meldinger</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Overfør fra Android-enhet</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Overfør kontoen og meldinger fra din gamle Android-enhet. Du trenger tilgang til din gamle enhet.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Du trenger tilgang til din gamle enhet.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Gjenopprett fra sikkerhetskopi</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Gjenopprett meldingene dine fra en lokal sikkerhetskopi.  Du får ingen flere muligheter til å gjøre dette senere.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Åpne Signal på din gamle Android-telefon.</string>
   <string name="NewDeviceTransferInstructions__continue">Fortsett</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Trykk på profilbildet øverst til venstre for å åpne innstillinger</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på \"Samtaler\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk \"Overfør konto\" og så \"Fortsett\" på begge enheter</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__restore_a_backup">Gjenopprett en sikkerhetskopi</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__create_a_backup">Lag en sikkerhetskopi</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__retry">Prøv på nytt</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Send inn feilsøkingslogger</string>
   <string name="DeviceTransferSetup__continue">Fortsett</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
@@ -2325,6 +2354,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeviceTransfer__try_again">Prøv igjen</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Fortsett</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">Lukk</string>

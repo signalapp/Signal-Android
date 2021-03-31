@@ -1811,10 +1811,10 @@
   <string name="arrays__use_default"> అప్రమేయం ఉపయోగించు</string>
   <string name="arrays__use_custom"> నియమము ఉపయోగించు</string>
   <string name="arrays__mute_for_one_hour">1 గంట నిశబ్దంగా ఉంచు</string>
-  <string name="arrays__mute_for_two_hours">2 గంటలు నిశబ్దంగా ఉంచు</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 గంటలు నిశబ్దంగా ఉంచు</string> -->
   <string name="arrays__mute_for_one_day">1 రోజు నిశబ్దంగా ఉంచు</string>
   <string name="arrays__mute_for_seven_days">7 రోజులు నిశబ్దంగా ఉంచు</string>
-  <string name="arrays__mute_for_one_year">1 సంవత్సరం నిశబ్దంగా ఉంచు</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 సంవత్సరం నిశబ్దంగా ఉంచు</string> -->
   <string name="arrays__settings_default">అప్రమేయ అమరికలు</string>
   <string name="arrays__enabled">చేతనం అయింది</string>
   <string name="arrays__disabled">అచేతనం అయింది</string>

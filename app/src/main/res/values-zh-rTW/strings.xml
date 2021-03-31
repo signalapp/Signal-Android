@@ -1400,7 +1400,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
   <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人上線 Signal 的通知嗎？你可以在次開啟他們在 Signal &gt; 設定 &gt; 通知。</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人上線 Signal 的通知嗎？你可以在 Signal &gt; 設定 &gt; 通知中再次啟用。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">預設</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1711,17 +1711,17 @@
   <string name="HelpFragment__include_debug_log">包括偵錯紀錄。</string>
   <string name="HelpFragment__whats_this">這是什麼？</string>
   <string name="HelpFragment__how_do_you_feel">你覺得如何?(可選項目)</string>
-  <string name="HelpFragment__tell_us_why_youre_reaching_out">告訴我們你為什麼要伸出援手。</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">所為何事？</string>
   <string name="HelpFragment__support_info">支援訊息</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android 支援要求</string>
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
   <string-array name="HelpFragment__categories">
-    <item>某些功能不起作用</item>
-    <item>功能要求</item>
-    <item>問題</item>
-    <item>反應</item>
+    <item>操作異常</item>
+    <item>功能請求</item>
+    <item>提問</item>
+    <item>意見反映</item>
     <item>其他</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1740,10 +1740,10 @@
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用自訂</string>
   <string name="arrays__mute_for_one_hour">靜音 1 小時</string>
-  <string name="arrays__mute_for_two_hours">靜音 2 小時</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">靜音 2 小時</string> -->
   <string name="arrays__mute_for_one_day">靜音 1 天</string>
   <string name="arrays__mute_for_seven_days">靜音 7 天</string>
-  <string name="arrays__mute_for_one_year">靜音 1 年</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">靜音 1 年</string> -->
   <string name="arrays__settings_default">預設設定</string>
   <string name="arrays__enabled">啟用</string>
   <string name="arrays__disabled">停用</string>
@@ -2271,6 +2271,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">還原備份</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到舊的Android裝置時發生未預期的錯誤。</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">正在搜尋新的Android裝置…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal需要位置權限才能發現並連接到新的Android裝置。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal須要開啟定位服務才能發現新的Android裝置並與之連接。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal需要開啟Wi-Fi才能發現新的Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
@@ -2313,7 +2314,7 @@
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">轉移資料</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">使兩個裝置彼此靠近。 請勿關閉裝置並保持Signal開啟。 傳輸是點對點加密的。</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d 到目前為止的訊息…</string>
+  <string name="DeviceTransfer__d_messages_so_far">到目前為止 %1$d 則訊息…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
   <string name="DeviceTransfer__stop_transfer_question">停止轉移?</string>
@@ -2350,7 +2351,10 @@
   <string name="DeviceToDeviceTransferService_status_verification_required">需要驗證</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">正在轉移帳號…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">在新裝置上完成註冊</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">你的 Signal 帳號已轉移到你的新裝置，惟你必須在該裝置上完成註冊才能繼續。此裝置上的 Signal 亦隨之停用。</string>
   <string name="OldDeviceTransferLockedDialog__done">完成</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消並啟動此裝置</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>

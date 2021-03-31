@@ -1952,10 +1952,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
   <string name="arrays__use_custom">Użyj własnych</string>
   <string name="arrays__mute_for_one_hour">Wycisz na 1 godzinę</string>
-  <string name="arrays__mute_for_two_hours">Wycisz na 2 godziny</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Wycisz na 2 godziny</string> -->
   <string name="arrays__mute_for_one_day">Wycisz na 1 dzień</string>
   <string name="arrays__mute_for_seven_days">Wycisz na 7 dni</string>
-  <string name="arrays__mute_for_one_year">Wycisz na 1 rok</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Wycisz na 1 rok</string> -->
   <string name="arrays__settings_default">Ustawienia domyślne</string>
   <string name="arrays__enabled">Włączone</string>
   <string name="arrays__disabled">Wyłączone</string>

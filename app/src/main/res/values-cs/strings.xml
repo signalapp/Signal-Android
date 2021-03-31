@@ -1951,10 +1951,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
-  <string name="arrays__mute_for_two_hours">Ztišit na 2 hodiny</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Ztišit na 2 hodiny</string> -->
   <string name="arrays__mute_for_one_day">Ztišit na 1 den</string>
   <string name="arrays__mute_for_seven_days">Ztišit na 7 dnů</string>
-  <string name="arrays__mute_for_one_year">Ztišit na 1 rok</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Ztišit na 1 rok</string> -->
   <string name="arrays__settings_default">Výchozí nastavení</string>
   <string name="arrays__enabled">Povoleno</string>
   <string name="arrays__disabled">Zakázáno</string>

@@ -1810,10 +1810,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="arrays__use_default">Alapértelmezett használata</string>
   <string name="arrays__use_custom">Egyéni használata</string>
   <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
-  <string name="arrays__mute_for_two_hours">Némítás 2 órára</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Némítás 2 órára</string> -->
   <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
   <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
-  <string name="arrays__mute_for_one_year">Némítás 1 évre</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Némítás 1 évre</string> -->
   <string name="arrays__settings_default">Alapértelmezett beállítások</string>
   <string name="arrays__enabled">Engedélyezve</string>
   <string name="arrays__disabled">Letiltva</string>

@@ -1784,9 +1784,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
   <string-array name="HelpFragment__categories">
     <item>Etwas funktioniert nicht</item>
-    <item>Featurewunsch</item>
+    <item>Erweiterungswunsch</item>
     <item>Frage</item>
-    <item>Feedback</item>
+    <item>Rückmeldung</item>
     <item>Sonstiges</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1805,10 +1805,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="arrays__use_default">Standard verwenden</string>
   <string name="arrays__use_custom">Personalisiert</string>
   <string name="arrays__mute_for_one_hour">Für 1 Stunde</string>
-  <string name="arrays__mute_for_two_hours">Für 2 Stunden</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Für 2 Stunden</string> -->
   <string name="arrays__mute_for_one_day">Für 1 Tag</string>
   <string name="arrays__mute_for_seven_days">Für 7 Tage</string>
-  <string name="arrays__mute_for_one_year">Für 1 Jahr</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Für 1 Jahr</string> -->
   <string name="arrays__settings_default">Standard</string>
   <string name="arrays__enabled">Aktiviert</string>
   <string name="arrays__disabled">Deaktiviert</string>

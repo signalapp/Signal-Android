@@ -1501,10 +1501,10 @@
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
   <string name="arrays__use_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
   <string name="arrays__mute_for_one_hour">1 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string>
-  <string name="arrays__mute_for_two_hours">2 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string> -->
   <string name="arrays__mute_for_one_day">1 ਦਿਨ ਲਈ ਮੂਕ ਕਰੋ</string>
   <string name="arrays__mute_for_seven_days">7 ਦਿਨ ਲਈ ਮੂਕ ਕਰੋ</string>
-  <string name="arrays__mute_for_one_year">1 ਸਾਲ ਲਈ ਮੂਕ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 ਸਾਲ ਲਈ ਮੂਕ ਕਰੋ</string> -->
   <string name="arrays__settings_default">ਡਿਫੌਲਟ ਸੈਟਿੰਗਾਂ</string>
   <string name="arrays__enabled">ਸਮਰਥਿਤ</string>
   <string name="arrays__disabled">ਅਪਾਹਜ</string>

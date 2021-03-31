@@ -1803,10 +1803,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="arrays__use_default">Per defecte</string>
   <string name="arrays__use_custom">Personalitzat</string>
   <string name="arrays__mute_for_one_hour">Silencia-ho durant 1 hora</string>
-  <string name="arrays__mute_for_two_hours">Silencia-ho durant 2 hores</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silencia-ho durant 2 hores</string> -->
   <string name="arrays__mute_for_one_day">Silencia-ho durant 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silencia-ho durant 7 dies</string>
-  <string name="arrays__mute_for_one_year">Silencia-ho durant 1 any</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silencia-ho durant 1 any</string> -->
   <string name="arrays__settings_default">Configuració predeterminada</string>
   <string name="arrays__enabled">Activat</string>
   <string name="arrays__disabled">Desactivat</string>

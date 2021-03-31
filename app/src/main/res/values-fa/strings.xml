@@ -63,7 +63,7 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">سیگنال برای پیوست کردن اطلاعات مخاطب نیاز به دسترسی مخاطبین دارد، اما این دسترسی به سیگنال داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">سیگنال برای پیوست کردن موقعیت مکانی نیاز به دسترسی به موقعیت مکانی شما دارد، ولی این دسترسی داده نشده است. لطفاً لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مکان» را فعال کنید. </string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">بارگزاری رسانه…</string>
+  <string name="AttachmentUploadJob_uploading_media">بارگذاری رسانه…</string>
   <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">در حال بررسی پیام‌ها…</string>
@@ -1814,10 +1814,10 @@
   <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
   <string name="arrays__mute_for_one_hour">صامت به مدت ۱ ساعت</string>
-  <string name="arrays__mute_for_two_hours">صامت به مدت ۲ ساعت</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">صامت به مدت ۲ ساعت</string> -->
   <string name="arrays__mute_for_one_day">صامت به مدت ۱ روز</string>
   <string name="arrays__mute_for_seven_days">صامت به مدت ۷ روز</string>
-  <string name="arrays__mute_for_one_year">صامت به مدت ۱ سال</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">صامت به مدت ۱ سال</string> -->
   <string name="arrays__settings_default">تنظیمات پیش‌فرض سیستم</string>
   <string name="arrays__enabled">فعال</string>
   <string name="arrays__disabled">غیرفعال</string>

@@ -1199,10 +1199,10 @@
   <string name="arrays__use_default">Ginakaken default</string>
   <string name="arrays__use_custom">Ginakaken kustom</string>
   <string name="arrays__mute_for_one_hour">Bisuaken ngantos 1 jam</string>
-  <string name="arrays__mute_for_two_hours">Bisuaken ngantos 2 jam</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Bisuaken ngantos 2 jam</string> -->
   <string name="arrays__mute_for_one_day">Bisuaken ngantos 1 dinten</string>
   <string name="arrays__mute_for_seven_days">Bisuaken ngantos 7 dinten</string>
-  <string name="arrays__mute_for_one_year">Bisuaken ngantos 1 taun</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Bisuaken ngantos 1 taun</string> -->
   <string name="arrays__settings_default">Default panatanan</string>
   <string name="arrays__enabled">Aktifaken</string>
   <string name="arrays__disabled">Nonaktifaken</string>

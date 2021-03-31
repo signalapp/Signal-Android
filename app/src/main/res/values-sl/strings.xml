@@ -1951,10 +1951,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi po meri</string>
   <string name="arrays__mute_for_one_hour">Izklopi za 1 uro</string>
-  <string name="arrays__mute_for_two_hours">Izklopi za 2 uri</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Izklopi za 2 uri</string> -->
   <string name="arrays__mute_for_one_day">Izklopi za 1 dan</string>
   <string name="arrays__mute_for_seven_days">Izklopi za 7 dni</string>
-  <string name="arrays__mute_for_one_year">Izklopi za 1 leto</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Izklopi za 1 leto</string> -->
   <string name="arrays__settings_default">Sistemsko privzeto</string>
   <string name="arrays__enabled">Vklopljeno</string>
   <string name="arrays__disabled">Izklopljeno</string>

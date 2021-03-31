@@ -1458,10 +1458,10 @@
   <string name="arrays__use_default">ডিফল্ট ব্যবহার করুন</string>
   <string name="arrays__use_custom">কাস্টম ব্যবহার করুন</string>
   <string name="arrays__mute_for_one_hour">1 ঘন্টা নিঃশব্দ করুন</string>
-  <string name="arrays__mute_for_two_hours">2 ঘন্টা নিঃশব্দ করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 ঘন্টা নিঃশব্দ করুন</string> -->
   <string name="arrays__mute_for_one_day">1 দিনের জন্য নিঃশব্দ করুন</string>
   <string name="arrays__mute_for_seven_days">7 দিনের জন্য নিঃশব্দ করুন</string>
-  <string name="arrays__mute_for_one_year">1 বছরের জন্য নিঃশব্দ করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 বছরের জন্য নিঃশব্দ করুন</string> -->
   <string name="arrays__settings_default">সেটিংস ডিফল্ট</string>
   <string name="arrays__enabled">সক্রিয়</string>
   <string name="arrays__disabled">নিষ্ক্রিয়</string>

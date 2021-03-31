@@ -1381,10 +1381,10 @@
   <string name="arrays__use_default">ಡೀಫಾಲ್ಟ್ ಬಳಸಿ</string>
   <string name="arrays__use_custom">ಕಸ್ಟಮ್ ಬಳಸಿ</string>
   <string name="arrays__mute_for_one_hour">1 ಗಂಟೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <string name="arrays__mute_for_two_hours">2 ಗಂಟೆಗಳ ಕಾಲ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 ಗಂಟೆಗಳ ಕಾಲ ಮ್ಯೂಟ್ ಮಾಡಿ</string> -->
   <string name="arrays__mute_for_one_day"> 1 ದಿನದ ಕಾಲ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="arrays__mute_for_seven_days">7 ದಿನಗಳವರೆಗೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <string name="arrays__mute_for_one_year">1 ವರ್ಷಕ್ಕೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 ವರ್ಷಕ್ಕೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string> -->
   <string name="arrays__settings_default">ಸೆಟ್ಟಿಂಗ್‌‌ಗಳು ಡೀಫಾಲ್ಟ್</string>
   <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸು</string>
   <string name="arrays__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>

@@ -1550,7 +1550,7 @@
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimaalne grupisuurus täitunud</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signali grupis võib olla maksimaalselt %1$d liiget.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Jõuti soovitatava liikmete arvu piirini</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signali grupid toimivad kõige paremini %1$d või vähema liikmega. Rohkem liikmete lisamine võib põhjustada viivitusi sõnumite saamises ja saatmises.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signali grupid toimivad kõige paremini %1$d või vähema liikmega. Rohkem liikmete lisamine põhjustab viivitusi sõnumite saatmises ja saamises.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d liige</item>
     <item quantity="other">%1$d liiget</item>
@@ -1577,7 +1577,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Salvesta ja saada helimanus</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukusta helimanuse salvestamine</string>
   <string name="conversation_activity__enable_signal_for_sms">Luba Signal SMSide jaoks</string>
-  <string name="conversation_activity__message_could_not_be_sent">Sõnumit ei saanud saata. Kontrolli oma ühendust ja proovi uuesti.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Sõnumi saatmine ei õnnestunud. Kontrolli internetiühendust ja proovi uuesti.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Libista tühistamiseks</string>
   <string name="conversation_input_panel__cancel">Loobu</string>
@@ -1787,6 +1787,7 @@
   <string name="HelpFragment__include_debug_log">Lisa silumislogi</string>
   <string name="HelpFragment__whats_this">Mis see on?</string>
   <string name="HelpFragment__how_do_you_feel">Kuidas sa end tunned? (valikuline)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Räägi meile, miks sa otsid abi</string>
   <string name="HelpFragment__support_info">Kasutajatoe info</string>
   <string name="HelpFragment__signal_android_support_request">Signali Androidi kasutajatoetaotlus</string>
   <string name="HelpFragment__debug_log">Silumisinfo:</string>
@@ -1808,10 +1809,10 @@
   <string name="arrays__use_default">Kasuta vaikeväärtust</string>
   <string name="arrays__use_custom">Kasuta kohandatud väärtust</string>
   <string name="arrays__mute_for_one_hour">Vaigista 1 tunniks</string>
-  <string name="arrays__mute_for_two_hours">Vaigista 2 tunniks</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Vaigista 2 tunniks</string> -->
   <string name="arrays__mute_for_one_day">Vaigista 1 päevaks</string>
   <string name="arrays__mute_for_seven_days">Vaigista 7 päevaks</string>
-  <string name="arrays__mute_for_one_year">Vaigista 1 aastaks</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Vaigista 1 aastaks</string> -->
   <string name="arrays__settings_default">Seadete vaikeväärtus</string>
   <string name="arrays__enabled">Lubatud</string>
   <string name="arrays__disabled">Keelatud</string>
@@ -2239,9 +2240,13 @@
   <string name="backup_enable_dialog__folder">Kaust</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ma olen salasõna üles kirjutanud. Ilma selleta ei saa ma varukoopiat taastada.</string>
   <string name="registration_activity__restore_backup">Taasta varukoopia</string>
+  <string name="registration_activity__transfer_or_restore_account">Kanna üle või taasta konto</string>
+  <string name="registration_activity__transfer_account">Kanna konto üle</string>
   <string name="registration_activity__skip">Jäta vahele</string>
   <string name="preferences_chats__chat_backups">Vestluste varukoopiad</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varunda vestlused välisseadmele</string>
+  <string name="preferences_chats__transfer_account">Kanna konto üle</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Kanna konto üle uude Android-seadmesse</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varukoopia salasõna</string>
   <string name="RegistrationActivity_restore">Taasta</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varukoopiaid importida</string>
@@ -2316,6 +2321,9 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
   <string name="Recipient_unknown">Tundmatu</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Kanna üle või taasta konto</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Kanna üle Android-seadmest</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Taasta varukoopiast</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Jätka</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
@@ -2324,14 +2332,23 @@
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_wifi">Lülita Wi-Fi sisse</string>
   <string name="DeviceTransferSetup__retry">Proovi uuesti</string>
   <string name="DeviceTransferSetup__continue">Jätka</string>
+  <string name="DeviceTransferSetup__stop_transfer">Peata ülekanne</string>
+  <string name="DeviceTransferSetup__location_services">Asukohateenused</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Mine kasutajatoelehele</string>
   <string name="DeviceTransferSetup__try_again">Proovi uuesti</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Teise seadme ootamine…</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Andmete ülekandmine</string>
   <string name="DeviceTransfer__cancel">Loobu</string>
   <string name="DeviceTransfer__try_again">Proovi uuesti</string>
+  <string name="DeviceTransfer__stop_transfer_question">Kas peatada ülekanne?</string>
+  <string name="DeviceTransfer__stop_transfer">Peata ülekanne</string>
+  <string name="DeviceTransfer__transfer_failed">Ülekanne ei õnnestunud</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Kanna konto üle</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>

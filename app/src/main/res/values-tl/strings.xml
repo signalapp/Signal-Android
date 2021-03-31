@@ -1293,10 +1293,10 @@
   <string name="arrays__use_default">Gamitin ang default</string>
   <string name="arrays__use_custom">Gumamit ng custom</string>
   <string name="arrays__mute_for_one_hour">Patahimikin nang 1 oras</string>
-  <string name="arrays__mute_for_two_hours">Patahimikin nang 2 oras</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Patahimikin nang 2 oras</string> -->
   <string name="arrays__mute_for_one_day">Patahimikin nang 1 araw</string>
   <string name="arrays__mute_for_seven_days">Patahimikin nang 7 araw</string>
-  <string name="arrays__mute_for_one_year">Patahimikin nang 1 taon</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Patahimikin nang 1 taon</string> -->
   <string name="arrays__settings_default">Default ng settings</string>
   <string name="arrays__enabled">Naka-enable</string>
   <string name="arrays__disabled">Naka-disable</string>

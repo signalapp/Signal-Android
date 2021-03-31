@@ -1816,10 +1816,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="arrays__use_default">Brug standard</string>
   <string name="arrays__use_custom">Brug tilpasset</string>
   <string name="arrays__mute_for_one_hour">Udsæt 1 time</string>
-  <string name="arrays__mute_for_two_hours">Udsæt 2 timer</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Udsæt 2 timer</string> -->
   <string name="arrays__mute_for_one_day">Udsæt 1 dag</string>
   <string name="arrays__mute_for_seven_days">Udsæt 7 dage</string>
-  <string name="arrays__mute_for_one_year">Udsæt 1 år</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Udsæt 1 år</string> -->
   <string name="arrays__settings_default">Standardindstillinger</string>
   <string name="arrays__enabled">Aktiveret</string>
   <string name="arrays__disabled">Deaktiveret</string>

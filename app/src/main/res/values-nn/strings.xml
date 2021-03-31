@@ -1812,10 +1812,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="arrays__use_default">Bruk standard</string>
   <string name="arrays__use_custom">Bruk sjølvvald</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
-  <string name="arrays__mute_for_two_hours">Demp i 2 timar</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Demp i 2 timar</string> -->
   <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp i 7 dagar</string>
-  <string name="arrays__mute_for_one_year">Demp i 1 år</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Demp i 1 år</string> -->
   <string name="arrays__settings_default">Standardoppsett</string>
   <string name="arrays__enabled">Slått på</string>
   <string name="arrays__disabled">Slått av</string>

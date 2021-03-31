@@ -923,10 +923,10 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="arrays__use_default">Ña charishkakunata mutsupay.</string>
   <string name="arrays__use_custom">Kikinpapacha kashkata mutsupay.</string>
   <string name="arrays__mute_for_one_hour">1  pachata upallayachina</string>
-  <string name="arrays__mute_for_two_hours">2 pachata upallayachina</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 pachata upallayachina</string> -->
   <string name="arrays__mute_for_one_day">1 punchata upallayachina</string>
   <string name="arrays__mute_for_seven_days">7 punchata upallayachina</string>
-  <string name="arrays__mute_for_one_year">1 watata upallayachina</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 watata upallayachina</string> -->
   <string name="arrays__settings_default">Ña charishka configuración</string>
   <string name="arrays__enabled">Paskashka</string>
   <string name="arrays__disabled">Mana paskashka</string>

@@ -279,7 +279,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pode deslizar qualquer mensagem para a esquerda para responder rapidamente</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros multimédia de visualização única são removidos automaticamente depois de terem sido enviados</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Já viu esta mensagem</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pode adicionar notas para si mesmo nesta conversa.\nSe a sua conta estive ligada a algum dispositivo, as notas novas serão sincronizadas.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pode adicionar notas para si mesmo nesta conversa.\nSe a sua conta esteve ligada a algum dispositivo, as notas novas serão sincronizadas.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membros do grupo têm o mesmo nome.</string>
   <string name="ConversationFragment__tap_to_review">Toque para rever</string>
   <string name="ConversationFragment__review_requests_carefully">Revejo os pedidos de forma cuidada</string>
@@ -1815,10 +1815,10 @@
   <string name="arrays__use_default">Usar a opção predefinida</string>
   <string name="arrays__use_custom">Usar a opção personalizada</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
-  <string name="arrays__mute_for_two_hours">Silenciar por 2 horas</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silenciar por 2 horas</string> -->
   <string name="arrays__mute_for_one_day">Silenciar por 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silenciar por 7 dias</string>
-  <string name="arrays__mute_for_one_year">Silenciar por 1 ano</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silenciar por 1 ano</string> -->
   <string name="arrays__settings_default">Definições padrão</string>
   <string name="arrays__enabled">Ativada</string>
   <string name="arrays__disabled">Desativada</string>
@@ -2354,6 +2354,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaurar uma cópia de segurança</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ocorreu um erro inesperado ao tentar ligar ao seu dispositivo Android antigo.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">A pesquisar por um dispositivo Android novo…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">O Signal necessita da permissão de localização para poder encontrar e depois ligar-se ao seu dispositivo Android novo.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">O Signal necessita que os serviços de localização se encontrem ativos para poder encontrar e depois ligar-se ao seu dispositivo Android novo.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">O Signal necessita de Wi-Fi para poder descobrir e ligar-se ao seu dispositivo Android novo. O Wi-Fi precisa estar ligado, mas não precisa estar ligado a uma rede Wi-Fi.</string>
@@ -2433,7 +2434,10 @@
   <string name="DeviceToDeviceTransferService_status_verification_required">Necessária verificação</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">A transferir conta…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Termine o registo no seu dispositivo novo</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">A sua conta do Signal foi transferida para o seu novo dispositivo, mas você deverá concluir o seu registo para continuar. O Signal ficará inativo neste dispositivo. </string>
   <string name="OldDeviceTransferLockedDialog__done">Concluído</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este dispositivo</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>

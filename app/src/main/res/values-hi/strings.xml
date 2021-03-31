@@ -1780,10 +1780,10 @@
   <string name="arrays__use_default">डिफ़ॉल्ट का इस्तेमाल करें </string>
   <string name="arrays__use_custom">कस्टम का इस्तेमाल करें </string>
   <string name="arrays__mute_for_one_hour">1 घंटे के लिए म्यूट करें</string>
-  <string name="arrays__mute_for_two_hours">2 घंटे के लिए म्यूट करें</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 घंटे के लिए म्यूट करें</string> -->
   <string name="arrays__mute_for_one_day">1 दिन के लिए म्यूट करें</string>
   <string name="arrays__mute_for_seven_days">7 दिन के लिए म्यूट करें</string>
-  <string name="arrays__mute_for_one_year">1 साल के लिए म्यूट करें</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 साल के लिए म्यूट करें</string> -->
   <string name="arrays__settings_default">सेटिंग्स डिफ़ॉल्ट</string>
   <string name="arrays__enabled">सक्षम</string>
   <string name="arrays__disabled">अक्षम</string>

@@ -1730,10 +1730,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="arrays__use_default">Dùng mặc định</string>
   <string name="arrays__use_custom">Dùng tùy chỉnh</string>
   <string name="arrays__mute_for_one_hour">Tạm im 1 giờ</string>
-  <string name="arrays__mute_for_two_hours">Tạm im 2 giờ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Tạm im 2 giờ</string> -->
   <string name="arrays__mute_for_one_day">Tạm im 1 ngày</string>
   <string name="arrays__mute_for_seven_days">Tạm im 7 ngày</string>
-  <string name="arrays__mute_for_one_year">Tạm im 1 năm</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Tạm im 1 năm</string> -->
   <string name="arrays__settings_default">Mặc định theo hệ thống</string>
   <string name="arrays__enabled">Bật</string>
   <string name="arrays__disabled">Tắt</string>

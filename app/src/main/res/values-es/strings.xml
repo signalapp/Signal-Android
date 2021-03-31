@@ -528,11 +528,11 @@
   <string name="PendingMembersActivity_pending_group_invites">Invitaciones pendientes</string>
   <string name="PendingMembersActivity_requests">Solicitudes</string>
   <string name="PendingMembersActivity_invites">Invitaciones</string>
-  <string name="PendingMembersActivity_people_you_invited">Personas que has invitado tú</string>
+  <string name="PendingMembersActivity_people_you_invited">Personas invitadas por ti</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Otras personas que han sido invitadas</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Más personas invitadas</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otr@s participantes.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr@s participantes del grupo. Las personas invitadas sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar en el grupo.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Las personas invitadas sólo compartirán sus detalles con el grupo y verán los mensajes, que se envíen a partir del momento en que decidan participar en el grupo.</string>
   <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
   <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -670,7 +670,7 @@
   <string name="ManageRecipientActivity_message_description">Mensaje</string>
   <string name="ManageRecipientActivity_voice_call_description">Llamada de voz</string>
   <string name="ManageRecipientActivity_insecure_voice_call_description">Llamada no segura</string>
-  <string name="ManageRecipientActivity_video_call_description">Vídeollamada</string>
+  <string name="ManageRecipientActivity_video_call_description">Videollamada</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">«%1$s» ha invitado a 1 persona</item>
     <item quantity="other">«%1$s» ha invitado a %2$d personas</item>
@@ -875,7 +875,7 @@
   <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
   <string name="MessageRecord_you_called_date">Has llamado · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Llamada perdida · %1$s</string>
-  <string name="MessageRecord_missed_video_call_date">Vídeollamada perdida · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Videollamada perdida · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ha actualizado el grupo.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ha llamado · %2$s</string>
   <string name="MessageRecord_s_joined_signal">¡%s usa Signal!</string>
@@ -1179,7 +1179,7 @@
   <string name="WebRtcCallActivity__calling">Llamando …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Llamada de Signal …</string>
-  <string name="WebRtcCallView__signal_video_call">Vídeollamada de Signal …</string>
+  <string name="WebRtcCallView__signal_video_call">Videollamada de Signal …</string>
   <string name="WebRtcCallView__start_call">Iniciar llamada</string>
   <string name="WebRtcCallView__join_call">Unirse</string>
   <string name="WebRtcCallView__call_is_full">La llamada está llena</string>
@@ -1350,7 +1350,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_called">Has llamado</string>
   <string name="ThreadRecord_called_you">Te ha llamado</string>
   <string name="ThreadRecord_missed_audio_call">Llamada perdida</string>
-  <string name="ThreadRecord_missed_video_call">Vídeollamada perdida</string>
+  <string name="ThreadRecord_missed_video_call">Videollamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_view_once_photo">Foto para ver una vez</string>
@@ -1816,10 +1816,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="arrays__use_default">Usar predeterminado</string>
   <string name="arrays__use_custom">Usar personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
-  <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string> -->
   <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
   <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
-  <string name="arrays__mute_for_one_year">Silenciar durante 1 año</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silenciar durante 1 año</string> -->
   <string name="arrays__settings_default">Ajustes predeterminados</string>
   <string name="arrays__enabled">Activado</string>
   <string name="arrays__disabled">Desactivado</string>
@@ -2022,7 +2022,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_callable_insecure__menu_call">Llamar</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Llamada de Signal</string>
-  <string name="conversation_callable_secure__menu_video">Vídeollamada de Signal</string>
+  <string name="conversation_callable_secure__menu_video">Videollamada de Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
@@ -2331,7 +2331,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transferir o restaurar cuenta</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Si ya tienes una cuenta en Signal, podrás transferir o restaurar de forma segura tu cuenta y mensajes.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transferir desde dispositivo Android</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfiere tu cuenta y mensajes desde tu dispositivo de Android antiguo. Necesitas acceso a tu dispositivo antiguo. </string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfiere tu cuenta y mensajes desde tu dispositivo Android antiguo. Necesitas acceso a tu dispositivo antiguo. </string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Debes tener acceso a tu dispositivo antiguo.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar desde copia de seguridad</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaura tus mensajes y adjuntos desde una copia de seguridad local. Si no lo haces ahora, no podrás restaurar más tarde.</string>
@@ -2452,7 +2452,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RecipientBottomSheet_message_description">Mensaje</string>
   <string name="RecipientBottomSheet_voice_call_description">Llamada de voz</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Llamada no segura</string>
-  <string name="RecipientBottomSheet_video_call_description">Vídeollamada</string>
+  <string name="RecipientBottomSheet_video_call_description">Videollamada</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">¿Retirar los permisos de admin a %1$s?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s podrá modificar este grupo y añadir participantes.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">¿Expulsar a %1$s del grupo?</string>

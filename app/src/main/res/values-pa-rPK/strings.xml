@@ -1218,10 +1218,10 @@
   <string name="arrays__use_default">ڈیفالٹ ورتو</string>
   <string name="arrays__use_custom">حسب ضرورت ورتو</string>
   <string name="arrays__mute_for_one_hour">1 گھنٹے لئی خموش کرو</string>
-  <string name="arrays__mute_for_two_hours">2 گھنٹے لئی خموش کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 گھنٹے لئی خموش کرو</string> -->
   <string name="arrays__mute_for_one_day">1 دن لئی خموش کرو</string>
   <string name="arrays__mute_for_seven_days">7 دناں لئی خموش کرو</string>
-  <string name="arrays__mute_for_one_year">1 سال لئی خموش کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 سال لئی خموش کرو</string> -->
   <string name="arrays__settings_default"> طے شدہ ترتیباں</string>
   <string name="arrays__enabled">فعال کیتا</string>
   <string name="arrays__disabled">غیرفعال کیتا</string>

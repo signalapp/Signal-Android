@@ -1735,10 +1735,10 @@
   <string name="arrays__use_default">기본값 사용</string>
   <string name="arrays__use_custom">맞춤형 값 사용</string>
   <string name="arrays__mute_for_one_hour">1시간 동안 알림 끄기</string>
-  <string name="arrays__mute_for_two_hours">2시간 동안 알림 끄기</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2시간 동안 알림 끄기</string> -->
   <string name="arrays__mute_for_one_day">하루 동안 알림 끄기</string>
   <string name="arrays__mute_for_seven_days">7일 동안 알림 끄기</string>
-  <string name="arrays__mute_for_one_year">1년 동안 알림 끄기</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1년 동안 알림 끄기</string> -->
   <string name="arrays__settings_default">기본 설정</string>
   <string name="arrays__enabled">활성화됨</string>
   <string name="arrays__disabled">비활성화됨</string>

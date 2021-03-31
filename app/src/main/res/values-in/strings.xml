@@ -1736,10 +1736,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="arrays__use_default">Gunakan standar</string>
   <string name="arrays__use_custom">Gunakan pilihan khusus</string>
   <string name="arrays__mute_for_one_hour">Senyapkan selama 1 jam</string>
-  <string name="arrays__mute_for_two_hours">Senyapkan selama 2 jam</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Senyapkan selama 2 jam</string> -->
   <string name="arrays__mute_for_one_day">Senyapkan selama 1 hari</string>
   <string name="arrays__mute_for_seven_days">Senyapkan selama 7 hari</string>
-  <string name="arrays__mute_for_one_year">Senyapkan selama 1 tahun</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Senyapkan selama 1 tahun</string> -->
   <string name="arrays__settings_default">Pengaturan standar</string>
   <string name="arrays__enabled">Aktif</string>
   <string name="arrays__disabled">Nonaktif</string>

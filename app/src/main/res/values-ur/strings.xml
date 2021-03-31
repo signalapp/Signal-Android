@@ -1798,10 +1798,10 @@
   <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
   <string name="arrays__use_custom">اپنی مرضی سے استعمال کریں</string>
   <string name="arrays__mute_for_one_hour">1 گھنٹے کیلئے خاموش</string>
-  <string name="arrays__mute_for_two_hours">2 گھنٹے کیلئے خاموش</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 گھنٹے کیلئے خاموش</string> -->
   <string name="arrays__mute_for_one_day">1 دن کیلئے خاموش</string>
   <string name="arrays__mute_for_seven_days">7 دنوں کیلئے خاموش</string>
-  <string name="arrays__mute_for_one_year">1 سال کیلئے خاموش</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 سال کیلئے خاموش</string> -->
   <string name="arrays__settings_default">پہلے سے موجود ترتیبات</string>
   <string name="arrays__enabled">فعال ہونا</string>
   <string name="arrays__disabled">معطل ہونا</string>

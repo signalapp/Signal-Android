@@ -1803,10 +1803,10 @@
   <string name="arrays__use_default">ଡିଫଲ୍ଟ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__use_custom">କଷ୍ଟମ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__mute_for_one_hour">1ଟେ ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ</string>
-  <string name="arrays__mute_for_two_hours">2 ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ </string> -->
   <string name="arrays__mute_for_one_day">1ଟେ ଦିନ ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
   <string name="arrays__mute_for_seven_days">7 ଦିନ ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
-  <string name="arrays__mute_for_one_year">1ଟେ ବର୍ଷ ପାଇଁ ନୀରବ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1ଟେ ବର୍ଷ ପାଇଁ ନୀରବ କରନ୍ତୁ</string> -->
   <string name="arrays__settings_default">ଡିଫଲ୍ଟ ସେଟିଂ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__enabled">ସକ୍ଷମ</string>
   <string name="arrays__disabled">ଅକ୍ଷମ</string>

@@ -1804,10 +1804,10 @@
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
   <string name="arrays__use_custom">விருப்பம் பயன்படுத்தவும்</string>
   <string name="arrays__mute_for_one_hour">1 மணி நேரம் ஒலியடக்கு</string>
-  <string name="arrays__mute_for_two_hours">2 மணி நேரம் ஒலியடக்கு</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 மணி நேரம் ஒலியடக்கு</string> -->
   <string name="arrays__mute_for_one_day">1 நாள் ஒலியடக்கு</string>
   <string name="arrays__mute_for_seven_days">7 நாட்கள் ஒலியடக்கு</string>
-  <string name="arrays__mute_for_one_year">1 வருடம் ஒலியடக்கு</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 வருடம் ஒலியடக்கு</string> -->
   <string name="arrays__settings_default">அமைப்புகள் இயல்புநிலை</string>
   <string name="arrays__enabled">செயல்படுத்தப்பட்டது</string>
   <string name="arrays__disabled">முடக்கப்பட்டது</string>

@@ -1816,10 +1816,10 @@
   <string name="arrays__use_default">Utilizar o predeterminado</string>
   <string name="arrays__use_custom">Utilizar o personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
-  <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string> -->
   <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
   <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
-  <string name="arrays__mute_for_one_year">Silenciar durante 1 ano</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silenciar durante 1 ano</string> -->
   <string name="arrays__settings_default">Configuración predefinida</string>
   <string name="arrays__enabled">Activado</string>
   <string name="arrays__disabled">Desactivado</string>

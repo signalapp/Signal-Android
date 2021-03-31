@@ -1799,10 +1799,10 @@
   <string name="arrays__use_default">Valeur par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
   <string name="arrays__mute_for_one_hour">Sourdine pendant 1 heure</string>
-  <string name="arrays__mute_for_two_hours">Sourdine pendant 2 heures</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Sourdine pendant 2 heures</string> -->
   <string name="arrays__mute_for_one_day">Sourdine pendant 1 jour</string>
   <string name="arrays__mute_for_seven_days">Sourdine pendant 7 jours</string>
-  <string name="arrays__mute_for_one_year">Sourdine pendant 1 an</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Sourdine pendant 1 an</string> -->
   <string name="arrays__settings_default">Paramètre par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
