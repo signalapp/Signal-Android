@@ -33,7 +33,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       androidAudioManager.setSpeakerphoneOn(true);
     }
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return currentState;
   }
@@ -61,7 +61,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return currentState;
   }
@@ -76,7 +76,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return currentState;
   }

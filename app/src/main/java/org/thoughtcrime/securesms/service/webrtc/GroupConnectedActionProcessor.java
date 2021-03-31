@@ -84,7 +84,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
                                .cameraState(camera.getCameraState())
                                .build();
 
-    WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor.getWebRtcCallService(), currentState.getCallSetupState().isEnableVideoOnCreate());
+    WebRtcUtil.enableSpeakerPhoneIfNeeded(context, currentState.getCallSetupState().isEnableVideoOnCreate());
 
     return currentState;
   }
@@ -157,7 +157,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
                                .build();
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return terminateGroupCall(currentState);
   }

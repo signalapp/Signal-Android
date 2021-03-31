@@ -571,7 +571,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     if (groupCallViewModel != null) {
-      groupCallViewModel.peekGroupCall(this);
+      groupCallViewModel.peekGroupCall();
     }
 
     setVisibleThread(threadId);
@@ -2210,7 +2210,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     groupCallViewModel = ViewModelProviders.of(this, new GroupCallViewModel.Factory()).get(GroupCallViewModel.class);
 
     recipient.observe(this, r -> {
-      groupCallViewModel.onRecipientChange(this, r);
+      groupCallViewModel.onRecipientChange(r);
     });
 
     groupCallViewModel.hasActiveGroupCall().observe(this, hasActiveCall -> {
@@ -2361,7 +2361,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     if (groupCallViewModel != null) {
-      groupCallViewModel.onRecipientChange(this, recipient);
+      groupCallViewModel.onRecipientChange(recipient);
     }
   }
 

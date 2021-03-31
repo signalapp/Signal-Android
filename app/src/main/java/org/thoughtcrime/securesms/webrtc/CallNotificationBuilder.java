@@ -11,13 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.service.webrtc.WebRtcCallService;
 
 /**
  * Manages the state of the WebRtc items in the Android notification bar.
@@ -53,7 +52,7 @@ public class CallNotificationBuilder {
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
     } else if (type == TYPE_INCOMING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
-      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_DENY_CALL, R.drawable.ic_close_grey600_32dp,   R.string.NotificationBarManager__deny_call));
+      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.denyCallIntent(context), R.drawable.ic_close_grey600_32dp, R.string.NotificationBarManager__deny_call));
       builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
 
       if (callActivityRestricted()) {
@@ -63,10 +62,10 @@ public class CallNotificationBuilder {
       }
     } else if (type == TYPE_OUTGOING_RINGING) {
       builder.setContentText(context.getString(R.string.NotificationBarManager__establishing_signal_call));
-      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_LOCAL_HANGUP, R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
+      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
     } else {
       builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
-      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_LOCAL_HANGUP, R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__end_call));
+      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__end_call));
     }
 
     return builder.build();
@@ -93,10 +92,7 @@ public class CallNotificationBuilder {
     }
   }
 
-  private static NotificationCompat.Action getServiceNotificationAction(Context context, String action, int iconResId, int titleResId) {
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(action);
-
+  private static NotificationCompat.Action getServiceNotificationAction(Context context, Intent intent, int iconResId, int titleResId) {
     PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
 
     return new NotificationCompat.Action(iconResId, context.getString(titleResId), pendingIntent);
