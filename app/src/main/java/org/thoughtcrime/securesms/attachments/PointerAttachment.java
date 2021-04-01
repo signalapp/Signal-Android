@@ -46,9 +46,8 @@ public class PointerAttachment extends Attachment {
     return null;
   }
 
-  @Nullable
   @Override
-  public Uri getPublicUri() {
+  public @Nullable Uri getPublicUri() {
     return null;
   }
 

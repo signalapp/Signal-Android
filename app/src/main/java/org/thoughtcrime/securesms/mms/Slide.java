@@ -55,8 +55,7 @@ public abstract class Slide {
     return attachment.getUri();
   }
 
-  @Nullable
-  public Uri getPublicUri() {
+  public @Nullable Uri getPublicUri() {
     return attachment.getPublicUri();
   }
 

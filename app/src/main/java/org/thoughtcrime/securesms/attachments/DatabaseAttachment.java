@@ -66,8 +66,7 @@ public class DatabaseAttachment extends Attachment {
   }
 
   @Override
-  @Nullable
-  public Uri getPublicUri() {
+  public @Nullable Uri getPublicUri() {
     if (hasData) {
       return PartAuthority.getAttachmentPublicUri(getUri());
     } else {

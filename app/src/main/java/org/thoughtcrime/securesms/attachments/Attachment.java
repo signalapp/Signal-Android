@@ -108,8 +108,7 @@ public abstract class Attachment {
   @Nullable
   public abstract Uri getUri();
 
-  @Nullable
-  public abstract Uri getPublicUri();
+  public abstract @Nullable Uri getPublicUri();
 
   public int getTransferState() {
     return transferState;
