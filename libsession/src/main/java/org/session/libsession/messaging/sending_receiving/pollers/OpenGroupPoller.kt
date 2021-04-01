@@ -202,7 +202,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
         OpenGroupAPI.getDisplayNames(hexEncodedPublicKeys, openGroup.server).successBackground { mapping ->
             for (pair in mapping.entries) {
                 if (pair.key == userHexEncodedPublicKey) continue
-                val senderDisplayName = "${pair.value} (...${pair.key.takeLast(8)})"
+                val senderDisplayName = "${pair.value} (...${pair.key.substring(pair.key.count() - 8)})"
                 MessagingConfiguration.shared.storage.setOpenGroupDisplayName(pair.key, openGroup.channel, openGroup.server, senderDisplayName)
             }
         }.fail {
