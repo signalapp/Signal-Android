@@ -1686,6 +1686,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ove su osobe možda iznova instalirale Signal ili promijenile uređaj. Potvrdite svoj sigurnosni broj s njima da osigurate privatnost.</string>
   <string name="safety_number_change_dialog__view">Pregled</string>
   <string name="safety_number_change_dialog__previous_verified">Ranije potvrđeno</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Podešavanja</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavam države…</string>
   <string name="country_selection_fragment__search">Traži</string>
@@ -1888,10 +1890,8 @@
   <string name="arrays__use_default">Koristi standardno</string>
   <string name="arrays__use_custom">Koristi korisničko</string>
   <string name="arrays__mute_for_one_hour">Stišaj na 1 sat</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Stišaj na 2 sata</string> -->
   <string name="arrays__mute_for_one_day">Stišaj na 1 dan</string>
   <string name="arrays__mute_for_seven_days">Stišaj na 7 dana</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Stišaj na 1 godinu</string> -->
   <string name="arrays__settings_default">Sistemske postavke</string>
   <string name="arrays__enabled">Omogućeno</string>
   <string name="arrays__disabled">Onemogućeno</string>
@@ -1944,6 +1944,7 @@
   <string name="preferences__pref_led_blink_title">LED treptanja</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Stišan</string>
+  <string name="preferences__default">Standardno</string>
   <string name="preferences__repeat_alerts">Ponavljanje obavještenja</string>
   <string name="preferences__never">Nikad</string>
   <string name="preferences__one_time">Jednom</string>

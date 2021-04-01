@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Menções</string>
   <string name="ManageGroupActivity_chat_wallpaper">Fundo de ecrã de conversas</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
+  <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageRecipientActivity_custom_notifications">Notificações personalizadas</string>
   <string name="ManageRecipientActivity_until_s">Até %1$s</string>
+  <string name="ManageRecipientActivity_always">Sempre</string>
   <string name="ManageRecipientActivity_off">Off</string>
   <string name="ManageRecipientActivity_on">On</string>
   <string name="ManageRecipientActivity_add_to_a_group">Adicionar a um grupo</string>
@@ -1477,6 +1479,7 @@
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecido(a)</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Sem atividade disponível para abrir as definições do canal de notificações.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A resposta rápida encontra-se indisponível enquanto o Signal estiver bloqueado!</string>
@@ -1597,6 +1600,7 @@
   <string name="ConversationUpdateItem_return_to_call">Regressar à chamada</string>
   <string name="ConversationUpdateItem_call_is_full">A chamada encontra-se completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amigos</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Activar notificações de chamadas</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pausa</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -1620,6 +1624,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes pessoas podem ter reinstalado ou mudado de dispositivo. Verifique o seu número de segurança com eles para assegurar a privacidade.</string>
   <string name="safety_number_change_dialog__view">Ver</string>
   <string name="safety_number_change_dialog__previous_verified">Verificado anteriormente</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notificações de chamadas ativas.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activar notificações de chamadas</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Ativar atividade em segundo plano</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Agora tudo parece estar bem!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Para receber notificações de chamadas, toque aqui e ative \"Mostrar notificações\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Para receber notificações de chamadas, toque aqui e ative as notificações e assegure-se que o \'Som\' e os \'Pop-up\' se encontram ativos.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Para receber notificações de chamadas, toque aqui e ative ativar atividade em segundo plano nas definições de \"Bateria\".</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Definições</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Para receber notificações de chamadas, toque em \'Definições\' e ative \"Mostrar notificações\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Para receber notificações de chamadas, toque nas \'Definições\' e ative as notificações e assegure-se que o \'Som\' e os \'Pop-up\' se encontram ativos.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Para receber notificações de chamadas, toque em \'Definições\'i e ative ativar atividade em segundo plano nas definições de \"Bateria\".</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">A carregar lista de países…</string>
   <string name="country_selection_fragment__search">Pesquisar</string>
@@ -1815,10 +1831,10 @@
   <string name="arrays__use_default">Usar a opção predefinida</string>
   <string name="arrays__use_custom">Usar a opção personalizada</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silenciar por 2 horas</string> -->
+  <string name="arrays__mute_for_eight_hours">Silenciar durante 8 horas</string>
   <string name="arrays__mute_for_one_day">Silenciar por 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silenciar por 7 dias</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silenciar por 1 ano</string> -->
+  <string name="arrays__always">Sempre</string>
   <string name="arrays__settings_default">Definições padrão</string>
   <string name="arrays__enabled">Ativada</string>
   <string name="arrays__disabled">Desativada</string>
@@ -1870,6 +1886,7 @@
   <string name="preferences__pref_led_blink_title">Padrão do piscar do LED</string>
   <string name="preferences__sound">Som</string>
   <string name="preferences__silent">Silencioso</string>
+  <string name="preferences__default">Predefinição</string>
   <string name="preferences__repeat_alerts">Repetir alertas</string>
   <string name="preferences__never">Nunca</string>
   <string name="preferences__one_time">Uma vez</string>

@@ -1742,6 +1742,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Našteti uporabniki/ce so najbrž ponovno namestili Signal ali zamenjali napravo. Za potrditev istovetnosti ponovno preverite varnostno število z njimi.</string>
   <string name="safety_number_change_dialog__view">Preglej</string>
   <string name="safety_number_change_dialog__previous_verified">Prej potrjeno</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Nastavitve</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nalaganje držav …</string>
   <string name="country_selection_fragment__search">Iskanje</string>
@@ -1951,10 +1953,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi po meri</string>
   <string name="arrays__mute_for_one_hour">Izklopi za 1 uro</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Izklopi za 2 uri</string> -->
   <string name="arrays__mute_for_one_day">Izklopi za 1 dan</string>
   <string name="arrays__mute_for_seven_days">Izklopi za 7 dni</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Izklopi za 1 leto</string> -->
   <string name="arrays__settings_default">Sistemsko privzeto</string>
   <string name="arrays__enabled">Vklopljeno</string>
   <string name="arrays__disabled">Izklopljeno</string>
@@ -2008,6 +2008,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__pref_led_blink_title">Utripanje LED</string>
   <string name="preferences__sound">Zvok</string>
   <string name="preferences__silent">Tiho</string>
+  <string name="preferences__default">Privzeto</string>
   <string name="preferences__repeat_alerts">Ponavljanje alarma</string>
   <string name="preferences__never">Nikoli</string>
   <string name="preferences__one_time">Enkrat</string>

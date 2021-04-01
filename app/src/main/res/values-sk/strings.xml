@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Spomenutia</string>
   <string name="ManageGroupActivity_chat_wallpaper">Pozadie chatu</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
+  <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vypnuté</string>
   <string name="ManageGroupActivity_on">Zapnuté</string>
   <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Stlmiť upozornenia</string>
   <string name="ManageRecipientActivity_custom_notifications">Vlastné upozornenia</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
+  <string name="ManageRecipientActivity_always">Vždy</string>
   <string name="ManageRecipientActivity_off">Vypnuté</string>
   <string name="ManageRecipientActivity_on">Zapnuté</string>
   <string name="ManageRecipientActivity_add_to_a_group">Pridať do skupiny</string>
@@ -1601,6 +1603,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NotificationChannel_group_messages">Správy</string>
   <string name="NotificationChannel_missing_display_name">Neznáma</string>
   <string name="NotificationChannel_voice_notes">Hlasové poznámky</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Na otvorenie nastavení kanála upozornení nie je k dispozícii žiadna aktivita.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Signal zamknutý!</string>
@@ -1727,6 +1730,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_return_to_call">Vrátiť sa k hovoru</string>
   <string name="ConversationUpdateItem_call_is_full">Hovor je plne obsadený</string>
   <string name="ConversationUpdateItem_invite_friends">Pozvať priateľov</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Povoliť upozornenia na hovory</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
@@ -1750,6 +1754,18 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Nasledujúce osoby si možno preinštalovali alebo zmenili zariadenia. Overte si s nimi vaše bezpečnostné číslo pre zaistenie súkromia.</string>
   <string name="safety_number_change_dialog__view">Zobraziť</string>
   <string name="safety_number_change_dialog__previous_verified">V minulosti overený</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Upozornenia na hovory sú povolené.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Povoliť upozornenia na hovory</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Povoliť aktivitu na pozadí</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Všetko teraz vyzerá byť v poriadku!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite tu a zapnite možnosť „Zobraziť upozornenia“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite tu, zapnite upozornenia a uistite sa, že sú povolené zvuky a kontextové okná.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Ak chcete dostávať oznámenia o hovoroch, ťuknite tu a povoľte aktivitu na pozadí v nastaveniach batérie.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Nastavenia</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite na Nastavenia a zapnite možnosť „Zobraziť upozornenia“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite na Nastavenia, zapnite upozornenia a uistite sa, že sú povolené zvuky a vyskakovacie okná.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Ak chcete dostávať oznámenia o hovoroch, ťuknite na Nastavenia a v nastaveniach batérie povoľte aktivitu na pozadí.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín…</string>
   <string name="country_selection_fragment__search">Hľadať</string>
@@ -1959,10 +1975,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="arrays__use_default">Použiť predvolené</string>
   <string name="arrays__use_custom">Použiť vlastné</string>
   <string name="arrays__mute_for_one_hour">Stlmiť na 1 hodinu</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Stlmiť na 2 hodiny</string> -->
+  <string name="arrays__mute_for_eight_hours">Stlmiť na 8 hodín</string>
   <string name="arrays__mute_for_one_day">Stlmiť na 1 deň</string>
   <string name="arrays__mute_for_seven_days">Stlmiť na 7 dní</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Stlmiť na 1 rok</string> -->
+  <string name="arrays__always">Vždy</string>
   <string name="arrays__settings_default">Predvolené nastavenie</string>
   <string name="arrays__enabled">Povolené</string>
   <string name="arrays__disabled">Zakázané</string>
@@ -2016,6 +2032,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__pref_led_blink_title">Sekvencia blikania LED</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Ticho</string>
+  <string name="preferences__default">Predvolená</string>
   <string name="preferences__repeat_alerts">Opakovať oznámenia</string>
   <string name="preferences__never">Nikdy</string>
   <string name="preferences__one_time">Raz</string>

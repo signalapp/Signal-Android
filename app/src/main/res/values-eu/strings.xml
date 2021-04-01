@@ -1622,6 +1622,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ondoko pertsonek agian gailuak aldatu edo Signal berrinstalatu egin dute. Egiaztatu beraiekin duzun segurtasun zenbakia pribatutasuna ziurtatzeko.</string>
   <string name="safety_number_change_dialog__view">Ikusi</string>
   <string name="safety_number_change_dialog__previous_verified">Aurretik egiaztatua</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Ezarpenak</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen…</string>
   <string name="country_selection_fragment__search">Bilatu</string>
@@ -1809,10 +1811,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="arrays__use_default">Erabili lehenetsia</string>
   <string name="arrays__use_custom">Pertsonalizatua</string>
   <string name="arrays__mute_for_one_hour">Isildu ordu baterako</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Isildu ordu bitarako</string> -->
   <string name="arrays__mute_for_one_day">Isildu egun baterako</string>
   <string name="arrays__mute_for_seven_days">Isildu 7 egunetarako</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Isildu urte baterako</string> -->
   <string name="arrays__settings_default">Lehenetsia</string>
   <string name="arrays__enabled">Aktibatuta</string>
   <string name="arrays__disabled">Desaktibatua</string>
@@ -1864,6 +1864,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__pref_led_blink_title">LEDaren keinuka eredua</string>
   <string name="preferences__sound">Soinua</string>
   <string name="preferences__silent">Isildu</string>
+  <string name="preferences__default">Lehenetsia</string>
   <string name="preferences__repeat_alerts">Errepikatu alertak </string>
   <string name="preferences__never">Inoiz ez</string>
   <string name="preferences__one_time">Behin</string>

@@ -232,7 +232,7 @@
   <string name="ConversationActivity_delete">Verwijderen</string>
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsinstellingen’</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsgesprek-instellingen’</string>
   <string name="ConversationActivity_join">Deelnemen</string>
   <string name="ConversationActivity_full">Vol</string>
   <string name="ConversationActivity_error_sending_media">Fout bij het verzenden van media</string>
@@ -609,6 +609,7 @@
   <string name="ManageGroupActivity_mentions">Vermeldingen</string>
   <string name="ManageGroupActivity_chat_wallpaper">Gespreksachtergrond</string>
   <string name="ManageGroupActivity_until_s">Tot %1$s</string>
+  <string name="ManageGroupActivity_always">Voor altijd</string>
   <string name="ManageGroupActivity_off">Uit</string>
   <string name="ManageGroupActivity_on">Aan</string>
   <string name="ManageGroupActivity_view_all_members">Alle leden weergeven</string>
@@ -659,6 +660,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Meldingen dempen</string>
   <string name="ManageRecipientActivity_custom_notifications">Aangepaste meldingen</string>
   <string name="ManageRecipientActivity_until_s">Tot %1$s</string>
+  <string name="ManageRecipientActivity_always">Voor altijd</string>
   <string name="ManageRecipientActivity_off">Uit</string>
   <string name="ManageRecipientActivity_on">Aan</string>
   <string name="ManageRecipientActivity_add_to_a_group">Aan een groep toevoegen</string>
@@ -1482,6 +1484,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NotificationChannel_group_messages">Berichten</string>
   <string name="NotificationChannel_missing_display_name">Onbekend</string>
   <string name="NotificationChannel_voice_notes">Audioberichten</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Geen ‘activiteit’ beschikbaar om instellingen voor meldingskanalen mee te openen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
@@ -1602,6 +1605,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -1625,6 +1629,18 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">De volgende personen hebben mogelijk de app opnieuw geïnstalleerd of hebben een ander apparaat in gebruik genomen. Verifieer jullie veiligheidsnummers om zeker te zijn dat je met de juiste personen communiceert.</string>
   <string name="safety_number_change_dialog__view">Weergeven</string>
   <string name="safety_number_change_dialog__previous_verified">Was voorheen geverifieerd</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Oproepmeldingen ingeschakeld.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Oproepmeldingen inschakelen</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Achtergrondactiviteit inschakelen</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Het lijkt erop dat alles goed is</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Tik hier en tik vervolgens op ‘Meldingen weergeven’ om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Tik hier en schakel meldingen in en ga na dat geluiden en pop-ups zijn ingeschakeld om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Tik hier en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Instellingen</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Tik op ‘Instellingen’ en tik vervolgens op ‘Meldingen weergeven’ om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Tik op ‘Instellingen’ en schakel meldingen in en ga na dat geluiden en pop-ups zijn ingeschakeld om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Tik op ‘Instellingen’ en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Landen aan het laden …</string>
   <string name="country_selection_fragment__search">Zoeken</string>
@@ -1820,10 +1836,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="arrays__use_default">Gebruik systeemstandaard</string>
   <string name="arrays__use_custom">Gebruik eigen instelling</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Demp voor 2 uur</string> -->
+  <string name="arrays__mute_for_eight_hours">Demp voor 8 uur</string>
   <string name="arrays__mute_for_one_day">Demp voor 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp voor 7 dagen</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Demp voor 1 jaar</string> -->
+  <string name="arrays__always">Voor altijd</string>
   <string name="arrays__settings_default">Gebruik systeemstandaard</string>
   <string name="arrays__enabled">Ingeschakeld</string>
   <string name="arrays__disabled">Uitgeschakeld</string>
@@ -1875,6 +1891,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroon</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__silent">Stil</string>
+  <string name="preferences__default">Standaardmeldingen</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
   <string name="preferences__never">Nooit</string>
   <string name="preferences__one_time">Een keer</string>
@@ -2072,7 +2089,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
   <!--conversation-->
-  <string name="conversation__menu_group_settings">Groepsinstellingen</string>
+  <string name="conversation__menu_group_settings">Groepsgesprek-instellingen</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>

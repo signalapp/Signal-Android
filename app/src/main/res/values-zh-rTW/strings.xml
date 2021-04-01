@@ -1552,6 +1552,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">下列的人可能已重新安裝或更換了裝置。請驗證你與他們的安全碼，以確保隱私。</string>
   <string name="safety_number_change_dialog__view">檢視</string>
   <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">讀取國家列表中…</string>
   <string name="country_selection_fragment__search">搜尋</string>
@@ -1740,10 +1742,8 @@
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用自訂</string>
   <string name="arrays__mute_for_one_hour">靜音 1 小時</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">靜音 2 小時</string> -->
   <string name="arrays__mute_for_one_day">靜音 1 天</string>
   <string name="arrays__mute_for_seven_days">靜音 7 天</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">靜音 1 年</string> -->
   <string name="arrays__settings_default">預設設定</string>
   <string name="arrays__enabled">啟用</string>
   <string name="arrays__disabled">停用</string>
@@ -1794,6 +1794,7 @@
   <string name="preferences__pref_led_blink_title">LED 閃爍模式</string>
   <string name="preferences__sound">提示音效</string>
   <string name="preferences__silent">靜音</string>
+  <string name="preferences__default">預設</string>
   <string name="preferences__repeat_alerts">重複通知</string>
   <string name="preferences__never">永不</string>
   <string name="preferences__one_time">一次</string>

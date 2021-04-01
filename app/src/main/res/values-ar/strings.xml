@@ -1878,6 +1878,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ربما قام هؤلاء الأشخاص بإعادة تثبيت التطبيق أو قاموا بتغيير أجهزتهم. يُرجى تأكيد رقم الأمان معهم لضمان الخصوصية.</string>
   <string name="safety_number_change_dialog__view">إظهار</string>
   <string name="safety_number_change_dialog__previous_verified">سبق التحقق منه</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">الإعدادات</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>
   <string name="country_selection_fragment__search">بحث</string>
@@ -2101,10 +2103,8 @@
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">كتم لمدة ساعتين</string> -->
   <string name="arrays__mute_for_one_day">كتم لمدة يوم</string>
   <string name="arrays__mute_for_seven_days">كتم لمدة سبعة أيام</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">كتم لمدة عام واحد</string> -->
   <string name="arrays__settings_default">الإعدادات الافتراضية</string>
   <string name="arrays__enabled">مفعل</string>
   <string name="arrays__disabled">معطل</string>
@@ -2160,6 +2160,7 @@
   <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
   <string name="preferences__sound">صوت</string>
   <string name="preferences__silent">صامت</string>
+  <string name="preferences__default">افتراضي</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
   <string name="preferences__never">أبدا</string>
   <string name="preferences__one_time">مرة واحدة</string>

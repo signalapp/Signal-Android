@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Mentions</string>
   <string name="ManageGroupActivity_chat_wallpaper">Samtale bakgrunn</string>
   <string name="ManageGroupActivity_until_s">Frem til %1$s</string>
+  <string name="ManageGroupActivity_always">Evig tid</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_view_all_members">Se alle medlemmer</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Skru av varsler</string>
   <string name="ManageRecipientActivity_custom_notifications">Egendefinerte varsler</string>
   <string name="ManageRecipientActivity_until_s">Frem til %1$s</string>
+  <string name="ManageRecipientActivity_always">Evig tid</string>
   <string name="ManageRecipientActivity_off">Av</string>
   <string name="ManageRecipientActivity_on">På</string>
   <string name="ManageRecipientActivity_add_to_a_group">Legg til gruppen</string>
@@ -1615,6 +1617,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan ha reinstallert eller byttet enhet. Bekreft sikkerhetsnummeret ditt med dem for å sikre personvernet.</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekreftet</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Innstillinger</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster inn land…</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -1810,10 +1814,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
   <string name="arrays__use_custom">Bruk selvvalgt</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Demp i 2 timer</string> -->
+  <string name="arrays__mute_for_eight_hours">Demp i 8 timer</string>
   <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp i 7 dager</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Demp i 1 år</string> -->
+  <string name="arrays__always">Evig tid</string>
   <string name="arrays__settings_default">Standardoppsett</string>
   <string name="arrays__enabled">Slått på</string>
   <string name="arrays__disabled">Slått av</string>
@@ -1865,6 +1869,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__silent">Stille</string>
+  <string name="preferences__default">Forvalgt</string>
   <string name="preferences__repeat_alerts">Gjenta varsler</string>
   <string name="preferences__never">Aldri</string>
   <string name="preferences__one_time">Én gang</string>
@@ -2339,31 +2344,62 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk \"Overfør konto\" og så \"Fortsett\" på begge enheter</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Forbereder tilkobling til gammel Android enhet…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tar litt tid, skal være klart straks</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Venter på at gammel Android enhet skal koble til…</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Gjenopprett en sikkerhetskopi</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Søker etter ny Android enhet…</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Lag en sikkerhetskopi</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_location_services">Skru på lokasjonstjenester</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Kan ikke åpne lokasjonsinnstillinger.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Skru på Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Feil ved tilkobling</string>
   <string name="DeviceTransferSetup__retry">Prøv på nytt</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Send inn feilsøkingslogger</string>
+  <string name="DeviceTransferSetup__verify_code">Verifiser kode</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifiser at koden under stemmer på begge dine enheter. Deretter trykk fortsett.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrene stemmer ikke overens</string>
   <string name="DeviceTransferSetup__continue">Fortsett</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Nummeret er ikke det samme</string>
+  <string name="DeviceTransferSetup__stop_transfer">Stopp overføring</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Ikke i stand til å finne gammel enhet</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Ikke i stand til å finne ny enhet</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Prøv igjen</string>
+  <string name="DeviceTransfer__stop_transfer_question">Stopp overføring?</string>
+  <string name="DeviceTransfer__stop_transfer">Stopp overføring</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">All dataoverføring vil gå tapt.</string>
+  <string name="DeviceTransfer__transfer_failed">Overføring feilet</string>
+  <string name="DeviceTransfer__unable_to_transfer">Ikke i stand til å overføre</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Last ned Signal på din nye Android enhet</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Fortsett</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Overføring fullført</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Gå til din nye enhet</string>
   <string name="OldDeviceTransferComplete__close">Lukk</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Overføring vellykket</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Overføring fullført</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Fortsett registrering</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Konto overføring</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Verifisering påkrevd</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Overfører konto…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Ferdigstill registrering av din nye enhet</string>
   <string name="OldDeviceTransferLockedDialog__done">Ferdig</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Kanseller og aktiver denne enheten</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Skru av blokkering</string>

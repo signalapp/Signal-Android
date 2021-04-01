@@ -1753,6 +1753,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gall fod y bobl ganlynol fod wedi ailosod neu newid dyfeisiau. Gwiriwch eich rhif diogelwch gyda nhw i sicrhau preifatrwydd.</string>
   <string name="safety_number_change_dialog__view">Golwg</string>
   <string name="safety_number_change_dialog__previous_verified">Wedi\'u dilysu\'n flaenorol</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Gosodiadau</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Yn llwytho gwledydd…</string>
   <string name="country_selection_fragment__search">Chwilio</string>
@@ -1962,10 +1964,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="arrays__use_default">Defnyddio\'r rhagosodedig</string>
   <string name="arrays__use_custom">Defnyddio cyfaddas</string>
   <string name="arrays__mute_for_one_hour">Tewi am 1 awr</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Tewi am 2 awr</string> -->
   <string name="arrays__mute_for_one_day">Tewi am 1 diwrnod</string>
   <string name="arrays__mute_for_seven_days">Tewi am 7 diwrnod</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Tewi am 1 blwyddyn</string> -->
   <string name="arrays__settings_default">Rhagosodiadau\'r gosodiadau</string>
   <string name="arrays__enabled">Galluogwyd</string>
   <string name="arrays__disabled">Analluogwyd</string>
@@ -2019,6 +2019,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__pref_led_blink_title">Patrwm fflachio\'r LED</string>
   <string name="preferences__sound">Sain</string>
   <string name="preferences__silent">Tawel</string>
+  <string name="preferences__default">Rhagosodedig</string>
   <string name="preferences__repeat_alerts">Ailadrodd rhybuddion</string>
   <string name="preferences__never">Byth</string>
   <string name="preferences__one_time">Unwaith</string>

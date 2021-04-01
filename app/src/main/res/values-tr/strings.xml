@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Bahsedilmeler</string>
   <string name="ManageGroupActivity_chat_wallpaper">Konuşma duvar kağıdı</string>
   <string name="ManageGroupActivity_until_s">%1$s tarihine kadar</string>
+  <string name="ManageGroupActivity_always">Her zaman</string>
   <string name="ManageGroupActivity_off">Kapalı</string>
   <string name="ManageGroupActivity_on">Açık</string>
   <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageRecipientActivity_custom_notifications">Özel bildirimler</string>
   <string name="ManageRecipientActivity_until_s">%1$s tarihine kadar</string>
+  <string name="ManageRecipientActivity_always">Her zaman</string>
   <string name="ManageRecipientActivity_off">Kapalı</string>
   <string name="ManageRecipientActivity_on">Açık</string>
   <string name="ManageRecipientActivity_add_to_a_group">Bir gruba ekle</string>
@@ -1476,6 +1478,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NotificationChannel_group_messages">İletiler</string>
   <string name="NotificationChannel_missing_display_name">Bilinmeyen</string>
   <string name="NotificationChannel_voice_notes">Sesli Notlar</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Bildirim kanal ayarlarını açmak için mevcut bir faaliyet yok</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilitliyken hızlı cevap kullanılamaz!</string>
@@ -1596,6 +1599,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_return_to_call">Aramaya dön</string>
   <string name="ConversationUpdateItem_call_is_full">Arama dolu</string>
   <string name="ConversationUpdateItem_invite_friends">Arkadaşlarını davet et</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Arama Bildirimlerini Etkinleştir</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
@@ -1619,6 +1623,18 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Aşağıdaki kişiler cihazd değiştirmiş veya yeniden yükleme yapmış olabilir. Gizliliğinizden emin olmak için güvenlik numaranızı doğrulayın.</string>
   <string name="safety_number_change_dialog__view">Görüntüle</string>
   <string name="safety_number_change_dialog__previous_verified">Daha önce doğrulandı</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Arama bildirimleri etkinleştirildi.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Arama bildirimlerini etkinleştir</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Arka plan faaliyetini etkinleştir.</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Şimdi her şey iyi gözüküyor!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Arama bildirimlerini almak için, buraya dokunun ve \"Bildirimleri göster\" seçeneğini açın.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Arama bildirimlerini almak için, buraya dokunun ve bildirimleri açın ve Ses ve Açılır Pencere\'nin etkin olduğundan emin olun.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Arama bildirimlerini almak için, buraya dokunun ve \"Batarya\" ayarlarında arka plan faaliyetini etkinleştirin.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Ayarlar</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Arama bildirimlerini almak için, Ayarlar seçeneğine dokunun ve \"Bildirimleri göster\" seçeneğini açın.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Arama bildirimlerini almak için, Ayarlar seçeneğine dokunun ve bildirimleri açın ve Ses ve Açılır Pencere\'nin etkin olduğundan emin olun.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Arama bildirimlerini almak için, Ayarlar seçeneğine dokunun ve \"Batarya\" ayarlarında arka plan faaliyetini etkinleştirin.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor…</string>
   <string name="country_selection_fragment__search">Ara</string>
@@ -1814,10 +1830,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
   <string name="arrays__mute_for_one_hour">1 saatliğine sustur</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 saatliğine sustur</string> -->
+  <string name="arrays__mute_for_eight_hours">8 saat sustur</string>
   <string name="arrays__mute_for_one_day">1 günlüğüne sustur</string>
   <string name="arrays__mute_for_seven_days">7 günlüğüne sustur</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 yıllığına sustur</string> -->
+  <string name="arrays__always">Her zaman</string>
   <string name="arrays__settings_default">Varsayılan ayarlar</string>
   <string name="arrays__enabled">Etkin</string>
   <string name="arrays__disabled">Devre dışı</string>
@@ -1869,6 +1885,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__pref_led_blink_title">LED yanıp sönme şekli</string>
   <string name="preferences__sound">Zil Sesi</string>
   <string name="preferences__silent">Sessiz</string>
+  <string name="preferences__default">Varsayılan</string>
   <string name="preferences__repeat_alerts">Uyarıları tekrarla</string>
   <string name="preferences__never">Asla</string>
   <string name="preferences__one_time">Bir kez</string>

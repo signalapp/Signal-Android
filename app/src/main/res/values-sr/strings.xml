@@ -639,6 +639,7 @@
   <string name="ManageGroupActivity_mentions">Помињања</string>
   <string name="ManageGroupActivity_chat_wallpaper">Позадина за ћаскање</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Увек</string>
   <string name="ManageGroupActivity_off">Искључено</string>
   <string name="ManageGroupActivity_on">Укључено</string>
   <string name="ManageGroupActivity_view_all_members">Прикажи све чланове</string>
@@ -690,6 +691,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Утишај обавештења</string>
   <string name="ManageRecipientActivity_custom_notifications">Прилагођена обавештења</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
+  <string name="ManageRecipientActivity_always">Увек</string>
   <string name="ManageRecipientActivity_off">Искључено</string>
   <string name="ManageRecipientActivity_on">Укључено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Додај у групу</string>
@@ -1538,6 +1540,7 @@
   <string name="NotificationChannel_group_messages">Поруке</string>
   <string name="NotificationChannel_missing_display_name">Непозната</string>
   <string name="NotificationChannel_voice_notes">Гласовне белешке</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Signal закључан!</string>
@@ -1662,6 +1665,7 @@
   <string name="ConversationUpdateItem_return_to_call">Врати се на позив</string>
   <string name="ConversationUpdateItem_call_is_full">Позив је пун</string>
   <string name="ConversationUpdateItem_invite_friends">Позивница пријатељима</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Обавештења о позиву</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусти … Заустави</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
@@ -1685,6 +1689,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следеће особе су вероватно реинсталирале или промениле уређаје. За гаранцију приватности, оверите сигурносне бројеве са њима.</string>
   <string name="safety_number_change_dialog__view">Више</string>
   <string name="safety_number_change_dialog__previous_verified">Претходно оверено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Обавештења о позиву омогућена.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Обавештења о позиву</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Омогући позадинску активност</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Сада све изгледа добро!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Да бисте примили обавештења о позивима, додирните овде и укључите \"Прикажи обавештења\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Да бисте примили обавештења о позивима, додирните овде и укључите обавештења и осигурајте да се упали „звук“ и „скочни прозор“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Да бисте примили обавештења о позивима, додирните овде и омогућите позадинску активност у „батеријским“ подешавањима.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Подешавања</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Да бисте примили обавештења о позивима, додирните „Подешавање“ и укључите „Прикажи обавештења“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Да бисте примили обавештења о позивима, додирните „Подешавање“ и укључите обавештења и осигурајте да се упали „звук“ и „скочни прозор“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Да бисте примили обавештења о позивима, додирните „Подешавање“ и омогућите позадинску активност у „батеријским“ подешавањима.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавање држава…</string>
   <string name="country_selection_fragment__search">Тражи</string>
@@ -1887,10 +1903,10 @@
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Утишај 2 сата</string> -->
+  <string name="arrays__mute_for_eight_hours">Утишај 8 сати</string>
   <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
   <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Утишај 1 годину</string> -->
+  <string name="arrays__always">Увек</string>
   <string name="arrays__settings_default">Подразумевана поставка</string>
   <string name="arrays__enabled">Укључи</string>
   <string name="arrays__disabled">Искључи</string>
@@ -1943,6 +1959,7 @@
   <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Без звука</string>
+  <string name="preferences__default">Подразумеван</string>
   <string name="preferences__repeat_alerts">Понављај обавештења</string>
   <string name="preferences__never">Никад</string>
   <string name="preferences__one_time">Једном</string>

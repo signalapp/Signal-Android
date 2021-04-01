@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Wzmianki</string>
   <string name="ManageGroupActivity_chat_wallpaper">Tapeta czatu</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
+  <string name="ManageGroupActivity_always">Zawsze</string>
   <string name="ManageGroupActivity_off">Wyłączone</string>
   <string name="ManageGroupActivity_on">Włączone</string>
   <string name="ManageGroupActivity_view_all_members">Zobacz wszystkich członków</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Wycisz powiadomienia</string>
   <string name="ManageRecipientActivity_custom_notifications">Niestandardowe powiadomienia</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
+  <string name="ManageRecipientActivity_always">Zawsze</string>
   <string name="ManageRecipientActivity_off">Wyłączone</string>
   <string name="ManageRecipientActivity_on">Włączone</string>
   <string name="ManageRecipientActivity_add_to_a_group">Dodaj do grupy</string>
@@ -1594,6 +1596,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NotificationChannel_group_messages">Wiadomości</string>
   <string name="NotificationChannel_missing_display_name">Nieznany</string>
   <string name="NotificationChannel_voice_notes">Wiadomości głosowe</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Brak dostępnej aktywności, aby otworzyć ustawienia kanału powiadomień.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Szybka odpowiedź jest niedostępna kiedy Signal jest zablokowany!</string>
@@ -1720,6 +1723,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_return_to_call">Wróć do rozmowy</string>
   <string name="ConversationUpdateItem_call_is_full">Połączenie jest pełne</string>
   <string name="ConversationUpdateItem_invite_friends">Zaproś znajomych</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Włącz powiadomienia o połączeniach</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -1743,6 +1747,18 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Następujące osoby mogły ponownie zainstalować aplikację lub zmienić urządzenie. Zweryfikuj wasze numery bezpieczeństwa, aby zapewnić prywatność.</string>
   <string name="safety_number_change_dialog__view">Zobacz</string>
   <string name="safety_number_change_dialog__previous_verified">Wcześniej zweryfikowane</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Powiadomienia o połączeniach są włączone.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Włącz powiadomienia o połączeniach</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Włącz aktywność w tle</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Teraz wszystko wygląda dobrze!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Aby otrzymywać powiadomienia o połączeniach, stuknij tutaj i włącz \"Pokazuj powiadomienia\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Aby otrzymywać powiadomienia o połączeniach, stuknij tutaj, włącz powiadomienia i upewnij się, że dźwięk i komunikaty są włączone.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Aby otrzymywać powiadomienia o połączeniach, stuknij tutaj i włącz aktywność w tle w  sekcji ustawień \"Bateria\".</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Ustawienia</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Aby otrzymywać powiadomienia o połączeniach, stuknij Ustawienia i włącz \"Pokazuj powiadomienia\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Aby otrzymywać powiadomienia o połączeniach, stuknij tutaj, włącz powiadomienia i upewnij się, że dźwięk i komunikaty są włączone.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Aby otrzymywać powiadomienia o połączeniach, stuknij Ustawienia i włącz aktywność w tle w  sekcji ustawień \"Bateria\".</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Wczytywanie krajów…</string>
   <string name="country_selection_fragment__search">Szukaj</string>
@@ -1952,10 +1968,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
   <string name="arrays__use_custom">Użyj własnych</string>
   <string name="arrays__mute_for_one_hour">Wycisz na 1 godzinę</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Wycisz na 2 godziny</string> -->
+  <string name="arrays__mute_for_eight_hours">Wycisz na 8 godzin</string>
   <string name="arrays__mute_for_one_day">Wycisz na 1 dzień</string>
   <string name="arrays__mute_for_seven_days">Wycisz na 7 dni</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Wycisz na 1 rok</string> -->
+  <string name="arrays__always">Zawsze</string>
   <string name="arrays__settings_default">Ustawienia domyślne</string>
   <string name="arrays__enabled">Włączone</string>
   <string name="arrays__disabled">Wyłączone</string>
@@ -2009,6 +2025,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__pref_led_blink_title">Wzór powiadomień LED</string>
   <string name="preferences__sound">Dźwięk</string>
   <string name="preferences__silent">Wycisz</string>
+  <string name="preferences__default">Domyślny</string>
   <string name="preferences__repeat_alerts">Powtarzaj alarmy</string>
   <string name="preferences__never">Nigdy</string>
   <string name="preferences__one_time">Tylko raz</string>

@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Minnst á</string>
   <string name="ManageGroupActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string>
   <string name="ManageGroupActivity_until_s">Til %1$s</string>
+  <string name="ManageGroupActivity_always">Alltaf</string>
   <string name="ManageGroupActivity_off">Af</string>
   <string name="ManageGroupActivity_on">Á</string>
   <string name="ManageGroupActivity_view_all_members">Skoða alla meðlimi</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Þagga tilkynningar</string>
   <string name="ManageRecipientActivity_custom_notifications">Sérsniðnar tilkynningar</string>
   <string name="ManageRecipientActivity_until_s">Til %1$s</string>
+  <string name="ManageRecipientActivity_always">Alltaf</string>
   <string name="ManageRecipientActivity_off">Af</string>
   <string name="ManageRecipientActivity_on">Á</string>
   <string name="ManageRecipientActivity_add_to_a_group">Bæta við hóp</string>
@@ -1477,6 +1479,7 @@
   <string name="NotificationChannel_group_messages">Skilaboð</string>
   <string name="NotificationChannel_missing_display_name">Óþekkt</string>
   <string name="NotificationChannel_voice_notes">Tal-minnispuntar</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Engin virkni tiltæk til að opna stillingar á tilkynningarásum.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Flýtsvar ekki tiltækt á meðan Signal er læst!</string>
@@ -1597,6 +1600,7 @@
   <string name="ConversationUpdateItem_return_to_call">Snúa aftur í símtal</string>
   <string name="ConversationUpdateItem_call_is_full">Símtal er fullskipað</string>
   <string name="ConversationUpdateItem_invite_friends">Bjóða vinum</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Virkja tilkynningar um hringingar</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spila … Í bið</string>
   <string name="audio_view__download_accessibility_description">Sækja</string>
@@ -1620,6 +1624,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Eftirfarandi einstaklingar hafa sett Signal upp aftur eða skipt um tæki. Sannreyndu öryggisnúmer þín með þeim til að tryggja öryggi.</string>
   <string name="safety_number_change_dialog__view">Skoða</string>
   <string name="safety_number_change_dialog__previous_verified">Áður sannreynt</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Tilkynningar um hringingar eru virkar</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Virkja tilkynningar um hringingar</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Virkja bakgrunnsvirkni</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Allt lítur núna vel út!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Til að fá tilkynningar um hringingar, ýttu hér og kveiktu á \"Birta tilkynningar\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Til að fá tilkynningar um hringingar, ýttu hér og kveiktu á tilkynningum og gakktu úr skugga um að hljóð og sprettgluggar séu virkt.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Til að fá tilkynningar um hringingar, ýttu hér og virkjaðu bakgrunnsvirkni í rafhlöðustillingum.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Stillingar</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Til að fá tilkynningar um hringingar, ýttu á \"Stillingar\" og kveiktu á \"Birta tilkynningar\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Til að fá tilkynningar um hringingar, ýttu á \"Stillingar\" og kveiktu á tilkynningum og gakktu úr skugga um að hljóð og sprettgluggar séu virkt.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Til að fá tilkynningar um hringingar, ýttu á \"Stillingar\" og virkjaðu bakgrunnsvirkni í rafhlöðustillingum.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Hleð inn löndum…</string>
   <string name="country_selection_fragment__search">Leita</string>
@@ -1817,10 +1833,10 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="arrays__use_default">Nota sjálfgefið</string>
   <string name="arrays__use_custom">Nota sérsniðið</string>
   <string name="arrays__mute_for_one_hour">Þagga í 1 klukkustund</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Þagga í 2 klukkustundir</string> -->
+  <string name="arrays__mute_for_eight_hours">Þagga í 8 klukkustundir</string>
   <string name="arrays__mute_for_one_day">Þagga í 1 dag</string>
   <string name="arrays__mute_for_seven_days">Þagga í 7 daga</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Þagga í 1 ár</string> -->
+  <string name="arrays__always">Alltaf</string>
   <string name="arrays__settings_default">Sjálfgefið í stillingum</string>
   <string name="arrays__enabled">Virkt</string>
   <string name="arrays__disabled">Óvirkt</string>
@@ -1872,6 +1888,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences__pref_led_blink_title">Blikkmynstur LED-ljósa</string>
   <string name="preferences__sound">Hljóð</string>
   <string name="preferences__silent">Þögult</string>
+  <string name="preferences__default">Sjálfgefið</string>
   <string name="preferences__repeat_alerts">Endurtaka áminningar</string>
   <string name="preferences__never">Aldrei</string>
   <string name="preferences__one_time">Einu sinni</string>

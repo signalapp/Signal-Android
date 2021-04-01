@@ -1557,6 +1557,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下用户可能重新安装了 Signal 或更换了设备，请重新与之验证安全码以保护您的隐私。</string>
   <string name="safety_number_change_dialog__view">查看</string>
   <string name="safety_number_change_dialog__previous_verified">已验证</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">设置</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在加载国家…</string>
   <string name="country_selection_fragment__search">搜索</string>
@@ -1745,10 +1747,8 @@
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用自定义</string>
   <string name="arrays__mute_for_one_hour">静音 1 小时</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">静音 2 小时</string> -->
   <string name="arrays__mute_for_one_day">静音 1 天</string>
   <string name="arrays__mute_for_seven_days">静音 7 天</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">静音 1 年</string> -->
   <string name="arrays__settings_default">默认设置</string>
   <string name="arrays__enabled">启用</string>
   <string name="arrays__disabled">禁用</string>
@@ -1799,6 +1799,7 @@
   <string name="preferences__pref_led_blink_title">LED 闪烁模式</string>
   <string name="preferences__sound">声音</string>
   <string name="preferences__silent">无提示</string>
+  <string name="preferences__default">默认</string>
   <string name="preferences__repeat_alerts">通知重复</string>
   <string name="preferences__never">永不</string>
   <string name="preferences__one_time">一次</string>

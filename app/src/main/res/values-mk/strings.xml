@@ -1617,6 +1617,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следниве луѓе може ги реинсталирале или промениле уредите. Проверете го Вашиот сигурносен број со нив за да ја осигурате приватноста.</string>
   <string name="safety_number_change_dialog__view">Преглед</string>
   <string name="safety_number_change_dialog__previous_verified">Претходно проверено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Поставувања</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитувам земји…</string>
   <string name="country_selection_fragment__search">Барај</string>
@@ -1812,10 +1814,8 @@
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користи прилагодено</string>
   <string name="arrays__mute_for_one_hour">Исклучи на 1 час</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Исклучи на 2 часа</string> -->
   <string name="arrays__mute_for_one_day">Исклучи на 1 ден</string>
   <string name="arrays__mute_for_seven_days">Исклучи на 7 дена</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Исклучи на 1 година</string> -->
   <string name="arrays__settings_default">Стандардни поставувања</string>
   <string name="arrays__enabled">Вклучено</string>
   <string name="arrays__disabled">Исклучено</string>
@@ -1867,6 +1867,7 @@
   <string name="preferences__pref_led_blink_title">LED шема на трепкање</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Тивко</string>
+  <string name="preferences__default">Стандардно </string>
   <string name="preferences__repeat_alerts">Постојани аларми</string>
   <string name="preferences__never">Никогаш</string>
   <string name="preferences__one_time">Еднаш</string>

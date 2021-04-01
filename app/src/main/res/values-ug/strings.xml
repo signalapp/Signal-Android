@@ -1620,6 +1620,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">تۆۋەندىكى كىشىلەر قايتا قاچىلىغان ياكى ئۈسكىنىسىنى ئالماشتۇرغاندەك قىلىدۇ. مەخپىيەتلىكنى ساقلاش ئۈچۈن ئۇلار بىلەن ئاراڭدىكى بىخەتەرلىك نومۇرىنى دەلىللە.</string>
   <string name="safety_number_change_dialog__view">كۆرۈش</string>
   <string name="safety_number_change_dialog__previous_verified">ئىلگىرى دەلىللەنگەن</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">تەڭشەكلەر</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">دۆلەتلەرنى يۈكلەۋاتىدۇ…</string>
   <string name="country_selection_fragment__search">ئاقتۇرۇش</string>
@@ -1815,10 +1817,8 @@
   <string name="arrays__use_default">كۆڭۈلدىكىنى ئىشلىتىش</string>
   <string name="arrays__use_custom">ئىختىيارىي ئىشلىتىش</string>
   <string name="arrays__mute_for_one_hour">1 سائەت ئۈنسىز</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 سائەت ئۈنسىز</string> -->
   <string name="arrays__mute_for_one_day">1 كۈن ئۈنسىز</string>
   <string name="arrays__mute_for_seven_days">7 كۈن ئۈنسىز</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 يىل ئۈنسىز</string> -->
   <string name="arrays__settings_default">كۆڭۈلدىكى تەڭشەك</string>
   <string name="arrays__enabled">ئوچۇق</string>
   <string name="arrays__disabled">تاقالغان</string>
@@ -1870,6 +1870,7 @@
   <string name="preferences__pref_led_blink_title">LED چاقناش شەكلى</string>
   <string name="preferences__sound">ئاۋاز</string>
   <string name="preferences__silent">تىنچ</string>
+  <string name="preferences__default">سۈكۈتتە</string>
   <string name="preferences__repeat_alerts">تەكرار ئاگاھلاندۇرۇش</string>
   <string name="preferences__never">ھەرگىز</string>
   <string name="preferences__one_time">بىر قېتىم</string>

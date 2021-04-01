@@ -1618,6 +1618,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Imdanen-a yezmer ulsen asebded neɣ beddlen ibenkan. Senqed uṭṭun-ik·im n tiliɣri yid-sen i uḍman n tbaḍnit.</string>
   <string name="safety_number_change_dialog__view">Sken</string>
   <string name="safety_number_change_dialog__previous_verified">Asenqed yezrin</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Iɣewwaṛen</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Asali n tmura…</string>
   <string name="country_selection_fragment__search">Nadi</string>
@@ -1813,10 +1815,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="arrays__use_default">Seqdec udem amezwer</string>
   <string name="arrays__use_custom">Seqdec udmawan</string>
   <string name="arrays__mute_for_one_hour">Kkes imesli i 1 n wesrag</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Kkes imesli i 2 n yisragen</string> -->
   <string name="arrays__mute_for_one_day">Kkes imesli i 1 n wass</string>
   <string name="arrays__mute_for_seven_days">Kkes imesli i 7 n wussan</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Kkes imesli i 1 n useggas</string> -->
   <string name="arrays__settings_default">Iɣewwaṛen imezwar</string>
   <string name="arrays__enabled">Yermed</string>
   <string name="arrays__disabled">Yensa</string>
@@ -1868,6 +1868,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences__pref_led_blink_title">Talɣa n ubraq n LED</string>
   <string name="preferences__sound">Imesli</string>
   <string name="preferences__silent">Tasusmi</string>
+  <string name="preferences__default">Amezwar</string>
   <string name="preferences__repeat_alerts">Ilɣa i d-yettuɣalen</string>
   <string name="preferences__never">Werǧin</string>
   <string name="preferences__one_time">Yiwet n tikkelt</string>

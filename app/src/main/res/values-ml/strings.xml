@@ -1613,6 +1613,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ഇനിപ്പറയുന്ന ആളുകൾ അവരുടെ  ഉപകരണങ്ങൾ വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ മാറ്റുകയോ ചെയ്‌തിരിക്കാം. സ്വകാര്യത ഉറപ്പാക്കാൻ അവരുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുക.</string>
   <string name="safety_number_change_dialog__view">കാണുക</string>
   <string name="safety_number_change_dialog__previous_verified">മുമ്പ് പരിശോധിച്ചത്</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">ക്രമീകരണങ്ങൾ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">രാജ്യങ്ങൾ ലഭ്യമാക്കുന്നു…</string>
   <string name="country_selection_fragment__search">തിരയൽ</string>
@@ -1808,10 +1810,8 @@
   <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
   <string name="arrays__use_custom">ഇഷ്‌ടാനുസൃതം ഉപയോഗിക്കുക</string>
   <string name="arrays__mute_for_one_hour">1 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string> -->
   <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക്  നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് നിശബ്ദമാക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 വർഷത്തേക്ക് നിശബ്ദമാക്കുക</string> -->
   <string name="arrays__settings_default">ക്രമീകരണ സ്ഥിരസ്ഥിതി</string>
   <string name="arrays__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="arrays__disabled">അപ്രാപ്‌തമാക്കി</string>
@@ -1863,6 +1863,7 @@
   <string name="preferences__pref_led_blink_title">LED ബ്ലിങ്ക് പാറ്റേൺ</string>
   <string name="preferences__sound">ശബ്ദം</string>
   <string name="preferences__silent">നിശബ്ദത</string>
+  <string name="preferences__default">സ്ഥിരസ്ഥിതി</string>
   <string name="preferences__repeat_alerts">അലേർട്ടുകൾ ആവർത്തിക്കുക</string>
   <string name="preferences__never">ഒരിക്കലും വേണ്ട</string>
   <string name="preferences__one_time">ഒരിക്കൽ</string>

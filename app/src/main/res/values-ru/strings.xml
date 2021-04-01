@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Упоминания</string>
   <string name="ManageGroupActivity_chat_wallpaper">Обои чата</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Всегда</string>
   <string name="ManageGroupActivity_off">Отключено</string>
   <string name="ManageGroupActivity_on">Включено</string>
   <string name="ManageGroupActivity_view_all_members">Просмотреть всех участников</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string>
   <string name="ManageRecipientActivity_custom_notifications">Индивидуальные уведомления</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
+  <string name="ManageRecipientActivity_always">Всегда</string>
   <string name="ManageRecipientActivity_off">Отключено</string>
   <string name="ManageRecipientActivity_on">Включено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Добавить в группу</string>
@@ -1595,6 +1597,7 @@
   <string name="NotificationChannel_group_messages">Сообщения</string>
   <string name="NotificationChannel_missing_display_name">Неизвестный</string>
   <string name="NotificationChannel_voice_notes">Голосовые заметки</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Нет доступной активности для открытия настроек категорий уведомлений.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal заблокирован!</string>
@@ -1721,6 +1724,7 @@
   <string name="ConversationUpdateItem_return_to_call">Вернуться к звонку</string>
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -1744,6 +1748,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следующие люди могли переустановить Signal или сменить устройства. Подтвердите ваш код безопасности с ними, чтобы обеспечить конфиденциальность.</string>
   <string name="safety_number_change_dialog__view">Просмотреть</string>
   <string name="safety_number_change_dialog__previous_verified">Ранее проверенный(-ая)</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Уведомления о звонках включены.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Включите уведомления о звонках</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Включите фоновую активность</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Теперь всё выглядит хорошо!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Чтобы получать уведомления о звонках, нажмите здесь и включите «Включить уведомления».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Чтобы получать уведомления о звонках, нажмите здесь, включите уведомления и убедитесь, что «Оповещения» и «Всплывающее окно» включены.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Чтобы получать уведомления о звонках, нажмите здесь и включите фоновую активность в настройках батареи.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Настройки</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Чтобы получать уведомления о звонках, нажмите «Настройки» и включите «Включить уведомления».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Чтобы получать уведомления о звонках, нажмите «Настройки», включите уведомления и убедитесь, что «Оповещения» и «Всплывающее окно» включены.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Чтобы получать уведомления о звонках, нажмите «Настройки» и включите фоновую активность в настройках батареи.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загружаем страны…</string>
   <string name="country_selection_fragment__search">Поиск</string>
@@ -1953,10 +1969,10 @@
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
   <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
   <string name="arrays__mute_for_one_hour">Отключить звук на 1 час</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Отключить звук на 2 часа</string> -->
+  <string name="arrays__mute_for_eight_hours">Отключить звук на 8 часов</string>
   <string name="arrays__mute_for_one_day">Отключить звук на 1 день</string>
   <string name="arrays__mute_for_seven_days">Отключить звук на 7 дней</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Отключить звук на 1 год</string> -->
+  <string name="arrays__always">Всегда</string>
   <string name="arrays__settings_default">По умолчанию</string>
   <string name="arrays__enabled">Включено</string>
   <string name="arrays__disabled">Отключено</string>
@@ -2010,6 +2026,7 @@
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__silent">Без звука</string>
+  <string name="preferences__default">По умолчанию</string>
   <string name="preferences__repeat_alerts">Повторять оповещения</string>
   <string name="preferences__never">Никогда</string>
   <string name="preferences__one_time">Один раз</string>

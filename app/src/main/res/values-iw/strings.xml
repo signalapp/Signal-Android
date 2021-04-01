@@ -1751,6 +1751,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">האנשים הבאים ייתכן התקינו מחדש את היישום או שינו מכשירים. וודא את מספר הביטחון שלך איתם כדי להבטיח פרטיות.</string>
   <string name="safety_number_change_dialog__view">הצג</string>
   <string name="safety_number_change_dialog__previous_verified">וֻדָּא בעבר</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">הגדרות</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">טוען מדינות…</string>
   <string name="country_selection_fragment__search">חפש</string>
@@ -1960,10 +1962,8 @@
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
   <string name="arrays__use_custom">השתמש במותאם אישית</string>
   <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">השתק למשך שעתיים</string> -->
   <string name="arrays__mute_for_one_day">השתק למשך יום</string>
   <string name="arrays__mute_for_seven_days">השתק למשך 7 ימים</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">השתק למשך שנה</string> -->
   <string name="arrays__settings_default">ברירת מחדל</string>
   <string name="arrays__enabled">מאופשר</string>
   <string name="arrays__disabled">מושבת</string>
@@ -2017,6 +2017,7 @@
   <string name="preferences__pref_led_blink_title">תבנית הבהוב LED</string>
   <string name="preferences__sound">קול</string>
   <string name="preferences__silent">שקט</string>
+  <string name="preferences__default">ברירת מחדל</string>
   <string name="preferences__repeat_alerts">חזור על התרעות</string>
   <string name="preferences__never">אף פעם</string>
   <string name="preferences__one_time">פעם אחת</string>

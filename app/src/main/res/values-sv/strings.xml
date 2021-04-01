@@ -1615,6 +1615,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Följande personer kan ha installerat om eller bytt enheter. Verifiera ditt säkerhetsnummer med dem för att säkerställa integriteten.</string>
   <string name="safety_number_change_dialog__view">Visa</string>
   <string name="safety_number_change_dialog__previous_verified">Tidigare verifierad</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Inställningar</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Läser in länder…</string>
   <string name="country_selection_fragment__search">Sök</string>
@@ -1810,10 +1812,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
   <string name="arrays__mute_for_one_hour">Tysta i 1 timme</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Tysta i 2 timmar</string> -->
   <string name="arrays__mute_for_one_day">Tysta i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Tysta i 7 dagar</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Tysta i 1 år</string> -->
   <string name="arrays__settings_default">Inställningars standardvärden</string>
   <string name="arrays__enabled">Aktiverad</string>
   <string name="arrays__disabled">Inaktiverad</string>
@@ -1865,6 +1865,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__pref_led_blink_title">Blinkmönster på ljusindikator</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__silent">Tyst</string>
+  <string name="preferences__default">Standard</string>
   <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
   <string name="preferences__one_time">En gång</string>

@@ -1621,6 +1621,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes pessoas podem ter reinstalado o Signal ou mudado de aparelho. Verifique o seu número de segurança com elas para garantir a sua privacidade e a delas.</string>
   <string name="safety_number_change_dialog__view">Exibir</string>
   <string name="safety_number_change_dialog__previous_verified">Já verificado</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Configurações</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países…</string>
   <string name="country_selection_fragment__search">Procurar</string>
@@ -1808,10 +1810,8 @@
   <string name="arrays__use_default">Usar padrão</string>
   <string name="arrays__use_custom">Usar personalização</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silenciar por 2 horas</string> -->
   <string name="arrays__mute_for_one_day">Silenciar por 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silenciar por 7 dias</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silenciar por 1 ano</string> -->
   <string name="arrays__settings_default">Configurações padrão</string>
   <string name="arrays__enabled">Habilitado</string>
   <string name="arrays__disabled">Desabilitado</string>
@@ -1863,6 +1863,7 @@
   <string name="preferences__pref_led_blink_title">Padrão de piscagem do LED</string>
   <string name="preferences__sound">Som</string>
   <string name="preferences__silent">Silencioso</string>
+  <string name="preferences__default">Padrão</string>
   <string name="preferences__repeat_alerts">Repetir alertas</string>
   <string name="preferences__never">Nunca</string>
   <string name="preferences__one_time">Uma vez</string>

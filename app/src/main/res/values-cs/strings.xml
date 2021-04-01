@@ -1750,6 +1750,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Následující lidé možná přeinstalovali nebo změnili zařízení. Ověřte s nimi svoje bezpečnostní číslo pro zajištění soukromí.</string>
   <string name="safety_number_change_dialog__view">Zobrazit</string>
   <string name="safety_number_change_dialog__previous_verified">Předchozí ověřeno</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Nastavení</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítám země…</string>
   <string name="country_selection_fragment__search">Hledat</string>
@@ -1951,10 +1953,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Ztišit na 2 hodiny</string> -->
   <string name="arrays__mute_for_one_day">Ztišit na 1 den</string>
   <string name="arrays__mute_for_seven_days">Ztišit na 7 dnů</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Ztišit na 1 rok</string> -->
   <string name="arrays__settings_default">Výchozí nastavení</string>
   <string name="arrays__enabled">Povoleno</string>
   <string name="arrays__disabled">Zakázáno</string>
@@ -2008,6 +2008,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__pref_led_blink_title">Schéma blikání LED</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Ticho</string>
+  <string name="preferences__default">Výchozí</string>
   <string name="preferences__repeat_alerts">Opakovat upozornění</string>
   <string name="preferences__never">Nikdy</string>
   <string name="preferences__one_time">Jednou</string>

@@ -611,6 +611,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_mentions">Përmendje</string>
   <string name="ManageGroupActivity_chat_wallpaper">Sfond fjalosjesh</string>
   <string name="ManageGroupActivity_until_s">Deri më %1$s</string>
+  <string name="ManageGroupActivity_always">Përherë</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Shihni krejt anëtarët</string>
@@ -661,6 +662,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageRecipientActivity_mute_notifications">Heshtoji njoftimet</string>
   <string name="ManageRecipientActivity_custom_notifications">Njoftime vetjake</string>
   <string name="ManageRecipientActivity_until_s">Deri më %1$s</string>
+  <string name="ManageRecipientActivity_always">Përherë</string>
   <string name="ManageRecipientActivity_off">Off</string>
   <string name="ManageRecipientActivity_on">On</string>
   <string name="ManageRecipientActivity_add_to_a_group">Shtoje te grup</string>
@@ -1478,6 +1480,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationChannel_group_messages">Mesazhe</string>
   <string name="NotificationChannel_missing_display_name">I panjohur</string>
   <string name="NotificationChannel_voice_notes">Shënime Zanore</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">S’ka veprimtari për hapje rregullimesh kanali njoftimesh.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Signal-i është i kyçur!</string>
@@ -1598,6 +1601,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_return_to_call">Kthehuni te thirrja</string>
   <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
   <string name="ConversationUpdateItem_invite_friends">Ftoni shokë</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Aktivizo Njoftime Thirrjesh</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1621,6 +1625,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
   <string name="safety_number_change_dialog__view">Shihni</string>
   <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Njoftimet e thirrjeve u aktivizuan.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Aktivizo njoftime thirrjesh</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Aktivizo veprimtari në prapaskenë</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tani gjithçka duket në rregull!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni “Shfaq njoftime”.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekeni këtu dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni veprimtari në prapaskenë, te rregullimet e “Baterisë”.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Rregullime</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekni Rregullime dhe aktivizoni “Shfaq njoftime”.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekni Rregullime dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekni Rregullime dhe aktivizoni veprimtari në prapaskenë, te rregullimet e “Baterisë”.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Po ngarkohen vende…</string>
   <string name="country_selection_fragment__search">Kërko</string>
@@ -1816,10 +1832,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="arrays__use_default">Përdor parazgjedhje</string>
   <string name="arrays__use_custom">Përdor vetjake</string>
   <string name="arrays__mute_for_one_hour">Heshtoje për 1 orë</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Heshtoje për 2 orë</string> -->
+  <string name="arrays__mute_for_eight_hours">Heshtoji për 8 orë</string>
   <string name="arrays__mute_for_one_day">Heshtoje për 1 ditë</string>
   <string name="arrays__mute_for_seven_days">Heshtoje për 7 ditë</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Heshtoje për 1 vit</string> -->
+  <string name="arrays__always">Përherë</string>
   <string name="arrays__settings_default">Rregullime parazgjedhje</string>
   <string name="arrays__enabled">E aktivizuar</string>
   <string name="arrays__disabled">E çaktivizuar</string>
@@ -1871,6 +1887,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
   <string name="preferences__sound">Tingull</string>
   <string name="preferences__silent">Heshtazi</string>
+  <string name="preferences__default">Parazgjedhje</string>
   <string name="preferences__repeat_alerts">Alarme të përsëritur</string>
   <string name="preferences__never">Kurrë</string>
   <string name="preferences__one_time">Një herë</string>

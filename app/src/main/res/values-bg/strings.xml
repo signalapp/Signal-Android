@@ -1614,6 +1614,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следнити контаки може да са преинсталирали или сменили устройствата си. Потвърдете номерата за сигурност.</string>
   <string name="safety_number_change_dialog__view">Преглед</string>
   <string name="safety_number_change_dialog__previous_verified">Предишно потвърдено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Настройки</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите…</string>
   <string name="country_selection_fragment__search">Търсене</string>
@@ -1801,10 +1803,8 @@
   <string name="arrays__use_default">Използване на подразбиращ се</string>
   <string name="arrays__use_custom">Използване на специален</string>
   <string name="arrays__mute_for_one_hour">Тих режим за 1 час</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Тих режим за 2 часа</string> -->
   <string name="arrays__mute_for_one_day">Тих режим за 1 ден</string>
   <string name="arrays__mute_for_seven_days">Тих режим за 7 дена</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Тих режим за 1 година</string> -->
   <string name="arrays__settings_default">Настройки по подразбиране</string>
   <string name="arrays__enabled">Разрешено</string>
   <string name="arrays__disabled">Деактивирано</string>
@@ -1856,6 +1856,7 @@
   <string name="preferences__pref_led_blink_title">LED известяване</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__silent">Тих</string>
+  <string name="preferences__default">По подразбиране</string>
   <string name="preferences__repeat_alerts">Повтарящи се аларми</string>
   <string name="preferences__never">Никога</string>
   <string name="preferences__one_time">Само веднъж</string>

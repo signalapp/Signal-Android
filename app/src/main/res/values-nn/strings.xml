@@ -612,6 +612,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_mentions">Omtalar</string>
   <string name="ManageGroupActivity_chat_wallpaper">Samtalebakgrunnsbilde</string>
   <string name="ManageGroupActivity_until_s">Fram til %1$s</string>
+  <string name="ManageGroupActivity_always">Alltid</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_view_all_members">Sjå alle medlemmar</string>
@@ -662,6 +663,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageRecipientActivity_mute_notifications">Ikkje vis varsel</string>
   <string name="ManageRecipientActivity_custom_notifications">Eigendefinerte varsel</string>
   <string name="ManageRecipientActivity_until_s">Fram til %1$s</string>
+  <string name="ManageRecipientActivity_always">Alltid</string>
   <string name="ManageRecipientActivity_off">Av</string>
   <string name="ManageRecipientActivity_on">På</string>
   <string name="ManageRecipientActivity_add_to_a_group">Legg til i ei gruppe</string>
@@ -1482,6 +1484,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="NotificationChannel_group_messages">Meldingar</string>
   <string name="NotificationChannel_missing_display_name">Ukjend</string>
   <string name="NotificationChannel_voice_notes">Talenotat</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgjengeleg for å opna innstillingane for varselkanalen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengeleg når Signal er låst.</string>
@@ -1602,6 +1605,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ConversationUpdateItem_return_to_call">Tilbake til samtalen</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er fylt opp</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter vennar</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Skru på samtalevarsel</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spel … pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -1625,6 +1629,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Desse personane kan ha reinstallert eller bytta einingar. Stadfest tryggleiksnummeret ditt med dei for å sikra personvernet.</string>
   <string name="safety_number_change_dialog__view">Sjå</string>
   <string name="safety_number_change_dialog__previous_verified">Tidlegare stadfesta</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Samtalevarsel på.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Skru på samtalevarsel</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Skru på bakgrunnsaktivitet</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Alt ser bra ut no!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Trykk her og skru på «Vis varsel» for å skru på samtalevarsel</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Trykk her og skru på «Vis varsel», og sjekk at lyd og sprettoppvindauge er på, for å skru på samtalevarsel</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Innstillingar</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Lastar inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -1812,10 +1824,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="arrays__use_default">Bruk standard</string>
   <string name="arrays__use_custom">Bruk sjølvvald</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Demp i 2 timar</string> -->
   <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp i 7 dagar</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Demp i 1 år</string> -->
+  <string name="arrays__always">Alltid</string>
   <string name="arrays__settings_default">Standardoppsett</string>
   <string name="arrays__enabled">Slått på</string>
   <string name="arrays__disabled">Slått av</string>
@@ -1867,6 +1878,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
   <string name="preferences__sound">Lyd</string>
   <string name="preferences__silent">Stille</string>
+  <string name="preferences__default">Standard</string>
   <string name="preferences__repeat_alerts">Gjenta varsel</string>
   <string name="preferences__never">Aldri</string>
   <string name="preferences__one_time">Éin gong</string>

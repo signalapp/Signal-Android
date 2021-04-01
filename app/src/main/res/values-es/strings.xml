@@ -532,7 +532,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Más personas invitadas</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otr@s participantes.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Las personas invitadas sólo compartirán sus detalles con el grupo y verán los mensajes, que se envíen a partir del momento en que decidan participar en el grupo.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">No se muestra el alias y foto de las personas invitadas por otr@s. Su alias y foto de perfil se mostrarán a partir del momento en que decidan participar en el grupo. También verán los mensajes del grupo a partir de ese momento.</string>
   <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
   <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Menciones</string>
   <string name="ManageGroupActivity_chat_wallpaper">Fondo de chat</string>
   <string name="ManageGroupActivity_until_s">Hasta %1$s</string>
+  <string name="ManageGroupActivity_always">Para siempre</string>
   <string name="ManageGroupActivity_off">Inactivo</string>
   <string name="ManageGroupActivity_on">Activo</string>
   <string name="ManageGroupActivity_view_all_members">Ver participantes</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silenciar notificaciones</string>
   <string name="ManageRecipientActivity_custom_notifications">Notificaciones personalizadas</string>
   <string name="ManageRecipientActivity_until_s">Hasta %1$s</string>
+  <string name="ManageRecipientActivity_always">Para siempre</string>
   <string name="ManageRecipientActivity_off">Inactivo</string>
   <string name="ManageRecipientActivity_on">Activo</string>
   <string name="ManageRecipientActivity_add_to_a_group">Añadir a un grupo</string>
@@ -1478,6 +1480,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NotificationChannel_group_messages">Mensajes</string>
   <string name="NotificationChannel_missing_display_name">Desconocido</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hay actividad disponible para abrir el canal de notificaciones en «Ajustes».</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
@@ -1598,6 +1601,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_return_to_call">Volver a la llamada</string>
   <string name="ConversationUpdateItem_call_is_full">La llamada está llena</string>
   <string name="ConversationUpdateItem_invite_friends">Invitar personas</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Habilitar notificaciones de llamada</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1621,6 +1625,18 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Las siguentes personas pueden haber reinstalado Signal o cambiado su dispositivo. Verifica tus cifras de seguridas con ellas para asegurar vuestra privacidad.</string>
   <string name="safety_number_change_dialog__view">Ver</string>
   <string name="safety_number_change_dialog__previous_verified">Identidad previamente verificada</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notificaciones de llamada activas.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Habilitar notificaciones de llamada</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Activar actividad en segundo plano</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">¡Todo parece estar bien!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Para recibir notificaciones de llamadas, toca aquí y activa «Mostrar notificaciones».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Para recibir notificaciones de llamadas, toca aquí para activarlas y asegúrate que el sonido y las notificaciones emergentes estén habilitadas.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Para recibir notificaciones de llamadas, toca aquí y habilita la actividad en segundo plano en los ajustes de la «Batería».</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Ajustes</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Para recibir notificaciones de llamadas, toca en «Ajustes» y activa «Mostrar notificaciones».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Para recibir notificaciones de llamadas, toca en «Ajustes» para activarlas y asegúrate que el sonido y las notificaciones emergentes estén habilitadas.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Para recibir notificaciones de llamadas, toca en «Ajustes» y habilita la actividad en segundo plano en los ajustes de la «Batería».</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países …</string>
   <string name="country_selection_fragment__search">Buscar</string>
@@ -1815,11 +1831,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--arrays.xml-->
   <string name="arrays__use_default">Usar predeterminado</string>
   <string name="arrays__use_custom">Usar personalizado</string>
-  <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string> -->
-  <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
-  <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silenciar durante 1 año</string> -->
+  <string name="arrays__mute_for_one_hour">Durante una hora</string>
+  <string name="arrays__mute_for_eight_hours">Durante 8 horas</string>
+  <string name="arrays__mute_for_one_day">Durante un día</string>
+  <string name="arrays__mute_for_seven_days">Durante 7 días</string>
+  <string name="arrays__always">Siempre</string>
   <string name="arrays__settings_default">Ajustes predeterminados</string>
   <string name="arrays__enabled">Activado</string>
   <string name="arrays__disabled">Desactivado</string>
@@ -1871,6 +1887,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__pref_led_blink_title">Patrón de parpadeo del LED</string>
   <string name="preferences__sound">Sonido</string>
   <string name="preferences__silent">Silenciar</string>
+  <string name="preferences__default">Por defecto</string>
   <string name="preferences__repeat_alerts">Repetir alertas</string>
   <string name="preferences__never">Nunca</string>
   <string name="preferences__one_time">Una vez</string>

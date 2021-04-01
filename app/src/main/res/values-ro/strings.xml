@@ -1682,6 +1682,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Este posibil ca următoarele persoane să fi reinstalat sau schimbat dispozitivele. Verificați numărul de siguranță cu acestea pentru a vă asigura confidențialitatea.</string>
   <string name="safety_number_change_dialog__view">Vizualizare</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat anterior</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Setări</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Se încarcă țările…</string>
   <string name="country_selection_fragment__search">Căutați</string>
@@ -1884,10 +1886,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="arrays__use_default">Implicit</string>
   <string name="arrays__use_custom">Personalizat</string>
   <string name="arrays__mute_for_one_hour">Fără sunet pentru o oră</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Fără sunet pentru 2 ore</string> -->
   <string name="arrays__mute_for_one_day">Fără sunet pentru o zi</string>
   <string name="arrays__mute_for_seven_days">Fără sunet pentru 7 zile</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Fără sunet pentru un an</string> -->
   <string name="arrays__settings_default">Setări implicite</string>
   <string name="arrays__enabled">Activat</string>
   <string name="arrays__disabled">Dezactivat</string>
@@ -1940,6 +1940,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>
   <string name="preferences__sound">Sunet</string>
   <string name="preferences__silent">Silențios</string>
+  <string name="preferences__default">Implicit</string>
   <string name="preferences__repeat_alerts">Repetă alerte</string>
   <string name="preferences__never">Niciodată</string>
   <string name="preferences__one_time">O dată</string>

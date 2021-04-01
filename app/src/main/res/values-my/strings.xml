@@ -1553,6 +1553,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">အောက်ပါလူများသည်ကိရိယာများကိုပြန်လည်တပ်ဆင်နိုင်သည်သို့မဟုတ်ပြောင်းလဲနိုင်သည်။ privacy ကိုသေချာစေရန်သူတို့နှင့်သင်၏လုံခြုံရေးနံပါတ်ကိုစစ်ဆေးပါ။</string>
   <string name="safety_number_change_dialog__view">ကြည့်ရှုပါ</string>
   <string name="safety_number_change_dialog__previous_verified">ယခင်အတည်ပြုပြီး</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">အပြင်အဆင်များ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">နိုင်ငံစာရင်းများ ရှာဖွေနေသည် ….</string>
   <string name="country_selection_fragment__search">ရှာရန်</string>
@@ -1741,10 +1743,8 @@
   <string name="arrays__use_default">မူလကို သုံးပါ</string>
   <string name="arrays__use_custom">အထူးပြုကိုသုံးသည် </string>
   <string name="arrays__mute_for_one_hour">အသံကို ၁ နာရီ ပိတ်ထားပါ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">အသံကို ၂ နာရီ ပိတ်ထားပါ။</string> -->
   <string name="arrays__mute_for_one_day">အသံကို ၁ ရက် ပိတ်ထားပါ</string>
   <string name="arrays__mute_for_seven_days">အသံကို ၇ ရက် ပိတ်ထားပါ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">အသံကို ၁ နှစ် ပိတ်ထားပါ။</string> -->
   <string name="arrays__settings_default">အပြင်အဆင်များကို မူလသို့</string>
   <string name="arrays__enabled">လုပ်ဆောင်နိုင်သည်</string>
   <string name="arrays__disabled">မလုပ်ဆောင်နိုင်ပါ</string>
@@ -1795,6 +1795,7 @@
   <string name="preferences__pref_led_blink_title">LED လင်းမည့်ပုံစံ</string>
   <string name="preferences__sound">အသံ</string>
   <string name="preferences__silent">အသံတိတ်</string>
+  <string name="preferences__default">မူလ</string>
   <string name="preferences__repeat_alerts">အသိပေးချက်ကို ထပ်​ပြောပါ</string>
   <string name="preferences__never">ဘယ်တော့မှ</string>
   <string name="preferences__one_time">တစ်ကြိမ်</string>

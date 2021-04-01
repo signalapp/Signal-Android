@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Mencioj</string>
   <string name="ManageGroupActivity_chat_wallpaper">Interparola ekranfono</string>
   <string name="ManageGroupActivity_until_s">Ĝis %1$s</string>
+  <string name="ManageGroupActivity_always">Ĉiam</string>
   <string name="ManageGroupActivity_off">Malŝaltita</string>
   <string name="ManageGroupActivity_on">Ŝaltita</string>
   <string name="ManageGroupActivity_view_all_members">Vidi ĉiujn grupanojn</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silentigi sciigojn</string>
   <string name="ManageRecipientActivity_custom_notifications">Propraj sciigoj</string>
   <string name="ManageRecipientActivity_until_s">Ĝis %1$s</string>
+  <string name="ManageRecipientActivity_always">Ĉiam</string>
   <string name="ManageRecipientActivity_off">Malŝaltita</string>
   <string name="ManageRecipientActivity_on">Ŝaltita</string>
   <string name="ManageRecipientActivity_add_to_a_group">Aldoni al grupo</string>
@@ -1477,6 +1479,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationChannel_group_messages">Mesaĝoj</string>
   <string name="NotificationChannel_missing_display_name">Nekonata</string>
   <string name="NotificationChannel_voice_notes">Voĉaj notoj</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Neniu aktiveco disponeblas por malfermi la agordojn pri la sciigo-kanalo.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rapida respondo ne eblas, kiam Signal estas ŝlosita!</string>
@@ -1597,6 +1600,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_return_to_call">Reiri al la alvoko</string>
   <string name="ConversationUpdateItem_call_is_full">La alvoko plenas</string>
   <string name="ConversationUpdateItem_invite_friends">Inviti amikojn</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Ludi … Paŭzigi</string>
   <string name="audio_view__download_accessibility_description">Elŝuti</string>
@@ -1620,6 +1624,18 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">La jenaj homoj eble restarigis aŭ ŝanĝis iliajn aparatojn. Kontrolu vian sekurigan numeron kun ili por certigi vian privatecon.</string>
   <string name="safety_number_change_dialog__view">Montri pli</string>
   <string name="safety_number_change_dialog__previous_verified">Antaŭe kontrolita</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Sciigoj pri la alvoko ŝaltitaj.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Ŝalti fonan aktivecon</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Ĉiu estas perfekta nun!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu ĉi tie kaj ŝaltu „Montri la sciigojn“. </string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu ĉi tie kaj ŝaltu la sciigojn, kaj certigu, ke „Sono“ kaj „Ŝprucosciigo“ estas ŝaltitaj.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Por ricevi sciigojn pri la alvokoj, tuŝetu ĉi tie kaj ŝaltu la fonan aktivecon en la agordoj pri la baterio. </string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Agordoj</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu „Agordoj“ kaj ŝaltu „Montri la sciigojn“. </string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu „Agordoj“ kaj ŝaltu la sciigojn, kaj certigu, ke „Sono“ kaj „Ŝprucosciigo“ estas ŝaltitaj.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Por ricevi sciigojn pri la alvokoj, tuŝetu „Agordoj“ kaj ŝaltu la fonan aktivecon en la agordoj pri la baterio. </string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ŝargo de landlisto…</string>
   <string name="country_selection_fragment__search">Serĉi</string>
@@ -1815,10 +1831,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="arrays__use_default">Uzi defaŭltan</string>
   <string name="arrays__use_custom">Uzi propran</string>
   <string name="arrays__mute_for_one_hour">Silentigi dum 1 horo</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silentigi dum 2 horoj</string> -->
+  <string name="arrays__mute_for_eight_hours">Silentigi dum 8 horoj</string>
   <string name="arrays__mute_for_one_day">Silentigi dum 1 tago</string>
   <string name="arrays__mute_for_seven_days">Silentigi dum 7 tagoj</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silentigi dum 1 jaro</string> -->
+  <string name="arrays__always">Ĉiam</string>
   <string name="arrays__settings_default">Laŭ la ĝenerala agordo</string>
   <string name="arrays__enabled">Ŝaltita</string>
   <string name="arrays__disabled">Malŝaltita</string>
@@ -1870,6 +1886,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__pref_led_blink_title">LED-a pulsa modelo</string>
   <string name="preferences__sound">Sono</string>
   <string name="preferences__silent">Silento</string>
+  <string name="preferences__default">Defaŭlta</string>
   <string name="preferences__repeat_alerts">Ripeti avertojn</string>
   <string name="preferences__never">Neniam</string>
   <string name="preferences__one_time">Unufoje</string>

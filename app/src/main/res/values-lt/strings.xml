@@ -1751,6 +1751,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gali būti, kad šie žmonės iš naujo įdiegė programėlę ar pakeitė įrenginį. Patvirtinkite savo saugumo numerį su kiekvienu iš jų, kad užtikrintumėte privatumą.</string>
   <string name="safety_number_change_dialog__view">Rodyti</string>
   <string name="safety_number_change_dialog__previous_verified">Anksčiau patvirtinta(-s)</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Nustatymai</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Įkeliamos šalys…</string>
   <string name="country_selection_fragment__search">Ieškoti</string>
@@ -1960,10 +1962,8 @@
   <string name="arrays__use_default">Naudoti numatytąjį</string>
   <string name="arrays__use_custom">Naudoti tinkintą</string>
   <string name="arrays__mute_for_one_hour">Išjungti 1 valandai</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Išjungti 2 valandoms</string> -->
   <string name="arrays__mute_for_one_day">Išjungti 1 dienai</string>
   <string name="arrays__mute_for_seven_days">Išjungti 7 dienoms</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Išjungti 1 metams</string> -->
   <string name="arrays__settings_default">Pagal nustatymų numatymą</string>
   <string name="arrays__enabled">Įjungta</string>
   <string name="arrays__disabled">Išjungta</string>
@@ -2017,6 +2017,7 @@
   <string name="preferences__pref_led_blink_title">Šviesos diodo mirksėjimo šablonas</string>
   <string name="preferences__sound">Garsas</string>
   <string name="preferences__silent">Tyliai</string>
+  <string name="preferences__default">Numatytoji</string>
   <string name="preferences__repeat_alerts">Kartoti įspėjimus</string>
   <string name="preferences__never">Niekada</string>
   <string name="preferences__one_time">Vieną kartą</string>

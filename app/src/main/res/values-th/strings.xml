@@ -1556,6 +1556,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">บุคคลดังต่อไปนี้อาจติดตั้งแอปใหม่หรือเปลี่ยนอุปกรณ์ กรุณาตรวจยืนยันหมายเลฃความปลอดภัยของคุณกับเขาเพื่อให้แน่ใจถึงความเป็นส่วนตัว</string>
   <string name="safety_number_change_dialog__view">ดู</string>
   <string name="safety_number_change_dialog__previous_verified">ถูกตรวจยืนยันก่อนหน้า</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">การตั้งค่า</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">กำลังโหลดประเทศ…</string>
   <string name="country_selection_fragment__search">ค้นหา</string>
@@ -1744,10 +1746,8 @@
   <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
   <string name="arrays__use_custom">ใช้ค่าที่กำหนดเอง</string>
   <string name="arrays__mute_for_one_hour">ปิดเสียง 1 ชั่วโมง</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">ปิดเสียง 2 ชั่วโมง</string> -->
   <string name="arrays__mute_for_one_day">ปิดเสียง 1 วัน</string>
   <string name="arrays__mute_for_seven_days">ปิดเสียง 7 วัน</string>
-  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">ปิดเสียง 1 ปี</string> -->
   <string name="arrays__settings_default">การตั้งค่าเริ่มต้น</string>
   <string name="arrays__enabled">เปิดใช้งานแล้ว</string>
   <string name="arrays__disabled">ปิดใช้งานแล้ว</string>
@@ -1798,6 +1798,7 @@
   <string name="preferences__pref_led_blink_title">รูปแบบการกระพริบไฟ LED</string>
   <string name="preferences__sound">เสียง</string>
   <string name="preferences__silent">ไม่ส่งเสียง</string>
+  <string name="preferences__default">ค่าเริ่มต้น</string>
   <string name="preferences__repeat_alerts">ย้ำเสียงตั้งเตือน</string>
   <string name="preferences__never">ไม่เลย</string>
   <string name="preferences__one_time">หนึ่งครั้ง</string>
