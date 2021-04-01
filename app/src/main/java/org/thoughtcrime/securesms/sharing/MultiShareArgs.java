@@ -107,7 +107,7 @@ public final class MultiShareArgs implements Parcelable {
     if (!requiresInterstitial()) {
       return InterstitialContentType.NONE;
     } else if (!this.getMedia().isEmpty() ||
-               (this.getDataUri() != null && this.getDataUri() != Uri.EMPTY && this.getDataType() != null))
+               (this.getDataUri() != null && this.getDataUri() != Uri.EMPTY && this.getDataType() != null && MediaUtil.isImageOrVideoType(this.getDataType())))
     {
       return InterstitialContentType.MEDIA;
     } else if (!TextUtils.isEmpty(this.getDraftText())) {
