@@ -135,11 +135,13 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!
         val userPublicKey = storage.getUserPublicKey()
-        if (userPublicKey == message.sender) {
-            // Update the user's local name if the message came from their master device
-            TextSecurePreferences.setProfileName(context, displayName)
+        if (openGroupID == null) {
+            if (userPublicKey == message.sender) {
+                // Update the user's local name if the message came from their master device
+                TextSecurePreferences.setProfileName(context, displayName)
+            }
+            profileManager.setDisplayName(context, recipient, displayName)
         }
-        profileManager.setDisplayName(context, recipient, displayName)
         if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
