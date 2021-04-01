@@ -964,7 +964,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultRadius  = readDimen(R.dimen.message_corner_radius);
     int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
 
-    if (bigImage) {
+    if (bigImage || hasQuote(current)) {
       linkPreviewStub.get().setCorners(0, 0);
     } else if (isStartOfMessageCluster(current, previous, isGroupThread) && !current.isOutgoing() && isGroupThread) {
       linkPreviewStub.get().setCorners(0, 0);
@@ -1076,6 +1076,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.get(), readDimen(R.dimen.message_bubble_top_padding));
       }
+
+      if (linkPreviewStub.resolved() && !hasBigImageLinkPreview(current)) {
+        ViewUtil.setTopMargin(linkPreviewStub.get(), readDimen(R.dimen.message_bubble_top_padding));
+      }
     } else {
       if (quoteView != null) {
         quoteView.dismiss();
@@ -1083,6 +1087,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.get(), 0);
+      }
+
+      if (linkPreviewStub.resolved()) {
+        ViewUtil.setTopMargin(linkPreviewStub.get(), 0);
       }
     }
   }
