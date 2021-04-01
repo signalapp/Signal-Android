@@ -774,6 +774,11 @@ public class MmsDatabase extends MessagingDatabase {
       quoteAttachments.addAll(message.getOutgoingQuote().getAttachments());
     }
 
+    if (isDuplicate(message, threadId)) {
+      Log.w(TAG, "Ignoring duplicate media message (" + message.getSentTimeMillis() + ")");
+      return -1;
+    }
+
     long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), contentValues, insertListener);
 
     if (message.getRecipient().getAddress().isGroup()) {
@@ -937,6 +942,19 @@ public class MmsDatabase extends MessagingDatabase {
     Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
                                              new String[]{String.valueOf(message.getSentTimeMillis()), message.getFrom().serialize(), String.valueOf(threadId)},
                                              null, null, null, "1");
+
+    try {
+      return cursor != null && cursor.moveToFirst();
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
+  private boolean isDuplicate(OutgoingMediaMessage message, long threadId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
+            new String[]{String.valueOf(message.getSentTimeMillis()), message.getRecipient().getAddress().serialize(), String.valueOf(threadId)},
+            null, null, null, "1");
 
     try {
       return cursor != null && cursor.moveToFirst();
