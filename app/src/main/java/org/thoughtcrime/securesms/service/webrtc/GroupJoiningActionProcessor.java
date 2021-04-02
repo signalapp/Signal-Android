@@ -62,7 +62,6 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
         if (device.getJoinState() == GroupCall.JoinState.JOINED) {
 
           webRtcInteractor.startAudioCommunication(true);
-          webRtcInteractor.setWantsBluetoothConnection(true);
 
           if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
             webRtcInteractor.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
@@ -71,6 +70,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
           }
 
           webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient());
+          webRtcInteractor.setWantsBluetoothConnection(true);
 
           try {
             groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -48,6 +49,8 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
   private static final String EXTRA_RECIPIENT_ID = "RECIPIENT_ID";
   private static final String EXTRA_ENABLED      = "ENABLED";
 
+  private static final int INVALID_NOTIFICATION_ID = -1;
+
   private SignalCallManager callManager;
 
   private WiredHeadsetStateReceiver       wiredHeadsetStateReceiver;
@@ -56,6 +59,8 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
   private PhoneStateListener              hangUpRtcOnDeviceCallAnswered;
   private BluetoothStateManager           bluetoothStateManager;
+  private int                             lastNotificationId;
+  private Notification                    lastNotification;
 
   public static void update(@NonNull Context context, int type, @NonNull RecipientId recipientId) {
     Intent intent = new Intent(context, WebRtcCallService.class);
@@ -70,7 +75,7 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(ACTION_STOP);
 
-    context.startService(intent);
+    ContextCompat.startForegroundService(context, intent);
   }
 
   public static @NonNull Intent denyCallIntent(@NonNull Context context) {
@@ -86,7 +91,7 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     intent.setAction(ACTION_WANTS_BLUETOOTH)
           .putExtra(EXTRA_ENABLED, enabled);
 
-    context.startService(intent);
+    ContextCompat.startForegroundService(context, intent);
   }
 
   public static void changePowerButtonReceiver(@NonNull Context context, boolean register) {
@@ -94,7 +99,7 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     intent.setAction(ACTION_CHANGE_POWER_BUTTON)
           .putExtra(EXTRA_ENABLED, register);
 
-    context.startService(intent);
+    ContextCompat.startForegroundService(context, intent);
   }
 
   @Override
@@ -104,6 +109,7 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     this.callManager                   = ApplicationDependencies.getSignalCallManager();
     this.bluetoothStateManager         = new BluetoothStateManager(this, this);
     this.hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
+    this.lastNotificationId            = INVALID_NOTIFICATION_ID;
 
     registerUncaughtExceptionHandler();
     registerWiredHeadsetStateReceiver();
@@ -151,11 +157,13 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
                                       Objects.requireNonNull(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)));
         return START_STICKY;
       case ACTION_WANTS_BLUETOOTH:
+        setCallNotification();
         if (bluetoothStateManager != null) {
           bluetoothStateManager.setWantsConnection(intent.getBooleanExtra(EXTRA_ENABLED, false));
         }
         return START_STICKY;
       case ACTION_CHANGE_POWER_BUTTON:
+        setCallNotification();
         if (intent.getBooleanExtra(EXTRA_ENABLED, false)) {
           registerPowerButtonReceiver();
         } else {
@@ -163,13 +171,15 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
         }
         return START_STICKY;
       case ACTION_STOP:
-        stopSelf();
-        stopForeground(true);
+        setCallNotification();
+        stop();
         return START_NOT_STICKY;
       case ACTION_DENY_CALL:
+        setCallNotification();
         callManager.denyCall();
         return START_NOT_STICKY;
       case ACTION_LOCAL_HANGUP:
+        setCallNotification();
         callManager.localHangup();
         return START_NOT_STICKY;
       default:
@@ -177,9 +187,26 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     }
   }
 
+  private void setCallNotification() {
+    if (lastNotificationId != INVALID_NOTIFICATION_ID) {
+      startForeground(lastNotificationId, lastNotification);
+    } else {
+      Log.w(TAG, "Service running without having called start first, show temp notification and terminate service.");
+      startForeground(CallNotificationBuilder.getStoppingNotificationId(), CallNotificationBuilder.getStoppingNotification(this));
+      stop();
+    }
+  }
+
   public void setCallInProgressNotification(int type, @NonNull RecipientId id) {
-    startForeground(CallNotificationBuilder.getNotificationId(type),
-                    CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id)));
+    lastNotificationId = CallNotificationBuilder.getNotificationId(type);
+    lastNotification   = CallNotificationBuilder.getCallInProgressNotification(this, type, Recipient.resolved(id));
+
+    startForeground(lastNotificationId, lastNotification);
+  }
+
+  private void stop() {
+    stopForeground(true);
+    stopSelf();
   }
 
   private void registerUncaughtExceptionHandler() {

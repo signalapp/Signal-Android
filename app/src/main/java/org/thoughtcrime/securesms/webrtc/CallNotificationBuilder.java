@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -77,6 +78,24 @@ public class CallNotificationBuilder {
     } else {
       return WEBRTC_NOTIFICATION;
     }
+  }
+
+  public static @NonNull Notification getStoppingNotification(@NonNull Context context) {
+    Intent contentIntent = new Intent(context, MainActivity.class);
+    contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
+
+    return new NotificationCompat.Builder(context, NotificationChannels.OTHER).setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+                                                                              .setContentIntent(pendingIntent)
+                                                                              .setOngoing(true)
+                                                                              .setContentTitle(context.getString(R.string.NotificationBarManager__stopping_signal_call_service))
+                                                                              .setPriority(NotificationCompat.PRIORITY_MIN)
+                                                                              .build();
+  }
+
+  public static int getStoppingNotificationId() {
+    return WEBRTC_NOTIFICATION;
   }
 
   @SuppressWarnings("BooleanMethodIsAlwaysInverted")

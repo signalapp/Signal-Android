@@ -329,10 +329,10 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
   public synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState, boolean terminateVideo) {
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
-    webRtcInteractor.stopForegroundService();
     boolean playDisconnectSound = currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED;
     webRtcInteractor.stopAudio(playDisconnectSound);
     webRtcInteractor.setWantsBluetoothConnection(false);
+    webRtcInteractor.stopForegroundService();
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
 

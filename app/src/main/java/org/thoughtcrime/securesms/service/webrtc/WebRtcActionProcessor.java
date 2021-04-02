@@ -532,15 +532,15 @@ public abstract class WebRtcActionProcessor {
     ApplicationDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
-    webRtcInteractor.stopForegroundService();
     boolean playDisconnectSound = (activePeer.getState() == CallState.DIALING) ||
                                   (activePeer.getState() == CallState.REMOTE_RINGING) ||
                                   (activePeer.getState() == CallState.RECEIVED_BUSY) ||
                                   (activePeer.getState() == CallState.CONNECTED);
     webRtcInteractor.stopAudio(playDisconnectSound);
-    webRtcInteractor.setWantsBluetoothConnection(false);
 
+    webRtcInteractor.setWantsBluetoothConnection(false);
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
+    webRtcInteractor.stopForegroundService();
 
     return WebRtcVideoUtil.deinitializeVideo(currentState)
                           .builder()

@@ -97,7 +97,12 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
-    Log.i(tag, "handleLocalHangup(): call_id: " + currentState.getCallInfoState().requireActivePeer().getCallId());
+    RemotePeer remotePeer = currentState.getCallInfoState().getActivePeer();
+    if (remotePeer == null) {
+      Log.i(tag, "handleLocalHangup(): no active peer");
+    } else {
+      Log.i(tag, "handleLocalHangup(): call_id: " + remotePeer.getCallId());
+    }
 
     ApplicationDependencies.getSignalServiceAccountManager().cancelInFlightRequests();
     ApplicationDependencies.getSignalServiceMessageSender().cancelInFlightRequests();
@@ -112,7 +117,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
       webRtcInteractor.postStateUpdate(currentState);
 
-      return terminate(currentState, currentState.getCallInfoState().getActivePeer());
+      return terminate(currentState, remotePeer);
     } catch (CallException e) {
       return callFailure(currentState, "hangup() failed: ", e);
     }

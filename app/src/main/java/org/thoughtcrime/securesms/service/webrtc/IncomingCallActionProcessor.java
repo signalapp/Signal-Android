@@ -176,8 +176,8 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientDatabase.VibrateState.ENABLED || (vibrateState == RecipientDatabase.VibrateState.DEFAULT && TextSecurePreferences.isCallNotificationVibrateEnabled(context)));
     }
 
-    webRtcInteractor.registerPowerButtonReceiver();
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);
+    webRtcInteractor.registerPowerButtonReceiver();
 
     return currentState.builder()
                        .changeCallInfoState()
