@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">സൂചനകൾ</string>
   <string name="ManageGroupActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
+  <string name="ManageGroupActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
   <string name="ManageGroupActivity_on">ഓൺ</string>
   <string name="ManageGroupActivity_view_all_members">എല്ലാ അംഗങ്ങളെയും കാണുക</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageRecipientActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageRecipientActivity_until_s">%1$s വരെ</string>
+  <string name="ManageRecipientActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageRecipientActivity_off">ഓഫ്</string>
   <string name="ManageRecipientActivity_on">ഓൺ</string>
   <string name="ManageRecipientActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
@@ -1812,6 +1814,7 @@
   <string name="arrays__mute_for_one_hour">1 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക്  നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് നിശബ്ദമാക്കുക</string>
+  <string name="arrays__always">എല്ലായ്പ്പോഴും</string>
   <string name="arrays__settings_default">ക്രമീകരണ സ്ഥിരസ്ഥിതി</string>
   <string name="arrays__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="arrays__disabled">അപ്രാപ്‌തമാക്കി</string>
@@ -2327,6 +2330,8 @@
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">തുടരുക</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
@@ -2338,14 +2343,18 @@
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransfer__transfer_failed">കൈമാറ്റം പരാജയപ്പെട്ടു</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">അക്കൗണ്ട് കൈമാറ്റം ചെയ്യുക</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_status_verification_required">പരിശോധന ആവശ്യമാണ്</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ചെയ്‌തു</string>
   <!--RecipientBottomSheet-->

@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">אזכורים</string>
   <string name="ManageGroupActivity_chat_wallpaper">טפט התכתבות</string>
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
+  <string name="ManageGroupActivity_always">תמיד</string>
   <string name="ManageGroupActivity_off">כבוי</string>
   <string name="ManageGroupActivity_on">מופעל</string>
   <string name="ManageGroupActivity_view_all_members">הצג את כל חברי הקבוצה</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">השתק התראות</string>
   <string name="ManageRecipientActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageRecipientActivity_until_s">עד %1$s</string>
+  <string name="ManageRecipientActivity_always">תמיד</string>
   <string name="ManageRecipientActivity_off">כבוי</string>
   <string name="ManageRecipientActivity_on">מופעל</string>
   <string name="ManageRecipientActivity_add_to_a_group">הוסף אל קבוצה</string>
@@ -1964,6 +1966,7 @@
   <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
   <string name="arrays__mute_for_one_day">השתק למשך יום</string>
   <string name="arrays__mute_for_seven_days">השתק למשך 7 ימים</string>
+  <string name="arrays__always">תמיד</string>
   <string name="arrays__settings_default">ברירת מחדל</string>
   <string name="arrays__enabled">מאופשר</string>
   <string name="arrays__disabled">מושבת</string>

@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Zmínky</string>
   <string name="ManageGroupActivity_chat_wallpaper">Tapeta pro konverzaci</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
+  <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vyp.</string>
   <string name="ManageGroupActivity_on">Zap.</string>
   <string name="ManageGroupActivity_view_all_members">Zobrazit všechny členy</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageRecipientActivity_custom_notifications">Vlastní oznámení</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
+  <string name="ManageRecipientActivity_always">Vždy</string>
   <string name="ManageRecipientActivity_off">Vyp.</string>
   <string name="ManageRecipientActivity_on">Zap.</string>
   <string name="ManageRecipientActivity_add_to_a_group">Přidat do skupiny</string>
@@ -1601,6 +1603,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NotificationChannel_group_messages">Zprávy</string>
   <string name="NotificationChannel_missing_display_name">Neznámý</string>
   <string name="NotificationChannel_voice_notes">Hlasové poznámky</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">K otevření nastavení kanálu oznámení není k dispozici žádná aktivita.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá odpověď není dostupná, pokud je Signal uzamčen!</string>
@@ -1727,6 +1730,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationUpdateItem_return_to_call">Vrátit se k hovoru</string>
   <string name="ConversationUpdateItem_call_is_full">Hovor je plný</string>
   <string name="ConversationUpdateItem_invite_friends">Pozvat přátele</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Povolit oznámení hovorů</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spustit … Pozastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
@@ -1751,7 +1755,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="safety_number_change_dialog__view">Zobrazit</string>
   <string name="safety_number_change_dialog__previous_verified">Předchozí ověřeno</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Oznámení hovorů jsou povolena</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Povolit oznámení hovorů</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Povolit aktivitu na pozadí</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Teď všechno vypadá v pořádku!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">K obdržení oznámení o hovorech klepněte sem a zapněte \"Zobrazovat notifikace.\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">K obdržení oznámení o hovorech klepněte sem a zapněte notifikace a ujistěte se, že jsou povoleny zvuky a vyskakovací okna.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">K obdržení oznámení o hovorech klepněte sem a povolte aktivitu na pozadí v nastaveních baterie.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Nastavení</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">K obdržení oznámení o hovorech klepněte na Nastavení a zapněte \"Zobrazit notifikace.\"</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítám země…</string>
   <string name="country_selection_fragment__search">Hledat</string>
@@ -1953,8 +1965,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="arrays__use_default">Použít výchozí</string>
   <string name="arrays__use_custom">Použít vlastní</string>
   <string name="arrays__mute_for_one_hour">Ztišit na 1 hodinu</string>
+  <string name="arrays__mute_for_eight_hours">Ztlumit na 8 hodin</string>
   <string name="arrays__mute_for_one_day">Ztišit na 1 den</string>
   <string name="arrays__mute_for_seven_days">Ztišit na 7 dnů</string>
+  <string name="arrays__always">Vždy</string>
   <string name="arrays__settings_default">Výchozí nastavení</string>
   <string name="arrays__enabled">Povoleno</string>
   <string name="arrays__disabled">Zakázáno</string>
@@ -2399,9 +2413,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="backup_enable_dialog__folder">Složka</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Heslo jsem si zapsal. Bez něj nebudu schopen obnovit data ze zálohy.</string>
   <string name="registration_activity__restore_backup">Obnovit zálohu</string>
+  <string name="registration_activity__transfer_or_restore_account">Přenést nebo obnovit účet</string>
+  <string name="registration_activity__transfer_account">Přenést účet</string>
   <string name="registration_activity__skip">Přeskočit</string>
   <string name="preferences_chats__chat_backups">Zálohy konverzace</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Zálohovat konverzaci na externí úložiště.</string>
+  <string name="preferences_chats__transfer_account">Přenést účet</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Přenést účet na nové Android zařízení</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Zadejte heslo pro zálohu</string>
   <string name="RegistrationActivity_restore">Obnovení</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nemohu naimportovat zálohy z novější verze aplikace Signal</string>
@@ -2476,6 +2494,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="prompt_passphrase_activity__tap_to_unlock">KLEPNUTÍM ODEMKNĚTE</string>
   <string name="Recipient_unknown">Neznámý</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Přenést nebo obnovit účet</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Pokračovat</string>
   <!--NewDeviceTransferSetupFragment-->

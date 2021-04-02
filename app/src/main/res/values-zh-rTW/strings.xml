@@ -575,6 +575,7 @@
   <string name="ManageGroupActivity_mentions">提及</string>
   <string name="ManageGroupActivity_chat_wallpaper">聊天壁紙</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
+  <string name="ManageGroupActivity_always">永遠</string>
   <string name="ManageGroupActivity_off">關</string>
   <string name="ManageGroupActivity_on">開</string>
   <string name="ManageGroupActivity_view_all_members">檢視所有成員</string>
@@ -624,6 +625,7 @@
   <string name="ManageRecipientActivity_mute_notifications">將通知調整為靜音</string>
   <string name="ManageRecipientActivity_custom_notifications">自訂通知</string>
   <string name="ManageRecipientActivity_until_s">直到 %1$s</string>
+  <string name="ManageRecipientActivity_always">永遠</string>
   <string name="ManageRecipientActivity_off">關</string>
   <string name="ManageRecipientActivity_on">開</string>
   <string name="ManageRecipientActivity_add_to_a_group">新增到群組</string>
@@ -1412,6 +1414,7 @@
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
   <string name="NotificationChannel_voice_notes">語音筆記</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">無可用的活動以開啟通知類別設定。</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
@@ -1529,6 +1532,7 @@
   <string name="ConversationUpdateItem_return_to_call">返回通話</string>
   <string name="ConversationUpdateItem_call_is_full">通話人數已滿</string>
   <string name="ConversationUpdateItem_invite_friends">邀請好友</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -1553,7 +1557,17 @@
   <string name="safety_number_change_dialog__view">檢視</string>
   <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">通話通知已啟用。</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">啟用通話通知</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">啟用背景活動</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">似乎一切就緒！</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">若要接收通話通知，請輕觸此處並開啟「顯示通知」。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">若要接收通話通知，請輕觸此處並開啟通知，並確保已啟用「聲音與彈出式視窗」。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">若要接收通話通知，請輕觸此處並在「電量」設定中啟用背景活動。</string>
   <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">若要接收通話通知，請輕觸一下「設定」並啟用「顯示通知」。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">若要接收通話通知，請輕觸一下「設定」並開啟通知，同時確保已啟用「聲音與彈出式視窗」。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">若要接收通話通知，請輕觸一下「設定」並在「電量」設定中啟用背景活動。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">讀取國家列表中…</string>
   <string name="country_selection_fragment__search">搜尋</string>
@@ -1742,8 +1756,10 @@
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用自訂</string>
   <string name="arrays__mute_for_one_hour">靜音 1 小時</string>
+  <string name="arrays__mute_for_eight_hours">靜音 8 小時</string>
   <string name="arrays__mute_for_one_day">靜音 1 天</string>
   <string name="arrays__mute_for_seven_days">靜音 7 天</string>
+  <string name="arrays__always">永遠</string>
   <string name="arrays__settings_default">預設設定</string>
   <string name="arrays__enabled">啟用</string>
   <string name="arrays__disabled">停用</string>

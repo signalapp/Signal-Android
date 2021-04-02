@@ -608,6 +608,7 @@
   <string name="ManageGroupActivity_mentions">تىلغا ئالغانلار</string>
   <string name="ManageGroupActivity_chat_wallpaper">سۆھبەت تام قەغەز</string>
   <string name="ManageGroupActivity_until_s">%1$s غىچە</string>
+  <string name="ManageGroupActivity_always">ھەمىشە</string>
   <string name="ManageGroupActivity_off">ئەت</string>
   <string name="ManageGroupActivity_on">ئاچ</string>
   <string name="ManageGroupActivity_view_all_members">ھەممە ئەزالارنى كۆرسەت</string>
@@ -658,6 +659,7 @@
   <string name="ManageRecipientActivity_mute_notifications">ئۈنسىز ئۇقتۇرۇش</string>
   <string name="ManageRecipientActivity_custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <string name="ManageRecipientActivity_until_s">%1$s غىچە</string>
+  <string name="ManageRecipientActivity_always">ھەمىشە</string>
   <string name="ManageRecipientActivity_off">ئەت</string>
   <string name="ManageRecipientActivity_on">ئاچ</string>
   <string name="ManageRecipientActivity_add_to_a_group">گۇرۇپپىغا قوش</string>
@@ -1477,6 +1479,7 @@
   <string name="NotificationChannel_group_messages">ئۇچۇرلار</string>
   <string name="NotificationChannel_missing_display_name">نامەلۇم</string>
   <string name="NotificationChannel_voice_notes">ئۈن خاتىرە</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ئۇقتۇرۇش قانال تەڭشەكلىرىنى ئاچىدىغان پائالىيەت يوق.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal قۇلۇپلانغاندا تېز ئىنكاسنى ئىشلەتكىلى بولمايدۇ!</string>
@@ -1597,6 +1600,7 @@
   <string name="ConversationUpdateItem_return_to_call">چاقىرىققا قايت</string>
   <string name="ConversationUpdateItem_call_is_full">چاقىرىق توشتى</string>
   <string name="ConversationUpdateItem_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">چاقىرىش ئۇقتۇرۇشلىرىنى قوزغات</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">قوي… تورمۇزلا</string>
   <string name="audio_view__download_accessibility_description">چۈشۈر</string>
@@ -1621,7 +1625,17 @@
   <string name="safety_number_change_dialog__view">كۆرۈش</string>
   <string name="safety_number_change_dialog__previous_verified">ئىلگىرى دەلىللەنگەن</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">چاقىرىش ئۇقتۇرۇشلىرى قوزغىتىلدى.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">چاقىرىش ئۇقتۇرۇشلىرىنى قوزغات</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">ئارقا سۇپا پائالىيىتىنى قوزغات</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">ھازىر ھەممە ئىش جايىدا كۆرۈنۈۋاتىدۇ!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، بۇ جاينى چېكىپ، «ئۇقتۇرۇشلارنى كۆرسەت»نى ئېچىڭ.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، بۇ جاينى چېكىپ، ئۇقتۇرۇشلارنى ئېچىڭ ھەمدە ئۈن ۋە قاڭقىش تىزىملىكى قوزغىتىلغانلىقىنى جەزملەڭ.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، بۇ جاينى چېكىپ، «توكدان» تەڭشەكلىرىدىن ئارقا سۇپا پائالىيىتىنى ئېچىڭ.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">تەڭشەكلەر</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، تەڭشەكلەرنى چېكىپ، «ئۇقتۇرۇشلارنى كۆرسەت»نى ئېچىڭ.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، تەڭشەكلەرنى چېكىپ، ئۇقتۇرۇشلارنى ئېچىڭ ھەمدە ئۈن ۋە قاڭقىش تىزىملىكى قوزغىتىلغانلىقىنى جەزملەڭ.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">چاقىرىش ئۇقتۇرۇشىنى تاپشۇرۇۋېلىش ئۈچۈن، تەڭشەكلەرنى چېكىپ، «توكدان» تەڭشەكلىرىدىن ئارقا سۇپا پائالىيىتىنى ئېچىڭ.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">دۆلەتلەرنى يۈكلەۋاتىدۇ…</string>
   <string name="country_selection_fragment__search">ئاقتۇرۇش</string>
@@ -1817,8 +1831,10 @@
   <string name="arrays__use_default">كۆڭۈلدىكىنى ئىشلىتىش</string>
   <string name="arrays__use_custom">ئىختىيارىي ئىشلىتىش</string>
   <string name="arrays__mute_for_one_hour">1 سائەت ئۈنسىز</string>
+  <string name="arrays__mute_for_eight_hours">8 سائەت ئۈنسىز</string>
   <string name="arrays__mute_for_one_day">1 كۈن ئۈنسىز</string>
   <string name="arrays__mute_for_seven_days">7 كۈن ئۈنسىز</string>
+  <string name="arrays__always">ھەمىشە</string>
   <string name="arrays__settings_default">كۆڭۈلدىكى تەڭشەك</string>
   <string name="arrays__enabled">ئوچۇق</string>
   <string name="arrays__disabled">تاقالغان</string>

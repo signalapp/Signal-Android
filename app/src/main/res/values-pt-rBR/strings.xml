@@ -2010,7 +2010,7 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova mensagem para…</string>
   <string name="contact_selection_list__unknown_contact_block">Bloquear esta pessoa</string>
-  <string name="contact_selection_list__unknown_contact_add_to_group">Adicional ao grupo</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Adicionar ao grupo</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->

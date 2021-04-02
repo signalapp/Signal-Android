@@ -1728,6 +1728,7 @@
   <string name="ConversationUpdateItem_return_to_call">Grįžti į skambutį</string>
   <string name="ConversationUpdateItem_call_is_full">Skambutis yra pilnas</string>
   <string name="ConversationUpdateItem_invite_friends">Pakviesti draugus</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Įjungti pranešimus apie skambučius</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -1752,6 +1753,8 @@
   <string name="safety_number_change_dialog__view">Rodyti</string>
   <string name="safety_number_change_dialog__previous_verified">Anksčiau patvirtinta(-s)</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Pranešimai apie skambučius įjungti.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Įjungti pranešimus apie skambučius</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Nustatymai</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Įkeliamos šalys…</string>
@@ -1962,8 +1965,10 @@
   <string name="arrays__use_default">Naudoti numatytąjį</string>
   <string name="arrays__use_custom">Naudoti tinkintą</string>
   <string name="arrays__mute_for_one_hour">Išjungti 1 valandai</string>
+  <string name="arrays__mute_for_eight_hours">Išjungti 8 valandoms</string>
   <string name="arrays__mute_for_one_day">Išjungti 1 dienai</string>
   <string name="arrays__mute_for_seven_days">Išjungti 7 dienoms</string>
+  <string name="arrays__always">Visada</string>
   <string name="arrays__settings_default">Pagal nustatymų numatymą</string>
   <string name="arrays__enabled">Įjungta</string>
   <string name="arrays__disabled">Išjungta</string>

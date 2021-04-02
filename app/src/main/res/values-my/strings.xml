@@ -575,6 +575,7 @@
   <string name="ManageGroupActivity_mentions">ဖယောင်းတိုင်</string>
   <string name="ManageGroupActivity_chat_wallpaper">နောက်ခံပုံများ chat</string>
   <string name="ManageGroupActivity_until_s">အထိ%1$s</string>
+  <string name="ManageGroupActivity_always">အမြဲ</string>
   <string name="ManageGroupActivity_off">ပိတ်ပါ</string>
   <string name="ManageGroupActivity_on">ဖွင့်ပါ</string>
   <string name="ManageGroupActivity_view_all_members">အသင်းဝင်အားလုံးကိုကြည့်ရန်</string>
@@ -624,6 +625,7 @@
   <string name="ManageRecipientActivity_mute_notifications">အသိပေးချက်ကို ပိတ်ပ</string>
   <string name="ManageRecipientActivity_custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
   <string name="ManageRecipientActivity_until_s">အထိ%1$s</string>
+  <string name="ManageRecipientActivity_always">အမြဲ</string>
   <string name="ManageRecipientActivity_off">ပိတ်ပ</string>
   <string name="ManageRecipientActivity_on">ဖွင့်ပ</string>
   <string name="ManageRecipientActivity_add_to_a_group">အုပ်စုတစ်စုမှထည့်ပါ</string>
@@ -1412,6 +1414,7 @@
   <string name="NotificationChannel_group_messages">စာမ</string>
   <string name="NotificationChannel_missing_display_name">မသိ</string>
   <string name="NotificationChannel_voice_notes">အသံမှတ်စုများ</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">သတိပေးချက်လိုင်း၏ အပြင်အဆင်များကို ဖွင့်ရန် လှုပ်ရှားမှုမရှိပါ။</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>
@@ -1530,6 +1533,7 @@
   <string name="ConversationUpdateItem_return_to_call">ခေါ်ဆိုမှုသို့ပြန်သွားသည်</string>
   <string name="ConversationUpdateItem_call_is_full">ခေါ်ဆိုမှုပြည့်သွားတယ်</string>
   <string name="ConversationUpdateItem_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play …ခေတ္တနားသည်</string>
   <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
@@ -1554,7 +1558,17 @@
   <string name="safety_number_change_dialog__view">ကြည့်ရှုပါ</string>
   <string name="safety_number_change_dialog__previous_verified">ယခင်အတည်ပြုပြီး</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်ပြီး</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">နောက်ခံ လှုပ်ရှားမှုများ ခွင့်ပြုမယ်</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">အခု အားလုံးကြည့်ကောင်းနေပြီ!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် ဤနေရာနှိပ်၍ \"သတိပေးချက်များ ပြရန်\" အား ဖွင့်ထားပေးပါ။</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် ဤနေရာတွင်နှိပ်၍ သတိပေးချက်များ ဖွင့်ကာ အသံ နှင့် စာပေါ်ခြင်းများ (pop-ups) ကို ဖွင့်ထားရန် သေချာစေပါ။</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် ဤနေရာတွင်နှိပ်၍ \"ဘက်ထရီ\" အပြင်အဆင်များထဲတွင် နောက်ခံလှုပ်ရှားမှု ဖွင့်ထားပေးပါ။</string>
   <string name="EnableCallNotificationSettingsDialog__settings">အပြင်အဆင်များ</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် အပြင်အဆင်များ နှိပ်၍ \"သတိပေးချက်များ ပြရန်\" ကိုဖွင့်ထားပေးပါ။</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် အပြင်အဆင်များ နှိပ်၍ \"သတိပေးချက်များ ပြရန်\" ကိုဖွင့်ထားပေးပြီး အသံနှင့် စာပေါ်ခြင်းများ (pop-ups) ကို ဖွင့်ထားရန် သေချာစေပါ။</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ခေါ်ဆိုမှု သတိပေးချက်များ လက်ခံရန် ဤနေရာတွင်နှိပ်၍ \"ဘက်ထရီ\" အပြင်အဆင်များထဲတွင် နောက်ခံလှုပ်ရှားမှု ဖွင့်ထားပေးပါ။</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">နိုင်ငံစာရင်းများ ရှာဖွေနေသည် ….</string>
   <string name="country_selection_fragment__search">ရှာရန်</string>
@@ -1743,8 +1757,10 @@
   <string name="arrays__use_default">မူလကို သုံးပါ</string>
   <string name="arrays__use_custom">အထူးပြုကိုသုံးသည် </string>
   <string name="arrays__mute_for_one_hour">အသံကို ၁ နာရီ ပိတ်ထားပါ။</string>
+  <string name="arrays__mute_for_eight_hours">၈ နာရီ အသံပိတ်ထားပါ</string>
   <string name="arrays__mute_for_one_day">အသံကို ၁ ရက် ပိတ်ထားပါ</string>
   <string name="arrays__mute_for_seven_days">အသံကို ၇ ရက် ပိတ်ထားပါ။</string>
+  <string name="arrays__always">အမြဲ</string>
   <string name="arrays__settings_default">အပြင်အဆင်များကို မူလသို့</string>
   <string name="arrays__enabled">လုပ်ဆောင်နိုင်သည်</string>
   <string name="arrays__disabled">မလုပ်ဆောင်နိုင်ပါ</string>

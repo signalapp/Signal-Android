@@ -608,6 +608,7 @@
   <string name="ManageGroupActivity_mentions">Említések</string>
   <string name="ManageGroupActivity_chat_wallpaper">Beszélgetés háttérkép</string>
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
+  <string name="ManageGroupActivity_always">Végleg</string>
   <string name="ManageGroupActivity_off">Ki</string>
   <string name="ManageGroupActivity_on">Be</string>
   <string name="ManageGroupActivity_view_all_members">Összes tag megtekintése</string>
@@ -658,6 +659,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Értesítések némítása</string>
   <string name="ManageRecipientActivity_custom_notifications">Egyedi értesítések</string>
   <string name="ManageRecipientActivity_until_s">%1$s-ig</string>
+  <string name="ManageRecipientActivity_always">Végleg</string>
   <string name="ManageRecipientActivity_off">Ki</string>
   <string name="ManageRecipientActivity_on">Be</string>
   <string name="ManageRecipientActivity_add_to_a_group">Hozzáadás egy csoporthoz</string>
@@ -1814,6 +1816,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
   <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
   <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
+  <string name="arrays__always">Végleg</string>
   <string name="arrays__settings_default">Alapértelmezett beállítások</string>
   <string name="arrays__enabled">Engedélyezve</string>
   <string name="arrays__disabled">Letiltva</string>
