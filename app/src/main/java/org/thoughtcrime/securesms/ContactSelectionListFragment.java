@@ -510,7 +510,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
         }
 
         if (contact.isUsernameType()) {
-          AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext());
+          AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext(), R.color.transparent, 0.4f);
 
           SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
             return UsernameUtil.fetchUuidForUsername(requireContext(), contact.getNumber());

@@ -36,6 +36,20 @@ public final class SimpleProgressDialog {
     return dialog;
   }
 
+  public static @NonNull AlertDialog show(@NonNull Context context, int background, float dim) {
+    AlertDialog dialog = new AlertDialog.Builder(context)
+            .setView(R.layout.progress_dialog)
+            .setCancelable(false)
+            .create();
+    dialog.show();
+    dialog.getWindow().setDimAmount(dim);
+    dialog.getWindow().setBackgroundDrawableResource(background);
+    dialog.getWindow().setLayout(context.getResources().getDimensionPixelSize(R.dimen.progress_dialog_size),
+            context.getResources().getDimensionPixelSize(R.dimen.progress_dialog_size));
+
+    return dialog;
+  }
+
   @AnyThread
   public static @NonNull DismissibleDialog showDelayed(@NonNull Context context) {
     return showDelayed(context, 300, 1000);
