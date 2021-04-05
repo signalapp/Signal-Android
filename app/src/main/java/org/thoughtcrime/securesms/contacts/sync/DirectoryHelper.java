@@ -378,7 +378,8 @@ public class DirectoryHelper {
 
           contactHolder.commit(handle);
         }
-
+      } catch (IllegalStateException e) {
+        Log.w(TAG, "Hit an issue with the cursor while reading!", e);
       } finally {
         handle.finish();
       }
