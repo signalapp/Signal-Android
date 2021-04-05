@@ -112,7 +112,8 @@ public class CallNotificationBuilder {
   }
 
   private static NotificationCompat.Action getServiceNotificationAction(Context context, Intent intent, int iconResId, int titleResId) {
-    PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+    PendingIntent pendingIntent = Build.VERSION.SDK_INT >= 26 ? PendingIntent.getForegroundService(context, 0, intent, 0)
+                                                              : PendingIntent.getService(context, 0, intent, 0);
 
     return new NotificationCompat.Action(iconResId, context.getString(titleResId), pendingIntent);
   }
