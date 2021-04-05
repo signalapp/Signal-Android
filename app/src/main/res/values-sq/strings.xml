@@ -839,6 +839,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Po ndalet shërbimi Signal i thirrjeve</string>
   <string name="NotificationBarManager__deny_call">Refuzoje thirrjen</string>
   <string name="NotificationBarManager__answer_call">Përgjigju thirrjes</string>
   <string name="NotificationBarManager__end_call">Përfundoje thirrjen</string>

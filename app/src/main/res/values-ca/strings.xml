@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Mencions</string>
   <string name="ManageGroupActivity_chat_wallpaper">Fons de la conversa</string>
   <string name="ManageGroupActivity_until_s">Fins a %1$s</string>
+  <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Inactiu</string>
   <string name="ManageGroupActivity_on">Actiu</string>
   <string name="ManageGroupActivity_view_all_members">Mostra\'n tots els membres</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silencia les notificacions</string>
   <string name="ManageRecipientActivity_custom_notifications">Notificacions personalitzades</string>
   <string name="ManageRecipientActivity_until_s">Fins a %1$s</string>
+  <string name="ManageRecipientActivity_always">Sempre</string>
   <string name="ManageRecipientActivity_off">Inactiu</string>
   <string name="ManageRecipientActivity_on">Actiu</string>
   <string name="ManageRecipientActivity_add_to_a_group">Afegeix-lo a un grup</string>
@@ -833,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Trucada del Signal rebuda</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">S\'atura el servei de trucades del Signal</string>
   <string name="NotificationBarManager__deny_call">Rebutja la trucada</string>
   <string name="NotificationBarManager__answer_call">Respon la trucada</string>
   <string name="NotificationBarManager__end_call">Acaba la trucada</string>
@@ -1472,6 +1475,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NotificationChannel_group_messages">Missatges</string>
   <string name="NotificationChannel_missing_display_name">Desconegut</string>
   <string name="NotificationChannel_voice_notes">Notes de veu</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hi ha activitat disponible per obrir la configuració del canal de notificacions.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La resposta ràpida no és disponible si el Signal està blocat!</string>
@@ -1592,6 +1596,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_return_to_call">Torna a la trucada</string>
   <string name="ConversationUpdateItem_call_is_full">La trucada és plena</string>
   <string name="ConversationUpdateItem_invite_friends">Convideu-hi amistats</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Activa les notificacions de trucada</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -1616,7 +1621,17 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="safety_number_change_dialog__view">Mostra</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat prèviament</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Les notificacions de trucades estan activades.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activa les notificacions de trucada</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Activa l\'activitat en segon pla</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Ara tot està bé!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Per rebre notificacions de trucades, toqueu aquí i activeu Mostra notificacions.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Per rebre notificacions de trucades, toqueu aquí i activeu les notificacions i assegureu-vos que el so i les finestres emergents estiguin activades.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Per rebre notificacions de trucades, toqueu aquí i activeu l\'activitat en segon pla a la configuració Bateria.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Configuració</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Per rebre notificacions de trucades, toqueu Configuració i activeu Mostra notificacions.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Per rebre notificacions de trucades, toqueu Configuració i activeu les notificacions i assegureu-vos que el so i les finestres emergents estiguin activades.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Per rebre notificacions de trucades, toqueu Configuració i activeu l\'activitat en segon pla a la configuració Bateria.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Es carreguen els països…</string>
   <string name="country_selection_fragment__search">Cerca</string>
@@ -1805,8 +1820,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="arrays__use_default">Per defecte</string>
   <string name="arrays__use_custom">Personalitzat</string>
   <string name="arrays__mute_for_one_hour">Silencia-ho durant 1 hora</string>
+  <string name="arrays__mute_for_eight_hours">Silencia-ho durant 8 hores</string>
   <string name="arrays__mute_for_one_day">Silencia-ho durant 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silencia-ho durant 7 dies</string>
+  <string name="arrays__always">Sempre</string>
   <string name="arrays__settings_default">Configuració predeterminada</string>
   <string name="arrays__enabled">Activat</string>
   <string name="arrays__disabled">Desactivat</string>

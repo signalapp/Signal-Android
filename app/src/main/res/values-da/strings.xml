@@ -836,6 +836,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal opkald i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
   <string name="NotificationBarManager__incoming_signal_call">Indgående Signal opkald</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal-opkaldstjeneste stopper</string>
   <string name="NotificationBarManager__deny_call">Afvis opkald</string>
   <string name="NotificationBarManager__answer_call">Svar opkald</string>
   <string name="NotificationBarManager__end_call">Afslut opkald</string>

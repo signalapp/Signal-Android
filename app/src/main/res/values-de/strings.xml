@@ -835,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
   <string name="NotificationBarManager__incoming_signal_call">Eingehender Signal-Anruf</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signals Anrufdienst wird gestoppt</string>
   <string name="NotificationBarManager__deny_call">Anruf ablehnen</string>
   <string name="NotificationBarManager__answer_call">Anruf annehmen</string>
   <string name="NotificationBarManager__end_call">Anruf beenden</string>
@@ -1800,9 +1801,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
   <string-array name="HelpFragment__categories">
     <item>Etwas funktioniert nicht</item>
-    <item>Funktionswunsch</item>
+    <item>Erweiterungswunsch</item>
     <item>Frage</item>
-    <item>Feedback</item>
+    <item>Rückmeldung</item>
     <item>Sonstiges</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->

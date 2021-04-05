@@ -878,6 +878,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u tijeku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljanje Signal poziva</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Zaustavljanje Signalove usluge za pozive</string>
   <string name="NotificationBarManager__deny_call">Odbij poziv</string>
   <string name="NotificationBarManager__answer_call">Prihvati poziv</string>
   <string name="NotificationBarManager__end_call">Završi poziv</string>

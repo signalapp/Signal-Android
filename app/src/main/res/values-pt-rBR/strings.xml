@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Menções</string>
   <string name="ManageGroupActivity_chat_wallpaper">Papel de parede da conversa</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
+  <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Desligado</string>
   <string name="ManageGroupActivity_on">Ligado</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageRecipientActivity_custom_notifications">Personalizar notificações</string>
   <string name="ManageRecipientActivity_until_s">Até %1$s</string>
+  <string name="ManageRecipientActivity_always">Sempre</string>
   <string name="ManageRecipientActivity_off">Desligado</string>
   <string name="ManageRecipientActivity_on">Ligado</string>
   <string name="ManageRecipientActivity_add_to_a_group">Adicionar ao grupo</string>
@@ -833,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Recebendo chamada Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Encerrando chamada Signal</string>
   <string name="NotificationBarManager__deny_call">Recusar chamada</string>
   <string name="NotificationBarManager__answer_call">Atender chamada</string>
   <string name="NotificationBarManager__end_call">Terminar chamada</string>
@@ -1478,6 +1481,7 @@
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecida</string>
   <string name="NotificationChannel_voice_notes">Mensagens de voz</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nenhuma atividade está disponível para ser ajustada nas configurações das categorias de notificações.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>
@@ -1598,6 +1602,7 @@
   <string name="ConversationUpdateItem_return_to_call">Voltar para a chamada</string>
   <string name="ConversationUpdateItem_call_is_full">A chamada está lotada</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amigos(as)</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Exibir notificações de chamadas</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>
@@ -1622,7 +1627,17 @@
   <string name="safety_number_change_dialog__view">Exibir</string>
   <string name="safety_number_change_dialog__previous_verified">Já verificado</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notificações de chamadas ativadas.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Exibir notificações de chamadas</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Habilitar a atividade em segundo plano</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Está tudo ótimo, agora!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Para receber notificações de chamadas, toque aqui e ative \"Mostrar notificações\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Para receber notificações de chamadas, toque aqui e ative as notificações. Certifique-se de que o Som e o Pop-up da notificação estejam ativados.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Para receber notificações de chamadas, toque aqui e habilite a atividade em segundo plano nas configurações da \"Bateria\".</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Configurações</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Para receber notificações de chamadas, toque em Configurações e ative \"Mostrar notificações\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Para receber notificações de chamadas, toque em Configurações e ative as notificações. Certifique-se de que o Som e o Pop-up da notificação estejam ativados.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Para receber notificações de chamadas, toque em Configurações e habilite a atividade em segundo plano nas configurações da \"Bateria\".</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Carregando países…</string>
   <string name="country_selection_fragment__search">Procurar</string>
@@ -1785,15 +1800,23 @@
   <string name="HelpFragment__have_you_read_our_faq_yet">Você já leu nosso FAQ?</string>
   <string name="HelpFragment__next">Próximo</string>
   <string name="HelpFragment__contact_us">Entre em contato</string>
-  <string name="HelpFragment__tell_us_whats_going_on">Nos diga o que está acontecendo</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Conte-nos o que está acontecendo</string>
   <string name="HelpFragment__include_debug_log">Inclua o relatório de depuração.</string>
   <string name="HelpFragment__whats_this">O que é isso ?</string>
   <string name="HelpFragment__how_do_you_feel">Como você se sente? (Opcional)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Conte-nos por que você está entrando em contato.</string>
   <string name="HelpFragment__support_info">Info de Suporte</string>
   <string name="HelpFragment__signal_android_support_request">Solicitação de suporte Signal Android</string>
   <string name="HelpFragment__debug_log">Relatório de Debug:</string>
   <string name="HelpFragment__could_not_upload_logs">Não foi possível enviar o registro</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Algo não está funcionando</item>
+    <item>Pedido de nova funcionalidade</item>
+    <item>Pergunta</item>
+    <item>Comentário</item>
+    <item>Outro</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizado recentemente</string>
@@ -1810,8 +1833,10 @@
   <string name="arrays__use_default">Usar padrão</string>
   <string name="arrays__use_custom">Usar personalização</string>
   <string name="arrays__mute_for_one_hour">Silenciar por 1 hora</string>
+  <string name="arrays__mute_for_eight_hours">Silenciar por 8 horas</string>
   <string name="arrays__mute_for_one_day">Silenciar por 1 dia</string>
   <string name="arrays__mute_for_seven_days">Silenciar por 7 dias</string>
+  <string name="arrays__always">Sempre</string>
   <string name="arrays__settings_default">Configurações padrão</string>
   <string name="arrays__enabled">Habilitado</string>
   <string name="arrays__disabled">Desabilitado</string>
@@ -1910,7 +1935,7 @@
   <string name="preferences__disable_pin">Desabilitar PIN</string>
   <string name="preferences__enable_pin">Habilitar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, perderá todos os dados ao se registrar de novo com o Signal, a menos que você faça backup manualmente e os restaure. Você não pode ativar o Bloqueio de Registro enquanto o PIN estiver desativado.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs mantêm criptografadas as informações salvas no Signal, para que apenas você as acesse. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do PIN para abrir o app.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">O PIN mantém criptografadas as informações armazenadas no Signal, de modo que apenas você as acesse. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do PIN para abrir o app.</string>
   <string name="preferences__system_default">Padrão do sistema</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
@@ -2142,7 +2167,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Você pode modificar seu PIN enquanto este dispositivo estiver registrado.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Criar seu PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">O PIN mantém as informações armazenadas no Signal criptografadas para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do seu PIN para abrir o aplicativo.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">O PIN mantém criptografadas as informações armazenadas no Signal, de modo que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do seu PIN para abrir o aplicativo.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Escolha um PIN mais forte</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não correspondem. Tente outra vez.</string>
@@ -2154,7 +2179,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Criando o PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Apresentando os PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">O PIN mantém as informações armazenadas no Signal criptografadas, para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do seu PIN para abrir o aplicativo.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">O PIN mantém criptografadas as informações armazenadas no Signal, de modo que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do seu PIN para abrir o aplicativo.</string>
   <string name="KbsSplashFragment__learn_more">Saiba Mais</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Desbloqueio de Registro = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Seu Desbloqueio de Registro agora é chamado de PIN e tem outras utilidades. Atualize-o agora.</string>
@@ -2210,7 +2235,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s receberá um pedido para conversar com você. Você poderá ligar assim que seu pedido for aceito.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crie um PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">O PIN guarda informações que são armazenadas no Signal criptografadas.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">O PIN mantém criptografadas as informações armazenadas no Signal.</string>
   <string name="KbsMegaphone__create_pin">Crie um PIN</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Diga ao Signal o que você pensa</string>
@@ -2240,9 +2265,13 @@
   <string name="backup_enable_dialog__folder">Pasta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
   <string name="registration_activity__restore_backup">Restaurar backup</string>
+  <string name="registration_activity__transfer_or_restore_account">Transferir ou restaurar conta</string>
+  <string name="registration_activity__transfer_account">Transferir conta</string>
   <string name="registration_activity__skip">Ignorar</string>
   <string name="preferences_chats__chat_backups">Backups de chat</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Fazer backup de chats no armazenamento externo</string>
+  <string name="preferences_chats__transfer_account">Transferir conta</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir conta para um novo dispositivo Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Digite a frase-chave de backup</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar backups feitos com versões mais recentes do Signal</string>
@@ -2294,7 +2323,7 @@
   <string name="preferences_app_protection__create_a_pin">Crie um PIN</string>
   <string name="preferences_app_protection__change_your_pin">Troque o seu PIN</string>
   <string name="preferences_app_protection__pin_reminders">Lembretes do PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">O PIN mantém as informações armazenadas no Signal criptografadas para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">O PIN mantém criptografadas as informações armazenadas no Signal, de modo que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione segurança extra exigindo o PIN do Signal para registrar seu número de telefone com o Signal outra vez.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam você a memorizar seu PIN, já que ele não pode ser recuperado. Você será solicitado com menos frequência ao longo do tempo.</string>
   <string name="preferences_app_protection__turn_off">Desativar</string>
@@ -2317,28 +2346,117 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESTRANCAR</string>
   <string name="Recipient_unknown">Desconhecido</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transferir ou restaurar conta</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se você já tem registrada uma conta no Signal, você pode transferi-la ou restaurar a sua conta e mensagens</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Transferir de aparelho Android</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfira a sua conta e mensagens do seu aparelho Android antigo. Você precisa ter acesso ao seu aparelho antigo.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Você precisa ter acesso ao seu aparelho antigo.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar de backup</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaure as suas mensagens de um backup local. Se você não restaurar agora, não será possível restaurar mais tarde.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Abra o Signal no seu aparelho Android antigo</string>
   <string name="NewDeviceTransferInstructions__continue">Continuar</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toque na sua foto de perfil, no canto superior esquerdo, para abrir as Configurações</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Toque em \"Chats\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toque em \"Transferir conta\" e depois em \"Continuar\", em ambos os aparelhos</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparando a conexão com o aparelho Android antigo…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Está demorando um pouco, mas deve estar pronto em breve</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aguardando o aparelho Android antigo se conectar…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">O Signal precisa de permissão de localização para encontrar e se conectar ao seu aparelho Android antigo.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">O Signal precisa que os serviços de localização estejam ativados para encontrar e se conectar ao seu aparelho Android antigo.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">O Signal precisa de Wi-Fi para encontrar e se conectar ao seu aparelho Android antigo. O Wi-Fi precisa estar ativado, mas o aparelho não precisa estar conectado a uma rede Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Parece que este aparelho não é compatível com Wi-Fi Direct. O Signal usa o Wi-Fi Direct para encontrar e se conectar ao seu aparelho Android antigo. Você ainda pode restaurar um backup para transferir a sua conta do seu aparelho Android antigo.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Restaurar um backup</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ocorreu um erro inesperado ao tentar se conectar ao seu aparelho Android antigo.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Procurando o novo aparelho Android…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">O Signal precisa de permissão de localização para encontrar e se conectar ao seu novo aparelho Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">O Signal precisa de serviços de localização ativados para encontrar e se conectar ao seu novo aparelho Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">O Signal precisa de Wi-Fi para encontrar e se conectar ao seu novo aparelho Android. O Wi-Fi precisa estar ativado, mas o aparelho não precisa estar conectado a uma rede Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Parece que este aparelho não é compatível com Wi-Fi Direct. O Signal usa o Wi-Fi Direct para encontrar e se conectar ao seu aparelho Android antigo. Você ainda pode criar um backup para transferir a sua conta para o seu novo aparelho Android.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Criar um backup</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ocorreu um erro inesperado ao tentar se conectar ao seu novo aparelho Android.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Não foi possível abrir as configurações do Wi-Fi. Ative o Wi-Fi manualmente.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Ativar o acesso à localização</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Ativar os serviços de localização</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Não foi possível abrir as configurações de localização.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Ativar o Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Erro ao se conectar</string>
   <string name="DeviceTransferSetup__retry">Tente novamente</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Enviar relatórios de depuração</string>
+  <string name="DeviceTransferSetup__verify_code">Verificar código</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifique se o código abaixo corresponde em ambos os seus dispositivos. Em seguida, toque em continuar.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Os números não correspondem</string>
   <string name="DeviceTransferSetup__continue">Continuar</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">O número não é o mesmo</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Se os números nos seus aparelhos não forem iguais, possivelmente você se conectou ao aparelho errado. Para corrigir isso, cancele a transferência e tente novamente, mantendo os dois aparelhos próximos um do outro.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Cancelar a transferência</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Não foi possível encontrar o aparelho antigo</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Não foi possível encontrar o novo aparelho</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Certifique-se de que as seguintes permissões e serviços estejam ativados:</string>
+  <string name="DeviceTransferSetup__location_permission">Permissão de localização</string>
+  <string name="DeviceTransferSetup__location_services">Serviços de localização</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na tela do Wi-Fi Direct, remova todos os grupos salvos e desvincule todos os aparelhos convidados ou conectados.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Tela do Wi-Fi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Tente desativar o Wi-Fi e ativá-lo novamente em ambos os aparelhos.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Certifique-se de que ambos os aparelhos estejam no modo de transferência.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Ir para a página de suporte</string>
   <string name="DeviceTransferSetup__try_again">Tentar novamente</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Aguardando o outro aparelho</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toque em Continuar no seu outro aparelho para começar a transferência.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toque em Continuar no seu outro aparelho…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Não é possível transferir de uma versão mais recente do Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Transferindo dados</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantenha os dois aparelhos próximos um do outro. Não desligue os aparelhos e mantenha o Signal aberto. Transferências são criptografadas de ponta a ponta.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mensagens até agora…</string>
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Tentar novamente</string>
+  <string name="DeviceTransfer__stop_transfer_question">Cancelar a transferência?</string>
+  <string name="DeviceTransfer__stop_transfer">Cancelar a transferência</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Todo o progresso da transferência será perdido.</string>
+  <string name="DeviceTransfer__transfer_failed">A transferência falhou</string>
+  <string name="DeviceTransfer__unable_to_transfer">Não foi possível transferir</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transferir conta</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Você pode transferir a sua conta do Signal ao configurar o Signal em um novo aparelho Android. Antes de continuar:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Faça o download do Signal no seu novo dispositivo Android</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Toque em \"Transferir ou restaurar a conta\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Selecione \"Transferir de um dispositivo Android\" quando solicitado, e toque em \"Continuar\". Mantenha os dois dispositivos próximos.</string>
   <string name="OldDeviceTransferInstructions__continue">Continuar</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transferência concluída</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Vá para o seu novo aparelho</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Os seus dados do Signal foram transferidos para o seu novo aparelho. Para concluir o processo de transferência, você deve continuar o registro no seu novo aparelho.</string>
   <string name="OldDeviceTransferComplete__close">Fechar</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Transferência bem-sucedida</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Transferência concluída</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Para concluir o processo de transferência, você deve continuar o registro.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Continuar o registro</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Transferência de conta</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Preparando para se conectar ao seu outro aparelho Android…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Preparando para se conectar ao seu outro aparelho Android…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Procurando o seu outro aparelho Android…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Conectando-se ao seu outro aparelho Android…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Verificação necessária</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Transferindo a conta…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Conclua o registro em seu novo aparelho</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Sua conta do Signal foi transferida para o seu novo aparelho, e você deve concluir o registro nele. A partir de agora, o Signal ficará inativo neste aparelho antigo.</string>
   <string name="OldDeviceTransferLockedDialog__done">Pronto</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este aparelho</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
@@ -2435,7 +2553,7 @@
   <string name="DeleteAccountFragment__no_number">Nenhum número informado</string>
   <string name="DeleteAccountFragment__the_phone_number">O número de telefone que você inseriu não corresponde ao da sua conta.</string>
   <string name="DeleteAccountFragment__are_you_sure">Tem certeza que deseja excluir a sua conta?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Essa ação excluirá sua conta do Signal e apagará os dados do aplicativo. O aplicativo será fechado após a conclusão do processo.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Essa ação excluirá a sua conta do Signal e apagará os dados do aplicativo. O aplicativo será fechado após a conclusão do processo.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Falha ao excluir a conta. Você está conectado à internet?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Falha ao excluir os dados locais. Você pode limpá-los manualmente nas configurações do aplicativo no sistema.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Acessar as configurações do aplicativo</string>

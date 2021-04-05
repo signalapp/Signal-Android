@@ -835,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
   <string name="NotificationBarManager__incoming_signal_call">Envena Signal-alvoko</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Haltigo de la alvokoservo de Signal</string>
   <string name="NotificationBarManager__deny_call">Rifuzi alvokon</string>
   <string name="NotificationBarManager__answer_call">Respondi alvokon</string>
   <string name="NotificationBarManager__end_call">Fini alvokon</string>

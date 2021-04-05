@@ -835,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
   <string name="NotificationBarManager__deny_call">Απόρριψη κλήσης</string>
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>

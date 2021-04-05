@@ -409,7 +409,7 @@
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flere vedlegg støttes bare for bilder og videoer</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonssvikt!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg i Google Play-tjenesten. Signal-meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil under henting av GIF</string>
   <!--GiphyFragmentPageAdapter-->
@@ -835,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
   <string name="NotificationBarManager__incoming_signal_call">Inngående Signal-anrop</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Stopper Signal-tjenesten</string>
   <string name="NotificationBarManager__deny_call">Avslå anrop</string>
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
@@ -1630,6 +1631,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Innstillinger</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">For å motta samtalevarsler, trykk Innstillinger og skru på \"Vis varsler.\"</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">For å motta samtalevarsler, trykk Innstillinger og skru på varsler og sørg for at Lyd og Forgrunnsvinduer er aktivert.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">For å motta samtalevarsler, trykk på Innstillinger og tillat bakgrunnsaktivitet i batteri-innstillinger. </string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Laster inn land…</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -2358,11 +2360,23 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Forbereder tilkobling til gammel Android enhet…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tar litt tid, skal være klart straks</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Venter på at gammel Android enhet skal koble til…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal trenger posisjonstillatelsen for å oppdage og koble seg til din gamle Android-enhet.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal trenger at posisjonstjenester er på for å oppdage og koble seg til din gamle Android-enhet.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal trenger at Wi-Fi er på for å oppdage og koble seg til din gamle Android-enhet. Wi-Fi må være på, men du trenger ikke være koblet til et Wi-Fi-nettverk.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklager, det ser ut til at denne enheten ikke støtter Wi-Fi Direct. Signal bruker WiFi Direct for å oppdage og koble seg til din gamle Android-enhet. Du kan fortsatt gjenopprette en sikkerhetskopi for å gjenopprette kontoen fra din gamle enhet.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Gjenopprett en sikkerhetskopi</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">En uventet feil oppstod under forsøket på å koble til din gamle Android-enhet.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Søker etter ny Android enhet…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal trenger posisjonstillatelsen for å oppdage og koble seg til din nye Android-enhet.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal trenger at posisjonstjenester er på for å oppdage og koble seg til din gamle Android-enhet.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal trenger at Wi-Fi er på for å oppdage og koble seg til din nye Android-enhet. Wi-Fi må være på, men du trenger ikke være koblet til et Wi-Fi-nettverk.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklager, det ser ut til at denne enheten ikke støtter Wi-Fi Direct. Signal bruker WiFi Direct for å oppdage og koble seg til din nye Android-enhet. Du kan fortsatt gjenopprette en sikkerhetskopi for å gjenopprette kontoen på din nye enhet.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Lag en sikkerhetskopi</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">En uventet feil oppstod under forsøket på å koble til din nye  Android-enhet.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Kunne ikke åpne Wi-Fi-innstillinger. Vennligst skru på Wi-Fi manuelt.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Gi posisjonstillatelsen</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Skru på lokasjonstjenester</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Kan ikke åpne lokasjonsinnstillinger.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Skru på Wi-Fi</string>
@@ -2374,13 +2388,29 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrene stemmer ikke overens</string>
   <string name="DeviceTransferSetup__continue">Fortsett</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Nummeret er ikke det samme</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Dersom nummerne på enhetene ikke matcher er det mulig du koblet til feil enhet. For å bøte på dette, stopp overføringen og prøv igjen. Hold begge enheter i nærheten.</string>
   <string name="DeviceTransferSetup__stop_transfer">Stopp overføring</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Ikke i stand til å finne gammel enhet</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Ikke i stand til å finne ny enhet</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sørg for at følgende tillatelser og tjenester er på:</string>
+  <string name="DeviceTransferSetup__location_permission">Posisjonstillatelse</string>
+  <string name="DeviceTransferSetup__location_services">Posisjonstjenester</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">På Wi-Fi Direct-skjermen, fjern alle huskede grupper og koble fra alle inviterte eller tilkoblede enheter.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Wi-Fi Direct-skjerm</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prøv å skru Wi-Fi av og på igjen på begge enheter.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sørg for at begge enheter er i overføringsmodus.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Gå til support-siden</string>
   <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Venter på den andre enheten</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Trykk Fortsett på den andre enheten for å starte overføring</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Trykk fortsett på den andre enheten.</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Kan ikke overføre fra en nyere versjon av Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Data overføres</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Hold enhetene i nærheten av hverandre. Ikke slå av noen av enhetene, og la Signal være åpen. Overføringer er kryptert fra ende til ende.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d meldinger så langt…</string>
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Prøv igjen</string>
   <string name="DeviceTransfer__stop_transfer_question">Stopp overføring?</string>
@@ -2390,25 +2420,35 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeviceTransfer__unable_to_transfer">Ikke i stand til å overføre</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Du kan overføre Signal-kontoen din når du setter opp Signal på en ny Android-enhet. Før du fortsetter:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Last ned Signal på din nye Android enhet</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Trykk på \"Overfør eller gjenopprett konto\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Velg \"Overfør fra Android-enhet\" når du får spørsmål og så \"Fortsett\". Hold begge enheter i nærheten.</string>
   <string name="OldDeviceTransferInstructions__continue">Fortsett</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Overføring fullført</string>
   <string name="OldDeviceTransferComplete__go_to_your_new_device">Gå til din nye enhet</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal-dataene har blitt overført til din nye enhet. For å gjøre ferdig overføringen må du fortsette registreringen på den nye enheten.</string>
   <string name="OldDeviceTransferComplete__close">Lukk</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Overføring vellykket</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Overføring fullført</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">For å ferdigstille overføringsprosessen må du fortsette registreringen.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Fortsett registrering</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Konto overføring</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Forbereder tilkobling til din andre Android-enhet…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Forbereder tilkobling til din andre Android-enhet…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Søker etter din andre Android enhet…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Kobler til din andre Android-enhet…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Verifisering påkrevd</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Overfører konto…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Ferdigstill registrering av din nye enhet</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-kontoen din er overført til ny enhet, men du må ferdigstille registreringen på den for å fortsette. Signal vil bli inaktiv på denne enheten.</string>
   <string name="OldDeviceTransferLockedDialog__done">Ferdig</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Kanseller og aktiver denne enheten</string>
   <!--RecipientBottomSheet-->

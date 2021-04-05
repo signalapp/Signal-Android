@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Omembe</string>
   <string name="ManageGroupActivity_chat_wallpaper">Ozadje pogovora</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
+  <string name="ManageGroupActivity_always">Za vedno</string>
   <string name="ManageGroupActivity_off">Izklopljena</string>
   <string name="ManageGroupActivity_on">Vklopljena</string>
   <string name="ManageGroupActivity_view_all_members">Poglej vse člane</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Izklopi obvestila</string>
   <string name="ManageRecipientActivity_custom_notifications">Obvestila po meri</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
+  <string name="ManageRecipientActivity_always">Za vedno</string>
   <string name="ManageRecipientActivity_off">Izklopljena</string>
   <string name="ManageRecipientActivity_on">Vklopljena</string>
   <string name="ManageRecipientActivity_add_to_a_group">Dodaj v skupino</string>
@@ -919,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Ustavljanje klicanja Signal</string>
   <string name="NotificationBarManager__deny_call">Zavrni klic</string>
   <string name="NotificationBarManager__answer_call">Sprejmi klic</string>
   <string name="NotificationBarManager__end_call">Zaključi klic</string>
@@ -1593,6 +1596,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="NotificationChannel_group_messages">Sporočila</string>
   <string name="NotificationChannel_missing_display_name">Neznano</string>
   <string name="NotificationChannel_voice_notes">Glasovna sporočila</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Na voljo ni nobene aktivnosti povezane z obvestili.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hitri odziv ni mogoč, kadar je aplikacija Signal zaklenjena!</string>
@@ -1719,6 +1723,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationUpdateItem_return_to_call">Zopet se pridruži klicu</string>
   <string name="ConversationUpdateItem_call_is_full">Klic je polno zaseden</string>
   <string name="ConversationUpdateItem_invite_friends">Vabilo prijateljem/icam</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Vklopi obvestila o klicih</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Predvajanje … pavza</string>
   <string name="audio_view__download_accessibility_description">Prenesi</string>
@@ -1743,7 +1748,17 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="safety_number_change_dialog__view">Preglej</string>
   <string name="safety_number_change_dialog__previous_verified">Prej potrjeno</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Obvestila o klicih so vklopljena.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Vklopi obvestila o klicih</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Vklopi delovanje v ozadju</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Vse izgleda OK!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Za prejemanje obvestil o klicih tapnite tu in vklopite \"Prikazuj obvestila.\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications"> Za prejemanje obvestil o klicih tapnite tu in vklopite obvetila. Prepričajte se, da so zvok in pojavna okna vklopljeni.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Za prejemanje obvestil o klicih tapnite tu in vklopite delovanje v ozadju v nastavitvah baterije.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Nastavitve</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Za prejemanje obvestil o klicih tapnite Nastavitve in vklopite \"Prikazuj obvestila.\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Za prejemanje obvestil o klicih tapnite Nastavitve in vklopite prikaz obvestil. Prepričajte se, da so zvok in pojavna okna vklopljeni.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Za prejemanje obvestil o klicih tapnite Nastavitve in vklopite delovanje v ozadju v nastavitvah baterije.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Nalaganje držav …</string>
   <string name="country_selection_fragment__search">Iskanje</string>
@@ -1953,8 +1968,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi po meri</string>
   <string name="arrays__mute_for_one_hour">Izklopi za 1 uro</string>
+  <string name="arrays__mute_for_eight_hours">Utišaj za 8 ur</string>
   <string name="arrays__mute_for_one_day">Izklopi za 1 dan</string>
   <string name="arrays__mute_for_seven_days">Izklopi za 7 dni</string>
+  <string name="arrays__always">Za vedno</string>
   <string name="arrays__settings_default">Sistemsko privzeto</string>
   <string name="arrays__enabled">Vklopljeno</string>
   <string name="arrays__disabled">Izklopljeno</string>

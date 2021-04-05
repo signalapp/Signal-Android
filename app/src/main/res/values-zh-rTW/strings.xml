@@ -792,6 +792,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal 來電服務停止中</string>
   <string name="NotificationBarManager__deny_call">拒絕接聽</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>

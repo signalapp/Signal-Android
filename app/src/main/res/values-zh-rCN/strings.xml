@@ -575,6 +575,7 @@
   <string name="ManageGroupActivity_mentions">提及我</string>
   <string name="ManageGroupActivity_chat_wallpaper">聊天墙纸</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
+  <string name="ManageGroupActivity_always">总是</string>
   <string name="ManageGroupActivity_off">关</string>
   <string name="ManageGroupActivity_on">开</string>
   <string name="ManageGroupActivity_view_all_members">查看全部成员</string>
@@ -624,6 +625,7 @@
   <string name="ManageRecipientActivity_mute_notifications">静音通知</string>
   <string name="ManageRecipientActivity_custom_notifications">自定义通知</string>
   <string name="ManageRecipientActivity_until_s">直到 %1$s</string>
+  <string name="ManageRecipientActivity_always">总是</string>
   <string name="ManageRecipientActivity_off">关</string>
   <string name="ManageRecipientActivity_on">开</string>
   <string name="ManageRecipientActivity_add_to_a_group">添加至群组</string>
@@ -790,6 +792,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 来电</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">正在停止 Signal 通话服务</string>
   <string name="NotificationBarManager__deny_call">拒听</string>
   <string name="NotificationBarManager__answer_call">接听</string>
   <string name="NotificationBarManager__end_call">结束呼叫</string>
@@ -1417,6 +1420,7 @@
   <string name="NotificationChannel_group_messages">消息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
   <string name="NotificationChannel_voice_notes">语音笔记</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">无可用活动以打开通知渠道设置。</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 锁定时不可使用快速回复。</string>
@@ -1534,6 +1538,7 @@
   <string name="ConversationUpdateItem_return_to_call">回到通话</string>
   <string name="ConversationUpdateItem_call_is_full">通话人数已满</string>
   <string name="ConversationUpdateItem_invite_friends">邀请好友</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">启用通话通知</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
@@ -1558,7 +1563,17 @@
   <string name="safety_number_change_dialog__view">查看</string>
   <string name="safety_number_change_dialog__previous_verified">已验证</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">通话通知已启用。</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">启用通话通知</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">启用背景活动</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">目前看起来一切正常！</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">为了接收通话通知，请点击此次并开启“显示通知”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">为了接收通话通知，请点击此次并开启通知，以及确保已启用“声音”和“弹出”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">为了接收通话通知，请点击此处并启用“电池”设置下的背景活动。</string>
   <string name="EnableCallNotificationSettingsDialog__settings">设置</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">为了接收通话通知，请点击设置并开启“显示通知”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">为了接收通话通知，请点击此次并开启通知，以及确保已启用“声音”和“弹出”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">为了接收通话通知，请点击设置并启用“电池”设置下的背景活动。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在加载国家…</string>
   <string name="country_selection_fragment__search">搜索</string>
@@ -1747,8 +1762,10 @@
   <string name="arrays__use_default">使用默认</string>
   <string name="arrays__use_custom">使用自定义</string>
   <string name="arrays__mute_for_one_hour">静音 1 小时</string>
+  <string name="arrays__mute_for_eight_hours">静音 8 小时</string>
   <string name="arrays__mute_for_one_day">静音 1 天</string>
   <string name="arrays__mute_for_seven_days">静音 7 天</string>
+  <string name="arrays__always">总是</string>
   <string name="arrays__settings_default">默认设置</string>
   <string name="arrays__enabled">启用</string>
   <string name="arrays__disabled">禁用</string>

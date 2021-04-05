@@ -921,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
   <string name="NotificationBarManager__incoming_signal_call">Prichádzajúci Signal hovor</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Zastavenie služby Signal hovoru</string>
   <string name="NotificationBarManager__deny_call">Odmietnuť hovor</string>
   <string name="NotificationBarManager__answer_call">Prijať hovor</string>
   <string name="NotificationBarManager__end_call">Ukončiť hovor</string>

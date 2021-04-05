@@ -1636,7 +1636,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Alt ser bra ut no!</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Trykk her og skru på «Vis varsel» for å skru på samtalevarsel</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Trykk her og skru på «Vis varsel», og sjekk at lyd og sprettoppvindauge er på, for å skru på samtalevarsel</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Trykk her og skru på bakgrunnsaktivitet i Batteriinnstillingane for å motta samtalevarsel.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Innstillingar</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Trykk på Innstillingar og skru på «Vis varsel» for å motta samtalevarsel.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Lastar inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>

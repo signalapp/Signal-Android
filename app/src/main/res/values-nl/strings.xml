@@ -837,6 +837,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal-oproep-ondersteuning wordt gestopt</string>
   <string name="NotificationBarManager__deny_call">Oproep afwijzen</string>
   <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
   <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
@@ -1998,7 +1999,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
-  <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopened gesprek</string>
+  <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>
   <string name="preferences_notifications__show">Laat zien</string>
   <string name="preferences_notifications__calls">Oproepen</string>
   <string name="preferences_notifications__ringtone">Oproepgeluid</string>
@@ -2068,7 +2069,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_list_batch_archive__menu_archive_selected">Selectie archiveren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <string name="conversation_list_batch__menu_mark_as_read">Markeren als gelezen</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">Voor mij als ongelezen markeren</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Voor mij markeren als ongelezen</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
   <string name="conversation_list_search_description">Zoeken</string>
@@ -2253,7 +2254,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>
-  <string name="CallNotificationBuilder_connecting">Aan het verbinden …</string>
+  <string name="CallNotificationBuilder_connecting">Verbinding aan het maken …</string>
   <string name="Permissions_permission_required">Toestemming vereist</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toestemming nodig om sms-berichten te sturen, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Sms’ in.</string>
   <string name="Permissions_continue">Doorgaan</string>
@@ -2360,7 +2361,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
   <string name="NewDeviceTransferInstructions__continue">Doorgaan</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in the linksbovenhoek op je profielfoto om de instellingen te openen</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_chats">Tik op ‘Gesprekken’</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>

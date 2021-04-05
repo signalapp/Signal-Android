@@ -921,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá hovor Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Příchozí hovor Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Zastavuji službu hovorů Signal</string>
   <string name="NotificationBarManager__deny_call">Zakázat volání</string>
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
   <string name="NotificationBarManager__end_call">Ukončit hovor</string>
@@ -1764,6 +1765,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">K obdržení oznámení o hovorech klepněte sem a povolte aktivitu na pozadí v nastaveních baterie.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Nastavení</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">K obdržení oznámení o hovorech klepněte na Nastavení a zapněte \"Zobrazit notifikace.\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Pro zobrazování upozornění na hovory otevřete nastavení a zapněte upozornění a ujistěte se, že Zvuk a Vyskakovací okna jsou povolena.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pro zobrazování upozornění na hovory otevřete nastavení a povolte aktivitu na pozadí v nastavení Baterie.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítám země…</string>
   <string name="country_selection_fragment__search">Hledat</string>
@@ -1944,11 +1947,19 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__include_debug_log">Připojit ladicí log.</string>
   <string name="HelpFragment__whats_this">Co to je?</string>
   <string name="HelpFragment__how_do_you_feel">Jak se vám líbí (volitelné)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Řekněte nám, s čím potřebujete pomoci.</string>
   <string name="HelpFragment__support_info">Informace o podpoře</string>
   <string name="HelpFragment__signal_android_support_request">Požadavek na podporu Signal Android</string>
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Něco nefunguje</item>
+    <item>Požadavek na funkcionalitu</item>
+    <item>Dotaz</item>
+    <item>Zpětná vazba</item>
+    <item>Ostatní</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -2495,28 +2506,116 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Recipient_unknown">Neznámý</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Přenést nebo obnovit účet</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Pokud jste již dříve registrovali účet Signal, můžete svůj účet a zprávy přenést nebo obnovit</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Přenést z Android zařízení</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Přenést účet a zprávy z vašeho staršího Android zařízení. Budete potřebovat přístup ke staršímu zařízení.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Budete potřebovat přístup ke staršímu zařízení.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Obnovit ze zálohy</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Obnovit zprávy z lokální zálohy. Pokud neobnovíte ze zálohy nyní, později to již nebude možné.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otevřete Signal na vašem starém Android zařízení</string>
   <string name="NewDeviceTransferInstructions__continue">Pokračovat</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Klepněte na vaši profilovou fotografii v levém horním rohu pro otevření Nastavení</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Klepněte na \"Konverzace\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Klepněte na \"Přenést účet\" a poté \"Pokračovat\" na obou zařízeních</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Připravuji na připojení ke starému Android zařízení…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Chvíli to potrvá, brzy to bude připravené</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekám na připojení starého Android zařízení…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal potřebuji oprávnění pro přístup k poloze pro nalezení a připojení ke staršímu Android zařízení.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal potřebuje povolené služby polohy pro nalezení a připojení ke starému Android zařízení.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal potřebuje zapnutou Wi-Fi pro nalezení a připojení ke starému Android zařízení. Wi-Fi musí být zapnuté, ale nemusí být připojené k žádné Wi-Fi síti.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Omlouváme se, ale vypadá to, že toto zařízení nepodporuje Wi-Fi Direct. Signal používá Wi-Fi Direct pro nalezení staršího Android zařízení a připojení se k němu. Můžete stále obnovit zálohu pro obnovení vašeho původního účtu na starém Android zařízení.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Obnovit zálohu</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Nastala neočekávaná chyba při pokusu o připojení ke starému Android zařízení.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Hledám nové Android zařízení…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal potřebuje oprávnění k poloze pro nalezení nového Android zařízení a připojení se k němu.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal potřebuje povolené služby polohy pro nalezení a připojení k novému Android zařízení.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal potřebuje zapnutou Wi-Fi pro nalezení a připojení k novému Android zařízení. Wi-Fi musí být zapnuté, ale nemusí být připojené k žádné Wi-Fi síti.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Omlouváme se, ale vypadá to, že toto zařízení nepodporuje Wi-Fi Direct. Signal používá Wi-Fi Direct pro nalezení nového Android zařízení a připojení se k němu. Můžete stále obnovit zálohu pro obnovení vašeho původního účtu na novém Android zařízení.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Vytvořit zálohu</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Nastala neočekávaná chyba při pokusu o připojení k novému Android zařízení.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nepovedlo se otevřít Wi-Fi nastavení. Aktivujte prosím Wi-Fi ručně.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Udělit oprávnění k poloze</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Zapnout služby polohy</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Nepodařilo se otevřít nastavení polohy.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Zapnout Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Chyba při připojení</string>
   <string name="DeviceTransferSetup__retry">Zkusit znovu</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Odeslat ladící log</string>
+  <string name="DeviceTransferSetup__verify_code">Ověřit kód</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Ověřte, že kód níže je stejný na obou zařízeních. Poté klepněte na pokračovat.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Čísla se neshodují</string>
   <string name="DeviceTransferSetup__continue">Pokračovat</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Číslo není shodné</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Pokud čísla na vašich zařízeních nejsou shodná, je možné, že jste se připojili k jinému zařízení. Abyste problém vyřešili, zastavte přenos a zkuste to znovu a mějte obě zařízení blízko sebe.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Zastavit přenos</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Nebylo možné nalézt staré zařízení</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Nebylo možné nalézt nové zařízení</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Ujistěte se, že následující oprávnění a služby jsou aktivní:</string>
+  <string name="DeviceTransferSetup__location_permission">Oprávnění k poloze</string>
+  <string name="DeviceTransferSetup__location_services">Polohové služby</string>
   <string name="DeviceTransferSetup__wifi">WiFi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Na obrazovce WiFi Direct odeberte všechny zapamatované skupiny a odpojte všechna pozvaná nebo připojená zařízení.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Obrazovka WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Zkuste vypnout a zapnout Wi-Fi na obou zařízeních.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ujistěte se, že obě zařízení jsou v režimu přenosu.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Jít na web podpory</string>
   <string name="DeviceTransferSetup__try_again">Zkusit znovu</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Čekám na další zařízení</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Klepněte na pokračovat na svém druhém zařízení pro zahájení přenosu.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Klepněte na pokračovat na svém druhém zařízení…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nelze přenášet z novější verze Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Přenáším data</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Ponechte obě zařízení blízko sebe. Nevypínejte zařízení a nechte spuštěnou aplikaci Signal. Přenos je koncově šifrován.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d zpráv zatím…</string>
   <string name="DeviceTransfer__cancel">Zrušit</string>
   <string name="DeviceTransfer__try_again">Zkusit znovu</string>
+  <string name="DeviceTransfer__stop_transfer_question">Zastavit přenos?</string>
+  <string name="DeviceTransfer__stop_transfer">Zastavit přenos</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Veškerý postup přenosu bude ztracen.</string>
+  <string name="DeviceTransfer__transfer_failed">Přenos selhal</string>
+  <string name="DeviceTransfer__unable_to_transfer">Nepodařilo se přenést</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Přenést účet</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Můžete přenést váš Signal účet při nastavení Signal na novém Android zařízení. Před pokračováním:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Stáhněte Signal na novém Android zařízení</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Klepněte na \"Přenést nebo obnovit účet\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Zvolte \"Přenést z Android zařízení\", až budete dotázáni, a poté zvolte Pokračovat. Nechte obě zařízení blízko sebe.</string>
   <string name="OldDeviceTransferInstructions__continue">Pokračovat</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Přenos dokončen</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Běžte na své nové zařízení</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Vaše Signal data byla přenesena na nové zařízení. Pro dokončení přenosu musíte pokračovat v procesu registrace na novém zařízení.</string>
   <string name="OldDeviceTransferComplete__close">Zavřít</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Přenos úspěšný</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Přenos dokončen</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Pro dokončení procesu přenosu musíte pokračovat v registraci.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Pokračovat v registraci</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Přenos účtu</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Příprava na připojení k vašemu druhému zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Příprava na připojení k vašemu druhému zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Hledání vašeho druhého zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Připojování k vašemu druhému zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Vyžadováno ověření</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Přenáším účet…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dokončit registraci na novém zařízení</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Váš Signal účet byl přenesen na nové zařízení, ale je potřeba na něm dokončit registraci pro pokračování. Signal bude neaktivní na tomto zařízení.</string>
   <string name="OldDeviceTransferLockedDialog__done">Hotovo</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Zrušit a aktivovat toto zařízení</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Zablokovat</string>
   <string name="RecipientBottomSheet_unblock">Odblokovat</string>

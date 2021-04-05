@@ -835,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">تماس سیگنال در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
   <string name="NotificationBarManager__incoming_signal_call">تماس ورودی سیگنال</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">در حال متوقف کردن سرویس تماس سیگنال</string>
   <string name="NotificationBarManager__deny_call">رد تماس</string>
   <string name="NotificationBarManager__answer_call">پاسخ به تماس</string>
   <string name="NotificationBarManager__end_call">پایان تماس</string>
@@ -1737,7 +1738,7 @@
   <string name="EditAboutFragment_coffee_lover">عاشق قهوه</string>
   <string name="EditAboutFragment_free_to_chat">آمادهٔ گفتگو</string>
   <string name="EditAboutFragment_taking_a_break">در حال استراحت</string>
-  <string name="EditAboutFragment_working_on_something_new">مشغول کار روی یک چیز جدید</string>
+  <string name="EditAboutFragment_working_on_something_new">در حال کار روی یک چیز جدید</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">نام و عکس گروه را ویرایش کنید</string>
   <string name="EditProfileFragment__group_name">نام گروه</string>
@@ -1808,9 +1809,9 @@
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توضیح هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
   <string-array name="HelpFragment__categories">
-    <item>یک چیز کار نمی‌کند</item>
-    <item>درخواست قابلیت</item>
-    <item>پرسش</item>
+    <item>مشکلی پیش آمده است</item>
+    <item>درخواست قابلیت جدید</item>
+    <item>سؤال</item>
     <item>بازخورد</item>
     <item>سایر</item>
   </string-array>
@@ -1996,7 +1997,7 @@
   <string name="preferences_notifications__show">نمایش</string>
   <string name="preferences_notifications__calls">تماس‌ها</string>
   <string name="preferences_notifications__ringtone">صدای زنگ</string>
-  <string name="preferences_chats__show_invitation_prompts">نمایش دعوت‌نامه‌ها</string>
+  <string name="preferences_chats__show_invitation_prompts">نمایش گزینه‌ٔ دعوت‌نامه</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوت‌نامه برای مخاطبینی که عضو سیگنال نیستند</string>
   <string name="preferences_chats__message_text_size">ابعاد قلم پیام</string>
   <string name="preferences_events__contact_joined_signal">مخاطب به سیگنال پیوست</string>

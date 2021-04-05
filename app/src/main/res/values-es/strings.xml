@@ -835,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
   <string name="NotificationBarManager__establishing_signal_call">Estableciendo llamada de Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Recibiendo llamada de Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Deteniendo el servicio de llamadas de Signal</string>
   <string name="NotificationBarManager__deny_call">Denegar llamada</string>
   <string name="NotificationBarManager__answer_call">Atender llamada</string>
   <string name="NotificationBarManager__end_call">Finalizar llamada</string>

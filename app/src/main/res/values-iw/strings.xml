@@ -921,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">שיחת Signal נכנסת</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">עוצר את שירות השיחות של Signal</string>
   <string name="NotificationBarManager__deny_call">דחה שיחה</string>
   <string name="NotificationBarManager__answer_call">ענה לשיחה</string>
   <string name="NotificationBarManager__end_call">סיים שיחה</string>
@@ -1604,6 +1605,7 @@
   <string name="NotificationChannel_group_messages">הודעות</string>
   <string name="NotificationChannel_missing_display_name">בלתי ידוע</string>
   <string name="NotificationChannel_voice_notes">הערות קוליות</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">אין פעילות זמינה כדי לפתוח הגדרות של ערוץ התראות.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Signal נעול!</string>
@@ -1730,6 +1732,7 @@
   <string name="ConversationUpdateItem_return_to_call">חזור לשיחה</string>
   <string name="ConversationUpdateItem_call_is_full">השיחה מלאה</string>
   <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">אפשר התראות שיחה</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -1754,7 +1757,17 @@
   <string name="safety_number_change_dialog__view">הצג</string>
   <string name="safety_number_change_dialog__previous_verified">וֻדָּא בעבר</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">התראות שיחה מאופשרות.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">אפשר התראות שיחה</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">אפשר פעילות ברקע</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">הכול נִרְאֶה כראוי עכשיו!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">כדי לקבל התראות שיחה, הקש כאן והפעל את \"הראה התראות\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">כדי לקבל התראות שיחה, הקש כאן והפעל התראות ווודא שצליל וחלון קופץ מאופשרים.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">כדי לקבל התראות שיחה, הקש כאן ואפשר את פעילות ברקע בהגדרות \"סוללה\".</string>
   <string name="EnableCallNotificationSettingsDialog__settings">הגדרות</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">כדי לקבל התראות שיחה, הקש על  הגדרות והפעל את \"הראה התראות\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">כדי לקבל התראות שיחה, הקש על הגדרות והפעל התראות ווודא שצליל וחלון קופץ מאופשרים.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">כדי לקבל התראות שיחה, הקש על הגדרות ואפשר את פעילות ברקע בהגדרות \"סוללה\".</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">טוען מדינות…</string>
   <string name="country_selection_fragment__search">חפש</string>
@@ -1964,6 +1977,7 @@
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
   <string name="arrays__use_custom">השתמש במותאם אישית</string>
   <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
+  <string name="arrays__mute_for_eight_hours">השתק למשך 8 שעות</string>
   <string name="arrays__mute_for_one_day">השתק למשך יום</string>
   <string name="arrays__mute_for_seven_days">השתק למשך 7 ימים</string>
   <string name="arrays__always">תמיד</string>

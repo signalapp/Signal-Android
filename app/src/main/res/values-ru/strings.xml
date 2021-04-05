@@ -921,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящий звонок Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Останавливается сервис звонков Signal</string>
   <string name="NotificationBarManager__deny_call">Отклонить</string>
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
