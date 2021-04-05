@@ -33,7 +33,7 @@ import java.util.concurrent.ExecutionException;
 
 class EmojiProvider {
 
-  private static final    String        TAG      = EmojiProvider.class.getSimpleName();
+  private static final    String        TAG      = Log.tag(EmojiProvider.class);
   private static volatile EmojiProvider instance = null;
   private static final    Paint         paint    = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 

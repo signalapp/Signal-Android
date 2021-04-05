@@ -19,7 +19,7 @@ import java.io.IOException;
 
 class SessionStoreMigrationHelper {
 
-  private static final String TAG = SessionStoreMigrationHelper.class.getSimpleName();
+  private static final String TAG = Log.tag(SessionStoreMigrationHelper.class);
 
   private static final String SESSIONS_DIRECTORY_V2 = "sessions-v2";
   private static final Object FILE_LOCK             = new Object();

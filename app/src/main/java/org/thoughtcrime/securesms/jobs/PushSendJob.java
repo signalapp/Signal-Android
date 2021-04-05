@@ -76,7 +76,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
 
-  private static final String TAG                           = PushSendJob.class.getSimpleName();
+  private static final String TAG                           = Log.tag(PushSendJob.class);
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
 
   protected PushSendJob(Job.Parameters parameters) {

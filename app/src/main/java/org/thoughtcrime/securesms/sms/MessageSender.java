@@ -84,7 +84,7 @@ import java.util.List;
 
 public class MessageSender {
 
-  private static final String TAG = MessageSender.class.getSimpleName();
+  private static final String TAG = Log.tag(MessageSender.class);
 
   /**
    * Suitable for a 1:1 conversation or a GV1 group only.

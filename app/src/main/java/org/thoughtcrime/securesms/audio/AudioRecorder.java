@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutorService;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class AudioRecorder {
 
-  private static final String TAG = AudioRecorder.class.getSimpleName();
+  private static final String TAG = Log.tag(AudioRecorder.class);
 
   private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
 

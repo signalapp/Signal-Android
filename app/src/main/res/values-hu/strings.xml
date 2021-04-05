@@ -608,6 +608,7 @@
   <string name="ManageGroupActivity_mentions">Említések</string>
   <string name="ManageGroupActivity_chat_wallpaper">Beszélgetés háttérkép</string>
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
+  <string name="ManageGroupActivity_always">Végleg</string>
   <string name="ManageGroupActivity_off">Ki</string>
   <string name="ManageGroupActivity_on">Be</string>
   <string name="ManageGroupActivity_view_all_members">Összes tag megtekintése</string>
@@ -658,6 +659,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Értesítések némítása</string>
   <string name="ManageRecipientActivity_custom_notifications">Egyedi értesítések</string>
   <string name="ManageRecipientActivity_until_s">%1$s-ig</string>
+  <string name="ManageRecipientActivity_always">Végleg</string>
   <string name="ManageRecipientActivity_off">Ki</string>
   <string name="ManageRecipientActivity_on">Be</string>
   <string name="ManageRecipientActivity_add_to_a_group">Hozzáadás egy csoporthoz</string>
@@ -1623,6 +1625,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">A következő személyek lehet, hogy újratelepítették a Signalt vagy készüléket cseréltek. Ellenőrizd biztonsági számotokat a privacy megőrzése érdekében!</string>
   <string name="safety_number_change_dialog__view">Megtekintés</string>
   <string name="safety_number_change_dialog__previous_verified">Korábban megerősítve</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Beállítások</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Országok betöltése…</string>
   <string name="country_selection_fragment__search">Keresés</string>
@@ -1810,10 +1814,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="arrays__use_default">Alapértelmezett használata</string>
   <string name="arrays__use_custom">Egyéni használata</string>
   <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
-  <string name="arrays__mute_for_two_hours">Némítás 2 órára</string>
   <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
   <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
-  <string name="arrays__mute_for_one_year">Némítás 1 évre</string>
+  <string name="arrays__always">Végleg</string>
   <string name="arrays__settings_default">Alapértelmezett beállítások</string>
   <string name="arrays__enabled">Engedélyezve</string>
   <string name="arrays__disabled">Letiltva</string>
@@ -1865,6 +1868,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>
   <string name="preferences__sound">Dallam</string>
   <string name="preferences__silent">Csendes</string>
+  <string name="preferences__default">Alapértelmezett</string>
   <string name="preferences__repeat_alerts">Figyelmeztetések ismétlése</string>
   <string name="preferences__never">Soha</string>
   <string name="preferences__one_time">Egyszer</string>

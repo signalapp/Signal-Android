@@ -575,6 +575,7 @@
   <string name="ManageGroupActivity_mentions">メンション</string>
   <string name="ManageGroupActivity_chat_wallpaper">チャットの壁紙</string>
   <string name="ManageGroupActivity_until_s">%1$s まで</string>
+  <string name="ManageGroupActivity_always">常時</string>
   <string name="ManageGroupActivity_off">オフ</string>
   <string name="ManageGroupActivity_on">オン</string>
   <string name="ManageGroupActivity_view_all_members">すべてのメンバーを表示</string>
@@ -624,6 +625,7 @@
   <string name="ManageRecipientActivity_mute_notifications">通知をミュート</string>
   <string name="ManageRecipientActivity_custom_notifications">カスタム通知</string>
   <string name="ManageRecipientActivity_until_s">%1$sまで</string>
+  <string name="ManageRecipientActivity_always">常時</string>
   <string name="ManageRecipientActivity_off">オフ</string>
   <string name="ManageRecipientActivity_on">オン</string>
   <string name="ManageRecipientActivity_add_to_a_group">グループへ追加</string>
@@ -779,7 +781,7 @@
   <string name="Megaphones_introducing_reactions">リアクションのご紹介</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">メッセージを長押しして、手軽にリアクションできます。</string>
   <string name="Megaphones_remind_me_later">あとで通知</string>
-  <string name="Megaphones_verify_your_signal_pin">Signal PINを確認</string>
+  <string name="Megaphones_verify_your_signal_pin">Signal PINの確認</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PINを忘れないよう、確認をお願いします。</string>
   <string name="Megaphones_verify_pin">PINを確認する</string>
   <string name="Megaphones_get_started">始めましょう</string>
@@ -790,6 +792,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal通話の着信</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal着信サービスを停止しています</string>
   <string name="NotificationBarManager__deny_call">通話を拒否</string>
   <string name="NotificationBarManager__answer_call">通話を開始</string>
   <string name="NotificationBarManager__end_call">通話を終了</string>
@@ -1523,6 +1526,7 @@
   <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
   <string name="ConversationUpdateItem_call_is_full">満席です</string>
   <string name="ConversationUpdateItem_invite_friends">友達を招待する</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">着信通知を有効にする</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1546,6 +1550,14 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下の方はアプリを再インストールしたか端末を変更した可能性があります。プライバシーを保証するために安全番号を検証してください。</string>
   <string name="safety_number_change_dialog__view">表示する</string>
   <string name="safety_number_change_dialog__previous_verified">以前に検証済み</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">着信通知を有効にしました。</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">着信通知を有効にする</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">バックグラウンド動作を有効にする</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">すべて順調そうです！</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">着信通知を受けるには、ここをタップして「通知を表示する」を有効にします。</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">着信通知を受けるには、設定をタップして「通知を表示する」を有効にします。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込んでいます…</string>
   <string name="country_selection_fragment__search">検索</string>
@@ -1734,10 +1746,10 @@
   <string name="arrays__use_default">既定を使う</string>
   <string name="arrays__use_custom">カスタムを使う</string>
   <string name="arrays__mute_for_one_hour">1時間ミュート</string>
-  <string name="arrays__mute_for_two_hours">2時間ミュート</string>
+  <string name="arrays__mute_for_eight_hours">8時間ミュート</string>
   <string name="arrays__mute_for_one_day">1日間ミュート</string>
   <string name="arrays__mute_for_seven_days">7日間ミュート</string>
-  <string name="arrays__mute_for_one_year">1年間ミュート</string>
+  <string name="arrays__always">常時</string>
   <string name="arrays__settings_default">既定の設定</string>
   <string name="arrays__enabled">有効</string>
   <string name="arrays__disabled">無効</string>
@@ -1788,6 +1800,7 @@
   <string name="preferences__pref_led_blink_title">LED点滅パターン</string>
   <string name="preferences__sound">着信音</string>
   <string name="preferences__silent">無音</string>
+  <string name="preferences__default">既定</string>
   <string name="preferences__repeat_alerts">アラートの繰り返し</string>
   <string name="preferences__never">なし</string>
   <string name="preferences__one_time">1回</string>
@@ -2241,8 +2254,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">アカウントの移行または復元</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">以前に登録したSignalアカウントがある場合、アカウントやメッセージを移行または復元できます。</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android端末から移行</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">あなたのアカウントとメッセージを古いAndroid端末から移行します。古い端末の操作が必要です。</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">古い端末へのアクセスが必要です。</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">バックアップから復元</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ローカルバックアップからメッセージを復元します。いま復元しないと、あとから復元することはできません。</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">古いAndroid端末でSignalを開きます</string>
   <string name="NewDeviceTransferInstructions__continue">続ける</string>
@@ -2259,15 +2274,28 @@
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">古いAndroid端末への接続時に、予期しないエラーが発生しました。</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">新しいAndroid端末を検索しています…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">新しいAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">新しいAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">バックアップを作成する</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">新しいAndroid端末への接続時に、予期しないエラーが発生しました。</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi設定うぃ開けません。手動でWi-Fiをオンにしてください。</string>
+  <string name="DeviceTransferSetup__grant_location_permission">位置情報へのアクセスを許可する</string>
   <string name="DeviceTransferSetup__turn_on_location_services">位置情報サービスを有効にする</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">位置情報の設定を開けません。</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fiを有効にしてください</string>
   <string name="DeviceTransferSetup__error_connecting">接続エラー</string>
   <string name="DeviceTransferSetup__retry">再試行</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">デバッグログを送信する</string>
+  <string name="DeviceTransferSetup__verify_code">コードの確認</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">両方の端末で、以下のコードが一致するか確認してください。確認後、タップして続けます。</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">番号が一致しません</string>
   <string name="DeviceTransferSetup__continue">続ける</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">番号が異なります</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">端末で番号が一致しない場合、間違った端末に接続した可能性があります。修正するには、移行を中止して再度試し、両方の端末を閉じたままにしてください。</string>
   <string name="DeviceTransferSetup__stop_transfer">移行を停止</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">古い端末が見つかりません</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">新しい端末が見つかりません</string>
@@ -2275,12 +2303,15 @@
   <string name="DeviceTransferSetup__location_permission">位置情報へのアクセス許可</string>
   <string name="DeviceTransferSetup__location_services">位置情報サービス</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct画面で、記憶されているグループをすべて削除し、招待された端末や接続された端末のリンクを解除してください。</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct画面</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">両方の端末でWi-Fiのオフ、オンを試してください。</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">両方の端末が移行モードであることを確認してください。</string>
   <string name="DeviceTransferSetup__go_to_support_page">サポートページへ</string>
   <string name="DeviceTransferSetup__try_again">もう一度試す</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">他の端末を待っています</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">他の端末で「続ける」をタップして、移行を開始します。</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">他の端末で「続ける」をタップしてください…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">より新しいバージョンのSignalからは移行できません</string>
   <!--DeviceTransferFragment-->
@@ -2295,29 +2326,36 @@
   <string name="DeviceTransfer__transfer_failed">移行に失敗しました</string>
   <string name="DeviceTransfer__unable_to_transfer">移行できません</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">アカウントの移転</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">アカウントの移行</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">新しいAndroid端末でSignalを設定する際、以下の前であれば、あなたのSignalアカウントを移行できます:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">新しいAndroid端末で、Signalをダウンロードします。</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップ</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップします。</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」、「続ける」を選択します。端末同士を近づけてください。</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」を選択し「続ける」をタップします。端末同士を近づけておきます。</string>
   <string name="OldDeviceTransferInstructions__continue">続ける</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">移行が完了しました</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">新しい端末に行きます</string>
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">あなたのSignalデータは、新しい端末に転送されました。移行を完了するには、新しい端末で登録を継続する必要があります。</string>
   <string name="OldDeviceTransferComplete__close">閉じる</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">移行に成功しました</string>
   <string name="NewDeviceTransferComplete__transfer_complete">移行が完了しました</string>
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">移行を完了するには、登録を継続する必要があります。</string>
+  <string name="NewDeviceTransferComplete__continue_registration">登録を完了します</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">アカウントの移行</string>
   <string name="DeviceToDeviceTransferService_status_ready">他のAndroid端末への接続を準備しています…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">他のAndroid端末への接続を準備しています…</string>
   <string name="DeviceToDeviceTransferService_status_discovery">他のAndroid端末を検索しています…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">他のAndroid端末に接続しています…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">認証が必要です</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">アカウントを移行しています…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">新しい端末での登録が完了しました</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">あなたのSignalアカウントは新しい端末に移行しましたが、続けるには新しい端末で登録を完了する必要があります。この端末のSignalは、無効になります。</string>
   <string name="OldDeviceTransferLockedDialog__done">完了</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">キャンセルしてこの端末をアクティベート</string>
   <!--RecipientBottomSheet-->

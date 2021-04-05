@@ -15,11 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.util.RingtoneUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import static android.app.Activity.RESULT_OK;
@@ -27,7 +29,7 @@ import static android.app.Activity.RESULT_OK;
 public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   @SuppressWarnings("unused")
-  private static final String TAG = NotificationsPreferenceFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(NotificationsPreferenceFragment.class);
 
   @Override
   public void onCreate(Bundle paramBundle) {
@@ -165,10 +167,12 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
       if (value == null || TextUtils.isEmpty(value.toString())) {
         preference.setSummary(R.string.preferences__silent);
       } else {
-        Ringtone tone = RingtoneManager.getRingtone(getActivity(), value);
+        Ringtone tone = RingtoneUtil.getRingtone(requireContext(), value);
 
         if (tone != null) {
           preference.setSummary(tone.getTitle(getActivity()));
+        } else {
+          preference.setSummary(R.string.preferences__default);
         }
       }
 

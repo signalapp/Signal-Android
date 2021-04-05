@@ -891,10 +891,10 @@ a shonrú</string>
   <string name="arrays__use_default">Bain feidhm as an réamhshocrú</string>
   <string name="arrays__use_custom">Bain feidhm as saincheapú</string>
   <string name="arrays__mute_for_one_hour">Balbhaigh ar feadh 1 uair</string>
-  <string name="arrays__mute_for_two_hours">Balbhaigh ar feadh 2 uair a chloig</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Balbhaigh ar feadh 2 uair a chloig</string> -->
   <string name="arrays__mute_for_one_day">Balbhaigh ar feadh 1 lá</string>
   <string name="arrays__mute_for_seven_days">Balbhaigh ar feadh 7 lá</string>
-  <string name="arrays__mute_for_one_year">Balbhaigh ar feadh 1 bhliain</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Balbhaigh ar feadh 1 bhliain</string> -->
   <string name="arrays__settings_default">Réamhshocruithe</string>
   <string name="arrays__enabled">Cumasaithe</string>
   <string name="arrays__disabled">Díchumasaithe</string>

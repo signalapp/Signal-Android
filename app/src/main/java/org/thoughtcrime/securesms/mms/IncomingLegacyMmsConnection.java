@@ -42,7 +42,7 @@ import java.util.Arrays;
 
 @SuppressWarnings("deprecation")
 public class IncomingLegacyMmsConnection extends LegacyMmsConnection implements IncomingMmsConnection {
-  private static final String TAG = IncomingLegacyMmsConnection.class.getSimpleName();
+  private static final String TAG = Log.tag(IncomingLegacyMmsConnection.class);
 
   public IncomingLegacyMmsConnection(Context context) throws ApnUnavailableException {
     super(context);

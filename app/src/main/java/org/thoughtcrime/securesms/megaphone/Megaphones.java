@@ -320,7 +320,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowGroupCallingMegaphone() {
-    return FeatureFlags.groupCalling();
+    return Build.VERSION.SDK_INT > 19;
   }
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {

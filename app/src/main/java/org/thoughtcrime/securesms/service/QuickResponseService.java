@@ -18,7 +18,7 @@ import java.net.URLDecoder;
 
 public class QuickResponseService extends IntentService {
 
-  private static final String TAG = QuickResponseService.class.getSimpleName();
+  private static final String TAG = Log.tag(QuickResponseService.class);
 
   public QuickResponseService() {
     super("QuickResponseService");

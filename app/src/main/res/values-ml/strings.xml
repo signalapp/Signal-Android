@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">സൂചനകൾ</string>
   <string name="ManageGroupActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
+  <string name="ManageGroupActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
   <string name="ManageGroupActivity_on">ഓൺ</string>
   <string name="ManageGroupActivity_view_all_members">എല്ലാ അംഗങ്ങളെയും കാണുക</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageRecipientActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageRecipientActivity_until_s">%1$s വരെ</string>
+  <string name="ManageRecipientActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageRecipientActivity_off">ഓഫ്</string>
   <string name="ManageRecipientActivity_on">ഓൺ</string>
   <string name="ManageRecipientActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
@@ -1613,6 +1615,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ഇനിപ്പറയുന്ന ആളുകൾ അവരുടെ  ഉപകരണങ്ങൾ വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ മാറ്റുകയോ ചെയ്‌തിരിക്കാം. സ്വകാര്യത ഉറപ്പാക്കാൻ അവരുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുക.</string>
   <string name="safety_number_change_dialog__view">കാണുക</string>
   <string name="safety_number_change_dialog__previous_verified">മുമ്പ് പരിശോധിച്ചത്</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">ക്രമീകരണങ്ങൾ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">രാജ്യങ്ങൾ ലഭ്യമാക്കുന്നു…</string>
   <string name="country_selection_fragment__search">തിരയൽ</string>
@@ -1779,11 +1783,19 @@
   <string name="HelpFragment__include_debug_log">ഡീബഗ് ലോഗ് ഉൾപ്പെടുത്തുക.</string>
   <string name="HelpFragment__whats_this">എന്താണിത്?</string>
   <string name="HelpFragment__how_do_you_feel">നിങ്ങൾക്ക് എന്തുതോന്നുന്നു? (ഓപ്ഷണൽ)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">എന്തുകൊണ്ട് ഞങ്ങളെ സമീപിക്കുന്നു എന്ന് പറയുക.</string>
   <string name="HelpFragment__support_info">പിന്തുണ വിവരം</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android പിന്തുണ അഭ്യർത്ഥന</string>
   <string name="HelpFragment__debug_log">ഡീബഗ് ലോഗ്:</string>
   <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
+  <string-array name="HelpFragment__categories">
+    <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
+    <item>സവിശേഷത അഭ്യർത്ഥന</item>
+    <item>ചോദ്യം</item>
+    <item>അഭിപ്രായം</item>
+    <item>മറ്റുള്ളവ</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
@@ -1800,10 +1812,9 @@
   <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
   <string name="arrays__use_custom">ഇഷ്‌ടാനുസൃതം ഉപയോഗിക്കുക</string>
   <string name="arrays__mute_for_one_hour">1 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
-  <string name="arrays__mute_for_two_hours">2 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക്  നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് നിശബ്ദമാക്കുക</string>
-  <string name="arrays__mute_for_one_year">1 വർഷത്തേക്ക് നിശബ്ദമാക്കുക</string>
+  <string name="arrays__always">എല്ലായ്പ്പോഴും</string>
   <string name="arrays__settings_default">ക്രമീകരണ സ്ഥിരസ്ഥിതി</string>
   <string name="arrays__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="arrays__disabled">അപ്രാപ്‌തമാക്കി</string>
@@ -1855,6 +1866,7 @@
   <string name="preferences__pref_led_blink_title">LED ബ്ലിങ്ക് പാറ്റേൺ</string>
   <string name="preferences__sound">ശബ്ദം</string>
   <string name="preferences__silent">നിശബ്ദത</string>
+  <string name="preferences__default">സ്ഥിരസ്ഥിതി</string>
   <string name="preferences__repeat_alerts">അലേർട്ടുകൾ ആവർത്തിക്കുക</string>
   <string name="preferences__never">ഒരിക്കലും വേണ്ട</string>
   <string name="preferences__one_time">ഒരിക്കൽ</string>
@@ -2232,9 +2244,13 @@
   <string name="backup_enable_dialog__folder">ഫോള്‍ഡര്‍</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ഞാൻ ഈ പാസ്‌ഫ്രെയ്‌സ് എഴുതി. ഇത് ഇല്ലാതെ, എനിക്ക് ഒരു ബാക്കപ്പ് പുന റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
   <string name="registration_activity__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
+  <string name="registration_activity__transfer_or_restore_account">അക്കൗണ്ട് മാറ്റിസ്ഥാപിക്കുകയോ പുനസ്ഥാപിക്കുകയോ ചെയ്യുക</string>
+  <string name="registration_activity__transfer_account">അക്കൗണ്ട് മാറ്റിസ്ഥാപിക്കുക</string>
   <string name="registration_activity__skip">ഒഴിവാക്കുക</string>
   <string name="preferences_chats__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ബാഹ്യ സ്റ്റോറേജിലെക് ചാറ്റുകൾ ബാക്കപ്പ്  ചെയ്യുക</string>
+  <string name="preferences_chats__transfer_account">അക്കൗണ്ട് മാറ്റിസ്ഥാപിക്കുക</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">അക്കൌണ്ട് ഒരു പുതിയ ആൻഡ്രോയിഡ് ഉപകരണത്തിലേക്ക് മാറ്റിസ്ഥാപിക്കുക</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
   <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ബാക്കപ്പുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിയില്ല</string>
@@ -2309,8 +2325,13 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">തുറക്കാൻ തൊടുക</string>
   <string name="Recipient_unknown">അജ്ഞാതം</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">അക്കൗണ്ട് കൈമാറുകയോ പുനസ്ഥാപിക്കുകയോ ചെയ്യുക</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">നിങ്ങൾ മുമ്പ് ഒരു സിഗ്നൽ അക്കൗണ്ട് രജിസ്റ്റർ ചെയ്തിട്ടുണ്ടെങ്കിൽ, നിങ്ങളുടെ അക്കൌണ്ടും സന്ദേശങ്ങളും മാറ്റിസ്ഥാപിക്കാനോ പുനസ്ഥാപിക്കാനോ കഴിയും</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">തുടരുക</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
@@ -2322,13 +2343,18 @@
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransfer__transfer_failed">കൈമാറ്റം പരാജയപ്പെട്ടു</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">അക്കൗണ്ട് കൈമാറ്റം ചെയ്യുക</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_status_verification_required">പരിശോധന ആവശ്യമാണ്</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ചെയ്‌തു</string>
   <!--RecipientBottomSheet-->

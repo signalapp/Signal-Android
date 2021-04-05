@@ -68,7 +68,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class FullBackupExporter extends FullBackupBase {
 
-  private static final String TAG = FullBackupExporter.class.getSimpleName();
+  private static final String TAG = Log.tag(FullBackupExporter.class);
 
   private static final Set<String> BLACKLISTED_TABLES = SetUtil.newHashSet(
     SignedPreKeyDatabase.TABLE_NAME,

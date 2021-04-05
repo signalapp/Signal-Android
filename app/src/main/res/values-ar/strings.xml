@@ -1878,6 +1878,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ربما قام هؤلاء الأشخاص بإعادة تثبيت التطبيق أو قاموا بتغيير أجهزتهم. يُرجى تأكيد رقم الأمان معهم لضمان الخصوصية.</string>
   <string name="safety_number_change_dialog__view">إظهار</string>
   <string name="safety_number_change_dialog__previous_verified">سبق التحقق منه</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">الإعدادات</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>
   <string name="country_selection_fragment__search">بحث</string>
@@ -2072,11 +2074,19 @@
   <string name="HelpFragment__include_debug_log">أرفق سِجل التصحيح.</string>
   <string name="HelpFragment__whats_this">ما هذا ؟</string>
   <string name="HelpFragment__how_do_you_feel">ما هو شعورك ؟ (اختياري)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">يُرجى إخبارنا عن سبب تواصلك.</string>
   <string name="HelpFragment__support_info">معلومات الدعم</string>
   <string name="HelpFragment__signal_android_support_request">طلب الدعم حول Signal Android</string>
   <string name="HelpFragment__debug_log">سِجل التصحيح :</string>
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
+  <string-array name="HelpFragment__categories">
+    <item>شيء ما لا يشتغل</item>
+    <item>طلب ميزة جديدة</item>
+    <item>سؤال</item>
+    <item>ملاحظة</item>
+    <item>شيء آخر</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
@@ -2093,10 +2103,8 @@
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
-  <string name="arrays__mute_for_two_hours">كتم لمدة ساعتين</string>
   <string name="arrays__mute_for_one_day">كتم لمدة يوم</string>
   <string name="arrays__mute_for_seven_days">كتم لمدة سبعة أيام</string>
-  <string name="arrays__mute_for_one_year">كتم لمدة عام واحد</string>
   <string name="arrays__settings_default">الإعدادات الافتراضية</string>
   <string name="arrays__enabled">مفعل</string>
   <string name="arrays__disabled">معطل</string>
@@ -2152,6 +2160,7 @@
   <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
   <string name="preferences__sound">صوت</string>
   <string name="preferences__silent">صامت</string>
+  <string name="preferences__default">افتراضي</string>
   <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
   <string name="preferences__never">أبدا</string>
   <string name="preferences__one_time">مرة واحدة</string>
@@ -2556,9 +2565,13 @@
   <string name="backup_enable_dialog__folder">المجلد</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمت بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
   <string name="registration_activity__restore_backup">استعادة نسخة احتياطية</string>
+  <string name="registration_activity__transfer_or_restore_account">نقل أو استعادة الحساب</string>
+  <string name="registration_activity__transfer_account">نقل الحساب</string>
   <string name="registration_activity__skip">تخطّي</string>
   <string name="preferences_chats__chat_backups">النسخ الاحتياطية للمحادثات</string>
   <string name="preferences_chats__backup_chats_to_external_storage">حفظ نسخة احتياطية من المحادثات في سعة التخزين خارجية</string>
+  <string name="preferences_chats__transfer_account">نقل الحساب</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب نحو جهاز أندرويد جديد</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخ الاحتياطية</string>
   <string name="RegistrationActivity_restore">استعادة</string>
   <string name="RegistrationActivity_backup_failure_downgrade">لا يمكن استيراد نسخ احتياطية من اصدارات أحدث من Signal</string>
@@ -2633,8 +2646,17 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
   <string name="Recipient_unknown">مجهول</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">نقل أو استعادة الحساب</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">إذا سبق لك التسجيل بحساب Signal، يمكنك نقل أو استعادة حسابك وكذا رسائلك.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">نقل انطلاقا من جهاز أندرويد</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">يمكنك نقل حسابك ورسائلك من جهاز أندرويد القديم. إنك بحاجة إلى الوصول إلى جهازك القديم.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">يلزمك الوصول إلى جهازك القديم.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup"> استعادة رسائلك من نسخة احتياطية محلية. إذا تجاهلت الاستعادة الآن، فسيتعذر عليك الاستعادة لاحقا.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">عليك بفتح Signal في هاتف أندرويد القديم</string>
   <string name="NewDeviceTransferInstructions__continue">الاِستِمرار</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
@@ -2648,6 +2670,7 @@
   <string name="DeviceTransfer__try_again">حاول مجدداً</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">نقل الحساب</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__continue">الاِستِمرار</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">إغلاق</string>

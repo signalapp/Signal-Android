@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 public class ExpiringMessageManager {
 
-  private static final String TAG = ExpiringMessageManager.class.getSimpleName();
+  private static final String TAG = Log.tag(ExpiringMessageManager.class);
 
   private final TreeSet<ExpiringMessageReference> expiringMessageReferences = new TreeSet<>(new ExpiringMessageComparator());
   private final Executor                          executor                  = Executors.newSingleThreadExecutor();

@@ -1612,6 +1612,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les personnes suivantes ont peut-être réinstallé Signal ou changé d’appareil. Pour assurer la confidentialité, confirmez votre numéro de sécurité avec elles.</string>
   <string name="safety_number_change_dialog__view">Afficher</string>
   <string name="safety_number_change_dialog__previous_verified">Confirmé précédemment</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Paramètres</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
   <string name="country_selection_fragment__search">Chercher</string>
@@ -1799,10 +1801,8 @@
   <string name="arrays__use_default">Valeur par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
   <string name="arrays__mute_for_one_hour">Sourdine pendant 1 heure</string>
-  <string name="arrays__mute_for_two_hours">Sourdine pendant 2 heures</string>
   <string name="arrays__mute_for_one_day">Sourdine pendant 1 jour</string>
   <string name="arrays__mute_for_seven_days">Sourdine pendant 7 jours</string>
-  <string name="arrays__mute_for_one_year">Sourdine pendant 1 an</string>
   <string name="arrays__settings_default">Paramètre par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
@@ -1854,6 +1854,7 @@
   <string name="preferences__pref_led_blink_title">Rythme de clignotement de la DEL</string>
   <string name="preferences__sound">Son</string>
   <string name="preferences__silent">Silencieux</string>
+  <string name="preferences__default">Valeur par défaut</string>
   <string name="preferences__repeat_alerts">Répéter les alertes</string>
   <string name="preferences__never">Jamais</string>
   <string name="preferences__one_time">Une fois</string>

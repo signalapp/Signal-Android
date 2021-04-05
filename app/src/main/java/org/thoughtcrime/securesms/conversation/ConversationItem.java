@@ -143,7 +143,7 @@ import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
     RecipientForeverObserver
 {
-  private static final String TAG = ConversationItem.class.getSimpleName();
+  private static final String TAG = Log.tag(ConversationItem.class);
 
   private static final int MAX_MEASURE_CALLS       = 3;
   private static final int MAX_BODY_DISPLAY_LENGTH = 1000;
@@ -889,59 +889,63 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultRadius  = readDimen(R.dimen.message_corner_radius);
     int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
 
-    int topLeft     = defaultRadius;
-    int topRight    = defaultRadius;
-    int bottomLeft  = defaultRadius;
-    int bottomRight = defaultRadius;
+    int topStart    = defaultRadius;
+    int topEnd      = defaultRadius;
+    int bottomStart = defaultRadius;
+    int bottomEnd   = defaultRadius;
 
     if (isSingularMessage(current, previous, next, isGroupThread)) {
-      topLeft     = defaultRadius;
-      topRight    = defaultRadius;
-      bottomLeft  = defaultRadius;
-      bottomRight = defaultRadius;
+      topStart    = defaultRadius;
+      topEnd      = defaultRadius;
+      bottomStart = defaultRadius;
+      bottomEnd   = defaultRadius;
     } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
       if (current.isOutgoing()) {
-        bottomRight = collapseRadius;
+        bottomEnd = collapseRadius;
       } else {
-        bottomLeft = collapseRadius;
+        bottomStart = collapseRadius;
       }
     } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
       if (current.isOutgoing()) {
-        topRight = collapseRadius;
+        topEnd = collapseRadius;
       } else {
-        topLeft = collapseRadius;
+        topStart = collapseRadius;
       }
     } else {
       if (current.isOutgoing()) {
-        topRight    = collapseRadius;
-        bottomRight = collapseRadius;
+        topEnd    = collapseRadius;
+        bottomEnd = collapseRadius;
       } else {
-        topLeft    = collapseRadius;
-        bottomLeft = collapseRadius;
+        topStart    = collapseRadius;
+        bottomStart = collapseRadius;
       }
     }
 
     if (!TextUtils.isEmpty(current.getDisplayBody(getContext()))) {
-      bottomLeft  = 0;
-      bottomRight = 0;
+      bottomStart = 0;
+      bottomEnd   = 0;
     }
 
     if (isStartOfMessageCluster(current, previous, isGroupThread) && !current.isOutgoing() && isGroupThread) {
-      topLeft  = 0;
-      topRight = 0;
+      topStart = 0;
+      topEnd   = 0;
     }
 
     if (hasQuote(messageRecord)) {
-      topLeft  = 0;
-      topRight = 0;
+      topStart = 0;
+      topEnd   = 0;
     }
 
     if (hasLinkPreview(messageRecord) || hasExtraText(messageRecord)) {
-      bottomLeft  = 0;
-      bottomRight = 0;
+      bottomStart = 0;
+      bottomEnd   = 0;
     }
 
-    mediaThumbnailStub.get().setCorners(topLeft, topRight, bottomRight, bottomLeft);
+    if (ViewUtil.isRtl(this)) {
+      mediaThumbnailStub.get().setCorners(topEnd, topStart, bottomStart, bottomEnd);
+    } else {
+      mediaThumbnailStub.get().setCorners(topStart, topEnd, bottomEnd, bottomStart);
+    }
   }
 
   private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
@@ -960,7 +964,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultRadius  = readDimen(R.dimen.message_corner_radius);
     int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
 
-    if (bigImage) {
+    if (bigImage || hasQuote(current)) {
       linkPreviewStub.get().setCorners(0, 0);
     } else if (isStartOfMessageCluster(current, previous, isGroupThread) && !current.isOutgoing() && isGroupThread) {
       linkPreviewStub.get().setCorners(0, 0);
@@ -1072,6 +1076,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.get(), readDimen(R.dimen.message_bubble_top_padding));
       }
+
+      if (linkPreviewStub.resolved() && !hasBigImageLinkPreview(current)) {
+        ViewUtil.setTopMargin(linkPreviewStub.get(), readDimen(R.dimen.message_bubble_top_padding));
+      }
     } else {
       if (quoteView != null) {
         quoteView.dismiss();
@@ -1079,6 +1087,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.get(), 0);
+      }
+
+      if (linkPreviewStub.resolved()) {
+        ViewUtil.setTopMargin(linkPreviewStub.get(), 0);
       }
     }
   }
@@ -1229,6 +1241,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  private void setOutlinerRadii(Outliner outliner, int topStart, int topEnd, int bottomEnd, int bottomStart) {
+    if (ViewUtil.isRtl(this)) {
+      outliner.setRadii(topEnd, topStart, bottomStart, bottomEnd);
+    } else {
+      outliner.setRadii(topStart, topEnd, bottomEnd, bottomStart);
+    }
+  }
+
   private void setMessageShape(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     int bigRadius   = readDimen(R.dimen.message_corner_radius);
     int smallRadius = readDimen(R.dimen.message_corner_collapse_radius);
@@ -1248,32 +1268,32 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_start;
-        outliner.setRadii(bigRadius, bigRadius, smallRadius, bigRadius);
-        pulseOutliner.setRadii(bigRadius, bigRadius, smallRadius, bigRadius);
+        setOutlinerRadii(outliner, bigRadius, bigRadius, smallRadius, bigRadius);
+        setOutlinerRadii(pulseOutliner, bigRadius, bigRadius, smallRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_start;
-        outliner.setRadii(bigRadius, bigRadius, bigRadius, smallRadius);
-        pulseOutliner.setRadii(bigRadius, bigRadius, bigRadius, smallRadius);
+        setOutlinerRadii(outliner, bigRadius, bigRadius, bigRadius, smallRadius);
+        setOutlinerRadii(pulseOutliner, bigRadius, bigRadius, bigRadius, smallRadius);
       }
     } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_end;
-        outliner.setRadii(bigRadius, smallRadius, bigRadius, bigRadius);
-        pulseOutliner.setRadii(bigRadius, smallRadius, bigRadius, bigRadius);
+        setOutlinerRadii(outliner, bigRadius, smallRadius, bigRadius, bigRadius);
+        setOutlinerRadii(pulseOutliner, bigRadius, smallRadius, bigRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_end;
-        outliner.setRadii(smallRadius, bigRadius, bigRadius, bigRadius);
-        pulseOutliner.setRadii(smallRadius, bigRadius, bigRadius, bigRadius);
+        setOutlinerRadii(outliner, smallRadius, bigRadius, bigRadius, bigRadius);
+        setOutlinerRadii(pulseOutliner, smallRadius, bigRadius, bigRadius, bigRadius);
       }
     } else {
       if (current.isOutgoing()) {
         background = R.drawable.message_bubble_background_sent_middle;
-        outliner.setRadii(bigRadius, smallRadius, smallRadius, bigRadius);
-        pulseOutliner.setRadii(bigRadius, smallRadius, smallRadius, bigRadius);
+        setOutlinerRadii(outliner, bigRadius, smallRadius, smallRadius, bigRadius);
+        setOutlinerRadii(pulseOutliner, bigRadius, smallRadius, smallRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_middle;
-        outliner.setRadii(smallRadius, bigRadius, bigRadius, smallRadius);
-        pulseOutliner.setRadii(smallRadius, bigRadius, bigRadius, smallRadius);
+        setOutlinerRadii(outliner, smallRadius, bigRadius, bigRadius, smallRadius);
+        setOutlinerRadii(pulseOutliner, smallRadius, bigRadius, bigRadius, smallRadius);
       }
     }
 

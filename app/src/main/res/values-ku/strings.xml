@@ -1517,6 +1517,8 @@
   <string name="safety_number_change_dialog__leave_call">Ji gerînê derkeve</string>
   <string name="safety_number_change_dialog__view">Nîşan bide</string>
   <string name="safety_number_change_dialog__previous_verified">Ji berê ve hatiye piştrastkirin</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Sazkarî</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Welat tên barkirin…</string>
   <string name="country_selection_fragment__search">Legerîn</string>
@@ -1701,10 +1703,8 @@
   <string name="arrays__use_default">Ya jixweber bi kar bîne</string>
   <string name="arrays__use_custom">Ya taybet bi kar bîne</string>
   <string name="arrays__mute_for_one_hour">Ji bo saetekê bêdeng bike</string>
-  <string name="arrays__mute_for_two_hours">Ji bo 2 saetan bêdeng bike</string>
   <string name="arrays__mute_for_one_day">Ji bo rojekê bêdeng bike</string>
   <string name="arrays__mute_for_seven_days">Ji bo 7 rojan bêdeng bike</string>
-  <string name="arrays__mute_for_one_year">Ji bo salekê bêdeng bike</string>
   <string name="arrays__settings_default">Sazkariyên jixweber</string>
   <string name="arrays__enabled">Çalak</string>
   <string name="arrays__disabled">Neçalak</string>
@@ -1755,6 +1755,7 @@
   <string name="preferences__pref_led_blink_title">Şêweya vêketin û vemirîna LEDê</string>
   <string name="preferences__sound">Dengê zengilê</string>
   <string name="preferences__silent">Bêdeng</string>
+  <string name="preferences__default">Jixweber</string>
   <string name="preferences__repeat_alerts">Hişyariyan dubare bike</string>
   <string name="preferences__never">Qet</string>
   <string name="preferences__one_time">Carekê</string>

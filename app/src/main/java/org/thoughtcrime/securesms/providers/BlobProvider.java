@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class BlobProvider {
 
-  private static final String TAG = BlobProvider.class.getSimpleName();
+  private static final String TAG = Log.tag(BlobProvider.class);
 
   private static final String MULTI_SESSION_DIRECTORY  = "multi_session_blobs";
   private static final String SINGLE_SESSION_DIRECTORY = "single_session_blobs";

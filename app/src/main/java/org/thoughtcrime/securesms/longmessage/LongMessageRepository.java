@@ -26,7 +26,7 @@ import java.io.InputStream;
 
 class LongMessageRepository {
 
-  private final static String TAG = LongMessageRepository.class.getSimpleName();
+  private final static String TAG = Log.tag(LongMessageRepository.class);
 
   private final MessageDatabase mmsDatabase;
   private final MessageDatabase smsDatabase;

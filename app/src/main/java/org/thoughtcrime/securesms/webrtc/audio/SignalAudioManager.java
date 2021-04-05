@@ -9,13 +9,14 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class SignalAudioManager {
 
   @SuppressWarnings("unused")
-  private static final String TAG = SignalAudioManager.class.getSimpleName();
+  private static final String TAG = Log.tag(SignalAudioManager.class);
 
   private final Context        context;
   private final IncomingRinger incomingRinger;

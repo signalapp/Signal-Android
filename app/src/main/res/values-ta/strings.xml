@@ -1617,6 +1617,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">பின்வரும் நபர்கள் தொலைபேசிகளை மீண்டும் நிறுவியிருக்கலாம் அல்லது மாற்றியிருக்கலாம். தனியுரிமையை உறுதிப்படுத்த அவர்களுடன் உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்.</string>
   <string name="safety_number_change_dialog__view">காண்க</string>
   <string name="safety_number_change_dialog__previous_verified">முன்பு சரிபார்க்கப்பட்டது</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">அமைப்புகள்</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">நாடுகள் ஏற்றப்படுகிறது…</string>
   <string name="country_selection_fragment__search">தேடல்</string>
@@ -1804,10 +1806,8 @@
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
   <string name="arrays__use_custom">விருப்பம் பயன்படுத்தவும்</string>
   <string name="arrays__mute_for_one_hour">1 மணி நேரம் ஒலியடக்கு</string>
-  <string name="arrays__mute_for_two_hours">2 மணி நேரம் ஒலியடக்கு</string>
   <string name="arrays__mute_for_one_day">1 நாள் ஒலியடக்கு</string>
   <string name="arrays__mute_for_seven_days">7 நாட்கள் ஒலியடக்கு</string>
-  <string name="arrays__mute_for_one_year">1 வருடம் ஒலியடக்கு</string>
   <string name="arrays__settings_default">அமைப்புகள் இயல்புநிலை</string>
   <string name="arrays__enabled">செயல்படுத்தப்பட்டது</string>
   <string name="arrays__disabled">முடக்கப்பட்டது</string>
@@ -1860,6 +1860,7 @@
   <string name="preferences__pref_led_blink_title">LED மிளிரும் முறை</string>
   <string name="preferences__sound">ஒலி</string>
   <string name="preferences__silent">அமைதி</string>
+  <string name="preferences__default">இயல்புநிலை</string>
   <string name="preferences__repeat_alerts">பலமுறை எச்சரிக்கைகள்</string>
   <string name="preferences__never">ஒருபோதுமில்லை</string>
   <string name="preferences__one_time">ஒரு முறை</string>

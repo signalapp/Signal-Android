@@ -65,7 +65,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class FullBackupImporter extends FullBackupBase {
 
   @SuppressWarnings("unused")
-  private static final String TAG = FullBackupImporter.class.getSimpleName();
+  private static final String TAG = Log.tag(FullBackupImporter.class);
 
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
                                 @NonNull SQLiteDatabase db, @NonNull Uri uri, @NonNull String passphrase)

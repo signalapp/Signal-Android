@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -21,7 +22,7 @@ import org.thoughtcrime.securesms.util.Util;
 public abstract class AbstractNotificationBuilder extends NotificationCompat.Builder {
 
   @SuppressWarnings("unused")
-  private static final String TAG = AbstractNotificationBuilder.class.getSimpleName();
+  private static final String TAG = Log.tag(AbstractNotificationBuilder.class);
 
   private static final int MAX_DISPLAY_LENGTH = 500;
 

@@ -556,10 +556,10 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="arrays__use_default">Kozesa nga bwebyakolebwa</string>
   <string name="arrays__use_custom">Kozesa bwoyagala</string>
   <string name="arrays__mute_for_one_hour">Silisa okumala essawa emu  </string>
-  <string name="arrays__mute_for_two_hours">Silisa okumala esawa bbiri </string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Silisa okumala esawa bbiri </string> -->
   <string name="arrays__mute_for_one_day">Silisa okumala olunaku 1</string>
   <string name="arrays__mute_for_seven_days">Silisa okumala enaku 7</string>
-  <string name="arrays__mute_for_one_year">Silisa okumala omwaka 1</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Silisa okumala omwaka 1</string> -->
   <string name="arrays__settings_default">Settingi ngabwezaali</string>
   <string name="arrays__enabled">Etereddwaako</string>
   <string name="arrays__disabled">Egyiddwaako</string>

@@ -691,8 +691,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ลิงก์กลุ่มไม่ถูกต้อง</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">เชิญเพื่อน</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">แชร์ลิงค์ให้เพื่อนของคุณเพื่อให้พวกเขาสามารถเข้าร่วมกลุ่มนี้ได้อย่างรวดเร็ว</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">เปิดใช้งานและแชร์ลิงค์</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">แบ่งปันลิงก์ให้เพื่อนของคุณเพื่อให้พวกเขาสามารถเข้าร่วมกลุ่มนี้ได้อย่างรวดเร็ว</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">เปิดใช้งานและแบ่งปันลิงก์</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">แบ่งปันลิงก์</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ไม่สามารถเปิดใช้งานลิงก์กลุ่มได้ กรุณาลองอีกครั้งภายหลัง</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
@@ -844,10 +844,10 @@
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">คุณไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกรับเชิญให้เข้าร่วมกลุ่ม</string>
   <string name="MessageRecord_chat_session_refreshed">การแชตเริ่มต้นใหม่</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="other">สมาชิก %1$s ไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกรับเชิญให้เข้าร่วมกลุ่ม</item>
+    <item quantity="other">สมาชิก %1$s คนไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกรับเชิญให้เข้าร่วมกลุ่ม</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="other">สมาชิก %1$s ไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกลบออกจากกลุ่ม</item>
+    <item quantity="other">สมาชิก %1$s คน ไม่สามารถถูกเพิ่มไปยังกลุ่มใหม่ได้และได้ถูกลบออกจากกลุ่ม</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s เปลี่ยนชื่อโปรไฟล์เป็น %2$s.</string>
@@ -995,9 +995,10 @@
   <string name="MessageRequestBottomView_delete">ลบ</string>
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">อนุญาติให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาติให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">อนุญาตให้ %1$s ส่งข้อความและเห็นชื่อกับรูปภาพของคุณหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ต้องการสนทนาภายในกลุ่มนี้ต่อไปและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">อัปเกรดกลุ่มนี้เพื่อเปิดใช้งานคุณลักษณะใหม่ ๆ เช่น การกล่าวถึงและระบบผู้ดูแล สมาชิกที่ยังไม่ได้เปิดเผยชื่อหรือรูปภาพในกลุ่มนี้จะได้รับคำเชิญให้เข้าร่วม</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">กลุ่ม Legacy นี้ไม่สามารถใช้งานได้อีกต่อไปเนื่องจากขนาดใหญ่เกินไป ขนาดที่ใหญ่ที่สุดของกลุ่มคือ %1$d</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ต้องการสนทนากับ %1$s ต่อและเปิดเผยชื่อและรูปภาพให้พวกเขาเห็นหรือไม่?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ต้องการเข้าร่วมกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
@@ -1055,6 +1056,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">ส่งวลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">วลีรหัสผ่านไม่ถูกต้อง!</string>
   <string name="PassphrasePromptActivity_unlock_signal">ปลดล็อก Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - อยู่ในหน้าล็อค</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">แผนที่</string>
   <string name="PlacePickerActivity_drop_pin">ปักหมุด</string>
@@ -1402,6 +1404,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">ตอบสนอง %1$s กับสื่อที่ดูได้ครั้งเดียวของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">ตอบสนอง %1$s ต่อสติกเกอร์ของคุณ</string>
   <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ปิดการแจ้งเตือนเมื่อผู้ติดต่อได้เข้าร่วม Signal? คุณสามารถเปิดมันได้อีกครั้งในSignal &gt; Settings &gt; Notifications.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ค่าเริ่มต้น</string>
   <string name="NotificationChannel_calls">การโทร</string>
@@ -1483,6 +1486,7 @@
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">คุณไม่จำเป็นต้องเพิ่มตัวเองเข้าไปในกลุ่ม</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">จำนวนสมาชิกในกลุ่มถึงจำนวนจำกัดแล้ว</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">กลุ่ม Signal สามารถมีจำนวนสมาชิกได้สูงสุดถึง %1$d คน</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">จำนวนจำกัดของสมาชิกแนะนำได้เต็มแล้ว</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">กลุ่มของ Signal ทำงานได้ดีที่สุดเมื่อมีสมาชิกไม่เกิน %1$d ราย การเพิ่มสมาชิกจะทำให้การส่งและรับข้อความล่าช้าขึ้น</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="other">%1$d สมาชิก</item>
@@ -1508,6 +1512,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">อัดและส่งแฟ้มแนบแบบเสียง</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description"> ล็อกการอัดแฟ้มแนบแบบเสียง</string>
   <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Signal สำหรับ SMS</string>
+  <string name="conversation_activity__message_could_not_be_sent">ข้อความไม่สามารถส่งได้ โปรดตรวจสอบการเชื่อมต่อของคุณและลองอีกครั้ง</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">เลื่อนเพื่อยกเลิก</string>
   <string name="conversation_input_panel__cancel">ยกเลิก</string>
@@ -1524,6 +1529,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">กำลังโหลด</string>
   <string name="ConversationUpdateItem_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="ConversationUpdateItem_join_call">เข้าร่วมการโทร</string>
+  <string name="ConversationUpdateItem_return_to_call">กลับไปที่สาย</string>
   <string name="ConversationUpdateItem_call_is_full">ห้องเต็ม</string>
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <!--audio_view-->
@@ -1540,7 +1547,17 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงด้านล่างสุด</string>
   <!--safety_number_change_dialog-->
+  <string name="safety_number_change_dialog__safety_number_changes">การเปลี่ยนแปลงหมายเลขความปลอดภัย</string>
+  <string name="safety_number_change_dialog__send_anyway">ยืนยันที่จะส่ง</string>
+  <string name="safety_number_change_dialog__call_anyway">ยืนยันที่จะโทร</string>
+  <string name="safety_number_change_dialog__join_call">เข้าร่วมการโทร</string>
+  <string name="safety_number_change_dialog__continue_call">ดำเนินการโทรต่อ</string>
+  <string name="safety_number_change_dialog__leave_call">ออกจากการโทร</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">บุคคลดังต่อไปนี้อาจติดตั้งแอปใหม่หรือเปลี่ยนอุปกรณ์ กรุณาตรวจยืนยันหมายเลฃความปลอดภัยของคุณกับเขาเพื่อให้แน่ใจถึงความเป็นส่วนตัว</string>
   <string name="safety_number_change_dialog__view">ดู</string>
+  <string name="safety_number_change_dialog__previous_verified">ถูกตรวจยืนยันก่อนหน้า</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">การตั้งค่า</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">กำลังโหลดประเทศ…</string>
   <string name="country_selection_fragment__search">ค้นหา</string>
@@ -1628,7 +1645,15 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">จะมีแต่คุณที่มองเห็นรูปภาพและชื่อกลุ่ม MMS ตั้งเอง</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">เกี่ยวกับ</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">เขียนอะไรบางอย่างเกี่ยวกับตัวคุณ</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">พูดได้อย่างอิสระ</string>
+  <string name="EditAboutFragment_encrypted">เข้ารหัสไว้</string>
+  <string name="EditAboutFragment_be_kind">โปรดสุภาพ</string>
+  <string name="EditAboutFragment_coffee_lover">คอกาแฟ</string>
+  <string name="EditAboutFragment_free_to_chat">สะดวกแชท</string>
+  <string name="EditAboutFragment_taking_a_break">อยู่ในระหว่างพัก</string>
+  <string name="EditAboutFragment_working_on_something_new">อยู่ในระหว่างการทำอะไรใหม่ๆ</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">แก้ไขชื่อและรูปของกลุ่ม</string>
   <string name="EditProfileFragment__group_name">ชื่อกลุ่ม</string>
@@ -1637,6 +1662,7 @@
   <string name="EditProfileNameFragment_first_name">ชื่อตัว</string>
   <string name="EditProfileNameFragment_last_name_optional">ชื่อสกุล (ไม่จำเป็น)</string>
   <string name="EditProfileNameFragment_save">บันทึก</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">การบันทึกล้มเหลวเนื่องจากความผิดพลาดของเครือข่าย โปรดลองอีกครั้งภายหลัง</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">สื่อที่ถูกแบ่งปัน</string>
   <!--recipients_panel-->
@@ -1691,11 +1717,19 @@
   <string name="HelpFragment__include_debug_log">รวมปูมดีบัก</string>
   <string name="HelpFragment__whats_this">นี่คืออะไร?</string>
   <string name="HelpFragment__how_do_you_feel">คุณรู้สึกอย่างไร? (ไม่จำเป็น)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">บอกเหตุผลที่คุณติดต่อเรา</string>
   <string name="HelpFragment__support_info">ข้อมูลความช่วยเหลือ</string>
   <string name="HelpFragment__signal_android_support_request">การขอความช่วยเหลือ Signal บนแอนดรอยด์</string>
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
+  <string-array name="HelpFragment__categories">
+    <item>มีบางอย่างใช้การไม่ได้</item>
+    <item>ต้องการฟีเจอร์ใหม่</item>
+    <item>มีคำถาม</item>
+    <item>ข้อเสนอแนะ</item>
+    <item>อื่นๆ</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
@@ -1712,10 +1746,8 @@
   <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
   <string name="arrays__use_custom">ใช้ค่าที่กำหนดเอง</string>
   <string name="arrays__mute_for_one_hour">ปิดเสียง 1 ชั่วโมง</string>
-  <string name="arrays__mute_for_two_hours">ปิดเสียง 2 ชั่วโมง</string>
   <string name="arrays__mute_for_one_day">ปิดเสียง 1 วัน</string>
   <string name="arrays__mute_for_seven_days">ปิดเสียง 7 วัน</string>
-  <string name="arrays__mute_for_one_year">ปิดเสียง 1 ปี</string>
   <string name="arrays__settings_default">การตั้งค่าเริ่มต้น</string>
   <string name="arrays__enabled">เปิดใช้งานแล้ว</string>
   <string name="arrays__disabled">ปิดใช้งานแล้ว</string>
@@ -1745,6 +1777,10 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Signal รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
   <string name="preferences__pref_enter_sends_title">ใส่คีย์เพื่อส่ง</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">เมื่อกดปุ่ม Enter จะส่งข้อความตัวอักษร</string>
+  <string name="preferences__pref_use_address_book_photos">ใช้รูปภาพของรายชื่อผู้ติดต่อปัจจุบัน</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">แสดงรูปภาพผู้ติดต่อจากรายชื่อผู้ติดต่อปัจจุบันหากสามารถทำได้</string>
+  <string name="preferences__generate_link_previews">กำลังสร้างภาพตัวอย่างลิงก์</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">เรียกคืนลิงค์ภาพตัวอย่างจากเว็บไซต์ที่ท่านได้ส่งผ่านข้อไปได้โดยตรง</string>
   <string name="preferences__choose_identity">เลือกตัวตน</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
   <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
@@ -1762,6 +1798,7 @@
   <string name="preferences__pref_led_blink_title">รูปแบบการกระพริบไฟ LED</string>
   <string name="preferences__sound">เสียง</string>
   <string name="preferences__silent">ไม่ส่งเสียง</string>
+  <string name="preferences__default">ค่าเริ่มต้น</string>
   <string name="preferences__repeat_alerts">ย้ำเสียงตั้งเตือน</string>
   <string name="preferences__never">ไม่เลย</string>
   <string name="preferences__one_time">หนึ่งครั้ง</string>
@@ -1807,7 +1844,8 @@
   <string name="preferences__chat_wallpaper">ภาพพื้นหลังของแชต</string>
   <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
   <string name="preferences__enable_pin">เปิดใช้งาน PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดการใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณสมัครบัญชี Signal ใหม่ นอกจากว่าคุณได้แบ็คอัพข้อมูลและกู้มันคืนมา คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ถูกปิดการใข้งานไว้อยู่</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดการใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณสมัครบัญชี Signal ใหม่ นอกจากว่าคุณได้แบ็คอัพข้อมูลและกู้มันคืนมา คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ถูกปิดการใข้งานไว้อยู่ได้</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้ ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้งแอปอีกครั้ง คุณไม่จำเป็นต้องมีรหัส PIN ของคุณเพื่อเปิดแอป</string>
   <string name="preferences__system_default">ค่าปริยายของระบบ</string>
   <string name="preferences__language">ภาษา</string>
   <string name="preferences__signal_messages_and_calls">ข้อความและการโทร Signal</string>
@@ -1822,27 +1860,49 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>
   <string name="preferences__typing_indicators">แสดงว่ากำลังพิมพ์</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ถ้าการแจ้งการพิมพ์ข้อความตอบกลับถูกปิดใช้งาน คุณจะไม่เห็นการแจ้งการพิมพ์ข้อความตอบกลับจากผู้อื่น</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">ร้องขอแป้นพิมพ์ให้ปิดใช้งานการเรียนรู้การแนะนำคำ การตั้งค่านี้ไม่รับประกันและแป้นพิมพ์ของคุณอาจเพิกเฉยต่อมัน</string>
   <string name="preferences_app_protection__blocked_users">ผู้ใช้ที่ปิดกั้นอยู่</string>
   <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
   <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
   <string name="preferences_chats__when_roaming">เมื่อใช้บริการข้ามเครือข่าย Roaming</string>
   <string name="preferences_chats__media_auto_download">ดาวน์โหลดสื่ออัตโนมัติ</string>
+  <string name="preferences_chats__message_history">ประวัติการส่งข้อความ</string>
   <string name="preferences_storage__storage_usage">การใช้พื้นที่จัดเก็บ</string>
   <string name="preferences_storage__photos">รูปภาพ</string>
   <string name="preferences_storage__videos">วิดีโอ</string>
   <string name="preferences_storage__files">แฟ้ม</string>
   <string name="preferences_storage__audio">เสียง</string>
   <string name="preferences_storage__review_storage">ดูพื้นที่จัดเก็บ</string>
+  <string name="preferences_storage__delete_older_messages">ลบข้อความเก่าหรือไม่?</string>
+  <string name="preferences_storage__clear_message_history">ล้างประวัติข้อความหรือไม่?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">การกระทำนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณซึ่งเก่ากว่า %1$s ถูกลบอย่างถาวร</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">นี่จะตัดการสนทนาทั้งหมดให้เหลือแค่ %1$s ข้อความล่าสุดโดยทันที</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">การกระทำนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณถูกลบอย่างถาวร</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">คุณแน่ใจหรือไม่ว่าคุณต้องการลบประวัติการส่งข้อความทั้งหมด?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ประวัติการส่งข้อความทั้งหมดจะถูกลบอย่างถาวร การกระทำนี้ไม่สามารถเลิกทำได้</string>
+  <string name="preferences_storage__delete_all_now">ลบทั้งหมดเดี๋ยวนี้</string>
+  <string name="preferences_storage__forever">ตลอดไป</string>
+  <string name="preferences_storage__one_year">1 ปี</string>
+  <string name="preferences_storage__six_months">6 เดือน</string>
+  <string name="preferences_storage__thirty_days">30 วัน</string>
   <string name="preferences_storage__none">ไม่มี</string>
+  <string name="preferences_storage__s_messages">%1$s ข้อความ</string>
+  <string name="preferences_storage__custom">ค่ากำหนดเอง</string>
   <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพการโทรลง</string>
   <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
+  <string name="preferences_app_protection__who_can">ใครสามารถ…</string>
   <string name="preferences_app_protection__app_access">การเข้าถึงแอป</string>
   <string name="preferences_app_protection__communication">การสื่อสาร</string>
   <string name="preferences_chats__chats">การพูดคุย</string>
+  <string name="preferences_data_and_storage__manage_storage">จัดการพื้นที่จัดเก็บ</string>
   <string name="preferences_data_and_storage__calls">การโทร</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
   <string name="preferences_data_and_storage__never">ไม่เลย</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi และ เซลลูลาร์</string>
+  <string name="preferences_data_and_storage__cellular_only">เซลลูลาร์เท่านั้น</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้ข้อมูลน้อยลงอาจช่วยปรับปรุงการโทรในเครือข่ายที่ไม่ดี</string>
   <string name="preferences_notifications__messages">ข้อความ</string>
   <string name="preferences_notifications__events">เหตุการณ์</string>
   <string name="preferences_notifications__in_chat_sounds">เสียงในการแช็ต</string>
@@ -1860,12 +1920,24 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
   <string name="preferences_communication__sealed_sender_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="preferences_setup_a_username">ตั้งชื่อผู้ใช้</string>
+  <string name="preferences_proxy">พร็อกซี</string>
   <string name="preferences_use_proxy">ใช้พร็อกซี</string>
   <string name="preferences_off">ปิด</string>
   <string name="preferences_on">เปิด</string>
   <string name="preferences_proxy_address">ที่อยู่พร็อกซี</string>
+  <string name="preferences_only_use_a_proxy_if">ใช้พร็อกซีเมื่อคุณไม่สามารถเชื่อมต่อ Signal บนเซลลูลาร์หรือWi-Fi ได้เท่านั้น</string>
   <string name="preferences_share">แบ่งปัน</string>
   <string name="preferences_save">บันทึก</string>
+  <string name="preferences_connecting_to_proxy">กำลังเชื่อมต่อพร็อกซี…</string>
+  <string name="preferences_connected_to_proxy">เชื่อมต่อพร็อกซีแล้ว</string>
+  <string name="preferences_connection_failed">การเชื่อมต่อล้มเหลว</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">ไม่สามารถเชื่อมต่อไปยังพร็อกซีได้ โปรดตรวจสอบที่อยู่พร็อกซีและลองใหม่อีกครั้ง</string>
+  <string name="preferences_you_are_connected_to_the_proxy">คุณได้เชื่อมต่อพร็อกซีแล้ว คุณสามารถปิดพร็อกซีเมื่อไหร่ก็ได้จากเมนูการตั้งค่า</string>
+  <string name="preferences_success">สำเร็จ</string>
+  <string name="preferences_failed_to_connect">เชื่อมต่อล้มเหลว</string>
+  <string name="preferences_enter_proxy_address">ป้อนที่อยู่พร็อกซี</string>
+  <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1897,6 +1969,8 @@
   <string name="conversation_insecure__invite">เชิญ</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">ลบที่เลือก</string>
+  <string name="conversation_list_batch__menu_pin_selected">ปักหมุดแชตที่เลือกไว้</string>
+  <string name="conversation_list_batch__menu_unpin_selected">เลิกปักหมุดแชตที่เลือกไว้</string>
   <string name="conversation_list_batch__menu_select_all">เลือกทั้งหมด</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">เก็บข้อมูลที่เลือกเข้าที่เก็บถาวร</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">นำข้อมูลที่เลือกออกจากที่เก็บถาวร</string>
@@ -1907,12 +1981,14 @@
   <string name="conversation_list_search_description">ค้นหา</string>
   <string name="conversation_list__pinned">ปักหมุด</string>
   <string name="conversation_list__chats">การพูดคุย</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">คุณปักหมุดแชตได้ %1$d อันเท่านั้น</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">รูปภาพของผู้ติดต่อ</string>
   <string name="conversation_list_item_view__archived">ถูกเก็บเข้าที่เก็บถาวรแล้ว</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">การสนทนาใหม่</string>
   <string name="conversation_list_fragment__open_camera_description">เปิดกล้อง</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีข้อความเข้า\n เริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">รีเซ็ตเซสชันที่ปลอดภัย</string>
   <!--conversation_muted-->
@@ -1925,6 +2001,7 @@
   <string name="conversation__menu_view_all_media">สื่อทั้งหมด</string>
   <string name="conversation__menu_conversation_settings">ตั้งค่าการสนทนา</string>
   <string name="conversation__menu_add_shortcut">เพิ่มไปยังหน้าจอหลัก</string>
+  <string name="conversation__menu_create_bubble">สร้าง bubble</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ขยายป๊อปอัป</string>
   <!--conversation_callable_insecure-->
@@ -1998,6 +2075,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">สร้างรหัส PIN ใหม่</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">คุณสามารถเปลี่ยนรหัส PIN ได้ตราบเท่าที่อุปกรณ์นี้ยังลงทะเบียนอยู่</string>
   <string name="CreateKbsPinFragment__create_your_pin">สร้างรหัส PIN ของคุณ</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้ ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้งแอปอีกครั้ง คุณไม่จำเป็นต้องมีรหัส PIN ของคุณเพื่อเปิดแอป</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">เลือกรหัส PIN ที่แข็งแรงกว่านี้</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">รหัส PIN ไม่ตรงกัน ลองอีกครั้ง</string>
@@ -2009,6 +2087,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">สร้างรหัส PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">แนะนำรหัส PINs</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้ ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้งแอปอีกครั้ง คุณไม่จำเป็นต้องมีรหัส PIN ของคุณเพื่อเปิดแอป</string>
   <string name="KbsSplashFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">กุญแจลงทะเบียน = รหัส PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">จากนี้กุญแจลงทะเบียนของคุณจะถูกเรียกว่ารหัส PIN และมันมีที่ใช้มากขึ้น ปรับปรุงมันเดี๋ยวนี้</string>
@@ -2038,6 +2117,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">รหัส PIN ไม่ถูกต้อง </string>
   <string name="RegistrationLockFragment__forgot_your_pin">ลืมรหัส PIN หรือ?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">ลองได้อีกไม่กี่ครั้งแล้ว!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="other">เพื่อความเป็นส่วนตัวและความปลอดภัยของคุณ จะไม่มีทางใดที่สามารถกู้คืนรหัส PIN ได้. ถ้าคุณจำรหัส PIN ไม่ได้ คุณสามารถตรวจยืนยันทาง SMS ได้อีกครั้งหลังจากไม่มีการเคลื่อนไหว %1$d วัน. ในกรณีนี้ บัญชีของคุณจะถูกล้างและเนื้อหาทั้งหมดจะถูกลบ.</item>
   </plurals>
@@ -2054,13 +2135,21 @@
     <item quantity="other">ยังลองได้อีก %1$d ครั้ง</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s จะได้รับคำขอส่งข้อความจากคุณ คุณจะสามารถโทรหาเขาได้เมื่อคำขอส่งขอความของคุณได้รับการตอบรับ</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">สร้างรหัส PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้</string>
   <string name="KbsMegaphone__create_pin">สร้างรหัส PIN</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">บอกความคิดเห็นของคุณกับ Signal</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">เราอยากได้ยินข้อเสนอแนะของคุณ เพื่อให้ Signal ได้กลายเป็นแอปส่งข้อความที่ดีที่สุดบนโลกนี้</string>
   <string name="ResearchMegaphone_learn_more">เรียนรู้เพิ่มเติม</string>
   <string name="ResearchMegaphone_dismiss">เลิกกัน</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal Research</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>เราเชื่อมั่นในความเป็นส่วนตัว</b></p><p>Signal จะไม่ติดตามหรือเก็บรวบรวมข้อมูลของคุณ พวกเราหวังพึ่งข้อเสนอแนะของผู้ใช้งานเพื่อพัฒนา Signal ให้แก่ทุกท่าน<b>และเรายินดียิ่งที่จะรับฟังข้อเสนอแนะของคุณ</b></p><p>เราได้เปิดแบบสำรวจเพื่อให้ได้เข้าใจแนวทางการใช้ Signal ของคุณ แบบสำรวจของเราจะไม่รวบรวมข้อมูลอันจะนำมาซึ่งการเปิดเผยตัวตนคุณ หากคุณสนใจที่จะแบ่งปันข้อเสนอแนะเพิ่มเติม คุณจะมีตัวเลือกให้เพิ่มข้อมูลการติดต่อของคุณ</p><p>หากคุณสะดวกและมีข้อเสนอแนะจะนำเสนอ เรายินดียิ่งที่จะรับฟังจากคุณ</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">ทำแบบสำรวจ</string>
   <string name="ResearchMegaphoneDialog_no_thanks">ไม่ ขอบคุณ</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">แบบสำรวจนี้จัดทำโดย Alchemer บนโดเมนปลอดภัยที่ surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
   <string name="ConversationListFragment_loading">กำลังโหลด…</string>
@@ -2075,11 +2164,17 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ปลดล็อกเพื่อดูข้อความที่รออยู่</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ข้อมูลสำรองจะถูกบันทึกไว้ในที่เก็บข้อมูลภายนอก และถูกเข้ารหัสลับด้วยวลีรหัสผ่านด้านล่างนี้ คุณจะต้องใช้วลีรหัสผ่านนี้เพื่อกู้คืนข้อมูลสำรอง</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">คุณจะต้องมีวลีรหัสผ่านในการกู้คืนข้อมูลสำรอง</string>
+  <string name="backup_enable_dialog__folder">โฟลเดอร์</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถกู้คืนจากข้อมูลสำรองได้</string>
   <string name="registration_activity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
+  <string name="registration_activity__transfer_or_restore_account">ถ่ายโอนหรือกู้คืนบัญชี</string>
+  <string name="registration_activity__transfer_account">ถ่ายโอนบัญชี</string>
   <string name="registration_activity__skip">ข้าม</string>
   <string name="preferences_chats__chat_backups">ข้อมูลสำรองของการสนทนา</string>
   <string name="preferences_chats__backup_chats_to_external_storage">สำรองข้อมูลการพูดคุยไปยังที่เก็บข้อมูลภายนอก</string>
+  <string name="preferences_chats__transfer_account">ถ่ายโอนบัญชี</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">ถ่ายโอนบัญชีไปยังอุปกรณ์ Android เครื่องใหม่</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ใส่วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
   <string name="RegistrationActivity_restore">กู้คืน</string>
   <string name="RegistrationActivity_backup_failure_downgrade">ไม่สามารถนำเข้าข้อมูลสำรองจากรุ่นที่ใหม่กว่าของ Signal</string>
@@ -2096,13 +2191,20 @@
   <string name="BackupDialog_delete_backups">ลบข้อมูลสำรองหรือไม่?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบข้อมูลสำรองที่เก็บในอุปกรณ์นี้ทั้งหมดหรือไม่?</string>
   <string name="BackupDialog_delete_backups_statement">ลบข้อมูลสำรอง</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">หากต้องการเปิดใช้งานข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองจะถูกบันทึกที่นี้</string>
   <string name="BackupDialog_choose_folder">เลือกโฟลเดอร์</string>
   <string name="BackupDialog_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
+  <string name="BackupDialog_no_file_picker_available">ไม่พบตัวเลือกไฟล์ให้ใช้งาน</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">ป้อนวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณเพื่อตรวจยืนยัน</string>
   <string name="BackupDialog_verify">ตรวจยืนยัน</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">คุณได้ป้อนวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณเสร็จแล้ว</string>
   <string name="BackupDialog_passphrase_was_not_correct">วลีรหัสผ่านไม่ถูกต้อง</string>
   <string name="LocalBackupJob_creating_backup">กำลังสร้างข้อมูลสำรอง…</string>
+  <string name="LocalBackupJobApi29_backup_failed">สำรองข้อมูลไม่สำเร็จ</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ไดเรกทอรีสำหรับข้อมูลสำรองของคุณได้ถูกย้ายหรือลบ</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">แฟ้มสำรองของคุณใหญ่เกินที่จะจัดเก็บไว้ในนี้ได้</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">พื้นที่ไม่เพียงพอสำหรับจัดเก็บข้อมูลสำรองของคุณ</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">แตะเพื่อจัดการข้อมูลสำรอง</string>
   <string name="ProgressPreference_d_messages_so_far">%d ข้อความจนถึงตอนนี้</string>
   <string name="RegistrationActivity_wrong_number">หมายเลขโทรศัพท์ไม่ถูกต้อง</string>
   <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉัน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
@@ -2110,6 +2212,13 @@
   <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
   <string name="BackupUtil_never">ไม่เลย</string>
   <string name="BackupUtil_unknown">ไม่ทราบ</string>
+  <string name="preferences_app_protection__see_my_phone_number">ดูหมายเลขโทรศัพท์ของฉัน</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">ค้นหาฉันด้วยหมายเลขโทรศัพท์</string>
+  <string name="PhoneNumberPrivacy_everyone">ทุกคน</string>
+  <string name="PhoneNumberPrivacy_my_contacts">ผู้ติดต่อของฉัน</string>
+  <string name="PhoneNumberPrivacy_nobody">คนที่คุณไม่รู้จัก</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">หมายเลขโทรศัพท์ของคุณจะสามารถเห็นได้โดยกลุ่มและผู้คนที่คุณได้ส่งข้อความไป</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">ใครก็ตามที่มีหมายเลขโทรศัพท์ของคุณในรายชื่อผู้ติดต่อของพวกเขาจะเห็นคุณเป็นผู้ติดต่อบน Signal ส่วนคนอื่นๆ จะสามารถค้นหาคุณได้จากเมนูค้นหา</string>
   <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Signal ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ล็อกหน้าจอเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
@@ -2118,49 +2227,145 @@
   <string name="preferences_app_protection__change_your_pin">เปลี่ยนรหัส PIN ของคุณ</string>
   <string name="preferences_app_protection__pin_reminders">เตือนความจำรหัส PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">เพิ่มความปลอดภัยอีกขั้นด้วยการกำหนดให้ PIN ของ Signal คุณ สมัครหมายเลขโทรศัพท์กับ Signal อีกครั้ง</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">การเตือนความจำจะช่วยให้คุณจำรหัส PIN ได้ เนื่องจากมันไม่สามารถถูกกู้คืนได้ คุณจะถูกเตือนน้อยลงเมื่อเวลาผ่านไป</string>
   <string name="preferences_app_protection__turn_off">ปิด</string>
   <string name="preferences_app_protection__confirm_pin">ยืนยันรหัส PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">ยืนยันรหัส PIN สำหรับ Signal ของคุณ</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ทำให้แน่ใจว่าคุณสามารถจดจำหรือเก็บรักษารหัส PIN ของคุณอย่างปลอดภัยเพราะมันไม่สามารถจะกู้คืนมาได้ ถ้าคุณลืมรหัส PIN ของคุณ ข้อมูลของคุณอาจจะสูญหายเมื่อคุณลงทะเบียนบัญชี Signal ของคุณอีกครั้ง</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">การเปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">การปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
   <string name="preferences_app_protection__registration_lock">กุญแจลงทะเบียน</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">คุณจะต้องใส่รหัส PIN กุญแจลงทะเบียน</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">รหัสผ่านของคุณมีอย่างน้อย %d ตัวเลขหรือตัวอักษร</string>
   <string name="RegistrationActivity_too_many_attempts">มีการพยายามหลายครั้งเกินไป</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">คุณใส่รหัส PIN กุญแจลงทะเบียนผิดหลายครั้งเกินไป โปรดลองอีกครั้งพรุ่งนี้</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">คุณได้พยายามหลายครั้งเกินไป โปรดลองใหม่อีกครั้งภายหลัง</string>
   <string name="RegistrationActivity_error_connecting_to_service">เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการ</string>
   <string name="preferences_chats__backups">ข้อมูลสำรอง</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ได้ถูกล็อก</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">แตะเพื่อปลดล็อก</string>
   <string name="Recipient_unknown">ไม่ทราบ</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">ถ่ายโอนหรือกู้คืนบัญชี</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">หากคุณเคยสมัครบัญชี Signal มาก่อน คุณสามารถโอนหรือกู้คืนบัญชีผู้ใช้งานและข้อความของคุณได้</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">ถ่ายโอนจากอุปกรณ์ Android</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">โอนย้ายบัญชีของคุณและข้อความเก่าจากอุปกรณ์ Android เครื่องเก่าของคุณ ทั้งนี้ คุณจะต้องสามารถเข้าถึงอุปกรณ์เครื่องเก่าของคุณได้</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">คุณจะต้องสามารถเข้าถึงอุปกรณ์เครื่องเก่าของคุณได้</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">กู้คืนจากข้อมูลสำรอง</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">กู้คืนข้อความของคุณจากข้อมูลสำรองในเครื่อง หากคุณไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">เปิด Signal บนโทรศัพท์ Android เครื่องเก่าของคุณ</string>
   <string name="NewDeviceTransferInstructions__continue">ทำต่อ</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">แตะรูปโปรไฟล์ของคุณบนฝั่งซ้ายบนเพื่อเปิดการตั้งค่า</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">แตะบน \"แชต\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">แตะ \"ถ่ายโอนบัญชี\" แล้วเลือก \"ดำเนินการต่อ\" บนอุปกรณ์ทั้งสองเครื่อง</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">กำลังเตรียมเชื่อมต่อไปยังอุปกรณ์ Android เครื่องเก่า</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">จะพร้อมในไม่ช้า กรุณารอสักครู่</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">กำลังรอการเชื่อมต่อจากอุปกรณ์ Android เครื่องเก่า</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal จำเป็นต้องได้รับอนุญาตในการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องเก่าของคุณ</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal จำเป็นต้องเปิดใช้งานบริการการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องเก่าของคุณ</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal จำเป็นต้องเปิด Wi-Fi- เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ ซึ่ง Wi-Fi จำเป้นต้องเปิดไว้แต่ไม่จำเป็นต้องเชื่อมต่อกับเครือข่าย Wi-Fi</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ขออภัย อุปกรณ์ของคุณไม่รองรับ Wi-Fi Direct โดย Signal จะใช้ Wi-Fi Direct เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ คุณจะยังสามารถกู้คืนข้อมูลสำรองเพื่อกู้คืนบัญชีผู้ใช้ของคุณจากอุปกรณ์ Android เครื่องเก่าของคุณ</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">กู้คืนข้อมูลสำรอง</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">เกิดความผิดพลาดที่ไม่คาดคิดขึ้นขณะที่พยายามจะเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">กำลังค้นหาอุปกรณ์ Android เครื่องใหม่…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal จำเป็นต้องได้รับอนุญาตในการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องใหม่ของคุณ</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal จำเป็นต้องเปิดใช้งานบริการการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องใหม่ของคุณ</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal จำเป็นต้องเปิด Wi-Fi- เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องใหม่ของคุณ ซึ่ง Wi-Fi จำเป้นต้องเปิดไว้แต่ไม่จำเป็นต้องเชื่อมต่อกับเครือข่าย Wi-Fi</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ขออภัย อุปกรณ์ของคุณไม่รองรับ Wi-Fi Direct โดย Signal จะใช้ Wi-Fi Direct เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องใหม่ของคุณ คุณจะยังสามารถกู้คืนข้อมูลสำรองเพื่อกู้คืนบัญชีผู้ใช้ของคุณจากอุปกรณ์ Android เครื่องใหม่ของคุณ</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">สร้างข้อมูลสำรอง</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">เกิดความผิดพลาดที่ไม่คาดคิดขึ้นขณะที่พยายามจะเชื่อมต่อกับอุปกรณ์ Android เครื่องใหม่ของคุณ</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">ไม่สามารถเปิดการตั้งค่า Wi-Fi ได้ กรุณาเปิดใช้งาน Wi-Fi ด้วยตนเอง</string>
+  <string name="DeviceTransferSetup__grant_location_permission">อนุญาตให้เข้าถึงตำแหน่ง</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">เปิดการใช้งานการเข้าถึงตำแหน่ง</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">ไม่สามารถเปิดการตั้งค่าตำแหน่งได้</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">เปิดใช้งาน Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">เกิดข้อผิดพลาดในการเชื่อมต่อ</string>
   <string name="DeviceTransferSetup__retry">ลองใหม่</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">ส่งรายการบันทึกดีบัก</string>
+  <string name="DeviceTransferSetup__verify_code">ยืนยันรหัส</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">ยืนยันว่ารหัสข้างล่างตรงกับอุปกรณ์ทั้งสองเครื่องของคุณแล้วแตะที่ปุ่มดำเนินการต่อ</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">ตัวเลขไม่ตรงกัน</string>
   <string name="DeviceTransferSetup__continue">ทำต่อ</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">ตัวเลขไม่เหมือนกัน</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">หากหมายเลขบนอุปกรณ์ของคุณไม่ตรงกัน อาจเป็นไปได้ว่าคุณได้เชื่อมต่ออุปกรณ์ผิดเครื่อง ในการแก้ไขนั้น ให้หยุดการถ่ายโอนและลองใหม่อีกครั้ง และให้นำอุปกรณ์ทั้งสองเครื่องไว้ในระยะใกล้กัน</string>
+  <string name="DeviceTransferSetup__stop_transfer">หยุดการถ่ายโอน</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">ไม่สามารถค้นหาอุปกรณ์เครื่องเก่าได้</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">ไม่สามารถค้นหาอุปกรณ์เครื่องใหม่ได้</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">ตรวจสอบให้แน่ใจว่าการอนุญาตและบริการต่อไปนี้ได้เปิดใช้งานอยู่:</string>
+  <string name="DeviceTransferSetup__location_permission">การอนุญาตการเข้าถึงตำแหน่ง</string>
+  <string name="DeviceTransferSetup__location_services">บริการการค้นหาตำแหน่ง</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">บนหน้า WiFi Direct ให้ลบกลุ่มที่ได้จดจำไว้ทั้งหมดและยกเลิกการเชื่อมต่อกับคำเชิญใดหรืออุปกรณ์ที่ได้เชื่อมต่อไว้</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">หน้า WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">กรุณาลองปิดการใช้งาน Wi-Fi แล้วเปิดใหม่บนอุปกรณ์ทั้งสองเครื่อง</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">ตรวจสอบให้แน่ใจว่าอุปกรณ์ทั้งสองเครื่องอยู่ในโหมดถ่ายโอน</string>
+  <string name="DeviceTransferSetup__go_to_support_page">ไปที่หน้าการสนับสนุน</string>
   <string name="DeviceTransferSetup__try_again">ลองอีกครั้ง</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">กำลังรออุปกรณ์อีกเครื่อง</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">แตะปุ่มดำเนินการต่อบนอุปกรณ์อีกเครื่องของคุณเพื่อเริ่มการถ่ายโอน</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">แตะปุ่มดำเนินการต่อบนอุปกรณ์อีกเครื่องของคุณ…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">ไม่สามารถถ่ายโอนจากรุ่นที่ใหม่กว่าของ Signal ได้</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">กำลังถ่ายโอนข้อมูล</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">ทำให้แน่ใจว่าอุปกรณ์ทั้งคู่อยู่ใกล้กัน อย่าปิดเครื่องใด และให้เปิด Signal อยู่ตลอดเวลา การถ่ายโอนนั้นจะถูกเข้ารหัสลับตั้งแต่ต้นทางถึงปลายทาง</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d ข้อความจนถึงตอนนี้…</string>
   <string name="DeviceTransfer__cancel">ยกเลิก</string>
   <string name="DeviceTransfer__try_again">ลองอีกครั้ง</string>
+  <string name="DeviceTransfer__stop_transfer_question">หยุดการถ่ายโอนหรือไม่?</string>
+  <string name="DeviceTransfer__stop_transfer">หยุดการถ่ายโอน</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">คุณจะสูญเสียความคลืบหน้าของการถ่ายโอนทั้งหมด</string>
+  <string name="DeviceTransfer__transfer_failed">การถ่ายโอนล้มเหลว</string>
+  <string name="DeviceTransfer__unable_to_transfer">ไม่สามารถถ่ายโอนได้</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">ถ่ายโอนบัญชี</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">คุณสามารถถ่ายโอนบัญชีผู้ใช้ Signal ของคุณเมื่อได้ติดตั้งแอป Signal บนอุปกรณ์ Android เครื่องใหม่ของคุณ ก่อนดำเนินการต่อ:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">ดาวน์โหลด Signal บนอุปกรณ์ Android เครื่องใหม่ของคุณ</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">แตะบน \"ถ่ายโอนหรือกู้คืนบัญชี\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">เลือก \"ถ่ายโอนจากอุปกรณ์ Android\" เมื่อได้รับแจ้งแล้วกด \"ดำเนินการต่อ\" โดยที่อุปกรณ์ทั้งสองเครื่องอยู่ใกล้กัน</string>
   <string name="OldDeviceTransferInstructions__continue">ทำต่อ</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">การถ่ายโอนสำเร็จ</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">ไปที่อุปกรณ์เครื่องใหม่ของคุณ</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">ข้อมูล Signal ของคุณได้รับการถ่ายโอนไปยังอุปกรณ์เครื่องใหม่แล้ว ในการดำเนินการถ่ายโอนให้เสร็จสมบูรณ์ คุณจะต้องดำเนินการลงทะเบียนบนอุปกรณ์เครื่องใหม่ของคุณต่อ</string>
   <string name="OldDeviceTransferComplete__close">ปิด</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">การถ่ายโอนสำเร็จ</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">การถ่ายโอนเสร็จสมบูรณ์</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">ในการดำเนินการถ่ายโอนให้เสร็จสมบูรณ์ คุณจะต้องดำเนินการลงทะเบียนบนอุปกรณ์เครื่องใหม่ของคุณต่อ</string>
+  <string name="NewDeviceTransferComplete__continue_registration">ดำเนินการลงทะเบียนต่อ</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">ถ่ายโอนบัญชีผู้ใช้</string>
+  <string name="DeviceToDeviceTransferService_status_ready">กำลังเตรียมเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">กำลังเตรียมการเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">กำลังค้นหาอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">กำลังเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">จำเป็นต้องได้รับการตรวจยืนยัน</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">กำลังถ่ายโอนบัญชีผู้ใช้…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">โปรดลงทะเบียนบนอุปกรณ์เครื่องใหม่ของคุณให้เสร็จสิ้น</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">บัญชี Signal ของคุณได้รับการถ่ายโอนไปยังอุปกรณ์เครื่องใหม่ของคุณ แต่คุณจะต้องลงทะเบียนให้แล้วเสร็จเพื่อดำเนินการต่อ โดย Signal จะยังคงไม่เปิดใช้งานบนอุปกรณ์เครื่องนี้</string>
   <string name="OldDeviceTransferLockedDialog__done">เสร็จสิ้น</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ยกเลิกและเปิดใช้งานอุปกรณ์เครื่องนี้</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ปิดกั้น</string>
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
   <string name="RecipientBottomSheet_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
   <string name="RecipientBottomSheet_add_to_a_group">เพิ่มเข้ากลุ่ม</string>
+  <string name="RecipientBottomSheet_add_to_another_group">เพิ่มเข้าอีกกลุ่ม</string>
   <string name="RecipientBottomSheet_view_safety_number">ดูหมายเลขความปลอดภัย</string>
   <string name="RecipientBottomSheet_make_group_admin">ตั้งเป็นผู้ดูแลกลุ่ม</string>
   <string name="RecipientBottomSheet_remove_as_admin">ลบจากการเป็นผู้ดูแล</string>
@@ -2169,35 +2374,90 @@
   <string name="RecipientBottomSheet_voice_call_description">โทรด้วยเสียง</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">โทรแบบไม่ปลอดภัยด้วยเสียง</string>
   <string name="RecipientBottomSheet_video_call_description">โทรเห็นหน้า</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">ปลด %1$s จากการเป็นผู้ดูแลกลุ่มหรือไม่?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" จะสามารถแก้ไขกลุ่มและสมาชิกของกลุ่มได้</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">นำ %1$s ออกจากกลุ่มหรือไม่?</string>
   <string name="RecipientBottomSheet_remove">เอาออก</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="GroupRecipientListItem_admin">ผู้ดูแล</string>
+  <string name="GroupRecipientListItem_approve_description">อนุมัติ</string>
   <string name="GroupRecipientListItem_deny_description">ปฏิเสธ</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Lagacy vs. กลุ่มใหม่</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">กลุ่ม Legacy คืออะไร?</string>
+  <string name="GroupsLearnMore_paragraph_1">กลุ่ม Legacy คือกลุ่มที่ไม่รองรับคุณสมบัติใหม่ของกลุ่มใหม่ได้เช่น ระบบผู้ดูแลและคำอธิบายกลุ่มที่อัพเดตเข้ามาใหม่</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">ฉันสามารถปรับรุ่นกลุ่ม Legacy ได้หรือไม่?</string>
+  <string name="GroupsLearnMore_paragraph_2">กลุ่ม Legacy ยังไม่สามารถปรับรุ่นเป็นกลุ่มใหม่ได้ แต่คุณสามารถสร้างกลุ่มใหม่ด้วยสมาชิกจากกลุ่มเดิมหากพวกเขาใช้งาน Signal เวอร์ชั่นล่าสุดอยู่ได้</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal จะเปิดช่องทางให้ปรับรุ่นกลุ่ม Legacy ได้ในอนาคต</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ทุกคนที่มีลิงก์นี้สามารถมองเห็นชื่อกลุ่ม รูปกลุ่ม และสามารถขอเข้าร่วมกลุ่มได้ แบ่งปันลิงก์นี้ให้กับผู้คนที่คุณไว้ใจ</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ทุกคนที่มีลิงก์นี้สามารถมองเห็นชื่อกลุ่ม รูปกลุ่ม และสามารถขอเข้าร่วมกลุ่มได้ แบ่งปันลิงก์นี้ให้กับผู้คนที่คุณไว้ใจ</string>
   <string name="GroupLinkBottomSheet_share_via_signal">แบ่งปันผ่าน Signal</string>
   <string name="GroupLinkBottomSheet_copy">คัดลอก</string>
   <string name="GroupLinkBottomSheet_qr_code">รหัส QR</string>
   <string name="GroupLinkBottomSheet_share">แบ่งปัน</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ลิงค์นี้ไม่มีความเคลื่อนไหว</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ข้อความเสียง %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ถึง %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ถูกปิดกั้นแล้ว</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">ล้มเหลวในการปิดกั้น \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ถูกเลิกปิดกั้นแล้ว</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">พิจารณาสมาชิกกลุ่ม</string>
+  <string name="ReviewCardDialogFragment__review_request">พิจารณาคำขอ</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name"> สมาชิกกลุ่ม %1$d คน มีชื่อเหมือนกัน พิจารณาสมาชิกกลุ่มได้ที่ด้านล่างแล้วเลือกตัดสินใจ</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">หากคุณไม่มั่นใจว่าคำขอมาจากใคร คุณสามารถพิจารณาได้จากรายชื่อผู้ติดต่อด้านล่างแล้วเลือกตัดสินใจ</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">ไม่มีกลุ่มอื่นร่วมกัน</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">ไม่มีกลุ่มร่วมกัน</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="other">มี %d กลุ่มร่วมกัน</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="other">มี %d กลุ่มร่วมกัน</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">นำ %1$s ออกจากกลุ่มหรือไม่?</string>
   <string name="ReviewCardDialogFragment__remove">เอาออก</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">การนำสมาชิกออกจากกลุ่มไม่สำเร็จ</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">สมาชิก</string>
+  <string name="ReviewCard__request">คำขอ</string>
+  <string name="ReviewCard__your_contact">ผู้ติดต่อของคุณ</string>
   <string name="ReviewCard__remove_from_group">ลบจากลุ่ม</string>
+  <string name="ReviewCard__update_contact">อัปเดตผู้ติดต่อ</string>
   <string name="ReviewCard__block">ปิดกั้น</string>
   <string name="ReviewCard__delete">ลบ</string>
+  <string name="ReviewCard__recently_changed">พึ่งเปลี่ยนชื่อโปรไฟล์ของพวกเขาจาก %1$s เป็น %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ได้เข้าร่วมกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s และ %2$s ได้เข้าร่วมกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s  %2$s และ %3$s ได้เข้าร่วมกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s %2$s และอีก %3$d คน ได้เข้าร่วมกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ออกจากกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s และ %2$s ออกจากกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s %2$s และ %3$s ได้ออกจากกลุ่ม</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s %2$s และอีก %3$d คน ได้ออกจากกลุ่ม</string>
   <string name="CallParticipant__you">คุณ</string>
+  <string name="CallParticipant__you_on_another_device">คุณ (อยู่บนอุปกรณ์เครื่องอื่น)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (อยู่บนอุปกรณ์เครื่องอื่น)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">การลบบัญชีของคุณจะส่งผลให้:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
   <string name="DeleteAccountFragment__delete_account">ลบบัญชี</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ลบข้อมูลบัญชีและรูปโปรไฟล์ของคุณ</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">ลบข้อความของคุณทั้ง</string>
+  <string name="DeleteAccountFragment__no_country_code">ไม่มีรหัสประเทศระบุไว้</string>
+  <string name="DeleteAccountFragment__no_number">ไม่มีหมายเลขระบุไว้</string>
+  <string name="DeleteAccountFragment__the_phone_number">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
   <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การกระทำนี้จะเป็นการลบบัญชี Signal ของคุณและรีเซ็ตแอปพลิเคชั่น โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">การลบบัญชีผู้ใช้ล้มเหลว คุณมีเครือข่ายให้เชื่อมต่อหรือไม่?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">การลบข้อมูลในเครื่องล้มเหลว คุณสามารถล้างข้อมูลในการตั้งค่าระบบของแอปพลิเคชั่นได้ด้วยตนเอง</string>
+  <string name="DeleteAccountFragment__launch_app_settings">การตั้งค่าการเริ่มแอป</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">ค้นหาประเทศ</string>
   <!--CreateGroupActivity-->
@@ -2205,17 +2465,44 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">แบ่งปัน</string>
   <string name="ShareActivity__send">ส่ง</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">การแบ่งปันแชตหลายแชตพร้อมกันนั้นรองรับเฉพาะแค่ข้อความของ Signal</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">การส่งไปยังผู้ใช้อื่นล้มเหลว</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">คุณสามารถแบ่งปันได้สูงสุดแค่ %1$d แชต เท่านั้น</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">ส่งต่อข้อความ</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ภาพพื้นหลังของแชต</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">ตั้งภาพพื้นหลัง</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ภาพพื้นหลังธีมมืดสลัว</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">ล้างภาพพื้นหลัง</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ล้างภาพพื้นหลังสำหรับแชตนี้หรือไม่?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">ล้างภาพพื้นหลังหรือไม่? การกระทำนี้จะไม่ล้างภาพพื้นหลังแบบกำหนดเองที่คุณตั้งไว้ในแชตของคุณ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">รีเซ็ตภาพพื้นหลังทั้งหมด</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">รีเซ็ตภาพพื้นหลังทั้งหมดและรวมถึงภาพพื้นหลังแบบกำหนดเองซึ่งคุณตั้งไว้สำหรับแชตของคุณหรือไม่?</string>
+  <string name="ChatWallpaperFragment__contact_name">ชื่อผู้ติดต่อ</string>
   <string name="ChatWallpaperFragment__reset">รีเซ็ต</string>
+  <string name="ChatWallpaperFragment__clear">ล้าง</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">ตัวอย่างภาพพื้นหลัง</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">เลือกจากรูปภาพ</string>
+  <string name="ChatWallpaperSelectionFragment__presets">ชุดปรับแต่งภาพพื้นหลัง</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">แสดงตัวอย่าง</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">ตั้งภาพพื้นหลัง</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">ปัดเพื่อดูภาพตัวอย่างของภาพพื้นหลังเพิ่มเติม</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ตั้งภาพพื้นหลังให้ทุกแชต</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ตั้งภาพพื้นหลังให้ %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">การดูรูปภาพจะต้องให้อนุญาตการเข้าถึงพื้นที่เก็บข้อมูล</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">เลือกรูปภาพพื้นหลัง</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">หยิกขยายเพื่อซูมและลากเพื่อปรับตำแแหน่ง</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">ตั้งภาพพื้นหลังให้ทุกแชต</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">ตั้งภาพพื้นหลังสำหรับ %s</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">เกิดข้อผิดพาดในการตั้งภาพพื้นหลัง</string>
+  <string name="WallpaperCropActivity__blur_photo">เบลอภาพ</string>
   <!--EOF-->
 </resources>

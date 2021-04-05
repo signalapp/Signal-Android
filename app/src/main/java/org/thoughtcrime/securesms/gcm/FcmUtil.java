@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public final class FcmUtil {
 
-  private static final String TAG = FcmUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(FcmUtil.class);
 
   /**
    * Retrieves the current FCM token. If one isn't available, it'll be generated.

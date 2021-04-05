@@ -1071,10 +1071,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="arrays__use_default">Gunakan lalai</string>
   <string name="arrays__use_custom">Gunakan tersuai</string>
   <string name="arrays__mute_for_one_hour">Bisukan untuk 1 jam</string>
-  <string name="arrays__mute_for_two_hours">Bisukan untuk 2 jam</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Bisukan untuk 2 jam</string> -->
   <string name="arrays__mute_for_one_day">Bisukan untuk 1 hari</string>
   <string name="arrays__mute_for_seven_days">Bisukan untuk 7 hari</string>
-  <string name="arrays__mute_for_one_year">Bisukan untuk 1 tahun</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Bisukan untuk 1 tahun</string> -->
   <string name="arrays__settings_default">Tetapan lalai</string>
   <string name="arrays__enabled">Didayakan</string>
   <string name="arrays__disabled">Diyahdayakan</string>

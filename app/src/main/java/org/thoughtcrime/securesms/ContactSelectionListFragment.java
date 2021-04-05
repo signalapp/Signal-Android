@@ -58,6 +58,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.components.emoji.WarningTextView;
+import org.thoughtcrime.securesms.contacts.AbstractContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.ContactChip;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
@@ -114,22 +115,23 @@ public final class ContactSelectionListFragment extends LoggingFragment
   public static final String CAN_SELECT_SELF   = "can_select_self";
   public static final String DISPLAY_CHIPS     = "display_chips";
 
-  private ConstraintLayout                constraintLayout;
-  private TextView                        emptyText;
-  private OnContactSelectedListener       onContactSelectedListener;
-  private SwipeRefreshLayout              swipeRefresh;
-  private View                            showContactsLayout;
-  private Button                          showContactsButton;
-  private TextView                        showContactsDescription;
-  private ProgressWheel                   showContactsProgress;
-  private String                          cursorFilter;
-  private RecyclerView                    recyclerView;
-  private RecyclerViewFastScroller        fastScroller;
-  private ContactSelectionListAdapter     cursorRecyclerViewAdapter;
-  private ChipGroup                       chipGroup;
-  private HorizontalScrollView            chipGroupScrollContainer;
-  private WarningTextView                 groupLimit;
-  private OnSelectionLimitReachedListener onSelectionLimitReachedListener;
+  private ConstraintLayout                            constraintLayout;
+  private TextView                                    emptyText;
+  private OnContactSelectedListener                   onContactSelectedListener;
+  private SwipeRefreshLayout                          swipeRefresh;
+  private View                                        showContactsLayout;
+  private Button                                      showContactsButton;
+  private TextView                                    showContactsDescription;
+  private ProgressWheel                               showContactsProgress;
+  private String                                      cursorFilter;
+  private RecyclerView                                recyclerView;
+  private RecyclerViewFastScroller                    fastScroller;
+  private ContactSelectionListAdapter                 cursorRecyclerViewAdapter;
+  private ChipGroup                                   chipGroup;
+  private HorizontalScrollView                        chipGroupScrollContainer;
+  private WarningTextView                             groupLimit;
+  private OnSelectionLimitReachedListener             onSelectionLimitReachedListener;
+  private AbstractContactsCursorLoaderFactoryProvider cursorFactoryProvider;
 
 
   @Nullable private FixedViewsAdapter headerAdapter;
@@ -161,6 +163,14 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     if (context instanceof OnSelectionLimitReachedListener) {
       onSelectionLimitReachedListener = (OnSelectionLimitReachedListener) context;
+    }
+
+    if (context instanceof AbstractContactsCursorLoaderFactoryProvider) {
+      cursorFactoryProvider = (AbstractContactsCursorLoaderFactoryProvider) context;
+    }
+
+    if (getParentFragment() instanceof AbstractContactsCursorLoaderFactoryProvider) {
+      cursorFactoryProvider = (AbstractContactsCursorLoaderFactoryProvider) context;
     }
   }
 
@@ -387,10 +397,15 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    FragmentActivity activity = requireActivity();
-    return new ContactsCursorLoader(activity,
-                                    activity.getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
-                                    cursorFilter, activity.getIntent().getBooleanExtra(RECENTS, false));
+    FragmentActivity activity       = requireActivity();
+    int              displayMode    = activity.getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL);
+    boolean          displayRecents = activity.getIntent().getBooleanExtra(RECENTS, false);
+
+    if (cursorFactoryProvider != null) {
+      return cursorFactoryProvider.get().create();
+    } else {
+      return new ContactsCursorLoader.Factory(activity, displayMode, cursorFilter, displayRecents).create();
+    }
   }
 
   @Override
@@ -695,5 +710,9 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
   public interface ScrollCallback {
     void onBeginScroll();
+  }
+
+  public interface AbstractContactsCursorLoaderFactoryProvider {
+    @NonNull AbstractContactsCursorLoader.Factory get();
   }
 }

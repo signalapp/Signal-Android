@@ -23,6 +23,7 @@ import android.content.SharedPreferences.Editor;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
@@ -45,7 +46,7 @@ import java.util.List;
 public class IdentityKeyUtil {
 
   @SuppressWarnings("unused")
-  private static final String TAG = IdentityKeyUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(IdentityKeyUtil.class);
 
   private static final String IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF  = "pref_identity_public_curve25519";
   private static final String IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF = "pref_identity_private_curve25519";

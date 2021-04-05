@@ -25,7 +25,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceKeysUpdateJob";
 
-  private static final String TAG = MultiDeviceKeysUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceKeysUpdateJob.class);
 
   public MultiDeviceKeysUpdateJob() {
     this(new Parameters.Builder()

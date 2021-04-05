@@ -1728,6 +1728,7 @@
   <string name="ConversationUpdateItem_return_to_call">Grįžti į skambutį</string>
   <string name="ConversationUpdateItem_call_is_full">Skambutis yra pilnas</string>
   <string name="ConversationUpdateItem_invite_friends">Pakviesti draugus</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Įjungti pranešimus apie skambučius</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -1751,6 +1752,10 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gali būti, kad šie žmonės iš naujo įdiegė programėlę ar pakeitė įrenginį. Patvirtinkite savo saugumo numerį su kiekvienu iš jų, kad užtikrintumėte privatumą.</string>
   <string name="safety_number_change_dialog__view">Rodyti</string>
   <string name="safety_number_change_dialog__previous_verified">Anksčiau patvirtinta(-s)</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Pranešimai apie skambučius įjungti.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Įjungti pranešimus apie skambučius</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Nustatymai</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Įkeliamos šalys…</string>
   <string name="country_selection_fragment__search">Ieškoti</string>
@@ -1937,6 +1942,13 @@
   <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Kažkas neveikia</item>
+    <item>Prašymas pridėti naują ypatybę</item>
+    <item>Klausimas</item>
+    <item>Atsiliepimas</item>
+    <item>Kita</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Paskiausi</string>
@@ -1953,10 +1965,10 @@
   <string name="arrays__use_default">Naudoti numatytąjį</string>
   <string name="arrays__use_custom">Naudoti tinkintą</string>
   <string name="arrays__mute_for_one_hour">Išjungti 1 valandai</string>
-  <string name="arrays__mute_for_two_hours">Išjungti 2 valandoms</string>
+  <string name="arrays__mute_for_eight_hours">Išjungti 8 valandoms</string>
   <string name="arrays__mute_for_one_day">Išjungti 1 dienai</string>
   <string name="arrays__mute_for_seven_days">Išjungti 7 dienoms</string>
-  <string name="arrays__mute_for_one_year">Išjungti 1 metams</string>
+  <string name="arrays__always">Visada</string>
   <string name="arrays__settings_default">Pagal nustatymų numatymą</string>
   <string name="arrays__enabled">Įjungta</string>
   <string name="arrays__disabled">Išjungta</string>
@@ -2010,6 +2022,7 @@
   <string name="preferences__pref_led_blink_title">Šviesos diodo mirksėjimo šablonas</string>
   <string name="preferences__sound">Garsas</string>
   <string name="preferences__silent">Tyliai</string>
+  <string name="preferences__default">Numatytoji</string>
   <string name="preferences__repeat_alerts">Kartoti įspėjimus</string>
   <string name="preferences__never">Niekada</string>
   <string name="preferences__one_time">Vieną kartą</string>
@@ -2484,7 +2497,10 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Perkelti ar atkurti paskyrą</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jeigu Signal paskyrą jau esate užregistravę anksčiau, galite perkelti ar atkurti savo paskyrą ir žinutes</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Perkelti iš „Android“ įrenginio</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Perkelkite savo paskyrą ir žinutes iš senojo „Android“ įrenginio. Jums reikės prieigos prie senojo telefono.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Jums reikia prieigos prie savo senojo įrenginio.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Atkurti iš atsarginės kopijos</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Atkurkite savo žinutes iš vietinės atsarginės kopijos. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Savo senajame „Android“ telefone atverkite Signal</string>
   <string name="NewDeviceTransferInstructions__continue">Tęsti</string>
@@ -2498,24 +2514,57 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Ruošiamasi prisijungti prie senojo „Android“ įrenginio…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Dar minutėlę, netrukus turėtų būti paruošta</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Laukiama, kol prisijungs senasis „Android“ įrenginys…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal yra reikalingas įrenginio vietos leidimas tam, kad galėtų atrasti ir prisijungti prie jūsų senojo „Android“ įrenginio.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal reikia įjungtų vietos paslaugų, kad galėtų atrasti ir prisijungti prie jūsų senojo „Android“ įrenginio. </string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal reikia įjungto belaidžio (Wi-Fi) ryšio, kad atrastų ir prisijungtų prie jūsų senojo „Android“ įrenginio. Belaidis (Wi-Fi) ryšys turi būti įjungtas, tačiau įrenginys neprivalo būti prisijungęs prie belaidžio (Wi-Fi) tinklo.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Atleiskite, atrodo, kad šis įrenginys nepalaiko „Wi-Fi Direct“. Signal naudoja „Wi-Fi Direct“, kad atrastų ir prisijungtų prie jūsų senojo „Android“ įrenginio. Norėdami atkurti savo paskyrą iš senojo „Android“ įrenginio, vis dar galite atkurti atsarginę kopiją.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Atkurti atsarginę kopiją</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Atsirado netikėta klaida, bandant prisijungti prie jūsų senojo „Android“ įrenginio.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Ieškoma naujojo „Android“ įrenginio…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal yra reikalingas įrenginio vietos leidimas tam, kad galėtų atrasti ir prisijungti prie jūsų naujojo „Android“ įrenginio.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal reikia įjungtų vietos paslaugų, kad galėtų atrasti ir prisijungti prie jūsų naujojo „Android“ įrenginio. </string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal reikia įjungto belaidžio (Wi-Fi) ryšio, kad atrastų ir prisijungtų prie jūsų naujojo „Android“ įrenginio. Belaidis (Wi-Fi) ryšys turi būti įjungtas, tačiau įrenginys neprivalo būti prisijungęs prie belaidžio (Wi-Fi) tinklo.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Atleiskite, atrodo, kad šis įrenginys nepalaiko „Wi-Fi Direct“. Signal naudoja „Wi-Fi Direct“, kad atrastų ir prisijungtų prie jūsų naujojo „Android“ įrenginio. Norėdami atkurti savo paskyrą naujajame „Android“ įrenginyje, vis dar galite padaryti atsarginę kopiją.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Daryti atsarginę kopiją</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Atsirado netikėta klaida, bandant prisijungti prie jūsų naujojo „Android“ įrenginio.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nepavyko atverti belaidžio (Wi-Fi) nustatymų. Įjunkite belaidį (Wi-Fi) ryšį rankiniu būdu.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Suteikti įrenginio vietos leidimą</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Įjungti vietos paslaugas</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Nepavyko atverti vietos nustatymų.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Įjungti belaidį (Wi-Fi)</string>
+  <string name="DeviceTransferSetup__error_connecting">Klaida besijungiant</string>
   <string name="DeviceTransferSetup__retry">Bandyti dar kartą</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Pateikti derinimo žurnalus</string>
+  <string name="DeviceTransferSetup__verify_code">Patikrinkite kodą</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Patikrinkite, ar žemiau esantis kodas abiejuose įrenginiuose yra toks pats. Tuomet bakstelėkite „Tęsti“.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Skaitmenys nesutampa</string>
   <string name="DeviceTransferSetup__continue">Tęsti</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Numeris nėra toks pats</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jeigu skaitmenys jūsų įrenginiuose nesutampa, gali būti, kad prisijungėte prie neteisingo įrenginio. Norėdami tai ištaisyti, sustabdykite perkėlimą ir bandykite dar kartą, o taip  pat laikykite abu įrenginius vieną šalia kito.</string>
   <string name="DeviceTransferSetup__stop_transfer">Stabdyti perkėlimą</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Nepavyko atrasti senojo įrenginio</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Nepavyko atrasti naujojo įrenginio</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Įsitikinkite, kad yra suteikti šie leidimai ir įjungtos šios paslaugos:</string>
+  <string name="DeviceTransferSetup__location_permission">Įrenginio vietos leidimas</string>
+  <string name="DeviceTransferSetup__location_services">Vietos paslaugos</string>
   <string name="DeviceTransferSetup__wifi">Belaidis (Wi-Fi)</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">„Wi-Fi Direct“ lange pašalinkite visas įsimintas grupes ir atsiekite visus pakviestus ar prijungtus įrenginius.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">„Wi-Fi Direct“ langas</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Pabandykite abiejuose įrenginiuose išjungti ir vėl įjungti belaidį (Wi-Fi) ryšį.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Įsitikinkite, kad abu įrenginiai yra perkėlimo veiksenoje.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Pereikite į palaikymo puslapį</string>
   <string name="DeviceTransferSetup__try_again">Bandykite dar kartą</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Laukiama kito įrenginio</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Norėdami pradėti perkėlimą, kitame įrenginyje bakstelėkite „Tęsti“.</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Kitame įrenginyje bakstelėkite „Tęsti“…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Negalima perkelti iš naujesnių Signal versijų</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Duomenų perkėlimas</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Laikykite įrenginius vieną šalia kito. Neišjunkite įrenginių ir palikite Signal atvertą. Perkėlimai yra šifruoti ištisiniu būdu.</string>
+  <string name="DeviceTransfer__d_messages_so_far">Jau %1$d žinučių…</string>
   <string name="DeviceTransfer__cancel">Atsisakyti</string>
   <string name="DeviceTransfer__try_again">Bandykite dar kartą</string>
   <string name="DeviceTransfer__stop_transfer_question">Stabdyti perkėlimą?</string>
@@ -2525,12 +2574,17 @@
   <string name="DeviceTransfer__unable_to_transfer">Nepavyko perkelti</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Perkelti paskyrą</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Galite perkelti savo Signal paskyrą, kai naujajame „Android“ įrenginyje nusistatote Signal. Prieš tęsdami:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Savo naujajame „Android“ įrenginyje atsisiųskite Signal</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Bakstelėkite ant „Perkelti ar atkurti paskyrą“</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Kai jūsų bus paklausta, pasirinkite „Perkelti iš „Android“ įrenginio“, o tuomet „Tęsti“. Laikykite abu įrenginius vieną šalia kito.</string>
   <string name="OldDeviceTransferInstructions__continue">Tęsti</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Perkėlimas užbaigtas</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Pereikite prie savo naujojo įrenginio</string>
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Jūsų Signal duomenys perkelti į naująjį įrenginį. Norėdami užbaigti perkėlimo procesą, privalote tęsti registraciją naujajame įrenginyje.</string>
   <string name="OldDeviceTransferComplete__close">Užverti</string>
   <!--NewDeviceTransferComplete-->
@@ -2540,11 +2594,17 @@
   <string name="NewDeviceTransferComplete__continue_registration">Tęsti registraciją</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Paskyros perkėlimas</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Ruošiamasi prisijungti prie jūsų kito „Android“ įrenginio…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Ruošiamasi prisijungti prie jūsų kito „Android“ įrenginio…</string>
   <string name="DeviceToDeviceTransferService_status_discovery">Ieškoma jūsų kito „Android“ įrenginio…</string>
   <string name="DeviceToDeviceTransferService_status_network_connected">Jungiamasi prie jūsų kito „Android“ įrenginio…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Reikalingas patvirtinimas</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Perkeliama paskyra…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Užbaikite registraciją savo naujajame įrenginyje</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Jūsų Signal paskyra perkelta į naująjį įrenginį, bet norėdami tęsti, privalote jame užbaigti registraciją. Signal šiame įrenginyje bus neveikli.</string>
   <string name="OldDeviceTransferLockedDialog__done">Atlikta</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Atsisakyti ir aktyvuoti šį įrenginį</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>

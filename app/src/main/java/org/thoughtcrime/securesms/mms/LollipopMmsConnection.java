@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.concurrent.TimeoutException;
 
 public abstract class LollipopMmsConnection extends BroadcastReceiver {
-  private static final String TAG = LollipopMmsConnection.class.getSimpleName();
+  private static final String TAG = Log.tag(LollipopMmsConnection.class);
 
   private final Context context;
   private final String action;

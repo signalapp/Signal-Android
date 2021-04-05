@@ -33,7 +33,7 @@ import java.util.Objects;
 
 public class BackupUtil {
 
-  private static final String TAG = BackupUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(BackupUtil.class);
 
   public static final int PASSPHRASE_LENGTH = 30;
 
@@ -205,7 +205,7 @@ public class BackupUtil {
     new SecureRandom().nextBytes(random);
 
     for (int i=0;i<30;i+=5) {
-      result[i/5] = String.format("%05d", ByteUtil.byteArray5ToLong(random, i) % 100000);
+      result[i/5] = String.format(Locale.ENGLISH,  "%05d", ByteUtil.byteArray5ToLong(random, i) % 100000);
     }
 
     return result;

@@ -101,6 +101,11 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
+    public @NonNull LocalDeviceStateBuilder wantsBluetooth(boolean wantsBluetooth) {
+      toBuild.wantsBluetooth = wantsBluetooth;
+      return this;
+    }
+
     public @NonNull LocalDeviceStateBuilder setOrientation(@NonNull Orientation orientation) {
       toBuild.orientation = orientation;
       return this;

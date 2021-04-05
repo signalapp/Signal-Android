@@ -1550,6 +1550,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Những người này có thể đã cài lại ứng dụng hoặc thay đổi thiết bị. Vui lòng xác minh lại mã số an toàn để đảm bảo riêng tư.</string>
   <string name="safety_number_change_dialog__view">Xem</string>
   <string name="safety_number_change_dialog__previous_verified">Đã từng được xác minh</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Cài đặt</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Đang tải các quốc gia…</string>
   <string name="country_selection_fragment__search">Tìm kiếm</string>
@@ -1709,11 +1711,19 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpFragment__include_debug_log">Thêm nhật kí lỗi.</string>
   <string name="HelpFragment__whats_this">Đây là gì?</string>
   <string name="HelpFragment__how_do_you_feel">Bạn cảm thấy thế nào? (không bắt buộc)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Nói cho chúng tôi biết lý do bạn liên lạc.</string>
   <string name="HelpFragment__support_info">Thông tin hỗ trợ</string>
   <string name="HelpFragment__signal_android_support_request">Yêu cầu hỗ trợ về Signal Android</string>
   <string name="HelpFragment__debug_log">Nhật kí lỗi:</string>
   <string name="HelpFragment__could_not_upload_logs">Không thể tải lên nhật kí lỗi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vui lòng miêu tả càng chi tiết càng tốt để giúp chúng tôi hiểu về vấn đề.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Tính năng bị hỏng</item>
+    <item>Yêu cầu tính năng mới</item>
+    <item>Câu hỏi</item>
+    <item>Góp ý</item>
+    <item>Khác</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tin nhắn này</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Sử dụng gần đây</string>
@@ -1730,10 +1740,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="arrays__use_default">Dùng mặc định</string>
   <string name="arrays__use_custom">Dùng tùy chỉnh</string>
   <string name="arrays__mute_for_one_hour">Tạm im 1 giờ</string>
-  <string name="arrays__mute_for_two_hours">Tạm im 2 giờ</string>
   <string name="arrays__mute_for_one_day">Tạm im 1 ngày</string>
   <string name="arrays__mute_for_seven_days">Tạm im 7 ngày</string>
-  <string name="arrays__mute_for_one_year">Tạm im 1 năm</string>
   <string name="arrays__settings_default">Mặc định theo hệ thống</string>
   <string name="arrays__enabled">Bật</string>
   <string name="arrays__disabled">Tắt</string>
@@ -1784,6 +1792,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__pref_led_blink_title">Tần suất nháy LED</string>
   <string name="preferences__sound">Âm thanh</string>
   <string name="preferences__silent">Im lặng</string>
+  <string name="preferences__default">Mặc định</string>
   <string name="preferences__repeat_alerts">Lặp lại cảnh báo</string>
   <string name="preferences__never">Không bao giờ</string>
   <string name="preferences__one_time">Một lần</string>
@@ -2248,16 +2257,47 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Nhấn \"Chuyển tài khoản\" và \"Tiếp tục\" trên cả hai thiết bị</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Đang chuẩn bị kết nối với thiết bị Android cũ…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Chỉ mất một lúc, sẽ hoàn thành sớm thôi</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Đang chờ kết nối với thiết bị Android cũ…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal cần quyền truy cập vị trí để kết nối và ngắt kết nối với thiết bị Android cũ của bạn.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal cần dịch vụ Vị trí được bật để kết nối và ngắt kết nối với thiết bị Android cũ của bạn.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal cần Wi-Fi được bật để phát hiện và kết nối với thiết bị Android cũ của bạn. Wi-Fi cần được bật nhưng không bắt buộc phải kết nối với một mạng Wi-Fi nào đó.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Xin lỗi, có vẻ như thiết bị này không hỗ trợ Wi-Fi Direct. Signal sử dụng Wi-Fi Direct để phát hiện và kết nối với thiết bị Android cũ của bạn. Bạn vẫn có thể khôi phục sao lưu hoặc khôi phục tài khoản trên thiết bị Android cũ của bạn.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Khôi phục bản sao lưu</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Lỗi không xác định khi đang cố gắng kết nối với thiết bị Android cũ của bạn.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal cần quyền truy cập vị trí để kết nối và ngắt kết nối với thiết bị Android mới của bạn.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal cần dịch vụ Vị trí được bật để kết nối và ngắt kết nối với thiết bị Android mới của bạn.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal cần Wi-Fi được bật để phát hiện và kết nối với thiết bị Android mới của bạn. Wi-Fi cần được bật nhưng không bắt buộc phải kết nối với một mạng Wi-Fi nào đó.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Xin lỗi, có vẻ như thiết bị này không hỗ trợ Wi-Fi Direct. Signal sử dụng Wi-Fi Direct để phát hiện và kết nối với thiết bị Android mới của bạn. Bạn vẫn có thể tạo bản sao lưu để khôi phục tài khoản trên thiết bị Android mới của bạn.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Tạo bản sao lưu</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Lỗi không xác định khi đang cố gắng kết nối với thiết bị Android mới của bạn.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Không thể mở Cài đặt Wi-Fi. Vui lòng bật Wi-Fi thủ công.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Cấp quyền truy cập vị trí</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Bật dịch vụ Vị trí</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Không thể mở Cài đặt Vị trí</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Bật Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Lỗi kết nối</string>
   <string name="DeviceTransferSetup__retry">Thử lại</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Gửi nhật kí lỗi</string>
+  <string name="DeviceTransferSetup__verify_code">Xác minh mã</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Hãy xác nhận rằng mã bên dưới trùng khớp nhau trên hai thiết bị của bạn. Sau đó nhấn Tiếp tục.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Hai mã số không khớp nhau</string>
   <string name="DeviceTransferSetup__continue">Tiếp tục</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Mã số không khớp nhau</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Nếu mã số trên hai thiết bị không khớp nhau, có thể bạn đã kết nối nhầm với thiết bị khác. Để xử lí, hãy dừng quá trình chuyển và thử lại, đồng thời hãy giữ hai thiết bị ở gần nhau.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Dừng chuyển</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Không thể tìm thấy thiết bị cũ</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Không thể tìm thấy thiết bị mới</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">Thử lại</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">Hủy</string>
   <string name="DeviceTransfer__try_again">Thử lại</string>
+  <string name="DeviceTransfer__stop_transfer">Dừng chuyển</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Chuyển Tài khoản</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
@@ -2300,6 +2340,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="GroupsLearnMore_paragraph_2">Nhóm Cũ chưa thể được nâng cấp thành Nhóm Mới, nhưng bạn có thể tạo Nhóm Mới với các thành viên như cũ nếu như họ đang dùng phiên bản mới nhất của Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal sẽ cung cấp cách để nâng cấp Nhóm Cũ trong tương lai.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Bất cứ ai với đường dẫn này có thể xem tên và ảnh nhóm và gửi yêu cầu tham gia. Chỉ chia sẻ với những người mà bạn tin tưởng.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Bất cứ ai với đường dẫn này có thể xem tên và ảnh nhóm và tham gia nhóm. Chỉ chia sẻ với những người mà bạn tin tưởng.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Chia sẻ qua Signal</string>
   <string name="GroupLinkBottomSheet_copy">Sao chép</string>
   <string name="GroupLinkBottomSheet_qr_code">Mã QR</string>

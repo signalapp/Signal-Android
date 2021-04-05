@@ -1545,10 +1545,10 @@
   <string name="arrays__use_default">ប្រើលំនាំដើម</string>
   <string name="arrays__use_custom">ប្រើផ្សេងៗ</string>
   <string name="arrays__mute_for_one_hour">បិទសំឡេង 1 ម៉ោង</string>
-  <string name="arrays__mute_for_two_hours">បិទសំឡេង 2 ម៉ោង</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">បិទសំឡេង 2 ម៉ោង</string> -->
   <string name="arrays__mute_for_one_day">បិទសំឡេង 1 ថ្ងៃ</string>
   <string name="arrays__mute_for_seven_days">បិទសំឡេង 7 ថ្ងៃ</string>
-  <string name="arrays__mute_for_one_year">បិទសំឡេង 1 ឆ្នាំ</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">បិទសំឡេង 1 ឆ្នាំ</string> -->
   <string name="arrays__settings_default">ការកំណត់លំនាំដើម</string>
   <string name="arrays__enabled">បានបើក</string>
   <string name="arrays__disabled">បានបិទ</string>

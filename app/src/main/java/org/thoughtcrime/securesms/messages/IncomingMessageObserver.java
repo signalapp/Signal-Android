@@ -41,7 +41,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class IncomingMessageObserver {
 
-  private static final String TAG = IncomingMessageObserver.class.getSimpleName();
+  private static final String TAG = Log.tag(IncomingMessageObserver.class);
 
   public  static final  int FOREGROUND_ID            = 313399;
   private static final long REQUEST_TIMEOUT_MINUTES  = 1;

@@ -24,6 +24,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
@@ -34,7 +35,7 @@ public class ImageSlide extends Slide {
   private final boolean borderless;
 
   @SuppressWarnings("unused")
-  private static final String TAG = ImageSlide.class.getSimpleName();
+  private static final String TAG = Log.tag(ImageSlide.class);
 
   public ImageSlide(@NonNull Context context, @NonNull Attachment attachment) {
     super(context, attachment);

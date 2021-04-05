@@ -58,7 +58,7 @@ public class InputPanel extends LinearLayout
                ConversationStickerSuggestionAdapter.EventListener
 {
 
-  private static final String TAG = InputPanel.class.getSimpleName();
+  private static final String TAG = Log.tag(InputPanel.class);
 
   private static final long QUOTE_REVEAL_DURATION_MILLIS = 150;
   private static final int  FADE_TIME                    = 150;

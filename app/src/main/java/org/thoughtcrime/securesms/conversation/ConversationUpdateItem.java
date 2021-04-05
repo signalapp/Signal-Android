@@ -23,6 +23,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
+import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
@@ -51,7 +52,7 @@ import java.util.concurrent.ExecutionException;
 public final class ConversationUpdateItem extends FrameLayout
                                           implements BindableConversationItem
 {
-  private static final String TAG = ConversationUpdateItem.class.getSimpleName();
+  private static final String TAG = Log.tag(ConversationUpdateItem.class);
 
   private Set<ConversationMessage> batchSelected;
 
@@ -300,6 +301,14 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onInviteFriendsToGroupClicked(conversationRecipient.requireGroupId().requireV2());
+        }
+      });
+    } else if ((conversationMessage.getMessageRecord().isMissedAudioCall() || conversationMessage.getMessageRecord().isMissedVideoCall()) && EnableCallNotificationSettingsDialog.shouldShow(getContext())) {
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setText(R.string.ConversationUpdateItem_enable_call_notifications);
+      actionButton.setOnClickListener(v -> {
+        if (eventListener != null) {
+          eventListener.onEnableCallNotificationsClicked();
         }
       });
     } else {

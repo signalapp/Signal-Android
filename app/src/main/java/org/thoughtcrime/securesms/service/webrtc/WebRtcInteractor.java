@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -11,9 +12,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.webrtc.audio.BluetoothStateManager;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
@@ -29,29 +29,33 @@ import java.util.UUID;
  */
 public class WebRtcInteractor {
 
-  @NonNull private final WebRtcCallService     webRtcCallService;
-  @NonNull private final CallManager           callManager;
-  @NonNull private final LockManager           lockManager;
-  @NonNull private final SignalAudioManager    audioManager;
-  @NonNull private final BluetoothStateManager bluetoothStateManager;
-  @NonNull private final CameraEventListener   cameraEventListener;
-  @NonNull private final GroupCall.Observer    groupCallObserver;
+  @NonNull private final Context                        context;
+  @NonNull private final SignalCallManager              signalCallManager;
+  @NonNull private final LockManager                    lockManager;
+  @NonNull private final SignalAudioManager             audioManager;
+  @NonNull private final CameraEventListener            cameraEventListener;
+  @NonNull private final GroupCall.Observer             groupCallObserver;
+  @NonNull private final AppForegroundObserver.Listener foregroundListener;
 
-  public WebRtcInteractor(@NonNull WebRtcCallService webRtcCallService,
-                          @NonNull CallManager callManager,
+  public WebRtcInteractor(@NonNull Context context,
+                          @NonNull SignalCallManager signalCallManager,
                           @NonNull LockManager lockManager,
                           @NonNull SignalAudioManager audioManager,
-                          @NonNull BluetoothStateManager bluetoothStateManager,
                           @NonNull CameraEventListener cameraEventListener,
-                          @NonNull GroupCall.Observer groupCallObserver)
+                          @NonNull GroupCall.Observer groupCallObserver,
+                          @NonNull AppForegroundObserver.Listener foregroundListener)
   {
-    this.webRtcCallService     = webRtcCallService;
-    this.callManager           = callManager;
-    this.lockManager           = lockManager;
-    this.audioManager          = audioManager;
-    this.bluetoothStateManager = bluetoothStateManager;
-    this.cameraEventListener   = cameraEventListener;
-    this.groupCallObserver     = groupCallObserver;
+    this.context           = context;
+    this.signalCallManager = signalCallManager;
+    this.lockManager       = lockManager;
+    this.audioManager        = audioManager;
+    this.cameraEventListener = cameraEventListener;
+    this.groupCallObserver   = groupCallObserver;
+    this.foregroundListener  = foregroundListener;
+  }
+
+  @NonNull Context getContext() {
+    return context;
   }
 
   @NonNull CameraEventListener getCameraEventListener() {
@@ -59,75 +63,71 @@ public class WebRtcInteractor {
   }
 
   @NonNull CallManager getCallManager() {
-    return callManager;
-  }
-
-  @NonNull WebRtcCallService getWebRtcCallService() {
-    return webRtcCallService;
+    return signalCallManager.getRingRtcCallManager();
   }
 
   @NonNull GroupCall.Observer getGroupCallObserver() {
     return groupCallObserver;
   }
 
+  @NonNull AppForegroundObserver.Listener getForegroundListener() {
+    return foregroundListener;
+  }
+
   void setWantsBluetoothConnection(boolean enabled) {
-    bluetoothStateManager.setWantsConnection(enabled);
+    WebRtcCallService.setWantsBluetoothConnection(context, enabled);
   }
 
   void updatePhoneState(@NonNull LockManager.PhoneState phoneState) {
     lockManager.updatePhoneState(phoneState);
   }
 
-  void sendMessage(@NonNull WebRtcServiceState state) {
-    webRtcCallService.sendMessage(state);
+  void postStateUpdate(@NonNull WebRtcServiceState state) {
+    signalCallManager.postStateUpdate(state);
   }
 
   void sendCallMessage(@NonNull RemotePeer remotePeer, @NonNull SignalServiceCallMessage callMessage) {
-    webRtcCallService.sendCallMessage(remotePeer, callMessage);
-  }
-
-  void sendOpaqueCallMessage(@NonNull UUID uuid, @NonNull SignalServiceCallMessage callMessage) {
-    webRtcCallService.sendOpaqueCallMessage(uuid, callMessage);
+    signalCallManager.sendCallMessage(remotePeer, callMessage);
   }
 
   void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId) {
-    webRtcCallService.sendGroupCallMessage(recipient, groupCallEraId);
+    signalCallManager.sendGroupCallUpdateMessage(recipient, groupCallEraId);
   }
 
   void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
-    webRtcCallService.updateGroupCallUpdateMessage(groupId, groupCallEraId, joinedMembers, isCallFull);
+    signalCallManager.updateGroupCallUpdateMessage(groupId, groupCallEraId, joinedMembers, isCallFull);
   }
 
   void setCallInProgressNotification(int type, @NonNull RemotePeer remotePeer) {
-    webRtcCallService.setCallInProgressNotification(type, remotePeer.getRecipient());
+    WebRtcCallService.update(context, type, remotePeer.getRecipient().getId());
   }
 
   void setCallInProgressNotification(int type, @NonNull Recipient recipient) {
-    webRtcCallService.setCallInProgressNotification(type, recipient);
+    WebRtcCallService.update(context, type, recipient.getId());
   }
 
   void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
-    webRtcCallService.retrieveTurnServers(remotePeer);
+    signalCallManager.retrieveTurnServers(remotePeer);
   }
 
   void stopForegroundService() {
-    webRtcCallService.stopForeground(true);
+    WebRtcCallService.stop(context);
   }
 
-  void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp, boolean isVideoOffer) {
-    webRtcCallService.insertMissedCall(remotePeer, signal, timestamp, isVideoOffer);
+  void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer) {
+    signalCallManager.insertMissedCall(remotePeer, true, timestamp, isVideoOffer);
   }
 
-  void startWebRtcCallActivityIfPossible() {
-    webRtcCallService.startCallCardActivityIfPossible();
+  boolean startWebRtcCallActivityIfPossible() {
+    return signalCallManager.startCallCardActivityIfPossible();
   }
 
   void registerPowerButtonReceiver() {
-    webRtcCallService.registerPowerButtonReceiver();
+    WebRtcCallService.changePowerButtonReceiver(context, true);
   }
 
   void unregisterPowerButtonReceiver() {
-    webRtcCallService.unregisterPowerButtonReceiver();
+    WebRtcCallService.changePowerButtonReceiver(context, false);
   }
 
   void silenceIncomingRinger() {
@@ -142,8 +142,8 @@ public class WebRtcInteractor {
     audioManager.startIncomingRinger(ringtoneUri, vibrate);
   }
 
-  void startOutgoingRinger(@NonNull OutgoingRinger.Type type) {
-    audioManager.startOutgoingRinger(type);
+  void startOutgoingRinger() {
+    audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
   }
 
   void stopAudio(boolean playDisconnect) {
@@ -155,6 +155,6 @@ public class WebRtcInteractor {
   }
 
   void peekGroupCall(@NonNull RecipientId recipientId) {
-    webRtcCallService.peekGroupCall(recipientId);
+    signalCallManager.peekGroupCall(recipientId);
   }
 }

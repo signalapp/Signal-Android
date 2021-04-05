@@ -24,7 +24,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 public class RecentEmojiPageModel implements EmojiPageModel {
-  private static final String TAG            = RecentEmojiPageModel.class.getSimpleName();
+  private static final String TAG            = Log.tag(RecentEmojiPageModel.class);
   private static final int    EMOJI_LRU_SIZE = 50;
 
   private final SharedPreferences     prefs;

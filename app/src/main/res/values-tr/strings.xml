@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Bahsedilmeler</string>
   <string name="ManageGroupActivity_chat_wallpaper">Konuşma duvar kağıdı</string>
   <string name="ManageGroupActivity_until_s">%1$s tarihine kadar</string>
+  <string name="ManageGroupActivity_always">Her zaman</string>
   <string name="ManageGroupActivity_off">Kapalı</string>
   <string name="ManageGroupActivity_on">Açık</string>
   <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
@@ -647,7 +648,7 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar ayarlanamadı</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Sistem kişilerine ekle</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Bu kişi, kişileriniz arasında</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Kişileriniz arasında</string>
   <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageRecipientActivity_chat_color">Konuşma rengi</string>
   <string name="ManageRecipientActivity_chat_wallpaper">Konuşma duvar kağıdı</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageRecipientActivity_custom_notifications">Özel bildirimler</string>
   <string name="ManageRecipientActivity_until_s">%1$s tarihine kadar</string>
+  <string name="ManageRecipientActivity_always">Her zaman</string>
   <string name="ManageRecipientActivity_off">Kapalı</string>
   <string name="ManageRecipientActivity_on">Açık</string>
   <string name="ManageRecipientActivity_add_to_a_group">Bir gruba ekle</string>
@@ -1476,6 +1478,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NotificationChannel_group_messages">İletiler</string>
   <string name="NotificationChannel_missing_display_name">Bilinmeyen</string>
   <string name="NotificationChannel_voice_notes">Sesli Notlar</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Bildirim kanal ayarlarını açmak için mevcut bir faaliyet yok</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilitliyken hızlı cevap kullanılamaz!</string>
@@ -1596,6 +1599,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_return_to_call">Aramaya dön</string>
   <string name="ConversationUpdateItem_call_is_full">Arama dolu</string>
   <string name="ConversationUpdateItem_invite_friends">Arkadaşlarını davet et</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Arama Bildirimlerini Etkinleştir</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
@@ -1619,6 +1623,18 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Aşağıdaki kişiler cihazd değiştirmiş veya yeniden yükleme yapmış olabilir. Gizliliğinizden emin olmak için güvenlik numaranızı doğrulayın.</string>
   <string name="safety_number_change_dialog__view">Görüntüle</string>
   <string name="safety_number_change_dialog__previous_verified">Daha önce doğrulandı</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Arama bildirimleri etkinleştirildi.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Arama bildirimlerini etkinleştir</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Arka plan faaliyetini etkinleştir.</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Şimdi her şey iyi gözüküyor!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Arama bildirimlerini almak için, buraya dokunun ve \"Bildirimleri göster\" seçeneğini açın.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Arama bildirimlerini almak için, buraya dokunun ve bildirimleri açın ve Ses ve Açılır Pencere\'nin etkin olduğundan emin olun.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Arama bildirimlerini almak için, buraya dokunun ve \"Batarya\" ayarlarında arka plan faaliyetini etkinleştirin.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Ayarlar</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Arama bildirimlerini almak için, Ayarlar seçeneğine dokunun ve \"Bildirimleri göster\" seçeneğini açın.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Arama bildirimlerini almak için, Ayarlar seçeneğine dokunun ve bildirimleri açın ve Ses ve Açılır Pencere\'nin etkin olduğundan emin olun.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Arama bildirimlerini almak için, Ayarlar seçeneğine dokunun ve \"Batarya\" ayarlarında arka plan faaliyetini etkinleştirin.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor…</string>
   <string name="country_selection_fragment__search">Ara</string>
@@ -1814,10 +1830,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
   <string name="arrays__mute_for_one_hour">1 saatliğine sustur</string>
-  <string name="arrays__mute_for_two_hours">2 saatliğine sustur</string>
+  <string name="arrays__mute_for_eight_hours">8 saat sustur</string>
   <string name="arrays__mute_for_one_day">1 günlüğüne sustur</string>
   <string name="arrays__mute_for_seven_days">7 günlüğüne sustur</string>
-  <string name="arrays__mute_for_one_year">1 yıllığına sustur</string>
+  <string name="arrays__always">Her zaman</string>
   <string name="arrays__settings_default">Varsayılan ayarlar</string>
   <string name="arrays__enabled">Etkin</string>
   <string name="arrays__disabled">Devre dışı</string>
@@ -1869,6 +1885,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__pref_led_blink_title">LED yanıp sönme şekli</string>
   <string name="preferences__sound">Zil Sesi</string>
   <string name="preferences__silent">Sessiz</string>
+  <string name="preferences__default">Varsayılan</string>
   <string name="preferences__repeat_alerts">Uyarıları tekrarla</string>
   <string name="preferences__never">Asla</string>
   <string name="preferences__one_time">Bir kez</string>
@@ -2329,7 +2346,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Hesabı aktar veya geri yükle</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Eğer önceden Signal hesabı oluşturduysanız, hesabınızı ve iletilerinizi aktarabilir veya geri yükleyebilirsiniz</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android cihazdan aktar</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Eski Android cihazınızdan hesabınızı ve iletilerinizi aktarın. Eski cihazınıza erişiminiz olmalıdır.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Eski cihazınıza erişiminiz olmalıdır.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Yedekten geri yükle</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">İletilerinizi yerel bir yedekten geri yükleyin. Eğer şimdi yüklemezseniz, daha sonra yükleyemezsiniz.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Eski Android cihazınızda Signal\'i açın</string>
   <string name="NewDeviceTransferInstructions__continue">Devam Et</string>
@@ -2350,6 +2370,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Yedeği geri yükle</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Eski Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Yeni Android cihaz aranıyor…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
@@ -2384,6 +2405,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Her iki aygıtın aktarım kipinde olduğundan emin olun.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Destek sayfasına git</string>
   <string name="DeviceTransferSetup__try_again">Tekrar dene</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Diğer cihaz bekleniyor</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Aktarmayı başlatmak için diğer cihazınızda Devam seçeneğine dokunun.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Diğer cihazınızda Devam seçeneğine dokunun…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Daha yeni bir Signal sürümünden aktarım yapılamaz</string>
   <!--DeviceTransferFragment-->
@@ -2426,7 +2450,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Doğrulama gerekli</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Hesap aktarılıyor…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Yeni cihazınızda kayodlma işlemini tamamlayın</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal hesabınız yeni cihaza aktarıldı, fakat devam etmek için yeni cihazdan kaydı tamamlamanız gerekiyor. Signal bu cihazda etkin olmayacaktır.</string>
   <string name="OldDeviceTransferLockedDialog__done">Tamam</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">İptal et ve bu cihazı etkinleştir</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>

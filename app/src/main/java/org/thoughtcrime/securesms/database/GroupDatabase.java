@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -991,6 +992,8 @@ public final class GroupDatabase extends Database {
           return GroupAccessControl.ALL_MEMBERS;
         }
         return GroupAccessControl.ONLY_ADMINS;
+      } else if (isV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
+        return GroupAccessControl.NO_ONE;
       } else {
         return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
       }
@@ -1005,6 +1008,8 @@ public final class GroupDatabase extends Database {
           return GroupAccessControl.ALL_MEMBERS;
         }
         return GroupAccessControl.ONLY_ADMINS;
+      } else if (isV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
+        return GroupAccessControl.NO_ONE;
       } else {
         return GroupAccessControl.ALL_MEMBERS;
       }

@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Упоминания</string>
   <string name="ManageGroupActivity_chat_wallpaper">Обои чата</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Всегда</string>
   <string name="ManageGroupActivity_off">Отключено</string>
   <string name="ManageGroupActivity_on">Включено</string>
   <string name="ManageGroupActivity_view_all_members">Просмотреть всех участников</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string>
   <string name="ManageRecipientActivity_custom_notifications">Индивидуальные уведомления</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
+  <string name="ManageRecipientActivity_always">Всегда</string>
   <string name="ManageRecipientActivity_off">Отключено</string>
   <string name="ManageRecipientActivity_on">Включено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Добавить в группу</string>
@@ -919,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящий звонок Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Останавливается сервис звонков Signal</string>
   <string name="NotificationBarManager__deny_call">Отклонить</string>
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
@@ -1595,6 +1598,7 @@
   <string name="NotificationChannel_group_messages">Сообщения</string>
   <string name="NotificationChannel_missing_display_name">Неизвестный</string>
   <string name="NotificationChannel_voice_notes">Голосовые заметки</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Нет доступной активности для открытия настроек категорий уведомлений.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Быстрые ответы недоступны, когда Signal заблокирован!</string>
@@ -1721,6 +1725,7 @@
   <string name="ConversationUpdateItem_return_to_call">Вернуться к звонку</string>
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -1744,6 +1749,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следующие люди могли переустановить Signal или сменить устройства. Подтвердите ваш код безопасности с ними, чтобы обеспечить конфиденциальность.</string>
   <string name="safety_number_change_dialog__view">Просмотреть</string>
   <string name="safety_number_change_dialog__previous_verified">Ранее проверенный(-ая)</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Уведомления о звонках включены.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Включите уведомления о звонках</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Включите фоновую активность</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Теперь всё выглядит хорошо!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Чтобы получать уведомления о звонках, нажмите здесь и включите «Включить уведомления».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Чтобы получать уведомления о звонках, нажмите здесь, включите уведомления и убедитесь, что «Оповещения» и «Всплывающее окно» включены.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Чтобы получать уведомления о звонках, нажмите здесь и включите фоновую активность в настройках батареи.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Настройки</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Чтобы получать уведомления о звонках, нажмите «Настройки» и включите «Включить уведомления».</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Чтобы получать уведомления о звонках, нажмите «Настройки», включите уведомления и убедитесь, что «Оповещения» и «Всплывающее окно» включены.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Чтобы получать уведомления о звонках, нажмите «Настройки» и включите фоновую активность в настройках батареи.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Загружаем страны…</string>
   <string name="country_selection_fragment__search">Поиск</string>
@@ -1932,7 +1949,7 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
   <string-array name="HelpFragment__categories">
     <item>Что-то не работает</item>
-    <item>Запрос функции</item>
+    <item>Запросить новые функции</item>
     <item>Вопрос</item>
     <item>Обратная связь</item>
     <item>Другое</item>
@@ -1953,10 +1970,10 @@
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
   <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
   <string name="arrays__mute_for_one_hour">Отключить звук на 1 час</string>
-  <string name="arrays__mute_for_two_hours">Отключить звук на 2 часа</string>
+  <string name="arrays__mute_for_eight_hours">Отключить звук на 8 часов</string>
   <string name="arrays__mute_for_one_day">Отключить звук на 1 день</string>
   <string name="arrays__mute_for_seven_days">Отключить звук на 7 дней</string>
-  <string name="arrays__mute_for_one_year">Отключить звук на 1 год</string>
+  <string name="arrays__always">Всегда</string>
   <string name="arrays__settings_default">По умолчанию</string>
   <string name="arrays__enabled">Включено</string>
   <string name="arrays__disabled">Отключено</string>
@@ -2010,6 +2027,7 @@
   <string name="preferences__pref_led_blink_title">Мигание светодиода</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__silent">Без звука</string>
+  <string name="preferences__default">По умолчанию</string>
   <string name="preferences__repeat_alerts">Повторять оповещения</string>
   <string name="preferences__never">Никогда</string>
   <string name="preferences__one_time">Один раз</string>
@@ -2498,14 +2516,14 @@
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Нажмите «Перенести учётную запись», а затем «Продолжить» на обоих устройствах</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Подготовка к подключению к вашему старому Android-устройству…</string>
-  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Подождите, скоро будет готово</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ожидание подключения старого Android-устройства…</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Готовимся к подключению к вашему старому Android-устройству…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Ещё немного, скоро закончим</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ожидаем подключение старого Android-устройства…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal требуется разрешение на доступ к местоположению, чтобы обнаружить ваше старое Android-устройство и подключиться к нему.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Службы геолокации должны быть включены, чтобы Signal смог обнаружить ваше старое Android-устройство и соединиться с ним.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Wi-Fi должен быть включён, чтобы Signal смог обнаружить ваше старое Android-устройство и соединиться с ним. При этом подключаться к какой-либо сети Wi-Fi не обязательно.</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, похоже, что это устройство не поддерживает Wi-Fi Direct. Signal использует Wi-Fi Direct, чтобы обнаружить ваше старое Android-устройство и соединиться с ним. Вы всё равно можете восстановить резервную копию, чтобы восстановить свою учётную запись со своего старого Android-устройства.</string>
-  <string name="NewDeviceTransferSetup__restore_a_backup">Восстановить резервную копию</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, похоже, что это устройство не поддерживает Wi-Fi Direct. Signal использует Wi-Fi Direct, чтобы обнаружить ваше старое Android-устройство и соединиться с ним. Однако вы можете восстановить свою учётную запись со старого устройства из резервной копии.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Восстановить из резервной копии</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">При попытке подключения к вашему старому Android-устройству произошла неожиданная ошибка.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Поиск нового Android-устройства…</string>
@@ -2525,11 +2543,11 @@
   <string name="DeviceTransferSetup__retry">Повторить попытку</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Отправить журналы отладки</string>
   <string name="DeviceTransferSetup__verify_code">Проверьте код</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверьте, что код ниже совпадает на ваших обоих устройствах. Затем нажмите «Продолжить».</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверьте, что указанный ниже код одинаков на обоих ваших устройствах. Затем нажмите «Продолжить».</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Цифры не совпадают</string>
   <string name="DeviceTransferSetup__continue">Продолжить</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Число не одинаковое</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Если цифры на ваших устройствах не совпадают, то возможно, что вы подключились не к тому устройству. Чтобы исправить это, остановите перенос и попробуйте ещё раз, держа оба ваших устройства близко друг к другу.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Если цифры на ваших устройствах не совпадают, возможно, вы подключились не к тому устройству. Чтобы исправить это, остановите перенос и попробуйте ещё раз, держа оба ваших устройства близко друг к другу.</string>
   <string name="DeviceTransferSetup__stop_transfer">Остановить перенос</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Не удалось обнаружить старое устройство</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Не удалось обнаружить новое устройство</string>
@@ -2544,8 +2562,8 @@
   <string name="DeviceTransferSetup__go_to_support_page">Перейти на страницу поддержки</string>
   <string name="DeviceTransferSetup__try_again">Попробовать ещё раз</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Ожидание другого устройства</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Нажмите «Продолжить» на своём другом устройстве, чтобы начать перенос.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Нажмите «Продолжить» на своём другом устройстве…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Нажмите «Продолжить» на другом устройстве, чтобы начать перенос.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Нажмите «Продолжить» на другом устройстве…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Невозможно перенести с более новых версий Signal</string>
   <!--DeviceTransferFragment-->
@@ -2581,17 +2599,17 @@
   <string name="NewDeviceTransferComplete__continue_registration">Продолжить регистрацию</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Перенос учётной записи</string>
-  <string name="DeviceToDeviceTransferService_status_ready">Подготовка к подключению к вашему другому Android-устройству…</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">Подготовка к подключению к вашему другому Android-устройству…</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">Поиск вашего другого Android-устройства…</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Подключение к вашему другому Android-устройству…</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Готовимся к подключению к вашему другому Android-устройству…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Готовимся к подключению к вашему другому Android-устройству…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Ищем ваше другое Android-устройство…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Подключаемся к вашему другому Android-устройству…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Необходима проверка</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Перенос учётной записи…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Завершите регистрацию на своём новом устройстве</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваша учётная запись Signal была перенесена на ваше новое устройство, но вам необходимо завершить регистрацию на нём, чтобы продолжить. Signal будет неактивен на этом устройстве.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваша учётная запись Signal была перенесена на ваше новое устройство, но теперь вам нужно завершить регистрацию на нём. На этом устройстве Signal будет неактивен.</string>
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Отменить, и активировать это устройство</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Отменить и активировать это устройство</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>

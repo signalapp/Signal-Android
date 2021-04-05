@@ -1207,10 +1207,10 @@
   <string name="arrays__use_default">ડિફોલ્ટનો ઉપયોગ કરો</string>
   <string name="arrays__use_custom">કસ્ટમનો ઉપયોગ કરો</string>
   <string name="arrays__mute_for_one_hour">1 કલાક માટે મ્યૂટ કરો</string>
-  <string name="arrays__mute_for_two_hours">2 કલાક માટે મ્યૂટ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">2 કલાક માટે મ્યૂટ કરો</string> -->
   <string name="arrays__mute_for_one_day">1 દિવસ માટે મ્યૂટ કરો</string>
   <string name="arrays__mute_for_seven_days">7 દિવસ માટે મ્યૂટ કરો</string>
-  <string name="arrays__mute_for_one_year">1 વર્ષ માટે મ્યૂટ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">1 વર્ષ માટે મ્યૂટ કરો</string> -->
   <string name="arrays__settings_default">ડિફોલ્ટ સેટિંગ્સ</string>
   <string name="arrays__enabled">સક્ષમ</string>
   <string name="arrays__disabled">અક્ષમ</string>

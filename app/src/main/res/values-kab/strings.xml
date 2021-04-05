@@ -1618,6 +1618,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Imdanen-a yezmer ulsen asebded neɣ beddlen ibenkan. Senqed uṭṭun-ik·im n tiliɣri yid-sen i uḍman n tbaḍnit.</string>
   <string name="safety_number_change_dialog__view">Sken</string>
   <string name="safety_number_change_dialog__previous_verified">Asenqed yezrin</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Iɣewwaṛen</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Asali n tmura…</string>
   <string name="country_selection_fragment__search">Nadi</string>
@@ -1784,11 +1786,19 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpFragment__include_debug_log">Seddu aɣmis n temseɣtayt.</string>
   <string name="HelpFragment__whats_this">D acu-t wa?</string>
   <string name="HelpFragment__how_do_you_feel">Amek i tettḥulfuḍ? (D afrayan)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Ini-aɣ-d ayɣer i aɣ-d-tnermseḍ.</string>
   <string name="HelpFragment__support_info">Talɣut n tallalt</string>
   <string name="HelpFragment__signal_android_support_request">Asuter n tallalt n Signal Android</string>
   <string name="HelpFragment__debug_log">Aɣmis n temseɣtayt:</string>
   <string name="HelpFragment__could_not_upload_logs">Ur yezmir ara ad d-isali iɣmisen</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ttxil-k·m ɛreḍ ayen yellan fell-ak·am amek ara ad d-tgelmeḍ ugur i wakken ad aɣ-talleḍ ad t-negzu.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Yella wayen ur nteddu ara</item>
+    <item>Asuter n tmahilt</item>
+    <item>Asteqsi</item>
+    <item>Tiririt</item>
+    <item>Ayen nniḍen</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Izen-agi</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yesttwaseqdec melmi kan</string>
@@ -1805,10 +1815,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="arrays__use_default">Seqdec udem amezwer</string>
   <string name="arrays__use_custom">Seqdec udmawan</string>
   <string name="arrays__mute_for_one_hour">Kkes imesli i 1 n wesrag</string>
-  <string name="arrays__mute_for_two_hours">Kkes imesli i 2 n yisragen</string>
   <string name="arrays__mute_for_one_day">Kkes imesli i 1 n wass</string>
   <string name="arrays__mute_for_seven_days">Kkes imesli i 7 n wussan</string>
-  <string name="arrays__mute_for_one_year">Kkes imesli i 1 n useggas</string>
   <string name="arrays__settings_default">Iɣewwaṛen imezwar</string>
   <string name="arrays__enabled">Yermed</string>
   <string name="arrays__disabled">Yensa</string>
@@ -1860,6 +1868,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences__pref_led_blink_title">Talɣa n ubraq n LED</string>
   <string name="preferences__sound">Imesli</string>
   <string name="preferences__silent">Tasusmi</string>
+  <string name="preferences__default">Amezwar</string>
   <string name="preferences__repeat_alerts">Ilɣa i d-yettuɣalen</string>
   <string name="preferences__never">Werǧin</string>
   <string name="preferences__one_time">Yiwet n tikkelt</string>
@@ -2236,9 +2245,13 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="backup_enable_dialog__folder">Akaram</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Uriɣ tafyirt-a tuffirt. Mebla yis-s, ur zmireɣ ara ad d-rreɣ aḥraz.</string>
   <string name="registration_activity__restore_backup">Tiririt n uḥraz</string>
+  <string name="registration_activity__transfer_or_restore_account">Azen neɣ err-d amiḍan</string>
+  <string name="registration_activity__transfer_account">Azen amiḍan</string>
   <string name="registration_activity__skip">Zgel</string>
   <string name="preferences_chats__chat_backups">Aḥrazen n usqerdec</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Ḥrez idiwenniyen ɣef uklas azɣaray</string>
+  <string name="preferences_chats__transfer_account">Azen amiḍan</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Azen amidan ɣer yibenk.ik.im amaynut Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sekcem tafyirt tuffirt n uḥraz</string>
   <string name="RegistrationActivity_restore">Err-d</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ur yezmir ara ad d-yekter aḥrazen seg yileqman imaynuten n Signal</string>
@@ -2313,27 +2326,69 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TEKKI AKKEN AD YELDI</string>
   <string name="Recipient_unknown">Arussin</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Azen neɣ err-d amiḍan</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ma yella tejerrdeḍ yakan ɣer umiḍan Signal, tzemreḍ ad tazneḍ neɣ ad d-terreḍ amiḍan-ik·im d yiznanen</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Yettwazen-d seg yibenk Android</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Tesriḍ anekcum ɣer yibenk-ik·im aqbur</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Tiririt seg uḥraz</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Kemmel</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_wifi">Rmed Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Tuccḍa deg tuqqna</string>
   <string name="DeviceTransferSetup__retry">Ɛreḍ tikelt nniḍen</string>
+  <string name="DeviceTransferSetup__verify_code">Senqed tangalt</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Uṭṭunen-a ur mṣadan ara</string>
   <string name="DeviceTransferSetup__continue">Kemmel</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Uṭṭun-a mačči kifkif</string>
+  <string name="DeviceTransferSetup__stop_transfer">Seḥbes tuzna</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Negguma ad d-naf ibenk aqbur</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Negguma ad d-naf ibenk amaynut</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Ddu ɣer usebter n tallelt</string>
   <string name="DeviceTransferSetup__try_again">Ɛreḍ tikkelt-nniḍen</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Araǧu n ibenk-nniḍen</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ur yezmir ara ad yazen seg yileqman imaynuten n Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Tuzna n isefka</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Eǧǧ sin-nni n yibenkan myiqraben. Ur snusuy ara yiwen deg-sen, rnu eǧǧ Signal yeldi. Tuzna tettuwawgelhen seg yixef ɣer yixef.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d n yiznan ar tura…</string>
   <string name="DeviceTransfer__cancel">Annuler</string>
   <string name="DeviceTransfer__try_again">Ɛreḍ tikkelt-nniḍen</string>
+  <string name="DeviceTransfer__stop_transfer_question">Seḥbes tuzna?</string>
+  <string name="DeviceTransfer__stop_transfer">Seḥbes tuzna</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Akk tuzniwin iteddun ad ruḥent.</string>
+  <string name="DeviceTransfer__transfer_failed">Tuzna tecceḍ</string>
+  <string name="DeviceTransfer__unable_to_transfer">Ur nezmir ara ad nazen</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Azen Amiḍan</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Sader-d Signal ɣef yibenk.ik.im amaynut</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tekki ɣef \"Azen neɣ err-d amiḍan\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Kemmel</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Tuzzna temmed</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Ddu ɣer yibenk.ik.im amaynut</string>
+  <string name="OldDeviceTransferComplete__close">Mdel</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Tuzzna tedda akken iwata</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Tuzzna temmed</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Kemmel ajerred</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Tuzzna n umiḍan</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Asenqed yettusra</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Tuzna n umiḍan…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Yemmed</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Sefsex yerna rmed ibenk-agi</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Sewḥel</string>
   <string name="RecipientBottomSheet_unblock">Serreḥ</string>

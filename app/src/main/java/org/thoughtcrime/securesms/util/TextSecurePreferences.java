@@ -38,7 +38,7 @@ import java.util.UUID;
 
 public class TextSecurePreferences {
 
-  private static final String TAG = TextSecurePreferences.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecurePreferences.class);
 
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
@@ -985,6 +985,10 @@ public class TextSecurePreferences {
 
   public static boolean isNotificationsEnabled(Context context) {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
+  }
+
+  public static void setCallNotificationsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, CALL_NOTIFICATIONS_PREF, enabled);
   }
 
   public static boolean isCallNotificationsEnabled(Context context) {

@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Mencións</string>
   <string name="ManageGroupActivity_chat_wallpaper">Fondo de pantalla do chat</string>
   <string name="ManageGroupActivity_until_s">Ata %1$s</string>
+  <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silenciar notificacións</string>
   <string name="ManageRecipientActivity_custom_notifications">Personalizar notificacións</string>
   <string name="ManageRecipientActivity_until_s">Ata %1$s</string>
+  <string name="ManageRecipientActivity_always">Sempre</string>
   <string name="ManageRecipientActivity_off">Off</string>
   <string name="ManageRecipientActivity_on">On</string>
   <string name="ManageRecipientActivity_add_to_a_group">Engadir ao grupo</string>
@@ -1598,6 +1600,7 @@
   <string name="ConversationUpdateItem_return_to_call">Volver chamar</string>
   <string name="ConversationUpdateItem_call_is_full">A chamada está completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amizades</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Activar notificacións de chamadas</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reproducir … Deter</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1621,6 +1624,13 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes persoas pode que reinstalasen ou cambiasen de dispositivo. Comproba o número de seguranza con elas para garantir a privacidade.</string>
   <string name="safety_number_change_dialog__view">Ver</string>
   <string name="safety_number_change_dialog__previous_verified">Verificado previamente</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notificacións de chamada activadas.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activar notificacións de chamada</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Activar actividade en segundo plano</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Semella que todo está ben!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Para recibir notificacións de chamada, toca aquí e activa \"Mostrar notificacións.\"</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Configuración</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Cargando países…</string>
   <string name="country_selection_fragment__search">Procurar</string>
@@ -1816,10 +1826,10 @@
   <string name="arrays__use_default">Utilizar o predeterminado</string>
   <string name="arrays__use_custom">Utilizar o personalizado</string>
   <string name="arrays__mute_for_one_hour">Silenciar durante 1 hora</string>
-  <string name="arrays__mute_for_two_hours">Silenciar durante 2 horas</string>
+  <string name="arrays__mute_for_eight_hours">Acalar durante 8 horas</string>
   <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
   <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
-  <string name="arrays__mute_for_one_year">Silenciar durante 1 ano</string>
+  <string name="arrays__always">Sempre</string>
   <string name="arrays__settings_default">Configuración predefinida</string>
   <string name="arrays__enabled">Activado</string>
   <string name="arrays__disabled">Desactivado</string>
@@ -1871,6 +1881,7 @@
   <string name="preferences__pref_led_blink_title">Intermitencia do LED</string>
   <string name="preferences__sound">Son</string>
   <string name="preferences__silent">En silencio</string>
+  <string name="preferences__default">Por defecto</string>
   <string name="preferences__repeat_alerts">Repetir alertas</string>
   <string name="preferences__never">Nunca</string>
   <string name="preferences__one_time">Unha vez</string>

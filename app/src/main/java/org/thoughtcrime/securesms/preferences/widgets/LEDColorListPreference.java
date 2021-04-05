@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceViewHolder;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 
 /**
@@ -35,7 +36,7 @@ import org.thoughtcrime.securesms.R;
 
 public class LEDColorListPreference extends ListPreference {
 
-  private static final String TAG = LEDColorListPreference.class.getSimpleName();
+  private static final String TAG = Log.tag(LEDColorListPreference.class);
 
   private ImageView colorImageView;
 

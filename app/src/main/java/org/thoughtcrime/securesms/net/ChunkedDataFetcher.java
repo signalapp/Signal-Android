@@ -29,7 +29,7 @@ import okhttp3.Response;
 
 public class ChunkedDataFetcher {
 
-  private static final String TAG = ChunkedDataFetcher.class.getSimpleName();
+  private static final String TAG = Log.tag(ChunkedDataFetcher.class);
 
   private static final CacheControl NO_CACHE = new CacheControl.Builder().noCache().build();
 

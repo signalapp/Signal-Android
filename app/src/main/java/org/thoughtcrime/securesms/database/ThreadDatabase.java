@@ -79,7 +79,7 @@ import java.util.Set;
 
 public class ThreadDatabase extends Database {
 
-  private static final String TAG = ThreadDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(ThreadDatabase.class);
 
   public static final long NO_TRIM_BEFORE_DATE_SET   = 0;
   public static final int  NO_TRIM_MESSAGE_COUNT_SET = Integer.MAX_VALUE;

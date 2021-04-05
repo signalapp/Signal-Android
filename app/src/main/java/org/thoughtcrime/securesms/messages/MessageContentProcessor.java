@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.messages;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -13,6 +12,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallId;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -80,9 +80,8 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -91,7 +90,6 @@ import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -229,15 +227,15 @@ public final class MessageContentProcessor {
           }
         }
 
-        if      (isInvalidMessage(message))                                               handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
-        else if (message.isEndSession())                                                  handleEndSessionMessage(content, smsMessageId);
-        else if (message.isGroupV1Update())                                               handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1());
-        else if (message.isExpirationUpdate())                                            handleExpirationUpdate(content, message, smsMessageId, groupId);
-        else if (message.getReaction().isPresent())                                       handleReaction(content, message);
-        else if (message.getRemoteDelete().isPresent())                                   handleRemoteDelete(content, message);
-        else if (isMediaMessage)                                                          handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent())                                           handleTextMessage(content, message, smsMessageId, groupId);
-        else if (FeatureFlags.groupCalling() && message.getGroupCallUpdate().isPresent()) handleGroupCallUpdateMessage(content, message, groupId);
+        if      (isInvalidMessage(message))                                              handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
+        else if (message.isEndSession())                                                 handleEndSessionMessage(content, smsMessageId);
+        else if (message.isGroupV1Update())                                              handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1());
+        else if (message.isExpirationUpdate())                                           handleExpirationUpdate(content, message, smsMessageId, groupId);
+        else if (message.getReaction().isPresent())                                      handleReaction(content, message);
+        else if (message.getRemoteDelete().isPresent())                                  handleRemoteDelete(content, message);
+        else if (isMediaMessage)                                                         handleMediaMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent())                                          handleTextMessage(content, message, smsMessageId, groupId);
+        else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent()) handleGroupCallUpdateMessage(content, message, groupId);
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           handleUnknownGroupMessage(content, message.getGroupContext().get());
@@ -389,25 +387,17 @@ public final class MessageContentProcessor {
       MessageDatabase database = DatabaseFactory.getSmsDatabase(context);
       database.markAsMissedCall(smsMessageId.get(), message.getType() == OfferMessage.Type.VIDEO_CALL);
     } else {
-      Intent intent            = new Intent(context, WebRtcCallService.class);
       Recipient  recipient         = Recipient.externalHighTrustPush(context, content.getSender());
       RemotePeer remotePeer        = new RemotePeer(recipient.getId());
       byte[]     remoteIdentityKey = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
 
-      intent.setAction(WebRtcCallService.ACTION_RECEIVE_OFFER)
-            .putExtra(WebRtcCallService.EXTRA_CALL_ID,                    message.getId())
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,                remotePeer)
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_IDENTITY_KEY,        remoteIdentityKey)
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,              content.getSenderDevice())
-            .putExtra(WebRtcCallService.EXTRA_OFFER_OPAQUE,               message.getOpaque())
-            .putExtra(WebRtcCallService.EXTRA_OFFER_SDP,                  message.getSdp())
-            .putExtra(WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP,  content.getServerReceivedTimestamp())
-            .putExtra(WebRtcCallService.EXTRA_SERVER_DELIVERED_TIMESTAMP, content.getServerDeliveredTimestamp())
-            .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE,                 message.getType().getCode())
-            .putExtra(WebRtcCallService.EXTRA_MULTI_RING,                 content.getCallMessage().get().isMultiRing());
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-      else                                                context.startService(intent);
+      ApplicationDependencies.getSignalCallManager()
+                             .receivedOffer(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
+                                            new WebRtcData.OfferMetadata(message.getOpaque(), message.getSdp(), message.getType()),
+                                            new WebRtcData.ReceivedOfferMetadata(remoteIdentityKey,
+                                                                                 content.getServerReceivedTimestamp(),
+                                                                                 content.getServerDeliveredTimestamp(),
+                                                                                 content.getCallMessage().get().isMultiRing()));
     }
   }
 
@@ -415,21 +405,14 @@ public final class MessageContentProcessor {
                                        @NonNull AnswerMessage message)
   {
     log(String.valueOf(content), "handleCallAnswerMessage...");
-    Intent     intent            = new Intent(context, WebRtcCallService.class);
     Recipient  recipient         = Recipient.externalHighTrustPush(context, content.getSender());
     RemotePeer remotePeer        = new RemotePeer(recipient.getId());
     byte[]     remoteIdentityKey = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getId()).transform(record -> record.getIdentityKey().serialize()).orNull();
 
-    intent.setAction(WebRtcCallService.ACTION_RECEIVE_ANSWER)
-          .putExtra(WebRtcCallService.EXTRA_CALL_ID,             message.getId())
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,         remotePeer)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_IDENTITY_KEY, remoteIdentityKey)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,       content.getSenderDevice())
-          .putExtra(WebRtcCallService.EXTRA_ANSWER_OPAQUE,       message.getOpaque())
-          .putExtra(WebRtcCallService.EXTRA_ANSWER_SDP,          message.getSdp())
-          .putExtra(WebRtcCallService.EXTRA_MULTI_RING,          content.getCallMessage().get().isMultiRing());
-
-    context.startService(intent);
+    ApplicationDependencies.getSignalCallManager()
+                           .receivedAnswer(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
+                                           new WebRtcData.AnswerMetadata(message.getOpaque(), message.getSdp()),
+                                           new WebRtcData.ReceivedAnswerMetadata(remoteIdentityKey, content.getCallMessage().get().isMultiRing()));
   }
 
   private void handleCallIceUpdateMessage(@NonNull SignalServiceContent content,
@@ -437,23 +420,19 @@ public final class MessageContentProcessor {
   {
     log(String.valueOf(content), "handleCallIceUpdateMessage... " + messages.size());
 
-    ArrayList<IceCandidateParcel> iceCandidates = new ArrayList<>(messages.size());
-    long callId = -1;
+    List<byte[]> iceCandidates = new ArrayList<>(messages.size());
+    long         callId        = -1;
+
     for (IceUpdateMessage iceMessage : messages) {
-      iceCandidates.add(new IceCandidateParcel(iceMessage));
+      iceCandidates.add(iceMessage.getOpaque());
       callId = iceMessage.getId();
     }
 
-    Intent     intent     = new Intent(context, WebRtcCallService.class);
     RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
-    intent.setAction(WebRtcCallService.ACTION_RECEIVE_ICE_CANDIDATES)
-          .putExtra(WebRtcCallService.EXTRA_CALL_ID,       callId)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
-          .putParcelableArrayListExtra(WebRtcCallService.EXTRA_ICE_CANDIDATES, iceCandidates);
-
-    context.startService(intent);
+    ApplicationDependencies.getSignalCallManager()
+                           .receivedIceCandidates(new WebRtcData.CallMetadata(remotePeer, new CallId(callId), content.getSenderDevice()),
+                                                  iceCandidates);
   }
 
   private void handleCallHangupMessage(@NonNull SignalServiceContent content,
@@ -464,18 +443,11 @@ public final class MessageContentProcessor {
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get(), false);
     } else {
-      Intent     intent     = new Intent(context, WebRtcCallService.class);
       RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
-      intent.setAction(WebRtcCallService.ACTION_RECEIVE_HANGUP)
-            .putExtra(WebRtcCallService.EXTRA_CALL_ID,          message.getId())
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,      remotePeer)
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,    content.getSenderDevice())
-            .putExtra(WebRtcCallService.EXTRA_HANGUP_IS_LEGACY, message.isLegacy())
-            .putExtra(WebRtcCallService.EXTRA_HANGUP_DEVICE_ID, message.getDeviceId())
-            .putExtra(WebRtcCallService.EXTRA_HANGUP_TYPE,      message.getType().getCode());
-
-      context.startService(intent);
+      ApplicationDependencies.getSignalCallManager()
+                             .receivedCallHangup(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()),
+                                                 new WebRtcData.HangupMetadata(message.getType(), message.isLegacy(), message.getDeviceId()));
     }
   }
 
@@ -484,15 +456,10 @@ public final class MessageContentProcessor {
   {
     log(String.valueOf(content.getTimestamp()), "handleCallBusyMessage");
 
-    Intent     intent     = new Intent(context, WebRtcCallService.class);
     RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
 
-    intent.setAction(WebRtcCallService.ACTION_RECEIVE_BUSY)
-          .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice());
-
-    context.startService(intent);
+    ApplicationDependencies.getSignalCallManager()
+                           .receivedCallBusy(new WebRtcData.CallMetadata(remotePeer, new CallId(message.getId()), content.getSenderDevice()));
   }
 
   private void handleCallOpaqueMessage(@NonNull SignalServiceContent content,
@@ -500,20 +467,16 @@ public final class MessageContentProcessor {
   {
     log(String.valueOf(content.getTimestamp()), "handleCallOpaqueMessage");
 
-    Intent intent = new Intent(context, WebRtcCallService.class);
-
     long messageAgeSeconds = 0;
     if (content.getServerReceivedTimestamp() > 0 && content.getServerDeliveredTimestamp() >= content.getServerReceivedTimestamp()) {
       messageAgeSeconds = (content.getServerDeliveredTimestamp() - content.getServerReceivedTimestamp()) / 1000;
     }
 
-    intent.setAction(WebRtcCallService.ACTION_RECEIVE_OPAQUE_MESSAGE)
-          .putExtra(WebRtcCallService.EXTRA_OPAQUE_MESSAGE, message.getOpaque())
-          .putExtra(WebRtcCallService.EXTRA_UUID, Recipient.externalHighTrustPush(context, content.getSender()).requireUuid().toString())
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
-          .putExtra(WebRtcCallService.EXTRA_MESSAGE_AGE_SECONDS, messageAgeSeconds);
-
-    context.startService(intent);
+    ApplicationDependencies.getSignalCallManager()
+                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(Recipient.externalHighTrustPush(context, content.getSender()).requireUuid(),
+                                                                                       message.getOpaque(),
+                                                                                       content.getSenderDevice(),
+                                                                                       messageAgeSeconds));
   }
 
   private void handleGroupCallUpdateMessage(@NonNull SignalServiceContent content,
@@ -858,7 +821,7 @@ public final class MessageContentProcessor {
       } else if (message.getMessage().isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
-      } else if (FeatureFlags.groupCalling() && message.getMessage().getGroupCallUpdate().isPresent()) {
+      } else if (Build.VERSION.SDK_INT > 19 && message.getMessage().getGroupCallUpdate().isPresent()) {
         handleGroupCallUpdateMessage(content, message.getMessage(), GroupUtil.idFromGroupContext(message.getMessage().getGroupContext()));
       } else if (message.getMessage().isEmptyGroupV2Message()) {
         // Do nothing

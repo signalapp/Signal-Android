@@ -61,7 +61,7 @@ public final class MmsSendJob extends SendJob {
 
   public static final String KEY = "MmsSendJobV2";
 
-  private static final String TAG = MmsSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsSendJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 

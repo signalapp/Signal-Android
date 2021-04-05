@@ -55,7 +55,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
                                                              Camera1Controller.EventListener
 {
 
-  private static final String TAG = Camera1Fragment.class.getSimpleName();
+  private static final String TAG = Log.tag(Camera1Fragment.class);
 
   private TextureView                  cameraPreview;
   private ViewGroup                    controlsContainer;

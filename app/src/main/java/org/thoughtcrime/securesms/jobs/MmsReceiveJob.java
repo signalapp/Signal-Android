@@ -24,7 +24,7 @@ public class MmsReceiveJob extends BaseJob {
 
   public static final String KEY = "MmsReceiveJob";
 
-  private static final String TAG = MmsReceiveJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsReceiveJob.class);
 
   private static final String KEY_DATA            = "data";
   private static final String KEY_SUBSCRIPTION_ID = "subscription_id";

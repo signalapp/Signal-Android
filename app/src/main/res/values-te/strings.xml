@@ -1624,6 +1624,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">కింది వ్యక్తులు పరికరాలను తిరిగి ఇన్‌స్టాల్ చేసి ఉండవచ్చు లేదా మార్చవచ్చు. గోప్యతను నిర్ధారించడానికి వారితో మీ భద్రతా సంఖ్యను ధృవీకరించండి.</string>
   <string name="safety_number_change_dialog__view">వీక్షణ</string>
   <string name="safety_number_change_dialog__previous_verified">మునుపటి ధృవీకరించబడింది</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">అమరికలు</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">దేశాలు లోడ్ అవుతున్నాయి…</string>
   <string name="country_selection_fragment__search">వెతకండి</string>
@@ -1811,10 +1813,8 @@
   <string name="arrays__use_default"> అప్రమేయం ఉపయోగించు</string>
   <string name="arrays__use_custom"> నియమము ఉపయోగించు</string>
   <string name="arrays__mute_for_one_hour">1 గంట నిశబ్దంగా ఉంచు</string>
-  <string name="arrays__mute_for_two_hours">2 గంటలు నిశబ్దంగా ఉంచు</string>
   <string name="arrays__mute_for_one_day">1 రోజు నిశబ్దంగా ఉంచు</string>
   <string name="arrays__mute_for_seven_days">7 రోజులు నిశబ్దంగా ఉంచు</string>
-  <string name="arrays__mute_for_one_year">1 సంవత్సరం నిశబ్దంగా ఉంచు</string>
   <string name="arrays__settings_default">అప్రమేయ అమరికలు</string>
   <string name="arrays__enabled">చేతనం అయింది</string>
   <string name="arrays__disabled">అచేతనం అయింది</string>
@@ -1866,6 +1866,7 @@
   <string name="preferences__pref_led_blink_title">ఎల్ఇడి రెప్పపాటు నమూనా</string>
   <string name="preferences__sound">శబ్దము</string>
   <string name="preferences__silent">మౌనం</string>
+  <string name="preferences__default">అప్రమేయం</string>
   <string name="preferences__repeat_alerts">రిపీట్ హెచ్చరికలు</string>
   <string name="preferences__never">ఎప్పుడూ</string>
   <string name="preferences__one_time">ఒక్కసారి</string>

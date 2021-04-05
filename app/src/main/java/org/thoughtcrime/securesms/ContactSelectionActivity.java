@@ -47,7 +47,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
                                                           ContactSelectionListFragment.OnContactSelectedListener,
                                                           ContactSelectionListFragment.ScrollCallback
 {
-  private static final String TAG = ContactSelectionActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactSelectionActivity.class);
 
   public static final String EXTRA_LAYOUT_RES_ID = "layout_res_id";
 

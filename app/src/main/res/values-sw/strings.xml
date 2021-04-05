@@ -1220,10 +1220,10 @@ nambari yako ya simu</string>
   <string name="arrays__use_default">Tumia chaguo msingi</string>
   <string name="arrays__use_custom">Tumia kaida</string>
   <string name="arrays__mute_for_one_hour">Zima kwa saa 1</string>
-  <string name="arrays__mute_for_two_hours">Zima kwa masaa 2</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Zima kwa masaa 2</string> -->
   <string name="arrays__mute_for_one_day">Zima kwa siku 1</string>
   <string name="arrays__mute_for_seven_days">Zima kwa siku 7</string>
-  <string name="arrays__mute_for_one_year">Zima kwa mwaka 1</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Zima kwa mwaka 1</string> -->
   <string name="arrays__settings_default">Mipangilio chaguo msingi</string>
   <string name="arrays__enabled">Imewezeshwa</string>
   <string name="arrays__disabled">Imelemazwa</string>

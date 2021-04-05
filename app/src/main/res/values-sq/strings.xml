@@ -611,6 +611,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_mentions">Përmendje</string>
   <string name="ManageGroupActivity_chat_wallpaper">Sfond fjalosjesh</string>
   <string name="ManageGroupActivity_until_s">Deri më %1$s</string>
+  <string name="ManageGroupActivity_always">Përherë</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Shihni krejt anëtarët</string>
@@ -661,6 +662,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageRecipientActivity_mute_notifications">Heshtoji njoftimet</string>
   <string name="ManageRecipientActivity_custom_notifications">Njoftime vetjake</string>
   <string name="ManageRecipientActivity_until_s">Deri më %1$s</string>
+  <string name="ManageRecipientActivity_always">Përherë</string>
   <string name="ManageRecipientActivity_off">Off</string>
   <string name="ManageRecipientActivity_on">On</string>
   <string name="ManageRecipientActivity_add_to_a_group">Shtoje te grup</string>
@@ -837,6 +839,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Po ndalet shërbimi Signal i thirrjeve</string>
   <string name="NotificationBarManager__deny_call">Refuzoje thirrjen</string>
   <string name="NotificationBarManager__answer_call">Përgjigju thirrjes</string>
   <string name="NotificationBarManager__end_call">Përfundoje thirrjen</string>
@@ -1478,6 +1481,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationChannel_group_messages">Mesazhe</string>
   <string name="NotificationChannel_missing_display_name">I panjohur</string>
   <string name="NotificationChannel_voice_notes">Shënime Zanore</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">S’ka veprimtari për hapje rregullimesh kanali njoftimesh.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Signal-i është i kyçur!</string>
@@ -1598,6 +1602,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_return_to_call">Kthehuni te thirrja</string>
   <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
   <string name="ConversationUpdateItem_invite_friends">Ftoni shokë</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Aktivizo Njoftime Thirrjesh</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1621,6 +1626,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
   <string name="safety_number_change_dialog__view">Shihni</string>
   <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Njoftimet e thirrjeve u aktivizuan.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Aktivizo njoftime thirrjesh</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Aktivizo veprimtari në prapaskenë</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tani gjithçka duket në rregull!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni “Shfaq njoftime”.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekeni këtu dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekeni këtu dhe aktivizoni veprimtari në prapaskenë, te rregullimet e “Baterisë”.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Rregullime</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Për të marrë njoftime thirrjesh, prekni Rregullime dhe aktivizoni “Shfaq njoftime”.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Për të marrë njoftime thirrjes, prekni Rregullime dhe aktivizoni njoftimet dhe sigurohuni se Tinguj dhe Flluska janë të aktivizuara.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Për të marrë njoftime thirrjesh, prekni Rregullime dhe aktivizoni veprimtari në prapaskenë, te rregullimet e “Baterisë”.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Po ngarkohen vende…</string>
   <string name="country_selection_fragment__search">Kërko</string>
@@ -1787,11 +1804,19 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__include_debug_log">Përfshi regjistër diagnostikimi.</string>
   <string name="HelpFragment__whats_this">Po kjo, ç’është?</string>
   <string name="HelpFragment__how_do_you_feel">Si ndiheni? (Opsionale)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Tregonani se përse po lidheni me ne.</string>
   <string name="HelpFragment__support_info">Të dhëna Asistence</string>
   <string name="HelpFragment__signal_android_support_request">Kërkesë Për Asistencë për Signal Android</string>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Diçka S’Po Funksionon</item>
+    <item>Kërkesë Veçorie</item>
+    <item>Pyetje</item>
+    <item>Përshtypje</item>
+    <item>Tjetër</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
@@ -1808,10 +1833,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="arrays__use_default">Përdor parazgjedhje</string>
   <string name="arrays__use_custom">Përdor vetjake</string>
   <string name="arrays__mute_for_one_hour">Heshtoje për 1 orë</string>
-  <string name="arrays__mute_for_two_hours">Heshtoje për 2 orë</string>
+  <string name="arrays__mute_for_eight_hours">Heshtoji për 8 orë</string>
   <string name="arrays__mute_for_one_day">Heshtoje për 1 ditë</string>
   <string name="arrays__mute_for_seven_days">Heshtoje për 7 ditë</string>
-  <string name="arrays__mute_for_one_year">Heshtoje për 1 vit</string>
+  <string name="arrays__always">Përherë</string>
   <string name="arrays__settings_default">Rregullime parazgjedhje</string>
   <string name="arrays__enabled">E aktivizuar</string>
   <string name="arrays__disabled">E çaktivizuar</string>
@@ -1863,6 +1888,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
   <string name="preferences__sound">Tingull</string>
   <string name="preferences__silent">Heshtazi</string>
+  <string name="preferences__default">Parazgjedhje</string>
   <string name="preferences__repeat_alerts">Alarme të përsëritur</string>
   <string name="preferences__never">Kurrë</string>
   <string name="preferences__one_time">Një herë</string>
@@ -2243,9 +2269,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="backup_enable_dialog__folder">Dosje</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\’do të jem në gjendje të rikthej një kopjeruajtje.</string>
   <string name="registration_activity__restore_backup">Riktheje kopjeruajtjen</string>
+  <string name="registration_activity__transfer_or_restore_account">Shpërngulni ose riktheni llogari</string>
+  <string name="registration_activity__transfer_account">Shpërngulni llogari</string>
   <string name="registration_activity__skip">Anashkaloje</string>
   <string name="preferences_chats__chat_backups">Kopjeruajtje fjalosjesh</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Kopjeruaji fjalosje te depozitë e jashtme</string>
+  <string name="preferences_chats__transfer_account">Shpërngulni llogari</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Shpërngulni llogari te një pajisje Android e re</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
   <string name="RegistrationActivity_restore">Riktheje</string>
   <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Signal-it</string>
@@ -2320,28 +2350,117 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
   <string name="Recipient_unknown">I panjohur</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Shpërngulni ose riktheni llogari</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Nëse keni regjistruar më herët një llogari Signal, mund të shpërngulni ose riktheni llogarinë dhe mesazhet tuaja.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Shpërngulni prej pajisjeje Android</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Shpërngulni llogarinë dhe mesazhet tuaj nga pajisja juaj e vjetër Android. Duhet të keni hyrje te pajisja juaj e vjetër.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Ju duhet hyrje te pajisja juaj e vjetër.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Riktheni prej kopjeruajtje</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Riktheni mesazhet tuaja që prej një kopjeruajtjeje vendore. Nëse s\’i riktheni tani, s\’do të jeni në gjendje t\’i riktheni më vonë.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Hapni Signal-in në telefonin tuaj të vjetër Android.</string>
   <string name="NewDeviceTransferInstructions__continue">Vazhdo</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Prekni mbi foton e profilit tuaj në cepin e majtë sipër, që të hapen Rregullimet.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Prekni mbi “Fjalosje”</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Prekni “Shpërngulni Llogari” dhe mandej “Vazhdoni” në të dyjat e pajisjeve</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Po gatitet të lidhet me një pajisje Android të vjetër…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Po ha një çast, duhet të jetë gati së shpejti</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Po pritet që të lidhet pajisje e vjetër Android…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-i lyp leje vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-i lyp aktivizim shërbimesh vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-i lyp Wi-Fi të hapur që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android. Wi-Fi duhet të jetë i hapur, por jo edhe të jetë i lidhur në një rrjet Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Na ndjeni, duket se kjo pajisje s’mbulon Wi-Fi Direct. Signal-i e përdor Wi-Fi Direct që të pikasë dhe lidhet me pajisjen tuaj të vjetër Android. Mundeni ende të riktheni një kopjeruajtje, që të riktheni llogarinë tuaj nga pajisja juaj e vjetër Android.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Riktheni një kopjeruajtje</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ndodhi një gabim i papritur teksa provohej të lidhej me pajisjen tuaj të vjetër Android.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Po kërkohet për pajisje të re Android…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal-i lyp leje vendndodhjesh që të pikasë dhe lidhet me pajisjen tuaj të re Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal-i lyp aktivizim shërbimesh vendndodhjesh, për të pikasur dhe për t’u lidhur me pajisjen tuaj të re Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal-i lyp Wi-Fi të hapur që të pikasë dhe lidhet me pajisjen tuaj të re Android. Wi-Fi duhet të jetë i hapur, por jo edhe të jetë i lidhur në një rrjet Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Na ndjeni, duket se kjo pajisje s’mbulon Wi-Fi Direct. Signal-i e përdor Wi-Fi Direct që të pikasë dhe lidhet me pajisjen tuaj të re Android. Mundeni ende të krijoni një kopjeruajtje, që të riktheni llogarinë tuaj nga pajisja juaj e re Android.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Krijoni kopjeruajtje</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ndodhi një gabim i papritur teksa provohej të lidhej me pajisjen tuaj të re Android.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">S’arrihet të hapen Rregullime Wi-Fi. Ju lutemi, hapeni dorazi Wi-Fi-n.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Akordoni leje vendndodhjesh</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Aktivizoni shërbime vendndodhjesh</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">S’arrihet të hapen rregullime vendndodhjesh.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Hapni Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Gabim Gjatë Lidhjes</string>
   <string name="DeviceTransferSetup__retry">Riprovo</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Parashtroni regjistra diagnostikimi</string>
+  <string name="DeviceTransferSetup__verify_code">Verifikoni kodin</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifikoni se kodi më poshtë përputhet në të dy pajisjet. Mandej prekeni që të vazhdohet.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrat s’përputhen</string>
   <string name="DeviceTransferSetup__continue">Vazhdo</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Numri s’është po ai</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Nëse numrat në pajisjet tuaja nuk përputhen, mundet që të keni lidhur pajisje të gabuar. Për ta ndrequr këtë, ndaleni shpërnguljen dhe riprovoni, dhe mbajini të mbyllura të dyja pajisjet tuaja.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Ndale shpërnguljen</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">S’arrihet të pikaset pajisje e vjetër</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">S’arrihet të pikaset pajisje e re</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sigurohuni se janë akorduar lejet vijuese dhe aktivizuar shërbimet vijuese.</string>
+  <string name="DeviceTransferSetup__location_permission">Leje vendndodhjesh</string>
+  <string name="DeviceTransferSetup__location_services">Shërbime vendndodhjesh</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Te skena për WiFi Direct, hiqni krejt grupet e mbajtur mend dhe hiqni lidhjet për çfarëdo pajisje të ftua ose të lidhur.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Skenë për WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Provoni të mbyllni dhe hapni Wi-Fi-n, në të dyja pajisjet.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sigurohuni se që të dyja pajisjet janë nën mënyrën shpërngulje.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Kaloni te faqja e asistencës</string>
   <string name="DeviceTransferSetup__try_again">Riprovo</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Po pritet për pajisjen tjetër</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Prekni Vazhdo, te pajisja tjetër e juaj, që të nisë shpërngulja.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Prekni Vazhdo, te pajisja juaj tjetër…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">S’mund të shpërngulet prej një versioni më të ri të Signal-it</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Shpërngulje të dhënash</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Mbajini të dyja pajisjet afër njëra-tjetrës. Mos fikni pajisjet dhe mbajeni hapur Signal-in. Shpërnguljet janë të fshehtëzuara skaj-më-skaj.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mesazhe deri këtu…</string>
   <string name="DeviceTransfer__cancel">Anuloje</string>
   <string name="DeviceTransfer__try_again">Riprovo</string>
+  <string name="DeviceTransfer__stop_transfer_question">Të ndalet shpërngulja?</string>
+  <string name="DeviceTransfer__stop_transfer">Ndale shpërnguljen</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Krejt ecuria e shpërnguljes do të humbë.</string>
+  <string name="DeviceTransfer__transfer_failed">Shpërngulja dështoi</string>
+  <string name="DeviceTransfer__unable_to_transfer">S’arrihet të shpërngulet</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Shpërngul Llogari</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Mund të shpërngulni llogarinë tuaj Signal, kur ujdiset Signal-i në një pajisje të re Android. Para se të vazhdohet:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Shkarkojeni Signal-in në pajisjen tuaj të re Android</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Prekni mbi “Shpërngulni ose riktheni llogari”</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Përzgjidhni “Shpërngulni nga pajisje Android” kur të pyeteni dhe mandej “Vazhdoni”. Mbajini pranë dy pajisjet.</string>
   <string name="OldDeviceTransferInstructions__continue">Vazhdo</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Shpërngulje e plotë</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Kaloni te pajisja juaj e re</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Të dhënat tuaja Signal u shpërngulën te pajisja juaj e re. Që të plotësohet procesi i shpërnguljes, duhet të vazhdoni regjistrimin te pajisja juaj e re.</string>
   <string name="OldDeviceTransferComplete__close">Mbylle</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Shpërngulje e suksesshme</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Shpërngulje e plotë</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Që të plotësoni procesin e shpërnguljes, duhet të vazhdoni regjistrimin.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Vazhdoni regjistrimin</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Shpërngulje llogarie</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Po bëhet gati të lidhet me pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Po bëhet gati të lidhet me pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Po kërkohet për pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Po lidhet me pajisjen tuaj tjetër Android…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Lyp verifikim</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Po shpërngulet llogari…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Plotësoni regjistrimin në pajisjen tuaj të re</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Llogaria juaj Signal u shpërngul te pajisja juaj e re, por duhet të plotësoni regjistrimin, që të vazhdohet. Signal-i do të jetë joaktiv në këtë pajisje.</string>
   <string name="OldDeviceTransferLockedDialog__done">U bë</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulojeni dhe aktivizoni këtë pajisje</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>

@@ -40,7 +40,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class JobManager implements ConstraintObserver.Notifier {
 
-  private static final String TAG = JobManager.class.getSimpleName();
+  private static final String TAG = Log.tag(JobManager.class);
 
   public static final int CURRENT_VERSION = 8;
 

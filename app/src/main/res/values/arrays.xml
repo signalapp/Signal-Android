@@ -232,10 +232,10 @@
 
   <string-array name="mute_durations">
       <item>@string/arrays__mute_for_one_hour</item>
-      <item>@string/arrays__mute_for_two_hours</item>
+      <item>@string/arrays__mute_for_eight_hours</item>
       <item>@string/arrays__mute_for_one_day</item>
       <item>@string/arrays__mute_for_seven_days</item>
-      <item>@string/arrays__mute_for_one_year</item>
+      <item>@string/arrays__always</item>
   </string-array>
 
   <string-array name="recipient_vibrate_entries">

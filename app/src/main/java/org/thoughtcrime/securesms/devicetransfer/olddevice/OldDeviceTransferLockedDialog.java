@@ -47,10 +47,7 @@ public final class OldDeviceTransferLockedDialog extends DialogFragment {
                  .setPositiveButton(R.string.OldDeviceTransferLockedDialog__done, (d, w) -> OldDeviceExitActivity.exit(requireActivity()))
                  .setNegativeButton(R.string.OldDeviceTransferLockedDialog__cancel_and_activate_this_device, (d, w) -> onUnlockRequest());
 
-    Dialog dialog = dialogBuilder.create();
-    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-    return dialog;
+    return dialogBuilder.create();
   }
 
   private void onUnlockRequest() {

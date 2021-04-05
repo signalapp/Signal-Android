@@ -235,6 +235,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Сада више опција у „Поставке групе“</string>
   <string name="ConversationActivity_join">Придружи се</string>
   <string name="ConversationActivity_full">Пуно</string>
+  <string name="ConversationActivity_error_sending_media">Грешка приликом слања медија</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитана порука</item>
@@ -638,6 +639,7 @@
   <string name="ManageGroupActivity_mentions">Помињања</string>
   <string name="ManageGroupActivity_chat_wallpaper">Позадина за ћаскање</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Увек</string>
   <string name="ManageGroupActivity_off">Искључено</string>
   <string name="ManageGroupActivity_on">Укључено</string>
   <string name="ManageGroupActivity_view_all_members">Прикажи све чланове</string>
@@ -689,6 +691,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Утишај обавештења</string>
   <string name="ManageRecipientActivity_custom_notifications">Прилагођена обавештења</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
+  <string name="ManageRecipientActivity_always">Увек</string>
   <string name="ManageRecipientActivity_off">Искључено</string>
   <string name="ManageRecipientActivity_on">Укључено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Додај у групу</string>
@@ -1537,6 +1540,7 @@
   <string name="NotificationChannel_group_messages">Поруке</string>
   <string name="NotificationChannel_missing_display_name">Непозната</string>
   <string name="NotificationChannel_voice_notes">Гласовне белешке</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Signal закључан!</string>
@@ -1661,6 +1665,7 @@
   <string name="ConversationUpdateItem_return_to_call">Врати се на позив</string>
   <string name="ConversationUpdateItem_call_is_full">Позив је пун</string>
   <string name="ConversationUpdateItem_invite_friends">Позивница пријатељима</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Обавештења о позиву</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусти … Заустави</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
@@ -1684,6 +1689,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следеће особе су вероватно реинсталирале или промениле уређаје. За гаранцију приватности, оверите сигурносне бројеве са њима.</string>
   <string name="safety_number_change_dialog__view">Више</string>
   <string name="safety_number_change_dialog__previous_verified">Претходно оверено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Обавештења о позиву омогућена.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Обавештења о позиву</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Омогући позадинску активност</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Сада све изгледа добро!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Да бисте примили обавештења о позивима, додирните овде и укључите \"Прикажи обавештења\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Да бисте примили обавештења о позивима, додирните овде и укључите обавештења и осигурајте да се упали „звук“ и „скочни прозор“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Да бисте примили обавештења о позивима, додирните овде и омогућите позадинску активност у „батеријским“ подешавањима.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Подешавања</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Да бисте примили обавештења о позивима, додирните „Подешавање“ и укључите „Прикажи обавештења“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Да бисте примили обавештења о позивима, додирните „Подешавање“ и укључите обавештења и осигурајте да се упали „звук“ и „скочни прозор“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Да бисте примили обавештења о позивима, додирните „Подешавање“ и омогућите позадинску активност у „батеријским“ подешавањима.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Учитавање држава…</string>
   <string name="country_selection_fragment__search">Тражи</string>
@@ -1857,11 +1874,19 @@
   <string name="HelpFragment__include_debug_log">Убаци извештај грешака.</string>
   <string name="HelpFragment__whats_this">Шта је ово?</string>
   <string name="HelpFragment__how_do_you_feel">Како се осећате? (Опционо)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Кажите нам због чега нас контактирате.</string>
   <string name="HelpFragment__support_info">Инфо о подршци</string>
   <string name="HelpFragment__signal_android_support_request">Signal Андроид захтев за подржку</string>
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Нешто не ради</item>
+    <item>Захтев фунције</item>
+    <item>ПитањеО</item>
+    <item>Повратна информација</item>
+    <item>Друго</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -1878,10 +1903,10 @@
   <string name="arrays__use_default">Користи подразумевано</string>
   <string name="arrays__use_custom">Користи посебно</string>
   <string name="arrays__mute_for_one_hour">Утишај 1 сат</string>
-  <string name="arrays__mute_for_two_hours">Утишај 2 сата</string>
+  <string name="arrays__mute_for_eight_hours">Утишај 8 сати</string>
   <string name="arrays__mute_for_one_day">Утишај 1 дан</string>
   <string name="arrays__mute_for_seven_days">Утишај 7 сати</string>
-  <string name="arrays__mute_for_one_year">Утишај 1 годину</string>
+  <string name="arrays__always">Увек</string>
   <string name="arrays__settings_default">Подразумевана поставка</string>
   <string name="arrays__enabled">Укључи</string>
   <string name="arrays__disabled">Искључи</string>
@@ -1934,6 +1959,7 @@
   <string name="preferences__pref_led_blink_title">Трептање ЛЕД светла</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Без звука</string>
+  <string name="preferences__default">Подразумеван</string>
   <string name="preferences__repeat_alerts">Понављај обавештења</string>
   <string name="preferences__never">Никад</string>
   <string name="preferences__one_time">Једном</string>
@@ -2317,9 +2343,13 @@
   <string name="backup_enable_dialog__folder">Фасцикла</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Записао сам ову фразу. Без тога нећу моћи да вратим резервну копију.</string>
   <string name="registration_activity__restore_backup">Поврати резерву</string>
+  <string name="registration_activity__transfer_or_restore_account">Пренос или враћање налога</string>
+  <string name="registration_activity__transfer_account">Пренос налога</string>
   <string name="registration_activity__skip">Прескочи</string>
   <string name="preferences_chats__chat_backups">Резерве ћаскања</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Направи резерве ћаскања у спољашње складиште</string>
+  <string name="preferences_chats__transfer_account">Пренос налога</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Пренос налога на новом Android уређају</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Унесите бекап лозинку</string>
   <string name="RegistrationActivity_restore">Врати</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Није могуће увести резервну копију из новије верзије Signal-а.</string>
@@ -2394,28 +2424,118 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ТАПНИ ЗА ОТКЉУЧАВАЊЕ</string>
   <string name="Recipient_unknown">Непозната</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Пренос или враћање налога</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ако сте претходно регистровали Signal налог, можете пренети или вратити свој налог и поруке</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Пренос са Android уређаја</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Пренесите свој налог и поруке са старог Android уређаја. Потребан вам је приступ старом уређају.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Потребан вам је приступ старом уређају.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Поврати податке из бекапа</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Вратите своје поруке из локалне копије. Ако сада не вратите, нећете моћи да то вратите касније.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Отворите Signal на старом Android телефону</string>
   <string name="NewDeviceTransferInstructions__continue">Настави</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Додирните фотографију свог профила у горњем левом углу да бисте отворили подешавања</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Додирните „Ћаскања“</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Додирните „Пренос налога“ и после „Настави“ на оба уређаја</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Припрема за повезивање на стари Android уређај…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Потребно је мало времена, треба да буде спремно ускоро</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Чека се да се стари Android уређај повеже…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal-у је потребна дозвола локације за откривање и повезивање са вашим старим Android уређајем.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-у је потребна да локације буде упаљена за откривање и повезивање са вашим старим Android уређајем.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-у је потребно Wi-Fi за откривање и повезивање са својим старим Android уређајем. Wi-Fi мора бити укључен, али не мора бити повезано са Wi-Fi мрежом.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, чини се да овај уређај не подржава Wi-Fi Direct. Signal користи Wi-Fi Direct да би открио и повезивао са старим Android уређајем. И даље можете да вратите резервну копију да бисте вратили свој рачун са свог старог Android уређаја.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Поврати бекап</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Дошло је до неочекиване грешке приликом покушаја повезивања са својим старим Android уређајем.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Тражење новог Android уређаја…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal-у је потребна дозвола локације за откривање и повезивање на ваш нови Android уређај.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal-у је потребно да локација буде упаљена за откривање и повезивање на ваш нови Android уређај.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal-у је потребно Wi-Fi за откривање и повезивање са својим новим Android уређајем. Wi-Fi мора бити укључен, али не мора бити повезано са Wi-Fi мрежом.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, чини се да овај уређај не подржава Wi-Fi Direct. Signal користи Wi-Fi Direct да би открио и повезивао са новим Android уређајем. И даље можете да креирате резервну копију да бисте вратили свој рачун на свој нови Android уређаја.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Направи бекап</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Дошло је до неочекиване грешке приликом покушаја повезивања са својим новим Android уређајем.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Не могу да отворим Wi-Fi подешавања. Молимо да ручно упалите Wi-Fi.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Одобри дозвоlу за локацију</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Укључити сервис локације</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Није могуће отворити подешавања локације</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Укључити Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Грешка повезивања</string>
   <string name="DeviceTransferSetup__retry">Покушај поново</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Пошаљи дневник исправљања грешака</string>
+  <string name="DeviceTransferSetup__verify_code">Верификациони код</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверите да ли је код испод исти на оба уређаја. Затим додирните Настави.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Бројеви се не подударају</string>
   <string name="DeviceTransferSetup__continue">Настави</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Бројеви нису исти</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ако се бројеви на вашим уређајима не подударају, могуће је да сте повезани на погрешан уређај. Да бисте то поправили, зауставите пренос и покушајте поново и држите оба уређаја близу.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Заустави пренос</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Није могуће открити стари уређај</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Није могуће открити нови уређај</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Проверите да ли су следеће дозволе и услуге омогућене:</string>
+  <string name="DeviceTransferSetup__location_permission">Дозвола за локацију</string>
+  <string name="DeviceTransferSetup__location_services">Сервиси локације</string>
   <string name="DeviceTransferSetup__wifi">Ви-фи</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На WiFi Direct екрану уклоните све упамћене групе и откачите било које позване или повезане уређаје.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct екран</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Покушајте да угасите/упалите Wi-Fi на оба уређаја.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Проверите да ли су оба уређаја у режиму преноса.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Идите на страницу за подршку</string>
   <string name="DeviceTransferSetup__try_again">Покушај поново</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Чека се други уређај</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Додирните „Настави“ на другом уређају да бисте започели пренос.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Додирните „Настави“ на другом уређају…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Није могуће да се пренесе из новије верзије Signal-а.</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Подаци се преносе</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Keep both devices near each other. Do not turn off the devices and keep Signal open. Transfers are end-to-end encrypted.
+Држите оба уређаја близу једни другима. Не искључујте уређаје и одржавајте Signal отворен. Преноси су потпуно енкриптовани.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d порука до сад…</string>
   <string name="DeviceTransfer__cancel">Поништи</string>
   <string name="DeviceTransfer__try_again">Покушај поново</string>
+  <string name="DeviceTransfer__stop_transfer_question">Заустави пренос?</string>
+  <string name="DeviceTransfer__stop_transfer">Заустави пренос</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Цео напредак преноса ће се изгубити.</string>
+  <string name="DeviceTransfer__transfer_failed">Неуспешан пренос</string>
+  <string name="DeviceTransfer__unable_to_transfer">Није могуће пренети</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Пренесите налог</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Можете да пренете свој Signal рачун приликом подешавања Signal на новом Android уређају. Пре наставка:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Преузмите Signal на свом новом Android уређају</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Додирните „Пренос или враћање налога“</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Када је тражено, додирните „Пренос са  Android уређаја“ и после „Настави“. Држите оба уређаја у близини.</string>
   <string name="OldDeviceTransferInstructions__continue">Настави</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Пренос завршен</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Идите на свој нови уређај</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Подаци о Signal-у су пребачени на ваш нови уређај. Да бисте довршили поступак преноса, морате да наставите са регистрацијом на свом новом уређају.</string>
   <string name="OldDeviceTransferComplete__close">Затвори</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Пренос успешан</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Пренос завршен</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Да бисте довршили пренос, морате наставити са регистрацијом.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Настави регистрацију</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Пренос налога</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Припрема за повезивање са другим Android уређајем …</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Припрема за повезивање са другим Android уређајем …</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Тражење вашег другог Android уређаја …</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Повезивање са вашим другим Android уређајем…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Овера је потврда</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Пренос налога…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Завршите регистрација на свом новом уређају</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваш Signal рачун је пребачен на ваш нови уређај, али морате да завршите регистрацију на њега да бисте наставили. Signal ће бити неактиван на овом уређају.</string>
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажите и активирајте овај уређај</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>
@@ -2446,6 +2566,8 @@
   <string name="GroupsLearnMore_paragraph_2">Старе групе још увек не могу да се надограде на Нове групе, али можете да направите нову групу са истим члановима ако су на најновијој верзији Signal-а.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ће убудуће понудити начин за надоградњу старих група.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Свако са овом везом може да види име и слику ове групе и да затражи да се придружи. Поделите везу са људима у које имате поверења.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Свако са овом везом може да види име и слику ове групе и да се придружи. Поделите везу са људима у које имате поверења.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Поделите Signal-ом</string>
   <string name="GroupLinkBottomSheet_copy">Копирај</string>
   <string name="GroupLinkBottomSheet_qr_code">QR кôд</string>

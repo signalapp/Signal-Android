@@ -639,6 +639,7 @@
   <string name="ManageGroupActivity_mentions">Mențiuni</string>
   <string name="ManageGroupActivity_chat_wallpaper">Fundal conversații</string>
   <string name="ManageGroupActivity_until_s">Până la %1$s</string>
+  <string name="ManageGroupActivity_always">Întotdeauna</string>
   <string name="ManageGroupActivity_off">Dezactivate</string>
   <string name="ManageGroupActivity_on">Activate</string>
   <string name="ManageGroupActivity_view_all_members">Vizualizați toți membri</string>
@@ -690,6 +691,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Notificări fără sunet</string>
   <string name="ManageRecipientActivity_custom_notifications">Notificări personalizate</string>
   <string name="ManageRecipientActivity_until_s">Până la %1$s</string>
+  <string name="ManageRecipientActivity_always">Întotdeauna</string>
   <string name="ManageRecipientActivity_off">Dezactivate</string>
   <string name="ManageRecipientActivity_on">Activate</string>
   <string name="ManageRecipientActivity_add_to_a_group">Adaugaţi la un grup</string>
@@ -1659,6 +1661,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationUpdateItem_return_to_call">Întoarceți-vă la apel</string>
   <string name="ConversationUpdateItem_call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="ConversationUpdateItem_invite_friends">Invită prieteni</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Activare notificări pentru apeluri</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
@@ -1682,6 +1685,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Este posibil ca următoarele persoane să fi reinstalat sau schimbat dispozitivele. Verificați numărul de siguranță cu acestea pentru a vă asigura confidențialitatea.</string>
   <string name="safety_number_change_dialog__view">Vizualizare</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat anterior</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notificările pentru apeluri sunt activate.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activare notificări pentru apeluri</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Setări</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Se încarcă țările…</string>
   <string name="country_selection_fragment__search">Căutați</string>
@@ -1855,11 +1862,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__include_debug_log">Include jurnalul de depanare.</string>
   <string name="HelpFragment__whats_this">Ce este asta?</string>
   <string name="HelpFragment__how_do_you_feel">Cum vă simțiți? (Opțional)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Spune-ne de ce ne contactezi.</string>
   <string name="HelpFragment__support_info">Informații suport</string>
   <string name="HelpFragment__signal_android_support_request">Cerere suport Signal Android</string>
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Ceva nu funcționează</item>
+    <item>Solicitare funcționalitate nouă</item>
+    <item>Întrebare</item>
+    <item>Opinie</item>
+    <item>Altceva</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -1876,10 +1891,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="arrays__use_default">Implicit</string>
   <string name="arrays__use_custom">Personalizat</string>
   <string name="arrays__mute_for_one_hour">Fără sunet pentru o oră</string>
-  <string name="arrays__mute_for_two_hours">Fără sunet pentru 2 ore</string>
+  <string name="arrays__mute_for_eight_hours">Fără sunet pentru 8 ore</string>
   <string name="arrays__mute_for_one_day">Fără sunet pentru o zi</string>
   <string name="arrays__mute_for_seven_days">Fără sunet pentru 7 zile</string>
-  <string name="arrays__mute_for_one_year">Fără sunet pentru un an</string>
+  <string name="arrays__always">Întotdeauna</string>
   <string name="arrays__settings_default">Setări implicite</string>
   <string name="arrays__enabled">Activat</string>
   <string name="arrays__disabled">Dezactivat</string>
@@ -1932,6 +1947,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__pref_led_blink_title">Tipar de clipire LED</string>
   <string name="preferences__sound">Sunet</string>
   <string name="preferences__silent">Silențios</string>
+  <string name="preferences__default">Implicit</string>
   <string name="preferences__repeat_alerts">Repetă alerte</string>
   <string name="preferences__never">Niciodată</string>
   <string name="preferences__one_time">O dată</string>
@@ -2322,6 +2338,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>
   <string name="preferences_chats__transfer_account">Transfer cont</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer cont pe un dispozitiv nou Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru backup</string>
   <string name="RegistrationActivity_restore">Restaurează</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nu se pot importa backup-uri din versiuni mai noi de Signal</string>
@@ -2397,13 +2414,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Recipient_unknown">Necunoscut</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer sau restabilire cont</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Transfer de pe un dispozitiv Android</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Deschideți Signal pe vechiul dvs. telefon Android</string>
   <string name="NewDeviceTransferInstructions__continue">Continuă</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__create_a_backup">Creează backup</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__turn_on_wifi">Activare Wi-Fi</string>
   <string name="DeviceTransferSetup__retry">Încearcă din nou</string>
@@ -2411,14 +2431,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransferSetup__verify_code">Verificare cod</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numerele nu se potrivesc</string>
   <string name="DeviceTransferSetup__continue">Continuă</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Numărul nu este același</string>
   <string name="DeviceTransferSetup__stop_transfer">Oprire transfer</string>
+  <string name="DeviceTransferSetup__location_permission">Permisie locație</string>
+  <string name="DeviceTransferSetup__location_services">Servicii locație</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Deschideți pagina de suport</string>
   <string name="DeviceTransferSetup__try_again">Încercați din nou</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Se transmit datele</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mesaje până acum…</string>
   <string name="DeviceTransfer__cancel">Anulare</string>
   <string name="DeviceTransfer__try_again">Încercați din nou</string>
+  <string name="DeviceTransfer__stop_transfer_question">Opriți transferul?</string>
   <string name="DeviceTransfer__stop_transfer">Oprire transfer</string>
   <string name="DeviceTransfer__transfer_failed">Transfer eșuat</string>
   <!--OldDeviceTransferInstructionsFragment-->
@@ -2433,9 +2459,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Transferul a fost făcut cu succes</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Continuați înregistrarea</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Transfer cont</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Este necesară o verificare</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Se transferă contul…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Contul dvs. Signal a fost transferat pe noul dispozitiv, dar trebuie să continuați înregistrarea pentru a continua. Signal o să fie dezactivat pe acest dispozitv.</string>
   <string name="OldDeviceTransferLockedDialog__done">Gata</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blochează</string>

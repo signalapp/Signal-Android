@@ -365,7 +365,7 @@ public class ComposeText extends EmojiEditText {
 
   private static class CommitContentListener implements InputConnectionCompat.OnCommitContentListener {
 
-    private static final String TAG = CommitContentListener.class.getSimpleName();
+    private static final String TAG = Log.tag(CommitContentListener.class);
 
     private final InputPanel.MediaListener mediaListener;
 

@@ -1211,10 +1211,10 @@
   <string name="arrays__use_default">Amfani da tanadadde</string>
   <string name="arrays__use_custom">Amfani da tanadadde</string>
   <string name="arrays__mute_for_one_hour">Saita lokacin yin tsit dashi zuwa awa 1</string>
-  <string name="arrays__mute_for_two_hours">Saita lokacin yin tsit dashi zuwa awa 2</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Saita lokacin yin tsit dashi zuwa awa 2</string> -->
   <string name="arrays__mute_for_one_day">Saita lokacin yin tsit dashi zuwa kwana 1</string>
   <string name="arrays__mute_for_seven_days">Saita lokacin yin tsit dashi zuwa kwana 7</string>
-  <string name="arrays__mute_for_one_year">Saita lokacin yin tsit dashi zuwa shekara 1</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Saita lokacin yin tsit dashi zuwa shekara 1</string> -->
   <string name="arrays__settings_default">Tanadadden saiti</string>
   <string name="arrays__enabled">A karfafe</string>
   <string name="arrays__disabled">Hana dama</string>

@@ -1453,10 +1453,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="arrays__use_default">Izmantot noklusējumu</string>
   <string name="arrays__use_custom">Izmantot pielāgotu</string>
   <string name="arrays__mute_for_one_hour">Apklusināt 1 stundu</string>
-  <string name="arrays__mute_for_two_hours">Apklusināt 2 stundas</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Apklusināt 2 stundas</string> -->
   <string name="arrays__mute_for_one_day">Apklusināt 1 dienu</string>
   <string name="arrays__mute_for_seven_days">Apklusināt 7 dienas</string>
-  <string name="arrays__mute_for_one_year">Apklusināt 1 gadu</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Apklusināt 1 gadu</string> -->
   <string name="arrays__settings_default">Sistēmas noklusējums</string>
   <string name="arrays__enabled">Iespējots</string>
   <string name="arrays__disabled">Atspējots</string>

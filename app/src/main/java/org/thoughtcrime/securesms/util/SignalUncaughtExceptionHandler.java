@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 
-  private static final String TAG = SignalUncaughtExceptionHandler.class.getSimpleName();
+  private static final String TAG = Log.tag(SignalUncaughtExceptionHandler.class);
 
   private final Thread.UncaughtExceptionHandler originalHandler;
 

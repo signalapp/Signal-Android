@@ -67,6 +67,7 @@ public interface BindableConversationItem extends Unbindable {
     void onSafetyNumberLearnMoreClicked(@NonNull Recipient recipient);
     void onJoinGroupCallClicked();
     void onInviteFriendsToGroupClicked(@NonNull GroupId.V2 groupId);
+    void onEnableCallNotificationsClicked();
 
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);

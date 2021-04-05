@@ -70,7 +70,7 @@ public class RetrieveProfileJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileJob";
 
-  private static final String TAG = RetrieveProfileJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RetrieveProfileJob.class);
 
   private static final String KEY_RECIPIENTS = "recipients";
 

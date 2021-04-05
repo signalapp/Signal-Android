@@ -97,7 +97,7 @@ import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
 public class MmsDatabase extends MessageDatabase {
 
-  private static final String TAG = MmsDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsDatabase.class);
 
   public  static final String TABLE_NAME         = "mms";
           static final String DATE_SENT          = "date";
@@ -619,13 +619,14 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    boolean        found    = false;
+  public Set<ThreadUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+    SQLiteDatabase    database      = databaseHelper.getWritableDatabase();
+    Set<ThreadUpdate> threadUpdates = new HashSet<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName()},
                                         DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
-                                        null, null, null, null)) {
+                                        null, null, null, null))
+    {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
           RecipientId theirRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
@@ -638,30 +639,22 @@ public class MmsDatabase extends MessageDatabase {
             int     status           = receiptType.getGroupStatus();
             boolean isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
 
-            found = true;
-
             database.execSQL("UPDATE " + TABLE_NAME + " SET " +
                              columnName + " = " + columnName + " + 1 WHERE " + ID + " = ?",
                              new String[] {String.valueOf(id)});
 
             DatabaseFactory.getGroupReceiptDatabase(context).update(ourRecipientId, id, status, timestamp);
-            DatabaseFactory.getThreadDatabase(context).update(threadId, false);
 
-            if (isFirstIncrement) {
-              notifyConversationListeners(threadId);
-            } else {
-              notifyVerboseConversationListeners(threadId);
-            }
+            threadUpdates.add(new ThreadUpdate(threadId, !isFirstIncrement));
           }
         }
       }
 
-      if (!found && receiptType == ReceiptType.DELIVERY) {
+      if (threadUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
-        return true;
       }
 
-      return found;
+      return threadUpdates;
     }
   }
 

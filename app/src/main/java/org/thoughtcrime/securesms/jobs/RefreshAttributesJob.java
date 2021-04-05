@@ -25,7 +25,7 @@ public class RefreshAttributesJob extends BaseJob {
 
   public static final String KEY = "RefreshAttributesJob";
 
-  private static final String TAG = RefreshAttributesJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RefreshAttributesJob.class);
 
   public RefreshAttributesJob() {
     this(new Job.Parameters.Builder()

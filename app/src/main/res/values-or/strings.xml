@@ -1616,6 +1616,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ନିମ୍ନଲିଖିତ ଲୋକମାନେ ହୁଏତ ପୁନଃସଂସ୍ଥାପନ କିମ୍ବା ଉପକରଣ ପରିବର୍ତ୍ତନ କରିଥିବେ | ଗୋପନୀୟତା ନିଶ୍ଚିତ କରିବାକୁ ସେମାନଙ୍କ ସହିତ ଆପଣଙ୍କର ସୁରକ୍ଷା ନମ୍ବର ଯାଞ୍ଚ କରନ୍ତୁ</string>
   <string name="safety_number_change_dialog__view">ଦେଖନ୍ତୁ</string>
   <string name="safety_number_change_dialog__previous_verified">ପୂର୍ବ ଯାଞ୍ଚ ହୋଇଛି</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">ସେଟିଂସମୂହ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ଦେଶ ଲୋଡ୍ ହେଉଛି…</string>
   <string name="country_selection_fragment__search">ସନ୍ଧାନ କରନ୍ତୁ</string>
@@ -1803,10 +1805,8 @@
   <string name="arrays__use_default">ଡିଫଲ୍ଟ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__use_custom">କଷ୍ଟମ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__mute_for_one_hour">1ଟେ ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ</string>
-  <string name="arrays__mute_for_two_hours">2 ଘଣ୍ଟା ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
   <string name="arrays__mute_for_one_day">1ଟେ ଦିନ ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
   <string name="arrays__mute_for_seven_days">7 ଦିନ ପାଇଁ ନୀରବ କରନ୍ତୁ </string>
-  <string name="arrays__mute_for_one_year">1ଟେ ବର୍ଷ ପାଇଁ ନୀରବ କରନ୍ତୁ</string>
   <string name="arrays__settings_default">ଡିଫଲ୍ଟ ସେଟିଂ ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="arrays__enabled">ସକ୍ଷମ</string>
   <string name="arrays__disabled">ଅକ୍ଷମ</string>
@@ -1858,6 +1858,7 @@
   <string name="preferences__pref_led_blink_title">LED ଝିଲିମିଲି ପ୍ରତିରୂପ</string>
   <string name="preferences__sound">ଧ୍ୱନି</string>
   <string name="preferences__silent">ନୀରବ</string>
+  <string name="preferences__default">ଡିଫଲ୍ଟ</string>
   <string name="preferences__repeat_alerts">ପୁନରାବୃତ୍ତି ସତର୍କତା</string>
   <string name="preferences__never">କଦାପି ନୁହେଁ</string>
   <string name="preferences__one_time">ଗୋଟିଏ ଥର</string>

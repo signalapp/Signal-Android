@@ -71,7 +71,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokirani korisnici</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranog korisnika</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Blokirani korisnici neće biti u mogućnosti da vas nazovu ili vam pošalju poruku.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blokirani korisnici neće biti u mogućnosti da Vas nazovu ili Vam pošalju poruku.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Nema blokiranih korisnika</string>
   <string name="BlockedUsersActivity__block_user">Blokirati korisnika?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" neće Vas moći nazvati ili Vam slati poruke.</string>
@@ -639,6 +639,7 @@
   <string name="ManageGroupActivity_mentions">Spomen</string>
   <string name="ManageGroupActivity_chat_wallpaper">Pozadinska slika</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
+  <string name="ManageGroupActivity_always">Stalno</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
   <string name="ManageGroupActivity_on">Uključeno</string>
   <string name="ManageGroupActivity_view_all_members">Vidi sve članove</string>
@@ -690,6 +691,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Stišaj obavještenja</string>
   <string name="ManageRecipientActivity_custom_notifications">Podešavanje obavještenja</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
+  <string name="ManageRecipientActivity_always">Stalno</string>
   <string name="ManageRecipientActivity_off">Isključeno</string>
   <string name="ManageRecipientActivity_on">Uključeno</string>
   <string name="ManageRecipientActivity_add_to_a_group">Uvrsti u grupu</string>
@@ -876,6 +878,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Zaustavljam servis za Signal pozive</string>
   <string name="NotificationBarManager__deny_call">Odbij poziv</string>
   <string name="NotificationBarManager__answer_call">Odgovori na poziv</string>
   <string name="NotificationBarManager__end_call">Završi razgovor</string>
@@ -1540,6 +1543,7 @@
   <string name="NotificationChannel_group_messages">Poruke</string>
   <string name="NotificationChannel_missing_display_name">Nepoznato</string>
   <string name="NotificationChannel_voice_notes">Glasovne bilješke</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nema aktivnosti za otvaranje postavki obavještenjā.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovori nisu dostupni kada je Signal zaključan!</string>
@@ -1663,6 +1667,7 @@
   <string name="ConversationUpdateItem_return_to_call">Vrati se pozivu</string>
   <string name="ConversationUpdateItem_call_is_full">Poziv je popunjen</string>
   <string name="ConversationUpdateItem_invite_friends">Pozovi prijatelje</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Uključi obavještenja o pozivima</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -1686,6 +1691,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ove su osobe možda iznova instalirale Signal ili promijenile uređaj. Potvrdite svoj sigurnosni broj s njima da osigurate privatnost.</string>
   <string name="safety_number_change_dialog__view">Pregled</string>
   <string name="safety_number_change_dialog__previous_verified">Ranije potvrđeno</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Obavještenja o pozivima uključena.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Uključi obavještenja o pozivima</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Uključi aktivnost u pozadini</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Sad sve izgleda kako treba!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Da biste bili obaviješteni o pozivima, pritisnite ovdje i uključite \"Prikaži obavještenja\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Da biste bili obaviješteni o pozivima, pritisnite ovdje i uključite obavještenja. Dobro provjerite i potvrdite da su Zvuk i Iskočni okviri uključeni.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Da biste bili obaviješteni o pozivima, pritisnite ovdje i uključite aktivnost u pozadini među podešavanjima za bateriju.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Podešavanja</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Da biste bili obaviješteni o pozivima, pritisnite Podešavanja i uključite \"Prikaži obavještenja\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Da biste bili obaviješteni o pozivima, pritisnite Podešavanja i uključite obavještenja. Dobro provjerite i potvrdite da su Zvuk i Iskočni okviri uključeni.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Da biste bili obaviješteni o pozivima, pritisnite Podešavanja i uključite aktivnost u pozadini među podešavanjima za bateriju.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavam države…</string>
   <string name="country_selection_fragment__search">Traži</string>
@@ -1888,10 +1905,10 @@
   <string name="arrays__use_default">Koristi standardno</string>
   <string name="arrays__use_custom">Koristi korisničko</string>
   <string name="arrays__mute_for_one_hour">Stišaj na 1 sat</string>
-  <string name="arrays__mute_for_two_hours">Stišaj na 2 sata</string>
+  <string name="arrays__mute_for_eight_hours">Stišaj na 8 sati</string>
   <string name="arrays__mute_for_one_day">Stišaj na 1 dan</string>
   <string name="arrays__mute_for_seven_days">Stišaj na 7 dana</string>
-  <string name="arrays__mute_for_one_year">Stišaj na 1 godinu</string>
+  <string name="arrays__always">Stalno</string>
   <string name="arrays__settings_default">Sistemske postavke</string>
   <string name="arrays__enabled">Omogućeno</string>
   <string name="arrays__disabled">Onemogućeno</string>
@@ -1944,6 +1961,7 @@
   <string name="preferences__pref_led_blink_title">LED treptanja</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Stišan</string>
+  <string name="preferences__default">Standardno</string>
   <string name="preferences__repeat_alerts">Ponavljanje obavještenja</string>
   <string name="preferences__never">Nikad</string>
   <string name="preferences__one_time">Jednom</string>
@@ -2435,6 +2453,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">Vrati podatke iz rezervne kopije</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Došlo je do neočekivane greške prilikom pokušaja da se poveže s Vašim starim Android uređajem.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Tražim novi Android uređaj…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signalu je potrebno dopuštenje za pristup lokaciji kako bi pronašao i povezao se s Vašim novim Android uređajem.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signalu je potrebno da lokacija na telefonu bude aktivna kako bi mogao pronaći i povezati se s Vašim novim Android uređajem.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signalu je potrebno da Wi-Fi konekcija bude aktivna kako bi mogao 
@@ -2519,7 +2538,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Potrebna je potvrda</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Prenos računa…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dovršite registraciju na svom novom uređaju</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Vaš Signal račun prenesen je na Vaš novi uređaj, ali morate na njemu dovršiti registraciju da biste nastavili dalje. Signal će biti neaktivan na ovom uređaju.</string>
   <string name="OldDeviceTransferLockedDialog__done">Uredu</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Prekini i aktiviraj ovaj uređaj</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>

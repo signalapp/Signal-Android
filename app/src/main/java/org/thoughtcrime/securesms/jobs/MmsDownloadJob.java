@@ -52,7 +52,7 @@ public class MmsDownloadJob extends BaseJob {
 
   public static final String KEY = "MmsDownloadJob";
 
-  private static final String TAG = MmsDownloadJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsDownloadJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_THREAD_ID  = "thread_id";

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECPublicKey;
+import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 /**
@@ -42,6 +43,27 @@ public final class WebRtcUtil {
     return offerType == OfferMessage.Type.VIDEO_CALL ? CallManager.CallMediaType.VIDEO_CALL : CallManager.CallMediaType.AUDIO_CALL;
   }
 
+  public static @NonNull OfferMessage.Type getOfferTypeFromCallMediaType(@NonNull CallManager.CallMediaType callMediaType) {
+    return callMediaType == CallManager.CallMediaType.VIDEO_CALL ? OfferMessage.Type.VIDEO_CALL : OfferMessage.Type.AUDIO_CALL;
+  }
+
+  public static @NonNull HangupMessage.Type getHangupTypeFromCallHangupType(@NonNull CallManager.HangupType hangupType) {
+    switch (hangupType) {
+      case ACCEPTED:
+        return HangupMessage.Type.ACCEPTED;
+      case BUSY:
+        return HangupMessage.Type.BUSY;
+      case NORMAL:
+        return HangupMessage.Type.NORMAL;
+      case DECLINED:
+        return HangupMessage.Type.DECLINED;
+      case NEED_PERMISSION:
+        return HangupMessage.Type.NEED_PERMISSION;
+      default:
+        throw new IllegalArgumentException("Unexpected hangup type: " + hangupType);
+    }
+  }
+
   public static void enableSpeakerPhoneIfNeeded(@NonNull Context context, boolean enable) {
     if (!enable) {
       return;
@@ -49,7 +71,7 @@ public final class WebRtcUtil {
 
     AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
     //noinspection deprecation
-    boolean      shouldEnable        = !(androidAudioManager.isSpeakerphoneOn() || androidAudioManager.isBluetoothScoOn() || androidAudioManager.isWiredHeadsetOn());
+    boolean shouldEnable = !(androidAudioManager.isSpeakerphoneOn() || androidAudioManager.isBluetoothScoOn() || androidAudioManager.isWiredHeadsetOn());
 
     if (shouldEnable) {
       androidAudioManager.setSpeakerphoneOn(true);

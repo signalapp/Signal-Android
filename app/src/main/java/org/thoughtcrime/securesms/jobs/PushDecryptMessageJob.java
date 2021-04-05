@@ -97,6 +97,11 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putBlobAsString(KEY_ENVELOPE, envelope.serialize())
                              .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)

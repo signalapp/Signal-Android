@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
+import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -161,7 +162,7 @@ import java.util.Set;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment {
-  private static final String TAG = ConversationFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(ConversationFragment.class);
 
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
   private static final int CODE_ADD_EDIT_CONTACT      = 77;
@@ -1557,6 +1558,23 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public void onInviteFriendsToGroupClicked(@NonNull GroupId.V2 groupId) {
       GroupLinkInviteFriendsBottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), groupId);
+    }
+
+    @Override
+    public void onEnableCallNotificationsClicked() {
+      EnableCallNotificationSettingsDialog.fixAutomatically(requireContext());
+      if (EnableCallNotificationSettingsDialog.shouldShow(requireContext())) {
+        EnableCallNotificationSettingsDialog.show(getChildFragmentManager());
+      } else {
+        refreshList();
+      }
+    }
+  }
+
+  public void refreshList() {
+    ConversationAdapter listAdapter = getListAdapter();
+    if (listAdapter != null) {
+      listAdapter.notifyDataSetChanged();
     }
   }
 

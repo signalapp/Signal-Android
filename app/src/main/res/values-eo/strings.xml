@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Mencioj</string>
   <string name="ManageGroupActivity_chat_wallpaper">Interparola ekranfono</string>
   <string name="ManageGroupActivity_until_s">Ĝis %1$s</string>
+  <string name="ManageGroupActivity_always">Ĉiam</string>
   <string name="ManageGroupActivity_off">Malŝaltita</string>
   <string name="ManageGroupActivity_on">Ŝaltita</string>
   <string name="ManageGroupActivity_view_all_members">Vidi ĉiujn grupanojn</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Silentigi sciigojn</string>
   <string name="ManageRecipientActivity_custom_notifications">Propraj sciigoj</string>
   <string name="ManageRecipientActivity_until_s">Ĝis %1$s</string>
+  <string name="ManageRecipientActivity_always">Ĉiam</string>
   <string name="ManageRecipientActivity_off">Malŝaltita</string>
   <string name="ManageRecipientActivity_on">Ŝaltita</string>
   <string name="ManageRecipientActivity_add_to_a_group">Aldoni al grupo</string>
@@ -833,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
   <string name="NotificationBarManager__incoming_signal_call">Envena Signal-alvoko</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Haltigo de la alvokoservo de Signal</string>
   <string name="NotificationBarManager__deny_call">Rifuzi alvokon</string>
   <string name="NotificationBarManager__answer_call">Respondi alvokon</string>
   <string name="NotificationBarManager__end_call">Fini alvokon</string>
@@ -1477,6 +1480,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationChannel_group_messages">Mesaĝoj</string>
   <string name="NotificationChannel_missing_display_name">Nekonata</string>
   <string name="NotificationChannel_voice_notes">Voĉaj notoj</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Neniu aktiveco disponeblas por malfermi la agordojn pri la sciigo-kanalo.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rapida respondo ne eblas, kiam Signal estas ŝlosita!</string>
@@ -1547,7 +1551,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ ne estas Signal-uzanto. Kontrolu la uzantnomon kaj reprovu.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vi ne bezonas aldoni vin mem al la grupo</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimuma grupgrando atingita</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupoj povas maksimume enteni %1$d  anojn.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupoj povas maksimume enteni %1$d anojn.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Konsilita limo de anoj atingita</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupoj pli bone funkcias kun maksimume %1$d anoj. Aldono de pliaj anoj okazigos malfruon por sendi aŭ ricevi mesaĝojn.</string>
   <plurals name="ContactSelectionListFragment_d_members">
@@ -1597,6 +1601,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_return_to_call">Reiri al la alvoko</string>
   <string name="ConversationUpdateItem_call_is_full">La alvoko plenas</string>
   <string name="ConversationUpdateItem_invite_friends">Inviti amikojn</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Ludi … Paŭzigi</string>
   <string name="audio_view__download_accessibility_description">Elŝuti</string>
@@ -1620,6 +1625,18 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">La jenaj homoj eble restarigis aŭ ŝanĝis iliajn aparatojn. Kontrolu vian sekurigan numeron kun ili por certigi vian privatecon.</string>
   <string name="safety_number_change_dialog__view">Montri pli</string>
   <string name="safety_number_change_dialog__previous_verified">Antaŭe kontrolita</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Sciigoj pri la alvoko ŝaltitaj.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Ŝalti fonan aktivecon</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Ĉiu estas perfekta nun!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu ĉi tie kaj ŝaltu „Montri la sciigojn“. </string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu ĉi tie kaj ŝaltu la sciigojn, kaj certigu, ke „Sono“ kaj „Ŝprucosciigo“ estas ŝaltitaj.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Por ricevi sciigojn pri la alvokoj, tuŝetu ĉi tie kaj ŝaltu la fonan aktivecon en la agordoj pri la baterio. </string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Agordoj</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu „Agordoj“ kaj ŝaltu „Montri la sciigojn“. </string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Por ricevi sciigojn pri la alvokoj, tuŝetu „Agordoj“ kaj ŝaltu la sciigojn, kaj certigu, ke „Sono“ kaj „Ŝprucosciigo“ estas ŝaltitaj.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Por ricevi sciigojn pri la alvokoj, tuŝetu „Agordoj“ kaj ŝaltu la fonan aktivecon en la agordoj pri la baterio. </string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ŝargo de landlisto…</string>
   <string name="country_selection_fragment__search">Serĉi</string>
@@ -1815,10 +1832,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="arrays__use_default">Uzi defaŭltan</string>
   <string name="arrays__use_custom">Uzi propran</string>
   <string name="arrays__mute_for_one_hour">Silentigi dum 1 horo</string>
-  <string name="arrays__mute_for_two_hours">Silentigi dum 2 horoj</string>
+  <string name="arrays__mute_for_eight_hours">Silentigi dum 8 horoj</string>
   <string name="arrays__mute_for_one_day">Silentigi dum 1 tago</string>
   <string name="arrays__mute_for_seven_days">Silentigi dum 7 tagoj</string>
-  <string name="arrays__mute_for_one_year">Silentigi dum 1 jaro</string>
+  <string name="arrays__always">Ĉiam</string>
   <string name="arrays__settings_default">Laŭ la ĝenerala agordo</string>
   <string name="arrays__enabled">Ŝaltita</string>
   <string name="arrays__disabled">Malŝaltita</string>
@@ -1870,6 +1887,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__pref_led_blink_title">LED-a pulsa modelo</string>
   <string name="preferences__sound">Sono</string>
   <string name="preferences__silent">Silento</string>
+  <string name="preferences__default">Defaŭlta</string>
   <string name="preferences__repeat_alerts">Ripeti avertojn</string>
   <string name="preferences__never">Neniam</string>
   <string name="preferences__one_time">Unufoje</string>
@@ -2330,7 +2348,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transigo aŭ restaŭro de konto</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se vi antaŭe registris Signal-konton, vi povas transigi aŭ restaŭri vian konton kaj viaj mesaĝojn.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transigi el Android-aparato</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Elpreni vian konton kaj viajn mesaĝojn el via antaŭa Android-aparato. Vi devas havi vian antaŭan aparaton.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Vi devas havi vian antaŭan aparaton.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaŭri el savkopio</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaŭri viajn mesaĝojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Malfermi Signal ĉe via antaŭa Android-aparato.</string>
   <string name="NewDeviceTransferInstructions__continue">Daŭrigi</string>
@@ -2351,6 +2372,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaŭri savkopion</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Neatendita eraro okazis dum provo konekti al via antaŭa Android-aparato.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Serĉo de nova Android-aparato…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal bezonas la Pozicio-permeson por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal bezonas, ke la pozicio-servoj estas ŝaltitaj por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal bezonas vifion por malkovri vian novan Android-aparaton kaj konekti al ĝi. Vifio devas esti ŝaltita, sed ĝi ne bezonas esti konektita al vifia reto.</string>
@@ -2385,6 +2407,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Certigu, ke ambaŭ aparatoj estas en transiga reĝimo.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Iri al helppaĝo</string>
   <string name="DeviceTransferSetup__try_again">Provi denove</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Atendo el la alia Android-aparato</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Tuŝetu „Sekva“ en la alia aparato por komenci la transigon.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tuŝetu „Sekva“ en via alia aparato…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ne eblas transigi el pli nova versio de Signal</string>
   <!--DeviceTransferFragment-->
@@ -2427,7 +2452,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeviceToDeviceTransferService_status_verification_required">Kontrolo bezonata</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Transigo de la konto…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Kompletigu la registriĝon ĉe via nova aparato</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Via Signal-konto transiĝis al via nova aparato. Por kompletigi la transigon, vi devas plu registriĝi ĉe via nova aparato. Signal malaktiviĝos ĉe tiu ĉi aparato.</string>
   <string name="OldDeviceTransferLockedDialog__done">Farita</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Nuligi kaj aktivigi tiun aparaton</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>

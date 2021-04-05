@@ -321,7 +321,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка при задаване на профилна снимка</string>
   <string name="CreateProfileActivity_problem_setting_profile">Проблем при промяната на профила</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте профила си</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профилът ви е криптиран от край до край. Профилът и рпомените ще бъдат видими за контактите, когато започнете или приемете нов разговор, и когато се присъедините към нови групи.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профилът ти е напълно криптиран. Профилът ти и неговите промени ще бъдат видими за контактите ти, когато започнеш или приемеш нов разговор, и когато се присъединиш към нови групи.</string>
   <string name="CreateProfileActivity_set_avatar_description">Слагане на аватар</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Възстановяване от архива?</string>
@@ -336,18 +336,18 @@
   <string name="RestoreBackupFragment__not_now">Не сега</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Архив на чатовете</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните копия са шифровани с парола и се записват на Вашето устройство.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Архивите са криптирани с парола и се записват на устройство ти.</string>
   <string name="BackupsPreferenceFragment__create_backup">Създавне на архив</string>
   <string name="BackupsPreferenceFragment__last_backup">Най-скорошен архив: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Архивна папка</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Проверка на архивната парола</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Тествайте паролата си за резервни копия и проверете дали съвпада.</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Тествай паролата си за архивите и провери дали е правилна.</string>
   <string name="BackupsPreferenceFragment__turn_on">Включи</string>
   <string name="BackupsPreferenceFragment__turn_off">Отключи</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">За да възстановите бекъп, инсталирайте ново копие на Signal. Отворете приложението и натиснете \"Възстановяване на бекъп\", след това изберете файла за възстановяване.%1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">За да възстановиш архива, инсталирай ново копие на Signal. Отвори приложението и натисни \"Възстановяване на архив\", след това избери файла с архива.%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Научете повече</string>
-  <string name="BackupsPreferenceFragment__in_progress">Работи…</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d до сега…</string>
+  <string name="BackupsPreferenceFragment__in_progress">Архивира се…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d архивирани до тук…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal изискава разрешение за достъп до външните хранлища, за да може да създаде архиви, но този достъп е парманентно отказан. Моля, продължете до настройки на приложенията и изберете \"Разрешения\" и активирайте \"Хранилище\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
@@ -355,7 +355,7 @@
   <string name="CustomDefaultPreference_none">Нищо</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Избери снимка</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Снимаи</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Направи снимка</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Избери от галерия</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Премахване на снимката</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Снимане трябва разрешение на камерата.</string>
@@ -418,8 +418,8 @@
   <string name="AddToGroupActivity_add_member">Добави член?</string>
   <string name="AddToGroupActivity_add_s_to_s">Добави %1$sкъм %2$s?</string>
   <string name="AddToGroupActivity_s_added_to_s">%1$s добавен към %2$s.</string>
-  <string name="AddToGroupActivity_add_to_group">Добави до група</string>
-  <string name="AddToGroupActivity_add_to_groups">Добави до групи</string>
+  <string name="AddToGroupActivity_add_to_group">Добави в групата</string>
+  <string name="AddToGroupActivity_add_to_groups">Добави в групи</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Този човек не може да бъде добавен в стари групи.</string>
   <string name="AddToGroupActivity_add">Добави</string>
   <!--ChooseNewAdminActivity-->
@@ -471,7 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Обновете тази група за достъп до нови функционалности като @споменаване и администратори.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Награждане на група</string>
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надграждане на група</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можа да бъде добавен към новата група. Искате ли да го/я добавите сега?</item>
@@ -612,7 +612,7 @@
   <string name="ManageGroupActivity_see_all">Виж всички</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d беше добавен като член.</item>
-    <item quantity="other">%d бяха добавени като членове.</item>
+    <item quantity="other">%d нови членове са добавени</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Само администраторите могат да активират или деактивират връзката за споделяне на група.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Само администраторите могат да активират или деактивират опцията за одобряване на нови членове.</string>
@@ -639,9 +639,9 @@
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Име на профила</string>
   <string name="ManageProfileFragment_username">Потребителско име</string>
-  <string name="ManageProfileFragment_about">Относно</string>
+  <string name="ManageProfileFragment_about">Биография</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Напиши нещо за себе си</string>
-  <string name="ManageProfileFragment_your_name">Вашето име</string>
+  <string name="ManageProfileFragment_your_name">Името ти</string>
   <string name="ManageProfileFragment_your_username">Твойто Потребителско име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспешно задаване на аватар</string>
   <!--ManageRecipientActivity-->
@@ -658,7 +658,7 @@
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
   <string name="ManageRecipientActivity_off">Деактивирано</string>
   <string name="ManageRecipientActivity_on">Активирано</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Добави до група</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Добави в група</string>
   <string name="ManageRecipientActivity_view_all_groups">Преглед на всички групи</string>
   <string name="ManageRecipientActivity_see_all">Виж всички</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Няма общи групи</string>
@@ -683,7 +683,7 @@
   <string name="CustomNotificationsDialogFragment__call_settings">Настройки на разговора</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Мелодия</string>
   <string name="CustomNotificationsDialogFragment__enabled">Разрешено</string>
-  <string name="CustomNotificationsDialogFragment__disabled">Деактивирано</string>
+  <string name="CustomNotificationsDialogFragment__disabled">Деактивирани</string>
   <string name="CustomNotificationsDialogFragment__default">По подразбиране</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Групова връзка за споделяне</string>
@@ -1614,6 +1614,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следнити контаки може да са преинсталирали или сменили устройствата си. Потвърдете номерата за сигурност.</string>
   <string name="safety_number_change_dialog__view">Преглед</string>
   <string name="safety_number_change_dialog__previous_verified">Предишно потвърдено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Настройки</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Зареждане на държавите…</string>
   <string name="country_selection_fragment__search">Търсене</string>
@@ -1626,7 +1628,7 @@
   <string name="device_list_fragment__no_devices_linked">Няма свързани устройства</string>
   <string name="device_list_fragment__link_new_device">Свързване на ново устройство</string>
   <!--expiration-->
-  <string name="expiration_off">Деактивирано</string>
+  <string name="expiration_off">Деактивирани</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d секунда</item>
     <item quantity="other">%d секунди</item>
@@ -1731,7 +1733,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Въведете име или номер</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желаете да потвърдите сигурноста на криптирането с %s,  срванете числото изписано по-горе с числото на тяхното устройство. Алтернативно, може да сканирате кодът на техния телефон или да ги помолите да сканират вашия. <a href="https://signal.org/redirect/safety-numbers">Научете повече.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желае да потвърдиш сигурноста на криптирането с %s,  сръвни числото изписано по-горе с числото на тяхното устройство. Алтернативно, може да сканираш кода на техния телефон или да ги помолиш да сканират твоя. <a href="https://signal.org/redirect/safety-numbers">Научи повече.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натиснете за сканиране</string>
   <string name="verify_display_fragment__loading">Зареждане…</string>
   <string name="verify_display_fragment__verified">Потвърдено</string>
@@ -1801,10 +1803,8 @@
   <string name="arrays__use_default">Използване на подразбиращ се</string>
   <string name="arrays__use_custom">Използване на специален</string>
   <string name="arrays__mute_for_one_hour">Тих режим за 1 час</string>
-  <string name="arrays__mute_for_two_hours">Тих режим за 2 часа</string>
   <string name="arrays__mute_for_one_day">Тих режим за 1 ден</string>
   <string name="arrays__mute_for_seven_days">Тих режим за 7 дена</string>
-  <string name="arrays__mute_for_one_year">Тих режим за 1 година</string>
   <string name="arrays__settings_default">Настройки по подразбиране</string>
   <string name="arrays__enabled">Разрешено</string>
   <string name="arrays__disabled">Деактивирано</string>
@@ -1835,8 +1835,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Използване на Signal за всички входящи мултимедийни съобщения</string>
   <string name="preferences__pref_enter_sends_title">Клавишът Enter се използва за изпращане</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натискане на клавиша Enter ще изпрати текстово съобщене</string>
-  <string name="preferences__pref_use_address_book_photos">Използвай снимки от адресната книга</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Показвай снимки на контакти от адресната си книга, ако има такива</string>
+  <string name="preferences__pref_use_address_book_photos">Използване на снимки от адресната книга</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Показване на снимки на контакти от адресната си книга, ако има такива</string>
   <string name="preferences__generate_link_previews">Генерирайте визуализации на връзки</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Извличайте визуализации на връзки директно от уебсайтове за съобщения, които изпращате.</string>
   <string name="preferences__choose_identity">Избери самоличност</string>
@@ -1856,6 +1856,7 @@
   <string name="preferences__pref_led_blink_title">LED известяване</string>
   <string name="preferences__sound">Мелодия</string>
   <string name="preferences__silent">Тих</string>
+  <string name="preferences__default">По подразбиране</string>
   <string name="preferences__repeat_alerts">Повтарящи се аларми</string>
   <string name="preferences__never">Никога</string>
   <string name="preferences__one_time">Само веднъж</string>
@@ -1946,7 +1947,7 @@
   <string name="preferences_storage__s_messages">%1$s съобщения</string>
   <string name="preferences_storage__custom">Персонализирано</string>
   <string name="preferences_advanced__use_system_emoji">Използване на вградените emoji-та</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивирай вградена в Signal подръжка на emoji-та</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивиране на вградената в Signal подръжка на emoji-та</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контатктът Ви. Активирането ще намали качеството на връзката.</string>
   <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
   <string name="preferences_app_protection__who_can">Кой може да…</string>
@@ -2002,7 +2003,7 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Ново съобщение до…</string>
   <string name="contact_selection_list__unknown_contact_block">Блокиране на потребител</string>
-  <string name="contact_selection_list__unknown_contact_add_to_group">Добави до група?</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Добави в групата</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Обаждане</string>
   <!--conversation_callable_secure-->
@@ -2255,9 +2256,9 @@
   <string name="BackupDialog_choose_folder">Изберете папка</string>
   <string name="BackupDialog_copied_to_clipboard">Копирано</string>
   <string name="BackupDialog_no_file_picker_available">Няма наличен файл за избор.</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">Въведете паролата на бекъпа, за да потвърдите</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Въведи паролата за архива</string>
   <string name="BackupDialog_verify">Валидиране</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно въведохте бекъп парола</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно въведена парола за архива</string>
   <string name="BackupDialog_passphrase_was_not_correct">Паролата не беше правилна</string>
   <string name="LocalBackupJob_creating_backup">Създаване на архив…</string>
   <string name="LocalBackupJobApi29_backup_failed">Архивирането не бе успешно</string>
@@ -2335,9 +2336,9 @@
   <string name="RecipientBottomSheet_unblock">Отблокиране</string>
   <string name="RecipientBottomSheet_add_to_contacts">Добавяне в контакти</string>
   <string name="RecipientBottomSheet_add_to_a_group">Добави до група</string>
-  <string name="RecipientBottomSheet_add_to_another_group">Добави до друга група</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Добави в друга група</string>
   <string name="RecipientBottomSheet_view_safety_number">Преглеждане на числото за сигурност</string>
-  <string name="RecipientBottomSheet_make_group_admin">Направи група администратор</string>
+  <string name="RecipientBottomSheet_make_group_admin">Направи администратор на групата</string>
   <string name="RecipientBottomSheet_remove_as_admin">Отстраняване като администратор</string>
   <string name="RecipientBottomSheet_remove_from_group">Отстраняване от групата</string>
   <string name="RecipientBottomSheet_message_description">Съобщение</string>

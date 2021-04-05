@@ -91,7 +91,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
              MediaPreviewFragment.Events
 {
 
-  private final static String TAG = MediaPreviewActivity.class.getSimpleName();
+  private final static String TAG = Log.tag(MediaPreviewActivity.class);
 
   private static final int NOT_IN_A_THREAD = -2;
 

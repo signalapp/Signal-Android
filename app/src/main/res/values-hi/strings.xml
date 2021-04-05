@@ -1598,6 +1598,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">हो सकता है कि निम्नलिखित लोगों ने रीइंस्टॉल किया हो या डिवाइसेस को बदल लिया हो। गोपनीयता को सुनिश्चित करने के लिए उनके साथ अपने सुरक्षा नंबर को वेरिफाई करें।</string>
   <string name="safety_number_change_dialog__view">देखना</string>
   <string name="safety_number_change_dialog__previous_verified">पहले से वेरिफाई किया हुआ</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">सेटिंग्स</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">देशों को लोड किया जा रहा है</string>
   <string name="country_selection_fragment__search">सर्च</string>
@@ -1780,10 +1782,8 @@
   <string name="arrays__use_default">डिफ़ॉल्ट का इस्तेमाल करें </string>
   <string name="arrays__use_custom">कस्टम का इस्तेमाल करें </string>
   <string name="arrays__mute_for_one_hour">1 घंटे के लिए म्यूट करें</string>
-  <string name="arrays__mute_for_two_hours">2 घंटे के लिए म्यूट करें</string>
   <string name="arrays__mute_for_one_day">1 दिन के लिए म्यूट करें</string>
   <string name="arrays__mute_for_seven_days">7 दिन के लिए म्यूट करें</string>
-  <string name="arrays__mute_for_one_year">1 साल के लिए म्यूट करें</string>
   <string name="arrays__settings_default">सेटिंग्स डिफ़ॉल्ट</string>
   <string name="arrays__enabled">सक्षम</string>
   <string name="arrays__disabled">अक्षम</string>
@@ -1835,6 +1835,7 @@
   <string name="preferences__pref_led_blink_title">LED ब्लिंक पैटर्न</string>
   <string name="preferences__sound">आवाज़ </string>
   <string name="preferences__silent">म्युट</string>
+  <string name="preferences__default">डिफ़ॉल्ट</string>
   <string name="preferences__repeat_alerts">अलर्ट दोहराएं</string>
   <string name="preferences__never">कभी नहीं</string>
   <string name="preferences__one_time">एक बार</string>

@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class PushDatabase extends Database {
 
-  private static final String TAG = PushDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(PushDatabase.class);
 
   private static final String TABLE_NAME                 = "push";
   public  static final String ID                         = "_id";

@@ -1005,10 +1005,10 @@
   <string name="arrays__use_default">Використовувати типово</string>
   <string name="arrays__use_custom">Використовувати власні</string>
   <string name="arrays__mute_for_one_hour">Вимкнути звук на 1 годину</string>
-  <string name="arrays__mute_for_two_hours">Вимкнути звук на 2 години</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Вимкнути звук на 2 години</string> -->
   <string name="arrays__mute_for_one_day">Вимкнути звук на 1 день</string>
   <string name="arrays__mute_for_seven_days">Вимкнути звук на 7 днів</string>
-  <string name="arrays__mute_for_one_year">Вимкнути звук на 1 рік</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Вимкнути звук на 1 рік</string> -->
   <string name="arrays__settings_default">Типові налаштування</string>
   <string name="arrays__enabled">Увімкнено</string>
   <string name="arrays__disabled">Вимкнено</string>

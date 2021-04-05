@@ -41,22 +41,22 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.TooltipPopup;
+import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
-import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
 import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
@@ -64,7 +64,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
-import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.List;
 
@@ -163,9 +162,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
       if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
-        Intent intent = new Intent(this, WebRtcCallService.class);
-        intent.setAction(WebRtcCallService.ACTION_CANCEL_PRE_JOIN_CALL);
-        startService(intent);
+        ApplicationDependencies.getSignalCallManager().cancelPreJoin();
       }
     }
   }
@@ -258,19 +255,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
       if (state != null) {
         if (state.needsNewRequestSizes()) {
-          Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
-          intent.setAction(WebRtcCallService.ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS);
-          startService(intent);
+          ApplicationDependencies.getSignalCallManager().updateRenderedResolutions();
         }
       }
     });
 
     viewModel.getOrientation().observe(this, orientation -> {
-      Intent intent = new Intent(this, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_ORIENTATION_CHANGED)
-            .putExtra(WebRtcCallService.EXTRA_ORIENTATION_DEGREES, orientation.getDegrees());
-
-      startService(intent);
+      ApplicationDependencies.getSignalCallManager().orientationChanged(orientation.getDegrees());
 
       switch (orientation) {
         case LANDSCAPE_LEFT_EDGE:
@@ -329,30 +320,19 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void handleSetAudioHandset() {
-    Intent intent = new Intent(this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_SPEAKER);
-    startService(intent);
+    ApplicationDependencies.getSignalCallManager().setAudioSpeaker(false);
   }
 
   private void handleSetAudioSpeaker() {
-    Intent intent = new Intent(this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_SPEAKER);
-    intent.putExtra(WebRtcCallService.EXTRA_SPEAKER, true);
-    startService(intent);
+    ApplicationDependencies.getSignalCallManager().setAudioSpeaker(true);
   }
 
   private void handleSetAudioBluetooth() {
-    Intent intent = new Intent(this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_BLUETOOTH);
-    intent.putExtra(WebRtcCallService.EXTRA_BLUETOOTH, true);
-    startService(intent);
+    ApplicationDependencies.getSignalCallManager().setAudioBluetooth(true);
   }
 
   private void handleSetMuteAudio(boolean enabled) {
-    Intent intent = new Intent(this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_SET_MUTE_AUDIO);
-    intent.putExtra(WebRtcCallService.EXTRA_MUTE, enabled);
-    startService(intent);
+    ApplicationDependencies.getSignalCallManager().setMuteAudio(enabled);
   }
 
   private void handleSetMuteVideo(boolean muted) {
@@ -366,20 +346,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera, recipientDisplayName), R.drawable.ic_video_solid_24_tinted)
                  .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera, recipientDisplayName))
-                 .onAllGranted(() -> {
-                   Intent intent = new Intent(this, WebRtcCallService.class);
-                   intent.setAction(WebRtcCallService.ACTION_SET_ENABLE_VIDEO);
-                   intent.putExtra(WebRtcCallService.EXTRA_ENABLE, !muted);
-                   startService(intent);
-                 })
+                 .onAllGranted(() -> ApplicationDependencies.getSignalCallManager().setMuteVideo(!muted))
                  .execute();
     }
   }
 
   private void handleFlipCamera() {
-    Intent intent = new Intent(this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_FLIP_CAMERA);
-    startService(intent);
+    ApplicationDependencies.getSignalCallManager().flipCamera();
   }
 
   private void handleAnswerWithAudio() {
@@ -396,9 +369,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                    callScreen.setRecipient(recipient);
                    callScreen.setStatus(getString(R.string.RedPhone_answering));
 
-                   Intent intent = new Intent(this, WebRtcCallService.class);
-                   intent.setAction(WebRtcCallService.ACTION_ACCEPT_CALL);
-                   startService(intent);
+                   ApplicationDependencies.getSignalCallManager().acceptCall(false);
                  })
                  .onAnyDenied(this::handleDenyCall)
                  .execute();
@@ -419,10 +390,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                    callScreen.setRecipient(recipient);
                    callScreen.setStatus(getString(R.string.RedPhone_answering));
 
-                   Intent intent = new Intent(this, WebRtcCallService.class);
-                   intent.setAction(WebRtcCallService.ACTION_ACCEPT_CALL);
-                   intent.putExtra(WebRtcCallService.EXTRA_ANSWER_WITH_VIDEO, true);
-                   startService(intent);
+                   ApplicationDependencies.getSignalCallManager().acceptCall(true);
 
                    handleSetMuteVideo(false);
                  })
@@ -435,9 +403,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     Recipient recipient = viewModel.getRecipient().get();
 
     if (!recipient.equals(Recipient.UNKNOWN)) {
-      Intent intent = new Intent(this, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_DENY_CALL);
-      startService(intent);
+      ApplicationDependencies.getSignalCallManager().denyCall();
 
       callScreen.setRecipient(recipient);
       callScreen.setStatus(getString(R.string.RedPhone_ending_call));
@@ -447,9 +413,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void handleEndCall() {
     Log.i(TAG, "Hangup pressed, handling termination now...");
-    Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_LOCAL_HANGUP);
-    startService(intent);
+    ApplicationDependencies.getSignalCallManager().localHangup();
   }
 
   private void handleOutgoingCall(@NonNull WebRtcViewModel event) {
@@ -480,7 +444,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private void handleCallBusy() {
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setStatus(getString(R.string.RedPhone_busy));
-    delayedFinish(WebRtcCallService.BUSY_TONE_LENGTH);
+    delayedFinish(SignalCallManager.BUSY_TONE_LENGTH);
   }
 
   private void handleCallConnected(@NonNull WebRtcViewModel event) {
@@ -537,7 +501,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void updateGroupMembersForGroupCall() {
-    startService(new Intent(this, WebRtcCallService.class).setAction(WebRtcCallService.ACTION_GROUP_REQUEST_UPDATE_MEMBERS));
+    ApplicationDependencies.getSignalCallManager().requestUpdateGroupMembers();
   }
 
   private void updateSpeakerHint(boolean showSpeakerHint) {
@@ -551,11 +515,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   @Override
   public void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients) {
     CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+
+    if (state == null) {
+      return;
+    }
+
     if (state.getGroupCallState().isConnected()) {
-      Intent intent = new Intent(this, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_GROUP_APPROVE_SAFETY_CHANGE)
-            .putExtra(WebRtcCallService.EXTRA_RECIPIENT_IDS, RecipientId.toSerializedList(changedRecipients));
-      startService(intent);
+      ApplicationDependencies.getSignalCallManager().groupApproveSafetyChange(changedRecipients);
     } else {
       viewModel.startCall(state.getLocalParticipant().isVideoEnabled());
     }
@@ -569,9 +535,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
     if (state != null && state.getGroupCallState().isNotIdle()) {
       if (state.getCallState().isPreJoinOrNetworkUnavailable()) {
-        Intent intent = new Intent(this, WebRtcCallService.class);
-        intent.setAction(WebRtcCallService.ACTION_CANCEL_PRE_JOIN_CALL);
-        startService(intent);
+        ApplicationDependencies.getSignalCallManager().cancelPreJoin();
         finish();
       } else {
         handleEndCall();
@@ -637,11 +601,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private void startCall(boolean isVideoCall) {
     enableVideoIfAvailable = isVideoCall;
 
-    Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(viewModel.getRecipient().getId()))
-          .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, (isVideoCall ? OfferMessage.Type.VIDEO_CALL : OfferMessage.Type.AUDIO_CALL).getCode());
-    startService(intent);
+    if (isVideoCall) {
+      ApplicationDependencies.getSignalCallManager().startOutgoingVideoCall(viewModel.getRecipient().get());
+    } else {
+      ApplicationDependencies.getSignalCallManager().startOutgoingAudioCall(viewModel.getRecipient().get());
+    }
 
     MessageSender.onMessageSent();
   }

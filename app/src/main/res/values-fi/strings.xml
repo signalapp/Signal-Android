@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Maininnat</string>
   <string name="ManageGroupActivity_chat_wallpaper">Keskustelunäkymän taustakuva</string>
   <string name="ManageGroupActivity_until_s">%1$s asti</string>
+  <string name="ManageGroupActivity_always">Aina</string>
   <string name="ManageGroupActivity_off">pois päältä</string>
   <string name="ManageGroupActivity_on">Päällä</string>
   <string name="ManageGroupActivity_view_all_members">Näytä kaikki jäsenet</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Mykistä ilmoitukset</string>
   <string name="ManageRecipientActivity_custom_notifications">Mukautetut ilmoitukset</string>
   <string name="ManageRecipientActivity_until_s">%1$s asti</string>
+  <string name="ManageRecipientActivity_always">Aina</string>
   <string name="ManageRecipientActivity_off">pois päältä</string>
   <string name="ManageRecipientActivity_on">Päällä</string>
   <string name="ManageRecipientActivity_add_to_a_group">Lisää ryhmään</string>
@@ -1472,6 +1474,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NotificationChannel_group_messages">Viestit</string>
   <string name="NotificationChannel_missing_display_name">Tuntematon</string>
   <string name="NotificationChannel_voice_notes">Ääniviestit</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ei aktiviteettia saatavilla jonka kautta avata kanava-asetukset.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
@@ -1592,6 +1595,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_return_to_call">Palaa puheluun</string>
   <string name="ConversationUpdateItem_call_is_full">Puhelu on täynnä</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu ystäviä</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Näytä ilmoitukset puheluista</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Soita … Keskeytä</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
@@ -1615,6 +1619,18 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Seuraavat henkilöt ovat saattaneet uudelleenasentaa tai ovat vaihtaneet laitteita. Varmenna turvanumerosi heidän kanssaan yksityisyyden takaamiseksi.</string>
   <string name="safety_number_change_dialog__view">Näytä</string>
   <string name="safety_number_change_dialog__previous_verified">Aikaisemmin varmennettu</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Näytetään ilmoitukset puheluista.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Näytä ilmoitukset puheluista</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Salli tausta-aktiivisuus</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Kaikki näyttää nyt hyvältä!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Nähdäksesi ilmoitukset puheluista, napauta tästä ja valitse \'Näytä ilmoitukset\'</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Nähdäksesi ilmoitukset puheluista, napauta tästä, laita ilmoitukset päälle ja varmista että ääni ja ponnahdusikkuna ovat päällä.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja salli tausta-aktiivisuus.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Asetukset</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja valitse \'Näytä ilmoitukset\'</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Nähdäksesi ilmoitukset puheluista, napauta asetuksia, laita ilmoitukset päälle ja varmista että ääni ja ponnahdusikkuna ovat päällä.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Nähdäksesi ilmoitukset puheluista, napauta asetuksia ja salli tausta-aktiivisuus.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ladataan maita…</string>
   <string name="country_selection_fragment__search">Hae</string>
@@ -1781,11 +1797,19 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__include_debug_log">Liitä virheenkorjausloki.</string>
   <string name="HelpFragment__whats_this">Mikä tämä on?</string>
   <string name="HelpFragment__how_do_you_feel">Mitä mieltä olet? (valinnainen)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Kerro, miksi otat yhteyttä.</string>
   <string name="HelpFragment__support_info">Tukitiedot</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android-tukipyyntö</string>
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Jokin ei toimi</item>
+    <item>Parannusehdotus</item>
+    <item>Kysymys</item>
+    <item>Palaute</item>
+    <item>Muu</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -1802,10 +1826,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="arrays__use_default">Käytä oletusta</string>
   <string name="arrays__use_custom">Käytä mukautettua</string>
   <string name="arrays__mute_for_one_hour">1 tunniksi</string>
-  <string name="arrays__mute_for_two_hours">2 tunniksi</string>
+  <string name="arrays__mute_for_eight_hours">Mykistä 8 tunniksi</string>
   <string name="arrays__mute_for_one_day">1 vuorokaudeksi</string>
   <string name="arrays__mute_for_seven_days">7 vuorokaudeksi</string>
-  <string name="arrays__mute_for_one_year">1 vuodeksi</string>
+  <string name="arrays__always">Aina</string>
   <string name="arrays__settings_default">Oletus</string>
   <string name="arrays__enabled">Päällä</string>
   <string name="arrays__disabled">Poissa</string>
@@ -1857,6 +1881,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>
   <string name="preferences__sound">Ääni</string>
   <string name="preferences__silent">Ei ääntä</string>
+  <string name="preferences__default">Oletus</string>
   <string name="preferences__repeat_alerts">Hälytysten toisto</string>
   <string name="preferences__never">Älä toista</string>
   <string name="preferences__one_time">Kerran</string>
@@ -1956,7 +1981,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__chats">Keskustelut</string>
   <string name="preferences_data_and_storage__manage_storage">Tallennustilan hallinta</string>
   <string name="preferences_data_and_storage__calls">Puhelut</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">Käytä vähemmän dataa puheluihin</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Vähennä puhelujen datankäyttöä</string>
   <string name="preferences_data_and_storage__never">ei koskaan</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi ja mobiiliverkko</string>
   <string name="preferences_data_and_storage__cellular_only">Vain mobiiliverkko</string>
@@ -2233,9 +2258,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="backup_enable_dialog__folder">Kansio</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen. Ilman sitä, en pysty palauttamaan varmuuskopiota.</string>
   <string name="registration_activity__restore_backup">Palauta varmuuskopio</string>
+  <string name="registration_activity__transfer_or_restore_account">Siirrä tai palauta tili</string>
+  <string name="registration_activity__transfer_account">Siirrä tili</string>
   <string name="registration_activity__skip">Ohita</string>
   <string name="preferences_chats__chat_backups">Keskustelujen varmuuskopiot</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varmuuskopioi keskustelut ulkoiseen tallennustilaan</string>
+  <string name="preferences_chats__transfer_account">Siirrä tili</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Siirrä tili uuteen Android-laitteeseen</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Syötä varmuuskopion salalause</string>
   <string name="RegistrationActivity_restore">Palauta</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Varmuuskopioita ei voida tuoda Signalin uudemmista versioista</string>
@@ -2310,28 +2339,117 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="prompt_passphrase_activity__tap_to_unlock">AVAA NAPAUTTAMALLA</string>
   <string name="Recipient_unknown">Tuntematon</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Siirrä tai palauta tili</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jos olet aiemmin luonut Signal-tilin, voit siirtää tai palautta tilisi ja viestisi</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Siirrä Android-laitteesta</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Siirrä tilisi ja viestisi vanhalta Android-laitteeltasi. Sinun täytyy päästä vanhalle laitteellesi.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Sinun täytyy päästä vanhalle laitteellesi.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Palauta varmuuskopiosta</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Palauta viestisi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Avaa Signal vanhassa Android-laitteessasi</string>
   <string name="NewDeviceTransferInstructions__continue">Jatka</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Napauta profiilikuvaasi ja ylävasemmalla avataksesi asetukset</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Napauta \'Keskustelut\'</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Napauta \'Siirrä tili\' ja sitten \'Jatka\' molemmilla laitteilla</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Valmistellaan yhteyttä vanhaan Android-laitteeseesi…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Kohtapuoliin pitäisi olla valmista</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Odotetaan että vanha Android-laite ottaa yhteyttä…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal tarvitsee luvan sijaintitietoihin vanhan Android-laitteesi löytämiseen ja yhdistämiseen.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Sijaintipalveluiden täytyy olla päällä jotta vanha Android-laitteesi voidaan löytää ja yhdistää.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal tarvitsee Wi-Fi:ä vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä mihinkään.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct:iä. Signal käyttää Wi-Fi Direct:iä vanhan Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tietosi varmuuskopion avulla vanhasta laitteestasi.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Palauta varmuuskopio</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä otta yhteyttä vanhaan Android-laitteeseesi.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Etsitään uutta Android-laitetta…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal tarvitsee luvan sijaintitietoihin uuden Android-laitteesi löytämiseen ja yhdistämiseen.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Sijaintipalveluiden täytyy olla päällä jotta uusi Android-laitteesi voidaan löytää ja yhdistää.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal tarvitsee Wi-Fi:ä uuden Android-laitteesi löytämiseen ja yhdistämiseen. Wi-Fi:n pitää olla päällä, mutta sen ei tarvitse olla yhdistettynä mihinkään.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Näyttää siltä että laitteesi ei tue Wi-Fi Direct:iä. Signal käyttää Wi-Fi Direct:iä uuden Android-laitteesi löytämiseen ja yhdistämiseen. Voit silti siirtää tietosi varmuuskopion avulla uuteen laitteeseesi.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Luo varmuuskopio</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Tapahtui odottamaton virhe yritettäessä otta yhteyttä uuteen Android-laitteeseesi.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi-asetusten avaaminen ei onnistunut. Ole hyvä ja laita itse Wi-Fi päälle.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Salli paikannus</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Laita päälle sijaintipalvelut</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Sijaintiasetusten avaaminen ei onnistunut.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Laita Wi-Fi päälle</string>
+  <string name="DeviceTransferSetup__error_connecting">Virhe yhteyden luonnissa</string>
   <string name="DeviceTransferSetup__retry">Yritä uudelleen</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Lähetä virheenkorjausloki</string>
+  <string name="DeviceTransferSetup__verify_code">Vahvista koodi</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Varmista että allaoleva koodi on sama molemmilla laitteillasi. Sitten napauta \'Jatka\'.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numerot eivät täsmää</string>
   <string name="DeviceTransferSetup__continue">Jatka</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Numero ei ole sama</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jos numerot laitteillasi eivät ole samat, on mahdollista että yhdistit väärään laitteeseen. Korjataksesi tämän, pysäytä siirto ja yritä uudestaan, ja pidä molemmat laitteet lähekkäin.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Pysäytä siirto</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Vanhaa laitetta ei löydetty</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Uutta laitetta ei löydetty</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Varmista että seuraavat palvelut ja luvat ovat kunnossa:</string>
+  <string name="DeviceTransferSetup__location_permission">Paikannus</string>
+  <string name="DeviceTransferSetup__location_services">Sijaintipalvelut</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Wi-Fi Direct-ruudulla poista kaikki muistetut ryhmät ja kaikki kutsutut ja yhdistetyt laitteet.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-ruutu</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Koita laittaa Wi-Fi pois päältä ja takaisin päälle molemmissa laitteissa.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Varmista että molemmat laitteet ovat siirtotilassa.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Mene tukisivustolle</string>
   <string name="DeviceTransferSetup__try_again">Yritä uudelleen</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Odotetaan toista laitetta</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Napauta \'Jatka\' toisella laiteellasi aloittaaksesi siirron.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Napauta \'Jatka\' toisella laitteellasi…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Siirto uudemmasta Signal-versiosta ei ole mahdollista</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Siirretään tietoja</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Pidä laitteet lähekkäin. Älä sammuta niitä ja pidä Signal päällä. Siirto on päästä päähän salattu.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$dviestiä tähän asti…</string>
   <string name="DeviceTransfer__cancel">Peruuta</string>
   <string name="DeviceTransfer__try_again">Yritä uudelleen</string>
+  <string name="DeviceTransfer__stop_transfer_question">Pysäytä siirto?</string>
+  <string name="DeviceTransfer__stop_transfer">Pysäytä siirto</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Siirto joudutaan aloittamaan seuraavalla kerralla alusta</string>
+  <string name="DeviceTransfer__transfer_failed">Siirto epäonnistui</string>
+  <string name="DeviceTransfer__unable_to_transfer">Siirto ei onnistu</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Siirrä tili</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Voit siirtää Signal-tilisi ottaessasi Signalin käyttöön uudella Android-laitteellasi. Ennen kuin jatkat:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Lataa Signal uuteen Android-laiteeseesi</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Napauta \'Siirrä tai palauta tili\'</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Valitse \'Siirrä Android-laitteesta\' kysyttäessä, ja sitten \'Jatka\'. Pidä molemmat laitteet lähettyvillä.</string>
   <string name="OldDeviceTransferInstructions__continue">Jatka</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Siirto valmis</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Mene uudelle laitteellesi</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal-tietosi on siirretty uudelle laitteellesi. Siirtoprosessin viimeistelyksi sinun täytyy jatkaa rekisteröitymistä uudella laitteellasi.</string>
   <string name="OldDeviceTransferComplete__close">Sulje</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Siirto onnistui</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Siirto valmis</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Siirtoprosessin viimeistelyksi sinun on jatkettava rekisteröintiä.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Jatka rekisteröintiä</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Tilin siirto</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Valmistellaan yhteyttä toiseen Android-laitteeseesi…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Valmistellaan yhteyttä toiseen Android-laitteeseesi…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Etsitään toista Android-laitettasi…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Avataan yhteyttä toiseen Android-laitteeseesi…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Tarvitaan vahvistus</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Siirretään tiliä…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Jatka rekisteröintiä uudella laitteellasi</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-tilisi on siirretty uudelle laitteellesi, mutta sinun täytyy jatkaa rekisteröitymistä sillä laitteella. Signal ei ole aktiivinen tällä laitteella.</string>
   <string name="OldDeviceTransferLockedDialog__done">Valmis</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Peruuta ja aktivoi tämä laite</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Estä</string>
   <string name="RecipientBottomSheet_unblock">Poista esto</string>

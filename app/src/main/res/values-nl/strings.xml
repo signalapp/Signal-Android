@@ -182,7 +182,7 @@
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie vernieuwen?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string>
-  <string name="ConversationActivity_reset">Opnieuw instellen</string>
+  <string name="ConversationActivity_reset">Opnieuw opzetten</string>
   <string name="ConversationActivity_add_attachment">Bijlage toevoegen</string>
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
@@ -232,7 +232,7 @@
   <string name="ConversationActivity_delete">Verwijderen</string>
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsinstellingen’</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsgesprek-instellingen’</string>
   <string name="ConversationActivity_join">Deelnemen</string>
   <string name="ConversationActivity_full">Vol</string>
   <string name="ConversationActivity_error_sending_media">Fout bij het verzenden van media</string>
@@ -289,7 +289,7 @@
   <string name="ConversationFragment_verify">Verifiëren</string>
   <string name="ConversationFragment_not_now">Niet nu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Je veiligheidsnummer met %s is veranderd</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Je veiligheidsnummer met %s is veranderd, waarschijnlijk heeft hij of zij Signal opnieuw geïnstalleerd of is hij of zij op een nieuwe telefoon overgestapt. Tik op ‘Verifiëren’ om het veiligheidsnummer na te kijken als je echt zeker wilt weten dat de beveiliging van het hoogste niveau is. Je hoeft dit niet te doen.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Je veiligheidsnummer met %s is veranderd, waarschijnlijk heeft hij of zij Signal opnieuw geïnstalleerd of is hij of zij op een nieuwe telefoon overgestapt. Tik op ‘Verifiëren’ om het veiligheidsnummer na te kijken als je echt zeker wilt weten dat je nog steeds met dezelfde persoon communiceert. In de meeste gevallen is deze extra controle niet nodig.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Geselecteerd gesprek wissen?</item>
     <item quantity="other">Geselecteerde gesprekken wissen?</item>
@@ -369,7 +369,7 @@
   <string name="DateUtils_yesterday">Gisteren</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Gespreksessie vernieuwd</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Het kan soms nodig zijn om je gespreksessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je gesprek, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Omdat Signal geavanceerde eind-tot-eind-versluteling gebruikt, kan het soms nodig zijn om je gespreksessie te vernieuwen. Dit heeft geen invloed op de beveiliging van je gesprek, maar het is mogelijk dat je een bericht van je contactpersoon hebt gemist. Vraag je contactpersoon eventueel om zijn of haar meest recente berichten opnieuw te zenden.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">‘%s’ ontkoppelen?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen kan het niet langer berichten verzenden en ontvangen.</string>
@@ -609,6 +609,7 @@
   <string name="ManageGroupActivity_mentions">Vermeldingen</string>
   <string name="ManageGroupActivity_chat_wallpaper">Gespreksachtergrond</string>
   <string name="ManageGroupActivity_until_s">Tot %1$s</string>
+  <string name="ManageGroupActivity_always">Voor altijd</string>
   <string name="ManageGroupActivity_off">Uit</string>
   <string name="ManageGroupActivity_on">Aan</string>
   <string name="ManageGroupActivity_view_all_members">Alle leden weergeven</string>
@@ -636,9 +637,9 @@
   <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je meldingen ontvangen wanneer iemand je in een gedempt gesprek vermeld?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je toch meldingen ontvangen wanneer iemand je naam in een gedempt gesprek vermeld?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Geef me altijd een melding</string>
-  <string name="GroupMentionSettingDialog_dont_notify_me">Geef me nooit een melding</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Geen meldingen als gedempt</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Profielnaam</string>
   <string name="ManageProfileFragment_username">Gebruikersnaam</string>
@@ -659,6 +660,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Meldingen dempen</string>
   <string name="ManageRecipientActivity_custom_notifications">Aangepaste meldingen</string>
   <string name="ManageRecipientActivity_until_s">Tot %1$s</string>
+  <string name="ManageRecipientActivity_always">Voor altijd</string>
   <string name="ManageRecipientActivity_off">Uit</string>
   <string name="ManageRecipientActivity_on">Aan</string>
   <string name="ManageRecipientActivity_add_to_a_group">Aan een groep toevoegen</string>
@@ -835,6 +837,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal-oproep-ondersteuning wordt gestopt</string>
   <string name="NotificationBarManager__deny_call">Oproep afwijzen</string>
   <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
   <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
@@ -1136,7 +1139,7 @@
     <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
     <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op Android apparaten</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op een Android apparaat</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
   <!--PinRestoreLockedFragment-->
@@ -1244,7 +1247,7 @@ Signal moet ook bestanden kunnen lezen van en schrijven naar de externe opslag, 
 Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-oproepen je andere oproepen verstoren.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
   <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Signal voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signal\'s servers. Controleer je netwerkverbinding en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signal\'s servers. Ga na dat je apparaat internetverbinding heeft en probeer het opnieuw.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Je bent nu %d stap verwijderd van het indienen van een foutopsporingslog.</item>
     <item quantity="other">Je bent nu %d stappen verwijderd van het indienen van een foutopsporingslog.</item>
@@ -1406,7 +1409,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de code opnieuw te scannen.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de QR-code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je je veiligheidsnummer kunt doorsturen.</string>
@@ -1482,6 +1485,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NotificationChannel_group_messages">Berichten</string>
   <string name="NotificationChannel_missing_display_name">Onbekend</string>
   <string name="NotificationChannel_voice_notes">Audioberichten</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Geen ‘activiteit’ beschikbaar om instellingen voor meldingskanalen mee te openen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
@@ -1541,7 +1545,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="contact_filter_toolbar__show_keyboard_description">Toetsenbord weergeven</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Numeriek toetsenblok weergeven</string>
   <!--contact_selection_group_activity-->
-  <string name="contact_selection_group_activity__no_contacts">Geen contactpersonen.</string>
+  <string name="contact_selection_group_activity__no_contacts">Geen contactpersonen gevonden.</string>
   <string name="contact_selection_group_activity__finding_contacts">Contactpersonen laden …</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto van contactpersoon</string>
@@ -1602,6 +1606,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -1625,6 +1630,18 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">De volgende personen hebben mogelijk de app opnieuw geïnstalleerd of hebben een ander apparaat in gebruik genomen. Verifieer jullie veiligheidsnummers om zeker te zijn dat je met de juiste personen communiceert.</string>
   <string name="safety_number_change_dialog__view">Weergeven</string>
   <string name="safety_number_change_dialog__previous_verified">Was voorheen geverifieerd</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Oproepmeldingen ingeschakeld.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Oproepmeldingen inschakelen</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Achtergrondactiviteit inschakelen</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Het lijkt erop dat alles goed is</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Tik hier en tik vervolgens op ‘Meldingen weergeven’ om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Tik hier en schakel meldingen in en ga na dat geluiden en pop-ups zijn ingeschakeld om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Tik hier en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Instellingen</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Tik op ‘Instellingen’ en tik vervolgens op ‘Meldingen weergeven’ om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Tik op ‘Instellingen’ en schakel meldingen in en ga na dat geluiden en pop-ups zijn ingeschakeld om oproepmeldingen te ontvangen.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Tik op ‘Instellingen’ en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Landen aan het laden …</string>
   <string name="country_selection_fragment__search">Zoeken</string>
@@ -1820,10 +1837,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="arrays__use_default">Gebruik systeemstandaard</string>
   <string name="arrays__use_custom">Gebruik eigen instelling</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
-  <string name="arrays__mute_for_two_hours">Demp voor 2 uur</string>
+  <string name="arrays__mute_for_eight_hours">Demp voor 8 uur</string>
   <string name="arrays__mute_for_one_day">Demp voor 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp voor 7 dagen</string>
-  <string name="arrays__mute_for_one_year">Demp voor 1 jaar</string>
+  <string name="arrays__always">Voor altijd</string>
   <string name="arrays__settings_default">Gebruik systeemstandaard</string>
   <string name="arrays__enabled">Ingeschakeld</string>
   <string name="arrays__disabled">Uitgeschakeld</string>
@@ -1875,6 +1892,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroon</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__silent">Stil</string>
+  <string name="preferences__default">Standaardmeldingen</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
   <string name="preferences__never">Nooit</string>
   <string name="preferences__one_time">Een keer</string>
@@ -1981,7 +1999,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
-  <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopened gesprek</string>
+  <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>
   <string name="preferences_notifications__show">Laat zien</string>
   <string name="preferences_notifications__calls">Oproepen</string>
   <string name="preferences_notifications__ringtone">Oproepgeluid</string>
@@ -2051,7 +2069,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_list_batch_archive__menu_archive_selected">Selectie archiveren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <string name="conversation_list_batch__menu_mark_as_read">Markeren als gelezen</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">Voor mij als ongelezen markeren</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">Voor mij markeren als ongelezen</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
   <string name="conversation_list_search_description">Zoeken</string>
@@ -2066,13 +2084,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_list_fragment__open_camera_description">Camera openen</string>
   <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nog geen gesprekken.\nBegin door een vriend of kennis een bericht te zenden.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw instellen</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw opzetten</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Niet langer dempen</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
   <!--conversation-->
-  <string name="conversation__menu_group_settings">Groepsinstellingen</string>
+  <string name="conversation__menu_group_settings">Groepsgesprek-instellingen</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
@@ -2151,7 +2169,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="other">Je pincode moet uit ten minste %1$d cijfers bestaan</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Je kunt je pincode nu nog wijzigen omdat je telefoonnummer nog voor dit apparaat geregistreerd staat. Wanneer je telefoonnummer niet meer geregistreerd staat voor dit apparaat, dan kun je de pincode niet langer wijzigen en ook niet teruglezen; je zult hem dus moeten onthouden.</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Je kunt je pincode nu nog wijzigen omdat je telefoonnummer nog voor dit apparaat geregistreerd staat. Wanneer je telefoonnummer niet meer geregistreerd staat voor dit apparaat, dan kun je de pincode niet langer wijzigen en ook niet teruglezen. Het is daarom belangrijk dat je je pincode onthoudt.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
@@ -2236,7 +2254,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>
-  <string name="CallNotificationBuilder_connecting">Aan het verbinden …</string>
+  <string name="CallNotificationBuilder_connecting">Verbinding aan het maken …</string>
   <string name="Permissions_permission_required">Toestemming vereist</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toestemming nodig om sms-berichten te sturen, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Sms’ in.</string>
   <string name="Permissions_continue">Doorgaan</string>
@@ -2321,10 +2339,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
   <string name="preferences_app_protection__registration_lock">Registratievergrendeling</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je Signal-pincode invoeren omdat registratievergrendeling is ingeschakeld</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Je pincode bestaat uit ten minste %d cijfers of karakters</string>
   <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel ongeldige pogingen ondernomen om een pincode voor registratievergrendeling in te voeren, probeer het morgen opnieuw.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel pogingen ondernomen om met een ongeldige pincode de registratievergrendeling uit te schakelen, probeer het morgen opnieuw.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Je hebt te veel pogingen ondernomen. Probeer het later opnieuw.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fout bij het verbinden met Signal\'s servers</string>
   <string name="preferences_chats__backups">Back-ups</string>
@@ -2343,7 +2361,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
   <string name="NewDeviceTransferInstructions__continue">Doorgaan</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in the linksbovenhoek op je profielfoto om de instellingen te openen</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_chats">Tik op ‘Gesprekken’</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
@@ -2418,7 +2436,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tik op ‘Signalgegevens herstellen of overzetten’</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Kies wanneer de optie wordt weergegeven ‘Overzetten van een Android-apparaat’. Tik dan op ‘Doorgaan’. Houd de apparaten bij elkaar in de buurt.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Kies wanneer de optie wordt weergegeven ‘Overzetten vanaf een Android-apparaat’. Tik dan op ‘Doorgaan’. Houd de apparaten bij elkaar in de buurt.</string>
   <string name="OldDeviceTransferInstructions__continue">Doorgaan</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Overzetten voltooid</string>

@@ -31,7 +31,7 @@ import java.net.URISyntaxException;
 
 public class CustomDefaultPreference extends DialogPreference {
 
-  private static final String TAG = CustomDefaultPreference.class.getSimpleName();
+  private static final String TAG = Log.tag(CustomDefaultPreference.class);
 
   private final int    inputType;
   private final String customPreference;

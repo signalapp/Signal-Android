@@ -640,7 +640,7 @@
         <item quantity="one">Error revoking invite</item>
         <item quantity="other">Error revoking invites</item>
     </plurals>
-    
+
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Pending member requests</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">No member requests to show.</string>
@@ -709,6 +709,7 @@
     <string name="ManageGroupActivity_mentions">Mentions</string>
     <string name="ManageGroupActivity_chat_wallpaper">Chat wallpaper</string>
     <string name="ManageGroupActivity_until_s">Until %1$s</string>
+    <string name="ManageGroupActivity_always">Always</string>
     <string name="ManageGroupActivity_off">Off</string>
     <string name="ManageGroupActivity_on">On</string>
     <string name="ManageGroupActivity_view_all_members">View all members</string>
@@ -766,6 +767,7 @@
     <string name="ManageRecipientActivity_mute_notifications">Mute notifications</string>
     <string name="ManageRecipientActivity_custom_notifications">Custom notifications</string>
     <string name="ManageRecipientActivity_until_s">Until %1$s</string>
+    <string name="ManageRecipientActivity_always">Always</string>
     <string name="ManageRecipientActivity_off">Off</string>
     <string name="ManageRecipientActivity_on">On</string>
     <string name="ManageRecipientActivity_add_to_a_group">Add to a group</string>
@@ -797,7 +799,7 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
-    
+
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
     <string name="ShareableGroupLinkDialogFragment__manage_and_share">Manage &amp; share</string>
@@ -969,6 +971,7 @@
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
     <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>
     <string name="NotificationBarManager__incoming_signal_call">Incoming Signal call</string>
+    <string name="NotificationBarManager__stopping_signal_call_service">Stopping Signal call service</string>
     <string name="NotificationBarManager__deny_call">Deny call</string>
     <string name="NotificationBarManager__answer_call">Answer call</string>
     <string name="NotificationBarManager__end_call">End call</string>
@@ -1720,7 +1723,7 @@
     <string name="NotificationChannel_group_messages">Messages</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
     <string name="NotificationChannel_voice_notes">Voice Notes</string>
-
+    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No activity available to open notification channel settings.</string>
     <!-- ProfileEditNameFragment -->
 
     <!-- QuickResponseService -->
@@ -1869,6 +1872,7 @@
     <string name="ConversationUpdateItem_return_to_call">Return to call</string>
     <string name="ConversationUpdateItem_call_is_full">Call is full</string>
     <string name="ConversationUpdateItem_invite_friends">Invite friends</string>
+    <string name="ConversationUpdateItem_enable_call_notifications">Enable Call Notifications</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -1896,6 +1900,19 @@
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">The following people may have reinstalled or changed devices. Verify your safety number with them to ensure privacy.</string>
     <string name="safety_number_change_dialog__view">View</string>
     <string name="safety_number_change_dialog__previous_verified">Previous verified</string>
+
+    <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
+    <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Call notifications enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Enable call notifications</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Enable background activity</string>
+    <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Everything looks good now!</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">To receive call notifications, tap here and turn on \"Show notifications.\"</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">To receive call notifications, tap here and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">To receive call notifications, tap here and enable background activity in \"Battery\" settings. </string>
+    <string name="EnableCallNotificationSettingsDialog__settings">Settings</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">To receive call notifications, tap Settings and turn on \"Show notifications.\"</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">To receive call notifications, tap Settings and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">To receive call notifications, tap Settings and enable background activity in \"Battery\" settings.</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries…</string>
@@ -2147,10 +2164,10 @@
     <string name="arrays__use_custom">Use custom</string>
 
     <string name="arrays__mute_for_one_hour">Mute for 1 hour</string>
-    <string name="arrays__mute_for_two_hours">Mute for 2 hours</string>
+    <string name="arrays__mute_for_eight_hours">Mute for 8 hours</string>
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
-    <string name="arrays__mute_for_one_year">Mute for 1 year</string>
+    <string name="arrays__always">Always</string>
 
     <string name="arrays__settings_default">Settings default</string>
     <string name="arrays__enabled">Enabled</string>
@@ -2209,6 +2226,7 @@
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__silent">Silent</string>
+    <string name="preferences__default">Default</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
     <string name="preferences__never">Never</string>
     <string name="preferences__one_time">One time</string>

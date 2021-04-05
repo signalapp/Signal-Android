@@ -83,7 +83,7 @@ import java.util.Set;
 
 public class AttachmentDatabase extends Database {
   
-  private static final String TAG = AttachmentDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(AttachmentDatabase.class);
 
   public  static final String TABLE_NAME             = "part";
   public  static final String ROW_ID                 = "_id";

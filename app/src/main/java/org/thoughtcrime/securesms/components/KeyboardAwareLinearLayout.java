@@ -43,7 +43,7 @@ import java.util.Set;
  * has been opened and what its height would be.
  */
 public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
-  private static final String TAG = KeyboardAwareLinearLayout.class.getSimpleName();
+  private static final String TAG = Log.tag(KeyboardAwareLinearLayout.class);
 
   private final Rect                          rect                       = new Rect();
   private final Set<OnKeyboardHiddenListener> hiddenListeners            = new HashSet<>();

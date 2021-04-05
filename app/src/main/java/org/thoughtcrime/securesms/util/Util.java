@@ -66,7 +66,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Util {
-  private static final String TAG = Util.class.getSimpleName();
+  private static final String TAG = Log.tag(Util.class);
 
   private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
 

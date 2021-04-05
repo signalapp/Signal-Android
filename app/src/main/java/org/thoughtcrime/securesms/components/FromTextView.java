@@ -10,13 +10,14 @@ import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class FromTextView extends EmojiTextView {
 
-  private static final String TAG = FromTextView.class.getSimpleName();
+  private static final String TAG = Log.tag(FromTextView.class);
 
   public FromTextView(Context context) {
     super(context);

@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class UnidentifiedAccessUtil {
 
-  private static final String TAG = UnidentifiedAccessUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(UnidentifiedAccessUtil.class);
 
   public static CertificateValidator getCertificateValidator() {
     try {

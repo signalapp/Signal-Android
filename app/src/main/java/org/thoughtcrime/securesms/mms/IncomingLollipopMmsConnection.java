@@ -49,7 +49,7 @@ import java.util.concurrent.TimeoutException;
 public class IncomingLollipopMmsConnection extends LollipopMmsConnection implements IncomingMmsConnection {
 
   public  static final String ACTION = IncomingLollipopMmsConnection.class.getCanonicalName() + "MMS_DOWNLOADED_ACTION";
-  private static final String TAG    = IncomingLollipopMmsConnection.class.getSimpleName();
+  private static final String TAG    = Log.tag(IncomingLollipopMmsConnection.class);
 
   public IncomingLollipopMmsConnection(Context context) {
     super(context, ACTION);

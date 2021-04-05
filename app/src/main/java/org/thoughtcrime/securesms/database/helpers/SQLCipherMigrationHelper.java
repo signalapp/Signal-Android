@@ -31,7 +31,7 @@ import java.util.Set;
 
 public class SQLCipherMigrationHelper {
 
-  private static final String TAG = SQLCipherMigrationHelper.class.getSimpleName();
+  private static final String TAG = Log.tag(SQLCipherMigrationHelper.class);
 
   private static final long ENCRYPTION_SYMMETRIC_BIT  = 0x80000000;
   private static final long ENCRYPTION_ASYMMETRIC_BIT = 0x40000000;

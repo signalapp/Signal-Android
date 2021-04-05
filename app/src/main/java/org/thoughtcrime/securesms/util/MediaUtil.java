@@ -48,7 +48,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MediaUtil {
 
-  private static final String TAG = MediaUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(MediaUtil.class);
 
   public static final String IMAGE_PNG         = "image/png";
   public static final String IMAGE_JPEG        = "image/jpeg";

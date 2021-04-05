@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
-  private static final String TAG = ContactsSyncAdapter.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactsSyncAdapter.class);
 
   public ContactsSyncAdapter(Context context, boolean autoInitialize) {
     super(context, autoInitialize);

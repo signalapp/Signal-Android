@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Erwähnungen</string>
   <string name="ManageGroupActivity_chat_wallpaper">Hintergrund</string>
   <string name="ManageGroupActivity_until_s">Bis %1$s</string>
+  <string name="ManageGroupActivity_always">Immer</string>
   <string name="ManageGroupActivity_off">Aus</string>
   <string name="ManageGroupActivity_on">Ein</string>
   <string name="ManageGroupActivity_view_all_members">Alle Mitglieder anzeigen</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Benachrichtigungen stummschalten</string>
   <string name="ManageRecipientActivity_custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="ManageRecipientActivity_until_s">Bis %1$s</string>
+  <string name="ManageRecipientActivity_always">Immer</string>
   <string name="ManageRecipientActivity_off">Aus</string>
   <string name="ManageRecipientActivity_on">Ein</string>
   <string name="ManageRecipientActivity_add_to_a_group">Zu einer Gruppe hinzufügen</string>
@@ -833,6 +835,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
   <string name="NotificationBarManager__incoming_signal_call">Eingehender Signal-Anruf</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signals Anrufdienst wird gestoppt</string>
   <string name="NotificationBarManager__deny_call">Anruf ablehnen</string>
   <string name="NotificationBarManager__answer_call">Anruf annehmen</string>
   <string name="NotificationBarManager__end_call">Anruf beenden</string>
@@ -1467,6 +1470,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationChannel_group_messages">Nachrichten</string>
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
   <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
@@ -1587,6 +1591,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationUpdateItem_return_to_call">Zurück zum Anruf</string>
   <string name="ConversationUpdateItem_call_is_full">Anruf ist voll</string>
   <string name="ConversationUpdateItem_invite_friends">Freunde einladen</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Benachrichtigungen für Anrufe aktivieren</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
@@ -1610,6 +1615,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Die folgenden Personen haben Signal vielleicht erneut installiert oder das Gerät gewechselt. Verifiziert eure gemeinsame Sicherheitsnummer zur Sicherstellung der Privatsphäre.</string>
   <string name="safety_number_change_dialog__view">Anzeigen</string>
   <string name="safety_number_change_dialog__previous_verified">Zuvor verifiziert</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Benachrichtigungen für Anrufe aktiviert.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Benachrichtigungen für Anrufe aktivieren</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Hintergrundnutzung aktivieren</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Jetzt sieht alles gut aus!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Um Benachrichtigungen für Anrufe zu erhalten, tippe hier und schalte »Benachrichtigungen anzeigen« ein.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Um Benachrichtigungen für Anrufe zu erhalten, tippe hier, schalte Benachrichtigungen ein, und stelle sicher, dass »Ton« und »Pop-up« aktiviert sind.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Um Benachrichtigungen für Anrufe zu erhalten, tippe hier und lasse unter »Akku« die Hintergrundnutzung zu.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Einstellungen</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Um Benachrichtigungen für Anrufe zu erhalten, tippe auf »Einstellungen« und schalte »Benachrichtigungen anzeigen« ein.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Um Benachrichtigungen für Anrufe zu erhalten, tippe auf »Einstellungen«, schalte Benachrichtigungen ein, und stelle sicher, dass »Ton« und »Pop-up« aktiviert sind.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Um Benachrichtigungen für Anrufe zu erhalten, tippe auf »Einstellungen« und lasse unter »Akku« die Hintergrundnutzung zu.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Länder werden geladen …</string>
   <string name="country_selection_fragment__search">Suchen</string>
@@ -1784,9 +1801,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
   <string-array name="HelpFragment__categories">
     <item>Etwas funktioniert nicht</item>
-    <item>Featurewunsch</item>
+    <item>Erweiterungswunsch</item>
     <item>Frage</item>
-    <item>Feedback</item>
+    <item>Rückmeldung</item>
     <item>Sonstiges</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1805,10 +1822,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="arrays__use_default">Standard verwenden</string>
   <string name="arrays__use_custom">Personalisiert</string>
   <string name="arrays__mute_for_one_hour">Für 1 Stunde</string>
-  <string name="arrays__mute_for_two_hours">Für 2 Stunden</string>
+  <string name="arrays__mute_for_eight_hours">Für 8 Stunden</string>
   <string name="arrays__mute_for_one_day">Für 1 Tag</string>
   <string name="arrays__mute_for_seven_days">Für 7 Tage</string>
-  <string name="arrays__mute_for_one_year">Für 1 Jahr</string>
+  <string name="arrays__always">Immer</string>
   <string name="arrays__settings_default">Standard</string>
   <string name="arrays__enabled">Aktiviert</string>
   <string name="arrays__disabled">Deaktiviert</string>
@@ -1860,6 +1877,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__pref_led_blink_title">LED-Blinkmuster</string>
   <string name="preferences__sound">Ton</string>
   <string name="preferences__silent">Lautlos</string>
+  <string name="preferences__default">Standard</string>
   <string name="preferences__repeat_alerts">Benachrichtigungen wiederholen</string>
   <string name="preferences__never">Nie</string>
   <string name="preferences__one_time">Einmal</string>

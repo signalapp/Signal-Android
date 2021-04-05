@@ -1617,6 +1617,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следниве луѓе може ги реинсталирале или промениле уредите. Проверете го Вашиот сигурносен број со нив за да ја осигурате приватноста.</string>
   <string name="safety_number_change_dialog__view">Преглед</string>
   <string name="safety_number_change_dialog__previous_verified">Претходно проверено</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Поставувања</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитувам земји…</string>
   <string name="country_selection_fragment__search">Барај</string>
@@ -1783,11 +1785,19 @@
   <string name="HelpFragment__include_debug_log">Вклучи запис за дебагирање.</string>
   <string name="HelpFragment__whats_this">Што е ова?</string>
   <string name="HelpFragment__how_do_you_feel">Како се чувствувате? (Опционално)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Кажете ни зошто не контактирате.</string>
   <string name="HelpFragment__support_info">Инфо за поддршка</string>
   <string name="HelpFragment__signal_android_support_request">Барање за поддршка за Signal Android</string>
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Нешто не работи</item>
+    <item>Барање за опција</item>
+    <item>Прашање</item>
+    <item>Повратни информации</item>
+    <item>Друго</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Скорешни</string>
@@ -1804,10 +1814,8 @@
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користи прилагодено</string>
   <string name="arrays__mute_for_one_hour">Исклучи на 1 час</string>
-  <string name="arrays__mute_for_two_hours">Исклучи на 2 часа</string>
   <string name="arrays__mute_for_one_day">Исклучи на 1 ден</string>
   <string name="arrays__mute_for_seven_days">Исклучи на 7 дена</string>
-  <string name="arrays__mute_for_one_year">Исклучи на 1 година</string>
   <string name="arrays__settings_default">Стандардни поставувања</string>
   <string name="arrays__enabled">Вклучено</string>
   <string name="arrays__disabled">Исклучено</string>
@@ -1859,6 +1867,7 @@
   <string name="preferences__pref_led_blink_title">LED шема на трепкање</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Тивко</string>
+  <string name="preferences__default">Стандардно </string>
   <string name="preferences__repeat_alerts">Постојани аларми</string>
   <string name="preferences__never">Никогаш</string>
   <string name="preferences__one_time">Еднаш</string>
@@ -2317,33 +2326,83 @@
   <string name="Recipient_unknown">Непознато</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Префрли или поврати сметка</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ако имате претходно регистрирана Signal сметка, можета да ја префрлите или вратите Вашата сметка и пораки</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Префрли од Android уред</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Префрлете ја Вашата сметка и пораки од Вашиот стар Android уред. Потребен ви е пристап до стариот уред.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Ви треба пристап до стариот уред.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Врати од резервна копија</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Вратете ги Вашите пораки од локална резервна копија. Ако не ги вратите сега нема да можете да го направите тоа подоцна.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Отворете го Signal на Вашиот стар телефон</string>
   <string name="NewDeviceTransferInstructions__continue">Продолжи</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Допрете ја Вашата профилна слика во левииот горен агол за да ги отворите поставувањата.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Допрете „Разговори“</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Допрете „Префрли сметка“ и потоа „Продолжи“ и на двата уреда</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Се припрема за да се поврзам на стариот Android уред…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Само момент, би требало да е готово наскоро</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Чекам да се поврзе стариот Android уред…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">На Signal му е потребна дозвола за локацијата за да го открие и да се поврзе на стариот Android уред.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">На Signal му е потребно да се вклучени локациските сервиси за да го открие и да се поврзе на Вашиот стар Android уред.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">На Signal му е потребно Wi-Fi за да го открие и за да се поврзе на Вашиот стар Android уред. Wi-Fi треба да е вклучено, но не мора да сте поврзани на Wi-Fi мрежа.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Врати резервна копија</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Се случи неочекувана грешка при обидот за пристап на Вашиот стар Android уред.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Го барам новиот Android уред…</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Креирај резервна копија</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Се случи неочекувана грешка при обидот за поврзување со Вашиот нов Android уред.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Не можам да ги отворам поставувањата за Wi-Fi. Ве молиме вклучете Wi-Fi рачно.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Дозволи прикажување на локација</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Вклучи локациски сервиси</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Не успеав да ги отворам поставувањата.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Вклучи Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Грешка при поврзувањето</string>
   <string name="DeviceTransferSetup__retry">Обидете се повторно</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Испрати запис за дебагирање</string>
+  <string name="DeviceTransferSetup__verify_code">Провери код</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверете дали кодот подолу се совпаѓа на двата уреда. Потоа допрете „Продолжи“.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Бројките не се совпаѓаат</string>
   <string name="DeviceTransferSetup__continue">Продолжи</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Бројот не е ист</string>
   <string name="DeviceTransferSetup__stop_transfer">Сопри трансфер</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Не успеав да го откријам стариот уред</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Не успеав да го откријам новиот уред</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Осигурајте се дека следниве дозволи и сервиси се овозможени:</string>
   <string name="DeviceTransferSetup__location_permission">Дозволи за локацијата</string>
   <string name="DeviceTransferSetup__location_services">Локациски сервиси</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Директен екран за Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Пробајте да го исклучите и вклучите Wi-Fi и на двата уреда.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Осигурајте се дека и двата уреда се во режим за префрлување.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Оди на страницата за поддршка</string>
-  <string name="DeviceTransferSetup__try_again">Обиди се повторно </string>
+  <string name="DeviceTransferSetup__try_again">Обиди сѐ повторно </string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Го чекам другиот уред</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Допрете „Продолжи“ на другиот уред за да почне трансферот.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Допрете „Продолжи“ на другиот уред…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Не можам да префрлам од понови верзии нa Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Префрлување податоци</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d пораки досега…</string>
-  <string name="DeviceTransfer__cancel">Исклучи</string>
-  <string name="DeviceTransfer__try_again">Обиди се повторно </string>
+  <string name="DeviceTransfer__cancel">Откажи</string>
+  <string name="DeviceTransfer__try_again">Обиди сѐ повторно </string>
   <string name="DeviceTransfer__stop_transfer_question">Да го сопрам трансферот?</string>
   <string name="DeviceTransfer__stop_transfer">Сопри трансфер</string>
   <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Целиот прогрес направен при трансферот ќе биде изгубен.</string>
   <string name="DeviceTransfer__transfer_failed">Трансферот е неуспешен</string>
   <string name="DeviceTransfer__unable_to_transfer">Неуспешен трансфер</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">Пренеси Сметка</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">Префрли сметка</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Преземете го Signal на Вашиот нов Android уред</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Допрете „Трансфер или враќање на сметка“</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Допрете „Трансфер од Android уред“ и потоа допрете „Продолжи“. Држете ги двата уреди близу еден до друг.</string>
   <string name="OldDeviceTransferInstructions__continue">Продолжи</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Трансферот е завршен</string>
@@ -2352,13 +2411,21 @@
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Трансферот е успешен</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Трансферот е завршен</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">За да го завршите процесот мора да продолжите со регистрацијата.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Продолжи со регистрација</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Трансфер на сметка</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Се припремам да се поврзам на Вашиот друг Android уред…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Се припремам да се поврзам на Вашиот друг Android уред…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Го барам Вашиот друг Android уред…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Се поврзувам на Вашиот друг Android уред…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Потребна е проверка</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Префрлување на сметката…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Завршете ја регистрацијата на Вашиот нов уред</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Вашата Signal сметка е префрлена на Вашиот нов уред но мора да ја завршите регистрацијата на истиот за да продолжите. Signal ќе стане неактивен на овој уред.</string>
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажи и активирај го овој уред</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>

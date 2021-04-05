@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.RecipientsAdapter;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
@@ -45,7 +46,7 @@ import java.util.StringTokenizer;
  * @author Moxie Marlinspike
  */
 public class PushRecipientsPanel extends RelativeLayout implements RecipientForeverObserver {
-  private final String                         TAG = PushRecipientsPanel.class.getSimpleName();
+  private final String                         TAG = Log.tag(PushRecipientsPanel.class);
   private       RecipientsPanelChangedListener panelChangeListener;
 
   private RecipientsEditor recipientsText;

@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.util;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.BidiFormatter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
@@ -39,21 +43,33 @@ public final class StringUtil {
 
   /**
    * Trims a name string to fit into the byte length requirement.
+   * <p>
+   * This method treats a surrogate pair and a grapheme cluster a single character
+   * See examples in tests defined in StringUtilText_trimToFit.
    */
-  public static @NonNull String trimToFit(@Nullable String name, int maxLength) {
-    if (name == null) return "";
-
-    // At least one byte per char, so shorten string to reduce loop
-    if (name.length() > maxLength) {
-      name = name.substring(0, maxLength);
+  public static @NonNull String trimToFit(@Nullable String name, int maxByteLength) {
+    if (TextUtils.isEmpty(name)) {
+      return "";
     }
 
-    // Remove one char at a time until fits in byte allowance
-    while (name.getBytes(StandardCharsets.UTF_8).length > maxLength) {
-      name = name.substring(0, name.length() - 1);
+    if (name.getBytes(StandardCharsets.UTF_8).length <= maxByteLength) {
+      return name;
     }
 
-    return name;
+    try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+      for (String graphemeCharacter : new CharacterIterable(name)) {
+        byte[] bytes = graphemeCharacter.getBytes(StandardCharsets.UTF_8);
+
+        if (stream.size() + bytes.length <= maxByteLength) {
+          stream.write(bytes);
+        } else {
+          break;
+        }
+      }
+      return stream.toString();
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
   }
 
   /**

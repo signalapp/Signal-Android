@@ -26,8 +26,6 @@ import org.webrtc.VideoTrack;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
-import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
-import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,7 +52,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(tag, "In a group call, send busy back to 1:1 call offer.");
     currentState.getActionProcessor().handleSendBusy(currentState, callMetadata, true);
-    webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
+    webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
 
     return currentState;
   }
@@ -183,36 +181,6 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleHttpSuccess(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.HttpData httpData) {
-    try {
-      webRtcInteractor.getCallManager().receivedHttpResponse(httpData.getRequestId(), httpData.getStatus(), httpData.getBody() != null ? httpData.getBody() : new byte[0]);
-    } catch (CallException e) {
-      return groupCallFailure(currentState, "Unable to process received http response", e);
-    }
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleHttpFailure(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.HttpData httpData) {
-    try {
-      webRtcInteractor.getCallManager().httpRequestFailed(httpData.getRequestId());
-    } catch (CallException e) {
-      return groupCallFailure(currentState, "Unable to process received http response", e);
-    }
-    return currentState;
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleSendOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.OpaqueMessageMetadata opaqueMessageMetadata) {
-    Log.i(tag, "handleSendOpaqueMessage():");
-
-    OpaqueMessage            opaqueMessage = new OpaqueMessage(opaqueMessageMetadata.getOpaque());
-    SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
-
-    webRtcInteractor.sendOpaqueCallMessage(opaqueMessageMetadata.getUuid(), callMessage);
-
-    return currentState;
-  }
-
   @Override
   protected @NonNull WebRtcServiceState handleReceivedOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.OpaqueMessageMetadata opaqueMessageMetadata) {
     Log.i(tag, "handleReceivedOpaqueMessage():");
@@ -315,7 +283,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
                                .build();
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return terminateGroupCall(currentState);
   }
@@ -336,7 +304,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
                                .build();
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     try {
       if (groupCall != null) {
@@ -361,10 +329,10 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
   public synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState, boolean terminateVideo) {
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
-    webRtcInteractor.stopForegroundService();
     boolean playDisconnectSound = currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED;
     webRtcInteractor.stopAudio(playDisconnectSound);
     webRtcInteractor.setWantsBluetoothConnection(false);
+    webRtcInteractor.stopForegroundService();
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
 

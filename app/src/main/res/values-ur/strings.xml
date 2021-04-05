@@ -1611,6 +1611,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">مندرجہ ذیل لوگوں نے انسٹال یا ان میں تبدیلیاں کی ہیں۔ رازداری کو یقینی بنانے کے لیئے ان کے ساتھ اپنے حفاظتی نمبر کی تصدیق کریں۔</string>
   <string name="safety_number_change_dialog__view">دیکھیں</string>
   <string name="safety_number_change_dialog__previous_verified">پچھلی تصدیق شدہ</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">ترتیبات</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ملک لوڈ ہو رہے ہیں۔۔۔</string>
   <string name="country_selection_fragment__search">تلا ‎ش کر یں</string>
@@ -1798,10 +1800,8 @@
   <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
   <string name="arrays__use_custom">اپنی مرضی سے استعمال کریں</string>
   <string name="arrays__mute_for_one_hour">1 گھنٹے کیلئے خاموش</string>
-  <string name="arrays__mute_for_two_hours">2 گھنٹے کیلئے خاموش</string>
   <string name="arrays__mute_for_one_day">1 دن کیلئے خاموش</string>
   <string name="arrays__mute_for_seven_days">7 دنوں کیلئے خاموش</string>
-  <string name="arrays__mute_for_one_year">1 سال کیلئے خاموش</string>
   <string name="arrays__settings_default">پہلے سے موجود ترتیبات</string>
   <string name="arrays__enabled">فعال ہونا</string>
   <string name="arrays__disabled">معطل ہونا</string>
@@ -1853,6 +1853,7 @@
   <string name="preferences__pref_led_blink_title">LED بلنک پیٹرن</string>
   <string name="preferences__sound">آواز</string>
   <string name="preferences__silent">خاموش</string>
+  <string name="preferences__default">پہلے سے طے شدہ</string>
   <string name="preferences__repeat_alerts">انتباہات دہرائیں</string>
   <string name="preferences__never">کبھی نہیں</string>
   <string name="preferences__one_time">ایک مرتبہ</string>

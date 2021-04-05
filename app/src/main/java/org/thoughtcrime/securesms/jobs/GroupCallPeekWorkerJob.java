@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Intent;
-
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.ringrtc.RemotePeer;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 
 /**
  * Runs in the same queue as messages for the group.
@@ -36,11 +33,7 @@ final class GroupCallPeekWorkerJob extends BaseJob {
 
   @Override
   protected void onRun() {
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_GROUP_CALL_PEEK)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(groupRecipientId));
-
-    context.startService(intent);
+    ApplicationDependencies.getSignalCallManager().peekGroupCall(groupRecipientId);
   }
 
   @Override

@@ -111,13 +111,14 @@
                 tools:alpha="1"
                 tools:visibility="visible">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_margin="2dp"
                     android:importantForAccessibility="no"
-                    app:srcCompat="@drawable/ic_error_outline_14_ultramarine" />
+                    app:tint="@color/core_ultramarine"
+                    app:srcCompat="@drawable/ic_error_outline_14" />
 
                 <TextView
                     style="@style/Signal.Text.Body.Registration"

@@ -27,7 +27,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   private static final int TIMESTAMP_THRESHOLD_SECONDS = 5;
 
-  private static final String TAG = TextSecureIdentityKeyStore.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecureIdentityKeyStore.class);
   private static final Object LOCK = new Object();
 
   private final Context context;

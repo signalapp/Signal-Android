@@ -80,7 +80,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     implements ContactSelectionListFragment.OnContactSelectedListener,
     ContactSelectionListFragment.OnSelectionLimitReachedListener
 {
-  private static final String TAG = ShareActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(ShareActivity.class);
 
   private static final short RESULT_TEXT_CONFIRMATION  = 1;
   private static final short RESULT_MEDIA_CONFIRMATION = 2;

@@ -95,7 +95,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationContext extends MultiDexApplication implements AppForegroundObserver.Listener {
 
-  private static final String TAG = ApplicationContext.class.getSimpleName();
+  private static final String TAG = Log.tag(ApplicationContext.class);
 
   private ExpiringMessageManager expiringMessageManager;
   private ViewOnceMessageManager viewOnceMessageManager;

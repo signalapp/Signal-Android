@@ -31,7 +31,7 @@ public class TypingSendJob extends BaseJob {
 
   public static final String KEY = "TypingSendJob";
 
-  private static final String TAG = TypingSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(TypingSendJob.class);
 
   private static final String KEY_THREAD_ID = "thread_id";
   private static final String KEY_TYPING    = "typing";

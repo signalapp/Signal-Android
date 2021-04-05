@@ -216,6 +216,7 @@
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal þarf heimild til að nota hljóðnema og myndavél til að geta tekið upp myndskeið, en þessum heimildum hefur verið varanlega neitað. Farðu í kjörstillingar forritsins, veldu \"Heimildir\" og ýttu á bæði \"Hljóðnemi\" og \"Myndavél\".</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal þarf heimild til að nota hljóðnema til að geta tekið upp myndskeið.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal getur ekki sent SMS/MMS skilaboð því það er ekki sjálfgefna SMS-forritið þitt. Myndirðu vilja breyta þessu í Android-stillingunum þínum?</string>
   <string name="ConversationActivity_yes">Já</string>
   <string name="ConversationActivity_no">Nei</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
@@ -232,6 +233,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Svo hægt sé að hringja í %1$s, þarf Signal að fá aðgang að hljóðnemanum þínum.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Fleiri valkostir núna í \"Stillingar hóps\"</string>
   <string name="ConversationActivity_join">Taka þátt</string>
+  <string name="ConversationActivity_full">Fullt</string>
   <string name="ConversationActivity_error_sending_media">Villa við að senda myndefni</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -244,6 +246,10 @@
     <item quantity="other">Eyða völdum skilaboðum?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Vista í geymslurými?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Ef þetta myndefni er vistað í gagnageymslu veitir það öllum öðrum forritum á tækinu þínu aðgang að því.\n\nHalda áfram?</item>
+    <item quantity="other">Ef allt %1$d myndefnið er vistað í gagnageymslu veitir það öllum öðrum forritum á tækinu þínu aðgang að því.\n\nHalda áfram?</item>
+  </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Villa kom upp við að vista viðhengi í geymslurými!</item>
     <item quantity="other">Villa kom upp við að vista viðhengin í geymslurými!</item>
@@ -326,16 +332,20 @@
   <string name="ChooseBackupFragment__learn_more">Kanna nánar</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Endurheimtingu lokið</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Til að halda áfram að nota öryggisafrit, skaltu velja möppu. Ný öryggisafrit verða vistuð á þennan stað.</string>
   <string name="RestoreBackupFragment__choose_folder">Velja möppu</string>
   <string name="RestoreBackupFragment__not_now">Ekki núna</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Öryggisafrit af spjalli</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Öryggisafrit eru dulrituð með aðgangskóða og geymd á tækinu þínu.</string>
   <string name="BackupsPreferenceFragment__create_backup">Útbúa öryggisafrit</string>
   <string name="BackupsPreferenceFragment__last_backup">Síðasta öryggisafrit: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Mappa fyrir öryggisafrit</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Sannreyna lykilorð öryggisafritsins</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prófaðu aðgangskóða öryggisafritsins til að staðfesta að hann sé réttur</string>
   <string name="BackupsPreferenceFragment__turn_on">Kveikja</string>
   <string name="BackupsPreferenceFragment__turn_off">Slökkva</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Til að endurheimta öryggisafrit, skaltu setja upp nýtt tilvik af Signal. Opnaðu forritið og ýttu á \"Endurheimta öryggisafrit\", síðan skaltu finna skrá með öryggisafriti. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Kanna nánar</string>
   <string name="BackupsPreferenceFragment__in_progress">Í vinnslu…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d eins og er…</string>
@@ -399,6 +409,7 @@
   <string name="ShareActivity_multiple_attachments_are_only_supported">Að hengja við mörg viðhengi í einu er aðeins stutt fyrir myndir og myndskeið</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Viðvarandi bilun í Signal-samskiptum!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal náði ekki að skrá sig inn á Google Play þjónustur. Skilaboð og hringingar úr Signal hafa verið gerð óvirk, prófaðu að endurskrá í Stillingar &gt; Ítarlegt.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Villa við að ná í GIF-mynd í fullri upplausn</string>
   <!--GiphyFragmentPageAdapter-->
@@ -596,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Minnst á</string>
   <string name="ManageGroupActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string>
   <string name="ManageGroupActivity_until_s">Til %1$s</string>
+  <string name="ManageGroupActivity_always">Alltaf</string>
   <string name="ManageGroupActivity_off">Af</string>
   <string name="ManageGroupActivity_on">Á</string>
   <string name="ManageGroupActivity_view_all_members">Skoða alla meðlimi</string>
@@ -604,6 +616,9 @@
     <item quantity="one">%d meðlimi bætt við.</item>
     <item quantity="other">%d meðlimum bætt við.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Aðeins stjórnendur geta gert deilanlega hóptengilinn virkan eða óvirkan.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Aðeins stjórnendur geta gert valkostinn til að samþykkja nýja notendur virkan eða óvirkan.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Aðeins stjórnendur geta endurstillt deilanlega hóptengilinn.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Þú ert ekki með heimildir til að gera þetta</string>
   <string name="ManageGroupActivity_not_capable">Einhver sem þú bættir við er ekki með stuðning við nýju gerðina af hópum og þarf því að uppfæra Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Mistókst að uppfæra hópinn</string>
@@ -643,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Þagga tilkynningar</string>
   <string name="ManageRecipientActivity_custom_notifications">Sérsniðnar tilkynningar</string>
   <string name="ManageRecipientActivity_until_s">Til %1$s</string>
+  <string name="ManageRecipientActivity_always">Alltaf</string>
   <string name="ManageRecipientActivity_off">Af</string>
   <string name="ManageRecipientActivity_on">Á</string>
   <string name="ManageRecipientActivity_add_to_a_group">Bæta við hóp</string>
@@ -762,6 +778,7 @@
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstenging virkjuð</string>
   <!--MmsDownloader-->
+  <string name="MmsDownloader_error_reading_mms_settings">Villa við að lesa MMS-stillingar þráðlausu þjónustuveitunnar</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Myndefni</string>
   <string name="MediaOverviewActivity_Files">Skrár</string>
@@ -805,6 +822,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sent af þér til %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Kynning á viðbrögðum</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ýttu og haltu niðri til að deila í skyndi hvernig þér líður.</string>
   <string name="Megaphones_remind_me_later">Áminna mig síðar</string>
   <string name="Megaphones_verify_your_signal_pin">Staðfestu PIN-númer Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Til að auðvelda þér að muna PIN-númerið munum við biðja þig öðru hvoru um að staðfesta það.</string>
@@ -1103,6 +1121,7 @@
   <string name="PlacePickerActivity_drop_pin">Títuprjónn</string>
   <string name="PlacePickerActivity_accept_address">Samþykkja heimilisfang</string>
   <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Útgáfan af Google Play þjónustum sem þú ert með uppsetta er ekki að virka rétt.  Settu Google Play þjónusturnar upp aftur og prófaðu svo aftur.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Rangt PIN-númer</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Sleppa PIN færslu?</string>
@@ -1395,8 +1414,10 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Skilaboð dulrituð fyrir setu sem ekki er til</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Rangt dulrituð MMS-skilaboð</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-skilaboð dulrituð fyrir setu sem ekki er til</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Þagga tilkynningar</string>
   <!--ApplicationMigrationService-->
@@ -1446,6 +1467,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Brást við með %1$s við skoða-einu-sinni myndefni frá þér.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Brást við með %1$s við límmerkinu þínu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Þessum skilaboðum var eytt.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Slökktirðu á tilkynningum þegar tengiliður byrjar að nota Signal? Þú getur virkjað þær aftur í Signal &gt; Stillingar &gt; Tilkynningar.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Sjálfgefið</string>
   <string name="NotificationChannel_calls">Símtöl</string>
@@ -1457,6 +1479,7 @@
   <string name="NotificationChannel_group_messages">Skilaboð</string>
   <string name="NotificationChannel_missing_display_name">Óþekkt</string>
   <string name="NotificationChannel_voice_notes">Tal-minnispuntar</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Engin virkni tiltæk til að opna stillingar á tilkynningarásum.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Flýtsvar ekki tiltækt á meðan Signal er læst!</string>
@@ -1552,6 +1575,7 @@
   <string name="conversation_activity__compose_description">Samning skilaboða</string>
   <string name="conversation_activity__emoji_toggle_description">Víxla af/á lyklaborði með emoji-táknum</string>
   <string name="conversation_activity__attachment_thumbnail">Smámynd viðhengis</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Víxla af/á flýtivali viðhengja úr myndavél</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Taka upp og senda hljóðviðhengi</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Læsa upptöku hljóðviðhengis</string>
   <string name="conversation_activity__enable_signal_for_sms">Virkja Signal með SMS</string>
@@ -1576,6 +1600,7 @@
   <string name="ConversationUpdateItem_return_to_call">Snúa aftur í símtal</string>
   <string name="ConversationUpdateItem_call_is_full">Símtal er fullskipað</string>
   <string name="ConversationUpdateItem_invite_friends">Bjóða vinum</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Virkja tilkynningar um hringingar</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spila … Í bið</string>
   <string name="audio_view__download_accessibility_description">Sækja</string>
@@ -1599,6 +1624,18 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Eftirfarandi einstaklingar hafa sett Signal upp aftur eða skipt um tæki. Sannreyndu öryggisnúmer þín með þeim til að tryggja öryggi.</string>
   <string name="safety_number_change_dialog__view">Skoða</string>
   <string name="safety_number_change_dialog__previous_verified">Áður sannreynt</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Tilkynningar um hringingar eru virkar</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Virkja tilkynningar um hringingar</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Virkja bakgrunnsvirkni</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Allt lítur núna vel út!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Til að fá tilkynningar um hringingar, ýttu hér og kveiktu á \"Birta tilkynningar\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Til að fá tilkynningar um hringingar, ýttu hér og kveiktu á tilkynningum og gakktu úr skugga um að hljóð og sprettgluggar séu virkt.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Til að fá tilkynningar um hringingar, ýttu hér og virkjaðu bakgrunnsvirkni í rafhlöðustillingum.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Stillingar</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Til að fá tilkynningar um hringingar, ýttu á \"Stillingar\" og kveiktu á \"Birta tilkynningar\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Til að fá tilkynningar um hringingar, ýttu á \"Stillingar\" og kveiktu á tilkynningum og gakktu úr skugga um að hljóð og sprettgluggar séu virkt.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Til að fá tilkynningar um hringingar, ýttu á \"Stillingar\" og virkjaðu bakgrunnsvirkni í rafhlöðustillingum.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Hleð inn löndum…</string>
   <string name="country_selection_fragment__search">Leita</string>
@@ -1659,8 +1696,11 @@
   <!--log_submit_activity-->
   <string name="log_submit_activity__this_log_will_be_posted_online">Þessi villumeldingaskrá verður birt opinberlega á netinu svoforritarar og fleiri geti skoðað hana. Þú ættir að yfirfara hana og breyta ef þörf þykir áður en hún er send.</string>
   <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Viltu flytja öll fyrirliggjandi textaskilaboð inn í dulritaðan gagnagrunn Signal?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Sjálfgefnum gagnagrunni kerfisins verður ekki breytt á nokkurn hátt.</string>
   <string name="database_migration_activity__skip">Sleppa</string>
   <string name="database_migration_activity__import">Flytja inn</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Þetta gæti tekið dálitla stund. Sýndu þolinmæði, þú færð að vita þegar innflutningnum er lokið.</string>
   <string name="database_migration_activity__importing">INNFLUTNINGUR</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Sjá allt samtalið</string>
@@ -1679,6 +1719,8 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Aflæsa</string>
   <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal þarfnast stilliga fyrir MMS til að geta afhent myndefni og hópskilaboð í gegnum farsímakerfi þjónustuaðilans þíns. Tækið þitt veitir ekki þessar upplýsingar, sem kemur fyrir þegar um tæki læst við tiltekinn þjónustuaðila og aðrar skilyrtar uppsetningar er að ræða.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Til að senda myndefni og hópskilaboð, skaltu ýta á \'Í lagi\' og ljúka við umbeðnar stillingar. MMS-stillingarnar fyrir símaþjónustuna þína er venjulega hægt að finna með því að leita að \'nafn símaþjónustufyrirtækis APN\'. Þú þarft aðeins að gera þetta einu sinni.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Kenninafn (nauðsynlegt)</string>
   <string name="CreateProfileActivity_last_name_optional">Eftirnafn (valkvætt)</string>
@@ -1791,10 +1833,10 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="arrays__use_default">Nota sjálfgefið</string>
   <string name="arrays__use_custom">Nota sérsniðið</string>
   <string name="arrays__mute_for_one_hour">Þagga í 1 klukkustund</string>
-  <string name="arrays__mute_for_two_hours">Þagga í 2 klukkustundir</string>
+  <string name="arrays__mute_for_eight_hours">Þagga í 8 klukkustundir</string>
   <string name="arrays__mute_for_one_day">Þagga í 1 dag</string>
   <string name="arrays__mute_for_seven_days">Þagga í 7 daga</string>
-  <string name="arrays__mute_for_one_year">Þagga í 1 ár</string>
+  <string name="arrays__always">Alltaf</string>
   <string name="arrays__settings_default">Sjálfgefið í stillingum</string>
   <string name="arrays__enabled">Virkt</string>
   <string name="arrays__disabled">Óvirkt</string>
@@ -1846,6 +1888,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences__pref_led_blink_title">Blikkmynstur LED-ljósa</string>
   <string name="preferences__sound">Hljóð</string>
   <string name="preferences__silent">Þögult</string>
+  <string name="preferences__default">Sjálfgefið</string>
   <string name="preferences__repeat_alerts">Endurtaka áminningar</string>
   <string name="preferences__never">Aldrei</string>
   <string name="preferences__one_time">Einu sinni</string>
@@ -1979,6 +2022,8 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences_connecting_to_proxy">Tengist við milliþjón…</string>
   <string name="preferences_connected_to_proxy">Tengt við milliþjón</string>
   <string name="preferences_connection_failed">Tenging mistókst</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Náði ekki að tengjast milliþjóninum. Athugaðu vistfang milliþjónsins og prófaðu svo aftur.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Þú hefur tengst milliþjóninum. Þú getur slökkt á milliþjóninum hvenær sem er í stillingunum.</string>
   <string name="preferences_success">Tókst</string>
   <string name="preferences_failed_to_connect">Mistókst að tengjast</string>
   <string name="preferences_enter_proxy_address">Settu inn vistfang milliþjóns</string>
@@ -2046,6 +2091,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="conversation__menu_view_all_media">Allt myndefni</string>
   <string name="conversation__menu_conversation_settings">Stillingar samtals</string>
   <string name="conversation__menu_add_shortcut">Bæta á heimaskjá</string>
+  <string name="conversation__menu_create_bubble">Útbúa talblöðru</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Fletta út sprettglugga</string>
   <!--conversation_callable_insecure-->
@@ -2066,7 +2112,9 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bera saman við klippispjald</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Flytja inn SMS úr kerfinu</string>
+  <string name="reminder_header_sms_import_text">Ýttu til að afrita SMS-skilaboð símans þíns inn í dulritaðan gagnagrunn Signal.</string>
   <string name="reminder_header_push_title">Virkja skilaboð og hringingar með Signal</string>
+  <string name="reminder_header_push_text">Uppfærðu samskiptahætti þína.</string>
   <string name="reminder_header_service_outage_text">Signal á við tæknilega örðugleika að stríða. Við leggjum ökkur öll fram um að endurheimta þjónustur okkar eins fljótt og auðið er.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
@@ -2081,21 +2129,26 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <!--redphone_audio_popup_menu-->
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">Insights-fréttabréfið</string>
-  <string name="InsightsDashboardFragment__title">Insights-fréttabréfið</string>
+  <string name="Insights__title">Yfirlitstölfræði</string>
+  <string name="InsightsDashboardFragment__title">Yfirlitstölfræði</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal samskiptamátinn verndaði sjálfvirkt %1$d%% af útsendum skilaboðum þínum á síðustu %2$d dögum. Samræður milli Signal-notenda eru alltaf dulritaðar enda-í-enda.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal-bæting</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ekki næg gögn</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prósentuhlutfall þitt í yfirlitstölfræðinni er reiknað út frá sendum skilaboðum síðustu %1$d daga sem ekki hafa horfið eða verið eytt.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Byrjaðu samtal</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Byrjaðu að eiga í öruggum samskiptum og virkjaðu nýja eiginleika sem vega upp takmarkanir ódulritaðra SMS-skilaboða með því að bjóða fleiri tengiliðum að notfæra sér Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Þessi tölfræði er reiknuð á tækinu þínu og er það einungis þú sem getur séð hana. Þessu er aldrei dreift neitt annað.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Dulrituð skilaboð</string>
   <string name="InsightsDashboardFragment__cancel">Hætta við</string>
   <string name="InsightsDashboardFragment__send">Senda</string>
-  <string name="InsightsModalFragment__title">Kynning á Insights-fréttabréfinu</string>
-  <string name="InsightsModalFragment__view_insights">Skoða Insights-fréttabréfið</string>
+  <string name="InsightsModalFragment__title">Kynning á yfirlitstölfræði</string>
+  <string name="InsightsModalFragment__description">Sjáðu hve mörg af útsendum skilaboðum þínum voru send öruggt, síðan gætirðu boðið fleiri nýjum tengiliðum til að hækka Signal-prósentuna þína.</string>
+  <string name="InsightsModalFragment__view_insights">Skoða yfirlitstölfræði</string>
   <string name="FirstInviteReminder__title">Bjóða á Signal</string>
   <string name="FirstInviteReminder__description">Þú getur aukið fjölda dulritaðra skilaboða sem þú sendir um %1$d%%</string>
   <string name="SecondInviteReminder__title">Bættu við Signal</string>
   <string name="SecondInviteReminder__description">Bjóða %1$s</string>
-  <string name="InsightsReminder__view_insights">Skoða Insights-fréttabréfið</string>
+  <string name="InsightsReminder__view_insights">Skoða yfirlitstölfræði</string>
   <string name="InsightsReminder__invite">Bjóða</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
@@ -2210,12 +2263,16 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="PushDecryptJob_new_locked_message">Ný læst skilaboð</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Aflæsa til að skoða skilaboð í bið</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Lykilorð öryggisafritunar</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Öryggisafrit verða vistuð yfir á ytri gagnageymslu og dulrituð með aðgangskóðanum hér fyrir neðan. Þú verður að hafa þennan aðgangskóða til að endurheimta öryggisafrit.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Þú verður að hafa þennan aðgangskóða til að endurheimta öryggisafrit.</string>
   <string name="backup_enable_dialog__folder">Mappa</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ég hef skrifað niður þennan aðgangskóða. Án hans mun ég ekki getað endurheimt öryggisafrit.</string>
   <string name="registration_activity__restore_backup">Endurheimta öryggisafrit</string>
   <string name="registration_activity__transfer_or_restore_account">Yfirfæra eða endurheimta aðgang</string>
   <string name="registration_activity__transfer_account">Flytja aðgang</string>
   <string name="registration_activity__skip">Sleppa</string>
   <string name="preferences_chats__chat_backups">Öryggisafrit af spjalli</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Taka öryggisafrit yfir á ytri gagnageymslu</string>
   <string name="preferences_chats__transfer_account">Flytja aðgang</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Yfirfæra aðgang á nýtt Android-tæki</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Settu inn lykilorð öryggisafritsins</string>
@@ -2230,16 +2287,22 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="RegistrationActivity_backup_timestamp_s">Tímamerki öryggisafrits: %s</string>
   <string name="BackupDialog_enable_local_backups">Virkja öryggisafritun á tækinu/tölvunni?</string>
   <string name="BackupDialog_enable_backups">Virkja öryggisafritun</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Staðfestu að þú hafir skilið ofangreint með því að merkja í staðfestingarreitinn.</string>
   <string name="BackupDialog_delete_backups">Eyða öryggisafritum?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Gera óvirkt og eyða öllum öryggisafritum á tækinu/tölvunni?</string>
   <string name="BackupDialog_delete_backups_statement">Eyða öryggisafritum</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Til að virkja öryggisafrit skaltu velja möppu. Öryggisafrit verða vistuð á þennan stað.</string>
   <string name="BackupDialog_choose_folder">Velja möppu</string>
   <string name="BackupDialog_copied_to_clipboard">Afritað á klippispjald</string>
   <string name="BackupDialog_no_file_picker_available">Ekkert skráaval tiltækt.</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Settu inn aðgangskóða öryggisafritsins til að staðfesta</string>
   <string name="BackupDialog_verify">Sannreyna</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Þér tókst að setja inn aðgangskóða öryggisafritsins</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lykilorðið var ekki rétt</string>
   <string name="LocalBackupJob_creating_backup">Útbý öryggisafrit…</string>
   <string name="LocalBackupJobApi29_backup_failed">Öryggisafritun mistókst</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Öryggisafritunarmöppunni þinni hefur verið eytt eða hún færð.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Öryggisafritunarskráin er of stór til að geyma á þessari gagnageymslu.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Það er ekki nægilegt pláss til að geyma öryggisafritið þitt.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Ýttu til að sýsla með öryggisafrit</string>
   <string name="ProgressPreference_d_messages_so_far">%d skilaboð eins og er</string>
@@ -2289,33 +2352,52 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Yfirfæra eða endurheimta aðgang</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ef þú hefur áður skráð Signal-aðgang, geturðu yfirfært eða endurheimt notandaaðganginn þinn og skilaboð.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Yfirfæra af Android-tæki</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Yfirfærðu notandaaðgang og skilaboðaferil af gamla Android-tækinu þínu. Þú verður að hafa aðgang að gamla tækinu þínu.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Þú þarft að hafa aðgang að gamla tækinu þínu.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Endurheimta úr öryggisafriti</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Endurheimtu skilaboðin þín og myndefni úr öryggisafriti á tækinu. Ef þú endurheimtir ekki núna verður það ekki hægt síðar.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Opnaðu Signal á gamla Android-símanum þínum</string>
   <string name="NewDeviceTransferInstructions__continue">Halda áfram</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ýttu á auðkennismyndina þína efst til vinstri til að opna stillingar</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Ýttu á \"Spjall\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ýttu á \"Yfirfæra aðgang\" og svo á \"Halda áfram\" á báðum tækjunum</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Undirbý að tengjast við gamla Android-tækið…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tekur smá tíma, ætti að klárast bráðum</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Bíð eftir að gamla Android-tækið tengist…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal þarf að fá heimild til að nota staðsetningar til að finna og tengjast við gamla Android-tækið þitt.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal þarf að fá staðsetningarþjónustur virkjaðar til að finna og tengjast við gamla Android-tækið þitt.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal þarf á Wi-Fi að halda til að finna og tengjast við gamla Android-tækið þitt. Kveikt þarf að vera á Wi-Fi en það þarf ekki að vera tengt við Wi-Fi netkerfi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Því miður, það lítur út eins og þetta tæki styðji ekki Beint Wi-Fi (Wi-Fi Direct). Signal notar Beint Wi-Fi til að finna og tengjast við gamla Android-tækið þitt. Þú getur samt endurheimt öryggisafrit til að fá aftur aðganginn þinn af gamla Android-tækinu þínu.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Endurheimta öryggisafrit</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Óvænt villa kom upp þegar reynt var að tengjast við gamla Android-tækið þitt.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Leita að nýju Android-tæki…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal þarf að fá heimild til að nota staðsetningar til að finna og tengjast við nýja Android-tækið þitt.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal þarf að fá staðsetningarþjónustur virkjaðar til að finna og tengjast við nýja Android-tækið þitt.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal þarf á Wi-Fi að halda til að finna og tengjast við nýja Android-tækið þitt. Kveikt þarf að vera á Wi-Fi en það þarf ekki að vera tengt við Wi-Fi netkerfi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Því miður, það lítur út eins og þetta tæki styðji ekki Beint Wi-Fi (Wi-Fi Direct). Signal notar Beint Wi-Fi til að finna og tengjast við nýja Android-tækið þitt. Þú getur samt útbúið öryggisafrit til að fá aftur aðganginn þinn yfir á nýja Android-tækið þitt.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Útbúa öryggisafrit</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Óvænt villa kom upp þegar reynt var að tengjast við nýja Android-tækið þitt.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Tekst ekki að opna stillingar á Wi-Fi. Kveiktu handvirkt á Wi-Fi kerfinu.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Heimila aðgang að staðsetningum</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Kveiktu á staðsetningarþjónustu</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Tókst ekki að opna stillingar á staðsetningum.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Kveikja á Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Villa við að tengjast</string>
   <string name="DeviceTransferSetup__retry">Reyna aftur</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Senda inn villumeldingaskrá</string>
   <string name="DeviceTransferSetup__verify_code">Sannreyndu kóða</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Gakktu úr skugga um að kóðinn hér fyrir neðan sé eins á báðum tækjunum þínum. Ýttu síðan á að halda áfram.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Númerin samsvara ekki</string>
   <string name="DeviceTransferSetup__continue">Halda áfram</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Númer er ekki það sama</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ef tölurnar á tækjunum eru ekki eins, þá er mögulegt að tengt sé við rangt tæki. Til að laga þetta skaltu stöðva yfirfærsluna, prófa aftur og halda tækjunum þínum nálægt hvort öðru.</string>
   <string name="DeviceTransferSetup__stop_transfer">Stöðva flutning</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Gat ekki fundið gamla tækið</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Gat ekki fundið nýja tækið</string>
@@ -2323,8 +2405,15 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="DeviceTransferSetup__location_permission">Staðsetningarheimild</string>
   <string name="DeviceTransferSetup__location_services">Staðsetningarþjónustur</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Á skjánum fyrir Beint Wi-Fi skaltu fjarlægja allar leifar hópa og aftengja öll boðin eða tengd tæki.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Skrár fyrir Beint Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prófaðu að slökkva á Wi-Fi og kveikja síðan aftur, á báðum tækjum.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Gakktu úr skugga um að bæði tækin séu í yfirfærsluham.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Fara á hjálparsíðu</string>
   <string name="DeviceTransferSetup__try_again">Reyndu aftur</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Bíð eftir hinu tækinu</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Ýttu á að halda áfram á hinu tækinu til að hefja yfirfærsluna.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Ýttu á að halda áfram á hinu tækinu…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ekki er hægt að yfirfæra úr nýrri útgáfum Signal</string>
   <!--DeviceTransferFragment-->
@@ -2340,11 +2429,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="DeviceTransfer__unable_to_transfer">Tekst ekki að yfirfæra</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Flytja aðgang</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Þú getur yfirfært Signal-aðganginn þinn þegar þú setur Signal upp á nýju Android-tæki. Áður en þú heldur áfram:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Náðu í Signal á nýja Android-tækinu þínu</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Ýttu á \"Yfirfæra eða endurheimta aðgang\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Ýttu á \"Yfirfæra af Android-tæki\" þegar upp kemur kvaðning og svo á \"Halda áfram\". Haltu tækjunum nálægt hvoru öðru.</string>
   <string name="OldDeviceTransferInstructions__continue">Halda áfram</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Yfirfærslu lokið</string>
@@ -2365,7 +2456,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="DeviceToDeviceTransferService_status_verification_required">Sannvottunar er krafist</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Yfirfæri aðgang…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Kláraðu skráningu á nýja tækinu þínu</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-gögnin þín hafa verið færð yfir á nýja tækið þitt, en til að ljúka yfirfærsluferlinu verðurðu að klára skráningu á nýja tækinu þínu. Signal verður óvirkt á þessu tæki.</string>
   <string name="OldDeviceTransferLockedDialog__done">Búin/n</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Hætta við og virkja þetta tæki</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Útiloka</string>
   <string name="RecipientBottomSheet_unblock">Opna á</string>
@@ -2464,6 +2558,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="DeleteAccountFragment__are_you_sure">Ertu viss um að vilja eyða aðgangi þínum?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Þetta mun eyða Signal-aðgangnum þínum og frumstilla forritið. Forritið mun lokast eftir að ferlinu er lokið.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Mistókst að eyða notandaaðgangi. Ertu viss um að netsambandið þitt virki?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Mistókst að eyða staðværum gögnum. Þú getur eytt þeim handvirkt í forritastillingum kerfisins.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Ræsa stillingar forritsins</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Leita í löndum</string>

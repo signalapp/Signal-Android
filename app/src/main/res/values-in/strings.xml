@@ -1556,6 +1556,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Orang-orang berikut mungkin telah memasang ulang atau mengganti perangkat. Verifikasi nomor keamanan Anda dengan mereka untuk memastikan privasi.</string>
   <string name="safety_number_change_dialog__view">Lihat</string>
   <string name="safety_number_change_dialog__previous_verified">Diverifikasi sebelumnya</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Pengaturan</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Memuat daftar negara…</string>
   <string name="country_selection_fragment__search">Cari</string>
@@ -1736,10 +1738,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="arrays__use_default">Gunakan standar</string>
   <string name="arrays__use_custom">Gunakan pilihan khusus</string>
   <string name="arrays__mute_for_one_hour">Senyapkan selama 1 jam</string>
-  <string name="arrays__mute_for_two_hours">Senyapkan selama 2 jam</string>
   <string name="arrays__mute_for_one_day">Senyapkan selama 1 hari</string>
   <string name="arrays__mute_for_seven_days">Senyapkan selama 7 hari</string>
-  <string name="arrays__mute_for_one_year">Senyapkan selama 1 tahun</string>
   <string name="arrays__settings_default">Pengaturan standar</string>
   <string name="arrays__enabled">Aktif</string>
   <string name="arrays__disabled">Nonaktif</string>
@@ -1790,6 +1790,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__pref_led_blink_title">Pola kedip LED</string>
   <string name="preferences__sound">Bunyi</string>
   <string name="preferences__silent">Diam</string>
+  <string name="preferences__default">Standar</string>
   <string name="preferences__repeat_alerts">Ulangi peringatan</string>
   <string name="preferences__never">Tidak pernah</string>
   <string name="preferences__one_time">Sekali saja</string>

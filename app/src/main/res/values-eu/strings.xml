@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Aukera gehiago orain \"Taldeko ezarpenak\" atalean</string>
   <string name="ConversationActivity_join">Batu</string>
   <string name="ConversationActivity_full">Beteta</string>
+  <string name="ConversationActivity_error_sending_media">Errorea multimedia bidaltzean</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mezu irakurri gabe</item>
@@ -1621,6 +1622,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ondoko pertsonek agian gailuak aldatu edo Signal berrinstalatu egin dute. Egiaztatu beraiekin duzun segurtasun zenbakia pribatutasuna ziurtatzeko.</string>
   <string name="safety_number_change_dialog__view">Ikusi</string>
   <string name="safety_number_change_dialog__previous_verified">Aurretik egiaztatua</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">Ezarpenak</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Herrialdeak kargatzen…</string>
   <string name="country_selection_fragment__search">Bilatu</string>
@@ -1808,10 +1811,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="arrays__use_default">Erabili lehenetsia</string>
   <string name="arrays__use_custom">Pertsonalizatua</string>
   <string name="arrays__mute_for_one_hour">Isildu ordu baterako</string>
-  <string name="arrays__mute_for_two_hours">Isildu ordu bitarako</string>
   <string name="arrays__mute_for_one_day">Isildu egun baterako</string>
   <string name="arrays__mute_for_seven_days">Isildu 7 egunetarako</string>
-  <string name="arrays__mute_for_one_year">Isildu urte baterako</string>
   <string name="arrays__settings_default">Lehenetsia</string>
   <string name="arrays__enabled">Aktibatuta</string>
   <string name="arrays__disabled">Desaktibatua</string>
@@ -1863,6 +1864,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__pref_led_blink_title">LEDaren keinuka eredua</string>
   <string name="preferences__sound">Soinua</string>
   <string name="preferences__silent">Isildu</string>
+  <string name="preferences__default">Lehenetsia</string>
   <string name="preferences__repeat_alerts">Errepikatu alertak </string>
   <string name="preferences__never">Inoiz ez</string>
   <string name="preferences__one_time">Behin</string>
@@ -2239,9 +2241,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="backup_enable_dialog__folder">Karpeta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Pasaesaldia gorde dut. Hori gabe, ezin izango dut babeskopia bat berreskuratu.</string>
   <string name="registration_activity__restore_backup">Berreskuratu babeskopia</string>
+  <string name="registration_activity__transfer_account">Transferitu kontua</string>
   <string name="registration_activity__skip">Saltatu</string>
   <string name="preferences_chats__chat_backups">Txaten babeskopiak</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Gorde txaten babeskopia bat kanpoko memoria batean</string>
+  <string name="preferences_chats__transfer_account">Transferitu kontua</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Idatzi babeskopiaren pasaesaldia</string>
   <string name="RegistrationActivity_restore">Berreskuratu</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ezin dira babeskopiak inportatu Signal-en bertsio berriagoetatik</string>
@@ -2330,7 +2334,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="DeviceTransfer__cancel">Utzi</string>
   <string name="DeviceTransfer__try_again">Saiatu berriro</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">Kontua Transferitu</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">Transferitu kontua</string>
   <string name="OldDeviceTransferInstructions__continue">Jarraitu</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">Itxi</string>

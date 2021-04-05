@@ -53,7 +53,7 @@ public class PushMediaSendJob extends PushSendJob {
 
   public static final String KEY = "PushMediaSendJob";
 
-  private static final String TAG = PushMediaSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(PushMediaSendJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 

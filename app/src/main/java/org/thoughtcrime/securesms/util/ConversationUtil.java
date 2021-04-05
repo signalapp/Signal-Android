@@ -135,7 +135,7 @@ public final class ConversationUtil {
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   public static int getMaxShortcuts(@NonNull Context context) {
     ShortcutManager shortcutManager  = ServiceUtil.getShortcutManager(context);
-    return shortcutManager.getMaxShortcutCountPerActivity();
+    return Math.min(shortcutManager.getMaxShortcutCountPerActivity(), 150);
   }
 
   /**

@@ -1555,6 +1555,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">재설치했거나 기기를 바꾼 사람의 목록입니다. 보안을 보장하려면 안전 번호를 검증하세요.</string>
   <string name="safety_number_change_dialog__view">보기</string>
   <string name="safety_number_change_dialog__previous_verified">이전에 확인됨</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">설정</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
   <string name="country_selection_fragment__search">검색</string>
@@ -1735,10 +1737,8 @@
   <string name="arrays__use_default">기본값 사용</string>
   <string name="arrays__use_custom">맞춤형 값 사용</string>
   <string name="arrays__mute_for_one_hour">1시간 동안 알림 끄기</string>
-  <string name="arrays__mute_for_two_hours">2시간 동안 알림 끄기</string>
   <string name="arrays__mute_for_one_day">하루 동안 알림 끄기</string>
   <string name="arrays__mute_for_seven_days">7일 동안 알림 끄기</string>
-  <string name="arrays__mute_for_one_year">1년 동안 알림 끄기</string>
   <string name="arrays__settings_default">기본 설정</string>
   <string name="arrays__enabled">활성화됨</string>
   <string name="arrays__disabled">비활성화됨</string>
@@ -1789,6 +1789,7 @@
   <string name="preferences__pref_led_blink_title">LED 반복 패턴</string>
   <string name="preferences__sound">소리</string>
   <string name="preferences__silent">무음</string>
+  <string name="preferences__default">기본값</string>
   <string name="preferences__repeat_alerts">알림 반복</string>
   <string name="preferences__never">없음</string>
   <string name="preferences__one_time">1번</string>

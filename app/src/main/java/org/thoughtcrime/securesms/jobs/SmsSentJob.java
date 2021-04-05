@@ -19,7 +19,7 @@ public class SmsSentJob extends BaseJob {
 
   public static final String KEY = "SmsSentJob";
 
-  private static final String TAG = SmsSentJob.class.getSimpleName();
+  private static final String TAG = Log.tag(SmsSentJob.class);
 
   private static final String KEY_MESSAGE_ID  = "message_id";
   private static final String KEY_ACTION      = "action";

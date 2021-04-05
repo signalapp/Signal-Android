@@ -671,6 +671,7 @@
   <string name="ManageGroupActivity_mentions">Spomenutia</string>
   <string name="ManageGroupActivity_chat_wallpaper">Pozadie chatu</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
+  <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vypnuté</string>
   <string name="ManageGroupActivity_on">Zapnuté</string>
   <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
@@ -723,6 +724,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Stlmiť upozornenia</string>
   <string name="ManageRecipientActivity_custom_notifications">Vlastné upozornenia</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
+  <string name="ManageRecipientActivity_always">Vždy</string>
   <string name="ManageRecipientActivity_off">Vypnuté</string>
   <string name="ManageRecipientActivity_on">Zapnuté</string>
   <string name="ManageRecipientActivity_add_to_a_group">Pridať do skupiny</string>
@@ -919,6 +921,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
   <string name="NotificationBarManager__incoming_signal_call">Prichádzajúci Signal hovor</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Zastavenie služby Signal hovoru</string>
   <string name="NotificationBarManager__deny_call">Odmietnuť hovor</string>
   <string name="NotificationBarManager__answer_call">Prijať hovor</string>
   <string name="NotificationBarManager__end_call">Ukončiť hovor</string>
@@ -1601,6 +1604,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NotificationChannel_group_messages">Správy</string>
   <string name="NotificationChannel_missing_display_name">Neznáma</string>
   <string name="NotificationChannel_voice_notes">Hlasové poznámky</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Na otvorenie nastavení kanála upozornení nie je k dispozícii žiadna aktivita.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Signal zamknutý!</string>
@@ -1675,7 +1679,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosiahnutá maximálna veľkosť skupiny</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal skupiny môžu mať maximálne %1$d členov.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Dosiahli ste odporúčaný limit počtu členov</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal skupiny najlepšie fungujú s %1$d používateľmi alebo menej. Pridanie ďalších členov spôsobí oneskorenia v posielaní a prijímaní správ.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal skupiny najlepšie fungujú s %1$d členmi alebo menej. Pridanie ďalších členov spôsobí oneskorenia v posielaní a prijímaní správ.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d člen</item>
     <item quantity="few">%1$d členovia</item>
@@ -1706,7 +1710,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nahrať a odoslať zvukovú prílohu</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zamknúť nahrávanie zvukovej prílohy</string>
   <string name="conversation_activity__enable_signal_for_sms">Zapnúť Signal pre SMS</string>
-  <string name="conversation_activity__message_could_not_be_sent">Nepodarilo sa odoslať správu. Skontrolujte svoje pripojenie a skúste znovu.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nepodarilo sa odoslať správu. Skontrolujte svoje pripojenie na internet a skúste znovu.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Potiahnite pre zrušenie</string>
   <string name="conversation_input_panel__cancel">Zrušiť</string>
@@ -1727,6 +1731,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_return_to_call">Vrátiť sa k hovoru</string>
   <string name="ConversationUpdateItem_call_is_full">Hovor je plne obsadený</string>
   <string name="ConversationUpdateItem_invite_friends">Pozvať priateľov</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Povoliť upozornenia na hovory</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
@@ -1750,6 +1755,18 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Nasledujúce osoby si možno preinštalovali alebo zmenili zariadenia. Overte si s nimi vaše bezpečnostné číslo pre zaistenie súkromia.</string>
   <string name="safety_number_change_dialog__view">Zobraziť</string>
   <string name="safety_number_change_dialog__previous_verified">V minulosti overený</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Upozornenia na hovory sú povolené.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Povoliť upozornenia na hovory</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Povoliť aktivitu na pozadí</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Všetko teraz vyzerá byť v poriadku!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite tu a zapnite možnosť „Zobraziť upozornenia“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite tu, zapnite upozornenia a uistite sa, že sú povolené zvuky a kontextové okná.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Ak chcete dostávať oznámenia o hovoroch, ťuknite tu a povoľte aktivitu na pozadí v nastaveniach batérie.</string>
+  <string name="EnableCallNotificationSettingsDialog__settings">Nastavenia</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite na Nastavenia a zapnite možnosť „Zobraziť upozornenia“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite na Nastavenia, zapnite upozornenia a uistite sa, že sú povolené zvuky a vyskakovacie okná.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Ak chcete dostávať oznámenia o hovoroch, ťuknite na Nastavenia a v nastaveniach batérie povoľte aktivitu na pozadí.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Načítavanie krajín…</string>
   <string name="country_selection_fragment__search">Hľadať</string>
@@ -1959,10 +1976,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="arrays__use_default">Použiť predvolené</string>
   <string name="arrays__use_custom">Použiť vlastné</string>
   <string name="arrays__mute_for_one_hour">Stlmiť na 1 hodinu</string>
-  <string name="arrays__mute_for_two_hours">Stlmiť na 2 hodiny</string>
+  <string name="arrays__mute_for_eight_hours">Stlmiť na 8 hodín</string>
   <string name="arrays__mute_for_one_day">Stlmiť na 1 deň</string>
   <string name="arrays__mute_for_seven_days">Stlmiť na 7 dní</string>
-  <string name="arrays__mute_for_one_year">Stlmiť na 1 rok</string>
+  <string name="arrays__always">Vždy</string>
   <string name="arrays__settings_default">Predvolené nastavenie</string>
   <string name="arrays__enabled">Povolené</string>
   <string name="arrays__disabled">Zakázané</string>
@@ -2016,6 +2033,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__pref_led_blink_title">Sekvencia blikania LED</string>
   <string name="preferences__sound">Zvuk</string>
   <string name="preferences__silent">Ticho</string>
+  <string name="preferences__default">Predvolená</string>
   <string name="preferences__repeat_alerts">Opakovať oznámenia</string>
   <string name="preferences__never">Nikdy</string>
   <string name="preferences__one_time">Raz</string>
@@ -2490,7 +2508,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Preniesť alebo obnoviť účet</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ak ste si v minulosti zaregistrovali Signal účet, môžete tento účet a správy presunúť alebo obnoviť</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Presunúť z Android zariadenia</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Presuňte svoj účet a správy z vášho starého Android telefónu. Musíte mať prístup do svojho starého zariadenia.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Potrebujete prístup k svojmu starému zariadeniu.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Obnoviť zo zálohy</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Obnovte vaše správy z lokálnej zálohy. Keď nevykonáte obnovu teraz, neskôr nebude možná.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otvorte Signal na svojom starom Android zariadení.</string>
   <string name="NewDeviceTransferInstructions__continue">Pokračovať</string>
@@ -2511,6 +2532,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NewDeviceTransferSetup__restore_a_backup">Obnoviť zálohu</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Počas pripájania sa k vášmu starému Android zariadeniu sa stala neočakávaná chyba.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Hľadá sa nové Android zariadenie…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal potrebuje prístup k polohe, aby mohol objaviť a pripojiť sa k vášmu novému Android zariadeniu.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Aby Signal mohol objaviť a pripojiť sa k vášmu novému Android zariadeniu, musia byť zapnuté služby polohy.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal potrebuje Wi-Fi, aby mohol objaviť a pripojiť sa k vášmu novému Android zariadeniu. Wi-Fi musí byť zapnuté, ale nemusí byť pripojené k žiadnej Wi-Fi sieti.</string>
@@ -2545,6 +2567,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Uistite sa, že obe zariadenia sú v režime prenosu účtu.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Ísť na stránku podpory</string>
   <string name="DeviceTransferSetup__try_again">Skúsiť znova</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Čaká sa na druhé zariadenie</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Ťuknite Pokračovať na vašom druhom zariadení a prenos sa začne.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Ťuknite Pokračovať na vašom druhom zariadení…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Presun nie je možný z novších verzií aplikácie Signal</string>
   <!--DeviceTransferFragment-->
@@ -2587,7 +2612,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DeviceToDeviceTransferService_status_verification_required">Vyžaduje sa overenie</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Prenáša sa účet…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dokončite registráciu na vašom novom zariadení</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Váš Signal účet bol presunutý do vášho nového zariadenia, ale musíte v ňom ešte dokončiť registráciu. Signal v tomto zariadení nebude aktívny.</string>
   <string name="OldDeviceTransferLockedDialog__done">Hotovo</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Zrušiť a aktivovať toto zariadenie</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokovať</string>
   <string name="RecipientBottomSheet_unblock">Odblokovať</string>

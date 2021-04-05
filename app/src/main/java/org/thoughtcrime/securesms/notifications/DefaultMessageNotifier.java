@@ -96,7 +96,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
  */
 public class DefaultMessageNotifier implements MessageNotifier {
 
-  private static final String TAG = DefaultMessageNotifier.class.getSimpleName();
+  private static final String TAG = Log.tag(DefaultMessageNotifier.class);
 
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
   public static final  String NOTIFICATION_GROUP = "messages";

@@ -35,7 +35,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceReadUpdateJob";
 
-  private static final String TAG = MultiDeviceReadUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceReadUpdateJob.class);
 
   private static final String KEY_MESSAGE_IDS = "message_ids";
 

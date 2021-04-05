@@ -1321,6 +1321,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ਹੇਠ ਦਿੱਤੇ ਲੋਕਾਂ ਨੇ ਮੁੜ-ਇੰਸਟਾਲ ਕੀਤਾ ਜਾਂ ਡਿਵਾਈਸ ਬਦਲਿਆ ਹੋ ਸਕਦਾ ਹੈ। ਪਰਦੇਦਾਰੀ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਉਹਨਾਂ ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰੋ।</string>
   <string name="safety_number_change_dialog__view">ਵੇਖੋ</string>
   <string name="safety_number_change_dialog__previous_verified">ਪਹਿਲਾਂ ਤਸਦੀਕਸ਼ੁਦਾ</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">ਸੈਟਿੰਗਾਂ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ਦੇਸ਼ਾਂ ਨੂੰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="country_selection_fragment__search">ਖੋਜ</string>
@@ -1501,10 +1503,8 @@
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
   <string name="arrays__use_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
   <string name="arrays__mute_for_one_hour">1 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string>
-  <string name="arrays__mute_for_two_hours">2 ਘੰਟੇ ਲਈ ਮੂਕ ਕਰੋ</string>
   <string name="arrays__mute_for_one_day">1 ਦਿਨ ਲਈ ਮੂਕ ਕਰੋ</string>
   <string name="arrays__mute_for_seven_days">7 ਦਿਨ ਲਈ ਮੂਕ ਕਰੋ</string>
-  <string name="arrays__mute_for_one_year">1 ਸਾਲ ਲਈ ਮੂਕ ਕਰੋ</string>
   <string name="arrays__settings_default">ਡਿਫੌਲਟ ਸੈਟਿੰਗਾਂ</string>
   <string name="arrays__enabled">ਸਮਰਥਿਤ</string>
   <string name="arrays__disabled">ਅਪਾਹਜ</string>
@@ -1555,6 +1555,7 @@
   <string name="preferences__pref_led_blink_title">LED ਝਪਕੋ ਪੈਟਰਨ</string>
   <string name="preferences__sound">ਆਵਾਜ਼</string>
   <string name="preferences__silent">ਚੁੱਪ</string>
+  <string name="preferences__default">ਡਿਫੌਲਟ</string>
   <string name="preferences__repeat_alerts">ਚੇਤਾਵਨੀ ਦੁਹਰਾਓ</string>
   <string name="preferences__never">ਕਦੇ ਨਹੀਂ</string>
   <string name="preferences__one_time">ਇੱਕ ਵਾਰ</string>

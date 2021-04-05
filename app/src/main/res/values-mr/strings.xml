@@ -1616,6 +1616,8 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">पुढील व्यक्तींनी डिव्हाइस पुनर्स्थापित केले किंवा बदलले असतील. गोपनीयता सुनिश्चित करण्यासाठी आपला सुरक्षितता नंबर त्यांच्यासोबत सत्यापित करा.</string>
   <string name="safety_number_change_dialog__view">बघा</string>
   <string name="safety_number_change_dialog__previous_verified">आधीचे सत्यापित</string>
+  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__settings">सेटिंग</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">देश लोड करत आहे…</string>
   <string name="country_selection_fragment__search">शोध</string>
@@ -1803,10 +1805,8 @@
   <string name="arrays__use_default">पूर्वनिर्धारित वापरा</string>
   <string name="arrays__use_custom">सानुकूल वापरा</string>
   <string name="arrays__mute_for_one_hour">1 तासासाठी म्यूट करा</string>
-  <string name="arrays__mute_for_two_hours">2 तासांसाठी म्यूट करा</string>
   <string name="arrays__mute_for_one_day">1 दिवसासाठी म्यूट करा</string>
   <string name="arrays__mute_for_seven_days">7 दिवसांसाठी म्यूट करा</string>
-  <string name="arrays__mute_for_one_year">1 वर्षासाठी म्यूट करा</string>
   <string name="arrays__settings_default">पूर्वनिर्धारित सेटिंग</string>
   <string name="arrays__enabled">सक्षम केले</string>
   <string name="arrays__disabled">अक्षम केले</string>
@@ -1858,6 +1858,7 @@
   <string name="preferences__pref_led_blink_title">LED ब्लिंक पद्धत</string>
   <string name="preferences__sound">ध्वनी</string>
   <string name="preferences__silent">शांत</string>
+  <string name="preferences__default">पूर्वनिर्धारित</string>
   <string name="preferences__repeat_alerts">सतर्कतेची पुनरावृत्ती करा</string>
   <string name="preferences__never">कधीही नाही</string>
   <string name="preferences__one_time">एक वेळ</string>

@@ -51,7 +51,7 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class CameraView extends ViewGroup {
-  private static final String TAG = CameraView.class.getSimpleName();
+  private static final String TAG = Log.tag(CameraView.class);
 
   private final CameraSurfaceView   surface;
   private final OnOrientationChange onOrientationChange;
