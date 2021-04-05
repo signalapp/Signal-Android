@@ -83,6 +83,9 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     return builder.changeCallInfoState()
                   .activePeer(remotePeer)
                   .callState(WebRtcViewModel.State.CALL_OUTGOING)
+                  .commit()
+                  .changeLocalDeviceState()
+                  .wantsBluetooth(true)
                   .build();
   }
 

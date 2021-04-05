@@ -164,6 +164,9 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                        .changeCallInfoState()
                        .callState(WebRtcViewModel.State.CALL_OUTGOING)
                        .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
+                       .commit()
+                       .changeLocalDeviceState()
+                       .wantsBluetooth(true)
                        .build();
   }
 

@@ -547,6 +547,9 @@ public abstract class WebRtcActionProcessor {
                           .changeCallInfoState()
                           .activePeer(null)
                           .commit()
+                          .changeLocalDeviceState()
+                          .wantsBluetooth(false)
+                          .commit()
                           .actionProcessor(currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED ? new DisconnectingCallActionProcessor(webRtcInteractor) : new IdleActionProcessor(webRtcInteractor))
                           .terminate()
                           .build();

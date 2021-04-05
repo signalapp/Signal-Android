@@ -42,6 +42,10 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleBluetoothChange(@NonNull WebRtcServiceState currentState, boolean available) {
     Log.i(tag, "handleBluetoothChange(): " + available);
 
+    if (available && currentState.getLocalDeviceState().wantsBluetooth()) {
+      webRtcInteractor.setWantsBluetoothConnection(true);
+    }
+
     return currentState.builder()
                        .changeLocalDeviceState()
                        .isBluetoothAvailable(available)
@@ -63,7 +67,10 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
 
     webRtcInteractor.postStateUpdate(currentState);
 
-    return currentState;
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .wantsBluetooth(false)
+                       .build();
   }
 
   @Override
@@ -78,7 +85,10 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
 
     webRtcInteractor.postStateUpdate(currentState);
 
-    return currentState;
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .wantsBluetooth(isBluetooth)
+                       .build();
   }
 
   @Override
