@@ -68,7 +68,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +81,7 @@ import java.util.UUID;
  */
 public class SmsDatabase extends MessageDatabase {
 
-  private static final String TAG = Log.tag(SmsDatabase.class);
+  private static final String TAG = SmsDatabase.class.getSimpleName();
 
   public  static final String TABLE_NAME         = "sms";
   public  static final String PERSON             = "person";
@@ -469,13 +468,13 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Set<ThreadUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
     if (receiptType == ReceiptType.VIEWED) {
-      return Collections.emptySet();
+      return false;
     }
 
-    SQLiteDatabase    database      = databaseHelper.getWritableDatabase();
-    Set<ThreadUpdate> threadUpdates = new HashSet<>();
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    boolean        foundMessage = false;
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT},
                               DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
@@ -485,27 +484,36 @@ public class SmsDatabase extends MessageDatabase {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
           RecipientId theirRecipientId = messageId.getRecipientId();
           RecipientId outRecipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
+          String      columnName       = receiptType.getColumnName();
+          boolean     isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
 
           if (outRecipientId.equals(theirRecipientId)) {
-            long    threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
-            String  columnName       = receiptType.getColumnName();
-            boolean isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
+            long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
 
             database.execSQL("UPDATE " + TABLE_NAME +
                              " SET " + columnName + " = " + columnName + " + 1 WHERE " +
                              ID + " = ?",
                              new String[] {String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))});
 
-            threadUpdates.add(new ThreadUpdate(threadId, !isFirstIncrement));
+            DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+
+            if (isFirstIncrement) {
+              notifyConversationListeners(threadId);
+            } else {
+              notifyVerboseConversationListeners(threadId);
+            }
+
+            foundMessage = true;
           }
         }
       }
 
-      if (threadUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
+      if (!foundMessage && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+        return true;
       }
 
-      return threadUpdates;
+      return foundMessage;
     }
   }
 

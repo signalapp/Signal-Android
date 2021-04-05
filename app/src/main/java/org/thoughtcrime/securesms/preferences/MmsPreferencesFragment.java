@@ -36,7 +36,7 @@ import java.io.IOException;
 
 public class MmsPreferencesFragment extends CorrectedPreferenceFragment {
 
-  private static final String TAG = Log.tag(MmsPreferencesFragment.class);
+  private static final String TAG = MmsPreferencesFragment.class.getSimpleName();
 
   @Override
   public void onCreate(Bundle paramBundle) {

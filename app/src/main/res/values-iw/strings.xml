@@ -671,7 +671,6 @@
   <string name="ManageGroupActivity_mentions">אזכורים</string>
   <string name="ManageGroupActivity_chat_wallpaper">טפט התכתבות</string>
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
-  <string name="ManageGroupActivity_always">תמיד</string>
   <string name="ManageGroupActivity_off">כבוי</string>
   <string name="ManageGroupActivity_on">מופעל</string>
   <string name="ManageGroupActivity_view_all_members">הצג את כל חברי הקבוצה</string>
@@ -724,7 +723,6 @@
   <string name="ManageRecipientActivity_mute_notifications">השתק התראות</string>
   <string name="ManageRecipientActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageRecipientActivity_until_s">עד %1$s</string>
-  <string name="ManageRecipientActivity_always">תמיד</string>
   <string name="ManageRecipientActivity_off">כבוי</string>
   <string name="ManageRecipientActivity_on">מופעל</string>
   <string name="ManageRecipientActivity_add_to_a_group">הוסף אל קבוצה</string>
@@ -921,7 +919,6 @@
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">שיחת Signal נכנסת</string>
-  <string name="NotificationBarManager__stopping_signal_call_service">עוצר את שירות השיחות של Signal</string>
   <string name="NotificationBarManager__deny_call">דחה שיחה</string>
   <string name="NotificationBarManager__answer_call">ענה לשיחה</string>
   <string name="NotificationBarManager__end_call">סיים שיחה</string>
@@ -972,9 +969,9 @@
   <string name="MessageRecord_s_joined_signal">%s נמצא ב־Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">הִשְׁבַּתָּ הודעות נעלמות.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s השבית הודעות נעלמות.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">הִגְדַּרְתָּ את קוצב הזמן של הודעות נעלמות אל %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sהגדיר את קוצב הזמן של הודעות נעלמות אל %2$s. </string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של הודעות נעלמות הוגדר אל %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">הִגְדַּרְתָּ את קוצב הזמן של ההודעות הנעלמות אל %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sהגדיר את קוצב הזמן של ההודעות הנעלמות אל %2$s. </string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של ההודעות הנעלמות הוגדר אל %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">קבוצה זו עודכנה אל קבוצה חדשה.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">לא יכולת להתווסף אל הקבוצה החדשה והוזמנת להצטרף.</string>
   <string name="MessageRecord_chat_session_refreshed">שיח התכתבות רוענן</string>
@@ -1605,7 +1602,6 @@
   <string name="NotificationChannel_group_messages">הודעות</string>
   <string name="NotificationChannel_missing_display_name">בלתי ידוע</string>
   <string name="NotificationChannel_voice_notes">הערות קוליות</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">אין פעילות זמינה כדי לפתוח הגדרות של ערוץ התראות.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Signal נעול!</string>
@@ -1732,7 +1728,6 @@
   <string name="ConversationUpdateItem_return_to_call">חזור לשיחה</string>
   <string name="ConversationUpdateItem_call_is_full">השיחה מלאה</string>
   <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string>
-  <string name="ConversationUpdateItem_enable_call_notifications">אפשר התראות שיחה</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -1756,18 +1751,6 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">האנשים הבאים ייתכן התקינו מחדש את היישום או שינו מכשירים. וודא את מספר הביטחון שלך איתם כדי להבטיח פרטיות.</string>
   <string name="safety_number_change_dialog__view">הצג</string>
   <string name="safety_number_change_dialog__previous_verified">וֻדָּא בעבר</string>
-  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
-  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">התראות שיחה מאופשרות.</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">אפשר התראות שיחה</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">אפשר פעילות ברקע</string>
-  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">הכול נִרְאֶה כראוי עכשיו!</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">כדי לקבל התראות שיחה, הקש כאן והפעל את \"הראה התראות\".</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">כדי לקבל התראות שיחה, הקש כאן והפעל התראות ווודא שצליל וחלון קופץ מאופשרים.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">כדי לקבל התראות שיחה, הקש כאן ואפשר את פעילות ברקע בהגדרות \"סוללה\".</string>
-  <string name="EnableCallNotificationSettingsDialog__settings">הגדרות</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">כדי לקבל התראות שיחה, הקש על  הגדרות והפעל את \"הראה התראות\".</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">כדי לקבל התראות שיחה, הקש על הגדרות והפעל התראות ווודא שצליל וחלון קופץ מאופשרים.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">כדי לקבל התראות שיחה, הקש על הגדרות ואפשר את פעילות ברקע בהגדרות \"סוללה\".</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">טוען מדינות…</string>
   <string name="country_selection_fragment__search">חפש</string>
@@ -1977,10 +1960,10 @@
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
   <string name="arrays__use_custom">השתמש במותאם אישית</string>
   <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
-  <string name="arrays__mute_for_eight_hours">השתק למשך 8 שעות</string>
+  <string name="arrays__mute_for_two_hours">השתק למשך שעתיים</string>
   <string name="arrays__mute_for_one_day">השתק למשך יום</string>
   <string name="arrays__mute_for_seven_days">השתק למשך 7 ימים</string>
-  <string name="arrays__always">תמיד</string>
+  <string name="arrays__mute_for_one_year">השתק למשך שנה</string>
   <string name="arrays__settings_default">ברירת מחדל</string>
   <string name="arrays__enabled">מאופשר</string>
   <string name="arrays__disabled">מושבת</string>
@@ -2034,8 +2017,7 @@
   <string name="preferences__pref_led_blink_title">תבנית הבהוב LED</string>
   <string name="preferences__sound">קול</string>
   <string name="preferences__silent">שקט</string>
-  <string name="preferences__default">ברירת מחדל</string>
-  <string name="preferences__repeat_alerts">חזור על התרעות</string>
+  <string name="preferences__repeat_alerts">חזור על התראות</string>
   <string name="preferences__never">אף פעם</string>
   <string name="preferences__one_time">פעם אחת</string>
   <string name="preferences__two_times">פעמיים</string>
@@ -2089,8 +2071,8 @@
   <string name="preferences__free_private_messages_and_calls">הודעות ושיחות פרטיות חינמיות אל משתמשי Signal</string>
   <string name="preferences__submit_debug_log">הגש יומן ניפוי תקלים</string>
   <string name="preferences__delete_account">מחק חשבון</string>
-  <string name="preferences__support_wifi_calling">מצב תאימות \'התקשרות דרך WiFi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">אפשר אם המכשיר שלך משתמש במשלוח של מסרונים או MMS על גבי WiFi (אפשר רק כאשר מצב תאימות \'התקשרות דרך WiFi\' מאופשר במכשיר שלך)</string>
+  <string name="preferences__support_wifi_calling">מצב תאימות \'התקשרות WiFi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">אפשר אם המכשיר שלך משתמש במשלוח של מסרונים או MMS על גבי WiFi (אפשר רק כאשר \'התקשרות WiFi\' מאופשרת במכשיר שלך)</string>
   <string name="preferences__incognito_keyboard">מקלדת סמויה</string>
   <string name="preferences__read_receipts">אישורי קריאה</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
@@ -2533,7 +2515,6 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">שחזר גיבוי</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">שגיאה בלתי צפויה התרחשה בזמן ניסיון להתחבר אל מכשיר ה־Android הישן שלך.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">מחפש מכשיר Android חדש…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal צריך את הרשאת המיקום כדי לגלות ולהתחבר אל מכשיר ה־Android החדש שלך.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal צריך שירותי מיקום מופעלים כדי לגלות ולהתחבר אל מכשיר ה־Android החדש שלך.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal צריך Wi-Fi מופעל כדי לגלות להתחבר אל מכשיר ה־Android החדש שלך. Wi-Fi צריך להיות מופעל אבל הוא לא חייב להיות מחובר אל רשת Wi-Fi.</string>
@@ -2613,10 +2594,7 @@
   <string name="DeviceToDeviceTransferService_status_verification_required">וידוא נדרש</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">מעביר חשבון…</string>
   <!--OldDeviceTransferLockedDialog-->
-  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">השלם את ההרשמה במכשיר החדש שלך</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">חשבון Signal שלך הועבר אל המכשיר החדש שלך, אבל אתה חייב להשלים בו את ההרשמה כדי להמשיך. Signal יהיה בלתי פעיל במכשיר זה.</string>
   <string name="OldDeviceTransferLockedDialog__done">סיים</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">בטל והפעל מכשיר זה</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">חסום</string>
   <string name="RecipientBottomSheet_unblock">שחרר חסימה</string>

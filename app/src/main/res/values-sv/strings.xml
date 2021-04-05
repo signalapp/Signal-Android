@@ -607,7 +607,6 @@
   <string name="ManageGroupActivity_mentions">Omnämnanden</string>
   <string name="ManageGroupActivity_chat_wallpaper">Chattbakgrund</string>
   <string name="ManageGroupActivity_until_s">Fram tills %1$s</string>
-  <string name="ManageGroupActivity_always">Alltid</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
   <string name="ManageGroupActivity_view_all_members">Visa alla medlemmar</string>
@@ -658,7 +657,6 @@
   <string name="ManageRecipientActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageRecipientActivity_custom_notifications">Anpassade aviseringar</string>
   <string name="ManageRecipientActivity_until_s">Fram tills %1$s</string>
-  <string name="ManageRecipientActivity_always">Alltid</string>
   <string name="ManageRecipientActivity_off">Av</string>
   <string name="ManageRecipientActivity_on">På</string>
   <string name="ManageRecipientActivity_add_to_a_group">Lägg till i en grupp</string>
@@ -835,7 +833,6 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
-  <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
   <string name="NotificationBarManager__deny_call">Neka samtal</string>
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
   <string name="NotificationBarManager__end_call">Avsluta samtal</string>
@@ -1475,7 +1472,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NotificationChannel_group_messages">Meddelanden</string>
   <string name="NotificationChannel_missing_display_name">Okänd</string>
   <string name="NotificationChannel_voice_notes">Röstanteckningar</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tillgänglig för att öppna inställningar för aviseringskanaler.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är otillgängligt när Signal är låst!</string>
@@ -1546,9 +1542,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Vänligen kontrollera användarnamnet och försök igen.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du behöver inte lägga till dig själv i gruppen</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Störst gruppstorlek uppnådd</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupper kan ha högst %1$d medlemmar.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signalgrupper kan ha högst %1$d medlemmar.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Rekommenderad medlemsgräns uppnådd</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupper fungerar bäst med %1$d medlemmar eller färre. Om du lägger till fler medlemmar kommer det att orsaka förseningar när du skickar och tar emot meddelanden.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupper fungerar bäst med %1$d medlemmar eller färre. Om du lägger till fler medlemmar kommer förseningar att skicka och ta emot meddelanden.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d medlem</item>
     <item quantity="other">%1$d medlemmar</item>
@@ -1596,7 +1592,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_return_to_call">Återgå till samtal</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalet är fullt</string>
   <string name="ConversationUpdateItem_invite_friends">Bjud in vänner</string>
-  <string name="ConversationUpdateItem_enable_call_notifications">Aktivera samtalsaviseringar</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -1620,18 +1615,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Följande personer kan ha installerat om eller bytt enheter. Verifiera ditt säkerhetsnummer med dem för att säkerställa integriteten.</string>
   <string name="safety_number_change_dialog__view">Visa</string>
   <string name="safety_number_change_dialog__previous_verified">Tidigare verifierad</string>
-  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
-  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Samtalsaviseringar aktiverade.</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Aktivera samtalsaviseringar</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Aktivera bakgrundsaktivitet</string>
-  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Allt ser bra ut nu!</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">För att ta emot samtalsaviseringar, tryck här och aktivera \"Visa aviseringar.\"</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">För att ta emot samtalsaviseringar, tryck här och aktivera aviseringar och se till att ljud och popup är aktiverat.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">För att ta emot samtalsaviseringar, tryck här och aktivera bakgrundsaktivitet i \"Batteri\"-inställningarna.</string>
-  <string name="EnableCallNotificationSettingsDialog__settings">Inställningar</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">För att ta emot samtalsaviseringar, tryck på Inställningar och aktivera \"Visa aviseringar.\"</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">För att ta emot samtalsaviseringar, tryck på Inställningar och aktivera aviseringar och se till att ljud och popup är aktiverat.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">För att ta emot samtalsaviseringar, tryck på Inställningar och aktivera bakgrundsaktivitet i \"Batteri\"-inställningarna.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Läser in länder…</string>
   <string name="country_selection_fragment__search">Sök</string>
@@ -1794,11 +1777,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Har du läst våra Vanliga frågor ännu?</string>
   <string name="HelpFragment__next">Nästa</string>
   <string name="HelpFragment__contact_us">Kontakta oss</string>
-  <string name="HelpFragment__tell_us_whats_going_on">Berätta för oss vad som pågår</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Berätta vad som händer</string>
   <string name="HelpFragment__include_debug_log">Inkludera felsökningslogg.</string>
   <string name="HelpFragment__whats_this">Vad är detta?</string>
   <string name="HelpFragment__how_do_you_feel">Hur mår du? (valfritt)</string>
-  <string name="HelpFragment__tell_us_why_youre_reaching_out">Berätta för oss varför du tar kontakt.</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Berätta varför du tar kontakt.</string>
   <string name="HelpFragment__support_info">Supportinformation</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android-supportförfrågan</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
@@ -1827,10 +1810,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
   <string name="arrays__mute_for_one_hour">Tysta i 1 timme</string>
-  <string name="arrays__mute_for_eight_hours">Tysta i 8 timmar</string>
+  <string name="arrays__mute_for_two_hours">Tysta i 2 timmar</string>
   <string name="arrays__mute_for_one_day">Tysta i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Tysta i 7 dagar</string>
-  <string name="arrays__always">Alltid</string>
+  <string name="arrays__mute_for_one_year">Tysta i 1 år</string>
   <string name="arrays__settings_default">Inställningars standardvärden</string>
   <string name="arrays__enabled">Aktiverad</string>
   <string name="arrays__disabled">Inaktiverad</string>
@@ -1882,7 +1865,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__pref_led_blink_title">Blinkmönster på ljusindikator</string>
   <string name="preferences__sound">Ljud</string>
   <string name="preferences__silent">Tyst</string>
-  <string name="preferences__default">Standard</string>
   <string name="preferences__repeat_alerts">Upprepa aviseringar</string>
   <string name="preferences__never">Aldrig</string>
   <string name="preferences__one_time">En gång</string>
@@ -2367,7 +2349,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Återställ en säkerhetskopia</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ett oväntat fel uppstod när du försökte ansluta till din gamla Android-enhet.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Söker efter en ny Android-enhet…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal behöver platsbehörighet för att upptäcka och ansluta till din nya Android-enhet.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal behöver platstjänster aktiverade för att upptäcka och ansluta till din nya Android-enhet.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Wi-Fi behöver vara aktiverat för att Signal ska upptäcka och ansluta till din nya Android-enhet. Wi-Fi måste vara aktiverat men det behöver inte vara anslutet till ett Wi-Fi-nätverk.</string>
@@ -2447,10 +2428,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Verifiering krävs</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Överför konto…</string>
   <!--OldDeviceTransferLockedDialog-->
-  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Slutför registreringen på din nya enhet</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ditt Signal-konto har överförts till din nya enhet, men du måste slutföra registreringen på den för att fortsätta. Signal kommer att vara inaktiv på denna enhet.</string>
   <string name="OldDeviceTransferLockedDialog__done">Klar</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Avbryt och aktivera denna enhet</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockera</string>
   <string name="RecipientBottomSheet_unblock">Avblockera</string>

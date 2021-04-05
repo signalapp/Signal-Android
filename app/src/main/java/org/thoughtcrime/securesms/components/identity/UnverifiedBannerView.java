@@ -22,7 +22,7 @@ import java.util.List;
 
 public class UnverifiedBannerView extends LinearLayout {
 
-  private static final String TAG = Log.tag(UnverifiedBannerView.class);
+  private static final String TAG = UnverifiedBannerView.class.getSimpleName();
 
   private View      container;
   private TextView  text;

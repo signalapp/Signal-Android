@@ -575,7 +575,6 @@
   <string name="ManageGroupActivity_mentions">提及</string>
   <string name="ManageGroupActivity_chat_wallpaper">聊天壁紙</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
-  <string name="ManageGroupActivity_always">永遠</string>
   <string name="ManageGroupActivity_off">關</string>
   <string name="ManageGroupActivity_on">開</string>
   <string name="ManageGroupActivity_view_all_members">檢視所有成員</string>
@@ -625,7 +624,6 @@
   <string name="ManageRecipientActivity_mute_notifications">將通知調整為靜音</string>
   <string name="ManageRecipientActivity_custom_notifications">自訂通知</string>
   <string name="ManageRecipientActivity_until_s">直到 %1$s</string>
-  <string name="ManageRecipientActivity_always">永遠</string>
   <string name="ManageRecipientActivity_off">關</string>
   <string name="ManageRecipientActivity_on">開</string>
   <string name="ManageRecipientActivity_add_to_a_group">新增到群組</string>
@@ -792,7 +790,6 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
-  <string name="NotificationBarManager__stopping_signal_call_service">Signal 來電服務停止中</string>
   <string name="NotificationBarManager__deny_call">拒絕接聽</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
@@ -1403,7 +1400,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
   <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人上線 Signal 的通知嗎？你可以在 Signal &gt; 設定 &gt; 通知中再次啟用。</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人上線 Signal 的通知嗎？你可以在次開啟他們在 Signal &gt; 設定 &gt; 通知。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">預設</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1415,7 +1412,6 @@
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
   <string name="NotificationChannel_voice_notes">語音筆記</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">無可用的活動以開啟通知類別設定。</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
@@ -1533,7 +1529,6 @@
   <string name="ConversationUpdateItem_return_to_call">返回通話</string>
   <string name="ConversationUpdateItem_call_is_full">通話人數已滿</string>
   <string name="ConversationUpdateItem_invite_friends">邀請好友</string>
-  <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -1557,18 +1552,6 @@
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">下列的人可能已重新安裝或更換了裝置。請驗證你與他們的安全碼，以確保隱私。</string>
   <string name="safety_number_change_dialog__view">檢視</string>
   <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
-  <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
-  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">通話通知已啟用。</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">啟用通話通知</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">啟用背景活動</string>
-  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">似乎一切就緒！</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">若要接收通話通知，請輕觸此處並開啟「顯示通知」。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">若要接收通話通知，請輕觸此處並開啟通知，並確保已啟用「聲音與彈出式視窗」。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">若要接收通話通知，請輕觸此處並在「電量」設定中啟用背景活動。</string>
-  <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">若要接收通話通知，請輕觸一下「設定」並啟用「顯示通知」。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">若要接收通話通知，請輕觸一下「設定」並開啟通知，同時確保已啟用「聲音與彈出式視窗」。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">若要接收通話通知，請輕觸一下「設定」並在「電量」設定中啟用背景活動。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">讀取國家列表中…</string>
   <string name="country_selection_fragment__search">搜尋</string>
@@ -1728,17 +1711,17 @@
   <string name="HelpFragment__include_debug_log">包括偵錯紀錄。</string>
   <string name="HelpFragment__whats_this">這是什麼？</string>
   <string name="HelpFragment__how_do_you_feel">你覺得如何?(可選項目)</string>
-  <string name="HelpFragment__tell_us_why_youre_reaching_out">所為何事？</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">告訴我們你為什麼要伸出援手。</string>
   <string name="HelpFragment__support_info">支援訊息</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android 支援要求</string>
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
   <string-array name="HelpFragment__categories">
-    <item>操作異常</item>
-    <item>功能請求</item>
-    <item>提問</item>
-    <item>意見反映</item>
+    <item>某些功能不起作用</item>
+    <item>功能要求</item>
+    <item>問題</item>
+    <item>反應</item>
     <item>其他</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1757,10 +1740,10 @@
   <string name="arrays__use_default">使用預設</string>
   <string name="arrays__use_custom">使用自訂</string>
   <string name="arrays__mute_for_one_hour">靜音 1 小時</string>
-  <string name="arrays__mute_for_eight_hours">靜音 8 小時</string>
+  <string name="arrays__mute_for_two_hours">靜音 2 小時</string>
   <string name="arrays__mute_for_one_day">靜音 1 天</string>
   <string name="arrays__mute_for_seven_days">靜音 7 天</string>
-  <string name="arrays__always">永遠</string>
+  <string name="arrays__mute_for_one_year">靜音 1 年</string>
   <string name="arrays__settings_default">預設設定</string>
   <string name="arrays__enabled">啟用</string>
   <string name="arrays__disabled">停用</string>
@@ -1811,7 +1794,6 @@
   <string name="preferences__pref_led_blink_title">LED 閃爍模式</string>
   <string name="preferences__sound">提示音效</string>
   <string name="preferences__silent">靜音</string>
-  <string name="preferences__default">預設</string>
   <string name="preferences__repeat_alerts">重複通知</string>
   <string name="preferences__never">永不</string>
   <string name="preferences__one_time">一次</string>
@@ -2289,7 +2271,6 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">還原備份</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到舊的Android裝置時發生未預期的錯誤。</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">正在搜尋新的Android裝置…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal需要位置權限才能發現並連接到新的Android裝置。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal須要開啟定位服務才能發現新的Android裝置並與之連接。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal需要開啟Wi-Fi才能發現新的Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
@@ -2332,7 +2313,7 @@
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">轉移資料</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">使兩個裝置彼此靠近。 請勿關閉裝置並保持Signal開啟。 傳輸是點對點加密的。</string>
-  <string name="DeviceTransfer__d_messages_so_far">到目前為止 %1$d 則訊息…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d 到目前為止的訊息…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
   <string name="DeviceTransfer__stop_transfer_question">停止轉移?</string>
@@ -2369,10 +2350,7 @@
   <string name="DeviceToDeviceTransferService_status_verification_required">需要驗證</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">正在轉移帳號…</string>
   <!--OldDeviceTransferLockedDialog-->
-  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">在新裝置上完成註冊</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">你的 Signal 帳號已轉移到你的新裝置，惟你必須在該裝置上完成註冊才能繼續。此裝置上的 Signal 亦隨之停用。</string>
   <string name="OldDeviceTransferLockedDialog__done">完成</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消並啟動此裝置</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>

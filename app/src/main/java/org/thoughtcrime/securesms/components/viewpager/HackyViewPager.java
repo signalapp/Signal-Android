@@ -23,7 +23,7 @@ import org.signal.core.util.logging.Log;
  */
 public class HackyViewPager extends ViewPager {
 
-  private static final String TAG = Log.tag(HackyViewPager.class);
+  private static final String TAG = HackyViewPager.class.getSimpleName();
 
   public HackyViewPager(Context context) {
     super(context);

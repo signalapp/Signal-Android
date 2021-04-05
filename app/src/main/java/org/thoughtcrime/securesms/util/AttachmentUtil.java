@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class AttachmentUtil {
 
-  private static final String TAG = Log.tag(AttachmentUtil.class);
+  private static final String TAG = AttachmentUtil.class.getSimpleName();
 
   @WorkerThread
   public static boolean isAutoDownloadPermitted(@NonNull Context context, @Nullable DatabaseAttachment attachment) {

@@ -10,7 +10,6 @@ import android.os.BatteryManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
 /**
@@ -18,7 +17,7 @@ import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
  */
 public class ChargingConstraintObserver implements ConstraintObserver {
 
-  private static final String REASON         = Log.tag(ChargingConstraintObserver.class);
+  private static final String REASON         = ChargingConstraintObserver.class.getSimpleName();
   private static final int    STATUS_BATTERY = 0;
 
   private final Application application;

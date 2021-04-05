@@ -14,7 +14,7 @@ import org.signal.core.util.logging.Log;
  */
 public class LockManager {
 
-  private static final String TAG = Log.tag(LockManager.class);
+  private static final String TAG = LockManager.class.getSimpleName();
 
   private final PowerManager.WakeLock        fullLock;
   private final PowerManager.WakeLock        partialLock;

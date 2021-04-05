@@ -100,7 +100,11 @@ public class IncomingMessageProcessor {
     }
 
     private @Nullable String processMessage(@NonNull SignalServiceEnvelope envelope) {
-      return processMessageDeferred(envelope);
+      if (FeatureFlags.internalUser()) {
+        return processMessageInline(envelope);
+      } else {
+        return processMessageDeferred(envelope);
+      }
     }
 
     private @Nullable String processMessageDeferred(@NonNull SignalServiceEnvelope envelope) {

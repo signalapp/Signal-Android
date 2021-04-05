@@ -12,27 +12,20 @@ public final class LocalDeviceState {
   CameraState cameraState;
   boolean     microphoneEnabled;
   boolean     bluetoothAvailable;
-  boolean     wantsBluetooth;
   Orientation orientation;
 
   LocalDeviceState() {
-    this(CameraState.UNKNOWN, true, false, false, Orientation.PORTRAIT_BOTTOM_EDGE);
+    this(CameraState.UNKNOWN, true, false, Orientation.PORTRAIT_BOTTOM_EDGE);
   }
 
   LocalDeviceState(@NonNull LocalDeviceState toCopy) {
-    this(toCopy.cameraState, toCopy.microphoneEnabled, toCopy.bluetoothAvailable, toCopy.wantsBluetooth, toCopy.orientation);
+    this(toCopy.cameraState, toCopy.microphoneEnabled, toCopy.bluetoothAvailable, toCopy.orientation);
   }
 
-  LocalDeviceState(@NonNull CameraState cameraState,
-                   boolean microphoneEnabled,
-                   boolean bluetoothAvailable,
-                   boolean wantsBluetooth,
-                   @NonNull Orientation orientation)
-  {
+  LocalDeviceState(@NonNull CameraState cameraState, boolean microphoneEnabled, boolean bluetoothAvailable, @NonNull Orientation orientation) {
     this.cameraState        = cameraState;
     this.microphoneEnabled  = microphoneEnabled;
     this.bluetoothAvailable = bluetoothAvailable;
-    this.wantsBluetooth     = wantsBluetooth;
     this.orientation        = orientation;
   }
 
@@ -46,10 +39,6 @@ public final class LocalDeviceState {
 
   public boolean isBluetoothAvailable() {
     return bluetoothAvailable;
-  }
-
-  public boolean wantsBluetooth() {
-    return wantsBluetooth;
   }
 
   public @NonNull Orientation getOrientation() {

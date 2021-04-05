@@ -11,7 +11,7 @@ import org.signal.core.util.logging.Log;
 
 public class WakeLockUtil {
 
-  private static final String TAG = Log.tag(WakeLockUtil.class);
+  private static final String TAG = WakeLockUtil.class.getSimpleName();
 
   /**
    * Run a runnable with a wake lock. Ensures that the lock is safely acquired and released.

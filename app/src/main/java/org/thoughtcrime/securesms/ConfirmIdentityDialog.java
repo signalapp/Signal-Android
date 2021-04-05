@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -38,7 +37,7 @@ import java.io.IOException;
 public class ConfirmIdentityDialog extends AlertDialog {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(ConfirmIdentityDialog.class);
+  private static final String TAG = ConfirmIdentityDialog.class.getSimpleName();
 
   private OnClickListener callback;
 

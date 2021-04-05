@@ -18,12 +18,11 @@ import com.takisoft.colorpicker.ColorPickerDialog;
 import com.takisoft.colorpicker.ColorPickerDialog.Size;
 import com.takisoft.colorpicker.ColorStateDrawable;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 
 public class ColorPickerPreference extends DialogPreference {
 
-  private static final String TAG = Log.tag(ColorPickerPreference.class);
+  private static final String TAG = ColorPickerPreference.class.getSimpleName();
 
   private int[] colors;
   private CharSequence[] colorDescriptions;

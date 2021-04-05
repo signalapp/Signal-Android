@@ -22,7 +22,7 @@ import org.signal.core.util.logging.Log;
 
 public class SmsCharacterCalculator extends CharacterCalculator {
 
-  private static final String TAG = Log.tag(SmsCharacterCalculator.class);
+  private static final String TAG = SmsCharacterCalculator.class.getSimpleName();
 
   @Override
   public CharacterState calculateCharacters(String messageBody) {

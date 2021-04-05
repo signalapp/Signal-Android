@@ -50,7 +50,7 @@ public class FcmRefreshJob extends BaseJob {
 
   public static final String KEY = "FcmRefreshJob";
 
-  private static final String TAG = Log.tag(FcmRefreshJob.class);
+  private static final String TAG = FcmRefreshJob.class.getSimpleName();
 
   public FcmRefreshJob() {
     this(new Job.Parameters.Builder()

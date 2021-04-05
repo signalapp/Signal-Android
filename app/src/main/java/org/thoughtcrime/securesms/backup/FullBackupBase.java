@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.logging.Log;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.security.MessageDigest;
@@ -14,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 public abstract class FullBackupBase {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(FullBackupBase.class);
+  private static final String TAG = FullBackupBase.class.getSimpleName();
 
   static class BackupStream {
     static @NonNull byte[] getBackupKey(@NonNull String passphrase, @Nullable byte[] salt) {

@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
-
-import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MissingRecipientException;
@@ -17,14 +17,13 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.Executor;
 
 public final class LiveRecipientCache {
 
@@ -37,8 +36,6 @@ public final class LiveRecipientCache {
   private final RecipientDatabase               recipientDatabase;
   private final Map<RecipientId, LiveRecipient> recipients;
   private final LiveRecipient                   unknown;
-  private final Executor                        executor;
-  private final SQLiteDatabase                  db;
 
   private volatile RecipientId localRecipientId;
 
@@ -50,8 +47,6 @@ public final class LiveRecipientCache {
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.recipients        = new LRUCache<>(CACHE_MAX);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
-    this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
-    this.executor          = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.isDbLockedByCurrentThread());
   }
 
   @AnyThread
@@ -67,7 +62,7 @@ public final class LiveRecipientCache {
 
       MissingRecipientException prettyStackTraceError = new MissingRecipientException(newLive.getId());
 
-      executor.execute(() -> {
+      SignalExecutors.BOUNDED.execute(() -> {
         try {
           newLive.resolve();
         } catch (MissingRecipientException e) {
@@ -104,7 +99,7 @@ public final class LiveRecipientCache {
 
       if (needsResolve) {
         MissingRecipientException prettyStackTraceError = new MissingRecipientException(recipient.getId());
-        executor.execute(() -> {
+        SignalExecutors.BOUNDED.execute(() -> {
           try {
             recipient.resolve();
           } catch (MissingRecipientException e) {
@@ -144,7 +139,7 @@ public final class LiveRecipientCache {
       warmedUp = true;
     }
 
-    executor.execute(() -> {
+    SignalExecutors.BOUNDED.execute(() -> {
       ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
       List<Recipient> recipients     = new ArrayList<>();
 

@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class OutgoingRinger {
 
-  private static final String TAG = Log.tag(OutgoingRinger.class);
+  private static final String TAG = OutgoingRinger.class.getSimpleName();
 
   public enum Type {
     RINGING,

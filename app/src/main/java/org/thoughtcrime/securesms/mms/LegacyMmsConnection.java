@@ -67,7 +67,7 @@ public abstract class LegacyMmsConnection {
 
   public static final String USER_AGENT = "Android-Mms/2.0";
 
-  private static final String TAG = Log.tag(LegacyMmsConnection.class);
+  private static final String TAG = LegacyMmsConnection.class.getSimpleName();
 
   protected final Context context;
   protected final Apn     apn;
@@ -302,7 +302,7 @@ public abstract class LegacyMmsConnection {
 
     @Override
     public @NonNull String toString() {
-      return Log.tag(Apn.class) +
+      return Apn.class.getSimpleName() +
           "{ mmsc: \"" + mmsc + "\"" +
           ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +
           ", port: " + (port == null ? "(none)" : port) +

@@ -33,7 +33,7 @@ import java.util.List;
 
 final class SafetyNumberChangeRepository {
 
-  private static final String TAG = Log.tag(SafetyNumberChangeRepository.class);
+  private static final String TAG = SafetyNumberChangeRepository.class.getSimpleName();
 
   private final Context context;
 

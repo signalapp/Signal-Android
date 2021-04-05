@@ -24,7 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -42,7 +41,7 @@ import java.util.List;
 public class IdentityDatabase extends Database {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(IdentityDatabase.class);
+  private static final String TAG = IdentityDatabase.class.getSimpleName();
 
           static final String TABLE_NAME           = "identities";
   private static final String ID                   = "_id";

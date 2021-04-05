@@ -9,12 +9,11 @@ import android.telephony.TelephonyManager;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
 public class CellServiceConstraintObserver implements ConstraintObserver {
 
-  private static final String REASON = Log.tag(CellServiceConstraintObserver.class);
+  private static final String REASON = CellServiceConstraintObserver.class.getSimpleName();
 
   private volatile Notifier     notifier;
   private volatile ServiceState lastKnownState;

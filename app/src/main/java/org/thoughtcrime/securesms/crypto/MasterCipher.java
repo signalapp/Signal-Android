@@ -55,7 +55,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MasterCipher {
 
-  private static final String TAG = Log.tag(MasterCipher.class);
+  private static final String TAG = MasterCipher.class.getSimpleName();
 
   private final MasterSecret masterSecret;
   private final Cipher encryptingCipher;

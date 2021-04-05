@@ -86,7 +86,7 @@ public final class AppForegroundObserver {
   }
 
   public interface Listener {
-    default void onForeground() {}
-    default void onBackground() {}
+    void onForeground();
+    void onBackground();
   }
 }

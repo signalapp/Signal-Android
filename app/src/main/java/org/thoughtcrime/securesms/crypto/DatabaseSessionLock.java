@@ -1,5 +1,10 @@
 package org.thoughtcrime.securesms.crypto;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.concurrent.locks.ReentrantLock;
@@ -19,25 +24,26 @@ public enum DatabaseSessionLock implements SignalSessionLock {
 
   @Override
   public Lock acquire() {
-    LEGACY_LOCK.lock();
-    return LEGACY_LOCK::unlock;
+    if (FeatureFlags.internalUser()) {
+      SQLiteDatabase db = DatabaseFactory.getInstance(ApplicationDependencies.getApplication()).getRawDatabase();
 
-    // TODO [greyson][db] Revisit after improving database locking
-//    SQLiteDatabase db = DatabaseFactory.getInstance(ApplicationDependencies.getApplication()).getRawDatabase();
-//
-//    if (db.isDbLockedByCurrentThread()) {
-//      return () -> {};
-//    }
-//
-//    db.beginTransaction();
-//
-//    ownerThreadId = Thread.currentThread().getId();
-//
-//    return () -> {
-//      ownerThreadId = -1;
-//      db.setTransactionSuccessful();
-//      db.endTransaction();
-//    };
+      if (db.isDbLockedByCurrentThread()) {
+        return () -> {};
+      }
+
+      db.beginTransaction();
+
+      ownerThreadId = Thread.currentThread().getId();
+
+      return () -> {
+        ownerThreadId = -1;
+        db.setTransactionSuccessful();
+        db.endTransaction();
+      };
+    } else {
+      LEGACY_LOCK.lock();
+      return LEGACY_LOCK::unlock;
+    }
   }
 
   /**

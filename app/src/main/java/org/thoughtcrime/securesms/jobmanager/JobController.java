@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  */
 class JobController {
 
-  private static final String TAG = Log.tag(JobController.class);
+  private static final String TAG = JobController.class.getSimpleName();
 
   private final Application            application;
   private final JobStorage             jobStorage;

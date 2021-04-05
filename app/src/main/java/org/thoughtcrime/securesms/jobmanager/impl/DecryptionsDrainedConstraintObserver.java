@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 
 import androidx.annotation.NonNull;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
@@ -12,7 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
  */
 public class DecryptionsDrainedConstraintObserver implements ConstraintObserver {
 
-  private static final String REASON = Log.tag(DecryptionsDrainedConstraintObserver.class);
+  private static final String REASON = DecryptionsDrainedConstraintObserver.class.getSimpleName();
 
   @Override
   public void register(@NonNull Notifier notifier) {

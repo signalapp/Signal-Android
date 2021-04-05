@@ -158,11 +158,6 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   @Override
-  protected boolean shouldTrace() {
-    return true;
-  }
-
-  @Override
   public @NonNull Data serialize() {
     Data.Builder dataBuilder = new Data.Builder()
                                        .putInt(KEY_MESSAGE_STATE, messageState.ordinal())

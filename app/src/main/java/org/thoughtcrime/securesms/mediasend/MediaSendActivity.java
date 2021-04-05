@@ -107,7 +107,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
                                                                                       InputAwareLayout.OnKeyboardShownListener,
                                                                                       InputAwareLayout.OnKeyboardHiddenListener
 {
-  private static final String TAG = Log.tag(MediaSendActivity.class);
+  private static final String TAG = MediaSendActivity.class.getSimpleName();
 
   public static final String EXTRA_RESULT    = "result";
 

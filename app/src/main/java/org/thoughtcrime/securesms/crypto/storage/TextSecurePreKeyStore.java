@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.whispersystems.libsignal.InvalidKeyIdException;
@@ -19,7 +18,7 @@ import java.util.List;
 public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(TextSecurePreKeyStore.class);
+  private static final String TAG = TextSecurePreKeyStore.class.getSimpleName();
 
   @NonNull
   private final Context context;

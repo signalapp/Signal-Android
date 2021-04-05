@@ -34,7 +34,7 @@ class PreKeyMigrationHelper {
   private static final int    PLAINTEXT_VERSION      = 2;
   private static final int    CURRENT_VERSION_MARKER = 2;
 
-  private static final String TAG = Log.tag(PreKeyMigrationHelper.class);
+  private static final String TAG = PreKeyMigrationHelper.class.getSimpleName();
 
   static boolean migratePreKeys(Context context, SQLiteDatabase database) {
     File[]  preKeyFiles = getPreKeyDirectory(context).listFiles();

@@ -32,7 +32,7 @@ import java.util.UUID;
  */
 public class AlarmManagerScheduler implements Scheduler {
 
-  private static final String TAG = Log.tag(AlarmManagerScheduler.class);
+  private static final String TAG = AlarmManagerScheduler.class.getSimpleName();
 
   private final Application application;
 

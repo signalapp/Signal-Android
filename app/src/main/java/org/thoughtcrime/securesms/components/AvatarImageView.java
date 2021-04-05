@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
@@ -40,7 +39,7 @@ public final class AvatarImageView extends AppCompatImageView {
   private static final int SIZE_SMALL = 2;
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(AvatarImageView.class);
+  private static final String TAG = AvatarImageView.class.getSimpleName();
 
   private static final Paint LIGHT_THEME_OUTLINE_PAINT = new Paint();
   private static final Paint DARK_THEME_OUTLINE_PAINT  = new Paint();

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase;
@@ -62,7 +61,7 @@ public class ThreadPhotoRailView extends FrameLayout {
   private static class ThreadPhotoRailAdapter extends CursorRecyclerViewAdapter<ThreadPhotoRailAdapter.ThreadPhotoViewHolder> {
 
     @SuppressWarnings("unused")
-    private static final String TAG = Log.tag(ThreadPhotoRailAdapter.class);
+    private static final String TAG = ThreadPhotoRailAdapter.class.getSimpleName();
 
     @NonNull  private final GlideRequests glideRequests;
 

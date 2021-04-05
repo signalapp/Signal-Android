@@ -33,7 +33,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       androidAudioManager.setSpeakerphoneOn(true);
     }
 
-    webRtcInteractor.postStateUpdate(currentState);
+    webRtcInteractor.sendMessage(currentState);
 
     return currentState;
   }
@@ -41,10 +41,6 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleBluetoothChange(@NonNull WebRtcServiceState currentState, boolean available) {
     Log.i(tag, "handleBluetoothChange(): " + available);
-
-    if (available && currentState.getLocalDeviceState().wantsBluetooth()) {
-      webRtcInteractor.setWantsBluetoothConnection(true);
-    }
 
     return currentState.builder()
                        .changeLocalDeviceState()
@@ -65,12 +61,9 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    webRtcInteractor.postStateUpdate(currentState);
+    webRtcInteractor.sendMessage(currentState);
 
-    return currentState.builder()
-                       .changeLocalDeviceState()
-                       .wantsBluetooth(false)
-                       .build();
+    return currentState;
   }
 
   @Override
@@ -83,12 +76,9 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    webRtcInteractor.postStateUpdate(currentState);
+    webRtcInteractor.sendMessage(currentState);
 
-    return currentState.builder()
-                       .changeLocalDeviceState()
-                       .wantsBluetooth(isBluetooth)
-                       .build();
+    return currentState;
   }
 
   @Override

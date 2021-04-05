@@ -51,7 +51,7 @@ import java.util.Objects;
  */
 class MediaSendViewModel extends ViewModel {
 
-  private static final String TAG = Log.tag(MediaSendViewModel.class);
+  private static final String TAG = MediaSendViewModel.class.getSimpleName();
 
   private final Application                        application;
   private final MediaRepository                    repository;

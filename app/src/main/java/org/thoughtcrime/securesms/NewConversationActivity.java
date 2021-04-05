@@ -49,7 +49,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(NewConversationActivity.class);
+  private static final String TAG = NewConversationActivity.class.getSimpleName();
 
   @Override
   public void onCreate(Bundle bundle, boolean ready) {

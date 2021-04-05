@@ -28,7 +28,6 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.MessageDatabase.ThreadUpdate;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -47,7 +46,7 @@ import java.util.Set;
 public class MmsSmsDatabase extends Database {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(MmsSmsDatabase.class);
+  private static final String TAG = MmsSmsDatabase.class.getSimpleName();
 
   public static final String TRANSPORT     = "transport_type";
   public static final String MMS_TRANSPORT = "mms";
@@ -321,123 +320,102 @@ public class MmsSmsDatabase extends Database {
   }
 
   public void incrementDeliveryReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp) {
-    incrementReceiptCounts(syncMessageIds, timestamp, MessageDatabase.ReceiptType.DELIVERY);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      for (SyncMessageId id : syncMessageIds) {
+        incrementDeliveryReceiptCount(id, timestamp);
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.DELIVERY);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.DELIVERY);
+      DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.DELIVERY);
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   /**
    * @return A list of ID's that were not updated.
    */
   public @NonNull Collection<SyncMessageId> incrementReadReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp) {
-    return incrementReceiptCounts(syncMessageIds, timestamp, MessageDatabase.ReceiptType.READ);
+    SQLiteDatabase      db        = databaseHelper.getWritableDatabase();
+    List<SyncMessageId> unhandled = new LinkedList<>();
+
+    db.beginTransaction();
+    try {
+      for (SyncMessageId id : syncMessageIds) {
+        boolean handled = incrementReadReceiptCount(id, timestamp);
+
+        if (!handled) {
+          unhandled.add(id);
+        }
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    return unhandled;
   }
 
   public boolean incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    return incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.READ);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      boolean handled = false;
+
+      handled |= DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.READ);
+      handled |= DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.READ);
+
+      db.setTransactionSuccessful();
+
+      return handled;
+    } finally {
+      db.endTransaction();
+    }
   }
 
   /**
    * @return A list of ID's that were not updated.
    */
   public @NonNull Collection<SyncMessageId> incrementViewedReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp) {
-    return incrementReceiptCounts(syncMessageIds, timestamp, MessageDatabase.ReceiptType.VIEWED);
-  }
-
-  public boolean incrementViewedReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    return incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.VIEWED);
-  }
-
-  /**
-   * Wraps a single receipt update in a transaction and triggers the proper updates.
-   *
-   * @return Whether or not some thread was updated.
-   */
-  private boolean incrementReceiptCount(SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    SQLiteDatabase    db             = databaseHelper.getWritableDatabase();
-    ThreadDatabase    threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    Set<ThreadUpdate> threadUpdates  = new HashSet<>();
-
-    db.beginTransaction();
-    try {
-      threadUpdates = incrementReceiptCountInternal(syncMessageId, timestamp, receiptType);
-
-      for (ThreadUpdate threadUpdate : threadUpdates) {
-        threadDatabase.update(threadUpdate.getThreadId(), false);
-      }
-
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
-
-      for (ThreadUpdate threadUpdate : threadUpdates) {
-        if (threadUpdate.isVerbose()) {
-          notifyVerboseConversationListeners(threadUpdate.getThreadId());
-        } else {
-          notifyConversationListeners(threadUpdate.getThreadId());
-        }
-      }
-    }
-
-    return threadUpdates.size() > 0;
-  }
-
-  /**
-   * Wraps multiple receipt updates in a transaction and triggers the proper updates.
-   *
-   * @return All of the messages that didn't result in updates.
-   */
-  private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    SQLiteDatabase            db             = databaseHelper.getWritableDatabase();
-    ThreadDatabase            threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    Set<ThreadUpdate>         threadUpdates  = new HashSet<>();
-    Collection<SyncMessageId> unhandled      = new HashSet<>();
+    SQLiteDatabase      db        = databaseHelper.getWritableDatabase();
+    List<SyncMessageId> unhandled = new LinkedList<>();
 
     db.beginTransaction();
     try {
       for (SyncMessageId id : syncMessageIds) {
-        Set<ThreadUpdate> updates = incrementReceiptCountInternal(id, timestamp, receiptType);
+        boolean handled = incrementViewedReceiptCount(id, timestamp);
 
-        if (updates.size() > 0) {
-          threadUpdates.addAll(updates);
-        } else {
+        if (!handled) {
           unhandled.add(id);
         }
-      }
-
-      for (ThreadUpdate update : threadUpdates) {
-        threadDatabase.update(update.getThreadId(), false);
       }
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
-
-      for (ThreadUpdate threadUpdate : threadUpdates) {
-        if (threadUpdate.isVerbose()) {
-          notifyVerboseConversationListeners(threadUpdate.getThreadId());
-        } else {
-          notifyConversationListeners(threadUpdate.getThreadId());
-        }
-      }
     }
 
     return unhandled;
   }
 
-
-  /**
-   * Doesn't do any transactions or updates, so we can re-use the method safely.
-   */
-  private @NonNull Set<ThreadUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType) {
-    Set<ThreadUpdate> threadUpdates = new HashSet<>();
-
-    threadUpdates.addAll(DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, receiptType));
-    threadUpdates.addAll(DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, receiptType));
-
-    return threadUpdates;
+  public boolean incrementViewedReceiptCount(SyncMessageId syncMessageId, long timestamp) {
+    return DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.VIEWED);
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {

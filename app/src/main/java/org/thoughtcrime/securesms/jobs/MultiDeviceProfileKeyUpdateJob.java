@@ -34,7 +34,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
   public static String KEY = "MultiDeviceProfileKeyUpdateJob";
 
-  private static final String TAG = Log.tag(MultiDeviceProfileKeyUpdateJob.class);
+  private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
 
   public MultiDeviceProfileKeyUpdateJob() {
     this(new Job.Parameters.Builder()

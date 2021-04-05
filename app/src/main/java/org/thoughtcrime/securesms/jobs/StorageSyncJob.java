@@ -83,11 +83,6 @@ public class StorageSyncJob extends BaseJob {
   }
 
   @Override
-  protected boolean shouldTrace() {
-    return true;
-  }
-
-  @Override
   public @NonNull Data serialize() {
     return Data.EMPTY;
   }

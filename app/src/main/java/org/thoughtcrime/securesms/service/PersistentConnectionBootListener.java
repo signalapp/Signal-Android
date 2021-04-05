@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log;
 
 public class PersistentConnectionBootListener extends BroadcastReceiver {
 
-  private static final String TAG = Log.tag(PersistentConnectionBootListener.class);
+  private static final String TAG = PersistentConnectionBootListener.class.getSimpleName();
 
   @Override
   public void onReceive(Context context, Intent intent) {

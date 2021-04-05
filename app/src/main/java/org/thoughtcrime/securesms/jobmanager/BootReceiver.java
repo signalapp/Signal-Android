@@ -8,7 +8,7 @@ import org.signal.core.util.logging.Log;
 
 public class BootReceiver extends BroadcastReceiver {
 
-  private static final String TAG = Log.tag(BootReceiver.class);
+  private static final String TAG = BootReceiver.class.getSimpleName();
 
   @Override
   public void onReceive(Context context, Intent intent) {

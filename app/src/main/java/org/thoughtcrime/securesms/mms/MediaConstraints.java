@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public abstract class MediaConstraints {
-  private static final String TAG = Log.tag(MediaConstraints.class);
+  private static final String TAG = MediaConstraints.class.getSimpleName();
 
   public static MediaConstraints getPushMediaConstraints() {
     return new PushMediaConstraints();

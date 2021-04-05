@@ -28,7 +28,7 @@ import java.util.Objects;
 
 public class IdentityKeyMismatch {
 
-  private static final String TAG = Log.tag(IdentityKeyMismatch.class);
+  private static final String TAG = IdentityKeyMismatch.class.getSimpleName();
 
   /** DEPRECATED */
   @JsonProperty(value = "a")

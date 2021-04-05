@@ -24,7 +24,7 @@ import java.util.List;
 public abstract class SendJob extends BaseJob {
 
   @SuppressWarnings("unused")
-  private final static String TAG = Log.tag(SendJob.class);
+  private final static String TAG = SendJob.class.getSimpleName();
 
   public SendJob(Job.Parameters parameters) {
     super(parameters);

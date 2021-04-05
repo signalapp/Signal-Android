@@ -22,7 +22,6 @@ import android.text.SpannableString;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -44,7 +43,7 @@ import java.util.List;
  */
 
 public class MediaMmsMessageRecord extends MmsMessageRecord {
-  private final static String TAG = Log.tag(MediaMmsMessageRecord.class);
+  private final static String TAG = MediaMmsMessageRecord.class.getSimpleName();
 
   private final int     partCount;
   private final boolean mentionsSelf;

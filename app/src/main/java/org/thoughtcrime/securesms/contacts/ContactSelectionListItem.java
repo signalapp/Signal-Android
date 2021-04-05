@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
@@ -27,7 +26,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
-  private static final String TAG = Log.tag(ContactSelectionListItem.class);
+  private static final String TAG = ContactSelectionListItem.class.getSimpleName();
 
   private AvatarImageView contactPhotoImage;
   private TextView        numberView;

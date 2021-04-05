@@ -21,7 +21,6 @@ import android.os.Bundle;
 
 import com.annimon.stream.Stream;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -39,7 +38,7 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
   public static final String KEY_SELECTED_RECIPIENTS = "recipients";
 
   @SuppressWarnings("unused")
-  private final static String TAG = Log.tag(PushContactSelectionActivity.class);
+  private final static String TAG = PushContactSelectionActivity.class.getSimpleName();
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {

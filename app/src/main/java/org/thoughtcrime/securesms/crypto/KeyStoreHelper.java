@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
 import java.io.IOException;
@@ -153,7 +152,7 @@ public final class KeyStoreHelper {
   public static class SealedData {
 
     @SuppressWarnings("unused")
-    private static final String TAG = Log.tag(SealedData.class);
+    private static final String TAG = SealedData.class.getSimpleName();
 
     @JsonProperty
     @JsonSerialize(using = ByteArraySerializer.class)

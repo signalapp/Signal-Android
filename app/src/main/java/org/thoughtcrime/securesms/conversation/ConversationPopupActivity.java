@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ConversationPopupActivity extends ConversationActivity {
 
-  private static final String TAG = Log.tag(ConversationPopupActivity.class);
+  private static final String TAG = ConversationPopupActivity.class.getSimpleName();
 
   @Override
   protected void onPreCreate() {
