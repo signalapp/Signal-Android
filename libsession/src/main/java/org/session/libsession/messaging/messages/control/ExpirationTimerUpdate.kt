@@ -7,6 +7,8 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ExpirationTimerUpdate() : ControlMessage() {
 
+    /// In the case of a sync message, the public key of the person the message was targeted at.
+    /// - Note: `nil` if this isn't a sync message.
     var syncTarget: String? = null
     var duration: Int? = 0
 
@@ -19,13 +21,15 @@ class ExpirationTimerUpdate() : ControlMessage() {
             val dataMessageProto = if (proto.hasDataMessage()) proto.dataMessage else return null
             val isExpirationTimerUpdate = dataMessageProto.flags.and(SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0
             if (!isExpirationTimerUpdate) return null
+            val syncTarget = dataMessageProto.syncTarget
             val duration = dataMessageProto.expireTimer
-            return ExpirationTimerUpdate(duration)
+            return ExpirationTimerUpdate(syncTarget, duration)
         }
     }
 
     //constructor
-    internal constructor(duration: Int) : this() {
+    internal constructor(syncTarget: String?, duration: Int) : this() {
+        this.syncTarget = syncTarget
         this.duration = duration
     }
 
@@ -44,7 +48,10 @@ class ExpirationTimerUpdate() : ControlMessage() {
         val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
         dataMessageProto.flags = SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE
         dataMessageProto.expireTimer = duration
-        syncTarget?.let { dataMessageProto.syncTarget = it }
+        // Sync target
+        if (syncTarget != null) {
+            dataMessageProto.syncTarget = syncTarget
+        }
         // Group context
         if (MessagingConfiguration.shared.storage.isClosedGroup(recipient!!)) {
             try {
