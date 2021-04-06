@@ -575,6 +575,7 @@
   <string name="ManageGroupActivity_mentions">การกล่าวถึง</string>
   <string name="ManageGroupActivity_chat_wallpaper">ภาพพื้นหลังของแชต</string>
   <string name="ManageGroupActivity_until_s">จนถึง %1$s</string>
+  <string name="ManageGroupActivity_always">ตลอดเวลา</string>
   <string name="ManageGroupActivity_off">ปิด</string>
   <string name="ManageGroupActivity_on">เปิด</string>
   <string name="ManageGroupActivity_view_all_members">ดูสมาชิกทั้งหมด</string>
@@ -624,6 +625,7 @@
   <string name="ManageRecipientActivity_mute_notifications">ปิดการแจ้งเตือน</string>
   <string name="ManageRecipientActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
   <string name="ManageRecipientActivity_until_s">จนถึง %1$s</string>
+  <string name="ManageRecipientActivity_always">ตลอดเวลา</string>
   <string name="ManageRecipientActivity_off">ปิด</string>
   <string name="ManageRecipientActivity_on">เปิด</string>
   <string name="ManageRecipientActivity_add_to_a_group">เพิ่มเข้ากลุ่ม</string>
@@ -1748,6 +1750,7 @@
   <string name="arrays__mute_for_one_hour">ปิดเสียง 1 ชั่วโมง</string>
   <string name="arrays__mute_for_one_day">ปิดเสียง 1 วัน</string>
   <string name="arrays__mute_for_seven_days">ปิดเสียง 7 วัน</string>
+  <string name="arrays__always">ตลอดเวลา</string>
   <string name="arrays__settings_default">การตั้งค่าเริ่มต้น</string>
   <string name="arrays__enabled">เปิดใช้งานแล้ว</string>
   <string name="arrays__disabled">ปิดใช้งานแล้ว</string>
