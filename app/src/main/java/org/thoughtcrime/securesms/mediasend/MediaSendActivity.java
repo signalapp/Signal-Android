@@ -356,7 +356,6 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
 
     continueButton.setOnClickListener(v -> {
-      continueButton.setEnabled(false);
       if (recipientIds == null || recipientIds.isEmpty()) {
         navigateToContactSelect();
       } else {
