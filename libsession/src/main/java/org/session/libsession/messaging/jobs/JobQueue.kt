@@ -19,6 +19,7 @@ class JobQueue : JobDelegate {
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
+    val timer = Timer()
 
     init {
         // process jobs
@@ -77,7 +78,7 @@ class JobQueue : JobDelegate {
         } else {
             val retryInterval = getRetryInterval(job)
             Log.i("Jobs", "${job::class.simpleName} failed; scheduling retry (failure count is ${job.failureCount}).")
-            Timer().schedule(delay = retryInterval) {
+            timer.schedule(delay = retryInterval) {
                 Log.i("Jobs", "Retrying ${job::class.simpleName}.")
                 queue.offer(job)
             }
