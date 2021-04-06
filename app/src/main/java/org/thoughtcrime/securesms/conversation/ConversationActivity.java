@@ -806,7 +806,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-          ExpirationTimerUpdate message = new ExpirationTimerUpdate(expirationTime);
+          ExpirationTimerUpdate message = new ExpirationTimerUpdate(null, expirationTime);
           message.setSentTimestamp(System.currentTimeMillis());
           OutgoingExpirationUpdateMessage outgoingMessage = OutgoingExpirationUpdateMessage.from(message, recipient);
           try {
