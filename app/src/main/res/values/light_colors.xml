@@ -125,4 +125,7 @@
     <color name="wallpaper_preview_background">@color/transparent_white_30</color>
     <color name="wallpaper_compose_background">#ccf6f6f6</color>
     <color name="wallpaper_toolbar_background">@color/core_white</color>
+
+    <color name="payment_info_card_overflow_tint">@color/core_grey_45</color>
+    <color name="payment_currency_code_foreground_color">@color/core_grey_45</color>
 </resources>

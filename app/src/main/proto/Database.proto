@@ -70,6 +70,16 @@ message BodyRangeList {
     repeated BodyRange ranges = 1;
 }
 
+message CryptoValue {
+  oneof Value {
+    MobileCoinValue mobileCoinValue = 1;
+  }
+
+  message MobileCoinValue {
+    string picoMobileCoin = 1;
+  }
+}
+
 message GroupCallUpdateDetails {
              string eraId                = 1;
              string startedCallUuid      = 2;

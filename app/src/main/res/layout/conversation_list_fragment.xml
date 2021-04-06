@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:windowBackground">
@@ -37,6 +38,18 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
           tools:src="@drawable/ic_contact_picture" />
+
+      <View
+          android:id="@+id/unread_payments_indicator"
+          android:layout_width="13dp"
+          android:layout_height="13dp"
+          android:layout_marginStart="30dp"
+          android:layout_marginBottom="29dp"
+          android:background="@drawable/unread_count_background"
+          android:alpha="0"
+          app:layout_constraintBottom_toBottomOf="@id/toolbar_icon"
+          app:layout_constraintStart_toStartOf="@id/toolbar_icon"
+          tools:alpha="1" />
 
       <TextView
           android:id="@+id/conversation_list_title"
@@ -142,10 +155,26 @@
 
   <ViewStub
       android:id="@+id/reminder"
+      android:inflatedId="@+id/reminder"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout="@layout/conversation_list_reminder_view"
       app:layout_constraintTop_toBottomOf="@id/toolbar_barrier" />
+
+  <ViewStub
+      android:id="@+id/payments_notification"
+      android:inflatedId="@+id/payments_notification"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout="@layout/payment_notification_view"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier" />
+
+  <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/banner_barrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="reminder,payments_notification" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/list"
@@ -157,9 +186,9 @@
       android:paddingBottom="160dp"
       android:scrollbars="vertical"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/reminder"
+      app:layout_constraintTop_toBottomOf="@id/banner_barrier"
       tools:listitem="@layout/conversation_list_item_view"
-      tools:visibility="gone" />
+      tools:visibility="visible" />
 
   <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:id="@+id/coordinator"

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.UnreadPaymentsView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/signal_background_tertiary"
+    android:minHeight="56dp">
+
+    <FrameLayout
+        android:id="@+id/payment_notification_touch_target"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/payment_notification_close_touch_target"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/payment_notification_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/circle_tintable"
+        android:importantForAccessibility="no"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/signal_text_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_payments_24"
+        app:tint="@color/signal_background_primary" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/payment_notification_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/payment_notification_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="2dp"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/payment_notification_view"
+        app:layout_constraintEnd_toStartOf="@id/payment_notification_close_touch_target"
+        app:layout_constraintStart_toEndOf="@id/payment_notification_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="2 new payment notifications" />
+
+    <TextView
+        android:id="@+id/payment_notification_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PaymentNotificationsView__view"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textColor="?colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/payment_notification_title"
+        app:layout_constraintStart_toStartOf="@id/payment_notification_title"
+        app:layout_constraintTop_toBottomOf="@id/payment_notification_title" />
+
+    <FrameLayout
+        android:id="@+id/payment_notification_close_touch_target"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="2dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/payment_notification_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/circle_tintable"
+        android:importantForAccessibility="no"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/signal_background_secondary"
+        app:layout_constraintBottom_toBottomOf="@id/payment_notification_close_touch_target"
+        app:layout_constraintEnd_toEndOf="@id/payment_notification_close_touch_target"
+        app:layout_constraintStart_toStartOf="@id/payment_notification_close_touch_target"
+        app:layout_constraintTop_toTopOf="@id/payment_notification_close_touch_target"
+        app:srcCompat="@drawable/ic_x_20"
+        app:tint="@color/signal_icon_tint_secondary" />
+
+</org.thoughtcrime.securesms.components.UnreadPaymentsView>

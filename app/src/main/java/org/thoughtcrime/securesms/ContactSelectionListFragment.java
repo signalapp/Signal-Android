@@ -153,8 +153,16 @@ public final class ContactSelectionListFragment extends LoggingFragment
       listCallback = (ListCallback) context;
     }
 
+    if (getParentFragment() instanceof ScrollCallback) {
+      scrollCallback = (ScrollCallback) getParentFragment();
+    }
+
     if (context instanceof ScrollCallback) {
       scrollCallback = (ScrollCallback) context;
+    }
+
+    if (getParentFragment() instanceof OnContactSelectedListener) {
+      onContactSelectedListener = (OnContactSelectedListener) getParentFragment();
     }
 
     if (context instanceof OnContactSelectedListener) {
@@ -200,7 +208,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
                  activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-                 if (activity.getIntent().getBooleanExtra(RECENTS, false)) {
+                 if (safeArguments().getBoolean(RECENTS, activity.getIntent().getBooleanExtra(RECENTS, false))) {
                    LoaderManager.getInstance(this).initLoader(0, null, ContactSelectionListFragment.this);
                  } else {
                    initializeNoContactsPermission();
@@ -234,14 +242,18 @@ public final class ContactSelectionListFragment extends LoggingFragment
       }
     });
 
-    Intent intent = requireActivity().getIntent();
+    Intent intent    = requireActivity().getIntent();
+    Bundle arguments = safeArguments();
 
-    swipeRefresh.setEnabled(intent.getBooleanExtra(REFRESHABLE, true));
+    swipeRefresh.setEnabled(arguments.getBoolean(REFRESHABLE, intent.getBooleanExtra(REFRESHABLE, true)));
 
-    hideCount      = intent.getBooleanExtra(HIDE_COUNT, false);
-    selectionLimit = intent.getParcelableExtra(SELECTION_LIMITS);
-    isMulti        = selectionLimit != null;
-    canSelectSelf  = intent.getBooleanExtra(CAN_SELECT_SELF, !isMulti);
+    hideCount      = arguments.getBoolean(HIDE_COUNT, intent.getBooleanExtra(HIDE_COUNT, false));
+    selectionLimit = arguments.getParcelable(SELECTION_LIMITS);
+    if (selectionLimit == null) {
+      selectionLimit = intent.getParcelableExtra(SELECTION_LIMITS);
+    }
+    isMulti       = selectionLimit != null;
+    canSelectSelf = arguments.getBoolean(CAN_SELECT_SELF, intent.getBooleanExtra(CAN_SELECT_SELF, !isMulti));
 
     if (!isMulti) {
       selectionLimit = SelectionLimits.NO_LIMITS;
@@ -252,6 +264,10 @@ public final class ContactSelectionListFragment extends LoggingFragment
     updateGroupLimit(getChipCount());
 
     return view;
+  }
+
+  private @NonNull Bundle safeArguments() {
+    return getArguments() != null ? getArguments() : new Bundle();
   }
 
   private void updateGroupLimit(int chipCount) {
@@ -283,7 +299,10 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   private Set<RecipientId> getCurrentSelection() {
-    List<RecipientId> currentSelection = requireActivity().getIntent().getParcelableArrayListExtra(CURRENT_SELECTION);
+    List<RecipientId> currentSelection = safeArguments().getParcelableArrayList(CURRENT_SELECTION);
+    if (currentSelection == null) {
+      currentSelection = requireActivity().getIntent().getParcelableArrayListExtra(CURRENT_SELECTION);
+    }
 
     return currentSelection == null ? Collections.emptySet()
                                     : Collections.unmodifiableSet(Stream.of(currentSelection).collect(Collectors.toSet()));
@@ -398,8 +417,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     FragmentActivity activity       = requireActivity();
-    int              displayMode    = activity.getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL);
-    boolean          displayRecents = activity.getIntent().getBooleanExtra(RECENTS, false);
+    int              displayMode    = safeArguments().getInt(DISPLAY_MODE, activity.getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL));
+    boolean          displayRecents = safeArguments().getBoolean(RECENTS, activity.getIntent().getBooleanExtra(RECENTS, false));
 
     if (cursorFactoryProvider != null) {
       return cursorFactoryProvider.get().create();
@@ -671,7 +690,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   private void setChipGroupVisibility(int visibility) {
-    if (!requireActivity().getIntent().getBooleanExtra(DISPLAY_CHIPS, true)) {
+    if (!safeArguments().getBoolean(DISPLAY_CHIPS, requireActivity().getIntent().getBooleanExtra(DISPLAY_CHIPS, true))) {
       return;
     }
 

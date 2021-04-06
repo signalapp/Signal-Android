@@ -18,7 +18,6 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
 import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
@@ -30,12 +29,10 @@ import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.database.KeyValueDatabase;
-import org.thoughtcrime.securesms.database.MegaphoneDatabase;
 import org.thoughtcrime.securesms.database.MentionDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
+import org.thoughtcrime.securesms.database.PaymentDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
@@ -172,8 +169,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int WALLPAPER                        = 88;
   private static final int ABOUT                            = 89;
   private static final int SPLIT_SYSTEM_NAMES               = 90;
+  private static final int PAYMENTS                         = 91;
 
-  private static final int    DATABASE_VERSION = 90;
+  private static final int    DATABASE_VERSION = 91;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -204,6 +202,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
+    db.execSQL(PaymentDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
 
@@ -218,6 +217,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, StickerDatabase.CREATE_INDEXES);
     executeStatements(db, StorageKeyDatabase.CREATE_INDEXES);
     executeStatements(db, MentionDatabase.CREATE_INDEXES);
+    executeStatements(db, PaymentDatabase.CREATE_INDEXES);
 
     if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
       ClassicOpenHelper                      legacyHelper = new ClassicOpenHelper(context);
@@ -1263,6 +1263,32 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         db.execSQL("ALTER TABLE recipient ADD COLUMN system_family_name TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE recipient ADD COLUMN system_given_name TEXT DEFAULT NULL");
         db.execSQL("UPDATE recipient SET system_given_name = system_display_name");
+      }
+
+      if (oldVersion < PAYMENTS) {
+        db.execSQL("CREATE TABLE payments(_id INTEGER PRIMARY KEY, " +
+                   "uuid TEXT DEFAULT NULL, " +
+                   "recipient INTEGER DEFAULT 0, " +
+                   "recipient_address TEXT DEFAULT NULL, " +
+                   "timestamp INTEGER, " +
+                   "note TEXT DEFAULT NULL, " +
+                   "direction INTEGER, " +
+                   "state INTEGER, " +
+                   "failure_reason INTEGER, " +
+                   "amount BLOB NOT NULL, " +
+                   "fee BLOB NOT NULL, " +
+                   "transaction_record BLOB DEFAULT NULL, " +
+                   "receipt BLOB DEFAULT NULL, " +
+                   "payment_metadata BLOB DEFAULT NULL, " +
+                   "receipt_public_key TEXT DEFAULT NULL, " +
+                   "block_index INTEGER DEFAULT 0, " +
+                   "block_timestamp INTEGER DEFAULT 0, " +
+                   "seen INTEGER, " +
+                   "UNIQUE(uuid) ON CONFLICT ABORT)");
+
+        db.execSQL("CREATE INDEX IF NOT EXISTS timestamp_direction_index ON payments (timestamp, direction);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS timestamp_index ON payments (timestamp);");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS receipt_public_key_index ON payments (receipt_public_key);");
       }
 
       db.setTransactionSuccessful();

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -50,6 +49,7 @@ public final class FeatureFlags {
 
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
+  private static final String PAYMENTS_KILL_SWITCH              = "android.payments.kill";
   private static final String USERNAMES                         = "android.usernames";
   private static final String GROUPS_V2_RECOMMENDED_LIMIT       = "global.groupsv2.maxGroupSize";
   private static final String GROUPS_V2_HARD_LIMIT              = "global.groupsv2.groupSizeHardLimit";
@@ -81,6 +81,7 @@ public final class FeatureFlags {
    */
   @VisibleForTesting
   static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
+      PAYMENTS_KILL_SWITCH,
       GROUPS_V2_RECOMMENDED_LIMIT,
       GROUPS_V2_HARD_LIMIT,
       INTERNAL_USER,
@@ -227,6 +228,11 @@ public final class FeatureFlags {
   public static SelectionLimits groupLimits() {
     return new SelectionLimits(getInteger(GROUPS_V2_RECOMMENDED_LIMIT, 151),
                                getInteger(GROUPS_V2_HARD_LIMIT, 1001));
+  }
+
+  /** Payments Support */
+  public static boolean payments() {
+    return !getBoolean(PAYMENTS_KILL_SWITCH, false);
   }
 
   /** Internal testing extensions. */

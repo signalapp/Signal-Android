@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payments_home_fragment_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <org.thoughtcrime.securesms.payments.MoneyView
+        android:id="@+id/payments_home_fragment_header_balance"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:gravity="center"
+        app:autoSizeMaxTextSize="48sp"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:money="MOB:7500000000000" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/payments_home_fragment_header_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/payments_home_fragment_header_exchange"
+        app:layout_constraintEnd_toStartOf="@+id/payments_home_fragment_header_exchange"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/payments_home_fragment_header_exchange"
+        app:srcCompat="@drawable/ic_refresh_20"
+        app:tint="@color/signal_icon_tint_primary" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/payments_home_fragment_header_refresh_animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/payments_home_fragment_header_refresh"
+        app:layout_constraintEnd_toEndOf="@+id/payments_home_fragment_header_refresh"
+        app:layout_constraintStart_toStartOf="@+id/payments_home_fragment_header_refresh"
+        app:layout_constraintTop_toTopOf="@+id/payments_home_fragment_header_refresh"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/lottie_currency_spinner"
+        app:tint="@color/signal_icon_tint_primary" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/payments_home_fragment_header_exchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/signal_icon_tint_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/payments_home_fragment_header_refresh"
+        app:layout_constraintTop_toBottomOf="@+id/payments_home_fragment_header_balance"
+        tools:text="$55 USD at 11:00am" />
+
+    <org.thoughtcrime.securesms.components.PaymentPillStrip
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payments_home_fragment_header_exchange">
+
+        <include layout="@layout/payment_pill_strip" />
+
+    </org.thoughtcrime.securesms.components.PaymentPillStrip>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

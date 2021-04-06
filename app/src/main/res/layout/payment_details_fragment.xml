@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/payments_details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/PaymentsDetailsFragment__details"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollIndicators="top|bottom"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <org.thoughtcrime.securesms.components.AvatarImageView
+                android:id="@+id/payments_details_avatar"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/payments_details_contact_to_from"
+                style="@style/TextAppearance.Signal.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_avatar"
+                tools:text="From Matthew" />
+
+            <org.thoughtcrime.securesms.payments.MoneyView
+                android:id="@+id/payments_details_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textSize="48sp"
+                app:always_show_sign="true"
+                app:autoSizeMaxTextSize="48sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_contact_to_from"
+                tools:money="MOB:150000000000000" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                android:id="@+id/payments_details_note"
+                style="@style/Signal.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_rectangle_tertiary"
+                android:paddingStart="16dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_amount"
+                tools:text="Thanks for dinner!" />
+
+            <View
+                android:id="@+id/payments_details_horizontal_divide"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/signal_background_secondary"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_note" />
+
+            <TextView
+                android:id="@+id/payments_details_block_header"
+                style="@style/Signal.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/PaymentsDetailsFragment__block_number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_primary"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_horizontal_divide"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/payments_details_block"
+                style="@style/Signal.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_block_header"
+                tools:text="324658376"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/payments_details_sent_to_header"
+                style="@style/Signal.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_block"
+                tools:text="Sent to Matthew Hall" />
+
+            <org.thoughtcrime.securesms.payments.MoneyView
+                android:id="@+id/payments_details_sent_to_amount"
+                style="@style/Signal.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_sent_to_header"
+                tools:money="MOB:150000000000000" />
+
+            <TextView
+                android:id="@+id/payments_details_sent_fee_header"
+                style="@style/Signal.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/PaymentsDetailsFragment__network_fee"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_sent_to_amount" />
+
+            <org.thoughtcrime.securesms.payments.MoneyView
+                android:id="@+id/payments_details_sent_fee_amount"
+                style="@style/Signal.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_sent_fee_header"
+                tools:money="MOB:12000000000" />
+
+            <TextView
+                android:id="@+id/payments_details_status_header"
+                style="@style/Signal.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/PaymentsDetailsFragment__status"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_sent_fee_amount" />
+
+            <TextView
+                android:id="@+id/payments_details_status"
+                style="@style/Signal.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_status_header"
+                tools:text="Payment completed Nov 10 at 10:00 AM" />
+
+            <TextView
+                android:id="@+id/payments_details_sent_by_header"
+                style="@style/Signal.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/PaymentsDetailsFragment__sent_by"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_status" />
+
+            <TextView
+                android:id="@+id/payments_details_sent_by"
+                style="@style/Signal.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_sent_by_header"
+                tools:text="Matthew Hall on Nov 10 at 9:52 AM" />
+
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+                android:id="@+id/payments_details_info"
+                style="@style/TextAppearance.Signal.Subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/PaymentsDetailsFragment__information"
+                android:textAlignment="viewStart"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_details_sent_by" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/payments_details_sent_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="payments_details_sent_to_header,payments_details_sent_to_amount,payments_details_sent_fee_header,payments_details_sent_fee_amount"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>

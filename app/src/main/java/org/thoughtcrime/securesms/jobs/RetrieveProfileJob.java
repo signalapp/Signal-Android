@@ -419,7 +419,7 @@ public class RetrieveProfileJob extends BaseJob {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
       if (profileKey == null) return;
 
-      String plaintextProfileName = Util.emptyIfNull(ProfileUtil.decryptName(profileKey, profileName));
+      String plaintextProfileName = Util.emptyIfNull(ProfileUtil.decryptString(profileKey, profileName));
 
       ProfileName remoteProfileName = ProfileName.fromSerialized(plaintextProfileName);
       ProfileName localProfileName  = recipient.getProfileName();
@@ -460,8 +460,8 @@ public class RetrieveProfileJob extends BaseJob {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
       if (profileKey == null) return;
 
-      String plaintextAbout = ProfileUtil.decryptName(profileKey, encryptedAbout);
-      String plaintextEmoji = ProfileUtil.decryptName(profileKey, encryptedEmoji);
+      String plaintextAbout = ProfileUtil.decryptString(profileKey, encryptedAbout);
+      String plaintextEmoji = ProfileUtil.decryptString(profileKey, encryptedEmoji);
 
       DatabaseFactory.getRecipientDatabase(context).setAbout(recipient.getId(), plaintextAbout, plaintextEmoji);
     } catch (InvalidCiphertextException | IOException e) {

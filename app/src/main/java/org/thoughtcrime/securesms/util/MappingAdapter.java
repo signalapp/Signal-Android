@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.whispersystems.libsignal.util.guava.Function;
 
@@ -63,10 +65,22 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
     holder.onDetachedFromWindow();
   }
 
+  @Override
+  public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+    super.onAttachedToRecyclerView(recyclerView);
+    if (recyclerView.getItemAnimator() != null && recyclerView.getItemAnimator().getClass() == DefaultItemAnimator.class) {
+      recyclerView.setItemAnimator(new NoCrossfadeChangeDefaultAnimator());
+    }
+  }
+
   public <T extends MappingModel<T>> void registerFactory(Class<T> clazz, Factory<T> factory) {
     int type = typeCount++;
     factories.put(type, factory);
     itemTypes.put(clazz, type);
+  }
+
+  public <T extends MappingModel<T>> void registerFactory(@NonNull Class<T> clazz, @NonNull Function<View, MappingViewHolder<T>> creator, @LayoutRes int layout) {
+    registerFactory(clazz, new LayoutFactory<>(creator, layout));
   }
 
   @Override

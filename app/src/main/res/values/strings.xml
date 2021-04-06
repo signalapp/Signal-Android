@@ -50,6 +50,9 @@
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
     <string name="ApplicationPreferencesActivity_hide">Hide</string>
     <string name="ApplicationPreferencesActivity_hide_reminder">Hide reminder?</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record payments recovery phrase</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Record phrase</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -72,6 +75,7 @@
     <string name="AttachmentKeyboard_location">Location</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos.</string>
     <string name="AttachmentKeyboard_give_access">Give Access</string>
+    <string name="AttachmentKeyboard_payment">Payment</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
@@ -2144,6 +2148,7 @@
         <item>Question</item>
         <item>Feedback</item>
         <item>Other</item>
+        <item>Payments</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2198,6 +2203,7 @@
     </plurals>
 
     <!-- preferences.xml -->
+    <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS and MMS</string>
     <string name="preferences__pref_all_sms_title">Receive all SMS</string>
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
@@ -2261,6 +2267,8 @@
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
     <string name="preferences__data_and_storage">Data and storage</string>
     <string name="preferences__storage">Storage</string>
+    <string name="preferences__payments">Payments</string>
+    <string name="preferences__payments_beta">Payments (Beta)</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
     <string name="preferences__clear_message_history">Clear message history</string>
@@ -2385,6 +2393,9 @@
     <string name="preferences__internal_do_not_initiate_automigrate_description" translatable="false">Do not attempt to initiate an auto-migration. You will still recognize migrated groups.</string>
     <string name="preferences__internal_do_not_notify_automigrate" translatable="false">Disable Auto-Migration Notification</string>
     <string name="preferences__internal_do_not_notify_automigrate_description" translatable="false">Do not attempt to notify other users of an auto-migration. They will have to discover it on their own.</string>
+    <string name="preferences__internal_payments" translatable="false">Payments</string>
+    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
+    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
     <string name="preferences__internal_account" translatable="false">Account</string>
     <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
     <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
@@ -2405,6 +2416,155 @@
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
     <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
+
+    <!-- Payments -->
+    <string name="PaymentsActivityFragment__all_activity">All activity</string>
+    <string name="PaymentsAllActivityFragment__all">All</string>
+    <string name="PaymentsAllActivityFragment__sent">Sent</string>
+    <string name="PaymentsAllActivityFragment__received">Received</string>
+
+    <string name="PaymentsHomeFragment__introducing_payments">Introducing payments (Beta)</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Use Signal to send and receive MobileCoin, a new privacy focused digital currency. Activate to get started.</string>
+    <string name="PaymentsHomeFragment__activate_payments">Activate Payments</string>
+    <string name="PaymentsHomeFragment__activating_payments">Activating payments…</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">Restore payments account</string>
+    <string name="PaymentsHomeFragment__no_recent_activity_yet">No recent activity yet</string>
+    <string name="PaymentsHomeFragment__pending_requests">Pending requests</string>
+    <string name="PaymentsHomeFragment__recent_activity">Recent activity</string>
+    <string name="PaymentsHomeFragment__see_all">See all</string>
+    <string name="PaymentsHomeFragment__add_funds">Add funds</string>
+    <string name="PaymentsHomeFragment__send">Send</string>
+    <string name="PaymentsHomeFragment__sent_s">Sent %1$s</string>
+    <string name="PaymentsHomeFragment__received_s">Received %1$s</string>
+    <string name="PaymentsHomeFragment__transfer_to_exchange">Transfer to exchange</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Currency conversion</string>
+    <string name="PaymentsHomeFragment__deactivate_payments">Deactivate payments</string>
+    <string name="PaymentsHomeFragment__recovery_phrase">Recovery phrase</string>
+    <string name="PaymentsHomeFragment__help">Help</string>
+    <string name="PaymentsHomeFragment__coin_cleanup_fee">Coin cleanup fee</string>
+    <string name="PaymentsHomeFragment__sent_payment">Sent payment</string>
+    <string name="PaymentsHomeFragment__received_payment">Received payment</string>
+    <string name="PaymentsHomeFragment__processing_payment">Processing payment</string>
+    <string name="PaymentsHomeFragment__unknown_amount">---</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Currency conversion not available</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Can\'t display currency conversion. Check your phone\'s connection and try again.</string>
+    <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Payments is not available in your region.</string>
+    <string name="PaymentsHomeFragment__could_not_enable_payments">Could not enable payments. Try again later.</string>
+    <string name="PaymentsHomeFragment__deactivate_payments_question">Deactivate Payments?</string>
+    <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">You will not be able to send or receive MobileCoin in Signal if you deactivate payments.</string>
+    <string name="PaymentsHomeFragment__deactivate">Deactivate</string>
+    <string name="PaymentsHomeFragment__continue">Continue</string>
+    <string name="PaymentsHomeFragment__balance_is_not_currently_available">Balance is not currently available.</string>
+    <string name="PaymentsHomeFragment__payments_deactivated">Payments deactivated.</string>
+    <string name="PaymentsHomeFragment__payment_failed">Payment failed</string>
+    <string name="PaymentsHomeFragment__details">Details</string>
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">You can use Signal to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. This is a beta feature so you may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__activate">Activate</string>
+    <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin terms</string>
+    <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
+
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+
+    <!-- PaymentsAddMoneyFragment -->
+    <string name="PaymentsAddMoneyFragment__add_funds">Add funds</string>
+    <string name="PaymentsAddMoneyFragment__your_wallet_address">Your Wallet Address</string>
+    <string name="PaymentsAddMoneyFragment__copy">Copy</string>
+    <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copied to clipboard</string>
+    <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, send MobileCoin to your wallet address. Start a transaction from your account on an exchange that supports MobileCoin, then scan the QR code or copy your wallet address.</string>
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    
+    <!-- PaymentsDetailsFragment -->
+    <string name="PaymentsDetailsFragment__details">Details</string>
+    <string name="PaymentsDetailsFragment__status">Status</string>
+    <string name="PaymentsDetailsFragment__submitting_payment">Submitting payment…</string>
+    <string name="PaymentsDetailsFragment__processing_payment">Processing payment…</string>
+    <string name="PaymentsDetailsFragment__payment_complete">Payment complete</string>
+    <string name="PaymentsDetailsFragment__payment_failed">Payment failed</string>
+    <string name="PaymentsDetailsFragment__network_fee">Network fee</string>
+    <string name="PaymentsDetailsFragment__sent_by">Sent by</string>
+    <string name="PaymentsDetailsFragment__sent_to_s">Sent to %1$s</string>
+    <string name="PaymentsDetailsFragment__you_on_s_at_s">You on %1$s at %2$s</string>
+    <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s on %2$s at %3$s</string>
+    <string name="PaymentsDetailsFragment__to">To</string>
+    <string name="PaymentsDetailsFragment__from">From</string>
+    <string name="PaymentsDetailsFragment__information">Transaction details including the payment amount and time of transaction are part of the MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin cleanup fee</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin cleanup fee” is charged when the coins in your possession can not be combined to complete a transaction. Cleanup will allow you to continue sending payments.</string>
+    <string name="PaymentsDetailsFragment__no_details_available">No further details available for this transaction</string>
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+    <string name="PaymentsDetailsFragment__sent_payment">Sent payment</string>
+    <string name="PaymentsDetailsFragment__received_payment">Received payment</string>
+    <string name="PaymentsDeatilsFragment__payment_completed_s">Payment completed %1$s</string>
+    <string name="PaymentsDetailsFragment__block_number">Block number</string>
+
+    <!-- PaymentsTransferFragment -->
+    <string name="PaymentsTransferFragment__transfer">Transfer</string>
+    <string name="PaymentsTransferFragment__scan_qr_code">Scan QR Code</string>
+    <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">To: Scan or enter wallet address</string>
+    <string name="PaymentsTransferFragment__you_can_transfer">You can transfer MobileCoin by completing a transfer to the wallet address provided by the exchange. The wallet address is the string of numbers and letters most commonly below the QR code.</string>
+    <string name="PaymentsTransferFragment__next">Next</string>
+    <string name="PaymentsTransferFragment__invalid_address">Invalid address</string>
+    <string name="PaymentsTransferFragment__check_the_wallet_address">Check the wallet address you\'re attempting to transfer to and try again.</string>
+    <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">You can\'t transfer to your own Signal wallet address. Enter the wallet address from your account at a supported exchange.</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">To scan a QR code, Signal needs access to the camera.</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal needs the Camera permission to capture a QR code. Go to settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">To scan a QR code, Signal needs access to the camera.</string>
+    <string name="PaymentsTransferFragment__settings">Settings</string>
+
+    <!-- PaymentsTransferQrScanFragment -->
+    <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan Address QR Code</string>
+    <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan the address QR code of the payee</string>
+
+    <!-- CreatePaymentFragment -->
+    <string name="CreatePaymentFragment__request">Request</string>
+    <string name="CreatePaymentFragment__pay">Pay</string>
+    <string name="CreatePaymentFragment__available_balance_s">Available balance: %1$s</string>
+    <string name="CreatePaymentFragment__toggle_content_description">Toggle</string>
+    <string name="CreatePaymentFragment__1">1</string>
+    <string name="CreatePaymentFragment__2">2</string>
+    <string name="CreatePaymentFragment__3">3</string>
+    <string name="CreatePaymentFragment__4">4</string>
+    <string name="CreatePaymentFragment__5">5</string>
+    <string name="CreatePaymentFragment__6">6</string>
+    <string name="CreatePaymentFragment__7">7</string>
+    <string name="CreatePaymentFragment__8">8</string>
+    <string name="CreatePaymentFragment__9">9</string>
+    <string name="CreatePaymentFragment__decimal">.</string>
+    <string name="CreatePaymentFragment__0">0</string>
+    <string name="CreatePaymentFragment__lt">&lt;</string>
+    <string name="CreatePaymentFragment__backspace">Backspace</string>
+    <string name="CreatePaymentFragment__add_note">Add note</string>
+    <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversions are just estimates and may not be accurate.</string>
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+
+    <!-- EditNoteFragment -->
+    <string name="EditNoteFragment_note">Note</string>
+
+    <!-- ConfirmPaymentFragment -->
+    <string name="ConfirmPayment__confirm_payment">Confirm payment</string>
+    <string name="ConfirmPayment__network_fee">Network fee</string>
+    <string name="ConfirmPayment__error_getting_fee">Error getting fee</string>
+    <string name="ConfirmPayment__estimated_s">Estimated %1$s</string>
+    <string name="ConfirmPayment__to">To</string>
+    <string name="ConfirmPayment__total_amount">Total amount</string>
+    <string name="ConfirmPayment__balance_s">Balance: %1$s</string>
+    <string name="ConfirmPayment__submitting_payment">Submitting payment…</string>
+    <string name="ConfirmPayment__processing_payment">Processing payment…</string>
+    <string name="ConfirmPayment__payment_complete">Payment complete</string>
+    <string name="ConfirmPayment__payment_failed">Payment failed</string>
+    <string name="ConfirmPayment__payment_will_continue_processing">Payment will continue processing</string>
+    <string name="ConfirmPaymentFragment__invalid_recipient">Invalid recipient</string>
+    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">This person has not activated payments</string>
+    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Unable to request a network fee. To continue this payment tap okay to try again.</string>
+
+    <!-- CurrencyAmountFormatter_s_at_s -->
+    <string name="CurrencyAmountFormatter_s_at_s">%1$s at %2$s</string>
+
+    <!-- SetCurrencyFragment -->
+    <string name="SetCurrencyFragment__set_currency">Set Currency</string>
+    <string name="SetCurrencyFragment__all_currencies">All Currencies</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -2898,6 +3058,12 @@
     <string name="OldDeviceTransferLockedDialog__done">Done</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancel and activate this device</string>
 
+    <!-- AdvancedPreferenceFragment -->
+    <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transfer MOB balance?</string>
+    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">You have a balance of %1$s. If you do not transfer your funds to another wallet address before deleting your account, you will lose it forever.</string>
+    <string name="AdvancedPreferenceFragment__dont_transfer">Don\'t transfer</string>
+    <string name="AdvancedPreferenceFragment__transfer">Transfer</string>
+
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Block</string>
     <string name="RecipientBottomSheet_unblock">Unblock</string>
@@ -3004,6 +3170,7 @@
     <string name="DeleteAccountFragment__delete_account">Delete account</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Delete your account info and profile photo</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Delete all your messages</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Delete %1$s in your payments account</string>
     <string name="DeleteAccountFragment__no_country_code">No country code specified</string>
     <string name="DeleteAccountFragment__no_number">No number specified</string>
     <string name="DeleteAccountFragment__the_phone_number">The phone number you entered doesn\'t match your account\'s.</string>
@@ -3069,6 +3236,103 @@
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Set wallpaper for %s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
     <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
+
+    <!-- InfoCard -->
+    <string name="payment_info_card_about_mobilecoin">About MobileCoin</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is a new privacy focused digital currency.</string>
+    <string name="payment_info_card_adding_funds">Adding funds</string>
+    <string name="payment_info_card_you_can_add_funds_for_use_in">You can add funds for use in Signal by sending MobileCoin to your wallet address.</string>
+    <string name="payment_info_card_cashing_out">Cashing out</string>
+    <string name="payment_info_card_you_can_cash_out_mobilecoin">You can cash out MobileCoin anytime on an exchange that supports MobileCoin. Just make a transfer to your account at that exchange.</string>
+    <string name="payment_info_card_hide_this_card">Hide this card?</string>
+    <string name="payment_info_card_hide">Hide</string>
+    <string name="payment_info_card_record_recovery_phrase">Record recovery phrase</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">Your recovery phrase gives you another way to restore your payments account.</string>
+    <string name="payment_info_card_record_your_phrase">Record your phrase</string>
+    <string name="payment_info_card_update_your_pin">Update your PIN</string>
+    <string name="payment_info_card_with_a_high_balance">With a high balance, you may want to update to an alphanumeric PIN to add more protection to your account.</string>
+    <string name="payment_info_card_update_pin">Update PIN</string>
+
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+
+    <!-- DeactivateWalletFragment -->
+    <string name="DeactivateWalletFragment__deactivate_wallet">Deactivate Wallet</string>
+    <string name="DeactivateWalletFragment__your_balance">Your balance</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">It\'s recommended that you transfer your funds to another wallet address before deactivating payments. If you choose not to transfer your funds now, they will remain in your wallet linked to Signal if you reactivate payments.</string>
+    <string name="DeactivateWalletFragment__transfer_remaining_balance">Transfer remaining balance</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring">Deactivate without transferring</string>
+    <string name="DeactivateWalletFragment__deactivate">Deactivate</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deactivate without transferring?</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Your balance will remain in your wallet linked to Signal if you choose to reactivate payments.</string>
+    <string name="DeactivateWalletFragment__error_deactivating_wallet">Error deactivating wallet.</string>
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+
+    <!-- PaymentsRecoveryStartFragment -->
+    <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">View recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Your recovery phrase is a %1$d-word phrase unique to you. Use this phrase to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__start">Start</string>
+    <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
+    <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Paste from clipboard</string>
+
+    <!-- PaymentsRecoveryPasteFragment -->
+    <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Paste recovery phrase</string>
+    <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Recovery phrase</string>
+    <string name="PaymentsRecoveryPasteFragment__next">Next</string>
+    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Invalid recovery phrase</string>
+    <string name="PaymentsRecoveryPasteFragment__make_sure">Make sure you\'ve entered %1$d words and try again.</string>
+
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+
+    <!-- PaymentsRecoveryPhraseFragment -->
+    <string name="PaymentsRecoveryPhraseFragment__next">Next</string>
+    <string name="PaymentsRecoveryPhraseFragment__edit">Edit</string>
+    <string name="PaymentsRecoveryPhraseFragment__previous">Previous</string>
+    <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Your recovery phrase</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Write down the following %1$d words in order. Store your list in a secure place.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Make sure you\'ve entered your phrase correctly.</string>
+    <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Do not screenshot or send by email.</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Payments account restored.</string>
+    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Invalid recovery phrase</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Make sure you\'ve entered your phrase correctly and try again.</string>
+    <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copy to clipboard?</string>
+    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">If you choose to store your recovery phrase digitally, ensure it is securely stored somewhere you trust.</string>
+    <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
+
+    <!-- PaymentsRecoveryPhraseConfirmFragment -->
+    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirm recovery phrase</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Enter the following words from your recovery phrase.</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Word %1$d</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">See phrase again</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__done">Done</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Recovery phrase confirmed</string>
+
+    <!-- PaymentsRecoveryEntryFragment -->
+    <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Enter recovery phrase</string>
+    <string name="PaymentsRecoveryEntryFragment__enter_word_d">Enter word %1$d</string>
+    <string name="PaymentsRecoveryEntryFragment__word_d">Word %1$d</string>
+    <string name="PaymentsRecoveryEntryFragment__next">Next</string>
+    <string name="PaymentsRecoveryEntryFragment__invalid_word">Invalid word</string>
+
+    <!-- ClearClipboardAlarmReceiver -->
+    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Clipboard cleared.</string>
+
+    <!-- PaymentNotificationsView -->
+    <string name="PaymentNotificationsView__view">View</string>
+
+    <!-- UnreadPayments -->
+    <string name="UnreadPayments__s_sent_you_s">%1$s sent you %2$s</string>
+    <string name="UnreadPayments__d_new_payment_notifications">%1$d new payment notifications</string>
+
+    <!-- CanNotSendPaymentDialog -->
+    <string name="CanNotSendPaymentDialog__cant_send_payment">Can\'t send payment</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">To send a payment to this user they need to accept a message request from you. Send them a message to create a message request.</string>
+    <string name="CanNotSendPaymentDialog__send_a_message">Send a message</string>
 
     <!-- EOF -->
 

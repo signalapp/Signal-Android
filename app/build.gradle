@@ -38,6 +38,9 @@ repositories {
     mavenCentral()
     jcenter()
     mavenLocal()
+    maven {
+        url "https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/"
+    }
 }
 
 protobuf {
@@ -123,6 +126,8 @@ android {
         buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X0=\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
+        buildConfigField "String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\""
+        buildConfigField "int[]", "MOBILE_COIN_REGIONS", "new int[]{44}"
 
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -248,6 +253,8 @@ android {
             dimension 'environment'
 
             isDefault true
+
+            buildConfigField "String", "MOBILE_COIN_ENVIRONMENT", "\"mainnet\""
         }
 
         staging {
@@ -268,6 +275,7 @@ android {
             buildConfigField "KbsEnclave[]", "KBS_FALLBACKS", "new KbsEnclave[0]"
             buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\""
             buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdls=\""
+            buildConfigField "String", "MOBILE_COIN_ENVIRONMENT", "\"testnet\""
         }
     }
 
@@ -362,6 +370,11 @@ dependencies {
     implementation 'org.signal:zkgroup-android:0.7.0'
     implementation 'org.whispersystems:signal-client-android:0.1.7'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+
+    implementation('com.mobilecoin:android-sdk:1.0.0') {
+        exclude group: 'com.google.protobuf'
+    }
+
     implementation 'org.signal:argon2:13.1@aar'
 
     implementation 'org.signal:ringrtc-android:2.9.4'

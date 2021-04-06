@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
 import android.app.Application;
-import android.database.ContentObserver;
-import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
@@ -13,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.Executor;
 
 /**
@@ -28,6 +27,8 @@ public final class DatabaseObserver {
   private final Set<Observer>            conversationListObservers;
   private final Map<Long, Set<Observer>> conversationObservers;
   private final Map<Long, Set<Observer>> verboseConversationObservers;
+  private final Map<UUID, Set<Observer>> paymentObservers;
+  private final Set<Observer>            allPaymentsObservers;
 
   public DatabaseObserver(Application application) {
     this.application                  = application;
@@ -35,6 +36,8 @@ public final class DatabaseObserver {
     this.conversationListObservers    = new HashSet<>();
     this.conversationObservers        = new HashMap<>();
     this.verboseConversationObservers = new HashMap<>();
+    this.paymentObservers             = new HashMap<>();
+    this.allPaymentsObservers         = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -55,11 +58,24 @@ public final class DatabaseObserver {
     });
   }
 
+  public void registerPaymentObserver(@NonNull UUID paymentId, @NonNull Observer listener) {
+    executor.execute(() -> {
+      registerMapped(paymentObservers, paymentId, listener);
+    });
+  }
+
+  public void registerAllPaymentsObserver(@NonNull Observer listener) {
+    executor.execute(() -> {
+      allPaymentsObservers.add(listener);
+    });
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
       unregisterMapped(conversationObservers, listener);
       unregisterMapped(verboseConversationObservers, listener);
+      unregisterMapped(paymentObservers, listener);
     });
   }
 
@@ -105,6 +121,18 @@ public final class DatabaseObserver {
     application.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
   }
 
+  public void notifyPaymentListeners(@NonNull UUID paymentId) {
+    executor.execute(() -> {
+      notifyMapped(paymentObservers, paymentId);
+    });
+  }
+
+  public void notifyAllPaymentsListeners() {
+    executor.execute(() -> {
+      notifySet(allPaymentsObservers);
+    });
+  }
+
   private <K> void registerMapped(@NonNull Map<K, Set<Observer>> map, @NonNull K key, @NonNull Observer listener) {
     Set<Observer> listeners = map.get(key);
 
@@ -129,6 +157,12 @@ public final class DatabaseObserver {
       for (Observer listener : listeners) {
         listener.onChanged();
       }
+    }
+  }
+
+  public static void notifySet(@NonNull Set<Observer> set) {
+    for (final Observer observer : set) {
+      observer.onChanged();
     }
   }
 

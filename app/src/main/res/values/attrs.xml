@@ -272,4 +272,9 @@
     <declare-styleable name="WarningTextView">
         <attr name="warning_text_color" format="color|reference" />
     </declare-styleable>
+
+    <declare-styleable name="MoneyView">
+        <attr name="always_show_sign" format="boolean" />
+        <attr name="money" format="string" />
+    </declare-styleable>
 </resources>

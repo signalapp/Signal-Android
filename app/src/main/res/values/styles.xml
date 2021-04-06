@@ -129,6 +129,11 @@
         <item name="android:colorControlActivated" tools:ignore="NewApi">?colorAccent</item>
     </style>
 
+    <style name="Signal.Toolbar.PaymentInfoCard" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.PaymentCard</item>
+        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.PaymentCard</item>
+    </style>
+
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/signal_text_primary</item>
         <item name="android:textColorHint">@color/signal_text_secondary</item>
@@ -364,6 +369,10 @@
     <style name="Signal.Toolbar.Overflow.Conversation">
         <item name="srcCompat">@drawable/ic_more_vert_conversation_24</item>
         <item name="android:tint">@null</item>
+    </style>
+
+    <style name="Signal.Toolbar.Overflow.PaymentCard">
+        <item name="android:tint">@color/payment_info_card_overflow_tint</item>
     </style>
 
     <style name="TextSecure.ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">

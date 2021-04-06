@@ -94,6 +94,11 @@
         <item name="android:textColor">@color/insight_title</item>
     </style>
 
+    <style name="TextAppearance.Signal.Title.InfoCard" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="TextAppearance.Signal.Body.Insights" parent="">
         <item name="android:textColor">@color/signal_text_secondary</item>
         <item name="android:textSize">14sp</item>
@@ -127,6 +132,11 @@
 
     <style name="TextAppearance.Signal.Body1.Bold">
         <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Mono" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">monospace</item>
     </style>
 
     <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.AppCompat.Caption">

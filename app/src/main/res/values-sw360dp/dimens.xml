@@ -11,4 +11,7 @@
     <dimen name="album_5_total_height">210dp</dimen>
     <dimen name="album_5_cell_size_big">125dp</dimen>
     <dimen name="album_5_cell_size_small">83dp</dimen>
+
+    <dimen name="payment_recovery_phrase_adapter_margin">92dp</dimen>
+    <dimen name="payment_recovery_phrase_outline_margin">48dp</dimen>
 </resources>

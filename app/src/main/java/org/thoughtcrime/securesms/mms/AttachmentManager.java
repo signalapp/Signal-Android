@@ -53,10 +53,14 @@ import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.payments.create.CreatePaymentFragmentArgs;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
+import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -402,6 +406,13 @@ public class AttachmentManager {
     intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
     intent.putExtra(GiphyActivity.EXTRA_COLOR, color);
     activity.startActivityForResult(intent, requestCode);
+  }
+
+  public static void selectPayment(@NonNull Activity activity, @NonNull RecipientId recipientId) {
+    Intent intent = new Intent(activity, PaymentsActivity.class);
+    intent.putExtra(PaymentsActivity.EXTRA_PAYMENTS_STARTING_ACTION, R.id.action_directly_to_createPayment);
+    intent.putExtra(PaymentsActivity.EXTRA_STARTING_ARGUMENTS, new CreatePaymentFragmentArgs.Builder(new PayeeParcelable(recipientId)).build().toBundle());
+    activity.startActivity(intent);
   }
 
   private @Nullable Uri getSlideUri() {

@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -20,11 +22,16 @@ import android.text.style.StyleSpan;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 
-public class SpanUtil {
+public final class SpanUtil {
+
+  private SpanUtil() {}
+
+  public static final String SPAN_PLACE_HOLDER = "<<<SPAN>>>";
 
   public static CharSequence italic(CharSequence sequence) {
     return italic(sequence, sequence.length());
@@ -115,5 +122,19 @@ public class SpanUtil {
     }
 
     return spannable;
+  }
+
+  public static @NonNull CharSequence insertSingleSpan(@NonNull Resources resources, @StringRes int res, @NonNull CharSequence span) {
+    return replacePlaceHolder(resources.getString(res, SPAN_PLACE_HOLDER), span);
+  }
+
+  public static CharSequence replacePlaceHolder(@NonNull String string, @NonNull CharSequence span) {
+    int index = string.indexOf(SpanUtil.SPAN_PLACE_HOLDER);
+    if (index == -1) {
+      return string;
+    }
+    SpannableStringBuilder builder = new SpannableStringBuilder(string);
+    builder.replace(index, index + SpanUtil.SPAN_PLACE_HOLDER.length(), span);
+    return builder;
   }
 }

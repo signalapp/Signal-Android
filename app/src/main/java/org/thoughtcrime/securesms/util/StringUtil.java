@@ -247,4 +247,22 @@ public final class StringUtil {
     }
     return (startIndex > 0 || length < text.length()) ? text.subSequence(startIndex, length) : text;
   }
+
+  /**
+   * If the {@param text} exceeds the {@param maxChars} it is trimmed in the middle so that the result is exactly {@param maxChars} long including an added
+   * ellipsis character.
+   * <p>
+   * Otherwise the string is returned untouched.
+   * <p>
+   * When {@param maxChars} is even, one more character is kept from the end of the string than the start.
+   */
+  public static @Nullable CharSequence abbreviateInMiddle(@Nullable CharSequence text, int maxChars) {
+     if (text == null || text.length() <= maxChars) {
+      return text;
+    }
+
+    int start = (maxChars - 1) / 2;
+    int end   = (maxChars - 1) - start;
+    return text.subSequence(0, start) + "…" + text.subSequence(text.length() - end, text.length());
+  }
 }

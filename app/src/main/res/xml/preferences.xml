@@ -38,6 +38,12 @@
                 android:title="@string/preferences__linked_devices"
                 android:icon="@drawable/ic_linked_devices_24"/>
 
+    <org.thoughtcrime.securesms.preferences.widgets.PaymentsPreference
+                android:key="preference_category_payments"
+                android:title="@string/preferences__payments"
+                android:icon="@drawable/ic_payments_24"
+                app:isPreferenceVisible="false" />
+
     <Preference android:key="preference_category_help"
                 android:title="@string/preferences__help"
                 android:icon="@drawable/ic_help_24" />

@@ -7,18 +7,26 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
+import org.thoughtcrime.securesms.payments.MobileCoinPublicAddressProfileUtil;
+import org.thoughtcrime.securesms.payments.PaymentsAddressException;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
@@ -33,6 +41,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.util.concurrent.CascadingFuture;
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 
@@ -94,15 +103,85 @@ public final class ProfileUtil {
     }
   }
 
-  public static @Nullable String decryptName(@NonNull ProfileKey profileKey, @Nullable String encryptedName)
+  public static @Nullable String decryptString(@NonNull ProfileKey profileKey, @Nullable byte[] encryptedString)
       throws InvalidCiphertextException, IOException
   {
-    if (encryptedName == null) {
+    if (encryptedString == null) {
       return null;
     }
 
     ProfileCipher profileCipher = new ProfileCipher(profileKey);
-    return new String(profileCipher.decryptName(Base64.decode(encryptedName)));
+    return profileCipher.decryptString(encryptedString);
+  }
+
+  public static @Nullable String decryptString(@NonNull ProfileKey profileKey, @Nullable String encryptedStringBase64)
+      throws InvalidCiphertextException, IOException
+  {
+    if (encryptedStringBase64 == null) {
+      return null;
+    }
+
+    return decryptString(profileKey, Base64.decode(encryptedStringBase64));
+  }
+
+  @WorkerThread
+  public static @NonNull MobileCoinPublicAddress getAddressForRecipient(@NonNull Recipient recipient)
+      throws InterruptedException, ExecutionException, PaymentsAddressException
+  {
+    ProfileKey profileKey;
+    try {
+      profileKey = getProfileKey(recipient);
+    } catch (IOException e) {
+      Log.w(TAG, "Profile key not available for " + recipient.getId());
+      throw new PaymentsAddressException(PaymentsAddressException.Code.NO_PROFILE_KEY);
+    }
+    ProfileAndCredential profileAndCredential     = ProfileUtil.retrieveProfile(ApplicationDependencies.getApplication(), recipient, SignalServiceProfile.RequestType.PROFILE).get();
+    SignalServiceProfile profile                  = profileAndCredential.getProfile();
+    byte[]               encryptedPaymentsAddress = profile.getPaymentAddress();
+
+    if (encryptedPaymentsAddress == null) {
+      Log.w(TAG, "Payments not enabled for " + recipient.getId());
+      throw new PaymentsAddressException(PaymentsAddressException.Code.NOT_ENABLED);
+    }
+
+    try {
+      IdentityKey                        identityKey             = new IdentityKey(Base64.decode(profileAndCredential.getProfile().getIdentityKey()), 0);
+      ProfileCipher                      profileCipher           = new ProfileCipher(profileKey);
+      byte[]                             decrypted               = profileCipher.decryptWithLength(encryptedPaymentsAddress);
+      SignalServiceProtos.PaymentAddress paymentAddress          = SignalServiceProtos.PaymentAddress.parseFrom(decrypted);
+      byte[]                             bytes                   = MobileCoinPublicAddressProfileUtil.verifyPaymentsAddress(paymentAddress, identityKey);
+      MobileCoinPublicAddress            mobileCoinPublicAddress = MobileCoinPublicAddress.fromBytes(bytes);
+
+      if (mobileCoinPublicAddress == null) {
+        throw new PaymentsAddressException(PaymentsAddressException.Code.INVALID_ADDRESS);
+      }
+
+      return mobileCoinPublicAddress;
+    } catch (InvalidCiphertextException | IOException e) {
+      Log.w(TAG, "Could not decrypt payments address, ProfileKey may be outdated for " + recipient.getId(), e);
+      throw new PaymentsAddressException(PaymentsAddressException.Code.COULD_NOT_DECRYPT);
+    } catch (InvalidKeyException e) {
+      Log.w(TAG, "Could not verify payments address due to bad identity key " + recipient.getId(), e);
+      throw new PaymentsAddressException(PaymentsAddressException.Code.INVALID_ADDRESS_SIGNATURE);
+    }
+  }
+
+  private static ProfileKey getProfileKey(@NonNull Recipient recipient) throws IOException {
+    byte[] profileKeyBytes = recipient.getProfileKey();
+
+    if (profileKeyBytes == null) {
+      Log.w(TAG, "Profile key unknown for " + recipient.getId());
+      throw new IOException("No profile key");
+    }
+
+    ProfileKey profileKey;
+    try {
+      profileKey = new ProfileKey(profileKeyBytes);
+    } catch (InvalidInputException e) {
+      Log.w(TAG, "Profile key invalid for " + recipient.getId());
+      throw new IOException("Invalid profile key");
+    }
+    return profileKey;
   }
 
   /**
@@ -116,6 +195,7 @@ public final class ProfileUtil {
                     profileName,
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    getSelfPaymentsAddressProtobuf(),
                     avatar);
     }
   }
@@ -131,7 +211,17 @@ public final class ProfileUtil {
                     Recipient.self().getProfileName(),
                     about,
                     emoji,
+                    getSelfPaymentsAddressProtobuf(),
                     avatar);
+    }
+  }
+
+  /**
+   * Uploads the profile based on all state that's already written to disk.
+   */
+  public static void uploadProfile(@NonNull Context context) throws IOException {
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      uploadProfileWithAvatar(context, avatar);
     }
   }
 
@@ -145,37 +235,46 @@ public final class ProfileUtil {
                     Recipient.self().getProfileName(),
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    getSelfPaymentsAddressProtobuf(),
                     avatar);
-  }
-
-  /**
-   * Uploads the profile based on all state that's already written to disk.
-   */
-  public static void uploadProfile(@NonNull Context context) throws IOException {
-    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      uploadProfile(context,
-                    Recipient.self().getProfileName(),
-                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
-                    avatar);
-    }
   }
 
   private static void uploadProfile(@NonNull Context context,
                                     @NonNull ProfileName profileName,
                                     @Nullable String about,
                                     @Nullable String aboutEmoji,
+                                    @Nullable SignalServiceProtos.PaymentAddress paymentsAddress,
                                     @Nullable StreamDetails avatar)
       throws IOException
   {
     Log.d(TAG, "Uploading " + (!Util.isEmpty(about) ? "non-" : "") + "empty about.");
     Log.d(TAG, "Uploading " + (!Util.isEmpty(aboutEmoji) ? "non-" : "") + "empty emoji.");
+    Log.d(TAG, "Uploading " + (paymentsAddress != null ? "non-" : "") + "empty payments address.");
 
     ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    String                      avatarPath     = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), about, aboutEmoji, avatar).orNull();
+    String                      avatarPath     = accountManager.setVersionedProfile(Recipient.self().getUuid().get(),
+                                                                                    profileKey,
+                                                                                    profileName.serialize(),
+                                                                                    about,
+                                                                                    aboutEmoji,
+                                                                                    Optional.fromNullable(paymentsAddress),
+                                                                                    avatar).orNull();
 
     DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
+  }
+
+  private static @Nullable SignalServiceProtos.PaymentAddress getSelfPaymentsAddressProtobuf() {
+    if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+      return null;
+    } else {
+      IdentityKeyPair         identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(ApplicationDependencies.getApplication());
+      MobileCoinPublicAddress publicAddress   = ApplicationDependencies.getPayments()
+                                                                       .getWallet()
+                                                                       .getMobileCoinPublicAddress();
+
+      return MobileCoinPublicAddressProfileUtil.signPaymentsAddress(publicAddress.serialize(), identityKeyPair);
+    }
   }
 
   private static @NonNull ListenableFuture<ProfileAndCredential> getPipeRetrievalFuture(@NonNull SignalServiceAddress address,

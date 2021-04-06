@@ -110,7 +110,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   private void setProfileName(@Nullable String encryptedName) {
     try {
       ProfileKey  profileKey    = ProfileKeyUtil.getSelfProfileKey();
-      String      plaintextName = ProfileUtil.decryptName(profileKey, encryptedName);
+      String      plaintextName = ProfileUtil.decryptString(profileKey, encryptedName);
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
@@ -122,8 +122,8 @@ public class RefreshOwnProfileJob extends BaseJob {
   private void setProfileAbout(@Nullable String encryptedAbout, @Nullable String encryptedEmoji) {
     try {
       ProfileKey  profileKey     = ProfileKeyUtil.getSelfProfileKey();
-      String      plaintextAbout = ProfileUtil.decryptName(profileKey, encryptedAbout);
-      String      plaintextEmoji = ProfileUtil.decryptName(profileKey, encryptedEmoji);
+      String      plaintextAbout = ProfileUtil.decryptString(profileKey, encryptedAbout);
+      String      plaintextEmoji = ProfileUtil.decryptString(profileKey, encryptedEmoji);
 
       Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextAbout) ? "non-" : "") + "empty about.");
       Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextEmoji) ? "non-" : "") + "empty emoji.");

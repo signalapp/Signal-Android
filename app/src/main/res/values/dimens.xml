@@ -170,4 +170,11 @@
     <dimen name="transfer_top_padding">64dp</dimen>
     <dimen name="transfer_split_top_padding">32dp</dimen>
     <dimen name="transfer_item_spacing">24dp</dimen>
+
+    <dimen name="create_payment_key_size">70dp</dimen>
+    <dimen name="create_payment_key_bottom_row_margin_bottom">33dp</dimen>
+    <dimen name="create_payment_key_top_row_margin_top">11dp</dimen>
+
+    <dimen name="payment_recovery_phrase_adapter_margin">49dp</dimen>
+    <dimen name="payment_recovery_phrase_outline_margin">32dp</dimen>
 </resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/rounded_outline"
+    android:paddingStart="48dp"
+    android:paddingTop="24dp"
+    android:paddingEnd="48dp"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:id="@+id/payment_preferences_splash_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/PaymentsHomeFragment__introducing_payments"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/payment_preferences_splash_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_preferences_splash_title"
+        app:srcCompat="@drawable/ic_activate_payments" />
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+        android:id="@+id/payment_preferences_splash_text_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="8sp"
+        android:minHeight="100dp"
+        android:text="@string/PaymentsHomeFragment__use_signal_to_send_and_receive"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_preferences_splash_intro" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/payment_preferences_splash_activate"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PaymentsHomeFragment__activate_payments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_preferences_splash_text_1"
+        app:layout_constraintVertical_bias="1" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/payment_preferences_splash_activating_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="payment_preferences_splash_activating,payment_preferences_splash_activating_progress" />
+
+    <ProgressBar
+        android:id="@+id/payment_preferences_splash_activating_progress"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/payment_preferences_splash_activating"
+        app:layout_constraintEnd_toStartOf="@+id/payment_preferences_splash_activating"
+        app:layout_constraintTop_toTopOf="@+id/payment_preferences_splash_activating" />
+
+    <TextView
+        android:id="@+id/payment_preferences_splash_activating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PaymentsHomeFragment__activating_payments"
+        app:layout_constraintBottom_toBottomOf="@+id/payment_preferences_splash_activate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/payment_preferences_splash_activate" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/payment_preferences_splash_restore"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/PaymentsHomeFragment__restore_payments_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_preferences_splash_activate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

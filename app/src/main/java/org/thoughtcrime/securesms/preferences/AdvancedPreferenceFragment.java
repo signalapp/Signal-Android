@@ -32,14 +32,18 @@ import org.thoughtcrime.securesms.delete.DeleteAccountFragment;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
+import org.thoughtcrime.securesms.payments.preferences.transfer.PaymentsTransferFragmentArgs;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.payments.FormatterOptions;
+import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 
 import java.io.IOException;
@@ -54,6 +58,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String DELETE_ACCOUNT        = "pref_delete_account";
 
   private static final int PICK_IDENTITY_CONTACT = 1;
+  private static final int TRANSFER_CURRENCY     = 2;
 
   @Override
   public void onCreate(Bundle paramBundle) {
@@ -84,7 +89,27 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
     Preference deleteAccount = this.findPreference(DELETE_ACCOUNT);
     deleteAccount.setOnPreferenceClickListener(preference -> {
-      getApplicationPreferencesActivity().pushFragment(new DeleteAccountFragment());
+      Money.MobileCoin latestBalance = SignalStore.paymentsValues().mobileCoinLatestBalance().getFullAmount().requireMobileCoin();
+
+      if (!latestBalance.equals(Money.MobileCoin.ZERO)) {
+        new AlertDialog.Builder(requireContext())
+                       .setTitle(R.string.AdvancedPreferenceFragment__transfer_mob_balance)
+                       .setMessage(getString(R.string.AdvancedPreferenceFragment__you_have_a_balance_of_s, latestBalance.toString(FormatterOptions.defaults())))
+                       .setPositiveButton(R.string.AdvancedPreferenceFragment__transfer, (dialog, which) -> {
+                         Intent intent = new Intent(requireContext(), PaymentsActivity.class);
+                         intent.putExtra(PaymentsActivity.EXTRA_PAYMENTS_STARTING_ACTION, R.id.action_directly_to_paymentsTransfer);
+                         intent.putExtra(PaymentsActivity.EXTRA_STARTING_ARGUMENTS, new PaymentsTransferFragmentArgs.Builder().setFinishOnConfirm(true).build().toBundle());
+                         startActivityForResult(intent, TRANSFER_CURRENCY);
+                         dialog.dismiss();
+                       })
+                       .setNegativeButton(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_alert_primary), getString(R.string.AdvancedPreferenceFragment__dont_transfer)), (dialog, which) -> {
+                         getApplicationPreferencesActivity().pushFragment(new DeleteAccountFragment());
+                         dialog.dismiss();
+                       })
+                       .show();
+      } else {
+        getApplicationPreferencesActivity().pushFragment(new DeleteAccountFragment());
+      }
       return false;
     });
   }
@@ -123,6 +148,8 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
     Log.i(TAG, "Got result: " + resultCode + " for req: " + reqCode);
     if (resultCode == Activity.RESULT_OK && reqCode == PICK_IDENTITY_CONTACT) {
       handleIdentitySelection(data);
+    } else if (resultCode == Activity.RESULT_OK && reqCode == TRANSFER_CURRENCY) {
+      getApplicationPreferencesActivity().pushFragment(new DeleteAccountFragment());
     }
   }
 

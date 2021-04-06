@@ -34,6 +34,10 @@ public final class CursorUtil {
     return cursor.getBlob(cursor.getColumnIndexOrThrow(column));
   }
 
+  public static boolean isNull(@NonNull Cursor cursor, @NonNull String column) {
+    return cursor.isNull(cursor.getColumnIndexOrThrow(column));
+  }
+
   public static boolean requireMaskedBoolean(@NonNull Cursor cursor, @NonNull String column, int position) {
     return Bitmask.read(requireLong(cursor, column), position);
   }

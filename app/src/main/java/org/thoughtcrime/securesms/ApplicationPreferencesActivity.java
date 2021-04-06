@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,8 +33,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
+import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData;
 import org.thoughtcrime.securesms.help.HelpFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
@@ -44,9 +48,9 @@ import org.thoughtcrime.securesms.preferences.DataAndStoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.EditProxyFragment;
 import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.widgets.PaymentsPreference;
 import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
-import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -87,6 +91,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   private static final String PREFERENCE_CATEGORY_HELP           = "preference_category_help";
   private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
   private static final String PREFERENCE_CATEGORY_DONATE         = "preference_category_donate";
+  private static final String PREFERENCE_CATEGORY_PAYMENTS       = "preference_category_payments";
 
   private static final String WAS_CONFIGURATION_UPDATED          = "was_configuration_updated";
 
@@ -111,7 +116,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_BACKUPS_FRAGMENT, false)) {
       initFragment(android.R.id.content, new BackupsPreferenceFragment());
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_HELP_FRAGMENT, false)) {
-      initFragment(android.R.id.content, new HelpFragment());
+      Bundle bundle = new Bundle();
+      bundle.putInt(HelpFragment.START_CATEGORY_INDEX, getIntent().getIntExtra(HelpFragment.START_CATEGORY_INDEX, 0));
+
+      initFragment(android.R.id.content, new HelpFragment(), null, bundle);
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_PROXY_FRAGMENT, false)) {
       initFragment(android.R.id.content, EditProxyFragment.newInstance());
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_NOTIFICATIONS_FRAGMENT, false)) {
@@ -191,6 +199,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
 
   public static class ApplicationPreferenceFragment extends CorrectedPreferenceFragment {
 
+    private final UnreadPaymentsLiveData unreadPaymentsLiveData = new UnreadPaymentsLiveData();
+
     @Override
     public void onCreate(Bundle icicle) {
       super.onCreate(icicle);
@@ -220,7 +230,27 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       this.findPreference(PREFERENCE_CATEGORY_DONATE)
           .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DONATE));
 
+      Preference paymentsPreference = this.findPreference(PREFERENCE_CATEGORY_PAYMENTS);
+
+      if (SignalStore.paymentsValues().getPaymentsAvailability().showPaymentsMenu()) {
+        paymentsPreference.setVisible(true);
+        paymentsPreference.setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PAYMENTS));
+      } else {
+        paymentsPreference.setVisible(false);
+      }
+
       tintIcons();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+      super.onViewCreated(view, savedInstanceState);
+
+      if (SignalStore.paymentsValues().getPaymentsAvailability().showPaymentsMenu()) {
+        PaymentsPreference paymentsPreference = (PaymentsPreference) this.findPreference(PREFERENCE_CATEGORY_PAYMENTS);
+
+        unreadPaymentsLiveData.observe(getViewLifecycleOwner(), unreadPayments -> paymentsPreference.setUnreadCount(unreadPayments.transform(UnreadPayments::getUnreadCount).or(-1)));
+      }
     }
 
     private void tintIcons() {
@@ -335,6 +365,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
           break;
         case PREFERENCE_CATEGORY_DONATE:
           CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url));
+          break;
+        case PREFERENCE_CATEGORY_PAYMENTS:
+          startActivity(new Intent(requireContext(), PaymentsActivity.class));
           break;
         default:
           throw new AssertionError();

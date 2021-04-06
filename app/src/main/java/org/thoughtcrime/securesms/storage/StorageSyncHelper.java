@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.payments.Entropy;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
@@ -353,7 +354,7 @@ public final class StorageSyncHelper {
 
   @VisibleForTesting
   static void setTestKeyGenerator(@Nullable KeyGenerator testKeyGenerator) {
-    keyGenerator = testKeyGenerator;
+    keyGenerator = testKeyGenerator != null ? testKeyGenerator : KEY_GENERATOR;
   }
 
   private static @NonNull <E extends SignalRecord> RecordMergeResult<E> resolveRecordConflict(@NonNull Collection<E> remoteOnlyRecords,
@@ -432,6 +433,7 @@ public final class StorageSyncHelper {
                                                          .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                          .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
                                                          .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
+                                                         .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.fromNullable(SignalStore.paymentsValues().getPaymentsEntropy()).transform(Entropy::getBytes).orNull())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -454,6 +456,7 @@ public final class StorageSyncHelper {
     SignalStore.phoneNumberPrivacy().setPhoneNumberListingMode(update.isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED : PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED);
     SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getPhoneNumberSharingMode()));
     SignalStore.settings().setPreferSystemContactPhotos(update.isPreferContactAvatars());
+    SignalStore.paymentsValues().setEnabledAndEntropy(update.getPayments().isEnabled(), Entropy.fromBytes(update.getPayments().getEntropy().orNull()));
 
     if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), update.getAvatarUrlPath().get()));

@@ -47,6 +47,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     }
   }
 
+  public static @Nullable RecipientId fromNullable(@Nullable String id) {
+    return id != null ? from(id) : null;
+  }
+
   @AnyThread
   public static @NonNull RecipientId from(@NonNull SignalServiceAddress address) {
     return from(address.getUuid().orNull(), address.getNumber().orNull(), false);
