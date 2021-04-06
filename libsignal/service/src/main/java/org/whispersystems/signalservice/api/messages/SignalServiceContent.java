@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -36,6 +37,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
+import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
@@ -364,6 +366,21 @@ public final class SignalServiceContent {
                                                                groupContext);
     }
 
+    SignalServiceDataMessage.Payment payment;
+    try {
+      payment = createPayment(content);
+    } catch (InvalidMessageException e) {
+      throw new ProtocolInvalidMessageException(e, metadata.getSender().getIdentifier(), metadata.getSenderDevice());
+    }
+
+    if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT.getNumber()) {
+      throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT.getNumber(),
+                                                               content.getRequiredProtocolVersion(),
+                                                               metadata.getSender().getIdentifier(),
+                                                               metadata.getSenderDevice(),
+                                                               groupContext);
+    }
+
     for (SignalServiceProtos.AttachmentPointer pointer : content.getAttachmentsList()) {
       attachments.add(createAttachmentPointer(pointer));
     }
@@ -391,7 +408,8 @@ public final class SignalServiceContent {
                                         content.getIsViewOnce(),
                                         reaction,
                                         remoteDelete,
-                                        groupCallUpdate);
+                                        groupCallUpdate,
+                                        payment);
   }
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
@@ -587,6 +605,32 @@ public final class SignalServiceContent {
       }
 
       return SignalServiceSyncMessage.forMessageRequestResponse(responseMessage);
+    }
+
+    if (content.hasOutgoingPayment()) {
+      SignalServiceProtos.SyncMessage.OutgoingPayment outgoingPayment = content.getOutgoingPayment();
+      switch (outgoingPayment.getPaymentDetailCase()) {
+        case MOBILECOIN: {
+          SignalServiceProtos.SyncMessage.OutgoingPayment.MobileCoin mobileCoin = outgoingPayment.getMobileCoin();
+          Money.MobileCoin                                           amount     = Money.picoMobileCoin(mobileCoin.getAmountPicoMob());
+          Money.MobileCoin                                           fee        = Money.picoMobileCoin(mobileCoin.getFeePicoMob());
+          ByteString                                                 address    = mobileCoin.getRecipientAddress();
+          Optional<UUID>                                             recipient  = Optional.fromNullable(UuidUtil.parseOrNull(outgoingPayment.getRecipientUuid()));
+
+          return SignalServiceSyncMessage.forOutgoingPayment(new OutgoingPaymentMessage(recipient,
+                                                                                        amount,
+                                                                                        fee,
+                                                                                        mobileCoin.getReceipt(),
+                                                                                        mobileCoin.getLedgerBlockIndex(),
+                                                                                        mobileCoin.getLedgerBlockTimestamp(),
+                                                                                        address.isEmpty() ? Optional.absent() : Optional.of(address.toByteArray()),
+                                                                                        Optional.of(outgoingPayment.getNote()),
+                                                                                        mobileCoin.getOutputPublicKeysList(),
+                                                                                        mobileCoin.getSpentKeyImagesList()));
+        }
+        default:
+          return SignalServiceSyncMessage.empty();
+      }
     }
 
     return SignalServiceSyncMessage.empty();
@@ -798,6 +842,33 @@ public final class SignalServiceContent {
     SignalServiceProtos.DataMessage.GroupCallUpdate groupCallUpdate = content.getGroupCallUpdate();
 
     return new SignalServiceDataMessage.GroupCallUpdate(groupCallUpdate.getEraId());
+  }
+
+  private static SignalServiceDataMessage.Payment createPayment(SignalServiceProtos.DataMessage content) throws InvalidMessageException {
+    if (!content.hasPayment()) {
+      return null;
+    }
+
+    SignalServiceProtos.DataMessage.Payment payment = content.getPayment();
+
+    switch (payment.getItemCase()) {
+      case NOTIFICATION: return new SignalServiceDataMessage.Payment(createPaymentNotification(payment));
+      default          : throw new InvalidMessageException("Unknown payment item");
+    }
+  }
+
+  private static SignalServiceDataMessage.PaymentNotification createPaymentNotification(SignalServiceProtos.DataMessage.Payment content)
+      throws InvalidMessageException
+  {
+    if (!content.hasNotification() ||
+        content.getNotification().getTransactionCase() != SignalServiceProtos.DataMessage.Payment.Notification.TransactionCase.MOBILECOIN)
+    {
+      throw new InvalidMessageException();
+    }
+
+    SignalServiceProtos.DataMessage.Payment.Notification payment = content.getNotification();
+
+    return new SignalServiceDataMessage.PaymentNotification(payment.getMobileCoin().getReceipt().toByteArray(), payment.getNote());
   }
 
   private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {

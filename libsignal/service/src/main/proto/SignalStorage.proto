@@ -99,6 +99,11 @@ message GroupV2Record {
   bool  markedUnread = 5;
 }
 
+message Payments {
+  bool  enabled = 1;
+  bytes entropy = 2;
+}
+
 message AccountRecord {
 
   enum PhoneNumberSharingMode {
@@ -135,4 +140,5 @@ message AccountRecord {
            bool                   unlistedPhoneNumber    = 13;
   repeated PinnedConversation     pinnedConversations    = 14;
            bool                   preferContactAvatars   = 15;
+           Payments               payments               = 16;
 }

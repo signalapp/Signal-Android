@@ -120,8 +120,10 @@ public final class ProtoUtil {
           field.setAccessible(true);
 
           GeneratedMessageLite inner = (GeneratedMessageLite) field.get(proto);
-          innerProtos.add(inner);
-          innerProtos.addAll(getInnerProtos(inner));
+          if (inner != null) {
+            innerProtos.add(inner);
+            innerProtos.addAll(getInnerProtos(inner));
+          }
         }
       }
 

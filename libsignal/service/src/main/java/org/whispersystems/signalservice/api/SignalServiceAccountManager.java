@@ -21,7 +21,6 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
-import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
@@ -56,10 +55,13 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequ
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
 import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
+import org.whispersystems.signalservice.api.payments.CurrencyConversions;
+import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
@@ -75,7 +77,6 @@ import org.whispersystems.util.Base64;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -636,19 +637,31 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.pingStorageService();
   }
 
+  public CurrencyConversions getCurrencyConversions() throws IOException {
+    return this.pushServiceSocket.getCurrencyConversions();
+  }
+
   /**
    * @return The avatar URL path, if one was written.
    */
-  public Optional<String> setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, String about, String aboutEmoji, StreamDetails avatar)
+  public Optional<String> setVersionedProfile(UUID uuid,
+                                              ProfileKey profileKey,
+                                              String name,
+                                              String about,
+                                              String aboutEmoji,
+                                              Optional<SignalServiceProtos.PaymentAddress> paymentsAddress,
+                                              StreamDetails avatar)
       throws IOException
   {
     if (name == null) name = "";
 
-    byte[]            ciphertextName    = new ProfileCipher(profileKey).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.getTargetNameLength(name));
-    byte[]            ciphertextAbout   = new ProfileCipher(profileKey).encryptName(about.getBytes(StandardCharsets.UTF_8), ProfileCipher.getTargetAboutLength(about));
-    byte[]            ciphertextEmoji   = new ProfileCipher(profileKey).encryptName(aboutEmoji.getBytes(StandardCharsets.UTF_8), ProfileCipher.EMOJI_PADDED_LENGTH);
-    boolean           hasAvatar         = avatar != null;
-    ProfileAvatarData profileAvatarData = null;
+    ProfileCipher     profileCipher               = new ProfileCipher(profileKey);
+    byte[]            ciphertextName              = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
+    byte[]            ciphertextAbout             = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
+    byte[]            ciphertextEmoji             = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
+    byte[]            ciphertextMobileCoinAddress = paymentsAddress.transform(address -> profileCipher.encryptWithLength(address.toByteArray(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orNull();
+    boolean           hasAvatar                   = avatar != null;
+    ProfileAvatarData profileAvatarData           = null;
 
     if (hasAvatar) {
       profileAvatarData = new ProfileAvatarData(avatar.getStream(),
@@ -661,6 +674,7 @@ public class SignalServiceAccountManager {
                                                                              ciphertextName,
                                                                              ciphertextAbout,
                                                                              ciphertextEmoji,
+                                                                             ciphertextMobileCoinAddress,
                                                                              hasAvatar,
                                                                              profileKey.getCommitment(uuid).serialize()),
                                                                              profileAvatarData);
@@ -731,4 +745,9 @@ public class SignalServiceAccountManager {
   public GroupsV2Api getGroupsV2Api() {
     return new GroupsV2Api(pushServiceSocket, groupsV2Operations);
   }
+
+  public AuthCredentials getPaymentsAuthorization() throws IOException {
+    return pushServiceSocket.getPaymentsAuthorization();
+  }
+
 }

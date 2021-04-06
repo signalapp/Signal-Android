@@ -11,7 +11,6 @@ import org.whispersystems.util.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 import java.security.Security;
 
 public class ProfileCipherTest extends TestCase {
@@ -23,18 +22,18 @@ public class ProfileCipherTest extends TestCase {
   public void testEncryptDecrypt() throws InvalidCiphertextException, InvalidInputException {
     ProfileKey    key       = new ProfileKey(Util.getSecretBytes(32));
     ProfileCipher cipher    = new ProfileCipher(key);
-    byte[]        name      = cipher.encryptName("Clement\0Duval".getBytes(), 53);
-    byte[]        plaintext = cipher.decryptName(name);
-    assertEquals(new String(plaintext), "Clement\0Duval");
+    byte[]        name      = cipher.encrypt("Clement\0Duval".getBytes(), 53);
+    String        plaintext = cipher.decryptString(name);
+    assertEquals(plaintext, "Clement\0Duval");
   }
 
   public void testEmpty() throws Exception {
     ProfileKey    key       = new ProfileKey(Util.getSecretBytes(32));
     ProfileCipher cipher    = new ProfileCipher(key);
-    byte[]        name      = cipher.encryptName("".getBytes(), 26);
-    byte[]        plaintext = cipher.decryptName(name);
+    byte[]        name      = cipher.encrypt("".getBytes(), 26);
+    String        plaintext = cipher.decryptString(name);
 
-    assertEquals(plaintext.length, 0);
+    assertEquals(plaintext.length(), 0);
   }
 
   public void testStreams() throws Exception {
@@ -64,7 +63,7 @@ public class ProfileCipherTest extends TestCase {
   public void testEncryptLengthBucket1() throws InvalidInputException {
     ProfileKey    key       = new ProfileKey(Util.getSecretBytes(32));
     ProfileCipher cipher    = new ProfileCipher(key);
-    byte[]        name      = cipher.encryptName("Peter\0Parker".getBytes(), 53);
+    byte[]        name      = cipher.encrypt("Peter\0Parker".getBytes(), 53);
 
     String encoded = Base64.encodeBytes(name);
 
@@ -74,7 +73,7 @@ public class ProfileCipherTest extends TestCase {
   public void testEncryptLengthBucket2() throws InvalidInputException {
     ProfileKey    key       = new ProfileKey(Util.getSecretBytes(32));
     ProfileCipher cipher    = new ProfileCipher(key);
-    byte[]        name      = cipher.encryptName("Peter\0Parker".getBytes(), 257);
+    byte[]        name      = cipher.encrypt("Peter\0Parker".getBytes(), 257);
 
     String encoded = Base64.encodeBytes(name);
 

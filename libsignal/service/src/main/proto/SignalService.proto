@@ -238,6 +238,45 @@ message DataMessage {
     optional string eraId = 1;
   }
 
+  message Payment {
+
+    message Address {
+      message MobileCoin {
+        optional bytes address = 1;
+      }
+
+      oneof Address {
+        MobileCoin mobileCoin = 1;
+      }
+    }
+
+    message Amount {
+      message MobileCoin {
+        optional uint64 picoMob = 1;
+      }
+
+      oneof Amount {
+        MobileCoin mobileCoin = 1;
+      }
+    }
+
+    message Notification {
+      message MobileCoin {
+        optional bytes receipt = 1;
+      }
+
+      oneof Transaction {
+        MobileCoin mobileCoin = 1;
+      }
+
+      optional string note = 2;
+    }
+
+    oneof Item {
+      Notification notification = 1;
+    }
+  }
+
   enum ProtocolVersion {
     option allow_alias = true;
 
@@ -248,7 +287,8 @@ message DataMessage {
     REACTIONS                = 4;
     CDN_SELECTOR_ATTACHMENTS = 5;
     MENTIONS                 = 6;
-    CURRENT                  = 6;
+    PAYMENTS                 = 7;
+    CURRENT                  = 7;
   }
 
   optional string             body                    = 1;
@@ -269,7 +309,7 @@ message DataMessage {
   optional Delete             delete                  = 17;
   repeated BodyRange          bodyRanges              = 18;
   optional GroupCallUpdate    groupCallUpdate         = 19;
-  reserved                 /* future use */             20;
+  optional Payment            payment                 = 20;
 }
 
 message NullMessage {
@@ -418,6 +458,28 @@ message SyncMessage {
     optional Type   type       = 4;
   }
 
+  message OutgoingPayment {
+    message MobileCoin {
+      optional bytes  recipientAddress     = 1;
+      // @required
+      optional uint64 amountPicoMob        = 2;
+      // @required
+      optional uint64 feePicoMob           = 3;
+      optional bytes  receipt              = 4;
+      optional uint64 ledgerBlockTimestamp = 5;
+      // @required
+      optional uint64 ledgerBlockIndex     = 6;
+      repeated bytes  spentKeyImages       = 7;
+      repeated bytes  outputPublicKeys     = 8;
+    }
+    optional string recipientUuid = 1;
+    optional string note          = 2;
+
+    oneof paymentDetail {
+      MobileCoin mobileCoin = 3;
+    }
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   optional Groups                 groups                 = 3;
@@ -432,6 +494,7 @@ message SyncMessage {
   optional FetchLatest            fetchLatest            = 12;
   optional Keys                   keys                   = 13;
   optional MessageRequestResponse messageRequestResponse = 14;
+  optional OutgoingPayment        outgoingPayment        = 15;
 }
 
 message AttachmentPointer {
@@ -529,4 +592,15 @@ message GroupDetails {
   optional bool   blocked       = 8;
   optional uint32 inboxPosition = 10;
   optional bool   archived      = 11;
+}
+
+message PaymentAddress {
+  oneof Address {
+    MobileCoinAddress mobileCoinAddress = 1;
+  }
+
+  message MobileCoinAddress {
+    optional bytes address   = 1;
+    optional bytes signature = 2;
+  }
 }
