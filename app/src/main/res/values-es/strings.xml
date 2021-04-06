@@ -1810,13 +1810,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__debug_log">Registro de depuración:</string>
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Algo no funciona</item>
-    <item>Solicitar una nueva función</item>
-    <item>Pregunta</item>
-    <item>Información</item>
-    <item>Otras</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recientemente</string>
@@ -2029,6 +2022,45 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_enter_proxy_address">Introduce la dirección del proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Cualquiera</string>
+  <string name="PaymentsAllActivityFragment__sent">Enviado</string>
+  <string name="PaymentsAllActivityFragment__received">Recibido</string>
+  <string name="PaymentsHomeFragment__see_all">Ver todos</string>
+  <string name="PaymentsHomeFragment__send">Enviar</string>
+  <string name="PaymentsHomeFragment__help">Ayuda</string>
+  <string name="PaymentsHomeFragment__continue">Adelante</string>
+  <string name="PaymentsHomeFragment__details">Detalles</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado al portapapeles</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detalles</string>
+  <string name="PaymentsDetailsFragment__status">Estado</string>
+  <string name="PaymentsDetailsFragment__to">Para</string>
+  <string name="PaymentsDetailsFragment__from">De</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Escanear código QR</string>
+  <string name="PaymentsTransferFragment__next">Siguiente</string>
+  <string name="PaymentsTransferFragment__settings">Ajustes</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Solicitud</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Para</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2457,6 +2489,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Tu cuenta de Signal se ha transferido a tu dispositivo nuevo pero debes completar el proceso de registro de Signal en el dispositivo nuevo. Signal se inactivará en este dispositivo.</string>
   <string name="OldDeviceTransferLockedDialog__done">Hecho</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar y activar este dispositivo</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
@@ -2603,5 +2636,26 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Establece el fondo para %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fallo al establecer el fondo de chat.</string>
   <string name="WallpaperCropActivity__blur_photo">Difuminar</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Ocultar</string>
+  <string name="payment_info_card_update_pin">Actualizar PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Siguiente</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Siguiente</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Hecho</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Siguiente</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Ver</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Enviar mensajes</string>
   <!--EOF-->
 </resources>

@@ -1931,6 +1931,35 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_enter_proxy_address">Masukkan alamat proksi</string>
   <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Semua</string>
+  <string name="PaymentsAllActivityFragment__sent">Terkirim</string>
+  <string name="PaymentsAllActivityFragment__received">Diterima</string>
+  <string name="PaymentsHomeFragment__see_all">Lihat semua</string>
+  <string name="PaymentsHomeFragment__send">Kirim</string>
+  <string name="PaymentsHomeFragment__help">Bantuan</string>
+  <string name="PaymentsHomeFragment__continue">Lanjut</string>
+  <string name="PaymentsHomeFragment__details">Detail</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Salin</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Disalin ke papan klip</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detail</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Kepada</string>
+  <string name="PaymentsDetailsFragment__from">Dari</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Pindai kode QR</string>
+  <string name="PaymentsTransferFragment__next">Berikutnya</string>
+  <string name="PaymentsTransferFragment__settings">Pengaturan</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Permintaan</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Kepada</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2259,6 +2288,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Selesai</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokir</string>
   <string name="RecipientBottomSheet_unblock">Buka blokir</string>
@@ -2403,5 +2433,26 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Atur gambar latar untuk %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Gagal mengatur gambar latar.</string>
   <string name="WallpaperCropActivity__blur_photo">Buramkan foto</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Sembunyikan</string>
+  <string name="payment_info_card_update_pin">Perbarui PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Berikutnya</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Berikutnya</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Sunting</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Salin</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Selesai</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Berikutnya</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Lihat</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Kirim sebuah pesan</string>
   <!--EOF-->
 </resources>

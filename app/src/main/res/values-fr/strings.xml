@@ -1995,6 +1995,45 @@
   <string name="preferences_enter_proxy_address">Saisissez l’adresse du mandataire</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Tous</string>
+  <string name="PaymentsAllActivityFragment__sent">Envoyé</string>
+  <string name="PaymentsAllActivityFragment__received">Reçu</string>
+  <string name="PaymentsHomeFragment__see_all">Tout afficher</string>
+  <string name="PaymentsHomeFragment__send">Envoyer</string>
+  <string name="PaymentsHomeFragment__help">Aide </string>
+  <string name="PaymentsHomeFragment__continue">Poursuivre</string>
+  <string name="PaymentsHomeFragment__details">Détails</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copier</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">A été copié dans le presse-papiers</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Détails</string>
+  <string name="PaymentsDetailsFragment__status">État</string>
+  <string name="PaymentsDetailsFragment__to">À</string>
+  <string name="PaymentsDetailsFragment__from">De</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Balayer le code QR</string>
+  <string name="PaymentsTransferFragment__next">Suivant</string>
+  <string name="PaymentsTransferFragment__settings">Paramètres</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Demande</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">À</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2330,6 +2369,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Terminé</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquer</string>
   <string name="RecipientBottomSheet_unblock">Débloquer</string>
@@ -2476,5 +2516,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Définir le fond d’écran pour %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Erreur de définition du fond d’écran.</string>
   <string name="WallpaperCropActivity__blur_photo">Rendre la photo floue</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Cacher</string>
+  <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Suivant</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Suivant</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Modifier</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copier</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Terminé</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Suivant</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Afficher</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
   <!--EOF-->
 </resources>

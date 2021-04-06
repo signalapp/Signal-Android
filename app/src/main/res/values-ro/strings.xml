@@ -1868,13 +1868,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
   <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Ceva nu funcționează</item>
-    <item>Solicitare funcționalitate nouă</item>
-    <item>Întrebare</item>
-    <item>Opinie</item>
-    <item>Altceva</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate recent</string>
@@ -2089,6 +2082,45 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_enter_proxy_address">Introduceți adresa proxy</string>
   <string name="configurable_single_select__customize_option">Personalizați opțiunea</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Toate</string>
+  <string name="PaymentsAllActivityFragment__sent">Trimis</string>
+  <string name="PaymentsAllActivityFragment__received">Primit</string>
+  <string name="PaymentsHomeFragment__see_all">Vezi tot</string>
+  <string name="PaymentsHomeFragment__send">Trimiteți</string>
+  <string name="PaymentsHomeFragment__help">Ajutor</string>
+  <string name="PaymentsHomeFragment__continue">Continuă</string>
+  <string name="PaymentsHomeFragment__details">Detalii</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copy</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">S-a copiat în clipboard</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detalii</string>
+  <string name="PaymentsDetailsFragment__status">Stare</string>
+  <string name="PaymentsDetailsFragment__to">Către</string>
+  <string name="PaymentsDetailsFragment__from">De la</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Scanează codul QR</string>
+  <string name="PaymentsTransferFragment__next">Următorul</string>
+  <string name="PaymentsTransferFragment__settings">Setări</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Cerere</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Către</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2467,6 +2499,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Contul dvs. Signal a fost transferat pe noul dispozitiv, dar trebuie să continuați înregistrarea pentru a continua. Signal o să fie dezactivat pe acest dispozitv.</string>
   <string name="OldDeviceTransferLockedDialog__done">Gata</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blochează</string>
   <string name="RecipientBottomSheet_unblock">Deblochează</string>
@@ -2615,5 +2648,26 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Setare fundal pentru %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eroare la setarea fundalului.</string>
   <string name="WallpaperCropActivity__blur_photo">Estompare poză</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Ascunde</string>
+  <string name="payment_info_card_update_pin">Actualizați PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Următorul</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Următorul</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Editează</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Gata</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Următorul</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Vizualizare</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Trimite mesaj</string>
   <!--EOF-->
 </resources>

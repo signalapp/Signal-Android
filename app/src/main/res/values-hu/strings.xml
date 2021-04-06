@@ -2009,6 +2009,45 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_enter_proxy_address">Proxy cím megadása</string>
   <string name="configurable_single_select__customize_option">Beállítás testreszabása</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Összes</string>
+  <string name="PaymentsAllActivityFragment__sent">Elküldve</string>
+  <string name="PaymentsAllActivityFragment__received">Beérkezett</string>
+  <string name="PaymentsHomeFragment__see_all">Összes megtekintése</string>
+  <string name="PaymentsHomeFragment__send">Küldés</string>
+  <string name="PaymentsHomeFragment__help">Súgó</string>
+  <string name="PaymentsHomeFragment__continue">Folytatás</string>
+  <string name="PaymentsHomeFragment__details">Részletek</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Másolás</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Vágólapra másolva</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Részletek</string>
+  <string name="PaymentsDetailsFragment__status">Státusz</string>
+  <string name="PaymentsDetailsFragment__to">Címzett</string>
+  <string name="PaymentsDetailsFragment__from">Feladó</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR kód beolvasása</string>
+  <string name="PaymentsTransferFragment__next">Tovább</string>
+  <string name="PaymentsTransferFragment__settings">Beállítások</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Kérés</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Címzett</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2344,6 +2383,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Befejezés</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Letiltás</string>
   <string name="RecipientBottomSheet_unblock">Tiltás feloldása</string>
@@ -2490,5 +2530,26 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Háttérkép beállítása (%s)</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Nem sikerült beállítani a háttérképet.</string>
   <string name="WallpaperCropActivity__blur_photo">Fotó elhomályosítása</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Elrejtés</string>
+  <string name="payment_info_card_update_pin">PIN frissítése</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Tovább</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Tovább</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Szerkesztés</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Másolás</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Befejezés</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Tovább</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Megtekintés</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Küldj egy üzenetet</string>
   <!--EOF-->
 </resources>

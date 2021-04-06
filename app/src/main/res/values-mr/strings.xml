@@ -1999,6 +1999,35 @@
   <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
   <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">सर्व</string>
+  <string name="PaymentsAllActivityFragment__sent">पाठविले</string>
+  <string name="PaymentsAllActivityFragment__received">प्राप्त झाले</string>
+  <string name="PaymentsHomeFragment__see_all">सर्व पहा</string>
+  <string name="PaymentsHomeFragment__send">पाठवा</string>
+  <string name="PaymentsHomeFragment__help">मदत</string>
+  <string name="PaymentsHomeFragment__continue">सुरू ठेवा</string>
+  <string name="PaymentsHomeFragment__details">तपशील</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">कॉपी करा</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">तपशील</string>
+  <string name="PaymentsDetailsFragment__status">स्थिती</string>
+  <string name="PaymentsDetailsFragment__to">याला</string>
+  <string name="PaymentsDetailsFragment__from">याकडून</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR कोड स्कॅन करा</string>
+  <string name="PaymentsTransferFragment__next">पुढे</string>
+  <string name="PaymentsTransferFragment__settings">सेटिंग</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">विनंती </string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">याला</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2334,6 +2363,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ठीक</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">अवरोधित करा</string>
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>
@@ -2478,5 +2508,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s साठी वॉलपेपर सेट करा.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">वॉलपेपर सेट करण्यात त्रुटी.</string>
   <string name="WallpaperCropActivity__blur_photo">फोटो अस्पष्ट करा</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">लपवा</string>
+  <string name="payment_info_card_update_pin">PIN अद्यतनित करा</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">पुढे</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">पुढे</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">संपादन</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">कॉपी करा</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">ठीक</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">पुढे</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">बघा</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">एक संदेश पाठवा</string>
   <!--EOF-->
 </resources>

@@ -1941,13 +1941,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Mae Rhywbeth Wedi Torri</item>
-    <item>Cais am Nodwedd</item>
-    <item>Cwestiwn</item>
-    <item>Adborth</item>
-    <item>Arall</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
@@ -2160,6 +2153,35 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_enter_proxy_address">Rhowch gyfeiriad dirprwy</string>
   <string name="configurable_single_select__customize_option">Cyfaddasu opsiwn</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Y Cyfan</string>
+  <string name="PaymentsAllActivityFragment__sent">Anfonwyd</string>
+  <string name="PaymentsAllActivityFragment__received">Derbyniwyd</string>
+  <string name="PaymentsHomeFragment__see_all">Gweld y cyfan</string>
+  <string name="PaymentsHomeFragment__send">Anfon</string>
+  <string name="PaymentsHomeFragment__help">Cymorth</string>
+  <string name="PaymentsHomeFragment__continue">Parhau</string>
+  <string name="PaymentsHomeFragment__details">Manylion</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copïo</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Manylion</string>
+  <string name="PaymentsDetailsFragment__status">Statws</string>
+  <string name="PaymentsDetailsFragment__to">At</string>
+  <string name="PaymentsDetailsFragment__from">Oddi wrth</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Sganio côd QR</string>
+  <string name="PaymentsTransferFragment__next">Nesaf</string>
+  <string name="PaymentsTransferFragment__settings">Gosodiadau</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Gofyn</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">At</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2602,6 +2624,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Mae eich cyfrif Signal wedi\'i drosglwyddo i\'ch dyfais newydd, ond mae\'n rhaid i chi gwblhau cofrestriad arno i barhau. Ni fydd y Signal yn weithredol ar y ddyfais hon.</string>
   <string name="OldDeviceTransferLockedDialog__done">Wedi Gorffen</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Diddymu a gweithredu\'r ddyfais hon</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Rhwystro</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>
@@ -2752,5 +2775,26 @@ Send neges heb ei ddiogelu?</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Gosod papur wal ar gyfer %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Gwall wrth osod papur wal.</string>
   <string name="WallpaperCropActivity__blur_photo">Pylu llun</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Cuddio</string>
+  <string name="payment_info_card_update_pin">Diweddaru PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Nesaf</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Nesaf</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Golygu</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copïo</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Wedi Gorffen</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Nesaf</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Golwg</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Anfon neges</string>
   <!--EOF-->
 </resources>

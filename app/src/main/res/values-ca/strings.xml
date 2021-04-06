@@ -2016,6 +2016,45 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_enter_proxy_address">Introduïu l\'adreça del servidor intermediari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Tot</string>
+  <string name="PaymentsAllActivityFragment__sent">Enviament</string>
+  <string name="PaymentsAllActivityFragment__received">Rebut</string>
+  <string name="PaymentsHomeFragment__see_all">Mostra-ho tot</string>
+  <string name="PaymentsHomeFragment__send">Envia</string>
+  <string name="PaymentsHomeFragment__help">Ajuda</string>
+  <string name="PaymentsHomeFragment__continue">Continua</string>
+  <string name="PaymentsHomeFragment__details">Detalls</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copia</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiat al porta-retalls</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detalls</string>
+  <string name="PaymentsDetailsFragment__status">Estat</string>
+  <string name="PaymentsDetailsFragment__to">A</string>
+  <string name="PaymentsDetailsFragment__from">De</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Escaneja el codi QR</string>
+  <string name="PaymentsTransferFragment__next">Següent</string>
+  <string name="PaymentsTransferFragment__settings">Configuració</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Sol·licitud</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">A</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2444,6 +2483,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">El compte de Signal s\'ha transferit al dispositiu nou, però heu de completar el registre per continuar. El Signal estarà inactiu en aquest dispositiu.</string>
   <string name="OldDeviceTransferLockedDialog__done">Fet</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancel·la-ho i activa aquest dispositiu</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloca</string>
   <string name="RecipientBottomSheet_unblock">Desbloca</string>
@@ -2590,5 +2630,26 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Estableix el fons per a %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Error en establir el fons.</string>
   <string name="WallpaperCropActivity__blur_photo">Difumina la fotografia</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Amaga</string>
+  <string name="payment_info_card_update_pin">Actualitza el PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Següent</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Següent</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Edita</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copia</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Fet</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Següent</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Mostra</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Envia un missatge</string>
   <!--EOF-->
 </resources>

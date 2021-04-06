@@ -2021,6 +2021,33 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences_enter_proxy_address">Skriv inn proxy-adresse</string>
   <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Alt</string>
+  <string name="PaymentsAllActivityFragment__sent">Sendt</string>
+  <string name="PaymentsAllActivityFragment__received">Motteken</string>
+  <string name="PaymentsHomeFragment__see_all">Vis alle</string>
+  <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__help">Hjelp</string>
+  <string name="PaymentsHomeFragment__continue">Hald fram</string>
+  <string name="PaymentsHomeFragment__details">Detaljar</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiert til utklippstavla</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detaljar</string>
+  <string name="PaymentsDetailsFragment__to">Til</string>
+  <string name="PaymentsDetailsFragment__from">Frå</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__next">Neste</string>
+  <string name="PaymentsTransferFragment__settings">Innstillingar</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Førespurnad</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Til</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2355,6 +2382,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Ferdig</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokkering</string>
@@ -2501,5 +2529,26 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Vel bakgrunnsbilde for %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Klarte ikkje endra bakgrunnsbilde.</string>
   <string name="WallpaperCropActivity__blur_photo">Gjer bildet uklart</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_update_pin">Oppdater PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Neste</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Neste</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Endra</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Ferdig</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Neste</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Vis</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Send ei melding</string>
   <!--EOF-->
 </resources>

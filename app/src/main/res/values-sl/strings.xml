@@ -1945,13 +1945,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Nekaj ne deluje</item>
-    <item>Predlog za novo funkcijo</item>
-    <item>Vprašanje</item>
-    <item>Odziv</item>
-    <item>Drugo</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -2166,6 +2159,45 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Vse</string>
+  <string name="PaymentsAllActivityFragment__sent">Poslano:</string>
+  <string name="PaymentsAllActivityFragment__received">Prejeto</string>
+  <string name="PaymentsHomeFragment__see_all">Prikaz vseh</string>
+  <string name="PaymentsHomeFragment__send">Pošlji</string>
+  <string name="PaymentsHomeFragment__help">Pomoč</string>
+  <string name="PaymentsHomeFragment__continue">Nadaljuj</string>
+  <string name="PaymentsHomeFragment__details">Podrobnosti</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopiraj</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopirano v odložišče</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Naslovnik</string>
+  <string name="PaymentsDetailsFragment__from">Pošiljatelj</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skeniraj kodo QR</string>
+  <string name="PaymentsTransferFragment__next">Naprej</string>
+  <string name="PaymentsTransferFragment__settings">Nastavitve</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Prošnja</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Naslovnik</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2608,6 +2640,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Vaš račun Signal  je bil uspešno prenešen na novo napravo, vendar morate na njej dokončati proces registracije. Na tej napravi Signal ne bo aktiven.</string>
   <string name="OldDeviceTransferLockedDialog__done">OK</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Prekini in aktiviraj to napravo</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Odblokiraj</string>
@@ -2758,5 +2791,26 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Določi ozadje za uporabnika/co %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Napaka pri nastavitvi ozadja.</string>
   <string name="WallpaperCropActivity__blur_photo">Zabriši fotografijo</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Skrij</string>
+  <string name="payment_info_card_update_pin">Posodobite PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Naprej</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Naprej</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Uredi</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopiraj</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">OK</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Naprej</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Preglej</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Pošlji sporočilo</string>
   <!--EOF-->
 </resources>

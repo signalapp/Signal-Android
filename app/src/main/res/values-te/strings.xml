@@ -2007,6 +2007,35 @@
   <string name="preferences_enter_proxy_address">ప్రాక్సీ చిరునామాను నమోదు చేయండి</string>
   <string name="configurable_single_select__customize_option">అనుకూలీకరించు ఎంపిక</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">అన్ని</string>
+  <string name="PaymentsAllActivityFragment__sent">పంపిన</string>
+  <string name="PaymentsAllActivityFragment__received">అందుకున్న</string>
+  <string name="PaymentsHomeFragment__see_all">అన్నింటిని చూడు</string>
+  <string name="PaymentsHomeFragment__send">పంపు</string>
+  <string name="PaymentsHomeFragment__help">సహాయం</string>
+  <string name="PaymentsHomeFragment__continue">కొనసాగించు</string>
+  <string name="PaymentsHomeFragment__details">వివరాలు</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">నకలు</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">వివరాలు</string>
+  <string name="PaymentsDetailsFragment__status">స్థితి</string>
+  <string name="PaymentsDetailsFragment__to">ఎవరికి</string>
+  <string name="PaymentsDetailsFragment__from">ఎవరి నుండి</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR కోడ్‌ను స్కాన్ చేయండి</string>
+  <string name="PaymentsTransferFragment__next">తరువాత</string>
+  <string name="PaymentsTransferFragment__settings">అమరికలు</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">అభ్యర్థన</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">ఎవరికి</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2342,6 +2371,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">పూర్తి</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">నిరోధించు</string>
   <string name="RecipientBottomSheet_unblock">అనుమతించు</string>
@@ -2488,5 +2518,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s కోసం వాల్‌పేపర్‌ను నిశ్చిత చేయండి.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">వాల్‌పేపర్‌ను సెట్ చేయడంలో లోపం.</string>
   <string name="WallpaperCropActivity__blur_photo">అస్పష్టమైన ఛాయాచిత్రం</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">దాచు</string>
+  <string name="payment_info_card_update_pin">పిన్‌ను నవీకరించండి</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">తరువాత</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">తరువాత</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">సరిచేయు</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">నకలు</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">పూర్తి</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">తరువాత</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">వీక్షణ</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">సందేశం పంపండి</string>
   <!--EOF-->
 </resources>

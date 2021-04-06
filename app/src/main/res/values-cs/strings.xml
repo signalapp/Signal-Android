@@ -1953,13 +1953,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Něco nefunguje</item>
-    <item>Požadavek na funkcionalitu</item>
-    <item>Dotaz</item>
-    <item>Zpětná vazba</item>
-    <item>Ostatní</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -2174,6 +2167,45 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_enter_proxy_address">Zadat adresu proxy</string>
   <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Všichni</string>
+  <string name="PaymentsAllActivityFragment__sent">Odesláno</string>
+  <string name="PaymentsAllActivityFragment__received">Přijato</string>
+  <string name="PaymentsHomeFragment__see_all">Zobrazit vše</string>
+  <string name="PaymentsHomeFragment__send">Odeslat</string>
+  <string name="PaymentsHomeFragment__help">Nápověda</string>
+  <string name="PaymentsHomeFragment__continue">Pokračovat</string>
+  <string name="PaymentsHomeFragment__details">Podrobnosti</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopírovat</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Zkopírováno do schránky</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
+  <string name="PaymentsDetailsFragment__status">Stav</string>
+  <string name="PaymentsDetailsFragment__to">Komu</string>
+  <string name="PaymentsDetailsFragment__from">Od</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Naskenování QR kódu</string>
+  <string name="PaymentsTransferFragment__next">Další</string>
+  <string name="PaymentsTransferFragment__settings">Nastavení</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Požadavek</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Komu</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2616,6 +2648,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Váš Signal účet byl přenesen na nové zařízení, ale je potřeba na něm dokončit registraci pro pokračování. Signal bude neaktivní na tomto zařízení.</string>
   <string name="OldDeviceTransferLockedDialog__done">Hotovo</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Zrušit a aktivovat toto zařízení</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Zablokovat</string>
   <string name="RecipientBottomSheet_unblock">Odblokovat</string>
@@ -2766,5 +2799,26 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Nastavit tapetu pro %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Chyba při nastavování tapety.</string>
   <string name="WallpaperCropActivity__blur_photo">Rozostřit fotografii</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Skrýt</string>
+  <string name="payment_info_card_update_pin">Aktualizovat PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Další</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Další</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Upravit</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopírovat</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Hotovo</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Další</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Zobrazit</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Poslat zprávu</string>
   <!--EOF-->
 </resources>

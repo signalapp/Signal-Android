@@ -1808,13 +1808,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Çalışmayan bir şey var</item>
-    <item>Özellik İsteği</item>
-    <item>Soru</item>
-    <item>Geri Dönüt</item>
-    <item>Diğer</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
@@ -2027,6 +2020,35 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_enter_proxy_address">Vekil sunucu adresi girin</string>
   <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Tümü</string>
+  <string name="PaymentsAllActivityFragment__sent">Gönderildi</string>
+  <string name="PaymentsAllActivityFragment__received">Alındı</string>
+  <string name="PaymentsHomeFragment__see_all">Tümünü gör</string>
+  <string name="PaymentsHomeFragment__send">Gönder</string>
+  <string name="PaymentsHomeFragment__help">Yardım</string>
+  <string name="PaymentsHomeFragment__continue">Devam Et</string>
+  <string name="PaymentsHomeFragment__details">Detaylar</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopyala</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Panoya kopyalandı</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detaylar</string>
+  <string name="PaymentsDetailsFragment__status">Durum</string>
+  <string name="PaymentsDetailsFragment__to">Alıcı</string>
+  <string name="PaymentsDetailsFragment__from">Gönderen</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Karekodu Tara</string>
+  <string name="PaymentsTransferFragment__next">İleri</string>
+  <string name="PaymentsTransferFragment__settings">Ayarlar</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">İstek</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Alıcı</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2455,6 +2477,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal hesabınız yeni cihaza aktarıldı, fakat devam etmek için yeni cihazdan kaydı tamamlamanız gerekiyor. Signal bu cihazda etkin olmayacaktır.</string>
   <string name="OldDeviceTransferLockedDialog__done">Tamam</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">İptal et ve bu cihazı etkinleştir</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
@@ -2601,5 +2624,26 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s için duvar kağıdını ayarlayın.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Duvar kağıdı ayarlanırken hata oluştu.</string>
   <string name="WallpaperCropActivity__blur_photo">Fotoğrafı bulanıklaştır</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Gizle</string>
+  <string name="payment_info_card_update_pin">PIN\'i güncelle</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">İleri</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">İleri</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Düzenle</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopyala</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Tamam</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">İleri</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Görüntüle</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Bir ileti gönderin</string>
   <!--EOF-->
 </resources>

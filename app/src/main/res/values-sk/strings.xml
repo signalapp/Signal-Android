@@ -59,6 +59,7 @@
   <string name="AttachmentKeyboard_location">Poloha</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Na zobrazenie vašich fotiek a videí k nim Signal potrebuje prístup.</string>
   <string name="AttachmentKeyboard_give_access">Udeliť prístup</string>
+  <string name="AttachmentKeyboard_payment">Platba</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nenašla sa aplikácia pre výber médií.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal potrebuje prístup k úložisku aby k správam mohol pridať obrázkové, video a zvukové prílohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
@@ -1953,13 +1954,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__debug_log">Denník ladenia:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodarilo sa nahrať denníky</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Niečo nefunguje</item>
-    <item>Požiadať o novú funkciu</item>
-    <item>Otázka</item>
-    <item>Spätná väzba</item>
-    <item>Iné</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Táto správa</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -2068,6 +2062,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
   <string name="preferences__data_and_storage">Dáta a úložisko</string>
   <string name="preferences__storage">Úložisko</string>
+  <string name="preferences__payments">Platby</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
   <string name="preferences__keep_messages">Ponechať správy</string>
   <string name="preferences__clear_message_history">Vymazať históriu správ</string>
@@ -2174,6 +2169,37 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_enter_proxy_address">Zadajte adresu proxy servera</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Všetko</string>
+  <string name="PaymentsAllActivityFragment__sent">Odoslaná</string>
+  <string name="PaymentsAllActivityFragment__received">Prijatá</string>
+  <string name="PaymentsHomeFragment__see_all">Pozrieť všetky</string>
+  <string name="PaymentsHomeFragment__send">Poslať</string>
+  <string name="PaymentsHomeFragment__help">Pomocník</string>
+  <string name="PaymentsHomeFragment__continue">Pokračovať</string>
+  <string name="PaymentsHomeFragment__details">Podrobnosti</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopírovať</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Skopírované do schránky</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
+  <string name="PaymentsDetailsFragment__status">Stav</string>
+  <string name="PaymentsDetailsFragment__to">Komu</string>
+  <string name="PaymentsDetailsFragment__from">Od</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skenovať QR kód</string>
+  <string name="PaymentsTransferFragment__next">Ďalší</string>
+  <string name="PaymentsTransferFragment__settings">Nastavenia</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Žiadosť</string>
+  <string name="CreatePaymentFragment__pay">Zaplať</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Poznámka</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Komu</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2616,6 +2642,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Váš Signal účet bol presunutý do vášho nového zariadenia, ale musíte v ňom ešte dokončiť registráciu. Signal v tomto zariadení nebude aktívny.</string>
   <string name="OldDeviceTransferLockedDialog__done">Hotovo</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Zrušiť a aktivovať toto zariadenie</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokovať</string>
   <string name="RecipientBottomSheet_unblock">Odblokovať</string>
@@ -2766,5 +2793,29 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Nastaviť pozadie pre %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Chyba pri nastavení pozadia.</string>
   <string name="WallpaperCropActivity__blur_photo">Rozmazať fotku</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Skryť</string>
+  <string name="payment_info_card_update_pin">Aktualizovať PIN kód</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Štart</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Ďalší</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Ďalší</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Upraviť</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Predchádzajúce</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopírovať</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Hotovo</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Ďalší</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Zobraziť</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Ak chcete tomuto používateľovi poslať platbu, musí od vás prijať žiadosť o správu. Pošlite mu správu na vytvorenie žiadosti o správu.</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">Poslať správu</string>
   <!--EOF-->
 </resources>

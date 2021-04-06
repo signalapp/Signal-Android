@@ -1792,13 +1792,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpFragment__debug_log">Aɣmis n temseɣtayt:</string>
   <string name="HelpFragment__could_not_upload_logs">Ur yezmir ara ad d-isali iɣmisen</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ttxil-k·m ɛreḍ ayen yellan fell-ak·am amek ara ad d-tgelmeḍ ugur i wakken ad aɣ-talleḍ ad t-negzu.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Yella wayen ur nteddu ara</item>
-    <item>Asuter n tmahilt</item>
-    <item>Asteqsi</item>
-    <item>Tiririt</item>
-    <item>Ayen nniḍen</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Izen-agi</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yesttwaseqdec melmi kan</string>
@@ -2009,6 +2002,30 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_enter_proxy_address">Sekcem tansa n upṛuksi</string>
   <string name="configurable_single_select__customize_option">Taxtiṛt tudmawant</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Akk</string>
+  <string name="PaymentsAllActivityFragment__sent">Ttwazanen</string>
+  <string name="PaymentsAllActivityFragment__received">Yettwarmes</string>
+  <string name="PaymentsHomeFragment__see_all">Wali akk</string>
+  <string name="PaymentsHomeFragment__send">Azen</string>
+  <string name="PaymentsHomeFragment__help">Tallalt</string>
+  <string name="PaymentsHomeFragment__continue">Kemmel</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Nɣel</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Aḍris yettwanɣel ɣef afus</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__status">Addad</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Semḍen tangalt QR</string>
+  <string name="PaymentsTransferFragment__next">Ɣer zdat</string>
+  <string name="PaymentsTransferFragment__settings">Iɣewwaṛen</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Suter</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2389,6 +2406,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Yemmed</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Sefsex yerna rmed ibenk-agi</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Sewḥel</string>
   <string name="RecipientBottomSheet_unblock">Serreḥ</string>
@@ -2535,5 +2553,25 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Sbadu agilal n ugdil i %s</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Tuccḍa deg usbadu n ugilal n ugdil.</string>
   <string name="WallpaperCropActivity__blur_photo">Tawlaft yerwin</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Ffer</string>
+  <string name="payment_info_card_update_pin">Snifel PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Ɣer zdat</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Ɣer zdat</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Ẓreg</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Nɣel</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Yemmed</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Ɣer zdat</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Askan</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
   <!--EOF-->
 </resources>

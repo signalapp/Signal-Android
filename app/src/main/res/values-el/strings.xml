@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Τοποθεσία</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Το Signal χρειάζεται άδεια για να εμφανίσει τις φωτογραφίες και τα βίντεό σου.</string>
   <string name="AttachmentKeyboard_give_access">Να δοθεί πρόσβαση</string>
+  <string name="AttachmentKeyboard_payment">Πληρωμή</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί εφαρμογή για επιλογή πολυμέσων.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio"> Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για την επισύναψη φωτογραφιών, βίντεο ή κομματιών ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\". </string>
@@ -1804,13 +1805,6 @@
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Κάτι δε δουλεύει</item>
-    <item>Αίτημα νέας δυνατότητας</item>
-    <item>Ερώτηση</item>
-    <item>Σχόλια</item>
-    <item>Άλλο</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Αυτό το μήνυμα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
@@ -1917,6 +1911,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
   <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
+  <string name="preferences__payments">Πληρωμές</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
   <string name="preferences__clear_message_history">Εκκαθάριση ιστορικού μηνυμάτων</string>
@@ -2023,6 +2018,37 @@
   <string name="preferences_enter_proxy_address">Εισαγωγή διεύθυνσης proxy</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
+  <string name="PaymentsAllActivityFragment__sent">Στάλθηκε στις</string>
+  <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
+  <string name="PaymentsHomeFragment__see_all">Προβολή όλων</string>
+  <string name="PaymentsHomeFragment__send">Αποστολή</string>
+  <string name="PaymentsHomeFragment__help">Βοήθεια</string>
+  <string name="PaymentsHomeFragment__continue">Συνέχεια</string>
+  <string name="PaymentsHomeFragment__details">Λεπτομέρειες</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Αντιγραφή</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Λεπτομέρειες</string>
+  <string name="PaymentsDetailsFragment__status">Κατάσταση</string>
+  <string name="PaymentsDetailsFragment__to">Προς</string>
+  <string name="PaymentsDetailsFragment__from">Από</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Σκανάρισμα κωδικού QR</string>
+  <string name="PaymentsTransferFragment__next">Επόμενο</string>
+  <string name="PaymentsTransferFragment__settings">Ρυθμίσεις</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Αίτημα</string>
+  <string name="CreatePaymentFragment__pay">Πληρωμή</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Σημείωση</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Προς</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2451,6 +2477,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ο λογαριασμός Signal σου έχουν μεταφερθεί στη νέα σου συσκευή, αλλά  πρέπει να συνεχίσεις την εγγραφή εκεί για να συνεχίσεις. Το Signal θα είναι ανενεργό σε αυτή τη συσκευή.</string>
   <string name="OldDeviceTransferLockedDialog__done">Τέλος</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Ακύρωση και ενεργοποίηση αυτής της συσκευής</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Φραγή</string>
   <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>
@@ -2597,5 +2624,28 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Ορισμός ταπετσαρίας για %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Σφάλμα κατά τον ορισμό ταπετσαρίας.</string>
   <string name="WallpaperCropActivity__blur_photo">Θόλωμα φωτογραφίας</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Απόκρυψη</string>
+  <string name="payment_info_card_update_pin">Ανανέωση PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Εκκίνηση</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Επόμενο</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Επόμενο</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Eπεξεργασία</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Προηγούμενο</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Αντιγραφή</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Τέλος</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Επόμενο</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Εμφάνιση</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Στείλε ένα μήνυμα</string>
   <!--EOF-->
 </resources>

@@ -1734,13 +1734,6 @@
   <string name="HelpFragment__debug_log">Debug မှတ်တမ်း -</string>
   <string name="HelpFragment__could_not_upload_logs">မှတ်တမ်းများကို တင်၍ မရပါ</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ပြtheနာကိုကျွန်တော်တို့နားလည်စေရန်တတ်နိုင်သမျှဖော်ပြပေးပါ။</string>
-  <string-array name="HelpFragment__categories">
-    <item> အရာရာ တစ်ခုခု လုပ်ဆောင်၍မရပါ </item>
-    <item> အင်္ဂါရပ် တောင်းဆိုချက် </item>
-    <item> မေးခွန်း </item>
-    <item> တုံ့ပြန်ချက် </item>
-    <item> အခြား </item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ဒီစာ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">လတ်တလော သုံးစွဲမှု</string>
@@ -1952,6 +1945,30 @@
   <string name="preferences_enter_proxy_address">proxy လိပ်စာကိုထည့်ပါ</string>
   <string name="configurable_single_select__customize_option">option ကိုစိတ်ကြိုက်</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">တက်ရောက်သူအားလုံး</string>
+  <string name="PaymentsAllActivityFragment__sent">ပို့ပြီးပြီ</string>
+  <string name="PaymentsAllActivityFragment__received">လက်ခံရရှိပြီး</string>
+  <string name="PaymentsHomeFragment__see_all">အားလုံးကြည့်မည်</string>
+  <string name="PaymentsHomeFragment__send">ပေးပို့မည်</string>
+  <string name="PaymentsHomeFragment__help">အကူအညီ</string>
+  <string name="PaymentsHomeFragment__continue">ဆက်လုပ်ရန်</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">ကူးမည်</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ကူးယူပြီး</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__status">အခြေအနေ</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR ကုတ်ကို စကန်ဖတ်ပါ</string>
+  <string name="PaymentsTransferFragment__next">နောက်ထက်</string>
+  <string name="PaymentsTransferFragment__settings">အပြင်အဆင်များ</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">တောင်းခံ</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2373,6 +2390,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">သင့် စက်အသစ်ပေါ်သို့ သင့် Signal အကောင့်အား လွှဲပြောင်းပြီးပါပြီ။ သို့သော်လည်း သင်သည် လော့အင်ဝင်ခြင်း ပြီးဆုံးရပါမည်။ ဤစက်ပေါ်တွင် Signal အလုပ်မဝင်တော့ပါ။</string>
   <string name="OldDeviceTransferLockedDialog__done">ပြီးပြီ </string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ပယ်ဖျက်ပြီး ဤစက်အား ဖွင့်မယ်</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">တားမြစ်မည်</string>
   <string name="RecipientBottomSheet_unblock">ပြန်ဖွင့်မည်</string>
@@ -2517,5 +2535,25 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s"> %s အတွက်နောက်ခံပုံထားမည်</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">နောက်ခံပုံပြင်ဆင်ခြင်းအမှားအယွင်း</string>
   <string name="WallpaperCropActivity__blur_photo">ဓာတ်ပုံမှုန်ထားမည်</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">ဝှက်ပါ</string>
+  <string name="payment_info_card_update_pin">PIN နံပါတ်ကိုအသစ်ပြောင်းပါ</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">နောက်ထက်</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">နောက်ထက်</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">ပြင်ရန်</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">ကူးမည်</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">ပြီးပါပြီ။</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">နောက်ထက်</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">ကြည့်မည်။</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
   <!--EOF-->
 </resources>

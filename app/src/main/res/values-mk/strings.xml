@@ -1791,13 +1791,6 @@
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Нешто не работи</item>
-    <item>Барање за опција</item>
-    <item>Прашање</item>
-    <item>Повратни информации</item>
-    <item>Друго</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Скорешни</string>
@@ -2008,6 +2001,35 @@
   <string name="preferences_enter_proxy_address">Внесете proxy адреса</string>
   <string name="configurable_single_select__customize_option">Сопствена опција</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Сите</string>
+  <string name="PaymentsAllActivityFragment__sent">Испратено</string>
+  <string name="PaymentsAllActivityFragment__received">Примено</string>
+  <string name="PaymentsHomeFragment__see_all">Види сѐ</string>
+  <string name="PaymentsHomeFragment__send">Испрати</string>
+  <string name="PaymentsHomeFragment__help">Помош</string>
+  <string name="PaymentsHomeFragment__continue">Продолжи</string>
+  <string name="PaymentsHomeFragment__details">Детали</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Копирај</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Ископирано на таблата со исечоци</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Детали</string>
+  <string name="PaymentsDetailsFragment__status">Статус</string>
+  <string name="PaymentsDetailsFragment__to">До</string>
+  <string name="PaymentsDetailsFragment__from">Од</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Скенирајте го QR кодот</string>
+  <string name="PaymentsTransferFragment__next">Следно</string>
+  <string name="PaymentsTransferFragment__settings">Поставувања</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Барање</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">До</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2426,6 +2448,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Вашата Signal сметка е префрлена на Вашиот нов уред но мора да ја завршите регистрацијата на истиот за да продолжите. Signal ќе стане неактивен на овој уред.</string>
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажи и активирај го овој уред</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>
@@ -2572,5 +2595,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Постави позадина за %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Грешка при поставување на позадина.</string>
   <string name="WallpaperCropActivity__blur_photo">Замагли слика.</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Сокриј</string>
+  <string name="payment_info_card_update_pin">Ажурирај PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Следно</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Следно</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Следно</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Преглед</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>
   <!--EOF-->
 </resources>

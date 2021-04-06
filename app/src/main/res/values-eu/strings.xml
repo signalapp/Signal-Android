@@ -2005,6 +2005,45 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Denak</string>
+  <string name="PaymentsAllActivityFragment__sent">Bidalita</string>
+  <string name="PaymentsAllActivityFragment__received">Jasota</string>
+  <string name="PaymentsHomeFragment__see_all">Ikusi denak</string>
+  <string name="PaymentsHomeFragment__send">Bidali</string>
+  <string name="PaymentsHomeFragment__help">Laguntza</string>
+  <string name="PaymentsHomeFragment__continue">Jarraitu</string>
+  <string name="PaymentsHomeFragment__details">Xehetasunak</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopiatu</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Arbelera kopiatuta</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Xehetasunak</string>
+  <string name="PaymentsDetailsFragment__status">Egoera</string>
+  <string name="PaymentsDetailsFragment__to">Hartzailea:</string>
+  <string name="PaymentsDetailsFragment__from">Igorlea:</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR kodea eskaneatu</string>
+  <string name="PaymentsTransferFragment__next">Hurrengoa</string>
+  <string name="PaymentsTransferFragment__settings">Ezarpenak</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Eskaera</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Hartzailea:</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2342,6 +2381,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Eginda</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokeatu</string>
   <string name="RecipientBottomSheet_unblock">Desblokeatu</string>
@@ -2486,5 +2526,26 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Errorea gertatu da %s elkarrizketan hormairudia ezartzean.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Errorea gertatu da hormairudia ezartzean.</string>
   <string name="WallpaperCropActivity__blur_photo">Lausotu argazkia</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Ezkutatu</string>
+  <string name="payment_info_card_update_pin">Eguneratu PINa</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Hurrengoa</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Hurrengoa</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Editatu</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopiatu</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Eginda</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Hurrengoa</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Ikusi</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Bidali mezua</string>
   <!--EOF-->
 </resources>

@@ -1804,13 +1804,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Det er noe som ikke virker</item>
-    <item>Foreslå nye funksjoner</item>
-    <item>Hvordan kan jeg … ?</item>
-    <item>Tilbakemeldinger</item>
-    <item>Annet</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
@@ -2023,6 +2016,45 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_enter_proxy_address">Skriv inn proxy-adressen</string>
   <string name="configurable_single_select__customize_option">Tilpass opsjon</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Alle</string>
+  <string name="PaymentsAllActivityFragment__sent">Sendt</string>
+  <string name="PaymentsAllActivityFragment__received">Mottatt</string>
+  <string name="PaymentsHomeFragment__see_all">Se alle</string>
+  <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__help">Hjelp</string>
+  <string name="PaymentsHomeFragment__continue">Fortsett</string>
+  <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiert til utklippstavle</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detaljer</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Til</string>
+  <string name="PaymentsDetailsFragment__from">Fra</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skann QR-kode</string>
+  <string name="PaymentsTransferFragment__next">Neste</string>
+  <string name="PaymentsTransferFragment__settings">Innstillinger</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Forespør</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Til</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2451,6 +2483,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-kontoen din er overført til ny enhet, men du må ferdigstille registreringen på den for å fortsette. Signal vil bli inaktiv på denne enheten.</string>
   <string name="OldDeviceTransferLockedDialog__done">Ferdig</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Kanseller og aktiver denne enheten</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Skru av blokkering</string>
@@ -2597,5 +2630,26 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Sett bakgrunn for %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Feil ved lagring av bakgrunn.</string>
   <string name="WallpaperCropActivity__blur_photo">Gjør bildet uskarpt</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_update_pin">Oppdater PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Neste</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Neste</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Rediger</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Ferdig</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Neste</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Vis</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Send en melding</string>
   <!--EOF-->
 </resources>

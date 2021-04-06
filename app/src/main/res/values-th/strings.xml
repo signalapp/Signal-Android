@@ -1725,13 +1725,6 @@
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
-  <string-array name="HelpFragment__categories">
-    <item>มีบางอย่างใช้การไม่ได้</item>
-    <item>ต้องการฟีเจอร์ใหม่</item>
-    <item>มีคำถาม</item>
-    <item>ข้อเสนอแนะ</item>
-    <item>อื่นๆ</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
@@ -1942,6 +1935,35 @@
   <string name="preferences_enter_proxy_address">ป้อนที่อยู่พร็อกซี</string>
   <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">ทั้งหมด</string>
+  <string name="PaymentsAllActivityFragment__sent">ส่งแล้ว</string>
+  <string name="PaymentsAllActivityFragment__received">ได้รับแล้ว</string>
+  <string name="PaymentsHomeFragment__see_all">ดูทั้งหมด</string>
+  <string name="PaymentsHomeFragment__send">ส่ง</string>
+  <string name="PaymentsHomeFragment__help">ช่วยเหลือ</string>
+  <string name="PaymentsHomeFragment__continue">ทำต่อ</string>
+  <string name="PaymentsHomeFragment__details">รายละเอียด</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">คัดลอก</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">รายละเอียด</string>
+  <string name="PaymentsDetailsFragment__status">สถานะ</string>
+  <string name="PaymentsDetailsFragment__to">ถึง</string>
+  <string name="PaymentsDetailsFragment__from">จาก</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">สแกนรหัส QR</string>
+  <string name="PaymentsTransferFragment__next">ถัดไป</string>
+  <string name="PaymentsTransferFragment__settings">การตั้งค่า</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">คำขอ</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">ถึง</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2363,6 +2385,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">บัญชี Signal ของคุณได้รับการถ่ายโอนไปยังอุปกรณ์เครื่องใหม่ของคุณ แต่คุณจะต้องลงทะเบียนให้แล้วเสร็จเพื่อดำเนินการต่อ โดย Signal จะยังคงไม่เปิดใช้งานบนอุปกรณ์เครื่องนี้</string>
   <string name="OldDeviceTransferLockedDialog__done">เสร็จสิ้น</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ยกเลิกและเปิดใช้งานอุปกรณ์เครื่องนี้</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ปิดกั้น</string>
   <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
@@ -2507,5 +2530,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">ตั้งภาพพื้นหลังสำหรับ %s</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">เกิดข้อผิดพาดในการตั้งภาพพื้นหลัง</string>
   <string name="WallpaperCropActivity__blur_photo">เบลอภาพ</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">ซ่อน</string>
+  <string name="payment_info_card_update_pin">เปลี่ยนรหัส PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">ถัดไป</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">ถัดไป</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">แก้ไข</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">คัดลอก</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">เสร็จสิ้น</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">ถัดไป</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">ดู</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">ส่งข้อความ</string>
   <!--EOF-->
 </resources>

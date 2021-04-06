@@ -1723,13 +1723,6 @@
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
-  <string-array name="HelpFragment__categories">
-    <item>機能の不具合</item>
-    <item>機能のリクエスト</item>
-    <item>質問</item>
-    <item>フィードバック</item>
-    <item>その他</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -1941,6 +1934,35 @@
   <string name="preferences_enter_proxy_address">プロキシアドレスを入力してください</string>
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">全員</string>
+  <string name="PaymentsAllActivityFragment__sent">送信</string>
+  <string name="PaymentsAllActivityFragment__received">受信</string>
+  <string name="PaymentsHomeFragment__see_all">すべて表示</string>
+  <string name="PaymentsHomeFragment__send">送信する</string>
+  <string name="PaymentsHomeFragment__help">ヘルプ</string>
+  <string name="PaymentsHomeFragment__continue">続ける</string>
+  <string name="PaymentsHomeFragment__details">詳細</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">コピー</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">クリップボードにコピーしました</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">詳細</string>
+  <string name="PaymentsDetailsFragment__status">状態</string>
+  <string name="PaymentsDetailsFragment__to">宛先</string>
+  <string name="PaymentsDetailsFragment__from">差出人</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QRコードをスキャンする</string>
+  <string name="PaymentsTransferFragment__next">次へ</string>
+  <string name="PaymentsTransferFragment__settings">設定</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">申請</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">宛先</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2358,6 +2380,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">あなたのSignalアカウントは新しい端末に移行しましたが、続けるには新しい端末で登録を完了する必要があります。この端末のSignalは、無効になります。</string>
   <string name="OldDeviceTransferLockedDialog__done">完了</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">キャンセルしてこの端末をアクティベート</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ブロック</string>
   <string name="RecipientBottomSheet_unblock">ブロック解除</string>
@@ -2502,5 +2525,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s の壁紙を設定します。</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">壁紙の設定でエラーが発生しました。</string>
   <string name="WallpaperCropActivity__blur_photo">写真をぼかす</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">閉じる</string>
+  <string name="payment_info_card_update_pin">PINをアップデート</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">次へ</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">次へ</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">編集</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">コピー</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">完了</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">次へ</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">表示する</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">メッセージ送信</string>
   <!--EOF-->
 </resources>

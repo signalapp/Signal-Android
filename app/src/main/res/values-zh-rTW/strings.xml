@@ -1734,13 +1734,6 @@
   <string name="HelpFragment__debug_log">偵錯紀錄:</string>
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
-  <string-array name="HelpFragment__categories">
-    <item>操作異常</item>
-    <item>功能請求</item>
-    <item>提問</item>
-    <item>意見反映</item>
-    <item>其他</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用的</string>
@@ -1952,6 +1945,35 @@
   <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
   <string name="configurable_single_select__customize_option">自定義選項</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">全部</string>
+  <string name="PaymentsAllActivityFragment__sent">傳送時間</string>
+  <string name="PaymentsAllActivityFragment__received">接收時間</string>
+  <string name="PaymentsHomeFragment__see_all">查看全部</string>
+  <string name="PaymentsHomeFragment__send">傳送</string>
+  <string name="PaymentsHomeFragment__help">幫助</string>
+  <string name="PaymentsHomeFragment__continue">繼續</string>
+  <string name="PaymentsHomeFragment__details">細節</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">複製</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">已複製到剪貼簿</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">細節</string>
+  <string name="PaymentsDetailsFragment__status">狀態</string>
+  <string name="PaymentsDetailsFragment__to">至</string>
+  <string name="PaymentsDetailsFragment__from">來自</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">掃描 QR code</string>
+  <string name="PaymentsTransferFragment__next">下一步</string>
+  <string name="PaymentsTransferFragment__settings">設定</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">要求</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">至</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2373,6 +2395,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">你的 Signal 帳號已轉移到你的新裝置，惟你必須在該裝置上完成註冊才能繼續。此裝置上的 Signal 亦隨之停用。</string>
   <string name="OldDeviceTransferLockedDialog__done">完成</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消並啟動此裝置</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>
@@ -2517,5 +2540,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">為 %s 設定壁紙。</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">設定壁紙錯誤。</string>
   <string name="WallpaperCropActivity__blur_photo">模糊照片</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">隱藏</string>
+  <string name="payment_info_card_update_pin">更新 PIN 碼</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">下一步</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">下一步</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">編輯</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">複製</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">完成</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">下一步</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">檢視</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">傳送一則訊息</string>
   <!--EOF-->
 </resources>

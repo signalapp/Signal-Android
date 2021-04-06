@@ -1930,6 +1930,35 @@
   <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">모두</string>
+  <string name="PaymentsAllActivityFragment__sent">보낸 시간</string>
+  <string name="PaymentsAllActivityFragment__received">받은 시간</string>
+  <string name="PaymentsHomeFragment__see_all">모두 보기</string>
+  <string name="PaymentsHomeFragment__send">보내기</string>
+  <string name="PaymentsHomeFragment__help">도움말</string>
+  <string name="PaymentsHomeFragment__continue">계속</string>
+  <string name="PaymentsHomeFragment__details">세부 정보</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">복사</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">클립보드로 복사됨</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">세부 정보</string>
+  <string name="PaymentsDetailsFragment__status">상태</string>
+  <string name="PaymentsDetailsFragment__to">받는이:</string>
+  <string name="PaymentsDetailsFragment__from">보낸이:</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR 코드 스캔</string>
+  <string name="PaymentsTransferFragment__next">다음</string>
+  <string name="PaymentsTransferFragment__settings">설정</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">요청</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">받는이:</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2258,6 +2287,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">확인</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">차단</string>
   <string name="RecipientBottomSheet_unblock">차단 해제</string>
@@ -2400,5 +2430,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s에 배경 설정하기.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">배경 설정 중 문제가 발생했습니다.</string>
   <string name="WallpaperCropActivity__blur_photo">사진 블러하기</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">숨기기</string>
+  <string name="payment_info_card_update_pin">번호 업데이트</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">다음</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">다음</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">수정</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">복사</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">확인</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">다음</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">보기</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">메시지 보내기</string>
   <!--EOF-->
 </resources>

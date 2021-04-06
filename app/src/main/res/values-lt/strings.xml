@@ -1942,13 +1942,6 @@
   <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Kažkas neveikia</item>
-    <item>Prašymas pridėti naują ypatybę</item>
-    <item>Klausimas</item>
-    <item>Atsiliepimas</item>
-    <item>Kita</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Paskiausi</string>
@@ -2163,6 +2156,35 @@
   <string name="preferences_enter_proxy_address">Įveskite įgaliotojo serverio adresą</string>
   <string name="configurable_single_select__customize_option">Tinkinti parinktį</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Visi</string>
+  <string name="PaymentsAllActivityFragment__sent">Išsiųsta</string>
+  <string name="PaymentsAllActivityFragment__received">Gauta</string>
+  <string name="PaymentsHomeFragment__see_all">Rodyti visus</string>
+  <string name="PaymentsHomeFragment__send">Siųsti</string>
+  <string name="PaymentsHomeFragment__help">Pagalba</string>
+  <string name="PaymentsHomeFragment__continue">Tęsti</string>
+  <string name="PaymentsHomeFragment__details">Išsamesnė informacija</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopijuoti</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Išsamesnė informacija</string>
+  <string name="PaymentsDetailsFragment__status">Būsena</string>
+  <string name="PaymentsDetailsFragment__to">Kam</string>
+  <string name="PaymentsDetailsFragment__from">Nuo</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skenuoti QR kodą</string>
+  <string name="PaymentsTransferFragment__next">Kitas</string>
+  <string name="PaymentsTransferFragment__settings">Nustatymai</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Prašyti</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Kam</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2605,6 +2627,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Jūsų Signal paskyra perkelta į naująjį įrenginį, bet norėdami tęsti, privalote jame užbaigti registraciją. Signal šiame įrenginyje bus neveikli.</string>
   <string name="OldDeviceTransferLockedDialog__done">Atlikta</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Atsisakyti ir aktyvuoti šį įrenginį</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
@@ -2755,5 +2778,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Nustatytas fonas, skirtas %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Klaida nustatant foną.</string>
   <string name="WallpaperCropActivity__blur_photo">Sulieti nuotrauką</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Slėpti</string>
+  <string name="payment_info_card_update_pin">Atnaujinti PIN kodą</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Kitas</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Kitas</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Taisyti</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopijuoti</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Atlikta</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Kitas</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Rodyti</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Siųsti žinutę</string>
   <!--EOF-->
 </resources>

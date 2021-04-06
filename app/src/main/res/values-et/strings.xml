@@ -1795,13 +1795,6 @@
   <string name="HelpFragment__debug_log">Silumisinfo:</string>
   <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Miski ei tööta</item>
-    <item>Funktsioonisoov</item>
-    <item>Küsimus</item>
-    <item>Tagasiside</item>
-    <item>Muu</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">See sõnum</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Hiljuti kasutatud</string>
@@ -2012,6 +2005,35 @@
   <string name="preferences_enter_proxy_address">Sisesta puhverserveri aadress</string>
   <string name="configurable_single_select__customize_option">Kohanda valikut</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Kõik</string>
+  <string name="PaymentsAllActivityFragment__sent">Saadetud</string>
+  <string name="PaymentsAllActivityFragment__received">Saadud</string>
+  <string name="PaymentsHomeFragment__see_all">Näita kõiki</string>
+  <string name="PaymentsHomeFragment__send">Saada</string>
+  <string name="PaymentsHomeFragment__help">Abi</string>
+  <string name="PaymentsHomeFragment__continue">Jätka</string>
+  <string name="PaymentsHomeFragment__details">Üksikasjad</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopeeri</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Lõikelauale kopeeritud</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Üksikasjad</string>
+  <string name="PaymentsDetailsFragment__status">Olek</string>
+  <string name="PaymentsDetailsFragment__to">Saaja</string>
+  <string name="PaymentsDetailsFragment__from">Saatja</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skanni QR-kood</string>
+  <string name="PaymentsTransferFragment__next">Edasi</string>
+  <string name="PaymentsTransferFragment__settings">Sätted</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Taotlus</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Saaja</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2401,6 +2423,7 @@
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Tehtud</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Loobu ja aktiveeri see seade</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokeeri</string>
   <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>
@@ -2547,5 +2570,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Määra taustapilt %s jaoks.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustapildi määramisel tekkis tõrge.</string>
   <string name="WallpaperCropActivity__blur_photo">Hägusta foto</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Peida</string>
+  <string name="payment_info_card_update_pin">Uuenda PIN-koodi</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Edasi</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Edasi</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Muuda</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopeeri</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Tehtud</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Edasi</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Näita</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Saada sõnum</string>
   <!--EOF-->
 </resources>

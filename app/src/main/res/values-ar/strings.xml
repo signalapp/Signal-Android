@@ -61,6 +61,7 @@
   <string name="AttachmentKeyboard_location">الموقع الجغرافي</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج Signal إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
   <string name="AttachmentKeyboard_give_access">منح الصلاحيات</string>
+  <string name="AttachmentKeyboard_payment">دفع مال</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن الوصول إلى التخزين من أجل إرفاق الصور والفيديوهات والملفّات الصوتيّة، ولكن الإذن لم يُمنح  بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثمّ تفعيل \"سعة التخزين\".</string>
@@ -736,6 +737,7 @@
   <string name="ManageGroupActivity_mentions">الرسائل التي ذُكر فيها اسمك</string>
   <string name="ManageGroupActivity_chat_wallpaper">خلفية المحادثة</string>
   <string name="ManageGroupActivity_until_s">حتى %1$s</string>
+  <string name="ManageGroupActivity_always">دائمًا</string>
   <string name="ManageGroupActivity_off">غير مشغل</string>
   <string name="ManageGroupActivity_on">مُشغَّل</string>
   <string name="ManageGroupActivity_view_all_members">إظهار جميع الأعضاء</string>
@@ -790,6 +792,7 @@
   <string name="ManageRecipientActivity_mute_notifications">كتم الإشعارات</string>
   <string name="ManageRecipientActivity_custom_notifications">إشعارات مخصصة</string>
   <string name="ManageRecipientActivity_until_s">حتى %1$s</string>
+  <string name="ManageRecipientActivity_always">دائمًا</string>
   <string name="ManageRecipientActivity_off">غير مُشغَّل</string>
   <string name="ManageRecipientActivity_on">مُشغَّل</string>
   <string name="ManageRecipientActivity_add_to_a_group">إضافة إلى مجموعة</string>
@@ -2080,13 +2083,6 @@
   <string name="HelpFragment__debug_log">سِجل التصحيح :</string>
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
-  <string-array name="HelpFragment__categories">
-    <item>شيء ما لا يشتغل</item>
-    <item>طلب ميزة جديدة</item>
-    <item>سؤال</item>
-    <item>ملاحظة</item>
-    <item>شيء آخر</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
@@ -2105,6 +2101,7 @@
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
   <string name="arrays__mute_for_one_day">كتم لمدة يوم</string>
   <string name="arrays__mute_for_seven_days">كتم لمدة سبعة أيام</string>
+  <string name="arrays__always">دائمًا</string>
   <string name="arrays__settings_default">الإعدادات الافتراضية</string>
   <string name="arrays__enabled">مفعل</string>
   <string name="arrays__disabled">معطل</string>
@@ -2195,6 +2192,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
   <string name="preferences__data_and_storage">البيانات والتخزين</string>
   <string name="preferences__storage">التخزين</string>
+  <string name="preferences__payments">المدفوعات</string>
+  <string name="preferences__payments_beta">المدفوعات (تجريبي)</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__keep_messages">احتفظ بالرسائل</string>
   <string name="preferences__clear_message_history">محو محفوظات الرسائل</string>
@@ -2301,6 +2300,48 @@
   <string name="preferences_enter_proxy_address">عليك بإدخال عنوان الوكيل</string>
   <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">الجميع</string>
+  <string name="PaymentsAllActivityFragment__sent">تمّ الارسال</string>
+  <string name="PaymentsAllActivityFragment__received">تمَّ الاستلام</string>
+  <string name="PaymentsHomeFragment__see_all">مشاهدة الكل</string>
+  <string name="PaymentsHomeFragment__send">إرسال</string>
+  <string name="PaymentsHomeFragment__help">المُساعدة</string>
+  <string name="PaymentsHomeFragment__continue">الاِستِمرار</string>
+  <string name="PaymentsHomeFragment__details">التفاصيل</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">عنوان محفظتك</string>
+  <string name="PaymentsAddMoneyFragment__copy">نسخ</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">تم النسخ إلى الحافظة</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">التفاصيل</string>
+  <string name="PaymentsDetailsFragment__status">الحالة</string>
+  <string name="PaymentsDetailsFragment__to">إلى</string>
+  <string name="PaymentsDetailsFragment__from">مِن</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">مَسح رَمز الاِستِجابَة السَّريعَة</string>
+  <string name="PaymentsTransferFragment__next">التالي</string>
+  <string name="PaymentsTransferFragment__settings">الإعدادات</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">الطلب</string>
+  <string name="CreatePaymentFragment__pay">دَفع</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">مُلاحظة</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">إلى</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2678,6 +2719,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">تمّ</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">حظر</string>
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>
@@ -2832,5 +2874,29 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">ضبط الخلفية لـ %s.‏</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال ضبط الخلفية.</string>
   <string name="WallpaperCropActivity__blur_photo">تضبيب الصورة</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">إخفاء</string>
+  <string name="payment_info_card_update_your_pin">حدِّث الـPIN الخاص بك</string>
+  <string name="payment_info_card_update_pin">تحديث الرقم التعريفي الشخصي</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">البدأ</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">التالي</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">التالي</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">تحرير</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">السابق</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">نسخ</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">تمّ</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">التالي</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">إظهار</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">إرسال رسالة</string>
   <!--EOF-->
 </resources>

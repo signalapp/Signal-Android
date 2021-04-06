@@ -1808,13 +1808,6 @@
   <string name="HelpFragment__debug_log">سازلاش خاتىرىسى:</string>
   <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
-  <string-array name="HelpFragment__categories">
-    <item>كاشىلا كۆرۈلدى</item>
-    <item>ئىقتىدار ئىلتىماسى</item>
-    <item>سوئال</item>
-    <item>ئىنكاس</item>
-    <item>باشقىلار</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">بۇ ئۇچۇر</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">يېقىندا ئىشلىتىلدى</string>
@@ -2027,6 +2020,30 @@
   <string name="preferences_enter_proxy_address">ۋاكالەتچى ئادرېسنى كىرگۈزۈڭ</string>
   <string name="configurable_single_select__customize_option">ئىختىيارىچە تاللاش</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">ھەممىسى</string>
+  <string name="PaymentsAllActivityFragment__sent">يوللانغان</string>
+  <string name="PaymentsAllActivityFragment__received">تاپشۇرۇۋالغان</string>
+  <string name="PaymentsHomeFragment__see_all">ھەممىنى كۆرسەت</string>
+  <string name="PaymentsHomeFragment__send">ئەۋەت</string>
+  <string name="PaymentsHomeFragment__help">ياردەم</string>
+  <string name="PaymentsHomeFragment__continue">داۋاملىق</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">كۆچۈر</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">كېسىش تاختىسىغا كۆچۈرۈش</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__status">ھالىتى</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR كودى تارا</string>
+  <string name="PaymentsTransferFragment__next">كېيىنكىسى</string>
+  <string name="PaymentsTransferFragment__settings">تەڭشەكلەر</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">ئىلتىماس</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2455,6 +2472,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal ھېساباتىڭىز يېڭى ئۈسكىنىڭىزگە يۆتكىلىپ بولدى. ئەمما، ئۇنى داۋاملاشتۇرۇش ئۈچۈن تىزىملىتىشنى تاماملىشىڭىز كېرەك. Signal بۇ ئۈسكىنىدە ئاكتىپلانمايدۇ.</string>
   <string name="OldDeviceTransferLockedDialog__done">بولدى</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">بىكار قىل ۋە بۇ ئۈسكىنىنى ئاكتىپلا</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">چەكلەش</string>
   <string name="RecipientBottomSheet_unblock">قالدۇرۇش</string>
@@ -2601,5 +2619,25 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">ئۈچۈن تام قەغىزى قىلىش %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">تام قەغىزى بېكىتىشتە خاتالىق.</string>
   <string name="WallpaperCropActivity__blur_photo">فوتوگرافنى غۇۋالاشتۇرۇش</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">يوشۇر</string>
+  <string name="payment_info_card_update_pin">PIN يېڭىلا</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">كېيىنكىسى</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">كېيىنكىسى</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">تەھرىر</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">كۆچۈر</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">بولدى</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">كېيىنكىسى</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">كۆرۈش</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
   <!--EOF-->
 </resources>

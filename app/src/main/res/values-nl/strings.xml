@@ -1814,13 +1814,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Er werkt iets niet</item>
-    <item>Verzoek voor nieuwe functionaliteit</item>
-    <item>Vraag</item>
-    <item>Terugkoppeling</item>
-    <item>Iets anders</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -2033,6 +2026,45 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_enter_proxy_address">Voer een proxyadres in</string>
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Alles</string>
+  <string name="PaymentsAllActivityFragment__sent">Verzonden</string>
+  <string name="PaymentsAllActivityFragment__received">Ontvangen</string>
+  <string name="PaymentsHomeFragment__see_all">Alles weergeven</string>
+  <string name="PaymentsHomeFragment__send">Verzend</string>
+  <string name="PaymentsHomeFragment__help">Hulp</string>
+  <string name="PaymentsHomeFragment__continue">Doorgaan</string>
+  <string name="PaymentsHomeFragment__details">Details</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopiëren</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Details</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Naar</string>
+  <string name="PaymentsDetailsFragment__from">Van</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR-code scannen</string>
+  <string name="PaymentsTransferFragment__next">Volgende</string>
+  <string name="PaymentsTransferFragment__settings">Instellingen</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Verzoek</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Naar</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2461,6 +2493,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Je Signalgegevens zijn overgezet naar je nieuwe apparaat, maar om oh overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
   <string name="OldDeviceTransferLockedDialog__done">Klaar</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuleren en dit apparaat activeren</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
@@ -2607,5 +2640,26 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Deze zelf gemaakte achtergrond instellen voor %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
   <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Verbergen</string>
+  <string name="payment_info_card_update_pin">Pincode bijwerken</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Volgende</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Volgende</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Aanpassen</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopiëren</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Klaar</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Volgende</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Weergeven</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Een bericht verzenden</string>
   <!--EOF-->
 </resources>

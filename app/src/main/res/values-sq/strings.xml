@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Vendndodhje</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal-i lyp leje të shfaqë fotot dhe videot tuaja.</string>
   <string name="AttachmentKeyboard_give_access">Lejo Hyrje</string>
+  <string name="AttachmentKeyboard_payment">Pagesë</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
@@ -1810,13 +1811,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Diçka S’Po Funksionon</item>
-    <item>Kërkesë Veçorie</item>
-    <item>Pyetje</item>
-    <item>Përshtypje</item>
-    <item>Tjetër</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
@@ -1923,6 +1917,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
   <string name="preferences__data_and_storage">Të dhëna dhe depozitim</string>
   <string name="preferences__storage">Hapësirë</string>
+  <string name="preferences__payments">Pagesa</string>
+  <string name="preferences__payments_beta">beta</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>
   <string name="preferences__clear_message_history">Spastro historik mesazhesh</string>
@@ -2031,6 +2027,47 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_enter_proxy_address">Jepni adresë ndërmjetësi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Krejt</string>
+  <string name="PaymentsAllActivityFragment__sent">Dërguar më</string>
+  <string name="PaymentsAllActivityFragment__received">Marrë më</string>
+  <string name="PaymentsHomeFragment__activate_payments">Pagesa</string>
+  <string name="PaymentsHomeFragment__see_all">Shihini krejt</string>
+  <string name="PaymentsHomeFragment__send">Dërgoje</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsHomeFragment__help">Ndihmë</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Të çaktivizohen Pagesa?</string>
+  <string name="PaymentsHomeFragment__deactivate">Çaktivizoje</string>
+  <string name="PaymentsHomeFragment__continue">Vazhdo</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">E çaktivizuar</string>
+  <string name="PaymentsHomeFragment__details">Hollësi</string>
+  <string name="PaymentsHomeFragment__activate">Aktivizoje</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Portofol</string>
+  <string name="PaymentsAddMoneyFragment__copy">Kopjoje</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">U kopjua në të papastër</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Hollësi</string>
+  <string name="PaymentsDetailsFragment__status">Gjendje</string>
+  <string name="PaymentsDetailsFragment__to">Për</string>
+  <string name="PaymentsDetailsFragment__from">Nga</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skanoni kodin QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Adresë portofoli Bitcoin (kyç publik)</string>
+  <string name="PaymentsTransferFragment__next">Pasuesi</string>
+  <string name="PaymentsTransferFragment__invalid_address">Adresë e pavlefshme</string>
+  <string name="PaymentsTransferFragment__settings">Rregullime</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Kërkesë</string>
+  <string name="CreatePaymentFragment__pay">Paguani</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Shënim</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Për</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">Krejt Monedhat</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2461,6 +2498,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Llogaria juaj Signal u shpërngul te pajisja juaj e re, por duhet të plotësoni regjistrimin, që të vazhdohet. Signal-i do të jetë joaktiv në këtë pajisje.</string>
   <string name="OldDeviceTransferLockedDialog__done">U bë</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulojeni dhe aktivizoni këtë pajisje</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>
@@ -2607,5 +2645,37 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Caktoni sfond për %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Gabim në vënie sfondi</string>
   <string name="WallpaperCropActivity__blur_photo">Turbulloje foton</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Rreth MobileCoin</string>
+  <string name="payment_info_card_cashing_out">Thyerje çeqesh</string>
+  <string name="payment_info_card_hide">Fshihe</string>
+  <string name="payment_info_card_record_recovery_phrase">Regjistroje</string>
+  <string name="payment_info_card_update_your_pin">Përditësoni PIN-in tuaj</string>
+  <string name="payment_info_card_update_pin">Përditësoni PIN-in</string>
+  <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Çaktivizoje</string>
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsRecoveryStartFragment__start">Fillojeni</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsRecoveryPasteFragment__next">Pasuesi</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Pasuesi</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Përpunojeni</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">E mëprashmja</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Dërgo foto ekrani</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">U rimor</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopjoje</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">U bë</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Pasuesi</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Shihni</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Dërgoni një mesazh</string>
   <!--EOF-->
 </resources>

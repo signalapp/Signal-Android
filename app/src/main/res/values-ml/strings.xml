@@ -1789,13 +1789,6 @@
   <string name="HelpFragment__debug_log">ഡീബഗ് ലോഗ്:</string>
   <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
-  <string-array name="HelpFragment__categories">
-    <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
-    <item>സവിശേഷത അഭ്യർത്ഥന</item>
-    <item>ചോദ്യം</item>
-    <item>അഭിപ്രായം</item>
-    <item>മറ്റുള്ളവ</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
@@ -2007,6 +2000,35 @@
   <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
   <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">എല്ലാം</string>
+  <string name="PaymentsAllActivityFragment__sent">അയച്ചു</string>
+  <string name="PaymentsAllActivityFragment__received">ലഭിച്ചു</string>
+  <string name="PaymentsHomeFragment__see_all">എല്ലാം കാണുക</string>
+  <string name="PaymentsHomeFragment__send">അയയ്‌ക്കുക</string>
+  <string name="PaymentsHomeFragment__help">സഹായം</string>
+  <string name="PaymentsHomeFragment__continue">തുടരുക</string>
+  <string name="PaymentsHomeFragment__details">വിശദാംശങ്ങൾ</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">പകർത്തുക</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">വിശദാംശങ്ങൾ</string>
+  <string name="PaymentsDetailsFragment__status">സ്റ്റാറ്റസ്</string>
+  <string name="PaymentsDetailsFragment__to">സ്വീകർത്താവ്:</string>
+  <string name="PaymentsDetailsFragment__from">പ്രേഷിതാവ്:</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
+  <string name="PaymentsTransferFragment__next">അടുത്തത്</string>
+  <string name="PaymentsTransferFragment__settings">ക്രമീകരണങ്ങൾ</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">അഭ്യർത്ഥിക്കുക</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">സ്വീകർത്താവ്:</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2357,6 +2379,7 @@
   <string name="DeviceToDeviceTransferService_status_verification_required">പരിശോധന ആവശ്യമാണ്</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ചെയ്‌തു</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">തടയുക</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -2503,5 +2526,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s ക്ക്/ന് വാള്‍പേപ്പര്‍ സജ്ജമാക്കുക.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">വാള്‍പേപ്പര്‍ സജ്ജമാക്കുന്നതില്‍ പിശക്</string>
   <string name="WallpaperCropActivity__blur_photo">ചിത്രം അവ്യക്തമാക്കുക</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">മറയ്ക്കുക</string>
+  <string name="payment_info_card_update_pin">PIN പുതുക്കുക </string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">അടുത്തത്</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">അടുത്തത്</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">തിരുത്തുക</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">പകർത്തുക</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">ചെയ്‌തു</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">അടുത്തത്</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">കാണുക</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">ഒരു മെസ്സേജ് അയക്കുക</string>
   <!--EOF-->
 </resources>

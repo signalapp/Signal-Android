@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Standort</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal benötigt die Berechtigung, deine Fotos und Videos anzuzeigen.</string>
   <string name="AttachmentKeyboard_give_access">Zugriff gewähren</string>
+  <string name="AttachmentKeyboard_payment">Zahlung</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Keine App zur Auswahl der Medieninhalte gefunden.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal benötigt die Berechtigung »Speicher« für das Anhängen von Fotos, Videos oder Audiodateien, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
@@ -1799,13 +1800,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Etwas funktioniert nicht</item>
-    <item>Erweiterungswunsch</item>
-    <item>Frage</item>
-    <item>Rückmeldung</item>
-    <item>Sonstiges</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
@@ -1912,6 +1906,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
   <string name="preferences__data_and_storage">Daten und Speicher</string>
   <string name="preferences__storage">Speicher</string>
+  <string name="preferences__payments">Zahlungen</string>
+  <string name="preferences__payments_beta">Zahlungen (Beta)</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__keep_messages">Nachrichten behalten</string>
   <string name="preferences__clear_message_history">Nachrichtenverlauf leeren</string>
@@ -2018,6 +2014,53 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Alle</string>
+  <string name="PaymentsAllActivityFragment__sent">Versendet</string>
+  <string name="PaymentsAllActivityFragment__received">Empfangen</string>
+  <string name="PaymentsHomeFragment__activate_payments">Zahlungen aktivieren</string>
+  <string name="PaymentsHomeFragment__see_all">Alle anzeigen</string>
+  <string name="PaymentsHomeFragment__send">Senden</string>
+  <string name="PaymentsHomeFragment__help">Hilfe</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Zahlungen deaktivieren?</string>
+  <string name="PaymentsHomeFragment__continue">Fortfahren</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Zahlungen deaktiviert.</string>
+  <string name="PaymentsHomeFragment__details">Details</string>
+  <string name="PaymentsHomeFragment__activate">Aktivieren</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopieren</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">In Zwischenablage kopiert</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Details</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">An</string>
+  <string name="PaymentsDetailsFragment__from">Von</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR-Code einscannen</string>
+  <string name="PaymentsTransferFragment__next">Weiter</string>
+  <string name="PaymentsTransferFragment__invalid_address">Ungültige Adresse</string>
+  <string name="PaymentsTransferFragment__settings">Einstellungen</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Anfrage</string>
+  <string name="CreatePaymentFragment__pay">Bezahlen</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Mitteilung</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">An</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">Alle Währungen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2446,6 +2489,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Dein Signal-Konto wurde auf dein neues Gerät übertragen, du musst jedoch dort die Registrierung abschließen, um fortzufahren. Signal wird auf diesem Gerät deaktiviert.</string>
   <string name="OldDeviceTransferLockedDialog__done">Fertig</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Abbrechen und dieses Gerät aktivieren</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockieren</string>
   <string name="RecipientBottomSheet_unblock">Freigeben</string>
@@ -2592,5 +2636,28 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Leg den Hintergrund für %s fest.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fehler beim Festlegen des Hintergrunds.</string>
   <string name="WallpaperCropActivity__blur_photo">Foto verwischen</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Über MobileCoin</string>
+  <string name="payment_info_card_hide">Ausblenden</string>
+  <string name="payment_info_card_update_pin">PIN aktualisieren</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Weiter</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Weiter</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Bearbeiten</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Vorherige</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopieren</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Fertig</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Weiter</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Anzeigen</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Eine Nachricht senden</string>
   <!--EOF-->
 </resources>

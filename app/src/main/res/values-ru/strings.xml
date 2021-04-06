@@ -1947,13 +1947,6 @@
   <string name="HelpFragment__debug_log">Журнал отладки:</string>
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Что-то не работает</item>
-    <item>Запросить новые функции</item>
-    <item>Вопрос</item>
-    <item>Обратная связь</item>
-    <item>Другое</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Это сообщение</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно использованные</string>
@@ -2168,6 +2161,45 @@
   <string name="preferences_enter_proxy_address">Введите адрес прокси</string>
   <string name="configurable_single_select__customize_option">Настроить опцию</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Все</string>
+  <string name="PaymentsAllActivityFragment__sent">Отправлено</string>
+  <string name="PaymentsAllActivityFragment__received">Получено</string>
+  <string name="PaymentsHomeFragment__see_all">Просмотреть все</string>
+  <string name="PaymentsHomeFragment__send">Отправить</string>
+  <string name="PaymentsHomeFragment__help">Помощь</string>
+  <string name="PaymentsHomeFragment__continue">Продолжить</string>
+  <string name="PaymentsHomeFragment__details">Подробнее</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Копировать</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Скопировано в буфер обмена</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Подробнее</string>
+  <string name="PaymentsDetailsFragment__status">Статус</string>
+  <string name="PaymentsDetailsFragment__to">Кому</string>
+  <string name="PaymentsDetailsFragment__from">От</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Сканировать QR-код</string>
+  <string name="PaymentsTransferFragment__next">Далее</string>
+  <string name="PaymentsTransferFragment__settings">Настройки</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Запрос</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Кому</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2610,6 +2642,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Ваша учётная запись Signal была перенесена на ваше новое устройство, но теперь вам нужно завершить регистрацию на нём. На этом устройстве Signal будет неактивен.</string>
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Отменить и активировать это устройство</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>
@@ -2760,5 +2793,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Установите обои для %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Не удалось установить обои.</string>
   <string name="WallpaperCropActivity__blur_photo">Размыть фото</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Скрыть</string>
+  <string name="payment_info_card_update_pin">Обновить PIN-код</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Далее</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Далее</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Изменить</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Копировать</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Далее</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Просмотреть</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Отправить сообщение</string>
   <!--EOF-->
 </resources>

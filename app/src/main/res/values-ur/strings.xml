@@ -1994,6 +1994,35 @@
   <string name="preferences_enter_proxy_address">پراکسی ایڈریس درج کریں</string>
   <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">تمام</string>
+  <string name="PaymentsAllActivityFragment__sent">بھیجا گیا</string>
+  <string name="PaymentsAllActivityFragment__received">وصول ہو گیا ہے</string>
+  <string name="PaymentsHomeFragment__see_all">تمام دیکھیں</string>
+  <string name="PaymentsHomeFragment__send">بھیجیں</string>
+  <string name="PaymentsHomeFragment__help">مدد کریں</string>
+  <string name="PaymentsHomeFragment__continue">جاری رکھیں</string>
+  <string name="PaymentsHomeFragment__details">تفصیلات</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">کاپی کریں</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">تفصیلات</string>
+  <string name="PaymentsDetailsFragment__status">صورتحال</string>
+  <string name="PaymentsDetailsFragment__to">کے لئے</string>
+  <string name="PaymentsDetailsFragment__from">کی طرف سے</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR کوڈ سکین کریں</string>
+  <string name="PaymentsTransferFragment__next">اگلا</string>
+  <string name="PaymentsTransferFragment__settings">ترتیبات</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">درخواست </string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">کے لئے</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2329,6 +2358,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ہو گیا</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">بلاک</string>
   <string name="RecipientBottomSheet_unblock">ان بلاک</string>
@@ -2473,5 +2503,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s کے لئے وال پیپر سیٹ کریں۔</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">وال پیپر کی ترتیب میں خامی۔</string>
   <string name="WallpaperCropActivity__blur_photo">تصویر کو دھندلا کرو</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">پوشیدہ کریں</string>
+  <string name="payment_info_card_update_pin">پن کو اپ ڈیٹ کریں</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">اگلا</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">اگلا</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">ترتیب دیں</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">کاپی کریں</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">ہو گیا</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">اگلا</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">دیکھیں</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">پیغام بھیجیں</string>
   <!--EOF-->
 </resources>

@@ -1997,6 +1997,35 @@
   <string name="preferences_enter_proxy_address">Въведи прокси адрес</string>
   <string name="configurable_single_select__customize_option">Опция за персонализиране</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Всички</string>
+  <string name="PaymentsAllActivityFragment__sent">Изпратен</string>
+  <string name="PaymentsAllActivityFragment__received">Получен</string>
+  <string name="PaymentsHomeFragment__see_all">Виж всички</string>
+  <string name="PaymentsHomeFragment__send">Изпращане</string>
+  <string name="PaymentsHomeFragment__help">Помощ</string>
+  <string name="PaymentsHomeFragment__continue">Продължи</string>
+  <string name="PaymentsHomeFragment__details">Подробности</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Копирай</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Копирано</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Подробности</string>
+  <string name="PaymentsDetailsFragment__status">Статус</string>
+  <string name="PaymentsDetailsFragment__to">До</string>
+  <string name="PaymentsDetailsFragment__from">От</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Сканирай QR Код</string>
+  <string name="PaymentsTransferFragment__next">Напред</string>
+  <string name="PaymentsTransferFragment__settings">Настройки</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Искай</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">До</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2331,6 +2360,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокиране</string>
   <string name="RecipientBottomSheet_unblock">Отблокиране</string>
@@ -2475,5 +2505,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Задай тапет за %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Грешка при задаването на тапет.</string>
   <string name="WallpaperCropActivity__blur_photo">Замъгляване на снимка</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Скрий</string>
+  <string name="payment_info_card_update_pin">Актуализирайте ПИН</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Напред</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Напред</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Редакция</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Копирай</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Напред</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Преглед</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Изпрати съобщение</string>
   <!--EOF-->
 </resources>

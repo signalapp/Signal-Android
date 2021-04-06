@@ -1999,6 +1999,28 @@
   <string name="preferences_enter_proxy_address">ପ୍ରକ୍ସି ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ</string>
   <string name="configurable_single_select__customize_option">ବିକଳ୍ପ କଷ୍ଟମାଇଜ୍ କରନ୍ତୁ</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">ସବୁକିଛି</string>
+  <string name="PaymentsAllActivityFragment__sent">ପଠାଗଲା</string>
+  <string name="PaymentsAllActivityFragment__received">ପ୍ରାପ୍ତ</string>
+  <string name="PaymentsHomeFragment__see_all">ସମସ୍ତ ଦେଖନ୍ତୁ</string>
+  <string name="PaymentsHomeFragment__send">ପଠାନ୍ତୁ</string>
+  <string name="PaymentsHomeFragment__help">ସାହାଯ୍ୟ</string>
+  <string name="PaymentsHomeFragment__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">ନକଲ ବନାନ୍ତୁ</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">କ୍ଲିପବୋର୍ଡରେ ନକଲ କରାଯାଇଛି</string>
+  <!--PaymentsDetailsFragment-->
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <string name="PaymentsTransferFragment__settings">ସେଟିଂସମୂହ</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">ଅନୁରୋଧ</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2330,6 +2352,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">ହେଇଗଲା</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="RecipientBottomSheet_unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>
@@ -2476,5 +2499,25 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s ପାଇଁ କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରିବାରେ ତ୍ରୁଟି</string>
   <string name="WallpaperCropActivity__blur_photo">ଛବି ଅସ୍ପଷ୍ଟ କରନ୍ତୁ</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">ଲୁଚାନ୍ତୁ</string>
+  <string name="payment_info_card_update_pin">ପିନ୍ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">ସମ୍ପାଦନ</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">ନକଲ ବନାନ୍ତୁ</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">ହେଇଗଲା</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">ପରବର୍ତ୍ତୀ</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">ଦେଖନ୍ତୁ</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
   <!--EOF-->
 </resources>

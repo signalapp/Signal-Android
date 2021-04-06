@@ -59,6 +59,7 @@
   <string name="AttachmentKeyboard_location">Lokalizacja</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal potrzebuje pozwolenia, aby pokazać Twoje zdjęcia i filmy.</string>
   <string name="AttachmentKeyboard_give_access">Daj dostęp</string>
+  <string name="AttachmentKeyboard_payment">Płatność</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nie można znaleźć aplikacji, aby otworzyć te multimedia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal wymaga pozwolenia na przechowywanie w celu dołączania zdjęć, filmów lub dźwięków, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Przechowywanie\".</string>
@@ -1946,13 +1947,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__debug_log">Logi debugowania:</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Coś nie działa</item>
-    <item>Prośba o dodanie funkcji</item>
-    <item>Pytanie</item>
-    <item>Opinia</item>
-    <item>Inne</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ta wiadomość</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Ostatnio używane</string>
@@ -2061,6 +2055,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Żądaj raportu dostarczenia każdej wysłanej wiadomości SMS</string>
   <string name="preferences__data_and_storage">Dane i pamięć</string>
   <string name="preferences__storage">Pamięć</string>
+  <string name="preferences__payments">Płatności</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__keep_messages">Zachowuj wiadomości</string>
   <string name="preferences__clear_message_history">Wyczyść historię wiadomości</string>
@@ -2167,6 +2162,51 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_enter_proxy_address">Podaj adres proxy</string>
   <string name="configurable_single_select__customize_option">Dostosuj opcję</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Wszyscy</string>
+  <string name="PaymentsAllActivityFragment__sent">Wysłano</string>
+  <string name="PaymentsAllActivityFragment__received">Odebrano</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktywuj płatności</string>
+  <string name="PaymentsHomeFragment__see_all">Zobacz wszystkie</string>
+  <string name="PaymentsHomeFragment__send">Wyślij</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Hasło odzyskiwania</string>
+  <string name="PaymentsHomeFragment__help">Pomoc</string>
+  <string name="PaymentsHomeFragment__continue">Kontynuuj</string>
+  <string name="PaymentsHomeFragment__details">Szczegóły</string>
+  <string name="PaymentsHomeFragment__activate">Aktywuj</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopiuj</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Skopiowano do schowka</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Szczegóły</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Do</string>
+  <string name="PaymentsDetailsFragment__from">Od</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skanuj kod QR</string>
+  <string name="PaymentsTransferFragment__next">Dalej</string>
+  <string name="PaymentsTransferFragment__settings">Ustawienia</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Prośba</string>
+  <string name="CreatePaymentFragment__pay">Zapłać</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Notatka</string>
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Do</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">Wszystkie waluty</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2609,6 +2649,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Twoje konto Signal zostało przeniesione na nowe urządzenie, ale musisz dokończyć rejestrację na swoim, nowym urządzeniu. Signal przestanie być aktywny na tym urządzeniu.</string>
   <string name="OldDeviceTransferLockedDialog__done">Gotowe</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anuluj i aktywuj to urządzenie</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Zablokuj</string>
   <string name="RecipientBottomSheet_unblock">Odblokuj</string>
@@ -2759,5 +2800,35 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Ustaw tapetę dla %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Błąd przy ustawianiu tapety.</string>
   <string name="WallpaperCropActivity__blur_photo">Rozmyj zdjęcie</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">O MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin to nowa, skupiona na prywatności, cyfrowa waluta.</string>
+  <string name="payment_info_card_cashing_out">Wypłacanie</string>
+  <string name="payment_info_card_hide">Ukryj</string>
+  <string name="payment_info_card_record_recovery_phrase">Zapisz hasło odzyskiwania</string>
+  <string name="payment_info_card_update_your_pin">Uaktualnij swój PIN</string>
+  <string name="payment_info_card_update_pin">Uaktualnij PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Hasło odzyskiwania</string>
+  <string name="PaymentsRecoveryStartFragment__start">Rozpocznij</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Hasło odzyskiwania</string>
+  <string name="PaymentsRecoveryPasteFragment__next">Dalej</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Dalej</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Edytuj</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Nie wykonuj zrzutu ekranu, ani nie przesyłaj e-mailem.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopiuj</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Gotowe</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Dalej</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Zobacz</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Wysyłanie wiadomości</string>
   <!--EOF-->
 </resources>

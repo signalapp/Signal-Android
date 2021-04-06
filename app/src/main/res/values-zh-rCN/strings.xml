@@ -1739,13 +1739,6 @@
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
-  <string-array name="HelpFragment__categories">
-    <item>出现问题</item>
-    <item>功能请求</item>
-    <item>疑问</item>
-    <item>反馈</item>
-    <item>其他</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -1957,6 +1950,45 @@
   <string name="preferences_enter_proxy_address">请输入代理地址</string>
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">全部</string>
+  <string name="PaymentsAllActivityFragment__sent">发送</string>
+  <string name="PaymentsAllActivityFragment__received">接收</string>
+  <string name="PaymentsHomeFragment__see_all">查看全部</string>
+  <string name="PaymentsHomeFragment__send">发送</string>
+  <string name="PaymentsHomeFragment__help">帮助</string>
+  <string name="PaymentsHomeFragment__continue">继续</string>
+  <string name="PaymentsHomeFragment__details">更多</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">复制</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">已复制到剪切板</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">更多</string>
+  <string name="PaymentsDetailsFragment__status">状态</string>
+  <string name="PaymentsDetailsFragment__to">至</string>
+  <string name="PaymentsDetailsFragment__from">来自</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">扫描二维码</string>
+  <string name="PaymentsTransferFragment__next">下一步</string>
+  <string name="PaymentsTransferFragment__settings">设置</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">入群请求</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">至</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2378,6 +2410,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">您的 Signal 帐户已转移到新设备，但必须在该设备上完成注册以继续。该设备上的 Signal 将停用。</string>
   <string name="OldDeviceTransferLockedDialog__done">完成</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消并激活该设备</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">屏蔽</string>
   <string name="RecipientBottomSheet_unblock">取消屏蔽</string>
@@ -2522,5 +2555,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">对 %s 设置墙纸。</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">设置墙纸出错。</string>
   <string name="WallpaperCropActivity__blur_photo">模糊图片</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">隐藏</string>
+  <string name="payment_info_card_update_pin">更新 PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">下一步</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">下一步</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">编辑</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">复制</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">完成</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">下一步</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">查看</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
   <!--EOF-->
 </resources>

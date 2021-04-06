@@ -1245,8 +1245,8 @@
   <string name="RegistrationActivity_rate_limited_to_service">Você fez muitas tentativas de registrar este número. Por favor, tente novamente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Você está agora a %d passo de enviar um log de depuração.</item>
-    <item quantity="other">Você está agora a %d passos de enviar um log de depuração</item>
+    <item quantity="one">Agora você está a %d passo de enviar um registro de depuração.</item>
+    <item quantity="other">Agora você está a %d passos de enviar um registro de depuração</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Precisamos verificar que você é um ser humano.</string>
   <string name="RegistrationActivity_next">Avançar</string>
@@ -1785,7 +1785,7 @@
   <string name="AndroidManifest__select_contacts">Selecionar contatos</string>
   <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
   <string name="AndroidManifest__verify_safety_number">Verificar número de segurança</string>
-  <string name="AndroidManifest__log_submit">Enviar log de depuração</string>
+  <string name="AndroidManifest__log_submit">Enviar registro de depuração</string>
   <string name="AndroidManifest__media_preview">Pré-visualização de mídia</string>
   <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
   <string name="AndroidManifest__linked_devices">Dispositivos vinculados</string>
@@ -1801,22 +1801,15 @@
   <string name="HelpFragment__next">Próximo</string>
   <string name="HelpFragment__contact_us">Entre em contato</string>
   <string name="HelpFragment__tell_us_whats_going_on">Conte-nos o que está acontecendo</string>
-  <string name="HelpFragment__include_debug_log">Inclua o relatório de depuração.</string>
+  <string name="HelpFragment__include_debug_log">Incluir registro de depuração.</string>
   <string name="HelpFragment__whats_this">O que é isso ?</string>
   <string name="HelpFragment__how_do_you_feel">Como você se sente? (Opcional)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Conte-nos por que você está entrando em contato.</string>
   <string name="HelpFragment__support_info">Info de Suporte</string>
   <string name="HelpFragment__signal_android_support_request">Solicitação de suporte Signal Android</string>
-  <string name="HelpFragment__debug_log">Relatório de Debug:</string>
+  <string name="HelpFragment__debug_log">Registro de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não foi possível enviar o registro</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Algo não está funcionando</item>
-    <item>Pedido de nova funcionalidade</item>
-    <item>Pergunta</item>
-    <item>Comentário</item>
-    <item>Outro</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizado recentemente</string>
@@ -1941,7 +1934,7 @@
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
   <string name="preferences__advanced_pin_settings">Configurações avançadas do PIN</string>
   <string name="preferences__free_private_messages_and_calls">Chamadas e mensagens privadas gratuitas para usuários do Signal</string>
-  <string name="preferences__submit_debug_log">Enviar log de depuração</string>
+  <string name="preferences__submit_debug_log">Enviar registro de depuração</string>
   <string name="preferences__delete_account">Excluir conta</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
@@ -2029,6 +2022,45 @@
   <string name="preferences_enter_proxy_address">Digite o endereço de proxy</string>
   <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Todos</string>
+  <string name="PaymentsAllActivityFragment__sent">Enviada</string>
+  <string name="PaymentsAllActivityFragment__received">Recebida</string>
+  <string name="PaymentsHomeFragment__see_all">Ver todas</string>
+  <string name="PaymentsHomeFragment__send">Enviar</string>
+  <string name="PaymentsHomeFragment__help">Ajuda</string>
+  <string name="PaymentsHomeFragment__continue">Continuar</string>
+  <string name="PaymentsHomeFragment__details">Detalhes</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detalhes</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Para</string>
+  <string name="PaymentsDetailsFragment__from">De</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Escanear o código QR</string>
+  <string name="PaymentsTransferFragment__next">Próximo</string>
+  <string name="PaymentsTransferFragment__settings">Configurações</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Pedido</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Para</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2388,7 +2420,7 @@
   <string name="DeviceTransferSetup__turn_on_wifi">Ativar o Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Erro ao se conectar</string>
   <string name="DeviceTransferSetup__retry">Tente novamente</string>
-  <string name="DeviceTransferSetup__submit_debug_logs">Enviar relatórios de depuração</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Enviar registros de depuração</string>
   <string name="DeviceTransferSetup__verify_code">Verificar código</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifique se o código abaixo corresponde em ambos os seus dispositivos. Em seguida, toque em continuar.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Os números não correspondem</string>
@@ -2457,6 +2489,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Sua conta do Signal foi transferida para o seu novo aparelho, e você deve concluir o registro nele. A partir de agora, o Signal ficará inativo neste aparelho antigo.</string>
   <string name="OldDeviceTransferLockedDialog__done">Pronto</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este aparelho</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
@@ -2603,5 +2636,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir papel de parede para %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Erro ao definir o papel de parede.</string>
   <string name="WallpaperCropActivity__blur_photo">Borrar foto</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Ocultar</string>
+  <string name="payment_info_card_update_pin">Atualizar PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Próximo</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Próximo</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Pronto</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Próximo</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Exibir</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Enviar uma mensagem</string>
   <!--EOF-->
 </resources>

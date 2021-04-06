@@ -2001,6 +2001,35 @@
   <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
   <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">அனைத்து</string>
+  <string name="PaymentsAllActivityFragment__sent">அனுப்பியது </string>
+  <string name="PaymentsAllActivityFragment__received">பெறப்பட்டது</string>
+  <string name="PaymentsHomeFragment__see_all">அனைத்தையும் பார்</string>
+  <string name="PaymentsHomeFragment__send">அனுப்புக</string>
+  <string name="PaymentsHomeFragment__help">உதவி</string>
+  <string name="PaymentsHomeFragment__continue">தொடர்ந்து செல் </string>
+  <string name="PaymentsHomeFragment__details">விவரங்கள்</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">நகல்</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">விவரங்கள்</string>
+  <string name="PaymentsDetailsFragment__status">நிலைமை</string>
+  <string name="PaymentsDetailsFragment__to">செய்ய</string>
+  <string name="PaymentsDetailsFragment__from">இருந்து</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">QR குறியீட்டை ஸ்கேன் செய்யுங்கள்</string>
+  <string name="PaymentsTransferFragment__next">அடுத்தது</string>
+  <string name="PaymentsTransferFragment__settings">அமைப்புகள்</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">கோரிக்கை</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">செய்ய</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2337,6 +2366,7 @@
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">முடிந்தது</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">தடு </string>
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
@@ -2481,5 +2511,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%sக்கு பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">பின்னணிப்படம் அமைப்பதில் பிழை.</string>
   <string name="WallpaperCropActivity__blur_photo">புகைப்படத்தை மங்கச் செய்ய</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">மறை</string>
+  <string name="payment_info_card_update_pin">பின்னைப் புதுப்பிக்கவும்</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">அடுத்தது</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">அடுத்தது</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">தொகு</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">நகல்</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">முடிந்தது</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">அடுத்தது</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">காண்க</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">செய்தி அனுப்புங்கள்</string>
   <!--EOF-->
 </resources>

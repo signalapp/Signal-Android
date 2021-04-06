@@ -1810,13 +1810,6 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="HelpFragment__debug_log">Villumeldingaskrá:</string>
   <string name="HelpFragment__could_not_upload_logs">Gat ekki sent inn atvikaskrár</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lýstu þessu eins nákvæmlega og þú getur til að auðvelda okkur að skilja vandamálið.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Eitthvað er ekki að virka</item>
-    <item>Beiðni um endurbætur</item>
-    <item>Spurning</item>
-    <item>Umsögn</item>
-    <item>Annað</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Þessi skilaboð</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nýlega notað</string>
@@ -2029,6 +2022,35 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences_enter_proxy_address">Settu inn vistfang milliþjóns</string>
   <string name="configurable_single_select__customize_option">Sérsníða valkost</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Allt</string>
+  <string name="PaymentsAllActivityFragment__sent">Sent</string>
+  <string name="PaymentsAllActivityFragment__received">Móttekið</string>
+  <string name="PaymentsHomeFragment__see_all">Sjá allt</string>
+  <string name="PaymentsHomeFragment__send">Senda</string>
+  <string name="PaymentsHomeFragment__help">Hjálp</string>
+  <string name="PaymentsHomeFragment__continue">Halda áfram</string>
+  <string name="PaymentsHomeFragment__details">Nánar</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Afrita</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Afritað á klippispjald</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Nánar</string>
+  <string name="PaymentsDetailsFragment__status">Staða</string>
+  <string name="PaymentsDetailsFragment__to">Til</string>
+  <string name="PaymentsDetailsFragment__from">Frá</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skanna QR-kóða</string>
+  <string name="PaymentsTransferFragment__next">Næsta</string>
+  <string name="PaymentsTransferFragment__settings">Stillingar</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Beiðni</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Til</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2460,6 +2482,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-gögnin þín hafa verið færð yfir á nýja tækið þitt, en til að ljúka yfirfærsluferlinu verðurðu að klára skráningu á nýja tækinu þínu. Signal verður óvirkt á þessu tæki.</string>
   <string name="OldDeviceTransferLockedDialog__done">Búin/n</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Hætta við og virkja þetta tæki</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Útiloka</string>
   <string name="RecipientBottomSheet_unblock">Opna á</string>
@@ -2606,5 +2629,26 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Setja bakgrunnsmynd fyrir %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Villa við að setja bakgrunnsmynd.</string>
   <string name="WallpaperCropActivity__blur_photo">Móska mynd</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Fela</string>
+  <string name="payment_info_card_update_pin">Uppfæra PIN-númer</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Næsta</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Næsta</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Breyta</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Afrita</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Búin/n</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Næsta</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Skoða</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Senda skilaboð</string>
   <!--EOF-->
 </resources>

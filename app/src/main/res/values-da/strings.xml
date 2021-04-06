@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Lokation</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal kræver adgang for at vise dine billeder og videoer</string>
   <string name="AttachmentKeyboard_give_access">Giv adgang</string>
+  <string name="AttachmentKeyboard_payment">Betaling</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ingen app tilgængelig til valg af data</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal kræver tilladelse til at tilgå din hukommelse, for at kunne vedhæfte billeder, videoer eller lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
@@ -1810,13 +1811,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__debug_log">Fejllog:</string>
   <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
-  <string-array name="HelpFragment__categories">
-    <item>Noget virker ikke</item>
-    <item>Funktionsanmodning</item>
-    <item>Spørgsmål</item>
-    <item>Feedback</item>
-    <item>Andet</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -1923,6 +1917,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Modtag leveringsrapporter for hver SMS besked du sender</string>
   <string name="preferences__data_and_storage">Data og lager</string>
   <string name="preferences__storage">Hukommelse</string>
+  <string name="preferences__payments">Betalinger</string>
   <string name="preferences__conversation_length_limit">Max. grænse for samtaler</string>
   <string name="preferences__keep_messages">Bevar beskeder</string>
   <string name="preferences__clear_message_history">Ryd beskedhistorik</string>
@@ -2029,6 +2024,46 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_enter_proxy_address">Indtast proxy-adresse</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Alle</string>
+  <string name="PaymentsAllActivityFragment__sent">Sendt</string>
+  <string name="PaymentsAllActivityFragment__received">Modtaget</string>
+  <string name="PaymentsHomeFragment__see_all">Se alle</string>
+  <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__help">Hjælp</string>
+  <string name="PaymentsHomeFragment__continue">Fortsæt</string>
+  <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopiér</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopieret til udklipsholder</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detaljer</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__to">Til</string>
+  <string name="PaymentsDetailsFragment__from">Fra</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Scan QR-kode</string>
+  <string name="PaymentsTransferFragment__next">Næste</string>
+  <string name="PaymentsTransferFragment__settings">Indstillinger</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Forespørgsel</string>
+  <string name="CreatePaymentFragment__pay">Betal</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Til</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2457,6 +2492,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Din Signal-konto er blevet overført til din nye enhed, men du skal gennemføre registreringen på den for at fortsætte. Signal vil være inaktivt på denne enhed.</string>
   <string name="OldDeviceTransferLockedDialog__done">Udført</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuller og aktiver denne enhed</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokér</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokering</string>
@@ -2603,5 +2639,28 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Opsæt baggrund til %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fejl ved opsætning af baggrund.</string>
   <string name="WallpaperCropActivity__blur_photo">Slør billede</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_update_pin">Opdatér PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Start</string>
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Næste</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Næste</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Redigér</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Forrige</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopiér</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Udført</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Næste</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Vis</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Send en besked</string>
   <!--EOF-->
 </resources>

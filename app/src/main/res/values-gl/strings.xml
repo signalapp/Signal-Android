@@ -1803,13 +1803,6 @@
   <string name="HelpFragment__debug_log">Rexistro de depuración:</string>
   <string name="HelpFragment__could_not_upload_logs">Non se puideron cargar os logs.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Procura ser o máis descritivo posible para axudarnos a entender o problema.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Hai algo que non funciona</item>
-    <item>Solicitar nova función</item>
-    <item>Pregunta</item>
-    <item>Comentario</item>
-    <item>Outra razón</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensaxe</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recentemente</string>
@@ -2022,6 +2015,35 @@
   <string name="preferences_enter_proxy_address">Escribe o enderezo do proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Todo</string>
+  <string name="PaymentsAllActivityFragment__sent">Enviada</string>
+  <string name="PaymentsAllActivityFragment__received">Recibida</string>
+  <string name="PaymentsHomeFragment__see_all">Ver todo</string>
+  <string name="PaymentsHomeFragment__send">Enviar</string>
+  <string name="PaymentsHomeFragment__help">Axuda</string>
+  <string name="PaymentsHomeFragment__continue">Continuar</string>
+  <string name="PaymentsHomeFragment__details">Detalles</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado ao portapapeis</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detalles</string>
+  <string name="PaymentsDetailsFragment__status">Estado</string>
+  <string name="PaymentsDetailsFragment__to">Para</string>
+  <string name="PaymentsDetailsFragment__from">De</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Escanear código QR</string>
+  <string name="PaymentsTransferFragment__next">Seguinte</string>
+  <string name="PaymentsTransferFragment__settings">Configuración</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Solicitude</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Para</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2450,6 +2472,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">A túa conta Signal foi transferida ao novo dispositivo, pero debes completar o rexistro nel para continuar. Signal quedará inactiva neste dispositivo.</string>
   <string name="OldDeviceTransferLockedDialog__done">Feito</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e activar neste dispositivo</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
@@ -2596,5 +2619,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Estabelecer fondo de pantalla para %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Produciuse un erro ao estabelecer o fondo de pantalla</string>
   <string name="WallpaperCropActivity__blur_photo">Esvaer foto</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Agochar</string>
+  <string name="payment_info_card_update_pin">Actualizar PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Seguinte</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Seguinte</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Feito</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Seguinte</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Ver</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Enviar unha mensaxe</string>
   <!--EOF-->
 </resources>

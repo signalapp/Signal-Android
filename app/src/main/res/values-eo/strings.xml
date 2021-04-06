@@ -1809,13 +1809,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Io ne funkcias</item>
-    <item>Peto por nova funkcio</item>
-    <item>Demando</item>
-    <item>Prikomento</item>
-    <item>Alia</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -2028,6 +2021,33 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_enter_proxy_address">Entajpi prokuran adreson</string>
   <string name="configurable_single_select__customize_option">Elekti opcion</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Ĉiuj</string>
+  <string name="PaymentsAllActivityFragment__sent">Sendita</string>
+  <string name="PaymentsAllActivityFragment__received">Ricevita</string>
+  <string name="PaymentsHomeFragment__see_all">Vidu ĉiujn</string>
+  <string name="PaymentsHomeFragment__send">Sendi</string>
+  <string name="PaymentsHomeFragment__help">Helpo</string>
+  <string name="PaymentsHomeFragment__continue">Daŭrigi</string>
+  <string name="PaymentsHomeFragment__details">Detaloj</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopii</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiita al tondujo</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detaloj</string>
+  <string name="PaymentsDetailsFragment__to">Al</string>
+  <string name="PaymentsDetailsFragment__from">El</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__next">Sekva</string>
+  <string name="PaymentsTransferFragment__settings">Agordoj</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Peto</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Al</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2456,6 +2476,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Via Signal-konto transiĝis al via nova aparato. Por kompletigi la transigon, vi devas plu registriĝi ĉe via nova aparato. Signal malaktiviĝos ĉe tiu ĉi aparato.</string>
   <string name="OldDeviceTransferLockedDialog__done">Farita</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Nuligi kaj aktivigi tiun aparaton</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
@@ -2602,5 +2623,26 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Agordi la ekranfonon por %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eraro dum agordo de la ekranfono.</string>
   <string name="WallpaperCropActivity__blur_photo">Malklarigi foton</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Kaŝi</string>
+  <string name="payment_info_card_update_pin">Ĝisdatigi PIN-on</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Sekva</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Sekva</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Modifi</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopii</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Farita</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Sekva</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Montri pli</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Sendi mesaĝon</string>
   <!--EOF-->
 </resources>

@@ -1954,13 +1954,6 @@
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
-  <string-array name="HelpFragment__categories">
-    <item>משהו לא עובד</item>
-    <item>בקשת מאפיין</item>
-    <item>שאלה</item>
-    <item>משוב</item>
-    <item>אחר</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -2175,6 +2168,45 @@
   <string name="preferences_enter_proxy_address">הכנס כתובת יפוי כוח</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">הכל</string>
+  <string name="PaymentsAllActivityFragment__sent">נשלח</string>
+  <string name="PaymentsAllActivityFragment__received">התקבל</string>
+  <string name="PaymentsHomeFragment__see_all">ראה הכל</string>
+  <string name="PaymentsHomeFragment__send">שלח</string>
+  <string name="PaymentsHomeFragment__help">עזרה</string>
+  <string name="PaymentsHomeFragment__continue">המשך</string>
+  <string name="PaymentsHomeFragment__details">פרטים</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">העתק</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">הועתק ללוח</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">פרטים</string>
+  <string name="PaymentsDetailsFragment__status">מעמד</string>
+  <string name="PaymentsDetailsFragment__to">אל</string>
+  <string name="PaymentsDetailsFragment__from">מאת</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">סריקת קוד QR</string>
+  <string name="PaymentsTransferFragment__next">הבא</string>
+  <string name="PaymentsTransferFragment__settings">הגדרות</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">בקשה</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">אל</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2617,6 +2649,7 @@
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">חשבון Signal שלך הועבר אל המכשיר החדש שלך, אבל אתה חייב להשלים בו את ההרשמה כדי להמשיך. Signal יהיה בלתי פעיל במכשיר זה.</string>
   <string name="OldDeviceTransferLockedDialog__done">סיים</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">בטל והפעל מכשיר זה</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">חסום</string>
   <string name="RecipientBottomSheet_unblock">שחרר חסימה</string>
@@ -2767,5 +2800,26 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_s">טפט הוגדר עבור %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">שגיאה בהגדרת טפט.</string>
   <string name="WallpaperCropActivity__blur_photo">טשטש תמונה</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">הסתר</string>
+  <string name="payment_info_card_update_pin">עדכן PIN</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">הבא</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">הבא</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">ערוך</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">העתק</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">סיים</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">הבא</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">הצג</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">שלח הודעה</string>
   <!--EOF-->
 </resources>

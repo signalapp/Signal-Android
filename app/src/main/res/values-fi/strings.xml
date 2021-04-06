@@ -1803,13 +1803,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Jokin ei toimi</item>
-    <item>Parannusehdotus</item>
-    <item>Kysymys</item>
-    <item>Palaute</item>
-    <item>Muu</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -2022,6 +2015,45 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_enter_proxy_address">Syötä proxyn osoite</string>
   <string name="configurable_single_select__customize_option">Mukauta vaihtoehto</string>
   <!--Internal only preferences-->
+  <!--Payments-->
+  <string name="PaymentsAllActivityFragment__all">Kaikki</string>
+  <string name="PaymentsAllActivityFragment__sent">Lähetetty</string>
+  <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
+  <string name="PaymentsHomeFragment__see_all">Näytä kaikki</string>
+  <string name="PaymentsHomeFragment__send">Lähetä</string>
+  <string name="PaymentsHomeFragment__help">Tuki </string>
+  <string name="PaymentsHomeFragment__continue">Jatka</string>
+  <string name="PaymentsHomeFragment__details">Lisätietoja</string>
+  <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__copy">Kopioi</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Lisätietoja</string>
+  <string name="PaymentsDetailsFragment__status">Tila</string>
+  <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
+  <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
+  <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__scan_qr_code">Skannaa QR-koodi</string>
+  <string name="PaymentsTransferFragment__next">Seuraava</string>
+  <string name="PaymentsTransferFragment__settings">Asetukset</string>
+  <!--PaymentsTransferQrScanFragment-->
+  <!--CreatePaymentFragment-->
+  <string name="CreatePaymentFragment__request">Pyyntö</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <!--EditNoteFragment-->
+  <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Vastaanottajat</string>
+  <!--CurrencyAmountFormatter_s_at_s-->
+  <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2450,6 +2482,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-tilisi on siirretty uudelle laitteellesi, mutta sinun täytyy jatkaa rekisteröitymistä sillä laitteella. Signal ei ole aktiivinen tällä laitteella.</string>
   <string name="OldDeviceTransferLockedDialog__done">Valmis</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Peruuta ja aktivoi tämä laite</string>
+  <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Estä</string>
   <string name="RecipientBottomSheet_unblock">Poista esto</string>
@@ -2596,5 +2629,26 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Aseta taustakuva keskustelulle %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustakuvan asettaminen epäonnistui.</string>
   <string name="WallpaperCropActivity__blur_photo">Sumenna valokuva</string>
+  <!--InfoCard-->
+  <string name="payment_info_card_hide">Piilota</string>
+  <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
+  <!--DeactivateWalletFragment-->
+  <!--PaymentsRecoveryStartFragment-->
+  <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__next">Seuraava</string>
+  <!--PaymentsRecoveryPhraseFragment-->
+  <string name="PaymentsRecoveryPhraseFragment__next">Seuraava</string>
+  <string name="PaymentsRecoveryPhraseFragment__edit">Muokkaa</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">Kopioi</string>
+  <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__done">Valmis</string>
+  <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__next">Seuraava</string>
+  <!--ClearClipboardAlarmReceiver-->
+  <!--PaymentNotificationsView-->
+  <string name="PaymentNotificationsView__view">Näytä</string>
+  <!--UnreadPayments-->
+  <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Lähetä viesti</string>
   <!--EOF-->
 </resources>
