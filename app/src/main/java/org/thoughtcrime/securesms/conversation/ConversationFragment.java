@@ -757,6 +757,29 @@ public class ConversationFragment extends LoggingFragment {
     }
   }
 
+  // Handle Pin Messages - Bima Putra S
+  private void handlePinMessages(final Set<ConversationMessage> conversationMessages) {
+    Set<MessageRecord> messageRecordsPin = Stream.of(conversationMessages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet());
+    buildRemotePinConfirmationDialog(messageRecordsPin).show();
+  }
+
+  // Handle Pin Alert Dialog - Bima Putra S
+  private AlertDialog.Builder buildRemotePinConfirmationDialog(Set<MessageRecord> messageRecordsPin) {
+    Context             context       = requireActivity();
+    int                 messagesCount = messageRecordsPin.size();
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
+
+    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_pin_selected_messages, messagesCount, messagesCount));
+    builder.setCancelable(true);
+
+    builder.setPositiveButton(R.string.ConversationFragment_pin_for_me, (dialog, which) -> {
+      //nothing
+    });
+
+    builder.setNegativeButton(android.R.string.cancel, null);
+    return builder;
+  }
+
   private void handleDeleteMessages(final Set<ConversationMessage> conversationMessages) {
     Set<MessageRecord> messageRecords = Stream.of(conversationMessages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet());
     buildRemoteDeleteConfirmationDialog(messageRecords).show();
@@ -1661,6 +1684,8 @@ public class ConversationFragment extends LoggingFragment {
         case R.id.action_multiselect: handleEnterMultiSelect(conversationMessage);                                          return true;
         case R.id.action_forward:     handleForwardMessage(conversationMessage);                                            return true;
         case R.id.action_download:    handleSaveAttachment((MediaMmsMessageRecord) conversationMessage.getMessageRecord()); return true;
+        // Tambahan Confirm Buat PIN - Bima
+        case R.id.action_pin_msg:     handlePinMessages(SetUtil.newHashSet(conversationMessage));
         default:                                                                                                            return false;
       }
     }
