@@ -42,7 +42,6 @@ public final class TransactionReconstruction {
     List<Transaction> sent = totalSpent.isPositive() ? Collections.singletonList(new Transaction(totalSpent, Direction.SENT))
                                                      : Collections.emptyList();
 
-    Collections.sort(sent, Transaction.ORDER);
     Collections.sort(received, Transaction.ORDER);
 
     List<Transaction> allTransactions = new ArrayList<>(sent.size() + received.size());
