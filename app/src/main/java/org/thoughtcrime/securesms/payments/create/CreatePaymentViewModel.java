@@ -118,8 +118,8 @@ public class CreatePaymentViewModel extends ViewModel {
     });
   }
 
-  void toggleMoneyInputTarget(@NonNull Context context) {
-    inputState.update(s -> trimFiatAfterToggle(updateAmount(context, s.updateInputTarget(s.getInputTarget().next()), AmountKeyboardGlyph.NONE)));
+  void toggleMoneyInputTarget() {
+    inputState.update(s -> s.updateInputTarget(s.getInputTarget().next()));
   }
 
   void setNote(@Nullable CharSequence note) {
@@ -138,23 +138,6 @@ public class CreatePaymentViewModel extends ViewModel {
         return updateMoneyAmount(context, inputState, glyph);
       default:
         throw new IllegalStateException("Unexpected input target " + inputState.getInputTarget().name());
-    }
-  }
-
-  private @NonNull InputState trimFiatAfterToggle(@NonNull InputState inputState) {
-    if (inputState.getInputTarget() == FIAT_MONEY) {
-      String    fiatAmount = inputState.getFiatAmount();
-      FiatMoney fiatMoney  = inputState.getFiatMoney().get();
-
-      if (fiatMoney.getAmount().equals(BigDecimal.ZERO)) {
-        return inputState.updateFiatAmount("0");
-      } else if (fiatAmount.contains(ApplicationDependencies.getApplication().getString(AmountKeyboardGlyph.DECIMAL.getGlyphRes()))) {
-        return inputState.updateFiatAmount(inputState.getFiatAmount().replaceFirst("\\.*0+$", ""));
-      } else {
-        return inputState;
-      }
-    } else {
-      return inputState;
     }
   }
 
@@ -178,7 +161,7 @@ public class CreatePaymentViewModel extends ViewModel {
     String              newMoneyAmount = updateAmountString(context, inputState.getMoneyAmount(), glyph, inputState.getMoney().getCurrency().getDecimalPrecision());
     Money               newMoney       = stringToMobileCoinValueOrZero(newMoneyAmount);
     Optional<FiatMoney> newFiat        = OptionalUtil.flatMap(inputState.getExchangeRate(), e -> e.exchange(newMoney));
-    String              newFiatAmount  = newFiat.transform(f -> FiatMoneyUtil.format(context.getResources(), f, FiatMoneyUtil.formatOptions().withDisplayTime(false).withoutSymbol())).or("0");
+    String              newFiatAmount  = newFiat.transform(f -> FiatMoneyUtil.format(context.getResources(), f, FiatMoneyUtil.formatOptions().withDisplayTime(false).numberOnly())).or("0");
 
     return inputState.updateAmount(newMoneyAmount, newFiatAmount, newMoney, newFiat);
   }

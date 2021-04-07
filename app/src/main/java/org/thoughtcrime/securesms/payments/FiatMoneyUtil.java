@@ -77,7 +77,7 @@ public class FiatMoneyUtil {
       return this;
     }
 
-    public @NonNull FormatOptions withoutSymbol() {
+    public @NonNull FormatOptions numberOnly() {
       this.withSymbol = false;
       return this;
     }

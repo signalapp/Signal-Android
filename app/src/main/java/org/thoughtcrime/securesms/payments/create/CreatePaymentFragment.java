@@ -119,7 +119,7 @@ public class CreatePaymentFragment extends LoggingFragment {
       Navigation.findNavController(v).navigate(directions);
     });
 
-    toggle.setOnClickListener(v -> viewModel.toggleMoneyInputTarget(requireContext()));
+    toggle.setOnClickListener(v -> viewModel.toggleMoneyInputTarget());
 
     initializeConstraintSets();
     initializeKeyboardButtons(view, viewModel);
@@ -207,9 +207,7 @@ public class CreatePaymentFragment extends LoggingFragment {
       case FIAT_MONEY:
         Currency currency = inputState.getFiatMoney().get().getCurrency();
         exchange.setText(new SpannableStringBuilder().append(currency.getSymbol())
-                                                     .append(inputState.getFiatAmount())
-                                                     .append(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.payment_currency_code_foreground_color),
-                                                                            currency.getCurrencyCode())));
+                                                     .append(inputState.getFiatAmount()));
         break;
     }
   }
