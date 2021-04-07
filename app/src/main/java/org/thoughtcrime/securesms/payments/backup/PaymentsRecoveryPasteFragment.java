@@ -40,7 +40,7 @@ public class PaymentsRecoveryPasteFragment extends Fragment {
 
     next.setOnClickListener(v -> {
       String   mnemonic = input.getText().toString();
-      String[] words    = mnemonic.split(" ");
+      String[] words    = mnemonic.split("\\s+");
 
       if (words.length != PaymentsConstants.MNEMONIC_LENGTH) {
         showErrorDialog();
