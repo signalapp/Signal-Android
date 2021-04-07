@@ -1,17 +1,18 @@
 package org.session.libsignal.service.loki.api
 
+import android.os.Build
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.task
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.getRandomElement
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.logging.Log
 import java.security.SecureRandom
 import java.util.*
 
@@ -23,7 +24,14 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
         set(newValue) { database.setSnodePool(newValue) }
 
     companion object {
-        private val seedNodePool: Set<String> = setOf( "https://storage.seed1.loki.network", "https://storage.seed3.loki.network", "https://public.loki.foundation" )
+
+        // use port 4433 if API level can handle network security config and enforce pinned certificates
+        private val seedPort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
+        private val seedNodePool: Set<String> = setOf(
+                "https://storage.seed1.loki.network:$seedPort",
+                "https://storage.seed3.loki.network:$seedPort",
+                "https://public.loki.foundation:$seedPort"
+        )
 
         // region Settings
         private val minimumSnodePoolCount = 64
