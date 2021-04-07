@@ -56,6 +56,7 @@
   <string name="AttachmentKeyboard_location">場所</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">写真や動画を表示するには、Signalに許可が必要です。</string>
   <string name="AttachmentKeyboard_give_access">アクセスを許可する</string>
+  <string name="AttachmentKeyboard_payment">支払い</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">メディアを選択するアプリが見つかりません。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">写真や動画、音声データを添付するには、Signalにストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アクセス許可」で「ストレージ」を有効にしてください。</string>
@@ -1828,6 +1829,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSで配信レポートを要求します</string>
   <string name="preferences__data_and_storage">データとストレージ</string>
   <string name="preferences__storage">ストレージ</string>
+  <string name="preferences__payments">支払い</string>
   <string name="preferences__conversation_length_limit">チャットの最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
   <string name="preferences__clear_message_history">メッセージ履歴を削除</string>
@@ -1958,6 +1960,7 @@
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">申請</string>
+  <string name="CreatePaymentFragment__pay">払う</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">宛先</string>
@@ -2530,11 +2533,13 @@
   <string name="payment_info_card_update_pin">PINをアップデート</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">開始</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">次へ</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">次へ</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">編集</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">前へ</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">コピー</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完了</string>

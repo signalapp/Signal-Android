@@ -1891,6 +1891,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Поискай потвърждение при получаване за всяко изпратено SMS съобщение</string>
   <string name="preferences__data_and_storage">Данни и съхранение</string>
   <string name="preferences__storage">Съхранение</string>
+  <string name="preferences__payments">Плащания</string>
   <string name="preferences__conversation_length_limit">Граница за дължина на разговора</string>
   <string name="preferences__keep_messages">Съхранявай съобщенията</string>
   <string name="preferences__clear_message_history">Изчистване на историята на съобщенията</string>

@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">ПИН је искључен</string>
   <string name="ApplicationPreferencesActivity_hide">Сакриј</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Сакрити подсетник?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Сними фразу опоравка за уплату</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Сними фразу</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Пре него што онемогућите свој PIN, морате да снимите фразу за опоравак уплате да бисте осигурали да можете да вратите свој налог за уплате.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минут</item>
@@ -879,6 +882,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
   <string name="NotificationBarManager__incoming_signal_call">Долазни Signal позив</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Заустављање сервиса позива Signal-а</string>
   <string name="NotificationBarManager__deny_call">Одбиј позив</string>
   <string name="NotificationBarManager__answer_call">Одговори на позив</string>
   <string name="NotificationBarManager__end_call">Окончај позив</string>
@@ -1881,6 +1885,14 @@
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Нешто не ради</item>
+    <item>Захтев способности</item>
+    <item>Питање</item>
+    <item>Повратна информација</item>
+    <item>Друго</item>
+    <item>Плаћања</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -1925,6 +1937,7 @@
     <item quantity="other">%dч</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">СМС и ММС</string>
   <string name="preferences__pref_all_sms_title">Примај све СМС</string>
   <string name="preferences__pref_all_mms_title">Примај све ММС</string>
@@ -1989,6 +2002,7 @@
   <string name="preferences__data_and_storage">Подаци и складиште</string>
   <string name="preferences__storage">Складиште</string>
   <string name="preferences__payments">Уплате</string>
+  <string name="preferences__payments_beta">Уплате (Beta)</string>
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
   <string name="preferences__keep_messages">Задржити поруке</string>
   <string name="preferences__clear_message_history">Очисти историју поруке</string>
@@ -2096,39 +2110,130 @@
   <string name="configurable_single_select__customize_option">Прилагодите опцију</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Сва активност</string>
   <string name="PaymentsAllActivityFragment__all">Сви</string>
   <string name="PaymentsAllActivityFragment__sent">Послато</string>
   <string name="PaymentsAllActivityFragment__received">Примљено</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Увођење уплате (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користите Signal за слање и примање MobileCoin, нова дигитална валута фокусирана на приватност. Активирајте за почетак.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Активирати уплате</string>
+  <string name="PaymentsHomeFragment__activating_payments">Активирање уплате…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Вратити налог уплате</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Још нема недавне активности</string>
+  <string name="PaymentsHomeFragment__pending_requests">Захтеви на чекању</string>
+  <string name="PaymentsHomeFragment__recent_activity">Недавне активности</string>
   <string name="PaymentsHomeFragment__see_all">Погледај све</string>
+  <string name="PaymentsHomeFragment__add_funds">Додај средства</string>
   <string name="PaymentsHomeFragment__send">Пошаљи</string>
+  <string name="PaymentsHomeFragment__sent_s">Пошаљи %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Примљено %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Пренос на размену</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Конверзија валута</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Деактивирати уплате</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Фраза опоравка</string>
   <string name="PaymentsHomeFragment__help">Помоћ</string>
+  <string name="PaymentsHomeFragment__sent_payment">Пошаљи уплату</string>
+  <string name="PaymentsHomeFragment__received_payment">Примљена уплата</string>
+  <string name="PaymentsHomeFragment__processing_payment">Обрађујем уплату</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија валута није доступно</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се приказује конверзија валуте. Проверите везу свог телефона и покушајте поново.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Уплате нису доступне у вашем региону.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Не могу да омогућим уплате. Покушајте поново касније.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Деактивирати уплате?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Нећете моћи да пошаљете или примите MobileCoin у Signal ако деактивирате уплате.</string>
   <string name="PaymentsHomeFragment__deactivate">Деактивирати</string>
   <string name="PaymentsHomeFragment__continue">Настави</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Салдо није тренутно доступан.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Уплате деактивиране.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Неуспешна уплата</string>
   <string name="PaymentsHomeFragment__details">Опширније</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да користите Signal да бисте послали и примили MobileCoin. Сва плаћања подлежу условима коришћења за MobileCoins  и новчаник MobileCoin-а. Ово је бета карактеристика, тако да можете наићи на грешке и плаћања или салто које можете изгубити не можете се вратити.</string>
   <string name="PaymentsHomeFragment__activate">Активирај</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледајте појмове MobileCoin-а</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Плаћања у Signal-у више није доступна. И даље можете преносити средства на размену, али више не можете да шаљете и примате уплате или да додате средства.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Додај средства</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса Вашег новчаника</string>
   <string name="PaymentsAddMoneyFragment__copy">Копирај</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Копирано у остави</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Да бисте додали средства, пошаљите MobileCoin на адресу вашег новчаника. Покрените трансакцију са свог рачуна на размени која подржава MobileCoin, а затим скенирајте QR кôд или копирајте адресу вашег новчаника.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Опширније</string>
   <string name="PaymentsDetailsFragment__status">Стање</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Слање уплате…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Обрађујем уплату…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Уплата завршена</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Неуспешна уплата</string>
+  <string name="PaymentsDetailsFragment__network_fee">Мрежна накнада</string>
+  <string name="PaymentsDetailsFragment__sent_by">Послао</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Послано %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Ви на %1$s у %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s на %2$s у %3$s</string>
   <string name="PaymentsDetailsFragment__to">За</string>
   <string name="PaymentsDetailsFragment__from">Од</string>
+  <string name="PaymentsDetailsFragment__information">Детаљи трансакције, укључујући количину плаћања и време трансакције део су књиге MobileCoin-а.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Нема додатних детаља за ову трансакцију</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Пошаљи уплату</string>
+  <string name="PaymentsDetailsFragment__received_payment">Примљена уплата</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Уплата завршена %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Блокирај број</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Пренос</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Скенирајте QR кôд</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">За: Скенирање или унос адресе новчаника</string>
   <string name="PaymentsTransferFragment__next">Даље</string>
+  <string name="PaymentsTransferFragment__invalid_address">Погрешна адреса</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Проверите адресу новчаника који покушавате да пребаците и покушате поново.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Да бисте скенирали QR кôд, Signal-у је потребан приступ камери.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal захтева приступ камери да би фотографисао QR кôд. Идите на подешавања, изаберите „Дозволе“ и омогућите „Камера“.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Да бисте скенирали QR кôд, Signal-у је потребан приступ камери.</string>
   <string name="PaymentsTransferFragment__settings">Подешавања</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Скенирајте адресу QR кôда</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Скенирајте адресу QR кôда примаоца уплате</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Захтев</string>
   <string name="CreatePaymentFragment__pay">Платити</string>
+  <string name="CreatePaymentFragment__available_balance_s">Доступан салдо: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Пребаци</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Додај белешку</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Конверзије су само процене и можда нису тачне.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Белешка</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Потврдити уплату</string>
+  <string name="ConfirmPayment__network_fee">Мрежна накнада</string>
+  <string name="ConfirmPayment__error_getting_fee">Грешка приликом добијања накнаде</string>
+  <string name="ConfirmPayment__estimated_s">Процењено %1$s</string>
   <string name="ConfirmPayment__to">За</string>
+  <string name="ConfirmPayment__total_amount">Укупан износ</string>
+  <string name="ConfirmPayment__balance_s">Салдо: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Слање уплате…</string>
+  <string name="ConfirmPayment__processing_payment">Обрађујем уплату…</string>
+  <string name="ConfirmPayment__payment_complete">Уплата завршена</string>
+  <string name="ConfirmPayment__payment_failed">Неуспешна уплата</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Уплата ће наставити прераду</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Неисправан прималац</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ова особа није активирала уплате</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Није могуће затражити мрежну накнаду. Да бисте наставили са овом уплатом додирните „у реду“ да бисте покушали поново.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s у %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Поставити валуту</string>
   <string name="SetCurrencyFragment__all_currencies">Све валуте</string>
   <!--****************************************-->
   <!--menus-->
@@ -2567,6 +2672,10 @@
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажите и активирајте овај уређај</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Пренос MOB салда?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Имате салдо од %1$s. Ако не пренесете средства на другу адресу новчаника пре брисања налога, изгубит ћете га заувек.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Немој да пренесеш</string>
+  <string name="AdvancedPreferenceFragment__transfer">Пренос</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>
@@ -2661,6 +2770,7 @@
   <string name="DeleteAccountFragment__delete_account">Избриши налог</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Обрисати информације о налогу и слику профила</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Обрисати све Ваше поруке</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Избрисати %1$s на рачуну плаћања</string>
   <string name="DeleteAccountFragment__no_country_code">Није изабран позивни број државе</string>
   <string name="DeleteAccountFragment__no_number">Није наведен број</string>
   <string name="DeleteAccountFragment__the_phone_number">Унет телефонски број се не подудара са вашим налогом.</string>
@@ -2718,31 +2828,72 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">О MobileCoin-у</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin је нова дигитална валута фокусирана на приватност.</string>
+  <string name="payment_info_card_adding_funds">Додавање средства</string>
+  <string name="payment_info_card_hide_this_card">Сакрити ову картицу?</string>
   <string name="payment_info_card_hide">Сакриј</string>
   <string name="payment_info_card_record_recovery_phrase">Сними фразу опоравка</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Ваша фраза за опоравак вам даје други начин да вратите свој налог за исплату.</string>
+  <string name="payment_info_card_record_your_phrase">Снимити Вашу фразу</string>
   <string name="payment_info_card_update_your_pin">Ажурирати PIN</string>
   <string name="payment_info_card_update_pin">Ажурирати PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирати новчаник</string>
+  <string name="DeactivateWalletFragment__your_balance">Ваш салдо</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Пренос преосталог салда</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирање без преноса података</string>
   <string name="DeactivateWalletFragment__deactivate">Деактивирати</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивирање без преноса података?</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка деактивирајући новчаник.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Фраза опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Прегледати фразу опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Унети фразу опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза опоравка је %1$d-речи фраза јединствена за вас. Користите ову фразу да бисте вратили салто.</string>
   <string name="PaymentsRecoveryStartFragment__start">Започни</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Унесите ручно</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Прилепи из оставе</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Прилепи фразу опоравка</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Фраза опоравка</string>
   <string name="PaymentsRecoveryPasteFragment__next">Даље</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Неисправна фраза опоравка</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Будите сигурни да сте унели %1$d речи и покушајте поново.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Даље</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Уреди</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Ваша фраза опоравка</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишите следеће %1$d речи у редоследу. Чувајте своју листу на сигурном месту.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Проверите да сте правилно унели своју фразу.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не снимате или не шаљите е-поштом.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Ресторирани плаћања рачуна.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Неисправна фраза опоравка</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Проверите да сте правилно унели своју фразу и поновите.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Копирај у остави</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ако одлучите да дигитално чувате фразу за опоравак, осигурајте да је сигурносно чува негде где имате поверења.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Потврдите фразу опоравка</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Унесите следеће речи из фразе опоравка.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Реч %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Опет видети фразу</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Фраза опоравка је потврђена</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Унети фразу опоравка</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Унесите реч %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Реч %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Даље</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Неисправна реч</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Остава је изпразњена.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Приказ</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s послао вам %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d нових обавештења о уплати</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Не може да се пошаље уплата</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Да бисте послали уплате овом кориснику, потребно је да прихвати ваш захтев. Пошаљите чу поруку да бисте креирали захтев за поруке.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Пошаљи поруку</string>
   <!--EOF-->

@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN malŝaltita.</string>
   <string name="ApplicationPreferencesActivity_hide">Kaŝi</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Ĉu kaŝi la memorigon?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registri la restarigan frazon pri pagoj</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Registri frazon</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antaŭ ol vi povas malŝalti vian PIN-on, vi devas registri vian restarigan frazon pri pagoj por certigi, ke vi povos restarigi vian pagokonton.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -57,6 +60,7 @@
   <string name="AttachmentKeyboard_location">Loko</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal bezonas permeson por montri viajn fotojn kaj videaĵojn.</string>
   <string name="AttachmentKeyboard_give_access">Permesi aliron</string>
+  <string name="AttachmentKeyboard_payment">Pago</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne eblas trovi aplikaĵon por malfermi aŭdvidaĵon.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal bezonas la Konservejo-permeson por almeti bildojn, videojn aŭ aŭdaĵojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
@@ -1809,6 +1813,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__debug_log">Sencimiga protokolo:</string>
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Io ne funkcias</item>
+    <item>Peto por nova funkcio</item>
+    <item>Demando</item>
+    <item>Prikomento</item>
+    <item>Alia</item>
+    <item>Pagoj</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tiu mesaĝo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
@@ -1852,6 +1864,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">%d h</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS kaj MMS</string>
   <string name="preferences__pref_all_sms_title">Ricevi ĉiujn mesaĝetojn (SMS)</string>
   <string name="preferences__pref_all_mms_title">Ricevi ĉiujn aŭdvidajn mesaĝojn (MMS)</string>
@@ -1915,6 +1928,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Peti livero-raporton por ĉiu SMS-mesaĝo, kiun vi sendas</string>
   <string name="preferences__data_and_storage">Datumoj kaj konservejo</string>
   <string name="preferences__storage">Konservejo</string>
+  <string name="preferences__payments">Pagoj</string>
+  <string name="preferences__payments_beta">Pagoj (beta)</string>
   <string name="preferences__conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string>
   <string name="preferences__keep_messages">Konservi mesaĝojn</string>
   <string name="preferences__clear_message_history">Forviŝi mesaĝojn</string>
@@ -2022,30 +2037,96 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="configurable_single_select__customize_option">Elekti opcion</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Ĉiuj aktivaĵoj</string>
   <string name="PaymentsAllActivityFragment__all">Ĉiuj</string>
   <string name="PaymentsAllActivityFragment__sent">Sendita</string>
   <string name="PaymentsAllActivityFragment__received">Ricevita</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Jen pagoj (beta-testado)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Uzu Signal-on por sendi kaj ricevi „MobileCoin“, novan bitmonon celantan al privateco. Aktivigi ĝin por komenciĝi.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Ŝalti pagojn</string>
+  <string name="PaymentsHomeFragment__activating_payments">Ŝaltado de pagoj…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Restaŭri pagokonton</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Neniu freŝa aktivaĵo</string>
+  <string name="PaymentsHomeFragment__pending_requests">Pritraktotaj petoj</string>
+  <string name="PaymentsHomeFragment__recent_activity">Lastaj aktivaĵoj</string>
   <string name="PaymentsHomeFragment__see_all">Vidu ĉiujn</string>
+  <string name="PaymentsHomeFragment__add_funds">Aldoni monsumon</string>
   <string name="PaymentsHomeFragment__send">Sendi</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s senditaj</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s ricevitaj</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Transigi al interŝanĝo</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Kurzo</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Malŝalti pagoj</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Restarigan frazon</string>
   <string name="PaymentsHomeFragment__help">Helpo</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Kosto pri monero-ordigo</string>
+  <string name="PaymentsHomeFragment__sent_payment">Sendita pago</string>
+  <string name="PaymentsHomeFragment__received_payment">Ricevita pago</string>
+  <string name="PaymentsHomeFragment__processing_payment">Traktado de pago</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Kurzo ne disponeblas</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Montro de kurzo ne eblas. Kontrolo vian retkonekton, kaj reprovu.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Pagoj ne disponeblas en via regiono.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Ŝalto de pagoj ne eblis. Reprovu poste.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Ĉu malŝalti pagojn?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Vi ne plu povos ricevi aŭ sendi „MobileCoin“ per SIgnal, se vi malŝaltas la pagojn.</string>
+  <string name="PaymentsHomeFragment__deactivate">Malŝalti</string>
   <string name="PaymentsHomeFragment__continue">Daŭrigi</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Bilanco ne estas disponebla nun.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Pagoj malŝaltitaj.</string>
+  <string name="PaymentsHomeFragment__payment_failed">La pago ne sukcesis</string>
   <string name="PaymentsHomeFragment__details">Detaloj</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Vi povas uzi Signal-on por sendi aŭ ricevi „MobileCoin“. Ĉiuj pagoj estas submetitaj al uzokondiĉoj pri MobileCoin kaj la MobileCoin-monujo. Tio estas beta-versio: do vi povas sperti kelkajn problemojn, kaj pagoj aŭ bilancoj, kiujn vi povus perdi, ne estos reakireblaj.</string>
+  <string name="PaymentsHomeFragment__activate">Ŝalti</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vidi la uzokondiĉojn de MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Pagoj per Signal ne plu disponeblas. Vi povas plu transigi monsumojn al interŝanĝo, sed vi ne plu povas sendi aŭ ricevi pagojn, aŭ aldoni monsumon.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Aldoni monsumon</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Via monujo-adreso</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopii</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiita al tondujo</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaloj</string>
+  <string name="PaymentsDetailsFragment__status">Stato</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Sendado de pago…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Traktado de pago…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Pago farita</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Pago malsukcesa</string>
+  <string name="PaymentsDetailsFragment__network_fee">Ret-kosto</string>
+  <string name="PaymentsDetailsFragment__sent_by">Sendita de</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Sendita al %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Vi, %1$s je %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s, %2$s je %3$s</string>
   <string name="PaymentsDetailsFragment__to">Al</string>
   <string name="PaymentsDetailsFragment__from">El</string>
+  <string name="PaymentsDetailsFragment__information">Transakciaj detaloj, inter alie la pagosumo kaj la dato, apartenas al kontlibro de MobileCoin.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Kosto pri monero-ordigo</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Kosto pri monero-ordigo pagendas, kiam viaj moneroj ne estas kombineblaj por plenumi transakcion. Ordigo eblos al vi plu sendi pagojn.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Neniu plia detalo disponeblas pri tiu transakcio</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Sendita pago</string>
+  <string name="PaymentsDetailsFragment__received_payment">Ricevita pago</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Pago farita %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Bloknumero</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Transigo</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Skani QR-kodon</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Al: skanu, aŭ entajpu monujo-adreson</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Vi povas transigi „MobileCoin“ per faro de transigo al la monujo-adreso donita de la interŝanĝo. La monujo-adreso estas la signoĉeno farita de ciferoj kaj literoj, trovebla kutime sub la QR-kodo.</string>
   <string name="PaymentsTransferFragment__next">Sekva</string>
+  <string name="PaymentsTransferFragment__invalid_address">Nevalida adreso</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrolu la monujo-adreson, al kie vi provas transigi monon, kaj reprovu.</string>
   <string name="PaymentsTransferFragment__settings">Agordoj</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Peto</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__network_fee">Ret-kosto</string>
   <string name="ConfirmPayment__to">Al</string>
+  <string name="ConfirmPayment__submitting_payment">Sendado de pago…</string>
+  <string name="ConfirmPayment__processing_payment">Traktado de pago…</string>
+  <string name="ConfirmPayment__payment_complete">Pago farita</string>
+  <string name="ConfirmPayment__payment_failed">La pago ne sukcesis</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -2477,6 +2558,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="OldDeviceTransferLockedDialog__done">Farita</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Nuligi kaj aktivigi tiun aparaton</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer">Transigo</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
@@ -2627,8 +2709,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="payment_info_card_hide">Kaŝi</string>
   <string name="payment_info_card_update_pin">Ĝisdatigi PIN-on</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Malŝalti</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Restarigan frazon</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Restarigan frazon</string>
   <string name="PaymentsRecoveryPasteFragment__next">Sekva</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Sekva</string>

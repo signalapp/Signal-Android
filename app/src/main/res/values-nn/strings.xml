@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN skrudd av.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Gøym påminning?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Skriv inn gjenopprettingsfrase for betalingar</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Skriv inn frase</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan skru av PIN-en din, må du skriva inn gjenopprettingsfrasen for betalingar for å stadfesta at du kan gjenoppretta betalingskontoen din.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -57,6 +60,7 @@
   <string name="AttachmentKeyboard_location">Plassering</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal treng tilgang for å visa bilde eller film.</string>
   <string name="AttachmentKeyboard_give_access">Gi tilgang</string>
+  <string name="AttachmentKeyboard_payment">Betaling</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til lagring for å legga ved bilde, film eller lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
@@ -163,7 +167,7 @@
   <string name="ConversationItem_error_not_sent_tap_for_details">Ikkje sendt, trykk for detaljar</string>
   <string name="ConversationItem_error_partially_not_delivered">Delvis sendt, trykk for detaljar</string>
   <string name="ConversationItem_error_network_not_delivered">Sending feila</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling motteken. Trykk for å handsama.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling motteken. Trykk for å behandla.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlate gruppa.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Feil ved sending, trykk for å senda med utrygg alternativ metode</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vil du bruka ukryptert SMS som reserveløysing?</string>
@@ -840,6 +844,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
   <string name="NotificationBarManager__incoming_signal_call">Inngåande Signal-anrop</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Stoppar Signal-samtaleteneste</string>
   <string name="NotificationBarManager__deny_call">Avslå anrop</string>
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
@@ -1308,7 +1313,7 @@ Ver deg sjølv i kvar einaste melding.</string>
 nøkkelutvekslingsmelding.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mottok melding med nytt tryggleiksnummer. Trykk for å handsama og visa.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mottok melding med nytt tryggleiksnummer. Trykk for å behandla og visa.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
@@ -1639,6 +1644,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Trykk her og skru på bakgrunnsaktivitet i Batteriinnstillingane for å motta samtalevarsel.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Innstillingar</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Trykk på Innstillingar og skru på «Vis varsel» for å motta samtalevarsel.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Trykk på Innstillingar og skru på varsel og sjekk at lyd og sprettoppmeldingar er skrudd på for å motta samtalevarsel.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Trykk på Innstillingar og skru på bakgrunnsaktivitet i batteriinnstillingane for å motta samtalevarsel.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Lastar inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
@@ -1805,11 +1812,20 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="HelpFragment__include_debug_log">Inkluder feilsøkingslogg</string>
   <string name="HelpFragment__whats_this">Kva er dette?</string>
   <string name="HelpFragment__how_do_you_feel">Korleis kjenner du deg? (Valfritt)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Fortel oss kvifor du tek kontakt.</string>
   <string name="HelpFragment__support_info">Supportinfo</string>
   <string name="HelpFragment__signal_android_support_request">Signal for Android, supportspørsmål</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Det fungerer ikkje</item>
+    <item>Idé til ny funksjon</item>
+    <item>Spørsmål</item>
+    <item>Tilbakemelding</item>
+    <item>Ymse</item>
+    <item>Betalingar</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldinga</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
@@ -1826,6 +1842,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="arrays__use_default">Bruk standard</string>
   <string name="arrays__use_custom">Bruk sjølvvald</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
+  <string name="arrays__mute_for_eight_hours">Demp i 8 timar</string>
   <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
   <string name="arrays__mute_for_seven_days">Demp i 7 dagar</string>
   <string name="arrays__always">Alltid</string>
@@ -1852,6 +1869,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
     <item quantity="other">%dt</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Ta imot alle SMS</string>
   <string name="preferences__pref_all_mms_title">Ta imot alle MMS</string>
@@ -1915,6 +1933,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om leveringsrapport når du sender SMS</string>
   <string name="preferences__data_and_storage">Data og lagring</string>
   <string name="preferences__storage">Lagring</string>
+  <string name="preferences__payments">Betaling</string>
+  <string name="preferences__payments_beta">Betaling (Beta)</string>
   <string name="preferences__conversation_length_limit">Lengdgrense for samtalar</string>
   <string name="preferences__keep_messages">Spar på meldingar</string>
   <string name="preferences__clear_message_history">Tøm meldingshistorikk</string>
@@ -2022,32 +2042,136 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">All aktivitet</string>
   <string name="PaymentsAllActivityFragment__all">Alt</string>
   <string name="PaymentsAllActivityFragment__sent">Sendt</string>
   <string name="PaymentsAllActivityFragment__received">Motteken</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Her kjem betalingar (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Bruk Signal til å senda og motta MobileCoin, ei ny digital mynteining med fokus på personvern. Skru på for å komma i gang.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Skru på betalingar</string>
+  <string name="PaymentsHomeFragment__activating_payments">Skrur på betalingar …</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Gjenopprett betalingskonto</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ingen nye hendingar enno</string>
+  <string name="PaymentsHomeFragment__pending_requests">Ventande førespurnader</string>
+  <string name="PaymentsHomeFragment__recent_activity">Nye hendingar</string>
   <string name="PaymentsHomeFragment__see_all">Vis alle</string>
+  <string name="PaymentsHomeFragment__add_funds">Legg til midlar</string>
   <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__sent_s">Sende %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Mottok %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Overfør til vekslebørs</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Valutakonvertering</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Skru av betalingar</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsHomeFragment__help">Hjelp</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
+  <string name="PaymentsHomeFragment__sent_payment">Sende betaling</string>
+  <string name="PaymentsHomeFragment__received_payment">Mottok betaling</string>
+  <string name="PaymentsHomeFragment__processing_payment">Behandlar betaling</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutakonvertering er utilgjengeleg</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan ikkje visa valutakurs. Sjekk at mobilen er på nett og prøv igjen.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalingar er ikkje tilgjengeleg i din region.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Klarte ikkje skru på betalingar. Prøv igjen seinare.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Skru av betalingar?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Du vil ikkje lenger kunna senda eller motta MobileCoin i Signal viss du skrur av betalingar.</string>
+  <string name="PaymentsHomeFragment__deactivate">Skru av</string>
   <string name="PaymentsHomeFragment__continue">Hald fram</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Saldo utilgjengeleg.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Betalingar skrudd av.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Feil ved betaling</string>
   <string name="PaymentsHomeFragment__details">Detaljar</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan bruka Signal til å senda og motta MobileCoin. Alle betalingar skjer under bruksvilkåra til MobileCoins og MobileCoin-lommeboka. Dette er ein betafunksjon, så det kan oppstå feil, og betalingar eller saldoar som blir borte kan ikkje gjenopprettast.</string>
+  <string name="PaymentsHomeFragment__activate">Skru på</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Les vilkår for MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Betalingar er ikkje lenger tilgjengeleg i Signal. Du kan framleis overføra midlar til ein vekslebørs, men du kan ikkje lenger senda eller motta betalingar eller legga til midlar.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Legg til midlar</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Lommebokadressa di</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiert til utklippstavla</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Send MobileCoin til lommebokadressa di for å legga til midlar. Start ein transaksjon frå kontoen din på ein vekslebørs som støttar MobileCoin, og skann QR-koden eller kopier lommebokadressa di.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljar</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Sender inn betaling …</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Behandlar betaling …</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Betaling fullført</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Feil ved betaling</string>
+  <string name="PaymentsDetailsFragment__network_fee">Nettverksgebyr</string>
+  <string name="PaymentsDetailsFragment__sent_by">Sendt av</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Sendt til %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Du %1$s kl. %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s kl. %3$s</string>
   <string name="PaymentsDetailsFragment__to">Til</string>
   <string name="PaymentsDetailsFragment__from">Frå</string>
+  <string name="PaymentsDetailsFragment__information">Transaksjonsdetaljar inkludert betalingssum og transaksjonstid er ein del av rekneskapen i MobileCoin-hovedboka.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Du får eit «myntoppryddingsgebyr» når myntane du har ikkje kan kombinerast for å fullføra ein transaksjon. Oppryddinga lar deg halda fram med å senda betalingar.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Ingen fleire detaljar tilgjengeleg for denne transaksjonen</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Sende betaling</string>
+  <string name="PaymentsDetailsFragment__received_payment">Mottok betaling</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Betaling fullført %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Blokknummer</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Overfør</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Skann QR-kode</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Til: Skann eller skriv inn lommebokadresse</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Du kan overføra MobileCoin ved å fullføra ei overføring til lommebokadressa gitt av vekslebørsen. Lommebokadressa er ein streng med tal og bokstavar, vanlegvis vist under QR-koden.</string>
   <string name="PaymentsTransferFragment__next">Neste</string>
+  <string name="PaymentsTransferFragment__invalid_address">Ugyldig adresse</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Kontroller lommebokadressa du prøver å overføra til og prøv igjen.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Du kan ikkje overføra til di eiga lommebokadresse på Signal. Skriv inn adressa som høyrer til lommboka til kontoen din på ein støtta vekslebørs.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">For å skanna ein QR-kode må Signal ha tilgang til kameraet ditt.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal treng tilgang til kameraet for å henta ein QR-kode. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">For å skanna ein QR-kode må Signal ha tilgang til kameraet ditt.</string>
   <string name="PaymentsTransferFragment__settings">Innstillingar</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skann QR-kode for adresse</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skann QR-koden til mottakaradressa</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Førespurnad</string>
+  <string name="CreatePaymentFragment__pay">Betal</string>
+  <string name="CreatePaymentFragment__available_balance_s">Tilgjengeleg saldo: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Av/på</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Visk ut</string>
+  <string name="CreatePaymentFragment__add_note">Legg til merknad</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Kursar er berre overslag og kan vera unøyaktige.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Merknad</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Stadfest betaling</string>
+  <string name="ConfirmPayment__network_fee">Nettverksgebyr</string>
+  <string name="ConfirmPayment__error_getting_fee">Klarte ikkje henta gebyr</string>
+  <string name="ConfirmPayment__estimated_s">Anslo %1$s</string>
   <string name="ConfirmPayment__to">Til</string>
+  <string name="ConfirmPayment__total_amount">Sum</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Sender inn betaling …</string>
+  <string name="ConfirmPayment__processing_payment">Behandlar betaling …</string>
+  <string name="ConfirmPayment__payment_complete">Betaling fullført</string>
+  <string name="ConfirmPayment__payment_failed">Feil ved betaling</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Betalinga vil behandlast vidare</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Ugyldig mottakar</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Denne personen har ikkje skrudd på betalingar</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Klarte ikkje henta nettverksgebyr. Trykk OK for å halda fram med betalinga.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Vel valuta</string>
+  <string name="SetCurrencyFragment__all_currencies">Alle valutaar</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2285,9 +2409,13 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="backup_enable_dialog__folder">Mappe</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eg har skrive ned denne passordfrasen. Utan den vil eg ikkje få gjenoppretta frå reservekopien.</string>
   <string name="registration_activity__restore_backup">Gjenopprett frå reservekopi</string>
+  <string name="registration_activity__transfer_or_restore_account">Overfør eller gjenopprett konto</string>
+  <string name="registration_activity__transfer_account">Overfør konto</string>
   <string name="registration_activity__skip">Hopp over</string>
   <string name="preferences_chats__chat_backups">Reservekopiar av meldingar</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Ta reservekopi av meldingar til ekstern lagring</string>
+  <string name="preferences_chats__transfer_account">Overfør konto</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til ny Android-eining</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv passordfrasen til reservekopien</string>
   <string name="RegistrationActivity_restore">Rett opp igjen</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikkje importera reservekopiar frå nyare utgåver av Signal</string>
@@ -2363,8 +2491,21 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>
   <string name="Recipient_unknown">Ukjend</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gjenopprett konto</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Viss du tidlegare har registrert ein Signal-konto kan du overføra eller gjenoppretta kontoen og meldingane</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Overfør frå Android-eining</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Overfør kontoen din og meldingane dine frå den gamle Android-eininga di. Du må ha tilgang til den gamle eininga.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Du må ha tilgang til den gamle eininga.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Gjenopprett frå reservekopi</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Gjenopprett meldingane dine frå ein lokal reservekopi. Viss du ikkje gjenopprettar no, vil du ikkje kunna gjenoppretta seinare.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Opna Signal på den gamle Android-telefonen</string>
   <string name="NewDeviceTransferInstructions__continue">Hald fram</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Trykk på profilbildet øverst til venstre for å opna Innstillingar</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på «Samtalar»</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
@@ -2375,6 +2516,9 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Prøv igjen</string>
   <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Hald fram</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">Lukk</string>
@@ -2383,6 +2527,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Ferdig</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer">Overfør</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokkering</string>
@@ -2530,11 +2675,17 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Klarte ikkje endra bakgrunnsbilde.</string>
   <string name="WallpaperCropActivity__blur_photo">Gjer bildet uklart</string>
   <!--InfoCard-->
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kan veksla ut MobileCoin når som helst på ein vekslebørs som støttar MobileCoin. Berre overfør til kontoen din på den børsen.</string>
   <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_record_recovery_phrase">Skriv inn gjenopprettingsfrase</string>
+  <string name="payment_info_card_record_your_phrase">Skriv inn frasen din</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Skru av</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Neste</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Neste</string>

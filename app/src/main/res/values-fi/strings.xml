@@ -401,7 +401,7 @@
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
     <item quantity="one">%d odottava ryhmäänliittymispyyntö.</item>
-    <item quantity="other">%d odottavaa ryhmäänliittymispyyntöä.</item>
+    <item quantity="other">%d odottavaa liittymispyyntöä.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Näytä</string>
   <!--ShareActivity-->
@@ -525,12 +525,12 @@
     <item quantity="other">%1$d jäsentä</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
+  <string name="PendingMembersActivity_pending_group_invites">Odottavat kutsut</string>
   <string name="PendingMembersActivity_requests">Pyynnöt</string>
   <string name="PendingMembersActivity_invites">Kutsut</string>
   <string name="PendingMembersActivity_people_you_invited">Kutsumasi henkilöt</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">Sinulla ei ole odottavia ryhmäkutsuja.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Muiden ryhmän jäsenten kutsumat</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Sinulla ei ole odottavia kutsuja.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Muiden kutsumat henkilöt</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Muilla jäsenillä ei ole odottavia ryhmäkutsuja.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Tietoja muiden ryhmän jäsenten kutsumista henkilöistä ei näytetä. Heidän tiedot jaetaan ryhmälle vasta sitten kun he päättävät liittyä ryhmään. He eivät näe ryhmän viestejä ennen liittymistä.</string>
   <string name="PendingMembersActivity_revoke_invite">Peruuta kutsu</string>
@@ -541,11 +541,11 @@
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="one">Virhe kutsun peruuttamisessa</item>
-    <item quantity="other">Virhe kutsujen peruuttamisessa</item>
+    <item quantity="other">Kutsujen peruuttaminen epäonnistui</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Odottavat ryhmäänliittymispyynnöt</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Ei odottavia ryhmäänliittymispyyntöjä.</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Odottavat liittymispyynnöt</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Ei odottavia liittymispyyntöjä.</string>
   <string name="RequestingMembersFragment_explanation">Tässä luettelossa olevat henkilöt yrittävät liittyä ryhmään ryhmälinkin kautta.</string>
   <string name="RequestingMembersFragment_added_s">Lisäsi käyttäjän %1$s</string>
   <string name="RequestingMembersFragment_denied_s">Hylkäsi käyttäjän %1$s</string>
@@ -593,7 +593,7 @@
     <item quantity="other">Tätä ryhmää ei pystytä luomaan koska %1$d jäsentä käyttää vanhaa versiota Signalista. Sinun täytyy poistaa heidät ennen ryhmän luomista.</item>
   </plurals>
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_member_requests_and_invites">Ryhmäänliittymispyynnöt &amp; kutsut</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Liittymispyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Ketkä voivat lisätä uusia jäseniä?</string>
@@ -617,7 +617,7 @@
     <item quantity="other">%d jäsentä lisätty.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Vain ylläpitäjät voivat ottaa jaettavan ryhmälinkin käyttöön tai poistaa sen käytöstä.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Vain ylläpitäjät voivat ottaa ryhmäänliittymispyynnöt käyttöön tai poistaa ne käytöstä.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Vain ylläpitäjät voivat ottaa liittymispyynnöt käyttöön tai poistaa ne käytöstä.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Vain ylläpitäjät voivat uudelleenasettaa ryhmälinkin.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sinulla ei ole oikeuksia tähän</string>
   <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä ja hänen on siis päivitettävä Signal</string>
@@ -693,14 +693,14 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hallinnoi &amp; jaa</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Ryhmälinkki</string>
   <string name="ShareableGroupLinkDialogFragment__share">Jaa</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Uudelleenaseta linkki</string>
-  <string name="ShareableGroupLinkDialogFragment__member_requests">Ryhmäänliittymispyynnöt</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Hyväksy uusia jäseniä</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vaadi ylläpitäjän hyväksyntä uusille jäsenille jotka liittyvät ryhmälinkin kautta.</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Luo uudelleen</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Liittymispyynnöt</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Hyväksy uudet jäsenet</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Ylläpitäjän on hyväksyttävä ryhmälinkin kautta liittyvät uudet jäsenet.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Haluatko varmasti nollata ryhmälinkin? Ryhmään ei voi enää liittyä nykyistä linkkiä käyttäen.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-koodi</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Tämän koodin skannaavat ihmiset voivat liittyä ryhmäänne. Ylläpitäjien on edelleen hyväksyttävä uudet jäsenet, jos kyseinen asetus on käytössä.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Liity ryhmään skannaamalla koodi. Ylläpitäjän on edelleen hyväksyttävä uudet jäsenet, jos kyseinen asetus on käytössä.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Jaa koodi</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Haluatko peruuttaa henkilölle %1$s lähettämäsi ryhmäkutsun?</string>
@@ -717,7 +717,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ryhmätietoja ei saatu. Yritä myöhemmin uudelleen.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Haluatko liittyä tähän ryhmään ja jakaa nimesi ja profiilikuvasi sen jäsenille?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Tämän ryhmän ylläpitäjän on hyväksyttävä pyyntösi ennen kuin voit liittyä tähän ryhmään. Kun pyydät ryhmään liittymistä, nimesi ja kuvasi jaetaan sen jäsenille.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ryhmän ylläpitäjän on hyväksyttävä liittymispyyntö ennen ryhmään pääsemistä. Liittymispyynnön yhteydessä nimesi ja kuvasi näkyvät ryhmän jäsenille.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Ryhmä · %1$d jäsen</item>
     <item quantity="other">Ryhmä · %1$d jäsentä</item>
@@ -982,24 +982,24 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ryhmän jäsenyyttä voi nyt muokata \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Otit ryhmälinkin käyttöön ilman ryhmäänliittymispyyntöjä.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Otit ryhmälinkin käyttöön. Ylläpitäjä tarkistaa ryhmäänliittymispyynnöt.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Otit ryhmälinkin käyttöön. Ylläpitäjä tarkistaa liittymispyynnöt.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Poistit ryhmälinkin käytöstä.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s otti ryhmälinkin käyttöön. Ryhmäänliittymispyynnöt eivät ole käytössä.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s otti ryhmälinkin käyttöön. Ylläpitäjä tarkistaa ryhmäänliittymispyynnöt.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s otti ryhmälinkin käyttöön. Liittymispyynnöt eivät ole käytössä.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s otti ryhmälinkin käyttöön. Ylläpitäjä tarkistaa liittymispyynnöt.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s poisti ryhmälinkin käytöstä.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ryhmälinkki on otettu käyttöön. Ryhmäänliittymispyynnöt eivät ole käytössä.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ryhmälinkki on otettu käyttöön. Ylläpitäjä tarkistaa ryhmäänliittymispyynnöt.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ryhmälinkki on otettu käyttöön. Liittymispyynnöt eivät ole käytössä.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ryhmälinkki on otettu käyttöön. Ylläpitäjä tarkistaa liittymispyynnöt.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Ryhmälinkki on poistettu käytöstä.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Poistit ryhmäänliittymispyynöt käytöstä.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s poisti ryhmäänliittymispyynnöt käytöstä.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Ryhmäänliittymispyynnöt on poistettu käytöstä.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Otit ryhmäänliittymispyynnöt käyttöön.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s otti ryhmäänliittymispyynnöt käyttöön.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Ryhmäänliittymispyynnöt on otettu käyttöön.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s poisti liittymispyynnöt käytöstä.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Liittymispyynnöt on poistettu käytöstä.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Otit liittymispyynnöt käyttöön.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s otti liittymispyynnöt käyttöön.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Liittymispyynnöt on otettu käyttöön.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Sinä uudelleenasetit ryhmälinkin.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s uudelleenasetti ryhmälinkin.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">Ryhmälinkki on asetettu uudelleen.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Loit ryhmälinkin uudelleen.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s loi ryhmälinkin uudelleen.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Ryhmälinkki on luotu uudelleen.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Liityit ryhmään ryhmälinkin kautta.</string>
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s liittyi ryhmään ryhmälinkin kautta.</string>
@@ -1846,6 +1846,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS ja MMS</string>
   <string name="preferences__pref_all_sms_title">Vastaanota kaikki tekstiviestit</string>
   <string name="preferences__pref_all_mms_title">Vastaanota kaikki multimediaviestit</string>
@@ -1909,6 +1910,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
   <string name="preferences__data_and_storage">Data ja tallennustila</string>
   <string name="preferences__storage">Tallennustila</string>
+  <string name="preferences__payments">Maksut</string>
+  <string name="preferences__payments_beta">Maksut (Beta)</string>
   <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
   <string name="preferences__keep_messages">Säilytä viestit</string>
   <string name="preferences__clear_message_history">Tyhjennä viestihistoria</string>
@@ -2016,29 +2019,60 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="configurable_single_select__customize_option">Mukauta vaihtoehto</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Kaikki toiminta</string>
   <string name="PaymentsAllActivityFragment__all">Kaikki</string>
   <string name="PaymentsAllActivityFragment__sent">Lähetetty</string>
   <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
+  <string name="PaymentsHomeFragment__recent_activity">Viimeaikainen toiminta</string>
   <string name="PaymentsHomeFragment__see_all">Näytä kaikki</string>
+  <string name="PaymentsHomeFragment__add_funds">Lisää varoja</string>
   <string name="PaymentsHomeFragment__send">Lähetä</string>
+  <string name="PaymentsHomeFragment__sent_s">Lähetettiin %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Vastaanotettiin %1$s</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Valuuttamuunnos</string>
   <string name="PaymentsHomeFragment__help">Tuki </string>
+  <string name="PaymentsHomeFragment__sent_payment">Maksu lähetetty</string>
+  <string name="PaymentsHomeFragment__received_payment">Maksu vastaanotettu</string>
+  <string name="PaymentsHomeFragment__processing_payment">Käsitellään maksua</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuuttamuunnos ei saatavilla</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnoksen näyttäminen ei onnistu. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
   <string name="PaymentsHomeFragment__continue">Jatka</string>
+  <string name="PaymentsHomeFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsHomeFragment__details">Lisätietoja</string>
+  <string name="PaymentsHomeFragment__activate">Aktivoi</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Lisää varoja</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Lompakkosi osoite</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopioi</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Lisätietoja</string>
   <string name="PaymentsDetailsFragment__status">Tila</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Lähetetään maksua…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Käsitellään maksua…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Maksu valmis</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
   <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Maksu lähetetty</string>
+  <string name="PaymentsDetailsFragment__received_payment">Maksu vastaanotettu</string>
+  <string name="PaymentsDetailsFragment__block_number">Estä numero</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Siirrä</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skannaa QR-koodi</string>
   <string name="PaymentsTransferFragment__next">Seuraava</string>
+  <string name="PaymentsTransferFragment__invalid_address">Virheellinen osoite</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal tarvitsee luvan kameran käyttämiseen skannatakseen QR-koodin.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal tarvitsee luvan kameran käyttämiseen skannatakseen QR-koodin.</string>
   <string name="PaymentsTransferFragment__settings">Asetukset</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skannaa osoitteen QR-koodi</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pyyntö</string>
+  <string name="CreatePaymentFragment__pay">Maksa</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2051,9 +2085,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreatePaymentFragment__0">0</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Vahvista maksu</string>
   <string name="ConfirmPayment__to">Vastaanottajat</string>
+  <string name="ConfirmPayment__submitting_payment">Lähetetään maksua…</string>
+  <string name="ConfirmPayment__processing_payment">Käsitellään maksua…</string>
+  <string name="ConfirmPayment__payment_complete">Maksu valmis</string>
+  <string name="ConfirmPayment__payment_failed">Maksu epäonnistui</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Virheellinen vastaanottaja</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Aseta valuutta</string>
+  <string name="SetCurrencyFragment__all_currencies">Kaikki valuutat</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2283,7 +2325,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_activity__enable_signal_messages">OTA KÄYTTÖÖN SIGNAL-VIESTIT</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalin tietokantaa siirretään</string>
   <string name="PushDecryptJob_new_locked_message">Uusi lukittu viesti</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">Avaa nähdäksesi odottavat viestit</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Näytä odottavat viestit avaamalla lukitus</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopion salalause</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varmuuskopiot tallennetaan laitteesi tallennustilaan ja ne salataan allaolevalla salalauseella. Ilman tätä salalausetta et voi palauttaa varmuuskopiota.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">Sinulla on oltava tämä tunnuslause varmuuskopion palauttamiseksi.</string>
@@ -2483,6 +2525,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="OldDeviceTransferLockedDialog__done">Valmis</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Peruuta ja aktivoi tämä laite</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__dont_transfer">Älä siirrä</string>
+  <string name="AdvancedPreferenceFragment__transfer">Siirrä</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Estä</string>
   <string name="RecipientBottomSheet_unblock">Poista esto</string>
@@ -2513,8 +2557,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="GroupsLearnMore_paragraph_2">Vanhoja ryhmiä ei voi vielä päivittää uusiksi ryhmiksi, mutta voit luoda uuden ryhmän samoilla jäsenillä, jos he käyttävät Signalin uusinta versiota.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal tulee tarjoamaan tavan päivittää vanhan tyylin ryhmiä tulevaisuudessa.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Kuka tahansa, jolla on tämä linkki, voi nähdä tämän ryhmän nimen ja kuvan, sekä lähettää liittymispyynnön. Jaa se ihmisille, joihin luotat.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Kuka tahansa, jolla on tämä linkki, voi nähdä tämän ryhmän nimen ja kuvan, sekä lähettää liittymispyynnön. Jaa se ihmisille, joihin luotat.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Linkin kautta voi liittyä ryhmään sekä nähdä sen nimi ja jäsenet. Jaa se vain luotettaville ihmisille.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Linkin kautta voi liittyä ryhmään sekä nähdä sen nimi ja jäsenet. Jaa se vain luotettaville ihmisille.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Jaa Signalin kautta</string>
   <string name="GroupLinkBottomSheet_copy">Kopioi</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-koodi</string>
@@ -2630,25 +2674,40 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustakuvan asettaminen epäonnistui.</string>
   <string name="WallpaperCropActivity__blur_photo">Sumenna valokuva</string>
   <!--InfoCard-->
+  <string name="payment_info_card_adding_funds">Lisätään varoja</string>
   <string name="payment_info_card_hide">Piilota</string>
+  <string name="payment_info_card_update_your_pin">Päivitä PIN</string>
   <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Aloita</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Liitä leikepöydältä</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Seuraava</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Varmista että olet syöttänyt %1$d sanaa ja yritä uudelleen.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Seuraava</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Muokkaa</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Edellinen</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Kirjoita muistiin seuraavat %1$d sanaa järjestyksessä. Laita lista talteen turvalliseen paikkaan.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopioi leikepöydälle?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopioi</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Sana %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Valmis</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__word_d">Sana %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Seuraava</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Virheellinen sana</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Leikepöytä tyhjennetty.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Näytä</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s lähetti sinulle %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d uutta maksuilmoitusta</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Maksun lähetys ei ole mahdollista</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Lähetä viesti</string>
   <!--EOF-->
 </resources>

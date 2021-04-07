@@ -1990,6 +1990,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">%dur</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">Sporočila SMS in MMS</string>
   <string name="preferences__pref_all_sms_title">Prejemaj sporočila SMS</string>
   <string name="preferences__pref_all_mms_title">Prejemaj sporočila MMS</string>
@@ -2053,6 +2054,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Za vsako poslano sporočilo SMS zahtevaj potrdilo o prejemu</string>
   <string name="preferences__data_and_storage">Podatki in pomnilnik</string>
   <string name="preferences__storage">Pomnilnik</string>
+  <string name="preferences__payments">Plačila</string>
+  <string name="preferences__payments_beta">Plačila (Beta)</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
   <string name="preferences__keep_messages">Hramba sporočil</string>
   <string name="preferences__clear_message_history">Izbriši zgodovino pogovorov</string>

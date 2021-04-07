@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Ocultar lembrete?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gravar frase de recuperação de pagamentos</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Gravar frase</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desativar o seu PIN, você deverá registar a sua frase de recuperação de pagamentos para garantir que pode recuperar a sua conta de pagamentos. </string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -57,6 +60,7 @@
   <string name="AttachmentKeyboard_location">Localização</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">O Signal necessita de permissão para exibir as suas fotografias e vídeos.</string>
   <string name="AttachmentKeyboard_give_access">Conceder acesso</string>
+  <string name="AttachmentKeyboard_payment">Pagamento</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar uma aplicação para selecionar a multimédia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal requer permissão de acesso ao armazenamento de forma a poder anexar fotografias, vídeo e áudio, mas esta foi negada permanentemente. Por favor, aceda ao menu de definições das aplicações do seu telemóvel, selecione a aplicação Signal, e em \"Permissões\" ative \"Armazenamento\" ou \"Memória\". </string>
@@ -1809,6 +1813,14 @@
   <string name="HelpFragment__debug_log">Relatório de depuração:</string>
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Algo não está a funcionar</item>
+    <item>Pedido de recurso</item>
+    <item>Questão</item>
+    <item>Feedback</item>
+    <item>Outro</item>
+    <item>Pagamentos</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
@@ -1852,6 +1864,7 @@
     <item quantity="other">%dh </item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
   <string name="preferences__pref_all_mms_title">Receber todos os MMS</string>
@@ -1915,6 +1928,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pedir um aviso de entrega para cada mensagem de SMS enviada</string>
   <string name="preferences__data_and_storage">Dados e armazenamento</string>
   <string name="preferences__storage">Armazenamento</string>
+  <string name="preferences__payments">Pagamentos</string>
+  <string name="preferences__payments_beta">Pagamentos (Beta)</string>
   <string name="preferences__conversation_length_limit">Limite máximo das conversas</string>
   <string name="preferences__keep_messages">Manter mensagens</string>
   <string name="preferences__clear_message_history">Eliminar histórico de mensagens</string>
@@ -2022,24 +2037,82 @@
   <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Toda a atividade</string>
   <string name="PaymentsAllActivityFragment__all">Tudo</string>
   <string name="PaymentsAllActivityFragment__sent">Enviada</string>
   <string name="PaymentsAllActivityFragment__received">Recebida</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Introdução aos pagamentos (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilize o Signal para enviar e receber MobileCoin, uma nova privacidade focada na moeda digital. Ative para começar a utilizar.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Ativar os pagamentos</string>
+  <string name="PaymentsHomeFragment__activating_payments">A ativar pagamentos…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Restaurar a conta de pagamentos</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ainda sem atividade recente</string>
+  <string name="PaymentsHomeFragment__pending_requests">Pedidos pendentes</string>
+  <string name="PaymentsHomeFragment__recent_activity">Atividade recente</string>
   <string name="PaymentsHomeFragment__see_all">Ver tudo</string>
+  <string name="PaymentsHomeFragment__add_funds">Adicionar fundos</string>
   <string name="PaymentsHomeFragment__send">Enviar</string>
+  <string name="PaymentsHomeFragment__sent_s">Enviado(s) %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Recebido(s) %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir para trocar</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Conversão de moeda</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Desativar pagamentos</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Recuperar frase</string>
   <string name="PaymentsHomeFragment__help">Ajuda</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Taxa de limpeza de moedas</string>
+  <string name="PaymentsHomeFragment__sent_payment">Pagamento enviado</string>
+  <string name="PaymentsHomeFragment__received_payment">Pagamento recebido</string>
+  <string name="PaymentsHomeFragment__processing_payment">A processar pagamento</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversão de moeda não disponível</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Não é possível exibir a conversão de moeda. Verifique a ligação do seu telemóvel e tente novamente. </string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Os pagamentos não se encontram disponíveis para a sua região.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Não foi possível ativar os pagamentos. Tente novamente mais tarde.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Desativar os pagamentos?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Você não poderá enviar ou receber MobileCoin no Signal se desativar os pagamentos. </string>
+  <string name="PaymentsHomeFragment__deactivate">Desativar</string>
   <string name="PaymentsHomeFragment__continue">Continuar</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">O saldo não se encontra atualmente disponível</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Pagamentos desativados.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Falha de pagamento</string>
   <string name="PaymentsHomeFragment__details">Detalhes</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Você pode utilizar o Signal para enviar e receber MobileCoin. Todos os pagamentos estão sujeitos aos \'Termos de utilização\' de MobileCoins e MobileCoin Wallet. Este é um recurso beta, então você pode encontrar alguns problemas de pagamentos ou saldos que poderá perder e que não poderão ser recuperados.</string>
+  <string name="PaymentsHomeFragment__activate">Ativar</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver termos da MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Os pagamentos no Signal já não estão disponíveis. Você ainda pode transferir fundos para uma troca, mas deixou de poder enviar e receber pagamentos ou adicionar fundos. </string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Adicionar fundos</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">O endereço da sua carteira</string>
   <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Para adicionar fundos, envie MobileCoin para o endereço da sua carteira. Inicie uma transação a partir da sua conta numa troca compatível com MobileCoin e, em seguida, digitalize o código QR ou copie o endereço da carteira. </string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalhes</string>
   <string name="PaymentsDetailsFragment__status">Estado</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">A submeter pagamento…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">A processar pagamento…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Pagamento concluido</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Falha de pagamento</string>
+  <string name="PaymentsDetailsFragment__network_fee">Taxa de rede</string>
+  <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Enviado por %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Você em %1$s às %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s em %2$s às %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
+  <string name="PaymentsDetailsFragment__information">Os detalhes de pagamento incluindo o montante de pagamento e o horário da transação, são parte da MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Taxa de limpeza de moedas</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">É cobrada uma \"taxa de limpeza de moedas\" que se encontra na sua posse não podem ser combinadas para completar a transação. A limpeza irá permitir-lhe que continue a enviar pagamentos.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Sem mais detalhes relevantes para esta transação</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Pagamento enviado</string>
+  <string name="PaymentsDetailsFragment__received_payment">Pagamento recebido</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Pagamento concluido %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Bloquear número</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Transferir</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Ler código QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Para: Digitalize ou introduza o endereço da carteira</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Você pode transferir o MobileCoin ao terminar uma transferência para o endereço da carteira fornecido pela troca. O endereço da carteira é a sequência de números e letras mais comumente abaixo do código QR.</string>
   <string name="PaymentsTransferFragment__next">Seguinte</string>
   <string name="PaymentsTransferFragment__settings">Definições</string>
   <!--PaymentsTransferQrScanFragment-->
@@ -2047,7 +2120,12 @@
   <string name="CreatePaymentFragment__request">Pedido</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__network_fee">Taxa de rede</string>
   <string name="ConfirmPayment__to">Para</string>
+  <string name="ConfirmPayment__submitting_payment">A submeter pagamento…</string>
+  <string name="ConfirmPayment__processing_payment">A processar pagamento…</string>
+  <string name="ConfirmPayment__payment_complete">Pagamento concluido</string>
+  <string name="ConfirmPayment__payment_failed">Falha de pagamento</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -2479,6 +2557,7 @@
   <string name="OldDeviceTransferLockedDialog__done">Concluído</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este dispositivo</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer">Transferir</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
@@ -2629,8 +2708,11 @@
   <string name="payment_info_card_hide">Ocultar</string>
   <string name="payment_info_card_update_pin">Atualizar PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Desativar</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recuperar frase</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Recuperar frase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Seguinte</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Seguinte</string>

@@ -56,6 +56,7 @@
   <string name="AttachmentKeyboard_location">ตำแหน่งที่ตั้ง</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal จำเป็นต้องได้รับอนุญาต เพื่อจะแสดงรูปและวิดีโอของคุณ</string>
   <string name="AttachmentKeyboard_give_access">อนุญาตให้เข้าถึง</string>
+  <string name="AttachmentKeyboard_payment">การจ่ายเงิน</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับเลือกสื่อ</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียง Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
@@ -1829,6 +1830,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ร้องขอรายงานสำหรับแต่ละข้อความ SMS ที่คุณส่ง</string>
   <string name="preferences__data_and_storage">ข้อมูลและที่เก็บ</string>
   <string name="preferences__storage">พื้นที่จัดเก็บ</string>
+  <string name="preferences__payments">การจ่ายเงิน</string>
+  <string name="preferences__payments_beta">การจ่ายเงิน (รุ่นทดลอง)</string>
   <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของการสนทนา</string>
   <string name="preferences__keep_messages">เก็บข้อความ</string>
   <string name="preferences__clear_message_history">ล้างประวัติข้อความ</string>
@@ -1944,7 +1947,9 @@
   <string name="PaymentsHomeFragment__help">ช่วยเหลือ</string>
   <string name="PaymentsHomeFragment__continue">ทำต่อ</string>
   <string name="PaymentsHomeFragment__details">รายละเอียด</string>
+  <string name="PaymentsHomeFragment__activate">เปิดใช้</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">ที่อยู่กระเป๋าเงินของคุณ</string>
   <string name="PaymentsAddMoneyFragment__copy">คัดลอก</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <!--PaymentsDetailsFragment-->
@@ -1955,11 +1960,14 @@
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">สแกนรหัส QR</string>
   <string name="PaymentsTransferFragment__next">ถัดไป</string>
+  <string name="PaymentsTransferFragment__invalid_address">ที่อยู่ไม่ถูกต้อง</string>
   <string name="PaymentsTransferFragment__settings">การตั้งค่า</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">คำขอ</string>
+  <string name="CreatePaymentFragment__pay">จ่าย</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">บันทึก</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">ถึง</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2535,11 +2543,13 @@
   <string name="payment_info_card_update_pin">เปลี่ยนรหัส PIN</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">เริ่ม</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">ถัดไป</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">ถัดไป</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">แก้ไข</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">ก่อนหน้า</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">คัดลอก</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">เสร็จสิ้น</string>

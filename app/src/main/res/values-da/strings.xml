@@ -2033,6 +2033,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PaymentsHomeFragment__help">Hjælp</string>
   <string name="PaymentsHomeFragment__continue">Fortsæt</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__activate">Aktivér</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Kopiér</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -2060,6 +2061,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Notat</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Til</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2661,6 +2663,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PaymentNotificationsView__view">Vis</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For at sende en betaling til denne bruger, skal de acceptere en beskedanmodning fra dig. Skriv til dem for at oprette en beskedanmodning.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send en besked</string>
   <!--EOF-->
 </resources>

@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN နံပါတ်ပိတ်လိုက်ပြီ</string>
   <string name="ApplicationPreferencesActivity_hide">ဝှက်ပါ</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">သတိပေးချက်ကို ဝှက်ထားမလား</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ငွေပေးချေမှု ပြန်လည်ရယူမည့် စာပုဒ်တိုကို မှတ်ထားပါ</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">စာပုဒ်တိုကို မှတ်ထားပါ</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">သင့် ပင်နံပါတ်ကို မပိတ်မီ သင်ငွေပေးချေမှုလုပ်သည့် အကောင့်ကို ပြန်ရယူရန် သင်ငွေပေးချေမှု ပြန်လည်ရယူသည့် စာပုဒ်တိုကို မှတ်ထားရပါမည်။</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d မိနစ်</item>
@@ -56,6 +59,7 @@
   <string name="AttachmentKeyboard_location">တည်နေရာ</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal သည် သင်၏ဓာတ်ပုံနှင့်ဗီဒီယိုများကိုပြသရန် ခွင့်ပြုချက်လိုအပ်သည်။</string>
   <string name="AttachmentKeyboard_give_access">အသုံးပြုခွင့်ပေးပါ</string>
+  <string name="AttachmentKeyboard_payment">ငွေပေးချေမှု</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ရုပ်သံကိုဖွင့်ရန်သင့်တော်သည့် app မတွေ့ပါ </string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန် Signalမှ အဆက်အသွယ်များအား အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ဖိုင်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
@@ -665,7 +669,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">အဖွဲ့လိုက် link ကိုပြန်လည်တည်ဆောက်ရန်သင်သေချာပါသလား။ လူများသည်လက်ရှိလင့်ခ်ကို သုံး၍ အုပ်စုနှင့်ဆက်သွယ်နိုင်တော့မည်မဟုတ်ပါ။</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">\"QR ကုဒ်\";</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ဤကုဒ်နံပါတ်ကိုစကင်ဖတ်သောသူများသည်သင်၏အဖွဲ့ထဲသို့ဝင်နိုင်လိမ့်မည်။ အကယ်၍ သင်သည်ဤချိန်ညှိမှုကိုဖွင့်ပါကအုပ်ချုပ်သူအသစ်များအားအတည်ပြုရန်လိုအပ် ဦး မည်။</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ဤကုဒ်နံပါတ်ကို စကင်ဖတ်သောသူများသည် သင်၏အဖွဲ့ထဲသို့ ဝင်နိုင်လိမ့်မည်။ အကယ်၍ သင်သည် ဤချိန်ညှိမှုကို ဖွင့်ပါက အုပ်ချုပ်သူအသစ်များအား အတည်ပြုရန် လိုအပ်ဦးမည်။</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">ကုဒ်မျှဝေပါ</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">သင်ပို့သောဖိတ်ကြားချက်ကိုပြန်လည်ရုပ်သိမ်းလိုပါသလား%1$s ?</string>
@@ -792,6 +796,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal ဖုန်းခေါ်နေသည်</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal ဖုန်းခေါ်ဆိုမှုစတင်နေသည်</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal မှဖုန်းဝင်လာသည်</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal ဖုန်းခေါ်ဆိုခြင်း ဝန်ဆောင်မှုကို ရပ်ဆိုင်းနေသည်</string>
   <string name="NotificationBarManager__deny_call">ဖုန်းမကိုင်ပါ</string>
   <string name="NotificationBarManager__answer_call">ဖုန်းကိုင်မည်</string>
   <string name="NotificationBarManager__end_call">ဖုန်းချမည်</string>
@@ -1342,7 +1347,7 @@
   <string name="VerifyIdentityActivity_share_safety_number_via">… မှတဆင့် လုံခြုံရေးနံပါတ်ကို မျှဝေမယ်</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">တို့တွေရဲ့ Signal လုံခြုံရေးနံပါတ်:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Clipboard တွင်တိုက်ကြည့်စရာ လုံခြုံရေးနံပါတ်များ မရှိပါ</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ကလစ်ဘုတ် တွင်တိုက်ကြည့်စရာ လုံခြုံရေးနံပါတ်များ မရှိပါ</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">ကြည့်ရှုရန်ပထမ ဦး ဆုံးသင်မက်ဆေ့ခ်ျများဖလှယ်ရမည်%1$s လုံခြုံစိတ်ချရသောနံပါတ်။</string>
@@ -1680,7 +1685,7 @@
   <string name="recipients_panel__to"><small>နာမည် သို့မဟုတ် နံပါတ် ထည့်ပါ</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[အကယ်၍ သင်၏ လုံခြုံရေးကို %sနှင့် တိုက်ဆိုင်စစ်ဆေးလိုပါက အထက်ပါ နံပါတ်ကို သူတို့၏ ဖုန်းပေါ်တွင်ရှိသော နံပါတ်ဖြင့် တိုက်ဆိုင်စစ်ဆေးပါ။ တခြားနည်းအနေဖြင့် သူတို့၏ ဖုန်းပေါ်တွင်ရှိသော ကုတ်နံပါတ်ကို scan ဖတ်နိုင်ပါသည် သို့မဟုတ် သင်၏ ကုတ်နံပါတ်ကို သူတို့ကို scan ဖတ်ခိုင်းပါ။ <a href="https://signal.org/redirect/safety-numbers">ထပ်မံသိရှိလိုပါက </a>]]></string>
-  <string name="verify_display_fragment__tap_to_scan">စကန်ဖတ်ရန်နှိပ်ပါ</string>
+  <string name="verify_display_fragment__tap_to_scan">စကင်ဖတ်ရန်နှိပ်ပါ</string>
   <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်…</string>
   <string name="verify_display_fragment__verified">အသိအမှတ်ပြုပြီးပြီ</string>
   <!--verify_identity-->
@@ -1734,6 +1739,14 @@
   <string name="HelpFragment__debug_log">Debug မှတ်တမ်း -</string>
   <string name="HelpFragment__could_not_upload_logs">မှတ်တမ်းများကို တင်၍ မရပါ</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ပြtheနာကိုကျွန်တော်တို့နားလည်စေရန်တတ်နိုင်သမျှဖော်ပြပေးပါ။</string>
+  <string-array name="HelpFragment__categories">
+    <item>အရာတစ်ခု အလုပ်မလုပ်ပါ</item>
+    <item>အင်္ဂါရပ်တောင်းဆိုချက်</item>
+    <item>မေးခွန်း</item>
+    <item>တုံ့ပြန်ချက်</item>
+    <item>အခြား</item>
+    <item>ငွေပေးချေမှုများ</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ဒီစာ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">လတ်တလော သုံးစွဲမှု</string>
@@ -1776,6 +1789,7 @@
     <item quantity="other">%dဇ</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">စမ်းသပ်သည့် Beta ဗားရှင်း</string>
   <string name="preferences__sms_mms">SMS နှင့် MMS</string>
   <string name="preferences__pref_all_sms_title">စာတိုများအားလုံးကို လက်ခံပါ။</string>
   <string name="preferences__pref_all_mms_title">MMS အားလုံးကို လက်ခံပါ။</string>
@@ -1839,6 +1853,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS တစ်ခုပို့ပြီးတိုင်း ပို့ပြီးကြောင်း အသိပေးပါ။</string>
   <string name="preferences__data_and_storage">နှင့်သိုလှောင်မှု</string>
   <string name="preferences__storage">သိမ်းဆည်းမှု</string>
+  <string name="preferences__payments">ငွေပေးချေမှုများ</string>
+  <string name="preferences__payments_beta">ငွေပေးချေမှုများ (စမ်းသပ်သည့် Beta ဗားရှင်း)</string>
   <string name="preferences__conversation_length_limit">စာလုံးရေ အကန့်အသတ်</string>
   <string name="preferences__keep_messages">မက်ဆေ့များကို သိမ်းထားပါ</string>
   <string name="preferences__clear_message_history">မက်ဆေ့ရာဇဝင်ရှင်းလင်းမယ်</string>
@@ -1946,29 +1962,135 @@
   <string name="configurable_single_select__customize_option">option ကိုစိတ်ကြိုက်</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">လှုပ်ရှားမှုများအားလုံး</string>
   <string name="PaymentsAllActivityFragment__all">တက်ရောက်သူအားလုံး</string>
   <string name="PaymentsAllActivityFragment__sent">ပို့ပြီးပြီ</string>
   <string name="PaymentsAllActivityFragment__received">လက်ခံရရှိပြီး</string>
+  <string name="PaymentsHomeFragment__introducing_payments">ငွေပေးချေမှုများ (စမ်းသပ်သည့် Beta ဗားရှင်း) မိတ်ဆက်ပါသည်</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal သုံး၍ MobileCoin ပေးပို့လက်ခံလိုက်ပါ၊​ ၎င်းသည် ပုဂ္ဂိုလုံခြုံရေး အလေးထားသော ဒစ်ဂျစ်တယ်ငွေကြေး ဖြစ်ပါသည်။ ဖွင့်၍ စတင်သုံးလိုက်ပါ။</string>
+  <string name="PaymentsHomeFragment__activate_payments">ငွေပေးချေမှုများ ဖွင့်မယ်</string>
+  <string name="PaymentsHomeFragment__activating_payments">ငွေပေးချေမှုများ ဖွင့်နေသည်…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">ငွေပေးချမှုလုပ်သည့် အကောင့် ပြန်ရယူမယ်</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">လတ်တလောလှုပ်ရှားမှုများ မရှိသေးပါ</string>
+  <string name="PaymentsHomeFragment__pending_requests">ဆိုင်းငံ့နေသော တောင်းဆိုမှုများ</string>
+  <string name="PaymentsHomeFragment__recent_activity">လတ်တလောလှုပ်ရှားမှု</string>
   <string name="PaymentsHomeFragment__see_all">အားလုံးကြည့်မည်</string>
+  <string name="PaymentsHomeFragment__add_funds">ငွေဖြည့်မယ်</string>
   <string name="PaymentsHomeFragment__send">ပေးပို့မည်</string>
+  <string name="PaymentsHomeFragment__sent_s">ပို့ပြီး %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">လက်ခံရယူပြီး %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">လဲလှယ်ရန် လွှဲပြောင်းပါ</string>
+  <string name="PaymentsHomeFragment__currency_conversion">ငွေကြေးလဲလှယ်မှု </string>
+  <string name="PaymentsHomeFragment__deactivate_payments">ငွေပေးချေမှုများ ပိတ်မယ်</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တို</string>
   <string name="PaymentsHomeFragment__help">အကူအညီ</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">အကြွေစေ့ရှင်းရေးအခကြေး</string>
+  <string name="PaymentsHomeFragment__sent_payment">ငွေပေးချေပြီး</string>
+  <string name="PaymentsHomeFragment__received_payment">ငွေပေးချေမှုလက်ခံရယူပြီး</string>
+  <string name="PaymentsHomeFragment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">ငွေကြေးလဲလှယ်မှု မရနိုင်ပါ</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">ငွေကြေးလဲလှယ်ခြင်းကို မပြနိုင်ပါ။ သင့် ဖုန်းချိတ်ဆက်မှုကို စစ်၍ ပြန်စမ်းကြည့်ပေးပါ။</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">သင့်ဒေသတွင်း ငွေပေးချေမှုများ မရရှိနိုင်ပါ။</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">ငွေပေးချေမှုများ မလုပ်ဆောင်နိုင်ပါ။ နောက်မှ ပြန်စမ်းကြည့်ပေးပါ။</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">ငွေပေးချေမှုများကို ပိတ်မည်လား?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">သင်မှ ငွေပေးချေမှုများ ပိတ်ထားလျှင် Signal ထဲတွင် သင်မှ MobileCoin ပေးပို့လက်ခံရန် မရနိုင်ပါ။</string>
+  <string name="PaymentsHomeFragment__deactivate">ပိတ်မယ်</string>
   <string name="PaymentsHomeFragment__continue">ဆက်လုပ်ရန်</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">လက်ကျန်ငွေ လက်ရှိမရနိုင်ပါ။</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">ငွေပေးချေမှုများ ပိတ်ပြီး</string>
+  <string name="PaymentsHomeFragment__payment_failed">ငွေပေးချေမှု မအောင်မြင်ပါ</string>
+  <string name="PaymentsHomeFragment__details">အသေးစိတ်အချက်အလက်များ</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal ကို သုံး၍ MobileCoin ကို ပေးပို့လက်ခံနိုင်ပါသည်။ ငွေပေးချေမှုများအားလုံးသည် MobileCoin နှင့် MobileCoin Wallet ၏ စည်းကမ်းသတ်မှတ်ချက်များကို လိုက်နာရပါမည်။ ၎င်းသည် စမ်းသပ်သည့်ဗားရှင်းသာဖြစ်၍ အချို့ကိစ္စရပ်များ ကြုံတွေ့နိုင်ပြီး ငွေပေးချေမှုများ သို့မဟုတ် လက်ကျန်ငွေတို့ ဆုံးရှူံးခဲ့လျှင် ပြန်လည်မရရှိနိုင်ပါ။</string>
+  <string name="PaymentsHomeFragment__activate">ဖွင့်မယ်</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ၏သတ်မှတ်ချက်များ ကြည့်ရှုမယ်</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal ထဲတွင် ငွေပေးချေမှုများ မလုပ်ဆောင်နိုင်တော့ပါ။ ငွေလဲလှယ်မှုတစ်ခုသို့ ငွေများလွှဲနိုင်ပါသည်၊ သို့သော် သင်မှ ငွေပေးချေမှုများ ပေးပို့လက်ခံလို့မရတော့ပါ၊​ ငွေလည်း ထည့်ပေါင်းလို့မရတော့ပါ။</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">ငွေဖြည့်မယ်</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">သင့် ပိုက်ဆံအိတ် Wallet လိပ်စာ</string>
   <string name="PaymentsAddMoneyFragment__copy">ကူးမည်</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ကူးယူပြီး</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">ငွေဖြည့်ရန် သင့် ပိုက်ဆံအိတ် Wallet လိပ်စာသို့ MobileCoin ပို့ပါ။ သင့် အကောင့်မှ MobileCoin ပံ့ပိုးသော လွှဲပြောင်းမှုနှင့် ငွေပေးငွေယူမှုတစ်ကြောင်းလုပ်ဆောင်ပါ၊ ပြီးလျှင် QR ကုဒ်စကင်ဖတ်ပါ သို့မဟုတ် သင့် သင့် ပိုက်ဆံအိတ် Wallet လိပ်စာ ကော်ပီကူးပါ။</string>
   <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">အသေးစိတ်အချက်အလက်များ</string>
   <string name="PaymentsDetailsFragment__status">အခြေအနေ</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">ငွေပေးချေမှု တင်သွင်းနေသည်…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">ငွေပေးချေမှု အောင်မြင်ပါပြီ</string>
+  <string name="PaymentsDetailsFragment__payment_failed">ငွေပေးချေမှု မအောင်မြင်ပါ</string>
+  <string name="PaymentsDetailsFragment__network_fee">ကွန်ယက်အခကြေးငွေ</string>
+  <string name="PaymentsDetailsFragment__sent_by">မှပေးပို့သည်</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">%1$s သို့ပေးပို့သည်</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">သင့်ကို %1$s နေ့ရက်၊ %2$s အချိန်တွင်</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ကို %2$s နေ့ရက်၊ %3$s အချိန်တွင်</string>
+  <string name="PaymentsDetailsFragment__to">သို့</string>
+  <string name="PaymentsDetailsFragment__from">မှ</string>
+  <string name="PaymentsDetailsFragment__information">ငွေပေးချေမှု ငွေပမာဏ နှင့် လုပ်ဆောင်သည့်အချိန် အပါအဝင် ငွေပေးငွေယူသည့် အသေးစိတ်အချက်အလက်များသည်  MobileCoin စာအုပ်စာရင်း၏ အစိတ်အပိုင်းတစ်ခု ဖြစ်ပါသည်။</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">အကြွေစေ့ရှင်းရေးအခကြေး</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">ငွေပေးချေမှု လုပ်ဆောင်ရန် သင့်လက်ထဲတွင်ရှိသော အကြွေစေ့များကိုပေါင်းစပ်သော်လည်း မလုံလောက်မှုဖြစ်ခဲ့လျှင် \"အကြွေစေ့ရှင်းရေးအခကြေး\" ကို ကိုက်ခံယူပါမည်။ ရှင်းခြင်းဖြင့် ငွေပေးချေမှုများ ဆက်လက် ပေးပို့နိုင်ပါမည်။</string>
+  <string name="PaymentsDetailsFragment__no_details_available">ဤငွေပေးချေမှုအတွက် အခြားအချက်အလက်များ မရရှိနိုင်ပါ</string>
+  <string name="PaymentsDetailsFragment__sent_payment">ငွေပေးချေပြီး</string>
+  <string name="PaymentsDetailsFragment__received_payment">ငွေပေးချေမှုလက်ခံရယူပြီး</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">ငွေပေးချေမှု အောင်မြင်ပြီး %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">နံပါတ်အား ပိတ်ပယ်မယ်</string>
   <!--PaymentsTransferFragment-->
-  <string name="PaymentsTransferFragment__scan_qr_code">QR ကုတ်ကို စကန်ဖတ်ပါ</string>
+  <string name="PaymentsTransferFragment__transfer">လွဲပြောင်းမယ်</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">QR ကုတ်ကို စကင်ဖတ်ပါ</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">သို့ - စကင်ဖတ် သို့မဟုတ် ပိုက်ဆံအိတ် wallet လိပ်စာ ရိုက်ထည့်ပါ</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">သင်မှ MobileCoin လွှဲရန် ငွေလဲလှယ်မှုတစ်ခုမှ ပေးသော ပိုက်ဆံအိတ် wallet လိပ်စာသို့ လွှဲပြောင်းမှုတစ်ခု ပြီးစီးစေလိုပါသည်။ ပိုက်ဆံအိတ် wallet လိပ်စာသည် QR ကုဒ်အောက်တွင် ပုံမှန်အားဖြင့်တွေ့နိုင်သော နံပါတ်များနှင့် အက္ခရာများဖြစ်ပါသည်။</string>
   <string name="PaymentsTransferFragment__next">နောက်ထက်</string>
+  <string name="PaymentsTransferFragment__invalid_address">အကြုံးမဝင်သော လိပ်စာ</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">သင်လွှဲပြောင်းရန် ကြိုးစားနေသည့် ပိုက်ဆံအိတ် wallet လိပ်စာ ကိုစစ်ပြီး ပြန်စမ်းကြည့်ပေးပါ။</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">သင့်ပိုက်ဆံအိတ် wallet လိပ်စာသို့ သင်ကိုယ်တိုင် လွှဲလို့မရပါ။ သင့်အကောင့်မှ ပိုက်ဆံအိတ် wallet လိပ်စာ ကို ပံ့ပိုးသော ငွေလဲလှယ်မှုတစ်နေရာတွင် ရိုက်ထည့်ပေးပါ။</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR ကုဒ်ကို စကင်ဖတ်ရန် Signal မှ သင့် ကင်မရာသုံးခွင့် လိုအပ်ပါသည်။</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QR ကုဒ်ဖတ်ရန် Signal မှ သင့်ကင်မရာသုံးခွင့် လိုအပ်ပါသည်။ အပြင်အဆင်များ သို့သွား၍ \"ခွင့်ပြုချက်များ\" ကိုရွေးပါ၊ ပြီးလျှင် \"ကင်မရာ\" ကို ဖွင့်ပါ။</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR ကုဒ်ကို စကင်ဖတ်ရန် Signal မှ သင့် ကင်မရာသုံးခွင့် လိုအပ်ပါသည်။</string>
   <string name="PaymentsTransferFragment__settings">အပြင်အဆင်များ</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">QR ကုဒ် လိပ်စာ စကင်ဖတ်မယ်</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">ငွေပေးရမည့်သူ၏ QR ကုဒ်လိပ်စာ ကို စကင်ဖတ်မယ်</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">တောင်းခံ</string>
+  <string name="CreatePaymentFragment__pay">ပေးဆောင်ပါ</string>
+  <string name="CreatePaymentFragment__available_balance_s">ရရှိနိုင်သော လက်ကျန်ငွေ - %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">ပုံစံပြောင်းရန်</string>
+  <string name="CreatePaymentFragment__1">၁</string>
+  <string name="CreatePaymentFragment__2">၂</string>
+  <string name="CreatePaymentFragment__3">၃</string>
+  <string name="CreatePaymentFragment__4">၄</string>
+  <string name="CreatePaymentFragment__5">၅</string>
+  <string name="CreatePaymentFragment__6">၆</string>
+  <string name="CreatePaymentFragment__7">၇</string>
+  <string name="CreatePaymentFragment__8">၈</string>
+  <string name="CreatePaymentFragment__9">၉</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">၀</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">မှတ်ချက်ထည့်မယ်</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">ငွေပြောင်းလဲခြင်းများသည် ခန့်မှန်းတွက်ချက်မှုများသာ ဖြစ်ပြီး မတိကျနိုင်ပါ။</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">မှတ်ချက်</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">ငွေပေးချေမှု အတည်ပြုမယ်</string>
+  <string name="ConfirmPayment__network_fee">ကွန်ယက်အခကြေးငွေ</string>
+  <string name="ConfirmPayment__error_getting_fee">အခကြေးငွေ ရယူခြင်း ပျက်ကွက်မှုဖြစ်</string>
+  <string name="ConfirmPayment__estimated_s">ခန့်မှန်းထားသည် %1$s</string>
+  <string name="ConfirmPayment__to">သို့</string>
+  <string name="ConfirmPayment__total_amount">စုစုပေါင်း ပမာဏ</string>
+  <string name="ConfirmPayment__balance_s">လက်ကျန်ငွေ - %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">ငွေပေးချေမှု တင်သွင်းနေသည်…</string>
+  <string name="ConfirmPayment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်…</string>
+  <string name="ConfirmPayment__payment_complete">ငွေပေးချေမှု အောင်မြင်ပါပြီ</string>
+  <string name="ConfirmPayment__payment_failed">ငွေပေးချေမှု မအောင်မြင်ပါ</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">ငွေပေးချေမှုကို ဆက်လက်လုပ်ဆောင်ပါမည်</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">လက်ခံသူ မမှန်ကန်ပါ</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">၎င်း ပုဂ္ဂိုလ်မှ ငွေပေးချေမှုများ ဖွင့်ထားခြင်းမရှိပါ</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ကွန်ယက်အခကြေး တောင်းဆိုရန်မရပါ။ ၎င်းငွေပေးချေမှု ဆက်လက်လုပ်ဆောင်ရန် အိုကေနှိပ်၍ ပြန်စမ်းကြည့်ပါ။</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">ငွေကြေး သတ်မှတ်မယ်</string>
+  <string name="SetCurrencyFragment__all_currencies">ငွေကြေးများ အားလုံး</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2048,8 +2170,8 @@
   <string name="text_secure_normal__mark_all_as_read">အားလုံးကို ဖတ်ပြီးသားအဖြစ် မှတ်ပါ။</string>
   <string name="text_secure_normal__invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ကူးယူလိုက်ပါ။</string>
-  <string name="verify_display_fragment_context_menu__compare_with_clipboard">clipboard နဲ့ ယှဥ်လိုက်ပါ။</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူမယ်</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">ကလစ်ဘုတ် နဲ့ ယှဥ်လိုက်ပါ</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">SMS စနစ်ကို တင်ပို့ပါ</string>
   <string name="reminder_header_sms_import_text">ဖုန်း SMS များကို Signal ရဲ့ encrypted အချက်အလက် သိမ်းဆည်းရာထဲတွင် ကူးသိမ်းဖို့ရန် နှိပ်ပါ။</string>
@@ -2223,7 +2345,7 @@
   <string name="BackupDialog_delete_backups_statement">အရံသိမ်းထားသည်များကို ဖျက်မည်</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">အရန်ကူးခြင်းကိုဖွင့်ရန်ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။ အရန်ကူးများကိုဤတည်နေရာသို့ သိမ်းဆည်းလိမ့်မည်။</string>
   <string name="BackupDialog_choose_folder">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
-  <string name="BackupDialog_copied_to_clipboard">clipboard သို့ ကူးယူပါ</string>
+  <string name="BackupDialog_copied_to_clipboard">ကလစ်ဘုတ် သို့ ကူးယူပြီး</string>
   <string name="BackupDialog_no_file_picker_available">ဖိုင်ရွေးသူမရှိပါ</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">အတည်ပြုရန်သင့်အရန်ကူးထားသောစကားဝှက်ကို ရိုက်ထည့်ပါ</string>
   <string name="BackupDialog_verify">စစ်ဆေးအတည်ပြုသည်</string>
@@ -2391,6 +2513,10 @@
   <string name="OldDeviceTransferLockedDialog__done">ပြီးပြီ </string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ပယ်ဖျက်ပြီး ဤစက်အား ဖွင့်မယ်</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB လက်ကျန်ငွေ လွှဲပြောင်းမည်လား?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">သင်မှ လက်ကျန်ငွေ %1$s ရှိပါသည်။ သင့်အကောင့်ကို မဖျက်သိမ်းမီ အခြား ပိုက်ဆံအိတ် wallet လိပ်စာသို့ မလွှဲပြောင်းပါက ၎င်းငွေ ဆုံးရှူံးပါမည်။</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">မလွှဲပြောင်းပါ</string>
+  <string name="AdvancedPreferenceFragment__transfer">လွဲပြောင်းမယ်</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">တားမြစ်မည်</string>
   <string name="RecipientBottomSheet_unblock">ပြန်ဖွင့်မည်</string>
@@ -2427,7 +2553,7 @@
   <string name="GroupLinkBottomSheet_copy">ကူးမည်</string>
   <string name="GroupLinkBottomSheet_qr_code">QR ကုဒ်</string>
   <string name="GroupLinkBottomSheet_share">ဝေမျှမည်</string>
-  <string name="GroupLinkBottomSheet_copied_to_clipboard">clipboard သို့ ကူးယူပြီး</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">ကလစ်ဘုတ် သို့ ကူးယူပြီး</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ဒီလင့်ခ်သည်လက်ရှိမလုပ်ဆောင်ပါ</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
@@ -2481,6 +2607,7 @@
   <string name="DeleteAccountFragment__delete_account">အကောင့်ဖျက်ပါ</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">သင်၏အကောင့်အချက်အလက်နှင့်ပရိုဖိုင်းဓာတ်ပုံများကိုဖျက်ပါ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">သင်၏စာများကိုဖျက်ပါ</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s ကို သင့်ငွေပေးချေသည့် အကောင့်မှ ဖျက်သိမ်းပါ</string>
   <string name="DeleteAccountFragment__no_country_code">နိုင်ငံကုတ်နံပါတ်မရှိပါ</string>
   <string name="DeleteAccountFragment__no_number">နံပါတ်မရှိပါ</string>
   <string name="DeleteAccountFragment__the_phone_number">သင်ထည့်လိုက်သောဖုန်းနံပါတ်သည်သင့်အကောင့်နှင့်မကိုက်ညီပါ</string>
@@ -2536,24 +2663,82 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">နောက်ခံပုံပြင်ဆင်ခြင်းအမှားအယွင်း</string>
   <string name="WallpaperCropActivity__blur_photo">ဓာတ်ပုံမှုန်ထားမည်</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">MobileCoin အကြောင်း</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin သည် ပုဂ္ဂိုလ်လုံခြုံရေးကို အလေးထားသော ဒစ်ဂျစ်တယ်ငွေကြေးအသစ် ဖြစ်ပါသည်။</string>
+  <string name="payment_info_card_adding_funds">ငွေဖြည့်နေသည်</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">သင့် ပိုက်ဆံအိတ် wallet လိပ်စာသို့ MobileCoin ပို့၍ Signal တွင် သုံးရန် ငွေဖြည့်နိုင်ပါသည်။</string>
+  <string name="payment_info_card_cashing_out">ငွေထုတ်ယူခြင်း</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">မည်သည့်အချိတ်မဆို MobileCoin ပံ့ပိုးသော ငွေလဲလှယ်သည့်နေရာတွင် MobileCoin ငွေထုတ်ယူလို့ရပါသည်။ ၎င်းငွေလဲလှယ်သည့်နေရာတွင် သင့်အကောင့်သို့ လွှဲလိုက်ပါ။</string>
+  <string name="payment_info_card_hide_this_card">၎င်းကဒ်ကို ပုန်းမည်လား?</string>
   <string name="payment_info_card_hide">ဝှက်ပါ</string>
+  <string name="payment_info_card_record_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုကို မှတ်ထားပါ</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">ပြန်လည်ရယူရန် စာပုဒ်တိုသည် သင့် ငွေပေးချေမှုအကောင့်ကို ပြန်လည်ရယူရန် နည်းတစ်နည်းဖြစ်ပါသည်။</string>
+  <string name="payment_info_card_record_your_phrase">သင့် စာပုဒ်တိုကို မှတ်ထားပါ</string>
+  <string name="payment_info_card_update_your_pin">သင့် ပင်နံပါတ်ကို အပ်ဒိတ်ပြုလုပ်မယ်</string>
+  <string name="payment_info_card_with_a_high_balance">လက်ကျန်ငွေများလျှင် သင့်အကောင့်ကို ပိုမိုလုံခြုံမှုရှိစေရန် အက္ခရာနံပါတ်ပါသော ပင်နံပါတ်ဖြင့် သင့်အကောင့်ကို ကာကွယ်နိုင်ပါသည်။</string>
   <string name="payment_info_card_update_pin">PIN နံပါတ်ကိုအသစ်ပြောင်းပါ</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">ပိုက်ဆံအိတ် Wallet ကို ပိတ်မယ်</string>
+  <string name="DeactivateWalletFragment__your_balance">သင့်လက်ကျန်ငွေ</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">ပိုက်ဆံအိတ် Wallet ကို မပိတ်မီ အခြား ပိုက်ဆံအိတ် Wallet သို့ သင့်ငွေများကို လွှဲထားရန် အကြံပြုပါသည်။ ယခု မလွှဲထားလျှင် သင်မှ ငွေပေးချေမှုများပြန်ဖွင်ခဲ့သည့်အချိန်တွင် ၎င်းငွေများသည် Signal နှင့်ချိတ်ထားသော ပိုက်ဆံအိတ် Wallet တွင်ကျန်ရှိနေပါမည်။ </string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">ကျန်ရှိသောလက်ကျန်ငွေကို လွှဲပြောင်းမယ်</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">မလွှဲဘဲ ပိတ်ပါမယ်</string>
+  <string name="DeactivateWalletFragment__deactivate">ပိတ်မယ်</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">မလွှဲဘဲ ပိတ်မည်လား?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">သင်မှ ငွေပေးချေမှုများကို ပြန်ဖွင့်ခဲ့လျှင် သင့် လက်ကျန်ငွေသည် Signal နှင့် ချိတ်ထားသော သင့်ပိုက်ဆံအိတ် wallet ထဲတွင် ကျန်ရှိနေပါမည်။</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">ပိုက်ဆံအိတ် wallet ပိတ်ခြင်းတွင် ပျက်ကွက်မှုဖြစ်</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တို</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုကို ကြည့်ရှုမယ်</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ပြန်လည်ရယူ စာပုဒ်တိုကို ရိုက်ထည့်ပါ</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal ပြန်တင်သွင်းသည့်အချိန်တွင် သင်မှသင့် Signal ပင်နံပါတ်ကို အတည်ပြုခဲ့လျှင် သင့် လက်ကျန်ငွေကို အလိုအလျောက်ပြန်လည် ရရှိပါမည်။ ပြန်လည်ရယူရန် စာပုဒ်တိုတစ်ကြောင်းဖြင့်လည်း သင့်လက်ကျန်ငွေကို ပြန်ရယူနိုင်ပါသည်။ ၎င်းသည် သင့်အတွက်သာ ထူးခြားသာ %1$dစာလုံးရှိသော စာပုဒ်တိုဖြစ်ပါသည်။ ရေးသားမှတ်ထားပြီး လုံခြုံသောတစ်နေရာတွင် ဝှက်ထားပါ။</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">သင့် ပြန်လည်ရယူရန် စာပုဒ်တိုသည် သင့်အတွက်သာ ထူးခြားသော %1$d စကားလုံးရှိ စာပုဒ်တိုဖြစ်ပါသည်။ ၎င်းစာသုံး၍ သင့် လက်ကျန်ငွေ ပြန်ရယူလိုက်ပါ။</string>
+  <string name="PaymentsRecoveryStartFragment__start">စမယ်</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">ကိုယ်တိုင်ရိုက်ထည့်ပါ</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ကလစ်ဘုတ်မှ​ ကူးရေးမယ်</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုကို ကူးရေးမယ်</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တို</string>
   <string name="PaymentsRecoveryPasteFragment__next">နောက်ထက်</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုသည် မမှန်ကန်ပါ</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">သင်မှ %1$d စကားလုံးများ ရိုက်ထည့်တာ သေချာစေပြီး ပြန်စမ်းကြည့်ပေးပါ။</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">နောက်ထက်</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ပြင်ရန်</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">နောက်သို့</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">သင်၏ ပြန်လည်ရယူရန် စာပုဒ်တို</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">အောက်ပါ %1$d စကားလုံးများကို အစီစဥ်လိုက် ရေးသားမှတ်ထားပါ။ လုံခြုံသောနေရာတွင် ၎င်းစာတွဲများကို ဝှက်ထားပါ။</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">သင်ရိုက်ထည့်ထားသော စာပုဒ်တိုကို သေချာစေပါ။</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">စကင်ရှော့မရိုက်ပါနှင့် သို့မဟုတ် အီးမေးလ် မပို့ပါနှင့်။</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">ငွေပေးချေမှု အကောင့်ကို ပြန်ရယူနိုင်ခဲ့ပါသည်။</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုသည် မမှန်ကန်ပါ</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">သင်ရိုက်ထည့်ထားသော စာပုဒ်တိုကို သေချာစေပါ၊ ပြီးလျှင် ပြန်စမ်းကြည့်ပါ။</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ကလစ်ဘုတ် ပေါ်သို့ ကူးယူမည်လား?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">ဒီဂျစ်တယ်စနစ်ဖြင့် သင့် ပြန်လည်ရယူ စာပုဒ်တိုကို သိမ်းဆည်းမည်ဆိုလျှင် သင်ယုံကြည်ပြီး လုံခြုံသောတစ်နေရာတွင် သိမ်းထားရန် စေလိုပါသည်။</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">ကူးမည်</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">ပြန်လည်ရယူ စာပုဒ်တိုကို အတည်ပြုပါ</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">သင့် ပြန်လည်ရယူ စာပုဒ်တိုမှ အောက်ပါ စကားလုံးများကို ရိုက်ထည့်ပါ။</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">စာလုံး %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">စာပုဒ်တိုကို ပြန်ကြည့်ပါမည်</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ပြီးပါပြီ။</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">ပြန်လည်ရယူ စာပုဒ်တိုကို အတည်ပြုပြီး</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">ပြန်လည်ရယူ စာပုဒ်တိုကို ရိုက်ထည့်ပါ</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">%1$d စကားလုံး ရိုက်ထည့်ပါ</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">စာလုံး %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">နောက်ထက်</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">စာလုံး မမှန်ကန်ပါ</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ကလစ်ဘုတ်ကို ရှင်းလင်းပြီး</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">ကြည့်မည်။</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s သည် သင့်ကို %2$s ပေးပို့ခဲ့ပါသည်</string>
+  <string name="UnreadPayments__d_new_payment_notifications">ငွေပေးချေမှု သတိပေးချက်အသစ်များ %1$d ခု</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">ငွေပေးချေမှုကို မပို့နိုင်ပါ</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">၎င်းသုံးသူသို့ ငွေပေးချေမှုပေးလိုလျှင် ၎င်းတို့သည် သင့်စီမှ မက်ဆေ့ချ်တောင်းဆိုမှု ကို လက်ခံရန်လိုပါမည်။ ၎င်းစီသို့ တောင်းဆိုရန် မက်ဆေ့ချ်ပို့လိုက်ပါ။</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">မက်ဆေ့ချ်ပို့မယ်</string>
   <!--EOF-->
 </resources>

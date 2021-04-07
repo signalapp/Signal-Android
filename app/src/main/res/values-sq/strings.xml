@@ -38,6 +38,8 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
   <string name="ApplicationPreferencesActivity_hide">Fshihe</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Të fshihet kujtuesi?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Frazë Rimarrjeje Regjistrimi</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Frazë Rimarrjeje Regjistrimi</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutë</item>
@@ -1854,6 +1856,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS dhe MMS</string>
   <string name="preferences__pref_all_sms_title">Merri krejt SMS-të</string>
   <string name="preferences__pref_all_mms_title">Merri krejt MMS-të</string>
@@ -2028,45 +2031,117 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Krejt veprimtaria</string>
   <string name="PaymentsAllActivityFragment__all">Krejt</string>
   <string name="PaymentsAllActivityFragment__sent">Dërguar më</string>
   <string name="PaymentsAllActivityFragment__received">Marrë më</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Ju paraqesim pagesa (Beta)</string>
   <string name="PaymentsHomeFragment__activate_payments">Pagesa</string>
+  <string name="PaymentsHomeFragment__activating_payments">Po aktivizohen pagesa…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Riktheni llogari pagesash</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ende pa veprimtari së fundi</string>
+  <string name="PaymentsHomeFragment__pending_requests">Kërkesa pezull</string>
+  <string name="PaymentsHomeFragment__recent_activity">Veprimtari së fundi</string>
   <string name="PaymentsHomeFragment__see_all">Shihini krejt</string>
+  <string name="PaymentsHomeFragment__add_funds">Shtoni fonde</string>
   <string name="PaymentsHomeFragment__send">Dërgoje</string>
+  <string name="PaymentsHomeFragment__sent_s">Dërguar %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Marrë %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">_Shkëmbe:</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Kurs këmbimi</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Çaktivizo pagesa</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frazë:</string>
   <string name="PaymentsHomeFragment__help">Ndihmë</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Tarifë Coin Cleanup</string>
+  <string name="PaymentsHomeFragment__sent_payment">U dërgua pagesë</string>
+  <string name="PaymentsHomeFragment__received_payment">U mor pagesë</string>
+  <string name="PaymentsHomeFragment__processing_payment">Po kryhet pagesa</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Kurs Këmbimi</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Pagesat s’janë të përdorshme në rajonin tuaj.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">S’u aktivizuan dot pagesat. Riprovoni më vonë.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Të çaktivizohen Pagesa?</string>
   <string name="PaymentsHomeFragment__deactivate">Çaktivizoje</string>
   <string name="PaymentsHomeFragment__continue">Vazhdo</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Bilanc</string>
   <string name="PaymentsHomeFragment__payments_deactivated">E çaktivizuar</string>
+  <string name="PaymentsHomeFragment__payment_failed">Pagesa dështoi</string>
   <string name="PaymentsHomeFragment__details">Hollësi</string>
   <string name="PaymentsHomeFragment__activate">Aktivizoje</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Shihni kushte MobileCoin-i</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Shtoni fonde</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Portofol</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopjoje</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">U kopjua në të papastër</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Hollësi</string>
   <string name="PaymentsDetailsFragment__status">Gjendje</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Po parashtrohet pagesa…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Po kryhet pagesa…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Pagesë e plotësuar</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Pagesa dështoi</string>
+  <string name="PaymentsDetailsFragment__network_fee">Tarifë rrjeti</string>
+  <string name="PaymentsDetailsFragment__sent_by">Dërguar nga</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Dërguar te %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Ju, në %1$s më %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s në %2$s më %3$s</string>
   <string name="PaymentsDetailsFragment__to">Për</string>
   <string name="PaymentsDetailsFragment__from">Nga</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Pagesë e dërguar</string>
+  <string name="PaymentsDetailsFragment__received_payment">Pagesë e marrë</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Pagesë e plotësuar %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Numër blloku</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Shpërngule</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skanoni kodin QR</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Adresë portofoli Bitcoin (kyç publik)</string>
   <string name="PaymentsTransferFragment__next">Pasuesi</string>
   <string name="PaymentsTransferFragment__invalid_address">Adresë e pavlefshme</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Që të skanohet një kod QR, Signal-i ka nevojë të përdorë kamerën.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Që të skanohet një kod QR, Signal-i ka nevojë të përdorë kamerën.</string>
   <string name="PaymentsTransferFragment__settings">Rregullime</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skanoni Kod QR Adrese</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skanoni kodin QR</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Kërkesë</string>
   <string name="CreatePaymentFragment__pay">Paguani</string>
+  <string name="CreatePaymentFragment__available_balance_s">Baraspeshoni deri në %1$s.</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Shfaqe/Fshihe</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Shtoni shënim</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Shënim</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Ripohoni Pagesës</string>
+  <string name="ConfirmPayment__network_fee">Tarifë rrjeti</string>
+  <string name="ConfirmPayment__error_getting_fee">Gabim në marrje tarife</string>
+  <string name="ConfirmPayment__estimated_s">(afërsisht për %s)</string>
   <string name="ConfirmPayment__to">Për</string>
+  <string name="ConfirmPayment__total_amount">Sasi gjithsej</string>
+  <string name="ConfirmPayment__balance_s">Baraspeshoni deri në %1$s.</string>
+  <string name="ConfirmPayment__submitting_payment">Po parashtrohet pagesa…</string>
+  <string name="ConfirmPayment__processing_payment">Po kryhet pagesa…</string>
+  <string name="ConfirmPayment__payment_complete">Pagesë e plotësuar</string>
+  <string name="ConfirmPayment__payment_failed">Pagesa dështoi</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Pagesa do të vazhdojë të përpunohet</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Marrës i pavlefshëm</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ky person s’ka aktivizuar pagesa</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s më %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Caktoni Monedhë</string>
   <string name="SetCurrencyFragment__all_currencies">Krejt Monedhat</string>
   <!--****************************************-->
   <!--menus-->
@@ -2499,6 +2574,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="OldDeviceTransferLockedDialog__done">U bë</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulojeni dhe aktivizoni këtë pajisje</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Kandari</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Mos shpërngul</string>
+  <string name="AdvancedPreferenceFragment__transfer">Shpërngule</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>
@@ -2591,6 +2669,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DeleteAccountFragment__delete_account">Fshijë llogarinë</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Fshijë të dhënat e llogarisë tuaj dhe foton e profilit tuaj</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Fshijë krejt mesazhet tuaj</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Fshini %1$s te llogaria juaj e pagesave</string>
   <string name="DeleteAccountFragment__no_country_code">S’u dha kod vendi</string>
   <string name="DeleteAccountFragment__no_number">S’u tregua numër</string>
   <string name="DeleteAccountFragment__the_phone_number">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
@@ -2647,35 +2726,65 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="WallpaperCropActivity__blur_photo">Turbulloje foton</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Rreth MobileCoin</string>
+  <string name="payment_info_card_adding_funds">Shtim fondesh</string>
   <string name="payment_info_card_cashing_out">Thyerje çeqesh</string>
+  <string name="payment_info_card_hide_this_card">Të fshihet kjo kartë?</string>
   <string name="payment_info_card_hide">Fshihe</string>
   <string name="payment_info_card_record_recovery_phrase">Regjistroje</string>
+  <string name="payment_info_card_record_your_phrase">Frazë Rimarrjeje Regjistrimi</string>
   <string name="payment_info_card_update_your_pin">Përditësoni PIN-in tuaj</string>
   <string name="payment_info_card_update_pin">Përditësoni PIN-in</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Çaktivizoni Portofolin</string>
+  <string name="DeactivateWalletFragment__your_balance">Kontrolloni kreditin në planin tuaj të shërbimit celular për dërgim SMS-sh/MMS-sh. Nëse krediti juaj është zero, shtoni të tillë.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Të mbetur</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Çaktivizoje pa e shpërngulur</string>
   <string name="DeactivateWalletFragment__deactivate">Çaktivizoje</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Të çaktivizohet pa e shpërngulur?</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Gabim gjatë çaktivizimit të portofolit.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frazë:</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Shihni frazë rikthimi</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Jepni frazë rikthimi</string>
   <string name="PaymentsRecoveryStartFragment__start">Fillojeni</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Jepeni dorazi</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Ngjite prej së papastrës</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Ngjit frazë rikthimi</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frazë:</string>
   <string name="PaymentsRecoveryPasteFragment__next">Pasuesi</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frazë rikthimi e pavlefshme</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Pasuesi</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Përpunojeni</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">E mëprashmja</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Fraza juaj e rikthimit</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Dërgo foto ekrani</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">U rimor</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frazë rikthimi e pavlefshme</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Të kopjohet në të papastër?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopjoje</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Ripohoni frazë rikthimi</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Fjalë %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Rishiheni frazën</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">U bë</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">U ripohua frazë rikthimi</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Jepni frazë rikthimi</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Jepni fjalë %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Fjalë %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Pasuesi</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Fjalë e pavlefshme</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">E papastra u spastrua.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Shihni</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s ju dërgoi %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d njoftime pagesash të reja</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">S’dërgohet dot pagesë</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Dërgoni një mesazh</string>
   <!--EOF-->
 </resources>

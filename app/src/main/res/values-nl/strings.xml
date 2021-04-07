@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Locatie</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen en video\'s weer te kunnen geven.</string>
   <string name="AttachmentKeyboard_give_access">Toestemming geven</string>
+  <string name="AttachmentKeyboard_payment">Overschrijving</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Er is geen app gevonden waarmee je media zou kunnen selecteren.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
@@ -1920,6 +1921,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
   <string name="preferences__data_and_storage">Gegevensoverdracht en -opslag</string>
   <string name="preferences__storage">Opslag</string>
+  <string name="preferences__payments">Overschrijvingen</string>
+  <string name="preferences__payments_beta">Overschrijvingen (Bèta)</string>
   <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
   <string name="preferences__keep_messages">Berichten bewaren</string>
   <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
@@ -2032,7 +2035,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsAllActivityFragment__received">Ontvangen</string>
   <string name="PaymentsHomeFragment__see_all">Alles weergeven</string>
   <string name="PaymentsHomeFragment__send">Verzend</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsHomeFragment__help">Hulp</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__continue">Doorgaan</string>
   <string name="PaymentsHomeFragment__details">Details</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2645,11 +2650,15 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="payment_info_card_update_pin">Pincode bijwerken</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-zin</string>
+  <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsRecoveryPasteFragment__next">Volgende</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Volgende</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Aanpassen</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Vorige</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiëren</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Klaar</string>

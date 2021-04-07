@@ -1847,6 +1847,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS och MMS</string>
   <string name="preferences__pref_all_sms_title">Ta emot alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
@@ -2040,6 +2041,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Förfrågan</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Växla</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Till</string>

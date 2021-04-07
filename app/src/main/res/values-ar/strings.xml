@@ -2307,8 +2307,11 @@
   <string name="PaymentsHomeFragment__see_all">مشاهدة الكل</string>
   <string name="PaymentsHomeFragment__send">إرسال</string>
   <string name="PaymentsHomeFragment__help">المُساعدة</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">تعطيل المدفوعات؟</string>
+  <string name="PaymentsHomeFragment__deactivate">تعطيل</string>
   <string name="PaymentsHomeFragment__continue">الاِستِمرار</string>
   <string name="PaymentsHomeFragment__details">التفاصيل</string>
+  <string name="PaymentsHomeFragment__activate">تفعيل</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__your_wallet_address">عنوان محفظتك</string>
   <string name="PaymentsAddMoneyFragment__copy">نسخ</string>
@@ -2875,10 +2878,12 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال ضبط الخلفية.</string>
   <string name="WallpaperCropActivity__blur_photo">تضبيب الصورة</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">حَول MobileCoin</string>
   <string name="payment_info_card_hide">إخفاء</string>
   <string name="payment_info_card_update_your_pin">حدِّث الـPIN الخاص بك</string>
   <string name="payment_info_card_update_pin">تحديث الرقم التعريفي الشخصي</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">تعطيل</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__start">البدأ</string>
   <!--PaymentsRecoveryPasteFragment-->

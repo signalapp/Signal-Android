@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">مکان</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">سیگنال به دسترسی برای نشان دادن عکس‌ها و ویدئوهای شما احتیاج دارد.</string>
   <string name="AttachmentKeyboard_give_access">دسترسی داده شود</string>
+  <string name="AttachmentKeyboard_payment">پرداخت</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">برنامه‌ای برای انتخاب رسانه پیدا نشد.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای پیوست کردن فایل‌های صوتی و تصویری نیاز به دسترسی به حافظه دارد، اما این اجازه داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «ذخیره‌سازی» را فعال کنید.</string>
@@ -1914,6 +1915,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامکی که ارسال می‌کنید</string>
   <string name="preferences__data_and_storage">داده‌ها و حافظه</string>
   <string name="preferences__storage">حافظه</string>
+  <string name="preferences__payments">پرداخت‌ها</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>
   <string name="preferences__clear_message_history">پاک کردن تاریخچهٔ پیام</string>
@@ -2639,11 +2641,13 @@
   <string name="payment_info_card_update_pin">به‌روزرسانی پین</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">شروع</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">بعدی</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">بعدی</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ویرایش</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">قبلی</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">کپی</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">انجام شد</string>
