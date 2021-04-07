@@ -2,6 +2,7 @@ package org.session.libsession.messaging.messages.signal;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
@@ -100,7 +101,7 @@ public class IncomingTextMessage implements Parcelable {
                                          Optional<SignalServiceGroup> group,
                                          long expiresInMillis)
   {
-    return new IncomingTextMessage(sender, 1, message.getReceivedTimestamp(), message.getText(), group, expiresInMillis, false);
+    return new IncomingTextMessage(sender, 1, message.getSentTimestamp(), message.getText(), group, expiresInMillis, false);
   }
 
   public int getSubscriptionId() {

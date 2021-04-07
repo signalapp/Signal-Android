@@ -126,6 +126,5 @@ object MultiDeviceProtocol {
                 threadDatabase.notifyUpdatedFromConfig()
             }
         }
-        // TODO: handle new configuration message fields or handle in new pipeline
     }
 }

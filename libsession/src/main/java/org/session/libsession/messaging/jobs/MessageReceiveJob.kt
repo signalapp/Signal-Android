@@ -18,6 +18,8 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         val TAG = MessageReceiveJob::class.simpleName
         val KEY: String = "MessageReceiveJob"
 
+        private val RECEIVE_LOCK = Object()
+
         //keys used for database storage purpose
         private val KEY_DATA = "data"
         private val KEY_IS_BACKGROUND_POLL = "is_background_poll"
@@ -34,17 +36,19 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         try {
             val isRetry: Boolean = failureCount != 0
             val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID, isRetry)
-            MessageReceiver.handle(message, proto, this.openGroupID)
+            synchronized(RECEIVE_LOCK) {
+                MessageReceiver.handle(message, proto, this.openGroupID)
+            }
             this.handleSuccess()
             deferred.resolve(Unit)
         } catch (e: Exception) {
-            Log.d(TAG, "Couldn't receive message due to error: $e.")
+            Log.e(TAG, "Couldn't receive message due to error", e)
             val error = e as? MessageReceiver.Error
             if (error != null && !error.isRetryable) {
-                Log.d("Loki", "Message receive job permanently failed due to error: $error.")
+                Log.e("Loki", "Message receive job permanently failed due to error", e)
                 this.handlePermanentFailure(error)
             } else {
-                Log.d("Loki", "Couldn't receive message due to error: $e.")
+                Log.e("Loki", "Couldn't receive message due to error", e)
                 this.handleFailure(e)
             }
             deferred.resolve(Unit) // The promise is just used to keep track of when we're done

@@ -3,16 +3,15 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import androidx.annotation.WorkerThread
 import org.greenrobot.eventbus.EventBus
-import org.thoughtcrime.securesms.ApplicationContext
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.groups.GroupManager
+import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
-import java.lang.Exception
-import java.lang.IllegalStateException
-import kotlin.jvm.Throws
+import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.groups.GroupManager
 
 //TODO Refactor so methods declare specific type of checked exceptions and not generalized Exception.
 object OpenGroupUtilities {
@@ -22,29 +21,27 @@ object OpenGroupUtilities {
     @JvmStatic
     @WorkerThread
     @Throws(Exception::class)
-    fun addGroup(context: Context, url: String, channel: Long): PublicChat {
+    fun addGroup(context: Context, url: String, channel: Long): OpenGroup {
         // Check for an existing group.
         val groupID = PublicChat.getId(channel, url)
         val threadID = GroupManager.getOpenGroupThreadID(groupID, context)
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        if (openGroup != null) { return openGroup }
+        if (openGroup != null) { return OpenGroup.from(openGroup) }
 
         // Add the new group.
         val application = ApplicationContext.getInstance(context)
         val displayName = TextSecurePreferences.getProfileName(context)
-        val lokiPublicChatAPI = application.publicChatAPI
-                ?: throw IllegalStateException("LokiPublicChatAPI is not initialized.")
 
         val group = application.publicChatManager.addChat(url, channel)
 
         DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(channel, url)
         DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(channel, url)
-        lokiPublicChatAPI.getMessages(channel, url)
-        lokiPublicChatAPI.setDisplayName(displayName, url)
-        lokiPublicChatAPI.join(channel, url)
+        OpenGroupAPI.getMessages(channel, url)
+        OpenGroupAPI.setDisplayName(displayName, url)
+        OpenGroupAPI.join(channel, url)
         val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(context)
         val profileUrl: String? = TextSecurePreferences.getProfilePictureURL(context)
-        lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
+        OpenGroupAPI.setProfilePicture(url, profileKey, profileUrl)
         return group
     }
 
@@ -58,18 +55,15 @@ object OpenGroupUtilities {
     @WorkerThread
     @Throws(Exception::class)
     fun updateGroupInfo(context: Context, url: String, channel: Long) {
-        val publicChatAPI = ApplicationContext.getInstance(context).publicChatAPI
-                ?: throw IllegalStateException("Public chat API is not initialized!")
-
         // Check if open group has a related DB record.
         val groupId = GroupUtil.getEncodedOpenGroupID(PublicChat.getId(channel, url).toByteArray())
         if (!DatabaseFactory.getGroupDatabase(context).hasGroup(groupId)) {
             throw IllegalStateException("Attempt to update open group info for non-existent DB record: $groupId")
         }
 
-        val info = publicChatAPI.getChannelInfo(channel, url).get()
+        val info = OpenGroupAPI.getChannelInfo(channel, url).get()
 
-        publicChatAPI.updateProfileIfNeeded(channel, url, groupId, info, false)
+        OpenGroupAPI.updateProfileIfNeeded(channel, url, groupId, info, false)
 
         EventBus.getDefault().post(GroupInfoUpdatedEvent(url, channel))
     }

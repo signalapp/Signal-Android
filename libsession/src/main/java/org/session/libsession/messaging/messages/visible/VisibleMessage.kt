@@ -15,7 +15,7 @@ class VisibleMessage : Message()  {
 
     var syncTarget: String? = null
     var text: String? = null
-    var attachmentIDs = ArrayList<Long>()
+    val attachmentIDs: MutableList<Long> = mutableListOf()
     var quote: Quote? = null
     var linkPreview: LinkPreview? = null
     var contact: Contact? = null
@@ -27,17 +27,19 @@ class VisibleMessage : Message()  {
         const val TAG = "VisibleMessage"
 
         fun fromProto(proto: SignalServiceProtos.Content): VisibleMessage? {
-            val dataMessage = proto.dataMessage ?: return null
+            val dataMessage = if (proto.hasDataMessage()) proto.dataMessage else return null
             val result = VisibleMessage()
-            result.syncTarget = dataMessage.syncTarget
+            if (dataMessage.hasSyncTarget()) {
+                result.syncTarget = dataMessage.syncTarget
+            }
             result.text = dataMessage.body
             // Attachments are handled in MessageReceiver
-            val quoteProto = dataMessage.quote
+            val quoteProto = if (dataMessage.hasQuote()) dataMessage.quote else null
             quoteProto?.let {
                 val quote = Quote.fromProto(quoteProto)
                 quote?.let { result.quote = quote }
             }
-            val linkPreviewProto = dataMessage.previewList.first()
+            val linkPreviewProto = dataMessage.previewList.firstOrNull()
             linkPreviewProto?.let {
                 val linkPreview = LinkPreview.fromProto(linkPreviewProto)
                 linkPreview?.let { result.linkPreview = linkPreview }
@@ -54,7 +56,7 @@ class VisibleMessage : Message()  {
             val databaseAttachment = it as DatabaseAttachment
             databaseAttachment.attachmentId.rowId
         }
-        this.attachmentIDs = attachmentIDs as ArrayList<Long>
+        this.attachmentIDs.addAll(attachmentIDs)
     }
 
     fun isMediaMessage(): Boolean {

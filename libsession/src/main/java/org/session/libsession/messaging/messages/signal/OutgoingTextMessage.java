@@ -9,16 +9,18 @@ public class OutgoingTextMessage {
   private final String    message;
   private final int       subscriptionId;
   private final long      expiresIn;
+  private final long      sentTimestampMillis;
 
-  public OutgoingTextMessage(Recipient recipient, String message, long expiresIn, int subscriptionId) {
+  public OutgoingTextMessage(Recipient recipient, String message, long expiresIn, int subscriptionId, long sentTimestampMillis) {
     this.recipient      = recipient;
     this.message        = message;
     this.expiresIn      = expiresIn;
     this.subscriptionId = subscriptionId;
+    this.sentTimestampMillis = sentTimestampMillis;
   }
 
   public static OutgoingTextMessage from(VisibleMessage message, Recipient recipient) {
-    return new OutgoingTextMessage(recipient, message.getText(), recipient.getExpireMessages() * 1000, -1);
+    return new OutgoingTextMessage(recipient, message.getText(), recipient.getExpireMessages() * 1000, -1, message.getSentTimestamp());
   }
 
   public long getExpiresIn() {
@@ -35,6 +37,10 @@ public class OutgoingTextMessage {
 
   public Recipient getRecipient() {
     return recipient;
+  }
+
+  public long getSentTimestampMillis() {
+    return sentTimestampMillis;
   }
 
   public boolean isSecureMessage() {

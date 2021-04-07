@@ -153,10 +153,9 @@ object MessageSender {
             }
             val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
-            val timestamp = System.currentTimeMillis()
-            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, timestamp, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
+            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, message.sentTimestamp!!, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
-            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, message.sentTimestamp!!, nonce)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
@@ -179,8 +178,8 @@ object MessageSender {
                         if (shouldNotify) {
                             val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
                             JobQueue.shared.add(notifyPNServerJob)
-                            deferred.resolve(Unit)
                         }
+                        deferred.resolve(Unit)
                     }
                     promise.fail {
                         errorCount += 1
@@ -337,7 +336,7 @@ object MessageSender {
     }
 
     @JvmStatic
-    fun explicitLeave(groupPublicKey: String): Promise<Unit, Exception> {
-        return leave(groupPublicKey)
+    fun explicitLeave(groupPublicKey: String, notifyUser: Boolean): Promise<Unit, Exception> {
+        return leave(groupPublicKey, notifyUser)
     }
 }

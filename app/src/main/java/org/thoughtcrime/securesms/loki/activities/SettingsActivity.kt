@@ -28,6 +28,7 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.alwaysUi
 import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
@@ -179,11 +180,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val promises = mutableListOf<Promise<*, Exception>>()
         val displayName = displayNameToBeUploaded
         if (displayName != null) {
-            val publicChatAPI = ApplicationContext.getInstance(this).publicChatAPI
-            if (publicChatAPI != null) {
-                val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-                promises.addAll(servers.map { publicChatAPI.setDisplayName(displayName, it) })
-            }
+            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
+            promises.addAll(servers.map { OpenGroupAPI.setDisplayName(displayName, it) })
             TextSecurePreferences.setProfileName(this, displayName)
         }
         val profilePicture = profilePictureToBeUploaded

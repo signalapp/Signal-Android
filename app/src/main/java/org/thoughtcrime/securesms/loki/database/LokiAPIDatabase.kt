@@ -2,21 +2,21 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
+import org.session.libsession.utilities.IdentityKeyUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.session.libsignal.service.loki.api.Snode
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
-import org.session.libsession.utilities.IdentityKeyUtil
-import org.session.libsignal.utilities.Hex
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 import java.util.*
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
@@ -416,7 +416,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val index = "$groupPublicKey-$timestamp"
         val encryptionKeyPairPublicKey = encryptionKeyPair.publicKey.serialize().toHexString().removing05PrefixIfNeeded()
         val encryptionKeyPairPrivateKey = encryptionKeyPair.privateKey.serialize().toHexString()
-        val row = wrap(mapOf( Companion.closedGroupsEncryptionKeyPairIndex to index, Companion.encryptionKeyPairPublicKey to encryptionKeyPairPublicKey,
+        val row = wrap(mapOf(closedGroupsEncryptionKeyPairIndex to index, Companion.encryptionKeyPairPublicKey to encryptionKeyPairPublicKey,
                 Companion.encryptionKeyPairPrivateKey to encryptionKeyPairPrivateKey ))
         database.insertOrUpdate(closedGroupEncryptionKeyPairsTable, row, "${Companion.closedGroupsEncryptionKeyPairIndex} = ?", wrap(index))
     }

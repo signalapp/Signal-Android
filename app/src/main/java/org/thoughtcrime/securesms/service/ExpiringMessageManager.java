@@ -4,9 +4,14 @@ import android.content.Context;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
@@ -20,6 +25,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.concurrent.Executor;
@@ -65,44 +72,77 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   }
 
   @Override
-  public void setExpirationTimer(@Nullable Long messageID, int duration, @NotNull String senderPublicKey, @NotNull SignalServiceProtos.Content content) {
+  public void setExpirationTimer(@NotNull ExpirationTimerUpdate message) {
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+
+    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+    String senderPublicKey = message.getSender();
+    int duration = message.getDuration();
+    String groupPK = message.getGroupPublicKey();
+    Long sentTimestamp = message.getSentTimestamp();
+
+    Optional<SignalServiceGroup> groupInfo = Optional.absent();
+    Address address;
+
     try {
-      MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Address              address      = Address.fromSerialized(senderPublicKey);
+      if (groupPK != null) {
+        String groupID = GroupUtil.doubleEncodeGroupID(groupPK);
+        groupInfo = Optional.of(new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL));
+        address      = Address.fromSerialized(groupID);
+      } else {
+        address      = Address.fromSerialized((message.getSyncTarget() != null && !message.getSyncTarget().isEmpty()) ? message.getSyncTarget() : senderPublicKey);
+      }
       Recipient            recipient    = Recipient.from(context, address, false);
 
       if (recipient.isBlocked()) return;
 
-      Optional<SignalServiceGroup> groupInfo = Optional.absent();
-      if (content.getDataMessage().hasGroup()) {
-        GroupContext groupContext = content.getDataMessage().getGroup();
-        groupInfo = Optional.of(new SignalServiceGroup(groupContext.getId().toByteArray(), SignalServiceGroup.GroupType.SIGNAL));
+      // Notify the user
+      if (userPublicKey.equals(senderPublicKey)) {
+        // sender is a linked device
+        OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipient,
+                null,
+                Collections.emptyList(),
+                message.getSentTimestamp(),
+                -1,
+                duration * 1000L,
+                true,
+                DistributionTypes.DEFAULT,
+                null,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList());
+        database.insertSecureDecryptedMessageOutbox(mediaMessage, -1, sentTimestamp);
+      } else {
+        IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, sentTimestamp, -1,
+                duration * 1000L, true,
+                false,
+                Optional.absent(),
+                groupInfo,
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent());
+        //insert the timer update message
+        database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
       }
-      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, content.getDataMessage().getTimestamp(), -1,
-              duration * 1000L, true,
-              false,
-              Optional.absent(),
-              groupInfo,
-              Optional.absent(),
-              Optional.absent(),
-              Optional.absent(),
-              Optional.absent());
 
-      database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
-
+      //set the timer to the conversation
       DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
 
-      if (messageID != null) {
-        DatabaseFactory.getSmsDatabase(context).deleteMessage(messageID);
+      if (message.getId() != null) {
+        DatabaseFactory.getSmsDatabase(context).deleteMessage(message.getId());
       }
     } catch (MmsException e) {
+      Log.e("Loki", "Failed to insert expiration update message.");
+    } catch (IOException ioe) {
       Log.e("Loki", "Failed to insert expiration update message.");
     }
   }
 
   @Override
-  public void disableExpirationTimer(@Nullable Long messageID, @NotNull String senderPublicKey, @NotNull SignalServiceProtos.Content content) {
-    setExpirationTimer(messageID, 0, senderPublicKey, content);
+  public void disableExpirationTimer(@NotNull ExpirationTimerUpdate message) {
+    setExpirationTimer(message);
   }
 
   @Override

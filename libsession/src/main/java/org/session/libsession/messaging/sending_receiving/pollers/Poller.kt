@@ -2,25 +2,22 @@ package org.session.libsession.messaging.sending_receiving.pollers
 
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
-
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeConfiguration
-
 import org.session.libsignal.service.loki.api.Snode
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
-
+import org.session.libsignal.utilities.logging.Log
 import java.security.SecureRandom
 import java.util.*
 
 private class PromiseCanceledException : Exception("Promise canceled.")
 
 class Poller {
-    private val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: ""
+    var userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: ""
     private var hasStarted: Boolean = false
     private val usedSnodes: MutableSet<Snode> = mutableSetOf()
     public var isCaughtUp = false

@@ -18,18 +18,18 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
 
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Util;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.utilities.Util;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -79,18 +79,16 @@ public class MmsSmsDatabase extends Database {
   }
 
   public @Nullable MessageRecord getMessageForTimestamp(long timestamp) {
-    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
     try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+      MmsSmsDatabase.Reader reader = readerFor(cursor);
       return reader.getNext();
     }
   }
 
   public @Nullable MessageRecord getMessageFor(long timestamp, String serializedAuthor) {
-    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
 
     try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+      MmsSmsDatabase.Reader reader = readerFor(cursor);
 
       MessageRecord messageRecord;
 

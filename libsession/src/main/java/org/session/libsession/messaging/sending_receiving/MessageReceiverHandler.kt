@@ -18,15 +18,17 @@ import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
 import java.security.MessageDigest
 import java.util.*
 import kotlin.collections.ArrayList
@@ -42,7 +44,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ReadReceipt -> handleReadReceipt(message)
         is TypingIndicator -> handleTypingIndicator(message)
         is ClosedGroupControlMessage -> handleClosedGroupControlMessage(message)
-        is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message, proto)
+        is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
         is ConfigurationMessage -> handleConfigurationMessage(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
@@ -81,32 +83,22 @@ fun MessageReceiver.cancelTypingIndicatorsIfNeeded(senderPublicKey: String) {
     SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID, address, 1)
 }
 
-private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
+private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate) {
     if (message.duration!! > 0) {
-        setExpirationTimer(message, proto)
+        SSKEnvironment.shared.messageExpirationManager.setExpirationTimer(message)
     } else {
-        disableExpirationTimer(message, proto)
+        SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(message)
     }
-}
-
-fun MessageReceiver.setExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
-    val id = message.id
-    val duration = message.duration!!
-    val senderPublicKey = message.sender!!
-    SSKEnvironment.shared.messageExpirationManager.setExpirationTimer(id, duration, senderPublicKey, proto)
-}
-
-fun MessageReceiver.disableExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
-    val id = message.id
-    val senderPublicKey = message.sender!!
-    SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(id, senderPublicKey, proto)
 }
 
 private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
-    if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
-    if (message.sender != storage.getUserPublicKey()) return
+    if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, message.sentTimestamp!!)) return
+    val userPublicKey = storage.getUserPublicKey()
+    if (userPublicKey == null || message.sender != storage.getUserPublicKey()) return
+    TextSecurePreferences.setConfigurationMessageSynced(context, true)
+    TextSecurePreferences.setLastProfileUpdateTime(context, message.sentTimestamp!!)
     val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
     for (closeGroup in message.closedGroups) {
         if (allClosedGroupPublicKeys.contains(closeGroup.publicKey)) continue
@@ -117,25 +109,25 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
         if (allOpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)
     }
-    // TODO: in future handle the latest in config messages
-    TextSecurePreferences.setConfigurationMessageSynced(context, true)
+    if (message.displayName.isNotEmpty()) {
+        TextSecurePreferences.setProfileName(context, message.displayName)
+        storage.setDisplayName(userPublicKey, message.displayName)
+    }
+    if (message.profileKey.isNotEmpty()) {
+        val profileKey = Base64.encodeBytes(message.profileKey)
+        ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
+        storage.setProfileKeyForRecipient(userPublicKey, message.profileKey)
+        // handle profile photo
+        if (!message.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
+            storage.setUserProfilePictureUrl(message.profilePicture!!)
+        }
+    }
+    storage.addContacts(message.contacts)
 }
 
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
     val storage = MessagingConfiguration.shared.storage
     val context = MessagingConfiguration.shared.context
-    // Parse & persist attachments
-    val attachments = proto.dataMessage.attachmentsList.mapNotNull { proto ->
-        val attachment = Attachment.fromProto(proto)
-        if (attachment == null || !attachment.isValid()) {
-            return@mapNotNull null
-        } else {
-            return@mapNotNull attachment
-        }
-    }
-    val attachmentIDs = storage.persistAttachments(message.id ?: 0, attachments)
-    message.attachmentIDs = attachmentIDs as ArrayList<Long>
-    var attachmentsToDownload = attachmentIDs
     // Update profile if needed
     val newProfile = message.profile
     if (newProfile != null) {
@@ -143,11 +135,13 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!
         val userPublicKey = storage.getUserPublicKey()
-        if (userPublicKey == message.sender) {
-            // Update the user's local name if the message came from their master device
-            TextSecurePreferences.setProfileName(context, displayName)
+        if (openGroupID == null) {
+            if (userPublicKey == message.sender) {
+                // Update the user's local name if the message came from their master device
+                TextSecurePreferences.setProfileName(context, displayName)
+            }
+            profileManager.setDisplayName(context, recipient, displayName)
         }
-        profileManager.setDisplayName(context, recipient, displayName)
         if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
@@ -165,10 +159,10 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     if (message.quote != null && proto.dataMessage.hasQuote()) {
         val quote = proto.dataMessage.quote
         val author = Address.fromSerialized(quote.author)
-        val messageID = MessagingConfiguration.shared.messageDataProvider.getMessageForQuote(quote.id, author)
-        if (messageID != null) {
-            val attachmentsWithLinkPreview = MessagingConfiguration.shared.messageDataProvider.getAttachmentsAndLinkPreviewFor(messageID)
-            quoteModel = QuoteModel(quote.id, author, MessagingConfiguration.shared.messageDataProvider.getMessageBodyFor(messageID), false, attachmentsWithLinkPreview)
+        val messageInfo = MessagingConfiguration.shared.messageDataProvider.getMessageForQuote(quote.id, author)
+        if (messageInfo != null) {
+            val attachments = if (messageInfo.second) MessagingConfiguration.shared.messageDataProvider.getAttachmentsAndLinkPreviewFor(messageInfo.first) else ArrayList()
+            quoteModel = QuoteModel(quote.id, author, MessagingConfiguration.shared.messageDataProvider.getMessageBodyFor(quote.id, quote.author), false, attachments)
         } else {
             quoteModel = QuoteModel(quote.id, author, quote.text, true, PointerAttachment.forPointers(proto.dataMessage.quote.attachmentsList))
         }
@@ -189,14 +183,25 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             }
         }
     }
+    val attachments = proto.dataMessage.attachmentsList.mapNotNull { proto ->
+        val attachment = Attachment.fromProto(proto)
+        if (!attachment.isValid()) {
+            return@mapNotNull null
+        } else {
+            return@mapNotNull attachment
+        }
+    }
     // Parse stickers if needed
     // Persist the message
-    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID) ?: throw MessageReceiver.Error.NoThread
     message.threadID = threadID
+    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.NoThread
+    // Parse & persist attachments
     // Start attachment downloads if needed
-    attachmentsToDownload.forEach { attachmentID ->
-        val downloadJob = AttachmentDownloadJob(attachmentID, messageID)
-        JobQueue.shared.add(downloadJob)
+    storage.getAttachmentsForMessage(messageID).forEach { attachment ->
+        attachment.attachmentId?.let { id ->
+            val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
+            JobQueue.shared.add(downloadJob)
+        }
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)
@@ -266,6 +271,10 @@ private fun MessageReceiver.handleClosedGroupUpdated(message: ClosedGroupControl
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
     val oldMembers = group.members.map { it.serialize() }
     // Check common group update logic
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) {
@@ -314,12 +323,16 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
-    if (!group.members.map { it.toString() }.contains(senderPublicKey)) {
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
+    if (!group.admins.map { it.toString() }.contains(senderPublicKey)) {
         Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
         return
     }
     // Find our wrapper and decrypt it if possible
-    val wrapper = kind.wrappers.firstOrNull { it.publicKey!!.toByteArray().toHexString() == userPublicKey } ?: return
+    val wrapper = kind.wrappers.firstOrNull { it.publicKey!! == userPublicKey } ?: return
     val encryptedKeyPair = wrapper.encryptedKeyPair!!.toByteArray()
     val plaintext = MessageReceiverDecryption.decryptWithSessionProtocol(encryptedKeyPair, userKeyPair).first
     // Parse it
@@ -338,6 +351,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
 private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupControlMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
+    val userPublicKey = TextSecurePreferences.getLocalNumber(context)
     val senderPublicKey = message.sender ?: return
     val kind = message.kind!! as? ClosedGroupControlMessage.Kind.NameChange ?: return
     val groupPublicKey = message.groupPublicKey ?: return
@@ -345,6 +359,10 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        return
+    }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
         return
     }
     // Check common group update logic
@@ -356,7 +374,14 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
     val name = kind.name
     storage.updateTitle(groupID, name)
 
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
+    // Notify the user
+    if (userPublicKey == senderPublicKey) {
+        // sender is a linked device
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
+    } else {
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
+    }
 }
 
 private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupControlMessage) {
@@ -371,6 +396,10 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
     val name = group.title
     // Check common group update logic
@@ -380,7 +409,9 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
+    // Notify the user
     if (userPublicKey == senderPublicKey) {
+        // sender is a linked device
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
         storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
     } else {
@@ -398,7 +429,6 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
             }
         }
     }
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroupControlMessage) {
@@ -411,6 +441,10 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        return
+    }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
         return
     }
     val name = group.title
@@ -447,7 +481,14 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
             if (senderLeft) SignalServiceProtos.GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
             else SignalServiceProtos.GroupContext.Type.UPDATE to SignalServiceGroup.Type.UPDATE
 
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, message.sentTimestamp!!)
+    // Notify the user
+    if (userPublicKey == senderPublicKey) {
+        // sender is a linked device
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, message.sentTimestamp!!)
+    } else {
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, message.sentTimestamp!!)
+    }
 }
 
 private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupControlMessage) {
@@ -462,6 +503,10 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
+    if (!group.isActive) {
+        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        return
+    }
     val name = group.title
     // Check common group update logic
     val members = group.members.map { it.serialize() }
@@ -472,8 +517,10 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
     // If admin leaves the group is disbanded
     val didAdminLeave = admins.contains(senderPublicKey)
     val updatedMemberList = members - senderPublicKey
+    val userLeft = (userPublicKey == senderPublicKey)
 
-    if (didAdminLeave) {
+    if (didAdminLeave || userLeft) {
+        // admin left the group of linked device left the group
         disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
     } else {
         val isCurrentUserAdmin = admins.contains(userPublicKey)
@@ -482,7 +529,14 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
             MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMemberList)
         }
     }
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, message.sentTimestamp!!)
+    // Notify the user
+    if (userLeft) {
+        //sender is a linked device
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.QUIT, name, members, admins, threadID, message.sentTimestamp!!)
+    } else {
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, message.sentTimestamp!!)
+    }
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: ClosedGroupControlMessage) {

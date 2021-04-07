@@ -26,11 +26,12 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
-import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.utilities.*
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -343,7 +344,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                         isClosedGroup = false
                     }
                     if (isClosedGroup) {
-                        MessageSender.explicitLeave(groupPublicKey!!)
+                        MessageSender.explicitLeave(groupPublicKey!!, false)
                     } else {
                         Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                         return@launch
@@ -359,8 +360,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                         apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
                         apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
 
-                        ApplicationContext.getInstance(context).publicChatAPI!!
-                                .leave(publicChat.channel, publicChat.server)
+                        OpenGroupAPI.leave(publicChat.channel, publicChat.server)
 
                         ApplicationContext.getInstance(context).publicChatManager
                                 .removeChat(publicChat.server, publicChat.channel)
