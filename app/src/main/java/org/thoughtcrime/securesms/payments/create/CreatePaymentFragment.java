@@ -66,6 +66,7 @@ public class CreatePaymentFragment extends LoggingFragment {
   private View             addNote;
   private View             toggle;
   private Drawable         infoIcon;
+  private Drawable         spacer;
 
   private ConstraintSet cryptoConstraintSet;
   private ConstraintSet fiatConstraintSet;
@@ -147,16 +148,13 @@ public class CreatePaymentFragment extends LoggingFragment {
   }
 
   private void initializeInfoIcon() {
-    Drawable pad  = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.payment_info_pad));
-    Drawable info = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_update_info_16));
+    spacer  = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.payment_info_pad));
+    infoIcon = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_update_info_16));
 
-    DrawableCompat.setTint(info, exchange.getCurrentTextColor());
+    DrawableCompat.setTint(infoIcon, exchange.getCurrentTextColor());
 
-    pad.setBounds(0, 0, ViewUtil.dpToPx(29), ViewUtil.dpToPx(16));
-    info.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
-
-    infoIcon = new LayerDrawable(new Drawable[]{pad, info});
-    infoIcon.setBounds(0, 0, ViewUtil.dpToPx(29), ViewUtil.dpToPx(16));
+    spacer.setBounds(0, 0, ViewUtil.dpToPx(13), ViewUtil.dpToPx(16));
+    infoIcon.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
   }
 
   private void updateNote(@Nullable CharSequence note) {
@@ -195,6 +193,7 @@ public class CreatePaymentFragment extends LoggingFragment {
         if (inputState.getFiatMoney().isPresent()) {
           exchange.setVisibility(View.VISIBLE);
           exchange.setText(FiatMoneyUtil.format(getResources(), inputState.getFiatMoney().get(), FiatMoneyUtil.formatOptions().withDisplayTime(true)));
+          exchange.append(SpanUtil.buildImageSpan(spacer));
           exchange.append(SpanUtil.buildImageSpan(infoIcon));
           toggle.setVisibility(View.VISIBLE);
           toggle.setEnabled(true);
