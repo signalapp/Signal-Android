@@ -73,7 +73,7 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
         requireActivity().setResult(Activity.RESULT_OK);
         requireActivity().finish();
       } else {
-        Navigation.findNavController(view).popBackStack(R.id.paymentsHome, true);
+        Navigation.findNavController(view).popBackStack(R.id.paymentsHome, false);
       }
     });
 
