@@ -209,6 +209,13 @@ public class DirectoryHelper {
     return newRegisteredState;
   }
 
+  /**
+   * Reads the system contacts and copies over any matching data (like names) int our local store.
+   */
+  public static void syncRecipientInfoWithSystemContacts(@NonNull Context context) {
+    syncRecipientInfoWithSystemContacts(context, Collections.emptyMap());
+  }
+
   @WorkerThread
   private static void refreshNumbers(@NonNull Context context, @NonNull Set<String> databaseNumbers, @NonNull Set<String> systemNumbers, boolean notifyOfNewUsers) throws IOException {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
@@ -310,90 +317,94 @@ public class DirectoryHelper {
     }
 
     try {
-      RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-      ContactsDatabase  contactsDatabase  = DatabaseFactory.getContactsDatabase(context);
-      List<String>      activeAddresses   = Stream.of(activeIds)
-                                                  .map(Recipient::resolved)
-                                                  .filter(Recipient::hasE164)
-                                                  .map(Recipient::requireE164)
-                                                  .toList();
+      ContactsDatabase  contactsDatabase = DatabaseFactory.getContactsDatabase(context);
+      List<String>      activeAddresses  = Stream.of(activeIds)
+                                                 .map(Recipient::resolved)
+                                                 .filter(Recipient::hasE164)
+                                                 .map(Recipient::requireE164)
+                                                 .toList();
 
       contactsDatabase.removeDeletedRawContacts(account.getAccount());
       contactsDatabase.setRegisteredUsers(account.getAccount(), activeAddresses, removeMissing);
 
-      BulkOperationsHandle  handle = recipientDatabase.beginBulkSystemContactUpdate();
-
-      try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
-        while (cursor != null && cursor.moveToNext()) {
-          String mimeType = getMimeType(cursor);
-
-          if (!isPhoneMimeType(mimeType)) {
-            Log.w(TAG, "Ignoring unwanted mime type: " + mimeType);
-            continue;
-          }
-
-          String        lookupKey     = getLookupKey(cursor);
-          ContactHolder contactHolder = new ContactHolder(lookupKey);
-
-          while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
-            String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-            if (isValidContactNumber(number)) {
-              String formattedNumber = PhoneNumberFormatter.get(context).format(number);
-              String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
-
-              PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
-
-              builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
-              builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-              builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
-              builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
-              builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
-              builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
-                                                                            CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
-
-              contactHolder.addPhoneNumberRecord(builder.build());
-            } else {
-              Log.w(TAG, "Skipping phone entry with invalid number");
-            }
-
-            cursor.moveToNext();
-          }
-
-          if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
-            if (isStructuredNameMimeType(getMimeType(cursor))) {
-              StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
-
-              builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-              builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-
-              contactHolder.setStructuredNameRecord(builder.build());
-            } else {
-              Log.i(TAG, "Skipping invalid mimeType " + mimeType);
-            }
-          } else {
-            Log.i(TAG, "No structured name for user, rolling back cursor.");
-            cursor.moveToPrevious();
-          }
-
-          contactHolder.commit(handle);
-        }
-      } catch (IllegalStateException e) {
-        Log.w(TAG, "Hit an issue with the cursor while reading!", e);
-      } finally {
-        handle.finish();
-      }
-
-      if (NotificationChannels.supported()) {
-        try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
-          Recipient recipient;
-          while ((recipient = recipients.getNext()) != null) {
-            NotificationChannels.updateContactChannelName(context, recipient);
-          }
-        }
-      }
+      syncRecipientInfoWithSystemContacts(context, rewrites);
     } catch (RemoteException | OperationApplicationException e) {
       Log.w(TAG, "Failed to update contacts.", e);
+    }
+  }
+
+  private static void syncRecipientInfoWithSystemContacts(@NonNull Context context, @NonNull Map<String, String> rewrites) {
+    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    BulkOperationsHandle  handle            = recipientDatabase.beginBulkSystemContactUpdate();
+
+    try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
+      while (cursor != null && cursor.moveToNext()) {
+        String mimeType = getMimeType(cursor);
+
+        if (!isPhoneMimeType(mimeType)) {
+          Log.w(TAG, "Ignoring unwanted mime type: " + mimeType);
+          continue;
+        }
+
+        String        lookupKey     = getLookupKey(cursor);
+        ContactHolder contactHolder = new ContactHolder(lookupKey);
+
+        while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
+          String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+          if (isValidContactNumber(number)) {
+            String formattedNumber = PhoneNumberFormatter.get(context).format(number);
+            String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
+
+            PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
+
+            builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
+            builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+            builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
+            builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
+            builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
+                CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
+
+            contactHolder.addPhoneNumberRecord(builder.build());
+          } else {
+            Log.w(TAG, "Skipping phone entry with invalid number");
+          }
+
+          cursor.moveToNext();
+        }
+
+        if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
+          if (isStructuredNameMimeType(getMimeType(cursor))) {
+            StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
+
+            builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+            builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+
+            contactHolder.setStructuredNameRecord(builder.build());
+          } else {
+            Log.i(TAG, "Skipping invalid mimeType " + mimeType);
+          }
+        } else {
+          Log.i(TAG, "No structured name for user, rolling back cursor.");
+          cursor.moveToPrevious();
+        }
+
+        contactHolder.commit(handle);
+      }
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "Hit an issue with the cursor while reading!", e);
+    } finally {
+      handle.finish();
+    }
+
+    if (NotificationChannels.supported()) {
+      try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
+        Recipient recipient;
+        while ((recipient = recipients.getNext()) != null) {
+          NotificationChannels.updateContactChannelName(context, recipient);
+        }
+      }
     }
   }
 
