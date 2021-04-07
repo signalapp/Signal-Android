@@ -60,7 +60,7 @@ public final class FeatureFlags {
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
   public  static final String DONATE_MEGAPHONE                  = "android.donate";
   private static final String VIEWED_RECEIPTS                   = "android.viewed.receipts";
-  private static final String GV1_FORCED_MIGRATE                = "android.groupsV1Migration.forced";
+  private static final String GV1_FORCED_MIGRATE                = "android.groupsV1Migration.forced.2";
   private static final String SEND_VIEWED_RECEIPTS              = "android.sendViewedReceipts";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
@@ -145,7 +145,8 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_MEMORY,
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
-      MESSAGE_PROCESSOR_DELAY
+      MESSAGE_PROCESSOR_DELAY,
+      GV1_FORCED_MIGRATE
   );
 
   /**
