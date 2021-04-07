@@ -5,10 +5,13 @@ import android.content.Context;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
@@ -23,6 +26,7 @@ import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.concurrent.Executor;
@@ -71,6 +75,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   public void setExpirationTimer(@NotNull ExpirationTimerUpdate message) {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
+    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
     String senderPublicKey = message.getSender();
     int duration = message.getDuration();
     String groupPK = message.getGroupPublicKey();
@@ -85,23 +90,43 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
         groupInfo = Optional.of(new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL));
         address      = Address.fromSerialized(groupID);
       } else {
-        address      = Address.fromSerialized(senderPublicKey);
+        address      = Address.fromSerialized((message.getSyncTarget() != null && !message.getSyncTarget().isEmpty()) ? message.getSyncTarget() : senderPublicKey);
       }
       Recipient            recipient    = Recipient.from(context, address, false);
 
       if (recipient.isBlocked()) return;
 
-      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, sentTimestamp, -1,
-              duration * 1000L, true,
-              false,
-              Optional.absent(),
-              groupInfo,
-              Optional.absent(),
-              Optional.absent(),
-              Optional.absent(),
-              Optional.absent());
-      //insert the timer update message
-      database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      // Notify the user
+      if (userPublicKey.equals(senderPublicKey)) {
+        // sender is a linked device
+        OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipient,
+                null,
+                Collections.emptyList(),
+                message.getSentTimestamp(),
+                -1,
+                duration * 1000L,
+                true,
+                DistributionTypes.DEFAULT,
+                null,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList());
+        database.insertSecureDecryptedMessageOutbox(mediaMessage, -1, sentTimestamp);
+      } else {
+        IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, sentTimestamp, -1,
+                duration * 1000L, true,
+                false,
+                Optional.absent(),
+                groupInfo,
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent());
+        //insert the timer update message
+        database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      }
+
       //set the timer to the conversation
       DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
 

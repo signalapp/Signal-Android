@@ -323,6 +323,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               attachments,
               message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000,
+              false,
               DistributionTypes.DEFAULT, quote.orNull(),
               sharedContacts.or(Collections.emptyList()),
               linkPreviews.or(Collections.emptyList()),
