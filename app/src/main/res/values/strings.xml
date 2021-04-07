@@ -2324,6 +2324,7 @@
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
     <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_folders">Folders</string>
     <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
     <string name="preferences_data_and_storage__calls">Calls</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
