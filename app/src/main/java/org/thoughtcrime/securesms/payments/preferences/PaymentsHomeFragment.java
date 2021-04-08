@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
@@ -244,7 +245,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
   class HomeCallbacks implements PaymentsHomeAdapter.Callbacks {
     @Override
     public void onActivatePayments() {
-      new AlertDialog.Builder(requireContext())
+      new MaterialAlertDialogBuilder(requireContext())
                      .setMessage(R.string.PaymentsHomeFragment__you_can_use_signal_to_send)
                      .setPositiveButton(R.string.PaymentsHomeFragment__activate, (dialog, which) -> {
                        viewModel.activatePayments();
