@@ -38,7 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiviert.</string>
   <string name="ApplicationPreferencesActivity_hide">Ausblenden</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Erinnerung ausblenden?</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bevor Sie Ihre PIN deaktivieren können, müssen Sie Ihre Zahlungswiederherstellungsphrase aufzeichnen, um sicherzustellen, dass Sie Ihr Zahlungskonto wiederherstellen können.</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Wiederherstellungsphrase für Zahlungen notieren</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Phrase notieren</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bevor du deine PIN deaktivieren kannst, musst du deine  Wiederherstellungsphrase für Zahlungen notieren. Dies stellt sicher, dass du dein Zahlungskonto wiederherstellen kannst.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d Minute</item>
@@ -2025,14 +2027,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Alle Aktivitäten</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
   <string name="PaymentsAllActivityFragment__sent">Gesendet</string>
   <string name="PaymentsAllActivityFragment__received">Empfangen</string>
   <string name="PaymentsHomeFragment__introducing_payments">Neu: Zahlungen (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Verwenden Sie Signal, um MobileCoin zu senden und zu empfangen, eine neue, auf Datenschutz ausgerichtete digitale Währung. Aktivieren Sie, um loszulegen.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Verwende Signal, um MobileCoin zu senden und zu empfangen, eine neue, auf Datenschutz ausgerichtete digitale Währung. Aktivieren, um loszulegen.</string>
   <string name="PaymentsHomeFragment__activate_payments">Zahlungen aktivieren</string>
   <string name="PaymentsHomeFragment__activating_payments">Zahlungen werden aktiviert …</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Zahlungskonto wiederherstellen </string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Bisher keine Aktivitäten.</string>
   <string name="PaymentsHomeFragment__pending_requests">Ausstehende Anfragen</string>
+  <string name="PaymentsHomeFragment__recent_activity">Letzte Aktivitäten</string>
   <string name="PaymentsHomeFragment__see_all">Alle anzeigen</string>
   <string name="PaymentsHomeFragment__add_funds">Guthaben hinzufügen</string>
   <string name="PaymentsHomeFragment__send">Senden</string>
@@ -2041,11 +2047,19 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsHomeFragment__transfer_to_exchange">An Handelsplattform überweisen</string>
   <string name="PaymentsHomeFragment__currency_conversion">Währungsumrechnung</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Zahlungen deaktivieren</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Wiederherstellungsphrase</string>
   <string name="PaymentsHomeFragment__help">Hilfe</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Bereinigungsgebühr</string>
   <string name="PaymentsHomeFragment__sent_payment">Zahlung gesendet</string>
   <string name="PaymentsHomeFragment__received_payment">Zahlung empfangen</string>
+  <string name="PaymentsHomeFragment__processing_payment">Zahlung wird verarbeitet</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Währungsumrechnung nicht verfügbar</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Währungsumrechnung kann nicht angezeigt werden. Überprüfe deine Telefonverbindung und versuche es erneut.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Zahlungen sind in deiner Region nicht verfügbar.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Zahlungen konnten nicht aktiviert werden. Bitte versuche es später erneut.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Zahlungen deaktivieren?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Du wirst in Signal keine MobileCoin senden oder empfangen können, falls du Zahlungen deaktivierst.</string>
   <string name="PaymentsHomeFragment__deactivate">Deaktivieren</string>
   <string name="PaymentsHomeFragment__continue">Fortfahren</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">Kontostand ist aktuell nicht verfügbar.</string>
@@ -2054,35 +2068,57 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsHomeFragment__details">Details</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kannst Signal verwenden, um MobileCoin zu senden und zu empfangen. Alle Zahlungen unterliegen den Nutzungsbedingungen für MobileCoins und die MobileCoin-Wallet. Dies ist eine Beta-Funktion, daher können einige Probleme auftreten und eventuell verlorene Zahlungen oder Kontostände nicht wiederhergestellt werden.</string>
   <string name="PaymentsHomeFragment__activate">Aktivieren</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-Bedingungen anzeigen</string>
   <string name="PaymentsHomeFragment__payments_not_available">Zahlungen in Signal sind nicht mehr verfügbar. Du kannst weiterhin Guthaben an eine Handelsplattform überweisen, aber keine Zahlungen senden und empfangen oder Guthaben hinzufügen.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Guthaben hinzufügen</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Deine Wallet-Adresse</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopieren</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">In Zwischenablage kopiert</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Um Geld hinzuzufügen, senden Sie MobileCoin an Ihre Wallet-Adresse. Starten Sie eine Transaktion von Ihrem Konto auf einer Börse, die MobileCoin unterstützt und scannen Sie dann den QR-Code oder kopieren Sie Ihre Wallet-Adresse.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Um Guthaben hinzuzufügen, sende MobileCoin an deine Wallet-Adresse. Starte eine Transaktion von deinem Konto bei einer Handelsplattform, die MobileCoin unterstützt, und scanne dann den QR-Code oder kopiere deine Wallet-Adresse.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Details</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Zahlung wird übermittelt …</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Zahlung wird verarbeitet …</string>
   <string name="PaymentsDetailsFragment__payment_complete">Zahlung abgeschlossen</string>
   <string name="PaymentsDetailsFragment__payment_failed">Zahlung gescheitert</string>
   <string name="PaymentsDetailsFragment__network_fee">Netzwerkgebühr</string>
+  <string name="PaymentsDetailsFragment__sent_by">Gesendet von</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Gesendet an %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Du am %1$s um %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s am %2$s um %3$s</string>
   <string name="PaymentsDetailsFragment__to">An</string>
   <string name="PaymentsDetailsFragment__from">Von</string>
+  <string name="PaymentsDetailsFragment__information">Transaktionsdetails wie Zahlbetrag und Transaktionszeit sind Teil des MobileCoin-Kontenblatts.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Bereinigungsgebühr</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Eine »Bereinigungsgebühr« wird berechnet, wenn deine Coins nicht zu einer vollständigen Transaktion kombiniert werden können. Die Bereinigung ermöglicht dir, weiterhin Zahlungen zu senden.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Keine weiteren Details für diese Transaktion verfügbar</string>
   <string name="PaymentsDetailsFragment__sent_payment">Zahlung gesendet</string>
   <string name="PaymentsDetailsFragment__received_payment">Zahlung empfangen</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Zahlung abgeschlossen %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Blocknummer</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Überweisen</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-Code einscannen</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">An: Wallet-Adresse scannen oder eingeben</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Sie können MobileCoin übertragen, indem Sie eine Überweisung an die von der Börse angegebene Wallet-Adresse durchführen. Die Wallet-Adresse ist die Zahlen- und Buchstabenfolge, die sich meist unterhalb des QR-Codes befindet.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Du kannst MobileCoin übertragen, indem du eine Überweisung an die von der Handelsplattform angegebene Wallet-Adresse ausführst. Die Wallet-Adresse ist eine Folge von Zahlen und Buchstaben, die sich gewöhnlicherweise unterhalb des QR-Codes befindet.</string>
   <string name="PaymentsTransferFragment__next">Weiter</string>
   <string name="PaymentsTransferFragment__invalid_address">Ungültige Adresse</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Überprüfe die Wallet-Adresse, an die du überweisen möchtest, und versuche es erneut. </string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Du kannst nicht an die Adresse deines eigenen Signal-Wallets überweisen. Gib die Wallet-Adresse deines Kontos bei einer unterstützen Handelsplattform ein.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Um QR-Codes einzuscannen, benötigt Signal Zugriff auf deine Kamera</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Um QR-Codes einzuscannen, benötigt Signal Zugriff auf deine Kamera</string>
   <string name="PaymentsTransferFragment__settings">Einstellungen</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Adress-QR-Code einscannen</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scanne des Adress-QR-Code des Empfängers</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Anfrage</string>
   <string name="CreatePaymentFragment__pay">Bezahlen</string>
   <string name="CreatePaymentFragment__available_balance_s">Verfügbarer Kontostand: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Umschalten</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2095,20 +2131,31 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">Die Umrechnungen sind nur Schätzungen und sind möglicherweise nicht genau.</string>
+  <string name="CreatePaymentFragment__backspace">Rücktaste</string>
+  <string name="CreatePaymentFragment__add_note">Mitteilung hinzufügen</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Umrechnungen sind lediglich Schätzungen und möglicherweise ungenau.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Mitteilung</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Zahlung bestätigen</string>
   <string name="ConfirmPayment__network_fee">Netzwerkgebühr</string>
+  <string name="ConfirmPayment__error_getting_fee">Fehler bei der Gebührenabfrage</string>
   <string name="ConfirmPayment__estimated_s">Geschätzt %1$s</string>
   <string name="ConfirmPayment__to">An</string>
   <string name="ConfirmPayment__total_amount">Gesamtbetrag</string>
   <string name="ConfirmPayment__balance_s">Kontostand: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Zahlung wird übermittelt …</string>
+  <string name="ConfirmPayment__processing_payment">Zahlung wird verarbeitet …</string>
   <string name="ConfirmPayment__payment_complete">Zahlung abgeschlossen</string>
   <string name="ConfirmPayment__payment_failed">Zahlung gescheitert</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Verarbeitung der Zahlung wird fortgesetzt</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Ungültiger Empfänger</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Diese Person hat Zahlungen nicht aktiviert</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Netzwerkgebühr konnte nicht abgefragt werden. Zum Fortsetzen dieser Zahlung tippe auf »OK«, um es erneut zu versuchen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s um %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Währung festlegen</string>
   <string name="SetCurrencyFragment__all_currencies">Alle Währungen</string>
   <!--****************************************-->
   <!--menus-->
@@ -2541,6 +2588,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB-Kontostand überweisen?</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Dein Kontostand beträgt %1$s. Falls du vor dem Löschen deines Kontos dein Guthaben nicht an eine andere Wallet-Adresse überweist, wirst du es für immer verlieren.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Nicht überweisen</string>
+  <string name="AdvancedPreferenceFragment__transfer">Überweisen</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockieren</string>
   <string name="RecipientBottomSheet_unblock">Freigeben</string>
@@ -2633,6 +2682,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeleteAccountFragment__delete_account">Nutzerkonto löschen</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Deine Kontodetails und dein Profilfoto löschen</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Alle deine Nachrichten löschen</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Lösche %1$s in deinem Zahlungskonto</string>
   <string name="DeleteAccountFragment__no_country_code">Keine Ländervorwahl angegeben</string>
   <string name="DeleteAccountFragment__no_number">Keine Rufnummer angegeben</string>
   <string name="DeleteAccountFragment__the_phone_number">Die eingegebene Rufnummer entspricht nicht der deines Kontos.</string>
@@ -2689,43 +2739,73 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="WallpaperCropActivity__blur_photo">Foto verwischen</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Über MobileCoin</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ist eine neue, datenschutzfokussierte digitale Währung.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ist eine neue, auf Datenschutz ausgerichtete digitale Währung.</string>
   <string name="payment_info_card_adding_funds">Hinzufügen von Guthaben</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Du kannst Guthaben für die Verwendung in Signal hinzufügen, indem du MobileCoin an deine Wallet-Adresse sendest.</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">Sie können sich MobileCoin jederzeit an einer Börse auszahlen lassen, die MobileCoin unterstützt. Machen Sie einfach eine Überweisung auf Ihr Konto bei dieser Börse.</string>
+  <string name="payment_info_card_cashing_out">Auszahlungen</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kannst MobileCoin jederzeit auf einer Handelsplattform, die MobileCoin unterstützt, auszahlen lassen. Überweise das Guthaben einfach auf dein Konto bei dieser Handelsplattform.</string>
+  <string name="payment_info_card_hide_this_card">Diese Karte verstecken?</string>
   <string name="payment_info_card_hide">Ausblenden</string>
-  <string name="payment_info_card_your_recovery_phrase_gives_you">Ihre Wiederherstellungsphrase gibt Ihnen eine weitere Möglichkeit, Ihr Zahlungskonto wiederherzustellen.</string>
+  <string name="payment_info_card_record_recovery_phrase">Wiederherstellungsphrase notieren</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Deine Wiederherstellungsphrase gibt dir eine weitere Möglichkeit, dein Zahlungskonto wiederherzustellen.</string>
+  <string name="payment_info_card_record_your_phrase">Notiere deine Phrase</string>
   <string name="payment_info_card_update_your_pin">Aktualisiere deine PIN</string>
   <string name="payment_info_card_with_a_high_balance">Bei einem hohen Kontostand sollest du eventuell auf eine alphanumerische PIN wechseln, um den Schutz deines Kontos zu erhöhen.</string>
   <string name="payment_info_card_update_pin">PIN aktualisieren</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Wallet deaktivieren</string>
   <string name="DeactivateWalletFragment__your_balance">Dein Kontostand</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">Es ist empfehlenswert, vor dem Deaktivieren von Zahlungen dein Guthaben an eine andere Wallet-Adresse zu überweisen. Falls du entscheidest, dein Guthaben nicht jetzt zu überweisen, verbleibt es in deinem mit Signal verbundenen Wallet, bis du Zahlungen wieder aktivierst.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Verbleibenden Kontostand überweisen</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Ohne Überweisen deaktivieren</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktivieren</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ohne Überweisen deaktivieren?</string>
   <string name="DeactivateWalletFragment__your_balance_will_remain">Dein Kontostand verbleibt in deinem mit Signal verbundenen Wallet, falls du Zahlungen wieder aktivierst.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Fehler beim Deaktivieren des Wallets.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Wiederherstellungsphrase</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Wiederherstellungsphrase anzeigen</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Wiederherstellungsphrase eingeben</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Weiterhin kannst du deinen Kontostand durch Verwenden einer Wiederherstellungsphrase wiederherstellen; einer aus %1$d Wörtern bestehenden, einzigartigen Phrase. Notiere sie und bewahre sie an einem sicheren Ort auf.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Deine Wiederherstellungsphrase ist ein nur für dich geltender Satz mit %1$d Wörtern. Verwende sie, um deinen Kontostand wiederherzustellen.</string>
   <string name="PaymentsRecoveryStartFragment__start">Starten</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Manuell eingeben</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Von Zwischenablage einfügen</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Wiederherstellungsphrase einfügen</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Wiederherstellungsphrase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Weiter</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Ungültige Wiederherstellungsphrase.</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Vergewissere dich, dass du %1$d Wörter eingegeben hast, und versuche es erneut.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Weiter</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Bearbeiten</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Vorherige</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Deine Wiederherstellungsphrase</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Notiere die folgenden %1$d Wörter in der angegebenen Reihenfolge, und bewahre deine Liste an einem sicheren Ort auf.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Vergewissere dich, dass du deine Phrase richtig eingegeben hast.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Keine Bildschirmfotos machen und nicht per E-Mail versenden.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Konto für Zahlungen wiederhergestellt.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ungültige Wiederherstellungsphrase</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Vergewissere dich, dass du deine Phrase richtig eingegeben hast, und versuche es erneut.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">In Zwischenablage kopieren?</string>
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Falls du deine Wiederherstellungsphrase digital speicherst, sorge dafür, dass sie sicher an einem vertrauenswürdigen Ort gespeichert ist.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopieren</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Wiederherstellungsphrase bestätigen</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Gib die folgenden Wörter deiner Wiederherstellungsphrase ein.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Wort %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Phrase erneut anzeigen</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Fertig</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Wiederherstellungsphrase bestätigt</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Wiederherstellungsphrase eingeben</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">Wort %1$d eingeben</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Wort %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Weiter</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Ungültiges Wort</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Zwischenablage geleert.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Anzeigen</string>
   <!--UnreadPayments-->
@@ -2734,6 +2814,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Zahlung kann nicht gesendet werden</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Zum Senden einer Zahlung an diesen Nutzer muss dieser von dir eine Nachrichtenanfrage akzeptieren. Sende ihm eine Nachricht, um eine Nachrichtenanfrage zu stellen.</string>
-  <string name="CanNotSendPaymentDialog__send_a_message">Eine Nachricht senden</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">Sende eine Nachricht</string>
   <!--EOF-->
 </resources>

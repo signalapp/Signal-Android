@@ -38,8 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-i u çaktivizua.</string>
   <string name="ApplicationPreferencesActivity_hide">Fshihe</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Të fshihet kujtuesi?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Frazë Rimarrjeje Regjistrimi</string>
-  <string name="ApplicationPreferencesActivity_record_phrase">Frazë Rimarrjeje Regjistrimi</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Regjistroni frazë rikthimi pagesash</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Regjistroni frazën</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Përpara se të mund të çaktivizoni PIN-in tuaj, duhet të regjistroni frazën tuaj të rikthimit të pagesave, për të garantuar se mund të riktheni llogarinë tuaj të pagesave.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutë</item>
@@ -1813,6 +1814,14 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Diçka S’Funksionon</item>
+    <item>Kërkesë Veçorie</item>
+    <item>Pyetje</item>
+    <item>Përshtypje</item>
+    <item>Tjetër</item>
+    <item>Pagesa</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
@@ -2036,6 +2045,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsAllActivityFragment__sent">Dërguar më</string>
   <string name="PaymentsAllActivityFragment__received">Marrë më</string>
   <string name="PaymentsHomeFragment__introducing_payments">Ju paraqesim pagesa (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Përdorni Signal-in për të dërguar dhe marrë MobileCoin, një monedhë e re dixhitale e fokusuar te privatësia. Që t’ia filloni, aktivizojeni.</string>
   <string name="PaymentsHomeFragment__activate_payments">Pagesa</string>
   <string name="PaymentsHomeFragment__activating_payments">Po aktivizohen pagesa…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Riktheni llogari pagesash</string>
@@ -2047,7 +2057,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsHomeFragment__send">Dërgoje</string>
   <string name="PaymentsHomeFragment__sent_s">Dërguar %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Marrë %1$s</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">_Shkëmbe:</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Shpërngulni në një platformë</string>
   <string name="PaymentsHomeFragment__currency_conversion">Kurs këmbimi</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Çaktivizo pagesa</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frazë:</string>
@@ -2056,23 +2066,29 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsHomeFragment__sent_payment">U dërgua pagesë</string>
   <string name="PaymentsHomeFragment__received_payment">U mor pagesë</string>
   <string name="PaymentsHomeFragment__processing_payment">Po kryhet pagesa</string>
-  <string name="PaymentsHomeFragment__currency_conversion_not_available">Kurs Këmbimi</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Kurs këmbimi jo gati</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">S’shfaqet dot kurs këmbimi. Kontrolloni lidhjen e telefonit tuaj dhe riprovoni.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Pagesat s’janë të përdorshme në rajonin tuaj.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">S’u aktivizuan dot pagesat. Riprovoni më vonë.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Të çaktivizohen Pagesa?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">S’do të jeni në gjendje të dërgoni ose merrni Mobilecoin në Signal, nëse çaktivizoni pagesat.</string>
   <string name="PaymentsHomeFragment__deactivate">Çaktivizoje</string>
   <string name="PaymentsHomeFragment__continue">Vazhdo</string>
-  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Bilanc</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Depozitë aktualisht jo e përdorshme</string>
   <string name="PaymentsHomeFragment__payments_deactivated">E çaktivizuar</string>
   <string name="PaymentsHomeFragment__payment_failed">Pagesa dështoi</string>
   <string name="PaymentsHomeFragment__details">Hollësi</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Mund të përdorni Signal-in për të dërguar dhe marrë MobileCoin. Krejt pagesat tuaja janë subjekt i Kushteve të Përdorimit të MobileCoins dhe MobileCoin Wallet. Kjo është një veçori beta, ndaj mundet të hasni probleme dhe pagesat apo depozitat që mund të humbni, s’mund të rikthehen.</string>
   <string name="PaymentsHomeFragment__activate">Aktivizoje</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Shihni kushte MobileCoin-i</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Pagesat në Signal s’janë më të përdorshme. Mundeni ende të shpërngulni fonde në një platformë, por s’mund të dërgoni apo merrni më pagesa, apo të shtoni fonde.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Shtoni fonde</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Portofol</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopjoje</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Për të shtuar fonde, dërgoni MobileCoin te adresa e portofolit tuaj. Fillon një transaksion që nga llogaria juaj në një platformë që mbulon MobileCoin, mandej skanoni kodin QR ose kopjoni adresën e portofolit tuaj.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Hollësi</string>
   <string name="PaymentsDetailsFragment__status">Gjendje</string>
@@ -2087,6 +2103,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s në %2$s më %3$s</string>
   <string name="PaymentsDetailsFragment__to">Për</string>
   <string name="PaymentsDetailsFragment__from">Nga</string>
+  <string name="PaymentsDetailsFragment__information">Hollësi transaksioni, përfshi llogari pagesash dhe kohë transaksioni, janë pjesë e MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">S’ka hollësi të mëtejshme për këtë transaksion</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagesë e dërguar</string>
   <string name="PaymentsDetailsFragment__received_payment">Pagesë e marrë</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Pagesë e plotësuar %1$s</string>
@@ -2095,18 +2113,22 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsTransferFragment__transfer">Shpërngule</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skanoni kodin QR</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Adresë portofoli Bitcoin (kyç publik)</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Mund të shpërngulni MobileCoin duke plotësuar një shpërngulje drejt adresës së portofolit të dhënë nga platforma. Adresa e portofolit është një varg numrash dhe shkronjash, në më të shumtën e rasteve nën kodin QR.</string>
   <string name="PaymentsTransferFragment__next">Pasuesi</string>
   <string name="PaymentsTransferFragment__invalid_address">Adresë e pavlefshme</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrolloni adresën e portofolit që po përpiqeni të shpërngulni dhe riprovoni.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">S’mund të shpërngulni te adresa e portofolit tuaj Signal. Jepni adresën e portofolit prej llogarisë tuaj në një platformë që mbulohet.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Që të skanohet një kod QR, Signal-i ka nevojë të përdorë kamerën.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal-it i duhen leje përdorimi Kamere për të marrë një kod QR. Kaloni te rregullimet, përzgjidhni “Leje”, dhe aktivizoni “Kamera”.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Që të skanohet një kod QR, Signal-i ka nevojë të përdorë kamerën.</string>
   <string name="PaymentsTransferFragment__settings">Rregullime</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skanoni Kod QR Adrese</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skanoni kodin QR</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skanoni adresën kod QR të të paguarit</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Kërkesë</string>
   <string name="CreatePaymentFragment__pay">Paguani</string>
-  <string name="CreatePaymentFragment__available_balance_s">Baraspeshoni deri në %1$s.</string>
+  <string name="CreatePaymentFragment__available_balance_s">Depozitë e përdorshme: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">Shfaqe/Fshihe</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
@@ -2117,20 +2139,22 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Shtoni shënim</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Kurset e këmbimit janë thjesht të përafërt dhe mund të mos jenë të përpiktë.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Shënim</string>
   <!--ConfirmPaymentFragment-->
-  <string name="ConfirmPayment__confirm_payment">Ripohoni Pagesës</string>
+  <string name="ConfirmPayment__confirm_payment">Ripohoni pagesën</string>
   <string name="ConfirmPayment__network_fee">Tarifë rrjeti</string>
   <string name="ConfirmPayment__error_getting_fee">Gabim në marrje tarife</string>
-  <string name="ConfirmPayment__estimated_s">(afërsisht për %s)</string>
+  <string name="ConfirmPayment__estimated_s">Afërsisht %1$s</string>
   <string name="ConfirmPayment__to">Për</string>
   <string name="ConfirmPayment__total_amount">Sasi gjithsej</string>
-  <string name="ConfirmPayment__balance_s">Baraspeshoni deri në %1$s.</string>
+  <string name="ConfirmPayment__balance_s">Depozitë	: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Po parashtrohet pagesa…</string>
   <string name="ConfirmPayment__processing_payment">Po kryhet pagesa…</string>
   <string name="ConfirmPayment__payment_complete">Pagesë e plotësuar</string>
@@ -2138,6 +2162,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Pagesa do të vazhdojë të përpunohet</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Marrës i pavlefshëm</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ky person s’ka aktivizuar pagesa</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">S’arrihet të kërkohet një tarifë rrjeti. Për të vazhduar këtë pagesë, prekni OK, që të riprovohet.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s më %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2574,7 +2599,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="OldDeviceTransferLockedDialog__done">U bë</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulojeni dhe aktivizoni këtë pajisje</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Kandari</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Të shpërngulet depozitë MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Keni në depozitë %1$s. Nëse nuk i shpërngulni fondet tuaja në një adresë tjetër portofoli, përpara fshirjes së llogarisë tuaj, do ta humbni përgjithmonë.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Mos shpërngul</string>
   <string name="AdvancedPreferenceFragment__transfer">Shpërngule</string>
   <!--RecipientBottomSheet-->
@@ -2726,26 +2752,35 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="WallpaperCropActivity__blur_photo">Turbulloje foton</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Rreth MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin është një monedhë e re dixhitale e fokusuar te privatësia.</string>
   <string name="payment_info_card_adding_funds">Shtim fondesh</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Mund të shtoni fonde për përdorim në Signal duke dërguar MobileCoin në adresën e portofolit tuaj.</string>
   <string name="payment_info_card_cashing_out">Thyerje çeqesh</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Mund të thyeni MobileCoin në çfarëdo kohe në një platformë që mbulon MobileCoin. Thjesht bëni një shpërngulje te llogaria juaj në atë platformë.</string>
   <string name="payment_info_card_hide_this_card">Të fshihet kjo kartë?</string>
   <string name="payment_info_card_hide">Fshihe</string>
   <string name="payment_info_card_record_recovery_phrase">Regjistroje</string>
-  <string name="payment_info_card_record_your_phrase">Frazë Rimarrjeje Regjistrimi</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Fraza juaj e rikthimeve ju jep një rrugë tjetër për të rikthyer llogarinë tuaj të pagesave.</string>
+  <string name="payment_info_card_record_your_phrase">Regjistroni frazën tuaj</string>
   <string name="payment_info_card_update_your_pin">Përditësoni PIN-in tuaj</string>
+  <string name="payment_info_card_with_a_high_balance">Me një depozitë të madhe, mund të doni ta përditësoni me një PIN alfanumerik, për të shtuar më tepër mbrojtje te llogaria juaj.</string>
   <string name="payment_info_card_update_pin">Përditësoni PIN-in</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Çaktivizoni Portofolin</string>
-  <string name="DeactivateWalletFragment__your_balance">Kontrolloni kreditin në planin tuaj të shërbimit celular për dërgim SMS-sh/MMS-sh. Nëse krediti juaj është zero, shtoni të tillë.</string>
-  <string name="DeactivateWalletFragment__transfer_remaining_balance">Të mbetur</string>
+  <string name="DeactivateWalletFragment__your_balance">Depozita juaj</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Rekomandohet që të shpërngulni fondet tuaja në një portofol tjetër, përpara se të çaktivizoni pagesat. Nëse zgjidhni të mos shpërngulen fonte tuaja tani, do të mbeten në portofolin tuaj të lidhur me Signal-in, nëse riaktivizoni pagesat.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Shpërngulni depozitën e mbetur</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Çaktivizoje pa e shpërngulur</string>
   <string name="DeactivateWalletFragment__deactivate">Çaktivizoje</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Të çaktivizohet pa e shpërngulur?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Depozita juaj do të mbetet në portofolin tuaj të lidhur me Signal-in, nëse zgjidhni të riaktivizoni pagesat.</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Gabim gjatë çaktivizimit të portofolit.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frazë:</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Shihni frazë rikthimi</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Jepni frazë rikthimi</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Depozita juaj do të rikthehet automatikisht, kur të riinstaloni Signal-in, nëse ripohoni PIN-in tuaj Signal. Depozitën tuaj mund ta riktheni edhe duke përdorur një frazë rikthimesh, që është një frazë prej %1$d fjalësh unike për ju. Mbajeni shënim diku dhe depozitojeni në një vend të parrezik.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Fraza juaj e rikthimeve është një frazë prej %1$d fjalësh, unike për ju. Përdoreni këtë frazë për të rikthyer depozitën tuaj.</string>
   <string name="PaymentsRecoveryStartFragment__start">Fillojeni</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Jepeni dorazi</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Ngjite prej së papastrës</string>
@@ -2754,18 +2789,24 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frazë:</string>
   <string name="PaymentsRecoveryPasteFragment__next">Pasuesi</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frazë rikthimi e pavlefshme</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Sigurohuni se keni dhënë %1$d fjalët dhe riprovoni.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Pasuesi</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Përpunojeni</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">E mëprashmja</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Fraza juaj e rikthimit</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Mbani shënim %1$d fjalët vijuese, sipas radhës. Depozitojeni listën tuaj në një vend të sigurt.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sigurohuni se e keni dhënë saktë frazën tuaj.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Dërgo foto ekrani</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">U rimor</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frazë rikthimi e pavlefshme</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Sigurohuni se e keni dhënë saktë frazën dhe riprovoni.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Të kopjohet në të papastër?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Nëse zgjidhni ta depozitoni frazën tuaj të rikthimit si dixhitale, sigurohuni se depozitohet diku ku keni besim.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopjoje</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Ripohoni frazë rikthimi</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Jepni fjalët vijuese nga fraza juaj e rikthimit.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Fjalë %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Rishiheni frazën</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">U bë</string>
@@ -2785,6 +2826,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="UnreadPayments__d_new_payment_notifications">%1$d njoftime pagesash të reja</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">S’dërgohet dot pagesë</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Për të dërguar një pagesë te ky përdorues, atij i duhet të pranojë një kërkesë mesazhi nga ju. Dërgojini një mesazh që të krijohet kërkesë mesazhi.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Dërgoni një mesazh</string>
   <!--EOF-->
 </resources>

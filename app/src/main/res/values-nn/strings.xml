@@ -1956,7 +1956,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__submit_debug_log">Send feilsøkingslogg</string>
   <string name="preferences__delete_account">Slett konto</string>
   <string name="preferences__support_wifi_calling">«Wifi-samtale»-tilbakefallsmodus</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Bruk dette viss eininga leverer SMS / MMS over Wifi og «Wifi-samtale» er slått på)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Bruk dette viss eininga leverer SMS / MMS over trådlausnett (og «Wifi-samtale» er slått på)</string>
   <string name="preferences__incognito_keyboard">Inkognitotastatur</string>
   <string name="preferences__read_receipts">Lesekvitteringar</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
@@ -1965,7 +1965,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Be tastaturet om å skru av personleg læring. Denne innstillinga gir ingen garantiar, og tastaturet ditt står fritt til å oversjå han.</string>
   <string name="preferences_app_protection__blocked_users">Blokkerte brukarar</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
-  <string name="preferences_chats__when_using_wifi">Ved bruk av Wifi</string>
+  <string name="preferences_chats__when_using_wifi">Ved bruk av trådlausnett</string>
   <string name="preferences_chats__when_roaming">I framandnett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av media</string>
   <string name="preferences_chats__message_history">Meldingshistorikk</string>
@@ -2506,27 +2506,106 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på «Samtalar»</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk «Overfør konto» og så «Hald fram» på begge einingane</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Gjer klar tilkopling til gammal Android-eining …</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Det tar ei stund, bør vera klart snart</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ventar på at den gamle Android-eininga skal kopla til …</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal treng tilgang til posisjon for å oppdaga og kopla til den gamle Android-eininga di.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal treng posisjonstenester skrudd på for å oppdaga og kopla til den gamle Android-eininga di.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal treng trådlausnett på for å oppdaga og kopla til den gamle Android-eininga di. Trådlaus må vera på, men treng ikkje vera kopla til eit spesifikt nettverk.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklagar, det ser ut som eininga di ikkje støttar Wi-Fi Direct. Signal bruker Wi-Fi Direct for å oppdaga og kopla til den gamle Android-eininga di. Du kan likevel gjenoppretta frå ein reservekopi for å overføra data frå den gamle Android-eininga di.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Gjenopprett ein reservekopi</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Fekk ein uventa feil ved tilkopling til den gamle Android-eininga di.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Leitar etter ny Android-eining …</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal treng tilgang til posisjon for å oppdaga og kopla til den nye Android-eininga di.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal treng posisjonstenester skrudd på for å oppdaga og kopla til den nye Android-eininga di.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal treng trådlausnett på for å oppdaga og kopla til den nye Android-eininga di. Trådlaus må vera på, men treng ikkje vera kopla til eit spesifikt nettverk.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklagar, det ser ut som eininga di ikkje støttar Wi-Fi Direct. Signal bruker Wi-Fi Direct for å oppdaga og kopla til den nye Android-eininga di. Du kan likevel gjenoppretta frå ein reservekopi for å overføra data frå den nye Android-eininga di.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Lag reservekopi</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Fekk ein uventa feil ved tilkopling til den nye Android-eininga di.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Klarte ikkje opna trådlausinnstillingane. Du må skru på trådlausnett sjølv.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Gi tilgang til posisjon</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Skru på posisjonstenester</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Klarte ikkje opna posisjonsinnstillingane.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Skru på trådlausnett</string>
+  <string name="DeviceTransferSetup__error_connecting">Feil ved tilkopling</string>
+  <string name="DeviceTransferSetup__retry">Prøv igjen</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Send inn feilloggar</string>
+  <string name="DeviceTransferSetup__verify_code">Stadfest kode</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Stadfest at koden under er lik på begge einingane dine, og trykk Hald fram.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Tala er ulike</string>
   <string name="DeviceTransferSetup__continue">Hald fram</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Talet er ulikt</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Viss tala på einingane dine er ulike, er det mogleg du har kopla til feil eining. For å retta på dette kan du avbryta overføringa og prøva igjen, og halda einingane nær kvarandre.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Stopp overføringa</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Klarte ikkje oppdaga den gamle eininga</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Klarte ikkje oppdaga den nye eininga</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sjå til at desse tilgangane og tenestene er skrudd på:</string>
+  <string name="DeviceTransferSetup__location_permission">Posisjonstilgang</string>
+  <string name="DeviceTransferSetup__location_services">Posisjonstenester</string>
+  <string name="DeviceTransferSetup__wifi">Trådlausnett</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">På WiFi Direct-skjermen må du fjerna alle hugsa grupper og kopla frå inviterte eller tilkopla einingar.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direkt-skjerm</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prøv å skru trådlausnett av og på, på begge einingar</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sjå til at begge einingane er i overføringsmodus.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Gå til brukarstøttesida</string>
   <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Ventar på den andre eininga</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Trykk Hald fram på den andre eininga di for å starta overføringa.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Trykk Hald fram på den andre eininga di …</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Kan ikkje overføra frå nyare utgåver av Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Overfører data</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Hald einingane nær kvarandre. Ikkje skru av einingane, men la Signal stå open. Overføringa er ende-til-ende-kryptert.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d meldingar så langt …</string>
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Prøv igjen</string>
+  <string name="DeviceTransfer__stop_transfer_question">Stopp overføringa?</string>
+  <string name="DeviceTransfer__stop_transfer">Stopp overføringa</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">All overføringsframgang går tapt.</string>
+  <string name="DeviceTransfer__transfer_failed">Overføringa feila</string>
+  <string name="DeviceTransfer__unable_to_transfer">Klarte ikkje overføra</string>
   <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Du kan overføra Signal-kontoen din når du set opp Signal på ei ny Android-eining. Før du går vidare:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Last ned Signal på den nye Android-eininga di</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Trykk på «Overfør eller gjenopprett konto»</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Vel «Overfør frå Android-eining» når du får spørsmål om det og så «Hald fram». Ha begge einingane i nærleiken.</string>
   <string name="OldDeviceTransferInstructions__continue">Hald fram</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Overføringa er ferdig</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Finn den nye eininga di</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal-dataen din blir overført til den nye eininga. For å fullføra overføringsprosessen må du registrera deg på den nye eininga di.</string>
   <string name="OldDeviceTransferComplete__close">Lukk</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Overføring fullført</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Overføringa er ferdig</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">For å fullføra overføringsprosessen må du fortsetja med registrering.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Hald fram med registrering</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Kontooverføring</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Gjer klar til å kopla til den andre Android-eininga di …</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Gjer klar til å kopla til den andre Android-eininga di …</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Leitar etter den andre Android-eininga di …</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Koplar til den andre Android-eininga di …</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Treng stadfesting</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Overfører konto …</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Fullfør registrering på den nye eininga di</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-kontoen din er overført til den nye eininga, men du registrera deg på den nye eininga di for å fortsetja. Signal blir deaktivert på denne eininga.</string>
   <string name="OldDeviceTransferLockedDialog__done">Ferdig</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Avbryt og aktiver denne eininga</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Overfør MOB-saldo?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Saldoen din er %1$s. Viss du ikkje overfører midlane dine til ei anna lommebokadresse før du slettar kontoen din, mistar du han for alltid.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Ikkje overfør</string>
   <string name="AdvancedPreferenceFragment__transfer">Overfør</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
@@ -2620,6 +2699,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="DeleteAccountFragment__delete_account">Slett konto</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Sletta kontoinfoen og profilbildet</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Sletta alle meldingane dine</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Slett %1$s i betalingskontoen</string>
   <string name="DeleteAccountFragment__no_country_code">Ingen landskode oppgitt</string>
   <string name="DeleteAccountFragment__no_number">Ingen nummer oppgitt</string>
   <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du skreiv inn er ulikt det som høyrer til kontoen din.</string>
@@ -2675,31 +2755,82 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Klarte ikkje endra bakgrunnsbilde.</string>
   <string name="WallpaperCropActivity__blur_photo">Gjer bildet uklart</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er ein ny digital valuta med fokus på personvern</string>
+  <string name="payment_info_card_adding_funds">Legga til midlar</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan legga til midlar til bruk i Signal ved å senda MobileCoin til lommebokadressa di.</string>
+  <string name="payment_info_card_cashing_out">Ta ut pengar</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kan veksla ut MobileCoin når som helst på ein vekslebørs som støttar MobileCoin. Berre overfør til kontoen din på den børsen.</string>
+  <string name="payment_info_card_hide_this_card">Gøym dette kortet?</string>
   <string name="payment_info_card_hide">Skjul</string>
   <string name="payment_info_card_record_recovery_phrase">Skriv inn gjenopprettingsfrase</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Gjenopprettingsfrasen gir deg ein annan måte å gjenoppretta betalingskontoen din.</string>
   <string name="payment_info_card_record_your_phrase">Skriv inn frasen din</string>
+  <string name="payment_info_card_update_your_pin">Oppdater PIN-en din</string>
+  <string name="payment_info_card_with_a_high_balance">Med høg saldo vil du kanskje oppdatera til ein alfanumerisk PIN for å beskytta kontoen din.</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Skru av lommebok</string>
+  <string name="DeactivateWalletFragment__your_balance">Din saldo</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Me tilrår at du overfører midlane dine til ei anna lommebokadresse før du skrur av betalingar. Viss du vel å ikkje overføra midlane no, blir dei verande i lommeboka som er kopla til Signal viss du skrur på igjen betalingar.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Overfør resten av saldoen</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Skru av utan å overføra</string>
   <string name="DeactivateWalletFragment__deactivate">Skru av</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Skru av utan å overføra?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Saldoen din blir verande i lommeboka som er kopla til Signal i tilfelle du vel å skru på igjen betalingar.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Klarte ikkje skru av lommeboka.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Vis gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Skriv inn gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Saldoen din vil automatisk bli gjenoppretta når du installerer Signal på nytt viss du stadfestar Signal PIN-en din. Du kan også gjenoppretta saldoen din med ein gjenopprettingsfrase, som er ein %1$d ord lang frase som er din og berre din. Skriv han ned og ta vare på han på ein trygg stad.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Gjenopprettingsfrasen din er ein %1$d ord lang frase som er din og berre din. Bruk denne frasen til å gjenoppretta saldoen din.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Start</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Skriv inn for hand</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Lim inn frå utklippstavla</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Lim inn gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Neste</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Sjekk at du har skrive inn %1$d ord og prøv igjen.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Neste</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Endra</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Førre</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Gjenopprettingsfrasen din</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Skriv ned desse %1$d orda i rett rekkefølgje. Ta vare på lista på ein trygg stad.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sjå til at du har skrive inn frasen korrekt.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ikkje ta skjermbilde eller send over e-post.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingskontoen er gjenoppretta.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Sjå til at du har skrive inn frasen korrekt og prøv igjen.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopier til utklippstavla?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Viss du lagrar gjenopprettingsfrasen din digitalt, må du sjå til at han er lagra ein stad du stoler på.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Stadfest gjenopprettingsfrasen</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Skriv inn desse orda frå gjenopprettingsfrasen.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Ord %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Vis frasen igjen</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Ferdig</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Stadfesta gjenopprettingsfrasen</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Skriv inn gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Skriv inn ord %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Ord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Neste</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Ugyldig ord</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Utklippstavla er tømt.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Vis</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s sende deg %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d nye betalingsvarsel</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Kan ikkje senda betaling</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For å betala til denne brukaren må dei godta ein meldingsførespurnad frå deg. Send ei melding til dei for å laga ein meldingsførespurnad.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send ei melding</string>
   <!--EOF-->
 </resources>

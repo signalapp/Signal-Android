@@ -38,6 +38,8 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-код отключён.</string>
   <string name="ApplicationPreferencesActivity_hide">Скрыть</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Скрыть напоминание?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Запишите фразу восстановления переводов</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Записать фразу</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед тем, как вы сможете отключить свой PIN-код, вы должны записать свою фразу восстановления переводов, чтобы вы могли восстановить свою учётную запись переводов.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -2182,25 +2184,37 @@
   <string name="PaymentsHomeFragment__introducing_payments">Представляем переводы (бета)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Используйте Signal, чтобы отправлять и получать MobileCoin — новую цифровую валюту c акцентом на конфиденциальность. Активируйте, чтобы начать.</string>
   <string name="PaymentsHomeFragment__activate_payments">Активировать переводы</string>
+  <string name="PaymentsHomeFragment__activating_payments">Активируем переводы…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Восстановить учётную запись переводов</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Нет недавней активности</string>
+  <string name="PaymentsHomeFragment__pending_requests">Ожидающие запросы</string>
   <string name="PaymentsHomeFragment__recent_activity">Недавняя активность</string>
   <string name="PaymentsHomeFragment__see_all">Просмотреть все</string>
   <string name="PaymentsHomeFragment__add_funds">Добавить средства</string>
   <string name="PaymentsHomeFragment__send">Отправить</string>
+  <string name="PaymentsHomeFragment__sent_s">Отправлен %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Получен %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Перевести в сервис обмена</string>
   <string name="PaymentsHomeFragment__currency_conversion">Конверсия валют</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Деактивировать переводы</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Фраза восстановления</string>
   <string name="PaymentsHomeFragment__help">Помощь</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Комиссия за очистку монет</string>
+  <string name="PaymentsHomeFragment__sent_payment">Отправленный перевод</string>
+  <string name="PaymentsHomeFragment__received_payment">Полученный перевод</string>
+  <string name="PaymentsHomeFragment__processing_payment">Обрабатывающийся перевод</string>
   <string name="PaymentsHomeFragment__unknown_amount">—</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверсия валют недоступна</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не удалось отобразить конверсию валют. Проверьте подключение вашего телефона к интернету и попробуйте ещё раз.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Переводы недоступны в вашем регионе.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Не удалось включить переводы. Попробуйте ещё раз позже.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Деактивировать переводы?</string>
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Вы не сможете отправлять или получать MobileCoin в Signal, если вы деактивируете переводы.</string>
   <string name="PaymentsHomeFragment__deactivate">Деактивировать</string>
   <string name="PaymentsHomeFragment__continue">Продолжить</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Баланс в данный момент недоступен.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Переводы деактивированы.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Перевод не удался</string>
   <string name="PaymentsHomeFragment__details">Подробнее</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Вы можете использовать Signal, чтобы отправлять и получать MobileCoin. Все переводы регламентируются Условиями использования MobileCoins и MobileCoin Wallet. Это бета-функция, так что вы можете столкнуться с некоторыми проблемами и переводы или средства, которые вы можете потерять, невозможно восстановить. </string>
   <string name="PaymentsHomeFragment__activate">Активировать</string>
@@ -2215,12 +2229,25 @@
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Подробнее</string>
   <string name="PaymentsDetailsFragment__status">Статус</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Перевод отправляется…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Перевод обрабатывается…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Перевод завершён</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Перевод не удался</string>
   <string name="PaymentsDetailsFragment__network_fee">Комиссия сети</string>
+  <string name="PaymentsDetailsFragment__sent_by">Отправил(-а)</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Вы отправили %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Вы %1$s в %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s в %3$s</string>
   <string name="PaymentsDetailsFragment__to">Кому</string>
   <string name="PaymentsDetailsFragment__from">От</string>
   <string name="PaymentsDetailsFragment__information">Подробности транзакции, включая сумму перевода и время транзакции, являются частью MobileCoin Ledger.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Комиссия за очистку монет</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">«Комиссия за очистку монет» взимается, когда монеты в вашем распоряжении не могут быть скомбинированы, чтобы завершить транзакцию. Очистка позволит вам продолжить отправлять переводы.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Для этой транзакции недоступно больше информации</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Отправленный перевод</string>
+  <string name="PaymentsDetailsFragment__received_payment">Полученный перевод</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Перевод завершён %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Номер блока</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Перевести</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Сканировать QR-код</string>
@@ -2235,10 +2262,13 @@
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Чтобы сканировать QR-код, Signal необходим доступ к камере.</string>
   <string name="PaymentsTransferFragment__settings">Настройки</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Сканирование QR-кода адреса</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Просканируйте QR-код адреса получателя перевода.</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Запрос</string>
   <string name="CreatePaymentFragment__pay">Перевести</string>
   <string name="CreatePaymentFragment__available_balance_s">Доступный баланс: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Переключить</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2257,14 +2287,25 @@
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Заметка</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Подтвердить перевод</string>
   <string name="ConfirmPayment__network_fee">Комиссия сети</string>
+  <string name="ConfirmPayment__error_getting_fee">Ошибка получения комиссии</string>
   <string name="ConfirmPayment__estimated_s">Ориентировочно в %1$s</string>
   <string name="ConfirmPayment__to">Кому</string>
   <string name="ConfirmPayment__total_amount">Общая сумма</string>
   <string name="ConfirmPayment__balance_s">Баланс: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Отправляем перевод…</string>
+  <string name="ConfirmPayment__processing_payment">Обрабатываем перевод…</string>
+  <string name="ConfirmPayment__payment_complete">Перевод завершён</string>
+  <string name="ConfirmPayment__payment_failed">Перевод не удался</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Перевод будет продолжать обрабатываться</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Недействительный получатель</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Этот человек не активировал переводы</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Не удалось запросить комиссию сети. Для продолжения этого перевода нажмите «ОК», чтобы попробовать ещё раз.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s в %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Выберите валюту</string>
   <string name="SetCurrencyFragment__all_currencies">Все валюты</string>
   <!--****************************************-->
   <!--menus-->
@@ -2709,6 +2750,7 @@
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Отменить и активировать это устройство</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Перевести оставшиеся средства?</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">У вас есть баланс в %1$s. Если вы не переведёте свои средства на кошелёк с другим адресом перед удалением своей учётной записи, вы навсегда потеряете их.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Не переводить</string>
   <string name="AdvancedPreferenceFragment__transfer">Перевести</string>
@@ -2808,6 +2850,7 @@
   <string name="DeleteAccountFragment__delete_account">Удалить учётную запись</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Удалению информации вашей учётной записи и фотографии профиля</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Удалению всех ваших сообщений</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Удалению %1$s в вашей учётной записи переводов</string>
   <string name="DeleteAccountFragment__no_country_code">Не указан код страны</string>
   <string name="DeleteAccountFragment__no_number">Не указан номер</string>
   <string name="DeleteAccountFragment__the_phone_number">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
@@ -2873,6 +2916,7 @@
   <string name="payment_info_card_hide">Скрыть</string>
   <string name="payment_info_card_record_recovery_phrase">Запишите фразу восстановления</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Ваша фраза восстановления даёт вам дополнительный способ восстановления вашей учётной записи переводов.</string>
+  <string name="payment_info_card_record_your_phrase">Записать фразу</string>
   <string name="payment_info_card_update_your_pin">Обновите свой PIN-код</string>
   <string name="payment_info_card_with_a_high_balance">Так как у вас большой баланс, возможно, вы захотите обновить свой PIN-код на буквенно-цифровой, чтобы лучше защитить свою учётную запись.</string>
   <string name="payment_info_card_update_pin">Обновить PIN-код</string>
@@ -2885,8 +2929,10 @@
   <string name="DeactivateWalletFragment__deactivate">Деактивировать</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивировать без перевода?</string>
   <string name="DeactivateWalletFragment__your_balance_will_remain">Ваши средства останутся в вашем кошельке, привязанном к Signal, если вы позже заново активируете переводы.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Ошибка деактивации кошелька.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Фраза восстановления</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Просмотр фразы восстановления</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Введите фразу восстановления</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Ваши средства будут автоматически восстановлены, когда вы переустановите Signal, если вы подтвердите свой PIN-код Signal. Вы также можете восстановить свои средства с помощью своей уникальной фразы восстановления, которая состоит из %1$d слов. Запишите её, и храните её в безопасном месте.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза восстановления — это уникальная фраза, состоящая из %1$d слов. Используйте эту фразу, чтобы восстановить свой баланс.</string>
@@ -2930,8 +2976,10 @@
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Просмотреть</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s отправил(-а) вам %2$s</string>
   <string name="UnreadPayments__d_new_payment_notifications">%1$d новых уведомлений о переводах</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Невозможно отправить перевод</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Чтобы вы смогли отправить перевод этому пользователю, ему необходимо принять от вас запрос на общение. Отправьте ему сообщение, чтобы создать запрос на общение.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Отправить сообщение</string>
   <!--EOF-->

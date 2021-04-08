@@ -2043,8 +2043,8 @@
   <string name="PaymentsAllActivityFragment__received">تاپشۇرۇۋالغان</string>
   <string name="PaymentsHomeFragment__introducing_payments">تونۇشتۇرۇش چىقىمى (سىناق)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">سىز Signal دا MobileCoin يوللاپ ۋە قوبۇللىيالايسىز،  ئۇ شەخسىيەت گەۋدىلەندۈرۈلگەن يېڭى رەقەملىك پۇل. باشلاش ئۈچۈن ئاكتىپلاڭ.</string>
-  <string name="PaymentsHomeFragment__activate_payments">چىقىملارنى ئاكتىپلا</string>
-  <string name="PaymentsHomeFragment__activating_payments">چىقىملارنى ئاكتىپلاۋاتىدۇ…</string>
+  <string name="PaymentsHomeFragment__activate_payments">چىقىم قىلىشنى ئاكتىپلا</string>
+  <string name="PaymentsHomeFragment__activating_payments">چىقىم قىلىشنى ئاكتىپلاۋاتىدۇ…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">چىقىم ھېساباتىنى ئەسلىگە قايتۇر</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">يېقىنقى پائالىيەت يوق</string>
   <string name="PaymentsHomeFragment__pending_requests">كۈتۈۋاتقان تەلەپلەر</string>
@@ -2076,14 +2076,23 @@
   <string name="PaymentsHomeFragment__payments_deactivated">چىقىم چەكلەندى.</string>
   <string name="PaymentsHomeFragment__payment_failed">چىقىم قىلالمىدى</string>
   <string name="PaymentsHomeFragment__details">تەپسىلاتى</string>
+  <string name="PaymentsHomeFragment__activate">ئاكتىپلا</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ماددىلىرىنى كۆرسەت</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">پۇل قوش</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">ھەميان ئادرېسىڭىز</string>
   <string name="PaymentsAddMoneyFragment__copy">كۆچۈر</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">كېسىش تاختىسىغا كۆچۈرۈش</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">تەپسىلاتى</string>
   <string name="PaymentsDetailsFragment__status">ھالىتى</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">چىقىمنى يوللاۋاتىدۇ…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">چىقىمنى بېجىرىۋاتىدۇ…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">چىقىم تامام</string>
   <string name="PaymentsDetailsFragment__payment_failed">چىقىم قىلالمىدى</string>
+  <string name="PaymentsDetailsFragment__network_fee">تور ھەققى</string>
+  <string name="PaymentsDetailsFragment__sent_by">يوللىغۇچى</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">%1$s غا يوللاندى</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">تەڭگە تازىلاش ھەققى</string>
   <string name="PaymentsDetailsFragment__sent_payment">چىقىم يوللاندى</string>
   <string name="PaymentsDetailsFragment__received_payment">تاپشۇرۇۋالغان چىقىم</string>
@@ -2107,6 +2116,10 @@
   <string name="CreatePaymentFragment__0">0</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__network_fee">تور ھەققى</string>
+  <string name="ConfirmPayment__submitting_payment">چىقىمنى يوللاۋاتىدۇ…</string>
+  <string name="ConfirmPayment__processing_payment">چىقىمنى بېجىرىۋاتىدۇ…</string>
+  <string name="ConfirmPayment__payment_complete">چىقىم تامام</string>
   <string name="ConfirmPayment__payment_failed">چىقىم قىلالمىدى</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->

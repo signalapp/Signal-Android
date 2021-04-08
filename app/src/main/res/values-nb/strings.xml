@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Posisjon</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal trenger tillatelse til å vise bildene og videoene dine.</string>
   <string name="AttachmentKeyboard_give_access">Gi tilgang</string>
+  <string name="AttachmentKeyboard_payment">Betaling</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Finner ikke en app for å velge medier.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal krever tillatelse fra systemet for å kunne legge til bilder, videoer eller lyd, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
@@ -1910,6 +1911,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om leveringsrapport når du sender SMS</string>
   <string name="preferences__data_and_storage">Data og lagring</string>
   <string name="preferences__storage">Lagring</string>
+  <string name="preferences__payments">Betalinger</string>
   <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
   <string name="preferences__keep_messages">Behold meldinger</string>
   <string name="preferences__clear_message_history">Slett meldingshistorikk</string>
@@ -2023,7 +2025,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__see_all">Se alle</string>
   <string name="PaymentsHomeFragment__send">Send</string>
   <string name="PaymentsHomeFragment__help">Hjelp</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalinger er ikke tilgjengelige i regionen din.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Kunne ikke aktivere betalinger. Prøv igjen senere.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktivere betalinger?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Du vil ikke kunne sende eller motta MobileCoin i Signal hvis du deaktiverer betalinger.</string>
+  <string name="PaymentsHomeFragment__deactivate">Deaktiver</string>
   <string name="PaymentsHomeFragment__continue">Fortsett</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Balanse er ikke tilgjengelig for øyeblikket.</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
@@ -2040,6 +2048,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Forespør</string>
+  <string name="CreatePaymentFragment__pay">Betal</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2631,15 +2640,19 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Feil ved lagring av bakgrunn.</string>
   <string name="WallpaperCropActivity__blur_photo">Gjør bildet uskarpt</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_hide">Skjul</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Deaktiver</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Neste</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Neste</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Rediger</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Forrige</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Ferdig</string>
@@ -2649,7 +2662,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Vis</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s sendte deg %2$s</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Kan ikke sende betaling</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For å sende en betaling til denne brukeren må de godta en forespørsel fra deg. Send dem en melding for å opprette en meldingsforespørsel.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send en melding</string>
   <!--EOF-->
 </resources>

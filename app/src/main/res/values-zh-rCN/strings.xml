@@ -56,6 +56,7 @@
   <string name="AttachmentKeyboard_location">位置</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需相应权限以显示图片和视频。</string>
   <string name="AttachmentKeyboard_give_access">给予权限</string>
+  <string name="AttachmentKeyboard_payment">支付</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">未找到选择媒体的应用。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需“存储”权限，来发送图片、视频和音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
@@ -1844,6 +1845,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">为每一条发送的短信请求送达报告</string>
   <string name="preferences__data_and_storage">数据和存储</string>
   <string name="preferences__storage">存储</string>
+  <string name="preferences__payments">支付</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
   <string name="preferences__keep_messages">保留消息</string>
   <string name="preferences__clear_message_history">清除消息记录</string>
@@ -1957,11 +1959,16 @@
   <string name="PaymentsHomeFragment__see_all">查看全部</string>
   <string name="PaymentsHomeFragment__send">发送</string>
   <string name="PaymentsHomeFragment__help">帮助</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">是否停用支付？</string>
+  <string name="PaymentsHomeFragment__deactivate">停用</string>
   <string name="PaymentsHomeFragment__continue">继续</string>
   <string name="PaymentsHomeFragment__details">更多</string>
+  <string name="PaymentsHomeFragment__activate">激活</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal 的支付不再可用，不过您仍可将资金转移至交易平台，但是不再能够收发支付或添加资金。</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">复制</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">已复制到剪切板</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">为了添加资金，请发送 MobileCoin 至您的钱包地址。在支持 MobileCoin 的交易平台上，从您的帐户开启交易，然后扫描该二维码或复制您的钱包地址。</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">更多</string>
   <string name="PaymentsDetailsFragment__status">状态</string>
@@ -1974,6 +1981,7 @@
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">入群请求</string>
+  <string name="CreatePaymentFragment__pay">支付</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -1984,11 +1992,14 @@
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">转换仅为估计，可能并不准确。</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">注释</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">至</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">全部货币</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2556,15 +2567,23 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">设置墙纸出错。</string>
   <string name="WallpaperCropActivity__blur_photo">模糊图片</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">关于 MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin 是一种关注隐私的新数字货币。</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">通过将 MobileCoin 发送至钱包地址，即可在 Signal 中添加并使用资金。</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">在支持 MobileCoin 的交易平台上，可随时兑现 MobileCoin。只需在该交易平台上，将资金转移至您的帐户。</string>
   <string name="payment_info_card_hide">隐藏</string>
   <string name="payment_info_card_update_pin">更新 PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">停用</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">当重新激活支付时，您的余额将保留在 Signal 关联的钱包内。</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">开始</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">下一步</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">下一步</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">编辑</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">上一</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">复制</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完成</string>
@@ -2575,6 +2594,7 @@
   <string name="PaymentNotificationsView__view">查看</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">为了发送支付，该用户需接受您的消息请求。请向他们发送消息，来创建消息请求。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
   <!--EOF-->
 </resources>

@@ -167,7 +167,7 @@
   <string name="ConversationItem_error_not_sent_tap_for_details">Não enviada, toque para mais detalhes</string>
   <string name="ConversationItem_error_partially_not_delivered">Enviada parcialmente, toque para mais detalhes</string>
   <string name="ConversationItem_error_network_not_delivered">Falha no envio</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para intercâmbio de chaves, toque para processar.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para troca de chaves, toque para processar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Falha ao enviar, toque para enviar pelo modo inseguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não encriptado?</string>
@@ -313,7 +313,7 @@
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves</string>
+  <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
   <!--ConversationTitleView-->
@@ -1244,7 +1244,7 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">O Google Play Services está a ser atualizado ou está temporariamente indisponível. Por favor, tente novamente.</string>
   <string name="RegistrationActivity_terms_and_privacy">Termos e Política de privacidade</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos e armazenamento de forma a poder ligar-se com os seus amigos, trocar mensagens e efetuar chamadas seguras.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos de forma a poder ligar-se a amigos, partilhar mensagens e fazer chamadas seguras</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos de forma a poder ligar-se a amigos, trocar mensagens e fazer chamadas seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Fez demasiadas tentativas para registar este número. Por favor, tente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível ligar ao serviço. Por favor, verifique a sua ligação à rede e tente novamente.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1303,10 +1303,10 @@
   <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Recebida mensagem corrompida
-        de intercâmbio de chaves!
+        de troca de chaves!
     </string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-       Recebida mensagem de intercâmbio de chaves para uma versão inválida do protocolo.
+       Recebida mensagem de troca de chaves para uma versão inválida do protocolo.
     </string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Recebida uma mensagem com um número de segurança novo. Toque para a processar e exibir.</string>
   <string name="SmsMessageRecord_secure_session_reset">Reiniciou a sessão segura.</string>
@@ -1415,7 +1415,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Não foi encontrado na área de transferência nenhum número de segurança com o qual comparar </string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, seleccione a aplicação Signal e nas \"Permissões\" ative a \"Câmara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiro deverá partilhar mensagens de forma a poder ver o número de segurança de %1$s.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiro deverá trocar mensagens de forma a poder ver o número de segurança de %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -2114,20 +2114,59 @@
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Para: Digitalize ou introduza o endereço da carteira</string>
   <string name="PaymentsTransferFragment__you_can_transfer">Você pode transferir o MobileCoin ao terminar uma transferência para o endereço da carteira fornecido pela troca. O endereço da carteira é a sequência de números e letras mais comumente abaixo do código QR.</string>
   <string name="PaymentsTransferFragment__next">Seguinte</string>
+  <string name="PaymentsTransferFragment__invalid_address">Endereço inválido</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Confirme o endereço da carteira para a qual está a tentar transferir e tente novamente.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Não pode transferir para o seu próprio endereço da carteira Signal. Introduza o endereço de carteira  da sua conta numa transação suportada.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para digitalizar um código QR, o Signal necessita de aceder à câmara.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">O Signal necessita de permissão de Câmara para capturar um código QR. Vá até às definições, selecione \"Permissões\" e, ative \"Câmara\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para digitalizar um código QR, o Signal necessita de aceder à câmara.</string>
   <string name="PaymentsTransferFragment__settings">Definições</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Digitalizar código QR do endereço</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Digitalize o código QR do endereço do beneficiário</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pedido</string>
+  <string name="CreatePaymentFragment__pay">Pagar</string>
+  <string name="CreatePaymentFragment__available_balance_s">Saldo disponível: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Alternar</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Adicionar nota</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">As conversas são apenas estimativas e poderão não ser precisas.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Nota</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Confirmar pagamento</string>
   <string name="ConfirmPayment__network_fee">Taxa de rede</string>
+  <string name="ConfirmPayment__error_getting_fee">Erro ao tentar obter taxa</string>
+  <string name="ConfirmPayment__estimated_s">Estimado %1$s</string>
   <string name="ConfirmPayment__to">Para</string>
+  <string name="ConfirmPayment__total_amount">Montante total</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">A submeter pagamento…</string>
   <string name="ConfirmPayment__processing_payment">A processar pagamento…</string>
   <string name="ConfirmPayment__payment_complete">Pagamento concluido</string>
   <string name="ConfirmPayment__payment_failed">Falha de pagamento</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">O pagamento irá continuar a ser processado</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Destinatário inválido</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Este utilizador não ativou os pagamentos</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Não foi possível pedir uma taxa de rede. Para continuar este pagamento, clique em OK e tente novamente.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s em %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Definir moeda</string>
+  <string name="SetCurrencyFragment__all_currencies">Todas as moedas</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2557,6 +2596,9 @@
   <string name="OldDeviceTransferLockedDialog__done">Concluído</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este dispositivo</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transferir saldo MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Tem um saldo de %1$s. Se não transferir os seus fundos para outro endereço de carteira antes de eliminar a sua conta, você irá perdê-lo para sempre.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Não transferir</string>
   <string name="AdvancedPreferenceFragment__transfer">Transferir</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
@@ -2650,6 +2692,7 @@
   <string name="DeleteAccountFragment__delete_account">Eliminar conta</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar a sua informação de conta e fotografia de perfil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar todas as suas mensagens</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Eliminar %1$s na sua conta de pagamentos</string>
   <string name="DeleteAccountFragment__no_country_code">Sem código de país especificado</string>
   <string name="DeleteAccountFragment__no_number">Sem número especificado</string>
   <string name="DeleteAccountFragment__the_phone_number">O número de telemóvel que introduziu não coincide com as suas contas.</string>
@@ -2705,7 +2748,18 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">Ocorreu um erro ao tentar definir o fundo de ecrã.</string>
   <string name="WallpaperCropActivity__blur_photo">Desfocar fotografia</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Acerca da MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin é uma privacidade nova focada em moeda digital.</string>
+  <string name="payment_info_card_adding_funds">Adicionando fundos</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Você pode adicionar fundos para utilizar no Signal ao adicionar a MobileCoin ao seu endereço de carteira.</string>
+  <string name="payment_info_card_cashing_out">Tirar dinheiro</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Você pode tirar o dinheiro da MobileCoin a qualquer momento numa transferência que suporte a MobileCoin. Apenas necessita de fazer uma transferência para a sua conta nessa troca.</string>
+  <string name="payment_info_card_hide_this_card">Ocultar este cartão?</string>
   <string name="payment_info_card_hide">Ocultar</string>
+  <string name="payment_info_card_record_recovery_phrase">Gravar a frase de recuperação</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">A sua frase de recuperação dá-lhe outra forma de restaurar a sua conta de pagamentos.</string>
+  <string name="payment_info_card_record_your_phrase">Gravar a sua frase</string>
+  <string name="payment_info_card_update_your_pin">Atualizar o seu PIN</string>
   <string name="payment_info_card_update_pin">Atualizar PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate">Desativar</string>

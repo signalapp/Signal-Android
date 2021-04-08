@@ -2302,6 +2302,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ta osoba nie aktywowała płatności</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nie można zażądać opłaty sieciowej. Aby kontynuować tę płatność, stuknij OK, by spróbować ponownie.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s o %2$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">Ustaw walutę</string>
   <string name="SetCurrencyFragment__all_currencies">Wszystkie waluty</string>

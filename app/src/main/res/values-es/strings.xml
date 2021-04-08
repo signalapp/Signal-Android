@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">¿Ocultar recordatorio?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Mostrar frase de recuperación</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Frase de recuperación</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desactivar tu PIN, debes guardar la frase de recuperación de tu monedero de pagos para asegurarte que puedas recuperar tu cuenta de pagos en un futuro.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desactivar tu PIN, debes guardar la frase de recuperación de tu cartera de pagos para asegurarte que puedas recuperar tu cuenta de pagos en un futuro.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -1865,7 +1865,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%d h</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences_beta">BETA</string>
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS y MMS</string>
   <string name="preferences__pref_all_sms_title">Recibir todos los SMS</string>
   <string name="preferences__pref_all_mms_title">Recibir todos los MMS</string>
@@ -1930,7 +1930,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__data_and_storage">Datos y almacenamiento</string>
   <string name="preferences__storage">Almacenamiento</string>
   <string name="preferences__payments">Pagos</string>
-  <string name="preferences__payments_beta">Pagos (BETA)</string>
+  <string name="preferences__payments_beta">Pagos (Beta)</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de chat</string>
   <string name="preferences__keep_messages">Preservar mensajes</string>
   <string name="preferences__clear_message_history">Eliminar historial de mensajes</string>
@@ -2077,16 +2077,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsHomeFragment__payments_deactivated">Pagos desactivados.</string>
   <string name="PaymentsHomeFragment__payment_failed">Fallo en el pago</string>
   <string name="PaymentsHomeFragment__details">Detalles</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puedes usar Signal para recibir y enviar MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoins y el monedero de MobileCoin. Esta es una característica en fase beta por lo que te encontrarás con problemas y podrás perder tus fondos.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puedes usar Signal para recibir y enviar MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoins y la cartera de MobileCoin. Esta es una característica en fase beta por lo que te encontrarás con problemas y podrás perder tus fondos.</string>
   <string name="PaymentsHomeFragment__activate">Activar</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver los términos de uso de MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Los pagos en Signal no están disponibles. Todavía puedes transferir tus fondos a un «exchange» pero no podrás recibir o enviar más pagos a través de Signal.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Añadir fondos</string>
-  <string name="PaymentsAddMoneyFragment__your_wallet_address">Dirección de tu monedero</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Dirección de tu cartera</string>
   <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado al portapapeles</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Para añadir fondos, envía MobileCoin a la dirección de tu monedero. Inicia una transferencia desde tu cuenta en un «exchange» que soporte MobileCoin. Después puedes escanear el código QR o copiar la dirección de tu monedero.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Para añadir fondos, envía MobileCoin a la dirección de tu cartera. Inicia una transferencia desde tu cuenta en un «exchange» que soporte MobileCoin. Después puedes escanear el código QR o copiar la dirección de tu cartera.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalles</string>
   <string name="PaymentsDetailsFragment__status">Estado</string>
@@ -2101,7 +2101,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
-  <string name="PaymentsDetailsFragment__information">Los detalles de la transacción que incluyen la cantidad y fecha del pago, pero no el origen y el destino, figuran en el libro-registro de MobileCoin. </string>
+  <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no el origen y el destino, y figuran en el libro-registro de MobileCoin. </string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tasa de limpieza de monedas</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">La tasa de «limpieza de monedas» se aplica cuando tus monedas no se pueden combinar para completar un pago. La limpieza te permite continuar enviado pagos.</string>
   <string name="PaymentsDetailsFragment__no_details_available">No hay más detalles disponibles para esta transacción</string>
@@ -2112,19 +2112,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Transferencia</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Escanear código QR</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">A: Escanea o introduce la dirección del monedero</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Puedes transferir MobileCoin al hacer un pago a la dirección del monedero indicada en tu cuenta del «exchange». La dirección del monedero es la cadena de números y letras que suele aparecer debajo del código QR.</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">A: Escanea o introduce la dirección de la cartera</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Puedes transferir MobileCoin al hacer un pago a la dirección de la cartera indicada en tu cuenta del «exchange». La dirección de la cartera es la cadena de números y letras que suele aparecer debajo del código QR.</string>
   <string name="PaymentsTransferFragment__next">Siguiente</string>
   <string name="PaymentsTransferFragment__invalid_address">Dirección inválida</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">Comprueba de nuevo la dirección del monedero a la que estás intentando hacer el pago e inténtalo de nuevo.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">No puedes enviar pagos a tu propio monedero de Signal. Introduce la dirección de tu monedero en un «exchange» que soporte MobileCoin.</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Comprueba de nuevo la dirección de la cartera a la que estás intentando hacer el pago e inténtalo de nuevo.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">No puedes enviar pagos a tu propia cartera de Signal. Introduce la dirección de tu cartera en un «exchange» que soporte MobileCoin.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para escanear el código QR, Signal necesita acceso a la cámara.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal necesita acceso a la cámara para analizar el código QR. Por favor, ve a la aplicación «Ajustes» y en «Permisos» activa «Cámara».</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para escanear el código QR, Signal necesita acceso a la cámara.</string>
   <string name="PaymentsTransferFragment__settings">Ajustes</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Escanear código QR</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Escanea el código QR de quen vas a pagar.</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Escanea el código QR de quien vas a pagar.</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Solicitud</string>
   <string name="CreatePaymentFragment__pay">Pagar</string>
@@ -2752,27 +2752,27 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="payment_info_card_about_mobilecoin">Sobre MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin es una nueva moneda digital enfocada en la privacidad.</string>
   <string name="payment_info_card_adding_funds">Añadir fondos</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Puedes añadir fondos para hacer pagos a personas a través de Signal al enviar MobileCoin a tu dirección de monedero de Signal.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Puedes añadir fondos para hacer pagos a personas a través de Signal al enviar MobileCoin a la dirección de tu cartera de Signal.</string>
   <string name="payment_info_card_cashing_out">Recuperar</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Siempre puedes recuperar tus fondos al transferirlos a un «exchange» que soporte MobileCoin. Tan sólo tienes que hacer una transferencia a tu cuenta en ese «exchange».</string>
   <string name="payment_info_card_hide_this_card">¿Ocultar esta tarjeta?</string>
   <string name="payment_info_card_hide">Ocultar</string>
   <string name="payment_info_card_record_recovery_phrase">Mostrar frase de recuperación</string>
-  <string name="payment_info_card_your_recovery_phrase_gives_you">La frase de recuperación también te permite recuperar tu monedero.</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">La frase de recuperación también te permite recuperar tu cartera.</string>
   <string name="payment_info_card_record_your_phrase">Mostrar frase de recuperación</string>
   <string name="payment_info_card_update_your_pin">Actualiza tu PIN de Signal</string>
   <string name="payment_info_card_with_a_high_balance">Con un balance alto, necesitas actualizar tu PIN de Signal a un PIN alfanumérico que añada protección extra a tu cuenta de Signal. </string>
   <string name="payment_info_card_update_pin">Actualizar PIN</string>
   <!--DeactivateWalletFragment-->
-  <string name="DeactivateWalletFragment__deactivate_wallet">Desactivar monedero</string>
+  <string name="DeactivateWalletFragment__deactivate_wallet">Desactivar cartera</string>
   <string name="DeactivateWalletFragment__your_balance">Tu balance</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">Te recomendamos transferir tus fondos a otro monedero antes de desactivar los pagos. Si seleccionas no transferir los fondos ahora, permanecerán en el monedero asociado a tu cuenta de Signal cuando vuelvas a activar los pagos.</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Te recomendamos transferir tus fondos a otra cartera antes de desactivar los pagos. Si seleccionas no transferir los fondos ahora, permanecerán en la cartera asociada a tu cuenta de Signal cuando vuelvas a activar los pagos.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferir balance restante</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Desactivar sin transferir</string>
   <string name="DeactivateWalletFragment__deactivate">Desactivar</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">¿Desactivar sin transferir?</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">Tu balance permanecerá en el monedero asociado a tu cuenta de Signal para cuando decidas reactivar los pagos.</string>
-  <string name="DeactivateWalletFragment__error_deactivating_wallet">Fallo al desactivar monedero.</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Tu balance permanecerá en la cartera asociada a tu cuenta de Signal para cuando decidas reactivar los pagos.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Fallo al desactivar cartera.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frase de recuperación</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Ver frase de recuperación</string>
@@ -2795,7 +2795,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Tu frase de recuperación</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anota las %1$d palabras en el mismo orden. Guárdalas en sitio seguro.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Asegúrate que has introducido la frase de recuperación correcta.</string>
-  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">No hagas una captura de pantalla y sobre todo, no las envíes por correo electrónico.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">No hagas una captura de pantalla y sobre todo, no la envíes por correo electrónico.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Cuenta de pagos restaurada.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frase de recuperación inválida</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Asegúrate que has introducido la frase de recuperación correcta e inténtalo de nuevo.</string>
@@ -2824,7 +2824,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UnreadPayments__d_new_payment_notifications">%1$d nuevos pagos</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Imposible enviar el pago</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para enviar un pago a esta persona, tiene que primero aceptar tu solicitud de chat. Envíale un mensaje para crear una solicitud de chat.</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para enviar un pago a esta persona, tiene primero que aceptar tu solicitud de chat. Envía un mensaje para crear una solicitud de chat.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar mensajes</string>
   <!--EOF-->
 </resources>

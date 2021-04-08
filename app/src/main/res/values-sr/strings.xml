@@ -2132,6 +2132,7 @@
   <string name="PaymentsHomeFragment__deactivate_payments">Деактивирати уплате</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Фраза опоравка</string>
   <string name="PaymentsHomeFragment__help">Помоћ</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Накнада за чишћење новчића</string>
   <string name="PaymentsHomeFragment__sent_payment">Пошаљи уплату</string>
   <string name="PaymentsHomeFragment__received_payment">Примљена уплата</string>
   <string name="PaymentsHomeFragment__processing_payment">Обрађујем уплату</string>
@@ -2173,6 +2174,8 @@
   <string name="PaymentsDetailsFragment__to">За</string>
   <string name="PaymentsDetailsFragment__from">Од</string>
   <string name="PaymentsDetailsFragment__information">Детаљи трансакције, укључујући количину плаћања и време трансакције део су књиге MobileCoin-а.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Накнада за чишћење новчића</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">„Накнада за чишћење новчића“ наплаћује се када се новчићи у вашем власништву не могу комбиновати да заврше трансакцију. Чишћење ће вам омогућити да наставите са слањем плаћања.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Нема додатних детаља за ову трансакцију</string>
   <string name="PaymentsDetailsFragment__sent_payment">Пошаљи уплату</string>
   <string name="PaymentsDetailsFragment__received_payment">Примљена уплата</string>
@@ -2182,9 +2185,11 @@
   <string name="PaymentsTransferFragment__transfer">Пренос</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Скенирајте QR кôд</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">За: Скенирање или унос адресе новчаника</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin можете пренети попуњавањем преноса на адресу новчаника која је дала размена. Адреса новчаника је низ бројева и слова најчешће испод QR кôда.</string>
   <string name="PaymentsTransferFragment__next">Даље</string>
   <string name="PaymentsTransferFragment__invalid_address">Погрешна адреса</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Проверите адресу новчаника који покушавате да пребаците и покушате поново.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Не можете пренети на своју адресу новчаника Signal-а. Унесите адресу новчаника са свог налога на подржаној размени.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Да бисте скенирали QR кôд, Signal-у је потребан приступ камери.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal захтева приступ камери да би фотографисао QR кôд. Идите на подешавања, изаберите „Дозволе“ и омогућите „Камера“.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Да бисте скенирали QR кôд, Signal-у је потребан приступ камери.</string>
@@ -2829,25 +2834,32 @@
   <string name="payment_info_card_about_mobilecoin">О MobileCoin-у</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin је нова дигитална валута фокусирана на приватност.</string>
   <string name="payment_info_card_adding_funds">Додавање средства</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Средства за употребу можете додати у Signal-у слањем MobileCoin-а на адресу свог новчаника.</string>
+  <string name="payment_info_card_cashing_out">Уновчити</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Можете да уновчите MobileCoin у било којем тренутку на размени која подржава MobileCoin. Само пренесите на свој рачун на тој размени.</string>
   <string name="payment_info_card_hide_this_card">Сакрити ову картицу?</string>
   <string name="payment_info_card_hide">Сакриј</string>
   <string name="payment_info_card_record_recovery_phrase">Сними фразу опоравка</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Ваша фраза за опоравак вам даје други начин да вратите свој налог за исплату.</string>
   <string name="payment_info_card_record_your_phrase">Снимити Вашу фразу</string>
   <string name="payment_info_card_update_your_pin">Ажурирати PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Са високим салдом, можда ћете желети да ажурирате на алфанумерички ПИН да бисте додали више заштите на свој рачун.</string>
   <string name="payment_info_card_update_pin">Ажурирати PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирати новчаник</string>
   <string name="DeactivateWalletFragment__your_balance">Ваш салдо</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Препоручује се да преносите средства на другу адресу новчаника пре деактивирања плаћања. Ако одлучите да не преносите своја средства сада, они ће остати у вашем новчанику везаном за Signal ако поново активирате уплате.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Пренос преосталог салда</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирање без преноса података</string>
   <string name="DeactivateWalletFragment__deactivate">Деактивирати</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивирање без преноса података?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Ваш салдо ће остати у вашем новчанику везаном за Signal ако поново активирате уплате.</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка деактивирајући новчаник.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Фраза опоравка</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Прегледати фразу опоравка</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Унети фразу опоравка</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Ваш салдо ће се аутоматски вратити када поново инсталирате Signal ако потврдите свој ПИН Signal-а. Такође можете да вратите салдо користећи фразу за опоравак, која је јединствена%1$d-речи фраза. Запишите је и чувајте га на сигурном месту.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза опоравка је %1$d-речи фраза јединствена за вас. Користите ову фразу да бисте вратили салто.</string>
   <string name="PaymentsRecoveryStartFragment__start">Започни</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Унесите ручно</string>

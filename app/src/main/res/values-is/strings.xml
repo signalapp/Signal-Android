@@ -2098,6 +2098,8 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="PaymentsDetailsFragment__network_fee">Gjald fyrir netnotkun</string>
   <string name="PaymentsDetailsFragment__sent_by">Sent af</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Sent til %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Þú þann %1$s kl. %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s þann %2$s kl. %3$s</string>
   <string name="PaymentsDetailsFragment__to">Til</string>
   <string name="PaymentsDetailsFragment__from">Frá</string>
   <string name="PaymentsDetailsFragment__information">Nánari upplýsingar um millifærslur, eins og t.d. upphæð og tímasetning millifærslu, eru hluti af hreyfingaskrá eða \'ledger\' í MobileCoin.</string>
