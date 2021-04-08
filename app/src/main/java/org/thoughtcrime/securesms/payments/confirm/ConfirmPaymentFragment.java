@@ -136,13 +136,11 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
       case NOT_SET:
       case SET:
         list.add(new ConfirmPaymentAdapter.LineItem(getToPayeeDescription(requireContext(), state), state.getAmount().toString(options)));
-        list.add(new ConfirmPaymentAdapter.LineItem(getString(R.string.ConfirmPayment__network_fee), state.getFee().toString(options)));
-
         if (state.getExchange() != null) {
           list.add(new ConfirmPaymentAdapter.LineItem(getString(R.string.ConfirmPayment__estimated_s, state.getExchange().getCurrency().getCurrencyCode()),
                                                       FiatMoneyUtil.format(getResources(), state.getExchange(), FiatMoneyUtil.formatOptions().withDisplayTime(false))));
         }
-
+        list.add(new ConfirmPaymentAdapter.LineItem(getString(R.string.ConfirmPayment__network_fee), state.getFee().toString(options)));
         list.add(new ConfirmPaymentAdapter.Divider());
         list.add(new ConfirmPaymentAdapter.TotalLineItem(getString(R.string.ConfirmPayment__total_amount), state.getTotal().toString(options)));
     }
