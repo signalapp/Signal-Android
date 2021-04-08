@@ -806,7 +806,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-          ExpirationTimerUpdate message = new ExpirationTimerUpdate(expirationTime);
+          ExpirationTimerUpdate message = new ExpirationTimerUpdate(null, expirationTime);
           message.setSentTimestamp(System.currentTimeMillis());
           OutgoingExpirationUpdateMessage outgoingMessage = OutgoingExpirationUpdateMessage.from(message, recipient);
           try {
@@ -1011,7 +1011,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       try {
         if (isClosedGroup) {
-          MessageSender.explicitLeave(groupPublicKey);
+          MessageSender.explicitLeave(groupPublicKey, true);
           initializeEnabledCheck();
         } else {
           Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();

@@ -25,6 +25,11 @@ public class Debouncer {
     this.threshold = threshold;
   }
 
+  public Debouncer(Handler handler, long threshold) {
+    this.handler   = handler;
+    this.threshold = threshold;
+  }
+
   public void publish(Runnable runnable) {
     handler.removeCallbacksAndMessages(null);
     handler.postDelayed(runnable, threshold);

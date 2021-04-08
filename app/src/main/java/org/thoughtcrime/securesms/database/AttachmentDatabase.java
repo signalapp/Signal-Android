@@ -37,32 +37,26 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras;
 import org.session.libsession.utilities.MediaTypes;
+import org.session.libsession.utilities.Util;
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 import org.session.libsignal.utilities.logging.Log;
-
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
-import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras;
-
-import org.session.libsignal.utilities.JsonUtil;
-import org.session.libsession.utilities.Util;
-
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
@@ -240,7 +234,11 @@ public class AttachmentDatabase extends Database {
                               null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        results.addAll(getAttachment(cursor));
+        List<DatabaseAttachment> attachments = getAttachment(cursor);
+        for (DatabaseAttachment attachment : attachments) {
+          if (attachment.isQuote()) continue;
+          results.add(attachment);
+        }
       }
 
       return results;

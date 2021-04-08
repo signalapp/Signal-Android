@@ -6,23 +6,22 @@ import android.net.Uri
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
-import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings
 import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.libsignal.ecc.ECPrivateKey
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 interface StorageProtocol {
 
@@ -33,8 +32,10 @@ interface StorageProtocol {
     fun getUserDisplayName(): String?
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
+    fun setUserProfilePictureUrl(newProfilePicture: String)
 
     fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
+    fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray)
 
     // Signal Protocol
 
@@ -58,7 +59,7 @@ interface StorageProtocol {
     // Open Groups
     fun getOpenGroup(threadID: String): OpenGroup?
     fun getThreadID(openGroupID: String): String?
-    fun getAllOpenGroups(): Map<Long, PublicChat>
+    fun getAllOpenGroups(): Map<Long, OpenGroup>
     fun addOpenGroup(server: String, channel: Long)
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
     fun getQuoteServerID(quoteID: Long, publicKey: String): Long?
@@ -95,6 +96,7 @@ interface StorageProtocol {
 //    fun removeReceivedMessageTimestamps(timestamps: Set<Long>)
     // Returns the IDs of the saved attachments.
     fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long>
+    fun getAttachmentsForMessage(messageId: Long): List<DatabaseAttachment>
 
     fun getMessageIdInDatabase(timestamp: Long, author: String): Long?
     fun markAsSent(timestamp: Long, author: String)
@@ -104,11 +106,13 @@ interface StorageProtocol {
     // Closed Groups
     fun getGroup(groupID: String): GroupRecord?
     fun createGroup(groupID: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>, formationTimestamp: Long)
+    fun isGroupActive(groupPublicKey: String): Boolean
     fun setActive(groupID: String, value: Boolean)
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)
     // Closed Group
     fun getAllClosedGroupPublicKeys(): Set<String>
+    fun getAllActiveClosedGroupPublicKeys(): Set<String>
     fun addClosedGroupPublicKey(groupPublicKey: String)
     fun removeClosedGroupPublicKey(groupPublicKey: String)
     fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String)
@@ -140,11 +144,13 @@ interface StorageProtocol {
 
     // Loki User
     fun getDisplayName(publicKey: String): String?
+    fun setDisplayName(publicKey: String, newName: String)
     fun getServerDisplayName(serverID: String, publicKey: String): String?
     fun getProfilePictureURL(publicKey: String): String?
 
     // Recipient
     fun getRecipientSettings(address: Address): RecipientSettings?
+    fun addContacts(contacts: List<ConfigurationMessage.Contact>)
 
     // PartAuthority
     fun getAttachmentDataUri(attachmentId: AttachmentId): Uri
@@ -152,7 +158,7 @@ interface StorageProtocol {
 
     // Message Handling
     /// Returns the ID of the `TSIncomingMessage` that was constructed.
-    fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long?
+    fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long?
 
     // Data Extraction Notification
     fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, groupID: String?, sentTimestamp: Long)

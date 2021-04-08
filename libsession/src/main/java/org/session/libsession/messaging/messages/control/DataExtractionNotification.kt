@@ -1,10 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
-import com.google.protobuf.ByteString
-import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.logging.Log
-import java.lang.Exception
 
 class DataExtractionNotification(): ControlMessage() {
     var kind: Kind? = null
@@ -25,7 +22,8 @@ class DataExtractionNotification(): ControlMessage() {
         const val TAG = "DataExtractionNotification"
 
         fun fromProto(proto: SignalServiceProtos.Content): DataExtractionNotification? {
-            val dataExtractionNotification = proto.dataExtractionNotification ?: return null
+            if (!proto.hasDataExtractionNotification()) return null
+            val dataExtractionNotification = proto.dataExtractionNotification!!
             val kind: Kind = when(dataExtractionNotification.type) {
                 SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT -> Kind.Screenshot()
                 SignalServiceProtos.DataExtractionNotification.Type.MEDIA_SAVED -> {

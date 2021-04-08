@@ -21,9 +21,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
@@ -32,32 +32,31 @@ import androidx.multidex.MultiDexApplication;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
-import org.session.libsession.snode.SnodeConfiguration;
-import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsession.messaging.jobs.JobQueue;
+import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
+import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.snode.SnodeConfiguration;
+import org.session.libsession.utilities.IdentityKeyUtil;
+import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsession.utilities.preferences.ProfileKeyUtil;
-import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.util.StreamDetails;
-import org.session.libsignal.service.internal.push.SignalServiceProtos;
-import org.session.libsignal.service.loki.api.Poller;
 import org.session.libsignal.service.loki.api.PushNotificationAPI;
 import org.session.libsignal.service.loki.api.SnodeAPI;
 import org.session.libsignal.service.loki.api.SwarmAPI;
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.utilities.logging.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.session.libsession.utilities.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
@@ -65,13 +64,11 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
@@ -142,10 +139,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     public Poller poller = null;
     public ClosedGroupPoller closedGroupPoller = null;
     public PublicChatManager publicChatManager = null;
-    private PublicChatAPI publicChatAPI = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
+    private Handler threadNotificationHandler;
 
     private volatile boolean isAppVisible;
 
@@ -153,7 +150,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         return (ApplicationContext) context.getApplicationContext();
     }
 
-    @Override
+    public Handler getThreadNotificationHandler() {
+        return this.threadNotificationHandler;
+    }
+
+@Override
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, "onCreate()");
@@ -168,6 +169,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         // ========
         messageNotifier = new OptimizedMessageNotifier(new DefaultMessageNotifier());
         broadcaster = new Broadcaster(this);
+        threadNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
         LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
@@ -193,16 +195,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         // Set application UI mode (day/night theme) to the user selected one.
         UiModeUtilities.setupUiModeToUserSelected(this);
         // ========
-        initializeJobManager();
         initializeExpiringMessageManager();
         initializeTypingStatusRepository();
         initializeTypingStatusSender();
         initializeReadReceiptManager();
         initializeProfileManager();
         initializePeriodicTasks();
+        SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
+        initializeJobManager();
         initializeWebRtc();
         initializeBlobProvider();
-        SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
     }
 
     @Override
@@ -232,14 +234,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (closedGroupPoller != null) {
             closedGroupPoller.stopIfNeeded();
         }
-        if (publicChatManager != null) {
-            publicChatManager.stopPollers();
-        }
     }
 
     @Override
     public void onTerminate() {
         stopKovenant(); // Loki
+        if (publicChatManager != null) {
+            publicChatManager.stopPollers();
+        }
         super.onTerminate();
     }
 
@@ -287,22 +289,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     // Loki
-    public @Nullable
-    PublicChatAPI getPublicChatAPI() {
-        if (publicChatAPI != null || !IdentityKeyUtil.hasIdentityKey(this)) {
-            return publicChatAPI;
-        }
-        String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-        if (userPublicKey == null) {
-            return publicChatAPI;
-        }
-        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
-        LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
-        GroupDatabase groupDB = DatabaseFactory.getGroupDatabase(this);
-        publicChatAPI = new PublicChatAPI(userPublicKey, userPrivateKey, apiDB, userDB, groupDB);
-        return publicChatAPI;
-    }
 
     private void initializeSecurityProvider() {
         try {
@@ -347,6 +333,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                 .setDependencyInjector(this)
                 .build());
+        JobQueue.getShared().resumePendingJobs();
     }
 
     private void initializeDependencyInjection() {
@@ -478,17 +465,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             return;
         }
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        Context context = this;
         SwarmAPI.Companion.configureIfNeeded(apiDB);
         SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
-        poller = new Poller(userPublicKey, apiDB, envelopes -> {
-            for (SignalServiceProtos.Envelope envelope : envelopes) {
-                new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(envelope), false);
-            }
-            return Unit.INSTANCE;
-        });
-        ClosedGroupPoller.Companion.configureIfNeeded(this);
-        closedGroupPoller = ClosedGroupPoller.Companion.getShared();
+        poller = new Poller();
+        closedGroupPoller = new ClosedGroupPoller();
     }
 
     public void startPollingIfNeeded() {
@@ -539,21 +519,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
     public void updateOpenGroupProfilePicturesIfNeeded() {
         AsyncTask.execute(() -> {
-            PublicChatAPI publicChatAPI = null;
-            try {
-                publicChatAPI = getPublicChatAPI();
-            } catch (Exception e) {
-                // Do nothing
-            }
-            if (publicChatAPI == null) {
-                return;
-            }
             byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
             String url = TextSecurePreferences.getProfilePictureURL(this);
             Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
             for (String server : servers) {
                 if (profileKey != null) {
-                    publicChatAPI.setProfilePicture(server, profileKey, url);
+                    OpenGroupAPI.setProfilePicture(server, profileKey, url);
                 }
             }
         });

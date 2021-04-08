@@ -2,9 +2,9 @@ package org.session.libsession.messaging.opengroups
 
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 
 data class OpenGroupMessage(
@@ -26,6 +26,7 @@ data class OpenGroupMessage(
         fun from(message: VisibleMessage, server: String): OpenGroupMessage? {
             val storage = MessagingConfiguration.shared.storage
             val userPublicKey = storage.getUserPublicKey() ?: return null
+            val attachmentIDs = message.attachmentIDs
             // Validation
             if (!message.isValid()) { return null } // Should be valid at this point
             // Quote
@@ -41,7 +42,8 @@ data class OpenGroupMessage(
             }()
             // Message
             val displayname = storage.getUserDisplayName() ?: "Anonymous"
-            val body = message.text ?: message.sentTimestamp.toString() // The back-end doesn't accept messages without a body so we use this as a workaround
+            val text = message.text
+            val body = if (text.isNullOrEmpty()) message.sentTimestamp.toString() else text // The back-end doesn't accept messages without a body so we use this as a workaround
             val result = OpenGroupMessage(null, userPublicKey, displayname, body, message.sentTimestamp!!, OpenGroupAPI.openGroupMessageType, quote, mutableListOf(), null, null, 0)
             // Link preview
             val linkPreview = message.linkPreview

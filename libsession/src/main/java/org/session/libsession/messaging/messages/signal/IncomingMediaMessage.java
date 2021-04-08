@@ -73,13 +73,13 @@ public class IncomingMediaMessage {
                                           Address from,
                                           long expiresIn,
                                           Optional<SignalServiceGroup> group,
-                                          Optional<List<SignalServiceAttachment>> attachments,
+                                          List<SignalServiceAttachment> attachments,
                                           Optional<QuoteModel> quote,
                                           Optional<List<LinkPreview>> linkPreviews,
                                           Optional<DataExtractionNotificationInfoMessage> dataExtractionNotification)
   {
-    return new IncomingMediaMessage(from, message.getReceivedTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, attachments, quote, Optional.absent(), linkPreviews, dataExtractionNotification);
+    return new IncomingMediaMessage(from, message.getSentTimestamp(), -1, expiresIn, false,
+            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews, dataExtractionNotification);
   }
 
   public int getSubscriptionId() {

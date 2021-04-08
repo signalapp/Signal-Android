@@ -324,6 +324,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               attachments,
               message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000,
+              false,
               DistributionTypes.DEFAULT, quote.orNull(),
               sharedContacts.or(Collections.emptyList()),
               linkPreviews.or(Collections.emptyList()),
@@ -473,7 +474,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       OutgoingTextMessage tm = new OutgoingTextMessage(Recipient.from(context, targetAddress, false),
-              body, message.getExpiresInSeconds(), -1);
+              body, message.getExpiresInSeconds(), -1, message.getTimestamp());
 
       // Ignore the message if it has no body
       if (tm.getMessageBody().length() == 0) { return; }

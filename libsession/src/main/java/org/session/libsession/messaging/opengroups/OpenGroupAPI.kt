@@ -6,15 +6,13 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
 import org.session.libsession.messaging.MessagingConfiguration
-
-import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
-
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.*
+import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.loki.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
@@ -156,6 +154,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun getDeletedMessageServerIDs(channel: Long, server: String): Promise<List<Long>, Exception> {
         Log.d("Loki", "Getting deleted messages for open group with ID: $channel on server: $server.")
         val storage = MessagingConfiguration.shared.storage
@@ -188,6 +187,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun sendMessage(message: OpenGroupMessage, channel: Long, server: String): Promise<OpenGroupMessage, Exception> {
         val deferred = deferred<OpenGroupMessage, Exception>()
         val storage = MessagingConfiguration.shared.storage
@@ -252,6 +252,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun getModerators(channel: Long, server: String): Promise<Set<String>, Exception> {
         return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/get_moderators").then(sharedContext) { json ->
             try {
@@ -270,6 +271,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun getChannelInfo(channel: Long, server: String): Promise<OpenGroupInfo, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val parameters = mapOf( "include_annotations" to 1 )
@@ -294,6 +296,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun updateProfileIfNeeded(channel: Long, server: String, groupID: String, info: OpenGroupInfo, isForcedUpdate: Boolean) {
         val storage = MessagingConfiguration.shared.storage
         storage.setUserCount(channel, server, info.memberCount)
@@ -307,6 +310,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun downloadOpenGroupProfilePicture(server: String, endpoint: String): ByteArray? {
         val url = "${server.removeSuffix("/")}/${endpoint.removePrefix("/")}"
         Log.d("Loki", "Downloading open group profile picture from \"$url\".")
@@ -323,6 +327,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun join(channel: Long, server: String): Promise<Unit, Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.POST, server, "/channels/$channel/subscribe").then {
@@ -331,6 +336,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun leave(channel: Long, server: String): Promise<Unit, Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.DELETE, server, "/channels/$channel/subscribe").then {
@@ -348,6 +354,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun getDisplayNames(publicKeys: Set<String>, server: String): Promise<Map<String, String>, Exception> {
         return getUserProfiles(publicKeys, server, false).map(sharedContext) { json ->
             val mapping = mutableMapOf<String, String>()
@@ -362,12 +369,14 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
+    @JvmStatic
     fun setDisplayName(newDisplayName: String?, server: String): Promise<Unit, Exception> {
         Log.d("Loki", "Updating display name on server: $server.")
         val parameters = mapOf( "name" to (newDisplayName ?: "") )
         return execute(HTTPVerb.PATCH, server, "users/me", parameters = parameters).map { Unit }
     }
 
+    @JvmStatic
     fun setProfilePicture(server: String, profileKey: ByteArray, url: String?): Promise<Unit, Exception> {
         return setProfilePicture(server, Base64.encodeBytes(profileKey), url)
     }

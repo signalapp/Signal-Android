@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.threads.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
+import org.session.libsignal.utilities.logging.Log;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.jobmanager.Job;
 
 public abstract class PushReceivedJob extends BaseJob {
 

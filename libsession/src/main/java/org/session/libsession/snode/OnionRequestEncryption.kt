@@ -2,11 +2,11 @@ package org.session.libsession.snode
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsignal.utilities.JsonUtil
-import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.JsonUtil
+import org.session.libsignal.utilities.ThreadUtils
 import java.nio.Buffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -62,7 +62,7 @@ object OnionRequestEncryption {
      */
     internal fun encryptHop(lhs: OnionRequestAPI.Destination, rhs: OnionRequestAPI.Destination, previousEncryptionResult: EncryptionResult): Promise<EncryptionResult, Exception> {
         val deferred = deferred<EncryptionResult, Exception>()
-        Thread {
+        ThreadUtils.queue {
             try {
                 val payload: MutableMap<String, Any>
                 when (rhs) {
@@ -89,7 +89,7 @@ object OnionRequestEncryption {
             } catch (exception: Exception) {
                 deferred.reject(exception)
             }
-        }.start()
+        }
         return deferred.promise
     }
 }
