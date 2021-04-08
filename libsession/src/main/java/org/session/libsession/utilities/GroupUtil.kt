@@ -79,6 +79,11 @@ object GroupUtil {
     }
 
     @JvmStatic
+    fun doubleEncodeGroupID(groupID: ByteArray): String {
+        return getEncodedClosedGroupID(getEncodedClosedGroupID(groupID).toByteArray())
+    }
+
+    @JvmStatic
     @Throws(IOException::class)
     fun doubleDecodeGroupID(groupID: String): ByteArray {
         return getDecodedGroupIDAsData(getDecodedGroupID(groupID))
