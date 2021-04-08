@@ -75,11 +75,10 @@ public class IncomingMediaMessage {
                                           Optional<SignalServiceGroup> group,
                                           List<SignalServiceAttachment> attachments,
                                           Optional<QuoteModel> quote,
-                                          Optional<List<LinkPreview>> linkPreviews,
-                                          Optional<DataExtractionNotificationInfoMessage> dataExtractionNotification)
+                                          Optional<List<LinkPreview>> linkPreviews)
   {
     return new IncomingMediaMessage(from, message.getSentTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews, dataExtractionNotification);
+            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews, Optional.absent());
   }
 
   public int getSubscriptionId() {
