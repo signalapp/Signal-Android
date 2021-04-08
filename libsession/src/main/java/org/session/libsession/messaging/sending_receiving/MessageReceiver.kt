@@ -4,14 +4,16 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-
+import org.session.libsession.utilities.GroupUtil
+import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.logging.Log
 
 object MessageReceiver {
 
     private val lastEncryptionKeyPairRequest = mutableMapOf<String, Long>()
 
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object DuplicateMessage: Error("Duplicate message.")
         object InvalidMessage: Error("Invalid message.")
         object UnknownMessage: Error("Unknown message type.")
@@ -50,8 +52,7 @@ object MessageReceiver {
         // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
         // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
         // for this issue.
-        if (storage.isMessageDuplicated(envelope.timestamp, envelope.source) && !isRetry) throw Error.DuplicateMessage
-        storage.addReceivedMessageTimestamp(envelope.timestamp)
+        if (storage.isMessageDuplicated(envelope.timestamp, GroupUtil.doubleEncodeGroupID(envelope.source)) && !isRetry) throw Error.DuplicateMessage
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
         var plaintext: ByteArray? = null
@@ -70,7 +71,7 @@ object MessageReceiver {
                 }
                 SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT -> {
                     val hexEncodedGroupPublicKey = envelope.source
-                    if (hexEncodedGroupPublicKey == null || MessagingConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
+                    if (hexEncodedGroupPublicKey == null || !MessagingConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
                         throw Error.InvalidGroupPublicKey
                     }
                     val encryptionKeyPairs = MessagingConfiguration.shared.storage.getClosedGroupEncryptionKeyPairs(hexEncodedGroupPublicKey)
@@ -94,32 +95,21 @@ object MessageReceiver {
                     }
                     groupPublicKey = envelope.source
                     decrypt()
-//                    try {
-//                        decrypt()
-//                    } catch(error: Exception) {
-//                        val now = System.currentTimeMillis()
-//                        var shouldRequestEncryptionKeyPair = true
-//                        lastEncryptionKeyPairRequest[groupPublicKey!!]?.let {
-//                            shouldRequestEncryptionKeyPair = now - it > 30 * 1000
-//                        }
-//                        if (shouldRequestEncryptionKeyPair) {
-//                            MessageSender.requestEncryptionKeyPair(groupPublicKey)
-//                            lastEncryptionKeyPairRequest[groupPublicKey] = now
-//                        }
-//                        throw error
-//                    }
                 }
                 else -> throw Error.UnknownEnvelopeType
             }
         }
+        // Don't process the envelope any further if the message has been handled already
+        if (storage.isMessageDuplicated(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
         // Don't process the envelope any further if the sender is blocked
         if (isBlock(sender!!)) throw Error.SenderBlocked
         // Parse the proto
-        val proto = SignalServiceProtos.Content.parseFrom(plaintext)
+        val proto = SignalServiceProtos.Content.parseFrom(PushTransportDetails.getStrippedPaddingMessageBody(plaintext))
         // Parse the message
         val message: Message = ReadReceipt.fromProto(proto) ?:
                                TypingIndicator.fromProto(proto) ?:
                                ClosedGroupControlMessage.fromProto(proto) ?:
+                               DataExtractionNotification.fromProto(proto) ?:
                                ExpirationTimerUpdate.fromProto(proto) ?:
                                ConfigurationMessage.fromProto(proto) ?:
                                VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
@@ -131,12 +121,13 @@ object MessageReceiver {
         message.sender = sender
         message.recipient = userPublicKey
         message.sentTimestamp = envelope.timestamp
-        message.receivedTimestamp = System.currentTimeMillis()
+        message.receivedTimestamp = if (envelope.hasServerTimestamp()) envelope.serverTimestamp else System.currentTimeMillis()
+        Log.d("Loki", "time: ${envelope.timestamp}, sent: ${envelope.serverTimestamp}")
         message.groupPublicKey = groupPublicKey
         message.openGroupServerMessageID = openGroupServerID
         // Validate
         var isValid = message.isValid()
-        if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount == 0) { isValid = true }
+        if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount != 0) { isValid = true }
         if (!isValid) { throw Error.InvalidMessage }
         // Return
         return Pair(message, proto)

@@ -12,11 +12,11 @@ import org.thoughtcrime.securesms.loki.utilities.*
 class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
-        private val sessionJobTable = "session_job_database"
-        val jobID = "job_id"
-        val jobType = "job_type"
-        val failureCount = "failure_count"
-        val serializedData = "serialized_data"
+        private const val sessionJobTable = "session_job_database"
+        const val jobID = "job_id"
+        const val jobType = "job_type"
+        const val failureCount = "failure_count"
+        const val serializedData = "serialized_data"
         @JvmStatic val createSessionJobTableCommand = "CREATE TABLE $sessionJobTable ($jobID INTEGER PRIMARY KEY, $jobType STRING, $failureCount INTEGER DEFAULT 0, $serializedData TEXT);"
     }
 
@@ -85,10 +85,7 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 }
 
-class SessionJobHelper() {
-
-    companion object {
-        val dataSerializer: Data.Serializer = JsonDataSerializer()
-        val sessionJobInstantiator: SessionJobInstantiator = SessionJobInstantiator(SessionJobManagerFactories.getSessionJobFactories())
-    }
+object SessionJobHelper {
+    val dataSerializer: Data.Serializer = JsonDataSerializer()
+    val sessionJobInstantiator: SessionJobInstantiator = SessionJobInstantiator(SessionJobManagerFactories.getSessionJobFactories())
 }

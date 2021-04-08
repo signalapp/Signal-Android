@@ -35,7 +35,7 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as S
 object MessageSender {
 
     // Error
-    sealed class Error(val description: String) : Exception() {
+    sealed class Error(val description: String) : Exception(description) {
         object InvalidMessage : Error("Invalid message.")
         object ProtoConversionFailed : Error("Couldn't convert message to proto.")
         object ProofOfWorkCalculationFailed : Error("Proof of work calculation failed.")
@@ -49,6 +49,9 @@ object MessageSender {
         object NoKeyPair: Error("Couldn't find a private key associated with the given group public key.")
         object NoPrivateKey : Error("Couldn't find a private key associated with the given group public key.")
         object InvalidClosedGroupUpdate : Error("Invalid group update.")
+
+        // Precondition
+        class PreconditionFailure(val reason: String): Error(reason)
 
         internal val isRetryable: Boolean = when (this) {
             is InvalidMessage -> false
@@ -73,7 +76,6 @@ object MessageSender {
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
-        val preconditionFailure = Exception("Destination should not be open groups!")
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
         message.sender = userPublicKey
@@ -90,7 +92,7 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
-                is Destination.OpenGroup -> throw preconditionFailure
+                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -128,7 +130,7 @@ object MessageSender {
                     val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
                     ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
-                is Destination.OpenGroup -> throw preconditionFailure
+                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             // Wrap the result
             val kind: SignalServiceProtos.Envelope.Type
@@ -142,7 +144,7 @@ object MessageSender {
                     kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT
                     senderPublicKey = destination.groupPublicKey
                 }
-                is Destination.OpenGroup -> throw preconditionFailure
+                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Calculate proof of work
@@ -151,10 +153,9 @@ object MessageSender {
             }
             val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
-            val timestamp = System.currentTimeMillis()
-            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, timestamp, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
+            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, message.sentTimestamp!!, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
-            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, message.sentTimestamp!!, nonce)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
@@ -177,8 +178,8 @@ object MessageSender {
                         if (shouldNotify) {
                             val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
                             JobQueue.shared.add(notifyPNServerJob)
-                            deferred.resolve(Unit)
                         }
+                        deferred.resolve(Unit)
                     }
                     promise.fail {
                         errorCount += 1
@@ -200,34 +201,31 @@ object MessageSender {
     private fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val storage = MessagingConfiguration.shared.storage
-        val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
         message.sender = storage.getUserPublicKey()
+        // Set the failure handler (need it here already for precondition failure handling)
+        fun handleFailure(error: Exception) {
+            handleFailedMessageSend(message, error)
+            deferred.reject(error)
+        }
         try {
             val server: String
             val channel: Long
             when (destination) {
-                is Destination.Contact -> throw preconditionFailure
-                is Destination.ClosedGroup -> throw preconditionFailure
+                is Destination.Contact -> throw Error.PreconditionFailure("Destination should not be contacts!")
+                is Destination.ClosedGroup -> throw Error.PreconditionFailure("Destination should not be closed groups!")
                 is Destination.OpenGroup -> {
                     message.recipient = "${destination.server}.${destination.channel}"
                     server = destination.server
                     channel = destination.channel
                 }
             }
-            // Set the failure handler (need it here already for precondition failure handling)
-            fun handleFailure(error: Exception) {
-                handleFailedMessageSend(message, error)
-                deferred.reject(error)
-            }
             // Validate the message
             if (message !is VisibleMessage || !message.isValid()) {
-                handleFailure(Error.InvalidMessage)
                 throw Error.InvalidMessage
             }
             // Convert the message to an open group message
             val openGroupMessage = OpenGroupMessage.from(message, server) ?: kotlin.run {
-                handleFailure(Error.InvalidMessage)
                 throw Error.InvalidMessage
             }
             // Send the result
@@ -239,7 +237,7 @@ object MessageSender {
                 handleFailure(it)
             }
         } catch (exception: Exception) {
-            deferred.reject(exception)
+            handleFailure(exception)
         }
         return deferred.promise
     }
@@ -247,7 +245,8 @@ object MessageSender {
     // Result Handling
     fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false) {
         val storage = MessagingConfiguration.shared.storage
-        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
+        val userPublicKey = storage.getUserPublicKey()!!
+        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
         storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
         // Track the open group server message ID
@@ -255,17 +254,16 @@ object MessageSender {
             storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
         }
         // Mark the message as sent
-        storage.markAsSent(message.sentTimestamp!!, message.sender!!)
-        storage.markUnidentified(message.sentTimestamp!!, message.sender!!)
+        storage.markAsSent(message.sentTimestamp!!, message.sender?:userPublicKey)
+        storage.markUnidentified(message.sentTimestamp!!, message.sender?:userPublicKey)
         // Start the disappearing messages timer if needed
         if (message is VisibleMessage && !isSyncMessage) {
-            SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender!!)
+            SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender?:userPublicKey)
         }
         // Sync the message if:
         // • it's a visible message
         // • the destination was a contact
         // • we didn't sync it already
-        val userPublicKey = storage.getUserPublicKey()!!
         if (destination is Destination.Contact && !isSyncMessage) {
             if (message is VisibleMessage) { message.syncTarget = destination.publicKey }
             if (message is ExpirationTimerUpdate) { message.syncTarget = destination.publicKey }
@@ -275,7 +273,8 @@ object MessageSender {
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
         val storage = MessagingConfiguration.shared.storage
-        storage.setErrorMessage(message.sentTimestamp!!, message.sender!!, error)
+        val userPublicKey = storage.getUserPublicKey()!!
+        storage.setErrorMessage(message.sentTimestamp!!, message.sender?:userPublicKey, error)
     }
 
     // Convenience
@@ -337,7 +336,7 @@ object MessageSender {
     }
 
     @JvmStatic
-    fun explicitLeave(groupPublicKey: String): Promise<Unit, Exception> {
-        return leave(groupPublicKey)
+    fun explicitLeave(groupPublicKey: String, notifyUser: Boolean): Promise<Unit, Exception> {
+        return leave(groupPublicKey, notifyUser)
     }
 }

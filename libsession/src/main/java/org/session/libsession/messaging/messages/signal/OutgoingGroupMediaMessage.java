@@ -32,7 +32,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
       throws IOException
   {
     super(recipient, encodedGroupContext, avatar, sentTimeMillis,
-          DistributionTypes.CONVERSATION, expiresIn, quote, contacts, previews);
+          DistributionTypes.CONVERSATION, expiresIn, false, quote, contacts, previews);
 
     this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
   }
@@ -48,7 +48,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
             new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
             System.currentTimeMillis(),
-            DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
+            DistributionTypes.CONVERSATION, expireIn, false, quote, contacts, previews);
 
     this.group = group;
   }
@@ -65,7 +65,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           sentTime,
-          DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
+          DistributionTypes.CONVERSATION, expireIn, false, quote, contacts, previews);
 
     this.group = group;
   }

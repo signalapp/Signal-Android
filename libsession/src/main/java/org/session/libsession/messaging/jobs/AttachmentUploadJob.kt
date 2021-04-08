@@ -15,7 +15,6 @@ import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.service.internal.util.Util
 import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory
-import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.logging.Log
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
@@ -25,7 +24,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     override var failureCount: Int = 0
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    internal sealed class Error(val description: String) : Exception(description) {
         object NoAttachment : Error("No such attachment.")
     }
 
@@ -45,41 +44,40 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     override fun execute() {
-        ThreadUtils.queue {
-            try {
-                val attachment = MessagingConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
-                        ?: return@queue handleFailure(Error.NoAttachment)
+        try {
+            val attachment = MessagingConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
+                    ?: return handleFailure(Error.NoAttachment)
 
-                var server = FileServerAPI.shared.server
-                var shouldEncrypt = true
-                val usePadding = false
-                val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
-                openGroup?.let {
-                    server = it.server
-                    shouldEncrypt = false
-                }
+            var server = FileServerAPI.shared.server
+            var shouldEncrypt = true
+            val usePadding = false
+            val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
+            openGroup?.let {
+                server = it.server
+                shouldEncrypt = false
+            }
 
-                val attachmentKey = Util.getSecretBytes(64)
-                val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
-                val dataStream = if (usePadding) PaddingInputStream(attachment.inputStream, attachment.length) else attachment.inputStream
-                val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(paddedLength) else attachment.length
+            val attachmentKey = Util.getSecretBytes(64)
+            val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
+            val dataStream = if (usePadding) PaddingInputStream(attachment.inputStream, attachment.length) else attachment.inputStream
+            val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(paddedLength) else attachment.length
 
-                val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
-                val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
+            val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
+            val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
 
-                val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
-                handleSuccess(attachment, attachmentKey, uploadResult)
+            val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
+            handleSuccess(attachment, attachmentKey, uploadResult)
 
-            } catch (e: java.lang.Exception) {
-                if (e is Error && e == Error.NoAttachment) {
-                    this.handlePermanentFailure(e)
-                } else if (e is DotNetAPI.Error && !e.isRetryable) {
-                    this.handlePermanentFailure(e)
-                } else {
-                    this.handleFailure(e)
-                }
+        } catch (e: java.lang.Exception) {
+            if (e is Error && e == Error.NoAttachment) {
+                this.handlePermanentFailure(e)
+            } else if (e is DotNetAPI.Error && !e.isRetryable) {
+                this.handlePermanentFailure(e)
+            } else {
+                this.handleFailure(e)
             }
         }
+
     }
 
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {

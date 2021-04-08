@@ -8,12 +8,12 @@ import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.logging.Log
 
 class ClosedGroupControlMessage() : ControlMessage() {
 
@@ -55,7 +55,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
         class MemberLeft() : Kind()
         class EncryptionKeyPairRequest(): Kind()
 
-        val description: String = run {
+        val description: String =
             when(this) {
                 is New -> "new"
                 is Update -> "update"
@@ -66,14 +66,14 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 is MemberLeft -> "memberLeft"
                 is EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
             }
-        }
     }
 
     companion object {
         const val TAG = "ClosedGroupControlMessage"
 
         fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupControlMessage? {
-            val closedGroupControlMessageProto = proto.dataMessage?.closedGroupControlMessage ?: return null
+            if (!proto.hasDataMessage() || !proto.dataMessage.hasClosedGroupControlMessage()) return null
+            val closedGroupControlMessageProto = proto.dataMessage?.closedGroupControlMessage!!
             val kind: Kind
             when(closedGroupControlMessageProto.type) {
                 DataMessage.ClosedGroupControlMessage.Type.NEW -> {

@@ -1,6 +1,7 @@
 package org.session.libsession.utilities
 
 import android.content.Context
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
@@ -36,8 +37,8 @@ class SSKEnvironment(
     }
 
     interface MessageExpirationManagerProtocol {
-        fun setExpirationTimer(messageID: Long?, duration: Int, senderPublicKey: String, content: SignalServiceProtos.Content)
-        fun disableExpirationTimer(messageID: Long?, senderPublicKey: String, content: SignalServiceProtos.Content)
+        fun setExpirationTimer(message: ExpirationTimerUpdate)
+        fun disableExpirationTimer(message: ExpirationTimerUpdate)
         fun startAnyExpiration(timestamp: Long, author: String)
     }
 

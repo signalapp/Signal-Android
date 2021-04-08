@@ -1,17 +1,18 @@
 package org.thoughtcrime.securesms.mediapreview;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
+import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -27,7 +28,9 @@ public class MediaPreviewViewModel extends ViewModel {
 
   public void setCursor(@NonNull Context context, @Nullable Cursor cursor, boolean leftIsRecent) {
     boolean firstLoad = (this.cursor == null) && (cursor != null);
-
+    if (this.cursor != null) {
+      this.cursor.close();
+    }
     this.cursor       = cursor;
     this.leftIsRecent = leftIsRecent;
 

@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.logging.Log
 
 class ReadReceipt() : ControlMessage() {
 
@@ -11,7 +11,7 @@ class ReadReceipt() : ControlMessage() {
         const val TAG = "ReadReceipt"
 
         fun fromProto(proto: SignalServiceProtos.Content): ReadReceipt? {
-            val receiptProto = proto.receiptMessage ?: return null
+            val receiptProto = if (proto.hasReceiptMessage()) proto.receiptMessage else return null
             if (receiptProto.type != SignalServiceProtos.ReceiptMessage.Type.READ) return null
             val timestamps = receiptProto.timestampList
             if (timestamps.isEmpty()) return null
@@ -35,7 +35,7 @@ class ReadReceipt() : ControlMessage() {
     override fun toProto(): SignalServiceProtos.Content? {
         val timestamps = timestamps
         if (timestamps == null) {
-            Log.w(ExpirationTimerUpdate.TAG, "Couldn't construct read receipt proto from: $this")
+            Log.w(TAG, "Couldn't construct read receipt proto from: $this")
             return null
         }
         val receiptProto = SignalServiceProtos.ReceiptMessage.newBuilder()
@@ -46,7 +46,7 @@ class ReadReceipt() : ControlMessage() {
             contentProto.receiptMessage = receiptProto.build()
             return contentProto.build()
         } catch (e: Exception) {
-            Log.w(ExpirationTimerUpdate.TAG, "Couldn't construct read receipt proto from: $this")
+            Log.w(TAG, "Couldn't construct read receipt proto from: $this")
             return null
         }
     }

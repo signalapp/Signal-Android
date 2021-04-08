@@ -1,5 +1,6 @@
 package org.session.libsession.messaging.opengroups
 
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.JsonUtil
 
 data class OpenGroup(
@@ -12,6 +13,9 @@ data class OpenGroup(
     val id get() = getId(channel, server)
 
     companion object {
+
+        @JvmStatic fun from(publicChat: PublicChat): OpenGroup =
+                OpenGroup(publicChat.channel, publicChat.server, publicChat.displayName, publicChat.isDeletable)
 
         @JvmStatic fun getId(channel: Long, server: String): String {
             return "$server.$channel"

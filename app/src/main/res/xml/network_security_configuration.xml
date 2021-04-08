@@ -3,4 +3,22 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">127.0.0.1</domain>
     </domain-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="false">public.loki.foundation</domain>
+        <trust-anchors>
+            <certificates src="@raw/lf_session_cert"/>
+        </trust-anchors>
+    </domain-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="false">storage.seed1.loki.network</domain>
+        <trust-anchors>
+            <certificates src="@raw/seed1cert"/>
+        </trust-anchors>
+    </domain-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="false">storage.seed3.loki.network</domain>
+        <trust-anchors>
+            <certificates src="@raw/seed3cert"/>
+        </trust-anchors>
+    </domain-config>
 </network-security-config>
