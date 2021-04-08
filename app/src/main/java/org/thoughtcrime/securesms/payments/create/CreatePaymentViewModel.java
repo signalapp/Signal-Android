@@ -149,7 +149,13 @@ public class CreatePaymentViewModel extends ViewModel {
     String          newFiatAmount  = updateAmountString(context, inputState.getFiatAmount(), glyph, currency.getDefaultFractionDigits());
     FiatMoney       newFiat        = stringToFiatValueOrZero(newFiatAmount, currency);
     Money           newMoney       = OptionalUtil.flatMap(inputState.getExchangeRate(), e -> e.exchange(newFiat)).get();
-    String          newMoneyAmount = newMoney.toString(FormatterOptions.builder().withoutUnit().build());
+    String          newMoneyAmount;
+
+    if (newFiatAmount.equals("0")) {
+      newMoneyAmount = "0";
+    } else {
+      newMoneyAmount = newMoney.toString(FormatterOptions.builder().withoutUnit().build());
+    }
 
     return inputState.updateAmount(newMoneyAmount, newFiatAmount, newMoney, Optional.of(newFiat));
   }
@@ -161,7 +167,13 @@ public class CreatePaymentViewModel extends ViewModel {
     String              newMoneyAmount = updateAmountString(context, inputState.getMoneyAmount(), glyph, inputState.getMoney().getCurrency().getDecimalPrecision());
     Money               newMoney       = stringToMobileCoinValueOrZero(newMoneyAmount);
     Optional<FiatMoney> newFiat        = OptionalUtil.flatMap(inputState.getExchangeRate(), e -> e.exchange(newMoney));
-    String              newFiatAmount  = newFiat.transform(f -> FiatMoneyUtil.format(context.getResources(), f, FiatMoneyUtil.formatOptions().withDisplayTime(false).numberOnly())).or("0");
+    String              newFiatAmount;
+
+    if (newMoneyAmount.equals("0")) {
+      newFiatAmount = "0";
+    } else {
+      newFiatAmount  = newFiat.transform(f -> FiatMoneyUtil.format(context.getResources(), f, FiatMoneyUtil.formatOptions().withDisplayTime(false).numberOnly())).or("0");
+    }
 
     return inputState.updateAmount(newMoneyAmount, newFiatAmount, newMoney, newFiat);
   }
