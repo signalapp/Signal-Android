@@ -73,5 +73,4 @@ class DataExtractionNotification(): ControlMessage() {
             return null
         }
     }
-
 }
