@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.storage.AccountRecordProcessor;
@@ -25,6 +26,7 @@ import org.thoughtcrime.securesms.storage.ContactRecordProcessor;
 import org.thoughtcrime.securesms.storage.GroupV1RecordProcessor;
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor;
 import org.thoughtcrime.securesms.storage.StorageRecordProcessor;
+import org.thoughtcrime.securesms.storage.StorageRecordUpdate;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.LocalWriteResult;
@@ -42,6 +44,7 @@ import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
+import org.whispersystems.signalservice.api.storage.SignalRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -107,6 +110,27 @@ import java.util.concurrent.TimeUnit;
  * converting local data into a format that can be compared with, merged, and eventually written
  * back to both local and remote data stores is tiresome. There's also lots of general bookkeeping,
  * error handling, cleanup scenarios, logging, etc.
+ *
+ * == Syncing a new field on an existing record ==
+ *
+ * - Add the field the the respective proto
+ * - Update the respective model (i.e. {@link SignalContactRecord})
+ *     - Add getters
+ *     - Update the builder
+ *     - Update {@link SignalRecord#describeDiff(SignalRecord)}.
+ * - Update the respective record processor (i.e {@link ContactRecordProcessor}). You need to make
+ *   sure that you're:
+ *     - Merging the attributes, likely preferring remote
+ *     - Adding to doParamsMatch()
+ *     - Adding the parameter to the builder chain when creating a merged model
+ * - Update builder usage in StorageSyncModels
+ * - Handle the new data when writing to the local storage
+ *   (i.e. {@link RecipientDatabase#applyStorageSyncContactUpdate(StorageRecordUpdate)}).
+ * - Make sure that whenever you change the field in the UI, we mark the row as dirty and call
+ *   {@link StorageSyncHelper#scheduleSyncForDataChange()}.
+ * - If you're syncing a field that was otherwise already present in the UI, you'll probably want
+ *   to enqueue a {@link StorageServiceMigrationJob} as an app migration to make sure it gets
+ *   synced.
  */
 public class StorageSyncJobV2 extends BaseJob {
 

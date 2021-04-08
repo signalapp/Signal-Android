@@ -1283,6 +1283,7 @@ public class RecipientDatabase extends Database {
     values.put(USERNAME, TextUtils.isEmpty(username) ? null : username);
     values.put(PROFILE_SHARING, contact.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, contact.isBlocked() ? "1" : "0");
+    values.put(MUTE_UNTIL, contact.getMuteUntil());
     values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(contact.getId().getRaw()));
     values.put(DIRTY, DirtyState.CLEAN.getId());
 
@@ -1305,6 +1306,7 @@ public class RecipientDatabase extends Database {
     values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
     values.put(PROFILE_SHARING, groupV1.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, groupV1.isBlocked() ? "1" : "0");
+    values.put(MUTE_UNTIL, groupV1.getMuteUntil());
     values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV1.getId().getRaw()));
     values.put(DIRTY, DirtyState.CLEAN.getId());
 
@@ -1323,6 +1325,7 @@ public class RecipientDatabase extends Database {
     values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
     values.put(PROFILE_SHARING, groupV2.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, groupV2.isBlocked() ? "1" : "0");
+    values.put(MUTE_UNTIL, groupV2.getMuteUntil());
     values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV2.getId().getRaw()));
     values.put(DIRTY, DirtyState.CLEAN.getId());
 
@@ -1661,7 +1664,9 @@ public class RecipientDatabase extends Database {
     values.put(MUTE_UNTIL, until);
     if (update(id, values)) {
       Recipient.live(id).refresh();
+      markDirty(id, DirtyState.UPDATE);
     }
+    StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   public void setSeenFirstInviteReminder(@NonNull RecipientId id) {

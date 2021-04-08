@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.storage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.groups.GroupMasterKey;
@@ -15,6 +16,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
+import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -61,9 +63,10 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
     boolean profileSharing = remote.isProfileSharingEnabled();
     boolean archived       = remote.isArchived();
     boolean forcedUnread   = remote.isForcedUnread();
+    long    muteUntil      = remote.getMuteUntil();
 
-    boolean matchesRemote = Arrays.equals(unknownFields, remote.serializeUnknownFields()) && blocked == remote.isBlocked() && profileSharing == remote.isProfileSharingEnabled() && archived == remote.isArchived() && forcedUnread == remote.isForcedUnread();
-    boolean matchesLocal  = Arrays.equals(unknownFields, local.serializeUnknownFields())  && blocked == local.isBlocked()  && profileSharing == local.isProfileSharingEnabled()  && archived == local.isArchived()  && forcedUnread == local.isForcedUnread();
+    boolean matchesRemote = doParamsMatch(remote, unknownFields, blocked, profileSharing, archived, forcedUnread, muteUntil);
+    boolean matchesLocal  = doParamsMatch(local, unknownFields, blocked, profileSharing, archived, forcedUnread, muteUntil);
 
     if (matchesRemote) {
       return remote;
@@ -76,6 +79,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
                                     .setProfileSharingEnabled(blocked)
                                     .setArchived(archived)
                                     .setForcedUnread(forcedUnread)
+                                    .setMuteUntil(muteUntil)
                                     .build();
     }
   }
@@ -115,5 +119,21 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
     } else {
       return lhs.getMasterKeyBytes()[0] - rhs.getMasterKeyBytes()[0];
     }
+  }
+
+  private boolean doParamsMatch(@NonNull SignalGroupV2Record group,
+                                @Nullable byte[] unknownFields,
+                                boolean blocked,
+                                boolean profileSharing,
+                                boolean archived,
+                                boolean forcedUnread,
+                                long muteUntil)
+  {
+    return Arrays.equals(unknownFields, group.serializeUnknownFields()) &&
+           blocked == group.isBlocked()                                 &&
+           profileSharing == group.isProfileSharingEnabled()            &&
+           archived == group.isArchived()                               &&
+           forcedUnread == group.isForcedUnread()                       &&
+           muteUntil == group.getMuteUntil();
   }
 }

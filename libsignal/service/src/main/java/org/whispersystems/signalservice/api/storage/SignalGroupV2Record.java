@@ -62,6 +62,10 @@ public final class SignalGroupV2Record implements SignalRecord {
         diff.add("ForcedUnread");
       }
 
+      if (!Objects.equals(this.getMuteUntil(), that.getMuteUntil())) {
+        diff.add("MuteUntil");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -107,6 +111,11 @@ public final class SignalGroupV2Record implements SignalRecord {
   public boolean isForcedUnread() {
     return proto.getMarkedUnread();
   }
+
+  public long getMuteUntil() {
+    return proto.getMutedUntilTimestamp();
+  }
+
 
   GroupV2Record toProto() {
     return proto;
@@ -165,6 +174,11 @@ public final class SignalGroupV2Record implements SignalRecord {
 
     public Builder setForcedUnread(boolean forcedUnread) {
       builder.setMarkedUnread(forcedUnread);
+      return this;
+    }
+
+    public Builder setMuteUntil(long muteUntil) {
+      builder.setMutedUntilTimestamp(muteUntil);
       return this;
     }
 
