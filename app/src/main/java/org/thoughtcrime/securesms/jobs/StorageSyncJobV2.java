@@ -278,7 +278,7 @@ public class StorageSyncJobV2 extends BaseJob {
           //noinspection unchecked Stop yelling at my beautiful method signatures
           mergeWriteOperation = StorageSyncHelper.createWriteOperation(remoteManifest.get().getVersion(), localStorageIdsAfterMerge, localOnly, contactResult, gv1Result, gv2Result, accountResult);
 
-          StorageSyncValidations.validate(mergeWriteOperation);
+          StorageSyncValidations.validate(mergeWriteOperation, remoteManifest, needsForcePush);
           db.setTransactionSuccessful();
         } finally {
           db.endTransaction();
@@ -302,6 +302,7 @@ public class StorageSyncJobV2 extends BaseJob {
           }
 
           remoteManifestVersion = mergeWriteOperation.getManifest().getVersion();
+          remoteManifest        = Optional.of(mergeWriteOperation.getManifest());
 
           needsMultiDeviceSync = true;
         } else {
@@ -337,7 +338,7 @@ public class StorageSyncJobV2 extends BaseJob {
       Log.i(TAG, String.format(Locale.ENGLISH, "[Local Changes] Local changes present. %d updates, %d inserts, %d deletes, account update: %b, account insert: %b.", pendingUpdates.size(), pendingInsertions.size(), pendingDeletions.size(), pendingAccountUpdate.isPresent(), pendingAccountInsert.isPresent()));
 
       WriteOperationResult localWrite = localWriteResult.get().getWriteResult();
-      StorageSyncValidations.validate(localWrite);
+      StorageSyncValidations.validate(localWrite, remoteManifest, needsForcePush);
 
       Log.i(TAG, "[Local Changes] WriteOperationResult :: " + localWrite);
 

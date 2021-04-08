@@ -192,7 +192,7 @@ public class StorageSyncJob extends BaseJob {
           needsForcePush = true;
         }
 
-        StorageSyncValidations.validate(writeOperationResult);
+        StorageSyncValidations.validate(writeOperationResult, remoteManifest, needsForcePush);
 
         Log.i(TAG, "[Remote Newer] MergeResult :: " + mergeResult);
 
@@ -213,6 +213,7 @@ public class StorageSyncJob extends BaseJob {
           }
 
           remoteManifestVersion = writeOperationResult.getManifest().getVersion();
+          remoteManifest        = Optional.of(writeOperationResult.getManifest());
 
           needsMultiDeviceSync = true;
         } else {
@@ -255,7 +256,7 @@ public class StorageSyncJob extends BaseJob {
       Log.i(TAG, String.format(Locale.ENGLISH, "[Local Changes] Local changes present. %d updates, %d inserts, %d deletes, account update: %b, account insert: %b.", pendingUpdates.size(), pendingInsertions.size(), pendingDeletions.size(), pendingAccountUpdate.isPresent(), pendingAccountInsert.isPresent()));
 
       WriteOperationResult localWrite = localWriteResult.get().getWriteResult();
-      StorageSyncValidations.validate(localWrite);
+      StorageSyncValidations.validate(localWrite, remoteManifest, needsForcePush);
 
       Log.i(TAG, "[Local Changes] WriteOperationResult :: " + localWrite);
 
