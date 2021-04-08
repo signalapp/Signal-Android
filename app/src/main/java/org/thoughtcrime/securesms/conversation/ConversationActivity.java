@@ -1517,7 +1517,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
     sendButton.resetAvailableTransports(isMediaMessage);
 
     if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);
-    if (recipient.get().isPushGroup())            sendButton.disableTransport(Type.SMS);
+
+    if (recipient.get().isPushGroup() || (!recipient.get().isMmsGroup() && !recipient.get().hasSmsAddress())) {
+      sendButton.disableTransport(Type.SMS);
+    }
 
     if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection()) {
       sendButton.setDefaultTransport(Type.SMS);
