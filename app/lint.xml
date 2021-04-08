@@ -31,6 +31,8 @@
     <issue id="LogNotAppSignal" severity="error" />
     <issue id="LogTagInlined" severity="error" />
 
+    <issue id="AlertDialogBuilderUsage" severity="warning" />
+
     <issue id="RestrictedApi" severity="error">
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/CameraXModule.java" />
