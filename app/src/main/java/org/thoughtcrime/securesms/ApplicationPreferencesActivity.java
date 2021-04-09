@@ -27,6 +27,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -177,11 +178,11 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(TextSecurePreferences.THEME_PREF)) {
       DynamicTheme.setDefaultDayNightMode(this);
-      recreate();
+      ActivityCompat.recreate(this);
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       CachedInflater.from(this).clear();
       wasConfigurationUpdated = true;
-      recreate();
+      ActivityCompat.recreate(this);
 
       Intent intent = new Intent(this, KeyCachingService.class);
       intent.setAction(KeyCachingService.LOCALE_CHANGE_EVENT);
