@@ -5,6 +5,7 @@ import org.whispersystems.signalservice.api.util.Uint64Util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 
@@ -97,6 +98,14 @@ public abstract class Money {
     public static final Comparator<MobileCoin> DESCENDING = (x, y) -> y.amount.compareTo(x.amount);
 
     public static final MobileCoin ZERO = new MobileCoin(BigInteger.ZERO);
+    public static final MobileCoin MAX_VALUE;
+
+    static {
+      byte[] bytes = new byte[8];
+      Arrays.fill(bytes, (byte) 0xff);
+      BigInteger max64Bit = new BigInteger(1, bytes);
+      MAX_VALUE = Money.picoMobileCoin(max64Bit);
+    }
 
     private static final int PRECISION = 12;
 

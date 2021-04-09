@@ -336,6 +336,11 @@ public final class MoneyTest_MobileCoin {
     assertSame(Money.MobileCoin.ZERO, mobileCoin.toZero());
   }
 
+  @Test
+  public void max_long_value() {
+    assertEquals("MOB:18446744073709551615", Money.MobileCoin.MAX_VALUE.serialize());
+  }
+
   private static Money.MobileCoin mobileCoin2(double value) {
     return Money.mobileCoin(BigDecimal.valueOf(value));
   }

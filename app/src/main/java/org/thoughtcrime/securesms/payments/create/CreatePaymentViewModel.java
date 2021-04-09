@@ -34,13 +34,12 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 
-import static org.thoughtcrime.securesms.payments.create.InputTarget.FIAT_MONEY;
-
 public class CreatePaymentViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(CreatePaymentViewModel.class);
 
-  private static final Money.MobileCoin AMOUNT_LOWER_BOUND_EXCLUSIVE = Money.mobileCoin(BigDecimal.ZERO);
+  private static final Money.MobileCoin AMOUNT_LOWER_BOUND_EXCLUSIVE = Money.MobileCoin.ZERO;
+  private static final Money.MobileCoin AMOUNT_UPPER_BOUND_EXCLUSIVE = Money.MobileCoin.MAX_VALUE;
 
   private final LiveData<Money>   spendableBalance;
   private final LiveData<Boolean> isValidAmount;
@@ -51,11 +50,11 @@ public class CreatePaymentViewModel extends ViewModel {
   private final MutableLiveData<CharSequence> note;
 
   private CreatePaymentViewModel(@NonNull PayeeParcelable payee, @Nullable CharSequence note) {
-    this.payee                      = payee;
-    this.spendableBalance           = Transformations.map(SignalStore.paymentsValues().liveMobileCoinBalance(), Balance::getTransferableAmount);
-    this.note                       = new MutableLiveData<>(note);
-    this.inputState                 = new Store<>(new InputState());
-    this.isValidAmount              = LiveDataUtil.combineLatest(spendableBalance, inputState.getStateLiveData(), (b, s) -> validateAmount(b, s.getMoney()));
+    this.payee            = payee;
+    this.spendableBalance = Transformations.map(SignalStore.paymentsValues().liveMobileCoinBalance(), Balance::getTransferableAmount);
+    this.note             = new MutableLiveData<>(note);
+    this.inputState       = new Store<>(new InputState());
+    this.isValidAmount    = LiveDataUtil.combineLatest(spendableBalance, inputState.getStateLiveData(), (b, s) -> validateAmount(b.requireMobileCoin(), s.getMoney().requireMobileCoin()));
 
     if (payee.getPayee().hasRecipientId()) {
       isPaymentsSupportedByPayee = LiveDataUtil.mapAsync(new DefaultValueLiveData<>(payee.getPayee().requireRecipientId()), r -> {
@@ -146,15 +145,19 @@ public class CreatePaymentViewModel extends ViewModel {
                                                @NonNull AmountKeyboardGlyph glyph,
                                                @NonNull Currency currency)
   {
-    String          newFiatAmount  = updateAmountString(context, inputState.getFiatAmount(), glyph, currency.getDefaultFractionDigits());
-    FiatMoney       newFiat        = stringToFiatValueOrZero(newFiatAmount, currency);
-    Money           newMoney       = OptionalUtil.flatMap(inputState.getExchangeRate(), e -> e.exchange(newFiat)).get();
-    String          newMoneyAmount;
+    String    newFiatAmount = updateAmountString(context, inputState.getFiatAmount(), glyph, currency.getDefaultFractionDigits());
+    FiatMoney newFiat       = stringToFiatValueOrZero(newFiatAmount, currency);
+    Money     newMoney      = OptionalUtil.flatMap(inputState.getExchangeRate(), e -> e.exchange(newFiat)).get();
+    String    newMoneyAmount;
 
     if (newFiatAmount.equals("0")) {
       newMoneyAmount = "0";
     } else {
       newMoneyAmount = newMoney.toString(FormatterOptions.builder().withoutUnit().build());
+    }
+
+    if (!withinMobileCoinBounds(newMoney.requireMobileCoin())) {
+      return inputState;
     }
 
     return inputState.updateAmount(newMoneyAmount, newFiatAmount, newMoney, Optional.of(newFiat));
@@ -165,26 +168,35 @@ public class CreatePaymentViewModel extends ViewModel {
                                                 @NonNull AmountKeyboardGlyph glyph)
   {
     String              newMoneyAmount = updateAmountString(context, inputState.getMoneyAmount(), glyph, inputState.getMoney().getCurrency().getDecimalPrecision());
-    Money               newMoney       = stringToMobileCoinValueOrZero(newMoneyAmount);
+    Money.MobileCoin    newMoney       = stringToMobileCoinValueOrZero(newMoneyAmount);
     Optional<FiatMoney> newFiat        = OptionalUtil.flatMap(inputState.getExchangeRate(), e -> e.exchange(newMoney));
     String              newFiatAmount;
+
+    if (!withinMobileCoinBounds(newMoney)) {
+      return inputState;
+    }
 
     if (newMoneyAmount.equals("0")) {
       newFiatAmount = "0";
     } else {
-      newFiatAmount  = newFiat.transform(f -> FiatMoneyUtil.format(context.getResources(), f, FiatMoneyUtil.formatOptions().withDisplayTime(false).numberOnly())).or("0");
+      newFiatAmount = newFiat.transform(f -> FiatMoneyUtil.format(context.getResources(), f, FiatMoneyUtil.formatOptions().withDisplayTime(false).numberOnly())).or("0");
     }
 
     return inputState.updateAmount(newMoneyAmount, newFiatAmount, newMoney, newFiat);
   }
 
-  private boolean validateAmount(@NonNull Money spendableBalance, @NonNull Money amount) {
+  private boolean validateAmount(@NonNull Money.MobileCoin spendableBalance, @NonNull Money.MobileCoin amount) {
     try {
-      return amount.requireMobileCoin().greaterThan(AMOUNT_LOWER_BOUND_EXCLUSIVE) &&
-             !amount.requireMobileCoin().greaterThan(spendableBalance.requireMobileCoin());
+      return amount.greaterThan(AMOUNT_LOWER_BOUND_EXCLUSIVE) &&
+             !amount.greaterThan(spendableBalance);
     } catch (NumberFormatException exception) {
       return false;
     }
+  }
+
+  private static boolean withinMobileCoinBounds(@NonNull Money.MobileCoin amount) {
+    return !amount.lessThan(AMOUNT_LOWER_BOUND_EXCLUSIVE) &&
+           !amount.greaterThan(AMOUNT_UPPER_BOUND_EXCLUSIVE);
   }
 
   private @NonNull FiatMoney stringToFiatValueOrZero(@Nullable String string, @NonNull Currency currency) {
@@ -195,12 +207,12 @@ public class CreatePaymentViewModel extends ViewModel {
     return new FiatMoney(BigDecimal.ZERO, currency);
   }
 
-  private @NonNull Money stringToMobileCoinValueOrZero(@Nullable String string) {
+  private @NonNull Money.MobileCoin stringToMobileCoinValueOrZero(@Nullable String string) {
     try {
       if (string != null) return Money.mobileCoin(new BigDecimal(string));
     } catch (NumberFormatException ignored) { }
 
-    return Money.mobileCoin(BigDecimal.ZERO);
+    return Money.MobileCoin.ZERO;
   }
 
   public @NonNull CreatePaymentDetails getCreatePaymentDetails() {

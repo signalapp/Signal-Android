@@ -7,9 +7,7 @@ import org.thoughtcrime.securesms.payments.currency.FiatMoney;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 
-import java.math.BigDecimal;
-
-class InputState {
+final class InputState {
   private final InputTarget                             inputTarget;
   private final String                                  moneyAmount;
   private final String                                  fiatAmount;
@@ -18,7 +16,7 @@ class InputState {
   private final Optional<CurrencyExchange.ExchangeRate> exchangeRate;
 
   InputState() {
-    this(InputTarget.MONEY, "0", "0", Money.mobileCoin(BigDecimal.ZERO), Optional.absent(), Optional.absent());
+    this(InputTarget.MONEY, "0", "0", Money.MobileCoin.ZERO, Optional.absent(), Optional.absent());
   }
 
   private InputState(@NonNull InputTarget inputTarget,
@@ -61,10 +59,6 @@ class InputState {
   }
 
   @NonNull InputState updateInputTarget(@NonNull InputTarget inputTarget) {
-    return new InputState(inputTarget, moneyAmount, fiatAmount, money, fiatMoney, exchangeRate);
-  }
-
-  @NonNull InputState updateFiatAmount(@NonNull String fiatAmount) {
     return new InputState(inputTarget, moneyAmount, fiatAmount, money, fiatMoney, exchangeRate);
   }
 

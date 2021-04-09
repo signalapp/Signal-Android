@@ -137,7 +137,6 @@ import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -335,8 +334,8 @@ public final class MessageContentProcessor {
                                             recipient.getId(),
                                             message.getTimestamp(),
                                             paymentNotification.getNote(),
-                                            Money.mobileCoin(BigDecimal.ZERO),
-                                            Money.mobileCoin(BigDecimal.ZERO),
+                                            Money.MobileCoin.ZERO,
+                                            Money.MobileCoin.ZERO,
                                             paymentNotification.getReceipt());
     } catch (PaymentDatabase.PublicKeyConflictException e) {
       Log.w(TAG, "Ignoring payment with public key already in database");
