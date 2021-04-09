@@ -58,6 +58,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @Nullable final Attachment avatar,
                                    long sentTime,
                                    long expireIn,
+                                   boolean expirationUpdate,
                                    @Nullable QuoteModel quote,
                                    @NonNull List<Contact> contacts,
                                    @NonNull List<LinkPreview> previews)
@@ -65,7 +66,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           sentTime,
-          DistributionTypes.CONVERSATION, expireIn, false, quote, contacts, previews);
+          DistributionTypes.CONVERSATION, expireIn, expirationUpdate, quote, contacts, previews);
 
     this.group = group;
   }
