@@ -581,22 +581,18 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     // Data Extraction Notification
-    override fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, groupID: String?, sentTimestamp: Long) {
+    override fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, sentTimestamp: Long) {
         val database = DatabaseFactory.getMmsDatabase(context)
         val address = fromSerialized(senderPublicKey)
         val recipient = Recipient.from(context, address, false)
 
         if (recipient.isBlocked) return
 
-        var groupInfo = Optional.absent<SignalServiceGroup?>()
-        if (groupID != null) {
-            groupInfo = Optional.of(SignalServiceGroup(groupID.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
-        }
         val mediaMessage = IncomingMediaMessage(address, sentTimestamp, -1,
                 0, false,
                 false,
                 Optional.absent(),
-                groupInfo,
+                Optional.absent(),
                 Optional.absent(),
                 Optional.absent(),
                 Optional.absent(),

@@ -505,9 +505,7 @@
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s disabled disappearing messages.</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set the disappearing message timer to %1$s</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s</string>
-    <string name="MessageRecord_you_took_a_screenshot">You took a screenshot.</string>
     <string name="MessageRecord_s_took_a_screenshot">%1$s took a screenshot.</string>
-    <string name="MessageRecord_media_saved_by_you">Media saved by you.</string>
     <string name="MessageRecord_media_saved_by_s">Media saved by %1$s.</string>
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">You marked your safety number with %s verified</string>
@@ -707,6 +705,8 @@
     <string name="ThreadRecord_s_is_on_signal">%s is on Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
     <string name="ThreadRecord_safety_number_changed">Safety number changed</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
     <string name="ThreadRecord_you_marked_verified">You marked verified</string>

@@ -764,6 +764,8 @@ public class ConversationFragment extends Fragment
    * Send a MediaSaved notification to the recipient
    */
   private void sendMediaSavedNotificationIfNeeded() {
+    // we don't send media saved notification for groups
+    if (recipient.isGroupRecipient()) return;
     DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
     MessageSender.send(message, recipient.getAddress());
   }

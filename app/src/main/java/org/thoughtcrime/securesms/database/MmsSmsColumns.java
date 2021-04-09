@@ -71,6 +71,10 @@ public interface MmsSmsColumns {
     protected static final long GROUP_QUIT_BIT              = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
 
+    // Data Extraction Information
+    protected static final long MEDIA_SAVED_EXTRACTION_BIT = 0x01000;
+    protected static final long SCREENSHOT_EXTRACTION_BIT  = 0x02000;
+
     // Encrypted Storage Information XXX
     public    static final long ENCRYPTION_MASK                  = 0xFF000000;
     // public    static final long ENCRYPTION_SYMMETRIC_BIT         = 0x80000000; Deprecated
@@ -195,6 +199,14 @@ public interface MmsSmsColumns {
 
     public static boolean isExpirationTimerUpdate(long type) {
       return (type & EXPIRATION_TIMER_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isMediaSavedExtraction(long type) {
+      return (type & MEDIA_SAVED_EXTRACTION_BIT) != 0;
+    }
+
+    public static boolean isScreenshotExtraction(long type) {
+      return (type & SCREENSHOT_EXTRACTION_BIT) != 0;
     }
 
     public static boolean isIncomingCall(long type) {

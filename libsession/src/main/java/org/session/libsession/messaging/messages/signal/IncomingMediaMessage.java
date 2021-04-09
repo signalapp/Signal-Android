@@ -121,6 +121,20 @@ public class IncomingMediaMessage {
     return groupId != null;
   }
 
+  public boolean isScreenshotDataExtraction() {
+    if (dataExtractionNotification == null) return false;
+    else {
+      return dataExtractionNotification.getKind() == DataExtractionNotificationInfoMessage.Kind.SCREENSHOT;
+    }
+  }
+
+  public boolean isMediaSavedDataExtraction() {
+    if (dataExtractionNotification == null) return false;
+    else {
+      return dataExtractionNotification.getKind() == DataExtractionNotificationInfoMessage.Kind.MEDIASAVED;
+    }
+  }
+
   public QuoteModel getQuote() {
     return quote;
   }

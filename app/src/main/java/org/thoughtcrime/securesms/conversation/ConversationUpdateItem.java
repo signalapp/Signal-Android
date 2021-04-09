@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
@@ -106,6 +107,8 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isCallLog())                setCallRecord(messageRecord);
     else if (messageRecord.isJoined())                 setJoinedRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate())  setTimerRecord(messageRecord);
+    else if (messageRecord.isScreenshotExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
+    else if (messageRecord.isMediaSavedExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIASAVED);
     else if (messageRecord.isEndSession())             setEndSessionRecord(messageRecord);
     else if (messageRecord.isIdentityUpdate())         setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
@@ -142,6 +145,22 @@ public class ConversationUpdateItem extends LinearLayout
     }
 
     title.setText(ExpirationUtil.getExpirationDisplayValue(getContext(), (int)(messageRecord.getExpiresIn() / 1000)));
+    body.setText(messageRecord.getDisplayBody(getContext()));
+
+    title.setVisibility(VISIBLE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
+  }
+
+  private void setDataExtractionRecord(final MessageRecord messageRecord, DataExtractionNotificationInfoMessage.Kind kind) {
+    @ColorInt int color = GeneralUtilitiesKt.getColorWithID(getResources(), R.color.text, getContext().getTheme());
+    if (kind == DataExtractionNotificationInfoMessage.Kind.SCREENSHOT) {
+      icon.setImageResource(R.drawable.quick_camera_dark);
+    } else if (kind == DataExtractionNotificationInfoMessage.Kind.MEDIASAVED) {
+      icon.setImageResource(R.drawable.ic_file_download_white_36dp);
+    }
+    icon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(VISIBLE);

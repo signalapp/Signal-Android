@@ -98,6 +98,9 @@ public abstract class MessageRecord extends DisplayRecord {
       return new SpannableString(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {
       return new SpannableString(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+    } else if (isDataExtraction()) {
+      if (isMediaSavedExtraction()) return new SpannableString(context.getString(R.string.MessageRecord_media_saved_by_s, getIndividualRecipient().toShortString()));
+      if (isScreenshotExtraction()) return new SpannableString(context.getString(R.string.MessageRecord_s_took_a_screenshot, getIndividualRecipient().toShortString()));
     } else if (isIncomingCall()) {
       return new SpannableString(context.getString(R.string.MessageRecord_s_called_you, getIndividualRecipient().toShortString()));
     } else if (isOutgoingCall()) {
@@ -175,7 +178,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isUpdate() {
-    return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
+    return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() || isDataExtraction() ||
            isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() || isLokiSessionRestoreSent() || isLokiSessionRestoreDone();
   }
 

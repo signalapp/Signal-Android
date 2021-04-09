@@ -96,6 +96,9 @@ private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimer
 // Data Extraction Notification handling
 
 private fun MessageReceiver.handleDataExtractionNotification(message: DataExtractionNotification) {
+    // we don't handle data extraction messages for groups (they shouldn't be sent, but in case we filter them here too)
+    if (message.groupPublicKey != null) return
+
     val storage = MessagingConfiguration.shared.storage
     val senderPublicKey = message.sender!!
     val notification: DataExtractionNotificationInfoMessage = when(message.kind) {
@@ -103,7 +106,7 @@ private fun MessageReceiver.handleDataExtractionNotification(message: DataExtrac
         is DataExtractionNotification.Kind.MediaSaved -> DataExtractionNotificationInfoMessage(DataExtractionNotificationInfoMessage.Kind.MEDIASAVED)
         else -> return
     }
-    storage.insertDataExtractionNotificationMessage(senderPublicKey, notification, message.groupPublicKey, message.sentTimestamp!!)
+    storage.insertDataExtractionNotificationMessage(senderPublicKey, notification, message.sentTimestamp!!)
 }
 
 // Configuration message handling
@@ -170,7 +173,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         }
     }
     // Get or create thread
-    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget ?: message.sender!!, message.groupPublicKey, openGroupID)
+    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
+            ?: message.sender!!, message.groupPublicKey, openGroupID)
     // Parse quote if needed
     var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
@@ -259,7 +263,7 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
-                            null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
+                null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
         // Notify the user
         storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
     }

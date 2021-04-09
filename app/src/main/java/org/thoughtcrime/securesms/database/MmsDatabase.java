@@ -709,6 +709,14 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
+    if (retrieved.isScreenshotDataExtraction()) {
+      type |= Types.SCREENSHOT_EXTRACTION_BIT;
+    }
+
+    if (retrieved.isMediaSavedDataExtraction()) {
+      type |= Types.MEDIA_SAVED_EXTRACTION_BIT;
+    }
+
     return insertMessageInbox(retrieved, "", threadId, type, serverTimestamp);
   }
 
