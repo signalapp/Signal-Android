@@ -23,14 +23,6 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     fun persistJob(job: Job) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(4)
-        val existing = database.get(sessionJobTable, "$jobID = ?", arrayOf(job.id!!)) { cursor ->
-            cursor.count
-        } ?: 0
-        // When adding multiple jobs in rapid succession, timestamps might not be good enough as a unique ID. To
-        // deal with this we keep track of the number of jobs with a given timestamp and that to the end of the
-        // timestamp to make it a unique ID. We can't use a random number because we do still want to keep track
-        // of the order in which the jobs were added.
-        job.id += existing
         contentValues.put(jobID, job.id)
         contentValues.put(jobType, job.getFactoryKey())
         contentValues.put(failureCount, job.failureCount)
