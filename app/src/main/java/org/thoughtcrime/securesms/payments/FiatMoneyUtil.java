@@ -16,12 +16,20 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.Locale;
 
-public class FiatMoneyUtil {
+public final class FiatMoneyUtil {
 
   private static final String TAG = Log.tag(FiatMoneyUtil.class);
+
+  private static final char CURRENCY_SYMBOL_PLACE_HOLDER = '\u00A4';
+  private static final char NON_BREAKING_WHITESPACE      = '\u00A0';
+
+  private FiatMoneyUtil() {}
 
   public static @NonNull LiveData<Optional<FiatMoney>> getExchange(@NonNull LiveData<Money> amount) {
     return LiveDataUtil.mapAsync(amount, a -> {
@@ -59,6 +67,38 @@ public class FiatMoneyUtil {
                                  DateUtils.getTimeString(ApplicationDependencies.getApplication(), Locale.getDefault(), amount.getTimestamp()));
     }
     return formattedAmount;
+  }
+
+  /**
+   * Prefixes or postfixes the currency symbol based on the formatter for the currency.
+   *
+   * @param value String so that you can force trailing zeros.
+   */
+  public static String manualFormat(@NonNull Currency currency, @NonNull String value) {
+    NumberFormat format = NumberFormat.getCurrencyInstance();
+    format.setCurrency(currency);
+
+    DecimalFormat        decimalFormat        = (DecimalFormat) format;
+    DecimalFormatSymbols decimalFormatSymbols = decimalFormat.getDecimalFormatSymbols();
+    String               symbol               = decimalFormatSymbols.getCurrencySymbol();
+    String               localizedPattern     = decimalFormat.toLocalizedPattern();
+    int                  currencySymbolIndex  = localizedPattern.indexOf(CURRENCY_SYMBOL_PLACE_HOLDER);
+    boolean              prefixSymbol         = currencySymbolIndex <= 0;
+
+    if (currencySymbolIndex == 0) {
+      char cAfterSymbol = localizedPattern.charAt(currencySymbolIndex + 1);
+      if (Character.isWhitespace(cAfterSymbol) || cAfterSymbol == NON_BREAKING_WHITESPACE) {
+        symbol = symbol + cAfterSymbol;
+      }
+    } else if (currencySymbolIndex > 0) {
+      char cBeforeSymbol = localizedPattern.charAt(currencySymbolIndex - 1);
+      if (Character.isWhitespace(cBeforeSymbol) || cBeforeSymbol == NON_BREAKING_WHITESPACE) {
+        symbol = cBeforeSymbol + symbol;
+      }
+    }
+
+    return prefixSymbol ? symbol + value
+                        : value + symbol;
   }
 
   public static FormatOptions formatOptions() {

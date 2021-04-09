@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.payments.create;
 
 import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -148,12 +147,12 @@ public class CreatePaymentFragment extends LoggingFragment {
   }
 
   private void initializeInfoIcon() {
-    spacer  = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.payment_info_pad));
+    spacer   = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.payment_info_pad));
     infoIcon = Objects.requireNonNull(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_update_info_16));
 
     DrawableCompat.setTint(infoIcon, exchange.getCurrentTextColor());
 
-    spacer.setBounds(0, 0, ViewUtil.dpToPx(13), ViewUtil.dpToPx(16));
+    spacer.setBounds(0, 0, ViewUtil.dpToPx(8), ViewUtil.dpToPx(16));
     infoIcon.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
   }
 
@@ -182,6 +181,7 @@ public class CreatePaymentFragment extends LoggingFragment {
         break;
       case FIAT_MONEY:
         amount.setMoney(inputState.getMoney(), false, inputState.getExchangeRate().get().getTimestamp());
+        amount.append(SpanUtil.buildImageSpan(spacer));
         amount.append(SpanUtil.buildImageSpan(infoIcon));
         break;
     }
@@ -205,8 +205,7 @@ public class CreatePaymentFragment extends LoggingFragment {
         break;
       case FIAT_MONEY:
         Currency currency = inputState.getFiatMoney().get().getCurrency();
-        exchange.setText(new SpannableStringBuilder().append(currency.getSymbol())
-                                                     .append(inputState.getFiatAmount()));
+        exchange.setText(FiatMoneyUtil.manualFormat(currency, inputState.getFiatAmount()));
         break;
     }
   }
