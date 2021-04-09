@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.BidiFormatter;
 
+import org.signal.core.util.BreakIteratorCompat;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -264,5 +266,14 @@ public final class StringUtil {
     int start = (maxChars - 1) / 2;
     int end   = (maxChars - 1) - start;
     return text.subSequence(0, start) + "…" + text.subSequence(text.length() - end, text.length());
+  }
+
+  /**
+   * @return The number of graphemes in the provided string.
+   */
+  public static int getGraphemeCount(@NonNull CharSequence text) {
+    BreakIteratorCompat iterator = BreakIteratorCompat.getInstance();
+    iterator.setText(text);
+    return iterator.countBreaks();
   }
 }
