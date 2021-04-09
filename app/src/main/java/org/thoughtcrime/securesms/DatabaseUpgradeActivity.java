@@ -20,33 +20,13 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 
-import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import network.loki.messenger.R;
-
 public class DatabaseUpgradeActivity extends BaseActivity {
-  private static final String TAG = DatabaseUpgradeActivity.class.getSimpleName();
 
   @Override
   public void onCreate(Bundle bundle) {

@@ -52,6 +52,8 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.jobs.AttachmentDownloadJob;
+import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
@@ -67,7 +69,6 @@ import org.session.libsession.utilities.views.Stub;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.utilities.logging.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -85,7 +86,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
@@ -1075,10 +1075,10 @@ public class ConversationItem extends LinearLayout
       Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
       for (Slide slide : slides) {
-        ApplicationContext.getInstance(context)
-                .getJobManager()
-                .add(new AttachmentDownloadJob(messageRecord.getId(),
-                        ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
+        JobQueue.getShared().add(
+                new AttachmentDownloadJob(messageRecord.getId(),
+                        ((DatabaseAttachment)slide.asAttachment()).getAttachmentId().getRowId())
+        );
       }
     }
   }
