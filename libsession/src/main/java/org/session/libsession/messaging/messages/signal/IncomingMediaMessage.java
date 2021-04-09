@@ -147,8 +147,6 @@ public class IncomingMediaMessage {
     return linkPreviews;
   }
 
-  public DataExtractionNotificationInfoMessage getDataExtractionNotification() { return dataExtractionNotification; }
-
   public boolean isUnidentified() {
     return unidentified;
   }
