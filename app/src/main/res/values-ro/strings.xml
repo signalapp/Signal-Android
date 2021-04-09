@@ -58,6 +58,7 @@
   <string name="AttachmentKeyboard_location">Locație</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal are nevoie de permisiune pentru a afișa poze și videouri.</string>
   <string name="AttachmentKeyboard_give_access">Permite accesul</string>
+  <string name="AttachmentKeyboard_payment">Plăți</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
@@ -1912,6 +1913,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">%do</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS și MMS</string>
   <string name="preferences__pref_all_sms_title">Recepționează toate SMS-urile</string>
   <string name="preferences__pref_all_mms_title">Recepționează toate MMS-urile</string>
@@ -1975,6 +1977,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
   <string name="preferences__data_and_storage">Date și stocare</string>
   <string name="preferences__storage">Spaţiu stocare</string>
+  <string name="preferences__payments">Plăți</string>
+  <string name="preferences__payments_beta">Plăți (Beta)</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
   <string name="preferences__keep_messages">Păstrare mesaje</string>
   <string name="preferences__clear_message_history">Ștergeți istoricul mesajelor</string>
@@ -2086,6 +2090,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsAllActivityFragment__all">Toate</string>
   <string name="PaymentsAllActivityFragment__sent">Trimis</string>
   <string name="PaymentsAllActivityFragment__received">Primit</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilizați Signal pentru a trimite și primi MobileCoin, o nouă monedă digitală axată pe confidențialitate. Activați pentru a începe.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Activare Plăți</string>
+  <string name="PaymentsHomeFragment__recent_activity">Activități recente</string>
   <string name="PaymentsHomeFragment__see_all">Vezi tot</string>
   <string name="PaymentsHomeFragment__send">Trimiteți</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
@@ -2117,10 +2124,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Notă</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Către</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">Toate monedele</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2370,7 +2379,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>
   <string name="preferences_chats__transfer_account">Transfer cont</string>
-  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer cont pe un dispozitiv nou Android</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer cont pe un nou dispozitiv Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru backup</string>
   <string name="RegistrationActivity_restore">Restaurează</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nu se pot importa backup-uri din versiuni mai noi de Signal</string>
@@ -2454,9 +2463,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu vechiul dispozitiv Android.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se caută un dispozitiv nou Android …</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Creează backup</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_location_services">Activare servicii de localizare</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Activare Wi-Fi</string>
   <string name="DeviceTransferSetup__retry">Încearcă din nou</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Trimiteți jurnalul de depanare</string>
@@ -2482,8 +2495,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transfer cont</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Descărcați Signal pe noul dispozitiv Android</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Atingeți \"Transfer sau restaurare cont\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Selectați \"Transfer de pe dispozitivul Android\" când vi se solicită, apoi \"Continuați\". Păstrați ambele dispozitive în apropiere.</string>
   <string name="OldDeviceTransferInstructions__continue">Continuă</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
@@ -2649,15 +2665,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eroare la setarea fundalului.</string>
   <string name="WallpaperCropActivity__blur_photo">Estompare poză</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Despre MobileCoin</string>
   <string name="payment_info_card_hide">Ascunde</string>
+  <string name="payment_info_card_update_your_pin">Actualizați-vă PIN-ul</string>
   <string name="payment_info_card_update_pin">Actualizați PIN</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Următorul</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Următorul</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editează</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Înapoi</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Gata</string>

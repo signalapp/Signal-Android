@@ -1911,6 +1911,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS-meddelande du skickar</string>
   <string name="preferences__data_and_storage">Data och lagring</string>
   <string name="preferences__storage">Lagring</string>
+  <string name="preferences__payments">Betalningar</string>
+  <string name="preferences__payments_beta">Betalningar (Beta)</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__keep_messages">Spara meddelanden</string>
   <string name="preferences__clear_message_history">Rensa meddelandehistorik</string>
@@ -2021,11 +2023,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentsAllActivityFragment__all">Alla</string>
   <string name="PaymentsAllActivityFragment__sent">Skickad</string>
   <string name="PaymentsAllActivityFragment__received">Mottagen</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med fokus på integritet. Aktivera för att komma igång.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktivera betalningar</string>
   <string name="PaymentsHomeFragment__see_all">Se alla</string>
   <string name="PaymentsHomeFragment__send">Skicka</string>
   <string name="PaymentsHomeFragment__help">Hjälp</string>
   <string name="PaymentsHomeFragment__continue">Fortsätt</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__activate">Aktivera</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Kopiera</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopierade till urklipp</string>
@@ -2037,16 +2042,20 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Skanna QR-kod</string>
   <string name="PaymentsTransferFragment__next">Nästa</string>
+  <string name="PaymentsTransferFragment__invalid_address">Ogiltig adress</string>
   <string name="PaymentsTransferFragment__settings">Inställningar</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Förfrågan</string>
+  <string name="CreatePaymentFragment__pay">Betala</string>
   <string name="CreatePaymentFragment__toggle_content_description">Växla</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Anteckning</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Till</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">Alla valutor</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2623,10 +2632,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fel vid inställning av bakgrund.</string>
   <string name="WallpaperCropActivity__blur_photo">Sudda foto</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_hide">Dölj</string>
   <string name="payment_info_card_update_pin">Uppdatera PIN-kod</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Starta</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Nästa</string>
   <!--PaymentsRecoveryPhraseFragment-->

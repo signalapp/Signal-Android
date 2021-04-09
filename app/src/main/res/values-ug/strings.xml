@@ -131,7 +131,7 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal نەشرىڭىزنىڭ ۋاقتى توشتى. سىز ئۇچۇر تارىخىڭىزنى كۆرەلەيسىز، ئەمما يېڭىلىمىغۇچە ئۇچۇر ئەۋەتەلەيسىز ۋە تاپشۇرۇپ ئالالمايسىز.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">توركۆرگۈ تېپىلمىدى.</string>
-  <string name="CommunicationActions_send_email">تورخەت يوللا</string>
+  <string name="CommunicationActions_send_email">ئېلخەت يوللا</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">بىر يانفون چاقىرىقى ئىشلەۋېتىپتۇ.</string>
   <string name="CommunicationActions_start_voice_call">ئاۋازلىق چاقىرامتىڭىز؟</string>
   <string name="CommunicationActions_cancel">ۋاز كەچ</string>
@@ -190,7 +190,7 @@
   <string name="ConversationActivity_select_contact_info">ئالاقەداش ئۇچۇرىنى تاللا</string>
   <string name="ConversationActivity_compose_message">ئۇچۇر ياز</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">كەچۈرۈڭ، قوشۇمچە ھۆججىتىڭىزنى تەڭشەشتە خاتالىق كۆرۈلدى.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">تاپشۇرۇۋالغۇچى ئىناۋەتلىك قىسقا ئۇچۇر ياكى تورخەت ئادرېسى ئەمەس!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">تاپشۇرۇۋالغۇچى ئىناۋەتلىك قىسقا ئۇچۇر ياكى ئېلخەت ئادرېسى ئەمەس!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ئۇچۇر بوش!</string>
   <string name="ConversationActivity_group_members">گۇرۇپپا ئەزالىرى</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">بۇ يەر چېكىلسە گۇرۇپپا چاقىرىش باشلىنىدۇ</string>
@@ -1337,7 +1337,7 @@
   <string name="SubmitDebugLogActivity_submit">تاپشۇر</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">كۈندىلىك خاتىرىنى تاپشۇرالمىدى</string>
   <string name="SubmitDebugLogActivity_success">مۇۋەپپەقىيەتلىك!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">بۇ URL نى كۆچۈرۈپ ۋە ئۇنى مەسىلە دوكلاتىڭىز ياكى قوللاش تورخەتىگە قوشۇڭ:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">بۇ URL نى كۆچۈرۈپ ۋە ئۇنى مەسىلە دوكلاتىڭىز ياكى قوللاش ئېلخېتىگە قوشۇڭ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">ئورتاقلاش</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">سۈزگۈچ:</string>
@@ -2011,11 +2011,11 @@
   <string name="preferences_chats__message_text_size">ئۇچۇر خەت چوڭلۇقى</string>
   <string name="preferences_events__contact_joined_signal">ئالاقاداش Signal غا قېتىلدى</string>
   <string name="preferences_notifications__priority">مۇھىملىقى</string>
-  <string name="preferences_communication__category_sealed_sender">مۆھۈرلەنگەن ئەۋەتكۈچى</string>
+  <string name="preferences_communication__category_sealed_sender">يوشۇرۇن ئەۋەتكۈچى</string>
   <string name="preferences_communication__sealed_sender_display_indicators">ئېكران كۆرسەتكۈچىلىرى</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">مۆھۈرلەنگەن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلاردا \"ئۇچۇر تەپسىلاتى\" تاللانغاندا، ھالەت سىمبەلگىسىنى كۆرسەت.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">يوشۇرۇن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلاردا «ئۇچۇر تەپسىلاتى» تاللانغاندا، ھالەت سىمبەلگىسىنى كۆرسەت.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ھەممىسىدن قوبۇل قىل</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ئالاقەداشلىرىڭ ئارىسىدا بولمىغان ياكى ئارخىپىڭنى ھەمبەھرلىمىگەن كىشىلەردىن، ئەۋەتكۈچىسى مۆھۈرلەنگەنلەرنىڭمۇ ئۇچۇرلىرىنى قوبۇل قىلىشنى ئاكتىپ قىل. </string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ئالاقەداشلىرىڭ ئارىسىدا بولمىغان ياكى ئارخىپىڭنى ھەمبەھرلىمىگەن كىشىلەردىن، يوشۇرۇن ئەۋەتكۈچىلەرنىڭمۇ ئۇچۇرلىرىنى قوبۇل قىلىشنى ئاكتىپ قىل. </string>
   <string name="preferences_communication__sealed_sender_learn_more">كۆپرەك ئۆگىنىش</string>
   <string name="preferences_setup_a_username">بىز ئىشلەتكۈچى ئىسمى سەپلە</string>
   <string name="preferences_proxy">ۋاكالەتچى</string>

@@ -1724,6 +1724,14 @@
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
+  <string-array name="HelpFragment__categories">
+    <item>機能の不具合k</item>
+    <item>機能のリクエスト</item>
+    <item>質問</item>
+    <item>フィードバック</item>
+    <item>その他</item>
+    <item>支払い機能</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -1766,6 +1774,7 @@
     <item quantity="other">%d時間</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">ベータ</string>
   <string name="preferences__sms_mms">SMSとMMS</string>
   <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
   <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
@@ -1830,6 +1839,7 @@
   <string name="preferences__data_and_storage">データとストレージ</string>
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__payments">支払い</string>
+  <string name="preferences__payments_beta">支払い機能 (ベータ)</string>
   <string name="preferences__conversation_length_limit">チャットの最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
   <string name="preferences__clear_message_history">メッセージ履歴を削除</string>
@@ -1940,9 +1950,18 @@
   <string name="PaymentsAllActivityFragment__all">全員</string>
   <string name="PaymentsAllActivityFragment__sent">送信</string>
   <string name="PaymentsAllActivityFragment__received">受信</string>
+  <string name="PaymentsHomeFragment__introducing_payments">支払い機能のご紹介 (ベータ)</string>
   <string name="PaymentsHomeFragment__see_all">すべて表示</string>
   <string name="PaymentsHomeFragment__send">送信する</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s を送付しました</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s を受け取りました</string>
+  <string name="PaymentsHomeFragment__currency_conversion">通貨換算</string>
   <string name="PaymentsHomeFragment__help">ヘルプ</string>
+  <string name="PaymentsHomeFragment__sent_payment">送金済み</string>
+  <string name="PaymentsHomeFragment__received_payment">受け取り済み</string>
+  <string name="PaymentsHomeFragment__processing_payment">支払いを処理しています</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">通貨換算は利用できません</string>
   <string name="PaymentsHomeFragment__continue">続ける</string>
   <string name="PaymentsHomeFragment__details">詳細</string>
   <!--PaymentsAddMoneyFragment-->
@@ -1951,8 +1970,12 @@
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">詳細</string>
   <string name="PaymentsDetailsFragment__status">状態</string>
+  <string name="PaymentsDetailsFragment__processing_payment">支払いを処理しています…</string>
+  <string name="PaymentsDetailsFragment__network_fee">ネットワーク料金</string>
   <string name="PaymentsDetailsFragment__to">宛先</string>
   <string name="PaymentsDetailsFragment__from">差出人</string>
+  <string name="PaymentsDetailsFragment__sent_payment">送金済み</string>
+  <string name="PaymentsDetailsFragment__received_payment">受け取り済み</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">QRコードをスキャンする</string>
   <string name="PaymentsTransferFragment__next">次へ</string>
@@ -1961,11 +1984,31 @@
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">申請</string>
   <string name="CreatePaymentFragment__pay">払う</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">バックスペース</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">メモ</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__network_fee">ネットワーク料金</string>
   <string name="ConfirmPayment__to">宛先</string>
+  <string name="ConfirmPayment__total_amount">合計</string>
+  <string name="ConfirmPayment__balance_s">差引: %1$s</string>
+  <string name="ConfirmPayment__processing_payment">支払いを処理しています…</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">通貨を設定</string>
+  <string name="SetCurrencyFragment__all_currencies">すべての通貨</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2540,6 +2583,7 @@
   <string name="PaymentsRecoveryPhraseFragment__next">次へ</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">編集</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">前へ</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">クリップボードにコピーしますか？</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">コピー</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完了</string>

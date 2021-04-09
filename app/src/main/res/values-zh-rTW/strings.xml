@@ -1978,7 +1978,7 @@
   <string name="PaymentsHomeFragment__send">傳送</string>
   <string name="PaymentsHomeFragment__sent_s">已傳送 %1$s</string>
   <string name="PaymentsHomeFragment__received_s">已接收 %1$s</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">轉移到交換所</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">轉帳到交換所</string>
   <string name="PaymentsHomeFragment__currency_conversion">貨幣轉換</string>
   <string name="PaymentsHomeFragment__deactivate_payments">停用付款功能</string>
   <string name="PaymentsHomeFragment__recovery_phrase">回復短語</string>
@@ -2003,7 +2003,7 @@
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">你可以使用Signal傳送和接收MobileCoin。 所有付款均受MobileCoins和MobileCoin電子錢包使用條款的約束。 這是一個測試版功能，因此你可能會遇到一些問題，你可能會遺失付款或餘額無法追回。</string>
   <string name="PaymentsHomeFragment__activate">啟動</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">查看MobileCoin條款</string>
-  <string name="PaymentsHomeFragment__payments_not_available">Signal中的付款不再可用。 你仍然可以將資金轉移到交易所，但不能再傳送和接收付款或增加資金。</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal中的付款不再可用。 你仍然可以將資金轉帳到交易所，但不能再傳送和接收付款或增加資金。</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">增加資金</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">你的錢包位址</string>
@@ -2036,11 +2036,11 @@
   <string name="PaymentsTransferFragment__transfer">轉帳</string>
   <string name="PaymentsTransferFragment__scan_qr_code">掃描 QR code</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">給：掃描或輸入錢包位址</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">你可以透過完成到交易所提供的錢包位址的轉移功能來轉移MobileCoin。 錢包位址是QR碼下方最常見的數字和字母字符串。</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">你可以透過完成到交易所提供的錢包位址的轉移功能來轉帳到MobileCoin。 錢包位址是QR碼下方最常見的數字和字母字符串。</string>
   <string name="PaymentsTransferFragment__next">下一步</string>
   <string name="PaymentsTransferFragment__invalid_address">無效位址</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">檢查你要轉移到的錢包位址，然後重試。</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">你無法轉移到自己的Signal錢包位址。 在支援的交易所中從你的帳戶輸入錢包位址。</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">檢查你要轉帳到的錢包位址，然後重試。</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">你無法轉帳到自己的Signal錢包位址。 在支援的交易所中從你的帳戶輸入錢包位址。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">要掃描QR碼，Signal須要開啟相機權限。</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal需要攝像機權限才能擷取QR碼。 到設定，選擇“權限”，然後啟用“相機”。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">要掃描QR碼，Signal須要開啟相機權限。</string>
@@ -2321,11 +2321,11 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>
   <string name="registration_activity__restore_backup">還原備份</string>
   <string name="registration_activity__transfer_or_restore_account">移轉或還原帳號</string>
-  <string name="registration_activity__transfer_account">轉移賬號</string>
+  <string name="registration_activity__transfer_account">移轉賬號</string>
   <string name="registration_activity__skip">略過</string>
   <string name="preferences_chats__chat_backups">聊天備份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">備份聊天到外部儲存空間</string>
-  <string name="preferences_chats__transfer_account">轉移賬號</string>
+  <string name="preferences_chats__transfer_account">移轉賬號</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">將帳號轉移到新的Android裝置</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
@@ -2403,8 +2403,8 @@
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">移轉或還原帳號</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">如果你以前註冊過Signal帳號，則可以轉移或還原你的帳號和訊息</string>
-  <string name="TransferOrRestoreFragment__transfer_from_android_device">從Android裝置轉移</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息。你需要連結舊裝置。</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">從Android裝置移轉</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">從舊的Android裝置移轉你的帳號和訊息。你需要連結舊裝置。</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">你需要連結舊裝置。</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">從本地備份還原你的訊息。 如果你現在不還原，則以後將無法還原。</string>
@@ -2449,7 +2449,7 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">號碼不匹配</string>
   <string name="DeviceTransferSetup__continue">繼續</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">號碼不一樣</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">如果你的裝置上的號碼不匹配，則可能是你連接了錯誤的裝置。 要解決此問題，請停止傳輸，然後重試，並保持兩個裝置都處於關閉狀態。</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">如果你的裝置上的號碼不相符，則可能是你連結了錯誤的裝置。 要解決此問題，請停止傳輸，然後重試，並保持兩個裝置都處於關閉狀態。</string>
   <string name="DeviceTransferSetup__stop_transfer">停止傳輸</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">無法發現舊裝置</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">無法發現新裝置</string>
@@ -2460,16 +2460,16 @@
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">在“ WiFi Direct”螢幕上，刪除所有已記住的群組並取消任何受邀或已連結的裝置。</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct螢幕</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">嘗試在兩個裝置上都關閉和開啟Wi-Fi。</string>
-  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">確保兩個裝置都處於轉移模式。</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">確保兩個裝置都處於移轉模式。</string>
   <string name="DeviceTransferSetup__go_to_support_page">轉到支援網頁</string>
   <string name="DeviceTransferSetup__try_again">再試一次</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">等待其他裝置</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">在其他裝置上點擊繼續以開始傳輸。</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">在其他裝置上點擊繼續…</string>
   <!--NewDeviceTransferFragment-->
-  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">無法從較新版本的Signal進行轉移</string>
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">無法從較新版本的Signal進行移轉</string>
   <!--DeviceTransferFragment-->
-  <string name="DeviceTransfer__transferring_data">轉移資料</string>
+  <string name="DeviceTransfer__transferring_data">移轉資料</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">使兩個裝置彼此靠近。 請勿關閉裝置並保持Signal開啟。 傳輸是點對點加密的。</string>
   <string name="DeviceTransfer__d_messages_so_far">到目前為止 %1$d 則訊息…</string>
   <string name="DeviceTransfer__cancel">取消</string>
@@ -2513,7 +2513,7 @@
   <string name="OldDeviceTransferLockedDialog__done">完成</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消並啟動此裝置</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">轉移MOBILE餘額？</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">轉帳到MOB的餘額？</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">你的餘額為 %1$s。 如果你在刪除帳號之前沒有將資金轉入另一個錢包位址，則將永遠遺失。</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">不要轉移</string>
   <string name="AdvancedPreferenceFragment__transfer">轉移</string>
