@@ -2760,8 +2760,10 @@
   <string name="payment_info_card_your_recovery_phrase_gives_you">A sua frase de recuperação dá-lhe outra forma de restaurar a sua conta de pagamentos.</string>
   <string name="payment_info_card_record_your_phrase">Gravar a sua frase</string>
   <string name="payment_info_card_update_your_pin">Atualizar o seu PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Com um saldo alto, você poderá querer atualizar para um PIN alfanumérico ou adicionar mais proteção à sua conta.</string>
   <string name="payment_info_card_update_pin">Atualizar PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
   <string name="DeactivateWalletFragment__deactivate">Desativar</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recuperar frase</string>

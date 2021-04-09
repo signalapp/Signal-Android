@@ -1858,6 +1858,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="other">%d u</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Bèta</string>
   <string name="preferences__sms_mms">Sms en mms</string>
   <string name="preferences__pref_all_sms_title">Ontvang alle sms</string>
   <string name="preferences__pref_all_mms_title">Ontvang alle mms</string>
@@ -2034,11 +2035,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsAllActivityFragment__sent">Verzonden</string>
   <string name="PaymentsAllActivityFragment__received">Ontvangen</string>
   <string name="PaymentsHomeFragment__see_all">Alles weergeven</string>
-  <string name="PaymentsHomeFragment__send">Verzend</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsHomeFragment__help">Hulp</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__continue">Doorgaan</string>
+  <string name="PaymentsHomeFragment__payment_failed">Betaling mislukt</string>
   <string name="PaymentsHomeFragment__details">Details</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Kopiëren</string>
@@ -2046,6 +2047,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Details</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Betaling doorgeven…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Betaling verwerken…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Betaling voltooid</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Betaling mislukt</string>
   <string name="PaymentsDetailsFragment__to">Naar</string>
   <string name="PaymentsDetailsFragment__from">Van</string>
   <!--PaymentsTransferFragment-->
@@ -2064,10 +2069,18 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Opmerking toevoegen</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Bevestig betaling</string>
   <string name="ConfirmPayment__to">Naar</string>
+  <string name="ConfirmPayment__submitting_payment">Betaling doorgeven…</string>
+  <string name="ConfirmPayment__processing_payment">Betaling verwerken…</string>
+  <string name="ConfirmPayment__payment_complete">Betaling voltooid</string>
+  <string name="ConfirmPayment__payment_failed">Betaling mislukt</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -2646,6 +2659,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
   <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Over MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een nieuwe privacygerichte digitale munt.</string>
   <string name="payment_info_card_hide">Verbergen</string>
   <string name="payment_info_card_update_pin">Pincode bijwerken</string>
   <!--DeactivateWalletFragment-->
