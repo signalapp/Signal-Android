@@ -2,7 +2,7 @@
 
 [Download on the Google Play Store](https://getsession.org/android)
 
-[Download via F-Droid](https://fdroid.getsession.org/fdroid/repo?fingerprint=DB0E5297EB65CC22D6BD93C869943BDCFCB6A07DC69A48A0DD8C7BA698EC04E6)
+Add the [F-Droid repo](https://fdroid.getsession.org/)
 
 [Grab the APK here](https://github.com/loki-project/session-android/releases/latest)
 
