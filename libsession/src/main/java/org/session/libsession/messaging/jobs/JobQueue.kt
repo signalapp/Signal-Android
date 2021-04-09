@@ -6,7 +6,9 @@ import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsignal.utilities.logging.Log
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.schedule
 import kotlin.math.min
 import kotlin.math.pow
@@ -15,6 +17,8 @@ import kotlin.math.roundToLong
 
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
+
+    private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
 
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
@@ -44,7 +48,14 @@ class JobQueue : JobDelegate {
     }
 
     private fun addWithoutExecuting(job: Job) {
-        job.id = System.currentTimeMillis().toString()
+        // When adding multiple jobs in rapid succession, timestamps might not be good enough as a unique ID. To
+        // deal with this we keep track of the number of jobs with a given timestamp and that to the end of the
+        // timestamp to make it a unique ID. We can't use a random number because we do still want to keep track
+        // of the order in which the jobs were added.
+        val currentTime = System.currentTimeMillis()
+        jobTimestampMap.putIfAbsent(currentTime, AtomicInteger())
+        job.id = jobTimestampMap[currentTime]!!.getAndIncrement().toString()
+
         MessagingConfiguration.shared.storage.persistJob(job)
     }
 
