@@ -57,15 +57,15 @@
           android:id="@+id/conversation_list_proxy_status"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:padding="12dp"
           android:background="?selectableItemBackgroundBorderless"
+          android:padding="12dp"
           android:visibility="gone"
-          app:layout_constraintStart_toEndOf="@id/conversation_list_title"
-          app:layout_constraintEnd_toStartOf="@id/search_action"
-          app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/search_action"
+          app:layout_constraintStart_toEndOf="@id/conversation_list_title"
+          app:layout_constraintTop_toTopOf="parent"
           tools:src="@drawable/ic_proxy_connected_24"
-          tools:visibility="visible"/>
+          tools:visibility="visible" />
 
       <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/search_action"

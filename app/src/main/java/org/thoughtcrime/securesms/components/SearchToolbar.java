@@ -52,6 +52,7 @@ public class SearchToolbar extends LinearLayout {
     toolbar.setNavigationIcon(drawable);
     toolbar.setCollapseIcon(drawable);
     toolbar.inflateMenu(R.menu.conversation_list_search);
+    toolbar.inflateMenu(R.menu.search_by_date);
 
     this.searchItem = toolbar.getMenu().findItem(R.id.action_filter_search);
     SearchView searchView = (SearchView) searchItem.getActionView();

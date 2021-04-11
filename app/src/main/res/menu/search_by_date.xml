@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="@string/SearchToolbar_date"
+        app:showAsAction="ifRoom"/>
+</menu>

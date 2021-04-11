@@ -1734,6 +1734,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Search</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Search for conversations, contacts, and messages</string>
+    <string name="SearchToolbar_date">search_by_date</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">Invalid shortcut</string>
