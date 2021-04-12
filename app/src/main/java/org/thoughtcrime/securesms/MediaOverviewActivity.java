@@ -353,8 +353,11 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
                       saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
                               attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
                       actionMode.finish();
-                      // Sending a Data extraction notification
-                      sendMediaSavedNotificationIfNeeded();
+                      // Sending a Data extraction notification (for incoming attachments only)
+                      boolean containsIncoming = mediaRecords.parallelStream().anyMatch(m -> !m.isOutgoing());
+                      if (containsIncoming) {
+                        sendMediaSavedNotificationIfNeeded();
+                      }
                     }
                   }.execute();
                 })

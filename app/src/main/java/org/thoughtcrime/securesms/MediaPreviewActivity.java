@@ -357,8 +357,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                 saveTask.executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR,
                         new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
-                // Sending a Data extraction notification
-                sendMediaSavedNotificationIfNeeded();
+                // Sending a Data extraction notification (for incoming attachments only)
+                if(!mediaItem.outgoing) {
+                  sendMediaSavedNotificationIfNeeded();
+                }
               })
               .execute();
     });

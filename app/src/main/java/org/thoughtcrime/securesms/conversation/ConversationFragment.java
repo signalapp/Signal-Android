@@ -746,8 +746,10 @@ public class ConversationFragment extends Fragment
                 if (!Util.isEmpty(attachments)) {
                   SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
                   saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
-                  // Sending a Data extraction notification
-                  sendMediaSavedNotificationIfNeeded();
+                  // Sending a Data extraction notification (for incoming attachments only)
+                  if(!message.isOutgoing()) {
+                    sendMediaSavedNotificationIfNeeded();
+                  }
                   return;
                 }
 
