@@ -48,8 +48,8 @@ public class IncomingMessageObserver {
 
   private static final AtomicInteger INSTANCE_COUNT = new AtomicInteger(0);
 
-  private static SignalServiceMessagePipe pipe             = null;
-  private static SignalServiceMessagePipe unidentifiedPipe = null;
+  private static volatile SignalServiceMessagePipe pipe             = null;
+  private static volatile SignalServiceMessagePipe unidentifiedPipe = null;
 
   private final Application                context;
   private final SignalServiceNetworkAccess networkAccess;

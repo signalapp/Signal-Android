@@ -184,12 +184,6 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
-    SignalServiceMessageReceiver local = messageReceiver;
-
-    if (local != null) {
-      return local;
-    }
-
     synchronized (LOCK) {
       if (messageReceiver == null) {
         messageReceiver = provider.provideSignalServiceMessageReceiver();
