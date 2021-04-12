@@ -24,7 +24,7 @@
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">مۇلازىمېتىرغا باغلىنىش خاتالىقى!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">قىسقا ئۇچۇر ئوچۇق</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">چېكىلسە سۈكۈتتىكى قىسقا ئۇچۇر ئەپنى ئۆزگەرتىدۇ</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">قىسقا ئۇچۇر تاقاق</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">قىسقا ئۇچۇر تاقالغان</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">چېكىلسە Signal سۈكۈتتىكى قىسقا ئۇچۇر ئەپىگە تەڭشىلىدۇ</string>
   <string name="ApplicationPreferencesActivity_on">ئاچ</string>
   <string name="ApplicationPreferencesActivity_On">ئاچ</string>
@@ -38,9 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN چەكلەندى.</string>
   <string name="ApplicationPreferencesActivity_hide">يوشۇر</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">ئەسكەرتىش كۆرۈنمىسۇنمۇ؟</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">چىقىمنى ئەسلىگە كەلتۈرۈش جۈملىسىنى خاتىرەلەيدۇ</string>
-  <string name="ApplicationPreferencesActivity_record_phrase">جۈملە خاتىرەلە</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">سىز PIN نى چەكلەشتىن ئىلگىرى، چىقىم قىلىش ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈشكە كاپالەتلىك قىلىش ئۈچۈن چىقىمنى ئەسلىگە كەلتۈرۈش چۈملىسىنى خاتىرەلىشىڭىز زۆرۈر.</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">چىقىمنى ئەسلىگە كەلتۈرۈش جۈملىسىنى خاتىرىلەيدۇ</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">جۈملە خاتىرىلە</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">سىز PIN نى چەكلەشتىن ئىلگىرى، چىقىم قىلىش ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈشكە كاپالەتلىك قىلىش ئۈچۈن چىقىمنى ئەسلىگە كەلتۈرۈش چۈملىسىنى خاتىرىلىشىڭىز زۆرۈر.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d مىنۇت</item>
@@ -147,7 +147,7 @@
   <string name="ContactsCursorLoader_contacts">ئالاقەداشلار</string>
   <string name="ContactsCursorLoader_groups">گۇرۇپپا</string>
   <string name="ContactsCursorLoader_phone_number_search">تېلېفون نومۇر ئىزدەش</string>
-  <string name="ContactsCursorLoader_username_search">ئىشلەتكۈچى  ئىزدەش</string>
+  <string name="ContactsCursorLoader_username_search">ئىشلەتكۈچى ئىسمى  ئىزدەش</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ئۇچۇر%s</string>
   <string name="ContactsDatabase_signal_call_s">Signal چاقىرغىنى %s</string>
@@ -645,7 +645,7 @@
   <string name="GroupMentionSettingDialog_dont_notify_me">ماڭا ئۇقتۇرۇش قىلىنمىسۇن</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">سەپلىمە ئاتى</string>
-  <string name="ManageProfileFragment_username">قوللانغۇچى</string>
+  <string name="ManageProfileFragment_username">ئىشلەتكۈچى ئىسمى</string>
   <string name="ManageProfileFragment_about">ھەققىدە</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">ئۆزىڭىزنى ھەققىدە قىسقىچە بايان</string>
   <string name="ManageProfileFragment_your_name">ئاتىڭىز</string>
@@ -1380,7 +1380,7 @@
   <string name="ThreadRecord_chat_session_refreshed">سۆھبەت يېڭىلاندى</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal يېڭىلاش</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal نىڭ يېڭى نەشرى باركەن، نوقۇپ يېڭىلاڭ</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal نىڭ يېڭى نەشرى باركەن، چېكىپ يېڭىلاڭ</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">ئۇچۇر ئەۋەتەمسىز؟</string>
   <string name="UntrustedSendDialog_send">ئەۋەت</string>
@@ -1388,18 +1388,18 @@
   <string name="UnverifiedSendDialog_send_message">ئۇچۇر ئەۋەتەمسىز؟</string>
   <string name="UnverifiedSendDialog_send">ئەۋەت</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_username">قوللانغۇچى</string>
+  <string name="UsernameEditFragment_username">ئىشلەتكۈچى ئىسمى</string>
   <string name="UsernameEditFragment_delete">ئۆچۈرۈش</string>
-  <string name="UsernameEditFragment_successfully_set_username">ئىشلەتكۈچى ئاتى مۇۋەپپەقىيەتلىك تەڭشەلدى.</string>
-  <string name="UsernameEditFragment_successfully_removed_username">ئىشلەتكۈچى ئاتى مۇۋەپپەقىيەتلىك چىقىرىۋېتىلدى.</string>
+  <string name="UsernameEditFragment_successfully_set_username">ئىشلەتكۈچى ئىسمى مۇۋەپپەقىيەتلىك تەڭشەلدى.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">ئىشلەتكۈچى ئىسمى مۇۋەپپەقىيەتلىك چىقىرىۋېتىلدى.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">تور خاتالىقىغا يولۇقتى.</string>
-  <string name="UsernameEditFragment_this_username_is_taken">قوللانغۇچى ئىسمى ئىشلىتىلگەن</string>
-  <string name="UsernameEditFragment_this_username_is_available">قوللانغۇچى ئىسمى بوش</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ئىشلەتكۈچى ئاتى پەقەت a–Z، 0–9 ۋە ئاستى سىزىقتىن تۈزۈلىدۇ.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ئىشلەتكۈچى ئاتى ساندىن باشلانمايدۇ.</string>
-  <string name="UsernameEditFragment_username_is_invalid">قوللانغۇچى ئىسمى ئىناۋەتسىز</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ئىشلەتكۈچى ئاتى %1$d دىن %2$d غىچە ھەرپ ئارىسىدا بولىدۇ.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">ئىشلەتكۈچى ئاتى Signal دىكى تاللاشچان ئىقتىدار. ئەگەر ئىشلەتكۈچى ئاتى قۇرۇشنى تاللىسىڭىز، باشقا Signal ئىشلەتكۈچىلىرى مۇشۇ ئىسىم بىلەن سىزنى ئىزدەپ ئالاقە قىلالايدۇ ھەمدە تېلېفون نومۇرىڭىزنى بىلىش ھاجەتسىز.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">ئىشلەتكۈچى ئىسمى ئىشلىتىلگەن</string>
+  <string name="UsernameEditFragment_this_username_is_available">ئىشلەتكۈچى ئىسمى بوش</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ئىشلەتكۈچى ئىسمى پەقەت a–Z، 0–9 ۋە ئاستى سىزىقتىن تۈزۈلىدۇ.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ئىشلەتكۈچى ئىسمى ساندىن باشلانمايدۇ.</string>
+  <string name="UsernameEditFragment_username_is_invalid">ئىشلەتكۈچى ئىسمى ئىناۋەتسىز</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ئىشلەتكۈچى ئىسمى%1$d دىن %2$d غىچە ھەرپ ئارىسىدا بولىدۇ.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">ئىشلەتكۈچى ئىسمى Signal دىكى تاللاشچان ئىقتىدار. ئەگەر ئىشلەتكۈچى ئاتى قۇرۇشنى تاللىسىڭىز، باشقا Signal ئىشلەتكۈچىلىرى مۇشۇ ئىسىم بىلەن سىزنى ئىزدەپ ئالاقە قىلالايدۇ ھەمدە تېلېفون نومۇرىڭىزنى بىلىش ھاجەتسىز.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ئالاقەداش Signal ئىشلىتىۋاتىدۇ!</item>
     <item quantity="other">%d ئالاقەداش Signal ئىشلىتىۋاتىدۇ!</item>
@@ -1551,7 +1551,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ئالاقەداشلىرىڭىزنى كۆرسىتىش ئۈچۈن ئالاقەداش ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىگە بېرىڭ، «ھوقۇقلار» نى تاللاڭ ۋە «ئالاقەداشلار» نى قوزغىتىڭ.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ئالاقەداش ئېرىشىشتە خاتالىق كۆرۈلدى، تور باغلىنىشىڭىزنى تەكشۈرۈڭ</string>
-  <string name="ContactSelectionListFragment_username_not_found">ئىشلەتكۈچى ئاتى تېپىلمىدى</string>
+  <string name="ContactSelectionListFragment_username_not_found">ئىشلەتكۈچى ئىسمى تېپىلمىدى</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» تېخى Signal ئىشلەتكۈچىسى ئەمەس. ئىشلەتكۈچى ئاتىنى تەكشۈرۈپ ئاندىن قايتا سىناڭ.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ئۆزىڭىزنى توپقا قوشۇشىڭىز ھاجەتسىز</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">توپنىڭ ئادەم سانى چېكىگە يەتتى</string>
@@ -1730,8 +1730,8 @@
   <string name="CreateProfileActivity_first_name_required">ئات (زۆرۈر)</string>
   <string name="CreateProfileActivity_last_name_optional">تەگئات (تاللاشچان)</string>
   <string name="CreateProfileActivity_next">كېيىنكىسى</string>
-  <string name="CreateProfileActivity__username">قوللانغۇچى</string>
-  <string name="CreateProfileActivity__create_a_username">ئىشلەتكۈچى ئاتى قۇرىدۇ</string>
+  <string name="CreateProfileActivity__username">ئىشلەتكۈچى ئىسمى</string>
+  <string name="CreateProfileActivity__create_a_username">ئىشلەتكۈچى ئىسمى قۇرىدۇ</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ئىختىيارى MMS گۇرۇپپا ئىسمى ۋە رەسىملىرى سىزگىلا كۆرۈنىدۇ.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ھەققىدە</string>
@@ -1922,7 +1922,7 @@
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS ۋاكالەتچى باش كومپيۇتېر</string>
   <string name="preferences__mms_proxy_port">MMS ۋاكالەتچى پورتى</string>
-  <string name="preferences__mmsc_username">MMSC ئىشلەتكۈچى</string>
+  <string name="preferences__mmsc_username">MMSC ئىشلەتكۈچى ئىسمى</string>
   <string name="preferences__mmsc_password">MMSC پارولى</string>
   <string name="preferences__sms_delivery_reports">قىسقا ئۇچۇر يەتكۈزۈش دوكلاتلىرى</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ئەۋەتكەن ھەر بىر قىسقا ئۇچۇر ئۈچۈن بىر يەتكۈزۈش دوكلاتى تەلەپ قىلىش</string>
@@ -2076,13 +2076,16 @@
   <string name="PaymentsHomeFragment__payments_deactivated">چىقىم چەكلەندى.</string>
   <string name="PaymentsHomeFragment__payment_failed">چىقىم قىلالمىدى</string>
   <string name="PaymentsHomeFragment__details">تەپسىلاتى</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">‫Signal نى ئىشلىتىپ MobileCoin ئەۋەتەلەيسىز ۋە تاپشۇرىۋالالايسىز. بارلىق چىقىملار MobileCoins ۋە MobileCoin ھەميانىنىڭ ئىشلىتىش شەرتلىرىگە بويسۇنىدۇ. بۇ سىناق ئىقتىدارى، شۇڭا بەزى مەسىلىلەرگە دۇچ كېلىشىڭىز ھەمدە چىقىم ياكى قالدۇقلىرىڭىزنى يوقىتىپ قويسىڭىز ئەسلىگە كەلتۈرەلمەسلىكىڭىز مۈمكىن.</string>
   <string name="PaymentsHomeFragment__activate">ئاكتىپلا</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ماددىلىرىنى كۆرسەت</string>
+  <string name="PaymentsHomeFragment__payments_not_available">‫Signal دا چىقىم ئەمدى ئىشلىمەيدۇ. سىز مەبلەغلىرىڭىزنى ئالماشتۇرۇش ئورنىغا داۋاملىق يۆتكىيەلەيسىز. ئەمما ئەمدى چىقىمنى يوللاپ ۋە تاپشۇرىۋالالمايسىز ياكى مەبلەغ قوشالمايسىز.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">پۇل قوش</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ھەميان ئادرېسىڭىز</string>
   <string name="PaymentsAddMoneyFragment__copy">كۆچۈر</string>
-  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">كېسىش تاختىسىغا كۆچۈرۈش</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">چاپلاش تاختىسىغا كۆچۈردى</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">مەبلەغ قوشۇش ئۈچۈن MobileCoin نى ھەميان ئادرېسىڭىزغا ئەۋەتىڭ. مۇئامىلىنى MobileCoin نى قوللايدىغان بىر ئالماستۇرغۇچىدىكى ھېساباتىڭىزدىن باشلاڭ، ئاندىن QR كودىنى سايىلەڭ ياكى ھەميان ئادرېسىڭىزنى كۆچۈرۈڭ.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">تەپسىلاتى</string>
   <string name="PaymentsDetailsFragment__status">ھالىتى</string>
@@ -2093,16 +2096,39 @@
   <string name="PaymentsDetailsFragment__network_fee">تور ھەققى</string>
   <string name="PaymentsDetailsFragment__sent_by">يوللىغۇچى</string>
   <string name="PaymentsDetailsFragment__sent_to_s">%1$s غا يوللاندى</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">سىز%1$s نىڭ ئۈستىدە%2$s دە</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">‫%1$s %2$s نىڭ ئۈستىدە %3$s دە</string>
+  <string name="PaymentsDetailsFragment__to">كىمگە</string>
+  <string name="PaymentsDetailsFragment__from">كىمدىن</string>
+  <string name="PaymentsDetailsFragment__information">چىقىم سوممىسى ۋە مۇئامىلە ۋاقتىنى ئۆز ئىچىگە ئالغان مۇئامىلە تەپسىلاتلىرى MobileCoin  ھېسابات دەپتىرىنىڭ بىر قىسمى.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">تەڭگە تازىلاش ھەققى</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">قولىڭىزدىكى تەڭگىلەرنى بىرلەشتۈرۈپ مۇئامىلىنى تاماملىغىلى بولمىغاندا ، «تەڭگە تازىلاش ھەققى» ئېلىنىدۇ. تازىلاش ئارقىلىق داۋاملىق چىقىم يوللاشقا يول قويىدۇ.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">بۇ مۇئامىلىدە باشقا تەپسىلاتلار يوق</string>
   <string name="PaymentsDetailsFragment__sent_payment">چىقىم يوللاندى</string>
   <string name="PaymentsDetailsFragment__received_payment">تاپشۇرۇۋالغان چىقىم</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">چىقىم تاماملاندى %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">نومۇرنى چەكلە</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">يۆتكە</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR كودى تارا</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">كىمگە: ھەميان ئادرېسىنى سايىلە ياكى كىرگۈز </string>
+  <string name="PaymentsTransferFragment__you_can_transfer">ئالماشتۇرغۇچى تەمىنلىگەن ھەميان ئادرېسىغا يۆتكەشنى تاماملاش ئارقىلىق MobileCoin نى يۆتكىيەلەيسىز. ھەميان ئادرېسى سان ۋە ھەرپلەرنىڭ تىزمىسى بولۇپ، كۆپىنچە QR كودىنىڭ ئاستىدا بولىدۇ. </string>
   <string name="PaymentsTransferFragment__next">كېيىنكىسى</string>
+  <string name="PaymentsTransferFragment__invalid_address">ئىناۋەتسىز ئادرېس</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">سىز يۆتكىمەكچى بولغان ھەميان ئادرېسىنى تەكشۈرۈڭ ۋە قايتا سىناڭ.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">ئۆزىڭىزنىڭ Signal ھەميان ئادرېسىغا يۆتكىيەلمەيسىز. قوللايدىغان ئالماشتۇرغۇچىدىكى ھېساباتىڭىزدىن ھەميان ئادرېسىنى كىرگۈزۈڭ.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR كودىنى سايىلەش ئۈچۈن Signal كامېرانى زىيارەت قىلالىشى كېرەك.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">‫QR كودىنى تۇتۇش ئۈچۈن Signal كامېرا ھوقۇقىغا موھتاج ، تەڭشەكلەرگە بېرىڭ، «ھوقۇقلار» نى تاللاپ ۋە «كامېرا» نى قوزغىتىڭ.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR كودىنى سايىلەش ئۈچۈن Signal كامېرانى زىيارەت قىلالىشى كېرەك.</string>
   <string name="PaymentsTransferFragment__settings">تەڭشەكلەر</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ئادرېس QR كودىنى سايىلە</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">پۇل ئالغۇچىنىڭ ئادرېس QR كودىنى سايىلەڭ</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">ئىلتىماس</string>
+  <string name="CreatePaymentFragment__pay">تۆلە</string>
+  <string name="CreatePaymentFragment__available_balance_s">ئىشلىتىشكە بولىدىغان قالدۇق: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">ئالماشتۇر</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2114,15 +2140,33 @@
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">ئىزاھات قوش</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">تېگىشىشلەر پەقەت مۆلچەر بولۇپ ، توغرا بولماسلىقى مۇمكىن.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">ئىزاھات</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">چىقىمنى جەزىملە</string>
   <string name="ConfirmPayment__network_fee">تور ھەققى</string>
+  <string name="ConfirmPayment__error_getting_fee">ھەق ئېلىشتا خاتالىق</string>
+  <string name="ConfirmPayment__estimated_s">مۆلچەرلەندى%1$s</string>
+  <string name="ConfirmPayment__to">كىمگە</string>
+  <string name="ConfirmPayment__total_amount">جەمئىي سومما</string>
+  <string name="ConfirmPayment__balance_s">قالدۇق: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">چىقىمنى يوللاۋاتىدۇ…</string>
   <string name="ConfirmPayment__processing_payment">چىقىمنى بېجىرىۋاتىدۇ…</string>
   <string name="ConfirmPayment__payment_complete">چىقىم تامام</string>
   <string name="ConfirmPayment__payment_failed">چىقىم قىلالمىدى</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">چىقىم داۋاملىق بىر تەرەپ قىلىنىدۇ</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">ئىناۋەتسىز تاپشۇرۇۋالغۇچى</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">بۇ كىشى چىقىمنى ئاكتىپلىمىدى</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">تور ھەققىنى ئىلتىماس قىلالمىدى. چىقىمنى داۋاملاشتۇرماقچى بولسىڭىز ماقۇل نى چېكىپ قايتا سىناڭ.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">‫%1$s %2$s دە</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">پۇلنى بەلگىلەش</string>
+  <string name="SetCurrencyFragment__all_currencies">بارلىق پۇللار</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2552,6 +2596,10 @@
   <string name="OldDeviceTransferLockedDialog__done">بولدى</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">بىكار قىل ۋە بۇ ئۈسكىنىنى ئاكتىپلا</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">‫‫MOB قالدۇقىنى يۆتكەمسىز؟</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">سىزدە بار قالدۇق %1$s. ئەگەر ھېساباتىڭىزنى ئۆچۈرۈشتىن بۇرۇن مەبلىغىڭىزنى باشقا ھەميان ئادرېسىغا يۆتكىمىسىڭىز ، ئۇنى مەڭگۈ يوقىتىسىز.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">يۆتكىمە</string>
+  <string name="AdvancedPreferenceFragment__transfer">يۆتكە</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">چەكلەش</string>
   <string name="RecipientBottomSheet_unblock">قالدۇرۇش</string>
@@ -2600,8 +2648,8 @@
   <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" نى چەكلىيەلمىدى</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" چەكلىمىدىن چىقىرىلدى .</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">ئەزالارنى كۆزدىن كەچۈر</string>
-  <string name="ReviewCardDialogFragment__review_request">ئىلتىماسنى كۆزدىن كەچۈر</string>
+  <string name="ReviewCardDialogFragment__review_members">ئەزالارنى تەكشۈر</string>
+  <string name="ReviewCardDialogFragment__review_request">ئىلتىماسنى تەكشۈر</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d گۇرۇپپا ئەزاسىنىڭ ئوخشاش ئىسمى بار ئىكەن. تۆۋەندىكىلەرنى كۆزدىن كەچۈرۈڭ، بىر مەشغۇلات تاللاڭ.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">ئىلتىماسنىڭ نەدىن كەلگەنلىكىنى جەزملەشتۈرەلمىسىڭىز، ئاستىدىكى ئالاقەداشلارنى كۆزدىن كەچۈرۈڭ ۋە مەشغۇلات قىلىڭ.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">باشقا ئورتاق گۇرۇپپا يوق</string>
@@ -2644,6 +2692,7 @@
   <string name="DeleteAccountFragment__delete_account">ھېساباتنى ئۆچۈر</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ھېسابات ئۇچۇرلىرىڭىز ۋە رەسىمىڭىز ئۆچۈرۈلىدۇ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">بارلىق ئۇچۇرلىرىڭىز ئۆچۈرۈلىدۇ</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">‫%1$s نى چىقىم ھېسابلىرى ئارىسىدن ئۆچۈرىۋەت</string>
   <string name="DeleteAccountFragment__no_country_code">دۆلەت كودى كۆرسىتىلمىدى</string>
   <string name="DeleteAccountFragment__no_number">نومۇر كۆرسىتىلمىدى</string>
   <string name="DeleteAccountFragment__the_phone_number">كىرگۈزگەن تېلېفون نومۇرىڭىز ھېساباتىڭىزنىڭكى بىلەن ئوخشاش ئەمەس</string>
@@ -2699,30 +2748,82 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">تام قەغىزى بېكىتىشتە خاتالىق.</string>
   <string name="WallpaperCropActivity__blur_photo">فوتوگرافنى غۇۋالاشتۇرۇش</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">MobileCoin ھەققىدە</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">‫MobileCoin شەخسىيەت گەۋدىلەندۈرۈلگەن يېڭى رەقەملىك پۇل.</string>
+  <string name="payment_info_card_adding_funds"> قوشۇلغان مەبلەغ</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">ھەميان ئادرېسىڭىزغا MobileCoin ئەۋەتىش ئارقىلىق Signal دا ئىشلىتىشكە مەبلەغ قوشالايسىز.</string>
+  <string name="payment_info_card_cashing_out">نەق پۇلغا ئايلاندۇر</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin نى قوللايدىغان ئالماشتۇرغۇچىدا خالىغان ۋاقىتتا MobileCoin نى نەقلەشتۈرەلەيسىز. پەقەت بۇ ئالماشتۇرغۇچىدىكى ھېساباتىڭىزغا يۆتكىسىڭىزلا بولىدۇ.</string>
+  <string name="payment_info_card_hide_this_card">بۇ كارت كۆرۈنمىسۇنمۇ؟</string>
   <string name="payment_info_card_hide">يوشۇر</string>
+  <string name="payment_info_card_record_recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسىنى خاتىرىلە</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">ئەسلىگە كەلتۈرۈش جۇملىڭىز چىقىم ھېسابىڭىزنى ئەسلىگە كەلتۈرىدىغان يەنە بىر ئۇسۇل بىلەن تەمىنلەيدۇ.</string>
+  <string name="payment_info_card_record_your_phrase">جۈملىڭىزنى خاتىرىلەڭ</string>
+  <string name="payment_info_card_update_your_pin">‫PIN نىڭىزنى يېڭىلاڭ</string>
+  <string name="payment_info_card_with_a_high_balance">قالدۇقىڭىز يۇقىرى بولسا، بەلكىم سان-ھەرپلىك بىر PIN غا يېڭىلاپ، ھېساباتىڭىزنى تېخىمۇ بەكرەك قوغدىغىڭىز كېلىشى مۈمكىن.</string>
   <string name="payment_info_card_update_pin">PIN يېڭىلا</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">ھەمياننى ئاكتىپسىزلە</string>
+  <string name="DeactivateWalletFragment__your_balance">قالدۇقىڭىز</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">چىقىمنى ئاكتىپسىزلاشتىن بۇرۇن مەبلىغىڭىزنى باشقا ھەميان ئادرېسىغا يۆتكەش تەۋسىيە قىلىنىدۇ. ئەگەر ھازىر مەبلىغىڭىزنى يۆتكىمەسلىكنى تاللىسىڭىز ، چىقىمنى قايتا ئاكتىپلىسىڭىز ئۇلار Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">قالغان قالدۇقنى يۆتكە</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">يۆتكىمەي تۇرۇپ ئاكتىپسىزلا</string>
   <string name="DeactivateWalletFragment__deactivate">چەكلە</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">يۆتكىمەي تۇرۇپ ئاكتىپسىزلىسۇنمۇ؟</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">ئەگەر چىقىمنى قايتا ئاكتىپلاشنى تاللىسىڭىز ، قالدۇقىڭىز Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">ئاكتىپسىزلاشتا خاتالىق كۆرۈلدى.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسى</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسىنى كۆر</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسىنى كىرگۈزۈڭ</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">ئەگەر Signal نى قايتا قاچىلىغاندا Signal PIN نى جەزملەشتۈرگەن بولسىڭىزقالدۇقىڭىز ئاپتوماتىك ئەسلىگە كېلىدۇ. ئەسلىگە كەلتۈرۈش جۈملىسى ئارقىلىقمۇ قالدۇقىڭىزنى ئەسلىگە كەلتۈرەلەيسىز ، بۇ بىر %1$d- سىزگە خاس بولغان سۆزلۈك جۈملە. ئۇنى يېزىۋېلىپ بىر بىخەتەر جايدا ساقلاڭ.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ئەسلىگە كەلتۈرۈش جۈملىڭىز بولسا بىر %1$d- سىزگە خاس بولغان سۆزلۈك جۈملە. قالدۇقىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ جۈملىنى ئىشلىتىڭ.</string>
   <string name="PaymentsRecoveryStartFragment__start">باشلا</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">قولدا كىرگۈزۈش</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">چاپلاش تاختىسىدىن كۆچۈر</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسىنى چاپلا</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسى</string>
   <string name="PaymentsRecoveryPasteFragment__next">كېيىنكىسى</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ئىناۋەتسىز ئەسلىگە كەلتۈرۈش جۈملىسى</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">%1$d سۆزلەرنى كىرگۈزدىڭىزمۇ تەكشۈرۈڭ ۋە قايتا سىناڭ.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">كېيىنكىسى</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">تەھرىر</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">ئالدىنقى</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">سىزنڭ ئەسلىگە كەلتۈرۈش جۇملىڭىز</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">تۆۋەندىكى %1$d سۆزلەرنى تەرتىپى بويىچە يېزىڭ. تىزىملىكىڭىزنى بىر بىخەتەر جايدا ساقلاڭ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">جۈملىڭىزنى توغرا كىرگۈزدىڭىزمۇ تەكشۈرۈپ بېقىڭ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">ئېكران كۆرۈنۈشى ئالماڭ ياكى ئېلخەت بىلەن ئەۋەتمەڭ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">چىقىم ھېسابى ئەسلىگە كەلتۈرۈلدى.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">ئىناۋەتسىز ئەسلىگە كەلتۈرۈش جۈملىسى</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">جۈملىڭىزنى توغرا كىرگۈزدىڭىزمۇ تەكشۈرۈڭ ۋە قايتا سىناڭ</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">چاپلاش تاختىسىغا كۆچۈرەمسىز؟</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">ئەگەر ئەسلىگە كەلتۈرۈش جۇملىسىنى رەقەملىك ساقلىماقچى بولسىڭىز، ئىشەنچلىك بىر يەردە بىخەتەر ساقلىنىشىغا كاپالەتلىك قىلىڭ. </string>
   <string name="PaymentsRecoveryPhraseFragment__copy">كۆچۈر</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسىنى جەزىملە</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">ئەسلىگە كەلتۈرۈش جۈملىڭىزدىن تۆۋەندىكى سۆزلەرنى كىرگۈزۈڭ</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">سۆز%1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">جۇملىنى قايتا كۆر</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">بولدى</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">ئەسلىگە كەلتۈرۈش جۈملىسى جەزىملەندى</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">ئەسلىگە كەلتۈرۈش جۈملىسىنى كىرگۈز</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">سۆز كىرگۈز %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">سۆز%1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">كېيىنكىسى</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">ئىناۋەتسىز سۆز</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">چاپلاش تاختىسى تازىلاندى.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">كۆرۈش</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s سىزگە %2$s ئەۋەتتى</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d يېڭى چىقىم ئۇقتۇرۇشلىرى</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">چىقىم يوللىنالمىدى</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">بۇ ئىشلەتكۈچىگە بىر چىقىم يوللاش ئۈچۈن، ئۇلار سىزدىن كەلگەن بىر ئۇچۇر ئىلتىماسىنى قوبۇل قىلىشى كېرەك. ئۇچۇر ئىلتىماسىنى قۇرۇشى ئۈچۈن ئۇلارغا بىر ئۇچۇر ئەۋەتىڭ. </string>
   <string name="CanNotSendPaymentDialog__send_a_message">بىز ئۇچۇر يوللا</string>
   <!--EOF-->
 </resources>

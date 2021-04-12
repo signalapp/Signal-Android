@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN zakázán.</string>
   <string name="ApplicationPreferencesActivity_hide">Skrýt</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Schovat upomínku?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Záznam fráze pro obnovení plateb</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Záznam fráze</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Než budete moci deaktivovat svůj PIN, musíte si zaznamenat frázi pro obnovení plateb, abyste zajistili, že můžete obnovit svůj platební účet.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -59,6 +62,7 @@
   <string name="AttachmentKeyboard_location">Poloha</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal potřebuje oprávnění pro zobrazení vašich fotografií a videí.</string>
   <string name="AttachmentKeyboard_give_access">Povolit přístup</string>
+  <string name="AttachmentKeyboard_payment">Platba</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal potřebuje oprávnění pro přístup k úložišti, aby mohl připojovat fotky, videa nebo audio, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
@@ -1953,6 +1957,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Něco nefunguje</item>
+    <item>Požadavek na funkcionalitu</item>
+    <item>Dotaz</item>
+    <item>Zpětná vazba</item>
+    <item>Další</item>
+    <item>Platby</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tato zpráva</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedávno použité</string>
@@ -1998,6 +2010,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Přijímat všechny SMS</string>
   <string name="preferences__pref_all_mms_title">Přijímat všechny MMS</string>
@@ -2061,6 +2074,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">U každé odeslané zprávy požadovat potvrzení o doručení</string>
   <string name="preferences__data_and_storage">Data a úložiště</string>
   <string name="preferences__storage">Úložiště</string>
+  <string name="preferences__payments">Platby</string>
+  <string name="preferences__payments_beta">Platby (Beta)</string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
   <string name="preferences__keep_messages">Zachovat zprávy</string>
   <string name="preferences__clear_message_history">Smazat historii zpráv</string>
@@ -2168,29 +2183,98 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Veškerá aktivita</string>
   <string name="PaymentsAllActivityFragment__all">Všichni</string>
   <string name="PaymentsAllActivityFragment__sent">Odesláno</string>
   <string name="PaymentsAllActivityFragment__received">Přijato</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Představujeme platby (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Pomocí Signal můžete odesílat a přijímat MobileCoin, novou digitální měnu zaměřenou na soukromí. Aktivujte a začněte.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktivovat platby</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktivuji platby…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Obnovit platební účet</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Zatím žádná nedávná aktivita</string>
+  <string name="PaymentsHomeFragment__pending_requests">Čekající žádosti</string>
+  <string name="PaymentsHomeFragment__recent_activity">Nedávná aktivita</string>
   <string name="PaymentsHomeFragment__see_all">Zobrazit vše</string>
+  <string name="PaymentsHomeFragment__add_funds">Přidat prostředky</string>
   <string name="PaymentsHomeFragment__send">Odeslat</string>
+  <string name="PaymentsHomeFragment__sent_s">Odesláno %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Přijato %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Převést na burzu</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Převod měny</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Deaktivovat platby</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Obnovovací fráze</string>
   <string name="PaymentsHomeFragment__help">Nápověda</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Poplatek za vyčištění měny</string>
+  <string name="PaymentsHomeFragment__sent_payment">Odeslaná platba</string>
+  <string name="PaymentsHomeFragment__received_payment">Přijatá platba</string>
+  <string name="PaymentsHomeFragment__processing_payment">Zpracovávám platbu</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Převod měny není dostupný</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Převod měny nelze zobrazit. Zkontrolujte připojení telefonu a zkuste to znovu.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Platby nejsou ve vašem regionu dostupné.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Nepodařilo se povolit platby. Zkuste to znovu.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktivovat platby?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Nebudete moci posílat ani přijímat MobileCoin v Signalu, pokud deaktivujete platby.</string>
+  <string name="PaymentsHomeFragment__deactivate">Deaktivovat</string>
   <string name="PaymentsHomeFragment__continue">Pokračovat</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Zůstatek není aktuálně k dispozici.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Platby deaktivovány.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Platba selhala</string>
   <string name="PaymentsHomeFragment__details">Podrobnosti</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signál můžete použít k odesílání a přijímání MobileCoin. Všechny platby podléhají podmínkám použití pro MobileCoiny a peněženku MobileCoin. Toto je funkce beta, takže se můžete setkat s některými problémy a platby nebo zůstatky, které můžete ztratit, nelze obnovit.</string>
+  <string name="PaymentsHomeFragment__activate">Aktivovat</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Zobrazit MobileCoin podmínky</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Platby v Signal již nejsou k dispozici. Stále můžete převádět prostředky na burzu, ale již nemůžete posílat a přijímat platby ani přidávat prostředky.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Přidat prostředky</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Adresa vaší peněženky</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopírovat</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Zkopírováno do schránky</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Chcete-li přidat prostředky, zašlete MobileCoin na adresu vaší peněženky. Zahajte transakci ze svého účtu na burze, která podporuje MobileCoin, poté naskenujte QR kód nebo zkopírujte adresu peněženky.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
   <string name="PaymentsDetailsFragment__status">Stav</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Odesílání platby…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Zpracovávání platby…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Platba dokončena</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Platba selhala</string>
+  <string name="PaymentsDetailsFragment__network_fee">Poplatek sítě</string>
+  <string name="PaymentsDetailsFragment__sent_by">Odesláno od</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Odesláno pro %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Vy na %1$s v %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s na %2$s v %3$s</string>
   <string name="PaymentsDetailsFragment__to">Komu</string>
   <string name="PaymentsDetailsFragment__from">Od</string>
+  <string name="PaymentsDetailsFragment__information">Podrobnosti transakce, včetně částky platby a času transakce, jsou součástí knihy MobileCoin.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Poplatek za vyčištění měny</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">„Poplatek za vyčištění mincí“ je účtován, když mince ve vašem držení nelze kombinovat k dokončení transakce. Vyčištění vám umožní pokračovat v odesílání plateb.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Pro tuto transakci nejsou k dispozici žádné další podrobnosti</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Odeslaná platba</string>
+  <string name="PaymentsDetailsFragment__received_payment">Přijatá platba</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Platba dokončena %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Blokovat číslo</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Převést</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Naskenování QR kódu</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Pro: Naskenujte nebo zadejte adresu peněženky</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin můžete převést dokončením převodu na adresu peněženky uvedenou burzou. Adresa peněženky je řetězec čísel a písmen nejčastěji pod QR kódem.</string>
   <string name="PaymentsTransferFragment__next">Další</string>
+  <string name="PaymentsTransferFragment__invalid_address">Neplatná adresa</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Zkontrolujte adresu peněženky, na kterou se pokoušíte převést, a zkuste to znovu.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Nelze převést na svou vlastní adresu peněženky Signal. Zadejte adresu peněženky ze svého účtu na podporované burze.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal potřebuje přístup ke kameře pro naskenování QR kódu.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signál vyžaduje povolení kamery k zachycení QR kódu. Přejděte do nastavení, vyberte možnost \"Oprávnění\" a povolte možnost \"Fotoaparát\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">K naskenování QR kódu potřebuje Signal přístup ke kameře.</string>
   <string name="PaymentsTransferFragment__settings">Nastavení</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Naskenujte QR kód adresy</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Naskenujte QR kód adresy příjemce</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Požadavek</string>
+  <string name="CreatePaymentFragment__pay">Zaplatit</string>
+  <string name="CreatePaymentFragment__available_balance_s">Dostupný zůstatek: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Přepnout</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2200,12 +2284,35 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Přidat poznámku</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Převody jsou pouze odhady a nemusí být přesné.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Poznámka</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Potvrdit platbu</string>
+  <string name="ConfirmPayment__network_fee">Poplatek sítě</string>
+  <string name="ConfirmPayment__error_getting_fee">Chyba při získávání poplatku</string>
+  <string name="ConfirmPayment__estimated_s">Odhadováno %1$s</string>
   <string name="ConfirmPayment__to">Komu</string>
+  <string name="ConfirmPayment__total_amount">Celkové množství</string>
+  <string name="ConfirmPayment__balance_s">Zůstatek: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Odesílání platby…</string>
+  <string name="ConfirmPayment__processing_payment">Zpracovávání platby…</string>
+  <string name="ConfirmPayment__payment_complete">Platba dokončena</string>
+  <string name="ConfirmPayment__payment_failed">Platba selhala</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Platba bude pokračovat ve zpracování</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Neplatný příjemce</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Tato osoba nepovolila platby</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nelze požádat o síťový poplatek. Chcete-li pokračovat v této platbě, klepněte na OK a zkuste to znovu.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s v %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Nastavit měnu</string>
+  <string name="SetCurrencyFragment__all_currencies">Všechny měny</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2649,6 +2756,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="OldDeviceTransferLockedDialog__done">Hotovo</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Zrušit a aktivovat toto zařízení</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Převést MOB zůstatek?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Máte zůstatek %1$s. Pokud nepřevedete své prostředky na jinou adresu peněženky před odstraněním účtu, ztratíte je navždy.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Nepřevádět</string>
+  <string name="AdvancedPreferenceFragment__transfer">Převést</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Zablokovat</string>
   <string name="RecipientBottomSheet_unblock">Odblokovat</string>
@@ -2745,6 +2856,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="DeleteAccountFragment__delete_account">Smazat účet</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Vymazání vašeho účtu a profilové fotografie</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Vymazání všech vašich zpráv</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Odstranit %1$s z vašeho platebního účtu.</string>
   <string name="DeleteAccountFragment__no_country_code">Kód země nebyl zadán</string>
   <string name="DeleteAccountFragment__no_number">Číslo nebylo zadáno</string>
   <string name="DeleteAccountFragment__the_phone_number">Zadané telefonní číslo neodpovídá vašemu účtu.</string>
@@ -2800,25 +2912,82 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="WallpaperCropActivity__error_setting_wallpaper">Chyba při nastavování tapety.</string>
   <string name="WallpaperCropActivity__blur_photo">Rozostřit fotografii</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">O MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin je nová měna zaměřená na soukromí.</string>
+  <string name="payment_info_card_adding_funds">Přidávám prostředky</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Prostředky pro použití v Signal můžete přidat zasláním MobileCoin na adresu vaší peněženky.</string>
+  <string name="payment_info_card_cashing_out">Vyplacení</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin můžete kdykoli vyplatit na burze, která podporuje MobileCoin. Stačí provést převod na svůj účet na této burze.</string>
+  <string name="payment_info_card_hide_this_card">Schovat tuto kartu?</string>
   <string name="payment_info_card_hide">Skrýt</string>
+  <string name="payment_info_card_record_recovery_phrase">Zaznamenat obnovovací frázi</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Obnovovací fráze poskytuje jiný způsob obnovení vašeho platebního účtu.</string>
+  <string name="payment_info_card_record_your_phrase">Záznam fráze</string>
+  <string name="payment_info_card_update_your_pin">Aktualizovat PIN</string>
+  <string name="payment_info_card_with_a_high_balance">S vysokým zůstatkem možná budete chtít aktualizovat na alfanumerický PIN, abyste svému účtu zvýšili ochranu.</string>
   <string name="payment_info_card_update_pin">Aktualizovat PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivovat peněženku</string>
+  <string name="DeactivateWalletFragment__your_balance">Váš zůstatek</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Před deaktivací plateb doporučujeme převést prostředky na jinou adresu peněženky. Pokud se rozhodnete nepřevést své prostředky nyní, zůstanou ve vaší peněžence propojené se Signal, pokud znovu aktivujete platby.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Převést zbývající zůstatek</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktivovat bez převodu</string>
+  <string name="DeactivateWalletFragment__deactivate">Deaktivovat</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deaktivovat bez převodu?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Pokud se rozhodnete znovu aktivovat platby, váš zůstatek zůstane v peněžence propojené se Signal.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Chyba při deaktivování peněženky.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Obnovovací fráze</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Zobrazit obnovovací frázi</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Zadat obnovovací frázi</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Když znovu potvrdíte svůj Signální PIN, váš zůstatek se automaticky obnoví, když znovu nainstalujete Signal. Zůstatek můžete obnovit také pomocí obnovovací fráze, což je jedinečná fráze s %1$d slovy. Zapište si to a uložte na bezpečném místě.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Vaše fráze pro obnovení je pro vás jedinečná fráze s %1$d slovy. Použijte tuto frázi k obnovení zůstatku.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Začít</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Zadat ručně</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Zkopírovat ze schránky</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Vložit obnovovací frázi</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Obnovovací fráze</string>
   <string name="PaymentsRecoveryPasteFragment__next">Další</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Neplatná obnovovací fráze</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Ujistěte se, že jste zadali %1$d slov a zkuste to znovu.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Další</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Upravit</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Předchozí</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Vaše obnovovací fráze</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Zapište si následujících %1$d slov ve správné pořadí. Uložte si seznam na bezpečném místě.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Ujistěte se, že jste zadali obnovovací frázi správně.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Nedělejte screenshot ani neodesílejte e-mailem.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Platební účet obnoven.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Neplatná obnovovací fráze</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Ujistěte se, že jste zadali obnovovací frázi správně a zkuste to znovu.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Zkopírovat do schránky?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Pokud se rozhodnete obnovovací frázi digitálně, zajistěte, aby byla bezpečně uložena někde, čemu důvěřujete.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopírovat</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Potvrdit obnovovací frázi</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Zadejte následující slova z vaší obnovovací fráze</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Slovo %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Zobrazit frázi znovu</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Hotovo</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Obnovovací fráze potvrzena</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Zadat obnovovací frázi</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Zadejte slovo %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Slovo %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Další</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Neplatné slovo</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Schránka vymazána.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Zobrazit</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s vám poslal(a) %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d oznámení o platbě</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Nelze odeslat platbu</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Aby mohli tomuto uživateli odeslat platbu, musí od vás přijmout požadavek na zprávu. Zašlete jim zprávu pro vytvoření žádosti.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Poslat zprávu</string>
   <!--EOF-->
 </resources>

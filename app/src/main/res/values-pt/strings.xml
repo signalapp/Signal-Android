@@ -2057,7 +2057,7 @@
   <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir para trocar</string>
   <string name="PaymentsHomeFragment__currency_conversion">Conversão de moeda</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Desativar pagamentos</string>
-  <string name="PaymentsHomeFragment__recovery_phrase">Recuperar frase</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Frase de recuperação</string>
   <string name="PaymentsHomeFragment__help">Ajuda</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Taxa de limpeza de moedas</string>
   <string name="PaymentsHomeFragment__sent_payment">Pagamento enviado</string>
@@ -2764,25 +2764,66 @@
   <string name="payment_info_card_update_pin">Atualizar PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
+  <string name="DeactivateWalletFragment__your_balance">O seu saldo</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">É recomendado que transfira os seus fundos para outro endereço de carteira antes de desativar os pagamentos. Se escolher não transferir os seus fundos agora, eles irão permanecer na sua carteira ligada ao Signal caso reative os pagamentos.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferir o saldo restante</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Desativar sem transferir</string>
   <string name="DeactivateWalletFragment__deactivate">Desativar</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Desativar sem transferir?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">O seu saldo irá ficar na sua carteira ligada ao Signal caso escolha reativar os pagamentos.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Erro ao desativar a carteira.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recuperar frase</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Ver frase de recuperação</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introduzir a frase de recuperação</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">O seu saldo será restaurado automaticamente quando você reinstalar o Signal se você confirmar o PIN do Signal. Você também pode restaurar o seu saldo utilizando uma frase de recuperação, que é uma frase única para si de %1$d palavras. Anote-a e guarde-a num local seguro.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">A sua frase de recuperação é uma frase única para si com %1$d palavras. Utilize esta frase para restaurar o seu saldo.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Iniciar</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Introduzir manualmente</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Copiar da área de transferência</string>
   <!--PaymentsRecoveryPasteFragment-->
-  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Recuperar frase</string>
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Colar frase de recuperação</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frase de recuperação</string>
   <string name="PaymentsRecoveryPasteFragment__next">Seguinte</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frase de recuperação inválida</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Certifique-se que introduziu %1$d palavras e tente novamente.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Seguinte</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Anterior</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">A sua frase de recuperação</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anote as %1$d palavras seguintes em ordem. Guarde a sua lista num local seguro.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Certifique-se que introduziu a frase corretamente.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Não faça uma captura de ecrã ou envie um e-mail.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Conta de pagamentos restaurada.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frase de recuperação inválida</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Certifique-se que introduziu a frase corretamente e tente de novo.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copiar para a área de transferência?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Se você optar por armazenar a sua frase de recuperação digitalmente, certifique-se de que ela esteja armazenada com segurança num local da sua confiança. </string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmar frase de recuperação</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Introduza as seguintes palavras da sua frase de recuperação.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Palavra %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Ver frase novamente</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Concluído</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Recuperação de frase confirmada</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Introduzir a frase de recuperação</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Introduza a palavra %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Palavra %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Seguinte</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Palavra inválida</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Área de transferência limpa.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Ver</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s enviou-lhe %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d notificações de pagamento novas</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Não é possível enviar o pagamento</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para enviar um pagamento para este utilizador, ele precisa de aceitar uma mensagem sua de pedido. Envie-lhe uma mensagem para criar um pedido de mensagem.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar uma mensagem</string>
   <!--EOF-->
 </resources>

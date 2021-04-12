@@ -2066,6 +2066,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Megjegyzés</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Címzett</string>
   <string name="ConfirmPayment__total_amount">Teljes összeg</string>

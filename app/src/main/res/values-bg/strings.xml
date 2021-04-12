@@ -606,6 +606,7 @@
   <string name="ManageGroupActivity_mentions">Споменавания</string>
   <string name="ManageGroupActivity_chat_wallpaper">Тапет на чата</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Винаги</string>
   <string name="ManageGroupActivity_off">Деактивирано</string>
   <string name="ManageGroupActivity_on">Активирано</string>
   <string name="ManageGroupActivity_view_all_members">Преглед на всички членове</string>
@@ -656,6 +657,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Тих режим за известия</string>
   <string name="ManageRecipientActivity_custom_notifications">Персонализирани известия</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
+  <string name="ManageRecipientActivity_always">Винаги</string>
   <string name="ManageRecipientActivity_off">Деактивирано</string>
   <string name="ManageRecipientActivity_on">Активирано</string>
   <string name="ManageRecipientActivity_add_to_a_group">Добави в група</string>
@@ -1805,6 +1807,7 @@
   <string name="arrays__mute_for_one_hour">Тих режим за 1 час</string>
   <string name="arrays__mute_for_one_day">Тих режим за 1 ден</string>
   <string name="arrays__mute_for_seven_days">Тих режим за 7 дена</string>
+  <string name="arrays__always">Винаги</string>
   <string name="arrays__settings_default">Настройки по подразбиране</string>
   <string name="arrays__enabled">Разрешено</string>
   <string name="arrays__disabled">Деактивирано</string>

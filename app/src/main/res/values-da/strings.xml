@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiveret</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påmindelse?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer sætning til betalingsgendannelse</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Registrer sætning</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere din pinkode, skal du registrere din sætning til betalingsgendannelse for at sikre, at du kan gendanne din betalingskonto.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -1811,6 +1814,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__debug_log">Fejllog:</string>
   <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
+  <string-array name="HelpFragment__categories">
+    <item>Noget virker ikke</item>
+    <item>Funktionsanmodning</item>
+    <item>Spørgsmål</item>
+    <item>Feedback</item>
+    <item>Andet</item>
+    <item>Betalinger</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -1854,6 +1865,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
     <item quantity="other">%dt</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
@@ -1918,6 +1930,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__data_and_storage">Data og lager</string>
   <string name="preferences__storage">Hukommelse</string>
   <string name="preferences__payments">Betalinger</string>
+  <string name="preferences__payments_beta">Betalinger (Beta)</string>
   <string name="preferences__conversation_length_limit">Max. grænse for samtaler</string>
   <string name="preferences__keep_messages">Bevar beskeder</string>
   <string name="preferences__clear_message_history">Ryd beskedhistorik</string>
@@ -2025,31 +2038,98 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Alle aktiviteter</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
   <string name="PaymentsAllActivityFragment__sent">Sendt</string>
   <string name="PaymentsAllActivityFragment__received">Modtaget</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Introducerer betalinger (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Brug Signal til at sende og modtage MobileCoin, en ny fortrolighedsfokuseret digital valuta. Aktivér for at komme i gang.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktivér Betalinger</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Gendan betalingskonto</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ingen nylig aktivitet endnu</string>
+  <string name="PaymentsHomeFragment__pending_requests">Afventende anmodninger</string>
+  <string name="PaymentsHomeFragment__recent_activity">Seneste aktivitet</string>
   <string name="PaymentsHomeFragment__see_all">Se alle</string>
+  <string name="PaymentsHomeFragment__add_funds">Tilføj midler</string>
   <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__sent_s">Sendt %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Modtaget %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Overfør til udveksling</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Valutaomregning</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Deaktivér betalinger</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Gendannelsessætning</string>
   <string name="PaymentsHomeFragment__help">Hjælp</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Oprykningsgebyr for mønter</string>
+  <string name="PaymentsHomeFragment__sent_payment">Sendt betaling</string>
+  <string name="PaymentsHomeFragment__received_payment">Modtaget betaling</string>
+  <string name="PaymentsHomeFragment__processing_payment">Bearbejder betaling</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutaomregning ikke tilgængelig</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valutaomregning kan ikke vises. Tjek telefonens forbindelse og prøv igen.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalinger er ikke tilgængelige i din region.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Betalinger kunne ikke aktiveres. Prøv igen senere.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktivér Betalinger?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Du kan ikke sende eller modtage MobileCoin i Signal, hvis du deaktiverer betalinger.</string>
+  <string name="PaymentsHomeFragment__deactivate">Deaktivér</string>
   <string name="PaymentsHomeFragment__continue">Fortsæt</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Saldo er ikke tilgængelig i øjeblikket.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Betalinger er deaktiveret.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Betaling fejlede</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan bruge Signal til at sende og modtage MobileCoin. Alle betalinger er underlagt brugsbetingelserne for MobileCoins og MobileCoin Wallet. Dette er en beta-funktion, så du kan støde på nogle problemer, og betalinger eller saldi, du kan miste, kan ikke gendannes.</string>
   <string name="PaymentsHomeFragment__activate">Aktivér</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Se vilkår for MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke længere tilgængelige. Du kan stadig overføre penge til en udveksling, men du kan ikke længere sende og modtage betalinger eller tilføje midler.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Tilføj midler</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Din Wallet-adresse</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiér</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopieret til udklipsholder</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">For at tilføje midler skal du sende MobileCoin til din pengeadresse. Start en transaktion fra din konto på et system, som understøtter MobileCoin, derefter scan QR-koden eller kopier pengeadressen.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljer</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Indsender betaling…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Bearbejder betaling…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Betaling gennemført</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Betaling fejlede</string>
+  <string name="PaymentsDetailsFragment__network_fee">Netværksgebyr</string>
+  <string name="PaymentsDetailsFragment__sent_by">Sendt af</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Sendt til %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Dig på %1$s ved %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s på%2$s ved %3$s</string>
   <string name="PaymentsDetailsFragment__to">Til</string>
   <string name="PaymentsDetailsFragment__from">Fra</string>
+  <string name="PaymentsDetailsFragment__information">Transaktionsdetaljer herunder betalingsbeløb og tidspunkt for transaktionen er en del af MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Oprykningsgebyr for mønter</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">En \"oprydningsgebyr af mønter\" opkræves, når mønterne i din besiddelse ikke kan kombineres for at fuldføre en transaktion. Oprydning tillader dig fortsætte med at sende betalinger.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Ingen yderligere detaljer er tilgængelige for transaktionen</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Sendt betaling</string>
+  <string name="PaymentsDetailsFragment__received_payment">Modtaget betaling</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Betaling afsluttet %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Bloker nummer</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Overfør</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Scan QR-kode</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Til: Scan eller indtast pengeadresse</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Du kan overføre MobileCoin ved at gennemføre en overførsel til pengeadressen, der er angivet af udveksling. Pengeadressen er strengen med tal og bogstaver, der oftest er under QR-koden.</string>
   <string name="PaymentsTransferFragment__next">Næste</string>
+  <string name="PaymentsTransferFragment__invalid_address">Ugyldig adresse</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Tjek pengeadressen du forsøger at overføre til, og prøv igen.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Du kan ikke overføre til din egen pengeadresse i Signal. Indtast pengeadressen fra din konto på en understøttet udveksling.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">For at scanne en QR-kode skal Signal have adgang til kameraet.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal skal have kameratilladelsen for at fange en QR-kode. Gå til indstillinger, vælg \"Tilladelser\", og aktiver \"Kamera\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">For at scanne en QR-kode skal Signal have adgang til kameraet.</string>
   <string name="PaymentsTransferFragment__settings">Indstillinger</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan QR-kode for adresse</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan betalingsmodtagerens QR-kode for adresse</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Forespørgsel</string>
   <string name="CreatePaymentFragment__pay">Betal</string>
+  <string name="CreatePaymentFragment__available_balance_s">Disponibel saldo: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Skift</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2059,13 +2139,35 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Tilbagetast</string>
+  <string name="CreatePaymentFragment__add_note">Tilføj notat</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Konverteringer er blot estimater og er muligvis ikke korrekte.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Notat</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Bekræft betaling</string>
+  <string name="ConfirmPayment__network_fee">Netværksgebyr</string>
+  <string name="ConfirmPayment__error_getting_fee">Fejl under hentning af gebyr</string>
+  <string name="ConfirmPayment__estimated_s">Anslået %1$s</string>
   <string name="ConfirmPayment__to">Til</string>
+  <string name="ConfirmPayment__total_amount">Samlet beløb</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Indsender betaling…</string>
+  <string name="ConfirmPayment__processing_payment">Bearbejder betaling…</string>
+  <string name="ConfirmPayment__payment_complete">Betaling gennemført</string>
+  <string name="ConfirmPayment__payment_failed">Betaling fejlede</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Betalingen vil fortsætte behandlingen</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Ugyldig modtager</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Denne person har ikke aktiveret betalinger</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Anmodning om et netværksgebyr mislykkedes. For at fortsætte denne betaling, tryk på okay for at prøve igen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s ved %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Indstil Valuta</string>
+  <string name="SetCurrencyFragment__all_currencies">Alle valutaer</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2495,6 +2597,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="OldDeviceTransferLockedDialog__done">Udført</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuller og aktiver denne enhed</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Overfør saldo?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Du har en balance på %1$s. Hvis du ikke overfører dine penge til en anden pengeadresse, før du sletter din konto, vil du miste den for evigt.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Overfør ikke</string>
+  <string name="AdvancedPreferenceFragment__transfer">Overfør</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokér</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokering</string>
@@ -2587,6 +2693,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="DeleteAccountFragment__delete_account">Slet konto</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Slet dine kontooplysninger og profilbillede</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Slet alle dine beskeder</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Slet %1$s på din betalingskonto</string>
   <string name="DeleteAccountFragment__no_country_code">Ingen landekode angivet</string>
   <string name="DeleteAccountFragment__no_number">Intet nummer angivet</string>
   <string name="DeleteAccountFragment__the_phone_number">Det indtastede telefonnummer matcher ikke med kontoen.</string>
@@ -2642,27 +2749,81 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fejl ved opsætning af baggrund.</string>
   <string name="WallpaperCropActivity__blur_photo">Slør billede</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny fortrolighedsfokuseret digital valuta.</string>
+  <string name="payment_info_card_adding_funds">Tilføjer midler</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan tilføje midler til brug i Signal ved at sende MobileCoin til din pengeadresse.</string>
+  <string name="payment_info_card_cashing_out">Udbetaler</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kan når som helst udbetale MobileCoin på en udveksling, der understøtter MobileCoin. Foretag blot en overførsel til din konto ved denne udveksling.</string>
+  <string name="payment_info_card_hide_this_card">Skjul dette kort?</string>
   <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_record_recovery_phrase">Registrer gendannelsessætning</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Din gendannelsessætning giver dig en anden måde at gendanne din betalingskonto på.</string>
+  <string name="payment_info_card_record_your_phrase">Registrer din sætning</string>
+  <string name="payment_info_card_update_your_pin">Opdatér PIN-koden</string>
+  <string name="payment_info_card_with_a_high_balance">Med en høj saldo kan du opdatere til en alfanumerisk PIN-kode for at tilføje mere beskyttelse til din konto.</string>
   <string name="payment_info_card_update_pin">Opdatér PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivér Wallet</string>
+  <string name="DeactivateWalletFragment__your_balance">Din saldo</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Det anbefales, at du overfører dine midler til en anden pengeadresse, før du deaktiverer betalinger. Hvis du vælger ikke at overføre dine midler nu, forbliver de i din tegnebog, der er knyttet til Signal, hvis du genaktiverer betalinger.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Overfør resterende saldo</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiver uden at overføre</string>
+  <string name="DeactivateWalletFragment__deactivate">Deaktivér</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deaktiver uden at overføre?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Din saldo forbliver i din tegnebog, der er knyttet til Signal, hvis du vælger at genaktivere betalinger.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Fejl ved deaktivering af Wallet.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gendannelsessætning</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Vis gendannelsessætning</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Indtast gendannelsessætning</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Din saldo gendannes automatisk, når du geninstallerer Signal, hvis du bekræfter din Signal PIN-kode. Du kan også gendanne din saldo ved hjælp af en gendannelsessætning, som er en %1$d-ords sætning, der er unik for dig. Skriv det ned, og opbevar det et sikkert sted.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Din gendannelsessætning er en %1$d-ords sætning, der er unik for dig. Brug den til at gendanne din saldo.</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Indtast manuelt</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Indsæt fra udklipsholder</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Indsæt gendannelsessætning</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Gendannelsessætning</string>
   <string name="PaymentsRecoveryPasteFragment__next">Næste</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Ugyldig gendannelsessætning</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Sørg for at du har indtastet %1$d ord, og prøv igen.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Næste</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Redigér</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Forrige</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Din gendannelsessætning</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Skriv følgende %1$d ord i rækkefølge. Opbevar din liste på et sikkert sted.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sørg for at du har indtastet din sætning korrekt.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Tag ikke et skærmbillede eller send via e-mail.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingskonto gendannet.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ugyldig gendannelsessætning</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Sørg for at du har indtastet din sætning korrekt, og prøv igen</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopier til udklipsholder?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Hvis du vælger at gemme din gendannelsessætning digitalt, sørg for at den opbevares sikkert et sted, du stoler på.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiér</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Bekræft gendannelsessætning</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Indtast følgende ord fra din gendannelsessætning.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Ord %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Se sætning igen</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Udført</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Gendannelsessætning bekræftet</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Indtast gendannelsessætning</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Indtast ord %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Ord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Næste</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Ugyldigt ord</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Udklipsholder ryddet.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Vis</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s sendte dig %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d nye betalingsmeddelelser</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Betalingen kan ikke sendes</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For at sende en betaling til denne bruger, skal de acceptere en beskedanmodning fra dig. Skriv til dem for at oprette en beskedanmodning.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send en besked</string>
   <!--EOF-->

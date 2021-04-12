@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">Pincode uitgeschakeld.</string>
   <string name="ApplicationPreferencesActivity_hide">Verbergen</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Herinnering verbergen?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Herstel-zin voor overschrijvingen vastleggen</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Zin vastleggen</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Je moet een herstel-zin opnemen voordat je overschrijvingen kan uitschakelen, zodat het mogelijk wordt om je overschrijvingen-account te herstellen.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuut</item>
@@ -1815,6 +1818,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Er werkt iets niet</item>
+    <item>Verzoek voor nieuwe functionaliteit</item>
+    <item>Vraag</item>
+    <item>Terugkoppeling</item>
+    <item>Iets anders</item>
+    <item>Overschrijvingen</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
@@ -2031,35 +2042,67 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Alle gebeurtenissen</string>
   <string name="PaymentsAllActivityFragment__all">Alles</string>
   <string name="PaymentsAllActivityFragment__sent">Verzonden</string>
   <string name="PaymentsAllActivityFragment__received">Ontvangen</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Signal introduceert overschrijvingen (Bèta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Je kunt Signal ook gebruiken om een nieuw privacygericht betaalmiddel genaamd MobileCoin te verzenden en ontvangen. Als je dat wilt, schakel dan overschrijvingen in.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Overschrijvingen inschakelen</string>
+  <string name="PaymentsHomeFragment__activating_payments">Overschrijvingen aan het inschakelen …</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Overschrijvingen-account herstellen</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Er zijn nog geen recente gebeurtenissen</string>
+  <string name="PaymentsHomeFragment__pending_requests">Verzoeken in afwachting</string>
+  <string name="PaymentsHomeFragment__recent_activity">Recente gebeurtenissen</string>
   <string name="PaymentsHomeFragment__see_all">Alles weergeven</string>
+  <string name="PaymentsHomeFragment__add_funds">Krediet toevoegen</string>
+  <string name="PaymentsHomeFragment__send">Verzenden</string>
+  <string name="PaymentsHomeFragment__sent_s">Verzonden %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Ontvangen %1$s</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Valuta omrekenen</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsHomeFragment__help">Hulp</string>
+  <string name="PaymentsHomeFragment__sent_payment">Verzonden overschrijving</string>
+  <string name="PaymentsHomeFragment__received_payment">Ontvangen overschijving</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Omrekenen van valuta is niet beschikbaar</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan de omrekening van valuta niet weergeven. Ga na dat je telefoon internetverbinding heeft en probeer het opnieuw.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Overschrijvingen uitschakelen?</string>
+  <string name="PaymentsHomeFragment__deactivate">Uitschakelen</string>
   <string name="PaymentsHomeFragment__continue">Doorgaan</string>
-  <string name="PaymentsHomeFragment__payment_failed">Betaling mislukt</string>
+  <string name="PaymentsHomeFragment__payment_failed">Overschrijving is mislukt</string>
   <string name="PaymentsHomeFragment__details">Details</string>
+  <string name="PaymentsHomeFragment__activate">Inschakelen</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Overschrijvingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet omzetten naar een andere valuta maar je kunt niet langer overschrijvingen verzenden of ontvangen of krediet toevoegen.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Krediet toevoegen</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Het adres van je portemonnee</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiëren</string>
-  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Gekopieerd naar het klembord</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Details</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
-  <string name="PaymentsDetailsFragment__submitting_payment">Betaling doorgeven…</string>
-  <string name="PaymentsDetailsFragment__processing_payment">Betaling verwerken…</string>
-  <string name="PaymentsDetailsFragment__payment_complete">Betaling voltooid</string>
-  <string name="PaymentsDetailsFragment__payment_failed">Betaling mislukt</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Overschrijving aan het indienen …</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Overschrijving aan het verwerken …</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Overschrijving succesvol afgerond</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Overschrijving is mislukt</string>
+  <string name="PaymentsDetailsFragment__network_fee">Netwerkkosten</string>
+  <string name="PaymentsDetailsFragment__sent_by">Verzonden door</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Verzonden aan %1$s</string>
   <string name="PaymentsDetailsFragment__to">Naar</string>
   <string name="PaymentsDetailsFragment__from">Van</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Overschrijving verzenden</string>
+  <string name="PaymentsDetailsFragment__received_payment">Ontvangen overschrijving</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Overschrijven</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-code scannen</string>
   <string name="PaymentsTransferFragment__next">Volgende</string>
+  <string name="PaymentsTransferFragment__invalid_address">Adres ongeldig</string>
   <string name="PaymentsTransferFragment__settings">Instellingen</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
-  <string name="CreatePaymentFragment__request">Verzoek</string>
+  <string name="CreatePaymentFragment__pay">Overschrijven</string>
+  <string name="CreatePaymentFragment__available_balance_s">Beschikbaar krediet: %1$s</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2072,17 +2115,28 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Opmerking toevoegen</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Opmerking</string>
   <!--ConfirmPaymentFragment-->
-  <string name="ConfirmPayment__confirm_payment">Bevestig betaling</string>
+  <string name="ConfirmPayment__confirm_payment">Overschrijving bevestigen</string>
+  <string name="ConfirmPayment__network_fee">Netwerkkosten</string>
+  <string name="ConfirmPayment__error_getting_fee">Fout bij vaststellen van bijkomende kosten</string>
+  <string name="ConfirmPayment__estimated_s">Naar schatting %1$s</string>
   <string name="ConfirmPayment__to">Naar</string>
-  <string name="ConfirmPayment__submitting_payment">Betaling doorgeven…</string>
-  <string name="ConfirmPayment__processing_payment">Betaling verwerken…</string>
-  <string name="ConfirmPayment__payment_complete">Betaling voltooid</string>
-  <string name="ConfirmPayment__payment_failed">Betaling mislukt</string>
+  <string name="ConfirmPayment__total_amount">Totaalbedrag</string>
+  <string name="ConfirmPayment__balance_s">Krediet: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Overschrijving aan het indienen …</string>
+  <string name="ConfirmPayment__processing_payment">Overschrijving aan het verwerken …</string>
+  <string name="ConfirmPayment__payment_complete">Overschrijving succesvol afgerond</string>
+  <string name="ConfirmPayment__payment_failed">Overschrijving is mislukt</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Ontvanger ongeldig</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s om %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Valuta instellen</string>
+  <string name="SetCurrencyFragment__all_currencies">Alle valuta</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2512,6 +2566,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="OldDeviceTransferLockedDialog__done">Klaar</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuleren en dit apparaat activeren</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB-krediet overschrijven?</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Niet overschrijven</string>
+  <string name="AdvancedPreferenceFragment__transfer">Overschrijven</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
@@ -2660,30 +2717,64 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Over MobileCoin</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een nieuwe privacygerichte digitale munt.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een nieuw privacygericht digitaal betaalmiddel.</string>
+  <string name="payment_info_card_adding_funds">Krediet toevoegen</string>
   <string name="payment_info_card_hide">Verbergen</string>
+  <string name="payment_info_card_record_recovery_phrase">Herstel-zin voor overschrijvingen vastleggen</string>
+  <string name="payment_info_card_record_your_phrase">Je herstel-zin opnemen</string>
   <string name="payment_info_card_update_pin">Pincode bijwerken</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__your_balance">Jouw krediet</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Resterend krediet overschrijven</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Uitschakelen zonder overschrijven</string>
+  <string name="DeactivateWalletFragment__deactivate">Uitschakelen</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Uitschakelen zonder overschrijven?</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Fout bij het uitschakelen van je portemonnee</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-zin</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstel-zin weergeven</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
   <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Handmatig invullen</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Plakken uit klembord</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Herstel-zin plakken</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsRecoveryPasteFragment__next">Volgende</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Herstel-zin ongeldig</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Ga na dat je %1$d woorden hebt ingevuld en probeer het opnieuw.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Volgende</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Aanpassen</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Vorige</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jouw herstel-zin</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Schijf de volgende %1$d woorden op in dezelfde volgorde en bewaar ze op een veilige plaats.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Ga na dat je je zin juist hebt ingevuld.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Maak geen schermafdruk en verzend dit nooit via e-mail (ook niet aan jezelf).</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Account voor overschrijvingen is hersteld.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Herstel-zin ongeldig</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopiëren naar klembord?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiëren</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Woord %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">De zin opnieuw weergeven</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Klaar</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Herstel-zin bevestigd</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Vul woord %1$d in</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Woord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Volgende</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Woord ongeldig</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Klembord leeggemaakt.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Weergeven</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s heeft %2$s naar je overgemaakt</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d nieuwe overschrijving-meldingen</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Kan overschrijving niet verzenden</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Een bericht verzenden</string>
   <!--EOF-->
 </resources>

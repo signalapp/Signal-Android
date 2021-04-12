@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN je isključen.</string>
   <string name="ApplicationPreferencesActivity_hide">Sakrij</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Sakriti podsjetnik?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Snimi frazu za obnavljanje plaćanja</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Snimi frazu</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Prije nego što isključite PIN, morate snimiti frazu za obnavljanje plaćanja kako biste bili sigurni da ćete moći vratiti svoj račun.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -58,6 +61,7 @@
   <string name="AttachmentKeyboard_location">Lokacija</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signalu je potrebno dopuštenje da prikaže Vaše slike i videozapise.</string>
   <string name="AttachmentKeyboard_give_access">Dozvoli pristup</string>
+  <string name="AttachmentKeyboard_payment">Plaćanje</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije pronađena aplikacija za biranje priloga.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signalu je potrebno dopuštenje da pristupi memoriji uređaja kako bi mogao priložiti slike, video i audiozapise, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Prostor za pohranu\".</string>
@@ -1882,6 +1886,14 @@
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Nešto ne funkcioniše</item>
+    <item>Zahtjev za novim funkcijama</item>
+    <item>Pitanje</item>
+    <item>Povratna informacija</item>
+    <item>Drugo</item>
+    <item>Plaćanja</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
@@ -1926,6 +1938,7 @@
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Primi sve SMS poruke</string>
   <string name="preferences__pref_all_mms_title">Primi sve MMS poruke</string>
@@ -1989,6 +2002,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Traži izvještaj o isporučenju za svaku poslanu SMS poruku</string>
   <string name="preferences__data_and_storage">Podaci i memorija</string>
   <string name="preferences__storage">Memorija</string>
+  <string name="preferences__payments">Plaćanja</string>
+  <string name="preferences__payments_beta">Plaćanja (Beta)</string>
   <string name="preferences__conversation_length_limit">Maksimalni broj poruka</string>
   <string name="preferences__keep_messages">Zadrži poruke</string>
   <string name="preferences__clear_message_history">Izbriši historiju poruka</string>
@@ -2096,24 +2111,98 @@
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Aktivnosti</string>
   <string name="PaymentsAllActivityFragment__all">Sve</string>
   <string name="PaymentsAllActivityFragment__sent">Poslano</string>
   <string name="PaymentsAllActivityFragment__received">Primljeno</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Novo: plaćanja (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Koristite Signal za slanje i primanje MobileCoina, nove digitalne valute s fokusom na privatnost. Aktivirajte da započnete.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktiviraj plaćanja</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktiviram plaćanja…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Vrati račun s uplatama i isplatama</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nema aktivnosti</string>
+  <string name="PaymentsHomeFragment__pending_requests">Zahtjevi na čekanju</string>
+  <string name="PaymentsHomeFragment__recent_activity">Zadnja aktivnost</string>
   <string name="PaymentsHomeFragment__see_all">Vidi sve</string>
+  <string name="PaymentsHomeFragment__add_funds">Dodaj sredstva</string>
   <string name="PaymentsHomeFragment__send">Šalji</string>
+  <string name="PaymentsHomeFragment__sent_s">Poslano %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Primljeno %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Prenesi na berzu</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Konverzija valute</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Deaktiviraj plaćanja</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Fraza za obnavljanje</string>
   <string name="PaymentsHomeFragment__help">Pomoć</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Naknada za čišćenje novčića</string>
+  <string name="PaymentsHomeFragment__sent_payment">Isplaćeno</string>
+  <string name="PaymentsHomeFragment__received_payment">Uplaćeno</string>
+  <string name="PaymentsHomeFragment__processing_payment">Obrađujem</string>
+  <string name="PaymentsHomeFragment__unknown_amount">–</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutna konverzija nije dostupna</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Ne mogu prikazati valutnu konverziju. Provjerite konekciju na svom telefonu i pokušajte ponovo.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plaćanja nisu dostupna u Vašem regionu.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Neuspjelo aktiviranje plaćanja. Pokušajte ponovo kasnije.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktivirati plaćanja?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Nećete moći slati ni primati MobileCoin preko Signala ako deaktivirate plaćanja.</string>
+  <string name="PaymentsHomeFragment__deactivate">Deaktiviraj</string>
   <string name="PaymentsHomeFragment__continue">Nastavi</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Stanje na računu trenutno nije dostupno.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Plaćanja su deaktivirana.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Plaćanje nije uspjelo</string>
+  <string name="PaymentsHomeFragment__details">Detalji</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Možete koristiti Signal za slanje i primanje MobileCoina. Sve uplate i isplate podliježu Uslovima korištenja MobileCoina i MobileCoin novčanika. Ovo je probna verzija i možete se susresti s greškama i situacijom da izgubljene uplate/isplate ili raspoloživa sredstva nije moguće vratiti.</string>
+  <string name="PaymentsHomeFragment__activate">Aktiviraj</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Pregledaj uslove korištenja MobileCoina</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Plaćanja preko Signala više nisu dostupna. Još uvijek možete prenijeti sredstva na berzu, ali više ne možete vršiti isplate i uplate niti dodavati sredstva.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Dodaj sredstva</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Adresa Vašeg novčanika</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiraj</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Da dodate sredstva, pošaljite MobileCoin na adresu svoga novčanika. Započnite transakciju sa svoga računa na berzi koja podržava MobileCoin, potom skenirajte QR kōd ili kopirajte adresu svoga novčanika.</string>
   <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Detalji</string>
+  <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Izvršavam plaćanje…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Obrađujem…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Plaćanje završeno</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Plaćanje nije uspjelo</string>
+  <string name="PaymentsDetailsFragment__network_fee">Mrežna naknada</string>
+  <string name="PaymentsDetailsFragment__sent_by">Isplatio/la</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Isplaćeno %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Vi, %1$s u %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s, %2$s u %3$s</string>
+  <string name="PaymentsDetailsFragment__to">Za</string>
+  <string name="PaymentsDetailsFragment__from">Od</string>
+  <string name="PaymentsDetailsFragment__information">Detalji o transakciji, uključujući iznos i vrijeme transakcije, dio su MobileCoin registra.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Naknada za čišćenje novčića</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">“Naknada za čišćenje novčića” plaća se kad novčiće u Vašem vlasništvu nije moguće kombinovati da bi se izvršila transakcija. Čišćenje će Vam omogućiti da nastavite vršiti isplate.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Nema dodatnih detalja o ovoj transakciji</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Isplaćeno</string>
+  <string name="PaymentsDetailsFragment__received_payment">Uplaćeno</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Plaćanje izvršeno %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Broj bloka</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Prenos</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skeniraj QR kôd</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Za: skenirajte ili unesite adresu novčanika</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin možete prenijeti tako što ćete izvršiti prenos na adresu novčanika koju ste dobili sa berze. Adresa novčanika sastoji se od niza brojeva i slova koji su obično navedeni ispod QR kōda.</string>
   <string name="PaymentsTransferFragment__next">Dalje</string>
+  <string name="PaymentsTransferFragment__invalid_address">Adresa nije valjana</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Provjerite adresu novčanika na koju pokušavate prenijeti sredstva i pokušajte ponovo.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Ne možete izvršiti prenos sredstava na adresu vlastitog Signal novčanika. Unesite adresu novčanika sa svoga računa na podržanoj berzi.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Da bi mogao skenirati QR kōd, Signalu je potreban pristup kameri.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signalu je potrebno odobrenje za pristup kameri kako bi mogao skenirati QR kōd. Idite na sistemska podešavanja, izaberite \"Dopuštenja\" i uključite \"Kamera\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Da bi mogao skenirati QR kōd, Signalu je potreban pristup kameri.</string>
   <string name="PaymentsTransferFragment__settings">Podešavanja</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skeniraj QR kōd adrese</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skeniraj QR kōd za adresu osobe koja uplaćuje</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Zahtjev</string>
+  <string name="CreatePaymentFragment__pay">Plati</string>
+  <string name="CreatePaymentFragment__available_balance_s">Raspoloživo: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Zamijeni</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2123,11 +2212,35 @@
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">Dodaj napomenu</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Konverzije su prikazane u približnim vrijednostima i ne moraju biti tačne.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Napomena</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Potvrdi plaćanje</string>
+  <string name="ConfirmPayment__network_fee">Mrežna naknada</string>
+  <string name="ConfirmPayment__error_getting_fee">Greška prilikom utvrđivanja naknade</string>
+  <string name="ConfirmPayment__estimated_s">Procijenjeno %1$s</string>
+  <string name="ConfirmPayment__to">Za</string>
+  <string name="ConfirmPayment__total_amount">Ukupni iznos</string>
+  <string name="ConfirmPayment__balance_s">Stanje: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Izvršavam plaćanje…</string>
+  <string name="ConfirmPayment__processing_payment">Obrađujem…</string>
+  <string name="ConfirmPayment__payment_complete">Plaćanje završeno</string>
+  <string name="ConfirmPayment__payment_failed">Plaćanje nije uspjelo</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Nastavit će se s obradom plaćanja</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Nepostojeći primalac</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ova osoba nije aktivirala plaćanja</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nije moguće podnijeti zahtjev za mrežnu naknadu. Da nastavite s plaćanjem, potvrdite i pokušajte ponovo.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s u %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Zadaj valutu</string>
+  <string name="SetCurrencyFragment__all_currencies">Sve valute</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2569,6 +2682,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="OldDeviceTransferLockedDialog__done">Uredu</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Prekini i aktiviraj ovaj uređaj</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Prenijeti raspoloživi MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Stanje na Vašem računu: %1$s. Ako ne prenesete sredstva na drugu adresu novčanika prije brisanja računa, zauvijek ćete ih izgubiti.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Ne prenosi</string>
+  <string name="AdvancedPreferenceFragment__transfer">Prenesi</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
@@ -2663,6 +2780,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DeleteAccountFragment__delete_account">Izbriši račun</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Izbrišite informacije o svom računu i sliku profila</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Izbrišite sve svoje poruke</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Izbrišite %1$s sa svoga računa</string>
   <string name="DeleteAccountFragment__no_country_code">Nije naveden kōd države</string>
   <string name="DeleteAccountFragment__no_number">Nije naveden broj</string>
   <string name="DeleteAccountFragment__the_phone_number">Broj telefona koji ste unijeli ne podudara se s onim na Vašem računu.</string>
@@ -2718,24 +2836,82 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Greška prilikom podešavanja pozadinske slike.</string>
   <string name="WallpaperCropActivity__blur_photo">Zamagli fotografiju</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">O MobileCoinu</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin je nova digitalna valuta s fokusom na privatnost.</string>
+  <string name="payment_info_card_adding_funds">Dodajem sredstva</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Možete dodati sredstva za korištenje putem Signala tako što ćete poslati MobileCoin na adresu svoga novčanika.</string>
+  <string name="payment_info_card_cashing_out">Unovčavam</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">U svakom trenutku možete unovčiti MobileCoin na nekoj od berzi koje ga podržavaju. Jednostavno izvršite prenos na svoj račun koji imate otvoren na toj berzi.</string>
+  <string name="payment_info_card_hide_this_card">Sakriti ovu karticu?</string>
   <string name="payment_info_card_hide">Sakrij</string>
+  <string name="payment_info_card_record_recovery_phrase">Snimi frazu za obnavljanje</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Vaša fraza za obnavljanje pruža Vam dodatni metod za obnavljanje pristupa Vašem računu.</string>
+  <string name="payment_info_card_record_your_phrase">Snimite svoju frazu</string>
+  <string name="payment_info_card_update_your_pin">Ažurirajte svoj PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Sa visokim iznosom sredstava, možda ćete htjeti ažurirati PIN i koristiti alfanumeričke znakove kako biste povećali zaštitu svoga računa.</string>
   <string name="payment_info_card_update_pin">Ažurirajte PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivirajte novčanik</string>
+  <string name="DeactivateWalletFragment__your_balance">Vaša sredstva</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Preporučuje se da svoja sredstva prenesete na adresu drugog novčanika prije nego što deaktivirate plaćanja. Ako odlučite da nećete sada prenijeti sredstva, ona će ostati u Vašem novčaniku koji je povezan sa Signalom i biti dostupna kad ponovo aktivirate plaćanja.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Prenesi ostatak sredstava</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiviraj bez prenosa sredstava</string>
+  <string name="DeactivateWalletFragment__deactivate">Deaktiviraj</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deaktivirati bez prenosa sredstava?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Vaša će sredstva ostati u Vašem novčaniku povezanom sa Signalom, ukoliko odlučite ponovo aktivirati plaćanja.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Greška prilikom deaktiviranja novčanika.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Fraza za obnavljanje</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Vidi frazu za obnavljanje</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Unesite frazu za obnavljanje</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Stanje na Vašem računu automatski će Vam biti na raspolaganju ako potvrdite svoj Signal PIN. Sredstvima također možete pristupiti koristeći jedinstvenu zadatu frazu za obnavljanje, koja se sastoji od %1$d riječi. Zapišite je i pohranite na sigurno mjesto.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Vaša fraza za obnavljanje jedinstvena je i sastoji se od %1$d riječi. Koristite je za ponovni pristup svojim sredstvima.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Započni</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Unesite ručno</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Zalijepite iz spremnika</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Zalijepite frazu za obnavljanje</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Fraza za obnavljanje</string>
   <string name="PaymentsRecoveryPasteFragment__next">Dalje</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Pogrešna fraza za obnavljanje</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Potvrdite da ste unijeli %1$d riječi i pokušajte ponovo.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Dalje</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Uredi</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Prethodno</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Vaša fraza za obnavljanje</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Zapišite sljedećih %1$d riječi redom kako su prikazane. Pohranite ih na sigurno mjesto.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Potvrdite da ste svoju frazu unijeli kako treba.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne slikajte ekran i ne šaljite putem emaila.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Račun je obnovljen.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Pogrešna fraza za obnavljanje</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Potvrdite da ste svoju frazu unijeli kako treba i pokušajte ponovo.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopirati u spremnik?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ako odlučite svoju frazu za obnavljanje pohraniti u digitalnom obliku, vodite računa o tome da je pohranite na sigurnu lokaciju.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiraj</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Potvrdite frazu za obnavljanje</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Unesite sljedeće riječi iz svoje fraze za obnavljanje.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Riječ %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Ponovo pogledajte frazu</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Uredu</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Fraza za obnavljanje potvrđena</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Unesite frazu za obnavljanje</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Unesite riječ %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Riječ %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Dalje</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Pogrešna riječ</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Spremnik je počišćen.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Pregled</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s je uplatio/la %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d novih obavještenja o plaćanju</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Ne mogu isplatiti</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Da biste izvršili isplatu ovom korisniku, on ili ona moraju prihvatiti Vaš zahtjev za komunikaciju. Zahtjev možete kreirati tako što ćete im poslati poruku.</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">Pošalji poruku</string>
   <!--EOF-->
 </resources>

@@ -38,6 +38,8 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN devre dışı.</string>
   <string name="ApplicationPreferencesActivity_hide">Gizle</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Hatırlatıcıyı gizle?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeler kurtarma parolasını kaydet</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Parolayı kaydet</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d dakika</item>
@@ -57,6 +59,7 @@
   <string name="AttachmentKeyboard_location">Konum</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal\'in fotoğraf ve videolarınızı göstermek için erişim iznine ihtiyacı var.</string>
   <string name="AttachmentKeyboard_give_access">İzin Ver</string>
+  <string name="AttachmentKeyboard_payment">Ödeme</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">İçerik seçebilecek uygulama bulunamıyor.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal, fotoğraflar, videolar, veya ses ekleyebilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
@@ -1808,6 +1811,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Bir Şey Çalışmıyor</item>
+    <item>Özellik İsteği</item>
+    <item>Soru</item>
+    <item>Geribildirim</item>
+    <item>Diğer</item>
+    <item>Ödemeler</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
@@ -1851,6 +1862,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%ds</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS ve MMS</string>
   <string name="preferences__pref_all_sms_title">Tüm SMS\'leri al</string>
   <string name="preferences__pref_all_mms_title">Tüm MMS\'leri al</string>
@@ -1914,6 +1926,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gönderdiğiniz her SMS için iletim raporu istensin</string>
   <string name="preferences__data_and_storage">Veri ve depolama</string>
   <string name="preferences__storage">Depolama</string>
+  <string name="preferences__payments">Ödemeler</string>
+  <string name="preferences__payments_beta">Ödemeler (Beta)</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
   <string name="preferences__keep_messages">İletileri sakla</string>
   <string name="preferences__clear_message_history">İleti geçmişini temizle</string>
@@ -2021,34 +2035,130 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Tüm faaliyet</string>
   <string name="PaymentsAllActivityFragment__all">Tümü</string>
   <string name="PaymentsAllActivityFragment__sent">Gönderildi</string>
   <string name="PaymentsAllActivityFragment__received">Alındı</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Ödemeler tanıtımı (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Yeni gizlilik odaklı dijital para birimi MobileCoin alıp göndermek için Signal kullanın. Başlamak için etkinleştirin.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Ödemeleri Etkinleştir</string>
+  <string name="PaymentsHomeFragment__activating_payments">Ödemeler etkinleştiriliyor…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Ödemeler hesabını geri getir</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Henüz geçmiş bir faaliyet yok</string>
+  <string name="PaymentsHomeFragment__pending_requests">Bekleyen istekler</string>
+  <string name="PaymentsHomeFragment__recent_activity">Son faaliyetler</string>
   <string name="PaymentsHomeFragment__see_all">Tümünü gör</string>
+  <string name="PaymentsHomeFragment__add_funds">Para ekle</string>
   <string name="PaymentsHomeFragment__send">Gönder</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s gönderildi</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s alındı</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Kambiyo için aktar</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Para birimi dönüşümü</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Ödemeleri etkisizleştir</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Kurtarma parolası</string>
   <string name="PaymentsHomeFragment__help">Yardım</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Bozukluk temizleme ücreti</string>
+  <string name="PaymentsHomeFragment__sent_payment">Gönderilen ödeme</string>
+  <string name="PaymentsHomeFragment__received_payment">Alınan ödeme</string>
+  <string name="PaymentsHomeFragment__processing_payment">Ödeme işleniyor</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Para birimi dönüşümü mevcut değil</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Para birimi dönüşümü görüntülenemiyor. Telefonunuzun bağlantısını denetleyin ve tekrar deneyin.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ödemeler bölgenizde mevcut değil.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Ödemeler etkinleştirilemiyor. Lütfen daha sonra tekrar deneyin.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Ödemeler etkisizleştirilsin mi?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Eğer ödemeleri etkisizleştirirseniz MobileCoin alıp gönderemeyeceksiniz.</string>
+  <string name="PaymentsHomeFragment__deactivate">Etkisizleştir</string>
   <string name="PaymentsHomeFragment__continue">Devam Et</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Bakiye şu an mevcut değil.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Ödemeler etkisizleştirildi.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Ödeme başarısız oldu</string>
   <string name="PaymentsHomeFragment__details">Detaylar</string>
+  <string name="PaymentsHomeFragment__activate">Etkinleştir</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin şartlarını görüntüle</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal\'de Ödemeler artık mevcut değil. Yine de kambiyoya para aktarabilirsiniz ancak ödeme alıp gönderemez veya para ekleyemezsiniz.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Para ekle</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Cüzdan Adresiniz</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopyala</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Panoya kopyalandı</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaylar</string>
   <string name="PaymentsDetailsFragment__status">Durum</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Ödeme gönderiliyor…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Ödeme işleniyor…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Ödeme tamamlandı</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Ödeme başarısız oldu</string>
+  <string name="PaymentsDetailsFragment__network_fee">Ağ ücreti</string>
+  <string name="PaymentsDetailsFragment__sent_by">Gönderen</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">%1$s\'ye gönderildi</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Siz %1$s tarihinde saat %2$s \'de</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%2$starihinde saat %3$s\'te %1$s</string>
   <string name="PaymentsDetailsFragment__to">Alıcı</string>
   <string name="PaymentsDetailsFragment__from">Gönderen</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Bozukluk temizleme ücreti</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">“Bozukluk temizleme ücreti” sahip olduğunuz paralar bir işlemi tamamlamaya yetecek şekilde birleştirilemediğinde alınıyor. Temizleme ödeme göndermeye devam etmenizi sağlıyor.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Bu işlem için daha fazla ayrıntı yok</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Gönderilen ödeme</string>
+  <string name="PaymentsDetailsFragment__received_payment">Alınan ödeme</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Ödeme tamamlandı %1$s </string>
+  <string name="PaymentsDetailsFragment__block_number">Numarayı engelle</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Aktar</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Karekodu Tara</string>
   <string name="PaymentsTransferFragment__next">İleri</string>
+  <string name="PaymentsTransferFragment__invalid_address">Geçersiz adres</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Aktarmaya çalıştığınız cüzdan adresini denetleyin ve tekrar deneyin.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Kendi Signal cüzdan adresinize aktarma yapamazsınız. Desteklenen bir kambiyodaki hesabınızdaki cüzdan adresini girin.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Karekod taramak için Signal\'in kameranıza erişime ihtiyacı var.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Karekod okumak için Signal Kamera izninie ihtiyaç duyuyor. Ayarlara gidin, \"İzinler\"i seçin ve \"Kamera\"yı etkinleştirin.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Karekod taramak için Signal\'in kameranıza erişime ihtiyacı var.</string>
   <string name="PaymentsTransferFragment__settings">Ayarlar</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Adres Kare Kodunu Tara</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Alacaklının adres kare kodunu tara</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">İstek</string>
+  <string name="CreatePaymentFragment__pay">Öde</string>
+  <string name="CreatePaymentFragment__available_balance_s">Mevcut bakiye: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Değiştir</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Geri silme</string>
+  <string name="CreatePaymentFragment__add_note">Not ekle</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Dönüşümler sadece tahmindir ve kesin olmayabilir.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Not</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Ödemeyi onayla</string>
+  <string name="ConfirmPayment__network_fee">Ağ ücreti</string>
+  <string name="ConfirmPayment__error_getting_fee">Ücret alma hatası</string>
+  <string name="ConfirmPayment__estimated_s">Tahmini %1$s</string>
   <string name="ConfirmPayment__to">Alıcı</string>
+  <string name="ConfirmPayment__total_amount">Toplam tutar</string>
+  <string name="ConfirmPayment__balance_s">Bakiye: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Ödeme gönderiliyor…</string>
+  <string name="ConfirmPayment__processing_payment">Ödeme işleniyor…</string>
+  <string name="ConfirmPayment__payment_complete">Ödeme tamamlandı</string>
+  <string name="ConfirmPayment__payment_failed">Ödeme başarısız oldu</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Ödeme işlemi devam edecek</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Geçersiz alıcı</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Bu kişi ödemeleri etkinleştirmedi</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Ağ ücreti alınamıyor. Bu ödemeye devam etmek için tamama dokunun ve tekrar deneyin.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%2$s\'de %1$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Para Birimini Ayarla</string>
+  <string name="SetCurrencyFragment__all_currencies">Tüm Para Birimleri</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2478,6 +2588,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="OldDeviceTransferLockedDialog__done">Tamam</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">İptal et ve bu cihazı etkinleştir</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB bakiyesini aktar?</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Aktarma</string>
+  <string name="AdvancedPreferenceFragment__transfer">Aktar</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
@@ -2570,6 +2683,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DeleteAccountFragment__delete_account">Hesabı sil</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Hesap bilgilerinizi ve profil resminizi silecektir</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Tüm iletilerinizi silin</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ödemeler hesabından %1$s\'i sil</string>
   <string name="DeleteAccountFragment__no_country_code">Ülke kodu belirtilmedi</string>
   <string name="DeleteAccountFragment__no_number">Telefon numarası belirtilmedi</string>
   <string name="DeleteAccountFragment__the_phone_number">Girmiş olduğunuz numara hesabınızla uyuşmuyor.</string>
@@ -2625,25 +2739,44 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Duvar kağıdı ayarlanırken hata oluştu.</string>
   <string name="WallpaperCropActivity__blur_photo">Fotoğrafı bulanıklaştır</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">MobileCoin Hakkında</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin, gizlilik odaklı yeni bir dijital para birimidir.</string>
   <string name="payment_info_card_hide">Gizle</string>
   <string name="payment_info_card_update_pin">PIN\'i güncelle</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Etkisizleştir</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Kurtarma parolası</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Kurtarma parolasını girin</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Kurtarma parolası</string>
   <string name="PaymentsRecoveryPasteFragment__next">İleri</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">İleri</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Düzenle</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopyala</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Kurtarma parolasını doğrula</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Kurtarma parolanızdan aşağıdaki kelimeleri girin.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">%1$d. kelime</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Parolayı tekrar gör</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Tamam</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Kurtarma parolası doğrulandı</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Kurtarma parolasını girin</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">%1$d kelimesini girin</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">%1$d. kelime</string>
   <string name="PaymentsRecoveryEntryFragment__next">İleri</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Geçersiz kelime</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Pano temizlendi</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Görüntüle</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s size %2$s gönderdi</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d yeni ödeme bildirimi</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Ödeme gönderilemiyor</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Bir ileti gönderin</string>
   <!--EOF-->
 </resources>

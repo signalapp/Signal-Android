@@ -697,7 +697,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">بازنشانی پیوند</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">درخواست‌های عضویت</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">تأیید اعضای جدید</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">نیاز به یک مدیر برای تأیید اعضای جدید که از طریق پیوند گروه می‌پیوندند.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">نیاز به یک مدیر برای تأیید اعضای جدیدی که از طریق پیوند گروه می‌پیوندند.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">آیا از بازنشانی پیوند گروه اطمینان دارید؟ افراد دیگر نمی‌توانند با استفاده از پیوند فعلی به گروه بپیوندند.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">کد QR</string>
@@ -2613,7 +2613,7 @@
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">پاک کردن کاغذدیواری برای این گفتگو؟</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای‌تان انتخاب کردید پاک نمی‌کند.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی تمامی کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای‌تان انتخاب کردید؟</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای‌تان انتخاب کردید؟</string>
   <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
   <string name="ChatWallpaperFragment__reset">بازنشانی</string>
   <string name="ChatWallpaperFragment__clear">پاک کردن</string>

@@ -2242,7 +2242,7 @@
   <string name="PaymentsDetailsFragment__from">От</string>
   <string name="PaymentsDetailsFragment__information">Подробности транзакции, включая сумму перевода и время транзакции, являются частью MobileCoin Ledger.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Комиссия за очистку монет</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">«Комиссия за очистку монет» взимается, когда монеты в вашем распоряжении не могут быть скомбинированы, чтобы завершить транзакцию. Очистка позволит вам продолжить отправлять переводы.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">«Комиссия за очистку монет» взимается, когда монеты в вашем распоряжении не могут быть объединены, чтобы завершить транзакцию. Очистка позволит вам продолжить отправлять переводы.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Для этой транзакции недоступно больше информации</string>
   <string name="PaymentsDetailsFragment__sent_payment">Отправленный перевод</string>
   <string name="PaymentsDetailsFragment__received_payment">Полученный перевод</string>
