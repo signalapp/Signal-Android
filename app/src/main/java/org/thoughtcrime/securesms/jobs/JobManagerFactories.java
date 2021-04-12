@@ -29,11 +29,8 @@ public final class JobManagerFactories {
 
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     HashMap<String, Job.Factory> factoryHashMap = new HashMap<String, Job.Factory>() {{
-      put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
-      put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
-      put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
