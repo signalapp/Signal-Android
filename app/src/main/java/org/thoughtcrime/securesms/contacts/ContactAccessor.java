@@ -98,6 +98,22 @@ public class ContactAccessor {
   }
 
   /**
+   *
+   * @param context       Context
+   * @param lastSyncTime  Last sync time
+   * @return List contacts are updated after lastSyncTime
+   */
+  public Cursor getUpdatedSystemContacts(Context context, long lastSyncTime) {
+    Uri      uri        = ContactsContract.Data.CONTENT_URI;
+    String[] projection = SqlUtil.buildArgs(ContactsContract.Data.MIMETYPE, Phone.NUMBER, Phone.DISPLAY_NAME, Phone.LABEL, Phone.PHOTO_URI, Phone._ID, Phone.LOOKUP_KEY, Phone.TYPE, GIVEN_NAME, FAMILY_NAME);
+    String   where      = ContactsContract.Data.MIMETYPE + " IN (?, ?) AND " + ContactsContract.Data.CONTACT_LAST_UPDATED_TIMESTAMP + " > ?";
+    String[] args       = SqlUtil.buildArgs(Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE, String.valueOf(lastSyncTime));
+    String   orderBy    = Phone.LOOKUP_KEY + " ASC, " + ContactsContract.Data.MIMETYPE + " DESC, " + ContactsContract.CommonDataKinds.Phone._ID + " DESC";
+
+    return context.getContentResolver().query(uri, projection, where, args, orderBy);
+  }
+
+  /**
    * Gets and returns a cursor of data for all contacts, containing both phone number data and
    * structured name data.
    *

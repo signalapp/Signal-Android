@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
+import org.thoughtcrime.securesms.jobs.SystemContactUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.LogSecretProvider;
@@ -335,6 +336,8 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   private void executePendingContactSync() {
     if (TextSecurePreferences.needsFullContactSync(this)) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
+    } else {
+      ApplicationDependencies.getJobManager().add(new SystemContactUpdateJob());
     }
   }
 

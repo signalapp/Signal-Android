@@ -173,6 +173,8 @@ public class TextSecurePreferences {
   private static final String LAST_FULL_CONTACT_SYNC_TIME = "pref_last_full_contact_sync_time";
   private static final String NEEDS_FULL_CONTACT_SYNC     = "pref_needs_full_contact_sync";
 
+  private static final String LAST_SYSTEM_CONTACT_SYNC_TIME = "pref_last_system_contact_sync_time";
+
   private static final String LOG_ENCRYPTED_SECRET   = "pref_log_encrypted_secret";
   private static final String LOG_UNENCRYPTED_SECRET = "pref_log_unencrypted_secret";
 
@@ -1109,6 +1111,14 @@ public class TextSecurePreferences {
 
   public static void setLastFullContactSyncTime(Context context, long timestamp) {
     setLongPreference(context, LAST_FULL_CONTACT_SYNC_TIME, timestamp);
+  }
+
+  public static long getLastSystemContactSyncTime(Context context) {
+    return getLongPreference(context, LAST_SYSTEM_CONTACT_SYNC_TIME, 0);
+  }
+
+  public static void setLastSystemContactSyncTime(Context context, long timestamp) {
+    setLongPreference(context, LAST_SYSTEM_CONTACT_SYNC_TIME, timestamp);
   }
 
   public static boolean needsFullContactSync(Context context) {

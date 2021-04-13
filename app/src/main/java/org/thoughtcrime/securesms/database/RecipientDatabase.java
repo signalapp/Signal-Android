@@ -1566,15 +1566,11 @@ public class RecipientDatabase extends Database {
   }
 
   public BulkOperationsHandle beginBulkSystemContactUpdate() {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    database.beginTransaction();
+    return beginBulkSystemContactUpdate(true);
+  }
 
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(SYSTEM_INFO_PENDING, 1);
-
-    database.update(TABLE_NAME, contentValues, SYSTEM_CONTACT_URI + " NOT NULL", null);
-
-    return new BulkOperationsHandle(database);
+  public BulkOperationsHandle beginBulkSystemContactUpdate(boolean markSystemDataPending) {
+    return new BulkOperationsHandle(databaseHelper.getWritableDatabase(), markSystemDataPending);
   }
 
   public void setColor(@NonNull RecipientId id, @NonNull MaterialColor color) {
@@ -3033,10 +3029,30 @@ public class RecipientDatabase extends Database {
 
     private final SQLiteDatabase database;
 
+    private final boolean markSystemDataForPendingInfo;
+
     private final Map<RecipientId, PendingContactInfo> pendingContactInfoMap = new HashMap<>();
 
-    BulkOperationsHandle(SQLiteDatabase database) {
+    BulkOperationsHandle(SQLiteDatabase database, boolean markSystemDataForPendingInfo) {
       this.database = database;
+      this.markSystemDataForPendingInfo = markSystemDataForPendingInfo;
+
+      database.beginTransaction();
+
+      setSystemDataForPendingInfoIfNeeded();
+    }
+
+    private void setSystemDataForPendingInfoIfNeeded() {
+      if (this.markSystemDataForPendingInfo) {
+        this.setSystemDataForPendingInfo();
+      }
+    }
+
+    private void setSystemDataForPendingInfo() {
+      ContentValues contentValues = new ContentValues(1);
+      contentValues.put(SYSTEM_INFO_PENDING, 1);
+
+      this.database.update(TABLE_NAME, contentValues, SYSTEM_CONTACT_URI + " NOT NULL", null);
     }
 
     public void setSystemContactInfo(@NonNull RecipientId id,
@@ -3078,7 +3094,7 @@ public class RecipientDatabase extends Database {
 
     public void finish() {
       markAllRelevantEntriesDirty();
-      clearSystemDataForPendingInfo();
+      clearSystemDataForPendingInfoIfNeeded();
 
       database.setTransactionSuccessful();
       database.endTransaction();
@@ -3094,6 +3110,12 @@ public class RecipientDatabase extends Database {
       values.put(DIRTY, DirtyState.UPDATE.getId());
 
       database.update(TABLE_NAME, values, query, args);
+    }
+
+    private void clearSystemDataForPendingInfoIfNeeded() {
+      if (markSystemDataForPendingInfo) {
+        clearSystemDataForPendingInfo();
+      }
     }
 
     private void clearSystemDataForPendingInfo() {
