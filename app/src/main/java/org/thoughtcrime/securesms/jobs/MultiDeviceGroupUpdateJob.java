@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -128,7 +129,11 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
                    BlobProvider.getInstance().getStream(context, uri),
                    length);
       } else {
-        Log.w(TAG, "No groups present for sync message...");
+        Log.w(TAG, "No groups present for sync message. Sending an empty update.");
+
+        sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
+                   null,
+                   0);
       }
     } finally {
       BlobProvider.getInstance().delete(context, uri);
@@ -149,11 +154,17 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
   private void sendUpdate(SignalServiceMessageSender messageSender, InputStream stream, long length)
       throws IOException, UntrustedIdentityException
   {
-    SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-                                                                              .withStream(stream)
-                                                                              .withContentType("application/octet-stream")
-                                                                              .withLength(length)
-                                                                              .build();
+    SignalServiceAttachmentStream attachmentStream;
+
+    if (length > 0) {
+      attachmentStream = SignalServiceAttachment.newStreamBuilder()
+                                                .withStream(stream)
+                                                .withContentType("application/octet-stream")
+                                                .withLength(length)
+                                                .build();
+    } else {
+      attachmentStream = SignalServiceAttachment.emptyStream("application/octet-stream");
+    }
 
     messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
                               UnidentifiedAccessUtil.getAccessForSync(context));

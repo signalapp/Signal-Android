@@ -869,6 +869,7 @@ public class SignalServiceMessageSender {
   private byte[] createMultiDeviceGroupsContent(SignalServiceAttachmentStream groups) throws IOException {
     Content.Builder     container = Content.newBuilder();
     SyncMessage.Builder builder   = createSyncMessageBuilder();
+
     builder.setGroups(SyncMessage.Groups.newBuilder()
                                         .setBlob(createAttachmentPointer(groups)));
 

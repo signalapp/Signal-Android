@@ -10,6 +10,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 public abstract class SignalServiceAttachment {
@@ -37,6 +38,10 @@ public abstract class SignalServiceAttachment {
 
   public static Builder newStreamBuilder() {
     return new Builder();
+  }
+
+  public static SignalServiceAttachmentStream emptyStream(String contentType) {
+    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.absent(), false, false, null, null);
   }
 
   public static class Builder {
