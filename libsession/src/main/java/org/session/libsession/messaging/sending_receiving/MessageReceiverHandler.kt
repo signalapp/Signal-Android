@@ -105,8 +105,10 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
         handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair!!, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
+    val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.server }
     for (openGroup in message.openGroups) {
         if (allOpenGroups.contains(openGroup)) continue
+        // TODO: add in v2
         storage.addOpenGroup(openGroup, 1)
     }
     if (message.displayName.isNotEmpty()) {

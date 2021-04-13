@@ -10,6 +10,7 @@ import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.opengroups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
@@ -51,14 +52,16 @@ interface StorageProtocol {
     fun isJobCanceled(job: Job): Boolean
 
     // Authorization
-    fun getAuthToken(server: String): String?
-    fun setAuthToken(server: String, newValue: String?)
-    fun removeAuthToken(server: String)
+    fun getAuthToken(room: String, server: String): String?
+    fun setAuthToken(room: String, server: String, newValue: String)
+    fun removeAuthToken(room: String, server: String)
 
     // Open Groups
-    fun getOpenGroup(threadID: String): OpenGroup?
+    fun getAllV2OpenGroups(): Map<Long, OpenGroupV2>
+    fun getV2OpenGroup(threadId: String): OpenGroupV2?
+
+    // Open Groups
     fun getThreadID(openGroupID: String): String?
-    fun getAllOpenGroups(): Map<Long, OpenGroup>
     fun addOpenGroup(server: String, channel: Long)
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
     fun getQuoteServerID(quoteID: Long, publicKey: String): Long?
@@ -72,21 +75,19 @@ interface StorageProtocol {
     fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String?
 
     // Open Group Metadata
-    fun setUserCount(group: Long, server: String, newValue: Int)
-    fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String)
-    fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
+
     fun updateTitle(groupID: String, newValue: String)
     fun updateProfilePicture(groupID: String, newValue: ByteArray)
 
     // Last Message Server ID
-    fun getLastMessageServerID(group: Long, server: String): Long?
-    fun setLastMessageServerID(group: Long, server: String, newValue: Long)
-    fun removeLastMessageServerID(group: Long, server: String)
+    fun getLastMessageServerId(room: String, server: String): Long?
+    fun setLastMessageServerId(room: String, server: String, newValue: Long)
+    fun removeLastMessageServerId(room: String, server: String)
 
     // Last Deletion Server ID
-    fun getLastDeletionServerID(group: Long, server: String): Long?
-    fun setLastDeletionServerID(group: Long, server: String, newValue: Long)
-    fun removeLastDeletionServerID(group: Long, server: String)
+    fun getLastDeletionServerId(room: String, server: String): Long?
+    fun setLastDeletionServerId(room: String, server: String, newValue: Long)
+    fun removeLastDeletionServerId(room: String, server: String)
 
     // Message Handling
     fun isMessageDuplicated(timestamp: Long, sender: String): Boolean
@@ -158,4 +159,25 @@ interface StorageProtocol {
     // Message Handling
     /// Returns the ID of the `TSIncomingMessage` that was constructed.
     fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long?
+
+    // DEPRECATED
+    fun getAuthToken(server: String): String?
+    fun setAuthToken(server: String, newValue: String?)
+    fun removeAuthToken(server: String)
+
+    fun getLastMessageServerID(group: Long, server: String): Long?
+    fun setLastMessageServerID(group: Long, server: String, newValue: Long)
+    fun removeLastMessageServerID(group: Long, server: String)
+
+    fun getLastDeletionServerID(group: Long, server: String): Long?
+    fun setLastDeletionServerID(group: Long, server: String, newValue: Long)
+    fun removeLastDeletionServerID(group: Long, server: String)
+
+    fun getOpenGroup(threadID: String): OpenGroup?
+    fun getAllOpenGroups(): Map<Long, OpenGroup>
+
+    fun setUserCount(group: Long, server: String, newValue: Int)
+    fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String)
+    fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
+
 }

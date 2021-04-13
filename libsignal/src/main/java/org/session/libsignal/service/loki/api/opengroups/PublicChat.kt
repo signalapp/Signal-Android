@@ -20,6 +20,7 @@ public data class PublicChat(
         @JvmStatic fun fromJSON(jsonAsString: String): PublicChat? {
             try {
                 val json = JsonUtil.fromJson(jsonAsString)
+                if (!json.has("channel")) return null
                 val channel = json.get("channel").asLong()
                 val server = json.get("server").asText().toLowerCase()
                 val displayName = json.get("displayName").asText()

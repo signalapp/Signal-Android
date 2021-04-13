@@ -3,20 +3,18 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-
+import org.session.libsession.messaging.opengroups.OpenGroupV2
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
+import org.session.libsignal.utilities.JsonUtil
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.utilities.*
-
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
-
-import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.PublicKeyValidation
+import org.thoughtcrime.securesms.loki.utilities.get
+import org.thoughtcrime.securesms.loki.utilities.getString
+import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
 
@@ -52,6 +50,26 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         } catch (e: Exception) {
             // Do nothing
         }  finally {
+            cursor?.close()
+        }
+        return result
+    }
+
+    fun getAllV2OpenGroups(): Map<Long, OpenGroupV2> {
+        val database = databaseHelper.readableDatabase
+        var cursor: Cursor? = null
+        val result = mutableMapOf<Long, OpenGroupV2>()
+        try {
+            cursor = database.rawQuery("select * from $publicChatTable", null)
+            while (cursor != null && cursor.moveToNext()) {
+                val threadID = cursor.getLong(threadID)
+                val string = cursor.getString(publicChat)
+                val openGroup = OpenGroupV2.fromJson(string)
+                if (openGroup != null) result[threadID] = openGroup
+            }
+        } catch (e: Exception) {
+            // do nothing
+        } finally {
             cursor?.close()
         }
         return result

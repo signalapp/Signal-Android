@@ -24,7 +24,7 @@ class PublicChatManager(private val context: Context) {
   private val pollers = mutableMapOf<Long, OpenGroupPoller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
-  private val executorService = Executors.newScheduledThreadPool(16)
+  private val executorService = Executors.newScheduledThreadPool(4)
 
   public fun areAllCaughtUp(): Boolean {
     var areAllCaughtUp = true

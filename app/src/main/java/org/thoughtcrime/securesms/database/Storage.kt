@@ -14,6 +14,7 @@ import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.opengroups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
@@ -221,12 +222,36 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).setAuthToken(server, null)
     }
 
+    override fun getAuthToken(room: String, server: String): String? {
+        val id = "$server.$room"
+        return DatabaseFactory.getLokiAPIDatabase(context).getAuthToken(id)
+    }
+
+    override fun setAuthToken(room: String, server: String, newValue: String) {
+        val id = "$server.$room"
+        DatabaseFactory.getLokiAPIDatabase(context).setAuthToken(id, newValue)
+    }
+
+    override fun removeAuthToken(room: String, server: String) {
+        val id = "$server.$room"
+        DatabaseFactory.getLokiAPIDatabase(context).setAuthToken(id, null)
+    }
+
     override fun getOpenGroup(threadID: String): OpenGroup? {
         if (threadID.toInt() < 0) { return null }
         val database = databaseHelper.readableDatabase
         return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadID)) { cursor ->
             val publicChatAsJSON = cursor.getString(LokiThreadDatabase.publicChat)
             OpenGroup.fromJSON(publicChatAsJSON)
+        }
+    }
+
+    override fun getV2OpenGroup(threadId: String): OpenGroupV2? {
+        if (threadId.toInt() < 0) { return null }
+        val database = databaseHelper.readableDatabase
+        return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadId)) { cursor ->
+            val publicChatAsJson = cursor.getString(LokiThreadDatabase.publicChat)
+            OpenGroupV2.fromJson(publicChatAsJson)
         }
     }
 
@@ -254,6 +279,18 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(groupID, publicKey)
     }
 
+    override fun getLastMessageServerId(room: String, server: String): Long? {
+        return DatabaseFactory.getLokiAPIDatabase(context).getLastMessageServerID(room, server)
+    }
+
+    override fun setLastMessageServerId(room: String, server: String, newValue: Long) {
+        DatabaseFactory.getLokiAPIDatabase(context).setLastMessageServerID(room, server, newValue)
+    }
+
+    override fun removeLastMessageServerId(room: String, server: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(room, server)
+    }
+
     override fun getLastMessageServerID(group: Long, server: String): Long? {
         return DatabaseFactory.getLokiAPIDatabase(context).getLastMessageServerID(group, server)
     }
@@ -264,6 +301,18 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun removeLastMessageServerID(group: Long, server: String) {
         DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(group, server)
+    }
+
+    override fun getLastDeletionServerId(room: String, server: String): Long? {
+        TODO("Not yet implemented")
+    }
+
+    override fun setLastDeletionServerId(room: String, server: String, newValue: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun removeLastDeletionServerId(room: String, server: String) {
+        TODO("Not yet implemented")
     }
 
     override fun getLastDeletionServerID(group: Long, server: String): Long? {
@@ -469,6 +518,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().mapValues { (_,chat)->
             OpenGroup(chat.channel, chat.server, chat.displayName, chat.isDeletable)
         }
+    }
+
+    override fun getAllV2OpenGroups(): Map<Long, OpenGroupV2> {
+        return DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups()
     }
 
     override fun addOpenGroup(server: String, channel: Long) {
