@@ -342,7 +342,6 @@ public class DirectoryHelper {
         String mimeType = getMimeType(cursor);
 
         if (!isPhoneMimeType(mimeType)) {
-          Log.w(TAG, "Ignoring unwanted mime type: " + mimeType);
           continue;
         }
 
