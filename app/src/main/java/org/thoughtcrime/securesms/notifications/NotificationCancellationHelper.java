@@ -43,7 +43,7 @@ public final class NotificationCancellationHelper {
    * We utilize our wrapped cancellation methods and a counter to make sure that we do not lose
    * bubble notifications that do not have unread messages in them.
    */
-  static void cancelAllMessageNotifications(@NonNull Context context) {
+  public static void cancelAllMessageNotifications(@NonNull Context context) {
     if (Build.VERSION.SDK_INT >= 23) {
       try {
         NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);

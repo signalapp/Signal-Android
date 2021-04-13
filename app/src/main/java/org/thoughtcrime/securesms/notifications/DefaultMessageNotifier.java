@@ -102,8 +102,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
   public static final  String NOTIFICATION_GROUP = "messages";
 
   private static final String EMOJI_REPLACEMENT_STRING  = "__EMOJI__";
-  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
-  private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
+  public  static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
+  public  static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
 
   private volatile long                     visibleThread                = -1;
   private volatile long                     lastDesktopActivityTimestamp = -1;

@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -56,7 +57,11 @@ public abstract class Slide {
   }
 
   public @Nullable Uri getPublicUri() {
-    return attachment.getPublicUri();
+    if (Build.VERSION.SDK_INT >= 28) {
+      return attachment.getPublicUri();
+    } else {
+      return attachment.getUri();
+    }
   }
 
   @NonNull

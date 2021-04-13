@@ -40,7 +40,6 @@ import java.io.Closeable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -744,11 +743,11 @@ public class MmsSmsDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
-  public Reader readerFor(@NonNull Cursor cursor) {
+  public static Reader readerFor(@NonNull Cursor cursor) {
     return new Reader(cursor);
   }
 
-  public class Reader implements Closeable {
+  public static class Reader implements Closeable {
 
     private final Cursor                 cursor;
     private       SmsDatabase.Reader     smsReader;

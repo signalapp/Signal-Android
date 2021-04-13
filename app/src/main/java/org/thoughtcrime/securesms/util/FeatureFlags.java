@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -75,6 +76,7 @@ public final class FeatureFlags {
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
   private static final String STORAGE_SYNC_V2                   = "android.storageSyncV2.2";
+  private static final String NOTIFICATION_REWRITE              = "android.notificationRewrite";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -106,7 +108,8 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      STORAGE_SYNC_V2
+      STORAGE_SYNC_V2,
+      NOTIFICATION_REWRITE
   );
 
   @VisibleForTesting
@@ -150,7 +153,8 @@ public final class FeatureFlags {
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
       GV1_FORCED_MIGRATE,
-      STORAGE_SYNC_V2
+      STORAGE_SYNC_V2,
+      NOTIFICATION_REWRITE
   );
 
   /**
@@ -340,6 +344,11 @@ public final class FeatureFlags {
   /** Whether or not to use {@link org.thoughtcrime.securesms.jobs.StorageSyncJobV2}. */
   public static boolean storageSyncV2() {
     return getBoolean(STORAGE_SYNC_V2, false);
+  }
+
+  /** Whether or not to use the new notification system. */
+  public static boolean useNewNotificationSystem() {
+    return getBoolean(NOTIFICATION_REWRITE, false) && Build.VERSION.SDK_INT >= 26;
   }
 
   /** Only for rendering debug info. */

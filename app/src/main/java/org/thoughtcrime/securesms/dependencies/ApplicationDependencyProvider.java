@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.payments.MobileCoinConfig;
 import org.thoughtcrime.securesms.payments.Payments;
@@ -185,7 +186,14 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull MessageNotifier provideMessageNotifier() {
-    return new OptimizedMessageNotifier(new DefaultMessageNotifier());
+    MessageNotifier inner;
+    if (FeatureFlags.useNewNotificationSystem()) {
+      inner = new MessageNotifierV2();
+    } else {
+      inner = new DefaultMessageNotifier();
+    }
+
+    return new OptimizedMessageNotifier(inner);
   }
 
   @Override

@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.uast.UCallExpression;
 import org.jetbrains.uast.UExpression;
 import org.jetbrains.uast.java.JavaUSimpleNameReferenceExpression;
+import org.jetbrains.uast.kotlin.KotlinUSimpleReferenceExpression;
 
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +74,7 @@ public final class SignalLogDetector extends Detector implements Detector.UastSc
     if (evaluator.isMemberInClass(method, "org.signal.core.util.logging.Log")) {
       List<UExpression> arguments  = call.getValueArguments();
       UExpression       tag        = arguments.get(0);
-      if (!(tag instanceof JavaUSimpleNameReferenceExpression)) {
+      if (!(tag instanceof JavaUSimpleNameReferenceExpression || tag instanceof KotlinUSimpleReferenceExpression)) {
         context.report(INLINE_TAG, call, context.getLocation(call), "Not using a tag constant");
       }
     }

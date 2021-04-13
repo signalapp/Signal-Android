@@ -18,6 +18,10 @@ public class NotificationPrivacyPreference {
     return "all".equals(preference);
   }
 
+  public boolean isDisplayNothing() {
+    return !isDisplayContact();
+  }
+
   @Override
   public @NonNull String toString() {
     return preference;
