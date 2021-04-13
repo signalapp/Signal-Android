@@ -116,6 +116,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setIdentityKey(identityKey)
                                     .setBlocked(blocked)
                                     .setProfileSharingEnabled(profileSharing)
+                                    .setArchived(archived)
                                     .setForcedUnread(forcedUnread)
                                     .setMuteUntil(muteUntil)
                                     .build();
