@@ -1382,9 +1382,7 @@ public class ConversationFragment extends LoggingFragment {
 
           DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForViewOnceMessage(messageRecord.getId());
 
-          ApplicationContext.getInstance(requireContext())
-                            .getViewOnceMessageManager()
-                            .scheduleIfNecessary();
+          ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
 
           ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
 

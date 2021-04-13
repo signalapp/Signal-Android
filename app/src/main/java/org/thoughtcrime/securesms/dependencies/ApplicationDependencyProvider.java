@@ -42,6 +42,8 @@ import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
+import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
@@ -194,6 +196,16 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager() {
     return new TrimThreadsByDateManager(context);
+  }
+
+  @Override
+  public @NonNull ViewOnceMessageManager provideViewOnceMessageManager() {
+    return new ViewOnceMessageManager(context);
+  }
+
+  @Override
+  public @NonNull ExpiringMessageManager provideExpiringMessageManager() {
+    return new ExpiringMessageManager(context);
   }
 
   @Override

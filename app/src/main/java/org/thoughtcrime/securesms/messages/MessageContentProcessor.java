@@ -992,15 +992,13 @@ public final class MessageContentProcessor {
       List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(Recipient.externalPush(context, readMessage.getSender()).getId(), readMessage.getTimestamp()), envelopeTimestamp);
 
       for (Pair<Long, Long> expiringMessage : expiringText) {
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(expiringMessage.first(), false, envelopeTimestamp, expiringMessage.second());
+        ApplicationDependencies.getExpiringMessageManager()
+                               .scheduleDeletion(expiringMessage.first(), false, envelopeTimestamp, expiringMessage.second());
       }
 
       for (Pair<Long, Long> expiringMessage : expiringMedia) {
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(expiringMessage.first(), true, envelopeTimestamp, expiringMessage.second());
+        ApplicationDependencies.getExpiringMessageManager()
+                               .scheduleDeletion(expiringMessage.first(), true, envelopeTimestamp, expiringMessage.second());
       }
     }
 
@@ -1094,7 +1092,7 @@ public final class MessageContentProcessor {
       ApplicationDependencies.getJobManager().add(new TrimThreadJob(insertResult.get().getThreadId()));
 
       if (message.isViewOnce()) {
-        ApplicationContext.getInstance(context).getViewOnceMessageManager().scheduleIfNecessary();
+        ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
       }
     }
   }
@@ -1181,11 +1179,11 @@ public final class MessageContentProcessor {
 
       if (message.getMessage().getExpiresInSeconds() > 0) {
         database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(messageId, true,
-                              message.getExpirationStartTimestamp(),
-                              message.getMessage().getExpiresInSeconds() * 1000L);
+        ApplicationDependencies.getExpiringMessageManager()
+                               .scheduleDeletion(messageId,
+                                                 true,
+                                                 message.getExpirationStartTimestamp(),
+                                                 message.getMessage().getExpiresInSeconds() * 1000L);
       }
 
       if (recipients.isSelf()) {
@@ -1341,9 +1339,8 @@ public final class MessageContentProcessor {
 
     if (expiresInMillis > 0) {
       database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
-      ApplicationContext.getInstance(context)
-                        .getExpiringMessageManager()
-                        .scheduleDeletion(messageId, isGroup, message.getExpirationStartTimestamp(), expiresInMillis);
+      ApplicationDependencies.getExpiringMessageManager()
+                             .scheduleDeletion(messageId, isGroup, message.getExpirationStartTimestamp(), expiresInMillis);
     }
 
     if (recipient.isSelf()) {

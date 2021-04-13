@@ -95,9 +95,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private static final String TAG = Log.tag(ApplicationContext.class);
 
-  private ExpiringMessageManager expiringMessageManager;
-  private ViewOnceMessageManager viewOnceMessageManager;
-  private PersistentLogger       persistentLogger;
+  private PersistentLogger persistentLogger;
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -194,17 +192,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     ApplicationDependencies.getShakeToReport().disable();
   }
 
-  public ExpiringMessageManager getExpiringMessageManager() {
-    if (expiringMessageManager == null) {
-      initializeExpiringMessageManager();
-    }
-    return expiringMessageManager;
-  }
-
-  public ViewOnceMessageManager getViewOnceMessageManager() {
-    return viewOnceMessageManager;
-  }
-
   public PersistentLogger getPersistentLogger() {
     return persistentLogger;
   }
@@ -299,11 +286,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   }
 
   private void initializeExpiringMessageManager() {
-    this.expiringMessageManager = new ExpiringMessageManager(this);
+    ApplicationDependencies.getExpiringMessageManager().checkSchedule();
   }
 
   private void initializeRevealableMessageManager() {
-    this.viewOnceMessageManager = new ViewOnceMessageManager(this);
+    ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
   }
 
   private void initializePeriodicTasks() {

@@ -111,7 +111,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     }
 
     if (smsExpirationInfo.size() + mmsExpirationInfo.size() > 0) {
-      ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
+      ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
 
       Stream.concat(Stream.of(smsExpirationInfo), Stream.of(mmsExpirationInfo))
             .forEach(info -> expirationManager.scheduleDeletion(info.getId(), info.isMms(), info.getExpiresIn()));
