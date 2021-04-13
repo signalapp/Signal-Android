@@ -45,7 +45,6 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
   public @NonNull Result<E> process(@NonNull Collection<E> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
     List<E>                      remoteDeletes  = new LinkedList<>();
     List<StorageRecordUpdate<E>> remoteUpdates  = new LinkedList<>();
-    List<E>                      localMatches   = new LinkedList<>();
     Set<E>                       matchedRecords = new TreeSet<>(this);
 
     for (E remote : remoteRecords) {
@@ -56,8 +55,6 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
 
         if (local.isPresent()) {
           E merged = merge(remote, local.get(), keyGenerator);
-
-          localMatches.add(local.get());
 
           if (matchedRecords.contains(local.get())) {
             Log.w(TAG, "Multiple remote records map to the same local record! Marking this one for deletion. (Type: " + local.get().getClass().getSimpleName() + ")");
@@ -79,7 +76,7 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
       }
     }
 
-    return new Result<>(remoteUpdates, remoteDeletes, localMatches);
+    return new Result<>(remoteUpdates, remoteDeletes);
   }
 
   /**

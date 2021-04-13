@@ -74,7 +74,7 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
-  private static final String STORAGE_SYNC_V2                   = "android.storageSyncV2";
+  private static final String STORAGE_SYNC_V2                   = "android.storageSyncV2.2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable

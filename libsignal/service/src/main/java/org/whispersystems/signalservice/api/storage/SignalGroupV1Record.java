@@ -40,6 +40,10 @@ public final class SignalGroupV1Record implements SignalRecord {
       SignalGroupV1Record that = (SignalGroupV1Record) other;
       List<String>        diff = new LinkedList<>();
 
+      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
+        diff.add("ID");
+      }
+
       if (!Arrays.equals(this.groupId, that.groupId)) {
         diff.add("MasterKey");
       }

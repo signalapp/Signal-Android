@@ -355,10 +355,9 @@ public final class StorageSyncHelper {
    */
   public static @NonNull WriteOperationResult createWriteOperation(long currentManifestVersion,
                                                                    @NonNull List<StorageId> allStorageKeys,
-                                                                   @NonNull List<SignalStorageRecord> localOnlyRecords,
                                                                    @NonNull StorageRecordProcessor.Result<? extends SignalRecord>... results)
   {
-    Set<SignalStorageRecord> inserts = new LinkedHashSet<>(localOnlyRecords);
+    Set<SignalStorageRecord> inserts = new LinkedHashSet<>();
     Set<StorageId>           deletes = new LinkedHashSet<>();
 
     for (StorageRecordProcessor.Result<? extends SignalRecord> result : results) {
@@ -682,9 +681,9 @@ public final class StorageSyncHelper {
     private final List<SignalStorageRecord> inserts;
     private final List<byte[]>              deletes;
 
-    private WriteOperationResult(@NonNull SignalStorageManifest manifest,
-                                 @NonNull List<SignalStorageRecord> inserts,
-                                 @NonNull List<byte[]> deletes)
+    public WriteOperationResult(@NonNull SignalStorageManifest manifest,
+                                @NonNull List<SignalStorageRecord> inserts,
+                                @NonNull List<byte[]> deletes)
     {
       this.manifest = manifest;
       this.inserts  = inserts;

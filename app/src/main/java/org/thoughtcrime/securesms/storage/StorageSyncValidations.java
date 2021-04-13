@@ -7,6 +7,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -66,10 +67,12 @@ public final class StorageSyncValidations {
     Set<ByteBuffer> writeDeletes = Stream.of(result.getDeletes()).map(ByteBuffer::wrap).collect(Collectors.toSet());
 
     if (writeInserts.size() > insertedIds.size()) {
+      Log.w(TAG, "WriteInserts: " + writeInserts.size() + ", InsertedIds: " + insertedIds.size());
       throw new MoreInsertsThanExpectedError();
     }
 
     if (writeInserts.size() < insertedIds.size()) {
+      Log.w(TAG, "WriteInserts: " + writeInserts.size() + ", InsertedIds: " + insertedIds.size());
       throw new LessInsertsThanExpectedError();
     }
 
@@ -78,10 +81,12 @@ public final class StorageSyncValidations {
     }
 
     if (writeDeletes.size() > deletedIds.size()) {
+      Log.w(TAG, "WriteDeletes: " + writeDeletes.size() + ", DeletedIds: " + deletedIds.size());
       throw new MoreDeletesThanExpectedError();
     }
 
     if (writeDeletes.size() < deletedIds.size()) {
+      Log.w(TAG, "WriteDeletes: " + writeDeletes.size() + ", DeletedIds: " + deletedIds.size());
       throw new LessDeletesThanExpectedError();
     }
 

@@ -23,12 +23,10 @@ public interface StorageRecordProcessor<E extends SignalRecord> {
   final class Result<E extends SignalRecord> {
     private final Collection<StorageRecordUpdate<E>> remoteUpdates;
     private final Collection<E>                      remoteDeletes;
-    private final Collection<SignalStorageRecord> localMatches;
 
-    Result(@NonNull Collection<StorageRecordUpdate<E>> remoteUpdates, @NonNull Collection<E> remoteDeletes, @NonNull Collection<E> localMatches) {
+    Result(@NonNull Collection<StorageRecordUpdate<E>> remoteUpdates, @NonNull Collection<E> remoteDeletes) {
       this.remoteDeletes = remoteDeletes;
       this.remoteUpdates = remoteUpdates;
-      this.localMatches  = Stream.of(localMatches).map(SignalRecord::asStorageRecord).toList();
     }
 
     public @NonNull Collection<E> getRemoteDeletes() {
@@ -37,10 +35,6 @@ public interface StorageRecordProcessor<E extends SignalRecord> {
 
     public @NonNull Collection<StorageRecordUpdate<E>> getRemoteUpdates() {
       return remoteUpdates;
-    }
-
-    public @NonNull Collection<SignalStorageRecord> getLocalMatches() {
-      return localMatches;
     }
 
     public boolean isLocalOnly() {
@@ -61,7 +55,7 @@ public interface StorageRecordProcessor<E extends SignalRecord> {
         builder.append("- ").append(update.toString()).append("\n");
       }
 
-      return super.toString();
+      return builder.toString();
     }
   }
 }

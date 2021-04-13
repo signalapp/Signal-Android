@@ -117,7 +117,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
     if (Arrays.equals(lhs.getMasterKeyBytes(), rhs.getMasterKeyBytes())) {
       return 0;
     } else {
-      return lhs.getMasterKeyBytes()[0] - rhs.getMasterKeyBytes()[0];
+      return 1;
     }
   }
 

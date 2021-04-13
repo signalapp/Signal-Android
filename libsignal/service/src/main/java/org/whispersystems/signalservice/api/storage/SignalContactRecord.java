@@ -10,6 +10,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -55,6 +56,10 @@ public final class SignalContactRecord implements SignalRecord {
     if (other instanceof SignalContactRecord) {
       SignalContactRecord that = (SignalContactRecord) other;
       List<String>        diff = new LinkedList<>();
+
+      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
+        diff.add("ID");
+      }
 
       if (!Objects.equals(this.getAddress().getNumber(), that.getAddress().getNumber())) {
         diff.add("E164");

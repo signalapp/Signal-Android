@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -54,10 +55,12 @@ import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -222,7 +225,6 @@ public class StorageSyncJobV2 extends BaseJob {
       List<StorageId>     localStorageIdsBeforeMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
       KeyDifferenceResult keyDifference              = StorageSyncHelper.findKeyDifference(remoteManifest.get().getStorageIds(), localStorageIdsBeforeMerge);
 
-
       if (keyDifference.hasTypeMismatches()) {
         Log.w(TAG, "[Remote Sync] Found type mismatches in the key sets! Scheduling a force push after this sync completes.");
         needsForcePush = true;
@@ -232,7 +234,6 @@ public class StorageSyncJobV2 extends BaseJob {
         Log.i(TAG, "[Remote Sync] Retrieving records for key difference: " + keyDifference);
 
         List<SignalStorageRecord> remoteOnly = accountManager.readStorageRecords(storageServiceKey, keyDifference.getRemoteOnlyKeys());
-        List<SignalStorageRecord> localOnly  = buildLocalStorageRecords(context, self, keyDifference.getLocalOnlyKeys());
 
         if (remoteOnly.size() != keyDifference.getRemoteOnlyKeys().size()) {
           Log.w(TAG, "[Remote Sync] Could not find all remote-only records! Requested: " + keyDifference.getRemoteOnlyKeys().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
@@ -290,17 +291,26 @@ public class StorageSyncJobV2 extends BaseJob {
             Log.i(TAG, "IDs     : " + localStorageIdsBeforeMerge.size() + " IDs before merge, " + localStorageIdsAfterMerge.size() + " IDs after merge");
           }
 
-          localOnly.removeAll(contactResult.getLocalMatches());
-          localOnly.removeAll(gv1Result.getLocalMatches());
-          localOnly.removeAll(gv2Result.getLocalMatches());
-          localOnly.removeAll(accountResult.getLocalMatches());
-
-          recipientDatabase.clearDirtyStateForRecords(localOnly);
-
-          Log.i(TAG, "[Remote Sync] After the conflict resolution, there are " + localOnly.size() + " local-only records remaining.");
-
           //noinspection unchecked Stop yelling at my beautiful method signatures
-          mergeWriteOperation = StorageSyncHelper.createWriteOperation(remoteManifest.get().getVersion(), localStorageIdsAfterMerge, localOnly, contactResult, gv1Result, gv2Result, accountResult);
+          mergeWriteOperation = StorageSyncHelper.createWriteOperation(remoteManifest.get().getVersion(), localStorageIdsAfterMerge, contactResult, gv1Result, gv2Result, accountResult);
+
+          List<StorageId> postMergeLocalOnlyIds = StorageSyncHelper.findKeyDifference(remoteManifest.get().getStorageIds(), mergeWriteOperation.getManifest().getStorageIds()).getLocalOnlyKeys();
+          List<StorageId> remoteInsertIds       = Stream.of(mergeWriteOperation.getInserts()).map(SignalStorageRecord::getId).toList();
+          Set<StorageId>  unhandledLocalOnlyIds = SetUtil.difference(postMergeLocalOnlyIds, remoteInsertIds);
+
+          if (unhandledLocalOnlyIds.size() > 0) {
+            Log.i(TAG, "[Remote Sync] After the conflict resolution, there are " + unhandledLocalOnlyIds.size() + " local-only records remaining that weren't otherwise inserted. Adding them as inserts.");
+
+            List<SignalStorageRecord> localOnly = buildLocalStorageRecords(context, self, unhandledLocalOnlyIds);
+
+            mergeWriteOperation = new WriteOperationResult(mergeWriteOperation.getManifest(),
+                                                           Util.concatenatedList(mergeWriteOperation.getInserts(), localOnly),
+                                                           mergeWriteOperation.getDeletes());
+
+            recipientDatabase.clearDirtyStateForStorageIds(unhandledLocalOnlyIds);
+          } else {
+            Log.i(TAG, "[Remote Sync] After the conflict resolution, there are no local-only records remaining.");
+          }
 
           StorageSyncValidations.validate(mergeWriteOperation, remoteManifest, needsForcePush);
           db.setTransactionSuccessful();
@@ -409,7 +419,11 @@ public class StorageSyncJobV2 extends BaseJob {
                                  DatabaseFactory.getStorageKeyDatabase(context).getAllKeys());
   }
 
-  private static @NonNull List<SignalStorageRecord> buildLocalStorageRecords(@NonNull Context context, @NonNull Recipient self, @NonNull List<StorageId> ids) {
+  private static @NonNull List<SignalStorageRecord> buildLocalStorageRecords(@NonNull Context context, @NonNull Recipient self, @NonNull Collection<StorageId> ids) {
+    if (ids.isEmpty()) {
+      return Collections.emptyList();
+    }
+
     RecipientDatabase  recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     StorageKeyDatabase storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
 
@@ -423,12 +437,12 @@ public class StorageSyncJobV2 extends BaseJob {
           RecipientSettings settings = recipientDatabase.getByStorageId(id.getRaw());
           if (settings != null) {
             if (settings.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && settings.getSyncExtras().getGroupMasterKey() == null) {
-              Log.w(TAG, "Missing master key on gv2 recipient");
+              throw new MissingGv2MasterKeyError();
             } else {
               records.add(StorageSyncModels.localToRemoteRecord(settings));
             }
           } else {
-            Log.w(TAG, "Missing local recipient model! Type: " + id.getType());
+            throw new MissingRecipientModelError("Missing local recipient model! Type: " + id.getType());
           }
           break;
         case ManifestRecord.Identifier.Type.ACCOUNT_VALUE:
@@ -442,13 +456,27 @@ public class StorageSyncJobV2 extends BaseJob {
           if (unknown != null) {
             records.add(unknown);
           } else {
-            Log.w(TAG, "Missing local unknown model! Type: " + id.getType());
+            throw new MissingUnknownModelError("Missing local unknown model! Type: " + id.getType());
           }
           break;
       }
     }
 
     return records;
+  }
+
+  private static final class MissingGv2MasterKeyError extends Error {}
+
+  private static final class MissingRecipientModelError extends Error {
+    public MissingRecipientModelError(String message) {
+      super(message);
+    }
+  }
+
+  private static final class MissingUnknownModelError extends Error {
+    public MissingUnknownModelError(String message) {
+      super(message);
+    }
   }
 
   public static final class Factory implements Job.Factory<StorageSyncJobV2> {

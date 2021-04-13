@@ -2737,7 +2737,7 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void clearDirtyStateForRecords(@NonNull List<SignalStorageRecord> records) {
+  public void clearDirtyStateForStorageIds(@NonNull Collection<StorageId> ids) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     Preconditions.checkArgument(db.inTransaction(), "Database should already be in a transaction.");
@@ -2747,8 +2747,8 @@ public class RecipientDatabase extends Database {
 
     String query = STORAGE_SERVICE_ID + " = ?";
 
-    for (SignalRecord record : records) {
-      String[] args = SqlUtil.buildArgs(Base64.encodeBytes(record.getId().getRaw()));
+    for (StorageId id : ids) {
+      String[] args = SqlUtil.buildArgs(Base64.encodeBytes(id.getRaw()));
       db.update(TABLE_NAME, values, query, args);
     }
   }

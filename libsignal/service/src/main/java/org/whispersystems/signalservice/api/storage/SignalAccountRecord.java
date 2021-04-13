@@ -12,6 +12,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -63,6 +64,10 @@ public final class SignalAccountRecord implements SignalRecord {
     if (other instanceof SignalAccountRecord) {
       SignalAccountRecord that = (SignalAccountRecord) other;
       List<String>        diff = new LinkedList<>();
+
+      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
+        diff.add("ID");
+      }
 
       if (!Objects.equals(this.givenName, that.givenName)) {
         diff.add("GivenName");

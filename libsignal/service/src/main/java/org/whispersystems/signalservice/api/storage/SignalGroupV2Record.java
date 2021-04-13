@@ -42,6 +42,10 @@ public final class SignalGroupV2Record implements SignalRecord {
       SignalGroupV2Record that = (SignalGroupV2Record) other;
       List<String>        diff = new LinkedList<>();
 
+      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
+        diff.add("ID");
+      }
+
       if (!Arrays.equals(this.getMasterKeyBytes(), that.getMasterKeyBytes())) {
         diff.add("MasterKey");
       }

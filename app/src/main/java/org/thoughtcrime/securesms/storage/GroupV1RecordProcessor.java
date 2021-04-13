@@ -117,7 +117,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
     if (Arrays.equals(lhs.getGroupId(), rhs.getGroupId())) {
       return 0;
     } else {
-      return lhs.getGroupId()[0] - rhs.getGroupId()[0];
+      return 1;
     }
   }
 

@@ -141,7 +141,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     {
       return 0;
     } else {
-      return lhs.getAddress().getIdentifier().compareTo(rhs.getAddress().getIdentifier());
+      return 1;
     }
   }
 
