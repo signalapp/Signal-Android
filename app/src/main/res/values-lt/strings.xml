@@ -201,7 +201,7 @@
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Persijunkime į Signal %1$s</string>
-  <string name="ConversationActivity_specify_recipient">Prašome pasirinkti adresatą</string>
+  <string name="ConversationActivity_specify_recipient">Pasirinkite adresatą</string>
   <string name="ConversationActivity_unblock">Atblokuoti</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>

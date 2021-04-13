@@ -1848,6 +1848,7 @@
     <item quantity="other">%dώ</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS και MMS</string>
   <string name="preferences__pref_all_sms_title">Λήψη όλων των SMS</string>
   <string name="preferences__pref_all_mms_title">Λήψη όλων των MMS</string>

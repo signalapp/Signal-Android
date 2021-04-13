@@ -33,11 +33,13 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ଏସଏମଏସ  %1$s ଏମଏମଏସ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">ଚିତ୍ରପଟ୍ଟ ତାଲା %1$s,ପଞ୍ଜିକରଣ ତାଲା %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ଥିମ୍ %1$s, ଭାଷା %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock"> ପଞ୍ଜୀକରଣ ଲକ୍ ପାଇଁ PIN ଗୁଡିକ ଆବଶ୍ୟକ | PIN ଗୁଡିକ ଅକ୍ଷମ କରିବାକୁ, ଦୟାକରି ପ୍ରଥମେ ପଞ୍ଜୀକରଣ ଲକ୍ ଅକ୍ଷମ କରନ୍ତୁ |</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ପଞ୍ଜୀକରଣ ଲକ୍ ପାଇଁ PIN ଗୁଡିକ ଆବଶ୍ୟକ | PIN ଗୁଡିକ ଅକ୍ଷମ କରିବାକୁ, ଦୟାକରି ପ୍ରଥମେ ପଞ୍ଜୀକରଣ ଲକ୍ ଅକ୍ଷମ କରନ୍ତୁ |</string>
   <string name="ApplicationPreferencesActivity_pin_created">ପିନ୍ ସୃଷ୍ଟି କରାଗଲା।</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">ପିନ୍ ଅକ୍ଷମ ଅଟେ।</string>
   <string name="ApplicationPreferencesActivity_hide">ଲୁଚାନ୍ତୁ</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">ସ୍ମରଣିକା ଲୁଚାଇବେ କି?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ପେମେଣ୍ଟ ପୁନରୁଦ୍ଧାର ବାକ୍ୟାଂଶ ରେକର୍ଡ଼୍ କରନ୍ତୁ</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">ବାକ୍ୟାଂଶ ରେକର୍ଡ଼୍ କରନ୍ତୁ</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d ମିନିଟ୍</item>

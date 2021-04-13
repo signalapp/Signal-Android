@@ -2097,8 +2097,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsDetailsFragment__network_fee">Tasa de la red</string>
   <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Enviado a %1$s</string>
-  <string name="PaymentsDetailsFragment__you_on_s_at_s">Tú el %1$s a %2$s</string>
-  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a %3$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Ti el %1$s a las %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a las %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
   <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no el origen y el destino, y figuran en el libro-registro de MobileCoin. </string>
@@ -2164,7 +2164,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Esta persona no ha activado los pagos</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">No es posible calcular la tasa de la red. Para continuar con este pago, toca en OK e inténtalo de nuevo.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%1$s el %2$s</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s a las %2$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">Fijar moneda</string>
   <string name="SetCurrencyFragment__all_currencies">Moneda</string>

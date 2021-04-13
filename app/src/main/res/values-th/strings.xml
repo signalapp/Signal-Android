@@ -1957,6 +1957,7 @@
   <string name="PaymentsHomeFragment__activate_payments">ใช้การชำระเงิน</string>
   <string name="PaymentsHomeFragment__activating_payments">กำลังเปิดใช้การชำระเงิน…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">เรียกคืนบัญชีชำระเงิน</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">ยังไม่มีกิจกรรมเร็วๆ นี้</string>
   <string name="PaymentsHomeFragment__pending_requests">คำขอที่ค้างอยู่</string>
   <string name="PaymentsHomeFragment__recent_activity">กิจกรรมล่าสุด</string>
   <string name="PaymentsHomeFragment__see_all">ดูทั้งหมด</string>

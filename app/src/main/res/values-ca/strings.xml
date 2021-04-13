@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivat.</string>
   <string name="ApplicationPreferencesActivity_hide">Amaga</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Amago el recordatori?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registra la frase de recuperació de pagaments</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Registra la frase</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Abans de poder desactivar el PIN, heu de registrar la frase de recuperació de pagaments per assegurar-vos que podeu recuperar el compte de pagaments.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -57,6 +60,7 @@
   <string name="AttachmentKeyboard_location">Ubicació</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">El Signal necessita permís per mostrar les vostres fotografies i vídeos.</string>
   <string name="AttachmentKeyboard_give_access">Permet-hi l\'accés</string>
+  <string name="AttachmentKeyboard_payment">Pagament</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No s\'ha trobat cap aplicació compatible.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">El Signal necessita el permís de l\'emmagatzematge per tal d\'adjuntar fotografies, vídeos o àudio, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
@@ -1804,6 +1808,14 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__debug_log">Informe de depuració:</string>
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Alguna cosa no va bé</item>
+    <item>Petició de funció</item>
+    <item>Pregunta</item>
+    <item>Retroacció</item>
+    <item>Altres</item>
+    <item>Pagaments</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Aquest missatge</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usat recentment</string>
@@ -1847,6 +1859,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Rep tots els SMS</string>
   <string name="preferences__pref_all_mms_title">Rep tots els MMS</string>
@@ -1910,6 +1923,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demana un informe de lliurament per cada missatge SMS que envieu.</string>
   <string name="preferences__data_and_storage">Dades i emmagatzematge</string>
   <string name="preferences__storage">Emmagatzematge</string>
+  <string name="preferences__payments">Pagaments</string>
+  <string name="preferences__payments_beta">Pagaments (beta)</string>
   <string name="preferences__conversation_length_limit">Límit de la mida de la conversa</string>
   <string name="preferences__keep_messages">Mantén els missatges</string>
   <string name="preferences__clear_message_history">Neteja l\'historial dels missatges</string>
@@ -1973,7 +1988,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_app_protection__app_access">Accés de l\'aplicació</string>
   <string name="preferences_app_protection__communication">Comunicació</string>
   <string name="preferences_chats__chats">Converses</string>
-  <string name="preferences_data_and_storage__manage_storage">Gestiona l\'emmagatzematge</string>
+  <string name="preferences_data_and_storage__manage_storage">Gestioneu l\'emmagatzematge</string>
   <string name="preferences_data_and_storage__calls">Trucades</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Usa menys dades per a les trucades</string>
   <string name="preferences_data_and_storage__never">Mai</string>
@@ -2017,29 +2032,98 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Tota l\'activitat</string>
   <string name="PaymentsAllActivityFragment__all">Tot</string>
-  <string name="PaymentsAllActivityFragment__sent">Enviament</string>
+  <string name="PaymentsAllActivityFragment__sent">Enviat</string>
   <string name="PaymentsAllActivityFragment__received">Rebut</string>
+  <string name="PaymentsHomeFragment__introducing_payments">S\'introdueixen els pagaments (beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Useu el Signal per enviar i rebre MobileCoin, una moneda digital nova centrada en la privadesa. Activeu-ho per començar.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Activa els pagaments</string>
+  <string name="PaymentsHomeFragment__activating_payments">S\'activen els pagaments…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Restaura el compte de pagaments</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Encara no hi ha activitat recent.</string>
+  <string name="PaymentsHomeFragment__pending_requests">Sol·licituds pendents</string>
+  <string name="PaymentsHomeFragment__recent_activity">Activitat recent</string>
   <string name="PaymentsHomeFragment__see_all">Mostra-ho tot</string>
+  <string name="PaymentsHomeFragment__add_funds">Afegeix fons</string>
   <string name="PaymentsHomeFragment__send">Envia</string>
+  <string name="PaymentsHomeFragment__sent_s">Enviat: %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Rebut: %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Transferència d\'intercanvi</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Conversió de moneda</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Desactiva els pagaments</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Frase de recuperació</string>
   <string name="PaymentsHomeFragment__help">Ajuda</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Comissió de neteja de monedes</string>
+  <string name="PaymentsHomeFragment__sent_payment">Pagament enviat</string>
+  <string name="PaymentsHomeFragment__received_payment">Pagament rebut</string>
+  <string name="PaymentsHomeFragment__processing_payment">Es processa el pagament</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">La conversió de moneda no està disponible.</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">No es pot mostrar la conversió de moneda. Comproveu la connexió del telèfon i torneu-ho a provar.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Els pagaments no estan disponibles a la vostra regió.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">No s\'han pogut activar els pagaments. Torneu-ho a provar més tard.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Voleu desactivar els pagaments?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">No podreu enviar ni rebre MobileCoin al Signal si desactiveu els pagaments.</string>
+  <string name="PaymentsHomeFragment__deactivate">Desactiva\'ls</string>
   <string name="PaymentsHomeFragment__continue">Continua</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">El saldo actualment no està disponible.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Pagaments desactivats</string>
+  <string name="PaymentsHomeFragment__payment_failed">Ha fallat el pagament.</string>
   <string name="PaymentsHomeFragment__details">Detalls</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Podeu usar el Signal per enviar i rebre MobileCoin. Tots els pagaments estan subjectes a les Condicions d\'ús de MobileCoins i MobileCoin Wallet. Aquesta és una funció beta, de manera que és possible que tingueu problemes i que no es puguin recuperar pagaments o saldos que poguéssiu perdre.</string>
+  <string name="PaymentsHomeFragment__activate">Activa\'ls</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vegeu els termes de MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Els pagaments al Signal ja no estan disponibles. Encara podeu transferir fons a un intercanvi, però ja no podeu enviar ni rebre pagaments ni afegir-hi fons.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Afegeix fons</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">La vostra adreça de cartera</string>
   <string name="PaymentsAddMoneyFragment__copy">Copia</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiat al porta-retalls</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Per afegir-hi fons, envieu MobileCoin a la vostra adreça de cartera. Inicieu una transacció des del compte amb un intercanvi que admeti MobileCoin i, a continuació, escaneu el codi QR o copieu la vostra adreça de cartera.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalls</string>
   <string name="PaymentsDetailsFragment__status">Estat</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Es fa el pagament…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Es processa el pagament…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Pagament fet</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Ha fallat el pagament.</string>
+  <string name="PaymentsDetailsFragment__network_fee">Comissió de xarxa</string>
+  <string name="PaymentsDetailsFragment__sent_by">Enviat per</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Enviat a %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Vós a %1$s a %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s a %2$s a %3$s</string>
   <string name="PaymentsDetailsFragment__to">A</string>
   <string name="PaymentsDetailsFragment__from">De</string>
+  <string name="PaymentsDetailsFragment__information">Les dades de la transacció, inclosos l\'import del pagament i el moment de la transacció, formen part de MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comissió de neteja de monedes</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Es cobra una comissió de neteja de monedes quan les monedes que teniu no es poden combinar per completar una transacció. La neteja us permetrà continuar enviant pagaments.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">No hi ha més detalls disponibles per a aquesta transacció.</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Pagament enviat</string>
+  <string name="PaymentsDetailsFragment__received_payment">Pagament rebut</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Pagament fet: %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Número de bloc</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Transferència</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Escaneja el codi QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Per a: escanegeu o introduïu l\'adreça de la cartera</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Podeu transferir els MobileCoin completant una transferència a l’adreça de cartera proporcionada per l’intercanvi. L’adreça de la cartera és la cadena de números i lletres que es troba més sovint a sota del codi QR.</string>
   <string name="PaymentsTransferFragment__next">Següent</string>
+  <string name="PaymentsTransferFragment__invalid_address">Adreça no vàlida</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Comproveu l\'adreça de cartera a la qual intenteu fer una transferència i torneu-ho a provar.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">No podeu fer una transferència a la vostra adreça de cartera del Signal. Introduïu l\'adreça de la cartera des del compte amb un intercanvi compatible.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Per escanejar un codi QR, el Signal necessita accés a la càmera.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">El Signal necessita el permís de la càmera per capturar un codi QR. Aneu a la configuració, seleccioneu Permisos i activeu la càmera.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Per escanejar un codi QR, el Signal necessita accés a la càmera.</string>
   <string name="PaymentsTransferFragment__settings">Configuració</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Escaneja el codi QR de l\'adreça</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Escaneja el codi QR de l\'adreça del beneficiari</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Sol·licitud</string>
+  <string name="CreatePaymentFragment__pay">Paga</string>
+  <string name="CreatePaymentFragment__available_balance_s">Saldo disponible: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Commuta</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2049,12 +2133,35 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Retrocés</string>
+  <string name="CreatePaymentFragment__add_note">Afegeix-hi una nota</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Les conversions són només estimacions i és possible que no siguin exactes.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Nota</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Confirmeu el pagament</string>
+  <string name="ConfirmPayment__network_fee">Comissió de xarxa</string>
+  <string name="ConfirmPayment__error_getting_fee">Error en obtenir la comissió</string>
+  <string name="ConfirmPayment__estimated_s">Estimació: %1$s</string>
   <string name="ConfirmPayment__to">A</string>
+  <string name="ConfirmPayment__total_amount">Quantitat total</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Es fa el pagament…</string>
+  <string name="ConfirmPayment__processing_payment">Es processa el pagament…</string>
+  <string name="ConfirmPayment__payment_complete">Pagament fet</string>
+  <string name="ConfirmPayment__payment_failed">Ha fallat el pagament.</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Es continuarà processant el pagament.</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Destinatari no vàlid</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Aquesta persona no ha activat els pagaments.</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">No es pot sol·licitar una comissió de xarxa. Per continuar aquest pagament, toqueu D\'acord per tornar-ho a provar.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s a %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Estableix la moneda</string>
+  <string name="SetCurrencyFragment__all_currencies">Totes les monedes</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2099,7 +2206,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_list__chats">Converses</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Només podeu fixar fins a %1$d converses.</string>
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">Foto del contacte</string>
+  <string name="conversation_list_item_view__contact_photo_image">Fotografia del contacte</string>
   <string name="conversation_list_item_view__archived">Arxivat</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
@@ -2484,6 +2591,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="OldDeviceTransferLockedDialog__done">Fet</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancel·la-ho i activa aquest dispositiu</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Voleu transferir el saldo de MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Teniu un saldo de %1$s. Si no transferiu els fons a una altra adreça de cartera abans de suprimir el compte, el perdreu per sempre.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">No el transfereixis</string>
+  <string name="AdvancedPreferenceFragment__transfer">Transferència</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloca</string>
   <string name="RecipientBottomSheet_unblock">Desbloca</string>
@@ -2576,6 +2687,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="DeleteAccountFragment__delete_account">Suprimeix el compte</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Suprimeix la informació del compte i la fotografia del perfil.</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Suprimeix tots els missatges.</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Suprimeix %1$s del compte de pagaments</string>
   <string name="DeleteAccountFragment__no_country_code">No s\'ha especificat el codi del país.</string>
   <string name="DeleteAccountFragment__no_number">No s\'ha especificat el número.</string>
   <string name="DeleteAccountFragment__the_phone_number">El número de telèfon marcat no coincideix amb el del compte.</string>
@@ -2631,25 +2743,82 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="WallpaperCropActivity__error_setting_wallpaper">Error en establir el fons.</string>
   <string name="WallpaperCropActivity__blur_photo">Difumina la fotografia</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Quant a MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin és una moneda digital nova centrada en la privadesa.</string>
+  <string name="payment_info_card_adding_funds">Afegir-hi fons</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Podeu afegir fons per usar-los al Signal enviant MobileCoin a la vostra adreça de cartera.</string>
+  <string name="payment_info_card_cashing_out">Passar per caixa</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Podeu cobrar els MobileCoin en qualsevol moment amb un intercanvi que admeti MobileCoin. Només heu de fer una transferència al vostre compte amb aquest intercanvi.</string>
+  <string name="payment_info_card_hide_this_card">Voleu amagar aquesta targeta?</string>
   <string name="payment_info_card_hide">Amaga</string>
+  <string name="payment_info_card_record_recovery_phrase">Registra la frase de recuperació</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">La frase de recuperació us ofereix una altra manera de restaurar el compte de pagaments.</string>
+  <string name="payment_info_card_record_your_phrase">Registra la frase</string>
+  <string name="payment_info_card_update_your_pin">Actualitzeu el PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Amb un saldo elevat, és possible que vulgueu passar a un PIN alfanumèric per afegir més protecció al  compte.</string>
   <string name="payment_info_card_update_pin">Actualitza el PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Desactiva la cartera</string>
+  <string name="DeactivateWalletFragment__your_balance">El saldo</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Es recomana transferir els fons a una altra adreça de cartera abans de desactivar els pagaments. Si decidiu no transferir els fons ara, quedaran a la cartera enllaçada al Signal si reactiveu els pagaments.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Transfereix el saldo restant</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Desactiveu-ho sense transferència</string>
+  <string name="DeactivateWalletFragment__deactivate">Desactiva\'ls</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Voleu desactivar els fons sense transferir-los?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">El saldo es mantindrà a la cartera enllaçada amb el Signal si decidiu reactivar els pagaments.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Error en desactivar la cartera</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frase de recuperació</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Mostra la frase de recuperació</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introduïu la frase de recuperació</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">El saldo es restaurarà automàticament quan torneu a instal·lar el Signal si confirmeu el PIN del Signal. També podeu restaurar el saldo mitjançant una frase de recuperació, que és una frase de %1$d paraules exclusiva. Anoteu-la i guardeu-la en un lloc segur.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">La vostra frase de recuperació és una frase de %1$d paraules exclusiva. Useu aquesta frase per restablir el saldo.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Inicia</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Introducció manual</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Enganxa del porta-retalls</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Enganxeu la frase de recuperació</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frase de recuperació</string>
   <string name="PaymentsRecoveryPasteFragment__next">Següent</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frase de recuperació no vàlida</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Assegureu-vos que heu introduït %1$d paraules i torneu-ho a provar.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Següent</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Edita</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Anterior</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">La vostra frase de recuperació</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Escriviu les següents %1$dparaules en ordre. Deseu la llista en un lloc segur.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Assegureu-vos que l\'heu escrita correctament.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">No en feu cap captura ni ho envieu per correu.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Compte de pagament restaurat</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frase de recuperació no vàlida.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Assegureu-vos que l\'heu escrita correctament i torneu-ho a provar.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Es copia al porta-retalls?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Si decidiu emmagatzemar la frase de recuperació de manera digital, assegureu-vos que estigui desada de manera segura en algun lloc de confiança.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copia</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmeu la frase de recuperació</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Escriviu les paraules següents de la frase de recuperació.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Paraula %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Vegeu la frase un altre cop</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Fet</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Frase de recuperació confirmada</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Introduïu la frase de recuperació</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Escriviu la paraula %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Paraula %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Següent</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Paraula no vàlida</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Porta-retalls buit</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Mostra</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s us ha enviat %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d notificacions de pagament noves</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">No es pot enviar el pagament.</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Per enviar un pagament a aquest usuari, han d’acceptar la sol·licitud de missatge. Envieu-li un missatge per crear una sol·licitud de missatge.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Envia un missatge</string>
   <!--EOF-->
 </resources>

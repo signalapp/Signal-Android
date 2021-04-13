@@ -603,7 +603,7 @@
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
-  <string name="ManageGroupActivity_mute_notifications">صامت کردن اعلان‌ها</string>
+  <string name="ManageGroupActivity_mute_notifications">بستن اعلان‌ها</string>
   <string name="ManageGroupActivity_custom_notifications">اعلان‌‌های سفارشی</string>
   <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
   <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string>
@@ -636,7 +636,7 @@
   <string name="ManageGroupActivity_invite_now">همین حالا دعوت کنید</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">به من در مورد اشاره‌ها خبر بده</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفت‌گو‌های صامت شده اشاره می‌شود؟</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفتگو‌ها با اعلان‌های بسته شده اشاره می‌شود؟</string>
   <string name="GroupMentionSettingDialog_always_notify_me">همیشه به من اطلاع بده</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">به من اطلاع نده</string>
   <!--ManageProfileFragment-->
@@ -656,7 +656,7 @@
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
   <string name="ManageRecipientActivity_unblock">رفع مسدودیت</string>
   <string name="ManageRecipientActivity_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
-  <string name="ManageRecipientActivity_mute_notifications">صامت کردن اعلان‌ها</string>
+  <string name="ManageRecipientActivity_mute_notifications">بستن اعلان‌ها</string>
   <string name="ManageRecipientActivity_custom_notifications">اعلان‌‌های سفارشی</string>
   <string name="ManageRecipientActivity_until_s">تا %1$s</string>
   <string name="ManageRecipientActivity_always">همیشه</string>
@@ -1420,7 +1420,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">فراپیام بد رمزگذاری شده</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">فراپیام برای نشست ناموجود رمزنگاری شد</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">صامت کردن اعلان‌‌ها</string>
+  <string name="MuteDialog_mute_notifications">بستن اعلان‌‌ها</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">در حال وارد کردن</string>
   <string name="ApplicationMigrationService_importing_text_messages">در حال وارد کردن پیام‌های متنی</string>
@@ -1824,10 +1824,10 @@
   <!--arrays.xml-->
   <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
-  <string name="arrays__mute_for_one_hour">صامت برای ۱ ساعت</string>
-  <string name="arrays__mute_for_eight_hours">صامت برای ۸ ساعت</string>
-  <string name="arrays__mute_for_one_day">صامت برای ۱ روز</string>
-  <string name="arrays__mute_for_seven_days">صامت برای ۷ روز</string>
+  <string name="arrays__mute_for_one_hour">بستن برای ۱ ساعت</string>
+  <string name="arrays__mute_for_eight_hours">بستن برای ۸ ساعت</string>
+  <string name="arrays__mute_for_one_day">بستن برای ۱ روز</string>
+  <string name="arrays__mute_for_seven_days">بستن برای ۷ روز</string>
   <string name="arrays__always">همیشه</string>
   <string name="arrays__settings_default">تنظیمات پیش‌فرض سیستم</string>
   <string name="arrays__enabled">فعال</string>
@@ -2116,7 +2116,7 @@
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">باز کردن صدا</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">صامت کردن اعلان‌ها</string>
+  <string name="conversation_unmuted__mute_notifications">بستن اعلان‌ها</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">تنظیمات گروه</string>
   <string name="conversation__menu_leave_group">ترک گروه</string>

@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kod inaktiverad.</string>
   <string name="ApplicationPreferencesActivity_hide">Dölj</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Dölj påminnelse?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrera fras för återbetalningar</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Registrera fras</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Innan du kan inaktivera din PIN-kod måste du registrera din fras för återbetalningar för att säkerställa att du kan återställa ditt betalningskonto.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -57,6 +60,7 @@
   <string name="AttachmentKeyboard_location">Plats</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal behöver behörighet för att visa dina foton och videoklipp.</string>
   <string name="AttachmentKeyboard_give_access">Ge åtkomst</string>
+  <string name="AttachmentKeyboard_payment">Betalning</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan inte hitta app för att välja media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men den har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
@@ -1804,6 +1808,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Något fungerar inte</item>
+    <item>Funktionsbegäran</item>
+    <item>Fråga</item>
+    <item>Återkoppling</item>
+    <item>Annat</item>
+    <item>Betalningar</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senaste använda</string>
@@ -2020,25 +2032,60 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">All aktivitet</string>
   <string name="PaymentsAllActivityFragment__all">Alla</string>
   <string name="PaymentsAllActivityFragment__sent">Skickad</string>
   <string name="PaymentsAllActivityFragment__received">Mottagen</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Introducerar betalningar (beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Använd Signal för att skicka och ta emot MobileCoin, en ny digital valuta med fokus på integritet. Aktivera för att komma igång.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktivera betalningar</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktiverar betalningar…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Återställ betalningskontot</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ingen ny aktivitet ännu</string>
+  <string name="PaymentsHomeFragment__pending_requests">Väntande förfrågningar</string>
+  <string name="PaymentsHomeFragment__recent_activity">Senaste aktivitet</string>
   <string name="PaymentsHomeFragment__see_all">Se alla</string>
+  <string name="PaymentsHomeFragment__add_funds">Lägga till pengar</string>
   <string name="PaymentsHomeFragment__send">Skicka</string>
+  <string name="PaymentsHomeFragment__sent_s">Skickat %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Mottagen %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Överför till växling</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Valutaväxling</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Inaktivera betalningar</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Återställningsfras</string>
   <string name="PaymentsHomeFragment__help">Hjälp</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Avgift för myntsanering</string>
+  <string name="PaymentsHomeFragment__sent_payment">Skickad betalning</string>
+  <string name="PaymentsHomeFragment__received_payment">Mottagen betalning</string>
+  <string name="PaymentsHomeFragment__processing_payment">Behandlar betalning</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutaomvandling inte tillgängligt</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Det går inte att visa valutaomvandling. Kontrollera telefonens anslutning och försök igen.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalningar är inte tillgängliga i din region.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Det gick inte att aktivera betalningar. Försök igen senare.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Inaktivera betalningar?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Du kommer inte att kunna skicka eller ta emot MobileCoin i Signal om du inaktiverar betalningar.</string>
+  <string name="PaymentsHomeFragment__deactivate">Inaktivera</string>
   <string name="PaymentsHomeFragment__continue">Fortsätt</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Saldo är för närvarande inte tillgängligt.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Betalningar inaktiverade.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Betalning misslyckades</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan använda Signal för att skicka och ta emot MobileCoin. Alla betalningar omfattas av användarvillkoren för MobileCoins och MobileCoin Wallet. Detta är en beta-funktion så att du kan stöta på vissa problem och betalningar eller saldon som du kan förlora kan inte återställas.</string>
   <string name="PaymentsHomeFragment__activate">Aktivera</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Lägga till pengar</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiera</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopierade till urklipp</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljer</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Betalning misslyckades</string>
   <string name="PaymentsDetailsFragment__to">Till</string>
   <string name="PaymentsDetailsFragment__from">Från</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Avgift för myntsanering</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Skickad betalning</string>
+  <string name="PaymentsDetailsFragment__received_payment">Mottagen betalning</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Skanna QR-kod</string>
   <string name="PaymentsTransferFragment__next">Nästa</string>
@@ -2053,6 +2100,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditNoteFragment_note">Anteckning</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Till</string>
+  <string name="ConfirmPayment__payment_failed">Betalning misslyckades</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__all_currencies">Alla valutor</string>
@@ -2636,9 +2684,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="payment_info_card_hide">Dölj</string>
   <string name="payment_info_card_update_pin">Uppdatera PIN-kod</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Inaktivera</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Återställningsfras</string>
   <string name="PaymentsRecoveryStartFragment__start">Starta</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Återställningsfras</string>
   <string name="PaymentsRecoveryPasteFragment__next">Nästa</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Nästa</string>
