@@ -133,6 +133,7 @@ final class MenuState {
            messageRecord.isIdentityVerified()      ||
            messageRecord.isIdentityDefault()       ||
            messageRecord.isProfileChange()         ||
+           messageRecord.isGroupV1MigrationEvent() ||
            messageRecord.isFailedDecryptionType();
   }
 
