@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Hung Nguyen on 4/14/21 6:32 PM
+ *  * Copyright (c) 2021 . All rights reserved.
+ *  * Last modified 4/14/21 6:19 PM
+ *
+ */
+
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
