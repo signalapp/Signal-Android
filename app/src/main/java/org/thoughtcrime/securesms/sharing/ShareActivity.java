@@ -549,6 +549,7 @@ public class ShareActivity extends PassphraseRequiredActivity
                               0,
                               0,
                               false,
+                              false,
                               Optional.absent(),
                               Optional.absent(),
                               Optional.absent()));

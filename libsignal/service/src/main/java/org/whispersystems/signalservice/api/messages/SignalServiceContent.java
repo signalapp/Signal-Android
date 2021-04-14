@@ -978,6 +978,7 @@ public final class SignalServiceContent {
                                               pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.<String>absent(),
                                               (pointer.getFlags() & SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) != 0,
                                               (pointer.getFlags() & SignalServiceProtos.AttachmentPointer.Flags.BORDERLESS_VALUE) != 0,
+                                              (pointer.getFlags() & SignalServiceProtos.AttachmentPointer.Flags.GIF_VALUE) != 0,
                                               pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.<String>absent(),
                                               pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.<String>absent(),
                                               pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
@@ -1035,6 +1036,7 @@ public final class SignalServiceContent {
                                                     Optional.<byte[]>absent(), 0, 0,
                                                     Optional.fromNullable(pointer.hasDigest() ? pointer.getDigest().toByteArray() : null),
                                                     Optional.<String>absent(),
+                                                    false,
                                                     false,
                                                     false,
                                                     Optional.<String>absent(),

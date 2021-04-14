@@ -27,7 +27,7 @@ public class StickerSlide extends Slide {
   }
 
   public StickerSlide(Context context, Uri uri, long size, @NonNull StickerLocator stickerLocator, @NonNull String contentType) {
-    super(context, constructAttachmentFromUri(context, uri, contentType, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, null, false, false, false));
+    super(context, constructAttachmentFromUri(context, uri, contentType, size, WIDTH, HEIGHT, true, null, null, stickerLocator, null, null, false, false, false, false));
     this.stickerLocator = Objects.requireNonNull(attachment.getSticker());
   }
 

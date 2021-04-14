@@ -191,7 +191,7 @@ class MediaUploadRepository {
 
   public static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
     if (MediaUtil.isVideoType(media.getMimeType())) {
-      return new VideoSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
+      return new VideoSlide(context, media.getUri(), media.getSize(), media.isVideoGif(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
     } else if (MediaUtil.isGif(media.getMimeType())) {
       return new GifSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull()).asAttachment();
     } else if (MediaUtil.isImageType(media.getMimeType())) {

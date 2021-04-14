@@ -79,7 +79,7 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
     uri = requireArguments().getParcelable(KEY_URI);
     long       maxOutput = requireArguments().getLong(KEY_MAX_OUTPUT);
     long       maxSend   = requireArguments().getLong(KEY_MAX_SEND);
-    VideoSlide slide     = new VideoSlide(requireContext(), uri, 0);
+    VideoSlide slide     = new VideoSlide(requireContext(), uri, 0, false);
 
     player.setWindow(requireActivity().getWindow());
     player.setVideoSource(slide, true);

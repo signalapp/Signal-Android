@@ -42,7 +42,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     videoView = itemView.findViewById(R.id.video_player);
 
     videoView.setWindow(requireActivity().getWindow());
-    videoView.setVideoSource(new VideoSlide(getContext(), uri, size), autoPlay);
+    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay);
 
     videoView.setOnClickListener(v -> events.singleTapOnMedia());
 

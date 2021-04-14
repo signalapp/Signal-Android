@@ -118,6 +118,10 @@ public abstract class Slide {
     return false;
   }
 
+  public boolean isVideoGif() {
+    return hasVideo() && attachment.isVideoGif();
+  }
+
   public @NonNull String getContentDescription() { return ""; }
 
   public @NonNull Attachment asAttachment() {
@@ -167,9 +171,10 @@ public abstract class Slide {
                                                          @Nullable AudioHash      audioHash,
                                                                    boolean        voiceNote,
                                                                    boolean        borderless,
+                                                                   boolean        gif,
                                                                    boolean        quote)
   {
-    return constructAttachmentFromUri(context, uri, defaultMime, size, width, height, hasThumbnail, fileName, caption, stickerLocator, blurHash, audioHash, voiceNote, borderless, quote, null);
+    return constructAttachmentFromUri(context, uri, defaultMime, size, width, height, hasThumbnail, fileName, caption, stickerLocator, blurHash, audioHash, voiceNote, borderless, gif, quote, null);
   }
 
   protected static Attachment constructAttachmentFromUri(@NonNull  Context        context,
@@ -186,6 +191,7 @@ public abstract class Slide {
                                                          @Nullable AudioHash      audioHash,
                                                                    boolean        voiceNote,
                                                                    boolean        borderless,
+                                                                   boolean        gif,
                                                                    boolean        quote,
                                                          @Nullable AttachmentDatabase.TransformProperties transformProperties)
   {
@@ -201,6 +207,7 @@ public abstract class Slide {
                              fastPreflightId,
                              voiceNote,
                              borderless,
+                             gif,
                              quote,
                              caption,
                              stickerLocator,

@@ -189,6 +189,7 @@ class ShareRepository {
                           size,
                           duration,
                           false,
+                          false,
                           Optional.of(Media.ALL_MEDIA_BUCKET_ID),
                           Optional.absent(),
                           Optional.absent()));

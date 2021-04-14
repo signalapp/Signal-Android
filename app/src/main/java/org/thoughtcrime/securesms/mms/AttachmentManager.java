@@ -314,7 +314,7 @@ public class AttachmentManager {
             }
 
             Log.d(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
-            return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height);
+            return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false);
           }
         } finally {
           if (cursor != null) cursor.close();
@@ -328,11 +328,13 @@ public class AttachmentManager {
         Long     mediaSize = null;
         String   fileName  = null;
         String   mimeType  = null;
+        boolean  gif       = false;
 
         if (PartAuthority.isLocalUri(uri)) {
           mediaSize = PartAuthority.getAttachmentSize(context, uri);
           fileName  = PartAuthority.getAttachmentFileName(context, uri);
           mimeType  = PartAuthority.getAttachmentContentType(context, uri);
+          gif       = PartAuthority.getAttachmentIsVideoGif(context, uri);
         }
 
         if (mediaSize == null) {
@@ -350,7 +352,7 @@ public class AttachmentManager {
         }
 
         Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height);
+        return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height, gif);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 

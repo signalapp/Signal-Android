@@ -126,6 +126,20 @@ public class PartAuthority {
     }
   }
 
+  public static boolean getAttachmentIsVideoGif(@NonNull Context context, @NonNull Uri uri) {
+    int match = uriMatcher.match(uri);
+
+    switch (match) {
+      case PART_ROW:
+        Attachment attachment = DatabaseFactory.getAttachmentDatabase(context).getAttachment(new PartUriParser(uri).getPartId());
+
+        if (attachment != null) return attachment.isVideoGif();
+        else                    return false;
+      default:
+        return false;
+    }
+  }
+
   public static Uri getAttachmentPublicUri(Uri uri) {
     PartUriParser partUri = new PartUriParser(uri);
     return PartProvider.getContentUri(partUri.getPartId());

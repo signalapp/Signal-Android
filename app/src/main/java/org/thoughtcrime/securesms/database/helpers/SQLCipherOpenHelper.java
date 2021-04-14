@@ -171,8 +171,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int SPLIT_SYSTEM_NAMES               = 90;
   private static final int PAYMENTS                         = 91;
   private static final int CLEAN_STORAGE_IDS                = 92;
+  private static final int MP4_GIF_SUPPORT                  = 93;
 
-  private static final int    DATABASE_VERSION = 92;
+  private static final int    DATABASE_VERSION = 93;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1297,6 +1298,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         values.putNull("storage_service_key");
         int count = db.update("recipient", values, "storage_service_key NOT NULL AND ((phone NOT NULL AND INSTR(phone, '+') = 0) OR (group_id NOT NULL AND (LENGTH(group_id) != 85 and LENGTH(group_id) != 53)))", null);
         Log.i(TAG, "There were " + count + " bad rows that had their storageID removed.");
+      }
+
+      if (oldVersion < MP4_GIF_SUPPORT) {
+        db.execSQL("ALTER TABLE part ADD COLUMN video_gif INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

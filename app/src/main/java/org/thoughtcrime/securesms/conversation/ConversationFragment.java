@@ -872,6 +872,7 @@ public class ConversationFragment extends LoggingFragment {
                                       attachment.getSize(),
                                       0,
                                       attachment.isBorderless(),
+                                      attachment.isVideoGif(),
                                       Optional.absent(),
                                       Optional.fromNullable(attachment.getCaption()),
                                       Optional.absent()));

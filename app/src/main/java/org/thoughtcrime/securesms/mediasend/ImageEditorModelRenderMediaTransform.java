@@ -49,7 +49,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
                             .withMimeType(MediaUtil.IMAGE_JPEG)
                             .createForSingleSessionOnDisk(context);
 
-      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, media.getBucketId(), media.getCaption(), Optional.absent());
+      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), Optional.absent());
     } catch (IOException e) {
       Log.w(TAG, "Failed to render image. Using base image.");
       return media;

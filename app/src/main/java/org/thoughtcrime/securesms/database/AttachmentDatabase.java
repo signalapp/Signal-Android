@@ -102,6 +102,7 @@ public class AttachmentDatabase extends Database {
           static final String DIGEST                 = "digest";
           static final String VOICE_NOTE             = "voice_note";
           static final String BORDERLESS             = "borderless";
+          static final String VIDEO_GIF              = "video_gif";
           static final String QUOTE                  = "quote";
   public  static final String STICKER_PACK_ID        = "sticker_pack_id";
   public  static final String STICKER_PACK_KEY       = "sticker_pack_key";
@@ -135,7 +136,7 @@ public class AttachmentDatabase extends Database {
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
                                                            CDN_NUMBER, CONTENT_LOCATION, DATA,
                                                            TRANSFER_STATE, SIZE, FILE_NAME, UNIQUE_ID, DIGEST,
-                                                           FAST_PREFLIGHT_ID, VOICE_NOTE, BORDERLESS, QUOTE, DATA_RANDOM,
+                                                           FAST_PREFLIGHT_ID, VOICE_NOTE, BORDERLESS, VIDEO_GIF, QUOTE, DATA_RANDOM,
                                                            WIDTH, HEIGHT, CAPTION, STICKER_PACK_ID,
                                                            STICKER_PACK_KEY, STICKER_ID, STICKER_EMOJI, DATA_HASH, VISUAL_HASH,
                                                            TRANSFORM_PROPERTIES, TRANSFER_FILE, DISPLAY_ORDER,
@@ -163,6 +164,7 @@ public class AttachmentDatabase extends Database {
                                                                                   FAST_PREFLIGHT_ID      + " TEXT, " +
                                                                                   VOICE_NOTE             + " INTEGER DEFAULT 0, " +
                                                                                   BORDERLESS             + " INTEGER DEFAULT 0, " +
+                                            VIDEO_GIF + " INTEGER DEFAULT 0, " +
                                                                                   DATA_RANDOM            + " BLOB, " +
                                                                                   QUOTE                  + " INTEGER DEFAULT 0, " +
                                                                                   WIDTH                  + " INTEGER DEFAULT 0, " +
@@ -1144,6 +1146,7 @@ public class AttachmentDatabase extends Database {
                                               object.getString(FAST_PREFLIGHT_ID),
                                               object.getInt(VOICE_NOTE) == 1,
                                               object.getInt(BORDERLESS) == 1,
+                                              object.getInt(VIDEO_GIF) == 1,
                                               object.getInt(WIDTH),
                                               object.getInt(HEIGHT),
                                               object.getInt(QUOTE) == 1,
@@ -1182,6 +1185,7 @@ public class AttachmentDatabase extends Database {
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(FAST_PREFLIGHT_ID)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(VOICE_NOTE)) == 1,
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(BORDERLESS)) == 1,
+                                                                cursor.getInt(cursor.getColumnIndexOrThrow(VIDEO_GIF)) == 1,
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(WIDTH)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
@@ -1250,6 +1254,7 @@ public class AttachmentDatabase extends Database {
       contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
       contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
       contentValues.put(BORDERLESS, attachment.isBorderless() ? 1 : 0);
+      contentValues.put(VIDEO_GIF, attachment.isVideoGif() ? 1 : 0);
       contentValues.put(WIDTH, template.getWidth());
       contentValues.put(HEIGHT, template.getHeight());
       contentValues.put(QUOTE, quote);

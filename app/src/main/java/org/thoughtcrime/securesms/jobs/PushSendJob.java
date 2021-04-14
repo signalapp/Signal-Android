@@ -158,6 +158,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withFileName(attachment.getFileName())
                                     .withVoiceNote(attachment.isVoiceNote())
                                     .withBorderless(attachment.isBorderless())
+                                    .withGif(attachment.isVideoGif())
                                     .withWidth(attachment.getWidth())
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())
@@ -247,6 +248,7 @@ public abstract class PushSendJob extends SendJob {
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),
+                                                attachment.isVideoGif(),
                                                 Optional.fromNullable(attachment.getCaption()),
                                                 Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
                                                 attachment.getUploadTimestamp());

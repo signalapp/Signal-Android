@@ -452,6 +452,7 @@ public class SignalServiceMessageSender {
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.isBorderless(),
+                                              attachment.isGif(),
                                               attachment.getCaption(),
                                               attachment.getBlurHash(),
                                               attachment.getUploadTimestamp());
@@ -492,6 +493,7 @@ public class SignalServiceMessageSender {
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.isBorderless(),
+                                              attachment.isGif(),
                                               attachment.getCaption(),
                                               attachment.getBlurHash(),
                                               attachment.getUploadTimestamp());
@@ -1560,6 +1562,10 @@ public class SignalServiceMessageSender {
 
     if (attachment.isBorderless()) {
       builder.setFlags(AttachmentPointer.Flags.BORDERLESS_VALUE);
+    }
+
+    if (attachment.isGif()) {
+      builder.setFlags(AttachmentPointer.Flags.GIF_VALUE);
     }
 
     if (attachment.getCaption().isPresent()) {

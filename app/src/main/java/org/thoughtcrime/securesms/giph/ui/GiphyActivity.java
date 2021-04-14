@@ -13,10 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -24,12 +26,16 @@ import com.google.android.material.tabs.TabLayout;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -51,11 +57,14 @@ public class GiphyActivity extends PassphraseRequiredActivity
   private final DynamicTheme    dynamicTheme    = new DynamicDarkToolbarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private GiphyGifFragment     gifFragment;
+  private Fragment             gifFragment;
   private GiphyStickerFragment stickerFragment;
   private boolean              forMms;
 
   private GiphyAdapter.GiphyViewHolder finishingImage;
+
+  private GiphyMp4ViewModel giphyMp4ViewModel;
+  private AlertDialog       progressDialog;
 
   @Override
   public void onPreCreate() {
@@ -66,6 +75,11 @@ public class GiphyActivity extends PassphraseRequiredActivity
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.giphy_activity);
+
+    forMms            = getIntent().getBooleanExtra(EXTRA_IS_MMS, false);
+    giphyMp4ViewModel = ViewModelProviders.of(this, new GiphyMp4ViewModel.Factory(forMms)).get(GiphyMp4ViewModel.class);
+
+    giphyMp4ViewModel.getSaveResultEvents().observe(this, this::handleGiphyMp4SaveResult);
 
     initializeToolbar();
     initializeResources();
@@ -92,11 +106,9 @@ public class GiphyActivity extends PassphraseRequiredActivity
     ViewPager viewPager = findViewById(R.id.giphy_pager);
     TabLayout tabLayout = findViewById(R.id.tab_layout);
 
-    this.gifFragment     = new GiphyGifFragment();
+    this.gifFragment     = GiphyMp4Fragment.create(forMms);
     this.stickerFragment = new GiphyStickerFragment();
-    this.forMms          = getIntent().getBooleanExtra(EXTRA_IS_MMS, false);
 
-    gifFragment.setClickListener(this);
     stickerFragment.setClickListener(this);
 
     viewPager.setAdapter(new GiphyFragmentPagerAdapter(this, getSupportFragmentManager(),
@@ -105,19 +117,52 @@ public class GiphyActivity extends PassphraseRequiredActivity
     tabLayout.setBackgroundColor(getConversationColor());
   }
 
+  private void handleGiphyMp4SaveResult(@NonNull GiphyMp4SaveResult result) {
+    if (result instanceof GiphyMp4SaveResult.Success) {
+      hideProgressDialog();
+      handleGiphyMp4SuccessfulResult((GiphyMp4SaveResult.Success) result);
+    } else if (result instanceof GiphyMp4SaveResult.Error) {
+      hideProgressDialog();
+      handleGiphyMp4ErrorResult((GiphyMp4SaveResult.Error) result);
+    } else {
+      progressDialog = SimpleProgressDialog.show(this);
+    }
+  }
+
+  private void hideProgressDialog() {
+    if (progressDialog != null) {
+      progressDialog.dismiss();
+    }
+  }
+
+  private void handleGiphyMp4SuccessfulResult(@NonNull GiphyMp4SaveResult.Success success) {
+    Intent intent = new Intent();
+    intent.setData(success.getBlobUri());
+    intent.putExtra(EXTRA_WIDTH, success.getWidth());
+    intent.putExtra(EXTRA_HEIGHT, success.getHeight());
+    intent.putExtra(EXTRA_BORDERLESS, success.getBlobUri());
+
+    setResult(RESULT_OK, intent);
+    finish();
+  }
+
+  private void handleGiphyMp4ErrorResult(@NonNull GiphyMp4SaveResult.Error error) {
+    Toast.makeText(this, R.string.GiphyActivity_error_while_retrieving_full_resolution_gif, Toast.LENGTH_LONG).show();
+  }
+
   private @ColorInt int getConversationColor() {
     return getIntent().getIntExtra(EXTRA_COLOR, ActivityCompat.getColor(this, R.color.core_ultramarine));
   }
 
   @Override
   public void onFilterChanged(String filter) {
-    this.gifFragment.setSearchString(filter);
+    giphyMp4ViewModel.updateSearchQuery(filter);
     this.stickerFragment.setSearchString(filter);
   }
 
   @Override
   public void onLayoutChanged(boolean gridLayout) {
-    gifFragment.setLayoutManager(gridLayout);
+    giphyMp4ViewModel.updateLayout(gridLayout);
     stickerFragment.setLayoutManager(gridLayout);
   }
 
@@ -164,14 +209,14 @@ public class GiphyActivity extends PassphraseRequiredActivity
 
   private static class GiphyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private final Context              context;
-    private final GiphyGifFragment     gifFragment;
-    private final GiphyStickerFragment stickerFragment;
+    private final Context  context;
+    private final Fragment gifFragment;
+    private final Fragment stickerFragment;
 
     private GiphyFragmentPagerAdapter(@NonNull Context context,
                                       @NonNull FragmentManager fragmentManager,
-                                      @NonNull GiphyGifFragment gifFragment,
-                                      @NonNull GiphyStickerFragment stickerFragment)
+                                      @NonNull Fragment gifFragment,
+                                      @NonNull Fragment stickerFragment)
     {
       super(fragmentManager);
       this.context         = context.getApplicationContext();
@@ -182,7 +227,7 @@ public class GiphyActivity extends PassphraseRequiredActivity
     @Override
     public Fragment getItem(int position) {
       if (position == 0) return gifFragment;
-      else               return stickerFragment;
+      else return stickerFragment;
     }
 
     @Override
@@ -193,7 +238,7 @@ public class GiphyActivity extends PassphraseRequiredActivity
     @Override
     public CharSequence getPageTitle(int position) {
       if (position == 0) return context.getString(R.string.GiphyFragmentPagerAdapter_gifs);
-      else               return context.getString(R.string.GiphyFragmentPagerAdapter_stickers);
+      else return context.getString(R.string.GiphyFragmentPagerAdapter_stickers);
     }
   }
 
