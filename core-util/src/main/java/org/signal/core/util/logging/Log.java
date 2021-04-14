@@ -3,15 +3,30 @@ package org.signal.core.util.logging;
 import android.annotation.SuppressLint;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+
+import java.util.logging.Logger;
 
 @SuppressLint("LogNotSignal")
 public final class Log {
 
-  private static Logger[] loggers;
+  private static final Logger NOOP_LOGGER = new NoopLogger();
 
+  private static InternalCheck internalCheck;
+  private static Logger        logger = new AndroidLogger();
+
+  /**
+   * @param internalCheck A checker that will indicate if this is an internal user
+   * @param loggers A list of loggers that will be given every log statement.
+   */
   @MainThread
+  public static void initialize(@NonNull InternalCheck internalCheck, Logger... loggers) {
+    Log.internalCheck = internalCheck;
+    Log.logger        = new CompoundLogger(loggers);
+  }
+
   public static void initialize(Logger... loggers) {
-    Log.loggers = loggers;
+    initialize(() -> false, loggers);
   }
 
   public static void v(String tag, String message) {
@@ -63,63 +78,27 @@ public final class Log {
   }
 
   public static void v(String tag, String message, Throwable t) {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.v(tag, message, t);
-      }
-    } else {
-      android.util.Log.v(tag, message, t);
-    }
+    logger.v(tag, message, t);
   }
 
   public static void d(String tag, String message, Throwable t) {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.d(tag, message, t);
-      }
-    } else {
-      android.util.Log.d(tag, message, t);
-    }
+    logger.d(tag, message, t);
   }
 
   public static void i(String tag, String message, Throwable t) {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.i(tag, message, t);
-      }
-    } else {
-      android.util.Log.i(tag, message, t);
-    }
+    logger.i(tag, message, t);
   }
 
   public static void w(String tag, String message, Throwable t) {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.w(tag, message, t);
-      }
-    } else {
-      android.util.Log.w(tag, message, t);
-    }
+    logger.w(tag, message, t);
   }
 
   public static void e(String tag, String message, Throwable t) {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.e(tag, message, t);
-      }
-    } else {
-      android.util.Log.e(tag, message, t);
-    }
+    logger.e(tag, message, t);
   }
 
   public static void wtf(String tag, String message, Throwable t) {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.wtf(tag, message, t);
-      }
-    } else {
-      android.util.Log.wtf(tag, message, t);
-    }
+    logger.wtf(tag, message, t);
   }
 
   public static String tag(Class<?> clazz) {
@@ -130,12 +109,22 @@ public final class Log {
     return simpleName;
   }
 
-  public static void blockUntilAllWritesFinished() {
-    if (loggers != null) {
-      for (Logger logger : loggers) {
-        logger.blockUntilAllWritesFinished();
-      }
+  /**
+   * Important: This is not something that can be used to log PII. Instead, it's intended use is for
+   * logs that might be too verbose or otherwise unnecessary for public users.
+   *
+   * @return The normal logger if this is an internal user, or a no-op logger if it isn't.
+   */
+  public static Logger internal() {
+    if (internalCheck.isInternal()) {
+      return logger;
+    } else {
+      return NOOP_LOGGER;
     }
+  }
+
+  public static void blockUntilAllWritesFinished() {
+    logger.blockUntilAllWritesFinished();
   }
 
   public static abstract class Logger {
@@ -146,5 +135,33 @@ public final class Log {
     public abstract void e(String tag, String message, Throwable t);
     public abstract void wtf(String tag, String message, Throwable t);
     public abstract void blockUntilAllWritesFinished();
+
+    public void v(String tag, String message) {
+      v(tag, message, null);
+    }
+
+    public void d(String tag, String message) {
+      d(tag, message, null);
+    }
+
+    public void i(String tag, String message) {
+      i(tag, message, null);
+    }
+
+    public void w(String tag, String message) {
+      w(tag, message, null);
+    }
+
+    public void e(String tag, String message) {
+      e(tag, message, null);
+    }
+
+    public void wtf(String tag, String message) {
+      wtf(tag, message, null);
+    }
+  }
+
+  public interface InternalCheck {
+    boolean isInternal();
   }
 }

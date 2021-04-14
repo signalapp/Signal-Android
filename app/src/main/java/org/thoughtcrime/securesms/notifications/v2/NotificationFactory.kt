@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
@@ -56,9 +55,7 @@ object NotificationFactory {
     if (Build.VERSION.SDK_INT >= 23 || state.conversations.size == 1) {
       state.conversations.forEach { conversation ->
         if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
-          if (FeatureFlags.internalUser()) {
-            Log.i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
-          }
+          Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
           notifyInThread(context, conversation.recipient, lastAudibleNotification)
         } else if (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
 
@@ -233,9 +230,7 @@ object NotificationFactory {
   private fun NotificationManagerCompat.safelyNotify(context: Context, threadRecipient: Recipient?, notificationId: Int, notification: Notification) {
     try {
       notify(notificationId, notification)
-      if (FeatureFlags.internalUser()) {
-        Log.i(TAG, "Posted notification: $notification")
-      }
+      Log.internal().i(TAG, "Posted notification: $notification")
     } catch (e: SecurityException) {
       Log.i(TAG, "Security exception when posting notification, clearing ringtone")
       if (threadRecipient != null) {

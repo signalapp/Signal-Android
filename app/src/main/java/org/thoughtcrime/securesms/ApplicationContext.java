@@ -229,7 +229,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private void initializeLogging() {
     persistentLogger = new PersistentLogger(this, LogSecretProvider.getOrCreateAttachmentSecret(this), BuildConfig.VERSION_NAME);
-    org.signal.core.util.logging.Log.initialize(new AndroidLogger(), persistentLogger);
+    org.signal.core.util.logging.Log.initialize(FeatureFlags::internalUser, new AndroidLogger(), persistentLogger);
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
   }

@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.BubbleUtil.BubbleState
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
@@ -111,9 +110,7 @@ class MessageNotifierV2 : MessageNotifier {
 
     val state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(context)
 
-    if (FeatureFlags.internalUser()) {
-      Log.i(TAG, state.toString())
-    }
+    Log.internal().i(TAG, state.toString())
 
     if (state.isEmpty) {
       Log.i(TAG, "State is empty, cancelling all notifications")
