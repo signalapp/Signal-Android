@@ -121,7 +121,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -224,13 +223,8 @@ public class PushServiceSocket {
 
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
-  private static final Map<String, String> NO_HEADERS                  = Collections.emptyMap();
-  private static final ResponseCodeHandler NO_HANDLER                  = new EmptyResponseCodeHandler();
-  private static final List<String>        REQUIRED_REGISTRATION_PATHS = Arrays.asList(CREATE_ACCOUNT_SMS_PATH,
-                                                                                       REQUEST_PUSH_CHALLENGE,
-                                                                                       VERIFY_ACCOUNT_CODE_PATH,
-                                                                                       PREKEY_METADATA_PATH,
-                                                                                       REGISTER_GCM_PATH);
+  private static final Map<String, String> NO_HEADERS = Collections.emptyMap();
+  private static final ResponseCodeHandler NO_HANDLER = new EmptyResponseCodeHandler();
 
   private static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
@@ -2167,25 +2161,6 @@ public class PushServiceSocket {
       Log.w(TAG, e);
       throw new MalformedResponseException("Unable to parse entity", e);
     }
-  }
-
-  public static boolean isNotRegistrationPath(String path) {
-    if (path == null || path.isEmpty()) {
-      return true;
-    }
-
-    for (String registrationPath : REQUIRED_REGISTRATION_PATHS) {
-      String trimmedRegistrationPath = registrationPath;
-      int replacementIndex = registrationPath.indexOf("%s");
-      if (replacementIndex >= 0) {
-        trimmedRegistrationPath = trimmedRegistrationPath.substring(0, replacementIndex);
-      }
-
-      if (path.startsWith(trimmedRegistrationPath)) {
-        return false;
-      }
-    }
-    return true;
   }
 
   public static final class GroupHistory {

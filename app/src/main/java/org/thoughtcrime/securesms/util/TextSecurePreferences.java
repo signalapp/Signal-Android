@@ -466,12 +466,6 @@ public class TextSecurePreferences {
   }
 
   public static void setUnauthorizedReceived(Context context, boolean value) {
-    if (value) {
-      ApplicationDependencies.closeConnections();
-    } else {
-      ApplicationDependencies.getIncomingMessageObserver();
-    }
-
     setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
   }
 
