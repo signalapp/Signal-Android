@@ -186,14 +186,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull MessageNotifier provideMessageNotifier() {
-    MessageNotifier inner;
-    if (FeatureFlags.useNewNotificationSystem()) {
-      inner = new MessageNotifierV2();
-    } else {
-      inner = new DefaultMessageNotifier();
-    }
-
-    return new OptimizedMessageNotifier(inner);
+    return new OptimizedMessageNotifier();
   }
 
   @Override
