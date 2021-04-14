@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 
@@ -84,13 +85,13 @@ public class ComposeText extends EmojiEditText {
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-    if (!TextUtils.isEmpty(hint)) {
+    if (getLayout() != null && !TextUtils.isEmpty(hint)) {
       if (!TextUtils.isEmpty(subHint)) {
-        setHint(new SpannableStringBuilder().append(ellipsizeToWidth(hint))
-                                            .append("\n")
-                                            .append(ellipsizeToWidth(subHint)));
+        setHintWithChecks(new SpannableStringBuilder().append(ellipsizeToWidth(hint))
+                                                      .append("\n")
+                                                      .append(ellipsizeToWidth(subHint)));
       } else {
-        setHint(ellipsizeToWidth(hint));
+        setHintWithChecks(ellipsizeToWidth(hint));
       }
       super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -160,14 +161,14 @@ public class ComposeText extends EmojiEditText {
     }
 
     if (this.subHint != null) {
-      super.setHint(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
-                                                .append("\n")
-                                                .append(ellipsizeToWidth(this.subHint)));
+      setHintWithChecks(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
+                                                    .append("\n")
+                                                    .append(ellipsizeToWidth(this.subHint)));
     } else {
-      super.setHint(ellipsizeToWidth(this.hint));
+      setHintWithChecks(ellipsizeToWidth(this.hint));
     }
 
-    super.setHint(hint);
+    setHintWithChecks(hint);
   }
 
   public void appendInvite(String invite) {
@@ -262,6 +263,14 @@ public class ComposeText extends EmojiEditText {
     addTextChangedListener(new MentionDeleter());
     mentionValidatorWatcher = new MentionValidatorWatcher();
     addTextChangedListener(mentionValidatorWatcher);
+  }
+
+  private void setHintWithChecks(@Nullable CharSequence newHint) {
+    if (getLayout() == null || Objects.equals(getHint(), newHint)) {
+      return;
+    }
+
+    setHint(newHint);
   }
 
   private boolean changeSelectionForPartialMentions(@NonNull Spanned spanned, int selectionStart, int selectionEnd) {
