@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -156,13 +157,19 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
     builder.setTitle(R.string.safety_number_change_dialog__safety_number_changes)
            .setView(dialogView)
-           .setCancelable(false)
            .setPositiveButton(continueText, this::handleSendAnyway)
            .setNegativeButton(cancelText, this::handleCancel);
 
     setCancelable(false);
 
-    return builder.create();
+    AlertDialog dialog = builder.create();
+    dialog.setOnShowListener(d -> {
+      Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+      positive.setEnabled(false);
+      viewModel.getTrustOrVerifyReady().observe(getViewLifecycleOwner(), positive::setEnabled);
+    });
+
+    return dialog;
   }
 
   @Override
