@@ -54,7 +54,7 @@ class JobQueue : JobDelegate {
         // of the order in which the jobs were added.
         val currentTime = System.currentTimeMillis()
         jobTimestampMap.putIfAbsent(currentTime, AtomicInteger())
-        job.id = jobTimestampMap[currentTime]!!.getAndIncrement().toString()
+        job.id = currentTime.toString() + jobTimestampMap[currentTime]!!.getAndIncrement().toString()
 
         MessagingConfiguration.shared.storage.persistJob(job)
     }
