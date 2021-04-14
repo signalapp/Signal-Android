@@ -1,10 +1,11 @@
 package org.session.libsession.messaging.opengroups
 
+import nl.komponents.kovenant.Promise
 import org.session.libsession.messaging.opengroups.OpenGroupAPIV2.Error
 import org.session.libsession.messaging.utilities.DotNetAPI
 import java.util.*
 
-class OpenGroupAPIV2: DotNetAPI() {
+object OpenGroupAPIV2: DotNetAPI() {
 
     enum class Error {
         GENERIC,
@@ -15,13 +16,13 @@ class OpenGroupAPIV2: DotNetAPI() {
         NO_PUBLIC_KEY
     }
 
-    companion object {
-        private val moderators: HashMap<String, HashMap<String, Set<String>>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-        const val DEFAULT_SERVER = "https://sessionopengroup.com"
-        const val DEFAULT_SERVER_PUBLIC_KEY = "658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adffb231b"
+    private val moderators: HashMap<String, HashMap<String, Set<String>>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
+    const val DEFAULT_SERVER = "https://sessionopengroup.com"
+    const val DEFAULT_SERVER_PUBLIC_KEY = "658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adffb231b"
+
+    fun getMessages(room: String, server: String): Promise<List<OpenGroupV2Message>, Exception> {
+
     }
-
-
 
 }
 

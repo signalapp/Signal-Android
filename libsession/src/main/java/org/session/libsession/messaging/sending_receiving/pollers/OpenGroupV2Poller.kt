@@ -76,7 +76,7 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
                     fun generateDisplayName(rawDisplayName: String): String {
                         return "$rawDisplayName (...${senderPublicKey.takeLast(8)})"
                     }
-                    val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.channel, openGroup.server) ?: generateDisplayName(message.displayName)
+                    val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.room, openGroup.server) ?: generateDisplayName(message.displayName)
                     val id = openGroup.id.toByteArray()
                     // Main message
                     val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
