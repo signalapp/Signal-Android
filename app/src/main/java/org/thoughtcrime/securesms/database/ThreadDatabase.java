@@ -26,6 +26,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -368,18 +369,18 @@ public class ThreadDatabase extends Database {
   }
 
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
-    return setReadInternal(Collections.singletonList(threadId), lastSeen, -1);
+    return setReadSince(Collections.singletonMap(threadId, -1L), lastSeen);
   }
 
   public List<MarkedMessageInfo> setReadSince(long threadId, boolean lastSeen, long sinceTimestamp) {
-    return setReadInternal(Collections.singletonList(threadId), lastSeen, sinceTimestamp);
+    return setReadSince(Collections.singletonMap(threadId, sinceTimestamp), lastSeen);
   }
 
   public List<MarkedMessageInfo> setRead(Collection<Long> threadIds, boolean lastSeen) {
-    return setReadInternal(threadIds, lastSeen, -1);
+    return setReadSince(Stream.of(threadIds).collect(Collectors.toMap(t -> t, t -> -1L)), lastSeen);
   }
 
-  private List<MarkedMessageInfo> setReadInternal(Collection<Long> threadIds, boolean lastSeen, long sinceTimestamp) {
+  public List<MarkedMessageInfo> setReadSince(Map<Long, Long> threadIdToSinceTimestamp, boolean lastSeen) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     List<MarkedMessageInfo> smsRecords = new LinkedList<>();
@@ -392,11 +393,14 @@ public class ThreadDatabase extends Database {
       ContentValues contentValues = new ContentValues(2);
       contentValues.put(READ, ReadStatus.READ.serialize());
 
-      if (lastSeen) {
-        contentValues.put(LAST_SEEN, sinceTimestamp == -1 ? System.currentTimeMillis() : sinceTimestamp);
-      }
+      for (Map.Entry<Long, Long> entry : threadIdToSinceTimestamp.entrySet()) {
+        long threadId = entry.getKey();
+        long sinceTimestamp = entry.getValue();
 
-      for (long threadId : threadIds) {
+        if (lastSeen) {
+          contentValues.put(LAST_SEEN, sinceTimestamp == -1 ? System.currentTimeMillis() : sinceTimestamp);
+        }
+
         ThreadRecord previous = getThreadRecord(threadId);
 
         smsRecords.addAll(DatabaseFactory.getSmsDatabase(context).setMessagesReadSince(threadId, sinceTimestamp));
@@ -422,7 +426,7 @@ public class ThreadDatabase extends Database {
       db.endTransaction();
     }
 
-    notifyConversationListeners(new HashSet<>(threadIds));
+    notifyConversationListeners(threadIdToSinceTimestamp.keySet());
     notifyConversationListListeners();
 
     if (needsSync) {
