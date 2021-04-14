@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.notifications.DeleteNotificationReceiver
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
+import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.notifications.RemoteReplyReceiver
 import org.thoughtcrime.securesms.notifications.ReplyMethod
@@ -41,6 +42,7 @@ class NotificationConversation(
   val sortKey: Long = Long.MAX_VALUE - mostRecentNotification.timestamp
   val messageCount: Int = notificationItems.size
   val isGroup: Boolean = recipient.isGroup
+  val isOnlyContactJoinedEvent: Boolean = messageCount == 1 && mostRecentNotification.isJoined
 
   fun getContentTitle(context: Context): CharSequence {
     return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
@@ -117,6 +119,14 @@ class NotificationConversation(
 
   fun hasNewNotifications(): Boolean {
     return notificationItems.any { it.isNewNotification }
+  }
+
+  fun getChannelId(context: Context): String {
+    return if (isOnlyContactJoinedEvent) {
+      NotificationChannels.JOIN_EVENTS
+    } else {
+      recipient.notificationChannel ?: NotificationChannels.getMessagesChannel(context)
+    }
   }
 
   fun getPendingIntent(context: Context): PendingIntent {

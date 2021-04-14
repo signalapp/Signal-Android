@@ -66,7 +66,6 @@ object NotificationFactory {
           notifyForConversation(
             context = context,
             conversation = conversation,
-            recipient = conversation.recipient,
             targetThreadId = targetThreadId,
             defaultBubbleState = defaultBubbleState
           )
@@ -112,7 +111,6 @@ object NotificationFactory {
   private fun notifyForConversation(
     context: Context,
     conversation: NotificationConversation,
-    recipient: Recipient,
     targetThreadId: Long,
     defaultBubbleState: BubbleUtil.BubbleState
   ) {
@@ -124,11 +122,11 @@ object NotificationFactory {
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
-      setChannelId(recipient.notificationChannel ?: NotificationChannels.getMessagesChannel(context))
+      setChannelId(conversation.getChannelId(context))
       setContentTitle(conversation.getContentTitle(context))
       setLargeIcon(conversation.getLargeIcon(context))
-      addPerson(recipient)
-      setShortcutId(ConversationUtil.getShortcutId(recipient))
+      addPerson(conversation.recipient)
+      setShortcutId(ConversationUtil.getShortcutId(conversation.recipient))
       setContentInfo(conversation.messageCount.toString())
       setNumber(conversation.messageCount)
       setContentText(conversation.getContentText(context))
@@ -146,7 +144,7 @@ object NotificationFactory {
       setBubbleMetadata(conversation, if (targetThreadId == conversation.threadId) defaultBubbleState else BubbleUtil.BubbleState.HIDDEN)
     }
 
-    if (conversation.messageCount == 1 && conversation.mostRecentNotification.isJoined) {
+    if (conversation.isOnlyContactJoinedEvent) {
       builder.addTurnOffJoinedNotificationsAction(conversation.getTurnOffJoinedNotificationsIntent(context))
     }
 

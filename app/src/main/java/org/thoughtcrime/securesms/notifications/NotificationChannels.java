@@ -62,6 +62,7 @@ public class NotificationChannels {
   public static final String LOCKED_STATUS = "locked_status_v2";
   public static final String OTHER         = "other_v3";
   public static final String VOICE_NOTES   = "voice_notes";
+  public static final String JOIN_EVENTS   = "join_events";
 
   /**
    * Ensures all of the notification channels are created. No harm in repeat calls. Call is safely
@@ -519,6 +520,7 @@ public class NotificationChannels {
     NotificationChannel lockedStatus = new NotificationChannel(LOCKED_STATUS, context.getString(R.string.NotificationChannel_locked_status), NotificationManager.IMPORTANCE_LOW);
     NotificationChannel other        = new NotificationChannel(OTHER, context.getString(R.string.NotificationChannel_other), NotificationManager.IMPORTANCE_LOW);
     NotificationChannel voiceNotes   = new NotificationChannel(VOICE_NOTES, context.getString(R.string.NotificationChannel_voice_notes), NotificationManager.IMPORTANCE_LOW);
+    NotificationChannel joinEvents   = new NotificationChannel(JOIN_EVENTS, context.getString(R.string.NotificationChannel_contact_joined_signal), NotificationManager.IMPORTANCE_DEFAULT);
 
     messages.setGroup(CATEGORY_MESSAGES);
     messages.enableVibration(TextSecurePreferences.isNotificationVibrateEnabled(context));
@@ -532,8 +534,9 @@ public class NotificationChannels {
     other.setVibrationPattern(new long[]{0});
     other.enableVibration(true);
     voiceNotes.setShowBadge(false);
+    joinEvents.setShowBadge(false);
 
-    notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes));
+    notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes, joinEvents));
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       NotificationChannel appUpdates = new NotificationChannel(APP_UPDATES, context.getString(R.string.NotificationChannel_app_updates), NotificationManager.IMPORTANCE_HIGH);
