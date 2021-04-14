@@ -1475,14 +1475,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MessageNotifier_this_message_was_deleted">Beskeden blev slettet.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Déaktiver: Kontakt har tilsluttet Signal meddelelser? Du kan aktivere dem igen i Signal &gt; Indstillinger &gt; Meddelelser</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Standard</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standard</string> -->
   <string name="NotificationChannel_calls">Opkald</string>
   <string name="NotificationChannel_failures">Registrerede fejl</string>
   <string name="NotificationChannel_backups">Backups</string>
   <string name="NotificationChannel_locked_status">Låse status</string>
   <string name="NotificationChannel_app_updates">App opdateringer</string>
   <string name="NotificationChannel_other">Andet</string>
-  <string name="NotificationChannel_group_messages">Beskeder</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Beskeder</string> -->
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
   <string name="NotificationChannel_voice_notes">Stemme noter</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for meddelelseskanal.</string>

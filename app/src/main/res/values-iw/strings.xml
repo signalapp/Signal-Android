@@ -1595,14 +1595,14 @@
   <string name="MessageNotifier_this_message_was_deleted">הודעה זו נמחקה.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">לכבות התראות של איש קשר הצטרף אל Signal? אתה יכול לאפשר אותן שוב דרך Signal &lt; הגדרות &lt; התראות.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">ברירת מחדל</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">ברירת מחדל</string> -->
   <string name="NotificationChannel_calls">שיחות</string>
   <string name="NotificationChannel_failures">כישלונות</string>
   <string name="NotificationChannel_backups">גיבויים</string>
   <string name="NotificationChannel_locked_status">מעמד נעילה</string>
   <string name="NotificationChannel_app_updates">עדכוני יישום</string>
   <string name="NotificationChannel_other">אחר</string>
-  <string name="NotificationChannel_group_messages">הודעות</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">הודעות</string> -->
   <string name="NotificationChannel_missing_display_name">בלתי ידוע</string>
   <string name="NotificationChannel_voice_notes">הערות קוליות</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">אין פעילות זמינה כדי לפתוח הגדרות של ערוץ התראות.</string>

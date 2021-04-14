@@ -942,14 +942,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nag-react ng %1$s sa iyong sticker.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Default</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Default</string> -->
   <string name="NotificationChannel_calls">Mga Tawag</string>
   <string name="NotificationChannel_failures">Mga kabiguan</string>
   <string name="NotificationChannel_backups">Mga backup</string>
   <string name="NotificationChannel_locked_status">Lock na status</string>
   <string name="NotificationChannel_app_updates">Mga update sa app</string>
   <string name="NotificationChannel_other">Iba pa</string>
-  <string name="NotificationChannel_group_messages">Mga mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mga mensahe</string> -->
   <string name="NotificationChannel_missing_display_name">Hindi alam</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Matagumpay na naitakda ang pangalan ng profile.</string> -->

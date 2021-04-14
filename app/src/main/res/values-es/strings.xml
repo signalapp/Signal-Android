@@ -1475,14 +1475,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en los ajustes de Signal &gt; Notificaciones.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Por defecto</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Por defecto</string> -->
   <string name="NotificationChannel_calls">Llamadas</string>
   <string name="NotificationChannel_failures">Fallos</string>
   <string name="NotificationChannel_backups">Copias de seguridad</string>
   <string name="NotificationChannel_locked_status">Estado de bloqueo</string>
   <string name="NotificationChannel_app_updates">Actualizaciones de la aplicación</string>
   <string name="NotificationChannel_other">Otros</string>
-  <string name="NotificationChannel_group_messages">Mensajes</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mensajes</string> -->
   <string name="NotificationChannel_missing_display_name">Desconocido</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hay actividad disponible para abrir el canal de notificaciones en «Ajustes».</string>
@@ -2077,7 +2077,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsHomeFragment__payments_deactivated">Pagos desactivados.</string>
   <string name="PaymentsHomeFragment__payment_failed">Fallo en el pago</string>
   <string name="PaymentsHomeFragment__details">Detalles</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puedes usar Signal para recibir y enviar MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoins y la cartera de MobileCoin. Esta es una característica en fase beta por lo que te encontrarás con problemas y podrás perder tus fondos.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puedes usar Signal para recibir y enviar MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoin y su cartera. Esta es una característica en fase beta por lo que te encontrarás con problemas y podrás perder tus fondos.</string>
   <string name="PaymentsHomeFragment__activate">Activar</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver los términos de uso de MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Los pagos en Signal no están disponibles. Todavía puedes transferir tus fondos a un «exchange» pero no podrás recibir o enviar más pagos a través de Signal.</string>

@@ -1471,14 +1471,14 @@
   <string name="MessageNotifier_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">చేరిన Signal నోటిఫికేషన్‌లను ఆపివేయాలా? మీరు వాటిని Signal &gt; సెట్టింగులు &gt; నోటిఫికేషన్‌లు.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">అప్రమేయం</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">అప్రమేయం</string> -->
   <string name="NotificationChannel_calls">కాల్స్</string>
   <string name="NotificationChannel_failures">వైఫల్యాలు</string>
   <string name="NotificationChannel_backups">ప్రత్యామ్నాయములు </string>
   <string name="NotificationChannel_locked_status">స్థితి లాక్</string>
   <string name="NotificationChannel_app_updates">అనువర్తన నవీకరణలు</string>
   <string name="NotificationChannel_other">ఇతర</string>
-  <string name="NotificationChannel_group_messages">సందేశాలు</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">సందేశాలు</string> -->
   <string name="NotificationChannel_missing_display_name">తెలియని</string>
   <string name="NotificationChannel_voice_notes">స్వర గమనికలు </string>
   <!--ProfileEditNameFragment-->

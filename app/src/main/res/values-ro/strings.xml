@@ -1529,14 +1529,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Dezactivați notificările pentru contact alăturat la Signal? Le puteți activa din nou în Signal &gt; Setări &gt; Notificări.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Implicit</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Implicit</string> -->
   <string name="NotificationChannel_calls">Apeluri</string>
   <string name="NotificationChannel_failures">Erori</string>
   <string name="NotificationChannel_backups">Backup-uri</string>
   <string name="NotificationChannel_locked_status">Stare blocare</string>
   <string name="NotificationChannel_app_updates">Actualizări aplicație</string>
   <string name="NotificationChannel_other">Altul</string>
-  <string name="NotificationChannel_group_messages">Mesaje</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mesaje</string> -->
   <string name="NotificationChannel_missing_display_name">Necunoscut</string>
   <string name="NotificationChannel_voice_notes">Notițe vocale</string>
   <!--ProfileEditNameFragment-->

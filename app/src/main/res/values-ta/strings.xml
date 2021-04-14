@@ -1464,14 +1464,14 @@
   <string name="MessageNotifier_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">இயல்புநிலை</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">இயல்புநிலை</string> -->
   <string name="NotificationChannel_calls">அழைப்புகள்</string>
   <string name="NotificationChannel_failures">தோல்விகள்</string>
   <string name="NotificationChannel_backups">காப்புப் பிரதிகள்</string>
   <string name="NotificationChannel_locked_status">பூட்டு நிலை</string>
   <string name="NotificationChannel_app_updates">பயன்பாடு  புதுப்பிப்புகள்</string>
   <string name="NotificationChannel_other">மற்றவை</string>
-  <string name="NotificationChannel_group_messages">செய்திகள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">செய்திகள்</string> -->
   <string name="NotificationChannel_missing_display_name">முன் தெரிந்திராத</string>
   <string name="NotificationChannel_voice_notes">குரல் குறிப்புகள்</string>
   <!--ProfileEditNameFragment-->

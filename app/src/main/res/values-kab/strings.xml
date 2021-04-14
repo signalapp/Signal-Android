@@ -1465,14 +1465,14 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="MessageNotifier_this_message_was_deleted">Izen-agi yettwakkes.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Sens ilɣa n Signal n unermis i d-yernan? Tzemreḍ ad ten-tremdeḍ i tikkelt-nniḍen deg Signal &gt; SIɣewwaren &gt; Ilɣa.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Amezwar</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Amezwar</string> -->
   <string name="NotificationChannel_calls">Isawalen</string>
   <string name="NotificationChannel_failures">Tuccḍiwin</string>
   <string name="NotificationChannel_backups">Iḥrazen</string>
   <string name="NotificationChannel_locked_status">Addaden isekkṛen</string>
   <string name="NotificationChannel_app_updates">Ileqman n usnas</string>
   <string name="NotificationChannel_other">Nniḍen</string>
-  <string name="NotificationChannel_group_messages">Iznan</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Iznan</string> -->
   <string name="NotificationChannel_missing_display_name">Arussin</string>
   <string name="NotificationChannel_voice_notes">Tizmilin n taɣect</string>
   <!--ProfileEditNameFragment-->

@@ -881,14 +881,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">તમારા સ્ટીકર પર %1$s પ્રતિક્રિયા આપી.</string>
   <string name="MessageNotifier_this_message_was_deleted">આ મેસેજ કાઢી નાખ્યો હતો.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">ડિફોલ્ટ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">ડિફોલ્ટ</string> -->
   <string name="NotificationChannel_calls">કૉલ્સ</string>
   <string name="NotificationChannel_failures">નિષ્ફળતા</string>
   <string name="NotificationChannel_backups">બેકઅપ્સ</string>
   <string name="NotificationChannel_locked_status">લૉક સ્ટેટસ</string>
   <string name="NotificationChannel_app_updates">એપ્લિકેશન અપડેટ્સ</string>
   <string name="NotificationChannel_other">અન્ય</string>
-  <string name="NotificationChannel_group_messages">મેસેજ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">મેસેજ</string> -->
   <string name="NotificationChannel_missing_display_name">અજાણ્યું</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">પ્રોફાઇલ નામ સફળતાપૂર્વક સેટ કર્યું.</string> -->

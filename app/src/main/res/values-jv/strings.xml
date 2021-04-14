@@ -876,14 +876,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nganggepi stiker sampeyan kangge %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Pesen niki sampun dibrusak</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Default</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Default</string> -->
   <string name="NotificationChannel_calls">Telepon</string>
   <string name="NotificationChannel_failures">Gagal</string>
   <string name="NotificationChannel_backups">Serep</string>
   <string name="NotificationChannel_locked_status">Kunci status</string>
   <string name="NotificationChannel_app_updates">Pangenggalan aplikasi</string>
   <string name="NotificationChannel_other">Bentenipun</string>
-  <string name="NotificationChannel_group_messages">Pesen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Pesen</string> -->
   <string name="NotificationChannel_missing_display_name">Mboten kasumarepan</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Kedadosan netapaken nami profil.</string> -->

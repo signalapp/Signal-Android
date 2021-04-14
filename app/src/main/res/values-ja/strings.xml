@@ -1400,14 +1400,14 @@
   <string name="MessageNotifier_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">連絡先のSignal参加時の通知を受け取らないようにしますか？この設定はあとでSignal &gt; 設定 &gt; 通知から元に戻せます。</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">既定</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">既定</string> -->
   <string name="NotificationChannel_calls">通話</string>
   <string name="NotificationChannel_failures">障害</string>
   <string name="NotificationChannel_backups">バックアップ</string>
   <string name="NotificationChannel_locked_status">ロック状態</string>
   <string name="NotificationChannel_app_updates">アプリ更新</string>
   <string name="NotificationChannel_other">その他</string>
-  <string name="NotificationChannel_group_messages">メッセージ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">メッセージ</string> -->
   <string name="NotificationChannel_missing_display_name">不明</string>
   <string name="NotificationChannel_voice_notes">音声メモ</string>
   <!--ProfileEditNameFragment-->

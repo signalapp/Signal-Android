@@ -1179,14 +1179,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">ਤੁਹਾਡੇ ਸਟਿੱਕਰ \'ਤੇ %1$s ਪ੍ਰਤੀਕਰਮ</string>
   <string name="MessageNotifier_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਮਿਟਾਇਆ ਗਿਆ ਸੀ.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">ਡਿਫੌਲਟ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">ਡਿਫੌਲਟ</string> -->
   <string name="NotificationChannel_calls">ਕਾਲਾਂ </string>
   <string name="NotificationChannel_failures">ਅਸਫਲਤਾਵਾਂ</string>
   <string name="NotificationChannel_backups">ਬੈਕਅੱਪ</string>
   <string name="NotificationChannel_locked_status">ਹਾਲਤ ਨੂੰ ਲਾਕ ਕਰੋ</string>
   <string name="NotificationChannel_app_updates">ਐਪ ਅਪਡੇਟਾਂ</string>
   <string name="NotificationChannel_other">ਹੋਰ</string>
-  <string name="NotificationChannel_group_messages">ਸੁਨੇਹੇ </string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">ਸੁਨੇਹੇ </string> -->
   <string name="NotificationChannel_missing_display_name">ਅਣਜਾਣ</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

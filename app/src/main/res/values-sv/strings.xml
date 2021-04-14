@@ -1469,14 +1469,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Inaktivera Signal-aviseringar när kontakter ansluter sig? Du kan aktivera dem igen i Signal &gt; Inställningar &gt; Aviseringar.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Standard</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standard</string> -->
   <string name="NotificationChannel_calls">Samtal</string>
   <string name="NotificationChannel_failures">Misslyckanden</string>
   <string name="NotificationChannel_backups">Säkerhetskopior</string>
   <string name="NotificationChannel_locked_status">Låsstatus</string>
   <string name="NotificationChannel_app_updates">Appuppdateringar</string>
   <string name="NotificationChannel_other">Övrigt</string>
-  <string name="NotificationChannel_group_messages">Meddelanden</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Meddelanden</string> -->
   <string name="NotificationChannel_missing_display_name">Okänd</string>
   <string name="NotificationChannel_voice_notes">Röstanteckningar</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tillgänglig för att öppna inställningar för aviseringskanaler.</string>

@@ -1077,14 +1077,14 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reaģēja %1$s uz Jūsu uzlīmi. </string>
   <string name="MessageNotifier_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Noklusējuma</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Noklusējuma</string> -->
   <string name="NotificationChannel_calls">Zvani</string>
   <string name="NotificationChannel_failures">Kļūmes</string>
   <string name="NotificationChannel_backups">Rezerves kopijas (Backups)</string>
   <string name="NotificationChannel_locked_status">Bloķēšanas (noslēgšanas) statuss</string>
   <string name="NotificationChannel_app_updates">Lietotnes aktualizējumi</string>
   <string name="NotificationChannel_other">Cits</string>
-  <string name="NotificationChannel_group_messages">Ziņas</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Ziņas</string> -->
   <string name="NotificationChannel_missing_display_name">Nezināms</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Sekmīgi iestatījāt profila attēlu</string> -->

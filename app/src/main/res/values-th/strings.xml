@@ -1412,14 +1412,14 @@
   <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ปิดการแจ้งเตือนเมื่อผู้ติดต่อได้เข้าร่วม Signal? คุณสามารถเปิดมันได้อีกครั้งในSignal &gt; Settings &gt; Notifications.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">ค่าเริ่มต้น</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">ค่าเริ่มต้น</string> -->
   <string name="NotificationChannel_calls">การโทร</string>
   <string name="NotificationChannel_failures">ความล้มเหลว</string>
   <string name="NotificationChannel_backups">ข้อมูลสำรอง</string>
   <string name="NotificationChannel_locked_status">สถานะล็อก</string>
   <string name="NotificationChannel_app_updates">การปรับรุ่นแอป</string>
   <string name="NotificationChannel_other">อื่น</string>
-  <string name="NotificationChannel_group_messages">ข้อความ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">ข้อความ</string> -->
   <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
   <string name="NotificationChannel_voice_notes">ข้อความเสียง</string>
   <!--ProfileEditNameFragment-->

@@ -1464,14 +1464,14 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Benachrichtigungen über neue Signal-Kontakte ausschalten? Du kannst sie wieder einschalten in Signal → Einstellungen → Benachrichtigungen.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Standard</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standard</string> -->
   <string name="NotificationChannel_calls">Anrufe</string>
   <string name="NotificationChannel_failures">Fehler</string>
   <string name="NotificationChannel_backups">Datensicherungen</string>
   <string name="NotificationChannel_locked_status">Sperrstatus</string>
   <string name="NotificationChannel_app_updates">App-Aktualisierungen</string>
   <string name="NotificationChannel_other">Sonstige</string>
-  <string name="NotificationChannel_group_messages">Nachrichten</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Nachrichten</string> -->
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
   <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
@@ -2128,7 +2128,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
-  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__decimal">,</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Rücktaste</string>
@@ -2744,7 +2744,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="payment_info_card_you_can_add_funds_for_use_in">Du kannst Guthaben für die Verwendung in Signal hinzufügen, indem du MobileCoin an deine Wallet-Adresse sendest.</string>
   <string name="payment_info_card_cashing_out">Auszahlungen</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kannst MobileCoin jederzeit auf einer Handelsplattform, die MobileCoin unterstützt, auszahlen lassen. Überweise das Guthaben einfach auf dein Konto bei dieser Handelsplattform.</string>
-  <string name="payment_info_card_hide_this_card">Diese Karte verstecken?</string>
+  <string name="payment_info_card_hide_this_card">Diese Karte ausblenden?</string>
   <string name="payment_info_card_hide">Ausblenden</string>
   <string name="payment_info_card_record_recovery_phrase">Wiederherstellungsphrase notieren</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Deine Wiederherstellungsphrase gibt dir eine weitere Möglichkeit, dein Zahlungskonto wiederherzustellen.</string>

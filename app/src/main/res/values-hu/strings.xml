@@ -1473,14 +1473,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kikapcsolod az új kontakt érhető el Signalon értesítést? Újra engedélyezheted a  Signal &gt; Beállítások &gt; Értesítések menüpontban.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Alapértelmezett</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Alapértelmezett</string> -->
   <string name="NotificationChannel_calls">Hívások</string>
   <string name="NotificationChannel_failures">Hibák</string>
   <string name="NotificationChannel_backups">Biztonsági mentések</string>
   <string name="NotificationChannel_locked_status">Zár státusza</string>
   <string name="NotificationChannel_app_updates">App frissítések</string>
   <string name="NotificationChannel_other">Egyéb</string>
-  <string name="NotificationChannel_group_messages">Üzenetek</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Üzenetek</string> -->
   <string name="NotificationChannel_missing_display_name">Ismeretlen</string>
   <string name="NotificationChannel_voice_notes">Hangjegyzetek</string>
   <!--ProfileEditNameFragment-->

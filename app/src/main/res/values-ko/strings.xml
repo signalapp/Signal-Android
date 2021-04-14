@@ -1405,14 +1405,14 @@
   <string name="MessageNotifier_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">연락처 인물이 Signal에 가입했다는 알림을 끄시겠습니까? Signal &gt; 설정 &gt; 알림에서 다시 활성화할 수 있습니다.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">기본</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">기본</string> -->
   <string name="NotificationChannel_calls">전화</string>
   <string name="NotificationChannel_failures">실패</string>
   <string name="NotificationChannel_backups">백업</string>
   <string name="NotificationChannel_locked_status">잠금 상태</string>
   <string name="NotificationChannel_app_updates">앱 업데이트</string>
   <string name="NotificationChannel_other">기타</string>
-  <string name="NotificationChannel_group_messages">메시지</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">메시지</string> -->
   <string name="NotificationChannel_missing_display_name">알 수 없음</string>
   <string name="NotificationChannel_voice_notes">음성 노트</string>
   <!--ProfileEditNameFragment-->

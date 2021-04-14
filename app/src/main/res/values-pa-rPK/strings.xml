@@ -891,14 +891,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s نے تہاڈے اسٹیکر تے ری ایکٹ کیتا اے۔</string>
   <string name="MessageNotifier_this_message_was_deleted">ایہہ سنیہا حذف کر دتا گیا سی۔</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">طے شدہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">طے شدہ</string> -->
   <string name="NotificationChannel_calls"> کالاں</string>
   <string name="NotificationChannel_failures">ناکامیاں</string>
   <string name="NotificationChannel_backups">بیک اپس</string>
   <string name="NotificationChannel_locked_status">لاک حیثیت</string>
   <string name="NotificationChannel_app_updates">ایپ اپ ڈیٹس</string>
   <string name="NotificationChannel_other">دوجا</string>
-  <string name="NotificationChannel_group_messages">سنیہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">سنیہے</string> -->
   <string name="NotificationChannel_missing_display_name">نامعلوم</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">پروفائل ناں کامیابی نال ترتیب دیتا۔</string> -->

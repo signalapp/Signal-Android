@@ -1537,14 +1537,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavještenja o tome da se kontakt prijavio na Signal? Možete ih ponovo aktivirati kroz Signal &gt; Podešavanja &gt; Obavještenja.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Standardno</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standardno</string> -->
   <string name="NotificationChannel_calls">Pozivi</string>
   <string name="NotificationChannel_failures">Greške</string>
   <string name="NotificationChannel_backups">Rezervne kopije</string>
   <string name="NotificationChannel_locked_status">Status zaključavanja</string>
   <string name="NotificationChannel_app_updates">Nove verzije aplikacije</string>
   <string name="NotificationChannel_other">Ostalo</string>
-  <string name="NotificationChannel_group_messages">Poruke</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Poruke</string> -->
   <string name="NotificationChannel_missing_display_name">Nepoznato</string>
   <string name="NotificationChannel_voice_notes">Glasovne bilješke</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nema aktivnosti za otvaranje postavki obavještenjā.</string>

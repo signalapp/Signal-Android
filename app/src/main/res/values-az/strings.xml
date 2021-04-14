@@ -697,14 +697,14 @@
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Əlaqə</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Başlanğıc</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Başlanğıc</string> -->
   <string name="NotificationChannel_calls">Zənglər</string>
   <string name="NotificationChannel_failures">Xətalar</string>
   <string name="NotificationChannel_backups">Ehtiyat nüsxələr</string>
   <string name="NotificationChannel_locked_status">Kilid statusu</string>
   <string name="NotificationChannel_app_updates">Aplikasiya yenilikləri</string>
   <string name="NotificationChannel_other">Digər</string>
-  <string name="NotificationChannel_group_messages">Mesajlar</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mesajlar</string> -->
   <string name="NotificationChannel_missing_display_name">Naməlum</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

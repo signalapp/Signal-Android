@@ -1474,14 +1474,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_this_message_was_deleted">Tiu ĉi mesaĝo estis forviŝita.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ĉu malŝalti sciigojn pri aliĝo de kontakto al Signal? Vi povos reŝalti ilin ĉe Signal → Agordoj → Sciigoj.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Defaŭlta</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Defaŭlta</string> -->
   <string name="NotificationChannel_calls">Alvokoj</string>
   <string name="NotificationChannel_failures">Malsukcesoj</string>
   <string name="NotificationChannel_backups">Savkopioj</string>
   <string name="NotificationChannel_locked_status">Ŝlosostato</string>
   <string name="NotificationChannel_app_updates">Aplikaĵaj ĝisdatigoj</string>
   <string name="NotificationChannel_other">Alia</string>
-  <string name="NotificationChannel_group_messages">Mesaĝoj</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mesaĝoj</string> -->
   <string name="NotificationChannel_missing_display_name">Nekonata</string>
   <string name="NotificationChannel_voice_notes">Voĉaj notoj</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Neniu aktiveco disponeblas por malfermi la agordojn pri la sciigo-kanalo.</string>

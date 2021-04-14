@@ -1458,14 +1458,14 @@
   <string name="MessageNotifier_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">رابطے میں شامل Signal اطلاعات بند کردیں؟ آپ انہیں Signal &amp; gt میں دوبارہ فعال کرسکتے ہیں۔ ترتیبات &amp; gt؛ اطلاعات۔</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">پہلے سے طے شدہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">پہلے سے طے شدہ</string> -->
   <string name="NotificationChannel_calls">کالز</string>
   <string name="NotificationChannel_failures">ناکامیاں</string>
   <string name="NotificationChannel_backups">بیک اپس</string>
   <string name="NotificationChannel_locked_status">اسٹیٹس لاک کریں</string>
   <string name="NotificationChannel_app_updates">ایپ تجدید کریں</string>
   <string name="NotificationChannel_other">دوسرے</string>
-  <string name="NotificationChannel_group_messages">پیغامات</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">پیغامات</string> -->
   <string name="NotificationChannel_missing_display_name">نامعلوم</string>
   <string name="NotificationChannel_voice_notes">آڈیو نوٹز</string>
   <!--ProfileEditNameFragment-->

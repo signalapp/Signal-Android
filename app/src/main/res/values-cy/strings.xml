@@ -1601,14 +1601,14 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Diffodd hysbysiadau cysylltiadau Signal? Gallwch eu galluogi eto yn Signal Hysbysiadau &gt; Gosodiadau &gt;.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Rhagosodiad</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Rhagosodiad</string> -->
   <string name="NotificationChannel_calls">Galwadau</string>
   <string name="NotificationChannel_failures">Methiannau</string>
   <string name="NotificationChannel_backups">Copïau wrth gefn</string>
   <string name="NotificationChannel_locked_status">Statws y clo</string>
   <string name="NotificationChannel_app_updates">Diweddariadau ap</string>
   <string name="NotificationChannel_other">Arall</string>
-  <string name="NotificationChannel_group_messages">Negeseuon</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Negeseuon</string> -->
   <string name="NotificationChannel_missing_display_name">Anhysbys</string>
   <string name="NotificationChannel_voice_notes">Nodiadau Llais</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Dim gweithgaredd ar gael i agor gosodiadau sianel hysbysu.</string>

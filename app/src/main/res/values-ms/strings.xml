@@ -760,14 +760,14 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MessageNotifier_unknown_contact_message">Kenalan</string>
   <string name="MessageNotifier_this_message_was_deleted">Mesej ini telah dipadam.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Lalai</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Lalai</string> -->
   <string name="NotificationChannel_calls">Panggilan</string>
   <string name="NotificationChannel_failures">Kegagalan</string>
   <string name="NotificationChannel_backups">Sandaran</string>
   <string name="NotificationChannel_locked_status">Status kunci</string>
   <string name="NotificationChannel_app_updates">Kemas kini aplikasi</string>
   <string name="NotificationChannel_other">Lain-lain</string>
-  <string name="NotificationChannel_group_messages">Mesej</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mesej</string> -->
   <string name="NotificationChannel_missing_display_name">Tidak diketahui</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

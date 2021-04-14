@@ -1472,14 +1472,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kişi katıldı Signal bildirimlerini kapatmak mı istiyorsunuz? Signal &gt; Ayarlar &gt; Bildirimler kısmında tekrar açabilirsiniz.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Varsayılan</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Varsayılan</string> -->
   <string name="NotificationChannel_calls">Aramalar</string>
   <string name="NotificationChannel_failures">Hatalar</string>
   <string name="NotificationChannel_backups">Yedekler</string>
   <string name="NotificationChannel_locked_status">Kilit durumu</string>
   <string name="NotificationChannel_app_updates">Uygulama güncellemeleri</string>
   <string name="NotificationChannel_other">Diğer</string>
-  <string name="NotificationChannel_group_messages">İletiler</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">İletiler</string> -->
   <string name="NotificationChannel_missing_display_name">Bilinmeyen</string>
   <string name="NotificationChannel_voice_notes">Sesli Notlar</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Bildirim kanal ayarlarını açmak için mevcut bir faaliyet yok</string>

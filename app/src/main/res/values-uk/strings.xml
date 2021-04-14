@@ -697,14 +697,14 @@
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Системна</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Системна</string> -->
   <string name="NotificationChannel_calls">Виклики</string>
   <string name="NotificationChannel_failures">Відмови</string>
   <string name="NotificationChannel_backups">Резервні копії</string>
   <string name="NotificationChannel_locked_status">Статус блокування</string>
   <string name="NotificationChannel_app_updates">Оновлення додатку</string>
   <string name="NotificationChannel_other">Інший</string>
-  <string name="NotificationChannel_group_messages">Повідомлення</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Повідомлення</string> -->
   <string name="NotificationChannel_missing_display_name">Невідомо</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

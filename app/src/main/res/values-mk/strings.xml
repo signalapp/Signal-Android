@@ -1464,14 +1464,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Дали да исклучам известувања за луѓе што се приклучуваат на Signal? Можете да ги вклучите пак во Signal &gt; Поставувања &gt; Известувања.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Стандардно</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Стандардно</string> -->
   <string name="NotificationChannel_calls">Повици</string>
   <string name="NotificationChannel_failures">Неуспеси</string>
   <string name="NotificationChannel_backups">Резервни копии</string>
   <string name="NotificationChannel_locked_status">Статус</string>
   <string name="NotificationChannel_app_updates">Ажурирања за аплиакцијата</string>
   <string name="NotificationChannel_other">Друго</string>
-  <string name="NotificationChannel_group_messages">Пораки</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Пораки</string> -->
   <string name="NotificationChannel_missing_display_name">Непознато</string>
   <string name="NotificationChannel_voice_notes">Гласовни белешки</string>
   <!--ProfileEditNameFragment-->

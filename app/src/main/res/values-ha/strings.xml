@@ -885,14 +885,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ya/ta yi martanin%1$s akan sitikarka/ki.</string>
   <string name="MessageNotifier_this_message_was_deleted">An goge sakon</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Tanadadde</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Tanadadde</string> -->
   <string name="NotificationChannel_calls">Kira</string>
   <string name="NotificationChannel_failures">Gazawar aiki</string>
   <string name="NotificationChannel_backups">Tsimi</string>
   <string name="NotificationChannel_locked_status">Kulle status</string>
   <string name="NotificationChannel_app_updates">Sabuntuwar manhaja</string>
   <string name="NotificationChannel_other">Wani</string>
-  <string name="NotificationChannel_group_messages">Sakwanni</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Sakwanni</string> -->
   <string name="NotificationChannel_missing_display_name">Ba suna</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">An ci nasarar saita sunan furofayil</string> -->

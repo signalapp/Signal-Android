@@ -1535,14 +1535,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Ова порука је избрисана.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Искључити нотификације контакта који се придружио Signal-у? Можете их поново омогућити у Signal &gt; Подешавања &gt; Нотификације.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Подразумеван</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Подразумеван</string> -->
   <string name="NotificationChannel_calls">Позиви</string>
   <string name="NotificationChannel_failures">Грешке</string>
   <string name="NotificationChannel_backups">Резерве</string>
   <string name="NotificationChannel_locked_status">Закључај стање</string>
   <string name="NotificationChannel_app_updates">Листа ажурирања</string>
   <string name="NotificationChannel_other">Остало</string>
-  <string name="NotificationChannel_group_messages">Поруке</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Поруке</string> -->
   <string name="NotificationChannel_missing_display_name">Непозната</string>
   <string name="NotificationChannel_voice_notes">Гласовне белешке</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>

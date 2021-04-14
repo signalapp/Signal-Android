@@ -891,14 +891,14 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ametoa hisia%1$s kwa kibandiko chako.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ujumbe huu umefutwa</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Chaguo Msingi</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Chaguo Msingi</string> -->
   <string name="NotificationChannel_calls">Simu</string>
   <string name="NotificationChannel_failures">Zilizoshindwa</string>
   <string name="NotificationChannel_backups">Nakalahifadhi</string>
   <string name="NotificationChannel_locked_status">Funga hali</string>
   <string name="NotificationChannel_app_updates">Sasisho za programu</string>
   <string name="NotificationChannel_other">ingine</string>
-  <string name="NotificationChannel_group_messages">Jumbe</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Jumbe</string> -->
   <string name="NotificationChannel_missing_display_name">Isiyojulikana</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Jina lako la wasifa limefanikiwa kuwekwa.</string> -->

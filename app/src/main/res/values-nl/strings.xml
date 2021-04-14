@@ -1479,14 +1479,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Signal. Je kunt ze opnieuw aanzetten in  Signal &gt; Instellingen &gt; Meldingen.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Standaardmeldingen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standaardmeldingen</string> -->
   <string name="NotificationChannel_calls">Oproepen</string>
   <string name="NotificationChannel_failures">Mislukkingen</string>
   <string name="NotificationChannel_backups">Back-ups</string>
   <string name="NotificationChannel_locked_status">Vergrendelingstoestand</string>
   <string name="NotificationChannel_app_updates">Nieuwe versies van de app </string>
   <string name="NotificationChannel_other">Anders</string>
-  <string name="NotificationChannel_group_messages">Berichten</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Berichten</string> -->
   <string name="NotificationChannel_missing_display_name">Onbekend</string>
   <string name="NotificationChannel_voice_notes">Audioberichten</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Geen ‘activiteit’ beschikbaar om instellingen voor meldingskanalen mee te openen.</string>

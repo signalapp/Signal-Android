@@ -626,13 +626,13 @@ a shonrú</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">An réamhshocrú</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">An réamhshocrú</string> -->
   <string name="NotificationChannel_calls">Glaonna</string>
   <string name="NotificationChannel_failures">Teipeanna</string>
   <string name="NotificationChannel_backups">Cúltacaithe</string>
   <string name="NotificationChannel_app_updates">Cuir nuashonruithe leis</string>
   <string name="NotificationChannel_other">Eile</string>
-  <string name="NotificationChannel_group_messages">Teachtaireachtaí</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Teachtaireachtaí</string> -->
   <string name="NotificationChannel_missing_display_name">Anaithnid</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Níl freagairt tapa le fáil agus Signal faoi ghlas.</string>

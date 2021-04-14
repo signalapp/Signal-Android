@@ -1176,14 +1176,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">ប្រតិកម្ម %1$s ទៅស្ទីកគ័រអ្នក។</string>
   <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">លំនាំដើម</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">លំនាំដើម</string> -->
   <string name="NotificationChannel_calls">ការហៅ</string>
   <string name="NotificationChannel_failures">បរាជ័យ</string>
   <string name="NotificationChannel_backups">បម្រុងទុក</string>
   <string name="NotificationChannel_locked_status">ស្ថានភាពចាក់សោរ</string>
   <string name="NotificationChannel_app_updates">បច្ចុប្បន្នភាពកម្មវិធី</string>
   <string name="NotificationChannel_other">ផ្សេងៗ</string>
-  <string name="NotificationChannel_group_messages">សារ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">សារ</string> -->
   <string name="NotificationChannel_missing_display_name">មិនស្គាល់</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">កំណត់ឈ្មោះប្រវត្តិរូបដោយជោគជ័យ។</string> -->

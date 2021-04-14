@@ -1095,14 +1095,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <string name="MessageNotifier_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">সচারচর</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">সচারচর</string> -->
   <string name="NotificationChannel_calls">কল সমূহ</string>
   <string name="NotificationChannel_failures">ব্যর্থতাসমূহ</string>
   <string name="NotificationChannel_backups">ব্যাকআপ সমূহ</string>
   <string name="NotificationChannel_locked_status">লক্ অবস্থা</string>
   <string name="NotificationChannel_app_updates">অ্যাপ আপডেট সমূহ</string>
   <string name="NotificationChannel_other">অন্যান্য</string>
-  <string name="NotificationChannel_group_messages">বার্তা সমূহ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">বার্তা সমূহ</string> -->
   <string name="NotificationChannel_missing_display_name">অজানা</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">সফলভাবে প্রোফাইল নাম সেট করা হয়েছে।</string> -->

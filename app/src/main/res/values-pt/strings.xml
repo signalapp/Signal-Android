@@ -1474,14 +1474,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi eliminada.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Deseja desativar as notificações quando um novo contacto se junta ao Signal? Pode ativar novamente em Signal &gt; Definições &gt; Notificações.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Predefinição</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Predefinição</string> -->
   <string name="NotificationChannel_calls">Chamadas</string>
   <string name="NotificationChannel_failures">Falhas</string>
   <string name="NotificationChannel_backups">Cópias de segurança</string>
   <string name="NotificationChannel_locked_status">Estado do bloqueio</string>
   <string name="NotificationChannel_app_updates">Atualizações da aplicação</string>
   <string name="NotificationChannel_other">Outro</string>
-  <string name="NotificationChannel_group_messages">Mensagens</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mensagens</string> -->
   <string name="NotificationChannel_missing_display_name">Desconhecido(a)</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Sem atividade disponível para abrir as definições do canal de notificações.</string>

@@ -1459,14 +1459,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Désactiver les notifications pour les contacts qui se sont joints à Signal ? Vous pouvez les réactiver dans Signal &gt; Paramètres &gt; Notifications</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Valeur par défaut</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Valeur par défaut</string> -->
   <string name="NotificationChannel_calls">Appels</string>
   <string name="NotificationChannel_failures">Échecs</string>
   <string name="NotificationChannel_backups">Sauvegardes</string>
   <string name="NotificationChannel_locked_status">État de verrouillage</string>
   <string name="NotificationChannel_app_updates">Mises à jour de l’appli</string>
   <string name="NotificationChannel_other">Autre</string>
-  <string name="NotificationChannel_group_messages">Messages</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Messages</string> -->
   <string name="NotificationChannel_missing_display_name">Inconnu</string>
   <string name="NotificationChannel_voice_notes">Notes vocales</string>
   <!--ProfileEditNameFragment-->

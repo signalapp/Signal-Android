@@ -1474,14 +1474,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Þessum skilaboðum var eytt.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Slökktirðu á tilkynningum þegar tengiliður byrjar að nota Signal? Þú getur virkjað þær aftur í Signal &gt; Stillingar &gt; Tilkynningar.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Sjálfgefið</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Sjálfgefið</string> -->
   <string name="NotificationChannel_calls">Símtöl</string>
   <string name="NotificationChannel_failures">Bilanir</string>
   <string name="NotificationChannel_backups">Öryggisafrit</string>
   <string name="NotificationChannel_locked_status">Staða læsingar</string>
   <string name="NotificationChannel_app_updates">Uppfærslur forrits</string>
   <string name="NotificationChannel_other">Annað</string>
-  <string name="NotificationChannel_group_messages">Skilaboð</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Skilaboð</string> -->
   <string name="NotificationChannel_missing_display_name">Óþekkt</string>
   <string name="NotificationChannel_voice_notes">Tal-minnispuntar</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Engin virkni tiltæk til að opna stillingar á tilkynningarásum.</string>

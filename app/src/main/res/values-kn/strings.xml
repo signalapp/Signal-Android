@@ -1117,14 +1117,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
   <string name="MessageNotifier_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">ಡೀಫಾಲ್ಟ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">ಡೀಫಾಲ್ಟ್</string> -->
   <string name="NotificationChannel_calls">ಕರೆಗಳು</string>
   <string name="NotificationChannel_failures">ವೈಫಲ್ಯಗಳು</string>
   <string name="NotificationChannel_backups">ಬ್ಯಾಕಪ್‌ಗಳು</string>
   <string name="NotificationChannel_locked_status">ಲಾಕ್ ಸ್ಥಿತಿ</string>
   <string name="NotificationChannel_app_updates">ಅಪ್ಲಿಕೇಶನ್ ನವೀಕರಣಗಳು</string>
   <string name="NotificationChannel_other">ಇತರ</string>
-  <string name="NotificationChannel_group_messages">ಸಂದೇಶಗಳು</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">ಸಂದೇಶಗಳು</string> -->
   <string name="NotificationChannel_missing_display_name">ತಿಳಿದಿಲ್ಲ</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

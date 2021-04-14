@@ -1592,14 +1592,14 @@
   <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Отключить уведомления «Контакт присоединился к Signal»? Вы можете заново включить их в Signal &gt; Настройки &gt; Уведомления.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">По умолчанию</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">По умолчанию</string> -->
   <string name="NotificationChannel_calls">Звонки</string>
   <string name="NotificationChannel_failures">Сбои</string>
   <string name="NotificationChannel_backups">Резервные копии</string>
   <string name="NotificationChannel_locked_status">Статус блокировки</string>
   <string name="NotificationChannel_app_updates">Обновления приложения</string>
   <string name="NotificationChannel_other">Другие</string>
-  <string name="NotificationChannel_group_messages">Сообщения</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Сообщения</string> -->
   <string name="NotificationChannel_missing_display_name">Неизвестный</string>
   <string name="NotificationChannel_voice_notes">Голосовые заметки</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Нет доступной активности для открытия настроек категорий уведомлений.</string>

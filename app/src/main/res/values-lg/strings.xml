@@ -388,7 +388,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="MessageNotifier_reply">ddamu</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">wifi calling compatiblity mode</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">wifi calling compatiblity mode</string> -->
   <string name="NotificationChannel_missing_display_name">Tekimanyikiddwa</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">okudamu okwangu tekubawo nga amayengo gasibidwa</string>
