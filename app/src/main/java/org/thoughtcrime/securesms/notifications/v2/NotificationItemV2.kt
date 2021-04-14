@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.notifications.AbstractNotificationBuilder
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageRecordUtil
@@ -114,7 +115,11 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
 
   fun getPrimaryText(context: Context): CharSequence {
     return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage) {
-      getPrimaryTextActual(context)
+      if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+        getPrimaryTextActual(context)
+      } else {
+        SpanUtil.italic(context.getString(R.string.SingleRecipientNotificationBuilder_message_request))
+      }
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_new_message)
     }

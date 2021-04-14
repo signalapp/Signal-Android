@@ -583,7 +583,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
       if (isUnreadMessage) {
         boolean canReply = false;
 
-        if (KeyCachingService.isLocked(context)) {
+        if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+          body = SpanUtil.italic(context.getString(R.string.SingleRecipientNotificationBuilder_message_request));
+        } else if (KeyCachingService.isLocked(context)) {
           body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
         } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
           Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
