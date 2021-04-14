@@ -68,7 +68,6 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -96,6 +95,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -1157,10 +1157,13 @@ public class ConversationFragment extends LoggingFragment {
     if (position >= (isTypingIndicatorShowing() ? 1 : 0)) {
       ConversationMessage item = getListAdapter().getItem(position);
       if (item != null) {
-        long timestamp = item.getMessageRecord()
-                             .getDateReceived();
+        MessageRecord record                 = item.getMessageRecord();
+        long          latestReactionReceived = Stream.of(record.getReactions())
+                                                     .map(ReactionRecord::getDateReceived)
+                                                     .max(Long::compareTo)
+                                                     .orElse(0L);
 
-        markReadHelper.onViewsRevealed(timestamp);
+        markReadHelper.onViewsRevealed(Math.max(record.getDateReceived(), latestReactionReceived));
       }
     }
   }
@@ -1615,6 +1618,12 @@ public class ConversationFragment extends LoggingFragment {
       }
 
       super.onItemRangeInserted(positionStart, itemCount);
+    }
+
+    @Override
+    public void onItemRangeChanged(int positionStart, int itemCount) {
+      super.onItemRangeChanged(positionStart, itemCount);
+      list.post(ConversationFragment.this::postMarkAsReadRequest);
     }
   }
 

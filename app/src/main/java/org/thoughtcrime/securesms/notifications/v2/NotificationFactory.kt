@@ -56,6 +56,9 @@ object NotificationFactory {
     if (Build.VERSION.SDK_INT >= 23 || state.conversations.size == 1) {
       state.conversations.forEach { conversation ->
         if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
+          if (FeatureFlags.internalUser()) {
+            Log.i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
+          }
           notifyInThread(context, conversation.recipient, lastAudibleNotification)
         } else if (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
 
@@ -73,7 +76,7 @@ object NotificationFactory {
       }
     }
 
-    if (state.conversations.size > 1 || ServiceUtil.getNotificationManager(context).isDisplayingSummaryNotification()) {
+    if ((state.conversations.size > 1 && threadsThatNewlyAlerted.isNotEmpty()) || ServiceUtil.getNotificationManager(context).isDisplayingSummaryNotification()) {
       val builder: NotificationBuilder = NotificationBuilder.create(context)
 
       builder.apply {
