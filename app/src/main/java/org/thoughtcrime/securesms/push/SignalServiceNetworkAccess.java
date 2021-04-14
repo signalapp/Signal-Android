@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.push;
 
 import android.content.Context;
 
-import com.annimon.stream.Stream;
-
 import androidx.annotation.Nullable;
+
+import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor;
 import org.thoughtcrime.securesms.net.SequentialDns;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
+import org.thoughtcrime.securesms.net.UnregisteredBlockingInterceptor;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -33,8 +34,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.SSLContext;
 
 import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
@@ -185,6 +184,7 @@ public class SignalServiceNetworkAccess {
     final List<Interceptor> interceptors = Arrays.asList(new StandardUserAgentInterceptor(),
                                                          new RemoteDeprecationDetectorInterceptor(),
                                                          new DeprecatedClientPreventionInterceptor(),
+                                                         new UnregisteredBlockingInterceptor(),
                                                          DeviceTransferBlockingInterceptor.getInstance());
     final Optional<Dns>     dns          = Optional.of(DNS);
 

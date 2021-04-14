@@ -70,6 +70,10 @@ public class PipeConnectivityListener implements ConnectivityListener {
       Log.w(TAG, "Encountered an error while we had a proxy set! Terminating the connection to prevent retry spam.");
       ApplicationDependencies.closeConnections();
       return false;
+    } else if (TextSecurePreferences.isUnauthorizedRecieved(ApplicationDependencies.getApplication())) {
+      Log.w(TAG, "Encountered an error while unregistered! Terminating the connection to prevent retry spam.");
+      ApplicationDependencies.closeConnections();
+      return false;
     } else {
       return true;
     }
