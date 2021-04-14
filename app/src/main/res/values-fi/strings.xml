@@ -1465,16 +1465,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_this_message_was_deleted">Viesti poistettiin.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Poistetaanko Yhteystietosi liittyi Signaliin -ilmoitukset käytöstä? Voit ottaa ne uudelleen käyttöön avaamalla Signal &gt; Asetukset &gt; Ilmoitukset.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Oletus</string> -->
+  <string name="NotificationChannel_channel_messages">Viestit</string>
   <string name="NotificationChannel_calls">Puhelut</string>
   <string name="NotificationChannel_failures">Viat</string>
   <string name="NotificationChannel_backups">Varmuuskopiot</string>
   <string name="NotificationChannel_locked_status">Lukituksen tila</string>
   <string name="NotificationChannel_app_updates">Sovellusten päivitykset</string>
   <string name="NotificationChannel_other">Muu</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Viestit</string> -->
+  <string name="NotificationChannel_group_chats">Keskustelut</string>
   <string name="NotificationChannel_missing_display_name">Tuntematon</string>
   <string name="NotificationChannel_voice_notes">Ääniviestit</string>
+  <string name="NotificationChannel_contact_joined_signal">Yhteystieto liittyi Signaliin</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ei aktiviteettia saatavilla jonka kautta avata kanava-asetukset.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

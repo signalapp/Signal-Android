@@ -1475,16 +1475,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en los ajustes de Signal &gt; Notificaciones.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Por defecto</string> -->
+  <string name="NotificationChannel_channel_messages">Mensajes</string>
   <string name="NotificationChannel_calls">Llamadas</string>
   <string name="NotificationChannel_failures">Fallos</string>
   <string name="NotificationChannel_backups">Copias de seguridad</string>
   <string name="NotificationChannel_locked_status">Estado de bloqueo</string>
   <string name="NotificationChannel_app_updates">Actualizaciones de la aplicación</string>
   <string name="NotificationChannel_other">Otros</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mensajes</string> -->
+  <string name="NotificationChannel_group_chats">Chats</string>
   <string name="NotificationChannel_missing_display_name">Desconocido</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
+  <string name="NotificationChannel_contact_joined_signal">Alguien comienza a usar Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hay actividad disponible para abrir el canal de notificaciones en «Ajustes».</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

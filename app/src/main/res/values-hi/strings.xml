@@ -1445,16 +1445,17 @@
   <string name="MessageNotifier_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">संपर्क से जुड़ी Signal की सूचनाओं को बंद करना है? आप उन्हें Signal &gt; सेटिंग्स &gt; सूचनाएँ में जाकर फिर से एनेबल कर सकते हैं।</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">डिफ़ॉल्ट</string> -->
+  <string name="NotificationChannel_channel_messages">मेसेज</string>
   <string name="NotificationChannel_calls">कॉल</string>
   <string name="NotificationChannel_failures">विफलतायें </string>
   <string name="NotificationChannel_backups">बैकअप</string>
   <string name="NotificationChannel_locked_status">लॉक स्थिति</string>
   <string name="NotificationChannel_app_updates">ऐप अपडेट</string>
   <string name="NotificationChannel_other">अन्य</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">मेसेज</string> -->
+  <string name="NotificationChannel_group_chats">चैट</string>
   <string name="NotificationChannel_missing_display_name">अनजान</string>
   <string name="NotificationChannel_voice_notes">ऑडियो नोट्स</string>
+  <string name="NotificationChannel_contact_joined_signal">संपर्क Signal में शामिल हो गए</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक होने पर त्वरित प्रतिक्रिया अनुपलब्ध है!</string>

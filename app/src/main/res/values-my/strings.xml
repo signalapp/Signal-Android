@@ -1409,16 +1409,17 @@
   <string name="MessageNotifier_this_message_was_deleted">ဒီစာကိုဖျက်လိုက်သည်။</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ဆက်သွယ်မှုပိတ်ပါ Signal အကြောင်းကြားစာများဝင်ရောက်? သူတို့ကို Signal &amp; gt တွင်ထပ်မံဖွင့်နိုင်သည်။ ဆက်တင်များ &amp; gt; အသိပေးချက်များ။</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">မူလ</string> -->
+  <string name="NotificationChannel_channel_messages">စာများ</string>
   <string name="NotificationChannel_calls">ဖုန်းခေါ်ဆိုမှုမ</string>
   <string name="NotificationChannel_failures">ကျရှုံးမှုများ</string>
   <string name="NotificationChannel_backups">အရံသိမ်းဆည်းမှုမ</string>
   <string name="NotificationChannel_locked_status">သော့ခတ် status</string>
   <string name="NotificationChannel_app_updates">အက်ပ်အသစ်ပြောင်းခြင်း</string>
   <string name="NotificationChannel_other">အခ</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">စာမ</string> -->
+  <string name="NotificationChannel_group_chats">စကားစမြည်မ</string>
   <string name="NotificationChannel_missing_display_name">မသိ</string>
   <string name="NotificationChannel_voice_notes">အသံမှတ်စုများ</string>
+  <string name="NotificationChannel_contact_joined_signal">Signal ကို လာသုံးနေပြီ</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">သတိပေးချက်လိုင်း၏ အပြင်အဆင်များကို ဖွင့်ရန် လှုပ်ရှားမှုမရှိပါ။</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

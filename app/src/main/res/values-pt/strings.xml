@@ -1474,16 +1474,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi eliminada.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Deseja desativar as notificações quando um novo contacto se junta ao Signal? Pode ativar novamente em Signal &gt; Definições &gt; Notificações.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Predefinição</string> -->
+  <string name="NotificationChannel_channel_messages">Mensagens</string>
   <string name="NotificationChannel_calls">Chamadas</string>
   <string name="NotificationChannel_failures">Falhas</string>
   <string name="NotificationChannel_backups">Cópias de segurança</string>
   <string name="NotificationChannel_locked_status">Estado do bloqueio</string>
   <string name="NotificationChannel_app_updates">Atualizações da aplicação</string>
   <string name="NotificationChannel_other">Outro</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mensagens</string> -->
+  <string name="NotificationChannel_group_chats">Conversas</string>
   <string name="NotificationChannel_missing_display_name">Desconhecido(a)</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
+  <string name="NotificationChannel_contact_joined_signal">Um contacto juntou-se ao Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Sem atividade disponível para abrir as definições do canal de notificações.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
@@ -1500,6 +1501,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Pedido de mensagem</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Reproduzir vídeo</string>
   <string name="ThumbnailView_Has_a_caption_description">Tem uma legenda</string>

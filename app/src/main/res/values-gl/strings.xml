@@ -1470,16 +1470,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desactivar as notificacións de quen se une a Signal? Poderás volver activalas en Signal&gt; Axustes &gt; Notificacións.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Por defecto</string> -->
+  <string name="NotificationChannel_channel_messages">Mensaxes</string>
   <string name="NotificationChannel_calls">Chamadas</string>
   <string name="NotificationChannel_failures">Erros</string>
   <string name="NotificationChannel_backups">Copias de seguranza</string>
   <string name="NotificationChannel_locked_status">Bloquear estado</string>
   <string name="NotificationChannel_app_updates">Actualizacións da app</string>
   <string name="NotificationChannel_other">Outra</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mensaxes</string> -->
+  <string name="NotificationChannel_group_chats">Conversas</string>
   <string name="NotificationChannel_missing_display_name">Descoñecido</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
+  <string name="NotificationChannel_contact_joined_signal">Un contacto únese a Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A resposta rápida non está dispoñible cando Signal está bloqueado!</string>

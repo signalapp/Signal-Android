@@ -1598,16 +1598,17 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signal? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Výchozí</string> -->
+  <string name="NotificationChannel_channel_messages">Zprávy</string>
   <string name="NotificationChannel_calls">Volání</string>
   <string name="NotificationChannel_failures">Chyby</string>
   <string name="NotificationChannel_backups">Zálohy</string>
   <string name="NotificationChannel_locked_status">Stav zámku</string>
   <string name="NotificationChannel_app_updates">Aktualizace aplikace</string>
   <string name="NotificationChannel_other">Ostatní</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Zprávy</string> -->
+  <string name="NotificationChannel_group_chats">Konverzace</string>
   <string name="NotificationChannel_missing_display_name">Neznámý</string>
   <string name="NotificationChannel_voice_notes">Hlasové poznámky</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontakt se připojil k Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">K otevření nastavení kanálu oznámení není k dispozici žádná aktivita.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

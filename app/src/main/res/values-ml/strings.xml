@@ -1462,16 +1462,17 @@
   <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">\"കോൺ‌ടാക്റ്റ് Signal-ഇൽ (സിഗ്‌നലിൽ)‌ ചേർ‌ന്നു\" എന്ന അറിയിപ്പുകൾ ഓഫാക്കണോ? നിങ്ങൾക്ക് അവ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കാം: Signal-ഇൽ (സിഗ്നലിൽ) &gt; ക്രമീകരണങ്ങൾ &gt; അറിയിപ്പുകൾ.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">സ്ഥിരസ്ഥിതി</string> -->
+  <string name="NotificationChannel_channel_messages">സന്ദേശങ്ങൾ</string>
   <string name="NotificationChannel_calls">കോളുകൾ</string>
   <string name="NotificationChannel_failures">പരാജയങ്ങൾ</string>
   <string name="NotificationChannel_backups">ബാക്കപ്പുകൾ</string>
   <string name="NotificationChannel_locked_status">ലോക്ക് നില</string>
   <string name="NotificationChannel_app_updates">അപ്ലിക്കേഷൻ അപ്‌ഡേറ്റുകൾ</string>
   <string name="NotificationChannel_other">മറ്റുള്ളവ</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">സന്ദേശങ്ങൾ</string> -->
+  <string name="NotificationChannel_group_chats">ചാറ്റുകൾ</string>
   <string name="NotificationChannel_missing_display_name">അജ്ഞാതം</string>
   <string name="NotificationChannel_voice_notes">ശബ്ദ കുറിപ്പുകൾ</string>
+  <string name="NotificationChannel_contact_joined_signal">കോൺ‌ടാക്റ്റ് Signal-ൽ ചേർന്നു</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal പൂട്ടിയിരിക്കുമ്പോൾ ദ്രുത പ്രതികരണം ലഭ്യമല്ല!</string>

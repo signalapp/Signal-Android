@@ -1469,16 +1469,17 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desaktibatu nahi duzu kontaktu bat batzen denean bidaltzen diren jakinarazpenak? Berriro aktiba ditzakezu Signal &gt; Ezarpenak &gt; Jakinarazpenak atalean.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Lehenetsia</string> -->
+  <string name="NotificationChannel_channel_messages">Mezuak</string>
   <string name="NotificationChannel_calls">Deiak</string>
   <string name="NotificationChannel_failures">Hutsegiteak</string>
   <string name="NotificationChannel_backups">Babes-kopiak</string>
   <string name="NotificationChannel_locked_status">Blokeo egoera</string>
   <string name="NotificationChannel_app_updates">Aplikazioaren eguneraketak</string>
   <string name="NotificationChannel_other">Besteak</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mezuak</string> -->
+  <string name="NotificationChannel_group_chats">Txatak</string>
   <string name="NotificationChannel_missing_display_name">Ezezaguna</string>
   <string name="NotificationChannel_voice_notes">Ahots Oharrak</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontaktua orain Signalen dago</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Erantzun bizkorra eskuraezina Signal blokeatuta badago!</string>

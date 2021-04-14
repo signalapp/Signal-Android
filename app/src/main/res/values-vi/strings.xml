@@ -1400,16 +1400,17 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Tắt thông báo khi liên hệ bắt đầu sử dụng Signal? Bạn có thể bật lại ở Signal &gt; Cài đặt &gt; Thông báo.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Mặc định</string> -->
+  <string name="NotificationChannel_channel_messages">Tin nhắn</string>
   <string name="NotificationChannel_calls">Cuộc gọi</string>
   <string name="NotificationChannel_failures">Thất bại</string>
   <string name="NotificationChannel_backups">Sao lưu</string>
   <string name="NotificationChannel_locked_status">Tình trạng khoá</string>
   <string name="NotificationChannel_app_updates">Cập nhật ứng dụng</string>
   <string name="NotificationChannel_other">Khác</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Tin nhắn</string> -->
+  <string name="NotificationChannel_group_chats">Trò chuyện</string>
   <string name="NotificationChannel_missing_display_name">Vô danh</string>
   <string name="NotificationChannel_voice_notes">Ghi chú Âm thanh</string>
+  <string name="NotificationChannel_contact_joined_signal">Liên hệ bắt đầu dùng Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả dụng khi Signal bị khoá!</string>

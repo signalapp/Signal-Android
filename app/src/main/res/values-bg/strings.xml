@@ -1463,16 +1463,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Това съобщение беше изтрито.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Да се изключи ли присъединеният на контакта към известия на Signal? Можете да ги активирате отново в Signal, Настройки, Известия.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">По подразбиране</string> -->
+  <string name="NotificationChannel_channel_messages">Съобщения</string>
   <string name="NotificationChannel_calls">Обаждания</string>
   <string name="NotificationChannel_failures">Грешки</string>
   <string name="NotificationChannel_backups">Архиви</string>
   <string name="NotificationChannel_locked_status">Статус на заключването</string>
   <string name="NotificationChannel_app_updates">Обновления на приложението</string>
   <string name="NotificationChannel_other">Друг</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Съобщения</string> -->
+  <string name="NotificationChannel_group_chats">Чатове</string>
   <string name="NotificationChannel_missing_display_name">Непознат</string>
   <string name="NotificationChannel_voice_notes">Гласови бележки</string>
+  <string name="NotificationChannel_contact_joined_signal">Един от контактите Ви се присъедини към Signal!</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Signal е заключен!</string>

@@ -1466,16 +1466,17 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Signal? Du kan skru de på igjen i Signal&gt; Innstillinger &gt; Varsler.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Forvalgt</string> -->
+  <string name="NotificationChannel_channel_messages">Meldinger</string>
   <string name="NotificationChannel_calls">Samtaler</string>
   <string name="NotificationChannel_failures">Feil</string>
   <string name="NotificationChannel_backups">Sikkerhetskopiering</string>
   <string name="NotificationChannel_locked_status">Lås status</string>
   <string name="NotificationChannel_app_updates">Oppdateringer</string>
   <string name="NotificationChannel_other">Annet</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Meldinger</string> -->
+  <string name="NotificationChannel_group_chats">Samtaler</string>
   <string name="NotificationChannel_missing_display_name">Ukjent</string>
   <string name="NotificationChannel_voice_notes">Talenotater</string>
+  <string name="NotificationChannel_contact_joined_signal">Når kontakt installerer Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No activity available to open notification channel settings.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

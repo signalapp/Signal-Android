@@ -1475,16 +1475,17 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Të çaktivizohen njoftime Signal për kontakte të sapoardhur? Mund t’i aktivizoni sërish që nga Signal &gt; Rregullime &gt; Njoftime.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Parazgjedhje</string> -->
+  <string name="NotificationChannel_channel_messages">Mesazhe</string>
   <string name="NotificationChannel_calls">Thirrje</string>
   <string name="NotificationChannel_failures">Dështime</string>
   <string name="NotificationChannel_backups">Kopjeruajtje</string>
   <string name="NotificationChannel_locked_status">Gjendje kyçjeje</string>
   <string name="NotificationChannel_app_updates">Përditësime aplikacioni</string>
   <string name="NotificationChannel_other">Tjetër</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mesazhe</string> -->
+  <string name="NotificationChannel_group_chats">Fjalosje</string>
   <string name="NotificationChannel_missing_display_name">I panjohur</string>
   <string name="NotificationChannel_voice_notes">Shënime Zanore</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontakti zuri të përdorë Signal-in</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">S’ka veprimtari për hapje rregullimesh kanali njoftimesh.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

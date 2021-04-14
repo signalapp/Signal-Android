@@ -144,7 +144,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Trebali biste provjeriti svoj sigurnosni broj s ovom osobom.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Nedavni razgovori</string>
+  <string name="ContactsCursorLoader_recent_chats">Nedavne konverzacije</string>
   <string name="ContactsCursorLoader_contacts">Kontakti</string>
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <string name="ContactsCursorLoader_phone_number_search">Pretraživanje po broju</string>
@@ -1537,16 +1537,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavještenja o tome da se kontakt prijavio na Signal? Možete ih ponovo aktivirati kroz Signal &gt; Podešavanja &gt; Obavještenja.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standardno</string> -->
+  <string name="NotificationChannel_channel_messages">Poruke</string>
   <string name="NotificationChannel_calls">Pozivi</string>
   <string name="NotificationChannel_failures">Greške</string>
   <string name="NotificationChannel_backups">Rezervne kopije</string>
   <string name="NotificationChannel_locked_status">Status zaključavanja</string>
   <string name="NotificationChannel_app_updates">Nove verzije aplikacije</string>
   <string name="NotificationChannel_other">Ostalo</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Poruke</string> -->
+  <string name="NotificationChannel_group_chats">Konverzacije</string>
   <string name="NotificationChannel_missing_display_name">Nepoznato</string>
   <string name="NotificationChannel_voice_notes">Glasovne bilješke</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontakt je počeo koristiti Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nema aktivnosti za otvaranje postavki obavještenjā.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
@@ -2066,7 +2067,7 @@
   <string name="preferences_app_protection__who_can">Ko može…</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
-  <string name="preferences_chats__chats">Razgovori</string>
+  <string name="preferences_chats__chats">Konverzacije</string>
   <string name="preferences_data_and_storage__manage_storage">Upravljanje memorijom</string>
   <string name="preferences_data_and_storage__calls">Pozivi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Koristi manju količinu podataka za pozive</string>
@@ -2282,7 +2283,7 @@
   <string name="conversation_list_settings_shortcut">Kratica za podešavanja</string>
   <string name="conversation_list_search_description">Traži</string>
   <string name="conversation_list__pinned">Istaknuto</string>
-  <string name="conversation_list__chats">Razgovori</string>
+  <string name="conversation_list__chats">Konverzacije</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Možete istaknuti maksimalno %1$d konverzacija</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika kontakta</string>
@@ -2578,7 +2579,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Pritisnite sliku svog profila gore lijevo da otvorite Podešavanja</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Pritisnite \"Razgovori\"</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Pritisnite \"Konverzacije\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Pritisnite \"Prenesi račun\" a potom \"Nastavi\" na oba uređaja</string>
   <!--NewDeviceTransferSetupFragment-->

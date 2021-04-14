@@ -1464,16 +1464,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Benachrichtigungen über neue Signal-Kontakte ausschalten? Du kannst sie wieder einschalten in Signal → Einstellungen → Benachrichtigungen.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standard</string> -->
+  <string name="NotificationChannel_channel_messages">Nachrichten</string>
   <string name="NotificationChannel_calls">Anrufe</string>
   <string name="NotificationChannel_failures">Fehler</string>
   <string name="NotificationChannel_backups">Datensicherungen</string>
   <string name="NotificationChannel_locked_status">Sperrstatus</string>
   <string name="NotificationChannel_app_updates">App-Aktualisierungen</string>
   <string name="NotificationChannel_other">Sonstige</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Nachrichten</string> -->
+  <string name="NotificationChannel_group_chats">Unterhaltungen</string>
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
   <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
+  <string name="NotificationChannel_contact_joined_signal">Neue Signal-Kontakte</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

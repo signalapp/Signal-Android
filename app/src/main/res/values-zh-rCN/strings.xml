@@ -1411,16 +1411,17 @@
   <string name="MessageNotifier_this_message_was_deleted">消息已删除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">关闭联系人加入 Signal 的通知吗？您可以在 Signal &gt; 设置 &gt; 通知 中再次启用。</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">默认</string> -->
+  <string name="NotificationChannel_channel_messages">消息</string>
   <string name="NotificationChannel_calls">通话</string>
   <string name="NotificationChannel_failures">失败</string>
   <string name="NotificationChannel_backups">备份</string>
   <string name="NotificationChannel_locked_status">锁定状态</string>
   <string name="NotificationChannel_app_updates">应用更新</string>
   <string name="NotificationChannel_other">其他</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">消息</string> -->
+  <string name="NotificationChannel_group_chats">聊天</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
   <string name="NotificationChannel_voice_notes">语音笔记</string>
+  <string name="NotificationChannel_contact_joined_signal">联系人加入 Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">无可用活动以打开通知渠道设置。</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

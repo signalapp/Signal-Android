@@ -1406,16 +1406,17 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan notifikasi kontak bergabung Signal? Anda dapat menyalakannya kembali di Signal &gt; Pengaturan &gt; Notifikasi.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Standar</string> -->
+  <string name="NotificationChannel_channel_messages">Pesan</string>
   <string name="NotificationChannel_calls">Panggilan</string>
   <string name="NotificationChannel_failures">Gagal</string>
   <string name="NotificationChannel_backups">Cadangan</string>
   <string name="NotificationChannel_locked_status">Status penguncian</string>
   <string name="NotificationChannel_app_updates">Pembaruan aplikasi</string>
   <string name="NotificationChannel_other">Lainnya</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Pesan</string> -->
+  <string name="NotificationChannel_group_chats">Percakapan</string>
   <string name="NotificationChannel_missing_display_name">Tidak dikenal</string>
   <string name="NotificationChannel_voice_notes">Pesan suara</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontak bergabung dengan Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>

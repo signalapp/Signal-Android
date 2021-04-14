@@ -1468,16 +1468,17 @@
   <string name="MessageNotifier_this_message_was_deleted">ଏହି ବାର୍ତ୍ତା ବିଲୋପ କରାଯାଇଛି।</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ସମ୍ପର୍କ Signal ରେ ଯୋଗ ଦେଲେ ବନ୍ଦ କରନ୍ତୁ? Signal  &amp; gt ରେ ଆପଣ ସେମାନଙ୍କୁ ପୁନର୍ବାର ସକ୍ଷମ କରିପାରିବେ; ସେଟିଂସମୂହ &amp; gt; ବିଜ୍ଞପ୍ତିଗୁଡିକ</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">ଡିଫଲ୍ଟ</string> -->
+  <string name="NotificationChannel_channel_messages">ବାର୍ତ୍ତା</string>
   <string name="NotificationChannel_calls">କଲ୍</string>
   <string name="NotificationChannel_failures">ବିଫଳତା</string>
   <string name="NotificationChannel_backups">ନକଲ ସଂରକ୍ଷଣ</string>
   <string name="NotificationChannel_locked_status">ତାଲା ସ୍ଥିତି</string>
   <string name="NotificationChannel_app_updates">ଆପ୍ ଅଦ୍ୟତନଗୁଡ଼ିକ</string>
   <string name="NotificationChannel_other">ଅନ୍ୟ</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">ବାର୍ତ୍ତା</string> -->
+  <string name="NotificationChannel_group_chats">ବାର୍ତ୍ତାଳାପ</string>
   <string name="NotificationChannel_missing_display_name">ଅଜଣା</string>
   <string name="NotificationChannel_voice_notes">ଧ୍ୱନି ନୋଟ</string>
+  <string name="NotificationChannel_contact_joined_signal">ସମ୍ପର୍କ Signal ରେ ଯୋଗଦେଲେ</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal ଲକ୍ ହୋଇଥିଲେ ଶୀଘ୍ର ପ୍ରତିକ୍ରିୟା ଉପଲବ୍ଧ ନାହିଁ!</string>

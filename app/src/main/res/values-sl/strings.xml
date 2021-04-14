@@ -1586,16 +1586,17 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Želite izklopiti obvestila o novih članih Signalove skupine? Kasneje jih lahko spet vklopite v Signal &gt; Nastavitve &gt; Obvestila.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Privzeto</string> -->
+  <string name="NotificationChannel_channel_messages">Sporočila</string>
   <string name="NotificationChannel_calls">Klici</string>
   <string name="NotificationChannel_failures">Napake</string>
   <string name="NotificationChannel_backups">Varnostne kopije</string>
   <string name="NotificationChannel_locked_status">Stanje zaklepa</string>
   <string name="NotificationChannel_app_updates">Posodobitve aplikacije</string>
   <string name="NotificationChannel_other">Drugo</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Sporočila</string> -->
+  <string name="NotificationChannel_group_chats">Pogovori</string>
   <string name="NotificationChannel_missing_display_name">Neznano</string>
   <string name="NotificationChannel_voice_notes">Glasovna sporočila</string>
+  <string name="NotificationChannel_contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Na voljo ni nobene aktivnosti povezane z obvestili.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

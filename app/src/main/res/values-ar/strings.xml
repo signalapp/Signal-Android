@@ -1716,16 +1716,17 @@
   <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">تعطيل إشعارات انضمام شخص إلى Signal ؟ تمكنك تفعيلها مجددا في Signal &gt; الإعدادات &gt; الإشعارات.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">افتراضي</string> -->
+  <string name="NotificationChannel_channel_messages">الرسائل</string>
   <string name="NotificationChannel_calls">المُكالمات</string>
   <string name="NotificationChannel_failures">الأخطاء</string>
   <string name="NotificationChannel_backups">النُسخ الإحتياطية</string>
   <string name="NotificationChannel_locked_status">حالة القفل</string>
   <string name="NotificationChannel_app_updates">تحديثات التطبيق</string>
   <string name="NotificationChannel_other">أخرى</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">الرسائل</string> -->
+  <string name="NotificationChannel_group_chats">المُحادثات</string>
   <string name="NotificationChannel_missing_display_name">مجهول</string>
   <string name="NotificationChannel_voice_notes">الملاحظات الصوتية</string>
+  <string name="NotificationChannel_contact_joined_signal">انضمّت جهة الاتصال إلى Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل Signal!</string>

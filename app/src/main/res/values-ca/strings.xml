@@ -1469,16 +1469,17 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Voleu desactivar les notificacions de contactes afegits al Signal? Les podeu tornar a activar a Signal &gt; Configuració &gt; Notificacions.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Per defecte</string> -->
+  <string name="NotificationChannel_channel_messages">Missatges</string>
   <string name="NotificationChannel_calls">Trucades</string>
   <string name="NotificationChannel_failures">Fallades</string>
   <string name="NotificationChannel_backups">Còpies de seguretat</string>
   <string name="NotificationChannel_locked_status">Estat del bloqueig</string>
   <string name="NotificationChannel_app_updates">Actualitzacions de l\'aplicació</string>
   <string name="NotificationChannel_other">Altres</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Missatges</string> -->
+  <string name="NotificationChannel_group_chats">Converses</string>
   <string name="NotificationChannel_missing_display_name">Desconegut</string>
   <string name="NotificationChannel_voice_notes">Notes de veu</string>
+  <string name="NotificationChannel_contact_joined_signal">El contacte s\'ha unit al Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hi ha activitat disponible per obrir la configuració del canal de notificacions.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

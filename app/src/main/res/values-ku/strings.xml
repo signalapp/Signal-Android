@@ -1370,16 +1370,17 @@
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s bertek da dengê te.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ev peyam hat jêbirin.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Jixweber</string> -->
+  <string name="NotificationChannel_channel_messages">Peyam</string>
   <string name="NotificationChannel_calls">Gerîn</string>
   <string name="NotificationChannel_failures">Çewtî</string>
   <string name="NotificationChannel_backups">Yedek</string>
   <string name="NotificationChannel_locked_status">Rewşa kilîdê</string>
   <string name="NotificationChannel_app_updates">Nûkirînên sepanê</string>
   <string name="NotificationChannel_other">Yên din</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Peyam</string> -->
+  <string name="NotificationChannel_group_chats">Gotûbêj</string>
   <string name="NotificationChannel_missing_display_name">Nenas</string>
   <string name="NotificationChannel_voice_notes">Notên dengî</string>
+  <string name="NotificationChannel_contact_joined_signal">Kes tevlî Signalê bû</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Dema ku Signal kilîdkirî be, bersiva bilez nayê bikaranîn!</string>

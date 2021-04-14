@@ -1595,16 +1595,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Išjungti pranešimus apie tai, kad adresatai prisijungė prie Signal? Galėsite ir vėl įjungti šiuos pranešimus, perėję į Signal &gt; Nustatymai &gt; Pranešimai.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Numatytoji</string> -->
+  <string name="NotificationChannel_channel_messages">Žinutės</string>
   <string name="NotificationChannel_calls">Skambučiai</string>
   <string name="NotificationChannel_failures">Nesėkmės</string>
   <string name="NotificationChannel_backups">Atsarginės kopijos</string>
   <string name="NotificationChannel_locked_status">Užrakinimo būsena</string>
   <string name="NotificationChannel_app_updates">Programėlės atnaujinimai</string>
   <string name="NotificationChannel_other">Kitas</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Žinutės</string> -->
+  <string name="NotificationChannel_group_chats">Pokalbiai</string>
   <string name="NotificationChannel_missing_display_name">Nežinoma</string>
   <string name="NotificationChannel_voice_notes">Balso pastabos</string>
+  <string name="NotificationChannel_contact_joined_signal">Adresatas prisijungė prie Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>

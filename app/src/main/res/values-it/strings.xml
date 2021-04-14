@@ -1475,16 +1475,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Disattivare le notifiche quando un contatto si unisce a Signal? Puoi attivarle di nuovo in Signal &gt; Impostazioni &gt; Notifiche.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Predefinito</string> -->
+  <string name="NotificationChannel_channel_messages">Messaggi</string>
   <string name="NotificationChannel_calls">Chiamate</string>
   <string name="NotificationChannel_failures">Errori</string>
   <string name="NotificationChannel_backups">Backup</string>
   <string name="NotificationChannel_locked_status">In stato bloccato</string>
   <string name="NotificationChannel_app_updates">Aggiornamenti app</string>
   <string name="NotificationChannel_other">Altro</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Messaggi</string> -->
+  <string name="NotificationChannel_group_chats">Chat</string>
   <string name="NotificationChannel_missing_display_name">Sconosciuto</string>
   <string name="NotificationChannel_voice_notes">Note vocali</string>
+  <string name="NotificationChannel_contact_joined_signal">Quando un contatto si unisce a Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nessuna attività disponibile per aprire le impostazioni del canale di notifica.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

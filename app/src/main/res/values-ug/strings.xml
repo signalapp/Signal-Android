@@ -1474,16 +1474,17 @@
   <string name="MessageNotifier_this_message_was_deleted">بۇ ئۇچۇر ئۆچۈرۈلگەن</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ئالاقەداشلار Signal غا قوشۇلغانلىق ئۇقتۇرۇشىنى تاقامسىز؟ سىز Signal &gt; تەڭشەكلەر&gt;ئۇقتۇرۇشتىن قايتا قوزغىتالايسىز.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">سۈكۈتتە</string> -->
+  <string name="NotificationChannel_channel_messages">ئۇچۇرلار</string>
   <string name="NotificationChannel_calls">چاقىرىشلار</string>
   <string name="NotificationChannel_failures">مەغلۇبىيەت</string>
   <string name="NotificationChannel_backups">زاپاسلار</string>
   <string name="NotificationChannel_locked_status">قۇلۇپ ھالىتى</string>
   <string name="NotificationChannel_app_updates">ئەپ يېڭىلاش</string>
   <string name="NotificationChannel_other">باشقىلار</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">ئۇچۇرلار</string> -->
+  <string name="NotificationChannel_group_chats">سۆھبەتلەر</string>
   <string name="NotificationChannel_missing_display_name">نامەلۇم</string>
   <string name="NotificationChannel_voice_notes">ئۈن خاتىرە</string>
+  <string name="NotificationChannel_contact_joined_signal">ئالاقاداش Signal غا قېتىلدى</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ئۇقتۇرۇش قانال تەڭشەكلىرىنى ئاچىدىغان پائالىيەت يوق.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

@@ -1463,16 +1463,17 @@
   <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">संपर्क Signal मध्ये सामील झाला सूचना बंद करायच्या? आपण त्यांना पुन्हा Signal &gt; सेटिंग &gt; सूचना मधून सक्षम करू शकता.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">पूर्वनिर्धारित</string> -->
+  <string name="NotificationChannel_channel_messages">संदेश</string>
   <string name="NotificationChannel_calls">कॉल</string>
   <string name="NotificationChannel_failures">अपयश</string>
   <string name="NotificationChannel_backups">बॅकअप</string>
   <string name="NotificationChannel_locked_status">लॉक स्थिती</string>
   <string name="NotificationChannel_app_updates">अॅप अद्यतने</string>
   <string name="NotificationChannel_other">इतर</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">संदेश</string> -->
+  <string name="NotificationChannel_group_chats">चॅट</string>
   <string name="NotificationChannel_missing_display_name">अज्ञात</string>
   <string name="NotificationChannel_voice_notes">व्हॉईस टिपा</string>
+  <string name="NotificationChannel_contact_joined_signal">संपर्क Signal मध्ये सामील झाला</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक केलेले असताना जलद प्रतिसाद अनुपलब्ध!</string>

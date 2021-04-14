@@ -1473,16 +1473,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kikapcsolod az új kontakt érhető el Signalon értesítést? Újra engedélyezheted a  Signal &gt; Beállítások &gt; Értesítések menüpontban.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Alapértelmezett</string> -->
+  <string name="NotificationChannel_channel_messages">Üzenetek</string>
   <string name="NotificationChannel_calls">Hívások</string>
   <string name="NotificationChannel_failures">Hibák</string>
   <string name="NotificationChannel_backups">Biztonsági mentések</string>
   <string name="NotificationChannel_locked_status">Zár státusza</string>
   <string name="NotificationChannel_app_updates">App frissítések</string>
   <string name="NotificationChannel_other">Egyéb</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Üzenetek</string> -->
+  <string name="NotificationChannel_group_chats">Beszélgetések</string>
   <string name="NotificationChannel_missing_display_name">Ismeretlen</string>
   <string name="NotificationChannel_voice_notes">Hangjegyzetek</string>
+  <string name="NotificationChannel_contact_joined_signal">Ismerős csatlakozott a Signal-hoz</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A gyors válasz nem érhető el, ha a Signal zárolva van!</string>

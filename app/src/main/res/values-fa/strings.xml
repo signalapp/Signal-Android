@@ -1470,16 +1470,17 @@
   <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به سیگنال را خاموش کنید؟ می‌توانید آن‌ها را دوباره در سیگنال &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">پیش‌فرض</string> -->
+  <string name="NotificationChannel_channel_messages">پیام‌ها</string>
   <string name="NotificationChannel_calls">تماس‌ها</string>
   <string name="NotificationChannel_failures">خرابی‌ها</string>
   <string name="NotificationChannel_backups">پشتیبان‌ها</string>
   <string name="NotificationChannel_locked_status">وضعیت قفل</string>
   <string name="NotificationChannel_app_updates">به‌روزرسانی‌های برنامه</string>
   <string name="NotificationChannel_other">سایر</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">پیام‌ها</string> -->
+  <string name="NotificationChannel_group_chats">گفتگوها</string>
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
   <string name="NotificationChannel_voice_notes">یادداشت‌های صوتی</string>
+  <string name="NotificationChannel_contact_joined_signal">مخاطب به سیگنال پیوست</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">هیچ فعالیتی برای باز کردن تنظیمات کانال اعلان‌ها در دسترس نیست.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

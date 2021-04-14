@@ -1471,16 +1471,17 @@
   <string name="MessageNotifier_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kas lülitada Signaliga liitumise teavitused välja? Neid saab uuesti lubada, valides Signal &gt; Seaded &gt; Teavitused.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Vaikimisi</string> -->
+  <string name="NotificationChannel_channel_messages">Sõnumid</string>
   <string name="NotificationChannel_calls">Kõned</string>
   <string name="NotificationChannel_failures">Ebaõnnestumised</string>
   <string name="NotificationChannel_backups">Varukoopiad</string>
   <string name="NotificationChannel_locked_status">Luku olek</string>
   <string name="NotificationChannel_app_updates">Rakenduse uuendused</string>
   <string name="NotificationChannel_other">Muu</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Sõnumid</string> -->
+  <string name="NotificationChannel_group_chats">Vestlused</string>
   <string name="NotificationChannel_missing_display_name">Tundmatu</string>
   <string name="NotificationChannel_voice_notes">Häälmärkmed</string>
+  <string name="NotificationChannel_contact_joined_signal">Kontakt liitus Signaliga</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>

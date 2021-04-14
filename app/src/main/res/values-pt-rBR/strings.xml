@@ -1471,16 +1471,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi apagada.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desabilitar notificações de contatos que entram no Signal? Você pode habilitá-las novamente em Signal &gt; Configurações &gt; Notificações.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Padrão</string> -->
+  <string name="NotificationChannel_channel_messages">Mensagens</string>
   <string name="NotificationChannel_calls">Ligações</string>
   <string name="NotificationChannel_failures">Falhas</string>
   <string name="NotificationChannel_backups">Backups</string>
   <string name="NotificationChannel_locked_status">Status de bloqueio</string>
   <string name="NotificationChannel_app_updates">Atualizações do aplicativo</string>
   <string name="NotificationChannel_other">Outro</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mensagens</string> -->
+  <string name="NotificationChannel_group_chats">Conversas</string>
   <string name="NotificationChannel_missing_display_name">Desconhecida</string>
   <string name="NotificationChannel_voice_notes">Mensagens de voz</string>
+  <string name="NotificationChannel_contact_joined_signal">O contato entrou no Signal!</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nenhuma atividade está disponível para ser ajustada nas configurações das categorias de notificações.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->

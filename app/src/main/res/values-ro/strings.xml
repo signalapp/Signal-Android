@@ -1529,16 +1529,17 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Dezactivați notificările pentru contact alăturat la Signal? Le puteți activa din nou în Signal &gt; Setări &gt; Notificări.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Implicit</string> -->
+  <string name="NotificationChannel_channel_messages">Mesaje</string>
   <string name="NotificationChannel_calls">Apeluri</string>
   <string name="NotificationChannel_failures">Erori</string>
   <string name="NotificationChannel_backups">Backup-uri</string>
   <string name="NotificationChannel_locked_status">Stare blocare</string>
   <string name="NotificationChannel_app_updates">Actualizări aplicație</string>
   <string name="NotificationChannel_other">Altul</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Mesaje</string> -->
+  <string name="NotificationChannel_group_chats">Conversații</string>
   <string name="NotificationChannel_missing_display_name">Necunoscut</string>
   <string name="NotificationChannel_voice_notes">Notițe vocale</string>
+  <string name="NotificationChannel_contact_joined_signal">Un contact s-a alăturat pe Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>

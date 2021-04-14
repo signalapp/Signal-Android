@@ -1467,16 +1467,17 @@
   <string name="MessageNotifier_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Απενεργοποίηση των ειδοποιήσεων για επαφές που έρχονται στο Signal; Μπορείς να τις ενεργοποιήσεις ξανά στο Signal &gt; Ρυθμίσεις &gt; Ειδοποιήσεις.</string>
   <!--Notification Channels-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Προκαθορισμένο</string> -->
+  <string name="NotificationChannel_channel_messages">Μηνύματα</string>
   <string name="NotificationChannel_calls">Κλήσεις</string>
   <string name="NotificationChannel_failures">Αποτυχίες</string>
   <string name="NotificationChannel_backups">Αντίγραφα ασφαλείας</string>
   <string name="NotificationChannel_locked_status">Κατάσταση κλειδώματος</string>
   <string name="NotificationChannel_app_updates">Αναβαθμίσεις εφαρμογής</string>
   <string name="NotificationChannel_other">Άλλο</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Μηνύματα</string> -->
+  <string name="NotificationChannel_group_chats">Συνομιλίες</string>
   <string name="NotificationChannel_missing_display_name">Άγνωστο</string>
   <string name="NotificationChannel_voice_notes">Ηχητικές σημειώσεις</string>
+  <string name="NotificationChannel_contact_joined_signal">Επαφή που εγκατέστησε το Signal</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
