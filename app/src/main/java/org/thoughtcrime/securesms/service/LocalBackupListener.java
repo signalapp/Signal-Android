@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service;
 
-
 import android.content.Context;
 import android.content.Intent;
 
