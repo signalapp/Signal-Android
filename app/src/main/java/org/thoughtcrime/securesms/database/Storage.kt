@@ -400,31 +400,22 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getGroupDatabase(context).updateMembers(groupID, members)
     }
 
-    override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
-        val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
-                .setType(type0)
-                .setName(name)
-                .addAllMembers(members)
-                .addAllAdmins(admins)
-        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+    override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
+        val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
         val messageBody = UpdateMessageBuilder.buildGroupUpdateMessage(context, group, senderPublicKey)
-        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), messageBody)
+        val infoMessage = IncomingGroupMessage(m, groupID, messageBody)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
     }
 
-    override fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String, members: Collection<String>, admins: Collection<String>, threadID: Long, sentTimestamp: Long) {
+    override fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, threadID: Long, sentTimestamp: Long) {
         val userPublicKey = getUserPublicKey()
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
-        val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
-                .setType(type)
-                .setName(name)
-                .addAllMembers(members)
-                .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTimestamp, 0, false, null, listOf(), listOf())
+
+        val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+        val messageBody = UpdateMessageBuilder.buildGroupUpdateMessage(context, group, null, true)
+        val infoMessage = OutgoingGroupMediaMessage(recipient, messageBody, groupID, null, sentTimestamp, 0, false, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
         if (mmsSmsDB.getMessageFor(sentTimestamp,userPublicKey) != null) return

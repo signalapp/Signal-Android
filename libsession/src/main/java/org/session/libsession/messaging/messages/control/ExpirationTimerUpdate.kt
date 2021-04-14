@@ -33,6 +33,11 @@ class ExpirationTimerUpdate() : ControlMessage() {
         this.duration = duration
     }
 
+    internal constructor(duration: Int) : this() {
+        this.syncTarget = null
+        this.duration = duration
+    }
+
     // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false

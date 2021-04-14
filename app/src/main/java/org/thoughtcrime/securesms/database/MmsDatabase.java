@@ -515,7 +515,7 @@ public class MmsDatabase extends MessagingDatabase {
         }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupMediaMessage(recipient, body, attachments, timestamp, 0, quote, contacts, previews);
+          return new OutgoingGroupMediaMessage(recipient, body, null, attachments, timestamp, 0, quote, contacts, previews);
         } else if (Types.isExpirationTimerUpdate(outboxType)) {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
@@ -689,8 +689,14 @@ public class MmsDatabase extends MessagingDatabase {
   {
     if (threadId == -1) {
       if(retrieved.isGroup()) {
-        ByteString decodedGroupId = ((OutgoingGroupMediaMessage)retrieved).getGroupContext().getId();
-        String groupId = GroupUtil.doubleEncodeGroupID(decodedGroupId.toByteArray());
+        String decodedGroupId = ((OutgoingGroupMediaMessage)retrieved).getGroupId();
+        String groupId;
+        try {
+          groupId = GroupUtil.doubleEncodeGroupID(decodedGroupId);
+        } catch (IOException e) {
+          Log.e(TAG, "Couldn't encrypt group ID");
+          throw new MmsException(e);
+        }
         Recipient group = Recipient.from(context, Address.fromSerialized(groupId), false);
         threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(group);
       } else {
@@ -746,8 +752,7 @@ public class MmsDatabase extends MessagingDatabase {
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     if (message.isGroup()) {
-      if      (((OutgoingGroupMediaMessage)message).isGroupUpdate()) type |= Types.GROUP_UPDATE_BIT;
-      else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;
+      type |= Types.GROUP_UPDATE_BIT;
     }
 
     if (message.isExpirationUpdate()) {

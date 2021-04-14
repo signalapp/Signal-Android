@@ -19,7 +19,7 @@ object UpdateMessageBuilder {
         } else { sender }
 
         when (updateType) {
-            SignalServiceGroup.Type.NEW_GROUP -> {
+            SignalServiceGroup.Type.CREATION -> {
                 message = if (isOutgoing) {
                     context.getString(R.string.MessageRecord_you_created_a_new_group)
                 } else {
@@ -79,24 +79,29 @@ object UpdateMessageBuilder {
         return message
     }
 
-    fun buildExpirationTimerMessage(context: Context, duration: Int, sender: String? = null, isOutgoing: Boolean = false): String {
-        val seconds = (duration!! / 1000)
+    fun buildExpirationTimerMessage(context: Context, duration: Long, sender: String? = null, isOutgoing: Boolean = false): String {
         if (!isOutgoing && sender == null) return ""
         val senderName: String? = if (!isOutgoing) {
             MessagingConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
         } else { sender }
-        return if (seconds <= 0) {
+        return if (duration <= 0) {
             if (isOutgoing) context.getString(R.string.MessageRecord_you_disabled_disappearing_messages)
             else context.getString(R.string.MessageRecord_s_disabled_disappearing_messages, senderName)
         } else {
-            val time = ExpirationUtil.getExpirationDisplayValue(context, seconds)
+            val time = ExpirationUtil.getExpirationDisplayValue(context, duration.toInt())
             if (isOutgoing)context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time)
             else context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, senderName, time)
         }
     }
 
+    //TODO one this is merged in
     fun buildDataExtractionMessage(): String {
         return ""
     }
 
+    /*TODO retro compatibilite old update messages (MessageRecord)
+    ThreadRecord to display specific messages? (hard unless we can get the incoming / outgoing messages)
+    Clean code (comments, logs...)
+    Delete OutgoingExpirationUpdateMessage (check how its used in MmsDatabase l.520 to save messages and how to do the same when getting messages from db without breaking it)
+    */
 }

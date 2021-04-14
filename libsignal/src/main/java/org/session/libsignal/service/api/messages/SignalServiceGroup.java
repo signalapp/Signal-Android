@@ -38,7 +38,7 @@ public class SignalServiceGroup {
     DELIVER,
     QUIT,
     REQUEST_INFO,
-    NEW_GROUP,
+    CREATION,
     NAME_CHANGE,
     MEMBER_ADDED,
     MEMBER_REMOVED

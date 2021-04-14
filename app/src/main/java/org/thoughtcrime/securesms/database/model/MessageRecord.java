@@ -24,6 +24,8 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
 import network.loki.messenger.R;
+
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.database.documents.IdentityKeyMismatch;

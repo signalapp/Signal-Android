@@ -243,8 +243,15 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
                             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         // Notify the user
-        storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NEW_GROUP, name, members, admins, sentTimestamp)
+        if (userPublicKey == sender) {
+            // sender is a linked device
+            val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+            storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTimestamp)
+        } else {
+            storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, sentTimestamp)
+        }
     }
     storage.setProfileSharing(Address.fromSerialized(groupID), true)
     // Add the group to the user's set of public keys to poll for
@@ -304,9 +311,8 @@ private fun MessageReceiver.handleClosedGroupUpdated(message: ClosedGroupControl
     }
     // Notify the user
     val wasSenderRemoved = !members.contains(senderPublicKey)
-    val type0 = if (wasSenderRemoved) SignalServiceProtos.GroupContext.Type.QUIT else SignalServiceProtos.GroupContext.Type.UPDATE
-    val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
-    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, group.admins.map { it.toString() }, message.sentTimestamp!!)
+    val type = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.MEMBER_REMOVED
+    storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type, name, members, group.admins.map { it.toString() }, message.sentTimestamp!!)
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGroupControlMessage) {
@@ -378,9 +384,9 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
     if (userPublicKey == senderPublicKey) {
         // sender is a linked device
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.NAME_CHANGE, name, members, admins, threadID, message.sentTimestamp!!)
     } else {
-        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.NAME_CHANGE, name, members, admins, message.sentTimestamp!!)
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.NAME_CHANGE, name, members, admins, message.sentTimestamp!!)
     }
 }
 
@@ -413,9 +419,9 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     if (userPublicKey == senderPublicKey) {
         // sender is a linked device
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.MEMBER_ADDED, name, updateMembers, admins, threadID, message.sentTimestamp!!)
     } else {
-        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.MEMBER_ADDED, name, members, admins, message.sentTimestamp!!)
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.MEMBER_ADDED, name, updateMembers, admins, message.sentTimestamp!!)
     }
     if (userPublicKey in admins) {
         // send current encryption key to the latest added members
@@ -477,17 +483,16 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
             MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, newMembers)
         }
     }
-    val (contextType, signalType) =
-            if (senderLeft) SignalServiceProtos.GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
-            else SignalServiceProtos.GroupContext.Type.UPDATE to SignalServiceGroup.Type.MEMBER_REMOVED
+    val type = if (senderLeft) SignalServiceGroup.Type.QUIT
+            else SignalServiceGroup.Type.MEMBER_REMOVED
 
     // Notify the user
     if (userPublicKey == senderPublicKey) {
         // sender is a linked device
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, message.sentTimestamp!!)
+        storage.insertOutgoingInfoMessage(context, groupID, type, name, updateMembers, admins, threadID, message.sentTimestamp!!)
     } else {
-        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, message.sentTimestamp!!)
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type, name, updateMembers, admins, message.sentTimestamp!!)
     }
 }
 
@@ -533,9 +538,9 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
     if (userLeft) {
         //sender is a linked device
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.QUIT, name, members, admins, threadID, message.sentTimestamp!!)
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.QUIT, name, members, admins, threadID, message.sentTimestamp!!)
     } else {
-        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, message.sentTimestamp!!)
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.QUIT, name, members, admins, message.sentTimestamp!!)
     }
 }
 

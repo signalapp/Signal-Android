@@ -19,10 +19,11 @@ import java.util.List;
 
 public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
-  private final GroupContext group;
+  private final String groupID;
 
   public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull String encodedGroupContext,
+                                   @NonNull String body,
+                                   @Nullable String groupId,
                                    @NonNull List<Attachment> avatar,
                                    long sentTimeMillis,
                                    long expiresIn,
@@ -31,30 +32,15 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull List<LinkPreview> previews)
       throws IOException
   {
-    super(recipient, encodedGroupContext, avatar, sentTimeMillis,
+    super(recipient, body, avatar, sentTimeMillis,
           DistributionTypes.CONVERSATION, expiresIn, false, quote, contacts, previews);
 
-    this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
+    this.groupID = groupId;
   }
 
   public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull GroupContext group,
-                                   @Nullable final Attachment avatar,
-                                   long expireIn,
-                                   @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts,
-                                   @NonNull List<LinkPreview> previews)
-  {
-    super(recipient, Base64.encodeBytes(group.toByteArray()),
-            new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
-            System.currentTimeMillis(),
-            DistributionTypes.CONVERSATION, expireIn, false, quote, contacts, previews);
-
-    this.group = group;
-  }
-
-  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull GroupContext group,
+                                   @NonNull String body,
+                                   @Nullable String groupId,
                                    @Nullable final Attachment avatar,
                                    long sentTime,
                                    long expireIn,
@@ -63,12 +49,12 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull List<Contact> contacts,
                                    @NonNull List<LinkPreview> previews)
   {
-    super(recipient, Base64.encodeBytes(group.toByteArray()),
+    super(recipient, body,
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           sentTime,
           DistributionTypes.CONVERSATION, expireIn, expirationUpdate, quote, contacts, previews);
 
-    this.group = group;
+    this.groupID = groupId;
   }
 
   @Override
@@ -76,15 +62,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     return true;
   }
 
-  public boolean isGroupUpdate() {
-    return group.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
-  }
-
-  public boolean isGroupQuit() {
-    return group.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
-  }
-
-  public GroupContext getGroupContext() {
-    return group;
+  public String getGroupId() {
+    return groupID;
   }
 }

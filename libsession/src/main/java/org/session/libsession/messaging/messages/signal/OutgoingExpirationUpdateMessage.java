@@ -8,17 +8,18 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import java.util.Collections;
 import java.util.LinkedList;
 
+// TODO this class could be deleted if its usage in MmsDatabase.getOutgoingMessage is replaced by something elsex
 public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage {
 
-  public OutgoingExpirationUpdateMessage(Recipient recipient, String body, long sentTimeMillis, long expiresIn) {
+  public OutgoingExpirationUpdateMessage(Recipient recipient, long sentTimeMillis, long expiresIn) {
     super(recipient, "", new LinkedList<Attachment>(), sentTimeMillis,
           DistributionTypes.CONVERSATION, expiresIn, true, null, Collections.emptyList(),
           Collections.emptyList());
   }
 
   public static OutgoingExpirationUpdateMessage from(ExpirationTimerUpdate message,
-                                          Recipient recipient, String body) {
-    return new OutgoingExpirationUpdateMessage(recipient, body, message.getSentTimestamp(), message.getDuration() * 1000);
+                                          Recipient recipient) {
+    return new OutgoingExpirationUpdateMessage(recipient, message.getSentTimestamp(), message.getDuration() * 1000);
   }
 
   @Override
