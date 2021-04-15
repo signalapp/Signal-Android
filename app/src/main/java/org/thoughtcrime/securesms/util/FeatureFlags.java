@@ -75,7 +75,7 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
-  private static final String STORAGE_SYNC_V2                   = "android.storageSyncV2.2";
+  private static final String STORAGE_SYNC_V2                   = "android.storageSyncV2.3";
   private static final String NOTIFICATION_REWRITE              = "android.notificationRewrite";
 
   /**
