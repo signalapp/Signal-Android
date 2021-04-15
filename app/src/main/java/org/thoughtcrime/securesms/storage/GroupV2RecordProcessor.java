@@ -50,7 +50,14 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
     Optional<RecipientId> recipientId = recipientDatabase.getByGroupId(groupId);
 
     return recipientId.transform(recipientDatabase::getRecipientSettingsForSync)
-                      .transform(StorageSyncModels::localToRemoteRecord)
+                      .transform(settings -> {
+                        if (settings.getSyncExtras().getGroupMasterKey() != null) {
+                          return StorageSyncModels.localToRemoteRecord(settings);
+                        } else {
+                          Log.w(TAG, "No local master key. Assuming it matches remote since the groupIds match.");
+                          return StorageSyncModels.localToRemoteRecord(settings, record.getMasterKeyOrThrow());
+                        }
+                      })
                       .transform(r -> r.getGroupV2().get());
   }
 
