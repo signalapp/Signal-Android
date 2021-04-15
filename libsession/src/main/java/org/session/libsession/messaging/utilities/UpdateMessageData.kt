@@ -44,5 +44,4 @@ class UpdateMessageData () {
     fun toJSON(): String {
         return JsonUtil.toJson(this)
     }
-
 }
