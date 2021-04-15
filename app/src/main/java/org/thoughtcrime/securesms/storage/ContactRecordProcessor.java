@@ -130,6 +130,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   void insertLocal(@NonNull SignalContactRecord record) {
+    Log.i(TAG, "Local contact insert");
     recipientDatabase.applyStorageSyncContactInsert(record);
   }
 

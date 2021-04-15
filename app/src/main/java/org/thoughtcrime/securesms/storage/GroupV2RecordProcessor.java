@@ -100,6 +100,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
       Log.i(TAG, "Discovered a new GV2 ID that is actually a migrated V1 group! Migrating now.");
       GroupsV1MigrationUtil.performLocalMigration(context, possibleV1Id);
     } else {
+      Log.i(TAG, "Local GV2 insert");
       recipientDatabase.applyStorageSyncGroupV2Insert(record);
     }
   }
