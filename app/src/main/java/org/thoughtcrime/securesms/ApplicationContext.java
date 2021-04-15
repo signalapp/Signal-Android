@@ -84,7 +84,6 @@ import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
 import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
@@ -363,7 +362,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     private void initializePeriodicTasks() {
-        LocalBackupListener.schedule(this);
         BackgroundPollWorker.schedulePeriodic(this); // Loki
 
         if (BuildConfig.PLAY_STORE_DISABLED) {
