@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.notifications.v2
 
 import android.app.AlarmManager
+import android.app.Application
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.notifications.MessageNotifier.ReminderReceiver
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.BubbleUtil.BubbleState
@@ -38,11 +40,13 @@ import kotlin.math.max
 /**
  * MessageNotifier implementation using the new system for creating and showing notifications.
  */
-class MessageNotifierV2 : MessageNotifier {
+class MessageNotifierV2(context: Application) : MessageNotifier {
   @Volatile private var visibleThread: Long = -1
   @Volatile private var lastDesktopActivityTimestamp: Long = -1
   @Volatile private var lastAudibleNotification: Long = -1
   @Volatile private var lastScheduledReminder: Long = 0
+  @Volatile private var previousLockedStatus: Boolean = KeyCachingService.isLocked(context)
+  @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
 
   private val threadReminders: MutableMap<Long, Reminder> = ConcurrentHashMap()
 
@@ -120,6 +124,12 @@ class MessageNotifierV2 : MessageNotifier {
       return
     }
 
+    val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
+    val currentPrivacyPreference: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
+    val notificationConfigurationChanged: Boolean = currentLockStatus != previousLockedStatus || currentPrivacyPreference != previousPrivacyPreference
+    previousLockedStatus = currentLockStatus
+    previousPrivacyPreference = currentPrivacyPreference
+
     val alertOverrides: Set<Long> = threadReminders.filter { (_, reminder) -> reminder.lastNotified < System.currentTimeMillis() - REMINDER_TIMEOUT }.keys
 
     val threadsThatAlerted: Set<Long> = NotificationFactory.notify(
@@ -129,6 +139,7 @@ class MessageNotifierV2 : MessageNotifier {
       targetThreadId = threadId,
       defaultBubbleState = defaultBubbleState,
       lastAudibleNotification = lastAudibleNotification,
+      notificationConfigurationChanged = notificationConfigurationChanged,
       alertOverrides = alertOverrides
     )
 
@@ -241,6 +252,7 @@ class MessageNotifierV2 : MessageNotifier {
           }
         }
       }
+      NotificationCancellationHelper.cancelMessageSummaryIfSoleNotification(context)
     } catch (e: Throwable) {
       Log.w(TAG, e)
     }

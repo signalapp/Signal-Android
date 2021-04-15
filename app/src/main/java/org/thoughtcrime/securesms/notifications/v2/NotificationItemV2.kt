@@ -195,7 +195,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   }
 
   override fun getThumbnailInfo(context: Context): ThumbnailInfo {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage) {
+    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage && !KeyCachingService.isLocked(context)) {
       val thumbnailSlide: Slide? = slideDeck?.thumbnailSlide
       ThumbnailInfo(thumbnailSlide?.publicUri, thumbnailSlide?.contentType)
     } else {

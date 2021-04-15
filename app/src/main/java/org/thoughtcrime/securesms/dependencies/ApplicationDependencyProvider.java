@@ -186,7 +186,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull MessageNotifier provideMessageNotifier() {
-    return new OptimizedMessageNotifier();
+    return new OptimizedMessageNotifier(context);
   }
 
   @Override

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.notifications.RemoteReplyReceiver
 import org.thoughtcrime.securesms.notifications.ReplyMethod
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 
@@ -84,7 +85,11 @@ class NotificationConversation(
   }
 
   fun getSlideBigPictureUri(context: Context): Uri? {
-    return if (notificationItems.size == 1 && TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage) mostRecentNotification.getBigPictureUri() else null
+    return if (notificationItems.size == 1 && TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage && !KeyCachingService.isLocked(context)) {
+      mostRecentNotification.getBigPictureUri()
+    } else {
+      null
+    }
   }
 
   fun getContentText(context: Context): CharSequence? {

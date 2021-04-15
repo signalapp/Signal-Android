@@ -45,6 +45,7 @@ private const val BIG_PICTURE_DIMEN = 500
 sealed class NotificationBuilder(protected val context: Context) {
 
   private val privacy: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
+  private val isNotLocked: Boolean = !KeyCachingService.isLocked(context)
 
   abstract fun setSmallIcon(@DrawableRes drawable: Int)
   abstract fun setColor(@ColorInt color: Int)
@@ -87,7 +88,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun setShortcutId(shortcutId: String) {
-    if (privacy.isDisplayContact) {
+    if (privacy.isDisplayContact && isNotLocked) {
       setShortcutIdActual(shortcutId)
     }
   }
@@ -105,18 +106,13 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun addReplyActions(conversation: NotificationConversation) {
-    if (!privacy.isDisplayMessage ||
-      KeyCachingService.isLocked(context) ||
-      !RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)
-    ) {
-      return
+    if (privacy.isDisplayMessage && isNotLocked && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
+      addActions(ReplyMethod.forRecipient(context, conversation.recipient), conversation)
     }
-
-    addActions(ReplyMethod.forRecipient(context, conversation.recipient), conversation)
   }
 
   fun addMarkAsReadAction(state: NotificationStateV2) {
-    if (privacy.isDisplayMessage) {
+    if (privacy.isDisplayMessage && isNotLocked) {
       addMarkAsReadActionActual(state)
     }
   }
@@ -134,7 +130,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
-    if (privacy.isDisplayContact) {
+    if (privacy.isDisplayContact && isNotLocked) {
       setBubbleMetadataActual(conversation, bubbleState)
     }
   }

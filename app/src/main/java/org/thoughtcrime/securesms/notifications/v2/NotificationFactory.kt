@@ -44,6 +44,7 @@ object NotificationFactory {
     targetThreadId: Long,
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
+    notificationConfigurationChanged: Boolean,
     alertOverrides: Set<Long>
   ): Set<Long> {
     if (state.isEmpty) {
@@ -57,7 +58,7 @@ object NotificationFactory {
         if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
           Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
           notifyInThread(context, conversation.recipient, lastAudibleNotification)
-        } else if (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
+        } else if (notificationConfigurationChanged || conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
 
           if (conversation.hasNewNotifications()) {
             threadsThatNewlyAlerted += conversation.threadId
@@ -67,7 +68,8 @@ object NotificationFactory {
             context = context,
             conversation = conversation,
             targetThreadId = targetThreadId,
-            defaultBubbleState = defaultBubbleState
+            defaultBubbleState = defaultBubbleState,
+            shouldAlert = conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)
           )
         }
       }
@@ -112,7 +114,8 @@ object NotificationFactory {
     context: Context,
     conversation: NotificationConversation,
     targetThreadId: Long,
-    defaultBubbleState: BubbleUtil.BubbleState
+    defaultBubbleState: BubbleUtil.BubbleState,
+    shouldAlert: Boolean
   ) {
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
@@ -135,7 +138,7 @@ object NotificationFactory {
       setSortKey(conversation.sortKey.toString())
       setWhen(conversation)
       addReplyActions(conversation)
-      setOnlyAlertOnce(false)
+      setOnlyAlertOnce(!shouldAlert)
       addMessages(conversation)
       setPriority(TextSecurePreferences.getNotificationPriority(context))
       setLights()

@@ -72,6 +72,32 @@ public final class NotificationCancellationHelper {
     }
   }
 
+  public static void cancelMessageSummaryIfSoleNotification(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT >= 23) {
+      try {
+        NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
+        StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
+        boolean                 soleMessageSummary  = false;
+
+        for (StatusBarNotification activeNotification : activeNotifications) {
+          if (isSingleThreadNotification(activeNotification)) {
+            soleMessageSummary = false;
+            break;
+          } else if (activeNotification.getId() == NotificationIds.MESSAGE_SUMMARY) {
+            soleMessageSummary = true;
+          }
+        }
+
+        if (soleMessageSummary) {
+          Log.d(TAG, "Cancelling sole message summary");
+          cancelLegacy(context, NotificationIds.MESSAGE_SUMMARY);
+        }
+      } catch (Throwable e) {
+        Log.w(TAG, e);
+      }
+    }
+  }
+
   /**
    * @return whether this is a non-summary notification that is a member of the NOTIFICATION_GROUP group.
    */
