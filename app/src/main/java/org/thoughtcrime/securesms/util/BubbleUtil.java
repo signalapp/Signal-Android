@@ -52,7 +52,7 @@ public final class BubbleUtil {
     }
 
     NotificationPrivacyPreference privacyPreference = TextSecurePreferences.getNotificationPrivacy(context);
-    if (!privacyPreference.isDisplayMessage()) {
+    if (!privacyPreference.isDisplayContact()) {
       Log.i(TAG, "Bubbles are not available when notification privacy settings are enabled.");
       return false;
     }

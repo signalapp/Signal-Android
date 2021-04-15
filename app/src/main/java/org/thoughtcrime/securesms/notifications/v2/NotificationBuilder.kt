@@ -54,7 +54,6 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setChannelId(channelId: String)
   abstract fun setContentTitle(contentTitle: CharSequence)
   abstract fun setLargeIcon(largeIcon: Bitmap?)
-  abstract fun setShortcutId(shortcutId: String)
   abstract fun setContentInfo(contentInfo: String)
   abstract fun setNumber(number: Int)
   abstract fun setContentText(contentText: CharSequence?)
@@ -62,7 +61,6 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setDeleteIntent(deleteIntent: PendingIntent?)
   abstract fun setSortKey(sortKey: String)
   abstract fun setOnlyAlertOnce(onlyAlertOnce: Boolean)
-  abstract fun addMessages(conversation: NotificationConversation)
   abstract fun setGroupSummary(isGroupSummary: Boolean)
   abstract fun setSubText(subText: String)
   abstract fun addMarkAsReadActionActual(state: NotificationStateV2)
@@ -70,19 +68,27 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setAlarms(recipient: Recipient?)
   abstract fun setTicker(ticker: CharSequence)
   abstract fun addTurnOffJoinedNotificationsAction(pendingIntent: PendingIntent)
-  abstract fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState)
   abstract fun setAutoCancel(autoCancel: Boolean)
   abstract fun build(): Notification
 
   protected abstract fun addPersonActual(recipient: Recipient)
+  protected abstract fun setShortcutIdActual(shortcutId: String)
   protected abstract fun setWhen(timestamp: Long)
   protected abstract fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation)
+  protected abstract fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean)
   protected abstract fun addMessagesActual(state: NotificationStateV2)
+  protected abstract fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState)
   protected abstract fun setLights(@ColorInt color: Int, onTime: Int, offTime: Int)
 
   fun addPerson(recipient: Recipient) {
     if (privacy.isDisplayContact) {
       addPersonActual(recipient)
+    }
+  }
+
+  fun setShortcutId(shortcutId: String) {
+    if (privacy.isDisplayContact) {
+      setShortcutIdActual(shortcutId)
     }
   }
 
@@ -115,12 +121,22 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
   }
 
+  fun addMessages(conversation: NotificationConversation) {
+    addMessagesActual(conversation, privacy.isDisplayContact)
+  }
+
   fun addMessages(state: NotificationStateV2) {
-    if (!privacy.isDisplayContact && !privacy.isDisplayMessage) {
+    if (privacy.isDisplayNothing) {
       return
     }
 
     addMessagesActual(state)
+  }
+
+  fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
+    if (privacy.isDisplayContact) {
+      setBubbleMetadataActual(conversation, bubbleState)
+    }
   }
 
   fun setSummaryContentText(recipient: Recipient) {
@@ -217,7 +233,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.addAction(turnOffTheseNotifications)
     }
 
-    override fun addMessages(conversation: NotificationConversation) {
+    override fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean) {
       val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)
       if (bigPictureUri != null) {
         builder.setStyle(
@@ -235,11 +251,14 @@ sealed class NotificationBuilder(protected val context: Context) {
 
       conversation.notificationItems.forEach { notificationItem ->
         val personBuilder: Person.Builder = Person.Builder()
-          .setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
           .setBot(false)
           .setName(notificationItem.getPersonName(context))
           .setUri(notificationItem.getPersonUri(context))
           .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
+
+        if (includeShortcut) {
+          personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
+        }
 
         val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo(context)
 
@@ -289,7 +308,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       }
     }
 
-    override fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
+    override fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
       // Intentionally left blank
     }
 
@@ -329,7 +348,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.setLargeIcon(largeIcon)
     }
 
-    override fun setShortcutId(shortcutId: String) {
+    override fun setShortcutIdActual(shortcutId: String) {
       builder.setShortcutId(shortcutId)
     }
 
@@ -455,7 +474,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.addAction(turnOffTheseNotifications)
     }
 
-    override fun addMessages(conversation: NotificationConversation) {
+    override fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean) {
       val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)
       if (bigPictureUri != null) {
         builder.style = Notification.BigPictureStyle()
@@ -471,11 +490,14 @@ sealed class NotificationBuilder(protected val context: Context) {
 
       conversation.notificationItems.forEach { notificationItem ->
         val personBuilder: android.app.Person.Builder = android.app.Person.Builder()
-          .setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
           .setBot(false)
           .setName(notificationItem.getPersonName(context))
           .setUri(notificationItem.getPersonUri(context))
           .setIcon(notificationItem.getPersonIcon(context).toIcon())
+
+        if (includeShortcut) {
+          personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
+        }
 
         val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo(context)
 
@@ -485,7 +507,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.style = messagingStyle
     }
 
-    override fun setBubbleMetadata(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
+    override fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
       if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
         return
       }
@@ -550,7 +572,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.setLargeIcon(largeIcon)
     }
 
-    override fun setShortcutId(shortcutId: String) {
+    override fun setShortcutIdActual(shortcutId: String) {
       builder.setShortcutId(shortcutId)
     }
 
