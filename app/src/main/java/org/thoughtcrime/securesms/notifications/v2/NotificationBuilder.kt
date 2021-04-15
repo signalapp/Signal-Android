@@ -241,7 +241,7 @@ sealed class NotificationBuilder(protected val context: Context) {
           .setUri(notificationItem.getPersonUri(context))
           .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
 
-        val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo()
+        val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo(context)
 
         messagingStyle.addMessage(NotificationCompat.MessagingStyle.Message(notificationItem.getPrimaryText(context), notificationItem.timestamp, personBuilder.build()).setData(mimeType, dataUri))
       }
@@ -477,7 +477,7 @@ sealed class NotificationBuilder(protected val context: Context) {
           .setUri(notificationItem.getPersonUri(context))
           .setIcon(notificationItem.getPersonIcon(context).toIcon())
 
-        val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo()
+        val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo(context)
 
         messagingStyle.addMessage(Notification.MessagingStyle.Message(notificationItem.getPrimaryText(context), notificationItem.timestamp, personBuilder.build()).setData(mimeType, dataUri))
       }
