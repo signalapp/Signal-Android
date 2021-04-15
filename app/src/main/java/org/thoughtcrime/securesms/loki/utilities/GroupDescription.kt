@@ -13,7 +13,7 @@ import network.loki.messenger.R
 import org.session.libsignal.utilities.logging.Log
 import java.io.IOException
 
-//TODO Brice: that class should be deprecated
+//TODO that class isn't used anymore
 class GroupDescription(context: Context, groupContext: SignalServiceProtos.GroupContext?) {
     private val context: Context
     private val groupContext: SignalServiceProtos.GroupContext?

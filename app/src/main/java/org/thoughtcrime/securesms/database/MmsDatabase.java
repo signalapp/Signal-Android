@@ -514,15 +514,7 @@ public class MmsDatabase extends MessagingDatabase {
           }
         }
 
-        if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupMediaMessage(recipient, body, null, attachments, timestamp, 0, quote, contacts, previews);
-        } else if (Types.isExpirationTimerUpdate(outboxType)) {
-          return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
-        }
-
-        boolean expirationTimer = (outboxType & Types.EXPIRATION_TIMER_UPDATE_BIT) != 0;
-
-        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, body, attachments, timestamp, subscriptionId, expiresIn, expirationTimer, distributionType, quote, contacts, previews, networkFailures, mismatches);
+        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, body, attachments, timestamp, subscriptionId, expiresIn, distributionType, quote, contacts, previews, networkFailures, mismatches);
 
         if (Types.isSecureType(outboxType)) {
           return new OutgoingSecureMediaMessage(message);
@@ -532,8 +524,6 @@ public class MmsDatabase extends MessagingDatabase {
       }
 
       throw new NoSuchMessageException("No record found for id: " + messageId);
-    } catch (IOException e) {
-      throw new MmsException(e);
     } finally {
       if (cursor != null)
         cursor.close();
@@ -689,7 +679,12 @@ public class MmsDatabase extends MessagingDatabase {
   {
     if (threadId == -1) {
       if(retrieved.isGroup()) {
-        String decodedGroupId = ((OutgoingGroupMediaMessage)retrieved).getGroupId();
+        String decodedGroupId;
+        if (retrieved instanceof OutgoingExpirationUpdateMessage) {
+          decodedGroupId = ((OutgoingExpirationUpdateMessage)retrieved).getGroupId();
+        } else {
+          decodedGroupId = ((OutgoingGroupMediaMessage)retrieved).getGroupId();
+        }
         String groupId;
         try {
           groupId = GroupUtil.doubleEncodeGroupID(decodedGroupId);
@@ -751,8 +746,8 @@ public class MmsDatabase extends MessagingDatabase {
     if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
-    if (message.isGroup()) {
-      type |= Types.GROUP_UPDATE_BIT;
+    if (message.isGroup() && message instanceof OutgoingGroupMediaMessage) {
+      if (((OutgoingGroupMediaMessage)message).isUpdateMessage()) type |= Types.GROUP_UPDATE_MESSAGE_BIT;
     }
 
     if (message.isExpirationUpdate()) {

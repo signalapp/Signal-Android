@@ -20,23 +20,7 @@ import java.util.List;
 public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
   private final String groupID;
-
-  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull String body,
-                                   @Nullable String groupId,
-                                   @NonNull List<Attachment> avatar,
-                                   long sentTimeMillis,
-                                   long expiresIn,
-                                   @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts,
-                                   @NonNull List<LinkPreview> previews)
-      throws IOException
-  {
-    super(recipient, body, avatar, sentTimeMillis,
-          DistributionTypes.CONVERSATION, expiresIn, false, quote, contacts, previews);
-
-    this.groupID = groupId;
-  }
+  private final boolean isUpdateMessage;
 
   public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
                                    @NonNull String body,
@@ -44,7 +28,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @Nullable final Attachment avatar,
                                    long sentTime,
                                    long expireIn,
-                                   boolean expirationUpdate,
+                                   boolean updateMessage,
                                    @Nullable QuoteModel quote,
                                    @NonNull List<Contact> contacts,
                                    @NonNull List<LinkPreview> previews)
@@ -52,9 +36,10 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     super(recipient, body,
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           sentTime,
-          DistributionTypes.CONVERSATION, expireIn, expirationUpdate, quote, contacts, previews);
+          DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
 
     this.groupID = groupId;
+    this.isUpdateMessage = updateMessage;
   }
 
   @Override
@@ -64,5 +49,9 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
   public String getGroupId() {
     return groupID;
+  }
+
+  public boolean isUpdateMessage() {
+    return isUpdateMessage;
   }
 }

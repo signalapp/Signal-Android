@@ -1,17 +1,15 @@
 package org.session.libsession.messaging.utilities
 
 import android.content.Context
-import android.text.SpannableString
 import org.session.libsession.R
 import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 
 object UpdateMessageBuilder {
 
-    fun buildGroupUpdateMessage(context: Context, groupInfo: SignalServiceGroup, sender: String? = null, isOutgoing: Boolean = false): String {
-        val updateType = groupInfo.type
+    fun buildGroupUpdateMessage(context: Context, updateData: UpdateMessageData, sender: String? = null, isOutgoing: Boolean = false): String {
+        val updateType = updateData.type
         var message: String = ""
         if (!isOutgoing && sender == null) return message
         val senderName: String? = if (!isOutgoing) {
@@ -28,13 +26,13 @@ object UpdateMessageBuilder {
             }
             SignalServiceGroup.Type.NAME_CHANGE -> {
                 message = if (isOutgoing) {
-                    context.getString(R.string.MessageRecord_you_renamed_the_group_to_s, groupInfo.name.get())
+                    context.getString(R.string.MessageRecord_you_renamed_the_group_to_s, updateData.groupName)
                 } else {
-                    context.getString(R.string.MessageRecord_s_renamed_the_group_to_s, senderName, groupInfo.name.get())
+                    context.getString(R.string.MessageRecord_s_renamed_the_group_to_s, senderName, updateData.groupName)
                 }
             }
             SignalServiceGroup.Type.MEMBER_ADDED -> {
-                val members = groupInfo.members.get().joinToString(", ") {
+                val members = updateData.updatedMembers.joinToString(", ") {
                     MessagingConfiguration.shared.storage.getDisplayNameForRecipient(it) ?: it
                 }
                 message = if (isOutgoing) {
@@ -47,7 +45,7 @@ object UpdateMessageBuilder {
                 val storage = MessagingConfiguration.shared.storage
                 val userPublicKey = storage.getUserPublicKey()!!
                 // 1st case: you are part of the removed members
-                message = if (userPublicKey in groupInfo.members.get()) {
+                message = if (userPublicKey in updateData.updatedMembers) {
                     if (isOutgoing) {
                         context.getString(R.string.MessageRecord_left_group)
                     } else {
@@ -55,7 +53,7 @@ object UpdateMessageBuilder {
                     }
                 } else {
                     // 2nd case: you are not part of the removed members
-                    val members = groupInfo.members.get().joinToString(", ") {
+                    val members = updateData.updatedMembers.joinToString(", ") {
                         storage.getDisplayNameForRecipient(it) ?: it
                     }
                     if (isOutgoing) {
@@ -94,14 +92,8 @@ object UpdateMessageBuilder {
         }
     }
 
-    //TODO one this is merged in
+    //TODO do this when the current update is merged
     fun buildDataExtractionMessage(): String {
         return ""
     }
-
-    /*TODO retro compatibilite old update messages (MessageRecord)
-    ThreadRecord to display specific messages? (hard unless we can get the incoming / outgoing messages)
-    Clean code (comments, logs...)
-    Delete OutgoingExpirationUpdateMessage (check how its used in MmsDatabase l.520 to save messages and how to do the same when getting messages from db without breaking it)
-    */
 }

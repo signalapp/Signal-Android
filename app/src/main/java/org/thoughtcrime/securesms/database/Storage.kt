@@ -22,6 +22,7 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.messaging.utilities.UpdateMessageBuilder
+import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.PartAuthority
+import java.util.*
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -403,8 +405,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
         val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
-        val messageBody = UpdateMessageBuilder.buildGroupUpdateMessage(context, group, senderPublicKey)
-        val infoMessage = IncomingGroupMessage(m, groupID, messageBody)
+        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members).toJSON()
+        val infoMessage = IncomingGroupMessage(m, groupID, updateData, true)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
     }
@@ -413,9 +415,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val userPublicKey = getUserPublicKey()
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
 
-        val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
-        val messageBody = UpdateMessageBuilder.buildGroupUpdateMessage(context, group, null, true)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, messageBody, groupID, null, sentTimestamp, 0, false, null, listOf(), listOf())
+        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members).toJSON()
+        val infoMessage = OutgoingGroupMediaMessage(recipient, updateData, groupID, null, sentTimestamp, 0, true, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
         if (mmsSmsDB.getMessageFor(sentTimestamp,userPublicKey) != null) return
