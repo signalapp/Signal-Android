@@ -311,11 +311,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private int cleanupMedia() {
     int restartItem = mediaPager.getCurrentItem();
 
-    PagerAdapter adapter = mediaPager.getAdapter();
-    if (adapter instanceof CursorPagerAdapter) {
-      ((CursorPagerAdapter)adapter).cursor.close();
-    }
-
     mediaPager.removeAllViews();
     mediaPager.setAdapter(null);
 

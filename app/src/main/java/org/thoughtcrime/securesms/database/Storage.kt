@@ -417,7 +417,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTimestamp, 0, null, listOf(), listOf())
+        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTimestamp, 0, false, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
         if (mmsSmsDB.getMessageFor(sentTimestamp,userPublicKey) != null) return

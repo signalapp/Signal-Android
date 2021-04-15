@@ -28,12 +28,14 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
+import com.google.protobuf.ByteString;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.session.libsession.utilities.GroupUtil;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.session.libsession.database.documents.IdentityKeyMismatch;
@@ -686,7 +688,14 @@ public class MmsDatabase extends MessagingDatabase {
           throws MmsException
   {
     if (threadId == -1) {
-      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(retrieved.getRecipient());
+      if(retrieved.isGroup()) {
+        ByteString decodedGroupId = ((OutgoingGroupMediaMessage)retrieved).getGroupContext().getId();
+        String groupId = GroupUtil.doubleEncodeGroupID(decodedGroupId.toByteArray());
+        Recipient group = Recipient.from(context, Address.fromSerialized(groupId), false);
+        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(group);
+      } else {
+        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(retrieved.getRecipient());
+      }
     }
     long messageId = insertMessageOutbox(retrieved, threadId, false, null, serverTimestamp);
     if (messageId == -1) {
