@@ -16,9 +16,6 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -63,13 +60,21 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   }
 
   @Override
-  @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote) {
+  @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
     SignalServiceAddress  address = remote.getAddress();
     Optional<RecipientId> byUuid  = address.getUuid().isPresent() ? recipientDatabase.getByUuid(address.getUuid().get()) : Optional.absent();
     Optional<RecipientId> byE164  = address.getNumber().isPresent() ? recipientDatabase.getByE164(address.getNumber().get()) : Optional.absent();
 
     return byUuid.or(byE164).transform(recipientDatabase::getRecipientSettingsForSync)
-                            .transform(StorageSyncModels::localToRemoteRecord)
+                            .transform(settings -> {
+                              if (settings.getStorageId() != null) {
+                                return StorageSyncModels.localToRemoteRecord(settings);
+                              } else {
+                                Log.w(TAG, "Newly discovering a registered user via storage service. Saving a storageId for them.");
+                                recipientDatabase.updateStorageId(settings.getId(), keyGenerator.generate());
+                                return StorageSyncModels.localToRemoteRecord(recipientDatabase.getRecipientSettingsForSync(settings.getId()));
+                              }
+                            })
                             .transform(r -> r.getContact().get());
   }
 

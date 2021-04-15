@@ -51,7 +51,7 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
       if (isInvalid(remote)) {
         remoteDeletes.add(remote);
       } else {
-        Optional<E> local = getMatching(remote);
+        Optional<E> local = getMatching(remote, keyGenerator);
 
         if (local.isPresent()) {
           E merged = merge(remote, local.get(), keyGenerator);
@@ -88,7 +88,7 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
    * Only records that pass the validity check (i.e. return false from {@link #isInvalid(SignalRecord)}
    * make it to here, so you can assume all records are valid.
    */
-  abstract @NonNull Optional<E> getMatching(@NonNull E remote);
+  abstract @NonNull Optional<E> getMatching(@NonNull E remote, @NonNull StorageKeyGenerator keyGenerator);
 
   abstract @NonNull E merge(@NonNull E remote, @NonNull E local, @NonNull StorageKeyGenerator keyGenerator);
   abstract void insertLocal(@NonNull E record) throws IOException;

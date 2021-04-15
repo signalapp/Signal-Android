@@ -395,7 +395,7 @@ public class StorageSyncJobV2 extends BaseJob {
       clearIds.add(Recipient.self().getId());
 
       recipientDatabase.clearDirtyState(clearIds);
-      recipientDatabase.updateStorageKeys(localWriteResult.get().getStorageKeyUpdates());
+      recipientDatabase.updateStorageIds(localWriteResult.get().getStorageKeyUpdates());
 
       needsMultiDeviceSync = true;
 

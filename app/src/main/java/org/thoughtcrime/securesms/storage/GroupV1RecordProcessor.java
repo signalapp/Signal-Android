@@ -14,8 +14,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
-import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
-import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 
 import java.util.Arrays;
 
@@ -64,7 +62,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record) {
+  @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record, @NonNull StorageKeyGenerator keyGenerator) {
     GroupId.V1 groupId = GroupId.v1orThrow(record.getGroupId());
 
     Optional<RecipientId> recipientId = recipientDatabase.getByGroupId(groupId);

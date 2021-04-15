@@ -9,19 +9,14 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord.PinnedConversation;
-import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Processes {@link SignalAccountRecord}s. Unlike some other {@link StorageRecordProcessor}s, this
@@ -66,7 +61,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
   }
 
   @Override
-  public @NonNull Optional<SignalAccountRecord> getMatching(@NonNull SignalAccountRecord record) {
+  public @NonNull Optional<SignalAccountRecord> getMatching(@NonNull SignalAccountRecord record, @NonNull StorageKeyGenerator keyGenerator) {
     return Optional.of(localAccountRecord);
   }
 

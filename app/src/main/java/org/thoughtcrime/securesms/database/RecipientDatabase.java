@@ -2716,12 +2716,16 @@ public class RecipientDatabase extends Database {
     ApplicationDependencies.getRecipientCache().clear();
   }
 
-  public void updateStorageKeys(@NonNull Map<RecipientId, byte[]> keys) {
+  public void updateStorageId(@NonNull RecipientId recipientId, byte[] id) {
+    updateStorageIds(Collections.singletonMap(recipientId, id));
+  }
+
+  public void updateStorageIds(@NonNull Map<RecipientId, byte[]> ids) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.beginTransaction();
 
     try {
-      for (Map.Entry<RecipientId, byte[]> entry : keys.entrySet()) {
+      for (Map.Entry<RecipientId, byte[]> entry : ids.entrySet()) {
         ContentValues values = new ContentValues();
         values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(entry.getValue()));
         db.update(TABLE_NAME, values, ID_WHERE, new String[] { entry.getKey().serialize() });
@@ -2732,7 +2736,7 @@ public class RecipientDatabase extends Database {
       db.endTransaction();
     }
 
-    for (RecipientId id : keys.keySet()) {
+    for (RecipientId id : ids.keySet()) {
       Recipient.live(id).refresh();
     }
   }
