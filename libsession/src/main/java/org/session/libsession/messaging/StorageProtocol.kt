@@ -71,8 +71,8 @@ interface StorageProtocol {
     fun setOpenGroupPublicKey(server: String, newValue: String)
 
     // Open Group User Info
-    fun setOpenGroupDisplayName(publicKey: String, channel: Long, server: String, displayName: String)
-    fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String?
+    fun setOpenGroupDisplayName(publicKey: String, room: String, server: String, displayName: String)
+    fun getOpenGroupDisplayName(publicKey: String, room: String, server: String): String?
 
     // Open Group Metadata
 
@@ -179,5 +179,8 @@ interface StorageProtocol {
     fun setUserCount(group: Long, server: String, newValue: Int)
     fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String)
     fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
+
+    fun setOpenGroupDisplayName(publicKey: String, channel: Long, server: String, displayName: String)
+    fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String?
 
 }

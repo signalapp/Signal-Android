@@ -5,7 +5,7 @@ import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 
-data class OpenGroupV2Message(
+data class OpenGroupMessageV2(
         val serverID: Long?,
         val sender: String?,
         val sentTimestamp: Long,
@@ -20,7 +20,7 @@ data class OpenGroupV2Message(
         private val curve = Curve25519.getInstance(Curve25519.BEST)
     }
 
-    fun sign(): OpenGroupV2Message? {
+    fun sign(): OpenGroupMessageV2? {
         if (base64EncodedData.isEmpty()) return null
         val (publicKey, privateKey) = MessagingConfiguration.shared.storage.getUserKeyPair() ?: return null
 
@@ -41,11 +41,21 @@ data class OpenGroupV2Message(
         serverID?.let { jsonMap["server_id"] = serverID }
         sender?.let { jsonMap["public_key"] = sender }
         base64EncodedSignature?.let { jsonMap["signature"] = base64EncodedSignature }
+        return jsonMap
     }
 
-    fun fromJSON(json: Map<String, Any>): OpenGroupV2Message? {
-        if (!json.containsKey("data") || !json.containsKey("timestamp")) return null
-
+    fun fromJSON(json: Map<String, Any>): OpenGroupMessageV2? {
+        val base64EncodedData = json["data"] as? String ?: return null
+        val sentTimestamp = json["timestamp"] as? Long ?: return null
+        val serverID = json["server_id"] as? Long
+        val sender = json["public_key"] as? String
+        val base64EncodedSignature = json["signature"] as? String
+        return OpenGroupMessageV2(serverID = serverID,
+                sender = sender,
+                sentTimestamp = sentTimestamp,
+                base64EncodedData = base64EncodedData,
+                base64EncodedSignature = base64EncodedSignature
+        )
     }
 
 

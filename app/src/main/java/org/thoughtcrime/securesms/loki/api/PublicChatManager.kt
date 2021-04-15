@@ -6,10 +6,9 @@ import android.graphics.Bitmap
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.opengroups.OpenGroup
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
-import org.session.libsession.messaging.opengroups.OpenGroupInfo
+import org.session.libsession.messaging.opengroups.*
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
@@ -21,7 +20,9 @@ import java.util.concurrent.Executors
 
 class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, OpenGroup>()
+  private var v2Chats = mutableMapOf<Long, OpenGroupV2>()
   private val pollers = mutableMapOf<Long, OpenGroupPoller>()
+  private val v2Pollers = mutableMapOf<Long, OpenGroupV2Poller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
   private val executorService = Executors.newScheduledThreadPool(4)
@@ -53,6 +54,12 @@ class PublicChatManager(private val context: Context) {
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
     }
+    for ((threadId, chat) in v2Chats) {
+      val poller = v2Pollers[threadId] ?: OpenGroupV2Poller(chat, executorService)
+      poller.startIfNeeded()
+      listenToThreadDeletion(threadId)
+      if (!v2Pollers.containsKey(threadId)) { v2Pollers[threadId] = poller }
+    }
     isPolling = true
   }
 
@@ -71,6 +78,15 @@ class PublicChatManager(private val context: Context) {
 
     val channelInfo = OpenGroupAPI.getChannelInfo(channel, server).get()
     return addChat(server, channel, channelInfo)
+  }
+
+  @WorkerThread
+  fun addChat(server: String, room: String): OpenGroupV2 {
+    // Ensure the auth token is acquired.
+    OpenGroupAPIV2.getAuthToken(server).get()
+
+    val channelInfo = OpenGroupAPIV2.getChannelInfo(channel, server).get()
+    return addChat(server, room, channelInfo)
   }
 
   @WorkerThread
@@ -99,6 +115,20 @@ class PublicChatManager(private val context: Context) {
     return OpenGroup.from(chat)
   }
 
+  @WorkerThread
+  fun addChat(server: String, room: String, info: OpenGroupInfo): OpenGroupV2 {
+    val chat = OpenGroupV2(server, room, info.displayName, )
+    var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
+    var profilePicture: Bitmap? = null
+    if (threadID < 0) {
+      if (info.profilePictureURL.isNotEmpty()) {
+        val profilePictureAsByteArray = OpenGroupAPIV2.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
+        profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
+      }
+      val result = GroupManager.createOpenGroup()
+    }
+  }
+
   public fun removeChat(server: String, channel: Long) {
     val threadDB = DatabaseFactory.getThreadDatabase(context)
     val groupId = PublicChat.getId(channel, server)
@@ -112,11 +142,13 @@ class PublicChatManager(private val context: Context) {
   private fun refreshChatsAndPollers() {
     val storage = MessagingConfiguration.shared.storage
     val chatsInDB = storage.getAllOpenGroups()
+    val v2ChatsInDB = storage.getAllV2OpenGroups()
     val removedChatThreadIds = chats.keys.filter { !chatsInDB.keys.contains(it) }
     removedChatThreadIds.forEach { pollers.remove(it)?.stop() }
 
     // Only append to chats if we have a thread for the chat
     chats = chatsInDB.filter { GroupManager.getOpenGroupThreadID(it.value.id, context) > -1 }.toMutableMap()
+    v2Chats = v2ChatsInDB.filter { GroupManager.getOpenGroupThreadID(it.value.id, context) > -1 }.toMutableMap()
   }
 
   private fun listenToThreadDeletion(threadID: Long) {

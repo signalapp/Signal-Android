@@ -1,3 +1,3 @@
-package org.session.libsignal.service.loki.utilities.mentions
+package org.session.libsession.utilities.mentions
 
 data class Mention(val publicKey: String, val displayName: String)

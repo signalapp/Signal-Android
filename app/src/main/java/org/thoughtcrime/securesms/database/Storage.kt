@@ -274,8 +274,18 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(groupID, publicKey, displayName)
     }
 
+    override fun setOpenGroupDisplayName(publicKey: String, room: String, server: String, displayName: String) {
+        val groupID = "$server.$room"
+        DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(groupID, publicKey, displayName)
+    }
+
     override fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String? {
         val groupID = "$server.$channel"
+        return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(groupID, publicKey)
+    }
+
+    override fun getOpenGroupDisplayName(publicKey: String, room: String, server: String): String? {
+        val groupID = "$server.$room"
         return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(groupID, publicKey)
     }
 

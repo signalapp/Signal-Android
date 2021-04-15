@@ -1,5 +1,6 @@
-package org.session.libsignal.service.loki.utilities.mentions
+package org.session.libsession.utilities.mentions
 
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol
 
@@ -9,9 +10,9 @@ class MentionsManager(private val userPublicKey: String, private val threadDatab
 
     companion object {
 
-        public lateinit var shared: MentionsManager
+        lateinit var shared: MentionsManager
 
-        public fun configureIfNeeded(userPublicKey: String, threadDatabase: LokiThreadDatabaseProtocol, userDatabase: LokiUserDatabaseProtocol) {
+        fun configureIfNeeded(userPublicKey: String, threadDatabase: LokiThreadDatabaseProtocol, userDatabase: LokiUserDatabaseProtocol) {
             if (::shared.isInitialized) { return; }
             shared = MentionsManager(userPublicKey, threadDatabase, userDatabase)
         }
@@ -30,11 +31,15 @@ class MentionsManager(private val userPublicKey: String, private val threadDatab
         // Prepare
         val cache = userPublicKeyCache[threadID] ?: return listOf()
         // Gather candidates
+        val storage = MessagingConfiguration.shared.storage
         val publicChat = threadDatabase.getPublicChat(threadID)
+        val openGroupV2 = storage.getV2OpenGroup(threadID.toString())
         var candidates: List<Mention> = cache.mapNotNull { publicKey ->
             val displayName: String?
             if (publicChat != null) {
                 displayName = userDatabase.getServerDisplayName(publicChat.id, publicKey)
+            } else if (openGroupV2 != null) {
+                displayName = userDatabase.getServerDisplayName(openGroupV2.id, publicKey)
             } else {
                 displayName = userDatabase.getDisplayName(publicKey)
             }
