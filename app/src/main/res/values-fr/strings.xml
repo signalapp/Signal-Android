@@ -418,6 +418,15 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vous avez reçu un message chiffré avec une ancienne version de Signal qui n’est plus prise en charge. Veuillez demander à l’expéditeur de mettre Session à jour vers la version la plus récente et de renvoyer son message.</string>
   <string name="MessageRecord_left_group">Vous avez quitté le groupe</string>
   <string name="MessageRecord_you_updated_group">Vous avez mis le groupe à jour.</string>
+  <string name="MessageRecord_you_created_a_new_group">Vous avez créée un nouveau groupe.</string>
+  <string name="MessageRecord_s_added_you_to_the_group">%1$s vous a ajouté au groupe.</string>
+  <string name="MessageRecord_you_renamed_the_group_to_s">Vous avez renommé le groupe en \'%1$s\'</string>
+  <string name="MessageRecord_s_renamed_the_group_to_s">%1$s a renommé le groupe en \'%2$s\'</string>
+  <string name="MessageRecord_you_added_s_to_the_group">Vous avez ajouté %1$s au groupe.</string>
+  <string name="MessageRecord_s_added_s_to_the_group">%1$s a ajouté %2$s au groupe.</string>
+  <string name="MessageRecord_you_removed_s_from_the_group">Vous avez supprimé %1$s du groupe.</string>
+  <string name="MessageRecord_s_removed_s_from_the_group">%1$s a supprimé %2$s du groupe.</string>
+  <string name="MessageRecord_you_were_removed_from_the_group">Vous avez été supprimé du groupe.</string>
   <string name="MessageRecord_you_called">Vous avez appelé</string>
   <string name="MessageRecord_called_you">Contact appelé</string>
   <string name="MessageRecord_missed_call">Appel manqué</string>
@@ -1482,5 +1491,36 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="fragment_contact_selection_contacts_title">Contacts</string>
   <string name="fragment_contact_selection_closed_groups_title">Groupes privés</string>
   <string name="fragment_contact_selection_open_groups_title">Groupes publics</string>
+
+  <!-- Next round of translation -->
+
+  <string name="menu_apply_button">Appliquer</string>
+  <string name="menu_done_button">Terminé</string>
+
+  <string name="activity_edit_closed_group_title">Modifier le groupe</string>
+  <string name="activity_edit_closed_group_edit_text_hint">Saisissez un nouveau nom de groupe</string>
+  <string name="activity_edit_closed_group_edit_members">Membres</string>
+  <string name="activity_edit_closed_group_add_members">Ajouter des membres</string>
+  <string name="activity_edit_closed_group_group_name_missing_error">Le nom du groupe ne peut pas être vide</string>
+  <string name="activity_edit_closed_group_group_name_too_long_error">Veuillez saisir un nom plus court</string>
+  <string name="activity_edit_closed_group_not_enough_group_members_error">Les groupes doivent avoir au moins un membre</string>
+  <string name="activity_edit_closed_group_invalid_session_id_error">Un des membres du group a un Session ID invalide</string>
+  <string name="activity_edit_closed_group_confirm_removal">Êtes vous sûr de vouloir suprimer ce membre du groupe?</string>
+  <string name="activity_edit_closed_group_member_removed">Membre supprimé du groupe</string>
+
+  <string name="fragment_edit_group_bottom_sheet_remove">Supprimer le membre du groupe</string>
+
+  <string name="activity_select_contacts_title">Contacts</string>
+
+  <string name="dialog_ui_mode_title">Thème</string>
+  <string name="dialog_ui_mode_option_day">Jour</string>
+  <string name="dialog_ui_mode_option_night">Nuit</string>
+  <string name="dialog_ui_mode_option_system_default">Système</string>
+
+  <string name="activity_conversation_menu_copy_session_id">Copier le Session ID</string>
+
+  <string name="attachment">Pièce jointe</string>
+  <string name="attachment_type_voice_message">Message vocal</string>
+  <string name="details">Détails</string>
 
 </resources>
