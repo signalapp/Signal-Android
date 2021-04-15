@@ -1963,6 +1963,7 @@
   <string name="PaymentsHomeFragment__processing_payment">支払いを処理しています</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">通貨換算は利用できません</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">支払い機能を停止しますか？</string>
   <string name="PaymentsHomeFragment__continue">続ける</string>
   <string name="PaymentsHomeFragment__details">詳細</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2573,6 +2574,7 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">壁紙の設定でエラーが発生しました。</string>
   <string name="WallpaperCropActivity__blur_photo">写真をぼかす</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">MobileCoinについて</string>
   <string name="payment_info_card_hide">閉じる</string>
   <string name="payment_info_card_update_pin">PINをアップデート</string>
   <!--DeactivateWalletFragment-->

@@ -1502,6 +1502,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Beskedanmodning</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Afspil video</string>
   <string name="ThumbnailView_Has_a_caption_description">Har en billedtekst</string>

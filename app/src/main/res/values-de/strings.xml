@@ -1491,6 +1491,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Unterhaltungsanfrage</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Video abspielen</string>
   <string name="ThumbnailView_Has_a_caption_description">Hat eine Beschriftung</string>

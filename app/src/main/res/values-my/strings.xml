@@ -1436,6 +1436,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">မက်ဆေ့ချ် တောင်းဆိုချက်</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ဗွီဒီယိုဖွင့်ပါ</string>
   <string name="ThumbnailView_Has_a_caption_description">စာတန်းပါရှိတယ်</string>
