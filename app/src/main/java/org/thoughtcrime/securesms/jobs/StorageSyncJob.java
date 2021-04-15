@@ -192,7 +192,7 @@ public class StorageSyncJob extends BaseJob {
           needsForcePush = true;
         }
 
-        StorageSyncValidations.validate(writeOperationResult, remoteManifest, needsForcePush);
+        StorageSyncValidations.validate(writeOperationResult, Optional.absent(), needsForcePush);
 
         Log.i(TAG, "[Remote Newer] MergeResult :: " + mergeResult);
 
@@ -256,7 +256,7 @@ public class StorageSyncJob extends BaseJob {
       Log.i(TAG, String.format(Locale.ENGLISH, "[Local Changes] Local changes present. %d updates, %d inserts, %d deletes, account update: %b, account insert: %b.", pendingUpdates.size(), pendingInsertions.size(), pendingDeletions.size(), pendingAccountUpdate.isPresent(), pendingAccountInsert.isPresent()));
 
       WriteOperationResult localWrite = localWriteResult.get().getWriteResult();
-      StorageSyncValidations.validate(localWrite, remoteManifest, needsForcePush);
+      StorageSyncValidations.validate(localWrite, Optional.absent(), needsForcePush);
 
       Log.i(TAG, "[Local Changes] WriteOperationResult :: " + localWrite);
 
