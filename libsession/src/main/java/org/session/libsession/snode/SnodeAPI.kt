@@ -12,6 +12,7 @@ import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.Broadcaster
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.logging.Log
@@ -37,16 +38,18 @@ object SnodeAPI {
 
     // use port 4433 if API level can handle network security config and enforce pinned certificates
     private val seedPort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
-    private val seedNodePool: Set<String> = setOf(
-            "https://storage.seed1.loki.network:$seedPort",
-            "https://storage.seed3.loki.network:$seedPort",
-            "https://public.loki.foundation:$seedPort"
-    )
-    internal val snodeFailureThreshold = 4
+    private val seedNodePool by lazy {
+        if (useTestnet) {
+            setOf( "http://public.loki.foundation:38157" )
+        } else {
+            setOf( "https://storage.seed1.loki.network:$seedPort", "https://storage.seed3.loki.network:$seedPort", "https://public.loki.foundation:$seedPort" )
+        }
+    }
+    private val snodeFailureThreshold = 4
     private val targetSwarmSnodeCount = 2
-
     private val useOnionRequests = true
 
+    internal val useTestnet = false
     internal var powDifficulty = 1
 
     // Error
@@ -164,7 +167,7 @@ object SnodeAPI {
             cachedSwarmCopy.addAll(cachedSwarm)
             return task { cachedSwarmCopy }
         } else {
-            val parameters = mapOf( "pubKey" to publicKey )
+            val parameters = mapOf( "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey )
             return getRandomSnode().bind {
                 invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
             }.map(sharedContext) {
@@ -177,7 +180,7 @@ object SnodeAPI {
 
     fun getRawMessages(snode: Snode, publicKey: String): RawResponsePromise {
         val lastHashValue = database.getLastMessageHashValue(snode, publicKey) ?: ""
-        val parameters = mapOf( "pubKey" to publicKey, "lastHash" to lastHashValue )
+        val parameters = mapOf( "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey, "lastHash" to lastHashValue )
         return invoke(Snode.Method.GetMessages, snode, publicKey, parameters)
     }
 
@@ -190,7 +193,7 @@ object SnodeAPI {
     }
 
     fun sendMessage(message: SnodeMessage): Promise<Set<RawResponsePromise>, Exception> {
-        val destination = message.recipient
+        val destination = if (useTestnet) message.recipient.removing05PrefixIfNeeded() else message.recipient
         return retryIfNeeded(maxRetryCount) {
             getTargetSnodes(destination).map { swarm ->
                 swarm.map { snode ->
