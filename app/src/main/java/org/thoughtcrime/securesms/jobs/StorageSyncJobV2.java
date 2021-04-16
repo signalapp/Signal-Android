@@ -360,6 +360,9 @@ public class StorageSyncJobV2 extends BaseJob {
         Log.i(TAG, "[Remote Sync] Updating local manifest version to: " + remoteManifest.get().getVersion());
         TextSecurePreferences.setStorageManifestVersion(context, remoteManifest.get().getVersion());
       }
+    } else if (remoteManifest.isPresent()) {
+      Log.w(TAG, "[Remote Sync] Remote version was older. User might have switched accounts. Making our version match.");
+      TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);
     }
 
     localManifestVersion = TextSecurePreferences.getStorageManifestVersion(context);
