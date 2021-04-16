@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.utilities
 
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.core.JsonParseException
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.utilities.JsonUtil
@@ -9,14 +11,21 @@ import java.util.*
 // class used to save update messages details
 class UpdateMessageData () {
 
-    var type: SignalServiceGroup.Type = SignalServiceGroup.Type.UNKNOWN
-    var groupName: String? = null
-    var updatedMembers: Collection<String> = Collections.emptyList()
+    var kind: Kind? = null
 
-    constructor(type: SignalServiceGroup.Type, groupName: String?, updatedMembers: Collection<String>): this() {
-        this.type = type
-        this.groupName = groupName
-        this.updatedMembers = updatedMembers
+    //the annotations below are required for serialization. Any new Kind class MUST be declared as JsonSubTypes as well
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
+    @JsonSubTypes(
+            JsonSubTypes.Type(Kind.GroupUpdate::class, name = "GroupUpdate")
+    )
+    sealed class Kind {
+        class GroupUpdate( var type: SignalServiceGroup.Type, var groupName: String?, var updatedMembers: Collection<String>): Kind() {
+            constructor(): this(SignalServiceGroup.Type.UNKNOWN, null, Collections.emptyList()) //default constructor required for json serialization
+        }
+    }
+
+    constructor(kind: Kind): this() {
+        this.kind = kind
     }
 
     companion object {
@@ -24,19 +33,19 @@ class UpdateMessageData () {
 
         fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): UpdateMessageData {
             return when(type) {
-                SignalServiceGroup.Type.NAME_CHANGE -> UpdateMessageData(type, name, Collections.emptyList())
-                SignalServiceGroup.Type.MEMBER_ADDED -> UpdateMessageData(type,null, members)
-                SignalServiceGroup.Type.MEMBER_REMOVED -> UpdateMessageData(type,null, members)
-                else -> UpdateMessageData(type,null, Collections.emptyList())
+                SignalServiceGroup.Type.NAME_CHANGE -> UpdateMessageData(Kind.GroupUpdate(type, name, Collections.emptyList()))
+                SignalServiceGroup.Type.MEMBER_ADDED -> UpdateMessageData(Kind.GroupUpdate(type,null, members))
+                SignalServiceGroup.Type.MEMBER_REMOVED -> UpdateMessageData(Kind.GroupUpdate(type,null, members))
+                else -> UpdateMessageData(Kind.GroupUpdate(type,null, Collections.emptyList()))
             }
         }
 
         fun fromJSON(json: String): UpdateMessageData {
-            return try {
+             return try {
                 JsonUtil.fromJson(json, UpdateMessageData::class.java)
             } catch (e: JsonParseException) {
                 Log.e(TAG, "${e.message}")
-                UpdateMessageData(SignalServiceGroup.Type.UNKNOWN, null, Collections.emptyList())
+                UpdateMessageData(Kind.GroupUpdate(SignalServiceGroup.Type.UNKNOWN, null, Collections.emptyList()))
             }
         }
     }

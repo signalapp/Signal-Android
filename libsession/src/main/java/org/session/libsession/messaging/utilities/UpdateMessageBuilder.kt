@@ -8,13 +8,14 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 
 object UpdateMessageBuilder {
 
-    fun buildGroupUpdateMessage(context: Context, updateData: UpdateMessageData, sender: String? = null, isOutgoing: Boolean = false): String {
-        val updateType = updateData.type
+    fun buildGroupUpdateMessage(context: Context, updateMessageData: UpdateMessageData, sender: String? = null, isOutgoing: Boolean = false): String {
         var message: String = ""
+        val updateData = updateMessageData.kind as? UpdateMessageData.Kind.GroupUpdate ?: return message
+        val updateType = updateData.type
         if (!isOutgoing && sender == null) return message
         val senderName: String? = if (!isOutgoing) {
             MessagingConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
-        } else { sender }
+        } else { context.getString(R.string.MessageRecord_you) }
 
         when (updateType) {
             SignalServiceGroup.Type.CREATION -> {

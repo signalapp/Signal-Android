@@ -427,6 +427,7 @@
   <string name="MessageRecord_you_removed_s_from_the_group">Vous avez supprimé %1$s du groupe.</string>
   <string name="MessageRecord_s_removed_s_from_the_group">%1$s a supprimé %2$s du groupe.</string>
   <string name="MessageRecord_you_were_removed_from_the_group">Vous avez été supprimé du groupe.</string>
+  <string name="MessageRecord_you">Vous</string>
   <string name="MessageRecord_you_called">Vous avez appelé</string>
   <string name="MessageRecord_called_you">Contact appelé</string>
   <string name="MessageRecord_missed_call">Appel manqué</string>
