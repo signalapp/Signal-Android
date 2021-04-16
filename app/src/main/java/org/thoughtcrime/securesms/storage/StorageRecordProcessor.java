@@ -11,51 +11,9 @@ import java.io.IOException;
 import java.util.Collection;
 
 /**
- * Handles processing a remote record, which involves:
- * - Applying an local changes that need to be made base don the remote record
- * - Returning a result with any remote updates/deletes that need to be applied after merging with
- *   the local record.
+ * Handles processing a remote record, which involves applying any local changes that need to be
+ * made based on the remote records.
  */
 public interface StorageRecordProcessor<E extends SignalRecord> {
-
-  @NonNull Result<E> process(@NonNull Collection<E> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException;
-
-  final class Result<E extends SignalRecord> {
-    private final Collection<StorageRecordUpdate<E>> remoteUpdates;
-    private final Collection<E>                      remoteDeletes;
-
-    Result(@NonNull Collection<StorageRecordUpdate<E>> remoteUpdates, @NonNull Collection<E> remoteDeletes) {
-      this.remoteDeletes = remoteDeletes;
-      this.remoteUpdates = remoteUpdates;
-    }
-
-    public @NonNull Collection<E> getRemoteDeletes() {
-      return remoteDeletes;
-    }
-
-    public @NonNull Collection<StorageRecordUpdate<E>> getRemoteUpdates() {
-      return remoteUpdates;
-    }
-
-    public boolean isLocalOnly() {
-      return remoteUpdates.isEmpty() && remoteDeletes.isEmpty();
-    }
-
-    @Override
-    public @NonNull String toString() {
-      if (isLocalOnly()) {
-        return "Empty";
-      }
-
-      StringBuilder builder = new StringBuilder();
-
-      builder.append(remoteDeletes.size()).append(" Deletes, ").append(remoteUpdates.size()).append(" Updates\n");
-
-      for (StorageRecordUpdate<E> update : remoteUpdates) {
-        builder.append("- ").append(update.toString()).append("\n");
-      }
-
-      return builder.toString();
-    }
-  }
+  void process(@NonNull Collection<E> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException;
 }

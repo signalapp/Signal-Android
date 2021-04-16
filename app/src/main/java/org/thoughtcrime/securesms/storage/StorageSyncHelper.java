@@ -349,30 +349,6 @@ public final class StorageSyncHelper {
     return new WriteOperationResult(manifest, inserts, Stream.of(deletes).map(StorageId::getRaw).toList());
   }
 
-  /**
-   * Assumes all changes have already been applied to local data. That means that keys will be
-   * taken as-is, and the rest of the arguments are used to form the insert/delete sets.
-   */
-  public static @NonNull WriteOperationResult createWriteOperation(long currentManifestVersion,
-                                                                   @NonNull List<StorageId> allStorageKeys,
-                                                                   @NonNull StorageRecordProcessor.Result<? extends SignalRecord>... results)
-  {
-    Set<SignalStorageRecord> inserts = new LinkedHashSet<>();
-    Set<StorageId>           deletes = new LinkedHashSet<>();
-
-    for (StorageRecordProcessor.Result<? extends SignalRecord> result : results) {
-      for (StorageRecordUpdate<? extends SignalRecord> update : result.getRemoteUpdates()) {
-        inserts.add(update.getNew().asStorageRecord());
-        deletes.add(update.getOld().getId());
-      }
-      deletes.addAll(Stream.of(result.getRemoteDeletes()).map(SignalRecord::getId).toList());
-    }
-
-    SignalStorageManifest manifest = new SignalStorageManifest(currentManifestVersion + 1, new ArrayList<>(allStorageKeys));
-
-    return new WriteOperationResult(manifest, new ArrayList<>(inserts), Stream.of(deletes).map(StorageId::getRaw).toList());
-  }
-
   public static @NonNull byte[] generateKey() {
     return keyGenerator.generate();
   }
@@ -708,12 +684,16 @@ public final class StorageSyncHelper {
 
     @Override
     public @NonNull String toString() {
-      return String.format(Locale.ENGLISH,
-                           "ManifestVersion: %d, Total Keys: %d, Inserts: %d, Deletes: %d",
-                           manifest.getVersion(),
-                           manifest.getStorageIds().size(),
-                           inserts.size(),
-                           deletes.size());
+      if (isEmpty()) {
+        return "Empty";
+      } else {
+        return String.format(Locale.ENGLISH,
+                             "ManifestVersion: %d, Total Keys: %d, Inserts: %d, Deletes: %d",
+                             manifest.getVersion(),
+                             manifest.getStorageIds().size(),
+                             inserts.size(),
+                             deletes.size());
+      }
     }
   }
 

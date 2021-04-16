@@ -101,13 +101,11 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
 
   @Override
   void insertLocal(@NonNull SignalGroupV1Record record) {
-    Log.i(TAG, "Local GV1 insert");
     recipientDatabase.applyStorageSyncGroupV1Insert(record);
   }
 
   @Override
   void updateLocal(@NonNull StorageRecordUpdate<SignalGroupV1Record> update) {
-    Log.i(TAG, "Local GV1 update: " + update.toString());
     recipientDatabase.applyStorageSyncGroupV1Update(update);
   }
 

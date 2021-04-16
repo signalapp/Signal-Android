@@ -29,8 +29,12 @@ public final class StorageSyncValidations {
 
   private StorageSyncValidations() {}
 
-  public static void validate(@NonNull StorageSyncHelper.WriteOperationResult result, @NonNull Optional<SignalStorageManifest> previousManifest, boolean forcePushPending) {
-    validateManifestAndInserts(result.getManifest(), result.getInserts());
+  public static void validate(@NonNull StorageSyncHelper.WriteOperationResult result,
+                              @NonNull Optional<SignalStorageManifest> previousManifest,
+                              boolean forcePushPending,
+                              @NonNull Recipient self)
+  {
+    validateManifestAndInserts(result.getManifest(), result.getInserts(), self);
 
     if (result.getDeletes().size() > 0) {
       Set<String> allSetEncoded = Stream.of(result.getManifest().getStorageIds()).map(StorageId::getRaw).map(Base64::encodeBytes).collect(Collectors.toSet());
@@ -60,47 +64,47 @@ public final class StorageSyncValidations {
     Set<ByteBuffer> previousIds = Stream.of(previousManifest.get().getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
     Set<ByteBuffer> newIds      = Stream.of(result.getManifest().getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
-    Set<ByteBuffer> insertedIds = SetUtil.difference(newIds, previousIds);
-    Set<ByteBuffer> deletedIds  = SetUtil.difference(previousIds, newIds);
+    Set<ByteBuffer> manifestInserts = SetUtil.difference(newIds, previousIds);
+    Set<ByteBuffer> manifestDeletes = SetUtil.difference(previousIds, newIds);
 
-    Set<ByteBuffer> writeInserts = Stream.of(result.getInserts()).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> writeDeletes = Stream.of(result.getDeletes()).map(ByteBuffer::wrap).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredInserts = Stream.of(result.getInserts()).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredDeletes = Stream.of(result.getDeletes()).map(ByteBuffer::wrap).collect(Collectors.toSet());
 
-    if (writeInserts.size() > insertedIds.size()) {
-      Log.w(TAG, "WriteInserts: " + writeInserts.size() + ", InsertedIds: " + insertedIds.size());
+    if (declaredInserts.size() > manifestInserts.size()) {
+      Log.w(TAG, "DeclaredInserts: " + declaredInserts.size() + ", ManifestInserts: " + manifestInserts.size());
       throw new MoreInsertsThanExpectedError();
     }
 
-    if (writeInserts.size() < insertedIds.size()) {
-      Log.w(TAG, "WriteInserts: " + writeInserts.size() + ", InsertedIds: " + insertedIds.size());
+    if (declaredInserts.size() < manifestInserts.size()) {
+      Log.w(TAG, "DeclaredInserts: " + declaredInserts.size() + ", ManifestInserts: " + manifestInserts.size());
       throw new LessInsertsThanExpectedError();
     }
 
-    if (!writeInserts.containsAll(insertedIds)) {
+    if (!declaredInserts.containsAll(manifestInserts)) {
       throw new InsertMismatchError();
     }
 
-    if (writeDeletes.size() > deletedIds.size()) {
-      Log.w(TAG, "WriteDeletes: " + writeDeletes.size() + ", DeletedIds: " + deletedIds.size());
+    if (declaredDeletes.size() > manifestDeletes.size()) {
+      Log.w(TAG, "DeclaredDeletes: " + declaredDeletes.size() + ", ManifestDeletes: " + manifestDeletes.size());
       throw new MoreDeletesThanExpectedError();
     }
 
-    if (writeDeletes.size() < deletedIds.size()) {
-      Log.w(TAG, "WriteDeletes: " + writeDeletes.size() + ", DeletedIds: " + deletedIds.size());
+    if (declaredDeletes.size() < manifestDeletes.size()) {
+      Log.w(TAG, "DeclaredDeletes: " + declaredDeletes.size() + ", ManifestDeletes: " + manifestDeletes.size());
       throw new LessDeletesThanExpectedError();
     }
 
-    if (!writeDeletes.containsAll(deletedIds)) {
+    if (!declaredDeletes.containsAll(manifestDeletes)) {
       throw new DeleteMismatchError();
     }
   }
 
 
-  public static void validateForcePush(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts) {
-    validateManifestAndInserts(manifest, inserts);
+  public static void validateForcePush(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts, @NonNull Recipient self) {
+    validateManifestAndInserts(manifest, inserts, self);
   }
 
-  private static void validateManifestAndInserts(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts) {
+  private static void validateManifestAndInserts(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts, @NonNull Recipient self) {
     Set<StorageId>  allSet    = new HashSet<>(manifest.getStorageIds());
     Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
     Set<ByteBuffer> rawIdSet  = Stream.of(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
@@ -140,7 +144,6 @@ public final class StorageSyncValidations {
       }
 
       if (insert.getContact().isPresent()) {
-        Recipient            self    = Recipient.self().fresh();
         SignalServiceAddress address = insert.getContact().get().getAddress();
         if (self.getE164().get().equals(address.getNumber().or("")) || self.getUuid().get().equals(address.getUuid().orNull())) {
           throw new SelfAddedAsContactError();

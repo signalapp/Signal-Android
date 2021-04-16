@@ -9,8 +9,6 @@ import org.whispersystems.signalservice.api.storage.SignalRecord;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -42,14 +40,13 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
    * having the same MasterKey).
    */
   @Override
-  public @NonNull Result<E> process(@NonNull Collection<E> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
-    List<E>                      remoteDeletes  = new LinkedList<>();
-    List<StorageRecordUpdate<E>> remoteUpdates  = new LinkedList<>();
-    Set<E>                       matchedRecords = new TreeSet<>(this);
+  public void process(@NonNull Collection<E> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
+    Set<E> matchedRecords = new TreeSet<>(this);
+    int    i              = 0;
 
     for (E remote : remoteRecords) {
       if (isInvalid(remote)) {
-        remoteDeletes.add(remote);
+        warn(i, remote, "Found invalid key! Ignoring it.");
       } else {
         Optional<E> local = getMatching(remote, keyGenerator);
 
@@ -57,26 +54,36 @@ abstract class DefaultStorageRecordProcessor<E extends SignalRecord> implements 
           E merged = merge(remote, local.get(), keyGenerator);
 
           if (matchedRecords.contains(local.get())) {
-            Log.w(TAG, "Multiple remote records map to the same local record! Marking this one for deletion. (Type: " + local.get().getClass().getSimpleName() + ")");
-            remoteDeletes.add(remote);
+            warn(i, remote, "Multiple remote records map to the same local record! Ignoring this one.");
           } else {
             matchedRecords.add(local.get());
 
             if (!merged.equals(remote)) {
-              remoteUpdates.add(new StorageRecordUpdate<>(remote, merged));
+              info(i, remote, "[Remote Update] " + new StorageRecordUpdate<>(remote, merged).toString());
             }
 
             if (!merged.equals(local.get())) {
-              updateLocal(new StorageRecordUpdate<>(local.get(), merged));
+              StorageRecordUpdate<E> update = new StorageRecordUpdate<>(local.get(), merged);
+              info(i, remote, "[Local Update] " + update.toString());
+              updateLocal(update);
             }
           }
         } else {
+          info(i, remote, "No matching local record. Inserting.");
           insertLocal(remote);
         }
       }
-    }
 
-    return new Result<>(remoteUpdates, remoteDeletes);
+      i++;
+    }
+  }
+
+  private void info(int i, E record, String message) {
+    Log.i(TAG, "[" + i + "][" + record.getClass().getSimpleName() + "] " + message);
+  }
+
+  private void warn(int i, E record, String message) {
+    Log.w(TAG, "[" + i + "][" + record.getClass().getSimpleName() + "] " + message);
   }
 
   /**

@@ -127,7 +127,6 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   void updateLocal(@NonNull StorageRecordUpdate<SignalAccountRecord> update) {
-    Log.i(TAG, "Local account update: " + update.toString());
     StorageSyncHelper.applyAccountStorageSyncUpdates(context, self, update.getNew(), true);
   }
 
