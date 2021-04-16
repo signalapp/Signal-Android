@@ -770,12 +770,14 @@ public class Recipient {
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
-    if      (isSelf)                        return fallbackPhotoProvider.getPhotoForLocalNumber();
-    else if (isResolving())                 return fallbackPhotoProvider.getPhotoForResolvingRecipient();
-    else if (isGroupInternal())             return fallbackPhotoProvider.getPhotoForGroup();
-    else if (isGroup())                     return fallbackPhotoProvider.getPhotoForGroup();
-    else if (!TextUtils.isEmpty(groupName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName);
-    else                                    return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
+    if      (isSelf)                                return fallbackPhotoProvider.getPhotoForLocalNumber();
+    else if (isResolving())                         return fallbackPhotoProvider.getPhotoForResolvingRecipient();
+    else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
+    else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
+    else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName);
+    else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName);
+    else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString());
+    else                                            return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
   }
 
   public @Nullable ContactPhoto getContactPhoto() {
