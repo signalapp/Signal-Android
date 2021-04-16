@@ -2106,6 +2106,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsDetailsFragment__to">Për</string>
   <string name="PaymentsDetailsFragment__from">Nga</string>
   <string name="PaymentsDetailsFragment__information">Hollësi transaksioni, përfshi llogari pagesash dhe kohë transaksioni, janë pjesë e MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tarifë Coin Cleanup</string>
   <string name="PaymentsDetailsFragment__no_details_available">S’ka hollësi të mëtejshme për këtë transaksion</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagesë e dërguar</string>
   <string name="PaymentsDetailsFragment__received_payment">Pagesë e marrë</string>

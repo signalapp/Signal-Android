@@ -1619,6 +1619,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Запрос на общение</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Воспроизвести видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Есть подпись</string>

@@ -2211,6 +2211,7 @@
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Galite naudoti Signal, kad siųstumėte ir gautumėte „MobileCoin“ valiutą. Visiems mokėjimams taikomos sąlygos, aprėpiančios naudojimąsi „MobileCoins“ valiuta ir „MobileCoin“ pinigine. Tai yra beta ypatybė, todėl galite susidurti su kai kuriomis problemomis, o jūsų prarastų mokėjimų ir likučių negalima bus atkurti. </string>
   <string name="PaymentsHomeFragment__activate">Aktyvuoti</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Rodyti „MobileCoin“ sąlygas</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Mokėjimai Signal programėlėje daugiau nebeprieinami. Jūs vis dar galite pervesti lėšas į valiutos keitimo punktą, bet nebegalite siųsti ir gauti mokėjimų ar pridėti lėšų.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Pridėti lėšų</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Jūsų piniginės adresas</string>
@@ -2241,12 +2242,17 @@
   <string name="PaymentsTransferFragment__you_can_transfer">Galite pervesti „MobileCoin“ valiutą, užbaigdami pervedimą į valiutos keitimo punkto pateiktą piniginės adresą. Piniginės adresas yra skaitmenų ir raidžių eilutė, kuri, įprastai, būna po QR kodu.</string>
   <string name="PaymentsTransferFragment__next">Kitas</string>
   <string name="PaymentsTransferFragment__invalid_address">Neteisingas adresas</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Norint nuskenuoti QR kodą, Signal reikia prieigos prie kameros.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Norint nuskenuoti QR kodą, Signal reikia prieigos prie kameros.</string>
   <string name="PaymentsTransferFragment__settings">Nustatymai</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skenuoti adreso QR kodą</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skenuoti lėšų gavėjo adreso QR kodą</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Prašyti</string>
   <string name="CreatePaymentFragment__pay">Mokėti</string>
   <string name="CreatePaymentFragment__available_balance_s">Prieinamas likutis: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Perjungti</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2266,6 +2272,7 @@
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Patvirtinti mokėjimą</string>
   <string name="ConfirmPayment__network_fee">Tinklo mokestis</string>
+  <string name="ConfirmPayment__error_getting_fee">Klaida gaunant mokestį</string>
   <string name="ConfirmPayment__estimated_s">Apskaičiuota %1$s suma</string>
   <string name="ConfirmPayment__to">Kam</string>
   <string name="ConfirmPayment__total_amount">Iš viso</string>
@@ -2887,6 +2894,7 @@
   <string name="payment_info_card_you_can_cash_out_mobilecoin">„MobileCoin“ valiutą bet kuriuo metu galite išgryninti valiutos keitimo punktuose, kurie palaiko „MobileCoin“. Tiesiog, atlikite pervedimą į savo sąskaitą tame valiutos keitimo punkte.</string>
   <string name="payment_info_card_hide_this_card">Slėpti šią kortelę?</string>
   <string name="payment_info_card_hide">Slėpti</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Atkūrimo frazė suteikia jums kitą būdą atkurti savo mokėjimų paskyrą.</string>
   <string name="payment_info_card_update_pin">Atnaujinti PIN kodą</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Pasyvinti piniginę</string>
@@ -2903,6 +2911,8 @@
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Rodyti atkūrimo frazę</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Kai įdiegsite Signal iš naujo, jūsų likutis bus automatiškai atkurtas tuo atveju, jei patvirtinsite savo Signal PIN kodą. Taip pat galite atkurti savo likutį naudodami atkūrimo frazę – savo unikalią %1$d žodžių frazę. Užsirašykite ją ir saugokite saugioje vietoje.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Atkūrimo frazė yra jūsų unikali %1$d žodžių frazė. Naudokite šią frazę, norėdami atkurti savo likutį.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Pradėti</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Įvesti rankiniu būdu</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Įdėti iš iškarpinės</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Įdėti atkūrimo frazę</string>
@@ -2915,15 +2925,19 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Taisyti</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Ankstesnis</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jūsų atkūrimo frazė</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Užsirašykite šiuos %1$d žodžius eilės tvarka. Saugokite sąrašą saugioje vietoje.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Įsitikinkite, kad teisingai įvedėte frazę.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Nedarykite ekrano kopijų ir nesiųskite el. paštu.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Mokėjimų paskyra atkurta.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Neteisinga atkūrimo frazė</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Įsitikinkite, kad teisingai įvedėte frazę ir bandykite dar kartą.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopijuoti į iškarpinę?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Jei pasirinksite saugoti savo atkūrimo frazę skaitmeniniu pavidalu, užtikrinkite, kad ji bus saugiai laikoma patikimoje vietoje.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopijuoti</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Rodyti frazę dar kartą</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Atlikta</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Atkūrimo frazė patvirtinta</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">Kitas</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Neteisingas žodis</string>

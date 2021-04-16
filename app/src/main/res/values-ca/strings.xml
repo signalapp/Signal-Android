@@ -914,8 +914,8 @@
   <string name="MessageRecord_you_added_s">Hi heu afegit %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s ha afegit %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s us ha afegit al grup.</string>
-  <string name="MessageRecord_you_joined_the_group">Us heu unit al grup.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s s\'han unit al grup.</string>
+  <string name="MessageRecord_you_joined_the_group">Us heu afegit al grup.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s s\'ha afegit al grup.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Heu suprimit %1$s.</string>
   <string name="MessageRecord_s_removed_s">%1$s ha suprimit %2$s.</string>
@@ -1479,7 +1479,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NotificationChannel_group_chats">Converses</string>
   <string name="NotificationChannel_missing_display_name">Desconegut</string>
   <string name="NotificationChannel_voice_notes">Notes de veu</string>
-  <string name="NotificationChannel_contact_joined_signal">El contacte s\'ha unit al Signal</string>
+  <string name="NotificationChannel_contact_joined_signal">El contacte s\'ha afegit al Signal.</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hi ha activitat disponible per obrir la configuració del canal de notificacions.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
@@ -1496,6 +1496,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Missatge nou</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Sol·licitud de missatge</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Reprodueix el vídeo</string>
   <string name="ThumbnailView_Has_a_caption_description">Té un títol</string>
@@ -1713,8 +1714,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="message_recipients_list_item__resend">TORNA A ENVIAR</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
-    <item quantity="one">%1$s s\'ha unit al grup.</item>
-    <item quantity="other">%1$s s\'han unit al grup.</item>
+    <item quantity="one">%1$s s\'ha afegit al grup.</item>
+    <item quantity="other">%1$s s\'han afegit al grup.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">El nom del grup ara és «%1$s».</string>
   <!--prompt_passphrase_activity-->
@@ -2005,7 +2006,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_chats__show_invitation_prompts">Mostra els avisos d\'invitacions</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostra els avisos d\'invitacions per als contactes sense Signal</string>
   <string name="preferences_chats__message_text_size">Mida de la lletra dels missatges</string>
-  <string name="preferences_events__contact_joined_signal">El contacte s\'ha unit al Signal</string>
+  <string name="preferences_events__contact_joined_signal">El contacte s\'ha afegit al Signal.</string>
   <string name="preferences_notifications__priority">Prioritat</string>
   <string name="preferences_communication__category_sealed_sender">Remitent segellat</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indicadors de pantalla</string>

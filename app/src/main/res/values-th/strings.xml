@@ -1311,7 +1311,7 @@
   <string name="ThreadRecord_you_marked_verified">คุณถูกทำเครื่องหมายว่าได้รับการตรวจยืนยันแล้ว</string>
   <string name="ThreadRecord_you_marked_unverified">คุณถูกทำเครื่องหมายว่ายังไม่ได้รับการตรวจยืนยัน</string>
   <string name="ThreadRecord_message_could_not_be_processed">ไม่สามารถประมวลผลข้อความ</string>
-  <string name="ThreadRecord_message_request">คำร้องขอส่งข้อความ</string>
+  <string name="ThreadRecord_message_request">คำขอส่งข้อความ</string>
   <string name="ThreadRecord_photo">รูปภาพ</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">ข้อความเสียง</string>
@@ -1438,6 +1438,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">คำขอส่งข้อความ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">เล่นวิดีโอ</string>
   <string name="ThumbnailView_Has_a_caption_description">มีคำบรรยายภาพ</string>
@@ -1718,7 +1719,7 @@
   <string name="AndroidManifest_archived_conversations">การสนทนาที่ถูกเก็บในที่เก็บถาวร</string>
   <string name="AndroidManifest_remove_photo">ลบรูป</string>
   <!--Message Requests Megaphone-->
-  <string name="MessageRequestsMegaphone__message_requests">คำร้องขอส่งข้อความ</string>
+  <string name="MessageRequestsMegaphone__message_requests">คำขอส่งข้อความ</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ตอนนี้ผู้ใช้สามารถเลือกได้ว่าจะตอบรับบทสนทนาใหม่หรือไม่ ชื่อโปรไฟล์จะข่วยให้คนรู้ว่าใครส่งข้อความหาพวกเขา</string>
   <string name="MessageRequestsMegaphone__add_profile_name">เพิ่มชื่อโปรไฟล์</string>
   <!--HelpFragment-->
@@ -1735,6 +1736,14 @@
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
+  <string-array name="HelpFragment__categories">
+    <item>มีบางสิ่งไม่ทำงาน</item>
+    <item>ขอความสามารถใหม่</item>
+    <item>มีคำถาม</item>
+    <item>มีข้อเสนอแนะ</item>
+    <item>อื่นๆ</item>
+    <item>การชำระเงิน</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
