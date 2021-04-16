@@ -343,7 +343,7 @@ public final class FeatureFlags {
 
   /** Whether or not to use {@link org.thoughtcrime.securesms.jobs.StorageSyncJobV2}. */
   public static boolean storageSyncV2() {
-    return getBoolean(STORAGE_SYNC_V2, false);
+    return getBoolean(STORAGE_SYNC_V2, true);
   }
 
   /** Whether or not to use the new notification system. */
