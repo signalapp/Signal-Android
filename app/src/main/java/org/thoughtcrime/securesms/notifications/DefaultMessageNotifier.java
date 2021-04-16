@@ -749,6 +749,12 @@ public class DefaultMessageNotifier implements MessageNotifier {
     alarmManager.cancel(pendingIntent);
   }
 
+  @Override
+  public void addStickyThread(long threadId, long earliestTimestamp) {}
+
+  @Override
+  public void removeStickyThread(long threadId) {}
+
   private static class DelayedNotification implements Runnable {
 
     private static final long DELAY = TimeUnit.SECONDS.toMillis(5);

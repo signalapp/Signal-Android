@@ -92,6 +92,16 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     getNotifier().clearReminder(context);
   }
 
+  @Override
+  public void addStickyThread(long threadId, long earliestTimestamp) {
+    getNotifier().addStickyThread(threadId, earliestTimestamp);
+  }
+
+  @Override
+  public void removeStickyThread(long threadId) {
+    getNotifier().removeStickyThread(threadId);
+  }
+
   private void runOnLimiter(@NonNull Runnable runnable) {
     Throwable prettyException = new Throwable();
     limiter.run(() -> {

@@ -49,11 +49,13 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
 
   private val threadReminders: MutableMap<Long, Reminder> = ConcurrentHashMap()
+  private val stickyThreads: MutableMap<Long, StickyThread> = mutableMapOf()
 
   private val executor = CancelableExecutor()
 
   override fun setVisibleThread(threadId: Long) {
     visibleThread = threadId
+    stickyThreads.remove(threadId)
   }
 
   override fun getVisibleThread(): Long {
@@ -112,23 +114,30 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       return
     }
 
-    val state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(context)
-
-    Log.internal().i(TAG, state.toString())
-
-    if (state.isEmpty) {
-      Log.i(TAG, "State is empty, cancelling all notifications")
-      NotificationCancellationHelper.cancelAllMessageNotifications(context)
-      updateBadge(context, 0)
-      clearReminderInternal(context)
-      return
-    }
-
     val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
     val currentPrivacyPreference: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
     val notificationConfigurationChanged: Boolean = currentLockStatus != previousLockedStatus || currentPrivacyPreference != previousPrivacyPreference
     previousLockedStatus = currentLockStatus
     previousPrivacyPreference = currentPrivacyPreference
+
+    if (notificationConfigurationChanged) {
+      stickyThreads.clear()
+    }
+
+    Log.internal().i(TAG, "sticky thread: $stickyThreads")
+    val state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(context, stickyThreads)
+    Log.internal().i(TAG, "state: $state")
+
+    val retainStickyThreadIds: Set<Long> = state.getThreadsWithMostRecentNotificationFromSelf()
+    stickyThreads.keys.retainAll { retainStickyThreadIds.contains(it) }
+
+    if (state.isEmpty) {
+      Log.i(TAG, "State is empty, cancelling all notifications")
+      NotificationCancellationHelper.cancelAllMessageNotifications(context, stickyThreads.map { it.value.notificationId }.toSet())
+      updateBadge(context, 0)
+      clearReminderInternal(context)
+      return
+    }
 
     val alertOverrides: Set<Long> = threadReminders.filter { (_, reminder) -> reminder.lastNotified < System.currentTimeMillis() - REMINDER_TIMEOUT }.keys
 
@@ -147,7 +156,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
 
     updateReminderTimestamps(context, alertOverrides, threadsThatAlerted)
 
-    ServiceUtil.getNotificationManager(context).cancelOrphanedNotifications(context, state)
+    ServiceUtil.getNotificationManager(context).cancelOrphanedNotifications(context, state, stickyThreads.map { it.value.notificationId }.toSet())
     updateBadge(context, state.messageCount)
 
     val smsIds: MutableList<Long> = mutableListOf()
@@ -162,6 +171,18 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     DatabaseFactory.getMmsSmsDatabase(context).setNotifiedTimestamp(System.currentTimeMillis(), smsIds, mmsIds)
 
     Log.i(TAG, "threads: ${state.threadCount} messages: ${state.messageCount}")
+  }
+
+  override fun clearReminder(context: Context) {
+    // Intentionally left blank
+  }
+
+  override fun addStickyThread(threadId: Long, earliestTimestamp: Long) {
+    stickyThreads[threadId] = StickyThread(threadId, NotificationIds.getNotificationIdForThread(threadId), earliestTimestamp)
+  }
+
+  override fun removeStickyThread(threadId: Long) {
+    stickyThreads.remove(threadId)
   }
 
   private fun updateReminderTimestamps(context: Context, alertOverrides: Set<Long>, threadsThatAlerted: Set<Long>) {
@@ -216,10 +237,6 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     alarmManager?.cancel(pendingIntent)
   }
 
-  override fun clearReminder(context: Context) {
-    // Intentionally left blank
-  }
-
   companion object {
     private val TAG = Log.tag(MessageNotifierV2::class.java)
     private val REMINDER_TIMEOUT = TimeUnit.MINUTES.toMillis(2)
@@ -233,7 +250,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     }
   }
 
-  private fun NotificationManager.cancelOrphanedNotifications(context: Context, state: NotificationStateV2) {
+  private fun NotificationManager.cancelOrphanedNotifications(context: Context, state: NotificationStateV2, stickyNotifications: Set<Int>) {
     if (Build.VERSION.SDK_INT < 23) {
       return
     }
@@ -244,7 +261,8 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
           notification.id != KeyCachingService.SERVICE_RUNNING_ID &&
           notification.id != IncomingMessageObserver.FOREGROUND_ID &&
           notification.id != NotificationIds.PENDING_MESSAGES &&
-          !CallNotificationBuilder.isWebRtcNotification(notification.id)
+          !CallNotificationBuilder.isWebRtcNotification(notification.id) &&
+          !stickyNotifications.contains(notification.id)
         ) {
           if (!state.notificationIds.contains(notification.id)) {
             Log.d(TAG, "Cancelling orphaned notification: ${notification.id}")
@@ -258,6 +276,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     }
   }
 
+  data class StickyThread(val threadId: Long, val notificationId: Int, val earliestTimestamp: Long)
   private data class Reminder(val lastNotified: Long, val count: Int = 0)
 }
 

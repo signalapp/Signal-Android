@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MessageDatabase.ThreadUpdate;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -214,6 +215,28 @@ public class MmsSmsDatabase extends Database {
   public Cursor getUnread() {
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
     String selection       = MmsSmsColumns.NOTIFIED + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1)";
+
+    return queryTables(PROJECTION, selection, order, null);
+  }
+
+  public Cursor getMessagesForNotificationState(Collection<MessageNotifierV2.StickyThread> stickyThreads) {
+    StringBuilder stickyQuery = new StringBuilder();
+    for (MessageNotifierV2.StickyThread stickyThread : stickyThreads) {
+      if (stickyQuery.length() > 0) {
+        stickyQuery.append(" OR ");
+      }
+      stickyQuery.append("(")
+                 .append(MmsSmsColumns.THREAD_ID + " = ")
+                 .append(stickyThread.getThreadId())
+                 .append(" AND ")
+                 .append(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)
+                 .append(" >= ")
+                 .append(stickyThread.getEarliestTimestamp())
+                 .append(")");
+    }
+
+    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
+    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null);
   }

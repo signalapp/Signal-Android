@@ -150,7 +150,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
  */
 class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : NotificationItemV2(threadRecipient, record) {
   override val timestamp: Long = record.timestamp
-  override val individualRecipient: Recipient = record.individualRecipient.resolve()
+  override val individualRecipient: Recipient = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve()
   override val isNewNotification: Boolean = notifiedTimestamp == 0L
 
   override fun getPrimaryTextActual(context: Context): CharSequence {

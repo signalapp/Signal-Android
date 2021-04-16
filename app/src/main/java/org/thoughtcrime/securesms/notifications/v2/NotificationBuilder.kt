@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.notifications.v2
 import android.annotation.TargetApi
 import android.app.Notification
 import android.app.PendingIntent
+import android.app.Person
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -15,7 +16,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import androidx.core.app.Person
 import androidx.core.app.RemoteInput
 import androidx.core.graphics.drawable.IconCompat
 import org.thoughtcrime.securesms.R
@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import androidx.core.app.Person as PersonCompat
 
 private const val BIG_PICTURE_DIMEN = 500
 
@@ -241,12 +242,18 @@ sealed class NotificationBuilder(protected val context: Context) {
         return
       }
 
-      val messagingStyle: NotificationCompat.MessagingStyle = NotificationCompat.MessagingStyle(ConversationUtil.buildPersonCompat(context, Recipient.self()))
+      val self: PersonCompat = PersonCompat.Builder()
+        .setBot(false)
+        .setName(Recipient.self().getDisplayName(context))
+        .setIcon(Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIconCompat())
+        .build()
+
+      val messagingStyle: NotificationCompat.MessagingStyle = NotificationCompat.MessagingStyle(self)
       messagingStyle.conversationTitle = conversation.getConversationTitle(context)
       messagingStyle.isGroupConversation = conversation.isGroup
 
       conversation.notificationItems.forEach { notificationItem ->
-        val personBuilder: Person.Builder = Person.Builder()
+        val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
           .setBot(false)
           .setName(notificationItem.getPersonName(context))
           .setUri(notificationItem.getPersonUri(context))
@@ -400,6 +407,7 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setWhen(timestamp: Long) {
       builder.setWhen(timestamp)
+      builder.setShowWhen(true)
     }
 
     override fun setGroupSummary(isGroupSummary: Boolean) {
@@ -480,12 +488,18 @@ sealed class NotificationBuilder(protected val context: Context) {
         return
       }
 
-      val messagingStyle: Notification.MessagingStyle = Notification.MessagingStyle(ConversationUtil.buildPerson(context, Recipient.self()))
+      val self: Person = Person.Builder()
+        .setBot(false)
+        .setName(Recipient.self().getDisplayName(context))
+        .setIcon(Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIcon())
+        .build()
+
+      val messagingStyle: Notification.MessagingStyle = Notification.MessagingStyle(self)
       messagingStyle.conversationTitle = conversation.getConversationTitle(context)
       messagingStyle.isGroupConversation = conversation.isGroup
 
       conversation.notificationItems.forEach { notificationItem ->
-        val personBuilder: android.app.Person.Builder = android.app.Person.Builder()
+        val personBuilder: Person.Builder = Person.Builder()
           .setBot(false)
           .setName(notificationItem.getPersonName(context))
           .setUri(notificationItem.getPersonUri(context))
@@ -623,6 +637,7 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setWhen(timestamp: Long) {
       builder.setWhen(timestamp)
+      builder.setShowWhen(true)
     }
 
     override fun setGroupSummary(isGroupSummary: Boolean) {

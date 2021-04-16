@@ -12,7 +12,6 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
@@ -43,6 +42,11 @@ public class MarkReadReceiver extends BroadcastReceiver {
     final long[] threadIds = intent.getLongArrayExtra(THREAD_IDS_EXTRA);
 
     if (threadIds != null) {
+      MessageNotifier notifier = ApplicationDependencies.getMessageNotifier();
+      for (long threadId : threadIds) {
+        notifier.removeStickyThread(threadId);
+      }
+
       NotificationCancellationHelper.cancelLegacy(context, intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
 
       SignalExecutors.BOUNDED.execute(() -> {

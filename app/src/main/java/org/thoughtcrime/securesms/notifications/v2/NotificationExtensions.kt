@@ -9,6 +9,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -26,8 +28,8 @@ fun Drawable?.toLargeBitmap(context: Context): Bitmap? {
 }
 
 fun Recipient.getContactDrawable(context: Context): Drawable? {
-  val contactPhoto: ContactPhoto? = contactPhoto
-  val fallbackContactPhoto: FallbackContactPhoto = fallbackContactPhoto
+  val contactPhoto: ContactPhoto? = if (isSelf) ProfileContactPhoto(this, profileAvatar) else contactPhoto
+  val fallbackContactPhoto: FallbackContactPhoto = if (isSelf) getFallback(context) else fallbackContactPhoto
   return if (contactPhoto != null) {
     try {
       GlideApp.with(context.applicationContext)
@@ -66,4 +68,8 @@ fun Uri.toBitmap(context: Context, dimension: Int): Bitmap {
 
 fun Intent.makeUniqueToPreventMerging(): Intent {
   return setData((Uri.parse("custom://" + System.currentTimeMillis())))
+}
+
+fun Recipient.getFallback(context: Context): FallbackContactPhoto {
+  return GeneratedContactPhoto(getDisplayName(context), R.drawable.ic_profile_outline_40)
 }

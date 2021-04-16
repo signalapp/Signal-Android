@@ -69,7 +69,7 @@ object NotificationFactory {
             conversation = conversation,
             targetThreadId = targetThreadId,
             defaultBubbleState = defaultBubbleState,
-            shouldAlert = conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)
+            shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) && !conversation.mostRecentNotification.individualRecipient.isSelf
           )
         }
       }

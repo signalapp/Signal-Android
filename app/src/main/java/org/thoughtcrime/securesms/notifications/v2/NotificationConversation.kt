@@ -34,10 +34,8 @@ private const val LARGE_ICON_DIMEN = 250
 class NotificationConversation(
   val recipient: Recipient,
   val threadId: Long,
-  unsortedNotificationItems: List<NotificationItemV2>
+  val notificationItems: List<NotificationItemV2>
 ) {
-
-  val notificationItems: List<NotificationItemV2> = unsortedNotificationItems.sorted()
   val mostRecentNotification: NotificationItemV2 = notificationItems.last()
   val notificationId: Int = NotificationIds.getNotificationIdForThread(threadId)
   val sortKey: Long = Long.MAX_VALUE - mostRecentNotification.timestamp
@@ -146,18 +144,18 @@ class NotificationConversation(
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {
-    var index = 0
     val ids = LongArray(notificationItems.size)
     val mms = BooleanArray(ids.size)
-    notificationItems.forEach { notificationItem ->
+    notificationItems.forEachIndexed { index, notificationItem ->
       ids[index] = notificationItem.id
-      mms[index++] = notificationItem.isMms
+      mms[index] = notificationItem.isMms
     }
 
     val intent = Intent(context, DeleteNotificationReceiver::class.java)
       .setAction(DeleteNotificationReceiver.DELETE_NOTIFICATION_ACTION)
       .putExtra(DeleteNotificationReceiver.EXTRA_IDS, ids)
       .putExtra(DeleteNotificationReceiver.EXTRA_MMS, mms)
+      .putExtra(DeleteNotificationReceiver.EXTRA_THREAD_IDS, longArrayOf(threadId))
       .makeUniqueToPreventMerging()
 
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -185,6 +183,7 @@ class NotificationConversation(
       .setAction(RemoteReplyReceiver.REPLY_ACTION)
       .putExtra(RemoteReplyReceiver.RECIPIENT_EXTRA, recipient.id)
       .putExtra(RemoteReplyReceiver.REPLY_METHOD, replyMethod)
+      .putExtra(RemoteReplyReceiver.EARLIEST_TIMESTAMP, notificationItems.first().timestamp)
       .setPackage(context.packageName)
       .makeUniqueToPreventMerging()
 

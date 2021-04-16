@@ -21,13 +21,11 @@ import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.core.app.RemoteInput;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -47,10 +45,10 @@ import java.util.List;
  */
 public class RemoteReplyReceiver extends BroadcastReceiver {
 
-  public static final String TAG             = Log.tag(RemoteReplyReceiver.class);
-  public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
-  public static final String RECIPIENT_EXTRA = "recipient_extra";
-  public static final String REPLY_METHOD    = "reply_method";
+  public static final String REPLY_ACTION       = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String RECIPIENT_EXTRA    = "recipient_extra";
+  public static final String REPLY_METHOD       = "reply_method";
+  public static final String EARLIEST_TIMESTAMP = "earliest_timestamp";
 
   @SuppressLint("StaticFieldLeak")
   @Override
@@ -108,6 +106,8 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
           default:
             throw new AssertionError("Unknown Reply method");
         }
+
+        ApplicationDependencies.getMessageNotifier().addStickyThread(threadId, intent.getLongExtra(EARLIEST_TIMESTAMP, System.currentTimeMillis()));
 
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
 
