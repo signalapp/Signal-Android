@@ -39,7 +39,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   val id: Long = record.id
   val threadId: Long = record.threadId
   val isMms: Boolean = record.isMms
-  val slideDeck: SlideDeck? = (record as? MmsMessageRecord)?.slideDeck
+  val slideDeck: SlideDeck? = if (record.isViewOnce) null else (record as? MmsMessageRecord)?.slideDeck
   val isJoined: Boolean = record.isJoined
 
   protected val notifiedTimestamp: Long = record.notifiedTimestamp
