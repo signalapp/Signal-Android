@@ -105,7 +105,11 @@ final class VideoThumbnailsExtractor {
         outputSurface.release();
       }
       if (decoder != null) {
-        decoder.stop();
+        try {
+          decoder.stop();
+        } catch (MediaCodec.CodecException codecException) {
+          Log.w(TAG, "Decoder stop failed: " + codecException.getDiagnosticInfo(), codecException);
+        }
         decoder.release();
       }
       if (extractor != null) {
