@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -122,21 +123,9 @@ public final class StorageSyncHelper {
         continue;
       }
 
-      storageInserts.add(StorageSyncModels.localToRemoteRecord(insert));
-
-      switch (insert.getGroupType()) {
-        case NONE:
-          completeIds.add(StorageId.forContact(insert.getStorageId()));
-          break;
-        case SIGNAL_V1:
-          completeIds.add(StorageId.forGroupV1(insert.getStorageId()));
-          break;
-        case SIGNAL_V2:
-          completeIds.add(StorageId.forGroupV2(insert.getStorageId()));
-          break;
-        default:
-          throw new AssertionError("Unsupported type!");
-      }
+      SignalStorageRecord insertRecord = StorageSyncModels.localToRemoteRecord(insert);
+      storageInserts.add(insertRecord);
+      completeIds.add(insertRecord.getId());
     }
 
     if (accountInsert.isPresent()) {
@@ -147,35 +136,22 @@ public final class StorageSyncHelper {
     for (RecipientSettings delete : deletes) {
       byte[] key = Objects.requireNonNull(delete.getStorageId());
       storageDeletes.add(ByteBuffer.wrap(key));
-      completeIds.remove(StorageId.forContact(key));
+      completeIds.removeIf(id -> Arrays.equals(id.getRaw(), key));
     }
 
     for (RecipientSettings update : updates) {
-      StorageId oldId;
-      StorageId newId;
+      byte[] oldId = update.getStorageId();
+      byte[] newId = generateKey();
 
-      switch (update.getGroupType()) {
-        case NONE:
-          oldId = StorageId.forContact(update.getStorageId());
-          newId = StorageId.forContact(generateKey());
-          break;
-        case SIGNAL_V1:
-          oldId = StorageId.forGroupV1(update.getStorageId());
-          newId = StorageId.forGroupV1(generateKey());
-          break;
-        case SIGNAL_V2:
-          oldId = StorageId.forGroupV2(update.getStorageId());
-          newId = StorageId.forGroupV2(generateKey());
-          break;
-        default:
-          throw new AssertionError("Unsupported type!");
-      }
+      SignalStorageRecord insert = StorageSyncModels.localToRemoteRecord(update, newId);
 
-      storageInserts.add(StorageSyncModels.localToRemoteRecord(update, newId.getRaw()));
-      storageDeletes.add(ByteBuffer.wrap(oldId.getRaw()));
-      completeIds.remove(oldId);
-      completeIds.add(newId);
-      storageKeyUpdates.put(update.getId(), newId.getRaw());
+      storageInserts.add(insert);
+      storageDeletes.add(ByteBuffer.wrap(oldId));
+
+      completeIds.add(insert.getId());
+      completeIds.removeIf(id -> Arrays.equals(id.getRaw(), oldId));
+
+      storageKeyUpdates.put(update.getId(), newId);
     }
 
     if (accountUpdate.isPresent()) {
@@ -184,8 +160,10 @@ public final class StorageSyncHelper {
 
       storageInserts.add(SignalStorageRecord.forAccount(newId, accountUpdate.get()));
       storageDeletes.add(ByteBuffer.wrap(oldId.getRaw()));
+
       completeIds.remove(oldId);
       completeIds.add(newId);
+
       storageKeyUpdates.put(Recipient.self().getId(), newId.getRaw());
     }
 
@@ -193,8 +171,7 @@ public final class StorageSyncHelper {
       return Optional.absent();
     } else {
       List<byte[]>          storageDeleteBytes   = Stream.of(storageDeletes).map(ByteBuffer::array).toList();
-      List<StorageId>       completeIdsBytes     = new ArrayList<>(completeIds);
-      SignalStorageManifest manifest             = new SignalStorageManifest(currentManifestVersion + 1, completeIdsBytes);
+      SignalStorageManifest manifest             = new SignalStorageManifest(currentManifestVersion + 1, new ArrayList<>(completeIds));
       WriteOperationResult  writeOperationResult = new WriteOperationResult(manifest, new ArrayList<>(storageInserts), storageDeleteBytes);
 
       return Optional.of(new LocalWriteResult(writeOperationResult, storageKeyUpdates));

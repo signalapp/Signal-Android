@@ -207,6 +207,7 @@ public class StorageSyncJobV2 extends BaseJob {
   private boolean performSync() throws IOException, RetryLaterException, InvalidKeyException {
     Stopwatch                   stopwatch          = new Stopwatch("StorageSync");
     Recipient                   self               = Recipient.self();
+    SQLiteDatabase              db                 = DatabaseFactory.getInstance(context).getRawDatabase();
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     UnknownStorageIdDatabase    storageIdDatabase  = DatabaseFactory.getUnknownStorageIdDatabase(context);
@@ -268,8 +269,6 @@ public class StorageSyncJobV2 extends BaseJob {
         }
 
         WriteOperationResult mergeWriteOperation;
-
-        SQLiteDatabase db = DatabaseFactory.getInstance(context).getRawDatabase();
 
         db.beginTransaction();
         try {
@@ -348,19 +347,33 @@ public class StorageSyncJobV2 extends BaseJob {
 
     localManifestVersion = TextSecurePreferences.getStorageManifestVersion(context);
 
-    List<StorageId>               allLocalStorageIds   = getAllLocalStorageIds(context, self);
-    List<RecipientSettings>       pendingUpdates       = recipientDatabase.getPendingRecipientSyncUpdates();
-    List<RecipientSettings>       pendingInsertions    = recipientDatabase.getPendingRecipientSyncInsertions();
-    List<RecipientSettings>       pendingDeletions     = recipientDatabase.getPendingRecipientSyncDeletions();
-    Optional<SignalAccountRecord> pendingAccountInsert = StorageSyncHelper.getPendingAccountSyncInsert(context, self);
-    Optional<SignalAccountRecord> pendingAccountUpdate = StorageSyncHelper.getPendingAccountSyncUpdate(context, self);
-    Optional<LocalWriteResult>    localWriteResult     = StorageSyncHelper.buildStorageUpdatesForLocal(localManifestVersion,
-                                                                                                       allLocalStorageIds,
-                                                                                                       pendingUpdates,
-                                                                                                       pendingInsertions,
-                                                                                                       pendingDeletions,
-                                                                                                       pendingAccountUpdate,
-                                                                                                       pendingAccountInsert);
+    List<StorageId>               allLocalStorageIds;
+    List<RecipientSettings>       pendingUpdates;
+    List<RecipientSettings>       pendingInsertions;
+    List<RecipientSettings>       pendingDeletions;
+    Optional<SignalAccountRecord> pendingAccountInsert;
+    Optional<SignalAccountRecord> pendingAccountUpdate;
+    Optional<LocalWriteResult>    localWriteResult;
+
+    db.beginTransaction();
+    try {
+      allLocalStorageIds   = getAllLocalStorageIds(context, self);
+      pendingUpdates       = recipientDatabase.getPendingRecipientSyncUpdates();
+      pendingInsertions    = recipientDatabase.getPendingRecipientSyncInsertions();
+      pendingDeletions     = recipientDatabase.getPendingRecipientSyncDeletions();
+      pendingAccountInsert = StorageSyncHelper.getPendingAccountSyncInsert(context, self);
+      pendingAccountUpdate = StorageSyncHelper.getPendingAccountSyncUpdate(context, self);
+      localWriteResult     = StorageSyncHelper.buildStorageUpdatesForLocal(localManifestVersion,
+                                                                           allLocalStorageIds,
+                                                                           pendingUpdates,
+                                                                           pendingInsertions,
+                                                                           pendingDeletions,
+                                                                           pendingAccountUpdate,
+                                                                           pendingAccountInsert);
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
 
     stopwatch.split("local-changes");
 
@@ -386,15 +399,20 @@ public class StorageSyncJobV2 extends BaseJob {
 
       stopwatch.split("remote-change-write");
 
-      List<RecipientId> clearIds = new ArrayList<>(pendingUpdates.size() + pendingInsertions.size() + pendingDeletions.size() + 1);
+      List<RecipientId> clearIds = Util.concatenatedList(Stream.of(pendingUpdates).map(RecipientSettings::getId).toList(),
+                                                         Stream.of(pendingInsertions).map(RecipientSettings::getId).toList(),
+                                                         Stream.of(pendingDeletions).map(RecipientSettings::getId).toList(),
+                                                         Collections.singletonList(Recipient.self().getId()));
 
-      clearIds.addAll(Stream.of(pendingUpdates).map(RecipientSettings::getId).toList());
-      clearIds.addAll(Stream.of(pendingInsertions).map(RecipientSettings::getId).toList());
-      clearIds.addAll(Stream.of(pendingDeletions).map(RecipientSettings::getId).toList());
-      clearIds.add(Recipient.self().getId());
+      db.beginTransaction();
+      try {
+        recipientDatabase.clearDirtyState(clearIds);
+        recipientDatabase.updateStorageIds(localWriteResult.get().getStorageKeyUpdates());
 
-      recipientDatabase.clearDirtyState(clearIds);
-      recipientDatabase.updateStorageIds(localWriteResult.get().getStorageKeyUpdates());
+        db.setTransactionSuccessful();
+      } finally {
+        db.endTransaction();
+      }
 
       stopwatch.split("local-db-clean");
 
