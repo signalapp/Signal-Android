@@ -1840,7 +1840,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="arrays__use_default">Brug standard</string>
   <string name="arrays__use_custom">Brug tilpasset</string>
   <string name="arrays__mute_for_one_hour">Udsæt 1 time</string>
-  <string name="arrays__mute_for_eight_hours">Udsæt 8 timer</string>
+  <string name="arrays__mute_for_eight_hours">Udsæt i 8 timer</string>
   <string name="arrays__mute_for_one_day">Udsæt 1 dag</string>
   <string name="arrays__mute_for_seven_days">Udsæt 7 dage</string>
   <string name="arrays__always">Altid</string>

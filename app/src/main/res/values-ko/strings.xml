@@ -56,6 +56,7 @@
   <string name="AttachmentKeyboard_location">위치</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal에서 사진이나 동영상을 찍으려면 권한이 필요합니다.</string>
   <string name="AttachmentKeyboard_give_access">액세스 허용</string>
+  <string name="AttachmentKeyboard_payment">결제</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없습니다.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에서 사진, 동영상 또는 오디오를 첨부하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
@@ -574,6 +575,7 @@
   <string name="ManageGroupActivity_mentions">언급</string>
   <string name="ManageGroupActivity_chat_wallpaper">채팅방 배경</string>
   <string name="ManageGroupActivity_until_s">%1$s까지</string>
+  <string name="ManageGroupActivity_always">항상</string>
   <string name="ManageGroupActivity_off">꺼짐</string>
   <string name="ManageGroupActivity_on">켜짐</string>
   <string name="ManageGroupActivity_view_all_members">모든 멤버 보기</string>
@@ -623,6 +625,7 @@
   <string name="ManageRecipientActivity_mute_notifications">대화 알림 끄기</string>
   <string name="ManageRecipientActivity_custom_notifications">맞춤형 알림</string>
   <string name="ManageRecipientActivity_until_s">%1$s까지</string>
+  <string name="ManageRecipientActivity_always">항상</string>
   <string name="ManageRecipientActivity_off">꺼짐</string>
   <string name="ManageRecipientActivity_on">켜짐</string>
   <string name="ManageRecipientActivity_add_to_a_group">그룹에 추가</string>
@@ -1740,6 +1743,7 @@
   <string name="arrays__mute_for_one_hour">1시간 동안 알림 끄기</string>
   <string name="arrays__mute_for_one_day">하루 동안 알림 끄기</string>
   <string name="arrays__mute_for_seven_days">7일 동안 알림 끄기</string>
+  <string name="arrays__always">항상</string>
   <string name="arrays__settings_default">기본 설정</string>
   <string name="arrays__enabled">활성화됨</string>
   <string name="arrays__disabled">비활성화됨</string>
@@ -1825,6 +1829,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
   <string name="preferences__data_and_storage">데이터와 저장소</string>
   <string name="preferences__storage">저장 공간</string>
+  <string name="preferences__payments">결제</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
   <string name="preferences__keep_messages">메시지 보관</string>
   <string name="preferences__clear_message_history">메시지 기록 삭제</string>
@@ -2436,11 +2441,13 @@
   <string name="payment_info_card_update_pin">번호 업데이트</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">시작</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">다음</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">다음</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">수정</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">이전</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">복사</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">확인</string>

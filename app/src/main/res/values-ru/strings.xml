@@ -2950,6 +2950,7 @@
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Далее</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Изменить</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Предыдущее</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Ваша фраза восстановления</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишите следующие %1$d слова по порядку. Храните свой список в безопасном месте.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Убедитесь, что вы правильно ввели свою фразу.</string>

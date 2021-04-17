@@ -1474,7 +1474,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationChannel_group_chats">Unterhaltungen</string>
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
   <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
-  <string name="NotificationChannel_contact_joined_signal">Neue Signal-Kontakte</string>
+  <string name="NotificationChannel_contact_joined_signal">Neuer Signal-Kontakt</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
