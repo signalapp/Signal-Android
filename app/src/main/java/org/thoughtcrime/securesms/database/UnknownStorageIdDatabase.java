@@ -27,7 +27,7 @@ import java.util.List;
  * A list of storage keys whose types we do not currently have syncing logic for. We need to
  * remember that these keys exist so that we don't blast any data away.
  */
-public class StorageKeyDatabase extends Database {
+public class UnknownStorageIdDatabase extends Database {
 
   private static final String TABLE_NAME = "storage_key";
   private static final String ID         = "_id";
@@ -42,11 +42,11 @@ public class StorageKeyDatabase extends Database {
       "CREATE INDEX IF NOT EXISTS storage_key_type_index ON " + TABLE_NAME + " (" + TYPE + ");"
   };
 
-  public StorageKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  public UnknownStorageIdDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }
 
-  public List<StorageId> getAllKeys() {
+  public List<StorageId> getAllIds() {
     List<StorageId> keys = new ArrayList<>();
 
     try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)) {

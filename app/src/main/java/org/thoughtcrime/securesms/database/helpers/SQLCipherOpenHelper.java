@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook;
 import org.thoughtcrime.securesms.database.StickerDatabase;
-import org.thoughtcrime.securesms.database.StorageKeyDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -201,7 +201,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
     db.execSQL(SessionDatabase.CREATE_TABLE);
     db.execSQL(StickerDatabase.CREATE_TABLE);
-    db.execSQL(StorageKeyDatabase.CREATE_TABLE);
+    db.execSQL(UnknownStorageIdDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
     db.execSQL(PaymentDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
@@ -216,7 +216,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, GroupDatabase.CREATE_INDEXS);
     executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
     executeStatements(db, StickerDatabase.CREATE_INDEXES);
-    executeStatements(db, StorageKeyDatabase.CREATE_INDEXES);
+    executeStatements(db, UnknownStorageIdDatabase.CREATE_INDEXES);
     executeStatements(db, MentionDatabase.CREATE_INDEXES);
     executeStatements(db, PaymentDatabase.CREATE_INDEXES);
 

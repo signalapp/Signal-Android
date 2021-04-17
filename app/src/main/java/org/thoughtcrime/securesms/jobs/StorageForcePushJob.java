@@ -7,7 +7,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.StorageKeyDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -72,10 +72,10 @@ public class StorageForcePushJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageKey();
-    SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
+    StorageKey                  storageServiceKey = SignalStore.storageServiceValues().getOrCreateStorageKey();
+    SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+    RecipientDatabase           recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    UnknownStorageIdDatabase    storageIdDatabase = DatabaseFactory.getUnknownStorageIdDatabase(context);
 
     long                        currentVersion       = accountManager.getStorageManifestVersion();
     Map<RecipientId, StorageId> oldContactStorageIds = recipientDatabase.getContactStorageSyncIdsMap();
@@ -99,13 +99,13 @@ public class StorageForcePushJob extends BaseJob {
 
     try {
       if (newVersion > 1) {
-        Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d keys.", inserts.size()));
+        Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d IDs.", inserts.size()));
         if (accountManager.resetStorageRecords(storageServiceKey, manifest, inserts).isPresent()) {
           Log.w(TAG, "Hit a conflict. Trying again.");
           throw new RetryLaterException();
         }
       } else {
-        Log.i(TAG, String.format(Locale.ENGLISH, "First version, normal push. Inserting %d keys.", inserts.size()));
+        Log.i(TAG, String.format(Locale.ENGLISH, "First version, normal push. Inserting %d IDs.", inserts.size()));
         if (accountManager.writeStorageRecords(storageServiceKey, manifest, inserts, Collections.emptyList()).isPresent()) {
           Log.w(TAG, "Hit a conflict. Trying again.");
           throw new RetryLaterException();
@@ -120,7 +120,7 @@ public class StorageForcePushJob extends BaseJob {
     TextSecurePreferences.setStorageManifestVersion(context, newVersion);
     recipientDatabase.applyStorageIdUpdates(newContactStorageIds);
     recipientDatabase.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().getId(), accountRecord.getId()));
-    storageKeyDatabase.deleteAll();
+    storageIdDatabase.deleteAll();
   }
 
   @Override

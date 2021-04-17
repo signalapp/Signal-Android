@@ -10,7 +10,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
-import org.thoughtcrime.securesms.database.StorageKeyDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.storage.GroupV2ExistenceChecker;
 import org.thoughtcrime.securesms.storage.StaticGroupV2ExistenceChecker;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.LocalWriteResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.MergeResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult;
@@ -156,7 +156,7 @@ public class StorageSyncJob extends BaseJob {
   private boolean performSync() throws IOException, RetryLaterException, InvalidKeyException {
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
+    UnknownStorageIdDatabase storageKeyDatabase = DatabaseFactory.getUnknownStorageIdDatabase(context);
     StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageKey();
 
     boolean                         needsMultiDeviceSync  = false;
@@ -171,7 +171,7 @@ public class StorageSyncJob extends BaseJob {
       Log.i(TAG, "[Remote Newer] Newer manifest version found!");
 
       List<StorageId>     allLocalStorageKeys = getAllLocalStorageIds(context, Recipient.self().fresh());
-      KeyDifferenceResult keyDifference       = StorageSyncHelper.findKeyDifference(remoteManifest.get().getStorageIds(), allLocalStorageKeys);
+      IdDifferenceResult keyDifference       = StorageSyncHelper.findIdDifference(remoteManifest.get().getStorageIds(), allLocalStorageKeys);
 
       if (keyDifference.hasTypeMismatches()) {
         Log.w(TAG, "Found type mismatches in the key sets! Scheduling a force push after this sync completes.");
@@ -179,16 +179,16 @@ public class StorageSyncJob extends BaseJob {
       }
 
       if (!keyDifference.isEmpty()) {
-        Log.i(TAG, "[Remote Newer] There's a difference in keys. Local-only: " + keyDifference.getLocalOnlyKeys().size() + ", Remote-only: " + keyDifference.getRemoteOnlyKeys().size());
+        Log.i(TAG, "[Remote Newer] There's a difference in keys. Local-only: " + keyDifference.getLocalOnlyIds().size() + ", Remote-only: " + keyDifference.getRemoteOnlyIds().size());
 
-        List<SignalStorageRecord> localOnly            = buildLocalStorageRecords(context, keyDifference.getLocalOnlyKeys());
-        List<SignalStorageRecord> remoteOnly           = accountManager.readStorageRecords(storageServiceKey, keyDifference.getRemoteOnlyKeys());
+        List<SignalStorageRecord> localOnly            = buildLocalStorageRecords(context, keyDifference.getLocalOnlyIds());
+        List<SignalStorageRecord> remoteOnly           = accountManager.readStorageRecords(storageServiceKey, keyDifference.getRemoteOnlyIds());
         GroupV2ExistenceChecker   gv2ExistenceChecker  = new StaticGroupV2ExistenceChecker(DatabaseFactory.getGroupDatabase(context).getAllGroupV2Ids());
         MergeResult               mergeResult          = StorageSyncHelper.resolveConflict(remoteOnly, localOnly, gv2ExistenceChecker);
         WriteOperationResult      writeOperationResult = StorageSyncHelper.createWriteOperation(remoteManifest.get().getVersion(), allLocalStorageKeys, mergeResult);
 
-        if (remoteOnly.size() != keyDifference.getRemoteOnlyKeys().size()) {
-          Log.w(TAG, "Could not find all remote-only records! Requested: " + keyDifference.getRemoteOnlyKeys().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
+        if (remoteOnly.size() != keyDifference.getRemoteOnlyIds().size()) {
+          Log.w(TAG, "Could not find all remote-only records! Requested: " + keyDifference.getRemoteOnlyIds().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
           needsForcePush = true;
         }
 
@@ -321,13 +321,13 @@ public class StorageSyncJob extends BaseJob {
   private static @NonNull List<StorageId> getAllLocalStorageIds(@NonNull Context context, @NonNull Recipient self) {
     return Util.concatenatedList(DatabaseFactory.getRecipientDatabase(context).getContactStorageSyncIds(),
                                  Collections.singletonList(StorageId.forAccount(self.getStorageServiceId())),
-                                 DatabaseFactory.getStorageKeyDatabase(context).getAllKeys());
+                                 DatabaseFactory.getUnknownStorageIdDatabase(context).getAllIds());
   }
 
   private static @NonNull List<SignalStorageRecord> buildLocalStorageRecords(@NonNull Context context, @NonNull List<StorageId> ids) {
     Recipient          self               = Recipient.self().fresh();
     RecipientDatabase  recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    StorageKeyDatabase storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
+    UnknownStorageIdDatabase storageKeyDatabase = DatabaseFactory.getUnknownStorageIdDatabase(context);
 
     List<SignalStorageRecord> records = new ArrayList<>(ids.size());
 

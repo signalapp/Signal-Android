@@ -205,19 +205,19 @@ public final class StorageSyncHelper {
    * Given a list of all the local and remote keys you know about, this will return a result telling
    * you which keys are exclusively remote and which are exclusively local.
    *
-   * @param remoteKeys All remote keys available.
-   * @param localKeys All local keys available.
+   * @param remoteIds All remote keys available.
+   * @param localIds All local keys available.
    *
    * @return An object describing which keys are exclusive to the remote data set and which keys are
    *         exclusive to the local data set.
    */
-  public static @NonNull KeyDifferenceResult findKeyDifference(@NonNull Collection<StorageId> remoteKeys,
-                                                               @NonNull Collection<StorageId> localKeys)
+  public static @NonNull IdDifferenceResult findIdDifference(@NonNull Collection<StorageId> remoteIds,
+                                                             @NonNull Collection<StorageId> localIds)
   {
-    Map<String, StorageId> remoteByRawId = Stream.of(remoteKeys).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
-    Map<String, StorageId> localByRawId  = Stream.of(localKeys).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
+    Map<String, StorageId> remoteByRawId = Stream.of(remoteIds).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
+    Map<String, StorageId> localByRawId  = Stream.of(localIds).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
 
-    boolean hasTypeMismatch = remoteByRawId.size() != remoteKeys.size() || localByRawId.size() != localKeys.size();
+    boolean hasTypeMismatch = remoteByRawId.size() != remoteIds.size() || localByRawId.size() != localIds.size();
 
     Set<String> remoteOnlyRawIds = SetUtil.difference(remoteByRawId.keySet(), localByRawId.keySet());
     Set<String> localOnlyRawIds  = SetUtil.difference(localByRawId.keySet(), remoteByRawId.keySet());
@@ -238,7 +238,7 @@ public final class StorageSyncHelper {
     List<StorageId> remoteOnlyKeys = Stream.of(remoteOnlyRawIds).map(remoteByRawId::get).toList();
     List<StorageId> localOnlyKeys  = Stream.of(localOnlyRawIds).map(localByRawId::get).toList();
 
-    return new KeyDifferenceResult(remoteOnlyKeys, localOnlyKeys, hasTypeMismatch);
+    return new IdDifferenceResult(remoteOnlyKeys, localOnlyKeys, hasTypeMismatch);
   }
 
   /**
@@ -483,26 +483,26 @@ public final class StorageSyncHelper {
     }
   }
 
-  public static final class KeyDifferenceResult {
-    private final List<StorageId> remoteOnlyKeys;
-    private final List<StorageId> localOnlyKeys;
+  public static final class IdDifferenceResult {
+    private final List<StorageId> remoteOnlyIds;
+    private final List<StorageId> localOnlyIds;
     private final boolean         hasTypeMismatches;
 
-    private KeyDifferenceResult(@NonNull List<StorageId> remoteOnlyKeys,
-                                @NonNull List<StorageId> localOnlyKeys,
-                                boolean hasTypeMismatches)
+    private IdDifferenceResult(@NonNull List<StorageId> remoteOnlyIds,
+                               @NonNull List<StorageId> localOnlyIds,
+                               boolean hasTypeMismatches)
     {
-      this.remoteOnlyKeys    = remoteOnlyKeys;
-      this.localOnlyKeys     = localOnlyKeys;
+      this.remoteOnlyIds     = remoteOnlyIds;
+      this.localOnlyIds      = localOnlyIds;
       this.hasTypeMismatches = hasTypeMismatches;
     }
 
-    public @NonNull List<StorageId> getRemoteOnlyKeys() {
-      return remoteOnlyKeys;
+    public @NonNull List<StorageId> getRemoteOnlyIds() {
+      return remoteOnlyIds;
     }
 
-    public @NonNull List<StorageId> getLocalOnlyKeys() {
-      return localOnlyKeys;
+    public @NonNull List<StorageId> getLocalOnlyIds() {
+      return localOnlyIds;
     }
 
     /**
@@ -514,12 +514,12 @@ public final class StorageSyncHelper {
     }
 
     public boolean isEmpty() {
-      return remoteOnlyKeys.isEmpty() && localOnlyKeys.isEmpty();
+      return remoteOnlyIds.isEmpty() && localOnlyIds.isEmpty();
     }
 
     @Override
     public @NonNull String toString() {
-      return "remoteOnly: " + remoteOnlyKeys.size() + ", localOnly: " + localOnlyKeys.size() + ", hasTypeMismatches: " + hasTypeMismatches;
+      return "remoteOnly: " + remoteOnlyIds.size() + ", localOnly: " + localOnlyIds.size() + ", hasTypeMismatches: " + hasTypeMismatches;
     }
   }
 
