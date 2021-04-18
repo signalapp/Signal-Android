@@ -206,7 +206,7 @@ public class StorageSyncJobV2 extends BaseJob {
 
   private boolean performSync() throws IOException, RetryLaterException, InvalidKeyException {
     Stopwatch                   stopwatch          = new Stopwatch("StorageSync");
-    Recipient                   self               = Recipient.self();
+    Recipient                   self               = Recipient.self().fresh();
     SQLiteDatabase              db                 = DatabaseFactory.getInstance(context).getRawDatabase();
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
@@ -235,6 +235,8 @@ public class StorageSyncJobV2 extends BaseJob {
       }
 
       Log.i(TAG, "[Remote Sync] Pre-Merge ID Difference :: " + idDifference);
+
+      stopwatch.split("remote-id-diff");
 
       if (!idDifference.isEmpty()) {
         Log.i(TAG, "[Remote Sync] Retrieving records for key difference.");
@@ -277,6 +279,8 @@ public class StorageSyncJobV2 extends BaseJob {
           new GroupV2RecordProcessor(context).process(remoteGv2, StorageSyncHelper.KEY_GENERATOR);
           new AccountRecordProcessor(context, self).process(remoteAccount, StorageSyncHelper.KEY_GENERATOR);
 
+          self = Recipient.self().fresh();
+
           List<SignalStorageRecord> unknownInserts = remoteUnknown;
           List<StorageId>           unknownDeletes = Stream.of(idDifference.getLocalOnlyIds()).filter(StorageId::isUnknown).toList();
 
@@ -301,13 +305,15 @@ public class StorageSyncJobV2 extends BaseJob {
                                                          remoteInserts,
                                                          remoteDeletes);
 
+          recipientDatabase.clearDirtyStateForStorageIds(Util.concatenatedList(localIdsAdded, localIdsRemoved));
+
           db.setTransactionSuccessful();
         } finally {
           db.endTransaction();
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
         }
 
-        stopwatch.split("local-merge");
+        stopwatch.split("remote-merge-transaction");
 
         Log.i(TAG, "[Remote Sync] WriteOperationResult :: " + mergeWriteOperation);
 
@@ -375,7 +381,7 @@ public class StorageSyncJobV2 extends BaseJob {
       db.endTransaction();
     }
 
-    stopwatch.split("local-changes");
+    stopwatch.split("local-changes-transaction");
 
     if (localWriteResult.isPresent()) {
       Log.i(TAG, String.format(Locale.ENGLISH, "[Local Changes] Local changes present. %d updates, %d inserts, %d deletes, account update: %b, account insert: %b.", pendingUpdates.size(), pendingInsertions.size(), pendingDeletions.size(), pendingAccountUpdate.isPresent(), pendingAccountInsert.isPresent()));
