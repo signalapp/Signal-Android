@@ -76,8 +76,8 @@ public class StorageAccountRestoreJob extends BaseJob {
       return;
     }
 
-    Log.i(TAG, "Updating local manifest version to: " + manifest.get().getVersion());
-    TextSecurePreferences.setStorageManifestVersion(context, manifest.get().getVersion());
+    Log.i(TAG, "Updating local manifest version to 0.");
+    TextSecurePreferences.setStorageManifestVersion(context, 0);
 
     Optional<StorageId> accountId = manifest.get().getAccountStorageId();
 
