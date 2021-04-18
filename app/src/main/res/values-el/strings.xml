@@ -1493,6 +1493,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Αίτημα μηνύματος</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Αναπαραγωγή βίντεο</string>
   <string name="ThumbnailView_Has_a_caption_description">Έχει λεζάντα</string>

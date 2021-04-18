@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
   <string name="ApplicationPreferencesActivity_hide">הסתר</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">להסתיר תזכורת?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">תעד משפט השבה של תשלומים</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">תעד משפט</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">לפני שתוכל להשבית את ה־PIN שלך, אתה חייב לתעד את משפט ההשבה של התשלומים שלך כדי להבטיח שתוכל להשיב את חשבון התשלומים שלך.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">דקה %d</item>
@@ -59,6 +62,7 @@
   <string name="AttachmentKeyboard_location">מיקום</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal צריך הרשאה כדי להראות את התמונות והסרטונים שלך.</string>
   <string name="AttachmentKeyboard_give_access">תן גישה</string>
+  <string name="AttachmentKeyboard_payment">תשלום</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">לא ניתן למצוא יישום לבחירת מדיה.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal דורש את הרשאת האחסון על מנת לצרף תמונות, סרטונים, או שמע, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
@@ -1622,6 +1626,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">בקשת הודעה</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">נגן סרטון</string>
   <string name="ThumbnailView_Has_a_caption_description">יש כיתוב</string>
@@ -1955,6 +1960,14 @@
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
+  <string-array name="HelpFragment__categories">
+    <item>משהו לא עובד</item>
+    <item>בקשת מאפיין</item>
+    <item>שאלה</item>
+    <item>משוב</item>
+    <item>אחר</item>
+    <item>תשלומים</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -2000,6 +2013,7 @@
     <item quantity="other">%d שע\'</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">בטא</string>
   <string name="preferences__sms_mms">מסרון ו־MMS</string>
   <string name="preferences__pref_all_sms_title">קבל את כל המסרונים</string>
   <string name="preferences__pref_all_mms_title">קבל את כל ה־MMS</string>
@@ -2063,6 +2077,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">בקש דוח מסירה לכל מסרון שאתה שולח</string>
   <string name="preferences__data_and_storage">נתונים ואחסון</string>
   <string name="preferences__storage">אחסון</string>
+  <string name="preferences__payments">תשלומים</string>
+  <string name="preferences__payments_beta">תשלומים (בטא)</string>
   <string name="preferences__conversation_length_limit">מגבלת אורך שיחה</string>
   <string name="preferences__keep_messages">שמור הודעות</string>
   <string name="preferences__clear_message_history">נקה היסטורית הודעות</string>
@@ -2170,29 +2186,98 @@
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">כל הפעילות</string>
   <string name="PaymentsAllActivityFragment__all">הכל</string>
   <string name="PaymentsAllActivityFragment__sent">נשלח</string>
   <string name="PaymentsAllActivityFragment__received">התקבל</string>
+  <string name="PaymentsHomeFragment__introducing_payments">היכרות עם תשלומים (בטא)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">השתמש ב־Signal כדי לשלוח ולקבל MobileCoin, מטבע דיגיטלי חדש ממוקד פרטיות. הפעל כדי להתחיל.</string>
+  <string name="PaymentsHomeFragment__activate_payments">הפעל תשלומים</string>
+  <string name="PaymentsHomeFragment__activating_payments">מפעיל תשלומים…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">שחזר חשבון תשלומים</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">אין פעילות מהזמן האחרון עדיין</string>
+  <string name="PaymentsHomeFragment__pending_requests">בקשות ממתינות</string>
+  <string name="PaymentsHomeFragment__recent_activity">פעילות מהזמן האחרון</string>
   <string name="PaymentsHomeFragment__see_all">ראה הכל</string>
+  <string name="PaymentsHomeFragment__add_funds">הוסף כספים</string>
   <string name="PaymentsHomeFragment__send">שלח</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s נשלחו</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s התקבלו</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">העבר אל מסחר</string>
+  <string name="PaymentsHomeFragment__currency_conversion">המרת מטבע</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">בטל הפעלת תשלומים</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">משפט השבה</string>
   <string name="PaymentsHomeFragment__help">עזרה</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">עמלת ניקוי מטבעות</string>
+  <string name="PaymentsHomeFragment__sent_payment">תשלום נשלח</string>
+  <string name="PaymentsHomeFragment__received_payment">תשלום התקבל</string>
+  <string name="PaymentsHomeFragment__processing_payment">מעבד תשלום</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">המרת מטבע אינה זמינה</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">לא ניתן להציג המרת מטבע. בדוק את החיבור של הטלפון שלך ונסה שוב.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">תשלומים אינם זמינים באזור שלך.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">לא היה ניתן לאפשר תשלומים. נסה שוב מאוחר יותר.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">לבטל הפעלת תשלומים?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">לא תוכל לשלוח או לקבל MobileCoin ב־Signal אם תבטל הפעלת תשלומים.</string>
+  <string name="PaymentsHomeFragment__deactivate">בטל הפעלה</string>
   <string name="PaymentsHomeFragment__continue">המשך</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">מאזן אינו זמין כרגע.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">הפעלת תשלומים בוטלה.</string>
+  <string name="PaymentsHomeFragment__payment_failed">תשלום נכשל</string>
   <string name="PaymentsHomeFragment__details">פרטים</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">אתה יכול להשתמש ב־Signal כדי לשלוח ולקבל MobileCoin. כל התשלומים כפופים אל תנאי השימוש עבור MobileCoins וארנק MobileCoin. זהו מאפיין בטא כך שאתה עשוי להיתקל במספר סוגיות ותשלומים או מאזנים שיתכן שתאבד אינם ניתנים להשבה.</string>
+  <string name="PaymentsHomeFragment__activate">הפעל</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">הצג תנאי MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">תשלומים ב־Signal אינם זמינים יותר. אתה עדיין יכול להעביר כספים אל מסחר אבל אתה לא יכול יותר לשלוח ולקבל תשלומים או להוסיף כספים.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">הוסף כספים</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">כתובת הארנק שלך</string>
   <string name="PaymentsAddMoneyFragment__copy">העתק</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">הועתק ללוח</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">כדי להוסיף כספים, שלח MobileCoin  אל כתובת הארנק שלך. התחל עסקה מהחשבון שלך במסחר שתומך ב־MobileCoin, ואז סרוק את קוד ה־QR או העתק את כתובת הארנק שלך.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">פרטים</string>
   <string name="PaymentsDetailsFragment__status">מעמד</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">מגיש תשלום…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">מעבד תשלום…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">תשלום הושלם</string>
+  <string name="PaymentsDetailsFragment__payment_failed">תשלום נכשל</string>
+  <string name="PaymentsDetailsFragment__network_fee">עמלת רשת</string>
+  <string name="PaymentsDetailsFragment__sent_by">נשלח ע״י</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">נשלח אל %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">את/ה בתאריך %1$s בשעה %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s בתאריך %2$s בשעה %3$s</string>
   <string name="PaymentsDetailsFragment__to">אל</string>
   <string name="PaymentsDetailsFragment__from">מאת</string>
+  <string name="PaymentsDetailsFragment__information">פרטי עסקה כולל סכום התשלום וזמן העסקה הם חלק מן MobileCoin Ledger.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">עמלת ניקוי מטבעות</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">\"עמלת ניקוי מטבעות\" מחויבת כאשר המטבעות בחזקתך אינם יכולים להתאחד כדי להשלים עסקה. ניקוי יתיר לך להמשיך לשלוח תשלומים.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">אין פרטים נוספים זמינים עבור עסקה זו</string>
+  <string name="PaymentsDetailsFragment__sent_payment">תשלום נשלח</string>
+  <string name="PaymentsDetailsFragment__received_payment">תשלום התקבל</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">תשלום הושלם %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">חסום מספר</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">העבר</string>
   <string name="PaymentsTransferFragment__scan_qr_code">סריקת קוד QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">אל: סרוק או הכנס כתובת ארנק</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">אתה יכול להעביר MobileCoin ע״י השלמת העברה אל כתובת הארנק שסופקה ע״י המסחר. כתובת הארנק היא המחרוזת של המספרים והאותיות שמופיעה בדרך כלל מתחת אל קוד ה־QR.</string>
   <string name="PaymentsTransferFragment__next">הבא</string>
+  <string name="PaymentsTransferFragment__invalid_address">כתובת בלתי תקפה</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">בדוק את כתובת הארנק שאתה מנסה להעביר אליה ונסה שוב.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">אתה לא יכול להעביר אל כתובת הארנק של Signal של עצמך. הכנס את כתובת הארנק מהחשבון שלך במסחר נתמך.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">כדי לסרוק קוד QR, היישום Signal צריך גישה אל המצלמה.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal צריך את הרשאת המצלמה כדי ללכוד קוד QR. לך אל הגדרות, בחר \"הרשאות\", ואפשר את \"מצלמה\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">כדי לסרוק קוד QR, היישום Signal צריך גישה אל המצלמה.</string>
   <string name="PaymentsTransferFragment__settings">הגדרות</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">סרוק קוד QR של כתובת</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">סרוק את קוד ה־QR של הכתובת של המשלם</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">בקשה</string>
+  <string name="CreatePaymentFragment__pay">שלם</string>
+  <string name="CreatePaymentFragment__available_balance_s">מאזן זמין: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">עורר</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2202,12 +2287,35 @@
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">מקש חזרה</string>
+  <string name="CreatePaymentFragment__add_note">הוסף הערה</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">המרות הן רק השערות ויתכן שהן לא מדויקות.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">הערה</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">אשר תשלום</string>
+  <string name="ConfirmPayment__network_fee">עמלת רשת</string>
+  <string name="ConfirmPayment__error_getting_fee">שגיאה בהשגת עמלה</string>
+  <string name="ConfirmPayment__estimated_s">משוער %1$s</string>
   <string name="ConfirmPayment__to">אל</string>
+  <string name="ConfirmPayment__total_amount">סכום כולל</string>
+  <string name="ConfirmPayment__balance_s">מאזן: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">מגיש תשלום…</string>
+  <string name="ConfirmPayment__processing_payment">מעבד תשלום…</string>
+  <string name="ConfirmPayment__payment_complete">תשלום הושלם</string>
+  <string name="ConfirmPayment__payment_failed">תשלום נכשל</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">התשלום ימשיך לעבד</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">מקבל בלתי תקף</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">איש זה לא הפעיל תשלומים</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">לא היה ניתן לבקש עמלת רשת. כדי להמשיך תשלום זה, הקש על בסדר ונסה שוב.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s בשעה %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">הגדר מטבע</string>
+  <string name="SetCurrencyFragment__all_currencies">כל המטבעות</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2651,6 +2759,10 @@
   <string name="OldDeviceTransferLockedDialog__done">סיים</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">בטל והפעל מכשיר זה</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">להעביר מאזן?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">יש לך מאזן של %1$s. אם לא תעביר את הכספים שלך אל כתובת ארנק אחרת לפני מחיקת החשבון שלך, תאבד אותם לנצח.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">אל תעביר</string>
+  <string name="AdvancedPreferenceFragment__transfer">העבר</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">חסום</string>
   <string name="RecipientBottomSheet_unblock">שחרר חסימה</string>
@@ -2747,6 +2859,7 @@
   <string name="DeleteAccountFragment__delete_account">מחק חשבון</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">מחק את מידע החשבון שלך ואת תמונת הפרופיל שלך</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">מחק את כל ההודעות שלך</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">מחק %1$s בחשבון התשלומים שלך</string>
   <string name="DeleteAccountFragment__no_country_code">קוד מדינה לא צויין</string>
   <string name="DeleteAccountFragment__no_number">מספר לא צויין</string>
   <string name="DeleteAccountFragment__the_phone_number">מספר הטלפון שהכנסת אינו תואם אל מספר הטלפון של החשבון שלך.</string>
@@ -2802,25 +2915,82 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">שגיאה בהגדרת טפט.</string>
   <string name="WallpaperCropActivity__blur_photo">טשטש תמונה</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">על אודות MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin הוא מטבע דיגיטלי חדש ממוקד פרטיות.</string>
+  <string name="payment_info_card_adding_funds">הוספת כספים</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">אתה יכול להוסיף כספים לשימוש ב־Signal ע״י שליחת MobileCoin אל כתובת הארנק שלך.</string>
+  <string name="payment_info_card_cashing_out">פדיון</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">אתה יכול לפדות MobileCoin בכל זמן במסחר שתומך ב־MobileCoin. פשוט בצע העברה אל החשבון שלך במסחר הזה.</string>
+  <string name="payment_info_card_hide_this_card">להסתיר כרטיס זה?</string>
   <string name="payment_info_card_hide">הסתר</string>
+  <string name="payment_info_card_record_recovery_phrase">תעד משפט השבה</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">משפט ההשבה שלך נותן לך דרך אחרת לשחזר את חשבון התשלומים שלך</string>
+  <string name="payment_info_card_record_your_phrase">תעד את המשפט שלך</string>
+  <string name="payment_info_card_update_your_pin">עדכן את ה־PIN שלך</string>
+  <string name="payment_info_card_with_a_high_balance">עם מאזן גבוה, יתכן שתרצה לעדכן אל PIN אלפאנומרי כדי להוסיף עוד הגנה אל החשבון שלך</string>
   <string name="payment_info_card_update_pin">עדכן PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">בטל הפעלת ארנק</string>
+  <string name="DeactivateWalletFragment__your_balance">המאזן שלך</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">מומלץ שתעביר את הכספים שלך אל כתובת ארנק אחרת לפני ביטול הפעלת תשלומים. אם תבחר לא להעביר את הכספים שלך עכשיו, הם יישארו בארנק שמקושר אל Signal אם תפעיל מחדש תשלומים.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">העבר מאזן נותר</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">בטל הפעלה בלי להעביר</string>
+  <string name="DeactivateWalletFragment__deactivate">בטל הפעלה</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">לבטל הפעלה בלי להעביר?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">המאזן שלך יישאר בארנק שמקושר אל Signal אם תבחר להפעיל מחדש תשלומים.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">שגיאה בביטול הפעלת ארנק.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">משפט השבה</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">הצג משפט השבה</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">הכנס משפט השבה</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">המאזן שלך ישוחזר באופן אוטומטי כשתתקין מחדש את Signal אם תאשר את PIN של Signal שלך. אתה יכול גם לשחזר את המאזן שלך ע״י שימוש במשפט השבה, שהוא משפט בן %1$d מילים ייחודי לך. כתוב אותו ואחסן אותו במקום בטוח.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">משפט ההשבה שלך הוא משפט בן %1$d מילים ייחודי לך. השתמש במשפט הזה כדי לשחזר את המאזן שלך.</string>
+  <string name="PaymentsRecoveryStartFragment__start">התחל</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">הכנס באופן ידני</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">הדבק מלוח הגזירה</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">הדבק משפט השבה</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">משפט השבה</string>
   <string name="PaymentsRecoveryPasteFragment__next">הבא</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">משפט השבה בלתי תקף</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">וודא שהכנסת %1$d מילים ונסה שוב.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">הבא</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ערוך</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">הקודם</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">משפט ההשבה שלך</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">כתוב את %1$d המילים הבאות לפי הסדר. אחסן את הרשימה שלך במקום מאובטח.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">וודא שהכנסת את המשפט שלך כראוי.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">אל תצלם צילום מסך או תשלח בדוא״ל.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">חשבון תשלומים שוחזר.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">משפט השבה בלתי תקף</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">וודא שהכנסת את המשפט שלך כראוי ונסה שוב</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">להעתיק ללוח הגזירה?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">אם אתה בוחר לאחסן את משפט ההשבה שלך באופן דיגיטלי, הבטח שהוא מאוחסן באופן מאובטח במקום כלשהו שאתה בוטח.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">העתק</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">אשר משפט השבה</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">הכנס את המילים הבאות מתוך משפט ההשבה שלך.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">מילה %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">ראה משפט שוב</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">סיים</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">משפט השבה אושר</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">הכנס משפט השבה</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">הכנס את מילה %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">מילה %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">הבא</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">מילה בלתי תקפה</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">לוח הגזירה נוקה.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">הצג</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s שלח/ה לך %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d התראות תשלום חדשות</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">לא ניתן לשלוח תשלום</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">כדי לשלוח תשלום אל המשתמש הזה, הוא צריך לאשר בקשת הודעה ממך. שלח לו הודעה כדי ליצור בקשת הודעה.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">שלח הודעה</string>
   <!--EOF-->
 </resources>

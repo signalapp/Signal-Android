@@ -1434,6 +1434,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">메시지 요청</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">동영상 재생</string>
   <string name="ThumbnailView_Has_a_caption_description">자막 있음</string>
@@ -1560,6 +1561,10 @@
   <string name="safety_number_change_dialog__view">보기</string>
   <string name="safety_number_change_dialog__previous_verified">이전에 확인됨</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">전화 알림을 사용합니다.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">전화 알림 사용</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">백그라운드 활동 사용</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">모두 좋아보이네요!</string>
   <string name="EnableCallNotificationSettingsDialog__settings">설정</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">국가 로드 중…</string>
@@ -1741,6 +1746,7 @@
   <string name="arrays__use_default">기본값 사용</string>
   <string name="arrays__use_custom">맞춤형 값 사용</string>
   <string name="arrays__mute_for_one_hour">1시간 동안 알림 끄기</string>
+  <string name="arrays__mute_for_eight_hours">8시간 동안 알림 끄기</string>
   <string name="arrays__mute_for_one_day">하루 동안 알림 끄기</string>
   <string name="arrays__mute_for_seven_days">7일 동안 알림 끄기</string>
   <string name="arrays__always">항상</string>
@@ -1766,6 +1772,7 @@
     <item quantity="other">%d시간</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">베타</string>
   <string name="preferences__sms_mms">SMS 및 MMS</string>
   <string name="preferences__pref_all_sms_title">SMS 메시지 수신</string>
   <string name="preferences__pref_all_mms_title">MMS 메시지 수신</string>
@@ -1830,6 +1837,7 @@
   <string name="preferences__data_and_storage">데이터와 저장소</string>
   <string name="preferences__storage">저장 공간</string>
   <string name="preferences__payments">결제</string>
+  <string name="preferences__payments_beta">결제 (베타)</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
   <string name="preferences__keep_messages">메시지 보관</string>
   <string name="preferences__clear_message_history">메시지 기록 삭제</string>
@@ -1937,12 +1945,17 @@
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">모든 활동</string>
   <string name="PaymentsAllActivityFragment__all">모두</string>
   <string name="PaymentsAllActivityFragment__sent">보낸 시간</string>
   <string name="PaymentsAllActivityFragment__received">받은 시간</string>
+  <string name="PaymentsHomeFragment__activate_payments">결제 활성화</string>
+  <string name="PaymentsHomeFragment__activating_payments">결제 활성화 중…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">결제 계정 복원</string>
   <string name="PaymentsHomeFragment__see_all">모두 보기</string>
   <string name="PaymentsHomeFragment__send">보내기</string>
   <string name="PaymentsHomeFragment__help">도움말</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__continue">계속</string>
   <string name="PaymentsHomeFragment__details">세부 정보</string>
   <!--PaymentsAddMoneyFragment-->
@@ -1956,6 +1969,7 @@
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">QR 코드 스캔</string>
   <string name="PaymentsTransferFragment__next">다음</string>
+  <string name="PaymentsTransferFragment__invalid_address">유효하지 않은 주소</string>
   <string name="PaymentsTransferFragment__settings">설정</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
@@ -2438,6 +2452,7 @@
   <string name="WallpaperCropActivity__blur_photo">사진 블러하기</string>
   <!--InfoCard-->
   <string name="payment_info_card_hide">숨기기</string>
+  <string name="payment_info_card_update_your_pin">PIN 업데이트</string>
   <string name="payment_info_card_update_pin">번호 업데이트</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
@@ -2448,11 +2463,13 @@
   <string name="PaymentsRecoveryPhraseFragment__next">다음</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">수정</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">이전</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">클립보드에 복사할까요?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">복사</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">확인</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">다음</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">유효하지 않은 단어</string>
   <!--ClearClipboardAlarmReceiver-->
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">보기</string>

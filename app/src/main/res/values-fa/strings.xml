@@ -5,7 +5,7 @@
   <string name="delete">حذف</string>
   <string name="please_wait">لطفاً صبر کنید…</string>
   <string name="save">ذخیره</string>
-  <string name="note_to_self">یادداشت شخصی</string>
+  <string name="note_to_self">یادداشت برای خود</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
   <!--AlbumThumbnailView-->
@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
   <string name="ApplicationPreferencesActivity_hide">پنهان کردن</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">پنهان کردن یادآور؟</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">عبارت بازیابی پرداخت‌ها را ذخیره کنید</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">ذخیرهٔ عبارت</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل از اینکه قادر به غیرفعال کردن پین خود باشید، باید عبارت بازیابی پرداخت‌های خود را ذخیره کنید تا مطمئن شوید که می‌توانید حساب کاربری پرداخت‌های خود را بازیابی کنید.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d دقیقه</item>
@@ -432,7 +435,7 @@
   <string name="GroupMembersDialog_you">شما</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">همه</string>
-  <string name="GroupManagement_access_level_all_members">همه اعضا</string>
+  <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
   <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
   <string name="GroupManagement_access_level_no_one">هیچ‌کس</string>
   <!--GV2 invites sent-->
@@ -1055,7 +1058,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که مسدودیت او را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمه با این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال‌سازی قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال کردن قابلیت‌ها‌ی جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمه با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
@@ -1497,6 +1500,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">درخواست پیام</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">پخش ویدئو</string>
   <string name="ThumbnailView_Has_a_caption_description">حاوی زیرنویس</string>
@@ -1810,6 +1814,14 @@
   <string name="HelpFragment__debug_log">گزارش اشکال‌زدایی:</string>
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توضیح هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
+  <string-array name="HelpFragment__categories">
+    <item>چیزی خراب شده است</item>
+    <item>درخواست قابلیت جدید</item>
+    <item>پرسش</item>
+    <item>بازخورد</item>
+    <item>سایر</item>
+    <item>پرداخت‌ها</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">اخیراً استفاده شده</string>
@@ -1853,6 +1865,7 @@
     <item quantity="other">%d ساعت</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">بتا</string>
   <string name="preferences__sms_mms">پیامک (SMS) و فراپیام (MMS)</string>
   <string name="preferences__pref_all_sms_title">دریافت همهٔ پیامک‌ها</string>
   <string name="preferences__pref_all_mms_title">دریافت همهٔ فراپیام‌ها</string>
@@ -1917,6 +1930,7 @@
   <string name="preferences__data_and_storage">داده‌ها و حافظه</string>
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__payments">پرداخت‌ها</string>
+  <string name="preferences__payments_beta">پرداخت‌ها (بتا)</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>
   <string name="preferences__clear_message_history">پاک کردن تاریخچهٔ پیام</string>
@@ -1974,8 +1988,8 @@
   <string name="preferences_storage__custom">دلخواه</string>
   <string name="preferences_advanced__use_system_emoji">استفاده از ایموجی‌های سیستم</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از ایموجی‌های درون سیگنال</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور سیگنال به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبانتان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
-  <string name="preferences_advanced__always_relay_calls">عبور تمامی تماس‌ها از سرور سیگنال</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور سیگنال به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبین‌تان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
+  <string name="preferences_advanced__always_relay_calls">عبور همیشگی تماس‌ها</string>
   <string name="preferences_app_protection__who_can">چه کسی می‌تواند….</string>
   <string name="preferences_app_protection__app_access">دسترسی برنامه</string>
   <string name="preferences_app_protection__communication">ارتباطات</string>
@@ -2002,7 +2016,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش آیکون وضعیت هنگامی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند انتخاب می‌کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندۀ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
   <string name="preferences_setup_a_username">برپایی نام کاربری</string>
   <string name="preferences_proxy">پروکسی</string>
@@ -2024,22 +2038,59 @@
   <string name="configurable_single_select__customize_option">سفارشی‌سازی</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">همهٔ فعالیت‌ها</string>
   <string name="PaymentsAllActivityFragment__all">همه</string>
   <string name="PaymentsAllActivityFragment__sent">ارسال شد</string>
   <string name="PaymentsAllActivityFragment__received">دریافت شد</string>
+  <string name="PaymentsHomeFragment__introducing_payments">معرفی پرداخت‌ها (بتا)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">از سیگنال برای ارسال و دریافت MobileCoin، یک ارز دیجیتال متمرکز بر حریم خصوصی، استفاده کنید. برای شروع فعال کنید.</string>
+  <string name="PaymentsHomeFragment__activate_payments">فعال کردن پرداخت‌ها</string>
+  <string name="PaymentsHomeFragment__activating_payments">فعال کردن پرداخت‌ها…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">بازگردانی حساب کاربری پرداخت‌ها</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">هنوز فعالیت اخیری وجود ندارد</string>
+  <string name="PaymentsHomeFragment__pending_requests">درخواست‌های در حال انتظار</string>
+  <string name="PaymentsHomeFragment__recent_activity">فعالیت اخیر</string>
   <string name="PaymentsHomeFragment__see_all">مشاهدهٔ همه</string>
+  <string name="PaymentsHomeFragment__add_funds">افزودن اعتبار</string>
   <string name="PaymentsHomeFragment__send">ارسال</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s ارسال شد</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s دریافت شد</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">انتقال به صرافی</string>
+  <string name="PaymentsHomeFragment__currency_conversion">تبدیل نرخ ارز</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">غیرفعال کردن پرداخت‌ها</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">عبارت بازیابی</string>
   <string name="PaymentsHomeFragment__help">راهنمایی</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">هزینهٔ تصفیهٔ سکه</string>
+  <string name="PaymentsHomeFragment__sent_payment">پرداخت ارسال شد</string>
+  <string name="PaymentsHomeFragment__received_payment">پرداخت دریافت شد</string>
+  <string name="PaymentsHomeFragment__processing_payment">در حال پردازش پرداخت</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">تبدیل ارز ممکن نیست</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">غیرفعال کردن پرداخت‌ها؟</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">شما قادر به دریافت یا ارسال MobileCoin در سیگنال نخواهید بود اگر پرداخت‌ها را غیرفعال کنید.</string>
+  <string name="PaymentsHomeFragment__deactivate">غیرفعال کردن</string>
   <string name="PaymentsHomeFragment__continue">ادامه</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">مانده حساب در حال حاضر موجود نیست.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">پرداخت‌ها غیرفعال شدند</string>
+  <string name="PaymentsHomeFragment__payment_failed">پرداخت ناموفق بود</string>
   <string name="PaymentsHomeFragment__details">جزئیات</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">شما می‌توانید از سیگنال برای ارسال و دریافت MobileCoin استفاده کنید. همهٔ پرداخت‌ها شامل شرایط استفادهٔ MobileCoin و کیف پول MobileCoin می‌شوند. این یک قابلیت بتا است، بنابراین ممکن است شما با اشکالاتی مواجه شوید و پرداخت‌ها و مانده حساب‌هایی را که ممکن است از دست بدهید قابل بازیابی نخواهند بود.</string>
+  <string name="PaymentsHomeFragment__activate">فعال کردن</string>
+  <string name="PaymentsHomeFragment__payments_not_available">پرداخت‌ها در سیگنال دیگر در دسترس نیستند. شما هنوز می‌توانید به صرافی انتقال اعتبار دهید ولی دیگر نمی‌توانید پرداخت‌ها را دریافت یا اعتبار اضافه کنید.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">افزودن اعتبار</string>
   <string name="PaymentsAddMoneyFragment__copy">کپی</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">برای افزودن اعتبار، MobileCoin را به نشانی کیف پول خود ارسال کنید. تراکنشی از حساب کاربری خود در یک صرافی که از MobileCoin پشتیبانی می‌کند آغاز کنید، سپس کد QR را اسکن یا نشانی کیف پول خود را کپی کنید.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">جزئیات</string>
   <string name="PaymentsDetailsFragment__status">وضعیت</string>
+  <string name="PaymentsDetailsFragment__payment_failed">پرداخت ناموفق بود</string>
   <string name="PaymentsDetailsFragment__to">به</string>
   <string name="PaymentsDetailsFragment__from">از</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">هزینهٔ تمیز کردن سکه</string>
+  <string name="PaymentsDetailsFragment__sent_payment">پرداخت ارسال شد</string>
+  <string name="PaymentsDetailsFragment__received_payment">پرداخت دریافت شد</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">کد QR را اسکن کنید</string>
   <string name="PaymentsTransferFragment__next">بعدی</string>
@@ -2047,6 +2098,9 @@
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">درخواست</string>
+  <string name="CreatePaymentFragment__pay">پرداخت</string>
+  <string name="CreatePaymentFragment__available_balance_s">مانده حساب موجود: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">تعویض</string>
   <string name="CreatePaymentFragment__1">۱</string>
   <string name="CreatePaymentFragment__2">۲</string>
   <string name="CreatePaymentFragment__3">۳</string>
@@ -2056,10 +2110,16 @@
   <string name="CreatePaymentFragment__7">۷</string>
   <string name="CreatePaymentFragment__8">۸</string>
   <string name="CreatePaymentFragment__9">۹</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">۰</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">افزودن یادداشت</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">یادداشت</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">به</string>
+  <string name="ConfirmPayment__payment_failed">پرداخت ناموفق بود</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">این شخص پرداخت‌ها را فعال نکرده است</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -2356,12 +2416,12 @@
   <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
   <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در سیگنال را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">افزودن لایهٔ امنیتی اضافه با درخواست پین سیگنال برای ثبت‌نام دوباره با شمارهٔ همراه شما در سیگنال.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به‌خاطرسپردن پین‌ کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در سیگنال را رمزگذاری شده نگه می‌دارند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">افزودن لایهٔ امنیتی اضافه با پرسیدن پین سیگنال برای ثبت‌نام دوباره با شمارهٔ همراه شما در سیگنال.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به خاطر سپاری کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
   <string name="preferences_app_protection__turn_off">خاموش</string>
   <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">رمز سیگنال خود را تائید کنید</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">پین سیگنال خود را تأیید کنید</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">مطمئن شوید که پین خود را بخاطر سپرده یا آن را به صورت امن نگهداری می‌کنید، چون قابل بازیابی نیست. اگر پین‌ خود را فراموش کردید، ممکن است در زمان ثبت‌نام دوبارهٔ حساب کاربری سیگنال خود اطلاعاتی را از دست بدهید.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
@@ -2489,8 +2549,9 @@
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">ثبت‌نام را در دستگاه جدید خود کامل کنید</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">حساب کاربری سیگنال شما به دستگاه جدید شما انتقال یافت، اما برای ادامه باید ثبت‌نام را در آن کامل کنید. سیگنال روی این دستگاه غیرفعال خواهد بود.</string>
   <string name="OldDeviceTransferLockedDialog__done">انجام شد</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">لغو و فعال‌سازی این دستگاه</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">لغو و فعال کردن این دستگاه</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">مانده حساب شما %1$s است. اگر قبل از حذف کردن حساب کاربری خود اعتبار خود را به نشانی کیف پول دیگری انتقال ندهید، آن را برای همیشه از دست خواهید داد.</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
@@ -2638,12 +2699,23 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">خطا در تنظیم کاغذدیواری.</string>
   <string name="WallpaperCropActivity__blur_photo">مات کردن عکس</string>
   <!--InfoCard-->
+  <string name="payment_info_card_adding_funds">افزودن اعتبار</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">شما می‌توانید با ارسال MobileCoin به نشانی کیف پول خود اعتبار برای استفاده در سیگنال اضافه کنید.</string>
   <string name="payment_info_card_hide">مخفی‌سازی</string>
   <string name="payment_info_card_update_pin">به‌روزرسانی پین</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">غیرفعال کردن کیف پول</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">توصیه می‌شود که قبل از غیرفعال کردن پرداخت‌ها، اعتبار خود را به نشانی کیف پول دیگری انتقال دهید. اگر اکنون تصمیم به عدم انتقال اعتبار خود بگیرید، در صورتی که پرداخت‌ها را غیرفعال کنید آن‌ها در کیف پول شما که به سیگنال پیوند داده شده است باقی خواهند ماند، .</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">غیرفعال کردن بدون انتقال</string>
+  <string name="DeactivateWalletFragment__deactivate">غیرفعال کردن</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">غیرفعال کردن بدون انتقال؟</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">مانده حساب شما در کیف پول شما که به سیگنال پیوند داده شده است باقی خواهند ماند، اگر تصمیم به فعال کردن دوبارهٔ پرداخت‌ها بگیرید.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">خطا در غیرفعال کردن کیف پول.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">عبارت بازیابی</string>
   <string name="PaymentsRecoveryStartFragment__start">شروع</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">عبارت بازیابی</string>
   <string name="PaymentsRecoveryPasteFragment__next">بعدی</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">بعدی</string>
@@ -2653,6 +2725,7 @@
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">انجام شد</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">کلمهٔ %1$d را وارد کنید</string>
   <string name="PaymentsRecoveryEntryFragment__next">بعدی</string>
   <!--ClearClipboardAlarmReceiver-->
   <!--PaymentNotificationsView-->
