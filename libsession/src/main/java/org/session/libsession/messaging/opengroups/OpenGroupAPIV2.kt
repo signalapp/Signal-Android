@@ -1,18 +1,35 @@
 package org.session.libsession.messaging.opengroups
 
+import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.functional.map
 import okhttp3.HttpUrl
+import okhttp3.MediaType
+import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.opengroups.OpenGroupAPIV2.Error
+import org.session.libsession.snode.OnionRequestAPI
+import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.service.loki.api.utilities.HTTP
+import org.session.libsignal.service.loki.api.utilities.HTTP.Verb.*
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.Base64.*
+import org.session.libsignal.utilities.JsonUtil
+import org.session.libsignal.utilities.createContext
+import org.session.libsignal.utilities.logging.Log
+import org.whispersystems.curve25519.Curve25519
 import java.util.*
 
 object OpenGroupAPIV2 {
 
-    private val moderators: HashMap<String, HashMap<String, Set<String>>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
+    private val moderators: HashMap<String, Set<String>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
     const val DEFAULT_SERVER = "https://sessionopengroup.com"
     const val DEFAULT_SERVER_PUBLIC_KEY = "658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adffb231b"
+
+    private val sharedContext = Kovenant.createContext()
+    private val curve = Curve25519.getInstance(Curve25519.BEST)
 
     sealed class Error : Exception() {
         object GENERIC : Error()
@@ -26,7 +43,7 @@ object OpenGroupAPIV2 {
     data class Info(
             val id: String,
             val name: String,
-            val imageID: String
+            val imageID: String?
     )
 
     data class Request(
@@ -34,30 +51,67 @@ object OpenGroupAPIV2 {
             val room: String?,
             val server: String,
             val endpoint: String,
-            val queryParameters: Map<String, String>,
-            val parameters: Any,
-            val headers: Map<String, String>,
-            val isAuthRequired: Boolean,
+            val queryParameters: Map<String, String> = mapOf(),
+            val parameters: Any? = null,
+            val headers: Map<String, String> = mapOf(),
+            val isAuthRequired: Boolean = true,
             // Always `true` under normal circumstances. You might want to disable
             // this when running over Lokinet.
-            val useOnionRouting: Boolean
+            val useOnionRouting: Boolean = true
     )
 
-    private fun send(request: Request): Promise<Any, Exception> {
+    private fun createBody(parameters: Any): RequestBody {
+        val parametersAsJSON = JsonUtil.toJson(parameters)
+        return RequestBody.create(MediaType.get("application/json"), parametersAsJSON)
+    }
+
+    private fun send(request: Request): Promise<Map<*,*>, Exception> {
         val parsed = HttpUrl.parse(request.server) ?: return Promise.ofFail(Error.INVALID_URL)
         val urlBuilder = HttpUrl.Builder()
                 .scheme(parsed.scheme())
                 .host(parsed.host())
                 .addPathSegment(request.endpoint)
 
-        for ((key, value) in request.queryParameters) {
-            urlBuilder.addQueryParameter(key, value)
+        if (request.verb == GET) {
+            for ((key, value) in request.queryParameters) {
+                urlBuilder.addQueryParameter(key, value)
+            }
         }
 
         fun execute(token: String?): Promise<Map<*, *>, Exception> {
+            val requestBuilder = okhttp3.Request.Builder()
+                    .url(urlBuilder.build())
+            if (request.isAuthRequired) {
+                if (token.isNullOrEmpty()) throw IllegalStateException("No auth token for request")
+                requestBuilder.addHeader("Authorization", token)
+            }
+            when (request.verb) {
+                GET -> requestBuilder.get()
+                PUT -> requestBuilder.put(createBody(request.parameters!!))
+                POST -> requestBuilder.post(createBody(request.parameters!!))
+                DELETE -> requestBuilder.delete(createBody(request.parameters!!))
+            }
+
+            if (!request.room.isNullOrEmpty()) {
+                requestBuilder.header("Room", request.room)
+            }
+
+            if (request.useOnionRouting) {
+                val publicKey = MessagingConfiguration.shared.storage.getOpenGroupPublicKey(request.server)
+                        ?: return Promise.ofFail(Error.NO_PUBLIC_KEY)
+                return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), request.server, publicKey)
+                        .fail { e ->
+                            if (e is OnionRequestAPI.HTTPRequestFailedAtDestinationException
+                                    && e.statusCode == 401) {
+                                MessagingConfiguration.shared.storage.removeAuthToken(request.server)
+                            }
+                        }
+            } else {
+                return Promise.ofFail(IllegalStateException("It's currently not allowed to send non onion routed requests."))
+            }
         }
         return if (request.isAuthRequired) {
-            getAuthToken(request.room!!, request.server).bind(::execute)
+            getAuthToken(request.room!!, request.server).bind(sharedContext) { execute(it) }
         } else {
             execute(null)
         }
@@ -69,7 +123,7 @@ object OpenGroupAPIV2 {
             Promise.of(it)
         } ?: run {
             requestNewAuthToken(room, server)
-                    .bind { claimAuthToken(it, room, server) }
+                    .bind(sharedContext) { claimAuthToken(it, room, server) }
                     .success { authToken ->
                         storage.setAuthToken(room, server, authToken)
                     }
@@ -77,75 +131,204 @@ object OpenGroupAPIV2 {
     }
 
     fun requestNewAuthToken(room: String, server: String): Promise<String, Exception> {
-        val (publicKey, _) = MessagingConfiguration.shared.storage.getUserKeyPair()
+        val (publicKey, privateKey) = MessagingConfiguration.shared.storage.getUserKeyPair()
                 ?: return Promise.ofFail(Error.GENERIC)
         val queryParameters = mutableMapOf("public_key" to publicKey)
-
+        val request = Request(GET, room, server, "auth_token_challenge", queryParameters, isAuthRequired = false, parameters = null)
+        return send(request).map(sharedContext) { json ->
+            val challenge = json["challenge"] as? Map<*,*> ?: throw Error.PARSING_FAILED
+            val base64EncodedCiphertext = challenge["ciphertext"] as? String ?: throw Error.PARSING_FAILED
+            val base64EncodedEphemeralPublicKey = challenge["ephemeral_public_key"] as? String ?: throw Error.PARSING_FAILED
+            val ciphertext = decode(base64EncodedCiphertext)
+            val ephemeralPublicKey = decode(base64EncodedEphemeralPublicKey)
+            val symmetricKey = AESGCM.generateSymmetricKey(ephemeralPublicKey, privateKey)
+            val tokenAsData = try {
+                AESGCM.decrypt(ciphertext, symmetricKey)
+            } catch (e: Exception) {
+                throw Error.DECRYPTION_FAILED
+            }
+            tokenAsData.toHexString()
+        }
     }
 
     fun claimAuthToken(authToken: String, room: String, server: String): Promise<String, Exception> {
-        TODO("implement")
+        val parameters = mapOf("public_key" to MessagingConfiguration.shared.storage.getUserPublicKey()!!)
+        val headers = mapOf("Authorization" to authToken)
+        val request = Request(verb = POST, room = room, server = server, endpoint = "claim_auth_token",
+                parameters = parameters, headers = headers, isAuthRequired = false)
+        return send(request).map(sharedContext) { authToken }
     }
 
-    fun deleteAuthToken(room: String, server: String): Promise<Long, Exception> {
-        TODO("implement")
+    fun deleteAuthToken(room: String, server: String): Promise<Unit, Exception> {
+        val request = Request(verb = DELETE, room = room, server = server, endpoint = "auth_token")
+        return send(request).map(sharedContext) {
+            MessagingConfiguration.shared.storage.removeAuthToken(room, server)
+        }
     }
 
+    // region Sending
     fun upload(file: ByteArray, room: String, server: String): Promise<Long, Exception> {
-        TODO("implement")
+        val base64EncodedFile = encodeBytes(file)
+        val parameters = mapOf("file" to base64EncodedFile)
+        val request = Request(verb = POST, room = room, server = server, endpoint = "files", parameters = parameters)
+        return send(request).map(sharedContext) { json ->
+            json["result"] as? Long ?: throw Error.PARSING_FAILED
+        }
     }
 
     fun download(file: Long, room: String, server: String): Promise<ByteArray, Exception> {
-        TODO("implement")
+        val request = Request(verb = GET, room = room, server = server, endpoint = "files/$file")
+        return send(request).map(sharedContext) { json ->
+            val base64EncodedFile = json["result"] as? String ?: throw Error.PARSING_FAILED
+            decode(base64EncodedFile) ?: throw Error.PARSING_FAILED
+        }
     }
 
     fun send(message: OpenGroupMessageV2, room: String, server: String): Promise<OpenGroupMessageV2, Exception> {
-        TODO("implement")
+        val signedMessage = message.sign() ?: return Promise.ofFail(Error.SIGNING_FAILED)
+        val json = signedMessage.toJSON()
+        val request = Request(verb = POST, room = room, server = server, endpoint = "messages", parameters = json)
+        return send(request).map(sharedContext) {
+            @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String,String> ?: throw Error.PARSING_FAILED
+            OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.PARSING_FAILED
+        }
     }
+    // endregion
 
+    // region Messages
     fun getMessages(room: String, server: String): Promise<List<OpenGroupMessageV2>, Exception> {
-        TODO("implement")
-    }
+        val storage = MessagingConfiguration.shared.storage
+        val queryParameters = mutableMapOf<String,String>()
+        storage.getLastMessageServerId(room,server)?.let { lastId ->
+            queryParameters += "from_server_id" to lastId.toString()
+        }
+        val request = Request(verb = GET, room = room, server = server, endpoint = "messages", queryParameters = queryParameters)
+        return send(request).map(sharedContext) { jsonList ->
+            @Suppress("UNCHECKED_CAST") val rawMessages = jsonList["messages"] as? List<Map<String,Any>> ?: throw Error.PARSING_FAILED
+            val lastMessageServerId = storage.getLastMessageServerId(room, server) ?: 0
 
+            var currentMax = lastMessageServerId
+            val messages = rawMessages.mapNotNull { json ->
+                val message = OpenGroupMessageV2.fromJSON(json) ?: return@mapNotNull null
+                if (message.serverID == null || message.sender.isNullOrEmpty()) return@mapNotNull null
+                val sender = message.sender
+                val data = decode(message.base64EncodedData)
+                val signature = decode(message.base64EncodedSignature)
+                val publicKey = sender.removing05PrefixIfNeeded().encodeToByteArray()
+                val isValid = curve.verifySignature(publicKey, data, signature)
+                if (!isValid) {
+                    Log.d("Loki", "Ignoring message with invalid signature")
+                    return@mapNotNull null
+                }
+                if (message.serverID > lastMessageServerId) {
+                    currentMax = message.serverID
+                }
+                message
+            }
+            storage.setLastMessageServerId(room,server,currentMax)
+            messages
+        }
+    }
+    // endregion
+
+    // region Message Deletion
     fun deleteMessage(serverID: Long, room: String, server: String): Promise<Unit, Exception> {
-        TODO("implement")
+        val request = Request(verb = DELETE, room = room, server = server, endpoint = "message/$serverID")
+        return send(request).map(sharedContext) {
+            Log.d("Loki", "Deleted server message")
+        }
     }
 
     fun getDeletedMessages(room: String, server: String): Promise<List<Long>, Exception> {
-        TODO("implement")
+        val storage = MessagingConfiguration.shared.storage
+        val queryParameters = mutableMapOf<String,String>()
+        storage.getLastDeletionServerId(room, server)?.let { last ->
+            queryParameters["from_server_id"] = last.toString()
+        }
+        val request = Request(verb = GET, room = room, server = server, endpoint = "deleted_messages", queryParameters = queryParameters)
+        return send(request).map(sharedContext) { json ->
+            @Suppress("UNCHECKED_CAST") val serverIDs = json["ids"] as? List<Long> ?: throw Error.PARSING_FAILED
+            val lastMessageServerId = storage.getLastMessageServerId(room, server) ?: 0
+            val serverID = serverIDs.maxOrNull() ?: 0
+            if (serverID > lastMessageServerId) {
+                storage.setLastDeletionServerId(room, server, serverID)
+            }
+            serverIDs
+        }
     }
+    // endregion
 
+    // region Moderation
     fun getModerators(room: String, server: String): Promise<List<String>, Exception> {
-        TODO("implement")
+        val request = Request(verb = GET, room = room, server = server, endpoint = "moderators")
+        return send(request).map(sharedContext) { json ->
+            @Suppress("UNCHECKED_CAST") val moderatorsJson = json["moderators"] as? List<String> ?: throw Error.PARSING_FAILED
+            val id = "$server.$room"
+            moderators[id] = moderatorsJson.toMutableSet()
+            moderatorsJson
+        }
     }
 
     fun ban(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
-        TODO("implement")
+        val parameters = mapOf("public_key" to publicKey)
+        val request = Request(verb = POST, room = room, server = server, endpoint = "block_list", parameters = parameters)
+        return send(request).map(sharedContext) {
+            Log.d("Loki", "Banned user $publicKey from $server.$room")
+        }
     }
 
     fun unban(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
-        TODO("implement")
+        val request = Request(verb = DELETE, room = room, server = server, endpoint = "block_list/$publicKey")
+        return send(request).map(sharedContext) {
+            Log.d("Loki", "Unbanned user $publicKey from $server.$room")
+        }
     }
 
-    fun isUserModerator(publicKey: String, room: String, server: String): Promise<Boolean, Exception> {
-        TODO("implement")
-    }
+    fun isUserModerator(publicKey: String, room: String, server: String): Boolean = moderators["$server.$room"]?.contains(publicKey) ?: false
+    // endregion
 
-    fun getDefaultRoomsIfNeeded() {
-        TODO("implement")
+    // region General
+    fun getDefaultRoomsIfNeeded(): Promise<List<Info>, Exception> {
+        val storage = MessagingConfiguration.shared.storage
+        storage.setOpenGroupPublicKey(DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)
+        return getAllRooms(DEFAULT_SERVER)
     }
 
     fun getInfo(room: String, server: String): Promise<Info, Exception> {
-        TODO("implement")
+        val request = Request(verb = GET, room = room, server = server, endpoint = "rooms/$room", isAuthRequired = false)
+        return send(request).map(sharedContext) { json ->
+            val rawRoom = json["room"] as? Map<*,*> ?: throw Error.PARSING_FAILED
+            val id = rawRoom["id"] as? String ?: throw Error.PARSING_FAILED
+            val name = rawRoom["name"] as? String ?: throw Error.PARSING_FAILED
+            val imageID = rawRoom["image_id"] as? String
+            Info(id = id, name = name, imageID = imageID)
+        }
     }
 
     fun getAllRooms(server: String): Promise<List<Info>, Exception> {
-        TODO("implement")
+        val request = Request(verb = GET, room = null, server = server, endpoint = "rooms", isAuthRequired = false)
+        return send(request).map(sharedContext) { json ->
+            val rawRooms = json["rooms"] as? Map<*,*> ?: throw Error.PARSING_FAILED
+            rawRooms.mapNotNull {
+                val roomJson = it as? Map<*, *> ?: return@mapNotNull null
+                val id = roomJson["id"] as? String ?: return@mapNotNull null
+                val name = roomJson["name"] as? String ?: return@mapNotNull null
+                val imageId = roomJson["image_id"] as? String
+                Info(id, name, imageId)
+            }
+        }
     }
 
     fun getMemberCount(room: String, server: String): Promise<Long, Exception> {
-        TODO("implement")
+        val request = Request(verb = GET, room = room, server = server, endpoint = "member_count")
+        return send(request).map(sharedContext) { json ->
+            val memberCount = json["member_count"] as? Long ?: throw Error.PARSING_FAILED
+            val storage = MessagingConfiguration.shared.storage
+            storage.setUserCount(room, server, memberCount)
+            memberCount
+        }
     }
+    // endregion
 
 }
 

@@ -314,15 +314,19 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getLastDeletionServerId(room: String, server: String): Long? {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getLokiAPIDatabase(context).getLastDeletionServerID(room, server)
     }
 
     override fun setLastDeletionServerId(room: String, server: String, newValue: Long) {
-        TODO("Not yet implemented")
+        DatabaseFactory.getLokiAPIDatabase(context).setLastDeletionServerID(room, server, newValue)
     }
 
     override fun removeLastDeletionServerId(room: String, server: String) {
-        TODO("Not yet implemented")
+        DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(room, server)
+    }
+
+    override fun setUserCount(room: String, server: String, newValue: Long) {
+        DatabaseFactory.getLokiAPIDatabase(context).setUserCount(room, server, newValue)
     }
 
     override fun getLastDeletionServerID(group: Long, server: String): Long? {

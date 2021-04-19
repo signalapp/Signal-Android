@@ -316,7 +316,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     fun removeLastMessageServerID(room: String, server:String) {
         val database = databaseHelper.writableDatabase
-        val index = "$server.$channel"
+        val index = "$server.$room"
         database.delete(lastMessageServerIDTable, "$lastMessageServerIDTableIndex = ?", wrap(index))
     }
 
@@ -350,6 +350,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(lastDeletionServerIDTable, row, "$lastDeletionServerIDTableIndex = ?", wrap(index))
     }
 
+    fun removeLastDeletionServerID(room: String, server: String) {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$room"
+        database.delete(lastDeletionServerIDTable, "$lastDeletionServerID = ?", wrap(index))
+    }
+
     fun removeLastDeletionServerID(group: Long, server: String) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
@@ -379,7 +385,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(userCountTable, row, "$publicChatID = ?", wrap(index))
     }
 
-    override fun setUserCount(room: String, server: String, newValue: Int) {
+    override fun setUserCount(room: String, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$room"
         val row = wrap(mapOf( publicChatID to index, userCount to newValue.toString() ))

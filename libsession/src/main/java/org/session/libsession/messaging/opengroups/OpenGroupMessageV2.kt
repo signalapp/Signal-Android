@@ -18,6 +18,21 @@ data class OpenGroupMessageV2(
 
     companion object {
         private val curve = Curve25519.getInstance(Curve25519.BEST)
+
+        fun fromJSON(json: Map<String, Any>): OpenGroupMessageV2? {
+            val base64EncodedData = json["data"] as? String ?: return null
+            val sentTimestamp = json["timestamp"] as? Long ?: return null
+            val serverID = json["server_id"] as? Long
+            val sender = json["public_key"] as? String
+            val base64EncodedSignature = json["signature"] as? String
+            return OpenGroupMessageV2(serverID = serverID,
+                    sender = sender,
+                    sentTimestamp = sentTimestamp,
+                    base64EncodedData = base64EncodedData,
+                    base64EncodedSignature = base64EncodedSignature
+            )
+        }
+
     }
 
     fun sign(): OpenGroupMessageV2? {
@@ -43,20 +58,4 @@ data class OpenGroupMessageV2(
         base64EncodedSignature?.let { jsonMap["signature"] = base64EncodedSignature }
         return jsonMap
     }
-
-    fun fromJSON(json: Map<String, Any>): OpenGroupMessageV2? {
-        val base64EncodedData = json["data"] as? String ?: return null
-        val sentTimestamp = json["timestamp"] as? Long ?: return null
-        val serverID = json["server_id"] as? Long
-        val sender = json["public_key"] as? String
-        val base64EncodedSignature = json["signature"] as? String
-        return OpenGroupMessageV2(serverID = serverID,
-                sender = sender,
-                sentTimestamp = sentTimestamp,
-                base64EncodedData = base64EncodedData,
-                base64EncodedSignature = base64EncodedSignature
-        )
-    }
-
-
 }
