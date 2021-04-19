@@ -773,7 +773,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden geen gesprekken onversleuteld voeren.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
   <!--LongMessageActivity-->
@@ -905,9 +905,9 @@
     <item quantity="other">%1$s groepsleden konden niet toegevoegd worden tot de nieuwe groep en zijn daarom verwijderd uit de groep.</item>
   </plurals>
   <!--Profile change updates-->
-  <string name="MessageRecord_changed_their_profile_name_to">%1$s heeft zijn of haar profielnaam naar %2$s gewijzigd.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s heeft zijn of haar profielnaam van %2$s naar %3$s gewijzigd.</string>
-  <string name="MessageRecord_changed_their_profile">%1$s heeft zijn of haar profiel aangepast.</string>
+  <string name="MessageRecord_changed_their_profile_name_to">“%1$s” heeft zijn of haar profielnaam naar “%2$s” gewijzigd.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s heeft zijn of haar profielnaam van “%2$s” naar “%3$s” gewijzigd.</string>
+  <string name="MessageRecord_changed_their_profile">“%1$s” heeft zijn of haar profiel aangepast.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
   <string name="MessageRecord_group_updated">Groep aangepast.</string>
@@ -1765,7 +1765,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Typ een naam of nummer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je direct met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <string name="verify_display_fragment__loading">Aan het laden …</string>
   <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>
@@ -2680,7 +2680,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ReviewCard__update_contact">Contactpersoon bijwerken</string>
   <string name="ReviewCard__block">Blokkeren</string>
   <string name="ReviewCard__delete">Wissen</string>
-  <string name="ReviewCard__recently_changed">%1$s heeft recentelijk zijn of haar profielnaam naar %2$s gewijzigd.</string>
+  <string name="ReviewCard__recently_changed">“%1$s” heeft recentelijk zijn of haar profielnaam naar “%2$s” gewijzigd.</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s neemt nu deel aan deze oproep</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s nemen nu deel</string>

@@ -144,17 +144,17 @@
   <string name="ContactsCursorLoader_recent_chats">การพูดคุยล่าสุด</string>
   <string name="ContactsCursorLoader_contacts">ผู้ติดต่อ</string>
   <string name="ContactsCursorLoader_groups">กลุ่ม</string>
-  <string name="ContactsCursorLoader_phone_number_search">ค้นหาด้วยเบอร์โทรศัพท์</string>
+  <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
   <string name="ContactsCursorLoader_username_search">ค้นหาด้วยชื่อผู้ใช้</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ข้อความ %s</string>
   <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">ชื่อ</string>
-  <string name="ContactNameEditActivity_family_name">นามสกุล</string>
+  <string name="ContactNameEditActivity_family_name">สกุล</string>
   <string name="ContactNameEditActivity_prefix">คำนำหน้า</string>
   <string name="ContactNameEditActivity_suffix">คำต่อท้าย</string>
-  <string name="ContactNameEditActivity_middle_name">ชือกลาง</string>
+  <string name="ContactNameEditActivity_middle_name">ชื่อกลาง</string>
   <!--ContactShareEditActivity-->
   <string name="ContactShareEditActivity_type_home">บ้าน</string>
   <string name="ContactShareEditActivity_type_mobile">มือถือ</string>
@@ -162,10 +162,10 @@
   <string name="ContactShareEditActivity_type_missing">ที่อื่น</string>
   <string name="ContactShareEditActivity_invalid_contact">ผู้ติดต่อที่เลือกไม่ถูกต้อง</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">ยังไม่ถูกส่ง แตะเพื่อดูรายละเอียด</string>
-  <string name="ConversationItem_error_partially_not_delivered">ส่งได้แล้วบางส่วน แตะดูรายละเอียด</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">ไม่ถูกส่ง แตะเพื่อดูรายละเอียด</string>
+  <string name="ConversationItem_error_partially_not_delivered">ส่งแล้วบางส่วน แตะเพื่อดูรายละเอียด</string>
   <string name="ConversationItem_error_network_not_delivered">การส่งล้มเหลว</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนคีย์ แตะเพื่อประมวลผล</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนกุญแจ แตะเพื่อประมวลผล</string>
   <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
   <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">กลับไปใช้ SMS ที่ไม่ได้เข้ารหัสลับหรือไม่?</string>
@@ -247,7 +247,7 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">บันทึกลงที่เก็บข้อมูลหรือไม่?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="other">การบันทึกสื่อทั้งหมด %1$d รายการลงในที่เก็บข้อมูล จะอนุญาตให้แอปอื่นในอุปกรณ์ของคุณเข้าถึงสื่อเหล่านี้ได้ด้วย\n\nดำเนินการต่อหรือไม่?</item>
+    <item quantity="other">การบันทึกสื่อทั้งหมด %1$d รายการลงในที่เก็บข้อมูล จะทำให้แอปอื่นในอุปกรณ์ของคุณเข้าถึงสื่อเหล่านี้ได้ด้วย\n\nดำเนินการต่อหรือไม่?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">เกิดข้อผิดพลาดระหว่างบันทึกแฟ้มแนบลงที่เก็บข้อมูล!</item>
@@ -360,7 +360,7 @@
   <string name="DateUtils_yesterday">เมื่อวาน</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal เข้ารหัสลับจากต้นทางถึงปลายทางและมันอาจต้องเรียกข้อมูลการสนทนาของคุณใหม่เป็นบางครั้ง การเรียกข้อมูลใหม่นี้ไม่ส่งผลต่อความปลอดภัยของการสนทนา แต่เป็นได้ว่าคุณอาจพลาดข้อความหนึ่งข้อความจากผู้ติดต่อรายนี้ และคุณสามารถขอให้เขาส่งข้อความอีกครั้งได้</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal เข้ารหัสลับจากต้นทางถึงปลายทางและมันอาจต้องเรียกสมัยการสนทนาของคุณใหม่เป็นบางครั้ง สิ่งนี้ไม่ส่งผลต่อความปลอดภัยของการสนทนา แต่เป็นได้ว่าคุณอาจพลาดข้อความหนึ่งข้อความจากผู้ติดต่อรายนี้ คุณสามารถขอให้เขาส่งข้อความอีกครั้งได้</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">เลิกเชื่อมโยง \'%s\' หรือไม่?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">อุปกรณ์นี้จะไม่สามารถส่งหรือรับข้อความได้อีกต่อไปเมื่อทำการเลิกเชื่อมโยง</string>
@@ -404,7 +404,7 @@
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">เกิดข้อผิดพลาดระหว่างการดึงภาพ GIF ความละเอียดสูง</string>
   <!--GiphyFragmentPageAdapter-->
-  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">สติกเกอร์</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">เพิ่มสมาชิกหรือไม่?</string>
@@ -668,7 +668,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">คุณแน่ใจหรือไม่ว่าต้องการตั้งค่าลิงก์กลุ่มนี้ใหม่? คนจะไม่สามารถเข้าร่วมกลุ่มด้วยลิงก์ปัจจุบันได้อีกต่อไป</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">รหัส QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ผู้ที่สามารถสแกนรหัสนี้จะสามารถเข้าร่วมกลุ่มของคุณได้ ซึ่งผู้ดูแลยังคงต้องอนุมัติให้สมาชิกใหม่อยู่ หากท่านได้เปิดการตั้งค่านี้ไว้</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ผู้ที่สแกนรหัสนี้จะสามารถเข้าร่วมกลุ่มของคุณได้ ผู้ดูแลยังต้องอนุมัติสมาชิกใหม่อยู่ หากคุณได้เปิดการตั้งค่าไว้</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">แบ่งปันรหัส</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">คุณต้องการเพิกถอนคำเชิญที่คุณส่งให้ %1$s หรือไม่?</string>
@@ -886,8 +886,8 @@
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ไม่ได้เป็นผู้ดูแลแล้ว</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">คุณไม่ได้เป็นผู้ดูแลอีกต่อไปแล้ว</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ไม่ได้เป็นผู้ดูแลอีกต่อไป</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">คุณไม่ได้เป็นผู้ดูแลอีกต่อไป</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">คุณได้เชิญ %1$s เข้ากลุ่ม</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s ได้เชิญคุณเข้ากลุ่ม</string>
@@ -1382,7 +1382,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s ถึง %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">สื่อตัวนี้ไม่มีอยู่แล้ว</string>
-  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่ค้นพบแอปที่สามารถแชร์สื่อนี้ได้</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่พบแอปที่แบ่งปันสื่อนี้ได้</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d การสนทนา</string>
   <string name="MessageNotifier_most_recent_from_s">ล่าสุดจาก: %1$s</string>
@@ -1619,7 +1619,7 @@
     <item quantity="other">%d อื่นๆ</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ค้นหาภาพ GIFs และสติกเกอร์</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ค้นหาภาพ GIF และสติกเกอร์</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
   <!--log_submit_activity-->

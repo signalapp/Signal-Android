@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN yettwakkes.</string>
   <string name="ApplicationPreferencesActivity_hide">Ffer</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Ffer asmekti?</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Sekles tafyirt</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d n tesdadt</item>
@@ -57,6 +58,7 @@
   <string name="AttachmentKeyboard_location">Adig</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal yesra asireg akken ad d-yesken tiwlafin akked tvidytin-inek.inem.</string>
   <string name="AttachmentKeyboard_give_access">Efk anekcum</string>
+  <string name="AttachmentKeyboard_payment">Axelleṣ</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ur yezmir ara ad yaf asnas i ufran n umidya.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal yesra tisirag n Uklas i wakken ad iseddu tiwlafin, tividyutin neɣ ameslaw maca yezga yettwagi. Ttxil-k·m kemmel ɣer wumuɣ n yiɣewwaren n usnas, fren \"Tisirag\" syen rmed \"Aklas\".</string>
@@ -607,6 +609,7 @@
   <string name="ManageGroupActivity_mentions">Tibdarin</string>
   <string name="ManageGroupActivity_chat_wallpaper">Tugna n ugilal n udiwenni</string>
   <string name="ManageGroupActivity_until_s">Alamma d %1$s</string>
+  <string name="ManageGroupActivity_always">Yal tikkelt</string>
   <string name="ManageGroupActivity_off">Yensa</string>
   <string name="ManageGroupActivity_on">Yermed</string>
   <string name="ManageGroupActivity_view_all_members">Wali meṛṛa iεeggalen</string>
@@ -657,6 +660,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Susem ilɣa</string>
   <string name="ManageRecipientActivity_custom_notifications">Sagen ilɣa</string>
   <string name="ManageRecipientActivity_until_s">Alamma d %1$s</string>
+  <string name="ManageRecipientActivity_always">Yal tikkelt</string>
   <string name="ManageRecipientActivity_off">Yensa</string>
   <string name="ManageRecipientActivity_on">Yermed</string>
   <string name="ManageRecipientActivity_add_to_a_group">Rnu ɣer ugraw</string>
@@ -1491,6 +1495,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Izen amaynut</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Asuter n yizen</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Γeṛ tavidyut</string>
   <string name="ThumbnailView_Has_a_caption_description">Yesεa taqsiḍt</string>
@@ -1596,6 +1601,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ConversationUpdateItem_return_to_call">Uɣal ɣer usiwel</string>
   <string name="ConversationUpdateItem_call_is_full">Asiwel yeččur</string>
   <string name="ConversationUpdateItem_invite_friends">Snubget-d imdukkal</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Rmed tilɣa n usiwel</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Γeṛ … Asteεfu</string>
   <string name="audio_view__download_accessibility_description">Sider</string>
@@ -1620,6 +1626,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="safety_number_change_dialog__view">Sken</string>
   <string name="safety_number_change_dialog__previous_verified">Asenqed yezrin</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Tilɣa n usiwel ttwaremdent.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Rmed tilɣa n usiwel</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Rmed leqdic n ugilal</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Yal taɣawsa tetteddu akken iwata akka imira!</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Iɣewwaṛen</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Asali n tmura…</string>
@@ -1793,6 +1803,14 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpFragment__debug_log">Aɣmis n temseɣtayt:</string>
   <string name="HelpFragment__could_not_upload_logs">Ur yezmir ara ad d-isali iɣmisen</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ttxil-k·m ɛreḍ ayen yellan fell-ak·am amek ara ad d-tgelmeḍ ugur i wakken ad aɣ-talleḍ ad t-negzu.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Yella wayen ur nteddu ara</item>
+    <item>Asuter n tmahilt</item>
+    <item>Asteqsi</item>
+    <item>Tiririt</item>
+    <item>Ayen nniḍen</item>
+    <item>Axelleṣ</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Izen-agi</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yesttwaseqdec melmi kan</string>
@@ -1809,8 +1827,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="arrays__use_default">Seqdec udem amezwer</string>
   <string name="arrays__use_custom">Seqdec udmawan</string>
   <string name="arrays__mute_for_one_hour">Kkes imesli i 1 n wesrag</string>
+  <string name="arrays__mute_for_eight_hours">Kkes imesli i 8 n yisragen</string>
   <string name="arrays__mute_for_one_day">Kkes imesli i 1 n wass</string>
   <string name="arrays__mute_for_seven_days">Kkes imesli i 7 n wussan</string>
+  <string name="arrays__always">Yal tikkelt</string>
   <string name="arrays__settings_default">Iɣewwaṛen imezwar</string>
   <string name="arrays__enabled">Yermed</string>
   <string name="arrays__disabled">Yensa</string>
@@ -1834,6 +1854,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
     <item quantity="other">%dyisragen</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS akked MMS</string>
   <string name="preferences__pref_all_sms_title">Ṭṭef-d akk SMS</string>
   <string name="preferences__pref_all_mms_title">Ṭṭef-d akk MMS</string>
@@ -1897,6 +1918,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Suter aneqqis n usiweḍ i yal izen SMS ara tazneḍ</string>
   <string name="preferences__data_and_storage">Isefka d uklas</string>
   <string name="preferences__storage">Asekles</string>
+  <string name="preferences__payments">Axelleṣ</string>
+  <string name="preferences__payments_beta">Axelleṣ (Beta)</string>
   <string name="preferences__conversation_length_limit">Talast n tenzagt n umeslay</string>
   <string name="preferences__keep_messages">Eǧǧ iznan</string>
   <string name="preferences__clear_message_history">Sfeḍ amazray n yizen</string>
@@ -2004,27 +2027,66 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="configurable_single_select__customize_option">Taxtiṛt tudmawant</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Akk tamahilt</string>
   <string name="PaymentsAllActivityFragment__all">Akk</string>
   <string name="PaymentsAllActivityFragment__sent">Ttwazanen</string>
   <string name="PaymentsAllActivityFragment__received">Yettwarmes</string>
+  <string name="PaymentsHomeFragment__activate_payments">Rmed axelleṣ</string>
+  <string name="PaymentsHomeFragment__activating_payments">Rmed axelleṣ…</string>
+  <string name="PaymentsHomeFragment__pending_requests">Tuttriwin yettraǧun</string>
+  <string name="PaymentsHomeFragment__recent_activity">Amahil aneggaru</string>
   <string name="PaymentsHomeFragment__see_all">Wali akk</string>
   <string name="PaymentsHomeFragment__send">Azen</string>
+  <string name="PaymentsHomeFragment__sent_s">Yettwazen %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Yettwaṭṭef-d %1$s</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Tifyirt n tririt</string>
   <string name="PaymentsHomeFragment__help">Tallalt</string>
+  <string name="PaymentsHomeFragment__sent_payment">Lexlaṣ yettwaznen</string>
+  <string name="PaymentsHomeFragment__received_payment">Lexlaṣ yettwaṭṭfen</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Sens axelleṣ?</string>
+  <string name="PaymentsHomeFragment__deactivate">Sens</string>
   <string name="PaymentsHomeFragment__continue">Kemmel</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Axelleṣ yensa.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Axelles yecceḍ</string>
+  <string name="PaymentsHomeFragment__details">Talqayt</string>
+  <string name="PaymentsHomeFragment__activate">Rmed</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Nɣel</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Aḍris yettwanɣel ɣef afus</string>
   <!--PaymentsDetailsFragment-->
+  <string name="PaymentsDetailsFragment__details">Talqayt</string>
   <string name="PaymentsDetailsFragment__status">Addad</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Axelles yecceḍ</string>
+  <string name="PaymentsDetailsFragment__sent_by">Yettwazen-d sɣur</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Yettwazen-d ɣer %1$s</string>
+  <string name="PaymentsDetailsFragment__to">Ɣer</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Lexlaṣ yettwaznen</string>
+  <string name="PaymentsDetailsFragment__received_payment">Lexlaṣ yettwaṭṭfen</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">Azen</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Semḍen tangalt QR</string>
   <string name="PaymentsTransferFragment__next">Ɣer zdat</string>
   <string name="PaymentsTransferFragment__settings">Iɣewwaṛen</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Suter</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__to">Ɣer</string>
+  <string name="ConfirmPayment__payment_failed">Axelles yecceḍ</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -2408,6 +2470,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="OldDeviceTransferLockedDialog__done">Yemmed</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Sefsex yerna rmed ibenk-agi</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer">Azen</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Sewḥel</string>
   <string name="RecipientBottomSheet_unblock">Serreḥ</string>
@@ -2558,8 +2621,11 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="payment_info_card_hide">Ffer</string>
   <string name="payment_info_card_update_pin">Snifel PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Sens</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Tifyirt n tririt</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Tifyirt n tririt</string>
   <string name="PaymentsRecoveryPasteFragment__next">Ɣer zdat</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Ɣer zdat</string>

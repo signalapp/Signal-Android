@@ -1118,8 +1118,8 @@
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Придружите се групи? Неће знати да сте им прочитали поруке док не прихватите.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Да ли желите да одблокирате ову групу и да са њеним члановима поделите ваше име и слику? Нећете добити ни једну поруку док је не одблокирате.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Члан %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Члан од %1$s и %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Члан од %1$s, %2$s, и %3$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Члан %1$s и %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Члан %1$s, %2$s, и %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d члан</item>
     <item quantity="few">%1$d члан(ов)а</item>

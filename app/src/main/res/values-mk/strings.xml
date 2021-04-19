@@ -57,6 +57,7 @@
   <string name="AttachmentKeyboard_location">Локација</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal треба дозвола за да ги прикаже Вашите фотографии и видеа.</string>
   <string name="AttachmentKeyboard_give_access">Дозволи пристап</string>
+  <string name="AttachmentKeyboard_payment">Плаќање</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не постои апликација за избор на датотеки.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">На Signal му е потребна дозвола за пристап до складот за да можете да прикачите слики, видеа или аудио. Ова е трајно одбиено. Ве молиме продолжете до менито со поставувања, изберете „Дозволи“, и вклучете „Склад“</string>
@@ -607,6 +608,7 @@
   <string name="ManageGroupActivity_mentions">Спомнувања</string>
   <string name="ManageGroupActivity_chat_wallpaper">Позадина за разговорот</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
+  <string name="ManageGroupActivity_always">Секогаш</string>
   <string name="ManageGroupActivity_off">Исклучено</string>
   <string name="ManageGroupActivity_on">Вклучи</string>
   <string name="ManageGroupActivity_view_all_members">Види ги сите членови</string>
@@ -657,6 +659,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Исклучи известувања</string>
   <string name="ManageRecipientActivity_custom_notifications">Прилагодени известувања</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
+  <string name="ManageRecipientActivity_always">Секогаш</string>
   <string name="ManageRecipientActivity_off">Исклучено</string>
   <string name="ManageRecipientActivity_on">Вклучено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Додај во група</string>
@@ -833,6 +836,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal повик во тек</string>
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Го стопирам Signal сервисот за повикување</string>
   <string name="NotificationBarManager__deny_call">Одбиј го повикот</string>
   <string name="NotificationBarManager__answer_call">Одговори на повикот</string>
   <string name="NotificationBarManager__end_call">Заврши го повикот</string>
@@ -1490,6 +1494,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Барање за порака</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Пушти видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Има наслов</string>
@@ -1595,6 +1600,7 @@
   <string name="ConversationUpdateItem_return_to_call">Врати се на повикот</string>
   <string name="ConversationUpdateItem_call_is_full">Повикот е полн</string>
   <string name="ConversationUpdateItem_invite_friends">Покани пријатели</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Вклучи известувања за повици</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пушти … Пауза</string>
   <string name="audio_view__download_accessibility_description">Преземи</string>
@@ -1619,6 +1625,10 @@
   <string name="safety_number_change_dialog__view">Преглед</string>
   <string name="safety_number_change_dialog__previous_verified">Претходно проверено</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Известувањата за повици се вклучени.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Вклучи известувања за повици</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Вклучи позадинска активност</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Сѐ изгледа добро сега!</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Поставувања</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитувам земји…</string>
@@ -1808,8 +1818,10 @@
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користи прилагодено</string>
   <string name="arrays__mute_for_one_hour">Исклучи на 1 час</string>
+  <string name="arrays__mute_for_eight_hours">Исклучи на 8 часа</string>
   <string name="arrays__mute_for_one_day">Исклучи на 1 ден</string>
   <string name="arrays__mute_for_seven_days">Исклучи на 7 дена</string>
+  <string name="arrays__always">Секогаш</string>
   <string name="arrays__settings_default">Стандардни поставувања</string>
   <string name="arrays__enabled">Вклучено</string>
   <string name="arrays__disabled">Исклучено</string>
@@ -1833,6 +1845,7 @@
     <item quantity="other">%dч</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Бета</string>
   <string name="preferences__sms_mms">SMS и MMS</string>
   <string name="preferences__pref_all_sms_title">Примај ги сите SMS-и</string>
   <string name="preferences__pref_all_mms_title">Примај ги сите MMS-и</string>
@@ -1896,6 +1909,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Побарајте потврда за испорака за секоја испратена SMS порака</string>
   <string name="preferences__data_and_storage">Податоци и складирање</string>
   <string name="preferences__storage">Склад</string>
+  <string name="preferences__payments">Плаќања</string>
+  <string name="preferences__payments_beta">Плаќања (Бета)</string>
   <string name="preferences__conversation_length_limit">Максимална должина на разговор</string>
   <string name="preferences__keep_messages">Задржи пораки</string>
   <string name="preferences__clear_message_history">Исчисти историја на пораки</string>
@@ -2003,6 +2018,7 @@
   <string name="configurable_single_select__customize_option">Сопствена опција</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Цела активност</string>
   <string name="PaymentsAllActivityFragment__all">Сите</string>
   <string name="PaymentsAllActivityFragment__sent">Испратено</string>
   <string name="PaymentsAllActivityFragment__received">Примено</string>
@@ -2026,6 +2042,18 @@
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Барање</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__add_note">Додај порака</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">До</string>
@@ -2598,6 +2626,7 @@
   <string name="WallpaperCropActivity__blur_photo">Замагли слика.</string>
   <!--InfoCard-->
   <string name="payment_info_card_hide">Сокриј</string>
+  <string name="payment_info_card_update_your_pin">Ажурирајте го Вашиот PIN</string>
   <string name="payment_info_card_update_pin">Ажурирај PIN</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
@@ -2611,9 +2640,10 @@
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">Следно</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Невалиден збор</string>
   <!--ClearClipboardAlarmReceiver-->
   <!--PaymentNotificationsView-->
-  <string name="PaymentNotificationsView__view">Преглед</string>
+  <string name="PaymentNotificationsView__view">Поглед</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>

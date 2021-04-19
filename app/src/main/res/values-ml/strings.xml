@@ -1061,7 +1061,7 @@
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ഈ ഗ്രൂപ്പിനെ അൺ‌ബ്ലോക്ക് ചെയ്ത് നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ അൺ‌ബ്ലോക്ക് ചെയ്യുന്നതു വരെ നിങ്ങൾക്ക് സന്ദേശങ്ങളൊന്നും ലഭിക്കില്ല.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s എന്നിവയിലെ അംഗം</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s ലെ അംഗം</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d അംഗം</item>
     <item quantity="other">%1$d അംഗങ്ങൾ</item>

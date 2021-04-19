@@ -1170,9 +1170,9 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny a zdieľať vaše meno a fotku s jej členmi? Kým s tým nebudete súhlasiť, členovia skupiny nebudú vedieť, že ste ich správy videli.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny? Kým pozvanie neprijmete, jej členovia sa nedozvú, že ste ich správy videli.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a foto s jej členmi? Kým ju neodblokujete, nepríjmete z nej žiadne správy.</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Člen skupiny %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Člen skupiny %1$s a %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Člen skupiny %1$s, %2$s a %3$s</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Člen %1$s, %2$s a %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d člen</item>
     <item quantity="few">%1$d členovia</item>

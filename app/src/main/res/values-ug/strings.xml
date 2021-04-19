@@ -1426,10 +1426,10 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">ئۈنسىز ئۇقتۇرۇش</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_import_in_progress">ئىمپورت قىلىۋاتىدۇ</string>
-  <string name="ApplicationMigrationService_importing_text_messages">تېكىست ئۇچۇرلىرىنى ئىمپورت قىلىۋاتىدۇ</string>
-  <string name="ApplicationMigrationService_import_complete">كىرگۈزۈش تاماملاندى</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">سېسىتما ساندانىنى ئىمپورت قىلىش تۈگىدى.</string>
+  <string name="ApplicationMigrationService_import_in_progress">ئەكىرىش داۋاملىشىۋاتىدۇ</string>
+  <string name="ApplicationMigrationService_importing_text_messages">تېكىست ئۇچۇرلىرىنى ئەكىرىۋاتىدۇ</string>
+  <string name="ApplicationMigrationService_import_complete">ئەكىرىش تاماملاندى</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">سېسىتما ساندانىنى ئەكىرىش تۈگىدى.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">نوقۇپ ئېچىڭ.</string>
   <string name="KeyCachingService_passphrase_cached">Signal ئېچىلىپ كەتتى.</string>

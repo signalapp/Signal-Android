@@ -1867,7 +1867,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__pref_use_address_book_photos">Fotos aus Adressbuch verwenden</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Kontaktfotos aus deinem Adressbuch anzeigen, falls verfügbar</string>
   <string name="preferences__generate_link_previews">Link-Vorschau erzeugen</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Rufe für zu versendende Nachrichten Link-Vorschauen direkt von Webseiten ab.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Falls deine Nachricht einen Link enthält, wird eine Vorschau der verlinkten Seite erstellt</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passphrase ändern</string>
