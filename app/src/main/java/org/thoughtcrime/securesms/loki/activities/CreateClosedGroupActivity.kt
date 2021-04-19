@@ -76,6 +76,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     private fun update(members: List<String>) {
+        //if there is a Note to self conversation, it loads self in the list, so we need to remove it here
         this.members = members.minus(publicKey)
         mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
