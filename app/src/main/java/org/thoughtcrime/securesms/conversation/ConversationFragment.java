@@ -431,6 +431,7 @@ public class ConversationFragment extends LoggingFragment {
     }
   }
 
+
   private int getStartPosition() {
     return conversationViewModel.getArgs().getStartingPosition();
   }
@@ -1470,6 +1471,12 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public void onVoiceNotePause(@NonNull Uri uri) {
       voiceNoteMediaController.pausePlayback(uri);
+    }
+
+    @Override
+    public void onVideoMessagePlay() {
+      Uri voiceNoteUri = voiceNoteMediaController.getVoiceNotePlaybackState().getValue().getUri();
+      voiceNoteMediaController.pausePlayback(voiceNoteUri);
     }
 
     @Override
