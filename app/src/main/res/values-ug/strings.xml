@@ -5,7 +5,7 @@
   <string name="delete">ئۆچۈر</string>
   <string name="please_wait">سەل كۈتۈڭ…</string>
   <string name="save">ساقلا</string>
-  <string name="note_to_self">ئۆزۈمگە خاتىرە</string>
+  <string name="note_to_self">ئۆزۈمگە ئەسلەتمە</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">يېڭى ئۇچۇر</string>
   <!--AlbumThumbnailView-->
@@ -1483,7 +1483,7 @@
   <string name="NotificationChannel_other">باشقىلار</string>
   <string name="NotificationChannel_group_chats">سۆھبەتلەر</string>
   <string name="NotificationChannel_missing_display_name">نامەلۇم</string>
-  <string name="NotificationChannel_voice_notes">ئۈن خاتىرە</string>
+  <string name="NotificationChannel_voice_notes">ئاۋازلىق ئەسلەتمە</string>
   <string name="NotificationChannel_contact_joined_signal">ئالاقاداش Signal غا قېتىلدى</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ئۇقتۇرۇش قانال تەڭشەكلىرىنى ئاچىدىغان پائالىيەت يوق.</string>
   <!--ProfileEditNameFragment-->
