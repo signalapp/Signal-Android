@@ -84,8 +84,8 @@ public class ApplicationDependencies {
   private static volatile ViewOnceMessageManager       viewOnceMessageManager;
   private static volatile ExpiringMessageManager       expiringMessageManager;
   private static volatile Payments                     payments;
-  private static volatile ShakeToReport                shakeToReport;
   private static volatile SignalCallManager            signalCallManager;
+  private static volatile ShakeToReport                shakeToReport;
   private static volatile OkHttpClient                 okHttpClient;
 
   @MainThread
@@ -451,7 +451,6 @@ public class ApplicationDependencies {
       synchronized (LOCK) {
         if (okHttpClient == null) {
           okHttpClient = new OkHttpClient.Builder()
-              .proxySelector(new ContentProxySelector())
               .addInterceptor(new StandardUserAgentInterceptor())
               .dns(SignalServiceNetworkAccess.DNS)
               .build();

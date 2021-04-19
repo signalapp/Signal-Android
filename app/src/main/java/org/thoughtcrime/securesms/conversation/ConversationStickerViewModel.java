@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.Throttler;
 
@@ -56,7 +57,7 @@ class ConversationStickerViewModel extends ViewModel {
   }
 
   void onInputTextUpdated(@NonNull String text) {
-    if (TextUtils.isEmpty(text) || text.length() > EmojiUtil.MAX_EMOJI_LENGTH) {
+    if (TextUtils.isEmpty(text) || text.length() > EmojiSource.getLatest().getMaxEmojiLength()) {
       stickers.setValue(CursorList.emptyList());
     } else {
       repository.searchByEmoji(text, stickers::postValue);

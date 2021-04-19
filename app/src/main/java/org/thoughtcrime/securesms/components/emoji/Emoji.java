@@ -11,6 +11,10 @@ public class Emoji {
     this.variations = Arrays.asList(variations);
   }
 
+  public Emoji(List<String> variations) {
+    this.variations = variations;
+  }
+
   public String getValue() {
     return variations.get(0);
   }

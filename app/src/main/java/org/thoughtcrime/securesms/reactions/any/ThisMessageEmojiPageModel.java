@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.reactions.any;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -38,12 +40,7 @@ class ThisMessageEmojiPageModel implements EmojiPageModel {
   }
 
   @Override
-  public boolean hasSpriteMap() {
-    return false;
-  }
-
-  @Override
-  public @Nullable String getSprite() {
+  public @Nullable Uri getSpriteUri() {
     return null;
   }
 

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.DeviceProperties;
+import org.thoughtcrime.securesms.util.ScreenDensity;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -46,8 +47,8 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Model         : ").append(Build.MODEL).append("\n");
     builder.append("Product       : ").append(Build.PRODUCT).append("\n");
     builder.append("Screen        : ").append(getScreenResolution(context)).append(", ")
-                                     .append(getScreenDensityClass(context)).append(", ")
-                                     .append(getScreenRefreshRate(context)).append("\n");
+                                      .append(ScreenDensity.get(context)).append(", ")
+                                      .append(getScreenRefreshRate(context)).append("\n");
     builder.append("Font Scale    : ").append(context.getResources().getConfiguration().fontScale).append("\n");
     builder.append("Android       : ").append(Build.VERSION.RELEASE).append(" (")
                                      .append(Build.VERSION.INCREMENTAL).append(", ")
@@ -131,30 +132,6 @@ public class LogSectionSystemInfo implements LogSection {
 
     windowManager.getDefaultDisplay().getMetrics(displayMetrics);
     return displayMetrics.widthPixels + "x" + displayMetrics.heightPixels;
-  }
-
-  private static @NonNull String getScreenDensityClass(@NonNull Context context) {
-    int density = context.getResources().getDisplayMetrics().densityDpi;
-
-    LinkedHashMap<Integer, String> levels = new LinkedHashMap<Integer, String>() {{
-      put(DisplayMetrics.DENSITY_LOW,     "ldpi");
-      put(DisplayMetrics.DENSITY_MEDIUM,  "mdpi");
-      put(DisplayMetrics.DENSITY_HIGH,    "hdpi");
-      put(DisplayMetrics.DENSITY_XHIGH,   "xhdpi");
-      put(DisplayMetrics.DENSITY_XXHIGH,  "xxhdpi");
-      put(DisplayMetrics.DENSITY_XXXHIGH, "xxxhdpi");
-    }};
-
-    String densityString = "unknown";
-
-    for (Map.Entry<Integer, String> entry : levels.entrySet()) {
-      densityString = entry.getValue();
-      if (entry.getKey() > density) {
-        break;
-      }
-    }
-
-    return densityString + " (" + density + ")";
   }
 
   private static @NonNull String getScreenRefreshRate(@NonNull Context context) {

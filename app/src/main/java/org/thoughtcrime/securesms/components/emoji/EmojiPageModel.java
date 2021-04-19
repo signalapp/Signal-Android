@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.components.emoji;
 
+import android.net.Uri;
+
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 public interface EmojiPageModel {
   int getIconAttr();
   List<String> getEmoji();
   List<Emoji> getDisplayEmoji();
-  boolean hasSpriteMap();
-  String getSprite();
+  @Nullable Uri getSpriteUri();
   boolean isDynamic();
 }

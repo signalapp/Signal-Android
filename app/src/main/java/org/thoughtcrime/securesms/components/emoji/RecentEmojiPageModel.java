@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -63,11 +65,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     return Stream.of(getEmoji()).map(Emoji::new).toList();
   }
 
-  @Override public boolean hasSpriteMap() {
-    return false;
-  }
-
-  @Override public String getSprite() {
+  @Override public @Nullable Uri getSpriteUri() {
     return null;
   }
 

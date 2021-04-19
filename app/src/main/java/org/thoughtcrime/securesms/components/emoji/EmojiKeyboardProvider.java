@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.ResUtil;
@@ -66,7 +67,7 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
     }, this);
 
     models.add(recentModel);
-    models.addAll(EmojiPages.DISPLAY_PAGES);
+    models.addAll(EmojiSource.getLatest().getDisplayPages());
 
     currentPosition = recentModel.getEmoji().size() > 0 ? 0 : 1;
   }

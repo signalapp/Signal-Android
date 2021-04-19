@@ -213,14 +213,17 @@ dependencyVerification {
         ['com.davemorrissey.labs:subsampling-scale-image-view:3.6.0',
          '550c5baa07e0bb4ff0a18b705e96d34436d22619248bd8c08c08c730b1f55cfe'],
 
-        ['com.fasterxml.jackson.core:jackson-annotations:2.9.0',
-         '45d32ac61ef8a744b464c54c2b3414be571016dd46bfc2bec226761cf7ae457a'],
+        ['com.fasterxml.jackson.core:jackson-annotations:2.12.0',
+         'c28fbe62e7be1e29df75953fa8a887ff875d4482291fbfddb1aec5c91191ecda'],
 
-        ['com.fasterxml.jackson.core:jackson-core:2.9.9',
-         '3083079be6088db2ed0a0c6ff92204e0aa48fa1de9db5b59c468f35acf882c2c'],
+        ['com.fasterxml.jackson.core:jackson-core:2.12.0',
+         '8acab5ef6e4f332bbb331b3fcd24d716598770d13a47e7215aa5ee625d1fd9c9'],
 
-        ['com.fasterxml.jackson.core:jackson-databind:2.9.9.2',
-         'fb262d42ea2de98044b62d393950a5aa050435fec38bbcadf2325cf7dc41b848'],
+        ['com.fasterxml.jackson.core:jackson-databind:2.12.0',
+         '75d470eda0dd559e43f2ad08209fa09ecd268833492ba93fa46f6f3607acbab7'],
+
+        ['com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0',
+         'ee69650831f72ff2411026b507f3583e90ca88b40e9dae3067f87b34088e0ced'],
 
         ['com.github.bumptech.glide:annotations:4.11.0',
          'd219d238006d824962176229d4708abcdddcfe342c6a18a5d0fa48d6f0479b3e'],
@@ -461,6 +464,9 @@ dependencyVerification {
 
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
+
+        ['org.jetbrains.kotlin:kotlin-reflect:1.4.10',
+         '3ab3413ec945f801448360ad97bc6e14fec6d606889ede3c707cc277b4467f45'],
 
         ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
          'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],
