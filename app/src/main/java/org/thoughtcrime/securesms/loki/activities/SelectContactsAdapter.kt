@@ -26,7 +26,7 @@ class SelectContactsAdapter(private val context: Context, private val glide: Gli
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val member = members[position]
-        viewHolder.view.setOnClickListener { onMemberClick(member) }
+        viewHolder.view.setOnClickListener { onMemberClick(viewHolder, member) }
         val isSelected = selectedMembers.contains(member)
         viewHolder.view.bind(Recipient.from(
             context,
@@ -36,13 +36,13 @@ class SelectContactsAdapter(private val context: Context, private val glide: Gli
             isSelected)
     }
 
-    private fun onMemberClick(member: String) {
+    private fun onMemberClick(viewHolder: ViewHolder, member: String) {
         if (selectedMembers.contains(member)) {
             selectedMembers.remove(member)
+            viewHolder.view.toggleCheckbox()
         } else {
             selectedMembers.add(member)
+            viewHolder.view.toggleCheckbox(true)
         }
-        val index = members.indexOf(member)
-        notifyItemChanged(index)
     }
 }
