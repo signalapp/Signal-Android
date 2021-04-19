@@ -32,6 +32,10 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         set(newValue) { field = newValue; invalidateOptionsMenu() }
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
+    private val publicKey: String
+        get() {
+            return TextSecurePreferences.getLocalNumber(this)!!
+        }
 
     private val selectContactsAdapter by lazy {
         SelectContactsAdapter(this, GlideApp.with(this))
@@ -72,7 +76,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     private fun update(members: List<String>) {
-        this.members = members
+        this.members = members.minus(publicKey)
         mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
         invalidateOptionsMenu()
