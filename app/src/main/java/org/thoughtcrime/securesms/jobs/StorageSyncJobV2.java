@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -394,7 +395,7 @@ public class StorageSyncJobV2 extends BaseJob {
         throw new AssertionError("Decided there were local writes, but our write result was empty!");
       }
 
-      StorageSyncValidations.validate(localWrite, remoteManifest, needsForcePush, self);
+      StorageSyncValidations.validate(localWrite, FeatureFlags.internalUser() ? remoteManifest : Optional.absent(), needsForcePush, self);
 
       Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, localWrite.getManifest(), localWrite.getInserts(), localWrite.getDeletes());
 
