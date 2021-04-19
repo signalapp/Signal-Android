@@ -57,7 +57,7 @@ public class GiphyMp4Fragment extends Fragment {
     List<GiphyMp4PlayerHolder>                holders            = injectVideoViews(frameLayout);
     GiphyMp4AdapterPlaybackControllerCallback callback           = new GiphyMp4AdapterPlaybackControllerCallback(holders);
 
-    recycler.setLayoutManager(getLayoutManager(TextSecurePreferences.isGifSearchInGridLayout(getContext())));
+    recycler.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     recycler.setAdapter(adapter);
     recycler.setItemAnimator(null);
 
@@ -66,21 +66,6 @@ public class GiphyMp4Fragment extends Fragment {
     viewModel.getImages().observe(getViewLifecycleOwner(), adapter::submitList);
 
     viewModel.getPagingController().observe(getViewLifecycleOwner(), adapter::setPagingController);
-    viewModel.isGridMode().observe(getViewLifecycleOwner(), isGridLayout -> updateGridLayout(recycler, isGridLayout));
-  }
-
-  private void updateGridLayout(@NonNull RecyclerView recyclerView, boolean isGridLayout) {
-    RecyclerView.LayoutManager oldLayoutManager = recyclerView.getLayoutManager();
-    RecyclerView.LayoutManager newLayoutManager = getLayoutManager(isGridLayout);
-
-    if (oldLayoutManager == null || !Objects.equals(oldLayoutManager.getClass(), newLayoutManager.getClass())) {
-      recyclerView.setLayoutManager(newLayoutManager);
-    }
-  }
-
-  private RecyclerView.LayoutManager getLayoutManager(boolean gridLayout) {
-    return gridLayout ? new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                      : new LinearLayoutManager(requireContext());
   }
 
   private List<GiphyMp4PlayerHolder> injectVideoViews(@NonNull ViewGroup viewGroup) {

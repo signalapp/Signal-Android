@@ -59,7 +59,7 @@ public abstract class GiphyFragment extends LoggingFragment implements LoaderMan
     this.giphyAdapter = new GiphyAdapter(getActivity(), GlideApp.with(this), new LinkedList<>());
     this.giphyAdapter.setListener(this);
 
-    setLayoutManager(TextSecurePreferences.isGifSearchInGridLayout(getContext()));
+    this.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     this.recyclerView.setItemAnimator(new DefaultItemAnimator());
     this.recyclerView.setAdapter(giphyAdapter);
     this.recyclerView.addOnScrollListener(new GiphyScrollListener());
@@ -81,15 +81,6 @@ public abstract class GiphyFragment extends LoggingFragment implements LoaderMan
   public void onLoaderReset(@NonNull Loader<List<GiphyImage>> loader) {
     noResultsView.setVisibility(View.GONE);
     this.giphyAdapter.setImages(new LinkedList<GiphyImage>());
-  }
-
-  public void setLayoutManager(boolean gridLayout) {
-    recyclerView.setLayoutManager(getLayoutManager(gridLayout));
-  }
-
-  private RecyclerView.LayoutManager getLayoutManager(boolean gridLayout) {
-    return gridLayout ? new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                      : new LinearLayoutManager(getActivity());
   }
 
   public void setClickListener(GiphyAdapter.OnItemClickListener listener) {

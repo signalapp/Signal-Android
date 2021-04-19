@@ -41,8 +41,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class GiphyActivity extends PassphraseRequiredActivity
-    implements GiphyActivityToolbar.OnLayoutChangedListener,
-               GiphyActivityToolbar.OnFilterChangedListener,
+    implements GiphyActivityToolbar.OnFilterChangedListener,
                GiphyAdapter.OnItemClickListener
 {
 
@@ -89,8 +88,6 @@ public class GiphyActivity extends PassphraseRequiredActivity
 
     GiphyActivityToolbar toolbar = findViewById(R.id.giphy_toolbar);
     toolbar.setOnFilterChangedListener(this);
-    toolbar.setOnLayoutChangedListener(this);
-    toolbar.setPersistence(GiphyActivityToolbarTextSecurePreferencesPersistence.fromContext(this));
 
     final int conversationColor = getConversationColor();
     toolbar.setBackgroundColor(conversationColor);
@@ -158,12 +155,6 @@ public class GiphyActivity extends PassphraseRequiredActivity
   public void onFilterChanged(String filter) {
     giphyMp4ViewModel.updateSearchQuery(filter);
     this.stickerFragment.setSearchString(filter);
-  }
-
-  @Override
-  public void onLayoutChanged(boolean gridLayout) {
-    giphyMp4ViewModel.updateLayout(gridLayout);
-    stickerFragment.setLayoutManager(gridLayout);
   }
 
   @SuppressLint("StaticFieldLeak")

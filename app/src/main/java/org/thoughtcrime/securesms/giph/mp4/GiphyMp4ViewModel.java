@@ -33,7 +33,6 @@ public final class GiphyMp4ViewModel extends ViewModel {
   private final LiveData<List<GiphyImage>>             images;
   private final LiveData<PagingController>             pagingController;
   private final SingleLiveEvent<GiphyMp4SaveResult>    saveResultEvents;
-  private final MutableLiveData<Boolean>               isGridMode;
   private final boolean                                isForMms;
 
   private String query;
@@ -43,7 +42,6 @@ public final class GiphyMp4ViewModel extends ViewModel {
     this.repository       = new GiphyMp4Repository();
     this.pagedData        = new DefaultValueLiveData<>(getGiphyImagePagedData(null));
     this.saveResultEvents = new SingleLiveEvent<>();
-    this.isGridMode       = new MutableLiveData<>();
     this.pagingController = Transformations.map(pagedData, PagedData::getController);
     this.images           = Transformations.switchMap(pagedData, pagedData -> Transformations.map(pagedData.getData(),
                                                                                                   data -> Stream.of(data)
@@ -62,10 +60,6 @@ public final class GiphyMp4ViewModel extends ViewModel {
     }
   }
 
-  public void updateLayout(boolean isGridMode) {
-    this.isGridMode.setValue(isGridMode);
-  }
-
   public void saveToBlob(@NonNull GiphyImage giphyImage) {
     saveResultEvents.postValue(new GiphyMp4SaveResult.InProgress());
     repository.saveToBlob(giphyImage, isForMms, saveResultEvents::postValue);
@@ -81,10 +75,6 @@ public final class GiphyMp4ViewModel extends ViewModel {
 
   public @NonNull LiveData<PagingController> getPagingController() {
     return pagingController;
-  }
-
-  public @NonNull LiveData<Boolean> isGridMode() {
-    return isGridMode;
   }
 
   private PagedData<GiphyImage> getGiphyImagePagedData(@Nullable String query) {

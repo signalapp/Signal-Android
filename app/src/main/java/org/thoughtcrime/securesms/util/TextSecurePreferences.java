@@ -502,14 +502,6 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, LINK_PREVIEWS, true);
   }
 
-  public static boolean isGifSearchInGridLayout(Context context) {
-    return getBooleanPreference(context, GIF_GRID_LAYOUT, false);
-  }
-
-  public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
-    setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
-  }
-
   public static int getNotificationPriority(Context context) {
     return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
   }

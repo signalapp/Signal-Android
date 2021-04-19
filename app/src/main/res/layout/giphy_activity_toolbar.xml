@@ -52,39 +52,6 @@
                 android:tint="@color/signal_text_toolbar_subtitle"
                 app:srcCompat="@drawable/ic_x" />
 
-            <org.thoughtcrime.securesms.components.AnimatingToggle
-                    android:id="@+id/button_toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:gravity="center">
-
-                <ImageView android:id="@+id/view_grid"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:gravity="center_vertical"
-                           android:clickable="true"
-                           android:visibility="visible"
-                           android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
-                           app:srcCompat="@drawable/ic_dashboard_24" />
-
-                <ImageView android:id="@+id/view_stream"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:gravity="center_vertical"
-                           android:visibility="gone"
-                           android:clickable="true"
-                           android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
-                           app:srcCompat="@drawable/ic_view_stream_24" />
-
-            </org.thoughtcrime.securesms.components.AnimatingToggle>
-
         </LinearLayout>
 
     </LinearLayout>
