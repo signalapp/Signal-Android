@@ -26,7 +26,7 @@ class SelectContactsAdapter(private val context: Context, private val glide: Gli
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val member = members[position]
-        viewHolder.view.setOnClickListener { onMemberClick(viewHolder, member) }
+        viewHolder.view.setOnClickListener { onMemberClick(member) }
         val isSelected = selectedMembers.contains(member)
         viewHolder.view.bind(Recipient.from(
             context,
@@ -36,13 +36,39 @@ class SelectContactsAdapter(private val context: Context, private val glide: Gli
             isSelected)
     }
 
-    private fun onMemberClick(viewHolder: ViewHolder, member: String) {
+    override fun onBindViewHolder(viewHolder: ViewHolder,
+                                  position: Int,
+                                  payloads: MutableList<Any>) {
+        if (payloads.isNotEmpty()) {
+            // Because these updates can be batched,
+            // there can be multiple payloads for a single bind
+            when (payloads[0]) {
+                Payload.MEMBER_CLICKED -> {
+                    val member = members[position]
+                    val isSelected = selectedMembers.contains(member)
+                    viewHolder.view.toggleCheckbox(isSelected)
+                }
+            }
+        } else {
+            // When payload list is empty,
+            // or we don't have logic to handle a given type,
+            // default to full bind:
+            this.onBindViewHolder(viewHolder, position)
+        }
+    }
+
+    private fun onMemberClick(member: String) {
         if (selectedMembers.contains(member)) {
             selectedMembers.remove(member)
-            viewHolder.view.toggleCheckbox()
         } else {
             selectedMembers.add(member)
-            viewHolder.view.toggleCheckbox(true)
         }
+        val index = members.indexOf(member)
+        notifyItemChanged(index, Payload.MEMBER_CLICKED)
+    }
+
+    // define below the different events used to notify the adapter
+    enum class Payload {
+        MEMBER_CLICKED
     }
 }
