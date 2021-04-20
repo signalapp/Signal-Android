@@ -1,12 +1,12 @@
 package org.session.libsession.messaging.sending_receiving.pollers
 
-import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.opengroups.*
+import org.session.libsession.messaging.opengroups.OpenGroupAPIV2
+import org.session.libsession.messaging.opengroups.OpenGroupV2
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.successBackground
@@ -22,17 +22,11 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
 
     private val cancellableFutures = mutableListOf<ScheduledFuture<out Any>>()
 
-    // region Convenience
-    private val userHexEncodedPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: ""
-    private var displayNameUpdates = setOf<String>()
-    // endregion
-
     // region Settings
     companion object {
         private val pollForNewMessagesInterval: Long = 10 * 1000
         private val pollForDeletedMessagesInterval: Long = 60 * 1000
         private val pollForModeratorsInterval: Long = 10 * 60 * 1000
-        private val pollForDisplayNamesInterval: Long = 60 * 1000
     }
     // endregion
 
@@ -43,7 +37,6 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
                 executorService.scheduleAtFixedRate(::pollForNewMessages,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
                 executorService.scheduleAtFixedRate(::pollForDeletedMessages,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
                 executorService.scheduleAtFixedRate(::pollForModerators,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForDisplayNames,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
         )
         hasStarted = true
     }
@@ -72,103 +65,21 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
             Log.d("Loki", "received ${messages.size} messages")
             messages.forEach { message ->
                 try {
-                    val senderPublicKey = message.senderPublicKey
-                    fun generateDisplayName(rawDisplayName: String): String {
-                        return "$rawDisplayName (...${senderPublicKey.takeLast(8)})"
-                    }
-                    val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.room, openGroup.server) ?: generateDisplayName(message.displayName)
-                    val id = openGroup.id.toByteArray()
+                    val senderPublicKey = message.sender!!
                     // Main message
-                    val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
-                    val body = if (message.body == message.timestamp.toString()) { "" } else { message.body }
-                    dataMessageProto.setBody(body)
-                    dataMessageProto.setTimestamp(message.timestamp)
-                    // Attachments
-                    val attachmentProtos = message.attachments.mapNotNull { attachment ->
-                        try {
-                            if (attachment.kind != OpenGroupMessage.Attachment.Kind.Attachment) { return@mapNotNull null }
-                            val attachmentProto = SignalServiceProtos.AttachmentPointer.newBuilder()
-                            attachmentProto.setId(attachment.serverID)
-                            attachmentProto.setContentType(attachment.contentType)
-                            attachmentProto.setSize(attachment.size)
-                            attachmentProto.setFileName(attachment.fileName)
-                            attachmentProto.setFlags(attachment.flags)
-                            attachmentProto.setWidth(attachment.width)
-                            attachmentProto.setHeight(attachment.height)
-                            attachment.caption?.let { attachmentProto.setCaption(it) }
-                            attachmentProto.setUrl(attachment.url)
-                            attachmentProto.build()
-                        } catch (e: Exception) {
-                            Log.e("Loki","Failed to parse attachment as proto",e)
-                            null
-                        }
-                    }
-                    dataMessageProto.addAllAttachments(attachmentProtos)
-                    // Link preview
-                    val linkPreview = message.attachments.firstOrNull { it.kind == OpenGroupMessage.Attachment.Kind.LinkPreview }
-                    if (linkPreview != null) {
-                        val linkPreviewProto = SignalServiceProtos.DataMessage.Preview.newBuilder()
-                        linkPreviewProto.setUrl(linkPreview.linkPreviewURL!!)
-                        linkPreviewProto.setTitle(linkPreview.linkPreviewTitle!!)
-                        val attachmentProto = SignalServiceProtos.AttachmentPointer.newBuilder()
-                        attachmentProto.setId(linkPreview.serverID)
-                        attachmentProto.setContentType(linkPreview.contentType)
-                        attachmentProto.setSize(linkPreview.size)
-                        attachmentProto.setFileName(linkPreview.fileName)
-                        attachmentProto.setFlags(linkPreview.flags)
-                        attachmentProto.setWidth(linkPreview.width)
-                        attachmentProto.setHeight(linkPreview.height)
-                        linkPreview.caption?.let { attachmentProto.setCaption(it) }
-                        attachmentProto.setUrl(linkPreview.url)
-                        linkPreviewProto.setImage(attachmentProto.build())
-                        dataMessageProto.addPreview(linkPreviewProto.build())
-                    }
-                    // Quote
-                    val quote = message.quote
-                    if (quote != null) {
-                        val quoteProto = SignalServiceProtos.DataMessage.Quote.newBuilder()
-                        quoteProto.setId(quote.quotedMessageTimestamp)
-                        quoteProto.setAuthor(quote.quoteePublicKey)
-                        if (quote.quotedMessageBody != quote.quotedMessageTimestamp.toString()) { quoteProto.setText(quote.quotedMessageBody) }
-                        dataMessageProto.setQuote(quoteProto.build())
-                    }
-                    val messageServerID = message.serverID
-                    // Profile
-                    val profileProto = SignalServiceProtos.DataMessage.LokiProfile.newBuilder()
-                    profileProto.setDisplayName(senderDisplayName)
-                    val profilePicture = message.profilePicture
-                    if (profilePicture != null) {
-                        profileProto.setProfilePicture(profilePicture.url)
-                        dataMessageProto.setProfileKey(ByteString.copyFrom(profilePicture.profileKey))
-                    }
-                    dataMessageProto.setProfile(profileProto.build())
-                    /* TODO: the signal service proto needs to be synced with iOS
-                    // Open group info
-                    if (messageServerID != null) {
-                        val openGroupProto = PublicChatInfo.newBuilder()
-                        openGroupProto.setServerID(messageServerID)
-                        dataMessageProto.setPublicChatInfo(openGroupProto.build())
-                    }
-                    */
-                    // Signal group context
-                    val groupProto = SignalServiceProtos.GroupContext.newBuilder()
-                    groupProto.setId(ByteString.copyFrom(id))
-                    groupProto.setType(SignalServiceProtos.GroupContext.Type.DELIVER)
-                    groupProto.setName(openGroup.displayName)
-                    dataMessageProto.setGroup(groupProto.build())
+                    val dataMessageProto = message.toProto()
                     // Content
                     val content = SignalServiceProtos.Content.newBuilder()
-                    content.setDataMessage(dataMessageProto.build())
+                    content.dataMessage = dataMessageProto
                     // Envelope
                     val builder = SignalServiceProtos.Envelope.newBuilder()
                     builder.type = SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER
                     builder.source = senderPublicKey
                     builder.sourceDevice = 1
-                    builder.setContent(content.build().toByteString())
-                    builder.timestamp = message.timestamp
-                    builder.serverTimestamp = message.serverTimestamp
+                    builder.content = content.build().toByteString()
+                    builder.timestamp = message.sentTimestamp
                     val envelope = builder.build()
-                    val job = MessageReceiveJob(envelope.toByteArray(), isBackgroundPoll, messageServerID, openGroup.id)
+                    val job = MessageReceiveJob(envelope.toByteArray(), isBackgroundPoll, message.serverID, openGroup.id)
                     Log.d("Loki", "Scheduling Job $job")
                     if (isBackgroundPoll) {
                         job.executeAsync().always { deferred.resolve(Unit) }
@@ -180,46 +91,29 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
                     Log.e("Loki", "Exception parsing message", e)
                 }
             }
-            displayNameUpdates = displayNameUpdates + messages.map { it.senderPublicKey }.toSet() - userHexEncodedPublicKey
-            executorService?.schedule(::pollForDisplayNames, 0, TimeUnit.MILLISECONDS)
             isCaughtUp = true
             isPollOngoing = false
             deferred.resolve(Unit)
         }.fail {
-            Log.d("Loki", "Failed to get messages for group chat with ID: ${openGroup.channel} on server: ${openGroup.server}.")
+            Log.e("Loki", "Failed to get messages for group chat with room: ${openGroup.room} on server: ${openGroup.server}.", it)
             isPollOngoing = false
         }
         return deferred.promise
     }
 
-    private fun pollForDisplayNames() {
-        if (displayNameUpdates.isEmpty()) { return }
-        val hexEncodedPublicKeys = displayNameUpdates
-        displayNameUpdates = setOf()
-        OpenGroupAPI.getDisplayNames(hexEncodedPublicKeys, openGroup.server).successBackground { mapping ->
-            for (pair in mapping.entries) {
-                if (pair.key == userHexEncodedPublicKey) continue
-                val senderDisplayName = "${pair.value} (...${pair.key.substring(pair.key.count() - 8)})"
-                MessagingConfiguration.shared.storage.setOpenGroupDisplayName(pair.key, openGroup.channel, openGroup.server, senderDisplayName)
-            }
-        }.fail {
-            displayNameUpdates = displayNameUpdates.union(hexEncodedPublicKeys)
-        }
-    }
-
     private fun pollForDeletedMessages() {
-        OpenGroupAPI.getDeletedMessageServerIDs(openGroup.channel, openGroup.server).success { deletedMessageServerIDs ->
+        OpenGroupAPIV2.getDeletedMessages(openGroup.room, openGroup.server).success { deletedMessageServerIDs ->
             val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getMessageID(it) }
             deletedMessageIDs.forEach {
                 MessagingConfiguration.shared.messageDataProvider.deleteMessage(it)
             }
         }.fail {
-            Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${openGroup.channel} on server: ${openGroup.server}.")
+            Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${openGroup.room} on server: ${openGroup.server}.")
         }
     }
 
     private fun pollForModerators() {
-        OpenGroupAPI.getModerators(openGroup.channel, openGroup.server)
+        OpenGroupAPIV2.getModerators(openGroup.room, openGroup.server)
     }
     // endregion
 }

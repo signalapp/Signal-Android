@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.opengroups
 
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableSharedFlow
 import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
@@ -8,11 +10,13 @@ import okhttp3.HttpUrl
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.opengroups.OpenGroupAPIV2.Error
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.api.utilities.HTTP.Verb.*
+import org.session.libsignal.service.loki.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Base64.*
@@ -20,13 +24,16 @@ import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.createContext
 import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 object OpenGroupAPIV2 {
 
     private val moderators: HashMap<String, Set<String>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-    const val DEFAULT_SERVER = "https://sessionopengroup.com"
-    const val DEFAULT_SERVER_PUBLIC_KEY = "658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adffb231b"
+    private const val DEFAULT_SERVER = "https://sog.ibolpap.finance"
+    private const val DEFAULT_SERVER_PUBLIC_KEY = "b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10"
+
+    val defaultRooms = MutableSharedFlow<List<Info>>(replay = 1)
 
     private val sharedContext = Kovenant.createContext()
     private val curve = Curve25519.getInstance(Curve25519.BEST)
@@ -65,7 +72,7 @@ object OpenGroupAPIV2 {
         return RequestBody.create(MediaType.get("application/json"), parametersAsJSON)
     }
 
-    private fun send(request: Request): Promise<Map<*,*>, Exception> {
+    private fun send(request: Request): Promise<Map<*, *>, Exception> {
         val parsed = HttpUrl.parse(request.server) ?: return Promise.ofFail(Error.INVALID_URL)
         val urlBuilder = HttpUrl.Builder()
                 .scheme(parsed.scheme())
@@ -117,6 +124,21 @@ object OpenGroupAPIV2 {
         }
     }
 
+    fun downloadOpenGroupProfilePicture(imageUrl: String): ByteArray? {
+        Log.d("Loki", "Downloading open group profile picture from \"$imageUrl\".")
+        val outputStream = ByteArrayOutputStream()
+        try {
+            DownloadUtilities.downloadFile(outputStream, imageUrl, FileServerAPI.maxFileSize, null)
+            Log.d("Loki", "Open group profile picture was successfully loaded from \"$imageUrl\"")
+            return outputStream.toByteArray()
+        } catch (e: Exception) {
+            Log.d("Loki", "Failed to download open group profile picture from \"$imageUrl\" due to error: $e.")
+            return null
+        } finally {
+            outputStream.close()
+        }
+    }
+
     fun getAuthToken(room: String, server: String): Promise<String, Exception> {
         val storage = MessagingConfiguration.shared.storage
         return storage.getAuthToken(room, server)?.let {
@@ -136,9 +158,11 @@ object OpenGroupAPIV2 {
         val queryParameters = mutableMapOf("public_key" to publicKey)
         val request = Request(GET, room, server, "auth_token_challenge", queryParameters, isAuthRequired = false, parameters = null)
         return send(request).map(sharedContext) { json ->
-            val challenge = json["challenge"] as? Map<*,*> ?: throw Error.PARSING_FAILED
-            val base64EncodedCiphertext = challenge["ciphertext"] as? String ?: throw Error.PARSING_FAILED
-            val base64EncodedEphemeralPublicKey = challenge["ephemeral_public_key"] as? String ?: throw Error.PARSING_FAILED
+            val challenge = json["challenge"] as? Map<*, *> ?: throw Error.PARSING_FAILED
+            val base64EncodedCiphertext = challenge["ciphertext"] as? String
+                    ?: throw Error.PARSING_FAILED
+            val base64EncodedEphemeralPublicKey = challenge["ephemeral_public_key"] as? String
+                    ?: throw Error.PARSING_FAILED
             val ciphertext = decode(base64EncodedCiphertext)
             val ephemeralPublicKey = decode(base64EncodedEphemeralPublicKey)
             val symmetricKey = AESGCM.generateSymmetricKey(ephemeralPublicKey, privateKey)
@@ -189,7 +213,8 @@ object OpenGroupAPIV2 {
         val json = signedMessage.toJSON()
         val request = Request(verb = POST, room = room, server = server, endpoint = "messages", parameters = json)
         return send(request).map(sharedContext) {
-            @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String,String> ?: throw Error.PARSING_FAILED
+            @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String, String>
+                    ?: throw Error.PARSING_FAILED
             OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.PARSING_FAILED
         }
     }
@@ -198,13 +223,14 @@ object OpenGroupAPIV2 {
     // region Messages
     fun getMessages(room: String, server: String): Promise<List<OpenGroupMessageV2>, Exception> {
         val storage = MessagingConfiguration.shared.storage
-        val queryParameters = mutableMapOf<String,String>()
-        storage.getLastMessageServerId(room,server)?.let { lastId ->
+        val queryParameters = mutableMapOf<String, String>()
+        storage.getLastMessageServerId(room, server)?.let { lastId ->
             queryParameters += "from_server_id" to lastId.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "messages", queryParameters = queryParameters)
         return send(request).map(sharedContext) { jsonList ->
-            @Suppress("UNCHECKED_CAST") val rawMessages = jsonList["messages"] as? List<Map<String,Any>> ?: throw Error.PARSING_FAILED
+            @Suppress("UNCHECKED_CAST") val rawMessages = jsonList["messages"] as? List<Map<String, Any>>
+                    ?: throw Error.PARSING_FAILED
             val lastMessageServerId = storage.getLastMessageServerId(room, server) ?: 0
 
             var currentMax = lastMessageServerId
@@ -225,7 +251,7 @@ object OpenGroupAPIV2 {
                 }
                 message
             }
-            storage.setLastMessageServerId(room,server,currentMax)
+            storage.setLastMessageServerId(room, server, currentMax)
             messages
         }
     }
@@ -241,13 +267,14 @@ object OpenGroupAPIV2 {
 
     fun getDeletedMessages(room: String, server: String): Promise<List<Long>, Exception> {
         val storage = MessagingConfiguration.shared.storage
-        val queryParameters = mutableMapOf<String,String>()
+        val queryParameters = mutableMapOf<String, String>()
         storage.getLastDeletionServerId(room, server)?.let { last ->
             queryParameters["from_server_id"] = last.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "deleted_messages", queryParameters = queryParameters)
         return send(request).map(sharedContext) { json ->
-            @Suppress("UNCHECKED_CAST") val serverIDs = json["ids"] as? List<Long> ?: throw Error.PARSING_FAILED
+            @Suppress("UNCHECKED_CAST") val serverIDs = json["ids"] as? List<Long>
+                    ?: throw Error.PARSING_FAILED
             val lastMessageServerId = storage.getLastMessageServerId(room, server) ?: 0
             val serverID = serverIDs.maxOrNull() ?: 0
             if (serverID > lastMessageServerId) {
@@ -262,7 +289,8 @@ object OpenGroupAPIV2 {
     fun getModerators(room: String, server: String): Promise<List<String>, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "moderators")
         return send(request).map(sharedContext) { json ->
-            @Suppress("UNCHECKED_CAST") val moderatorsJson = json["moderators"] as? List<String> ?: throw Error.PARSING_FAILED
+            @Suppress("UNCHECKED_CAST") val moderatorsJson = json["moderators"] as? List<String>
+                    ?: throw Error.PARSING_FAILED
             val id = "$server.$room"
             moderators[id] = moderatorsJson.toMutableSet()
             moderatorsJson
@@ -284,20 +312,23 @@ object OpenGroupAPIV2 {
         }
     }
 
-    fun isUserModerator(publicKey: String, room: String, server: String): Boolean = moderators["$server.$room"]?.contains(publicKey) ?: false
+    fun isUserModerator(publicKey: String, room: String, server: String): Boolean = moderators["$server.$room"]?.contains(publicKey)
+            ?: false
     // endregion
 
     // region General
     fun getDefaultRoomsIfNeeded(): Promise<List<Info>, Exception> {
         val storage = MessagingConfiguration.shared.storage
         storage.setOpenGroupPublicKey(DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)
-        return getAllRooms(DEFAULT_SERVER)
+        return getAllRooms(DEFAULT_SERVER).success { new ->
+            defaultRooms.tryEmit(new)
+        }
     }
 
     fun getInfo(room: String, server: String): Promise<Info, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "rooms/$room", isAuthRequired = false)
         return send(request).map(sharedContext) { json ->
-            val rawRoom = json["room"] as? Map<*,*> ?: throw Error.PARSING_FAILED
+            val rawRoom = json["room"] as? Map<*, *> ?: throw Error.PARSING_FAILED
             val id = rawRoom["id"] as? String ?: throw Error.PARSING_FAILED
             val name = rawRoom["name"] as? String ?: throw Error.PARSING_FAILED
             val imageID = rawRoom["image_id"] as? String
@@ -308,7 +339,7 @@ object OpenGroupAPIV2 {
     fun getAllRooms(server: String): Promise<List<Info>, Exception> {
         val request = Request(verb = GET, room = null, server = server, endpoint = "rooms", isAuthRequired = false)
         return send(request).map(sharedContext) { json ->
-            val rawRooms = json["rooms"] as? Map<*,*> ?: throw Error.PARSING_FAILED
+            val rawRooms = json["rooms"] as? List<Map<*, *>> ?: throw Error.PARSING_FAILED
             rawRooms.mapNotNull {
                 val roomJson = it as? Map<*, *> ?: return@mapNotNull null
                 val id = roomJson["id"] as? String ?: return@mapNotNull null

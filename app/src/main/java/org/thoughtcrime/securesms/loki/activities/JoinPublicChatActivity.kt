@@ -9,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
@@ -18,13 +17,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
+import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroup
+import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroupsViewModel
+import org.thoughtcrime.securesms.loki.viewmodel.State
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -122,14 +124,34 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 // region Enter Chat URL Fragment
 class EnterChatURLFragment : Fragment() {
 
+    // factory producer is app scoped because default groups will want to stick around for app lifetime
+    private val viewModel by activityViewModels<DefaultGroupsViewModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_enter_chat_url, container, false)
+    }
+
+    private fun populateDefaultGroups(groups: List<DefaultGroup>) {
+        Log.d("Loki", "Got some default groups $groups")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
         joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
+        viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                State.Loading -> {
+                    // show a loader here probs
+                }
+                is State.Error -> {
+                    // hide the loader and the
+                }
+                is State.Success -> {
+                    populateDefaultGroups(state.value)
+                }
+            }
+        }
     }
 
     private fun joinPublicChatIfPossible() {

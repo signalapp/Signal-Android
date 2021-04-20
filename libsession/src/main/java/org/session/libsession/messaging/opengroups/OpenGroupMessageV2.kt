@@ -1,7 +1,9 @@
 package org.session.libsession.messaging.opengroups
 
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.Base64.decode
 import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 
@@ -58,4 +60,9 @@ data class OpenGroupMessageV2(
         base64EncodedSignature?.let { jsonMap["signature"] = base64EncodedSignature }
         return jsonMap
     }
+
+    fun toProto(): SignalServiceProtos.DataMessage = decode(base64EncodedData).let { bytes ->
+        SignalServiceProtos.DataMessage.parseFrom(bytes)
+    }
+
 }

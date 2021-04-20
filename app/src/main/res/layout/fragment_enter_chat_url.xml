@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,6 +28,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <com.google.android.material.chip.Chip
+        android:theme="@style/Theme.MaterialComponents.DayNight"
+        app:closeIconEnabled="true"
+        style="?attr/chipStyle"
+        android:text="Main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Button
         style="@style/Widget.Session.Button.Common.ProminentOutline"

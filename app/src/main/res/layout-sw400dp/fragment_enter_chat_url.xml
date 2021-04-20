@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,12 +22,49 @@
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
         android:inputType="textWebEmailAddress"
-        android:hint="Enter an open group URL" />
+        android:hint="@string/fragment_enter_chat_url_edit_text_hint" />
 
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1" />
+    <androidx.gridlayout.widget.GridLayout
+        app:columnCount="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.chip.Chip
+            android:theme="@style/Theme.MaterialComponents.DayNight"
+            style="?attr/chipStyle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:textStartPadding="10dp"
+            android:text="Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.chip.Chip
+            android:theme="@style/Theme.MaterialComponents.DayNight"
+            style="?attr/chipStyle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:textStartPadding="10dp"
+            android:text="Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.chip.Chip
+            android:theme="@style/Theme.MaterialComponents.DayNight"
+            style="?attr/chipStyle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:textStartPadding="10dp"
+            android:text="Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.chip.Chip
+            android:theme="@style/Theme.MaterialComponents.DayNight"
+            style="?attr/chipStyle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:textStartPadding="10dp"
+            android:text="Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.gridlayout.widget.GridLayout>
 
     <Button
         style="@style/Widget.Session.Button.Common.ProminentOutline"

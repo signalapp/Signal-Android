@@ -25,13 +25,19 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
 
     companion object {
 
+        private const val useTestnet = true
+
         // use port 4433 if API level can handle network security config and enforce pinned certificates
         private val seedPort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
-        private val seedNodePool: Set<String> = setOf(
-                "https://storage.seed1.loki.network:$seedPort",
-                "https://storage.seed3.loki.network:$seedPort",
-                "https://public.loki.foundation:$seedPort"
-        )
+        private val seedNodePool: Set<String> = if (useTestnet) {
+            setOf("http://public.loki.foundation:38157")
+        } else {
+            setOf(
+                    "https://storage.seed1.loki.network:$seedPort",
+                    "https://storage.seed3.loki.network:$seedPort",
+                    "https://public.loki.foundation:$seedPort"
+            )
+        }
 
         // region Settings
         private val minimumSnodePoolCount = 64

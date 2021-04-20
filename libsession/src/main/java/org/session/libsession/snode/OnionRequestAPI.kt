@@ -7,17 +7,15 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.*
+import org.session.libsession.utilities.AESGCM.EncryptionResult
+import org.session.libsession.utilities.getBodyForOnionRequest
+import org.session.libsession.utilities.getHeadersForOnionRequest
 import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.utilities.*
-import org.session.libsession.utilities.AESGCM.EncryptionResult
-import org.session.libsignal.utilities.ThreadUtils
-import org.session.libsession.utilities.getBodyForOnionRequest
-import org.session.libsession.utilities.getHeadersForOnionRequest
 import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.*
+import org.session.libsignal.utilities.logging.Log
 
 private typealias Path = List<Snode>
 
@@ -323,7 +321,7 @@ object OnionRequestAPI {
                         val plaintext = AESGCM.decrypt(ivAndCiphertext, destinationSymmetricKey)
                         try {
                             @Suppress("NAME_SHADOWING") val json = JsonUtil.fromJson(plaintext.toString(Charsets.UTF_8), Map::class.java)
-                            val statusCode = json["status"] as Int
+                            val statusCode = json["status_code"] as? Int ?: json["status"] as Int
                             if (statusCode == 406) {
                                 @Suppress("NAME_SHADOWING") val body = mapOf( "result" to "Your clock is out of sync with the service node network." )
                                 val exception = HTTPRequestFailedAtDestinationException(statusCode, body)

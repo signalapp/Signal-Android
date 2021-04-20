@@ -30,7 +30,7 @@ class PublicChatManager(private val context: Context) {
   public fun areAllCaughtUp(): Boolean {
     var areAllCaughtUp = true
     refreshChatsAndPollers()
-    for ((threadID, chat) in chats) {
+    for ((threadID, _) in chats) {
       val poller = pollers[threadID]
       areAllCaughtUp = if (poller != null) areAllCaughtUp && poller.isCaughtUp else true
     }
@@ -83,9 +83,9 @@ class PublicChatManager(private val context: Context) {
   @WorkerThread
   fun addChat(server: String, room: String): OpenGroupV2 {
     // Ensure the auth token is acquired.
-    OpenGroupAPIV2.getAuthToken(server).get()
+    OpenGroupAPIV2.getAuthToken(room, server).get()
 
-    val channelInfo = OpenGroupAPIV2.getChannelInfo(channel, server).get()
+    val channelInfo = OpenGroupAPIV2.getInfo(room, server).get()
     return addChat(server, room, channelInfo)
   }
 
@@ -116,17 +116,19 @@ class PublicChatManager(private val context: Context) {
   }
 
   @WorkerThread
-  fun addChat(server: String, room: String, info: OpenGroupInfo): OpenGroupV2 {
-    val chat = OpenGroupV2(server, room, info.displayName, )
-    var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
+  fun addChat(server: String, room: String, info: OpenGroupAPIV2.Info): OpenGroupV2 {
+    val chat = OpenGroupV2(server, room, info.id, info.name, info.imageID)
+    val threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     if (threadID < 0) {
-      if (info.profilePictureURL.isNotEmpty()) {
-        val profilePictureAsByteArray = OpenGroupAPIV2.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
+      val imageID = info.imageID
+      if (!imageID.isNullOrEmpty()) {
+        val profilePictureAsByteArray = OpenGroupAPIV2.downloadOpenGroupProfilePicture(imageID)
         profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
       }
-      val result = GroupManager.createOpenGroup()
+      val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, info.name)
     }
+    return chat
   }
 
   public fun removeChat(server: String, channel: Long) {
