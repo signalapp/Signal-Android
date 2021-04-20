@@ -347,8 +347,7 @@ public class SmsDatabase extends MessagingDatabase {
       type |= Types.SECURE_MESSAGE_BIT;
     } else if (message.isGroup()) {
       type |= Types.SECURE_MESSAGE_BIT;
-      if      (((IncomingGroupMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
-      else if (((IncomingGroupMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
+      if (((IncomingGroupMessage)message).isUpdateMessage()) type |= Types.GROUP_UPDATE_MESSAGE_BIT;
     }
 
     if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;

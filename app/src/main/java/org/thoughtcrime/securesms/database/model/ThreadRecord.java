@@ -28,6 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
+import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -73,7 +75,7 @@ public class ThreadRecord extends DisplayRecord {
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
     Recipient recipient = getRecipient();
-    if (isGroupUpdate()) {
+    if (isGroupUpdate() || isGroupUpdateMessage()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));

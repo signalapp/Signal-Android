@@ -2,22 +2,17 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 
-import com.google.protobuf.ByteString;
 
 import org.jetbrains.annotations.NotNull;
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
-import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage;
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
-import org.session.libsignal.service.internal.push.SignalServiceProtos;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -28,7 +23,6 @@ import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.concurrent.Executor;
@@ -79,8 +73,8 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
     String senderPublicKey = message.getSender();
 
     // Notify the user
-    if (userPublicKey.equals(senderPublicKey)) {
-      // sender is a linked device
+    if (senderPublicKey == null || userPublicKey.equals(senderPublicKey)) {
+      // sender is self or a linked device
       insertOutgoingExpirationTimerMessage(message);
     } else {
       insertIncomingExpirationTimerMessage(message);
@@ -100,7 +94,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
     int duration = message.getDuration();
 
     Optional<SignalServiceGroup> groupInfo = Optional.absent();
-    Address address = Address.fromSerialized((message.getSyncTarget() != null && !message.getSyncTarget().isEmpty()) ? message.getSyncTarget() : senderPublicKey);
+    Address address = Address.fromSerialized(senderPublicKey);
     Recipient recipient = Recipient.from(context, address, false);
 
     // if the sender is blocked, we don't display the update, except if it's in a closed group
@@ -139,41 +133,21 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   private void insertOutgoingExpirationTimerMessage(ExpirationTimerUpdate message) {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
 
-    String senderPublicKey = message.getSender();
     Long sentTimestamp = message.getSentTimestamp();
     String groupId = message.getGroupPublicKey();
     int duration = message.getDuration();
 
-    Address address = Address.fromSerialized((message.getSyncTarget() != null && !message.getSyncTarget().isEmpty()) ? message.getSyncTarget() : senderPublicKey);
+    Address address = Address.fromSerialized((message.getSyncTarget() != null && !message.getSyncTarget().isEmpty()) ? message.getSyncTarget() : message.getRecipient());
     Recipient recipient = Recipient.from(context, address, false);
 
     try {
+      OutgoingExpirationUpdateMessage timerUpdateMessage = new OutgoingExpirationUpdateMessage(recipient, sentTimestamp, duration * 1000L, groupId);
+      database.insertSecureDecryptedMessageOutbox(timerUpdateMessage, -1, sentTimestamp);
+
       if (groupId != null) {
-        // conversation is a closed group
-        GroupContext groupContext = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupId))).build();
-        OutgoingGroupMediaMessage infoMessage = new OutgoingGroupMediaMessage(recipient, groupContext, null, sentTimestamp, duration * 1000L, true, null, Collections.emptyList(), Collections.emptyList());
-        database.insertSecureDecryptedMessageOutbox(infoMessage, -1, sentTimestamp);
         // we need the group ID as recipient for setExpireMessages below
         recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(groupId)), false);
-      } else {
-        // conversation is a 1-1
-        OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipient,
-                null,
-                Collections.emptyList(),
-                message.getSentTimestamp(),
-                -1,
-                duration * 1000L,
-                true,
-                DistributionTypes.DEFAULT,
-                null,
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList());
-        database.insertSecureDecryptedMessageOutbox(mediaMessage, -1, sentTimestamp);
       }
-
       //set the timer to the conversation
       DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
 
