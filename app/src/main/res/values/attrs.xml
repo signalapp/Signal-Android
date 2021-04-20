@@ -173,6 +173,7 @@
         <attr name="conversationThumbnail_maxWidth" format="dimension" />
         <attr name="conversationThumbnail_minHeight" format="dimension" />
         <attr name="conversationThumbnail_maxHeight" format="dimension" />
+        <attr name="conversationThumbnail_gifWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="TypingIndicatorView">

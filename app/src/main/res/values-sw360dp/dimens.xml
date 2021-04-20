@@ -14,4 +14,6 @@
 
     <dimen name="payment_recovery_phrase_adapter_margin">92dp</dimen>
     <dimen name="payment_recovery_phrase_outline_margin">48dp</dimen>
+
+    <dimen name="media_bubble_gif_width">260dp</dimen>
 </resources>

@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 
 import java.util.Collections;
 import java.util.List;
@@ -47,9 +48,9 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
 
   private final Context                     context;
   private final SimpleExoPlayer             player;
-  private final VoiceNoteQueueDataAdapter   queueDataAdapter;
-  private final VoiceNoteMediaSourceFactory mediaSourceFactory;
-  private final ConcatenatingMediaSource    dataSource;
+  private final VoiceNoteQueueDataAdapter    queueDataAdapter;
+  private final AttachmentMediaSourceFactory mediaSourceFactory;
+  private final ConcatenatingMediaSource     dataSource;
 
   private boolean canLoadMore;
   private Uri     latestUri = Uri.EMPTY;
@@ -57,7 +58,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   VoiceNotePlaybackPreparer(@NonNull Context context,
                             @NonNull SimpleExoPlayer player,
                             @NonNull VoiceNoteQueueDataAdapter queueDataAdapter,
-                            @NonNull VoiceNoteMediaSourceFactory mediaSourceFactory)
+                            @NonNull AttachmentMediaSourceFactory mediaSourceFactory)
   {
     this.context            = context;
     this.player             = player;

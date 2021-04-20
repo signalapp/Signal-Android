@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -18,6 +20,9 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
   @Nullable private List<Outliner>        outliners = Collections.emptyList();
   @Nullable private OnSizeChangedListener sizeChangedListener;
+
+  private MaskDrawable maskDrawable;
+  private Rect         mask;
 
   public ConversationItemBodyBubble(Context context) {
     super(context);
@@ -37,6 +42,18 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
   public void setOnSizeChangedListener(@Nullable OnSizeChangedListener listener) {
     this.sizeChangedListener = listener;
+  }
+
+  @Override
+  public void setBackground(Drawable background) {
+    maskDrawable = new MaskDrawable(background);
+    maskDrawable.setMask(mask);
+    super.setBackground(maskDrawable);
+  }
+
+  public void setMask(@Nullable Rect mask) {
+    this.mask = mask;
+    maskDrawable.setMask(mask);
   }
 
   @Override

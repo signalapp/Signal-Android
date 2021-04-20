@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.util.Util;
 /**
  * Holds a view which will either play back an MP4 gif or show its still.
  */
-final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder {
+final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable {
 
   private final AspectRatioFrameLayout     container;
   private final ImageView                  stillImage;
@@ -62,12 +62,29 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder {
     itemView.setOnClickListener(v -> listener.onClick(giphyImage));
   }
 
-  void show() {
+  @Override
+  public void showProjectionArea() {
     container.setAlpha(1f);
   }
 
-  void hide() {
+  @Override
+  public void hideProjectionArea() {
     container.setAlpha(0f);
+  }
+
+  @Override
+  public @NonNull MediaSource getMediaSource() {
+    return mediaSource;
+  }
+
+  @Override
+  public @NonNull GiphyMp4Projection getProjection(@NonNull RecyclerView recyclerView) {
+    return GiphyMp4Projection.forView(recyclerView, itemView, null);
+  }
+
+  @Override
+  public boolean canPlayContent() {
+    return true;
   }
 
   private void loadPlaceholderImage(@NonNull GiphyImage giphyImage) {
@@ -77,9 +94,5 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder {
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(stillImage);
-  }
-
-  @NonNull MediaSource getMediaSource() {
-    return mediaSource;
   }
 }

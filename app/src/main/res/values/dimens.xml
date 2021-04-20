@@ -47,6 +47,7 @@
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
+    <dimen name="media_bubble_gif_width">240dp</dimen>
     <dimen name="message_audio_width">242dp</dimen>
 
     <dimen name="media_picker_folder_width">175dp</dimen>

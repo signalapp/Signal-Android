@@ -11,6 +11,15 @@
         layout="@layout/conversation_item_banner"
         android:visibility="gone" />
 
+    <FrameLayout
+        android:id="@+id/video_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@android:id/list"
+        app:layout_constraintEnd_toEndOf="@android:id/list"
+        app:layout_constraintStart_toStartOf="@android:id/list"
+        app:layout_constraintTop_toTopOf="@android:id/list" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@android:id/list"
         android:layout_width="match_parent"

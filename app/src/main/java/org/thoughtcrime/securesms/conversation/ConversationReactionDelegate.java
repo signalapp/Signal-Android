@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import org.thoughtcrime.securesms.components.MaskView;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -38,7 +39,7 @@ final class ConversationReactionDelegate {
   }
 
   void show(@NonNull Activity activity,
-            @NonNull View maskTarget,
+            @NonNull MaskView.MaskTarget maskTarget,
             @NonNull Recipient conversationRecipient,
             @NonNull MessageRecord messageRecord,
             int maskPaddingBottom)
@@ -46,7 +47,7 @@ final class ConversationReactionDelegate {
     resolveOverlay().show(activity, maskTarget, conversationRecipient, messageRecord, maskPaddingBottom, lastSeenDownPoint);
   }
 
-  void showMask(@NonNull View maskTarget, int maskPaddingTop, int maskPaddingBottom) {
+  void showMask(@NonNull MaskView.MaskTarget maskTarget, int maskPaddingTop, int maskPaddingBottom) {
     resolveOverlay().showMask(maskTarget, maskPaddingTop, maskPaddingBottom);
   }
 

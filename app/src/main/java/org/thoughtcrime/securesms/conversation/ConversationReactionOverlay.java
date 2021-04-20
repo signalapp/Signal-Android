@@ -145,7 +145,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   public void show(@NonNull Activity activity,
-                   @NonNull View maskTarget,
+                   @NonNull MaskView.MaskTarget maskTarget,
                    @NonNull Recipient conversationRecipient,
                    @NonNull MessageRecord messageRecord,
                    int maskPaddingBottom,
@@ -209,7 +209,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     }
   }
 
-  public void showMask(@NonNull View maskTarget, int maskPaddingTop, int maskPaddingBottom) {
+  public void showMask(@NonNull MaskView.MaskTarget maskTarget, int maskPaddingTop, int maskPaddingBottom) {
     maskView.setPadding(0, maskPaddingTop, 0, maskPaddingBottom);
     maskView.setTarget(maskTarget);
 

@@ -34,6 +34,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 
 import java.util.Collections;
 import java.util.List;
@@ -87,7 +88,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
                                                                     new VoiceNoteNotificationManagerListener(),
                                                                     queueDataAdapter);
 
-    VoiceNoteMediaSourceFactory mediaSourceFactory = new VoiceNoteMediaSourceFactory(this);
+    AttachmentMediaSourceFactory mediaSourceFactory = new AttachmentMediaSourceFactory(this);
 
     voiceNotePlaybackPreparer = new VoiceNotePlaybackPreparer(this, player, queueDataAdapter, mediaSourceFactory);
     voiceNoteProximityManager = new VoiceNoteProximityManager(this, player, queueDataAdapter);

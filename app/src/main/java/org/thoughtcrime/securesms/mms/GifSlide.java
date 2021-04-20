@@ -22,12 +22,17 @@ public class GifSlide extends ImageSlide {
   }
 
   public GifSlide(Context context, Uri uri, long size, int width, int height, boolean borderless, @Nullable String caption) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, caption, null, null, null, false, borderless, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, caption, null, null, null, false, borderless, true, false));
     this.borderless = borderless;
   }
 
   @Override
   public boolean isBorderless() {
     return borderless;
+  }
+
+  @Override
+  public boolean isVideoGif() {
+    return true;
   }
 }
