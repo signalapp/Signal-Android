@@ -164,6 +164,8 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
         throw new IllegalArgumentException("Unsupported event type " + event);
     }
 
-    Snackbar.make(view, getString(messageResId, displayName), Snackbar.LENGTH_SHORT).show();
+    Snackbar.make(view, getString(messageResId, displayName), Snackbar.LENGTH_SHORT)
+            .setTextColor(Color.WHITE)
+            .show();
   }
 }
