@@ -5,12 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -19,11 +20,9 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Fragment which displays GyphyImages.
@@ -51,6 +50,8 @@ public class GiphyMp4Fragment extends Fragment {
     boolean                                   isForMms           = requireArguments().getBoolean(IS_FOR_MMS, false);
     FrameLayout                               frameLayout        = view.findViewById(R.id.giphy_parent);
     RecyclerView                              recycler           = view.findViewById(R.id.giphy_recycler);
+    ContentLoadingProgressBar                 progressBar        = view.findViewById(R.id.content_loading);
+    TextView                                  nothingFound       = view.findViewById(R.id.nothing_found);
     GiphyMp4ViewModel                         viewModel          = ViewModelProviders.of(requireActivity(), new GiphyMp4ViewModel.Factory(isForMms)).get(GiphyMp4ViewModel.class);
     GiphyMp4MediaSourceFactory                mediaSourceFactory = new GiphyMp4MediaSourceFactory(ApplicationDependencies.getOkHttpClient());
     GiphyMp4Adapter                           adapter            = new GiphyMp4Adapter(mediaSourceFactory, viewModel::saveToBlob);
@@ -60,11 +61,13 @@ public class GiphyMp4Fragment extends Fragment {
     recycler.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     recycler.setAdapter(adapter);
     recycler.setItemAnimator(null);
+    progressBar.show();
 
     GiphyMp4AdapterPlaybackController.attach(recycler, callback, GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInSearchResults());
-
-    viewModel.getImages().observe(getViewLifecycleOwner(), adapter::submitList);
-
+    viewModel.getImages().observe(getViewLifecycleOwner(), images -> {
+      nothingFound.setVisibility(images.isEmpty() ? View.VISIBLE : View.INVISIBLE);
+      adapter.submitList(images, progressBar::hide);
+    });
     viewModel.getPagingController().observe(getViewLifecycleOwner(), adapter::setPagingController);
   }
 

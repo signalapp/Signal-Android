@@ -27,7 +27,7 @@
                       android:layout_width="0px"
                       android:layout_weight="1"
                       android:layout_marginStart="5dp"
-                      android:hint="@string/giphy_activity_toolbar__search_gifs_and_stickers"
+                      android:hint="@string/giphy_activity_toolbar__search_gifs"
                       android:textColor="@color/signal_text_toolbar_title"
                       android:textColorHint="@color/signal_text_toolbar_subtitle"
                       android:textCursorDrawable="@null"

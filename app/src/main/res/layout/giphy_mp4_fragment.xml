@@ -5,10 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Will Inject N VideoViews @ runtime -->
     <FrameLayout
         android:id="@+id/giphy_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/content_loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+    <TextView
+        android:id="@+id/nothing_found"
+        style="@style/Signal.Text.Body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/giphy_fragment__nothing_found"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/giphy_recycler"
@@ -18,5 +36,4 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/giphy_mp4" />
 
-    <!-- Will Inject N VideoViews @ runtime -->
 </FrameLayout>
