@@ -3,9 +3,9 @@ package org.session.libsession.messaging.utilities
 import android.content.Context
 import org.session.libsession.R
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsignal.service.api.messages.SignalServiceGroup
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 object UpdateMessageBuilder {
 
@@ -94,12 +94,12 @@ object UpdateMessageBuilder {
         }
     }
 
-    fun buildDataExtractionMessage(context: Context, kind: SignalServiceProtos.DataExtractionNotification.Type, sender: String? = null): String {
+    fun buildDataExtractionMessage(context: Context, kind: DataExtractionNotificationInfoMessage.Kind, sender: String? = null): String {
         val senderName = MessagingConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
         return when (kind) {
-            SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT ->
+            DataExtractionNotificationInfoMessage.Kind.SCREENSHOT ->
                 context.getString(R.string.MessageRecord_s_took_a_screenshot, senderName)
-            SignalServiceProtos.DataExtractionNotification.Type.MEDIA_SAVED ->
+            DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED ->
                 context.getString(R.string.MessageRecord_media_saved_by_s, senderName)
         }
     }

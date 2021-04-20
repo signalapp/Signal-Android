@@ -103,7 +103,7 @@ private fun MessageReceiver.handleDataExtractionNotification(message: DataExtrac
     val senderPublicKey = message.sender!!
     val notification: DataExtractionNotificationInfoMessage = when(message.kind) {
         is DataExtractionNotification.Kind.Screenshot -> DataExtractionNotificationInfoMessage(DataExtractionNotificationInfoMessage.Kind.SCREENSHOT)
-        is DataExtractionNotification.Kind.MediaSaved -> DataExtractionNotificationInfoMessage(DataExtractionNotificationInfoMessage.Kind.MEDIASAVED)
+        is DataExtractionNotification.Kind.MediaSaved -> DataExtractionNotificationInfoMessage(DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED)
         else -> return
     }
     storage.insertDataExtractionNotificationMessage(senderPublicKey, notification, message.sentTimestamp!!)

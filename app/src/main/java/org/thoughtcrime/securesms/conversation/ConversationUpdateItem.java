@@ -106,7 +106,7 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isJoined())                 setJoinedRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate())  setTimerRecord(messageRecord);
     else if (messageRecord.isScreenshotExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
-    else if (messageRecord.isMediaSavedExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIASAVED);
+    else if (messageRecord.isMediaSavedExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED);
     else if (messageRecord.isEndSession())             setEndSessionRecord(messageRecord);
     else if (messageRecord.isIdentityUpdate())         setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
@@ -154,7 +154,7 @@ public class ConversationUpdateItem extends LinearLayout
     @ColorInt int color = GeneralUtilitiesKt.getColorWithID(getResources(), R.color.text, getContext().getTheme());
     if (kind == DataExtractionNotificationInfoMessage.Kind.SCREENSHOT) {
       icon.setImageResource(R.drawable.quick_camera_dark);
-    } else if (kind == DataExtractionNotificationInfoMessage.Kind.MEDIASAVED) {
+    } else if (kind == DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED) {
       icon.setImageResource(R.drawable.ic_file_download_white_36dp);
     }
     icon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));

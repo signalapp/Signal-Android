@@ -4,7 +4,7 @@ class DataExtractionNotificationInfoMessage {
 
     enum class Kind {
         SCREENSHOT,
-        MEDIASAVED
+        MEDIA_SAVED
     }
 
     var kind: Kind? = null

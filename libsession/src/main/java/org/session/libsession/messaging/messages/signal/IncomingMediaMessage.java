@@ -131,7 +131,7 @@ public class IncomingMediaMessage {
   public boolean isMediaSavedDataExtraction() {
     if (dataExtractionNotification == null) return false;
     else {
-      return dataExtractionNotification.getKind() == DataExtractionNotificationInfoMessage.Kind.MEDIASAVED;
+      return dataExtractionNotification.getKind() == DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED;
     }
   }
 
