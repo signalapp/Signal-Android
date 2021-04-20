@@ -27,6 +27,7 @@ import network.loki.messenger.R;
 
 import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.database.documents.IdentityKeyMismatch;
@@ -97,6 +98,9 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isExpirationTimerUpdate()) {
       int seconds = (int) (getExpiresIn() / 1000);
       return new SpannableString(UpdateMessageBuilder.INSTANCE.buildExpirationTimerMessage(context, seconds, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
+    } else if (isDataExtraction()) {
+      if (isScreenshotExtraction()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT, getIndividualRecipient().getAddress().serialize())));
+      else if (isMediaSavedExtraction()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, SignalServiceProtos.DataExtractionNotification.Type.MEDIA_SAVED, getIndividualRecipient().getAddress().serialize())));
     }
     // TODO below lines are left here for compatibility with older group update messages, it can be deleted later on
     else if (isGroupUpdate() && isOutgoing()) {
