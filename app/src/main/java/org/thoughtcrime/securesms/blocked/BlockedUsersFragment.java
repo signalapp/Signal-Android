@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class BlockedUsersFragment extends Fragment {
 
@@ -48,10 +50,11 @@ public class BlockedUsersFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    View                addUser  = view.findViewById(R.id.add_blocked_user_touch_target);
-    RecyclerView        recycler = view.findViewById(R.id.blocked_users_recycler);
-    View                empty    = view.findViewById(R.id.no_blocked_users);
-    BlockedUsersAdapter adapter  = new BlockedUsersAdapter(this::handleRecipientClicked);
+    View                addUser      = view.findViewById(R.id.add_blocked_user_touch_target);
+    View                blockUnknown = view.findViewById(R.id.block_unknown_switch_touch_target);
+    RecyclerView        recycler     = view.findViewById(R.id.blocked_users_recycler);
+    View                empty        = view.findViewById(R.id.no_blocked_users);
+    BlockedUsersAdapter adapter      = new BlockedUsersAdapter(this::handleRecipientClicked);
 
     recycler.setAdapter(adapter);
 
@@ -60,6 +63,16 @@ public class BlockedUsersFragment extends Fragment {
         listener.handleAddUserToBlockedList();
       }
     });
+
+    SwitchCompat blockUnknownSwitch = view.findViewById(R.id.block_unknown_switch);
+
+    blockUnknown.setOnClickListener(v -> {
+      boolean enabled = !blockUnknownSwitch.isChecked();
+      blockUnknownSwitch.setChecked(enabled);
+      TextSecurePreferences.setBlockUnknownEnabled(v.getContext(), enabled);
+    });
+
+    blockUnknownSwitch.setChecked(TextSecurePreferences.isBlockUnknownEnabled(requireContext()));
 
     viewModel = ViewModelProviders.of(requireActivity()).get(BlockedUsersViewModel.class);
     viewModel.getRecipients().observe(getViewLifecycleOwner(), list -> {

@@ -1811,6 +1811,9 @@ public final class MessageContentProcessor {
 
     Recipient sender = Recipient.externalHighTrustPush(context, content.getSender());
 
+    boolean isKnownSender = sender.isSystemContact() || sender.isProfileSharing();
+    boolean isBlocked     = sender.isBlocked() || (!isKnownSender && TextSecurePreferences.isBlockUnknownEnabled(context));
+
     if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
       Recipient                conversation = getMessageDestination(content, message);
@@ -1831,7 +1834,7 @@ public final class MessageContentProcessor {
         }
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
-          return sender.isBlocked();
+          return isBlocked;
         }
 
         boolean isTextMessage    = message.getBody().isPresent();
@@ -1842,14 +1845,14 @@ public final class MessageContentProcessor {
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupContext().isPresent() && message.getGroupContext().get().getGroupV1Type() == SignalServiceGroup.Type.QUIT;
 
-        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage && !isGv2Update);
+        return (isContentMessage && !isGroupActive) || (isBlocked && !isLeaveMessage && !isGv2Update);
       } else {
-        return sender.isBlocked();
+        return isBlocked;
       }
     } else if (content.getCallMessage().isPresent()) {
-      return sender.isBlocked();
+      return isBlocked;
     } else if (content.getTypingMessage().isPresent()) {
-      if (sender.isBlocked()) {
+      if (isBlocked) {
         return true;
       }
 
