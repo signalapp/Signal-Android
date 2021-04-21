@@ -5,6 +5,7 @@ import androidx.annotation.WorkerThread
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.opengroups.OpenGroupV2
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
@@ -17,6 +18,18 @@ import org.thoughtcrime.securesms.groups.GroupManager
 object OpenGroupUtilities {
 
     private const val TAG = "OpenGroupUtilities"
+
+    @JvmStatic
+    @WorkerThread
+    fun addGroup(context: Context, server: String, room: String, publicKey: String?): OpenGroupV2 {
+        val groupId = "$server.$room"
+        val threadID = GroupManager.getOpenGroupThreadID(groupId, context)
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+        if (openGroup != null) return openGroup
+
+        val application = ApplicationContext.getInstance(context)
+        val group = application.publicChatManager.addChat(server, room, publicKey)
+    }
 
     @JvmStatic
     @WorkerThread

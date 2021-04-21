@@ -123,7 +123,7 @@ class PublicChatManager(private val context: Context) {
     if (threadID < 0) {
       val imageID = info.imageID
       if (!imageID.isNullOrEmpty()) {
-        val profilePictureAsByteArray = OpenGroupAPIV2.downloadOpenGroupProfilePicture(imageID)
+        val profilePictureAsByteArray = OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id,server)
         profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
       }
       val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, info.name)

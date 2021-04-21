@@ -57,48 +57,49 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.opengroups.OpenGroupAPI;
+import org.session.libsession.messaging.opengroups.OpenGroupAPIV2;
+import org.session.libsession.messaging.opengroups.OpenGroupV2;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.concurrent.SimpleTask;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.ShareActivity;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -396,7 +397,8 @@ public class ConversationFragment extends Fragment
 
     if (isGroupChat) {
       PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      boolean isPublicChat = (publicChat != null);
+      OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
+      boolean isPublicChat = (publicChat != null || openGroupChat != null);
       int selectedMessageCount = messageRecords.size();
       boolean areAllSentByUser = true;
       Set<String> uniqueUserSet = new HashSet<>();
@@ -407,7 +409,11 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = isPublicChat && OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
+      boolean userCanModerate =
+              (isPublicChat &&
+                      (OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer())
+                       || OpenGroupAPIV2.isUserModerator(userHexEncodedPublicKey, openGroupChat.getRoom(), openGroupChat.getServer()))
+              );
       boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       // allow banning if moderating a public chat and only one user's messages are selected
       boolean isBanOptionVisible = isPublicChat && userCanModerate && !areAllSentByUser && uniqueUserSet.size() == 1;

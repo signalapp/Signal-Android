@@ -1884,5 +1884,6 @@
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
     <!--  LinkDeviceActivity  -->
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these...</string>
 
 </resources>

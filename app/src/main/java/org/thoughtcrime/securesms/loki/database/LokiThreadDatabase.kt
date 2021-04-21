@@ -25,8 +25,10 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         private val friendRequestStatus = "friend_request_status"
         private val sessionResetStatus = "session_reset_status"
         val publicChat = "public_chat"
-        @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTable ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
-        @JvmStatic val createPublicChatTableCommand = "CREATE TABLE $publicChatTable ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
+        @JvmStatic
+        val createSessionResetTableCommand = "CREATE TABLE $sessionResetTable ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
+        @JvmStatic
+        val createPublicChatTableCommand = "CREATE TABLE $publicChatTable ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
     }
 
     override fun getThreadID(hexEncodedPublicKey: String): Long {
@@ -45,11 +47,13 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
                 val threadID = cursor.getLong(threadID)
                 val string = cursor.getString(publicChat)
                 val publicChat = PublicChat.fromJSON(string)
-                if (publicChat != null) { result[threadID] = publicChat }
+                if (publicChat != null) {
+                    result[threadID] = publicChat
+                }
             }
         } catch (e: Exception) {
             // Do nothing
-        }  finally {
+        } finally {
             cursor?.close()
         }
         return result
@@ -79,25 +83,40 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         return getAllPublicChats().values.fold(setOf()) { set, chat -> set.plus(chat.server) }
     }
 
-    override fun getPublicChat(threadID: Long): PublicChat? {
-        if (threadID < 0) { return null }
+    fun getOpenGroupChat(threadID: Long): OpenGroupV2? {
+        if (threadID < 0) {
+            return null
+        }
         val database = databaseHelper.readableDatabase
-        return database.get(publicChatTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
+        return database.get(publicChat, "${Companion.threadID} = ?", arrayOf(threadID.toString())) { cursor ->
+            val json = cursor.getString(publicChat)
+            OpenGroupV2.fromJson(json)
+        }
+    }
+
+    override fun getPublicChat(threadID: Long): PublicChat? {
+        if (threadID < 0) {
+            return null
+        }
+        val database = databaseHelper.readableDatabase
+        return database.get(publicChatTable, "${Companion.threadID} = ?", arrayOf(threadID.toString())) { cursor ->
             val publicChatAsJSON = cursor.getString(publicChat)
             PublicChat.fromJSON(publicChatAsJSON)
         }
     }
 
     override fun setPublicChat(publicChat: PublicChat, threadID: Long) {
-        if (threadID < 0) { return }
+        if (threadID < 0) {
+            return
+        }
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)
         contentValues.put(Companion.publicChat, JsonUtil.toJson(publicChat.toJSON()))
-        database.insertOrUpdate(publicChatTable, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
+        database.insertOrUpdate(publicChatTable, contentValues, "${Companion.threadID} = ?", arrayOf(threadID.toString()))
     }
 
     override fun removePublicChat(threadID: Long) {
-        databaseHelper.writableDatabase.delete(publicChatTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
+        databaseHelper.writableDatabase.delete(publicChatTable, "${Companion.threadID} = ?", arrayOf(threadID.toString()))
     }
 }

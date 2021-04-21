@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -9,14 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.core.view.isVisible
 import androidx.fragment.app.*
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import okhttp3.HttpUrl
+import org.session.libsession.messaging.opengroups.OpenGroupAPIV2.DefaultGroup
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -24,11 +31,13 @@ import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroup
 import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.loki.viewmodel.State
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+
+    private val viewModel by viewModels<DefaultGroupsViewModel>()
+
     private val adapter = JoinPublicChatActivityAdapter(this)
 
     // region Lifecycle
@@ -70,12 +79,24 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
             return Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
         }
+
+        val properString = if (!url.startsWith("http")) "http://$url" else url
+        val httpUrl = HttpUrl.parse(url) ?: return Toast.makeText(this,R.string.invalid_url, Toast.LENGTH_SHORT).show()
+
+        val room = httpUrl.pathSegments().firstOrNull()
+        val publicKey = httpUrl.queryParameter("public_key")
+        val isV2OpenGroup = !room.isNullOrEmpty()
         showLoader()
         val channel: Long = 1
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+                if (isV2OpenGroup) {
+                    val server = httpUrl.newBuilder().removeAllQueryParameters("public_key").removePathSegment(0).build().toString()
+                    OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server, room, publicKey)
+                } else {
+                    OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+                }
                 MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
             } catch (e: Exception) {
                 Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
@@ -111,7 +132,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
         }
     }
 
-    override fun getPageTitle(index: Int): CharSequence? {
+    override fun getPageTitle(index: Int): CharSequence {
         return when (index) {
             0 -> activity.resources.getString(R.string.activity_join_public_chat_enter_group_url_tab_title)
             1 -> activity.resources.getString(R.string.activity_join_public_chat_scan_qr_code_tab_title)
@@ -124,7 +145,6 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 // region Enter Chat URL Fragment
 class EnterChatURLFragment : Fragment() {
 
-    // factory producer is app scoped because default groups will want to stick around for app lifetime
     private val viewModel by activityViewModels<DefaultGroupsViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -132,7 +152,23 @@ class EnterChatURLFragment : Fragment() {
     }
 
     private fun populateDefaultGroups(groups: List<DefaultGroup>) {
-        Log.d("Loki", "Got some default groups $groups")
+        defaultRoomsGridLayout.removeAllViews()
+        groups.forEach { defaultGroup ->
+            val chip = layoutInflater.inflate(R.layout.default_group_chip,defaultRoomsGridLayout, false) as Chip
+            val drawable = defaultGroup.image?.let { bytes ->
+                val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
+                RoundedBitmapDrawableFactory.create(resources,bitmap).apply {
+                    isCircular = true
+                }
+            }
+            chip.chipIcon = drawable
+            chip.text = defaultGroup.name
+            defaultRoomsGridLayout.addView(chip)
+        }
+        if (groups.size and 1 != 0) {
+            // add a filler weight 1 view
+            layoutInflater.inflate(R.layout.grid_layout_filler, defaultRoomsGridLayout)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -140,6 +176,8 @@ class EnterChatURLFragment : Fragment() {
         chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
         joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
         viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
+            defaultRoomsParent.isVisible = state is State.Success
+            defaultRoomsLoader.isVisible = state is State.Loading
             when (state) {
                 State.Loading -> {
                     // show a loader here probs

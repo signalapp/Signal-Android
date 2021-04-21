@@ -30,10 +30,10 @@ import java.util.*
 object OpenGroupAPIV2 {
 
     private val moderators: HashMap<String, Set<String>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-    private const val DEFAULT_SERVER = "https://sog.ibolpap.finance"
+    const val DEFAULT_SERVER = "https://sog.ibolpap.finance"
     private const val DEFAULT_SERVER_PUBLIC_KEY = "b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10"
 
-    val defaultRooms = MutableSharedFlow<List<Info>>(replay = 1)
+    val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
 
     private val sharedContext = Kovenant.createContext()
     private val curve = Curve25519.getInstance(Curve25519.BEST)
@@ -46,6 +46,10 @@ object OpenGroupAPIV2 {
         object INVALID_URL : Error()
         object NO_PUBLIC_KEY : Error()
     }
+
+    data class DefaultGroup(val id: String,
+                            val name: String,
+                            val image: ByteArray?)
 
     data class Info(
             val id: String,
@@ -77,7 +81,7 @@ object OpenGroupAPIV2 {
         val urlBuilder = HttpUrl.Builder()
                 .scheme(parsed.scheme())
                 .host(parsed.host())
-                .addPathSegment(request.endpoint)
+                .addPathSegments(request.endpoint)
 
         if (request.verb == GET) {
             for ((key, value) in request.queryParameters) {
@@ -136,6 +140,14 @@ object OpenGroupAPIV2 {
             return null
         } finally {
             outputStream.close()
+        }
+    }
+
+    fun downloadOpenGroupProfilePicture(roomID: String, server: String): Promise<ByteArray, Exception> {
+        val request = Request(verb = GET, room = roomID, server = server, endpoint = "rooms/$roomID/image", isAuthRequired = false)
+        return send(request).map(sharedContext) { json ->
+            val result = json["result"] as? String ?: throw Error.PARSING_FAILED
+            decode(result)
         }
     }
 
@@ -312,15 +324,30 @@ object OpenGroupAPIV2 {
         }
     }
 
-    fun isUserModerator(publicKey: String, room: String, server: String): Boolean = moderators["$server.$room"]?.contains(publicKey)
-            ?: false
+    @JvmStatic
+    fun isUserModerator(publicKey: String, room: String, server: String): Boolean =
+            moderators["$server.$room"]?.contains(publicKey) ?: false
     // endregion
 
     // region General
-    fun getDefaultRoomsIfNeeded(): Promise<List<Info>, Exception> {
+    fun getDefaultRoomsIfNeeded(): Promise<List<DefaultGroup>, Exception> {
         val storage = MessagingConfiguration.shared.storage
         storage.setOpenGroupPublicKey(DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)
-        return getAllRooms(DEFAULT_SERVER).success { new ->
+        return getAllRooms(DEFAULT_SERVER).map { groups ->
+            val images = groups.map { group ->
+                group.id to downloadOpenGroupProfilePicture(group.id, DEFAULT_SERVER)
+            }.toMap()
+
+            groups.map { group ->
+                val image = try {
+                    images[group.id]!!.get()
+                } catch (e: Exception) {
+                    // no image or image failed to download
+                    null
+                }
+                DefaultGroup(group.id, group.name, image)
+            }
+        }.success { new ->
             defaultRooms.tryEmit(new)
         }
     }
