@@ -1694,7 +1694,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%d diğer</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFleri ve çıkartmaları ara</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFleri ve çıkartmaları ara</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Hiçbir şey bulunamadı</string>
   <!--log_submit_activity-->

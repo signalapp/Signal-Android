@@ -1839,7 +1839,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">%d ostatních</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hledat GIFy a nálepky</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hledat GIFy a nálepky</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nenalezeno</string>
   <!--log_submit_activity-->

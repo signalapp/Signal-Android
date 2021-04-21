@@ -1768,7 +1768,7 @@
     <item quantity="other">%d осталих</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Тражите ГИФ сличице и налепнице</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Тражите ГИФ сличице и налепнице</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Нема резултата</string>
   <!--log_submit_activity-->

@@ -1303,7 +1303,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="other">%d citi</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Meklēt GIF un uzlīmes</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Meklēt GIF un uzlīmes</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nekas netika atrasts</string>
   <!--log_submit_activity-->

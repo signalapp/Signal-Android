@@ -326,7 +326,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Palautetaanko varmuuskopiosta?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Palauta viestisi ja mediasi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Palauta viestit ja mediasisältö laitteeseen tallennetusta varmuuskopiosta. Palauttaminen ei ole mahdollista myöhemmin.</string>
   <string name="ChooseBackupFragment__icon_content_description">Palauta varmuuskopio -kuvake</string>
   <string name="ChooseBackupFragment__choose_backup">Valitse varmuuskopio</string>
   <string name="ChooseBackupFragment__learn_more">Lue lisää</string>
@@ -337,15 +337,15 @@
   <string name="RestoreBackupFragment__not_now">Ei nyt</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Keskustelujen varmuuskopiot</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varmuuskopiot salataan tunnuslauseella ja tallennetaan laitteellesi.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varmuuskopio salataan salalauseella ja tallennetaan laitteeseen.</string>
   <string name="BackupsPreferenceFragment__create_backup">Luo varmuuskopio</string>
   <string name="BackupsPreferenceFragment__last_backup">Varmuuskopioitu viimeksi: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Varmuuskopiokansio</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Varmenna varmuuskopion salalause</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Tarkista varmuuskopiosi salalause ja varmista että se täsmää</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Tarkista varmuuskopion salalause ja varmista että se täsmää</string>
   <string name="BackupsPreferenceFragment__turn_on">Ota käyttöön</string>
   <string name="BackupsPreferenceFragment__turn_off">Poista käytöstä</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Palauta varmuuskopio asentamalla uusi Signalin kopio. Avaa sovellus, napauta \"Palauta varmuuskopio\" ja etsi sitten varmuuskopiotiedosto. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Palauta varmuuskopio asentamalla Signal uudelleen tai uuteen laitteeseen. Avaa sovellus, napauta Palauta varmuuskopio ja etsi sitten varmuuskopiotiedosto. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Lue lisää</string>
   <string name="BackupsPreferenceFragment__in_progress">Käsitellään…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d tähän mennessä…</string>
@@ -1687,7 +1687,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%d muuta</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Etsi GIF:ejä ja tarroja</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Etsi GIF:ejä ja tarroja</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ei hakutuloksia</string>
   <!--log_submit_activity-->
@@ -2330,9 +2330,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Näytä odottavat viestit avaamalla lukitus</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopion salalause</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varmuuskopiot tallennetaan laitteesi tallennustilaan ja ne salataan allaolevalla salalauseella. Ilman tätä salalausetta et voi palauttaa varmuuskopiota.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Sinulla on oltava tämä tunnuslause varmuuskopion palauttamiseksi.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Varmuuskopion palauttamiseen vaaditaan salalause.</string>
   <string name="backup_enable_dialog__folder">Kansio</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen. Ilman sitä, en pysty palauttamaan varmuuskopiota.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen, joka on välttämätön varmuuskopion palauttamiseen.</string>
   <string name="registration_activity__restore_backup">Palauta varmuuskopio</string>
   <string name="registration_activity__transfer_or_restore_account">Siirrä tai palauta tili</string>
   <string name="registration_activity__transfer_account">Siirrä tili</string>
@@ -2349,8 +2349,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_d_messages_so_far">%d viestiä tähän mennessä…</string>
   <string name="RegistrationActivity_restore_from_backup">Palautetaanko varmuuskopiosta?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Palauta viestisi ja mediasi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
-  <string name="RegistrationActivity_backup_size_s">Varmuuskopion koko: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Varmuuskopion aikaleima: %s</string>
+  <string name="RegistrationActivity_backup_size_s">Koko: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Varmuuskopioitu: %s</string>
   <string name="BackupDialog_enable_local_backups">Otetaanko paikalliset varmuuskopiot käyttöön?</string>
   <string name="BackupDialog_enable_backups">Ota varmuuskopiot käyttöön</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ilmaise ymmäryksesi ruksaamalla valintaruutu.</string>

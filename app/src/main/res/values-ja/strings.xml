@@ -1609,7 +1609,7 @@
     <item quantity="other">ほか%d人</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFやステッカーを検索</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFやステッカーを検索</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">何も見つかりませんでした</string>
   <!--log_submit_activity-->
@@ -2014,6 +2014,7 @@
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">バックスペース</string>
+  <string name="CreatePaymentFragment__add_note">メモを追加</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">金額は概算で、正確ではありません</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">メモ</string>
@@ -2415,11 +2416,11 @@
   <string name="OldDeviceTransferInstructions__transfer_account">アカウントの移行</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">新しいAndroid端末でSignalを設定する際、以下の前であれば、あなたのSignalアカウントを移行できます:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">新しいAndroid端末で、Signalをダウンロードします。</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">新しいAndroid端末でSignalをダウンロード</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップします。</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップ</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」を選択し「続ける」をタップします。端末同士を近づけておきます。</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」を選択し「続ける」をタップして端末同士を近づける</string>
   <string name="OldDeviceTransferInstructions__continue">続ける</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">移行が完了しました</string>

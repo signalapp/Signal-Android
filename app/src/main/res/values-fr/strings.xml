@@ -1669,7 +1669,7 @@
     <item quantity="other">%d autres</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Chercher des GIF et des autocollants</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Chercher des GIF et des autocollants</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Aucun résultat</string>
   <!--log_submit_activity-->

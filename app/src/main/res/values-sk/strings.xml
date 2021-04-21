@@ -1839,7 +1839,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="other">%d ďalších</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hľadať GIFy a nálepky</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Hľadať GIFy a nálepky</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nič sa nenašlo</string>
   <!--log_submit_activity-->

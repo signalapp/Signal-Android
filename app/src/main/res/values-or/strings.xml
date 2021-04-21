@@ -1683,7 +1683,7 @@
     <item quantity="other">%d ଅନ୍ୟମାନେ</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ଜି.ଆଇ.ଏଫ ଏବଂ ଷ୍ଟିକର୍ ସନ୍ଧାନ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">ଜି.ଆଇ.ଏଫ ଏବଂ ଷ୍ଟିକର୍ ସନ୍ଧାନ କରନ୍ତୁ</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">କିଛି ମିଳିଲା ନାହିଁ</string>
   <!--log_submit_activity-->

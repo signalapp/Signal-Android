@@ -880,7 +880,7 @@
     <item quantity="other">%d başqa</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF və elan axtar</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF və elan axtar</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Heç nə tapılmadı</string>
   <!--log_submit_activity-->

@@ -66,8 +66,8 @@
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Methu canfod rhaglen i ddewis cyfryngau.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Signal angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Mae ar Signal angen caniatâd Cysylltiadau er mwyn atodi gwybodaeth gyswllt, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Mae ar Signal angen caniatâd Lleoliad er mwyn atodi gwybodaeth lleoliad, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Lleoliadau".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Mae ar Signal angen caniatâd Cysylltiadau er mwyn atodi manylion cyswllt, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Mae ar Signal angen caniatâd Lleoliad er mwyn atodi manylion lleoliad, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Lleoliadau".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Llwytho cyfrwng…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Cywasgu fideo…</string>
@@ -76,7 +76,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="BlockedUsersActivity__add_blocked_user">Ychwanegu defnyddiwr sydd wedi\'i rwystro</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Ni fydd defnyddwyr wedi\'u rhwystro yn gallu eich galw nac anfon negeseuon atoch.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Ni fydd defnyddwyr wedi’u rhwystro yn gallu eich galw nac anfon negeseuon atoch.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Dim defnyddwyr wedi\'u rhwystro</string>
   <string name="BlockedUsersActivity__block_user">Rhwystro defnyddiwr?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">Fydd \"%1$s\" ddim yn gallu eich ffonio nac anfon negeseuon atoch.</string>
@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_block_s">Rhwystro %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Fyddwch chi ddim yn derbyn negeseuon na diweddariadau gan y grŵp hwn mwyach, ac ni fydd aelodau\'n gallu eich ychwanegu at y grŵp hwn eto.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ni fydd aelodau\'r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Bydd aelodau\'r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Bydd aelodau’r grŵp yn gallu eich ychwanegu at y grŵp hwn eto.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bydd modd i chi negesu a galw\'ch gilydd a bydd eich enw a\'ch llun yn cael eu rhannu gyda nhw.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Ni fydd pobl sydd wedi\'u rhwystro\'n gallu eich ffonio nac anfon negeseuon atoch.</string>
   <string name="BlockUnblockDialog_unblock_s">Dadrwystro %1$s?</string>
@@ -139,7 +139,7 @@
   <string name="CommunicationActions_cancel">Diddymu</string>
   <string name="CommunicationActions_call">Galw</string>
   <string name="CommunicationActions_insecure_call">Galwad anniogel</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Gall taliadau darparwr fod yn berthnasol. Nid yw\'r rhif rydych chi\'n ei alw wedi\'i gofrestru gyda Signal. Bydd yr alwad hon yn cael ei hanfon trwy eich darparwr symudol, nid dros y rhyngrwyd.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Gall taliadau darparwr fod yn berthnasol. Nid yw’r rhif rydych chi\'n ei alw wedi’i gofrestru gyda Signal. Bydd yr alwad hon yn cael ei hanfon trwy eich darparwr symudol, nid dros y rhyngrwyd.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid. Gall hyn olygu bod rhywun yn ceisio ymyrryd a\'ch cyfathrebu, neu bod %2$s wedi ail-osod Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Efallai yr hoffech wirio\'ch rhif diogelwch gyda\'r cyswllt hwn.</string>
@@ -187,8 +187,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationItem_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="ConversationItem_you_deleted_this_message">Chi wnaeth ddileu\'r neges hon.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ailosod sesiwn ddiogel?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi\'n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string>
+  <string name="ConversationActivity_reset_secure_session_question">Ail-osod sesiwn ddiogel?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi’n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string>
   <string name="ConversationActivity_reset">Ailosod</string>
   <string name="ConversationActivity_add_attachment">Ychwanegu atodiad</string>
   <string name="ConversationActivity_select_contact_info">Dewis manylion cyswllt</string>
@@ -210,7 +210,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_unblock">Dadrwystro</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Mae atodiad yn fwy na therfynau maint y math o neges rydych chi\'n ei hanfon.</string>
   <string name="ConversationActivity_unable_to_record_audio">Methu recordio sain!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nid oes moddi chi anfon negeseuon i\'r grŵp hwn oherwydd nid ydych yn aelod mwyach.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nid oes modd i chi anfon negeseuon i\'r grŵp hwn oherwydd nid ydych yn aelod mwyach.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nid oes ap ar gael i drin y ddolen hon ar eich dyfais.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Mae eich cais i ymuno wedi\'i anfon at weinyddiaeth y grŵp. Fe gewch hysbysiad pan fyddan nhw\'n gweithredu.</string>
   <string name="ConversationActivity_cancel_request">Diddymu\'r Cais</string>
@@ -232,13 +232,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_sticker_pack_installed">Pac sticeri wedi ei osod</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Newydd! Dweud gyda sticeri</string>
   <string name="ConversationActivity_cancel">Diddymu</string>
-  <string name="ConversationActivity_delete_conversation">Dileu\'r sgwrs?</string>
+  <string name="ConversationActivity_delete_conversation">Dileu’r sgwrs?</string>
   <string name="ConversationActivity_delete_and_leave_group">Dileu a gadael grŵp?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Bydd y sgwrs hon yn cael ei dileu o\'ch holl ddyfeisiau.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Byddwch yn gadael y grŵp hwn, a bydd yn cael ei ddileu o\'ch holl ddyfeisiau.</string>
   <string name="ConversationActivity_delete">Dileu</string>
   <string name="ConversationActivity_delete_and_leave">Dileu a gadael</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">I alw %1$s mae angen i Signal gael mynediad i\'ch meicroffon.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">I alw %1$s mae angen i Signal gael mynediad i’ch meicroffon.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Rhagor o ddewisiadau yn \"Gosodiadau Grŵp\"</string>
   <string name="ConversationActivity_join">Ymuno</string>
   <string name="ConversationActivity_full">Llawn</string>
@@ -308,7 +308,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_verify">Dilysu</string>
   <string name="ConversationFragment_not_now">Nid nawr</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Newidiodd eich rhif diogelwch gyda %s</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Newidiodd eich rhif diogelwch gyda %s, yn debygol oherwydd eu bod wedi ailosod Signal neu newid dyfeisiau. Tapiwch Dilysu i gadarnhau\'r rhif diogelwch newydd. Mae hyn yn ddewisol.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Newidiodd eich rhif diogelwch gyda %s, yn debygol oherwydd eu bod wedi ailosod Signal neu newid dyfeisiau. Tapiwch Dilysu i gadarnhau’r rhif diogelwch newydd. Mae hyn yn ddewisol.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Dileu\'r sgwrs hon?</item>
     <item quantity="two">Dileu\'r sgyrsiau hyn?</item>
@@ -350,11 +350,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Anhawster gosod proffil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae eich proffil wedi\'i amgryptio o ben-i-ben. Bydd eich proffil a\'ch newidiadau iddo yn weladwy i\'ch cysylltiadau, pan fyddwch chi\'n cychwyn neu\'n derbyn sgyrsiau newydd, a phan fyddwch yn ymuno â grwpiau newydd.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae eich proffil wedi\'i amgryptio o ben-i-ben. Bydd eich proffil a’ch newidiadau iddo yn weladwy i\'ch cysylltiadau, pan fyddwch chi’n cychwyn neu\'n derbyn sgyrsiau newydd, a phan fyddwch yn ymuno â grwpiau newydd.</string>
   <string name="CreateProfileActivity_set_avatar_description">Gosod rhithffurf</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">Adfer o\'r wrth gefn?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Adfer eich negeseuon a\'ch cyfryngau o gefn wrth gefn lleol. Os na fyddwch yn adfer nawr, ni fyddwch yn gallu adfer yn ddiweddarach.</string>
+  <string name="ChooseBackupFragment__restore_from_backup">Adfer o’r wrth gefn?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Adfer eich negeseuon a’ch cyfryngau o gefn wrth gefn lleol. Os na fyddwch yn adfer nawr, ni fyddwch yn gallu adfer yn ddiweddarach.</string>
   <string name="ChooseBackupFragment__icon_content_description">Adfer o\'r eicon wrth gefn</string>
   <string name="ChooseBackupFragment__choose_backup">Dewiswch y copi wrth gefn</string>
   <string name="ChooseBackupFragment__learn_more">Dysgu rhagor</string>
@@ -377,7 +377,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupsPreferenceFragment__learn_more">Dysgu rhagor</string>
   <string name="BackupsPreferenceFragment__in_progress">Cynnydd…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hyd yn hyn…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe’i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau’r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
   <string name="CustomDefaultPreference_using_default">Defnyddio rhagosodedig: %s</string>
@@ -396,7 +396,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="DateUtils_yesterday">Ddoe</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Adnewyddwyd Sesiwn Sgwrsio</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Mae Signal yn defnyddio amgryptio o\'r dechrau i\'r diwedd ac weithiau efallai y bydd angen iddo adnewyddu eich sesiwn sgwrsio. Nid yw hyn yn effeithio ar ddiogelwch eich sgwrs, ond efallai eich bod wedi methu neges o\'r cyswllt hwn, a gallwch ofyn iddyn nhw ei hail-gyflwyno.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Mae Signal yn defnyddio amgryptio o’r dechrau i’r diwedd ac weithiau efallai y bydd angen iddo adnewyddu eich sesiwn sgwrsio. Nid yw hyn yn effeithio ar ddiogelwch eich sgwrs, ond efallai eich bod wedi methu neges o’r cyswllt hwn, a gallwch ofyn iddyn nhw ei hail-gyflwyno.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Datgysylltu \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Drwy ddatgysylltu\'r ddyfais hon, ni fydd yn gallu anfon neu dderbyn negeseuon.</string>
@@ -709,7 +709,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Rhowch wybod i mi am Grybwylliadau</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Derbyn hysbysiadau pan soniwyd amdanoch mewn sgyrsiau tawel?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Rhoi gwybod i mi bob tro</string>
-  <string name="GroupMentionSettingDialog_dont_notify_me">Peidio rhoi gwybod</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Peidio a rhoi gwybod</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Enw proffilEnw proffil</string>
   <string name="ManageProfileFragment_username">Enw defnyddiwr</string>
@@ -983,7 +983,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Mae\'r amserydd neges sy\'n diflannu wedi\'i osod i %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diweddarwyd y grŵp hwn i Grŵp Newydd.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nid oedd modd eich ychwanegu at y Grŵp Newydd ac rydych wedi cael gwahoddiad i ymuno.</string>
-  <string name="MessageRecord_chat_session_refreshed">Adnewyddwyd Sesiwn Sgwrsio</string>
+  <string name="MessageRecord_chat_session_refreshed">Adnewyddwyd y sesiwn sgwrsio</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Nid oedd modd ychwanegu aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
     <item quantity="two">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael gwahoddiad i ymuno.</item>
@@ -1503,7 +1503,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_voice_message">Neges Llais</string>
   <string name="ThreadRecord_file">Ffeil</string>
   <string name="ThreadRecord_video">Fideo</string>
-  <string name="ThreadRecord_chat_session_refreshed">Adnewyddwyd Sesiwn Sgwrsio</string>
+  <string name="ThreadRecord_chat_session_refreshed">Adnewyddwyd y sesiwn sgwrsio</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Diweddariad Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Signal ar gael. Tapiwch i ddiweddaru</string>
@@ -1628,6 +1628,7 @@ Send neges heb ei ddiogelu?</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Cais am neges</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Chwarae fideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Mae ganddo bennawd</string>
@@ -1841,7 +1842,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">%d arall</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Chwilio GIFau a sticeri</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Chwilio GIFau a sticeri</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Heb ganfod dim</string>
   <!--log_submit_activity-->
@@ -2661,7 +2662,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tapiwch eich llun proffil yn y chwith uchaf i agor y Gosodiadau</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Tapiwch ar \"Sgwrs\"</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Tapiwch ar \"Sgyrsiau\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tapiwch \"Trosglwyddo Cyfrif\" ac yna \"Parhau\" ar y ddau ddyfais</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2795,7 +2796,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsLearnMore_paragraph_3">Bydd Signal yn cynnig ffordd i uwchraddio Hen Etifeddiaeth yn y dyfodol.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Gall unrhyw un sydd â\'r ddolen hon weld enw a llun o\'r grŵp a gofyn i ymuno. Rhannwch hi gyda phobl rydych yn ymddiried ynddyn nhw.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Gall unrhyw un sydd â\'r ddolen hon weld enw a llun o\'r grŵp a gofyn i ymuno. Rhannwch hi gyda phobl rydych yn ymddiried ynddyn nhw.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Gall unrhyw un sydd â\'r ddolen hon weld enw a llun o\'r grŵp a gofyn i gael ymuno. Rhannwch hi gyda phobl rydych yn ymddiried ynddyn nhw.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Rhannu trwy Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copïo</string>
   <string name="GroupLinkBottomSheet_qr_code">Cod QR</string>

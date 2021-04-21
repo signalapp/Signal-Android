@@ -284,7 +284,7 @@
   <string name="ConversationFragment_verify">ตรวจยืนยัน</string>
   <string name="ConversationFragment_not_now">ไม่ใช่ตอนนี้</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป น่าจะเป็นเพราะหมายเลขนั้นได้ติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะปุ่มตรวจยืนยันเพื่อยืนยันหมายเลขความปลอดภัยเลขใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป น่าจะเพราะเขาได้ติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะ ตรวจยืนยัน เพื่อยืนยันหมายเลขความปลอดภัยใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">ลบการสนทนาที่เลือกหรือไม่?</item>
   </plurals>
@@ -324,7 +324,7 @@
   <string name="ChooseBackupFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">กู้คืนเสร็จสิ้น</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ดำเนินการใช้ข้อมูลสำรองต่อ กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองใหม่จะถูกบันทึกในที่นี้</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">เพื่อจะใช้ข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองใหม่จะถูกบันทึกในที่นี้</string>
   <string name="RestoreBackupFragment__choose_folder">เลือกโฟลเดอร์</string>
   <string name="RestoreBackupFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--BackupsPreferenceFragment-->
@@ -1619,7 +1619,7 @@
     <item quantity="other">%d อื่นๆ</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ค้นหาภาพ GIF และสติกเกอร์</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">ค้นหาภาพ GIF และสติกเกอร์</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
   <!--log_submit_activity-->
@@ -1878,12 +1878,12 @@
   <string name="preferences__read_receipts">ใบตอบรับเมื่ออ่าน</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>
   <string name="preferences__typing_indicators">แสดงว่ากำลังพิมพ์</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ถ้าการแจ้งการพิมพ์ข้อความตอบกลับถูกปิดใช้งาน คุณจะไม่เห็นการแจ้งการพิมพ์ข้อความตอบกลับจากผู้อื่น</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ร้องขอแป้นพิมพ์ให้ปิดใช้งานการเรียนรู้การแนะนำคำ การตั้งค่านี้ไม่รับประกันและแป้นพิมพ์ของคุณอาจเพิกเฉยต่อมัน</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ถ้าสัญลักษณ์กำลังพิมพ์อยู่ถูกปิดใช้งาน คุณจะไม่เห็นสัญลักษณ์ว่ากำลังพิมพ์อยู่จากคนอื่น</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">ขอแป้นพิมพ์ให้ปิดการเรียนรู้เพื่อแนะนำคำเฉพาะบุคคล การตั้งค่านี้ไม่รับประกันและแป้นพิมพ์ของคุณอาจเพิกเฉยต่อมัน</string>
   <string name="preferences_app_protection__blocked_users">ผู้ใช้ที่ปิดกั้นอยู่</string>
   <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
   <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
-  <string name="preferences_chats__when_roaming">เมื่อใช้บริการข้ามเครือข่าย Roaming</string>
+  <string name="preferences_chats__when_roaming">เมื่อใช้บริการข้ามแดนอัตโนมัติ (โรมมิ่ง)</string>
   <string name="preferences_chats__media_auto_download">ดาวน์โหลดสื่ออัตโนมัติ</string>
   <string name="preferences_chats__message_history">ประวัติการส่งข้อความ</string>
   <string name="preferences_storage__storage_usage">การใช้พื้นที่จัดเก็บ</string>
@@ -2317,7 +2317,7 @@
   <string name="BackupDialog_delete_backups">ลบข้อมูลสำรองหรือไม่?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบข้อมูลสำรองที่เก็บในอุปกรณ์นี้ทั้งหมดหรือไม่?</string>
   <string name="BackupDialog_delete_backups_statement">ลบข้อมูลสำรอง</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">หากต้องการเปิดใช้งานข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองจะถูกบันทึกที่นี้</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">หากต้องการเปิดใช้งานข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองจะถูกบันทึกในที่นี้</string>
   <string name="BackupDialog_choose_folder">เลือกโฟลเดอร์</string>
   <string name="BackupDialog_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="BackupDialog_no_file_picker_available">ไม่พบตัวเลือกแฟ้มให้ใช้งาน</string>
@@ -2332,7 +2332,7 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">พื้นที่ไม่เพียงพอสำหรับจัดเก็บข้อมูลสำรองของคุณ</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">แตะเพื่อจัดการข้อมูลสำรอง</string>
   <string name="ProgressPreference_d_messages_so_far">%d ข้อความจนถึงตอนนี้</string>
-  <string name="RegistrationActivity_wrong_number">หมายเลขโทรศัพท์ไม่ถูกต้อง</string>
+  <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้อง</string>
   <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉันแทน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
   <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>

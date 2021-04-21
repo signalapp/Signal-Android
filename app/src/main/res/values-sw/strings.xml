@@ -1102,7 +1102,7 @@ nambari yako ya simu</string>
     <item quantity="other">%d Wengine</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Tafuta GIF na vibandiko</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Tafuta GIF na vibandiko</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Hakuna kilichopatikana</string>
   <!--log_submit_activity-->

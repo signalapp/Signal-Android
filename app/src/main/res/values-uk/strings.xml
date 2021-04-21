@@ -884,7 +884,7 @@
     <item quantity="other">%d інших</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Пошук GIF та наліпок</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Пошук GIF та наліпок</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Нічого не знайдено</string>
   <!--log_submit_activity-->

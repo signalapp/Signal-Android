@@ -1601,7 +1601,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
     <item quantity="other">%d khác</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Tìm kiếm GIF và nhãn dán</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Tìm kiếm GIF và nhãn dán</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Không tìm thấy</string>
   <!--log_submit_activity-->

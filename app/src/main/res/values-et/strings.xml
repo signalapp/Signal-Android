@@ -1681,7 +1681,7 @@
     <item quantity="other">%d teist</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Otsi GIFe ja kleepse</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Otsi GIFe ja kleepse</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Midagi ei leitud</string>
   <!--log_submit_activity-->

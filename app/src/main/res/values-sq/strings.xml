@@ -1698,7 +1698,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="other">%d të tjerë</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIF-e dhe ngjitës</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIF-e dhe ngjitës</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">S\’u gjet gjë</string>
   <!--log_submit_activity-->

@@ -837,6 +837,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal hívás folyamatban</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal hívás létesítése</string>
   <string name="NotificationBarManager__incoming_signal_call">Bejövő Signal hívás</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">A Signal hívás szolgáltatás leállítása</string>
   <string name="NotificationBarManager__deny_call">Hívás elutasítása</string>
   <string name="NotificationBarManager__answer_call">Hívás felvétele</string>
   <string name="NotificationBarManager__end_call">Hívás befejezése</string>
@@ -1484,6 +1485,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NotificationChannel_missing_display_name">Ismeretlen</string>
   <string name="NotificationChannel_voice_notes">Hangjegyzetek</string>
   <string name="NotificationChannel_contact_joined_signal">Ismerős csatlakozott a Signal-hoz</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nincs elérhető aktivitás, hogy megnyissuk az értesítési csatorna beállításokat.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A gyors válasz nem érhető el, ha a Signal zárolva van!</string>
@@ -1499,6 +1501,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Üzenet kérelem</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Videó lejátszása</string>
   <string name="ThumbnailView_Has_a_caption_description">Felirattal rendelkezik</string>
@@ -1632,7 +1635,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Hívás értesítések engedélyezve</string>
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Hívás értesítések engedélyezése</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Háttér aktívitás engedélyezése</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Most minden jónak tűnik!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">A hívás értesítésekért érintsd meg itt, és kapcsold be az \"Értesítések megjelenítését\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">A hívás értesítésekért érintsd meg itt, és kapcsold be az az értesítéseket és ellenőrizd, hogy a Hang és az Előugró ablak engedélyezett-e.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">A hívás értesítésekért érintsd meg itt, és engedélyezd a háttér aktivitást az \"Akkumulátor\" beállításoknál. </string>
   <string name="EnableCallNotificationSettingsDialog__settings">Beállítások</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">A hívás értesítésekért érintsd meg a Beállításokat, és kapcsold be az \"Értesítések megjelenítését\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">A hívás értesítésekért érintsd meg a Beállításokat, és engedélyezd a háttér aktivitást az \"Akkumulátor\" beállításoknál. </string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Országok betöltése…</string>
   <string name="country_selection_fragment__search">Keresés</string>
@@ -1687,7 +1696,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%d további</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nincs találat</string>
   <!--log_submit_activity-->
@@ -2025,15 +2034,25 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentsAllActivityFragment__sent">Elküldve</string>
   <string name="PaymentsAllActivityFragment__received">Beérkezett</string>
   <string name="PaymentsHomeFragment__activate_payments">Fizetések aktiválása</string>
+  <string name="PaymentsHomeFragment__activating_payments">Fizetések aktiválása…</string>
   <string name="PaymentsHomeFragment__see_all">Összes megtekintése</string>
   <string name="PaymentsHomeFragment__send">Küldés</string>
+  <string name="PaymentsHomeFragment__sent_s">Küldött %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Beérkezett %1$s</string>
   <string name="PaymentsHomeFragment__currency_conversion">Pénznem konverzió</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Fizetések deaktiválása</string>
   <string name="PaymentsHomeFragment__help">Súgó</string>
+  <string name="PaymentsHomeFragment__sent_payment">Fizetés küldése</string>
+  <string name="PaymentsHomeFragment__received_payment">Érkezett fizetés</string>
+  <string name="PaymentsHomeFragment__processing_payment">Fizetés feldolgozása</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Pénznem konverzió nem elérhető</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Fizetések deaktiválása?</string>
+  <string name="PaymentsHomeFragment__deactivate">Deaktiválás</string>
   <string name="PaymentsHomeFragment__continue">Folytatás</string>
   <string name="PaymentsHomeFragment__payment_failed">Fizetés sikertelen</string>
   <string name="PaymentsHomeFragment__details">Részletek</string>
   <string name="PaymentsHomeFragment__activate">Aktiválás</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin feltételek megtekintése</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Másolás</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Vágólapra másolva</string>
@@ -2044,6 +2063,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentsDetailsFragment__payment_failed">Fizetés sikertelen</string>
   <string name="PaymentsDetailsFragment__to">Címzett</string>
   <string name="PaymentsDetailsFragment__from">Feladó</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Fizetés küldése</string>
+  <string name="PaymentsDetailsFragment__received_payment">Érkezett fizetés</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Átvitel</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR kód beolvasása</string>
@@ -2315,6 +2336,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="backup_enable_dialog__folder">Mappa</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Feljegyeztem ezt a jelmondatot. Enélkül nem leszek képes visszaállítani biztonsági mentést.</string>
   <string name="registration_activity__restore_backup">Biztonsági mentés visszaállítása</string>
+  <string name="registration_activity__transfer_or_restore_account">Fiók átvitele vagy helyreállítása</string>
   <string name="registration_activity__skip">Kihagyás</string>
   <string name="preferences_chats__chat_backups">Csevegések biztonsági mentése</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Csevegések biztonsági mentése külső tárolóra</string>
@@ -2392,6 +2414,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="prompt_passphrase_activity__tap_to_unlock">ÉRINTS A FELOLDÁSHOZ</string>
   <string name="Recipient_unknown">Ismeretlen</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Fiók átvitele vagy helyreállítása</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Folytatás</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
@@ -2400,18 +2423,27 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__grant_location_permission">Hely jogosultságok megadása</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Hely szolgáltatások bekapcsolása</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Sikertelen a hely beállítások megnyitása.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi bekapcsolása</string>
   <string name="DeviceTransferSetup__retry">Újra</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Debug log elküldése</string>
+  <string name="DeviceTransferSetup__verify_code">Kód ellenőrzés</string>
   <string name="DeviceTransferSetup__continue">Folytatás</string>
+  <string name="DeviceTransferSetup__stop_transfer">Átvitel megszakítása</string>
   <string name="DeviceTransferSetup__location_permission">Hely jogosultságok</string>
   <string name="DeviceTransferSetup__location_services">Hely szolgáltatások</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">Újra</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Adatátvitel</string>
   <string name="DeviceTransfer__cancel">Mégsem</string>
   <string name="DeviceTransfer__try_again">Újra</string>
+  <string name="DeviceTransfer__stop_transfer_question">Átvitel megszakítása?</string>
+  <string name="DeviceTransfer__stop_transfer">Átvitel megszakítása</string>
+  <string name="DeviceTransfer__transfer_failed">Átvitel sikertelen</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Fiók átmozgatása</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
@@ -2419,8 +2451,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Folytatás</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Átvitel kész</string>
   <string name="OldDeviceTransferComplete__close">Bezárás</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Átvitel sikeres</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Átvitel kész</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Regisztráció folytatása</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_status_verification_required">Ellenőrzés szükséges</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Fiók átvitele…</string>
@@ -2577,11 +2613,15 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WallpaperCropActivity__blur_photo">Fotó elhomályosítása</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">A MobileCoin-ról</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">A MobileCoin egy új adatvédelmi fókuszú digitális pénznem.</string>
   <string name="payment_info_card_hide">Elrejtés</string>
   <string name="payment_info_card_update_pin">PIN frissítése</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Tárca deaktiválása</string>
   <string name="DeactivateWalletFragment__your_balance">Az egyenleged</string>
+  <string name="DeactivateWalletFragment__deactivate">Deaktiválás</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Kezdés</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Beillesztés vágólapról</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Tovább</string>
@@ -2595,7 +2635,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Befejezés</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">Tovább</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Érvénytelen szó</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Vágólap törölve.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Megtekintés</string>
   <!--UnreadPayments-->

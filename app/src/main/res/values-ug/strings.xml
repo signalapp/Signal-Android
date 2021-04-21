@@ -28,8 +28,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">چېكىلسە Signal سۈكۈتتىكى قىسقا ئۇچۇر ئەپىگە تەڭشىلىدۇ</string>
   <string name="ApplicationPreferencesActivity_on">ئاچ</string>
   <string name="ApplicationPreferencesActivity_On">ئاچ</string>
-  <string name="ApplicationPreferencesActivity_off">ياپ</string>
-  <string name="ApplicationPreferencesActivity_Off">ياپ</string>
+  <string name="ApplicationPreferencesActivity_off">تاقاق</string>
+  <string name="ApplicationPreferencesActivity_Off">تاقاق</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">قىسقا ئۇچۇر%1$s, كۆپ ۋاسىتە ئۇچۇر%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">ئېكران قۇلۇپى %1$s، تىزىملىتىش قۇلۇپى %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تېما%1$s, تىل%2$s</string>
@@ -348,7 +348,7 @@
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">زاپاسلاش پارولىنى دەلىللەڭ</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">زاپاسلاش پارولىڭىزنى سىناپ بېقىڭ ھەمدە ئۇنىڭ ماس كەلگەن-كەلمىگەنلىكىنى دەلىللەڭ</string>
   <string name="BackupsPreferenceFragment__turn_on">ئاچ</string>
-  <string name="BackupsPreferenceFragment__turn_off">ئەت</string>
+  <string name="BackupsPreferenceFragment__turn_off">تاقا</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">زاپاسلاشنى ئەسلىگە كەلتۈرۈش ئۈچۈن ، Signal بىر يېڭى نەشرىنى قاچىلاڭ. ئاندىن ئەپنى ئېچىپ «زاپاسلاشنى ئەسلىگە كەلتۈرۈش» نى چېكىڭ، ئاندىن زاپاس ھۆججىتىنى كۆرسىتىپ بېرىڭ.%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">كۆپرەك ئۆگىنىش</string>
   <string name="BackupsPreferenceFragment__in_progress">داۋام قىلىۋاتىدۇ…</string>
@@ -613,7 +613,7 @@
   <string name="ManageGroupActivity_chat_wallpaper">سۆھبەت تام قەغەز</string>
   <string name="ManageGroupActivity_until_s">%1$s غىچە</string>
   <string name="ManageGroupActivity_always">ھەمىشە</string>
-  <string name="ManageGroupActivity_off">ئەت</string>
+  <string name="ManageGroupActivity_off">تاقاق</string>
   <string name="ManageGroupActivity_on">ئاچ</string>
   <string name="ManageGroupActivity_view_all_members">ھەممە ئەزالارنى كۆرسەت</string>
   <string name="ManageGroupActivity_see_all">ھەممىنى كۆرسەت</string>
@@ -664,7 +664,7 @@
   <string name="ManageRecipientActivity_custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <string name="ManageRecipientActivity_until_s">%1$s غىچە</string>
   <string name="ManageRecipientActivity_always">ھەمىشە</string>
-  <string name="ManageRecipientActivity_off">ئەت</string>
+  <string name="ManageRecipientActivity_off">تاقاق</string>
   <string name="ManageRecipientActivity_on">ئاچ</string>
   <string name="ManageRecipientActivity_add_to_a_group">گۇرۇپپىغا قوش</string>
   <string name="ManageRecipientActivity_view_all_groups">ھەممە گۇرۇپپىنى كۆرسەت</string>
@@ -1266,10 +1266,10 @@
   <string name="RegistrationActivity_call">چاقىر</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">تىزىملىتىش قۇلۇپىنى ئاچامسىز؟</string>
-  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">تىزىملىتىش قۇلۇپىنى ئېتەمسىز؟</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">تىزىملىتىش قۇلۇپىنى تاقامسىز؟</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">ئەگەر Signal غا قايتا تىزىملاتقىنىڭىزدا Signal PIN نى ئۇنتۇپ قالغان بولسىڭىز، ھېساباتىڭىزنى 7 كۈن قۇلۇپلاپ سالىسىز.</string>
   <string name="RegistrationLockV2Dialog_turn_on">ئېچىش</string>
-  <string name="RegistrationLockV2Dialog_turn_off">ئېتىش</string>
+  <string name="RegistrationLockV2Dialog_turn_off">تاقا</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">سۈرەت كۆرسەت</string>
   <string name="RevealableMessageView_view_video">سىن كۆرسەت</string>
@@ -1655,7 +1655,7 @@
   <string name="device_list_fragment__no_devices_linked">ھېچقانداق ئۈسكۈنە باغلانمىدى</string>
   <string name="device_list_fragment__link_new_device">يېڭى ئۈسكىنە باغلا</string>
   <!--expiration-->
-  <string name="expiration_off">ئەت</string>
+  <string name="expiration_off">تاقاق</string>
   <plurals name="expiration_seconds">
     <item quantity="one">1</item>
     <item quantity="other">0</item>
@@ -1697,7 +1697,7 @@
     <item quantity="other">0</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">چىراي ئىپادە ۋە GIF رەسىم ئىزدەش</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">چىراي ئىپادە ۋە GIF رەسىم ئىزدەش</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ھىچنېمە تېپىلمىدى</string>
   <!--log_submit_activity-->
@@ -2017,12 +2017,12 @@
   <string name="preferences_communication__sealed_sender_display_indicators">ئېكران كۆرسەتكۈچىلىرى</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">يوشۇرۇن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلاردا «ئۇچۇر تەپسىلاتى» تاللانغاندا، ھالەت سىمبەلگىسىنى كۆرسەت.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ھەممىسىدن قوبۇل قىل</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ئالاقەداشلىرىڭ ئارىسىدا بولمىغان ياكى ئارخىپىڭنى ھەمبەھرلىمىگەن كىشىلەردىن، يوشۇرۇن ئەۋەتكۈچىلەرنىڭمۇ ئۇچۇرلىرىنى قوبۇل قىلىشنى ئاكتىپ قىل. </string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ئالاقەداشلىرىڭ ئارىسىدا بولمىغان ياكى ئارخىپىڭنى ھەمبەھىرلىمىگەن كىشىلەردىن، يوشۇرۇن ئەۋەتكۈچى ئۇچۇرلىرىنى قوبۇل قىلىشنى ئاكتىپلا.</string>
   <string name="preferences_communication__sealed_sender_learn_more">كۆپرەك ئۆگىنىش</string>
   <string name="preferences_setup_a_username">بىز ئىشلەتكۈچى ئىسمى سەپلە</string>
   <string name="preferences_proxy">ۋاكالەتچى</string>
   <string name="preferences_use_proxy">ۋاكالەتچى ئىشلىتىش</string>
-  <string name="preferences_off">ئەت</string>
+  <string name="preferences_off">تاقاق</string>
   <string name="preferences_on">ئاچ</string>
   <string name="preferences_proxy_address">ۋاكالەتچى ئادرېس</string>
   <string name="preferences_only_use_a_proxy_if">پەقەت Wi-Fi  ياكى يانفون تورى بىلەن Signal غا ئۇلىنىش مۈمكىن بولمىغاندا، ۋاكالەتچى ئىشلىتىڭ.</string>
@@ -2372,7 +2372,7 @@
     <item quantity="other">%1$d ئۇرۇنۇش قالدى</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ئۇچۇر ئىلتىماسىڭىزنى تاپشۇرۇۋالىدۇ. ئىلتىماسىڭىزغا قوشۇلغاندىن كېيىن ئۇنىڭ بىلەن بىر قېتىم سۆزلىشەلەيسىز.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ئۇچۇر ئىلتىماسىڭىزنى تاپشۇرۇۋالىدۇ. ئىلتىماسىڭىزغا قوشۇلغاندىن كېيىن ئۇنىڭ بىلەن سۆزلىشەلەيسىز.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">بىر PIN قۇرۇڭ</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal ئۇچۇر ساقلىغاندا PIN ئارقىلىق شىفىرلايدۇ.</string>
@@ -2466,7 +2466,7 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINلەر Signalدا ساقلانغان ئۇچۇرلارنى مەخپىيلەشتۈرۈپ ساقلايدۇ. شۇڭا سىزلا زىيارەت قىلالايسىز. ئارخىپىڭىز، سەپلىمىلىرىڭىز ۋە ئالاقەداشلىرىڭىز Signal نى قايتا قاچىلىغىنىڭىزدا ئەسلىگە كەلتۈرىلىدۇ.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal PIN نى مەجبۇرىي ھالەتكە ئەكىلىپ، Signal نى تېلېفون نومۇرىڭىز بىلەن بىرلىكتە قايتا تىزىملىتىش ئارقىلىق، يەنىمۇ بىخەتەر قىلالايسىز.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN نى ئەسلىگە كەلتۈرگىلى بولمىغاچقا، ئەسكەرتكۈچ ئۇنى سىزنىڭ پىششىق ئېىسىڭىزدە تۇتىۋېلىشىڭىزغا ياردەم قىلىدۇ. بارا-بارا تېخىمۇ ئاز سورىغۇسى.</string>
-  <string name="preferences_app_protection__turn_off">ئەت</string>
+  <string name="preferences_app_protection__turn_off">تاقا</string>
   <string name="preferences_app_protection__confirm_pin">PIN نى جەزىملەڭ</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN نىڭىزنى جەزىملەڭ</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN نى ئەسلىگە كەلتۈرگىلى بولمىغاچقا، ئۇنى ئەستە ساقلىۋالغىنىڭىزغا ياكى بىخەتەر بىر يەردە ساقلىغىنىڭىزغا كاپالەتلىك قىلىڭ. ئەگەر Signal ھېسابىڭىزنى قايتىدىن تىزىملاتسىڭىز، مەلۇماتلىرىڭىزنى يوقىتىشىڭىز مۈمكىن.</string>

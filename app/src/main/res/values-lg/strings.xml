@@ -470,7 +470,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="expiration_weeks_abbreviated">%dwiiki</string>
   <!--unverified safety numbers-->
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Noonya GIFs ne sticka</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Noonya GIFs ne sticka</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tewali kisangidwa</string>
   <!--log_submit_activity-->

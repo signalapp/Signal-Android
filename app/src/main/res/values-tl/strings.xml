@@ -1151,7 +1151,7 @@
     <item quantity="other">%d pang iba</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Maghanap ng mga GIF at sticker </string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Maghanap ng mga GIF at sticker </string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Walang nahanap</string>
   <!--log_submit_activity-->

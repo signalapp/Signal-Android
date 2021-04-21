@@ -798,7 +798,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
     <item quantity="other">%d shukkuna</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFkunata shinallata llutanakunata maskana </string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFkunata shinallata llutanakunata maskana </string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nimata mana taririrkachu</string>
   <!--log_submit_activity-->

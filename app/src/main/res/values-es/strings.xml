@@ -1698,7 +1698,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%d otros</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIFs y stickers</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIFs y stickers</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">No se encontró nada</string>
   <!--log_submit_activity-->

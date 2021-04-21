@@ -1623,7 +1623,7 @@
     <item quantity="other">另 %d 人</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到任何東西</string>
   <!--log_submit_activity-->

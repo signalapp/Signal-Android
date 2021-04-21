@@ -1655,7 +1655,7 @@
     <item quantity="other">%dअन्य </item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">gifs और स्टिकर की खोज करो</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">gifs और स्टिकर की खोज करो</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">कुछ नहीं मिला</string>
   <!--log_submit_activity-->

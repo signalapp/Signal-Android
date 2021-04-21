@@ -1614,7 +1614,7 @@
     <item quantity="other">기타 %d명</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF 파일 및 스티커 검색</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF 파일 및 스티커 검색</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">검색 결과 없음</string>
   <!--log_submit_activity-->

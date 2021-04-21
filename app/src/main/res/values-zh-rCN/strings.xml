@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">已禁用 PIN。</string>
   <string name="ApplicationPreferencesActivity_hide">隐藏</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">隐藏提醒？</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">记下付款恢复短语</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">记下短语</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在禁用 PIN 码之前，务必记下付款恢复短语，以确保可恢复您的付款帐户。</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分钟</item>
@@ -56,7 +59,7 @@
   <string name="AttachmentKeyboard_location">位置</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需相应权限以显示图片和视频。</string>
   <string name="AttachmentKeyboard_give_access">给予权限</string>
-  <string name="AttachmentKeyboard_payment">支付</string>
+  <string name="AttachmentKeyboard_payment">付款</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">未找到选择媒体的应用。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需“存储”权限，来发送图片、视频和音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
@@ -1438,6 +1441,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新消息</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">消息请求</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播放视频</string>
   <string name="ThumbnailView_Has_a_caption_description">带有描述</string>
@@ -1624,7 +1628,7 @@
     <item quantity="other">%d 个其他人</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF 图片与表情</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF 图片与表情</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到</string>
   <!--log_submit_activity-->
@@ -1741,6 +1745,14 @@
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
+  <string-array name="HelpFragment__categories">
+    <item>出现问题</item>
+    <item>功能请求</item>
+    <item>疑问</item>
+    <item>反馈</item>
+    <item>其他</item>
+    <item>付款</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -1783,6 +1795,7 @@
     <item quantity="other">%d 小时</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">短信和彩信</string>
   <string name="preferences__pref_all_sms_title">接收全部短信</string>
   <string name="preferences__pref_all_mms_title">接收全部彩信</string>
@@ -1846,7 +1859,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">为每一条发送的短信请求送达报告</string>
   <string name="preferences__data_and_storage">数据和存储</string>
   <string name="preferences__storage">存储</string>
-  <string name="preferences__payments">支付</string>
+  <string name="preferences__payments">付款</string>
+  <string name="preferences__payments_beta">付款（Beta 版）</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
   <string name="preferences__keep_messages">保留消息</string>
   <string name="preferences__clear_message_history">清除消息记录</string>
@@ -1954,35 +1968,98 @@
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">全部活动</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>
   <string name="PaymentsAllActivityFragment__sent">发送</string>
   <string name="PaymentsAllActivityFragment__received">接收</string>
+  <string name="PaymentsHomeFragment__introducing_payments">推出付款功能（Beta 版）</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">使用 Signal 收发 MobileCoin，一种关注隐私的新数字货币。请激活开始使用。</string>
+  <string name="PaymentsHomeFragment__activate_payments">激活付款</string>
+  <string name="PaymentsHomeFragment__activating_payments">正在激活付款…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">还原付款帐户</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">最近无活动</string>
+  <string name="PaymentsHomeFragment__pending_requests">待处理请求</string>
+  <string name="PaymentsHomeFragment__recent_activity">最近活动</string>
   <string name="PaymentsHomeFragment__see_all">查看全部</string>
+  <string name="PaymentsHomeFragment__add_funds">添加资金</string>
   <string name="PaymentsHomeFragment__send">发送</string>
+  <string name="PaymentsHomeFragment__sent_s">发送 %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">接收 %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">转帐至交易平台</string>
+  <string name="PaymentsHomeFragment__currency_conversion">货币转换</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">停用付款</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">恢复短语</string>
   <string name="PaymentsHomeFragment__help">帮助</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">是否停用支付？</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">货币清理费</string>
+  <string name="PaymentsHomeFragment__sent_payment">已发送付款</string>
+  <string name="PaymentsHomeFragment__received_payment">已接收付款</string>
+  <string name="PaymentsHomeFragment__processing_payment">正在处理付款</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">货币转换不可用</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">无法显示货币转换。请检查手机连接，然后重试。</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">您所在地区付款不可用。</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">无法启用付款，请稍后重试。</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">是否停用付款？</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">停用付款之后，将无法在 Signal 中收发 MobileCoin。</string>
   <string name="PaymentsHomeFragment__deactivate">停用</string>
   <string name="PaymentsHomeFragment__continue">继续</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">余额当前不可用。</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">付款已停用。</string>
+  <string name="PaymentsHomeFragment__payment_failed">付款失败</string>
   <string name="PaymentsHomeFragment__details">更多</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">可使用 Signal 收发 MobileCoin。全部付款遵守 MobileCoins 以及 MobileCoin Wallet 的使用条款。付款当前仍为 beta 功能，可能出现一些故障，可能丢失付款或余额且不可恢复。</string>
   <string name="PaymentsHomeFragment__activate">激活</string>
-  <string name="PaymentsHomeFragment__payments_not_available">Signal 的支付不再可用，不过您仍可将资金转移至交易平台，但是不再能够收发支付或添加资金。</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">查看 MobileCoin 条款</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal 的付款不再可用，不过您仍可将资金转移至交易平台，但是不再能够收发付款或添加资金。</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">添加资金</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">您的钱包地址</string>
   <string name="PaymentsAddMoneyFragment__copy">复制</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">已复制到剪切板</string>
   <string name="PaymentsAddMoneyFragment__to_add_funds">为了添加资金，请发送 MobileCoin 至您的钱包地址。在支持 MobileCoin 的交易平台上，从您的帐户开启交易，然后扫描该二维码或复制您的钱包地址。</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">更多</string>
   <string name="PaymentsDetailsFragment__status">状态</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">正在提交付款…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">正在处理付款…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">付款完成</string>
+  <string name="PaymentsDetailsFragment__payment_failed">付款失败</string>
+  <string name="PaymentsDetailsFragment__network_fee">网络费</string>
+  <string name="PaymentsDetailsFragment__sent_by">发送人</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">发送至 %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">您在 %1$s 于 %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s 在 %2$s 于 %3$s</string>
   <string name="PaymentsDetailsFragment__to">至</string>
   <string name="PaymentsDetailsFragment__from">来自</string>
+  <string name="PaymentsDetailsFragment__information">交易，包括付款金额和交易时间，是 MobileCoin 账本的一部分。</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">货币清理费</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">当您拥有的货币无法合并以完成交易时，将收取“货币清理费”。清理后可继续发送付款。</string>
+  <string name="PaymentsDetailsFragment__no_details_available">该交易无更多详情可用</string>
+  <string name="PaymentsDetailsFragment__sent_payment">已发送付款</string>
+  <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">块码</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">转帐</string>
   <string name="PaymentsTransferFragment__scan_qr_code">扫描二维码</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">转至：扫描或输入钱包地址</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">向交易平台提供的钱包地址完成一次转帐之后，即可进行 MobileCoin 转帐。钱包地址为数字字母字符串，大多数情况下，位于二维码下方。</string>
   <string name="PaymentsTransferFragment__next">下一步</string>
+  <string name="PaymentsTransferFragment__invalid_address">无效地址</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">请检查转帐至的钱包地址，然后重试。</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">无法向您的 Signal 钱包地址转帐。请输入支持的交易平台帐户的钱包地址。</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">为了扫描二维码，Signal 需摄像头访问权限。</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal 需“相机”权限，来扫描二维码。请访问设置菜单，选择“权限”并启用“相机”。</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">为了扫描二维码，Signal 需摄像头访问权限。</string>
   <string name="PaymentsTransferFragment__settings">设置</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">扫描地址二维码</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">扫描收款人的地址二维码</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">入群请求</string>
-  <string name="CreatePaymentFragment__pay">支付</string>
+  <string name="CreatePaymentFragment__pay">付款</string>
+  <string name="CreatePaymentFragment__available_balance_s">可用余额：%1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">切换</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -1992,14 +2069,34 @@
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">退格键</string>
+  <string name="CreatePaymentFragment__add_note">添加备注</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">转换仅为估计，可能并不准确。</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">注释</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">确认付款</string>
+  <string name="ConfirmPayment__network_fee">网络费</string>
+  <string name="ConfirmPayment__error_getting_fee">获取费用出错</string>
+  <string name="ConfirmPayment__estimated_s">估计 %1$s</string>
   <string name="ConfirmPayment__to">至</string>
+  <string name="ConfirmPayment__total_amount">总金额</string>
+  <string name="ConfirmPayment__balance_s">余额：%1$s</string>
+  <string name="ConfirmPayment__submitting_payment">正在提交付款…</string>
+  <string name="ConfirmPayment__processing_payment">正在处理付款…</string>
+  <string name="ConfirmPayment__payment_complete">付款完成</string>
+  <string name="ConfirmPayment__payment_failed">付款失败</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">付款将继续处理</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">无效接收人</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人尚未激活付款</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">无法请求网络费。为了继续付款，请点击“确定”以重试。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s 于 %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">设置货币</string>
   <string name="SetCurrencyFragment__all_currencies">全部货币</string>
   <!--****************************************-->
   <!--menus-->
@@ -2423,6 +2520,10 @@
   <string name="OldDeviceTransferLockedDialog__done">完成</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消并激活该设备</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">转移 MOB 余额？</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">您有 %1$s 的余额。在删除帐户之前，如果未将资金转移至其他钱包地址，您将永久失去这些资金。</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">不转移</string>
+  <string name="AdvancedPreferenceFragment__transfer">转移</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">屏蔽</string>
   <string name="RecipientBottomSheet_unblock">取消屏蔽</string>
@@ -2513,6 +2614,7 @@
   <string name="DeleteAccountFragment__delete_account">删除账户</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的帐户信息和个人资料照片</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">删除您的全部消息</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">在您的付款帐户中删除 %1$s</string>
   <string name="DeleteAccountFragment__no_country_code">未指定国家代码</string>
   <string name="DeleteAccountFragment__no_number">未指定号码</string>
   <string name="DeleteAccountFragment__the_phone_number">您输入的手机号码和您的帐户不符。</string>
@@ -2570,32 +2672,80 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">关于 MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin 是一种关注隐私的新数字货币。</string>
+  <string name="payment_info_card_adding_funds">正在添加资金</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">通过将 MobileCoin 发送至钱包地址，即可在 Signal 中添加并使用资金。</string>
+  <string name="payment_info_card_cashing_out">兑现</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">在支持 MobileCoin 的交易平台上，可随时兑现 MobileCoin。只需在该交易平台上，将资金转移至您的帐户。</string>
+  <string name="payment_info_card_hide_this_card">是否隐藏该卡片？</string>
   <string name="payment_info_card_hide">隐藏</string>
+  <string name="payment_info_card_record_recovery_phrase">记下恢复短语</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">恢复短语提供了另一种方式，可用于还原您的付款帐户。</string>
+  <string name="payment_info_card_record_your_phrase">记下短语</string>
+  <string name="payment_info_card_update_your_pin">更新 PIN 码</string>
+  <string name="payment_info_card_with_a_high_balance">余额较高时，可升级为字母数字 PIN 码，更好地保护您的帐号。</string>
   <string name="payment_info_card_update_pin">更新 PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">停用钱包</string>
+  <string name="DeactivateWalletFragment__your_balance">您的余额</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">在停用付款之前，建议您将资金转移至其他钱包地址。如果当前选择不转移，在重新激活付款时，您的资金将保留在 Signal 关联的钱包内。</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">转移剩余余额</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">停用而不转移</string>
   <string name="DeactivateWalletFragment__deactivate">停用</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">当重新激活支付时，您的余额将保留在 Signal 关联的钱包内。</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">是否停用而不转移？</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">当重新激活付款时，您的余额将保留在 Signal 关联的钱包内。</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">停用钱包出错。</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">恢复短语</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">查看恢复短语</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">输入恢复短语</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">重新安装 Signal 并确认 Signal PIN 码后，将自动还原您的余额。另外，还可使用恢复短语，来还原您的余额。该短语包含 %1$d 个单词，并且对您是唯一的。请将其记下并妥善保存。</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">恢复短语包含 %1$d 个单词，并且对您是唯一的，可用于还原您的余额。</string>
   <string name="PaymentsRecoveryStartFragment__start">开始</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">手动输入</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">从剪贴板粘贴</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">粘贴恢复短语</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">恢复短语</string>
   <string name="PaymentsRecoveryPasteFragment__next">下一步</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">无效的恢复短语</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">请确保输入了 %1$d 单词，然后重试。</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">下一步</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">编辑</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">上一</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">您的恢复短语</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">依次记下以下 %1$d 个单词。请将该列表存储在安全的地方。</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">请确保输入短语正确。</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">请勿使用屏幕截图或通过电子邮件发送。</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">付款帐户已还原。</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">无效的恢复短语</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">请确保输入短语正确，然后重试。</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">是否复制到剪贴板？</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">如果选择以数字方式存储恢复短语，请确保将其安全地存储在可信任之处。</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">复制</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">确认恢复短语</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">请输入恢复短语中以下单词。</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">单词 %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">再次查看短语</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完成</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">恢复短语已确认</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">输入恢复短语</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">输入单词 %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">单词 %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">下一步</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">无效单词</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">剪贴板已清除。</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">查看</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s 向您发送了 %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d 个新的付款通知</string>
   <!--CanNotSendPaymentDialog-->
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">为了发送支付，该用户需接受您的消息请求。请向他们发送消息，来创建消息请求。</string>
+  <string name="CanNotSendPaymentDialog__cant_send_payment">无法发送付款</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">为了发送付款，该用户需接受您的消息请求。请向他们发送消息，来创建消息请求。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
   <!--EOF-->
 </resources>

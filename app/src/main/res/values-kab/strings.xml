@@ -1685,7 +1685,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
     <item quantity="other">%d wiyyaḍ</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Nadi GIFs d stickers</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Nadi GIFs d stickers</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ulac tadfert</string>
   <!--log_submit_activity-->

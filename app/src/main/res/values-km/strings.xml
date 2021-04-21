@@ -1393,7 +1393,7 @@
     <item quantity="other">%dផ្សេង</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ស្វែករក GIFs និងស្ទីកគ័រ</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">ស្វែករក GIFs និងស្ទីកគ័រ</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ពុំរកមិនឃើញអ្វីទេ</string>
   <!--log_submit_activity-->

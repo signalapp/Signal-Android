@@ -1672,7 +1672,7 @@
     <item quantity="other">%d പേർ</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF-കളും സ്റ്റിക്കറുകളും തിരയുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF-കളും സ്റ്റിക്കറുകളും തിരയുക</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ഒന്നും കണ്ടെത്തിയില്ല</string>
   <!--log_submit_activity-->

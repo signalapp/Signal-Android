@@ -1698,7 +1698,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
     <item quantity="other">%d mere</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg GIF\'s og animationer</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søg GIF\'s og animationer</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Fandt ingenting</string>
   <!--log_submit_activity-->

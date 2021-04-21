@@ -1698,7 +1698,7 @@
     <item quantity="other">%d altri</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF e adesivi</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cerca GIF e adesivi</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non trovato</string>
   <!--log_submit_activity-->
@@ -2079,7 +2079,7 @@
   <string name="PaymentsHomeFragment__payments_deactivated">Pagamenti disattivati.</string>
   <string name="PaymentsHomeFragment__payment_failed">Pagamento fallito</string>
   <string name="PaymentsHomeFragment__details">Dettagli</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puoi utilizzare Signal per inviare e ricevere MobileCoin. Tutti i pagamenti sono soggetti ai Termini di utilizzo di MobileCoins e di MobileCoin Wallet. Questa è una funzione beta, quindi potresti riscontrare alcuni problemi e pagamenti o saldi che potresti perdere non possono essere recuperati. </string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puoi utilizzare Signal per inviare e ricevere MobileCoin. Tutti i pagamenti sono soggetti ai Termini di utilizzo dei MobileCoin e di MobileCoin Wallet. Questa è una funzione beta, quindi potresti riscontrare alcuni problemi e pagamenti o saldi che potresti perdere non possono essere recuperati. </string>
   <string name="PaymentsHomeFragment__activate">Attiva</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Visualizza i termini di MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">I pagamenti in Signal non sono più disponibili. Puoi ancora trasferire i fondi a un exchange ma non puoi più inviare e ricevere pagamenti o aggiungere fondi.</string>

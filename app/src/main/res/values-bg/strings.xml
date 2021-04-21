@@ -1673,7 +1673,7 @@
     <item quantity="other">%d други</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търсене сред GIF-ове и стикери</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Търсене сред GIF-ове и стикери</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Няма нищо открито</string>
   <!--log_submit_activity-->

@@ -1624,7 +1624,7 @@
     <item quantity="other">%dအခြား</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs နှင့် စတစ်ကာများကိုရှာဖွေခြင်း</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs နှင့် စတစ်ကာများကိုရှာဖွေခြင်း</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ဘာမှ မတွေ့ဘူး</string>
   <!--log_submit_activity-->
@@ -2090,6 +2090,7 @@
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">၎င်း ပုဂ္ဂိုလ်မှ ငွေပေးချေမှုများ ဖွင့်ထားခြင်းမရှိပါ</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ကွန်ယက်အခကြေး တောင်းဆိုရန်မရပါ။ ၎င်းငွေပေးချေမှု ဆက်လက်လုပ်ဆောင်ရန် အိုကေနှိပ်၍ ပြန်စမ်းကြည့်ပါ။</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s ကို %2$s ဖြင့်</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">ငွေကြေး သတ်မှတ်မယ်</string>
   <string name="SetCurrencyFragment__all_currencies">ငွေကြေးများ အားလုံး</string>

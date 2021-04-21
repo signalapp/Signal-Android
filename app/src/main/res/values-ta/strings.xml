@@ -1675,7 +1675,7 @@
     <item quantity="other">%d மற்றவர்கள்</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF கள் மற்றும் ஒட்டிகளைத் தேடுங்கள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF கள் மற்றும் ஒட்டிகளைத் தேடுங்கள்</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">எதுவும் கிடைக்கவில்லை</string>
   <!--log_submit_activity-->

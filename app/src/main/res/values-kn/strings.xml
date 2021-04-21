@@ -1288,7 +1288,7 @@
     <item quantity="other">%d ಇತರರು</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF ಗಳನ್ನು ಮತ್ತು ಸ್ಟಿಕ್ಕರ್‌ಗಳ ನ್ನು ಹುಡುಕಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF ಗಳನ್ನು ಮತ್ತು ಸ್ಟಿಕ್ಕರ್‌ಗಳ ನ್ನು ಹುಡುಕಿ</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ಏನೂ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--log_submit_activity-->

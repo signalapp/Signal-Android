@@ -1377,7 +1377,7 @@
     <item quantity="other">%d ਹੋਰ </item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF ਅਤੇ ਸਟਿੱਕਰ ਖੋਜੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF ਅਤੇ ਸਟਿੱਕਰ ਖੋਜੋ</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ਕੁਝ ਵੀ ਮਿਲਿਆ ਨਹੀਂ</string>
   <!--log_submit_activity-->

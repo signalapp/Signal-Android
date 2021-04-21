@@ -1751,7 +1751,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">%d alții</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Căutați GIF-uri și autocolante</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Căutați GIF-uri și autocolante</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nu s-a găsit nimic</string>
   <!--log_submit_activity-->

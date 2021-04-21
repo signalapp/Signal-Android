@@ -947,7 +947,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
     <item quantity="other">%d lain-lain</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Mencari GIFs dan pelekat</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Mencari GIFs dan pelekat</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tiada apa-apa dicari</string>
   <!--log_submit_activity-->

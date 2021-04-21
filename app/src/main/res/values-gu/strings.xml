@@ -1089,7 +1089,7 @@
     <item quantity="other">%dઅન્ય</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF અને સ્ટીકરો શોધો</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF અને સ્ટીકરો શોધો</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">કાંઈ મળ્યું નહીં</string>
   <!--log_submit_activity-->

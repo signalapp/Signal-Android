@@ -1702,7 +1702,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="other">%d anderen</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs en stickers zoeken</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs en stickers zoeken</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Niets gevonden</string>
   <!--log_submit_activity-->
@@ -2030,7 +2030,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_off">Uit</string>
   <string name="preferences_on">Aan</string>
   <string name="preferences_proxy_address">Proxyadres</string>
-  <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als de app niet uit zichzelf in staat is om verbinding te maken met Signal\'s servers, ander heeft het geen toegevoegde waarde maar levert het wel vertraging op.</string>
+  <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als de app niet uit zichzelf in staat is om verbinding te maken met Signal\'s servers, want anders heeft het geen toegevoegde waarde maar levert het wel vertraging op.</string>
   <string name="preferences_share">Proxyadres delen via andere app</string>
   <string name="preferences_save">Opslaan</string>
   <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy …</string>
