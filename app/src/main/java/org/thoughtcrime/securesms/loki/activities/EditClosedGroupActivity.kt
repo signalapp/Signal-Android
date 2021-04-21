@@ -38,7 +38,9 @@ import java.io.IOException
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private val originalMembers = HashSet<String>()
     private val members = HashSet<String>()
+    private val zombies = HashSet<String>()
     private var hasNameChanged = false
+    private var isSelfAdmin = false
     private var isLoading = false
         set(newValue) { field = newValue; invalidateOptionsMenu() }
 
@@ -54,7 +56,10 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
 
     private val memberListAdapter by lazy {
-        EditClosedGroupMembersAdapter(this, GlideApp.with(this), this::onMemberClick)
+        if (isSelfAdmin)
+            EditClosedGroupMembersAdapter(this, GlideApp.with(this), isSelfAdmin, this::onMemberClick)
+        else
+            EditClosedGroupMembersAdapter(this, GlideApp.with(this), isSelfAdmin)
     }
 
     private lateinit var mainContentContainer: LinearLayout
@@ -81,7 +86,10 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 ThemeUtil.getThemedDrawableResId(this, R.attr.actionModeCloseDrawable))
 
         groupID = intent.getStringExtra(groupIDKey)!!
-        originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
+        val groupInfo = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get()
+        originalName = groupInfo.title
+        isSelfAdmin = groupInfo.admins.any{ it.serialize() == TextSecurePreferences.getLocalNumber(this) }
+
         name = originalName
 
         mainContentContainer = findViewById(R.id.mainContentContainer)
@@ -177,10 +185,6 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         this.members.clear()
         this.members.addAll(members)
         memberListAdapter.setMembers(members)
-
-        val admins = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().admins.map { it.toString() }.toMutableSet()
-        admins.remove(TextSecurePreferences.getLocalNumber(this))
-        memberListAdapter.setLockedMembers(admins)
 
         mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
