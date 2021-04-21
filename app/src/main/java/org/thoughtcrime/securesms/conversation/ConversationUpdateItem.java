@@ -14,11 +14,9 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
-import org.thoughtcrime.securesms.loki.utilities.GroupDescription;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -174,8 +172,6 @@ public class ConversationUpdateItem extends LinearLayout
   private void setGroupRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
     icon.clearColorFilter();
-
-    GroupDescription.Companion.getDescription(getContext(), messageRecord.getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
