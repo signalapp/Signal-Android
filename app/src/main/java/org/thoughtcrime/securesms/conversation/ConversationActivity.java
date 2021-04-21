@@ -158,7 +158,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
@@ -175,6 +174,7 @@ import org.session.libsession.messaging.threads.recipients.RecipientModifiedList
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -806,15 +806,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-          ExpirationTimerUpdate message = new ExpirationTimerUpdate(null, expirationTime);
+          ExpirationTimerUpdate message = new ExpirationTimerUpdate(expirationTime);
+          message.setRecipient(recipient.getAddress().serialize()); // we need the recipient in ExpiringMessageManager.insertOutgoingExpirationTimerMessage
           message.setSentTimestamp(System.currentTimeMillis());
-          OutgoingExpirationUpdateMessage outgoingMessage = OutgoingExpirationUpdateMessage.from(message, recipient);
-          try {
-            message.setId(DatabaseFactory.getMmsDatabase(ConversationActivity.this).insertMessageOutbox(outgoingMessage, getAllocatedThreadId(ConversationActivity.this), false, null));
-            MessageSender.send(message, recipient.getAddress());
-          } catch (MmsException e) {
-            Log.w(TAG, e);
-          }
+          ExpiringMessageManager expiringMessageManager = ApplicationContext.getInstance(getApplicationContext()).getExpiringMessageManager();
+          expiringMessageManager.setExpirationTimer(message);
+          MessageSender.send(message, recipient.getAddress());
+
           return null;
         }
 
