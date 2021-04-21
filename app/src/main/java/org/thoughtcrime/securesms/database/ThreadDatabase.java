@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.batsignal.BatAppsContactsManager;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.jsoup.helper.StringUtil;
@@ -699,6 +700,8 @@ public class ThreadDatabase extends Database {
     SQLiteDatabase db          = databaseHelper.getReadableDatabase();
     String         pinnedWhere = PINNED + (pinned ? " != 0" : " = 0");
     String         where       = ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + pinnedWhere;
+
+    where = BatAppsContactsManager.getInstance().appendIgnoreClause(where);
 
     final String query;
 

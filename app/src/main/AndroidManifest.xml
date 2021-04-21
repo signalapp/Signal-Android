@@ -855,5 +855,24 @@
 
     <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
+    <!-- Used to pass numbers that should be hidden from the second profile  -->
+    <activity
+        android:name="com.batsignal.BatAppsSyncActivity"
+        android:theme="@android:style/Theme.NoDisplay"
+        android:enabled="true"
+        android:exported="true"
+        android:permission="com.batph0ne.android.ACCESS"
+        android:taskAffinity=""
+        android:excludeFromRecents="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="batsignal" android:host="primary"/>
+        </intent-filter>
+    </activity>
+
 </application>
 </manifest>

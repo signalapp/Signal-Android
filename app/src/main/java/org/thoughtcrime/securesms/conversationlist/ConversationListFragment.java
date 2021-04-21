@@ -20,8 +20,10 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -58,12 +60,14 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.annimon.stream.Stream;
+import com.batsignal.Constants;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -188,6 +192,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private Stopwatch startupStopwatch;
 
+  private BroadcastReceiver mContactsReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      if(viewModel != null)
+        viewModel.onVisible();
+    }
+  };
+
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
   }
@@ -197,6 +209,15 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     super.onCreate(icicle);
     setHasOptionsMenu(true);
     startupStopwatch = new Stopwatch("startup");
+
+    LocalBroadcastManager.getInstance(getContext()).registerReceiver(mContactsReceiver,
+            new IntentFilter(Constants.ACTION_CONTACTS_RECEIVED));
+  }
+
+  @Override
+  public void onDestroy() {
+    LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mContactsReceiver);
+    super.onDestroy();
   }
 
   @Override
