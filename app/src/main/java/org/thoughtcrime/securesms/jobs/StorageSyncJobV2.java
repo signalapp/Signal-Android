@@ -217,7 +217,7 @@ public class StorageSyncJobV2 extends BaseJob {
     boolean                         needsMultiDeviceSync  = false;
     boolean                         needsForcePush        = false;
     long                            localManifestVersion  = TextSecurePreferences.getStorageManifestVersion(context);
-    Optional<SignalStorageManifest> remoteManifest        = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
+    Optional<SignalStorageManifest> remoteManifest        = FeatureFlags.internalUser() ? accountManager.getStorageManifest(storageServiceKey) : accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
     long                            remoteManifestVersion = remoteManifest.transform(SignalStorageManifest::getVersion).or(localManifestVersion);
 
     stopwatch.split("remote-manifest");
@@ -347,7 +347,7 @@ public class StorageSyncJobV2 extends BaseJob {
         Log.i(TAG, "[Remote Sync] Updating local manifest version to: " + remoteManifest.get().getVersion());
         TextSecurePreferences.setStorageManifestVersion(context, remoteManifest.get().getVersion());
       }
-    } else if (remoteManifest.isPresent()) {
+    } else if (remoteManifest.isPresent() && remoteManifestVersion < localManifestVersion) {
       Log.w(TAG, "[Remote Sync] Remote version was older. User might have switched accounts. Making our version match.");
       TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);
     }
