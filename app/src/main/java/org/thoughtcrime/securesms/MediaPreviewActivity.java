@@ -354,7 +354,8 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
                         new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
                 // Sending a Data extraction notification (for incoming attachments only)
                 if(!mediaItem.outgoing) {
-                  sendMediaSavedNotificationIfNeeded();
+                  //TODO uncomment line below when Data extraction will be activated
+                  //sendMediaSavedNotificationIfNeeded();
                 }
               })
               .execute();

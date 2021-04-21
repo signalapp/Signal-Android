@@ -748,7 +748,8 @@ public class ConversationFragment extends Fragment
                   saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
                   // Sending a Data extraction notification (for incoming attachments only)
                   if(!message.isOutgoing()) {
-                    sendMediaSavedNotificationIfNeeded();
+                    //TODO uncomment line below when Data extraction will be activated
+                    //sendMediaSavedNotificationIfNeeded();
                   }
                   return;
                 }

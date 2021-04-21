@@ -356,7 +356,8 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
                       // Sending a Data extraction notification (for incoming attachments only)
                       boolean containsIncoming = mediaRecords.parallelStream().anyMatch(m -> !m.isOutgoing());
                       if (containsIncoming) {
-                        sendMediaSavedNotificationIfNeeded();
+                        //TODO uncomment line below when Data extraction will be activated
+                        //sendMediaSavedNotificationIfNeeded();
                       }
                     }
                   }.execute();
