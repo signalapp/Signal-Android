@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.thoughtcrime.securesms.util.ByteUnit;
+
 public class GiphyImage {
 
-  private static final int MAX_SIZE = 1024 * 1024; // 1MB
+  private static final int MAX_SIZE = (int) ByteUnit.MEGABYTES.toBytes(2);
 
   @JsonProperty
   private ImageTypes images;
@@ -85,7 +87,7 @@ public class GiphyImage {
   }
 
   private @Nullable ImageData getGifData() {
-    return getLargestGifWithinSizeConstraint(images.fixed_width, images.fixed_height, images.fixed_width_small, images.fixed_height_small);
+    return getLargestGifWithinSizeConstraint(images.downsized, images.fixed_width, images.fixed_height, images.fixed_width_small, images.fixed_height_small);
   }
 
   private @Nullable ImageData getGifMmsData() {
@@ -136,6 +138,8 @@ public class GiphyImage {
   }
 
   public static class ImageTypes {
+    @JsonProperty
+    private ImageData downsized;
     @JsonProperty
     private ImageData fixed_height;
     @JsonProperty
