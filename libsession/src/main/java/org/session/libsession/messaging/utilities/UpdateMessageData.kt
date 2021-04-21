@@ -16,12 +16,24 @@ class UpdateMessageData () {
     //the annotations below are required for serialization. Any new Kind class MUST be declared as JsonSubTypes as well
     @JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
     @JsonSubTypes(
-            JsonSubTypes.Type(Kind.GroupUpdate::class, name = "GroupUpdate")
+            JsonSubTypes.Type(Kind.GroupCreation::class, name = "GroupCreation"),
+            JsonSubTypes.Type(Kind.GroupNameChange::class, name = "GroupNameChange"),
+            JsonSubTypes.Type(Kind.GroupMemberAdded::class, name = "GroupMemberAdded"),
+            JsonSubTypes.Type(Kind.GroupMemberRemoved::class, name = "GroupMemberRemoved"),
+            JsonSubTypes.Type(Kind.GroupMemberLeft::class, name = "GroupMemberLeft")
     )
-    sealed class Kind {
-        class GroupUpdate( var type: SignalServiceGroup.Type, var groupName: String?, var updatedMembers: Collection<String>): Kind() {
-            constructor(): this(SignalServiceGroup.Type.UNKNOWN, null, Collections.emptyList()) //default constructor required for json serialization
+    sealed class Kind() {
+        class GroupCreation(): Kind()
+        class GroupNameChange(val name: String): Kind() {
+            constructor(): this("") //default constructor required for json serialization
         }
+        class GroupMemberAdded(val updatedMembers: Collection<String>): Kind() {
+            constructor(): this(Collections.emptyList())
+        }
+        class GroupMemberRemoved(val updatedMembers: Collection<String>): Kind() {
+            constructor(): this(Collections.emptyList())
+        }
+        class GroupMemberLeft(): Kind()
     }
 
     constructor(kind: Kind): this() {
@@ -31,21 +43,23 @@ class UpdateMessageData () {
     companion object {
         val TAG = UpdateMessageData::class.simpleName
 
-        fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): UpdateMessageData {
+        fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): UpdateMessageData? {
             return when(type) {
-                SignalServiceGroup.Type.NAME_CHANGE -> UpdateMessageData(Kind.GroupUpdate(type, name, Collections.emptyList()))
-                SignalServiceGroup.Type.MEMBER_ADDED -> UpdateMessageData(Kind.GroupUpdate(type,null, members))
-                SignalServiceGroup.Type.MEMBER_REMOVED -> UpdateMessageData(Kind.GroupUpdate(type,null, members))
-                else -> UpdateMessageData(Kind.GroupUpdate(type,null, Collections.emptyList()))
+                SignalServiceGroup.Type.CREATION -> UpdateMessageData(Kind.GroupCreation())
+                SignalServiceGroup.Type.NAME_CHANGE -> UpdateMessageData(Kind.GroupNameChange(name))
+                SignalServiceGroup.Type.MEMBER_ADDED -> UpdateMessageData(Kind.GroupMemberAdded(members))
+                SignalServiceGroup.Type.MEMBER_REMOVED -> UpdateMessageData(Kind.GroupMemberRemoved(members))
+                SignalServiceGroup.Type.QUIT -> UpdateMessageData(Kind.GroupMemberLeft())
+                else -> null
             }
         }
 
-        fun fromJSON(json: String): UpdateMessageData {
+        fun fromJSON(json: String): UpdateMessageData? {
              return try {
                 JsonUtil.fromJson(json, UpdateMessageData::class.java)
             } catch (e: JsonParseException) {
                 Log.e(TAG, "${e.message}")
-                UpdateMessageData(Kind.GroupUpdate(SignalServiceGroup.Type.UNKNOWN, null, Collections.emptyList()))
+                null
             }
         }
     }

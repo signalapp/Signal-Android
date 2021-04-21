@@ -405,7 +405,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
         val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
-        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members).toJSON()
+        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON()
         val infoMessage = IncomingGroupMessage(m, groupID, updateData, true)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
@@ -415,7 +415,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val userPublicKey = getUserPublicKey()
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
 
-        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members).toJSON()
+        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON() ?: ""
         val infoMessage = OutgoingGroupMediaMessage(recipient, updateData, groupID, null, sentTimestamp, 0, true, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)

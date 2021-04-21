@@ -9,30 +9,29 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 object UpdateMessageBuilder {
 
     fun buildGroupUpdateMessage(context: Context, updateMessageData: UpdateMessageData, sender: String? = null, isOutgoing: Boolean = false): String {
-        var message: String = ""
-        val updateData = updateMessageData.kind as? UpdateMessageData.Kind.GroupUpdate ?: return message
-        val updateType = updateData.type
+        var message = ""
+        val updateData = updateMessageData.kind ?: return message
         if (!isOutgoing && sender == null) return message
-        val senderName: String? = if (!isOutgoing) {
+        val senderName: String = if (!isOutgoing) {
             MessagingConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
         } else { context.getString(R.string.MessageRecord_you) }
 
-        when (updateType) {
-            SignalServiceGroup.Type.CREATION -> {
+        when (updateData) {
+            is UpdateMessageData.Kind.GroupCreation -> {
                 message = if (isOutgoing) {
                     context.getString(R.string.MessageRecord_you_created_a_new_group)
                 } else {
                     context.getString(R.string.MessageRecord_s_added_you_to_the_group, senderName)
                 }
             }
-            SignalServiceGroup.Type.NAME_CHANGE -> {
+            is UpdateMessageData.Kind.GroupNameChange -> {
                 message = if (isOutgoing) {
-                    context.getString(R.string.MessageRecord_you_renamed_the_group_to_s, updateData.groupName)
+                    context.getString(R.string.MessageRecord_you_renamed_the_group_to_s, updateData.name)
                 } else {
-                    context.getString(R.string.MessageRecord_s_renamed_the_group_to_s, senderName, updateData.groupName)
+                    context.getString(R.string.MessageRecord_s_renamed_the_group_to_s, senderName, updateData.name)
                 }
             }
-            SignalServiceGroup.Type.MEMBER_ADDED -> {
+            is UpdateMessageData.Kind.GroupMemberAdded -> {
                 val members = updateData.updatedMembers.joinToString(", ") {
                     MessagingConfiguration.shared.storage.getDisplayNameForRecipient(it) ?: it
                 }
@@ -42,7 +41,7 @@ object UpdateMessageBuilder {
                     context.getString(R.string.MessageRecord_s_added_s_to_the_group, senderName, members)
                 }
             }
-            SignalServiceGroup.Type.MEMBER_REMOVED -> {
+            is UpdateMessageData.Kind.GroupMemberRemoved -> {
                 val storage = MessagingConfiguration.shared.storage
                 val userPublicKey = storage.getUserPublicKey()!!
                 // 1st case: you are part of the removed members
@@ -64,15 +63,12 @@ object UpdateMessageBuilder {
                     }
                 }
             }
-            SignalServiceGroup.Type.QUIT -> {
+            is UpdateMessageData.Kind.GroupMemberLeft -> {
                 message = if (isOutgoing) {
                     context.getString(R.string.MessageRecord_left_group)
                 } else {
                     context.getString(R.string.ConversationItem_group_action_left, senderName)
                 }
-            }
-            else -> {
-                message = context.getString(R.string.MessageRecord_s_updated_group, senderName)
             }
         }
         return message
