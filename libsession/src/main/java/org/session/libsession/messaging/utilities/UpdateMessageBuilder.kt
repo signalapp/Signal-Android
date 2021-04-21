@@ -3,6 +3,7 @@ package org.session.libsession.messaging.utilities
 import android.content.Context
 import org.session.libsession.R
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 
@@ -78,7 +79,7 @@ object UpdateMessageBuilder {
         if (!isOutgoing && sender == null) return ""
         val senderName: String? = if (!isOutgoing) {
             MessagingConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
-        } else { sender }
+        } else { context.getString(R.string.MessageRecord_you) }
         return if (duration <= 0) {
             if (isOutgoing) context.getString(R.string.MessageRecord_you_disabled_disappearing_messages)
             else context.getString(R.string.MessageRecord_s_disabled_disappearing_messages, senderName)
@@ -89,8 +90,13 @@ object UpdateMessageBuilder {
         }
     }
 
-    //TODO do this when the current update is merged
-    fun buildDataExtractionMessage(): String {
-        return ""
+    fun buildDataExtractionMessage(context: Context, kind: DataExtractionNotificationInfoMessage.Kind, sender: String? = null): String {
+        val senderName = MessagingConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+        return when (kind) {
+            DataExtractionNotificationInfoMessage.Kind.SCREENSHOT ->
+                context.getString(R.string.MessageRecord_s_took_a_screenshot, senderName)
+            DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED ->
+                context.getString(R.string.MessageRecord_media_saved_by_s, senderName)
+        }
     }
 }

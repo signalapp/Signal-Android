@@ -117,6 +117,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
               Optional.absent(),
               Optional.absent(),
               Optional.absent(),
+              Optional.absent(),
               Optional.absent());
       //insert the timer update message
       database.insertSecureDecryptedMessageInbox(mediaMessage, -1);

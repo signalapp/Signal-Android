@@ -131,6 +131,20 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isExpirationTimerUpdate(type);
   }
 
+  // Data extraction
+
+  public boolean isMediaSavedExtraction() {
+    return MmsSmsColumns.Types.isMediaSavedExtraction(type);
+  }
+
+  public boolean isScreenshotExtraction() {
+    return MmsSmsColumns.Types.isScreenshotExtraction(type);
+  }
+
+  public boolean isDataExtraction() {
+    return isMediaSavedExtraction() || isScreenshotExtraction();
+  }
+
   public boolean isCallLog() {
     return SmsDatabase.Types.isCallLog(type);
   }

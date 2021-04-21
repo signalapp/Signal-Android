@@ -9,6 +9,7 @@ import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
@@ -45,6 +46,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is TypingIndicator -> handleTypingIndicator(message)
         is ClosedGroupControlMessage -> handleClosedGroupControlMessage(message)
         is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
+        is DataExtractionNotification -> handleDataExtractionNotification(message)
         is ConfigurationMessage -> handleConfigurationMessage(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
@@ -90,6 +92,24 @@ private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimer
         SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(message)
     }
 }
+
+// Data Extraction Notification handling
+
+private fun MessageReceiver.handleDataExtractionNotification(message: DataExtractionNotification) {
+    // we don't handle data extraction messages for groups (they shouldn't be sent, but in case we filter them here too)
+    if (message.groupPublicKey != null) return
+
+    val storage = MessagingConfiguration.shared.storage
+    val senderPublicKey = message.sender!!
+    val notification: DataExtractionNotificationInfoMessage = when(message.kind) {
+        is DataExtractionNotification.Kind.Screenshot -> DataExtractionNotificationInfoMessage(DataExtractionNotificationInfoMessage.Kind.SCREENSHOT)
+        is DataExtractionNotification.Kind.MediaSaved -> DataExtractionNotificationInfoMessage(DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED)
+        else -> return
+    }
+    storage.insertDataExtractionNotificationMessage(senderPublicKey, notification, message.sentTimestamp!!)
+}
+
+// Configuration message handling
 
 private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMessage) {
     val context = MessagingConfiguration.shared.context
@@ -153,7 +173,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         }
     }
     // Get or create thread
-    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget ?: message.sender!!, message.groupPublicKey, openGroupID)
+    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
+            ?: message.sender!!, message.groupPublicKey, openGroupID)
     // Parse quote if needed
     var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
@@ -242,7 +263,7 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
-                            null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
+                null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         // Notify the user
         if (userPublicKey == sender) {
