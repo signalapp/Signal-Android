@@ -15,6 +15,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.Curve
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
@@ -60,7 +61,7 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         storage.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
         // Notify the user
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, sentTime)
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTime)
         // Notify the PN server
         PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
         // Fulfill the promise
@@ -107,7 +108,7 @@ fun MessageSender.setName(groupPublicKey: String, newName: String) {
     // Update the group
     storage.updateTitle(groupID, newName)
     // Notify the user
-    val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
+    val infoType = SignalServiceGroup.Type.NAME_CHANGE
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
     storage.insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID, sentTime)
 }
@@ -150,9 +151,9 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
         send(closedGroupControlMessage, Address.fromSerialized(member))
     }
     // Notify the user
-    val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
+    val infoType = SignalServiceGroup.Type.MEMBER_ADDED
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, membersToAdd, admins, threadID, sentTime)
 }
 
 fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<String>) {
@@ -189,9 +190,9 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
         generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMembers)
     }
     // Notify the user
-    val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
+    val infoType = SignalServiceGroup.Type.MEMBER_REMOVED
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, membersToRemove, admins, threadID, sentTime)
 }
 
 fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
@@ -212,7 +213,7 @@ fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Pro
         storage.setActive(groupID, false)
         sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
             // Notify the user
-            val infoType = SignalServiceProtos.GroupContext.Type.QUIT
+            val infoType = SignalServiceGroup.Type.QUIT
             val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
             if (notifyUser) {
                 storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)

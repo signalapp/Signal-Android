@@ -11,6 +11,7 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
@@ -34,6 +35,7 @@ interface StorageProtocol {
     fun setUserProfilePictureUrl(newProfilePicture: String)
 
     fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
+    fun getDisplayNameForRecipient(recipientPublicKey: String): String?
     fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray)
 
     // Signal Protocol
@@ -116,9 +118,9 @@ interface StorageProtocol {
     fun removeClosedGroupPublicKey(groupPublicKey: String)
     fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String)
     fun removeAllClosedGroupEncryptionKeyPairs(groupPublicKey: String)
-    fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type,
+    fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type,
                                   name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long)
-    fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
+    fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceGroup.Type, name: String,
                                   members: Collection<String>, admins: Collection<String>, threadID: Long, sentTimestamp: Long)
     fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
@@ -158,4 +160,7 @@ interface StorageProtocol {
     // Message Handling
     /// Returns the ID of the `TSIncomingMessage` that was constructed.
     fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long?
+
+    // Data Extraction Notification
+    fun insertDataExtractionNotificationMessage(senderPublicKey: String, message: DataExtractionNotificationInfoMessage, sentTimestamp: Long)
 }
