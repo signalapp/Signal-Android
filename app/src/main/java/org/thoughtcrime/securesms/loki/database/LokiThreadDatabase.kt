@@ -94,6 +94,17 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         }
     }
 
+    fun setOpenGroupChat(openGroupV2: OpenGroupV2, threadID: Long) {
+        if (threadID < 0) {
+            return
+        }
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(2)
+        contentValues.put(Companion.threadID, threadID)
+        contentValues.put(publicChat, JsonUtil.toJson(openGroupV2.toJson()))
+        database.insertOrUpdate(publicChatTable, contentValues, "${Companion.threadID} = ?", arrayOf(threadID.toString()))
+    }
+
     override fun getPublicChat(threadID: Long): PublicChat? {
         if (threadID < 0) {
             return null

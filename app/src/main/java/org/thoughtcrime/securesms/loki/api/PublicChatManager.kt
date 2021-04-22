@@ -81,15 +81,6 @@ class PublicChatManager(private val context: Context) {
   }
 
   @WorkerThread
-  fun addChat(server: String, room: String): OpenGroupV2 {
-    // Ensure the auth token is acquired.
-    OpenGroupAPIV2.getAuthToken(room, server).get()
-
-    val channelInfo = OpenGroupAPIV2.getInfo(room, server).get()
-    return addChat(server, room, channelInfo)
-  }
-
-  @WorkerThread
   public fun addChat(server: String, channel: Long, info: OpenGroupInfo): OpenGroup {
     val chat = PublicChat(channel, server, info.displayName, true)
     var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
@@ -117,17 +108,21 @@ class PublicChatManager(private val context: Context) {
 
   @WorkerThread
   fun addChat(server: String, room: String, info: OpenGroupAPIV2.Info): OpenGroupV2 {
-    val chat = OpenGroupV2(server, room, info.id, info.name, info.imageID)
-    val threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
+    val chat = OpenGroupV2(server, room, info.id, info.name)
+    var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     if (threadID < 0) {
-      val imageID = info.imageID
-      if (!imageID.isNullOrEmpty()) {
-        val profilePictureAsByteArray = OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id,server)
+        val profilePictureAsByteArray = try {
+          OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id,server).get()
+        } catch (e: Exception) {
+          null
+        }
         profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
-      }
       val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, info.name)
+      threadID = result.threadId
     }
+    DatabaseFactory.getLokiThreadDatabase(context).setOpenGroupChat(chat, threadID)
+    Util.runOnMain { startPollersIfNeeded() }
     return chat
   }
 

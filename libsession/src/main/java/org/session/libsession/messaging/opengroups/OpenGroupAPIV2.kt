@@ -6,6 +6,7 @@ import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import okhttp3.Headers
 import okhttp3.HttpUrl
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -92,9 +93,10 @@ object OpenGroupAPIV2 {
         fun execute(token: String?): Promise<Map<*, *>, Exception> {
             val requestBuilder = okhttp3.Request.Builder()
                     .url(urlBuilder.build())
+                    .headers(Headers.of(request.headers))
             if (request.isAuthRequired) {
                 if (token.isNullOrEmpty()) throw IllegalStateException("No auth token for request")
-                requestBuilder.addHeader("Authorization", token)
+                requestBuilder.header("Authorization", token)
             }
             when (request.verb) {
                 GET -> requestBuilder.get()
@@ -353,7 +355,7 @@ object OpenGroupAPIV2 {
     }
 
     fun getInfo(room: String, server: String): Promise<Info, Exception> {
-        val request = Request(verb = GET, room = room, server = server, endpoint = "rooms/$room", isAuthRequired = false)
+        val request = Request(verb = GET, room = null, server = server, endpoint = "rooms/$room", isAuthRequired = false)
         return send(request).map(sharedContext) { json ->
             val rawRoom = json["room"] as? Map<*, *> ?: throw Error.PARSING_FAILED
             val id = rawRoom["id"] as? String ?: throw Error.PARSING_FAILED

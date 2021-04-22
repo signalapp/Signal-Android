@@ -8,17 +8,15 @@ data class OpenGroupV2(
         val room: String,
         val id: String,
         val name: String,
-        val publicKey: String,
-        val imageId: String?
+        val publicKey: String
 ) {
 
-    constructor(server: String, room: String, name: String, publicKey: String, imageId: String?) : this(
+    constructor(server: String, room: String, name: String, publicKey: String) : this(
             server = server,
             room = room,
             id = "$server.$room",
             name = name,
             publicKey = publicKey,
-            imageId = imageId
     )
 
     companion object {
@@ -32,14 +30,20 @@ data class OpenGroupV2(
                 val server = json.get("server").asText().toLowerCase(Locale.getDefault())
                 val displayName = json.get("displayName").asText()
                 val publicKey = json.get("publicKey").asText()
-                val imageId = json.get("imageId").asText().let { str -> if (str.isEmpty()) null else str }
 
-                OpenGroupV2(server, room, displayName, publicKey, imageId)
+                OpenGroupV2(server, room, displayName, publicKey)
             } catch (e: Exception) {
                 null
             }
         }
 
     }
+
+    fun toJson(): Map<String,String> = mapOf(
+            "room" to room,
+            "server" to server,
+            "displayName" to name,
+            "publicKey" to publicKey,
+    )
 
 }

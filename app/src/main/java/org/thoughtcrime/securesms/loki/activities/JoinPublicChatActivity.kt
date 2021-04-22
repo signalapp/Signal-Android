@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,25 +75,22 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
     }
 
     fun joinPublicChatIfPossible(url: String) {
-        if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
-            return Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
-        }
-
+        // add http if just an IP style / host style URL is entered but leave it if scheme is included
         val properString = if (!url.startsWith("http")) "http://$url" else url
-        val httpUrl = HttpUrl.parse(url) ?: return Toast.makeText(this,R.string.invalid_url, Toast.LENGTH_SHORT).show()
+        val httpUrl = HttpUrl.parse(properString) ?: return Toast.makeText(this,R.string.invalid_url, Toast.LENGTH_SHORT).show()
 
         val room = httpUrl.pathSegments().firstOrNull()
         val publicKey = httpUrl.queryParameter("public_key")
         val isV2OpenGroup = !room.isNullOrEmpty()
         showLoader()
-        val channel: Long = 1
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 if (isV2OpenGroup) {
-                    val server = httpUrl.newBuilder().removeAllQueryParameters("public_key").removePathSegment(0).build().toString()
-                    OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server, room, publicKey)
+                    val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).build()
+                    OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server.toString().removeSuffix("/"), room!!, publicKey!!)
                 } else {
+                    val channel: Long = 1
                     OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
                 }
                 MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
@@ -195,10 +191,7 @@ class EnterChatURLFragment : Fragment() {
     private fun joinPublicChatIfPossible() {
         val inputMethodManager = requireContext().getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
-        var chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
-        if (!chatURL.toLowerCase().startsWith("https")) {
-            chatURL = "https://$chatURL"
-        }
+        val chatURL = chatURLEditText.text.trim().toString().toLowerCase()
         (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
 }

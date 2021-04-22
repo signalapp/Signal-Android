@@ -445,7 +445,7 @@ object OnionRequestAPI {
         val urlAsString = url.toString()
         val host = url.host()
         val endpoint = when {
-            server.count() < urlAsString.count() -> urlAsString.substringAfter("$server/")
+            server.count() < urlAsString.count() -> urlAsString.substringAfter(server).removePrefix("/")
             else -> ""
         }
         val body = request.getBodyForOnionRequest() ?: "null"

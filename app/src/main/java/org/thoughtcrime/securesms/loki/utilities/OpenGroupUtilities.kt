@@ -3,8 +3,10 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import androidx.annotation.WorkerThread
 import org.greenrobot.eventbus.EventBus
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.opengroups.OpenGroupAPIV2
 import org.session.libsession.messaging.opengroups.OpenGroupV2
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
@@ -21,14 +23,24 @@ object OpenGroupUtilities {
 
     @JvmStatic
     @WorkerThread
-    fun addGroup(context: Context, server: String, room: String, publicKey: String?): OpenGroupV2 {
+    fun addGroup(context: Context, server: String, room: String, publicKey: String): OpenGroupV2 {
         val groupId = "$server.$room"
         val threadID = GroupManager.getOpenGroupThreadID(groupId, context)
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
         if (openGroup != null) return openGroup
 
+        MessagingConfiguration.shared.storage.setOpenGroupPublicKey(server,publicKey)
+        OpenGroupAPIV2.getAuthToken(room, server).get()
+        val groupInfo = OpenGroupAPIV2.getInfo(room,server).get()
         val application = ApplicationContext.getInstance(context)
-        val group = application.publicChatManager.addChat(server, room, publicKey)
+
+        val group = application.publicChatManager.addChat(server, room, groupInfo)
+
+        val storage = MessagingConfiguration.shared.storage
+        storage.removeLastDeletionServerId(room, server)
+        storage.removeLastMessageServerId(room, server)
+
+        return group
     }
 
     @JvmStatic
