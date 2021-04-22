@@ -274,6 +274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ImageView                   muteIndicatorImageView;
   private   TextView                    subtitleTextView;
   private   View                        homeButtonContainer;
+  private   View                        cancelButtonContainer;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -398,10 +399,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             textView.setText(getRecipient().getName());
           }
           imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+          cancelButtonContainer.setVisibility(View.GONE);
         } else {
           String nickname = DatabaseFactory.getStorage(this).getDisplayName(getRecipient().getAddress().serialize());
           titleTextView.setText(nickname);
           imm.showSoftInput(v, 0);
+          cancelButtonContainer.setVisibility(View.VISIBLE);
         }
       });
     }
@@ -1293,6 +1296,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     muteIndicatorImageView                 = ViewUtil.findById(this, R.id.muteIndicatorImageView);
     subtitleTextView                       = ViewUtil.findById(this, R.id.subtitleTextView);
     homeButtonContainer                    = ViewUtil.findById(this, R.id.homeButtonContainer);
+    cancelButtonContainer                  = ViewUtil.findById(this, R.id.cancelButtonContainer);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -1338,6 +1342,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
 
     homeButtonContainer.setOnClickListener(v -> onSupportNavigateUp());
+
+    cancelButtonContainer.setOnClickListener(v -> {
+      titleTextView.clearFocus();
+    });
   }
 
   protected void initializeActionBar() {
