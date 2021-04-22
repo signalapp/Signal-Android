@@ -403,6 +403,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           String nickname = DatabaseFactory.getStorage(this).getDisplayName(getRecipient().getAddress().serialize());
           titleTextView.setText(nickname);
+          titleTextView.setSelection(nickname.length());
           imm.showSoftInput(v, 0);
           cancelButtonContainer.setVisibility(View.VISIBLE);
         }
