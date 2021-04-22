@@ -11,7 +11,7 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
     override fun setDisplayName(context: Context, recipient: Recipient, displayName: String) {
         val database = DatabaseFactory.getLokiUserDatabase(context)
         val publicKey = recipient.address.serialize()
-        if (recipient.profileName == null) {
+        if (recipient.name == null) {
             // Migrate the profile name in LokiUserDatabase to recipient
             database.getDisplayName(publicKey)?.let { setProfileName(context, recipient, it) }
         }

@@ -56,7 +56,9 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -91,6 +93,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
+import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
@@ -258,7 +261,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ImageButton                  sendButton;
   private   ImageButton                 attachButton;
   private   ProfilePictureView          profilePictureView;
-  private   TextView                    titleTextView;
+  private   EditText                    titleTextView;
   private   ConversationFragment        fragment;
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
@@ -373,6 +376,35 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         });
       }
     });
+
+    if (isGroupConversation()) {
+      titleTextView.setEnabled(false);
+    } else {
+      titleTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+      titleTextView.setOnEditorActionListener((v, actionId, event) -> {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+          String nickname = v.getText().toString().trim();
+          SSKEnvironment.shared.getProfileManager().setDisplayName(this, getRecipient(), nickname);
+          v.clearFocus();
+          return true;
+        }
+        return false;
+      });
+      titleTextView.setOnFocusChangeListener((v, hasFocus) -> {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (!hasFocus) {
+          EditText textView = (EditText) v;
+          if (textView.getText().toString().isEmpty()) {
+            textView.setText(getRecipient().getName());
+          }
+          imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+        } else {
+          String nickname = DatabaseFactory.getStorage(this).getDisplayName(getRecipient().getAddress().serialize());
+          titleTextView.setText(nickname);
+          imm.showSoftInput(v, 0);
+        }
+      });
+    }
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
 
