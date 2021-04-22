@@ -289,6 +289,8 @@ public class Recipient implements RecipientModifiedListener {
     String displayName = MessagingConfiguration.shared.getStorage().getDisplayName(this.address.toString());
     if (displayName != null) { return displayName; }
 
+    if (this.profileName != null) { return this.profileName; }
+
     if (this.name == null && isMmsGroupRecipient()) {
       List<String> names = new LinkedList<>();
 

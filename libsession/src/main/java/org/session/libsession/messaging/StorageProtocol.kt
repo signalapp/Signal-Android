@@ -36,7 +36,6 @@ interface StorageProtocol {
 
     fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
     fun getDisplayNameForRecipient(recipientPublicKey: String): String?
-    fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray)
 
     // Signal Protocol
 
@@ -145,8 +144,6 @@ interface StorageProtocol {
 
     // Loki User
     fun getDisplayName(publicKey: String): String?
-    fun setDisplayName(publicKey: String, newName: String)
-    fun getServerDisplayName(serverID: String, publicKey: String): String?
     fun getProfilePictureURL(publicKey: String): String?
 
     // Recipient

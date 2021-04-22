@@ -93,12 +93,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return database.getDisplayName(recipientPublicKey)
     }
 
-    override fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray) {
-        val address = Address.fromSerialized(recipientPublicKey)
-        val recipient = Recipient.from(context, address, false)
-        DatabaseFactory.getRecipientDatabase(context).setProfileKey(recipient, profileKey)
-    }
-
     override fun getOrGenerateRegistrationID(): Int {
         var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationID == 0) {
@@ -527,14 +521,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getDisplayName(publicKey: String): String? {
         return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-    }
-
-    override fun setDisplayName(publicKey: String, newName: String) {
-        DatabaseFactory.getLokiUserDatabase(context).setDisplayName(publicKey, newName)
-    }
-
-    override fun getServerDisplayName(serverID: String, publicKey: String): String? {
-        return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverID, publicKey)
     }
 
     override fun getProfilePictureURL(publicKey: String): String? {

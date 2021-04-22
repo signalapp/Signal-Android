@@ -129,14 +129,16 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
         if (allOpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)
     }
+    val profileManager = SSKEnvironment.shared.profileManager
+    val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
     if (message.displayName.isNotEmpty()) {
         TextSecurePreferences.setProfileName(context, message.displayName)
-        storage.setDisplayName(userPublicKey, message.displayName)
+        profileManager.setProfileName(context, recipient, message.displayName)
     }
     if (message.profileKey.isNotEmpty()) {
         val profileKey = Base64.encodeBytes(message.profileKey)
         ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
-        storage.setProfileKeyForRecipient(userPublicKey, message.profileKey)
+        profileManager.setProfileKey(context, recipient, message.profileKey)
         // handle profile photo
         if (!message.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
             storage.setUserProfilePictureUrl(message.profilePicture!!)
@@ -160,7 +162,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
                 // Update the user's local name if the message came from their master device
                 TextSecurePreferences.setProfileName(context, displayName)
             }
-            profileManager.setDisplayName(context, recipient, displayName)
+            profileManager.setProfileName(context, recipient, displayName)
         }
         if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
