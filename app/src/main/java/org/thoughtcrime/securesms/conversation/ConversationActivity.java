@@ -689,7 +689,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                Objects.requireNonNull(MediaType.from(BlobProvider.getMimeType(data.getData()))),
                data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
                data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0),
-               data.getBooleanExtra(GiphyActivity.EXTRA_BORDERLESS, false),
+               false,
                true);
       break;
     case SMS_DEFAULT:

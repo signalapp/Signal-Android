@@ -91,6 +91,7 @@ import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
+import org.whispersystems.util.FlagUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -1556,17 +1557,21 @@ public class SignalServiceMessageSender {
       builder.setHeight(attachment.getHeight());
     }
 
+    int flags = 0;
+
     if (attachment.getVoiceNote()) {
-      builder.setFlags(AttachmentPointer.Flags.VOICE_MESSAGE_VALUE);
+      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE_VALUE);
     }
 
     if (attachment.isBorderless()) {
-      builder.setFlags(AttachmentPointer.Flags.BORDERLESS_VALUE);
+      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.BORDERLESS_VALUE);
     }
 
     if (attachment.isGif()) {
-      builder.setFlags(AttachmentPointer.Flags.GIF_VALUE);
+      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.GIF_VALUE);
     }
+
+    builder.setFlags(flags);
 
     if (attachment.getCaption().isPresent()) {
       builder.setCaption(attachment.getCaption().get());

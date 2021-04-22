@@ -29,7 +29,6 @@ public class GiphyActivity extends PassphraseRequiredActivity implements GiphyAc
   public static final String EXTRA_WIDTH      = "extra_width";
   public static final String EXTRA_HEIGHT     = "extra_height";
   public static final String EXTRA_COLOR      = "extra_color";
-  public static final String EXTRA_BORDERLESS = "extra_borderless";
 
   private final DynamicTheme    dynamicTheme    = new DynamicDarkToolbarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -97,7 +96,6 @@ public class GiphyActivity extends PassphraseRequiredActivity implements GiphyAc
     intent.setData(success.getBlobUri());
     intent.putExtra(EXTRA_WIDTH, success.getWidth());
     intent.putExtra(EXTRA_HEIGHT, success.getHeight());
-    intent.putExtra(EXTRA_BORDERLESS, success.getBlobUri());
 
     setResult(RESULT_OK, intent);
     finish();

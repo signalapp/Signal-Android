@@ -164,7 +164,7 @@ public class AttachmentDatabase extends Database {
                                                                                   FAST_PREFLIGHT_ID      + " TEXT, " +
                                                                                   VOICE_NOTE             + " INTEGER DEFAULT 0, " +
                                                                                   BORDERLESS             + " INTEGER DEFAULT 0, " +
-                                            VIDEO_GIF + " INTEGER DEFAULT 0, " +
+                                                                                  VIDEO_GIF              + " INTEGER DEFAULT 0, " +
                                                                                   DATA_RANDOM            + " BLOB, " +
                                                                                   QUOTE                  + " INTEGER DEFAULT 0, " +
                                                                                   WIDTH                  + " INTEGER DEFAULT 0, " +
