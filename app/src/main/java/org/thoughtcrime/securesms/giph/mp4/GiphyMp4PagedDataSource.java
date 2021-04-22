@@ -13,8 +13,10 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,7 +45,8 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<GiphyImage> {
       GiphyResponse response = performFetch(0, 1);
 
       return response.getPagination().getTotalCount();
-    } catch (IOException e) {
+    } catch (IOException | NullPointerException e) {
+      Log.w(TAG, "Failed to get size", e);
       return 0;
     }
   }
@@ -53,8 +56,8 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<GiphyImage> {
     try {
       Log.d(TAG, "Loading from " + start + " to " + (start + length));
       return new LinkedList<>(performFetch(start, length).getData());
-    } catch (IOException e) {
-      Log.w(TAG, e);
+    } catch (IOException | NullPointerException e) {
+      Log.w(TAG, "Failed to load content", e);
       return new LinkedList<>();
     }
   }
@@ -71,6 +74,10 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<GiphyImage> {
 
       if (!response.isSuccessful()) {
         throw new IOException("Unexpected code " + response);
+      }
+
+      if (response.body() == null) {
+        throw new IOException("Response body was not present");
       }
 
       return JsonUtils.fromJson(response.body().byteStream(), GiphyResponse.class);
