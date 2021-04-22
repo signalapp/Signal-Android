@@ -17,6 +17,8 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
@@ -399,8 +401,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             textView.setText(getRecipient().getName());
           }
           imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+          inputPanel.animate().alpha(1f).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+              inputPanel.setVisibility(View.VISIBLE);
+            }
+          });
           cancelButtonContainer.setVisibility(View.GONE);
         } else {
+          inputPanel.animate().alpha(0f).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+              inputPanel.setVisibility(View.INVISIBLE);
+            }
+          });
           String nickname = DatabaseFactory.getStorage(this).getDisplayName(getRecipient().getAddress().serialize());
           titleTextView.setText(nickname);
           titleTextView.setSelection(nickname.length());
