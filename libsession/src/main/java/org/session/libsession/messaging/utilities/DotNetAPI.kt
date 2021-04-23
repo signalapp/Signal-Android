@@ -5,14 +5,10 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
 import okhttp3.*
-
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.messaging.fileserver.FileServerAPI
-
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -22,13 +18,12 @@ import org.session.libsignal.service.internal.push.ProfileAvatarData
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
-import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.utilities.HTTP
-import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-
+import org.session.libsignal.utilities.logging.Log
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -270,13 +265,13 @@ open class DotNetAPI {
         return upload(server, request) { json -> // Retrying is handled by AttachmentUploadJob
             val data = json["data"] as? Map<*, *>
             if (data == null) {
-                Log.d("Loki", "Couldn't parse attachment from: $json.")
+                Log.e("Loki", "Couldn't parse attachment from: $json.")
                 throw Error.ParsingFailed
             }
             val id = data["id"] as? Long ?: (data["id"] as? Int)?.toLong() ?: (data["id"] as? String)?.toLong()
             val url = data["url"] as? String
             if (id == null || url == null || url.isEmpty()) {
-                Log.d("Loki", "Couldn't parse upload from: $json.")
+                Log.e("Loki", "Couldn't parse upload from: $json.")
                 throw Error.ParsingFailed
             }
             UploadResult(id, url, file.transmittedDigest)

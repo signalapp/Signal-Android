@@ -107,8 +107,8 @@ class PublicChatManager(private val context: Context) {
   }
 
   @WorkerThread
-  fun addChat(server: String, room: String, info: OpenGroupAPIV2.Info): OpenGroupV2 {
-    val chat = OpenGroupV2(server, room, info.id, info.name)
+  fun addChat(server: String, room: String, info: OpenGroupAPIV2.Info, publicKey: String): OpenGroupV2 {
+    val chat = OpenGroupV2(server, room, info.name, publicKey)
     var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     if (threadID < 0) {
@@ -129,6 +129,16 @@ class PublicChatManager(private val context: Context) {
   public fun removeChat(server: String, channel: Long) {
     val threadDB = DatabaseFactory.getThreadDatabase(context)
     val groupId = PublicChat.getId(channel, server)
+    val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
+    val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
+    GroupManager.deleteGroup(groupAddress, context)
+
+    Util.runOnMain { startPollersIfNeeded() }
+  }
+
+  fun removeChat(server: String, room: String) {
+    val threadDB = DatabaseFactory.getThreadDatabase(context)
+    val groupId = "$server.$room"
     val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
     val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
     GroupManager.deleteGroup(groupAddress, context)

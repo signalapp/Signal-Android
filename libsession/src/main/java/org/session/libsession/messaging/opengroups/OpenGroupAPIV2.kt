@@ -21,6 +21,7 @@ import org.session.libsignal.service.loki.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Base64.*
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.createContext
 import org.session.libsignal.utilities.logging.Log
@@ -56,6 +57,11 @@ object OpenGroupAPIV2 {
             val id: String,
             val name: String,
             val imageID: String?
+    )
+
+    data class CompactPollResult(val messages: List<OpenGroupMessageV2>,
+                                 val deletions: List<Long>,
+                                 val moderators: List<String>
     )
 
     data class Request(
@@ -224,10 +230,10 @@ object OpenGroupAPIV2 {
 
     fun send(message: OpenGroupMessageV2, room: String, server: String): Promise<OpenGroupMessageV2, Exception> {
         val signedMessage = message.sign() ?: return Promise.ofFail(Error.SIGNING_FAILED)
-        val json = signedMessage.toJSON()
-        val request = Request(verb = POST, room = room, server = server, endpoint = "messages", parameters = json)
-        return send(request).map(sharedContext) {
-            @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String, String>
+        val jsonMessage = signedMessage.toJSON()
+        val request = Request(verb = POST, room = room, server = server, endpoint = "messages", parameters = jsonMessage)
+        return send(request).map(sharedContext) { json ->
+            @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String, Any>
                     ?: throw Error.PARSING_FAILED
             OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.PARSING_FAILED
         }
@@ -249,21 +255,25 @@ object OpenGroupAPIV2 {
 
             var currentMax = lastMessageServerId
             val messages = rawMessages.mapNotNull { json ->
-                val message = OpenGroupMessageV2.fromJSON(json) ?: return@mapNotNull null
-                if (message.serverID == null || message.sender.isNullOrEmpty()) return@mapNotNull null
-                val sender = message.sender
-                val data = decode(message.base64EncodedData)
-                val signature = decode(message.base64EncodedSignature)
-                val publicKey = sender.removing05PrefixIfNeeded().encodeToByteArray()
-                val isValid = curve.verifySignature(publicKey, data, signature)
-                if (!isValid) {
-                    Log.d("Loki", "Ignoring message with invalid signature")
-                    return@mapNotNull null
+                try {
+                    val message = OpenGroupMessageV2.fromJSON(json) ?: return@mapNotNull null
+                    if (message.serverID == null || message.sender.isNullOrEmpty()) return@mapNotNull null
+                    val sender = message.sender
+                    val data = decode(message.base64EncodedData)
+                    val signature = decode(message.base64EncodedSignature)
+                    val publicKey = Hex.fromStringCondensed(sender.removing05PrefixIfNeeded())
+                    val isValid = curve.verifySignature(publicKey, data, signature)
+                    if (!isValid) {
+                        Log.d("Loki", "Ignoring message with invalid signature")
+                        return@mapNotNull null
+                    }
+                    if (message.serverID > lastMessageServerId) {
+                        currentMax = message.serverID
+                    }
+                    message
+                } catch (e: Exception) {
+                    null
                 }
-                if (message.serverID > lastMessageServerId) {
-                    currentMax = message.serverID
-                }
-                message
             }
             storage.setLastMessageServerId(room, server, currentMax)
             messages
@@ -332,6 +342,10 @@ object OpenGroupAPIV2 {
     // endregion
 
     // region General
+//    fun getCompactPoll(): Promise<CompactPollResult, Exception> {
+//        val request = Request()
+//    }
+
     fun getDefaultRoomsIfNeeded(): Promise<List<DefaultGroup>, Exception> {
         val storage = MessagingConfiguration.shared.storage
         storage.setOpenGroupPublicKey(DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)

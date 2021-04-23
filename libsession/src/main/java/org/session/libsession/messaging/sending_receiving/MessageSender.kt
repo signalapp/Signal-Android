@@ -13,7 +13,9 @@ import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.opengroups.OpenGroupAPIV2
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
+import org.session.libsession.messaging.opengroups.OpenGroupMessageV2
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
@@ -63,7 +65,7 @@ object MessageSender {
 
     // Convenience
     fun send(message: Message, destination: Destination): Promise<Unit, Exception> {
-        if (destination is Destination.OpenGroup) {
+        if (destination is Destination.OpenGroup || destination is Destination.OpenGroupV2) {
             return sendToOpenGroupDestination(destination, message)
         }
         return sendToSnodeDestination(destination, message)
@@ -91,7 +93,8 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
-                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
+                is Destination.OpenGroup,
+                is Destination.OpenGroupV2 -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -129,7 +132,8 @@ object MessageSender {
                     val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
                     ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
-                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
+                is Destination.OpenGroup,
+                is Destination.OpenGroupV2 -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             // Wrap the result
             val kind: SignalServiceProtos.Envelope.Type
@@ -143,7 +147,8 @@ object MessageSender {
                     kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT
                     senderPublicKey = destination.groupPublicKey
                 }
-                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
+                is Destination.OpenGroup,
+                is Destination.OpenGroupV2 -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Calculate proof of work
@@ -207,32 +212,59 @@ object MessageSender {
             deferred.reject(error)
         }
         try {
-            val server: String
-            val channel: Long
             when (destination) {
                 is Destination.Contact -> throw Error.PreconditionFailure("Destination should not be contacts!")
                 is Destination.ClosedGroup -> throw Error.PreconditionFailure("Destination should not be closed groups!")
                 is Destination.OpenGroup -> {
                     message.recipient = "${destination.server}.${destination.channel}"
-                    server = destination.server
-                    channel = destination.channel
+                    val server = destination.server
+                    val channel = destination.channel
+
+                    // Validate the message
+                    if (message !is VisibleMessage || !message.isValid()) {
+                        throw Error.InvalidMessage
+                    }
+
+                    // Convert the message to an open group message
+                    val openGroupMessage = OpenGroupMessage.from(message, server) ?: run {
+                        throw Error.InvalidMessage
+                    }
+                    // Send the result
+                    OpenGroupAPI.sendMessage(openGroupMessage, channel, server).success {
+                        message.openGroupServerMessageID = it.serverID
+                        handleSuccessfulMessageSend(message, destination)
+                        deferred.resolve(Unit)
+                    }.fail {
+                        handleFailure(it)
+                    }
                 }
-            }
-            // Validate the message
-            if (message !is VisibleMessage || !message.isValid()) {
-                throw Error.InvalidMessage
-            }
-            // Convert the message to an open group message
-            val openGroupMessage = OpenGroupMessage.from(message, server) ?: kotlin.run {
-                throw Error.InvalidMessage
-            }
-            // Send the result
-            OpenGroupAPI.sendMessage(openGroupMessage, channel, server).success {
-                message.openGroupServerMessageID = it.serverID
-                handleSuccessfulMessageSend(message, destination)
-                deferred.resolve(Unit)
-            }.fail {
-                handleFailure(it)
+                is Destination.OpenGroupV2 -> {
+                    message.recipient = "${destination.server}.${destination.room}"
+                    val server = destination.server
+                    val room = destination.room
+
+                    // Validate the message
+                    if (message !is VisibleMessage || !message.isValid()) {
+                        throw Error.InvalidMessage
+                    }
+
+                    val proto = message.toProto()!!
+
+                    val openGroupMessage = OpenGroupMessageV2(
+                            sender = message.sender,
+                            sentTimestamp = message.sentTimestamp!!,
+                            base64EncodedData = Base64.encodeBytes(PushTransportDetails.getPaddedMessageBody(proto.dataMessage!!.toByteArray())),
+                    )
+
+                    OpenGroupAPIV2.send(openGroupMessage,room,server).success {
+                        message.openGroupServerMessageID = it.serverID
+                        handleSuccessfulMessageSend(message, destination)
+                        deferred.resolve(Unit)
+                    }.fail {
+                        handleFailure(it)
+                    }
+
+                }
             }
         } catch (exception: Exception) {
             handleFailure(exception)

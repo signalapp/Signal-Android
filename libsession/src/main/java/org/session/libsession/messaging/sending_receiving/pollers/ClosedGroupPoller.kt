@@ -71,9 +71,6 @@ class ClosedGroupPoller {
                     // ignore inactive group's messages
                     return@successBackground
                 }
-                if (messages.isNotEmpty()) {
-                    Log.d("Loki", "Received ${messages.count()} new message(s) in closed group with public key: $publicKey.")
-                }
                 messages.forEach { message ->
                     val rawMessageAsJSON = message as? Map<*, *>
                     val base64EncodedData = rawMessageAsJSON?.get("data") as? String

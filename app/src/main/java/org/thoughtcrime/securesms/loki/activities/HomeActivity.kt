@@ -353,6 +353,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
 
                 withContext(Dispatchers.IO) {
                     val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+                    val openGroupV2 = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
                     //TODO Move open group related logic to OpenGroupUtilities / PublicChatManager / GroupManager
                     if (publicChat != null) {
                         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
@@ -364,6 +365,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
 
                         ApplicationContext.getInstance(context).publicChatManager
                                 .removeChat(publicChat.server, publicChat.channel)
+                    } else if (openGroupV2 != null) {
+                        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+                        apiDB.removeLastMessageServerID(openGroupV2.room, openGroupV2.server)
+                        apiDB.removeLastDeletionServerID(openGroupV2.room, openGroupV2.server)
+
+                        ApplicationContext.getInstance(context).publicChatManager
+                                .removeChat(openGroupV2.server, openGroupV2.room)
                     } else {
                         threadDB.deleteConversation(threadID)
                     }

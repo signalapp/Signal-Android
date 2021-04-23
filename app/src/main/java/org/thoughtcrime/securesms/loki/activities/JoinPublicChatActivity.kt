@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,9 +25,15 @@ import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.opengroups.OpenGroupAPIV2.DefaultGroup
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.DistributionTypes
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
@@ -86,14 +94,27 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                if (isV2OpenGroup) {
+                val (threadID, groupID) = if (isV2OpenGroup) {
                     val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).build()
-                    OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server.toString().removeSuffix("/"), room!!, publicKey!!)
+                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server.toString().removeSuffix("/"), room!!, publicKey!!)
+                    val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
+                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
+                    threadID to groupID
                 } else {
                     val channel: Long = 1
-                    OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+                    val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
+                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
+                    threadID to groupID
                 }
                 MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
+
+                withContext(Dispatchers.Main) {
+                    // go to the new conversation and finish this one
+                    openConversationActivity(this@JoinPublicChatActivity, threadID, Recipient.from(this@JoinPublicChatActivity, Address.fromSerialized(groupID), false))
+                    finish()
+                }
+
             } catch (e: Exception) {
                 Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
                 withContext(Dispatchers.Main) {
@@ -102,8 +123,17 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
                 }
                 return@launch
             }
-            withContext(Dispatchers.Main) { finish() }
         }
+    }
+    // endregion
+
+    // region Convenience
+    private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
+        val intent = Intent(context, ConversationActivity::class.java)
+        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
+        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
+        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        context.startActivity(intent)
     }
     // endregion
 }
@@ -188,11 +218,13 @@ class EnterChatURLFragment : Fragment() {
         }
     }
 
+    // region Convenience
     private fun joinPublicChatIfPossible() {
         val inputMethodManager = requireContext().getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
         val chatURL = chatURLEditText.text.trim().toString().toLowerCase()
         (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
+    // endregion
 }
 // endregion

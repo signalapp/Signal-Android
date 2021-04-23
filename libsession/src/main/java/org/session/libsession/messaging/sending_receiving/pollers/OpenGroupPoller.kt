@@ -72,7 +72,6 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
         // Kovenant propagates a context to chained promises, so OpenGroupAPI.sharedContext should be used for all of the below
         OpenGroupAPI.getMessages(openGroup.channel, openGroup.server).successBackground { messages ->
             // Process messages in the background
-            Log.d("Loki", "received ${messages.size} messages")
             messages.forEach { message ->
                 try {
                     val senderPublicKey = message.senderPublicKey

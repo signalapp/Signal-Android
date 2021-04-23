@@ -8,14 +8,14 @@ import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 
 data class OpenGroupMessageV2(
-        val serverID: Long?,
+        val serverID: Long? = null,
         val sender: String?,
         val sentTimestamp: Long,
         // The serialized protobuf in base64 encoding
         val base64EncodedData: String,
         // When sending a message, the sender signs the serialized protobuf with their private key so that
         // a receiving user can verify that the message wasn't tampered with.
-        val base64EncodedSignature: String?
+        val base64EncodedSignature: String? = null
 ) {
 
     companion object {
@@ -24,10 +24,10 @@ data class OpenGroupMessageV2(
         fun fromJSON(json: Map<String, Any>): OpenGroupMessageV2? {
             val base64EncodedData = json["data"] as? String ?: return null
             val sentTimestamp = json["timestamp"] as? Long ?: return null
-            val serverID = json["server_id"] as? Long
+            val serverID = json["server_id"] as? Int
             val sender = json["public_key"] as? String
             val base64EncodedSignature = json["signature"] as? String
-            return OpenGroupMessageV2(serverID = serverID,
+            return OpenGroupMessageV2(serverID = serverID?.toLong(),
                     sender = sender,
                     sentTimestamp = sentTimestamp,
                     base64EncodedData = base64EncodedData,
@@ -44,7 +44,7 @@ data class OpenGroupMessageV2(
         if (sender != publicKey) return null // only sign our own messages?
 
         val signature = try {
-            curve.calculateSignature(privateKey, Base64.decode(base64EncodedData))
+            curve.calculateSignature(privateKey, decode(base64EncodedData))
         } catch (e: Exception) {
             Log.e("Loki", "Couldn't sign OpenGroupV2Message", e)
             return null

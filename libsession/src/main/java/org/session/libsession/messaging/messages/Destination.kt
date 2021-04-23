@@ -5,6 +5,9 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.loki.utilities.toHexString
 
+typealias OpenGroupModel = org.session.libsession.messaging.opengroups.OpenGroup
+typealias OpenGroupV2Model = org.session.libsession.messaging.opengroups.OpenGroupV2
+
 sealed class Destination {
 
     class Contact(var publicKey: String) : Destination() {
@@ -15,6 +18,9 @@ sealed class Destination {
     }
     class OpenGroup(var channel: Long, var server: String) : Destination() {
         internal constructor(): this(0, "")
+    }
+    class OpenGroupV2(var room: String, var server: String): Destination() {
+        internal constructor(): this("", "")
     }
 
     companion object {
@@ -29,9 +35,13 @@ sealed class Destination {
                     ClosedGroup(groupPublicKey)
                 }
                 address.isOpenGroup -> {
-                    val threadID = MessagingConfiguration.shared.storage.getThreadID(address.contactIdentifier())!!
-                    val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)!!
-                    OpenGroup(openGroup.channel, openGroup.server)
+                    val storage = MessagingConfiguration.shared.storage
+                    val threadID = storage.getThreadID(address.contactIdentifier())!!
+                    when (val openGroup = storage.getOpenGroup(threadID) ?: storage.getV2OpenGroup(threadID)) {
+                        is OpenGroupModel -> OpenGroup(openGroup.channel, openGroup.server)
+                        is OpenGroupV2Model -> OpenGroupV2(openGroup.room, openGroup.server)
+                        else -> throw Exception("Invalid OpenGroup $openGroup")
+                    }
                 }
                 else -> {
                     throw Exception("TODO: Handle legacy closed groups.")

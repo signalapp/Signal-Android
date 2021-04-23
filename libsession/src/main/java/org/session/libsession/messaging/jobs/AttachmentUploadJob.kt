@@ -6,6 +6,7 @@ import com.esotericsoftware.kryo.io.Output
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.opengroups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
@@ -52,7 +53,12 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             var shouldEncrypt = true
             val usePadding = false
             val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
+            val openGroupV2 = MessagingConfiguration.shared.storage.getV2OpenGroup(threadID)
             openGroup?.let {
+                server = it.server
+                shouldEncrypt = false
+            }
+            openGroupV2?.let {
                 server = it.server
                 shouldEncrypt = false
             }
@@ -65,7 +71,11 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
             val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
 
-            val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
+            val uploadResult = if (openGroupV2 == null) FileServerAPI.shared.uploadAttachment(server, attachmentData) else {
+                val dataBytes = attachmentData.data.readBytes()
+                val result = OpenGroupAPIV2.upload(dataBytes, openGroupV2.room, openGroupV2.server).get()
+                DotNetAPI.UploadResult(result, "${openGroupV2.server}/files/$result", byteArrayOf())
+            }
             handleSuccess(attachment, attachmentKey, uploadResult)
 
         } catch (e: java.lang.Exception) {
