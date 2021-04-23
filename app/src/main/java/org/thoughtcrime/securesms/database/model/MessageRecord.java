@@ -489,6 +489,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isFailedDecryptType(type);
   }
 
+  public boolean isInMemoryMessageRecord() {
+    return false;
+  }
+
   protected static SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

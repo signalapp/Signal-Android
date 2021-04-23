@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
@@ -338,6 +339,15 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onEnableCallNotificationsClicked();
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isInMemoryMessageRecord() && ((InMemoryMessageRecord) conversationMessage.getMessageRecord()).showActionButton()) {
+      InMemoryMessageRecord inMemoryMessageRecord = (InMemoryMessageRecord) conversationMessage.getMessageRecord();
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setText(inMemoryMessageRecord.getActionButtonText());
+      actionButton.setOnClickListener(v -> {
+        if (eventListener != null) {
+          eventListener.onInMemoryMessageClicked(inMemoryMessageRecord);
         }
       });
     } else {

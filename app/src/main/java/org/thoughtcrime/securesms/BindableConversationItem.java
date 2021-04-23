@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
@@ -75,6 +76,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable {
     void onInviteFriendsToGroupClicked(@NonNull GroupId.V2 groupId);
     void onEnableCallNotificationsClicked();
     void onPlayInlineContent(ConversationMessage conversationMessage);
+    void onInMemoryMessageClicked(@NonNull InMemoryMessageRecord messageRecord);
 
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);

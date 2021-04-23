@@ -64,6 +64,7 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -93,6 +94,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -1040,7 +1042,7 @@ public class ConversationFragment extends LoggingFragment {
     adapter.setFooterView(conversationBanner);
 
     Runnable afterScroll = () -> {
-      if (!conversation.isMessageRequestAccepted()) {
+      if (!conversation.getMessageRequestData().isMessageRequestAccepted()) {
         snapToTopDataObserver.requestScrollPosition(adapter.getItemCount() - 1);
       }
 
@@ -1065,7 +1067,7 @@ public class ConversationFragment extends LoggingFragment {
                              getListAdapter().pulseAtPosition(conversation.getJumpToPosition());
                            })
                            .submit();
-    } else if (conversation.isMessageRequestAccepted()) {
+    } else if (conversation.getMessageRequestData().isMessageRequestAccepted()) {
       snapToTopDataObserver.buildScrollPosition(conversation.shouldScrollToLastSeen() ? lastSeenPosition : lastScrolledPosition)
                            .withOnPerformScroll((layoutManager, position) -> layoutManager.scrollToPositionWithOffset(position, list.getHeight()))
                            .withOnScrollRequestComplete(afterScroll)
@@ -1608,6 +1610,19 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public void onPlayInlineContent(ConversationMessage conversationMessage) {
       getListAdapter().playInlineContent(conversationMessage);
+    }
+
+    @Override
+    public void onInMemoryMessageClicked(@NonNull InMemoryMessageRecord messageRecord) {
+      if (messageRecord instanceof InMemoryMessageRecord.NoGroupsInCommon) {
+        boolean isGroup = ((InMemoryMessageRecord.NoGroupsInCommon) messageRecord).isGroup();
+        new MaterialAlertDialogBuilder(requireContext(), R.style.Signal_ThemeOverlay_Dialog_Rounded)
+            .setMessage(isGroup ? R.string.GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group
+                                : R.string.GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person)
+            .setNeutralButton(R.string.GroupsInCommonMessageRequest__about_message_requests, (d, w) -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.GroupsInCommonMessageRequest__support_article)))
+            .setPositiveButton(R.string.GroupsInCommonMessageRequest__okay, null)
+            .show();
+      }
     }
   }
 

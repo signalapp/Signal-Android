@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
@@ -72,12 +71,14 @@ class ConversationViewModel extends ViewModel {
     });
 
     LiveData<Pair<Long, PagedData<ConversationMessage>>> pagedDataForThreadId = Transformations.map(metadata, data -> {
-      final int startPosition;
+      int                                 startPosition;
+      ConversationData.MessageRequestData messageRequestData = data.getMessageRequestData();
+
       if (data.shouldJumpToMessage()) {
         startPosition = data.getJumpToPosition();
-      } else if (data.isMessageRequestAccepted() && data.shouldScrollToLastSeen()) {
+      } else if (messageRequestData.isMessageRequestAccepted() && data.shouldScrollToLastSeen()) {
         startPosition = data.getLastSeenPosition();
-      } else if (data.isMessageRequestAccepted()) {
+      } else if (messageRequestData.isMessageRequestAccepted()) {
         startPosition = data.getLastScrolledPosition();
       } else {
         startPosition = data.getThreadSize();
@@ -86,7 +87,7 @@ class ConversationViewModel extends ViewModel {
       ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver);
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), messageObserver);
 
-      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId());
+      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData);
       PagingConfig           config     = new PagingConfig.Builder()
                                                           .setPageSize(25)
                                                           .setBufferPages(3)

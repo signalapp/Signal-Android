@@ -117,7 +117,7 @@
     <style name="Signal.ThemeOverlay.Dialog.Rounded" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
         <item name="android:background">@color/signal_background_dialog</item>
-        <item name="android:textColorPrimary">@color/signal_text_primary_dialog</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/Signal.Text.Body</item>
         <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNeutralButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>

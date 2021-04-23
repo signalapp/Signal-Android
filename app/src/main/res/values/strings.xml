@@ -1880,6 +1880,8 @@
     <string name="ConversationUpdateItem_call_is_full">Call is full</string>
     <string name="ConversationUpdateItem_invite_friends">Invite friends</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Enable Call Notifications</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common. Review requests carefully.</string>
+    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -3336,6 +3338,13 @@
     <string name="CanNotSendPaymentDialog__cant_send_payment">Can\'t send payment</string>
     <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">To send a payment to this user they need to accept a message request from you. Send them a message to create a message request.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Send a message</string>
+
+    <!-- GroupsInCommonMessageRequest -->
+    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">You have no groups in common with this person. Review requests carefully before accepting to avoid unwanted messages.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">None of your contacts or people you chat with are in this group. Review requests carefully before accepting to avoid unwanted messages.</string>
+    <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
+    <string name="GroupsInCommonMessageRequest__okay">Okay</string>
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EOF -->
 
