@@ -169,15 +169,24 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
         Log.d("Loki", "Invalid closed group update.")
         throw Error.InvalidClosedGroupUpdate
     }
-    val updatedMembers = group.members.map { it.serialize() }.toSet() - membersToRemove
-    // Save the new group members
-    storage.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
-    val removeMembersAsData = membersToRemove.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
     val admins = group.admins.map { it.serialize() }
+    if (!admins.contains(userPublicKey)) {
+        Log.d("Loki", "Only an admin can remove members from a group.")
+        throw Error.InvalidClosedGroupUpdate
+    }
+    val updatedMembers = group.members.map { it.serialize() }.toSet() - membersToRemove
     if (membersToRemove.any { it in admins } && updatedMembers.isNotEmpty()) {
         Log.d("Loki", "Can't remove admin from closed group unless the group is destroyed entirely.")
         throw Error.InvalidClosedGroupUpdate
     }
+
+    // Save the new group members
+    storage.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
+    // Update the zombie list
+    val oldZombies = storage.getZombieMember(groupID)
+    storage.updateZombieMembers(groupID, oldZombies.minus(membersToRemove).map { Address.fromSerialized(it) })
+
+    val removeMembersAsData = membersToRemove.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
     val name = group.title
     // Send the update to the group
     val memberUpdateKind = ClosedGroupControlMessage.Kind.MembersRemoved(removeMembersAsData)
@@ -185,11 +194,13 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
     val closedGroupControlMessage = ClosedGroupControlMessage(memberUpdateKind)
     closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
-    val isCurrentUserAdmin = admins.contains(userPublicKey)
-    if (isCurrentUserAdmin) {
-        generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMembers)
-    }
+
+    // Send the new encryption key pair to the remaining group members
+    // At this stage we know the user is admin, no need to test
+    generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMembers)
     // Notify the user
+
+    // Insert an outgoing notification
     val infoType = SignalServiceGroup.Type.MEMBER_REMOVED
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
     storage.insertOutgoingInfoMessage(context, groupID, infoType, name, membersToRemove, admins, threadID, sentTime)
@@ -279,6 +290,7 @@ fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKe
 }
 
 /// Note: Shouldn't currently be in use.
+/*
 fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
     val storage = MessagingConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
@@ -293,7 +305,7 @@ fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
     val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest())
     closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
-}
+}*/
 
 fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey: String) {
     val storage = MessagingConfiguration.shared.storage

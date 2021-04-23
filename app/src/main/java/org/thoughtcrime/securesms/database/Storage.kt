@@ -395,12 +395,20 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getGroupDatabase(context).setActive(groupID, value)
     }
 
+    override fun getZombieMember(groupID: String): Set<String> {
+        return DatabaseFactory.getGroupDatabase(context).getGroupZombieMembers(groupID).map { it.address.serialize() }.toHashSet()
+    }
+
     override fun removeMember(groupID: String, member: Address) {
         DatabaseFactory.getGroupDatabase(context).removeMember(groupID, member)
     }
 
     override fun updateMembers(groupID: String, members: List<Address>) {
         DatabaseFactory.getGroupDatabase(context).updateMembers(groupID, members)
+    }
+
+    override fun updateZombieMembers(groupID: String, members: List<Address>) {
+        DatabaseFactory.getGroupDatabase(context).updateZombieMembers(groupID, members)
     }
 
     override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {

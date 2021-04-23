@@ -17,10 +17,17 @@ class EditClosedGroupMembersAdapter(
 ) : RecyclerView.Adapter<EditClosedGroupMembersAdapter.ViewHolder>() {
 
     private val members = ArrayList<String>()
+    private val zombieMembers = ArrayList<String>()
 
     fun setMembers(members: Collection<String>) {
         this.members.clear()
         this.members.addAll(members)
+        notifyDataSetChanged()
+    }
+
+    fun setZombieMembers(members: Collection<String>) {
+        this.zombieMembers.clear()
+        this.zombieMembers.addAll(members)
         notifyDataSetChanged()
     }
 
@@ -41,6 +48,9 @@ class EditClosedGroupMembersAdapter(
             Address.fromSerialized(member), false),
             glide,
             if (unlocked) UserView.ActionIndicator.Menu else UserView.ActionIndicator.None)
+
+        if (zombieMembers.contains(member))
+            viewHolder.view.alpha = 0.5F
 
         if (unlocked) {
             viewHolder.view.setOnClickListener { this.memberClickListener?.invoke(member) }

@@ -355,7 +355,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
         return
     }
     if (!group.admins.map { it.toString() }.contains(senderPublicKey)) {
-        Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
+        Log.d("Loki", "Ignoring closed group encryption key pair from non-admin.")
         return
     }
     // Find our wrapper and decrypt it if possible
@@ -458,6 +458,11 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     }
 }
 
+/// Removes the given members from the group IF
+/// • it wasn't the admin that was removed (that should happen through a `MEMBER_LEFT` message).
+/// • the admin sent the message (only the admin can truly remove members).
+/// If we're among the users that were removed, delete all encryption key pairs and the group public key, unsubscribe
+/// from push notifications for this closed group, and remove the given members from the zombie list for this group.
 private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroupControlMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
@@ -471,7 +476,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
         return
     }
     if (!group.isActive) {
-        Log.d("Loki", "Ignoring closed group info message for inactive group")
+        Log.d("Loki", "Ignoring closed group info message for inactive group.")
         return
     }
     val name = group.title
@@ -481,6 +486,18 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
 
     // Users that are part of this remove update
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
+
+    // Check that the admin wasn't removed
+    if (updateMembers.contains(admins.first())) {
+        Log.d("Loki", "Ignoring invalid closed group update.")
+        return
+    }
+
+    // Check that the message was sent by the group admin
+    if (!admins.contains(senderPublicKey)) {
+        Log.d("Loki", "Ignoring invalid closed group update.")
+        return
+    }
 
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
     // If admin leaves the group is disbanded
@@ -498,12 +515,12 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     if (didAdminLeave || wasCurrentUserRemoved) {
         disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
     } else {
-        val isCurrentUserAdmin = admins.contains(userPublicKey)
         storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
-        if (isCurrentUserAdmin) {
-            MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, newMembers)
-        }
     }
+    // update zombie members
+    val zombies = storage.getZombieMember(groupID)
+    storage.updateZombieMembers(groupID, zombies.minus(updateMembers).map { Address.fromSerialized(it) })
+
     val type = if (senderLeft) SignalServiceGroup.Type.QUIT
             else SignalServiceGroup.Type.MEMBER_REMOVED
 
@@ -517,6 +534,10 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     }
 }
 
+/// If a regular member left:
+/// • Mark them as a zombie (to be removed by the admin later).
+/// If the admin left:
+/// • Unsubscribe from PNs, delete the group public key, etc. as the group will be disbanded.
 private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupControlMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
@@ -549,11 +570,14 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
         // admin left the group of linked device left the group
         disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
     } else {
-        val isCurrentUserAdmin = admins.contains(userPublicKey)
+        //val isCurrentUserAdmin = admins.contains(userPublicKey)
         storage.updateMembers(groupID, updatedMemberList.map { Address.fromSerialized(it) })
-        if (isCurrentUserAdmin) {
-            MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMemberList)
-        }
+        //if (isCurrentUserAdmin) {
+        //    MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMemberList)
+        //}
+        // update zombie members
+        val zombies = storage.getZombieMember(groupID)
+        storage.updateZombieMembers(groupID, zombies.plus(senderPublicKey).map { Address.fromSerialized(it) })
     }
     // Notify the user
     if (userLeft) {
@@ -566,7 +590,7 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: ClosedGroupControlMessage) {
-    val storage = MessagingConfiguration.shared.storage
+    /*val storage = MessagingConfiguration.shared.storage
     val senderPublicKey = message.sender ?: return
     val userPublicKey = storage.getUserPublicKey()!!
     if (message.kind!! !is ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest) return
@@ -587,7 +611,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: C
         Log.d("Loki", "Couldn't get encryption key pair for closed group.")
     } else {
         MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(senderPublicKey), targetUser = senderPublicKey, force = false)
-    }
+    }*/
 }
 
 private fun isValidGroupUpdate(group: GroupRecord,
