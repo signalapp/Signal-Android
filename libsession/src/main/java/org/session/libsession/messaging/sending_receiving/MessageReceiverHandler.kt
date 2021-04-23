@@ -341,7 +341,8 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
     val storage = MessagingConfiguration.shared.storage
     val senderPublicKey = message.sender ?: return
     val kind = message.kind!! as? ClosedGroupControlMessage.Kind.EncryptionKeyPair ?: return
-    val groupPublicKey = kind.publicKey?.toByteArray()?.toHexString() ?: message.groupPublicKey ?: return
+    var groupPublicKey = kind.publicKey?.toByteArray()?.toHexString()
+    if (groupPublicKey.isNullOrEmpty()) groupPublicKey = message.groupPublicKey ?: return
     val userPublicKey = storage.getUserPublicKey()!!
     val userKeyPair = storage.getUserX25519KeyPair()
     // Unwrap the message
