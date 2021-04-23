@@ -15,7 +15,7 @@ abstract class Message {
     var groupPublicKey: String? = null
     var openGroupServerMessageID: Long? = null
 
-    open val ttl: Long = 2 * 24 * 60 * 60 * 1000
+    open val ttl: Long = 14 * 24 * 60 * 60 * 1000
     open val isSelfSendValid: Boolean = false
 
     // validation

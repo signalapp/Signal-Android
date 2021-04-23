@@ -1,5 +1,7 @@
 package org.session.libsession.snode
 
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+
 data class SnodeMessage(
     // The hex encoded public key of the recipient.
     val recipient: String,
@@ -12,7 +14,7 @@ data class SnodeMessage(
 ) {
     internal fun toJSON(): Map<String, String> {
         return mutableMapOf(
-                "pubKey" to recipient,
+                "pubKey" to if (SnodeAPI.useTestnet) recipient.removing05PrefixIfNeeded() else recipient,
                 "data" to data,
                 "ttl" to ttl.toString(),
                 "timestamp" to timestamp.toString(),

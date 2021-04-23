@@ -19,8 +19,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
 
     override val ttl: Long = run {
         when (kind) {
-            is Kind.EncryptionKeyPair -> return@run 4 * 24 * 60 * 60 * 1000
-            else -> return@run 2 * 24 * 60 * 60 * 1000
+            is Kind.EncryptionKeyPair -> 14 * 24 * 60 * 60 * 1000
+            else -> 14 * 24 * 60 * 60 * 1000
         }
     }
 
