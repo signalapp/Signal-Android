@@ -1696,7 +1696,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">%d további</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nincs találat</string>
   <!--log_submit_activity-->

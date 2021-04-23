@@ -1681,7 +1681,6 @@
     <item quantity="other">%dఇతరులు </item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">జిఫ్‌లు మరియు స్టిక్కర్లు వెతుకు</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ఏమీ దొరకలేదు</string>
   <!--log_submit_activity-->

@@ -1673,7 +1673,6 @@
     <item quantity="other">%d इतर</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF आणि स्टिकर शोधा</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">काहीही सापडले नाही</string>
   <!--log_submit_activity-->

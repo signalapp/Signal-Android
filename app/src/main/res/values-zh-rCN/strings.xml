@@ -1628,7 +1628,7 @@
     <item quantity="other">%d 个其他人</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜索 GIF 图片与表情</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">搜索 GIF 图片</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到</string>
   <!--log_submit_activity-->

@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skärmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder krävs för registreringslås. Om du vill inaktivera PIN-koder måste du först inaktivera registreringslåset.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-koder krävs för registreringslås. För att inaktivera PIN-koder, vänligen inaktivera först registreringslåset.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-kod skapad.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kod inaktiverad.</string>
   <string name="ApplicationPreferencesActivity_hide">Dölj</string>
@@ -336,7 +336,7 @@
   <string name="ChooseBackupFragment__learn_more">Läs mer</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Återställningen är klar</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Vänligen välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>
   <string name="RestoreBackupFragment__choose_folder">Välj mapp</string>
   <string name="RestoreBackupFragment__not_now">Inte nu</string>
   <!--BackupsPreferenceFragment-->
@@ -719,7 +719,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Det gick inte att gå med i gruppen. Vänligen försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, försök igen senare</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, vänligen försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vill du gå med i denna grupp och dela ditt namn och foto med dess medlemmar?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administratör av denna grupp måste godkänna din förfrågan innan du kan gå med i denna grupp. När du begär att gå med kommer ditt namn och foto att delas med medlemmarna.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -1104,8 +1104,8 @@
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Försvinnande meddelanden</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden kommer inte att försvinna.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i denna konversation kommer att försvinna %s efter att de har setts.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden försvinner inte.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i denna konversation försvinner %s efter att de har setts.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal går ut idag. Uppdatera till den senaste versionen.</string>
@@ -1692,7 +1692,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%d andra</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Sök GIF-bilder och stickers</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">Sök i GIF-bilder</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Inget hittat</string>
   <!--log_submit_activity-->
@@ -2078,11 +2078,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Visa MobileCoin-villkor</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalningar i Signal är inte längre tillgängliga. Du kan fortfarande överföra pengar till en börs men du kan inte längre skicka och ta emot betalningar eller lägga till pengar.</string>
   <!--PaymentsAddMoneyFragment-->
-  <string name="PaymentsAddMoneyFragment__add_funds">Lägga till pengar</string>
+  <string name="PaymentsAddMoneyFragment__add_funds">Lägg till pengar</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Din plånboksadress</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiera</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopierade till urklipp</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">För att lägga till pengar, skicka MobileCoin till din plånbokadress. Starta en transaktion från ditt konto på en börs som stöder MobileCoin, skanna sedan QR-koden eller kopiera din plånbokadress.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">För att lägga till pengar, skicka MobileCoin till din plånboksadress. Starta en transaktion från ditt konto på en börs som stöder MobileCoin, skanna sedan QR-koden eller kopiera din plånboksadress.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljer</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
@@ -2108,11 +2108,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Överför</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skanna QR-kod</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Till: Skanna eller ange plånbokadress</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Du kan överföra MobileCoin genom att genomföra en överföring till plånbokadressen som tillhandahålls av börsen. Plånboksadressen är den sträng med siffror och bokstäver som oftast ligger under QR-koden.</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Till: Skanna eller ange plånboksadress</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Du kan överföra MobileCoin genom att genomföra en överföring till plånboksadressen som tillhandahålls av börsen. Plånboksadressen är den sträng med siffror och bokstäver som oftast ligger under QR-koden.</string>
   <string name="PaymentsTransferFragment__next">Nästa</string>
   <string name="PaymentsTransferFragment__invalid_address">Ogiltig adress</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrollera plånbokadressen du försöker överföra till och försök igen.</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrollera plånboksadressen du försöker överföra till och försök igen.</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Du kan inte överföra till din egen Signal-plånboksadress. Ange plånboksadressen från ditt konto vid en växling som stöds.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">För att skanna en QR-kod behöver Signal åtkomst till kameran.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal behöver behörigheten Kamera för att skanna en QR-kod. Gå till inställningar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
@@ -2124,7 +2124,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Förfrågan</string>
   <string name="CreatePaymentFragment__pay">Betala</string>
-  <string name="CreatePaymentFragment__available_balance_s">Tillgängligt Saldo: %1$s</string>
+  <string name="CreatePaymentFragment__available_balance_s">Tillgängligt saldo: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">Växla</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
@@ -2204,7 +2204,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
-  <string name="conversation_list__pinned">Fästa</string>
+  <string name="conversation_list__pinned">Fastnålade</string>
   <string name="conversation_list__chats">Chattar</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara fästa %1$d chattar</string>
   <!--conversation_list_item_view-->
@@ -2516,7 +2516,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Skapa en säkerhetskopia</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ett oväntat fel uppstod när du försökte ansluta till din nya Android-enhet.</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Det gick inte att öppna Wi-Fi-inställningar. Aktivera Wi-Fi manuellt.</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Det gick inte att öppna Wi-Fi-inställningar. Vänligen aktivera Wi-Fi manuellt.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Bevilja platsbehörighet</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Aktivera platstjänster</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Det går inte att öppna platsinställningar.</string>
@@ -2594,7 +2594,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Avbryt och aktivera denna enhet</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">Överför MOBILE-saldo?</string>
-  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Du har ett saldo på %1$s. Om du inte överför dina pengar till en annan plånbokadress innan du tar bort ditt konto förlorar du det för alltid.</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Du har ett saldo på %1$s. Om du inte överför dina pengar till en annan plånboksadress innan du tar bort ditt konto förlorar du det för alltid.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Överför inte</string>
   <string name="AdvancedPreferenceFragment__transfer">Överför</string>
   <!--RecipientBottomSheet-->
@@ -2747,13 +2747,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin är en ny integritetsfokuserad digital valuta.</string>
-  <string name="payment_info_card_adding_funds">Lägga till pengar</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan lägga till pengar för användning i Signal genom att skicka MobileCoin till din plånbokadress.</string>
+  <string name="payment_info_card_adding_funds">Lägger till pengar</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan lägga till pengar för användning i Signal genom att skicka MobileCoin till din plånboksadress.</string>
   <string name="payment_info_card_cashing_out">Utbetalning</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kan betala ut MobileCoin när som helst på ett börs som stöder MobileCoin. Gör bara en överföring till ditt konto vid växlingen.</string>
   <string name="payment_info_card_hide_this_card">Dölj detta kort?</string>
   <string name="payment_info_card_hide">Dölj</string>
-  <string name="payment_info_card_record_recovery_phrase">Spela in återställningsfras</string>
+  <string name="payment_info_card_record_recovery_phrase">Registrera återställningsfras</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Din återställningsfras ger dig ett annat sätt att återställa ditt betalningskonto.</string>
   <string name="payment_info_card_record_your_phrase">Registrera din fras</string>
   <string name="payment_info_card_update_your_pin">Uppdatera din PIN-kod</string>
@@ -2762,7 +2762,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Inaktivera plånbok</string>
   <string name="DeactivateWalletFragment__your_balance">Ditt saldo</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">Det rekommenderas att du överför dina pengar till en annan plånbokadress innan du inaktiverar betalningar. Om du väljer att inte överföra dina pengar nu förblir de kvar i din plånbok kopplad till Signal om du återaktiverar betalningar.</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Det rekommenderas att du överför dina pengar till en annan plånboksadress innan du inaktiverar betalningar. Om du väljer att inte överföra dina pengar nu förblir de kvar i din plånbok kopplad till Signal om du återaktiverar betalningar.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Överför återstående saldo</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Inaktivera utan att överföra</string>
   <string name="DeactivateWalletFragment__deactivate">Inaktivera</string>
@@ -2773,8 +2773,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Återställningsfras</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Visa återställningsfras</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ange återställningsfras</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Din saldo återställs automatiskt när du installerar om Signal om du bekräftar din Signal-PIN-kod. Du kan också återställa ditt saldo med en återställningsfras, som är en %1$d-ordfras som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Din återställningsfras är en %1$d-ordfras som är unik för dig. Använd denna fras för att återställa ditt saldo.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Din saldo återställs automatiskt när du installerar om Signal om du bekräftar din Signal-PIN-kod. Du kan också återställa ditt saldo med en återställningsfras, som är en fras på %1$d ord som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Din återställningsfras är en fras på %1$d ord som är unik för dig. Använd denna fras för att återställa ditt saldo.</string>
   <string name="PaymentsRecoveryStartFragment__start">Starta</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Ange manuellt</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Klistra in från urklipp</string>
@@ -2807,7 +2807,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Återställningsfras bekräftad</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Ange återställningsfras</string>
-  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Ange ord %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Ange ordet %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Ord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Nästa</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Ogiltigt ord</string>

@@ -1686,7 +1686,6 @@
     <item quantity="other">%dmáis</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIF e adhesivos</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non se atopou nada</string>
   <!--log_submit_activity-->

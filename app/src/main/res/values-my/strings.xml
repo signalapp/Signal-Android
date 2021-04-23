@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">သတိပေးချက်ကို ဝှက်ထားမလား</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ငွေပေးချေမှု ပြန်လည်ရယူမည့် စာပုဒ်တိုကို မှတ်ထားပါ</string>
   <string name="ApplicationPreferencesActivity_record_phrase">စာပုဒ်တိုကို မှတ်ထားပါ</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">သင့် ပင်နံပါတ်ကို မပိတ်မီ သင်ငွေပေးချေမှုလုပ်သည့် အကောင့်ကို ပြန်ရယူရန် သင်ငွေပေးချေမှု ပြန်လည်ရယူသည့် စာပုဒ်တိုကို မှတ်ထားရပါမည်။</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">သင့် ပင်နံပါတ်ကို မပိတ်မှီ သင်ငွေပေးချေမှုလုပ်သည့် အကောင့်ကို ပြန်ရယူရန် သင်ငွေပေးချေမှု ပြန်လည်ရယူသည့် စာပုဒ်တိုကို မှတ်ထားရပါမည်။</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d မိနစ်</item>
@@ -266,7 +266,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">ဖျက်နေသည်</string>
   <string name="ConversationFragment_deleting_messages">စာများဖျက်နေသည်</string>
-  <string name="ConversationFragment_delete_for_me">ကျွန်တော့်ကိုဖျက်ပါ</string>
+  <string name="ConversationFragment_delete_for_me">ကျွန်ုပ်အတွက် ဖျက်မယ်</string>
   <string name="ConversationFragment_delete_for_everyone">လူတိုင်းအတွက်ဖျက်ပါ</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">အကယ်၍ သူတို့ကလတ်တလော Signal ပုံစံတွင်ရှိနေလျှင်ဤမက်ဆေ့ခ်ျသည်စကားပြောဆိုမှုတွင်ပါဝင်သူများအတွက်ဖျက်ပစ်လိမ့်မည်။ သူတို့ကသင်မက်ဆေ့ခ်ျတစ်ခုဖျက်လိုက်သည်ကိုတွေ့နိုင်လိမ့်မည်။</string>
   <string name="ConversationFragment_quoted_message_not_found">မူရင်းစာကိုမတွေ့ပါ</string>
@@ -285,7 +285,7 @@
   <string name="ConversationFragment_verify">စစ်ဆေးအတည်ပြုသည်</string>
   <string name="ConversationFragment_not_now">အခုမဟုတ်သေးပါ။</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">သင်၏လုံခြုံရေးနံပါတ်%s ပြောင်းလဲသွားတယ်</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">သင်၏လုံခြုံရေးနံပါတ်%s သူတို့ Signal reinstall သို့မဟုတ်ထုတ်ကုန်ပြောင်းလဲသောကြောင့်, ပြောင်းလဲသွားတယ်။ လုံခြုံရေးနံပါတ်အသစ်ကိုအတည်ပြုရန်အတည်ပြုကိုအသာပုတ်ပါ။ ဒါက optional ကိုဖြစ်ပါတယ်။</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">သင်၏လုံခြုံရေးနံပါတ်%s သူတို့ Signal reinstall သို့မဟုတ် ထုတ်ကုန်ပြောင်းလဲသောကြောင့် ပြောင်းလဲသွားတယ်။ လုံခြုံရေးနံပါတ်အသစ်ကိုအတည်ပြုရန် အတည်ပြုကိုနှိပ်ပါ။ ဒါက optional ကိုဖြစ်ပါတယ်။</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">ရွေးထားသည့် စာတိုကိုဖျက်မလား? </item>
   </plurals>
@@ -309,7 +309,7 @@
   <string name="ConversationTitleView_verified">အတည်ပြုပါသည်</string>
   <string name="ConversationTitleView_you">သင်</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">အချို့သောအဆက်အသွယ်များသည်အမွေအုပ်စုများတွင်မဖြစ်နိုင်ပါ။</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">အချို့သော အဆက်အသွယ်များသည် အမွေအုပ်စုများတွင်မဖြစ်နိုင်ပါ။</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ပရိုဖိုင်</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
@@ -329,7 +329,7 @@
   <string name="RestoreBackupFragment__choose_folder">ဖိုင်တွဲအသစ် တစ်ခုရွေးချယ်ပါ</string>
   <string name="RestoreBackupFragment__not_now">အခုမဟုတ်သေးပါ။</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">အရံသိမ်းဆည်းထားသည့် စကားဝိုင်းမ</string>
+  <string name="BackupsPreferenceFragment__chat_backups">အရံသိမ်းဆည်းထားသည့် စကားဝိုင်း</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups များကို passphrase တစ်ခုဖြင့် encrypt လုပ်ပြီးသင်၏ device ၌သိမ်းဆည်းထားသည်။</string>
   <string name="BackupsPreferenceFragment__create_backup">အရံသိမ်ဆည်းမှု ပြုလုပ်မည်</string>
   <string name="BackupsPreferenceFragment__last_backup">နောက်ဆုံးအရန်:%1$s</string>
@@ -338,10 +338,10 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">သင်၏ backup စကားဝှက်ကိုစစ်ဆေးပြီး ကိုက်ညီမှုရှိမရှိစစ်ဆေးပါ</string>
   <string name="BackupsPreferenceFragment__turn_on">ဖွင့်မည်</string>
   <string name="BackupsPreferenceFragment__turn_off">ပိတ်မည်</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">အရန်ကူးခြင်းတစ်ခုကိုပြန်ယူလိုလျှင်၊ Signal မိတ္တူအသစ်ကိုထည့်သွင်းပါ အက်ပ်ကိုဖွင့်၍ "အရန်ကူးထားကိုပြန်ယူပါ" ကိုအသာပုတ်ပါ၊%1$s</string>
-  <string name="BackupsPreferenceFragment__learn_more">ပိုမိုသိရှိရန်</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">အရန်ကူးခြင်းတစ်ခုကို ပြန်ယူလိုလျှင် Signal မိတ္တူအသစ်ကိုထည့်သွင်းပါ။ အက်ပ်ကိုဖွင့်၍ \"အရန်ကူးထားခြင်းကိုပြန်ယူပါ\" ကို နှိပ်ပြီး အရန်ဖိုင်ကို ရှာဖွေရွေးပေးပါ။ %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">ထပ်မံလေ့လာရန်</string>
   <string name="BackupsPreferenceFragment__in_progress">ဆောင်ရွက်ဆဲ</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$dသ…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d ထိလုပ်ဆောင်ပြီး…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">သင်၏ အပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းထားခွင့်အား  Signal ကို ပေးရန်လိုအပ်ပါသည်။သို့သော် လုံးဝခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုခွင့်ပြုချက်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">အထူးပြုသုံး %s</string>
@@ -351,16 +351,16 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">ဓာတ်ပုံရွေးပါ</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">ဓာတ်ပုံရိုက်ပါ</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ပြခန်းမှရွေးချယ်ပါ</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ပုံကို ဖယ်ပ</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ရုပ်ပုံကို ဖယ်မယ်</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ဓာတ်ပုံရိုက်ခြင်းကင်မရာခွင့်ပြုချက်လိုအပ်သည်။</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">သင်၏ပြခန်းကိုကြည့်ရှုရန်သိုလှောင်မှုခွင့်ပြုချက်လိုအပ်သည်။</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">သင်၏ပြခန်းကို ကြည့်ရှုရန် သိုလှောင်မှုခွင့်ပြုချက် လိုအပ်သည်။</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ယခု</string>
   <string name="DateUtils_minutes_ago">%dမိနစ်</string>
   <string name="DateUtils_today">ယနေ့ </string>
   <string name="DateUtils_yesterday">မနေ့က </string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">chat session ကိုလန်းဆန်းစေ</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">စကားပြောဆိုမှု အပိုင်းကို ပြန်လည်တင်ထားသည်</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal သည်အဆုံးမှအဆုံးသို့ encryption ကိုအသုံးပြုသည်။ ၎င်းသည်သင်၏ chat session ကိုတစ်ခါတစ်ရံ refresh လုပ်ရန်လိုအပ်နိုင်သည်။ ၎င်းသည်သင်၏စကားဝိုင်း၏လုံခြုံရေးကိုမထိခိုက်စေပါ၊ သို့သော်သင်သည်ဤအဆက်အသွယ်မှမက်ဆေ့ခ်ျတစ်ခုကိုလွဲချော်ပြီး၎င်းတို့အားပြန်လည်ပေးပို့ရန်တောင်းဆိုနိုင်သည်။</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' ကိုမချိတ်တော့ဘူးလား?</string>
@@ -379,7 +379,7 @@
   <string name="DocumentView_unnamed_file">အမည်မဖော်သောဖိုင်</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal ကိုလှူဒါန်းပါ</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">အချက်ပြသင်ကဲ့သို့သောလူများက powered ဖြစ်ပါတယ်။ ဒီနေ့သင့်ရဲ့ထောက်ခံမှုပြပါ</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">သင့်လိုမျိုး သုံးသူများက Signal ကို ပံ့ပိုးပါသည်။ ဒီနေ့သင်၏ ထောက်ခံမှုကိုပြလိုက်ပါ!</string>
   <string name="DonateMegaphone_donate">လှူဒါန်းပါ</string>
   <string name="DonateMegaphone_no_thanks">ရပါတယ်ကျေးဇူးပါ</string>
   <!--GroupCallingMegaphone-->
@@ -413,7 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ကို \"%2$s\" သို့ ထည့်ခဲ့သည်။</string>
   <string name="AddToGroupActivity_add_to_group">အုပ်စုထဲသို့ထည့်ပါ။</string>
   <string name="AddToGroupActivity_add_to_groups">အုပ်စုများထဲသို့ ထည့်ပါ။</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ဤပုဂ္ဂိုလ်အား အမွေအုပ်စုများထဲသို့ ထည့်၍မရပါ။</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ဤပုဂ္ဂိုလ်အား အမွေအဖွဲ့ထဲသို့ ထည့်၍မရပါ။</string>
   <string name="AddToGroupActivity_add">ထည့်သည်။</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">အက်မင် အသစ် ရွေးချယ်ပါ။</string>
@@ -496,7 +496,7 @@
   <string name="LinkPreviewsMegaphone_preview_any_link">မည်သည့် လင့်ခ်ကိုမဆို ကြိုတင် ဖွင့်ကြည့်ပါ။</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">သင်ပို့လိုက်သော မက်ဆေ့ချ်များတွင်ပါဝင်သော ဝက်ဘ်ဆိုက်မှ ကြိုတင် ဖွင့်ကြည့်နိုင်သော လင့်ခ်များကို တိုက်ရိုက်ရယူနိုင်သည်။</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">လင့်ခ်ပရီဗျူးမရနိုင်ပါ။</string>
+  <string name="LinkPreviewView_no_link_preview_available">လင့်ခ်ကို ကြိုကြည့်ခြင်း မရရှိပါ</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ဤအဖွဲ့လင့်ခ်ကို အသုံးမပြုတော့ပါ။</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
@@ -511,31 +511,31 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">သင့်တွင်ဆိုင်းငံ့ထားသောဖိတ်ကြားချက်များမရှိပါ</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">အခြားအဖွဲ့ဝင်များကဖိတ်ကြားသည်</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">အခြားအဖွဲ့ဝင်များကဆိုင်းငံ့ထားခြင်းမရှိပါ။</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">အခြားအဖွဲ့ဝင်များကဖိတ်ကြားထားသူများ၏အသေးစိတ်အချက်အလက်များမပြပါ။ အကယ်၍ ဖိတ်ကြားခံထားရသူများပူးပေါင်းရန်ရွေးချယ်ပါကထိုအချိန်ကသူတို့၏သတင်းအချက်အလက်များကိုအုပ်စုနှင့်မျှဝေမည်ဖြစ်သည်။ သူတို့ဟာအဖွဲ့ထဲမဝင်မချင်းအုပ်စုထဲမှာစာတွေကို မတွေ့ရပါဘူး</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">အခြားအဖွဲ့ဝင်များမှ ဖိတ်ကြားထားသူများ၏ အသေးစိတ်အချက်အလက်များမပြပါ။ အကယ်၍ ဖိတ်ကြားခံထားရသူများပူးပေါင်းရန် ရွေးချယ်ပါက ထိုအချိန်က သူတို့၏သတင်းအချက်အလက်များကို အဖွဲ့နှင့် မျှဝေမည်ဖြစ်သည်။ သူတို့ဟာ အဖွဲ့ထဲမဝင်မချင်း အဖွဲ့ထဲရှိစာတွေကို မတွေ့ရပါဘူး။</string>
   <string name="PendingMembersActivity_revoke_invite">ပြန်လည်ဖိတ်ကြားပါ</string>
   <string name="PendingMembersActivity_revoke_invites">ပြန်လည်ဖိတ်ကြားပါ</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
-    <item quantity="other">ပြန်လည်ရုပ်သိမ်းသည်%1$d ဖိတ်ကြားထား</item>
+    <item quantity="other">ဖိတ်ကြားမှု %1$d ခုကို ပြန်လည်ရုပ်သိမ်း</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="other">ဖိတ်ကြားမှုများကိုပြန်လည်ရုပ်သိမ်းခြင်း</item>
+    <item quantity="other">ဖိတ်ကြားမှုများကို ပြန်လည်ရုပ်သိမ်းခြင်းတွင် ပျက်ကွက်မှုဖြစ်ခဲ့ပါသည်</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">အဖွဲ့ဝင်တောင်းဆိုမှုများကိုဆိုင်းငံ့ထားသည်</string>
+  <string name="RequestingMembersFragment_pending_member_requests">အဖွဲ့ဝင်တောင်းဆိုမှုများ ဆိုင်းငံ့နေသည်</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">အဖွဲ့ဝင်ရန်ပြသရန်တောင်းဆိုခြင်းမရှိပါ။</string>
   <string name="RequestingMembersFragment_explanation">ဤစာရင်းမှလူများသည်အုပ်စုချိတ်ဆက်မှုမှတဆင့်ဤအဖွဲ့သို့ဝင်ရောက်ရန်ကြိုးစားနေကြသည်။</string>
-  <string name="RequestingMembersFragment_added_s">ထည့်သည် "%1$s "</string>
-  <string name="RequestingMembersFragment_denied_s">ငြင်းခဲ့သည် "%1$s "</string>
+  <string name="RequestingMembersFragment_added_s">\"%1$s\" ကို ပေါင်းထည့်ပြီး</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\" ကို ငြင်းဆိုခဲ့သည်</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ပြီးပြီ </string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ဤပုဂ္ဂိုလ်အားအမွေအုပ်စုများထဲသို့ထည့်မရပါ။</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="other">ထည့်ပါ%3$d အဖွဲ့ဝင်များ "%2$s "?</item>
+    <item quantity="other">\"%2$s\" ထဲသို့ အဖွဲ့ဝင် %3$d ဦးကို ပေါင်းထည့်မည်လား?</item>
   </plurals>
-  <string name="AddMembersActivity__add">ထည့်သည် </string>
+  <string name="AddMembersActivity__add">ပေါင်းထည့်မယ်</string>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">ဤအုပ်စုနာမည်ပေးပါ</string>
-  <string name="AddGroupDetailsFragment__create_group">အုပ်စုဖွဲ့ပါ</string>
+  <string name="AddGroupDetailsFragment__name_this_group">၎င်းအဖွဲ့ကို အမည်ပေးပါ</string>
+  <string name="AddGroupDetailsFragment__create_group">အဖွဲ့ ဖွဲ့မယ်</string>
   <string name="AddGroupDetailsFragment__create">ဖန်တီးပါ</string>
   <string name="AddGroupDetailsFragment__members">အဖွဲ့ဝင်များ</string>
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ဤအုပ်စုကိုဖွဲ့ပြီးနောက်သူငယ်ချင်းများကိုသင်ဖိတ်နိုင်သည်။</string>
@@ -548,12 +548,12 @@
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">စိတ်ကြိုက် MMS အုပ်စုအမည်များနှင့်ဓာတ်ပုံများကိုသင်သာမြင်နိုင်သည်။</string>
   <string name="AddGroupDetailsFragment__remove">ဖယ်ပစ်ပါ။</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS နှင့်ဆက်သွယ်ပါ</string>
-  <string name="AddGroupDetailsFragment__remove_s_from_this_group">ဖယ်ရှားပါ%1$s ဒီအဖွဲ့ကလား</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">၎င်းအဖွဲ့မှ %1$s ကို ဖယ်ရှားမည်လား?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%dအဖွဲ့ဝင်များသည် အဖွဲ့ဝင်အသစ်များကိုမထောက်ခံပါ။ ထို့ကြောင့်ဤအဖွဲ့သည် Legacy Group ဖြစ်လိမ့်မည်။</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="other">%dအဖွဲ့ဝင်များသည်အဖွဲ့အသစ်များကိုမထောက်ခံပါ၊ ထို့ကြောင့် ဤအဖွဲ့ကိုမဖန်တီးနိုင်ပါ။</item>
+    <item quantity="other">အဖွဲ့ဝင် %d ဦးသည် အဖွဲ့အသစ်များကို မပံ့ပိုးပါ၊ ထို့ကြောင့် ဤအဖွဲ့ကိုမဖန်တီးနိုင်ပါ။</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">အဘယ့်ကြောင့်ဆိုသော်“ Legacy Group” ကိုတည်ထောင်လိမ့်မည်။%1$s "Signal ၏ဗားရှင်းအဟောင်းကိုအသုံးပြုနေသည်။ သူတို့က Signal ကို update ပြီးနောက်သူတို့နှင့်အတူ New Style Group တစ်ခုကိုဖန်တီးနိုင်သည်၊</string>
@@ -571,12 +571,12 @@
   <string name="ManageGroupActivity_who_can_add_new_members">အသင်းဝင်အသစ်များကို မည်သူထပ်ထည့်လို့ရမလဲ?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">ဤအဖွဲ့၏အချက်အလက်ကို မည်သူတည်းဖြတ်နိုင်သနည်း။</string>
   <string name="ManageGroupActivity_group_link">Group link</string>
-  <string name="ManageGroupActivity_block_group">အုပ်စုတစ်စု</string>
-  <string name="ManageGroupActivity_unblock_group">အဖွဲ့ကိုပိတ်ဆို့ပါ</string>
+  <string name="ManageGroupActivity_block_group">အဖွဲ့ကိုပိတ်ပယ်မယ်</string>
+  <string name="ManageGroupActivity_unblock_group">အဖွဲ့ကိုပြန်ဖွင့်မယ်</string>
   <string name="ManageGroupActivity_leave_group">အဖွဲ့မှ ထွက်မည်</string>
   <string name="ManageGroupActivity_mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
   <string name="ManageGroupActivity_custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
-  <string name="ManageGroupActivity_mentions">ဖယောင်းတိုင်</string>
+  <string name="ManageGroupActivity_mentions">မန်းရှင်းများ</string>
   <string name="ManageGroupActivity_chat_wallpaper">နောက်ခံပုံများ chat</string>
   <string name="ManageGroupActivity_until_s">အထိ%1$s</string>
   <string name="ManageGroupActivity_always">အမြဲ</string>
@@ -585,66 +585,66 @@
   <string name="ManageGroupActivity_view_all_members">အသင်းဝင်အားလုံးကိုကြည့်ရန်</string>
   <string name="ManageGroupActivity_see_all">အားလုံးကြည့်မည်</string>
   <plurals name="ManageGroupActivity_added">
-    <item quantity="other">%dအသင်းဝင်များ</item>
+    <item quantity="other">အဖွဲ့ဝင် %d ဦးပေါင်းထည့်ပြီး</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">အက်ဒင်များသာမျှဝေနိုင်သောအုပ်စုချိတ်ဆက်မှုကိုဖွင့်နိုင်သည်သို့မဟုတ်ပိတ်နိုင်သည်။</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">စီမံခန့်ခွဲသူများသာလျှင်အသင်း ၀ င်သစ်များအားအတည်ပြုရန်ရွေးစရာကို enable သို့မဟုတ် disable လုပ်နိုင်သည်။</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">စီမံသူများသာ မျှဝေနိုင်သော အဖွဲ့လင့်ခ်ကို အပိတ်အဖွင့်ပြုလုပ်နိုင်ပါသည်။</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">စီမံသူများသာ အဖွဲ့ဝင်အသစ်များ လက်ခံနိုင်သည့်ရွေးချယ်မှုကို အပိတ်အဖွင့်ပြုလုပ်နိုင်ပါသည်။</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">အက်ဒင်များသာမျှဝေနိုင်သောအုပ်စု link ကိုပြန်လည်သတ်မှတ်နိုင်သည်။</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ဤသို့လုပ်ရန်သင့်တွင်အခွင့်အရေးမရှိပါ</string>
   <string name="ManageGroupActivity_not_capable">သင်ဖြည့်စွက်ထားသူတစ်ဦး သည်အဖွဲ့အသစ်များကိုမထောက်ခံပါ။ Signal ကိုအသစ်ပြောင်းရန်လိုအပ်သည်</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ</string>
-  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">သင်အသင်းသားမဟုတ်ပါ</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">သင်သည် အဖွဲ့ဝင်တစ်ဦးမဟုတ်ပါ</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ယက်အမှားတစ်ခုကြောင့်အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ၊ ကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
   <string name="ManageGroupActivity_edit_name_and_picture">နာမည်နှင့်ရုပ်ပုံကိုတည်းဖြတ်ပါ</string>
-  <string name="ManageGroupActivity_legacy_group">အမွေအုပ်စု</string>
+  <string name="ManageGroupActivity_legacy_group">အမွေအဖွဲ့</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">ဒါကအမွေအုပ်စုတစ်စုဖြစ်ပါတယ်။ အုပ်စုဖွဲ့စီမံခန့်ခွဲမှုကဲ့သို့သောအင်္ဂါရပ်များကိုအဖွဲ့များအတွက်သာရနိုင်သည်</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">ဒါကအမွေအုပ်စုတစ်စုဖြစ်ပါတယ်။ @mentions နဲ့ admins စတဲ့ features အသစ်တွေကိုရယူဖို့၊</string>
   <string name="ManageGroupActivity_legacy_group_too_large">ဤ Legacy Group သည်အဖွဲ့ကြီးအသစ်သို့အဆင့်မြှင့်။ မရပါ၊ အများဆုံးအုပ်စုအရွယ်အစားသည်%1$d ။</string>
-  <string name="ManageGroupActivity_upgrade_this_group">ဒီအုပ်စုကိုအဆင့်မြှင့်ပါ။</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">၎င်းသည်မလုံခြုံသော MMS အုပ်စုဖြစ်သည်။ သီးသန့်စကားပြောနိုင်ရန်သင်၏အဆက်အသွယ်များကို Signal သို့ဖိတ်ပါ။</string>
+  <string name="ManageGroupActivity_upgrade_this_group">၎င်းအဖွဲ့ကို အဆင့်မြှင့်ပါ။</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">၎င်းသည်မလုံခြုံသော MMS အဖွဲ့ဖြစ်သည်။ သီးသန့်စကားပြောနိုင်ရန် သင်၏အဆက်အသွယ်များကို Signal သို့ဖိတ်ပါ။</string>
   <string name="ManageGroupActivity_invite_now">ယခုဖိတ်ကြားပါ</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">ဖော်ပြပါများအတွက်ငါ့ကိုအသိပေးပါ</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">အသံတိတ်သောစကားပြောသောအခါသင်သတိပေးချက်များကိုလက်ခံပါသလား။</string>
-  <string name="GroupMentionSettingDialog_always_notify_me">အမြဲတမ်းငါ့ကိုအကြောင်းကြား</string>
-  <string name="GroupMentionSettingDialog_dont_notify_me">ငါ့ကိုအသိပေးမထားပါနဲ့</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">မန်းရှင်းများရှိလျှင် ကျွန်ုပ်ကိုအသိပေးပါ</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">အသံတိတ် စကားပြောဆိုမှုများတွင် သင့်ကိုမန်းရှင်းခေါ်လျှင် အသိပေးချက်များ လက်ခံမည်လား?</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">အမြဲတမ်း ကျွန်ုပ်ကို အသိပေးပါ</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">ကျွန်ုပ်အား အသိပေးမထားပါနဲ့</string>
   <!--ManageProfileFragment-->
-  <string name="ManageProfileFragment_profile_name">ကိုယ်ရေးအချက်အလက်အမည်</string>
-  <string name="ManageProfileFragment_username">အသုံးပြုသူအမည်</string>
-  <string name="ManageProfileFragment_about">အကြောင်</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">သင့်အကြောင်းစကားလုံးအနည်းငယ်ကိုရေးပါ</string>
+  <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
+  <string name="ManageProfileFragment_username">သုံးသူအမည်</string>
+  <string name="ManageProfileFragment_about">အကြောင်း</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">သင့်အကြောင်း စကားလုံးအနည်းငယ်ကိုရေးပါ</string>
   <string name="ManageProfileFragment_your_name">သင့်အမည်</string>
   <string name="ManageProfileFragment_your_username">သင့်အသုံးပြုသူအမည်</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">avatar တင်ရန်မအောင်မြင်ပါ</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">စနစ်အဆက်အသွယ်များထဲသို့ထည့်ပါ</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ဤသူသည်သင်၏အဆက်အသွယ်များ၌ရှိသည်</string>
-  <string name="ManageRecipientActivity_disappearing_messages">စာများအား ပျောက်သွားစေခြင်</string>
-  <string name="ManageRecipientActivity_chat_color">ချက်တင်အရောင်</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">နောက်ခံပုံများ chat</string>
-  <string name="ManageRecipientActivity_block">တားမြစ်မည်</string>
-  <string name="ManageRecipientActivity_unblock">ပြန်ဖွင့်သည် </string>
-  <string name="ManageRecipientActivity_view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မည် </string>
-  <string name="ManageRecipientActivity_mute_notifications">အသိပေးချက်ကို ပိတ်ပ</string>
+  <string name="ManageRecipientActivity_add_to_system_contacts">စနစ်အဆက်အသွယ်စာရင်း ထဲသို့ထည့်ပါ</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">၎င်းပုဂ္ဂိုလ်သည် သင့်အဆက်အသွယ်စာရင်းထဲတွင် ရှိပါသည်</string>
+  <string name="ManageRecipientActivity_disappearing_messages">ပျောက်ကွယ်သွားသော မက်ဆေ့ချ်များ</string>
+  <string name="ManageRecipientActivity_chat_color">စကားပြောဆိုမှု၏ အရောင်</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">စကားပြောဆိုမှု၏ နောက်ခံပုံ</string>
+  <string name="ManageRecipientActivity_block">ပိတ်ပယ်မယ်</string>
+  <string name="ManageRecipientActivity_unblock">ပြန်ဖွင့်မယ်</string>
+  <string name="ManageRecipientActivity_view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
+  <string name="ManageRecipientActivity_mute_notifications">အသိပေးချက်များကို ပိတ်မယ်</string>
   <string name="ManageRecipientActivity_custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
-  <string name="ManageRecipientActivity_until_s">အထိ%1$s</string>
+  <string name="ManageRecipientActivity_until_s">%1$s အထိ</string>
   <string name="ManageRecipientActivity_always">အမြဲ</string>
-  <string name="ManageRecipientActivity_off">ပိတ်ပ</string>
-  <string name="ManageRecipientActivity_on">ဖွင့်ပ</string>
-  <string name="ManageRecipientActivity_add_to_a_group">အုပ်စုတစ်စုမှထည့်ပါ</string>
-  <string name="ManageRecipientActivity_view_all_groups">အုပ်စုများအားလုံးကိုကြည့်ပါ</string>
-  <string name="ManageRecipientActivity_see_all">အားလုံးကြည့်မည်</string>
-  <string name="ManageRecipientActivity_no_groups_in_common">တူညီသောအုပ်စုများမရှိပါ</string>
+  <string name="ManageRecipientActivity_off">ပိတ်ပါ</string>
+  <string name="ManageRecipientActivity_on">ဖွင့်ပါ</string>
+  <string name="ManageRecipientActivity_add_to_a_group">အဖွဲ့တစ်ခုသို့ ပေါင်းထည့်မယ်</string>
+  <string name="ManageRecipientActivity_view_all_groups">အဖွဲ့များ အားလုံးကြည့်ရှုမယ်</string>
+  <string name="ManageRecipientActivity_see_all">အားလုံးကို ကြည့်မယ်</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">တူညီသော အဖွဲ့များ မရှိပါ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
-    <item quantity="other">%dဘုံ၌အုပ်စုများ</item>
+    <item quantity="other">တူညီသော အဖွဲ့ %d ဖွဲ့</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">စ</string>
+  <string name="ManageRecipientActivity_message_description">မက်ဆေ့ချ်</string>
   <string name="ManageRecipientActivity_voice_call_description">အသံခေါ်ဆိုမှု</string>
   <string name="ManageRecipientActivity_insecure_voice_call_description">မလုံခြုံသောအသံခေါ်ဆိုမှု</string>
-  <string name="ManageRecipientActivity_video_call_description">_V ရုပ်သံ စကား</string>
+  <string name="ManageRecipientActivity_video_call_description">ဗီဒီယို ခေါ်ဆိုမှု</string>
   <plurals name="GroupMemberList_invited">
-    <item quantity="other">%1$sဖိတ်ကြားခဲ့သည်%2$d လူများ</item>
+    <item quantity="other">%1$s သည် %2$d ဦးကို ဖိတ်ကြားခဲ့သည်</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
@@ -658,19 +658,19 @@
   <string name="CustomNotificationsDialogFragment__disabled">မလုပ်ဆောင်သော</string>
   <string name="CustomNotificationsDialogFragment__default">မူလ</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable အုပ်စုတစ်စု link ကို</string>
-  <string name="ShareableGroupLinkDialogFragment__manage_and_share">စီမံခြင်းနှင့် amp; ဝေစု</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">မျှဝေနိုင်သော အဖွဲ့လင့််ခ်</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">စီမံ &amp; မျှဝေမယ်</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Group link</string>
   <string name="ShareableGroupLinkDialogFragment__share">ဝေမျှရန်</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">link ကိုပြန်လည်သတ်မှတ်</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">အသင်းဝင်တောင်းဆိုမှုများ</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">အဖွဲ့ဝင်အသစ်များကိုလက်ခံပါ</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">အဖွဲ့ ၀ င်သစ်များအားအဖွဲ့ ၀ င်အသစ်ကပါ ၀ င်ရန်ခွင့်ပြုရန် admin မှလိုအပ်သည်။</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">အဖွဲ့လိုက် link ကိုပြန်လည်တည်ဆောက်ရန်သင်သေချာပါသလား။ လူများသည်လက်ရှိလင့်ခ်ကို သုံး၍ အုပ်စုနှင့်ဆက်သွယ်နိုင်တော့မည်မဟုတ်ပါ။</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">အဖွဲ့ဝင်အသစ်များကို အဖွဲ့လင့်ခ်မှ ဝင်ခြင်းကို စီမံသူမှ အတည်ပြုရန် လိုအပ်စေပါ။</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">အဖွဲ့လင့်ခ်ကို ပြန်သတ်မှတ်မည်ဆိုတာ သင်သေချာပါသလား? လက်ရှိလင့်ခ်ဖြင့် အခြားလူများ အဖွဲ့သို့ မဝင်ရောက်နိုင်တော့ပါမည်။</string>
   <!--GroupLinkShareQrDialogFragment-->
-  <string name="GroupLinkShareQrDialogFragment__qr_code">\"QR ကုဒ်\";</string>
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR ကုဒ်</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ဤကုဒ်နံပါတ်ကို စကင်ဖတ်သောသူများသည် သင်၏အဖွဲ့ထဲသို့ ဝင်နိုင်လိမ့်မည်။ အကယ်၍ သင်သည် ဤချိန်ညှိမှုကို ဖွင့်ပါက အုပ်ချုပ်သူအသစ်များအား အတည်ပြုရန် လိုအပ်ဦးမည်။</string>
-  <string name="GroupLinkShareQrDialogFragment__share_code">ကုဒ်မျှဝေပါ</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">ကုဒ်မျှဝေမယ်</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">သင်ပို့သောဖိတ်ကြားချက်ကိုပြန်လည်ရုပ်သိမ်းလိုပါသလား%1$s ?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -1624,7 +1624,7 @@
     <item quantity="other">%dအခြား</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFs နှင့် စတစ်ကာများကိုရှာဖွေခြင်း</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">GIF များရှာဖွေမယ်</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ဘာမှ မတွေ့ဘူး</string>
   <!--log_submit_activity-->

@@ -1684,7 +1684,6 @@
     <item quantity="other">%d други</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Барај стикери и GIF-ови</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ништо не е пронајдено</string>
   <!--log_submit_activity-->

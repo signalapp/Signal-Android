@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">Hetkel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salasõna määranud!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Kas keelata salasõna?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">See lukustab Signali ja märguanded püsivalt lahti.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">See lukustab Signali ja teavitused püsivalt lahti.</string>
   <string name="ApplicationPreferencesActivity_disable">Keela</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registreerimise tühistamine</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Tühistan Signali sõnumite ja kõnede registratsiooni…</string>
@@ -603,8 +603,8 @@
   <string name="ManageGroupActivity_block_group">Blokeeri grupp</string>
   <string name="ManageGroupActivity_unblock_group">Eemalda grupi blokeering</string>
   <string name="ManageGroupActivity_leave_group">Lahku grupist</string>
-  <string name="ManageGroupActivity_mute_notifications">Vaigista märguanded</string>
-  <string name="ManageGroupActivity_custom_notifications">Kohandatud märguanded</string>
+  <string name="ManageGroupActivity_mute_notifications">Vaigista teavitused</string>
+  <string name="ManageGroupActivity_custom_notifications">Kohandatud teavitused</string>
   <string name="ManageGroupActivity_mentions">Mainimised</string>
   <string name="ManageGroupActivity_chat_wallpaper">Vestluse taustapilt</string>
   <string name="ManageGroupActivity_until_s">kuni %1$s</string>
@@ -656,8 +656,8 @@
   <string name="ManageRecipientActivity_block">Blokeeri</string>
   <string name="ManageRecipientActivity_unblock">Eemalda blokeering</string>
   <string name="ManageRecipientActivity_view_safety_number">Näita turvanumbrit</string>
-  <string name="ManageRecipientActivity_mute_notifications">Vaigista märguanded</string>
-  <string name="ManageRecipientActivity_custom_notifications">Kohandatud märguanded</string>
+  <string name="ManageRecipientActivity_mute_notifications">Vaigista teavitused</string>
+  <string name="ManageRecipientActivity_custom_notifications">Kohandatud teavitused</string>
   <string name="ManageRecipientActivity_until_s">kuni %1$s</string>
   <string name="ManageRecipientActivity_always">Alati</string>
   <string name="ManageRecipientActivity_off">Väljas</string>
@@ -679,10 +679,10 @@
     <item quantity="other">%1$s kutsus %2$d isikut</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
-  <string name="CustomNotificationsDialogFragment__custom_notifications">Kohandatud märguanded</string>
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Kohandatud teavitused</string>
   <string name="CustomNotificationsDialogFragment__messages">Sõnumid</string>
-  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Kasuta kohandatud märguandeid</string>
-  <string name="CustomNotificationsDialogFragment__notification_sound">Märguande heli</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Kasuta kohandatud teavitusi</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Teavituse heli</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibratsioon</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Kõne seaded</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Helin</string>
@@ -836,6 +836,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
   <string name="NotificationBarManager__incoming_signal_call">Sissetulev Signali kõne</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signali kõneteenuse peatamine</string>
   <string name="NotificationBarManager__deny_call">Keeldu kõnest</string>
   <string name="NotificationBarManager__answer_call">Vasta kõnele</string>
   <string name="NotificationBarManager__end_call">Lõpeta kõne</string>
@@ -1421,7 +1422,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Halb krüptitud MSS sõnum</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">Vaigista märguanded</string>
+  <string name="MuteDialog_mute_notifications">Vaigista teavitused</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importimine käib</string>
   <string name="ApplicationMigrationService_importing_text_messages">Impordin tekstsõnumeid</string>
@@ -1458,7 +1459,7 @@
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Sul võib olla uusi sõnumeid</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal, et kontrollida viimaseid märguandeid.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal, et kontrollida viimaseid teavitusi.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <string name="MessageNotifier_reacted_s_to_s">Reageeris %1$s sõnumile: \"%2$s\".</string>
@@ -1482,6 +1483,7 @@
   <string name="NotificationChannel_missing_display_name">Tundmatu</string>
   <string name="NotificationChannel_voice_notes">Häälmärkmed</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt liitus Signaliga</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Teavituste kanali sätete avamiseks pole tegevusi.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
@@ -1497,6 +1499,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Sõnumitaotlus</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Esita videot</string>
   <string name="ThumbnailView_Has_a_caption_description">Omab tiitreid</string>
@@ -1602,6 +1605,7 @@
   <string name="ConversationUpdateItem_return_to_call">Pöördu kõnne tagasi</string>
   <string name="ConversationUpdateItem_call_is_full">Kõne on täis</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu sõpru</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Luba helistamise teavitused</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
@@ -1626,7 +1630,17 @@
   <string name="safety_number_change_dialog__view">Näita</string>
   <string name="safety_number_change_dialog__previous_verified">Eelnevalt kinnitatud</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Helistamise teavitused lubatud.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Luba helistamise teavitused</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Luba taustategevused</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Nüüd on kõik hästi!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Kõnede teavituste saamiseks klõpsa siia ja lülita sisse \"Näita teavitusi\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Kõnede teavituste saamiseks klõpsa siia, luba teavitused ja kontrolli, et heli ja hüpikaknad oleks lubatud.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Kõnede teavituste saamiseks klõpsa Sätted ja luba aku sätetes taustategevused.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Sätted</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Kõnede teavituste saamiseks klõpsa Sätted ja lülita sisse \"Näita teavitusi\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Kõnede teavituste saamiseks klõpsa Sätted, luba teavitused ja kontrolli, et heli ja hüpikaknad oleks lubatud.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Kõnede teavituste saamiseks klõpsa Sätted ja luba aku sätetes taustategevused.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Riikide laadimine…</string>
   <string name="country_selection_fragment__search">Otsi</string>
@@ -1681,7 +1695,7 @@
     <item quantity="other">%d teist</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Otsi GIFe ja kleepse</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">Otsi GIFe</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Midagi ei leitud</string>
   <!--log_submit_activity-->
@@ -1799,6 +1813,14 @@
   <string name="HelpFragment__debug_log">Silumisinfo:</string>
   <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Miski ei tööta</item>
+    <item>Funktsioonisoov</item>
+    <item>Küsimus</item>
+    <item>Tagasiside</item>
+    <item>Muu</item>
+    <item>Maksed</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">See sõnum</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Hiljuti kasutatud</string>
@@ -1815,6 +1837,7 @@
   <string name="arrays__use_default">Kasuta vaikeväärtust</string>
   <string name="arrays__use_custom">Kasuta kohandatud väärtust</string>
   <string name="arrays__mute_for_one_hour">Vaigista 1 tunniks</string>
+  <string name="arrays__mute_for_eight_hours">Vaigista 8 tunniks</string>
   <string name="arrays__mute_for_one_day">Vaigista 1 päevaks</string>
   <string name="arrays__mute_for_seven_days">Vaigista 7 päevaks</string>
   <string name="arrays__always">Alati</string>
@@ -1841,6 +1864,7 @@
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Beeta</string>
   <string name="preferences__sms_mms">SMS ja MMS</string>
   <string name="preferences__pref_all_sms_title">Saa kõiki SMSe</string>
   <string name="preferences__pref_all_mms_title">Saa kõiki MMSe</string>
@@ -1857,13 +1881,13 @@
   <string name="preferences__change_passphrase">Muuda salasõna</string>
   <string name="preferences__change_your_passphrase">Muuda oma salasõna</string>
   <string name="preferences__enable_passphrase">Luba salaväljendiga ekraanilukk</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja märguanded salasõnaga</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja teavitused salasõnaga</string>
   <string name="preferences__screen_security">Kuva turvamine</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukusta Signal automaatselt pärast määratud ebaaktiivsuse ajaintervalli</string>
   <string name="preferences__inactivity_timeout_passphrase">Mitteaktiivsuse aegumise salasõna</string>
   <string name="preferences__inactivity_timeout_interval">Ebaaktiivsuse ajalõpu pikkus</string>
-  <string name="preferences__notifications">Märguanded</string>
+  <string name="preferences__notifications">Teavitused</string>
   <string name="preferences__led_color">LEDi värv</string>
   <string name="preferences__led_color_unknown">Tundmatu</string>
   <string name="preferences__pref_led_blink_title">LEDi välkumismuster</string>
@@ -2013,27 +2037,49 @@
   <string name="configurable_single_select__customize_option">Kohanda valikut</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Kõik toimingud</string>
   <string name="PaymentsAllActivityFragment__all">Kõik</string>
   <string name="PaymentsAllActivityFragment__sent">Saadetud</string>
   <string name="PaymentsAllActivityFragment__received">Saadud</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Tutvustame makseid (beeta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Kasuta Signalit uue privaatsusele keskendunud digitaalse valuuta MobileCoin saatmiseks ja vastuvõtmiseks.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktiivsed maksed</string>
+  <string name="PaymentsHomeFragment__activating_payments">Maksete aktiveerimine…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Taasta maksete konto</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Hiljutisi toiminguid veel pole</string>
+  <string name="PaymentsHomeFragment__pending_requests">Ootel taotlused</string>
+  <string name="PaymentsHomeFragment__recent_activity">Hiljutised toimingud</string>
   <string name="PaymentsHomeFragment__see_all">Näita kõiki</string>
+  <string name="PaymentsHomeFragment__add_funds">Lisa vahendeid</string>
   <string name="PaymentsHomeFragment__send">Saada</string>
+  <string name="PaymentsHomeFragment__sent_s">Saadetud %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Saadud %1$s</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Valuuta konverteerimine</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Deaktiveeri maksed</string>
   <string name="PaymentsHomeFragment__help">Abi</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksed pole sinu regioonis veel saadaval.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Maksete lubamine ei õnnestunud. Proovi hiljem uuesti.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Kas deaktiveerida maksed?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Kui deaktiveerid maksed, siis pole sul enam võimalik MobileCoine Signali kaudu saata ega saada.</string>
   <string name="PaymentsHomeFragment__deactivate">Deaktiveeri</string>
   <string name="PaymentsHomeFragment__continue">Jätka</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Maksed deaktiveeritud.</string>
+  <string name="PaymentsHomeFragment__payment_failed">Makse ei õnnestunud</string>
   <string name="PaymentsHomeFragment__details">Üksikasjad</string>
   <string name="PaymentsHomeFragment__activate">Aktiveeri</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näita MobileCoini kasutustingimusi</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Maksed pole enam Signalis saadaval. Sul on võimalik kanda vahendid valuutavahetusse, aga sul pole enam võimalik saata või saada makseid ega lisada vahendeid.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Lisa vahendeid</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Sinu rahakoti aadress</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopeeri</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Lõikelauale kopeeritud</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Vahendite lisamiseks saada MobileCoinid enda rahakoti aadressile. Alusta tehingut mõne valuutavahetuse kontolt, mis toetab MobileCoini, siis skanni QR-kood või kopeeri enda rahakoti aadress.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Üksikasjad</string>
   <string name="PaymentsDetailsFragment__status">Olek</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Makse ei õnnestunud</string>
   <string name="PaymentsDetailsFragment__to">Saaja</string>
   <string name="PaymentsDetailsFragment__from">Saatja</string>
   <!--PaymentsTransferFragment-->
@@ -2045,10 +2091,25 @@
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Taotlus</string>
   <string name="CreatePaymentFragment__pay">Maksa</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Lülita</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Lisa märkus</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Märkus</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Saaja</string>
+  <string name="ConfirmPayment__payment_failed">Makse ei õnnestunud</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__all_currencies">Kõik valuutad</string>
@@ -2107,7 +2168,7 @@
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Keela vaigistus</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Vaigista märguanded</string>
+  <string name="conversation_unmuted__mute_notifications">Vaigista teavitused</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">Grupi sätted</string>
   <string name="conversation__menu_leave_group">Lahku grupist</string>
@@ -2591,6 +2652,8 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Teave MobileCoini kohta</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin on uus privaatsusele keskendunud digitaalne valuuta.</string>
+  <string name="payment_info_card_adding_funds">Vahendite lisamine</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Sul on võimalik lisada Signalis kasutamiseks vahendeid, saates MobileCoinid sinu rahakoti aadressile.</string>
   <string name="payment_info_card_hide">Peida</string>
   <string name="payment_info_card_update_your_pin">Uuenda enda PIN-koodi</string>
   <string name="payment_info_card_update_pin">Uuenda PIN-koodi</string>
@@ -2598,21 +2661,25 @@
   <string name="DeactivateWalletFragment__deactivate">Deaktiveeri</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__start">Alusta</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Aseta lõikepuhvrist</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Edasi</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Edasi</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Muuda</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Eelmine</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kas kopeerida lõikepuhvrisse?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopeeri</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Tehtud</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">Edasi</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Lõikepuhver tühjendatud.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Näita</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d uut makseteavitust</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Sellele kasutajale makse saatmiseks peab ta kinnitama sinult saadud sõnumitaotlust. Sõnumitaotluse loomiseks saatke talle sõnum.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Saada sõnum</string>

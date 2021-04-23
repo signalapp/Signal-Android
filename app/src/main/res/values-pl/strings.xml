@@ -1832,7 +1832,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">%d innych</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Szukaj gifów i naklejek</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">Szukaj GIF-ów</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nic nie znaleziono</string>
   <!--log_submit_activity-->

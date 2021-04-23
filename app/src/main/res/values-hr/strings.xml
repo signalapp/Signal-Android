@@ -1761,7 +1761,6 @@ broj telefona</string>
     <item quantity="other">%d ostalih</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pretražite GIF-ove i naljepnice</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nema rezultata</string>
   <!--log_submit_activity-->

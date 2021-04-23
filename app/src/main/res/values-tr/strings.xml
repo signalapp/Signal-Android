@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Hatırlatıcıyı gizle?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeler kurtarma parolasını kaydet</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Parolayı kaydet</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN\'inizi devre dışı bırakmadan önce, ödemeler hesabınızın kurtarılmasını güvence altına almak için ödemeler kurtarma parolanızı kaydetmeniz gerekiyor.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d dakika</item>
@@ -1499,6 +1500,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni ileti</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">İleti isteği</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Videoyu oynat</string>
   <string name="ThumbnailView_Has_a_caption_description">Başlığı var</string>
@@ -1694,7 +1696,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%d diğer</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFleri ve çıkartmaları ara</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">GIF Arama</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Hiçbir şey bulunamadı</string>
   <!--log_submit_activity-->
@@ -2055,7 +2057,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsHomeFragment__received_s">%1$s alındı</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Kambiyo için aktar</string>
   <string name="PaymentsHomeFragment__currency_conversion">Para birimi dönüşümü</string>
-  <string name="PaymentsHomeFragment__deactivate_payments">Ödemeleri etkisizleştir</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Ödemeleri devre dışı bırak</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Kurtarma parolası</string>
   <string name="PaymentsHomeFragment__help">Yardım</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Bozukluk temizleme ücreti</string>
@@ -2067,14 +2069,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Para birimi dönüşümü görüntülenemiyor. Telefonunuzun bağlantısını denetleyin ve tekrar deneyin.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ödemeler bölgenizde mevcut değil.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Ödemeler etkinleştirilemiyor. Lütfen daha sonra tekrar deneyin.</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">Ödemeler etkisizleştirilsin mi?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Eğer ödemeleri etkisizleştirirseniz MobileCoin alıp gönderemeyeceksiniz.</string>
-  <string name="PaymentsHomeFragment__deactivate">Etkisizleştir</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Ödemeler devre dışı bırakılsın mı?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Eğer ödemeleri devre dışı bırakırsanız MobileCoin alıp gönderemeyeceksiniz.</string>
+  <string name="PaymentsHomeFragment__deactivate">Devre dışı bırak</string>
   <string name="PaymentsHomeFragment__continue">Devam Et</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">Bakiye şu an mevcut değil.</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">Ödemeler etkisizleştirildi.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Ödemeler devre dışı bırakıldı.</string>
   <string name="PaymentsHomeFragment__payment_failed">Ödeme başarısız oldu</string>
   <string name="PaymentsHomeFragment__details">Detaylar</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal\'i MobileCoin alıp göndermek için kullanabilirsiniz. Tüm ödemeler MobileCoin ve MobileCoin Wallet Kullanım Koşullarına tabidir. Bu beta bir özelliktir, bu nedenle kimi sorunlarla karşılabilirsiniz ve kaybettiğiniz ödemeleri veya bakiyeyi kurtaramayabilirsiniz.</string>
   <string name="PaymentsHomeFragment__activate">Etkinleştir</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin şartlarını görüntüle</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal\'de Ödemeler artık mevcut değil. Yine de kambiyoya para aktarabilirsiniz ancak ödeme alıp gönderemez veya para ekleyemezsiniz.</string>
@@ -2083,6 +2086,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Cüzdan Adresiniz</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopyala</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Para eklemek için, cüzdan adresinize MobileCoin gönderin. MobileCoin destekleyen bir kambiyodaki hesabınızdan bir işlem başlatın, daha sonra Karekodu okutun veya cüzdan adresinizi girin.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaylar</string>
   <string name="PaymentsDetailsFragment__status">Durum</string>
@@ -2097,6 +2101,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%2$starihinde saat %3$s\'te %1$s</string>
   <string name="PaymentsDetailsFragment__to">Alıcı</string>
   <string name="PaymentsDetailsFragment__from">Gönderen</string>
+  <string name="PaymentsDetailsFragment__information">Ödeme miktarı ve işlem zamanını da içeren işlem ayrıntıları MobileCoin hesap defterinin bir parçasıdır.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Bozukluk temizleme ücreti</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">“Bozukluk temizleme ücreti” sahip olduğunuz paralar bir işlemi tamamlamaya yetecek şekilde birleştirilemediğinde alınıyor. Temizleme ödeme göndermeye devam etmenizi sağlıyor.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Bu işlem için daha fazla ayrıntı yok</string>
@@ -2107,6 +2112,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Aktar</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Karekodu Tara</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Kime: Cüzdan adresini taratın veya girin</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Kambiyo tarafından sağlanan cüzdan adresine bir aktarım tamamlayarak MobileCoin aktarabilirsiniz. Cüzdan adresi, sıklıkla Karekodun altındaki sayı ve harflerden oluşan bir karakter dizisidir.</string>
   <string name="PaymentsTransferFragment__next">İleri</string>
   <string name="PaymentsTransferFragment__invalid_address">Geçersiz adres</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Aktarmaya çalıştığınız cüzdan adresini denetleyin ve tekrar deneyin.</string>
@@ -2128,6 +2135,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CreatePaymentFragment__3">3</string>
   <string name="CreatePaymentFragment__4">4</string>
   <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
@@ -2590,6 +2598,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">İptal et ve bu cihazı etkinleştir</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB bakiyesini aktar?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Bakiyeniz %1$s. Hesabınızı silmeden önce bakiyeyi başka bir cüzdan adresine aktarmazsanız, sonsuza kadar kaybedeceksiniz.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Aktarma</string>
   <string name="AdvancedPreferenceFragment__transfer">Aktar</string>
   <!--RecipientBottomSheet-->
@@ -2742,19 +2751,56 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin Hakkında</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin, gizlilik odaklı yeni bir dijital para birimidir.</string>
+  <string name="payment_info_card_adding_funds">Para ekleme</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Cüzdan adresinize MobileCoin göndererek Signal\'de kullanmak için para ekleyebilirsiniz.</string>
+  <string name="payment_info_card_cashing_out">Nakit çıkışı</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">İstediğiniz zaman MobileCoin destekleyen herhangi bir kambiyoda nakde çevirebilirsiniz. Sadece bu kambiyodaki hesabınıza aktarım yapmanız gerektiğini unutmayın.</string>
+  <string name="payment_info_card_hide_this_card">Bu kartı sakla?</string>
   <string name="payment_info_card_hide">Gizle</string>
+  <string name="payment_info_card_record_recovery_phrase">Kurtarma parolasını kaydet</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Kurtarma parolanız size ödemeler hesabınızı kurtarmak için başka bir yol sunar.</string>
+  <string name="payment_info_card_record_your_phrase">Parolanızı kaydedin</string>
+  <string name="payment_info_card_update_your_pin">PIN\'inizi güncelleyin</string>
+  <string name="payment_info_card_with_a_high_balance">Yüksek bakiyeniz varsa, hesabınıza daha iyi bir koruma sağlamak için alfanümerik bir PIN ile güncellemek isteyebilirsiniz.</string>
   <string name="payment_info_card_update_pin">PIN\'i güncelle</string>
   <!--DeactivateWalletFragment-->
-  <string name="DeactivateWalletFragment__deactivate">Etkisizleştir</string>
+  <string name="DeactivateWalletFragment__deactivate_wallet">Cüzdanı Devre Dışı Bırak</string>
+  <string name="DeactivateWalletFragment__your_balance">Bakiyeniz</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Ödemeleri devre dışı bırakmadan önce mevcut bakiyenizi başka bir cüzdana aktarmanızı öneriyoruz. Eğer paranızı şimdi aktarmamayı seçerseniz, ödemeleri devre dışı bıraktığınızda Signal\'e bağlı cüzdanınızda kalacaktır.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Kalan bakiyeyi aktar</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Aktarmadan devre dışı bırak</string>
+  <string name="DeactivateWalletFragment__deactivate">Devre dışı bırak</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Aktarmadan devre dışı bırakılsın mı?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Ödemeleri tekrar etkinleştirmeyi seçerseniz, bakiyeniz Signal\'e bağlı cüzdanınızda kalacaktır.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Cüzdanı devre dışı bırakırken bir hata oldu.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Kurtarma parolası</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Kurtarma parolasını görüntüle</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Kurtarma parolasını girin</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal\'i yeniden kurduğunuzda Signal PIN\'ini doğruladığınızda bakiyeniz otomatik olarak kurtarılacaktır. Bakiyenizi ayrıca bir kurtarma parolası ile de geri alabilirsiniz. Kurtarma parolası %1$d kelimelik ve size özgü bir ifadedir. Bir yere yazın ve güvenli bir şekilde saklayın.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Kurtarma parolası %1$d kelimelik ve size özgü bir ifadedir. Bakiyenizi kurtarmak için bu parolayı kullanın.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Başlat</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Manuel olarak girin</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Panodan yapıştır</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Kurtarma parolasını yapıştır</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Kurtarma parolası</string>
   <string name="PaymentsRecoveryPasteFragment__next">İleri</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Geçersiz kurtarma parolası</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">%1$d kelime girdiğinizden emin olun ve tekrar deneyin.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">İleri</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Düzenle</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Önceki</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Kurtarma parolanız</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Aşağıdaki %1$d kelimeyi oldukları sırada kaydedin. Bu listeyi güvenli bir yerde saklayın.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Parolanızı doğru girdiğinizden emin olun.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ekran görüntüsü almayın veya e-posta ile göndermeyin.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Ödemeler hesabı geri getirildi.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Geçersiz kurtarma parolası</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Parolanızı doğru girdiğinizden emin olun ve tekrar deneyin.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Panoya kopyalansın mı?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Eğer kurtarma parolanızı dijital olarak saklamak isterseniz, güvendiğiniz bir yerde güvenli bir şekilde saklandığından emin olun.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopyala</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Kurtarma parolasını doğrula</string>

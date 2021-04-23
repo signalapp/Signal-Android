@@ -59,6 +59,7 @@
   <string name="AttachmentKeyboard_location">Lokacija</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Aplikacija Signal rabi dovoljenje za prikaz vaših fotografij in videov.</string>
   <string name="AttachmentKeyboard_give_access">Dodeli dostop</string>
+  <string name="AttachmentKeyboard_payment">Plačilo</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemskega pomnilnika za pripenjanje fotografij, videa in zvoka k sporočilom. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
@@ -1613,6 +1614,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Prošnja za pogovor</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Predvajaj video</string>
   <string name="ThumbnailView_Has_a_caption_description">Ima besedilo</string>
@@ -1826,7 +1828,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">%d drugih</item>
   </plurals>
   <!--giphy_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Iskanje po GIF-ih in nalepkah</string> -->
+  <string name="giphy_activity_toolbar__search_gifs">Iskanje po GIFih</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nič ni bilo najdeno</string>
   <!--log_submit_activity-->
@@ -1946,6 +1948,14 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Nekaj ne deluje</item>
+    <item>Predlog za novo funkcijo</item>
+    <item>Vprašanje</item>
+    <item>Odziv</item>
+    <item>Drugo</item>
+    <item>Plačila</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -2164,15 +2174,31 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Vse dejavnosti</string>
   <string name="PaymentsAllActivityFragment__all">Vse</string>
   <string name="PaymentsAllActivityFragment__sent">Poslano:</string>
   <string name="PaymentsAllActivityFragment__received">Prejeto</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Predstavljamo vam Plačila (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Uporabljajte Signal za pošiljanje in prejemanje nove digitalne valute MobileCoin, specializirane za zasebnost. Vklopite in začnite.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Vklopi Plačila</string>
+  <string name="PaymentsHomeFragment__activating_payments">Vklapljanje Plačil …</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Obnovitev računa za plačila</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Brez nedavnih dejavnosti</string>
+  <string name="PaymentsHomeFragment__pending_requests">Čakajoče prošnje</string>
+  <string name="PaymentsHomeFragment__recent_activity">Nedavne dejavnosti</string>
   <string name="PaymentsHomeFragment__see_all">Prikaz vseh</string>
+  <string name="PaymentsHomeFragment__add_funds">Dodaj sredstva</string>
   <string name="PaymentsHomeFragment__send">Pošlji</string>
+  <string name="PaymentsHomeFragment__sent_s">Poslano: %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Prejeto: %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Prenesi v menjalnico</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Pretvorba valut</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Izklop Plačil</string>
   <string name="PaymentsHomeFragment__help">Pomoč</string>
   <string name="PaymentsHomeFragment__continue">Nadaljuj</string>
   <string name="PaymentsHomeFragment__details">Podrobnosti</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Dodaj sredstva</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiraj</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopirano v odložišče</string>
   <!--PaymentsDetailsFragment-->
