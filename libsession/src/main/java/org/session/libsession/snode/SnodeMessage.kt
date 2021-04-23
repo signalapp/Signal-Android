@@ -8,9 +8,7 @@ data class SnodeMessage(
     // The time to live for the message in milliseconds.
     val ttl: Long,
     // When the proof of work was calculated.
-    val timestamp: Long,
-    // The base 64 encoded proof of work.
-    val nonce: String
+    val timestamp: Long
 ) {
     internal fun toJSON(): Map<String, String> {
         return mutableMapOf(
@@ -18,6 +16,6 @@ data class SnodeMessage(
                 "data" to data,
                 "ttl" to ttl.toString(),
                 "timestamp" to timestamp.toString(),
-                "nonce" to nonce)
+                "nonce" to "")
     }
 }

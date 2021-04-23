@@ -6,12 +6,12 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
+import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.*
 import org.session.libsignal.service.loki.api.Snode
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.utilities.*
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsignal.utilities.ThreadUtils

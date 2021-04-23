@@ -19,12 +19,12 @@ import android.widget.Toast
 import androidx.annotation.ColorRes
 import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
+import org.session.libsession.snode.OnionRequestAPI
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.PathDotView
 import org.session.libsignal.service.loki.api.Snode
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()

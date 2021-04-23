@@ -6,8 +6,8 @@ import okhttp3.MediaType
 import okhttp3.Request
 import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.logging.Log

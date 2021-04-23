@@ -28,13 +28,13 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.alwaysUi
 import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.service.api.util.StreamDetails
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection

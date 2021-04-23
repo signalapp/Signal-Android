@@ -23,7 +23,6 @@ import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
@@ -151,11 +150,9 @@ object MessageSender {
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
             }
-            val recipient = message.recipient!!
-            val base64EncodedData = Base64.encodeBytes(wrappedMessage)
-            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, message.sentTimestamp!!, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
-            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, message.sentTimestamp!!, nonce)
+            val base64EncodedData = Base64.encodeBytes(wrappedMessage)
+            val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, message.sentTimestamp!!)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }

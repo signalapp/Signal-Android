@@ -8,12 +8,12 @@ import nl.komponents.kovenant.then
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.utilities.DotNetAPI
-import org.session.libsignal.service.loki.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -316,7 +316,7 @@ object OpenGroupAPI: DotNetAPI() {
         Log.d("Loki", "Downloading open group profile picture from \"$url\".")
         val outputStream = ByteArrayOutputStream()
         try {
-            DownloadUtilities.downloadFile(outputStream, url, FileServerAPI.maxFileSize, null)
+            throw IOException();
             Log.d("Loki", "Open group profile picture was successfully loaded from \"$url\"")
             return outputStream.toByteArray()
         } catch (e: Exception) {

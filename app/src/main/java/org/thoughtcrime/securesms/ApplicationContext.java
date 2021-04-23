@@ -32,12 +32,15 @@ import androidx.multidex.MultiDexApplication;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.messaging.fileserver.FileServerAPI;
 import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.snode.SnodeAPI;
 import org.session.libsession.snode.SnodeConfiguration;
 import org.session.libsession.utilities.IdentityKeyUtil;
 import org.session.libsession.utilities.SSKEnvironment;
@@ -47,10 +50,6 @@ import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWr
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsession.utilities.preferences.ProfileKeyUtil;
 import org.session.libsignal.service.api.util.StreamDetails;
-import org.session.libsignal.service.loki.api.PushNotificationAPI;
-import org.session.libsignal.service.loki.api.SnodeAPI;
-import org.session.libsignal.service.loki.api.SwarmAPI;
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.utilities.logging.Log;
@@ -96,6 +95,7 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Date;
@@ -179,11 +179,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 new SessionProtocolImpl(this));
         SnodeConfiguration.Companion.configure(apiDB, broadcaster);
         if (userPublicKey != null) {
-            SwarmAPI.Companion.configureIfNeeded(apiDB);
-            SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
             MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
         }
-        PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
         setUpStorageAPIIfNeeded();
         resubmitProfilePictureIfNeeded();
         publicChatManager = new PublicChatManager(this);
@@ -427,7 +424,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
         LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
         org.session.libsession.messaging.fileserver.FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
         return true;
     }
@@ -458,13 +454,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         if (userPublicKey == null) return;
         if (poller != null) {
-            SnodeAPI.shared.setUserPublicKey(userPublicKey);
             poller.setUserPublicKey(userPublicKey);
             return;
         }
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        SwarmAPI.Companion.configureIfNeeded(apiDB);
-        SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
         poller = new Poller();
         closedGroupPoller = new ClosedGroupPoller();
     }
@@ -503,12 +496,13 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             try {
                 File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
                 StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
-                FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
-                    TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
-                    TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
-                    ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
-                    return Unit.INSTANCE;
-                });
+                throw new IOException();
+//                FileServerAPI.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
+//                    TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
+//                    TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
+//                    ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
+//                    return Unit.INSTANCE;
+//                });
             } catch (Exception exception) {
                 // Do nothing
             }
