@@ -87,7 +87,6 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         }
     }
 
-    override val ttl: Long = 4 * 24 * 60 * 60 * 1000
     override val isSelfSendValid: Boolean = true
 
     companion object {

@@ -31,7 +31,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 
-
 object MessageSender {
 
     // Error
@@ -147,15 +146,12 @@ object MessageSender {
                 is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
-            // Calculate proof of work
+            // Send the result
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
             }
-            val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
-            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, message.sentTimestamp!!, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
-            // Send the result
-            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, message.sentTimestamp!!, nonce)
+            val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, message.sentTimestamp!!)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
