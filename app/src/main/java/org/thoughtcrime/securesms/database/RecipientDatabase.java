@@ -8,6 +8,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.arch.core.util.Function;
 
 import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
@@ -31,6 +32,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileKeyCredentialColumnData;
+import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -43,8 +45,8 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Bitmask;
@@ -68,8 +70,6 @@ import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
-import org.whispersystems.signalservice.api.storage.SignalRecord;
-import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -142,8 +142,10 @@ public class RecipientDatabase extends Database {
   private static final String LAST_SESSION_RESET        = "last_session_reset";
   private static final String WALLPAPER                 = "wallpaper";
   private static final String WALLPAPER_URI             = "wallpaper_file";
-  public  static final String ABOUT                     = "about";
-  public  static final String ABOUT_EMOJI               = "about_emoji";
+  public static final  String ABOUT                     = "about";
+  public static final  String ABOUT_EMOJI               = "about_emoji";
+  private static final String EXTRAS                    = "extras";
+  private static final String GROUPS_IN_COMMON          = "groups_in_common";
 
   public  static final String SEARCH_PROFILE_NAME      = "search_signal_profile";
   private static final String SORT_NAME                = "sort_name";
@@ -170,12 +172,13 @@ public class RecipientDatabase extends Database {
       STORAGE_SERVICE_ID, DIRTY,
       MENTION_SETTING, WALLPAPER, WALLPAPER_URI,
       MENTION_SETTING,
-      ABOUT, ABOUT_EMOJI
+      ABOUT, ABOUT_EMOJI,
+      EXTRAS, GROUPS_IN_COMMON
   };
 
   private static final String[] ID_PROJECTION              = new String[]{ID};
-  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_JOINED_NAME) + ", " + nullIfEmpty(SYSTEM_GIVEN_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
-  public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, SEARCH_PROFILE_NAME, SORT_NAME};
+  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_JOINED_NAME) + ", " + nullIfEmpty(SYSTEM_GIVEN_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
+  public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, SEARCH_PROFILE_NAME, SORT_NAME};
   private static final String[] TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                    .map(columnName -> TABLE_NAME + "." + columnName)
                                                                    .toList().toArray(new String[0]);
@@ -371,7 +374,9 @@ public class RecipientDatabase extends Database {
                                             WALLPAPER                 + " BLOB DEFAULT NULL, " +
                                             WALLPAPER_URI             + " TEXT DEFAULT NULL, " +
                                             ABOUT                     + " TEXT DEFAULT NULL, " +
-                                            ABOUT_EMOJI               + " TEXT DEFAULT NULL);";
+                                            ABOUT_EMOJI               + " TEXT DEFAULT NULL, " +
+      EXTRAS + " BLOB DEFAULT NULL, " +
+                                            GROUPS_IN_COMMON          + " INTEGER DEFAULT 0);";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1461,6 +1466,7 @@ public class RecipientDatabase extends Database {
     byte[]  wallpaper                  = CursorUtil.requireBlob(cursor, WALLPAPER);
     String  about                      = CursorUtil.requireString(cursor, ABOUT);
     String  aboutEmoji                 = CursorUtil.requireString(cursor, ABOUT_EMOJI);
+    boolean hasGroupsInCommon          = CursorUtil.requireBoolean(cursor, GROUPS_IN_COMMON);
 
     MaterialColor        color;
     byte[]               profileKey           = null;
@@ -1549,7 +1555,9 @@ public class RecipientDatabase extends Database {
                                  chatWallpaper,
                                  about,
                                  aboutEmoji,
-                                 getSyncExtras(cursor));
+                                 getSyncExtras(cursor),
+                                 getExtras(cursor),
+                                 hasGroupsInCommon);
   }
 
   private static @NonNull RecipientSettings.SyncExtras getSyncExtras(@NonNull Cursor cursor) {
@@ -1563,6 +1571,23 @@ public class RecipientDatabase extends Database {
 
 
     return new RecipientSettings.SyncExtras(storageProto, groupMasterKey, identityKey, identityStatus, archived, forcedUnread);
+  }
+
+  private static @Nullable Recipient.Extras getExtras(@NonNull Cursor cursor) {
+    return Recipient.Extras.from(getRecipientExtras(cursor));
+  }
+
+  private static @Nullable RecipientExtras getRecipientExtras(@NonNull Cursor cursor) {
+    final Optional<byte[]> blob = CursorUtil.getBlob(cursor, EXTRAS);
+
+    return blob.transform(b -> {
+      try {
+        return RecipientExtras.parseFrom(b);
+      } catch (InvalidProtocolBufferException e) {
+        Log.w(TAG, e);
+        throw new AssertionError(e);
+      }
+    }).orNull();
   }
 
   public BulkOperationsHandle beginBulkSystemContactUpdate() {
@@ -1985,6 +2010,14 @@ public class RecipientDatabase extends Database {
 
     boolean profiledUpdated = update(id, contentValues);
     boolean colorUpdated    = enabled && setColorIfNotSetInternal(id, ContactColors.generateFor(Recipient.resolved(id).getDisplayName(context)));
+
+    if (profiledUpdated && enabled) {
+      Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(id);
+
+      if (group.isPresent()) {
+        setHasGroupsInCommon(group.get().getMembers());
+      }
+    }
 
     if (profiledUpdated || colorUpdated) {
       markDirty(id, DirtyState.UPDATE);
@@ -2841,6 +2874,93 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public void markPreMessageRequestRecipientsAsProfileSharingEnabled(long messageRequestEnableTime) {
+    String[] whereArgs = SqlUtil.buildArgs(messageRequestEnableTime, messageRequestEnableTime);
+
+    String select = "SELECT r." + ID + " FROM " + TABLE_NAME + " AS r "
+                    + "INNER JOIN " + ThreadDatabase.TABLE_NAME + " AS t ON t." + ThreadDatabase.RECIPIENT_ID + " = r." + ID + " WHERE "
+                    + "r." + PROFILE_SHARING + " = 0 AND "
+                    + "("
+                    + "EXISTS(SELECT 1 FROM " + SmsDatabase.TABLE_NAME + " WHERE " + SmsDatabase.THREAD_ID + " = t." + ThreadDatabase.ID + " AND " + SmsDatabase.DATE_RECEIVED + " < ?) "
+                    + "OR "
+                    + "EXISTS(SELECT 1 FROM " + MmsDatabase.TABLE_NAME + " WHERE " + MmsDatabase.THREAD_ID + " = t." + ThreadDatabase.ID + " AND " + MmsDatabase.DATE_RECEIVED + " < ?) "
+                    + ")";
+
+    List<Long> idsToUpdate = new ArrayList<>();
+    try (Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(select, whereArgs)) {
+      while (cursor.moveToNext()) {
+        idsToUpdate.add(CursorUtil.requireLong(cursor, ID));
+      }
+    }
+
+    if (Util.hasItems(idsToUpdate)) {
+      SqlUtil.Query query  = SqlUtil.buildCollectionQuery(ID, idsToUpdate);
+      ContentValues values = new ContentValues(1);
+      values.put(PROFILE_SHARING, 1);
+      databaseHelper.getWritableDatabase().update(TABLE_NAME, values, query.getWhere(), query.getWhereArgs());
+
+      for (long id : idsToUpdate) {
+        Recipient.live(RecipientId.from(id)).refresh();
+      }
+    }
+  }
+
+  public void setHasGroupsInCommon(@NonNull List<RecipientId> recipientIds) {
+    SqlUtil.Query  query = SqlUtil.buildCollectionQuery(ID, recipientIds);
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    try (Cursor cursor = db.query(TABLE_NAME,
+                                  new String[]{ID},
+                                  query.getWhere() + " AND " + GROUPS_IN_COMMON + " = 0",
+                                  query.getWhereArgs(),
+                                  null,
+                                  null,
+                                  null))
+    {
+      List<Long> idsToUpdate = new ArrayList<>(cursor.getCount());
+      while (cursor.moveToNext()) {
+        idsToUpdate.add(CursorUtil.requireLong(cursor, ID));
+      }
+
+      if (Util.hasItems(idsToUpdate)) {
+        query = SqlUtil.buildCollectionQuery(ID, idsToUpdate);
+        ContentValues values = new ContentValues();
+        values.put(GROUPS_IN_COMMON, 1);
+        int count = db.update(TABLE_NAME, values, query.getWhere(), query.getWhereArgs());
+        if (count > 0) {
+          for (long id : idsToUpdate) {
+            Recipient.live(RecipientId.from(id)).refresh();
+          }
+        }
+      }
+    }
+  }
+
+  public void manuallyShowAvatar(@NonNull RecipientId recipientId) {
+    updateExtras(recipientId, b -> b.setManuallyShownAvatar(true));
+  }
+
+  private void updateExtras(@NonNull RecipientId recipientId, @NonNull Function<RecipientExtras.Builder, RecipientExtras.Builder> updater) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.beginTransaction();
+    try {
+      try (Cursor cursor = db.query(TABLE_NAME, new String[]{ID, EXTRAS}, ID_WHERE, SqlUtil.buildArgs(recipientId), null, null, null)) {
+        if (cursor.moveToNext()) {
+          RecipientExtras         state        = getRecipientExtras(cursor);
+          RecipientExtras.Builder builder      = state != null ? state.toBuilder() : RecipientExtras.newBuilder();
+          byte[]                  updatedState = updater.apply(builder).build().toByteArray();
+          ContentValues           values       = new ContentValues(1);
+          values.put(EXTRAS, updatedState);
+          db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(CursorUtil.requireLong(cursor, ID)));
+        }
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    Recipient.live(recipientId).refresh();
+  }
+
   void markDirty(@NonNull RecipientId recipientId, @NonNull DirtyState dirtyState) {
     Log.d(TAG, "Attempting to mark " + recipientId + " with dirty state " + dirtyState);
 
@@ -3232,7 +3352,9 @@ public class RecipientDatabase extends Database {
     private final ChatWallpaper                   wallpaper;
     private final String                          about;
     private final String                          aboutEmoji;
-    private final SyncExtras                      syncExtras;
+    private final SyncExtras       syncExtras;
+    private final Recipient.Extras extras;
+    private final boolean          hasGroupsInCommon;
 
     RecipientSettings(@NonNull RecipientId id,
                       @Nullable UUID uuid,
@@ -3273,7 +3395,9 @@ public class RecipientDatabase extends Database {
                       @Nullable ChatWallpaper wallpaper,
                       @Nullable String about,
                       @Nullable String aboutEmoji,
-                      @NonNull SyncExtras syncExtras)
+                      @NonNull SyncExtras syncExtras,
+                      @Nullable Recipient.Extras extras,
+                      boolean hasGroupsInCommon)
     {
       this.id                          = id;
       this.uuid                        = uuid;
@@ -3316,7 +3440,9 @@ public class RecipientDatabase extends Database {
       this.wallpaper                   = wallpaper;
       this.about                       = about;
       this.aboutEmoji                  = aboutEmoji;
-      this.syncExtras                  = syncExtras;
+      this.syncExtras        = syncExtras;
+      this.extras            = extras;
+      this.hasGroupsInCommon = hasGroupsInCommon;
     }
 
     public RecipientId getId() {
@@ -3481,6 +3607,14 @@ public class RecipientDatabase extends Database {
 
     public @NonNull SyncExtras getSyncExtras() {
       return syncExtras;
+    }
+
+    public @Nullable Recipient.Extras getExtras() {
+      return extras;
+    }
+
+    public boolean hasGroupsInCommon() {
+      return hasGroupsInCommon;
     }
 
     long getCapabilities() {

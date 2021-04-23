@@ -1234,6 +1234,7 @@
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Join this group? They won’t know you’ve seen their messages until you accept.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Unblock this group and share your name and photo with its members? You won\'t receive any messages until you unblock them.</string>
     <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+    <string name="MessageRequestProfileView_view">View</string>
     <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Member of %1$s and %2$s</string>
     <string name="MessageRequestProfileView_member_of_many_groups">Member of %1$s, %2$s, and %3$s</string>

@@ -43,8 +43,8 @@ import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook;
 import org.thoughtcrime.securesms.database.StickerDatabase;
-import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
@@ -172,8 +172,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int PAYMENTS                         = 91;
   private static final int CLEAN_STORAGE_IDS                = 92;
   private static final int MP4_GIF_SUPPORT                  = 93;
+  private static final int BLUR_AVATARS                     = 94;
 
-  private static final int    DATABASE_VERSION = 93;
+  private static final int    DATABASE_VERSION = 94;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1302,6 +1303,23 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
       if (oldVersion < MP4_GIF_SUPPORT) {
         db.execSQL("ALTER TABLE part ADD COLUMN video_gif INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < BLUR_AVATARS) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN extras BLOB DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN groups_in_common INTEGER DEFAULT 0");
+
+        String secureOutgoingSms = "EXISTS(SELECT 1 FROM sms WHERE thread_id = t._id AND (type & 31) = 23 AND (type & 10485760) AND (type & 131072 = 0))";
+        String secureOutgoingMms = "EXISTS(SELECT 1 FROM mms WHERE thread_id = t._id AND (msg_box & 31) = 23 AND (msg_box & 10485760) AND (msg_box & 131072 = 0))";
+
+        String selectIdsToUpdateProfileSharing = "SELECT r._id FROM recipient AS r INNER JOIN thread AS t ON r._id = t.recipient_ids WHERE profile_sharing = 0 AND (" + secureOutgoingSms + " OR " + secureOutgoingMms + ")";
+
+        db.rawExecSQL("UPDATE recipient SET profile_sharing = 1 WHERE _id IN (" + selectIdsToUpdateProfileSharing + ")");
+
+        String selectIdsWithGroupsInCommon = "SELECT r._id FROM recipient AS r WHERE EXISTS("
+                                             + "SELECT 1 FROM groups AS g INNER JOIN recipient AS gr ON (g.recipient_id = gr._id AND gr.profile_sharing = 1) WHERE g.active = 1 AND (g.members LIKE r._id || ',%' OR g.members LIKE '%,' || r._id || ',%' OR g.members LIKE '%,' || r._id)"
+                                             + ")";
+        db.rawExecSQL("UPDATE recipient SET groups_in_common = 1 WHERE _id IN (" + selectIdsWithGroupsInCommon + ")");
       }
 
       db.setTransactionSuccessful();

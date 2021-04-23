@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -106,6 +108,14 @@ public final class SqlUtilTest {
   @Test
   public void buildCollectionQuery_multiple() {
     SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3));
+
+    assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildCollectionQuery_multipleRecipientIds() {
+    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(RecipientId.from(1), RecipientId.from(2), RecipientId.from(3)));
 
     assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());

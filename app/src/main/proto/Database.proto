@@ -125,3 +125,7 @@ message Wallpaper {
 
     float dimLevelInDarkTheme = 4;
 }
+
+message RecipientExtras {
+    bool manuallyShownAvatar = 1;
+}

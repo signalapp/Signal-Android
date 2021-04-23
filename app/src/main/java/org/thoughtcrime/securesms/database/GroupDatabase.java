@@ -15,11 +15,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -447,15 +445,17 @@ public final class GroupDatabase extends Database {
 
     contentValues.put(MMS, groupId.isMms());
 
+    List<RecipientId> groupMembers = members;
     if (groupMasterKey != null) {
       if (groupState == null) {
         throw new AssertionError("V2 master key but no group state");
       }
       groupId.requireV2();
+      groupMembers = getV2GroupMembers(groupState);
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
       contentValues.put(V2_REVISION, groupState.getRevision());
       contentValues.put(V2_DECRYPTED_GROUP, groupState.toByteArray());
-      contentValues.put(MEMBERS, serializeV2GroupMembers(groupState));
+      contentValues.put(MEMBERS, RecipientId.toSerializedList(groupMembers));
     } else {
       if (groupId.isV2()) {
         throw new AssertionError("V2 group id but no master key");
@@ -466,6 +466,10 @@ public final class GroupDatabase extends Database {
 
     if (groupState != null && groupState.hasDisappearingMessagesTimer()) {
       recipientDatabase.setExpireMessages(groupRecipientId, groupState.getDisappearingMessagesTimer().getDuration());
+    }
+
+    if (groupMembers != null && (groupId.isMms() || Recipient.resolved(groupRecipientId).isProfileSharing())) {
+      recipientDatabase.setHasGroupsInCommon(groupMembers);
     }
 
     Recipient.live(groupRecipientId).refresh();
@@ -585,10 +589,11 @@ public final class GroupDatabase extends Database {
       contentValues.put(UNMIGRATED_V1_MEMBERS, unmigratedV1Members.isEmpty() ? null : RecipientId.toSerializedList(unmigratedV1Members));
     }
 
+    List<RecipientId> groupMembers = getV2GroupMembers(decryptedGroup);
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
-    contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
+    contentValues.put(MEMBERS, RecipientId.toSerializedList(groupMembers));
     contentValues.put(ACTIVE, gv2GroupActive(decryptedGroup) ? 1 : 0);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
@@ -597,6 +602,10 @@ public final class GroupDatabase extends Database {
 
     if (decryptedGroup.hasDisappearingMessagesTimer()) {
       recipientDatabase.setExpireMessages(groupRecipientId, decryptedGroup.getDisappearingMessagesTimer().getDuration());
+    }
+
+    if (groupMembers != null && (groupId.isMms() || Recipient.resolved(groupRecipientId).isProfileSharing())) {
+      recipientDatabase.setHasGroupsInCommon(groupMembers);
     }
 
     Recipient.live(groupRecipientId).refresh();
@@ -742,11 +751,11 @@ public final class GroupDatabase extends Database {
     return groupMembers;
   }
 
-  private static String serializeV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
+  private static List<RecipientId> getV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
     List<UUID>        uuids        = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
     List<RecipientId> recipientIds = uuidsToRecipientIds(uuids);
 
-    return RecipientId.toSerializedList(recipientIds);
+    return recipientIds;
   }
 
   public @NonNull List<GroupId.V2> getAllGroupV2Ids() {
