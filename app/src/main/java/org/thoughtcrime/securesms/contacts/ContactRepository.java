@@ -125,7 +125,7 @@ public class ContactRepository {
 
       if (shouldAdd) {
         MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION_NAMES);
-        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), self.getAbout(), self.getAboutEmoji(), noteToSelfTitle, noteToSelfTitle });
+        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), self.getAbout(), self.getAboutEmoji(), null, true, noteToSelfTitle, noteToSelfTitle });
 
         cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
       }
