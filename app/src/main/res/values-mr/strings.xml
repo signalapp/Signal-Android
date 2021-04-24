@@ -1055,6 +1055,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हा आणि आपले नाव आणि फोटो त्याचा सदस्यांसह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">हा गट अनब्लॉक करायचा आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करायचे? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
+  <string name="MessageRequestProfileView_view">बघा</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s चा सदस्य</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s आणि %2$s चा सदस्य</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, आणि %3$s चा सदस्य </string>
@@ -2529,5 +2530,7 @@
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">एक संदेश पाठवा</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">ठीक आहे</string>
   <!--EOF-->
 </resources>

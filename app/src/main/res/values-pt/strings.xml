@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Deseja juntar-se a este grupo e partilhar o seu nome e fotografia com os seus membros? Eles não sabem que viu as mensagens deles até que aceite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Juntar-se a este grupo? Eles não saberão que viu as mensagens deles até que aceite o convite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Deseja desbloquear este grupo e partilhar o seu nome e fotografia com os seus membros? Você não receberá nenhuma mensagem até que o desbloqueie.</string>
+  <string name="MessageRequestProfileView_view">Ver</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
@@ -2827,5 +2828,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">Não é possível enviar o pagamento</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para enviar um pagamento para este utilizador, ele precisa de aceitar uma mensagem sua de pedido. Envie-lhe uma mensagem para criar um pedido de mensagem.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar uma mensagem</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Ok</string>
   <!--EOF-->
 </resources>

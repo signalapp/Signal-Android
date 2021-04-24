@@ -1061,6 +1061,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rnu ɣer ugraw-a syen bḍu isem d tewlaft- inek·inem akked yiɛeggalen-is? Ur bɣin ara ad teẓreḍ iznan-nsen alamma tqebleḍ.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rnu ɣer ugraw-a? Ur bɣin ara ad teẓreḍ iznan-nsen alamma tqebleḍ.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kkes asewḥel i ugraw-a syen bḍu isem d tewlaft- inek·inem akked yiɛeggalen-is? Ur tebɣiḍ ara ad d-tremseḍ ula d yiwen yizen alamma tekkseḍ-asen asewḥel.</string>
+  <string name="MessageRequestProfileView_view">Askan</string>
   <string name="MessageRequestProfileView_member_of_one_group">D aɛeggal n %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">D aɛeggal n %1$s akked %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">D aɛeggal n %1$s, %2$s akked %3$s</string>
@@ -2639,5 +2640,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentNotificationsView__view">Askan</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">IH</string>
   <!--EOF-->
 </resources>

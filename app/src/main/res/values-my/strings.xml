@@ -1013,6 +1013,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ဤအဖွဲ့သို့ဝင်ပြီးသင်၏အမည်နှင့်ဓာတ်ပုံကိုအဖွဲ့ဝင်များနှင့်မျှဝေပါ။ သင်လက်ခံသည်အထိသူတို့မက်ဆေ့ခ်ျများကိုသင်မြင်ရသည်ကိုသူတို့မသိနိုင်ပါ။</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ဤအဖွဲ့သို့ဆက်သွယ်ပါ။ သင်လက်ခံသည်အထိသူတို့မက်ဆေ့ခ်ျများကိုသင်မြင်ရသည်ကိုသူတို့မသိနိုင်ပါ။</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ဤအုပ်စုကိုဖွင့်ပြီးသင်၏အမည်နှင့်ဓာတ်ပုံကိုအဖွဲ့ဝင်များနှင့်မျှဝေပါ။ သူတို့ကိုပိတ်ဆို့ခြင်းမလုပ်မချင်းသင်မည်သည့်စာကိုမျှလက်ခံရရှိမည်မဟုတ်ပါ။</string>
+  <string name="MessageRequestProfileView_view">ကြည့်မယ်</string>
   <string name="MessageRequestProfileView_member_of_one_group">အဖွဲ့ဝင်%1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">အဖွဲ့ဝင်%1$s နှင့်%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">အဖွဲ့ဝင်%1$s ,%2$s နှင့်%3$s</string>
@@ -2743,5 +2744,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">ငွေပေးချေမှုကို မပို့နိုင်ပါ</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">၎င်းသုံးသူသို့ ငွေပေးချေမှုပေးလိုလျှင် ၎င်းတို့သည် သင့်စီမှ မက်ဆေ့ချ်တောင်းဆိုမှု ကို လက်ခံရန်လိုပါမည်။ ၎င်းစီသို့ တောင်းဆိုရန် မက်ဆေ့ချ်ပို့လိုက်ပါ။</string>
   <string name="CanNotSendPaymentDialog__send_a_message">မက်ဆေ့ချ်ပို့မယ်</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">အိုကေ</string>
   <!--EOF-->
 </resources>

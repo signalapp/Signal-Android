@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirsi a questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti a questo gruppo? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Sbloccare questo gruppo e condividere il tuo nome e la tua foto con i suoi membri? Non riceverai alcun messaggio finché non li sbloccherai.</string>
+  <string name="MessageRequestProfileView_view">Mostra</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro di %1$s e %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro di %1$s, %2$s, e %3$s</string>
@@ -1609,6 +1610,8 @@
   <string name="ConversationUpdateItem_call_is_full">La chiamata è piena</string>
   <string name="ConversationUpdateItem_invite_friends">Invita amici</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Attiva notifiche chiamate</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nessun gruppo in comune. Controlla attentamente le richieste.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nessun contatto in questo gruppo. Controlla attentamente le richieste.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Riproduci … Metti in pausa</string>
   <string name="audio_view__download_accessibility_description">Scarica</string>
@@ -2828,5 +2831,10 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">Impossibile inviare il pagamento</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Per inviare un pagamento a questo utente, deve accettare una richiesta di messaggio da te. Invia loro un messaggio per creare una richiesta di messaggio.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Invia un messaggio</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Non hai nessun gruppo in comune con questa persona. Controlla attentamente le richieste prima di accettarle per evitare messaggi indesiderati.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nessuno dei tuoi contatti o delle persone con cui hai chattato è in questo gruppo. Controlla attentamente le richieste prima di accettarle per evitare messaggi indesiderati.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Informazioni sulle richieste di messaggi</string>
+  <string name="GroupsInCommonMessageRequest__okay">Ok</string>
   <!--EOF-->
 </resources>

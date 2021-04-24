@@ -1172,6 +1172,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn? Ni fyddant yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Dadrwystro\'r grŵp a rhannu eich enw a llun gyda\'i aelodau? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
+  <string name="MessageRequestProfileView_view">Golwg</string>
   <string name="MessageRequestProfileView_member_of_one_group">Aelod o %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Aeolod o %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Aelod o %1$s, %2$s a %3$s</string>
@@ -2993,5 +2994,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CanNotSendPaymentDialog__cant_send_payment">Methu anfon taliad</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">I anfon taliad at y defnyddiwr hwn mae angen iddo dderbyn cais neges gennych chi. Anfonwch neges atyn nhw i greu cais am neges.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Anfon neges</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Iawn</string>
   <!--EOF-->
 </resources>

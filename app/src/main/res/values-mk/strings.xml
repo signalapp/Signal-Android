@@ -1061,6 +1061,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Дали сакате да и се приклучите на оваа група и да ги споделите Вашето име и слика со нејзните членови? Тие нема да знаат дека сте ги виделе нивните пораки додека не прифатите.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Дали сакате да и се приклучите на оваа група?Тие нема да знаат дека сте ги виделе нивните пораки додека не прифатите.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Дали сакате да ја одблокирате оваа група и да ги споделите вашето име и слика со нејзините членови? Нема да примате никакви пораки додека не ја одблокирате.</string>
+  <string name="MessageRequestProfileView_view">Поглед</string>
   <string name="MessageRequestProfileView_member_of_one_group">Член на %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Член на %1$s и %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Член на%1$s, %2$s и %3$s</string>
@@ -2646,5 +2647,7 @@
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
   <!--EOF-->
 </resources>

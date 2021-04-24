@@ -1009,6 +1009,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加しますか？招待を受け入れるまで、あなたがメッセージを見たことは他のメンバーにはわかりません。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
+  <string name="MessageRequestProfileView_view">表示する</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s および %3$s のメンバー</string>
@@ -1427,6 +1428,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新着メッセージ</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">メッセージ申請</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">動画を再生</string>
   <string name="ThumbnailView_Has_a_caption_description">キャプション付き</string>
@@ -1530,6 +1532,8 @@
   <string name="ConversationUpdateItem_call_is_full">満席です</string>
   <string name="ConversationUpdateItem_invite_friends">友達を招待する</string>
   <string name="ConversationUpdateItem_enable_call_notifications">着信通知を有効にする</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">共通のグループはありません。慎重に申請を確認してください。</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">このグループに連絡先の人はいません。慎重に申請を確認してください。</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1559,6 +1563,7 @@
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">バックグラウンド動作を有効にする</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">すべて順調そうです！</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">着信通知を受けるには、ここをタップして「通知を表示する」を有効にします。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">着信通知を受けるには、ここをタップして通知を有効にし、音とポップアップが有効になっていることを確認してください。</string>
   <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">着信通知を受けるには、設定をタップして「通知を表示する」を有効にします。</string>
   <!--country_selection_fragment-->
@@ -1609,6 +1614,7 @@
     <item quantity="other">ほか%d人</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">GiFを検索</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">何も見つかりませんでした</string>
   <!--log_submit_activity-->
@@ -2359,6 +2365,8 @@
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">古いAndroid端末との接続を待っています…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signalが古いAndroid端末を検出して接続するには、Wi-Fiが有効になっている必要があります。ただし、Wi-Fiネットワークに接続されている必要はありません。</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">申し訳ありませんが、この端末はWi-Fi Directに対応していないようです。Signalは、Wi-Fi Directを使って古いAndroid端末を検出し、接続します。古いAndroid端末からアカウントを復元するために、バックアップを復元することは可能です。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">古いAndroid端末への接続時に、予期しないエラーが発生しました。</string>
   <!--OldDeviceTransferSetupFragment-->
@@ -2624,11 +2632,16 @@
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">次へ</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">クリップボードをクリアしました。</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">表示する</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">送金するには、このユーザーがあなたのメッセージリクエストを受け取る必要があります。リクエストを作成するため、先にメッセージを送ってください。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">メッセージ送信</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">この人と共通のグループがありません。望まないメッセージを避けるため、リクエストは慎重に検討してください。</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">メッセージ申請について</string>
+  <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--EOF-->
 </resources>

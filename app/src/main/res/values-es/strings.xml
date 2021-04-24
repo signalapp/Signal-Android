@@ -614,7 +614,7 @@
   <string name="ManageGroupActivity_always">Para siempre</string>
   <string name="ManageGroupActivity_off">Inactivo</string>
   <string name="ManageGroupActivity_on">Activo</string>
-  <string name="ManageGroupActivity_view_all_members">Ver participantes</string>
+  <string name="ManageGroupActivity_view_all_members">Ver más</string>
   <string name="ManageGroupActivity_see_all">Ver todos</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d participante añadid@.</item>
@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
+  <string name="MessageRequestProfileView_view">Ver</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Participa en %1$s, %2$s y %3$s</string>
@@ -1609,6 +1610,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_call_is_full">La llamada está llena</string>
   <string name="ConversationUpdateItem_invite_friends">Invitar personas</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Habilitar notificaciones de llamada</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -2828,5 +2831,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CanNotSendPaymentDialog__cant_send_payment">Imposible enviar el pago</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para enviar un pago a esta persona, tiene primero que aceptar tu solicitud de chat. Envía un mensaje para crear una solicitud de chat.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar mensajes</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">No tienes grupos en común con esta persona. Revisa siempre cuidadosamente solicitudes de chat antes de aceptarlas para evitar mensajes indeseados.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nadie en este grupo ha chateado nunca contigo. Revisa siempre cuidadosamente solicitudes de chat antes de aceptarlas para evitar mensajes indeseados.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Más sobre solicitudes de chat</string>
+  <string name="GroupsInCommonMessageRequest__okay">De acuerdo</string>
   <!--EOF-->
 </resources>

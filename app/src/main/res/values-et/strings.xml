@@ -1061,6 +1061,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas soovid selle grupiga liituda ja jagada enda nime ning pilti selle liikmetega? Nad ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas liitud grupiga? Nad ei tea, et oled nende sõnumeid näinud, kuni nõustud.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kas eemaldada sellelt grupilt blokeering ja jagada enda nime ning fotot selle liikmetele? Sa ei saa enne ühtegi sõnumit kuni eemaldad blokeeringu.</string>
+  <string name="MessageRequestProfileView_view">Näita</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ja %3$s liige</string>
@@ -2683,5 +2684,7 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Sellele kasutajale makse saatmiseks peab ta kinnitama sinult saadud sõnumitaotlust. Sõnumitaotluse loomiseks saatke talle sõnum.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Saada sõnum</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Sobib</string>
   <!--EOF-->
 </resources>

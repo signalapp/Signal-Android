@@ -1166,6 +1166,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės? Kiti asmenys nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atblokuoti šią grupę ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs negausite jokių žinučių tol, kol jų neatblokuosite.</string>
+  <string name="MessageRequestProfileView_view">Rodyti</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės narys</string>
   <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių narys</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių narys</string>
@@ -2949,5 +2950,7 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Nepavyksta siųsti mokėjimo</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Siųsti žinutę</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Gerai</string>
   <!--EOF-->
 </resources>

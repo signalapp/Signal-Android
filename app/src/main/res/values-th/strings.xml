@@ -1010,6 +1010,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้และเปิดเผยชื่อและรูปถ่ายของคุณให้สมาชิกในกลุ่มเห็นหรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้หรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">คุณต้องการเลิกปิดกั้นกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
+  <string name="MessageRequestProfileView_view">ดู</string>
   <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">สมาชิกของ %1$s และ %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">สมาชิกของ %1$s%2$s และ %3$s</string>
@@ -2113,7 +2114,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">การสนทนาใหม่</string>
   <string name="conversation_list_fragment__open_camera_description">เปิดกล้อง</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีข้อความเข้า\n เริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีข้อความ\nเริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">รีเซ็ตเซสชันที่ปลอดภัย</string>
   <!--conversation_muted-->
@@ -2343,7 +2344,7 @@
   <string name="PhoneNumberPrivacy_my_contacts">ผู้ติดต่อของฉัน</string>
   <string name="PhoneNumberPrivacy_nobody">คนที่คุณไม่รู้จัก</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">หมายเลขโทรศัพท์ของคุณจะสามารถเห็นได้โดยกลุ่มและผู้คนที่คุณได้ส่งข้อความไป</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">ใครก็ตามที่มีหมายเลขโทรศัพท์ของคุณในรายชื่อผู้ติดต่อของพวกเขาจะเห็นคุณเป็นผู้ติดต่อบน Signal ส่วนคนอื่นๆ จะสามารถค้นหาคุณได้จากเมนูค้นหา</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">ใครก็ตามที่มีหมายเลขโทรศัพท์ของคุณในรายชื่อผู้ติดต่อของพวกเขา จะเห็นคุณเป็นผู้ติดต่อบน Signal ส่วนคนอื่นๆ จะสามารถค้นหาคุณได้จากเมนูค้นหา</string>
   <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Signal ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ล็อกหน้าจอเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
@@ -2357,7 +2358,7 @@
   <string name="preferences_app_protection__turn_off">ปิด</string>
   <string name="preferences_app_protection__confirm_pin">ยืนยันรหัส PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">ยืนยันรหัส PIN สำหรับ Signal ของคุณ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ทำให้แน่ใจว่าคุณสามารถจดจำหรือเก็บรักษารหัส PIN ของคุณอย่างปลอดภัยเพราะมันไม่สามารถจะกู้คืนมาได้ ถ้าคุณลืมรหัส PIN ของคุณ ข้อมูลของคุณอาจจะสูญหายเมื่อคุณลงทะเบียนบัญชี Signal ของคุณอีกครั้ง</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ให้แน่ใจว่าคุณสามารถจำหรือเก็บรักษารหัส PIN ของคุณได้อย่างปลอดภัย เพราะมันไม่สามารถถูกกู้คืนได้ ถ้าคุณลืมรหัส PIN ของคุณ ข้อมูลของคุณอาจสูญหายเมื่อคุณลงทะเบียนบัญชี Signal ของคุณอีกครั้ง</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">การเปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">การปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
@@ -2699,5 +2700,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">ไม่สามารถส่งการชำระเงินได้</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">เพื่อจะส่งเงินให้กับผู้ใช้รายนี้ เขาจะต้องตอบรับคำขอส่งข้อความจากคุณ ส่งข้อความหาเขาเพื่อสร้างคำขอส่งข้อความ</string>
   <string name="CanNotSendPaymentDialog__send_a_message">ส่งข้อความ</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">ตกลง</string>
   <!--EOF-->
 </resources>

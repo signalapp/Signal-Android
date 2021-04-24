@@ -1170,6 +1170,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete se připojit k této skupině? Dokud tak neučiníte, členové se nedozví, že jste viděli jejich zprávy.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovat tuto skupinu a sdílet vaše jméno a fotografii s jejími členy? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
+  <string name="MessageRequestProfileView_view">Zobrazit</string>
   <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Člen %1$s, %2$s a %3$s</string>
@@ -2991,5 +2992,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CanNotSendPaymentDialog__cant_send_payment">Nelze odeslat platbu</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Aby mohli tomuto uživateli odeslat platbu, musí od vás přijmout požadavek na zprávu. Zašlete jim zprávu pro vytvoření žádosti.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Poslat zprávu</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">V pořádku</string>
   <!--EOF-->
 </resources>

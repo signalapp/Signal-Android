@@ -1059,6 +1059,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ഈ ഗ്രൂപ്പിൽ ചേര്‍ൻ, നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ഈ ഗ്രൂപ്പിൽ ചേരണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ഈ ഗ്രൂപ്പിനെ അൺ‌ബ്ലോക്ക് ചെയ്ത് നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ അൺ‌ബ്ലോക്ക് ചെയ്യുന്നതു വരെ നിങ്ങൾക്ക് സന്ദേശങ്ങളൊന്നും ലഭിക്കില്ല.</string>
+  <string name="MessageRequestProfileView_view">കാണുക</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, %3$s ലെ അംഗം</string>
@@ -2547,5 +2548,7 @@
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">ഒരു മെസ്സേജ് അയക്കുക</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">ശരി</string>
   <!--EOF-->
 </resources>

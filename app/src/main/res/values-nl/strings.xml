@@ -287,7 +287,7 @@
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
   <string name="ConversationFragment__tap_to_review">Tik hier om te evalueren</string>
-  <string name="ConversationFragment__review_requests_carefully">Evalueer verzoeken zorgvuldig</string>
+  <string name="ConversationFragment__review_requests_carefully">Overweeg verzoeken zorgvuldig</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal heeft een ander contactpersoon gevonden met dezelfde naam.</string>
   <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
   <string name="ConversationFragment_verify">Verifiëren</string>
@@ -1066,6 +1066,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien?</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Lid worden van deze groep? De leden van de groep zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
+  <string name="MessageRequestProfileView_view">Weergeven</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Lid van %1$s, %2$s en %3$s</string>
@@ -1613,6 +1614,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Geen gemeenschappelijke groepen: overweeg de uitnodiging zorgvuldig.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -2832,5 +2835,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CanNotSendPaymentDialog__cant_send_payment">Kan overschrijving niet verzenden</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Deze persoon moet eerst een gespreksverzoek van je aanvaarden voor je kunt overschrijven naar deze persoon.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Een bericht verzenden</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Je hebt geen gemeenschappelijke groep met deze persoon. Overweeg zorgvuldig of je dit gespreksverzoek wilt accepteren om ongewenste berichten te vermijden.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een gesprek voert in deze groep. Overweeg zorgvuldig of je dit gespreksverzoek wilt accepteren om ongewenste berichten te vermijden.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Over gespreksverzoeken</string>
+  <string name="GroupsInCommonMessageRequest__okay">Oké</string>
   <!--EOF-->
 </resources>

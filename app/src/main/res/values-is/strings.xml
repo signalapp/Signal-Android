@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu ganga í þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þeir munu ekki vita hvort þú hafir séð skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu ganga í þennan hóp? Meðlimir hópsins munu ekki vita hvort þú hafir séð skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Viltu opna á þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þú munt ekki fá nein skilaboð fyrr en þú aflæsir þessu.</string>
+  <string name="MessageRequestProfileView_view">Skoða</string>
   <string name="MessageRequestProfileView_member_of_one_group">Meðlimur í %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Meðlimur í %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Meðlimur í %1$s, %2$s og %3$s</string>
@@ -2832,5 +2833,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="CanNotSendPaymentDialog__cant_send_payment">Gat ekki sent greiðslu</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Til að senda greiðslu til þessa notanda þarf hann að samþykkja skilaboðabeiðni frá þér. Sendu honum skilaboð til að útbúa skilaboðabeiðni.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Senda skilaboð</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Í lagi</string>
   <!--EOF-->
 </resources>

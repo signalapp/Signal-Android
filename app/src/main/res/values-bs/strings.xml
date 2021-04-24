@@ -1117,6 +1117,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi i dopustiti članovima da vide Vaše ime i sliku? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi? Članovi neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Prestati s blokiranjem ove grupe i dopustiti njenim članovima da vide Vaše ime i sliku? Nećete primati poruke dok je ne prestanete blokirati.</string>
+  <string name="MessageRequestProfileView_view">Pregled</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član grupe %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član grupa %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Član grupa %1$s, %2$s i %3$s</string>
@@ -1674,6 +1675,8 @@
   <string name="ConversationUpdateItem_call_is_full">Poziv je popunjen</string>
   <string name="ConversationUpdateItem_invite_friends">Pozovi prijatelje</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Uključi obavještenja o pozivima</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nema zajedničkih grupa. Pažljivo pregledajte zahtjeve.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nema kontakata u grupi. Pažljivo pregledajte zahtjeve.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -2915,5 +2918,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="CanNotSendPaymentDialog__cant_send_payment">Ne mogu isplatiti</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Da biste izvršili isplatu ovom korisniku, on ili ona moraju prihvatiti Vaš zahtjev za komunikaciju. Zahtjev možete kreirati tako što ćete im poslati poruku.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Pošalji poruku</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nema nijedne grupe koja je zajednička Vama i ovoj osobi. Pažljivo pregledajte zahtjeve prije nego što ih prihvatite kako biste izbjegli neželjene poruke.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nijedan Vaš kontakt niti osobe s kojima komunicirate nisu članovi ove grupe. Pažljivo pregledajte zahtjeve prije nego što ih prihvatite kako biste izbjegli neželjene poruke.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">O zahtjevima za komunikaciju</string>
+  <string name="GroupsInCommonMessageRequest__okay">Uredu</string>
   <!--EOF-->
 </resources>

@@ -1170,6 +1170,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Они не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
+  <string name="MessageRequestProfileView_view">Просмотреть</string>
   <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Состоит в %1$s и %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Состоит в %1$s, %2$s и %3$s</string>
@@ -1732,6 +1733,8 @@
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нет общих групп. Внимательно проверяйте запросы.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">В этой группе нет ваших контактов. Внимательно проверяйте запросы.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -2985,5 +2988,10 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">Невозможно отправить перевод</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Чтобы вы смогли отправить перевод этому пользователю, ему необходимо принять от вас запрос на общение. Отправьте ему сообщение, чтобы создать запрос на общение.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Отправить сообщение</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">У вас нет общих групп с этим человеком. Внимательно проверяйте запросы, перед тем как принимать их, чтобы избежать нежелательных сообщений.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Никого из ваших контактов или людей, с которыми вы общаетесь, нет в этой группе. Внимательно проверяйте запросы, перед тем как принимать их, чтобы избежать нежелательных сообщений.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">О запросах на общение</string>
+  <string name="GroupsInCommonMessageRequest__okay">Хорошо</string>
   <!--EOF-->
 </resources>

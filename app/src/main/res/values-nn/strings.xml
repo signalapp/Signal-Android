@@ -1069,6 +1069,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du bli med i denne gruppa og dela namnet og bildet ditt med medlemmane? Dei får ikkje vita at du har sett meldingane deira før du godkjenner.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i gruppa? Dei vil ikkje vita at du har sett meldingane deira før du godtek.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vil du bli avblokkera denne gruppa og dela namnet og bildet ditt med medlemmane? Du får inga meldingar før du avblokkerer dei.</string>
+  <string name="MessageRequestProfileView_view">Vis</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s og %3$s</string>
@@ -1613,6 +1614,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er fylt opp</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter vennar</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Skru på samtalevarsel</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Sjå nøye gjennom førespurnader.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontaktar i denne gruppa. Sjå nøye gjennom førespurnader.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spel … pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -2834,5 +2837,10 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="CanNotSendPaymentDialog__cant_send_payment">Kan ikkje senda betaling</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For å betala til denne brukaren må dei godta ein meldingsførespurnad frå deg. Send ei melding til dei for å laga ein meldingsførespurnad.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send ei melding</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Du har ingen felles grupper med denne personen. Sjå nøye gjennom førespurnader før du godkjenner for å unngå uønska meldingar.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av kontaktane eller personane du pratar med er i denne gruppa. Sjå nøye gjennom førespurnader før du godkjenner for å unngå uønska meldingar.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Om meldingsspørsmål</string>
+  <string name="GroupsInCommonMessageRequest__okay">Greitt</string>
   <!--EOF-->
 </resources>

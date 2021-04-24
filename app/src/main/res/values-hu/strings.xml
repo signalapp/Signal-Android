@@ -1062,6 +1062,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz a csoportba, és megosztod velük neved és profilképedet? Amíg ebbe bele nem egyezel, addig nem értesülnek arról sem, hogy elolvastad-e üzeneteiket.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz ebbe a csoportba? Amíg ezt meg nem erősíted, senki nem értesül róla, hogy láttad az eddigi üzeneteket.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Feloldod a csoport tiltását és megosztod profilodat a tagokkal? Amíg nem oldod fel a tiltást, nem kapsz üzeneteket a csoportból.</string>
+  <string name="MessageRequestProfileView_view">Megtekintés</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s tagja</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s és %2$s tagja</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s és %3$s tagja</string>
@@ -2642,5 +2643,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Küldj egy üzenetet</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--EOF-->
 </resources>

@@ -1011,6 +1011,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组并与之分享您的名字和头像？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">是否解除对该群组的屏蔽并与之分享您的名字和头像？解除屏蔽前您将不会收到其发来的消息。</string>
+  <string name="MessageRequestProfileView_view">查看</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s 和 %3$s 的成员</string>
@@ -2747,5 +2748,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">无法发送付款</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">为了发送付款，该用户需接受您的消息请求。请向他们发送消息，来创建消息请求。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">好的</string>
   <!--EOF-->
 </resources>

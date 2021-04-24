@@ -986,6 +986,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tu dixwazî tevlî vê komê bibî û nav û wêneyê xwe bi endamên komê re parve bikî? Heta tu qebûl nekî ew ê nizanibin ku te peyamên wan dîtiye.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Li tevlî vê komê bibî? Heta tu qebûl nekî ew ê nizanibin ku te peyamên wan dîtine.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Tu dixwazî astenga vê komê rakî û nav û wêneyê xwe bi endamên komê re parve bikî? Heta ku tu astengê ranekî tu yê ti peyaman wernegirî.</string>
+  <string name="MessageRequestProfileView_view">Nîşan bide</string>
   <string name="MessageRequestProfileView_member_of_one_group">Endamê koma %1$s\'ê</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Endamê komên %1$s û %2$s\'ê</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Endamê komên %1$s, %2$s û %3$s\'ê</string>
@@ -2392,5 +2393,7 @@
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Peyamekê bişîne</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Baş e</string>
   <!--EOF-->
 </resources>

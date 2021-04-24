@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No sabran que heu vist els seus missatges fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup? No sabran que n\'heu vist els missatges fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Voleu desblocar aquest grup i compartir el nom i la fotografia amb els seus membres? No rebreu cap missatge fins que no el desbloqueu.</string>
+  <string name="MessageRequestProfileView_view">Mostra</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, %2$s i %3$s</string>
@@ -2822,5 +2823,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CanNotSendPaymentDialog__cant_send_payment">No es pot enviar el pagament.</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Per enviar un pagament a aquest usuari, han d’acceptar la sol·licitud de missatge. Envieu-li un missatge per crear una sol·licitud de missatge.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Envia un missatge</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">D\'acord</string>
   <!--EOF-->
 </resources>

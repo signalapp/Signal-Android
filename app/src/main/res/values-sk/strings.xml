@@ -1170,6 +1170,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny a zdieľať vaše meno a fotku s jej členmi? Kým s tým nebudete súhlasiť, členovia skupiny nebudú vedieť, že ste ich správy videli.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny? Kým pozvanie neprijmete, jej členovia sa nedozvú, že ste ich správy videli.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a foto s jej členmi? Kým ju neodblokujete, nepríjmete z nej žiadne správy.</string>
+  <string name="MessageRequestProfileView_view">Zobraziť</string>
   <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Člen %1$s, %2$s a %3$s</string>
@@ -1738,6 +1739,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_call_is_full">Hovor je plne obsadený</string>
   <string name="ConversationUpdateItem_invite_friends">Pozvať priateľov</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Povoliť upozornenia na hovory</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žiadne spoločné skupiny. Žiadosti starostlivo skontrolujte.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tejto skupine nie sú žiadne kontakty. Žiadosti starostlivo skontrolujte.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
@@ -2991,5 +2994,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CanNotSendPaymentDialog__cant_send_payment">Platbu nie je možné odoslať</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Ak chcete tomuto používateľovi poslať platbu, musí od vás prijať žiadosť o správu. Pošlite mu správu na vytvorenie žiadosti o správu.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Poslať správu</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">S touto osobou nemáte spoločné žiadne skupiny. Pred prijatím žiadosti starostlivo skontrolujte, aby ste predišli nežiaducim správam.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Žiadny z vašich kontaktov alebo ľudí, s ktorými chatujete, nie sú v tejto skupine. Pred prijatím žiadosti starostlivo skontrolujte, aby ste predišli nežiaducim správam.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">O žiadostiach na správy</string>
+  <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--EOF-->
 </resources>

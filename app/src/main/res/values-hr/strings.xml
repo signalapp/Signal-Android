@@ -1113,6 +1113,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li se pridružiti ovoj grupi i podijeliti svoje ime i fotografiju sa članovima? Neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridružiti se ovoj grupi? Neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite li odblokirati ovu grupu i podijeliti svoje ime i fotografiju sa članovima? Nećete primati poruke dok ih ne odblokirate.</string>
+  <string name="MessageRequestProfileView_view">Pregledaj</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član/ica %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član/ica %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Član/ica %1$s, %2$s i %3$s</string>
@@ -2736,5 +2737,7 @@ broj telefona</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Pošalji poruku</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">U redu</string>
   <!--EOF-->
 </resources>

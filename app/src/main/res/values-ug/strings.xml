@@ -1065,6 +1065,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">بۇ گۇرۇپپىغا قوشۇلۇپ ئات ۋە باش سۈرەتنى گۇرۇپپا ئەزالىرىغا ھەمبەھىرلەمسىز؟ سىز تەكلىپنى قوبۇل قىلىشتىن ئىلگىرى گۇرۇپپا ئەزالىرى ئۇلار ئەۋەتكەن ئۇچۇرنى كۆرگەنلىكىڭىزنى بىلمەيدۇ.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">گۇرۇپپىغا قوشۇلامسىز؟ سىز قوشۇلمىغىچە ئۇلارنىڭ ئۇچۇرلىرىنى كۆرگەنلىكىڭىزنى ئۇلار بىلمەيدۇ.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">بۇ گۇرۇپپىنى چەكلەپ ھەمدە ئات ۋە باش سۈرىتىڭىزنى ھەمبەھىرلەشكە يول قويامسىز؟ سىز ئۇلارنى چەكلىۋېتىشتىن ئىلگىرى ھېچقانداق ئۇچۇر تاپشۇرۇۋالمايسىز.</string>
+  <string name="MessageRequestProfileView_view">كۆرسەت</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s ئەزاسى</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ۋە %2$s نىڭ ئەزاسى</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s،%2$s ۋە %3$s نىڭ ئەزاسى</string>
@@ -2826,5 +2827,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">چىقىم يوللىنالمىدى</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">بۇ ئىشلەتكۈچىگە بىر چىقىم يوللاش ئۈچۈن، ئۇلار سىزدىن كەلگەن بىر ئۇچۇر ئىلتىماسىنى قوبۇل قىلىشى كېرەك. ئۇچۇر ئىلتىماسىنى قۇرۇشى ئۈچۈن ئۇلارغا بىر ئۇچۇر ئەۋەتىڭ. </string>
   <string name="CanNotSendPaymentDialog__send_a_message">بىز ئۇچۇر يوللا</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">جەزملە</string>
   <!--EOF-->
 </resources>

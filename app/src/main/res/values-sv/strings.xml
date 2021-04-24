@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Avblockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
+  <string name="MessageRequestProfileView_view">Visa</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -1603,6 +1604,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalet är fullt</string>
   <string name="ConversationUpdateItem_invite_friends">Bjud in vänner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktivera samtalsaviseringar</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Inga grupper gemensamt. Granska förfrågningar noggrant.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Inga kontakter i denna grupp. Granska förfrågningar noggrant.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -2822,5 +2825,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CanNotSendPaymentDialog__cant_send_payment">Det går inte att skicka betalning</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">För att skicka en betalning till denna användare måste de acceptera en meddelandeförfrågan från dig. Skicka dem ett meddelande för att skapa en meddelandeförfrågan.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Skicka ett meddelande</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Du har inga grupper gemensamt med denna person. Granska förfrågningar noga innan du accepterar för att undvika oönskade meddelanden.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av dina kontakter eller personer du chattar med finns i denna grupp. Granska förfrågningar noga innan du accepterar för att undvika oönskade meddelanden.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Om meddelandeförfrågningar</string>
+  <string name="GroupsInCommonMessageRequest__okay">Okej</string>
   <!--EOF-->
 </resources>

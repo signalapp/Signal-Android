@@ -1011,6 +1011,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入這個群組？ 在你接受之前，他們不會知道你已看過他們的訊息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消封鎖此群組並與其成員分享你的名字和照片？ 除非你取消阻止它們，否則你將不會收到任何訊息。</string>
+  <string name="MessageRequestProfileView_view">檢視</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s、及%3$s的成員</string>
@@ -1540,6 +1541,8 @@
   <string name="ConversationUpdateItem_call_is_full">通話人數已滿</string>
   <string name="ConversationUpdateItem_invite_friends">邀請好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">啟用通話通知</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">沒有共同的群組。 請仔細檢查請求。</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">這個群組中沒有聯絡人。請仔細檢查請求。</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -2742,5 +2745,10 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">無法傳送付款</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">要向該使用者付款，他們需要接受你的訊息要求。 向他們傳送訊息以建立訊息要求。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">傳送一則訊息</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">你沒有與此人在相同的群組。 接受之前，請仔細檢查請求，以避免出現不必要的訊息。</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">你的聯絡人或與之聊天的人均不在此群組中。 接受之前，請仔細檢查請求，以避免出現不必要的訊息。</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">關於訊息請求</string>
+  <string name="GroupsInCommonMessageRequest__okay">好的</string>
   <!--EOF-->
 </resources>

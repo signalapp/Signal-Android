@@ -1059,6 +1059,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirse a este grupo e compartir cos seus membros o teu nome e fotografía? Non saberán quen viu as súas mensaxes ata que aceptes. </string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Unirse a este grupo? Non saberán quen viu as súas mensaxes ata que aceptes.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desbloquear este grupo e compartir cos seus membros o teu nome e fotografía? Non recibirás ningunha mensaxe ata que desbloquees.</string>
+  <string name="MessageRequestProfileView_view">Ver</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
@@ -2640,5 +2641,7 @@
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar unha mensaxe</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">De acordo</string>
   <!--EOF-->
 </resources>

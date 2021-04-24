@@ -1068,6 +1068,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Të bëhet anëtarësim në këtë grup dhe të ndahet emri dhe fotoja juaj me anëtarët e tij? S’do ta dinë se i keni parë mesazhet e tyre, para se të pranoni këtë.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të bëheni pjesë e këtij grupi? S’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Të zhbllokohet ky grup dhe të lejohet të ndajë emrin dhe foton tuaj me anëtarët e tij? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
+  <string name="MessageRequestProfileView_view">Shihni</string>
   <string name="MessageRequestProfileView_member_of_one_group">Anëtar i %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Anëtar i %1$s dhe %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Anëtar i %1$s, %2$s, dhe %3$s</string>
@@ -1609,6 +1610,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
   <string name="ConversationUpdateItem_invite_friends">Ftoni shokë</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktivizo Njoftime Thirrjesh</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Pa grupe të përbashkët. Shqyrtojini me kujdes kërkesat.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Pa kontakte në këtë grup. Shqyrtojini me kujdes kërkesat.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -2831,5 +2834,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="CanNotSendPaymentDialog__cant_send_payment">S’dërgohet dot pagesë</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Për të dërguar një pagesë te ky përdorues, atij i duhet të pranojë një kërkesë mesazhi nga ju. Dërgojini një mesazh që të krijohet kërkesë mesazhi.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Dërgoni një mesazh</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">S’keni grupe të përbashkët me këtë person. Për të shmangur mesazhe të padëshiruar, shqyrtojini me kujdes kërkesat, para se t’i miratoni.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Asnjë prej kontakteve tuaj, apo persona me të cilët bisedoni, s’gjenden në këtë grup. Për të shmangur mesazhe të padëshiruar, shqyrtojini me kujdes kërkesat, përpara se t’i miratoni.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Mbi kërkesa mesazhesh</string>
+  <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--EOF-->
 </resources>

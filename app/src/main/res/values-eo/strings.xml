@@ -1064,6 +1064,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al tiu ĉi grupo? Ili ne scios, ke vi vidis iliajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ĉu malbloki tiun grupon kaj kunhavigi vian nomon kaj foton kun la anoj? Vi ne ricevos mesaĝojn, se vi ne malblokas ĝin.</string>
+  <string name="MessageRequestProfileView_view">Montri pli</string>
   <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Ano de %1$s kaj %2$s </string>
   <string name="MessageRequestProfileView_member_of_many_groups">Ano de %1$s, %2$s kaj %3$s</string>
@@ -2729,5 +2730,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Sendi mesaĝon</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">Bone</string>
   <!--EOF-->
 </resources>

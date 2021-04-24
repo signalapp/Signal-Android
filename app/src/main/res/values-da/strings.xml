@@ -1065,6 +1065,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og foto med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og foto med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
+  <string name="MessageRequestProfileView_view">Vis</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem af %1$s, %2$s og %3$s</string>
@@ -1609,6 +1610,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConversationUpdateItem_call_is_full">Samtalen er fuld</string>
   <string name="ConversationUpdateItem_invite_friends">Invitér venner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktiver opkaldsmeddelelser</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen grupper til fælles. Gennemgå anmodninger omhyggeligt.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i gruppen. Gennemgå anmodninger omhyggeligt. </string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -2828,5 +2831,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CanNotSendPaymentDialog__cant_send_payment">Betalingen kan ikke sendes</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For at sende en betaling til denne bruger, skal de acceptere en beskedanmodning fra dig. Skriv til dem for at oprette en beskedanmodning.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send en besked</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Du har ingen grupper til fælles med denne person. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen af dine kontakter eller personer, du chatter med, er i gruppen. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Ang. beskedanmodning</string>
+  <string name="GroupsInCommonMessageRequest__okay">Okay</string>
   <!--EOF-->
 </resources>

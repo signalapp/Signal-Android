@@ -1062,6 +1062,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ଏହି ଗୋଷ୍ଠୀରେ ଯୋଗ ଦିଅନ୍ତୁ ଏବଂ ଏହାର ନାମ ଏବଂ ଛବି ଏହାର ସଦସ୍ୟମାନଙ୍କ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ? ତୁମେ ଗ୍ରହଣ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ତୁମେ ସେମାନଙ୍କ ବାର୍ତ୍ତା ଦେଖିଛ ବୋଲି ସେମାନେ ଜାଣିବେ ନାହିଁ</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ଏହି ଗୋଷ୍ଠୀରେ ଯୋଗ ଦେବେ? ତୁମେ ଗ୍ରହଣ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ତୁମେ ସେମାନଙ୍କ ବାର୍ତ୍ତା ଦେଖିଛ ବୋଲି ସେମାନେ ଜାଣିବେ ନାହିଁ</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ଏହି ଗୋଷ୍ଠୀକୁ ଅଣଅବରୋଧ କରନ୍ତୁ ଏବଂ ଆପଣଙ୍କର ନାମ ଏବଂ ଛବି ଏହାର ସଦସ୍ୟମାନଙ୍କ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ? ଆପଣ ସେଗୁଡିକୁ ଅବରୋଧ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ଆପଣ କୌଣସି ବାର୍ତ୍ତା ଗ୍ରହଣ କରିବେ ନାହିଁ</string>
+  <string name="MessageRequestProfileView_view">ଦେଖନ୍ତୁ</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s ର ସଦସ୍ୟ</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$sଏବଂ %2$s ର ସଦସ୍ୟ</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s,%2$s ଏବଂ %3$s ର ସଦସ୍ୟ</string>
@@ -2575,5 +2576,7 @@
   <string name="CanNotSendPaymentDialog__cant_send_payment">ପଇସା ଦେୟ ହେଇ ପାରୁନାହିଁ </string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">ଏହି ଉପଭୋକ୍ତାଙ୍କୁ ଏକ ଦେୟ ପଠାଇବାକୁ ସେମାନେ ଆପଣଙ୍କଠାରୁ ଏକ ବାର୍ତ୍ତା ଅନୁରୋଧ ଗ୍ରହଣ କରିବା ଆବଶ୍ୟକ କରନ୍ତି | ଏକ ବାର୍ତ୍ତା ଅନୁରୋଧ ସୃଷ୍ଟି କରିବାକୁ ସେମାନଙ୍କୁ ଏକ ବାର୍ତ୍ତା ପଠାନ୍ତୁ |</string>
   <string name="CanNotSendPaymentDialog__send_a_message">ଗୋଟେ ବାର୍ତ୍ତା ପଠାନ୍ତୁ</string>
+  <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__okay">ଠିକ୍ ଅଛି</string>
   <!--EOF-->
 </resources>
