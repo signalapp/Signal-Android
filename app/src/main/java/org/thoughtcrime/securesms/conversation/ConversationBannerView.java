@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -58,19 +59,15 @@ public class ConversationBannerView extends ConstraintLayout {
   public void setAvatar(@NonNull GlideRequests requests, @Nullable Recipient recipient) {
     contactAvatar.setAvatar(requests, recipient, false);
 
-    if (recipient.shouldBlurAvatar() && recipient.getContactPhoto() != null) {
+    if (recipient != null && recipient.shouldBlurAvatar() && recipient.getContactPhoto() != null) {
       tapToView.setVisibility(VISIBLE);
       tapToView.setOnClickListener(v -> {
         SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getRecipientDatabase(getContext().getApplicationContext())
                                                              .manuallyShowAvatar(recipient.getId()));
       });
-      ImageViewCompat.setImageTintList(contactAvatar, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent_black_40)));
-      ImageViewCompat.setImageTintMode(contactAvatar, PorterDuff.Mode.SRC_ATOP);
     } else {
       tapToView.setVisibility(GONE);
       tapToView.setOnClickListener(null);
-      ImageViewCompat.setImageTintList(contactAvatar, null);
-      ImageViewCompat.setImageTintMode(contactAvatar, PorterDuff.Mode.SRC_IN);
     }
   }
 

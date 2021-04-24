@@ -2906,6 +2906,10 @@ public class RecipientDatabase extends Database {
   }
 
   public void setHasGroupsInCommon(@NonNull List<RecipientId> recipientIds) {
+    if (recipientIds.isEmpty()) {
+      return;
+    }
+
     SqlUtil.Query  query = SqlUtil.buildCollectionQuery(ID, recipientIds);
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     try (Cursor cursor = db.query(TABLE_NAME,

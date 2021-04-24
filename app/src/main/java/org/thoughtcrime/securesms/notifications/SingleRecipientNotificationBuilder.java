@@ -20,7 +20,10 @@ import androidx.core.app.RemoteInput;
 import androidx.core.graphics.drawable.IconCompat;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -30,6 +33,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -38,12 +42,14 @@ import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPrefere
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -103,10 +109,16 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     if (contactPhoto != null) {
       try {
+        List<Transformation<Bitmap>> transforms = new ArrayList<>();
+        if (recipient.shouldBlurAvatar()) {
+          transforms.add(new BlurTransformation(ApplicationDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS));
+        }
+        transforms.add(new CircleCrop());
+
         return GlideApp.with(context.getApplicationContext())
                                     .load(contactPhoto)
                                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                    .circleCrop()
+                                    .transform(new MultiTransformation<>(transforms))
                                     .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
                                             context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
                                     .get();
