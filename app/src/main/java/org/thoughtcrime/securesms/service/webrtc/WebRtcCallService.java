@@ -138,6 +138,7 @@ public final class WebRtcCallService extends Service implements BluetoothStateMa
     }
 
     unregisterNetworkReceiver();
+    unregisterPowerButtonReceiver();
 
     TelephonyUtil.getManager(this)
                  .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE);
