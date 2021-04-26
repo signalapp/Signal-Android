@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.jobs.StorageSyncJobV2;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -44,12 +44,12 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Multi-device.");
-      jobManager.startChain(StorageSyncJob.create())
+      jobManager.startChain(new StorageSyncJobV2())
                 .then(new MultiDeviceKeysUpdateJob())
                 .enqueue();
     } else {
       Log.i(TAG, "Single-device.");
-      jobManager.add(StorageSyncJob.create());
+      jobManager.add(new StorageSyncJobV2());
     }
   }
 

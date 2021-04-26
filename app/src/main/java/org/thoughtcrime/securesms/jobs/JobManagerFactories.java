@@ -141,7 +141,6 @@ public final class JobManagerFactories {
       put(StickerDownloadJob.KEY,                    new StickerDownloadJob.Factory());
       put(StickerPackDownloadJob.KEY,                new StickerPackDownloadJob.Factory());
       put(StorageForcePushJob.KEY,                   new StorageForcePushJob.Factory());
-      put(StorageSyncJob.KEY,                        new StorageSyncJob.Factory());
       put(StorageSyncJobV2.KEY,                      new StorageSyncJobV2.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
@@ -190,6 +189,7 @@ public final class JobManagerFactories {
       put("Argon2TestJob",                           new FailingJob.Factory());
       put("Argon2TestMigrationJob",                  new PassingMigrationJob.Factory());
       put("StorageKeyRotationMigrationJob",          new PassingMigrationJob.Factory());
+      put("StorageSyncJob",                          new StorageSyncJobV2.Factory());
       put("WakeGroupV2Job",                          new FailingJob.Factory());
     }};
   }

@@ -143,7 +143,7 @@ public class StorageSyncJobV2 extends BaseJob {
 
   private static final String TAG = Log.tag(StorageSyncJobV2.class);
 
-  StorageSyncJobV2() {
+  public StorageSyncJobV2() {
     this(new Parameters.Builder().addConstraint(NetworkConstraint.KEY)
                                  .setQueue(QUEUE_KEY)
                                  .setMaxInstancesForFactory(2)

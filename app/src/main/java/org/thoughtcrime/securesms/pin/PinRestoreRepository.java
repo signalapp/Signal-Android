@@ -11,7 +11,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.jobs.StorageSyncJobV2;
 import org.thoughtcrime.securesms.registration.service.KeyBackupSystemWrongPinException;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -83,7 +83,7 @@ public class PinRestoreRepository {
         ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
         stopwatch.split("AccountRestore");
 
-        ApplicationDependencies.getJobManager().runSynchronously(StorageSyncJob.create(), TimeUnit.SECONDS.toMillis(10));
+        ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJobV2(), TimeUnit.SECONDS.toMillis(10));
         stopwatch.split("ContactRestore");
 
         stopwatch.stop(TAG);

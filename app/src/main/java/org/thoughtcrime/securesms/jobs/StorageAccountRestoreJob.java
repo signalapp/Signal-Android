@@ -40,7 +40,7 @@ public class StorageAccountRestoreJob extends BaseJob {
 
   public StorageAccountRestoreJob() {
     this(new Parameters.Builder()
-                       .setQueue(StorageSyncJob.QUEUE_KEY)
+                       .setQueue(StorageSyncJobV2.QUEUE_KEY)
                        .addConstraint(NetworkConstraint.KEY)
                        .setMaxInstancesForFactory(1)
                        .setMaxAttempts(1)

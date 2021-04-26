@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.jobs.StorageSyncJobV2;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Entropy;
@@ -28,9 +28,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
-import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
-import org.whispersystems.signalservice.api.storage.SignalRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -42,7 +39,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -218,114 +214,6 @@ public final class StorageSyncHelper {
     return new IdDifferenceResult(remoteOnlyKeys, localOnlyKeys, hasTypeMismatch);
   }
 
-  /**
-   * Given two sets of storage records, this will resolve the data into a set of actions that need
-   * to be applied to resolve the differences. This will handle discovering which records between
-   * the two collections refer to the same contacts and are actually updates, which are brand new,
-   * etc.
-   *
-   * @param remoteOnlyRecords Records that are only present remotely.
-   * @param localOnlyRecords Records that are only present locally.
-   *
-   * @return A set of actions that should be applied to resolve the conflict.
-   */
-  public static @NonNull MergeResult resolveConflict(@NonNull Collection<SignalStorageRecord> remoteOnlyRecords,
-                                                     @NonNull Collection<SignalStorageRecord> localOnlyRecords,
-                                                     @NonNull GroupV2ExistenceChecker groupExistenceChecker)
-  {
-    List<SignalContactRecord> remoteOnlyContacts = Stream.of(remoteOnlyRecords).filter(r -> r.getContact().isPresent()).map(r -> r.getContact().get()).toList();
-    List<SignalContactRecord> localOnlyContacts  = Stream.of(localOnlyRecords).filter(r -> r.getContact().isPresent()).map(r -> r.getContact().get()).toList();
-
-    List<SignalGroupV1Record> remoteOnlyGroupV1 = Stream.of(remoteOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
-    List<SignalGroupV1Record> localOnlyGroupV1  = Stream.of(localOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
-    
-    List<SignalGroupV2Record> remoteOnlyGroupV2 = Stream.of(remoteOnlyRecords).filter(r -> r.getGroupV2().isPresent()).map(r -> r.getGroupV2().get()).toList();
-    List<SignalGroupV2Record> localOnlyGroupV2  = Stream.of(localOnlyRecords).filter(r -> r.getGroupV2().isPresent()).map(r -> r.getGroupV2().get()).toList();
-
-    List<SignalStorageRecord> remoteOnlyUnknowns = Stream.of(remoteOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
-    List<SignalStorageRecord> localOnlyUnknowns  = Stream.of(localOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
-
-    List<SignalAccountRecord> remoteOnlyAccount = Stream.of(remoteOnlyRecords).filter(r -> r.getAccount().isPresent()).map(r -> r.getAccount().get()).toList();
-    List<SignalAccountRecord> localOnlyAccount  = Stream.of(localOnlyRecords).filter(r -> r.getAccount().isPresent()).map(r -> r.getAccount().get()).toList();
-    if (remoteOnlyAccount.size() > 0 && localOnlyAccount.isEmpty()) {
-      throw new AssertionError("Found a remote-only account, but no local-only account!");
-    }
-    if (localOnlyAccount.size() > 1) {
-      throw new AssertionError("Multiple local accounts?");
-    }
-
-    RecordMergeResult<SignalContactRecord> contactMergeResult = resolveRecordConflict(remoteOnlyContacts, localOnlyContacts, new ContactConflictMerger(localOnlyContacts, Recipient.self()));
-    RecordMergeResult<SignalGroupV1Record> groupV1MergeResult = resolveRecordConflict(remoteOnlyGroupV1, localOnlyGroupV1, new GroupV1ConflictMerger(localOnlyGroupV1, groupExistenceChecker));
-    RecordMergeResult<SignalGroupV2Record> groupV2MergeResult = resolveRecordConflict(remoteOnlyGroupV2, localOnlyGroupV2, new GroupV2ConflictMerger(localOnlyGroupV2));
-    RecordMergeResult<SignalAccountRecord> accountMergeResult = resolveRecordConflict(remoteOnlyAccount, localOnlyAccount, new AccountConflictMerger(localOnlyAccount.isEmpty() ? Optional.absent() : Optional.of(localOnlyAccount.get(0))));
-
-    Set<SignalStorageRecord> remoteInserts = new HashSet<>();
-    remoteInserts.addAll(Stream.of(contactMergeResult.remoteInserts).map(SignalStorageRecord::forContact).toList());
-    remoteInserts.addAll(Stream.of(groupV1MergeResult.remoteInserts).map(SignalStorageRecord::forGroupV1).toList());
-    remoteInserts.addAll(Stream.of(groupV2MergeResult.remoteInserts).map(SignalStorageRecord::forGroupV2).toList());
-    remoteInserts.addAll(Stream.of(accountMergeResult.remoteInserts).map(SignalStorageRecord::forAccount).toList());
-
-    Set<StorageRecordUpdate<SignalStorageRecord>> remoteUpdates = new HashSet<>();
-    remoteUpdates.addAll(Stream.of(contactMergeResult.remoteUpdates)
-                               .map(c -> new StorageRecordUpdate<>(SignalStorageRecord.forContact(c.getOld()), SignalStorageRecord.forContact(c.getNew())))
-                               .toList());
-    remoteUpdates.addAll(Stream.of(groupV1MergeResult.remoteUpdates)
-                               .map(c -> new StorageRecordUpdate<>(SignalStorageRecord.forGroupV1(c.getOld()), SignalStorageRecord.forGroupV1(c.getNew())))
-                               .toList());
-    remoteUpdates.addAll(Stream.of(groupV2MergeResult.remoteUpdates)
-                               .map(c -> new StorageRecordUpdate<>(SignalStorageRecord.forGroupV2(c.getOld()), SignalStorageRecord.forGroupV2(c.getNew())))
-                               .toList());
-    remoteUpdates.addAll(Stream.of(accountMergeResult.remoteUpdates)
-                               .map(c -> new StorageRecordUpdate<>(SignalStorageRecord.forAccount(c.getOld()), SignalStorageRecord.forAccount(c.getNew())))
-                               .toList());
-
-    Set<SignalRecord> remoteDeletes = new HashSet<>();
-    remoteDeletes.addAll(contactMergeResult.remoteDeletes);
-    remoteDeletes.addAll(groupV1MergeResult.remoteDeletes);
-    remoteDeletes.addAll(groupV2MergeResult.remoteDeletes);
-    remoteDeletes.addAll(accountMergeResult.remoteDeletes);
-
-    return new MergeResult(contactMergeResult.localInserts,
-                           contactMergeResult.localUpdates,
-                           groupV1MergeResult.localInserts,
-                           groupV1MergeResult.localUpdates,
-                           groupV2MergeResult.localInserts,
-                           groupV2MergeResult.localUpdates,
-                           new LinkedHashSet<>(remoteOnlyUnknowns),
-                           new LinkedHashSet<>(localOnlyUnknowns),
-                           accountMergeResult.localUpdates.isEmpty() ? Optional.absent() : Optional.of(accountMergeResult.localUpdates.iterator().next()),
-                           remoteInserts,
-                           remoteUpdates,
-                           remoteDeletes);
-  }
-
-  /**
-   * Assumes that the merge result has *not* yet been applied to the local data. That means that
-   * this method will handle generating the correct final key set based on the merge result.
-   */
-  public static @NonNull WriteOperationResult createWriteOperation(long currentManifestVersion,
-                                                                   @NonNull List<StorageId> currentLocalStorageKeys,
-                                                                   @NonNull MergeResult mergeResult)
-  {
-    List<SignalStorageRecord> inserts = new ArrayList<>();
-    inserts.addAll(mergeResult.getRemoteInserts());
-    inserts.addAll(Stream.of(mergeResult.getRemoteUpdates()).map(StorageRecordUpdate::getNew).toList());
-
-    List<StorageId> deletes = new ArrayList<>();
-    deletes.addAll(Stream.of(mergeResult.getRemoteDeletes()).map(SignalRecord::getId).toList());
-    deletes.addAll(Stream.of(mergeResult.getRemoteUpdates()).map(StorageRecordUpdate::getOld).map(SignalStorageRecord::getId).toList());
-
-    Set<StorageId> completeKeys = new HashSet<>(currentLocalStorageKeys);
-    completeKeys.addAll(Stream.of(mergeResult.getAllNewRecords()).map(SignalRecord::getId).toList());
-    completeKeys.removeAll(Stream.of(mergeResult.getAllRemovedRecords()).map(SignalRecord::getId).toList());
-    completeKeys.addAll(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
-    completeKeys.removeAll(deletes);
-
-    SignalStorageManifest manifest = new SignalStorageManifest(currentManifestVersion + 1, new ArrayList<>(completeKeys));
-
-    return new WriteOperationResult(manifest, inserts, Stream.of(deletes).map(StorageId::getRaw).toList());
-  }
-
   public static @NonNull byte[] generateKey() {
     return keyGenerator.generate();
   }
@@ -333,41 +221,6 @@ public final class StorageSyncHelper {
   @VisibleForTesting
   static void setTestKeyGenerator(@Nullable StorageKeyGenerator testKeyGenerator) {
     keyGenerator = testKeyGenerator != null ? testKeyGenerator : KEY_GENERATOR;
-  }
-
-  private static @NonNull <E extends SignalRecord> RecordMergeResult<E> resolveRecordConflict(@NonNull Collection<E> remoteOnlyRecords,
-                                                                                              @NonNull Collection<E> localOnlyRecords,
-                                                                                              @NonNull ConflictMerger<E> merger)
-  {
-    Set<E>               localInserts  = new HashSet<>(remoteOnlyRecords);
-    Set<E>               remoteInserts = new HashSet<>(localOnlyRecords);
-    Set<StorageRecordUpdate<E>> localUpdates  = new HashSet<>();
-    Set<StorageRecordUpdate<E>> remoteUpdates = new HashSet<>();
-    Set<E>               remoteDeletes = new HashSet<>(merger.getInvalidEntries(remoteOnlyRecords));
-
-    remoteOnlyRecords.removeAll(remoteDeletes);
-    localInserts.removeAll(remoteDeletes);
-
-    for (E remote : remoteOnlyRecords) {
-      Optional<E> local = merger.getMatching(remote);
-
-      if (local.isPresent()) {
-        E merged = merger.merge(remote, local.get(), keyGenerator);
-
-        if (!merged.equals(remote)) {
-          remoteUpdates.add(new StorageRecordUpdate<>(remote, merged));
-        }
-
-        if (!merged.equals(local.get())) {
-          localUpdates.add(new StorageRecordUpdate<>(local.get(), merged));
-        }
-
-        localInserts.remove(remote);
-        remoteInserts.remove(local.get());
-      }
-    }
-
-    return new RecordMergeResult<>(localInserts, localUpdates, remoteInserts, remoteUpdates, remoteDeletes);
   }
 
   public static boolean profileKeyChanged(StorageRecordUpdate<SignalContactRecord> update) {
@@ -417,15 +270,8 @@ public final class StorageSyncHelper {
     return SignalStorageRecord.forAccount(account);
   }
 
-  public static void applyAccountStorageSyncUpdates(@NonNull Context context, Optional<StorageRecordUpdate<SignalAccountRecord>> update) {
-    if (!update.isPresent()) {
-      return;
-    }
-    applyAccountStorageSyncUpdates(context, Recipient.self(), update.get().getNew(), true);
-  }
-
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull SignalAccountRecord update, boolean fetchProfile) {
-    DatabaseFactory.getRecipientDatabase(context).applyStorageSyncUpdates(StorageId.forAccount(self.getStorageServiceId()), update);
+    DatabaseFactory.getRecipientDatabase(context).applyStorageSyncAccountUpdate(StorageId.forAccount(self.getStorageServiceId()), update);
 
     TextSecurePreferences.setReadReceiptsEnabled(context, update.isReadReceiptsEnabled());
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
@@ -446,7 +292,7 @@ public final class StorageSyncHelper {
       Log.d(TAG, "Registration still ongoing. Ignore sync request.");
       return;
     }
-    ApplicationDependencies.getJobManager().add(StorageSyncJob.create());
+    ApplicationDependencies.getJobManager().add(new StorageSyncJobV2());
   }
 
   public static void scheduleRoutineSync() {
@@ -497,135 +343,6 @@ public final class StorageSyncHelper {
     @Override
     public @NonNull String toString() {
       return "remoteOnly: " + remoteOnlyIds.size() + ", localOnly: " + localOnlyIds.size() + ", hasTypeMismatches: " + hasTypeMismatches;
-    }
-  }
-
-  public static final class MergeResult {
-    private final Set<SignalContactRecord>                           localContactInserts;
-    private final Set<StorageRecordUpdate<SignalContactRecord>>      localContactUpdates;
-    private final Set<SignalGroupV1Record>                           localGroupV1Inserts;
-    private final Set<StorageRecordUpdate<SignalGroupV1Record>>      localGroupV1Updates;
-    private final Set<SignalGroupV2Record>                           localGroupV2Inserts;
-    private final Set<StorageRecordUpdate<SignalGroupV2Record>>      localGroupV2Updates;
-    private final Set<SignalStorageRecord>                           localUnknownInserts;
-    private final Set<SignalStorageRecord>                           localUnknownDeletes;
-    private final Optional<StorageRecordUpdate<SignalAccountRecord>> localAccountUpdate;
-    private final Set<SignalStorageRecord>                           remoteInserts;
-    private final Set<StorageRecordUpdate<SignalStorageRecord>>      remoteUpdates;
-    private final Set<SignalRecord>                                  remoteDeletes;
-
-    @VisibleForTesting
-    MergeResult(@NonNull Set<SignalContactRecord>                           localContactInserts,
-                @NonNull Set<StorageRecordUpdate<SignalContactRecord>>      localContactUpdates,
-                @NonNull Set<SignalGroupV1Record>                           localGroupV1Inserts,
-                @NonNull Set<StorageRecordUpdate<SignalGroupV1Record>>      localGroupV1Updates,
-                @NonNull Set<SignalGroupV2Record>                           localGroupV2Inserts,
-                @NonNull Set<StorageRecordUpdate<SignalGroupV2Record>>      localGroupV2Updates,
-                @NonNull Set<SignalStorageRecord>                           localUnknownInserts,
-                @NonNull Set<SignalStorageRecord>                           localUnknownDeletes,
-                @NonNull Optional<StorageRecordUpdate<SignalAccountRecord>> localAccountUpdate,
-                @NonNull Set<SignalStorageRecord>                           remoteInserts,
-                @NonNull Set<StorageRecordUpdate<SignalStorageRecord>>      remoteUpdates,
-                @NonNull Set<SignalRecord>                                  remoteDeletes)
-    {
-      this.localContactInserts  = localContactInserts;
-      this.localContactUpdates  = localContactUpdates;
-      this.localGroupV1Inserts  = localGroupV1Inserts;
-      this.localGroupV1Updates  = localGroupV1Updates;
-      this.localGroupV2Inserts  = localGroupV2Inserts;
-      this.localGroupV2Updates  = localGroupV2Updates;
-      this.localUnknownInserts  = localUnknownInserts;
-      this.localUnknownDeletes  = localUnknownDeletes;
-      this.localAccountUpdate   = localAccountUpdate;
-      this.remoteInserts        = remoteInserts;
-      this.remoteUpdates        = remoteUpdates;
-      this.remoteDeletes        = remoteDeletes;
-    }
-
-    public @NonNull Set<SignalContactRecord> getLocalContactInserts() {
-      return localContactInserts;
-    }
-
-    public @NonNull Set<StorageRecordUpdate<SignalContactRecord>> getLocalContactUpdates() {
-      return localContactUpdates;
-    }
-
-    public @NonNull Set<SignalGroupV1Record> getLocalGroupV1Inserts() {
-      return localGroupV1Inserts;
-    }
-
-    public @NonNull Set<StorageRecordUpdate<SignalGroupV1Record>> getLocalGroupV1Updates() {
-      return localGroupV1Updates;
-    }
-    
-    public @NonNull Set<SignalGroupV2Record> getLocalGroupV2Inserts() {
-      return localGroupV2Inserts;
-    }
-
-    public @NonNull Set<StorageRecordUpdate<SignalGroupV2Record>> getLocalGroupV2Updates() {
-      return localGroupV2Updates;
-    }
-
-    public @NonNull Set<SignalStorageRecord> getLocalUnknownInserts() {
-      return localUnknownInserts;
-    }
-
-    public @NonNull Set<SignalStorageRecord> getLocalUnknownDeletes() {
-      return localUnknownDeletes;
-    }
-
-    public @NonNull Optional<StorageRecordUpdate<SignalAccountRecord>> getLocalAccountUpdate() {
-      return localAccountUpdate;
-    }
-
-    public @NonNull Set<SignalStorageRecord> getRemoteInserts() {
-      return remoteInserts;
-    }
-
-    public @NonNull Set<StorageRecordUpdate<SignalStorageRecord>> getRemoteUpdates() {
-      return remoteUpdates;
-    }
-
-    public @NonNull Set<SignalRecord> getRemoteDeletes() {
-      return remoteDeletes;
-    }
-
-    @NonNull Set<SignalRecord> getAllNewRecords() {
-      Set<SignalRecord> records = new HashSet<>();
-
-      records.addAll(localContactInserts);
-      records.addAll(localGroupV1Inserts);
-      records.addAll(localGroupV2Inserts);
-      records.addAll(remoteInserts);
-      records.addAll(localUnknownInserts);
-      records.addAll(Stream.of(localContactUpdates).map(StorageRecordUpdate::getNew).toList());
-      records.addAll(Stream.of(localGroupV1Updates).map(StorageRecordUpdate::getNew).toList());
-      records.addAll(Stream.of(localGroupV2Updates).map(StorageRecordUpdate::getNew).toList());
-      records.addAll(Stream.of(remoteUpdates).map(StorageRecordUpdate::getNew).toList());
-      if (localAccountUpdate.isPresent()) records.add(localAccountUpdate.get().getNew());
-
-      return records;
-    }
-
-    @NonNull Set<SignalRecord> getAllRemovedRecords() {
-      Set<SignalRecord> records = new HashSet<>();
-
-      records.addAll(localUnknownDeletes);
-      records.addAll(Stream.of(localContactUpdates).map(StorageRecordUpdate::getOld).toList());
-      records.addAll(Stream.of(localGroupV1Updates).map(StorageRecordUpdate::getOld).toList());
-      records.addAll(Stream.of(localGroupV2Updates).map(StorageRecordUpdate::getOld).toList());
-      records.addAll(Stream.of(remoteUpdates).map(StorageRecordUpdate::getOld).toList());
-      records.addAll(remoteDeletes);
-      if (localAccountUpdate.isPresent()) records.add(localAccountUpdate.get().getOld());
-
-      return records;
-    }
-
-    @Override
-    public @NonNull String toString() {
-      return String.format(Locale.ENGLISH,
-                           "localContactInserts: %d, localContactUpdates: %d, localGroupV1Inserts: %d, localGroupV1Updates: %d, localGroupV2Inserts: %d, localGroupV2Updates: %d, localUnknownInserts: %d, localUnknownDeletes: %d, localAccountUpdate: %b, remoteInserts: %d, remoteUpdates: %d, remoteDeletes: %d",
-                           localContactInserts.size(), localContactUpdates.size(), localGroupV1Inserts.size(), localGroupV1Updates.size(), localGroupV2Inserts.size(), localGroupV2Updates.size(), localUnknownInserts.size(), localUnknownDeletes.size(), localAccountUpdate.isPresent(), remoteInserts.size(), remoteUpdates.size(), remoteDeletes.size());
     }
   }
 
@@ -690,33 +407,6 @@ public final class StorageSyncHelper {
     public @NonNull Map<RecipientId, byte[]> getStorageKeyUpdates() {
       return storageKeyUpdates;
     }
-  }
-
-  private static class RecordMergeResult<Record extends SignalRecord> {
-    final Set<Record>                      localInserts;
-    final Set<StorageRecordUpdate<Record>> localUpdates;
-    final Set<Record>                      remoteInserts;
-    final Set<StorageRecordUpdate<Record>> remoteUpdates;
-    final Set<Record>                      remoteDeletes;
-
-    RecordMergeResult(@NonNull Set<Record>                      localInserts,
-                      @NonNull Set<StorageRecordUpdate<Record>> localUpdates,
-                      @NonNull Set<Record>                      remoteInserts,
-                      @NonNull Set<StorageRecordUpdate<Record>> remoteUpdates,
-                      @NonNull Set<Record>                      remoteDeletes)
-    {
-      this.localInserts  = localInserts;
-      this.localUpdates  = localUpdates;
-      this.remoteInserts = remoteInserts;
-      this.remoteUpdates = remoteUpdates;
-      this.remoteDeletes = remoteDeletes;
-    }
-  }
-
-  interface ConflictMerger<E extends SignalRecord> {
-    @NonNull Optional<E> getMatching(@NonNull E record);
-    @NonNull Collection<E> getInvalidEntries(@NonNull Collection<E> remoteRecords);
-    @NonNull E merge(@NonNull E remote, @NonNull E local, @NonNull StorageKeyGenerator keyGenerator);
   }
 
   private static final class MultipleExistingAccountsException extends IllegalArgumentException {}
