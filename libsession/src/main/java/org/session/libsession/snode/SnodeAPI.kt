@@ -7,7 +7,7 @@ import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.snode.utilities.getRandomElement
-import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.Broadcaster

@@ -1,5 +1,7 @@
 package org.session.libsession.snode
 
+import org.session.libsignal.service.loki.Snode
+
 interface SnodeStorageProtocol {
 
     fun getSnodePool(): Set<Snode>

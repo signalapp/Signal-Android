@@ -11,7 +11,7 @@ import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.*
-import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.service.loki.api.utilities.*
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsignal.utilities.ThreadUtils
@@ -79,7 +79,7 @@ object OnionRequestAPI {
     )
 
     internal sealed class Destination {
-        class Snode(val snode: org.session.libsignal.service.loki.api.Snode) : Destination()
+        class Snode(val snode: org.session.libsignal.service.loki.Snode) : Destination()
         class Server(val host: String, val target: String, val x25519PublicKey: String) : Destination()
     }
 

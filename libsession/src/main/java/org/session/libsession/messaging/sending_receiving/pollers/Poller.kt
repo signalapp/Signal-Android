@@ -8,7 +8,7 @@ import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
-import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import java.security.SecureRandom
