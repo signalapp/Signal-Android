@@ -25,7 +25,7 @@ import android.text.style.StyleSpan;
 
 import network.loki.messenger.R;
 
-import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage;
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
 import org.session.libsession.messaging.utilities.ClosedGroupUpdateMessageBuilder;
 import org.session.libsession.messaging.utilities.ClosedGroupUpdateMessageData;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;

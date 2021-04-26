@@ -88,7 +88,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;

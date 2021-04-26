@@ -43,10 +43,10 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     fun startIfNeeded() {
         if (hasStarted || executorService == null) return
         cancellableFutures += listOf(
-                executorService.scheduleAtFixedRate(::pollForNewMessages,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForDeletedMessages,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForModerators,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForDisplayNames,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
+            executorService.scheduleAtFixedRate(::pollForNewMessages,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
+            executorService.scheduleAtFixedRate(::pollForDeletedMessages,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
+            executorService.scheduleAtFixedRate(::pollForModerators,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
+            executorService.scheduleAtFixedRate(::pollForDisplayNames,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
         )
         hasStarted = true
     }
@@ -62,10 +62,10 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
 
     // region Polling
     fun pollForNewMessages(): Promise<Unit, Exception> {
-        return pollForNewMessages(false)
+        return pollForNewMessagesInternal(false)
     }
 
-    private fun pollForNewMessages(isBackgroundPoll: Boolean): Promise<Unit, Exception> {
+    private fun pollForNewMessagesInternal(isBackgroundPoll: Boolean): Promise<Unit, Exception> {
         if (isPollOngoing) { return Promise.of(Unit) }
         isPollOngoing = true
         val deferred = deferred<Unit, Exception>()
@@ -164,7 +164,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                     content.setDataMessage(dataMessageProto.build())
                     // Envelope
                     val builder = Envelope.newBuilder()
-                    builder.type = Envelope.Type.UNIDENTIFIED_SENDER
+                    builder.type = Envelope.Type.SESSION_MESSAGE
                     builder.source = senderPublicKey
                     builder.sourceDevice = 1
                     builder.setContent(content.build().toByteString())

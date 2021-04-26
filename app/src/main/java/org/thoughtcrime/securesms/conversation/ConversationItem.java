@@ -57,7 +57,7 @@ import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.GroupUtil;

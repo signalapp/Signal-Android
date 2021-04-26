@@ -27,7 +27,7 @@ import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 
 object MessageSender {

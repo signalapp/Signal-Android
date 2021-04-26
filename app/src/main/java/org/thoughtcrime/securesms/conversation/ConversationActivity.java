@@ -183,7 +183,7 @@ import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.Util;
 
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.ExpirationUtil;

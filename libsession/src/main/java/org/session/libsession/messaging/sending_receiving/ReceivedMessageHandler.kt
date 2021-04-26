@@ -9,8 +9,8 @@ import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
-import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address

@@ -63,13 +63,13 @@ object MessageReceiver {
             sender = envelope.source
         } else {
             when (envelope.type) {
-                SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER -> {
+                SignalServiceProtos.Envelope.Type.SESSION_MESSAGE -> {
                     val userX25519KeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
                     val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), userX25519KeyPair)
                     plaintext = decryptionResult.first
                     sender = decryptionResult.second
                 }
-                SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT -> {
+                SignalServiceProtos.Envelope.Type.CLOSED_GROUP_MESSAGE -> {
                     val hexEncodedGroupPublicKey = envelope.source
                     if (hexEncodedGroupPublicKey == null || !MessagingModuleConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
                         throw Error.InvalidGroupPublicKey
@@ -107,12 +107,12 @@ object MessageReceiver {
         val proto = SignalServiceProtos.Content.parseFrom(PushTransportDetails.getStrippedPaddingMessageBody(plaintext))
         // Parse the message
         val message: Message = ReadReceipt.fromProto(proto) ?:
-                               TypingIndicator.fromProto(proto) ?:
-                               ClosedGroupControlMessage.fromProto(proto) ?:
-                               DataExtractionNotification.fromProto(proto) ?:
-                               ExpirationTimerUpdate.fromProto(proto) ?:
-                               ConfigurationMessage.fromProto(proto) ?:
-                               VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
+            TypingIndicator.fromProto(proto) ?:
+            ClosedGroupControlMessage.fromProto(proto) ?:
+            DataExtractionNotification.fromProto(proto) ?:
+            ExpirationTimerUpdate.fromProto(proto) ?:
+            ConfigurationMessage.fromProto(proto) ?:
+            VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
         // Ignore self sends if needed
         if (!message.isSelfSendValid && sender == userPublicKey) throw Error.SelfSend
         // Guard against control messages in open groups

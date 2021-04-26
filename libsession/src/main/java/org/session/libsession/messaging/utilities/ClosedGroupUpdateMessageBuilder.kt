@@ -3,7 +3,7 @@ package org.session.libsession.messaging.utilities
 import android.content.Context
 import org.session.libsession.R
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.utilities.ExpirationUtil
 
 object ClosedGroupUpdateMessageBuilder {
