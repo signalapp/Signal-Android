@@ -495,8 +495,8 @@ dependencyVerification {
         ['org.signal:argon2:13.1',
          '0f686ccff0d4842bfcc74d92e8dc780a5f159b9376e37a1189fabbcdac458bef'],
 
-        ['org.signal:ringrtc-android:2.9.4',
-         'd4d26b26b096c553966f77229b3f7a0d3704d88caf9caca937388cff054f5257'],
+        ['org.signal:ringrtc-android:2.9.6',
+         'daa06a2a31fb2c6001319ba30d3f412d8ed8de5eae8b49214a73c507f2d0eee9'],
 
         ['org.signal:zkgroup-android:0.7.0',
          '52b172565bd01526e93ebf1796b834bdc449d4fe3422c1b827e49cb8d4f13fbd'],
