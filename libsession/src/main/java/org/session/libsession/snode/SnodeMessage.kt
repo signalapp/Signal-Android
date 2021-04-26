@@ -12,12 +12,14 @@ data class SnodeMessage(
     // When the proof of work was calculated.
     val timestamp: Long
 ) {
+
     internal fun toJSON(): Map<String, String> {
-        return mutableMapOf(
-                "pubKey" to if (SnodeAPI.useTestnet) recipient.removing05PrefixIfNeeded() else recipient,
-                "data" to data,
-                "ttl" to ttl.toString(),
-                "timestamp" to timestamp.toString(),
-                "nonce" to "")
+        return mapOf(
+            "pubKey" to if (SnodeAPI.useTestnet) recipient.removing05PrefixIfNeeded() else recipient,
+            "data" to data,
+            "ttl" to ttl.toString(),
+            "timestamp" to timestamp.toString(),
+            "nonce" to ""
+        )
     }
 }

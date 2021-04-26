@@ -83,7 +83,7 @@ open class DotNetAPI {
         Log.d("Loki", "Requesting auth token for server: $server.")
         val userKeyPair = MessagingConfiguration.shared.storage.getUserKeyPair() ?: throw Error.Generic
         val parameters: Map<String, Any> = mapOf( "pubKey" to userKeyPair.first )
-        return execute(HTTPVerb.GET, server, "loki/v1/get_challenge", false, parameters).map(SnodeAPI.sharedContext) { json ->
+        return execute(HTTPVerb.GET, server, "loki/v1/get_challenge", false, parameters).map { json ->
             try {
                 val base64EncodedChallenge = json["cipherText64"] as String
                 val challenge = Base64.decode(base64EncodedChallenge)

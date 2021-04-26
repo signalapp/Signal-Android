@@ -1,6 +1,7 @@
 package org.session.libsession.snode
 
 interface SnodeStorageProtocol {
+
     fun getSnodePool(): Set<Snode>
     fun setSnodePool(newValue: Set<Snode>)
     fun getOnionRequestPaths(): List<List<Snode>>

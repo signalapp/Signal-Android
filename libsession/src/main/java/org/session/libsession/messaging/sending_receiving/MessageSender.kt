@@ -18,7 +18,7 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.snode.SnodeConfiguration
+import org.session.libsession.snode.SnodeModule
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.service.internal.push.PushTransportDetails
@@ -82,7 +82,7 @@ object MessageSender {
         fun handleFailure(error: Exception) {
             handleFailedMessageSend(message, error)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
+                SnodeModule.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
             }
             deferred.reject(error)
         }
@@ -147,12 +147,12 @@ object MessageSender {
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Send the result
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                SnodeConfiguration.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
+                SnodeModule.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
             }
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
             val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, message.sentTimestamp!!)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
+                SnodeModule.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
             SnodeAPI.sendMessage(snodeMessage).success { promises: Set<RawResponsePromise> ->
                 var isSuccess = false
@@ -163,7 +163,7 @@ object MessageSender {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                            SnodeConfiguration.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
+                            SnodeModule.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
                         }
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)

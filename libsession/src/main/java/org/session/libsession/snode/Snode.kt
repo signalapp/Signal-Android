@@ -1,17 +1,10 @@
 package org.session.libsession.snode
 
 class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
-
     val ip: String get() = address.removePrefix("https://")
 
     internal enum class Method(val rawValue: String) {
-        /**
-         * Only supported by snode targets.
-         */
         GetSwarm("get_snodes_for_pubkey"),
-        /**
-         * Only supported by snode targets.
-         */
         GetMessages("retrieve"),
         SendMessage("store")
     }

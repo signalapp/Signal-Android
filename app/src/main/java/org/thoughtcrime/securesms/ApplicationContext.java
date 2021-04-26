@@ -32,16 +32,13 @@ import androidx.multidex.MultiDexApplication;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
-import org.session.libsession.messaging.fileserver.FileServerAPI;
 import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.opengroups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
-import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.snode.SnodeAPI;
-import org.session.libsession.snode.SnodeConfiguration;
+import org.session.libsession.snode.SnodeModule;
 import org.session.libsession.utilities.IdentityKeyUtil;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
@@ -96,7 +93,6 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Date;
 import java.util.HashSet;
@@ -177,7 +173,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 DatabaseFactory.getStorage(this),
                 DatabaseFactory.getAttachmentProvider(this),
                 new SessionProtocolImpl(this));
-        SnodeConfiguration.Companion.configure(apiDB, broadcaster);
+        SnodeModule.Companion.configure(apiDB, broadcaster);
         if (userPublicKey != null) {
             MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
         }

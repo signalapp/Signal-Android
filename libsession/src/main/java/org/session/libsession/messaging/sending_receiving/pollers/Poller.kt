@@ -7,7 +7,7 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.snode.SnodeConfiguration
+import org.session.libsession.snode.SnodeModule
 import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
@@ -47,9 +47,9 @@ class Poller {
     private fun setUpPolling() {
         if (!hasStarted) { return; }
         val thread = Thread.currentThread()
-        SnodeAPI.getSwarm(userPublicKey).bind(SnodeAPI.messagePollingContext) {
+        SnodeAPI.getSwarm(userPublicKey).bind {
             usedSnodes.clear()
-            val deferred = deferred<Unit, Exception>(SnodeAPI.messagePollingContext)
+            val deferred = deferred<Unit, Exception>()
             pollNextSnode(deferred)
             deferred.promise
         }.always {
@@ -63,7 +63,7 @@ class Poller {
     }
 
     private fun pollNextSnode(deferred: Deferred<Unit, Exception>) {
-        val swarm = SnodeConfiguration.shared.storage.getSwarm(userPublicKey) ?: setOf()
+        val swarm = SnodeModule.shared.storage.getSwarm(userPublicKey) ?: setOf()
         val unusedSnodes = swarm.subtract(usedSnodes)
         if (unusedSnodes.isNotEmpty()) {
             val index = SecureRandom().nextInt(unusedSnodes.size)
@@ -87,7 +87,7 @@ class Poller {
 
     private fun poll(snode: Snode, deferred: Deferred<Unit, Exception>): Promise<Unit, Exception> {
         if (!hasStarted) { return Promise.ofFail(PromiseCanceledException()) }
-        return SnodeAPI.getRawMessages(snode, userPublicKey).bind(SnodeAPI.messagePollingContext) { rawResponse ->
+        return SnodeAPI.getRawMessages(snode, userPublicKey).bind { rawResponse ->
             isCaughtUp = true
             if (deferred.promise.isDone()) {
                 task { Unit } // The long polling connection has been canceled; don't recurse
