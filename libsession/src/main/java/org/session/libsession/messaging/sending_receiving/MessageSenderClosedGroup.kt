@@ -278,23 +278,6 @@ fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKe
     }
 }
 
-/// Note: Shouldn't currently be in use.
-fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
-    val storage = MessagingConfiguration.shared.storage
-    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-    val group = storage.getGroup(groupID) ?: run {
-        Log.d("Loki", "Can't request encryption key pair for nonexistent closed group.")
-        throw Error.NoThread
-    }
-    val members = group.members.map { it.serialize() }.toSet()
-    if (!members.contains(storage.getUserPublicKey()!!)) return
-    // Send the request to the group
-    val sentTime = System.currentTimeMillis()
-    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest())
-    closedGroupControlMessage.sentTimestamp = sentTime
-    send(closedGroupControlMessage, Address.fromSerialized(groupID))
-}
-
 fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey: String) {
     val storage = MessagingConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)

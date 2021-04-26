@@ -135,11 +135,11 @@ object MessageSender {
             val senderPublicKey: String
             when (destination) {
                 is Destination.Contact -> {
-                    kind = SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER
+                    kind = SignalServiceProtos.Envelope.Type.SESSION_MESSAGE
                     senderPublicKey = ""
                 }
                 is Destination.ClosedGroup -> {
-                    kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT
+                    kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_MESSAGE
                     senderPublicKey = destination.groupPublicKey
                 }
                 is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
