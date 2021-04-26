@@ -77,6 +77,10 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     for (final Integer key : markedForDeletion) {
       playing.remove(key);
     }
+
+    for (int i = 0; i < notPlaying.size(); i++) {
+      notPlaying.valueAt(i).hide();
+    }
   }
 
   private void updateDisplay(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {
@@ -100,6 +104,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
       holder.setOnPlaybackReady(null);
       giphyMp4Playable.showProjectionArea();
 
+      holder.show();
       holder.setOnPlaybackReady(giphyMp4Playable::hideProjectionArea);
       holder.playContent(giphyMp4Playable.getMediaSource(), giphyMp4Playable.getPlaybackPolicyEnforcer());
     }

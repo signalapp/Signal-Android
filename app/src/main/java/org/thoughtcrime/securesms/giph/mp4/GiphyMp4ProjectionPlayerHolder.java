@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.giph.mp4;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -61,6 +62,14 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.EventListene
 
   public void setOnPlaybackReady(@Nullable Runnable onPlaybackReady) {
     this.onPlaybackReady = onPlaybackReady;
+  }
+
+  public void hide() {
+    container.setVisibility(View.GONE);
+  }
+
+  public void show() {
+    container.setVisibility(View.VISIBLE);
   }
 
   @Override

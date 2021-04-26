@@ -24,6 +24,7 @@
         style="@style/Signal.Text.Body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:windowBackground"
         android:gravity="center"
         android:text="@string/giphy_fragment__nothing_found"
         android:visibility="gone" />
