@@ -54,7 +54,7 @@ import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob;
 import org.session.libsession.messaging.jobs.JobQueue;
-import org.session.libsession.messaging.opengroups.OpenGroupAPI;
+import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;

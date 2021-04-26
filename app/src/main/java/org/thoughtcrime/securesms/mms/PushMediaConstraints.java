@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 
-import org.session.libsession.messaging.fileserver.FileServerAPI;
+import org.session.libsession.messaging.file_server.FileServerAPI;
 
 public class PushMediaConstraints extends MediaConstraints {
 

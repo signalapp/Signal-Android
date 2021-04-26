@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
@@ -44,7 +44,7 @@ object MessageReceiver {
     }
 
     internal fun parse(data: ByteArray, openGroupServerID: Long?, isRetry: Boolean = false): Pair<Message, SignalServiceProtos.Content> {
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val isOpenGroupMessage = openGroupServerID != null
         // Parse the envelope
@@ -64,17 +64,17 @@ object MessageReceiver {
         } else {
             when (envelope.type) {
                 SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER -> {
-                    val userX25519KeyPair = MessagingConfiguration.shared.storage.getUserX25519KeyPair()
+                    val userX25519KeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
                     val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), userX25519KeyPair)
                     plaintext = decryptionResult.first
                     sender = decryptionResult.second
                 }
                 SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT -> {
                     val hexEncodedGroupPublicKey = envelope.source
-                    if (hexEncodedGroupPublicKey == null || !MessagingConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
+                    if (hexEncodedGroupPublicKey == null || !MessagingModuleConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
                         throw Error.InvalidGroupPublicKey
                     }
-                    val encryptionKeyPairs = MessagingConfiguration.shared.storage.getClosedGroupEncryptionKeyPairs(hexEncodedGroupPublicKey)
+                    val encryptionKeyPairs = MessagingModuleConfiguration.shared.storage.getClosedGroupEncryptionKeyPairs(hexEncodedGroupPublicKey)
                     if (encryptionKeyPairs.isEmpty()) { throw Error.NoGroupKeyPair }
                     // Loop through all known group key pairs in reverse order (i.e. try the latest key pair first (which'll more than
                     // likely be the one we want) but try older ones in case that didn't work)

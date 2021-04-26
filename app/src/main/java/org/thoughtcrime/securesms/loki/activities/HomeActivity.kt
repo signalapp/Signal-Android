@@ -30,7 +30,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.utilities.*
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager

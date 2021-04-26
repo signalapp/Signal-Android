@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.jobs
 
-import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.fileserver.FileServerAPI
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
@@ -33,19 +33,19 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     override fun execute() {
         val handleFailure: (java.lang.Exception) -> Unit = { exception ->
             if (exception == Error.NoAttachment) {
-                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                MessagingModuleConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
                 this.handlePermanentFailure(exception)
             } else if (exception == DotNetAPI.Error.ParsingFailed) {
                 // No need to retry if the response is invalid. Most likely this means we (incorrectly)
                 // got a "Cannot GET ..." error from the file server.
-                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                MessagingModuleConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
                 this.handlePermanentFailure(exception)
             } else {
                 this.handleFailure(exception)
             }
         }
         try {
-            val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
+            val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
             val attachment = messageDataProvider.getDatabaseAttachment(attachmentID) ?: return handleFailure(Error.NoAttachment)
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
             val tempFile = createTempFile()
@@ -79,7 +79,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     private fun createTempFile(): File {
-        val file = File.createTempFile("push-attachment", "tmp", MessagingConfiguration.shared.context.cacheDir)
+        val file = File.createTempFile("push-attachment", "tmp", MessagingModuleConfiguration.shared.context.cacheDir)
         file.deleteOnExit()
         return file
     }

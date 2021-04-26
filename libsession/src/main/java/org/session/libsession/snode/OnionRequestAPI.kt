@@ -6,7 +6,7 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
-import org.session.libsession.messaging.fileserver.FileServerAPI
+import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64

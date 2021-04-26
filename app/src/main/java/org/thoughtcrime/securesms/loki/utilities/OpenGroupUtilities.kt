@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import androidx.annotation.WorkerThread
 import org.greenrobot.eventbus.EventBus
-import org.session.libsession.messaging.opengroups.OpenGroup
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil

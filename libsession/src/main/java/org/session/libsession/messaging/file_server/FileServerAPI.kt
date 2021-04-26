@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.fileserver
+package org.session.libsession.messaging.file_server
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.map
@@ -11,7 +11,6 @@ import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.*
 import java.net.URL
-import java.util.concurrent.ConcurrentHashMap
 
 class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : DotNetAPI() {
 

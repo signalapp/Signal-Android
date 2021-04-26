@@ -3,7 +3,7 @@ package org.session.libsession.messaging.jobs
 import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.VisibleMessage
@@ -27,7 +27,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     }
 
     override fun execute() {
-        val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val message = message as? VisibleMessage
         message?.let {
             if(!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
@@ -38,7 +38,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             val attachments = attachmentIDs.mapNotNull { messageDataProvider.getDatabaseAttachment(it) }
             val attachmentsToUpload = attachments.filter { it.url.isNullOrEmpty() }
             attachmentsToUpload.forEach {
-                if (MessagingConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId.rowId) != null) {
+                if (MessagingModuleConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId.rowId) != null) {
                     // Wait for it to finish
                 } else {
                     val job = AttachmentUploadJob(it.attachmentId.rowId, message.threadID!!.toString(), message, id!!)
@@ -71,7 +71,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         Log.w(TAG, "Failed to send $message::class.simpleName.")
         val message = message as? VisibleMessage
         message?.let {
-            if(!MessagingConfiguration.shared.messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
+            if(!MessagingModuleConfiguration.shared.messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
         }
         delegate?.handleJobFailed(this, error)
     }

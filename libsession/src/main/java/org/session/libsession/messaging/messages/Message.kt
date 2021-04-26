@@ -5,7 +5,6 @@ import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 abstract class Message {
-
     var id: Long? = null
     var threadID: Long? = null
     var sentTimestamp: Long? = null
@@ -18,7 +17,6 @@ abstract class Message {
     open val ttl: Long = 14 * 24 * 60 * 60 * 1000
     open val isSelfSendValid: Boolean = false
 
-    // validation
     open fun isValid(): Boolean {
         sentTimestamp?.let {
             if (it <= 0) return false

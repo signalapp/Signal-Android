@@ -6,7 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.StorageProtocol;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
@@ -31,7 +31,7 @@ public class GroupRecordContactPhoto implements ContactPhoto {
 
   @Override
   public InputStream openInputStream(Context context) throws IOException {
-    StorageProtocol groupDatabase = MessagingConfiguration.shared.getStorage();
+    StorageProtocol groupDatabase = MessagingModuleConfiguration.shared.getStorage();
     Optional<GroupRecord> groupRecord   = Optional.of(groupDatabase.getGroup(address.toGroupString()));
 
     if (groupRecord.isPresent() && groupRecord.get().getAvatar() != null) {

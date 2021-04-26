@@ -4,7 +4,7 @@ import android.os.Handler
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
@@ -59,7 +59,7 @@ class ClosedGroupPoller {
     // region Private API
     private fun poll(): List<Promise<Unit, Exception>> {
         if (!isPolling) { return listOf() }
-        val publicKeys = MessagingConfiguration.shared.storage.getAllActiveClosedGroupPublicKeys()
+        val publicKeys = MessagingModuleConfiguration.shared.storage.getAllActiveClosedGroupPublicKeys()
         return publicKeys.map { publicKey ->
             val promise = SnodeAPI.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
@@ -67,7 +67,7 @@ class ClosedGroupPoller {
                 SnodeAPI.getRawMessages(snode, publicKey).map {SnodeAPI.parseRawMessagesResponse(it, snode, publicKey) }
             }
             promise.successBackground { messages ->
-                if (!MessagingConfiguration.shared.storage.isGroupActive(publicKey)) {
+                if (!MessagingModuleConfiguration.shared.storage.isGroupActive(publicKey)) {
                     // ignore inactive group's messages
                     return@successBackground
                 }

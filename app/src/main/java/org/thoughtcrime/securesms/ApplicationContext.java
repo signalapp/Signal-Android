@@ -30,10 +30,10 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 
 import org.conscrypt.Conscrypt;
-import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.jobs.JobQueue;
-import org.session.libsession.messaging.opengroups.OpenGroupAPI;
+import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
@@ -169,7 +169,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
         LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-        MessagingConfiguration.Companion.configure(this,
+        MessagingModuleConfiguration.Companion.configure(this,
                 DatabaseFactory.getStorage(this),
                 DatabaseFactory.getAttachmentProvider(this),
                 new SessionProtocolImpl(this));
@@ -420,7 +420,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
         LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        org.session.libsession.messaging.fileserver.FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
+        org.session.libsession.messaging.file_server.FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
         return true;
     }
 

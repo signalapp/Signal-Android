@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.opengroups
+package org.session.libsession.messaging.open_groups
 
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.JsonUtil

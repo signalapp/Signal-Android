@@ -2,7 +2,7 @@ package org.session.libsession.messaging.sending_receiving.pollers
 
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
@@ -17,7 +17,7 @@ import java.util.*
 private class PromiseCanceledException : Exception("Promise canceled.")
 
 class Poller {
-    var userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: ""
+    var userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: ""
     private var hasStarted: Boolean = false
     private val usedSnodes: MutableSet<Snode> = mutableSetOf()
     public var isCaughtUp = false

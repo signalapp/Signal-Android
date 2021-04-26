@@ -2,7 +2,7 @@ package org.session.libsession.messaging.sending_receiving
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
@@ -12,8 +12,8 @@ import org.session.libsession.messaging.messages.control.ClosedGroupControlMessa
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
-import org.session.libsession.messaging.opengroups.OpenGroupMessage
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
+import org.session.libsession.messaging.open_groups.OpenGroupMessage
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
@@ -72,7 +72,7 @@ object MessageSender {
     private fun sendToSnodeDestination(destination: Destination, message: Message, isSyncMessage: Boolean = false): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
@@ -125,7 +125,7 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
                 is Destination.ClosedGroup -> {
-                    val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
+                    val encryptionKeyPair = MessagingModuleConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
                     ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
                 is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
@@ -195,7 +195,7 @@ object MessageSender {
     // Open Groups
     private fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
         message.sender = storage.getUserPublicKey()
         // Set the failure handler (need it here already for precondition failure handling)
@@ -239,7 +239,7 @@ object MessageSender {
 
     // Result Handling
     fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false) {
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()!!
         val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
@@ -267,7 +267,7 @@ object MessageSender {
     }
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()!!
         storage.setErrorMessage(message.sentTimestamp!!, message.sender?:userPublicKey, error)
     }
@@ -275,7 +275,7 @@ object MessageSender {
     // Convenience
     @JvmStatic
     fun send(message: VisibleMessage, address: Address, attachments: List<SignalAttachment>, quote: SignalQuote?, linkPreview: SignalLinkPreview?) {
-        val dataProvider = MessagingConfiguration.shared.messageDataProvider
+        val dataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val attachmentIDs = dataProvider.getAttachmentIDsFor(message.id!!)
         message.attachmentIDs.addAll(attachmentIDs)
         message.quote = Quote.from(quote)
@@ -293,7 +293,7 @@ object MessageSender {
 
     @JvmStatic
     fun send(message: Message, address: Address) {
-        val threadID = MessagingConfiguration.shared.storage.getOrCreateThreadIdFor(address)
+        val threadID = MessagingModuleConfiguration.shared.storage.getOrCreateThreadIdFor(address)
         message.threadID = threadID
         val destination = Destination.from(address)
         val job = MessageSendJob(message, destination)
@@ -301,13 +301,13 @@ object MessageSender {
     }
 
     fun sendNonDurably(message: VisibleMessage, attachments: List<SignalAttachment>, address: Address): Promise<Unit, Exception> {
-        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
+        val attachmentIDs = MessagingModuleConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
         message.attachmentIDs.addAll(attachmentIDs)
         return sendNonDurably(message, address)
     }
 
     fun sendNonDurably(message: Message, address: Address): Promise<Unit, Exception> {
-        val threadID = MessagingConfiguration.shared.storage.getOrCreateThreadIdFor(address)
+        val threadID = MessagingModuleConfiguration.shared.storage.getOrCreateThreadIdFor(address)
         message.threadID = threadID
         val destination = Destination.from(address)
         return send(message, destination)

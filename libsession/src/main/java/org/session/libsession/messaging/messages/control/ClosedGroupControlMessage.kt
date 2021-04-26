@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
@@ -172,7 +172,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             // Expiration timer
             // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
             //       if it receives a message without the current expiration timer value attached to it...
-            dataMessageProto.expireTimer = Recipient.from(MessagingConfiguration.shared.context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
+            dataMessageProto.expireTimer = Recipient.from(MessagingModuleConfiguration.shared.context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()
         } catch (e: Exception) {

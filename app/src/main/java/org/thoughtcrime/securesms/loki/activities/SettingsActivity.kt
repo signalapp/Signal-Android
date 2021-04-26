@@ -28,8 +28,8 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.alwaysUi
 import org.session.libsession.messaging.avatars.AvatarHelper
-import org.session.libsession.messaging.fileserver.FileServerAPI
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences

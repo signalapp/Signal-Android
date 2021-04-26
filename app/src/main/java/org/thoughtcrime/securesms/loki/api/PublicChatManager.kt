@@ -5,10 +5,10 @@ import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
-import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.opengroups.OpenGroup
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
-import org.session.libsession.messaging.opengroups.OpenGroupInfo
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
+import org.session.libsession.messaging.open_groups.OpenGroupInfo
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
@@ -110,7 +110,7 @@ class PublicChatManager(private val context: Context) {
   }
 
   private fun refreshChatsAndPollers() {
-    val storage = MessagingConfiguration.shared.storage
+    val storage = MessagingModuleConfiguration.shared.storage
     val chatsInDB = storage.getAllOpenGroups()
     val removedChatThreadIds = chats.keys.filter { !chatsInDB.keys.contains(it) }
     removedChatThreadIds.forEach { pollers.remove(it)?.stop() }

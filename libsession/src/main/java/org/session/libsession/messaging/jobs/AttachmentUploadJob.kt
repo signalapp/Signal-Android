@@ -3,8 +3,8 @@ package org.session.libsession.messaging.jobs
 import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
-import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.fileserver.FileServerAPI
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.DotNetAPI
@@ -42,11 +42,11 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
     override fun execute() {
         try {
-            val attachment = MessagingConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
+            val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
                 ?: return handleFailure(Error.NoAttachment)
 
             val usePadding = false
-            val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
+            val openGroup = MessagingModuleConfiguration.shared.storage.getOpenGroup(threadID)
             val server = if (openGroup != null) openGroup.server else FileServerAPI.shared.server
             val shouldEncrypt = (openGroup == null) // Encrypt if this isn't an open group
 
@@ -74,14 +74,14 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
         Log.w(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
-        MessagingConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadSucceeded(attachmentID, attachment, attachmentKey, uploadResult)
-        MessagingConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
+        MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadSucceeded(attachmentID, attachment, attachmentKey, uploadResult)
+        MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
     }
 
     private fun handlePermanentFailure(e: Exception) {
         Log.w(TAG, "Attachment upload failed permanently due to error: $this.")
         delegate?.handleJobFailedPermanently(this, e)
-        MessagingConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadFailed(attachmentID)
+        MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadFailed(attachmentID)
         failAssociatedMessageSendJob(e)
     }
 
@@ -94,7 +94,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     private fun failAssociatedMessageSendJob(e: Exception) {
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         val messageSendJob = storage.getMessageSendJob(messageSendJobID)
         MessageSender.handleFailedMessageSend(this.message, e)
         if (messageSendJob != null) {

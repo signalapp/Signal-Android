@@ -4,7 +4,6 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.logging.Log
 
 class ReadReceipt() : ControlMessage() {
-
     var timestamps: List<Long>? = null
 
     companion object {
@@ -19,12 +18,10 @@ class ReadReceipt() : ControlMessage() {
         }
     }
 
-    //constructor
     internal constructor(timestamps: List<Long>?) : this() {
         this.timestamps = timestamps
     }
 
-    // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         val timestamps = timestamps ?: return false

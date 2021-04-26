@@ -5,7 +5,7 @@ package org.session.libsession.messaging.sending_receiving
 import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
@@ -32,8 +32,8 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
     val deferred = deferred<String, Exception>()
     ThreadUtils.queue {
         // Prepare
-        val context = MessagingConfiguration.shared.context
-        val storage = MessagingConfiguration.shared.storage
+        val context = MessagingModuleConfiguration.shared.context
+        val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()!!
         val membersAsData = members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
         // Generate the group's public key
@@ -72,8 +72,8 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
 }
 
 fun MessageSender.update(groupPublicKey: String, members: List<String>, name: String) {
-    val context = MessagingConfiguration.shared.context
-    val storage = MessagingConfiguration.shared.storage
+    val context = MessagingModuleConfiguration.shared.context
+    val storage = MessagingModuleConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Can't update nonexistent closed group.")
@@ -90,8 +90,8 @@ fun MessageSender.update(groupPublicKey: String, members: List<String>, name: St
 }
 
 fun MessageSender.setName(groupPublicKey: String, newName: String) {
-    val context = MessagingConfiguration.shared.context
-    val storage = MessagingConfiguration.shared.storage
+    val context = MessagingModuleConfiguration.shared.context
+    val storage = MessagingModuleConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Can't change name for nonexistent closed group.")
@@ -114,8 +114,8 @@ fun MessageSender.setName(groupPublicKey: String, newName: String) {
 }
 
 fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>) {
-    val context = MessagingConfiguration.shared.context
-    val storage = MessagingConfiguration.shared.storage
+    val context = MessagingModuleConfiguration.shared.context
+    val storage = MessagingModuleConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Can't add members to nonexistent closed group.")
@@ -157,8 +157,8 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
 }
 
 fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<String>) {
-    val context = MessagingConfiguration.shared.context
-    val storage = MessagingConfiguration.shared.storage
+    val context = MessagingModuleConfiguration.shared.context
+    val storage = MessagingModuleConfiguration.shared.storage
     val userPublicKey = storage.getUserPublicKey()!!
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
@@ -198,8 +198,8 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
 fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
     val deferred = deferred<Unit, Exception>()
     ThreadUtils.queue {
-        val context = MessagingConfiguration.shared.context
-        val storage = MessagingConfiguration.shared.storage
+        val context = MessagingModuleConfiguration.shared.context
+        val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
         val group = storage.getGroup(groupID) ?: return@queue deferred.reject(Error.NoThread)
@@ -230,7 +230,7 @@ fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Pro
 
 fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, targetMembers: Collection<String>) {
     // Prepare
-    val storage = MessagingConfiguration.shared.storage
+    val storage = MessagingModuleConfiguration.shared.storage
     val userPublicKey = storage.getUserPublicKey()!!
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
@@ -279,7 +279,7 @@ fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKe
 }
 
 fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey: String) {
-    val storage = MessagingConfiguration.shared.storage
+    val storage = MessagingModuleConfiguration.shared.storage
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val group = storage.getGroup(groupID) ?: run {
         Log.d("Loki", "Can't send encryption key pair for nonexistent closed group.")
