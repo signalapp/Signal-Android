@@ -277,9 +277,7 @@ fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKe
         val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
         ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
     }
-    // we only set public key of EncryptionKeyPair if we send the message to a one-on-one contact, otherwise if sent to a group it is set tu null as we use the one of the envelope
-    val kind = if (targetUser != null) ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), wrappers)
-        else ClosedGroupControlMessage.Kind.EncryptionKeyPair(null, wrappers)
+    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), wrappers)
     val sentTime = System.currentTimeMillis()
     val closedGroupControlMessage = ClosedGroupControlMessage(kind)
     closedGroupControlMessage.sentTimestamp = sentTime
