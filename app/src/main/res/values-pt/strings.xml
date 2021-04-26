@@ -1609,6 +1609,8 @@
   <string name="ConversationUpdateItem_call_is_full">A chamada encontra-se completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amigos</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificações de chamadas</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sem grupos em comum. Reveja os pedidos com cuidado.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sem contactos neste grupo. Reveja os pedidos com cuidado.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pausa</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -2829,6 +2831,9 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para enviar um pagamento para este utilizador, ele precisa de aceitar uma mensagem sua de pedido. Envie-lhe uma mensagem para criar um pedido de mensagem.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar uma mensagem</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Não tem grupos em comum com esta pessoa. Reveja os pedidos com cuidado antes de aceitar para evitar mensagens indesejadas.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nenhum dos seus contactos ou pessoas com quem conversa estão neste grupo. Reveja os pedidos com cuidado antes de os aceitar para evitar mensagens indesejáveis.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Acerca dos pedidos de mensagem</string>
   <string name="GroupsInCommonMessageRequest__okay">Ok</string>
   <!--EOF-->
 </resources>

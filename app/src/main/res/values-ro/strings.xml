@@ -1807,9 +1807,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Vorbește liber</string>
   <string name="EditAboutFragment_encrypted">Criptat</string>
-  <string name="EditAboutFragment_be_kind">Fii bun</string>
-  <string name="EditAboutFragment_coffee_lover">Iubitor de cafea</string>
-  <string name="EditAboutFragment_free_to_chat">Disponibil pentru conversații</string>
+  <string name="EditAboutFragment_be_kind">Fii bun/ă</string>
+  <string name="EditAboutFragment_coffee_lover">Pasionat/ă de cafea</string>
+  <string name="EditAboutFragment_free_to_chat">Disponibil/ă pentru conversații</string>
   <string name="EditAboutFragment_taking_a_break">Într-o pauză</string>
   <string name="EditAboutFragment_working_on_something_new">Lucrez la ceva nou</string>
   <!--EditProfileFragment-->
@@ -2024,9 +2024,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activează dacă dispozitivul tău trimite SMS/MMS prin WiFi (activează atunci când \"Apelare WiFi\" este activat pe dispozitivul tău)</string>
   <string name="preferences__incognito_keyboard">Tastatură incognito</string>
   <string name="preferences__read_receipts">Confirmări de citire</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă confirmările de citire sunt dezactivate, nu veți putea vedea confirmările de citire de la ceilalți.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă dezactivați confirmările de citire, nu veți putea vedea confirmări de citire de la ceilalți.</string>
   <string name="preferences__typing_indicators">Indicatori tastare</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Dacă indicatorii de tastare sunt dezactivați, nu vei putea vedea indicatorii de tastare de la ceilalți.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Dacă dezactivați indicatorii de tastare, nu veți putea vedea indicatori de tastare de la ceilalți.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitați tastaturii dezactivarea învățării personalizate. Această setare nu este o garanție și este posibil ca tastatura dvs. să o ignore.</string>
   <string name="preferences_app_protection__blocked_users">Utilizatori blocați</string>
   <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>
@@ -2056,7 +2056,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_storage__s_messages">%1$s mesaje</string>
   <string name="preferences_storage__custom">Specific</string>
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Signal </string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icon-urile emoji oferite de Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționați toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
   <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
   <string name="preferences_app_protection__who_can">Cine poate…</string>
@@ -2083,7 +2083,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__priority">Prioritate</string>
   <string name="preferences_communication__category_sealed_sender">Expeditor ascuns</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Afișează indicatoare</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Afișează o icoană de status când selectezi \"Detalii mesaj\" din mesajele care au fost trimise folosind funcția expeditor ascuns.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Afișează un icon de status când selectezi \"Detalii mesaj\" din mesajele care au fost trimise folosind funcția expeditor ascuns.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permite oricui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesajele primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Aflați mai multe</string>

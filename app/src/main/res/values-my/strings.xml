@@ -10,12 +10,12 @@
   <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal updateလုပ်နေသည်</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal ကို အပ်ဒိတ်လုပ်နေသည်…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">စကားဝှက်ပိတ်မလား?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Singal ကိုအမြဲဖွင့်ထားပြီး စာတိုဝင်လာပါကအသိပေးပါမည်။</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal ကိုအမြဲဖွင့်ထားပြီး စာတိုဝင်လာပါကအသိပေးပါမည်။</string>
   <string name="ApplicationPreferencesActivity_disable">ပိတ်ထားပါ</string>
   <string name="ApplicationPreferencesActivity_unregistering">စာရင်းမသွင်းထားပါ </string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal စာတိုများနှင့် ဖုန်းခေါ်ဆိုမှုများ မလုပ်တော့ပါ</string>
@@ -556,11 +556,11 @@
     <item quantity="other">အဖွဲ့ဝင် %d ဦးသည် အဖွဲ့အသစ်များကို မပံ့ပိုးပါ၊ ထို့ကြောင့် ဤအဖွဲ့ကိုမဖန်တီးနိုင်ပါ။</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">အဘယ့်ကြောင့်ဆိုသော်“ Legacy Group” ကိုတည်ထောင်လိမ့်မည်။%1$s "Signal ၏ဗားရှင်းအဟောင်းကိုအသုံးပြုနေသည်။ သူတို့က Signal ကို update ပြီးနောက်သူတို့နှင့်အတူ New Style Group တစ်ခုကိုဖန်တီးနိုင်သည်၊</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">အဖွဲ့ဝင် \"%1$s\" သည် Signal ဗားရှင်းအဟောင်းတစ်ခု ကိုသုံးနေ၍ အမွေအဖွဲ့သာ ဖန်တီးခဲ့ပါသည်။ ၎င်းသူမှ​ Signal ကို အဆင့်မြှင့်ပြီးလျှင် သို့မဟုတ် ထိုသူကို ဖယ်ရှားပြီးလျှင် အဖွဲ့သစ်ကို ဖန်တီးနိုင်ပါသည်။</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">ဘာဖြစ်လို့လဲဆိုတော့တစ် ဦး ကအမွေအုပ်စုကိုဖန်တီးလိမ့်မည်%1$d အဖွဲ့ဝင်များသည် Signal ပုံစံဟောင်းကိုအသုံးပြုနေသည်။ သူတို့က Signal ကို update ပြီးနောက်သူတို့နှင့်အတူ New Style Group တစ်ခုကိုဖန်တီးနိုင်သည်၊</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ဤအုပ်စုကိုမဖန်တီးနိုင်ပါ။%1$s "Signal ၏ဗားရှင်းအဟောင်းကိုအသုံးပြုနေသည်။ အုပ်စုကိုမဖွဲ့စည်းခင်သင်ဖယ်ရှားပစ်ရမည်။</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\"%1$s\" သည် Signal ၏ဗားရှင်းအဟောင်းကို အသုံးပြုနေ၍ ဤအုပ်စုကို မဖန်တီးနိုင်ပါ။ အုပ်စုကိုမဖွဲ့စည်းခင် ၎င်းတို့ကို သင်ဖယ်ရှား ရပါမည်။</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">ဤအုပ်စုအား ဖန်တီး၍ မရပါ%1$d အဖွဲ့ဝင်များသည် Signal ပုံစံဟောင်းကိုအသုံးပြုနေသည်။ အုပ်စုကိုမဖွဲ့စည်းခင် သင်ဖယ်ရှားပစ်ရမည်။</item>
   </plurals>
@@ -598,8 +598,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ကွန်ယက်အမှားတစ်ခုကြောင့်အုပ်စုအားမွမ်းမံရန်မအောင်မြင်ပါ၊ ကျေးဇူးပြုပြီးနောက်မှပြန်ကြိုးစားပါ</string>
   <string name="ManageGroupActivity_edit_name_and_picture">နာမည်နှင့်ရုပ်ပုံကိုတည်းဖြတ်ပါ</string>
   <string name="ManageGroupActivity_legacy_group">အမွေအဖွဲ့</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">ဒါကအမွေအုပ်စုတစ်စုဖြစ်ပါတယ်။ အုပ်စုဖွဲ့စီမံခန့်ခွဲမှုကဲ့သို့သောအင်္ဂါရပ်များကိုအဖွဲ့များအတွက်သာရနိုင်သည်</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">ဒါကအမွေအုပ်စုတစ်စုဖြစ်ပါတယ်။ @mentions နဲ့ admins စတဲ့ features အသစ်တွေကိုရယူဖို့၊</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">၎င်းသည် အမွေအဖွဲ့ဖြစ်ပါသည်။ အဖွဲ့ စီမံသူများ စသဖြင့် အင်္ဂါရပ်များသည် အဖွဲ့သစ်များ အတွက်သာ ရရှိနိုင်ပါသည်။</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">၎င်းသည် အမွေအဖွဲ့ တစ်ဖွဲ့ဖြစ်ပါတယ်။ @မန်းရှင်းများ နဲ့ စီမံသူများ စတဲ့ အင်္ဂါရပ်အသစ်များကို အသုံးပြုရန်အတွက်၊</string>
   <string name="ManageGroupActivity_legacy_group_too_large">ဤ Legacy Group သည်အဖွဲ့ကြီးအသစ်သို့အဆင့်မြှင့်။ မရပါ၊ အများဆုံးအုပ်စုအရွယ်အစားသည်%1$d ။</string>
   <string name="ManageGroupActivity_upgrade_this_group">၎င်းအဖွဲ့ကို အဆင့်မြှင့်ပါ။</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">၎င်းသည်မလုံခြုံသော MMS အဖွဲ့ဖြစ်သည်။ သီးသန့်စကားပြောနိုင်ရန် သင်၏အဆက်အသွယ်များကို Signal သို့ဖိတ်ပါ။</string>
@@ -677,41 +677,41 @@
     <item quantity="other">သင်ပြန်လည်ရုပ်သိမ်းချင်ပါသလား%2$d ကပေးပို့လိုက်ဖိတ်ကြားချက်များ%1$s ?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">သင်အဖွဲ့ဝင်တစ် ဦး ဖြစ်နေပြီ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_join">ပူးပေါင်း</string>
-  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ပူးပေါင်းရန်တောင်းဆိုခြင်း</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">အုပ်စုလိုက် ဆက်သွယ်၍ မရပါ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့်ကြုံတွေ့ခဲ့ရသည်</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ဤအုပ်စု link သည်မလှုပ်ရှားပါ</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">သင်သည် အဖွဲ့ဝင် ဖြစ်ပြီး</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">ပါဝင်မယ်</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ပါဝင်ရန် တောင်းဆိုမယ်</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">အဖွဲ့ထဲဝင်လို့မရပါ။ နောက်မှ ပြန်ကြိုးစားပေးပါ။</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက် မှားယွင်းချက် တစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">၎င်းအဖွဲ့လင့်ခ်သည် အသက်မဝင်ပါ</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">အဖွဲ့လိုက်အချက်အလက်မရနိုင်ပါက ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">သင်သည်ဤအဖွဲ့သို့ ဝင်၍ သင်၏အမည်နှင့်ဓာတ်ပုံကိုအဖွဲ့ဝင်များနှင့်မျှဝေလိုသလား။</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">သင်သည်ဤအဖွဲ့သို့ ဝင်၍ သင်၏အမည်နှင့်ဓာတ်ပုံကို အဖွဲ့ဝင်များနှင့် မျှဝေလိုသလား?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">သင်ဤအုပ်စုနှင့်သင်မဝင်နိုင်မီဤအုပ်စု၏အုပ်ချုပ်ရေးမှူးသည်သင်၏တောင်းဆိုမှုကိုအတည်ပြုရမည်။ ဝင်ရောက်ရန်သင်တောင်းဆိုသောအခါသင်၏အမည်နှင့်ဓာတ်ပုံကို၎င်းကိုအဖွဲ့ဝင်များနှင့်မျှဝေမည်ဖြစ်သည်။</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
-    <item quantity="other">အုပ်စု·%1$d အဖွဲ့ဝင်များ</item>
+    <item quantity="other">အဖွဲ့ · အဖွဲ့ဝင်များ %1$d ဦး</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Group link များသုံးရန် Signal ကို Update လုပ်ပါ</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">သင်အသုံးပြုနေသော Signal မူကွဲသည်ဤအုပ်စု link ကိုမထောက်ခံပါ။ link မှတစ်ဆင့်ဤအဖွဲ့သို့ဝင်ရန်နောက်ဆုံးထွက်ဗားရှင်းသို့အပ်ဒိတ်လုပ်ပါ။</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal ကို Update လုပ်ပါ</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">သင်၏ချိတ်ဆက်ထားသောစက်ပစ္စည်းတစ်ခုသို့မဟုတ်တစ်ခုထက်ပိုသောအုပ်စုဖွဲ့ချိတ်ဆက်မှုများအားမပံ့ပိုးသော Signal မူကွဲတစ်ခုရှိသည်။ ဤအုပ်စုတွင်ပါ ၀ င်ရန်သင်၏ချိတ်ဆက်ထားသောစက် (များ) ပေါ်မှအချက်ပြကို Update လုပ်ပါ။</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">အုပ်စုလိုက် link သည်မမှန်ပါ</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">အဖွဲ့လင့်ခ်များသုံးရန် Signal ကို အပ်ဒိတ်လုပ်ပါ</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">သင်အသုံးပြုနေသော Signal ဗားရှင်းသည် ၎င်းအဖွဲ့လင့်ခ်ကို မပံ့ပိုးပါ။ နောက်ဆုံးဗားရှင်းသို့ ၎င်းလင့်ခ်ဖြင့် အပ်ဒိတ်ပြုလုပ်ပါ။</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal ကို အပ်ဒိတ် လုပ်ပါ</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">သင်ချိတ်ဆက်ထားသောစက်ပစ္စည်းတစ်ခုခုသည် အဖွဲ့လင့်ခ်များကို မပံ့ပိုးသော Signal ဗားရှင်းကို သုံးနေပါသည်။ ၎င်းအဖွဲ့သို့ ဝင်ရောက်ရန် ချိတ်ဆက်ထားသော စက်များပေါ်ရှိ Signal ကို အပ်ဒိတ်ပြုလုပ်ပါ။</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">အဖွဲ့လင့်ခ် မမှန်ကန်ပါ</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">ဤအဖွဲ့သို့အလျင်အမြန်ပါဝင်ရန်သူငယ်ချင်းများနှင့်လင့်ခ်တစ်ခုမျှဝေပါ။</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">သူငယ်ချင်းများကို ဖိတ်ခေါ်ပါ</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">ဤအဖွဲ့သို့ အလျင်အမြန်ပါဝင်ရန် သူငယ်ချင်းများသို့ လင့်ခ်တစ်ခုမျှဝေလိုက်ပါ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">လင့်ခ်ဖွင့်ပြီးမျှဝေပါ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">လင့်ကိုမျှဝေပါ</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">အုပ်စုလိုက်ချိတ်ဆက်မှုကိုဖွင့ ်၍ မရပါ။ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့်ကြုံတွေ့ခဲ့ရသည်</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Group link ကိုဖွင့်ရန်သင့်တွင်အခွင့်အရေးမရှိပါ။ ကျေးဇူးပြု၍ အက်မင်မေးပါ</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">သင်အသင်း ၀ င်မဟုတ်ပါ။</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">အဖွဲ့လင့်ခ် ဖွင့်၍ မရပါ။ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ။</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့ပါသည်</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">၎င်းအဖွဲ့လင့်ခ်ကို ဖွင့်ရန် သင့်တွင်ခွင့်ပြုချက် မရှိပါ။ ကျေးဇူးပြု၍ စီမံသူ တစ်ယောက်သို့ မေးပေးပါ။</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">သင်သည် လက်ရှိ အဖွဲ့ဝင် တစ်ဦးမဟုတ်ပါ</string>
   <!--GV2 Request confirmation dialog-->
-  <string name="RequestConfirmationDialog_add_s_to_the_group">ထည့်ရန်“%1$s "အုပ်စုမှ?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">“ တောင်းခံမှုကိုငြင်းပယ်ပါ။%1$s ”</string>
-  <string name="RequestConfirmationDialog_add">ထည့်သည် </string>
-  <string name="RequestConfirmationDialog_deny">ငြင်းပါ</string>
+  <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" ကို အဖွဲ့သို့ ပေါင်းထည့်မည်လား?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" မှ တောင်းဆိုမှုကို ငြင်းဆိုမည်လား?</string>
+  <string name="RequestConfirmationDialog_add">ပေါင်းထည့်မယ်</string>
+  <string name="RequestConfirmationDialog_deny">ငြင်းဆိုမယ်</string>
   <!--ImageEditorHud-->
-  <string name="ImageEditorHud_blur_faces">မျက်နှာမှုန်ဝါး</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">အသစ် - မျက်နှာမှုန်ဝါးခြင်းသို့မဟုတ်မှုန်ဝါးစေရန်နေရာတိုင်းတွင်ဆွဲခြင်း</string>
+  <string name="ImageEditorHud_blur_faces">မျက်နှာမှုန်ဝါးစေပါ</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">အသစ် - မျက်နှာကို မှုန်စေပါ သို့မဟုတ် မည်သည့်နေရာတွင် မှုန်စေရန် ပွတ်ဆွဲပါ</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">မှုန်ဝါးရန်ဘယ်နေရာမှာမဆိုဆွဲပါ</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">နောက်ထပ်မျက်နှာများသို့မဟုတ်ဒေသများမှုန်ဝါးရန်ဆွဲပါ</string>
   <!--InputPanel-->
@@ -719,7 +719,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">မျှဝေရန်</string>
   <string name="InviteActivity_share_with_contacts">အဆက်အသွယ်များနှင့်မျှဝေပါ</string>
-  <string name="InviteActivity_choose_how_to_share">မျှဝေဖို့ဘယ်လိုရွေးချယ်ပါ</string>
+  <string name="InviteActivity_choose_how_to_share">မည်ကဲ့သို့ မျှဝေရန် ရွေးချယ်ပါ</string>
   <string name="InviteActivity_cancel">မလုပ်တော့ပါ</string>
   <string name="InviteActivity_sending">ပို့နေသည်…</string>
   <string name="InviteActivity_invitations_sent">ဖိတ်ကြားမှု ပြုလုပ်ပြီး!</string>
@@ -734,11 +734,11 @@
   <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string>
   <!--LearnMoreTextView-->
-  <string name="LearnMoreTextView_learn_more">ပိုမိုသိရှိသင်ယူရန်</string>
+  <string name="LearnMoreTextView_learn_more">ထပ်မံလေ့လာရန်</string>
   <!--LongMessageActivity-->
-  <string name="LongMessageActivity_unable_to_find_message">မက်ဆေ့ခ်ျကိုရှာ။ မရပါ</string>
-  <string name="LongMessageActivity_message_from_s">ထံမှစာ%1$s</string>
-  <string name="LongMessageActivity_your_message">သင့်ပန်ကြားစာ</string>
+  <string name="LongMessageActivity_unable_to_find_message">မက်ဆေ့ခ်ျရှာမတွေ့ပါ</string>
+  <string name="LongMessageActivity_message_from_s">%1$s ထံမှ မက်ဆေ့ချ်</string>
+  <string name="LongMessageActivity_your_message">သင့် မက်ဆေ့ချ်</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">အင်တာနက်ဆက်သွယ်မှု နောက်ကွယ်တွင် ဖွင့်ထားသည်</string>
@@ -746,27 +746,27 @@
   <string name="MmsDownloader_error_reading_mms_settings">အင်တာနက်ဝန်ဆောင်မှုမှ MMS အပြင်အဆင်များ ဖတ်၍မရပါ</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ရုပ်၊သံ၊ပုံ များ</string>
-  <string name="MediaOverviewActivity_Files">ဖိုင္မ်ား</string>
+  <string name="MediaOverviewActivity_Files">ဖိုင်များ</string>
   <string name="MediaOverviewActivity_Audio">အသံ</string>
-  <string name="MediaOverviewActivity_All">တက်ရောက်သူအားလုံး</string>
+  <string name="MediaOverviewActivity_All">အားလုံး</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">ရွေးချယ်ထားသည့်အရာများကိုဖျက်ပါသလား။</item>
+    <item quantity="other">ရွေးထားသော အရာများကို ဖျက်မည်လား?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="other">၎င်းသည်အားလုံးကိုဖျက်ပစ်လိမ့်မည်%1$d ရွေးချယ်ထားသည့်ဖိုင်များ။ ဤအရာများနှင့်ဆက်စပ်သည့်မည်သည့်မက်ဆေ့ခ်ျစာသားမဆိုဖျက်ပစ်လိမ့်မည်။</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">ဖျက်နေဆဲ</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">စာများဖျက်နေသည်</string>
-  <string name="MediaOverviewActivity_Select_all">အားလုံးကို ရွေးပ</string>
-  <string name="MediaOverviewActivity_collecting_attachments">ပူးတွဲဖိုင်များကို စုစည်းနေသည် </string>
-  <string name="MediaOverviewActivity_Sort_by">စီရင်ထားသော</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">မက်ဆေ့ချ်များကို ဖျက်နေပါသည်…</string>
+  <string name="MediaOverviewActivity_Select_all">အားလုံးကို ရွေးပါ</string>
+  <string name="MediaOverviewActivity_collecting_attachments">ပူးတွဲဖိုင်များကို စုစည်းနေသည်…</string>
+  <string name="MediaOverviewActivity_Sort_by">၎င်းအလိုက်စီရင်ပါ</string>
   <string name="MediaOverviewActivity_Newest">နောက်ဆုံးပေါ်</string>
-  <string name="MediaOverviewActivity_Oldest">အသက်အကြီးဆုံး</string>
-  <string name="MediaOverviewActivity_Storage_used">သိုလှောင်မှုကိုအသုံးပြုခဲ့သည်</string>
-  <string name="MediaOverviewActivity_All_storage_use">သိုလှောင်မှုအားလုံးအသုံးပြုသည်</string>
-  <string name="MediaOverviewActivity_Grid_view_description">Grid မြင်ကွင်း</string>
-  <string name="MediaOverviewActivity_List_view_description">စာရင်းကြည့်ရန်</string>
-  <string name="MediaOverviewActivity_Selected_description">ခုအား ေရြးခ်ယ္ျပီး</string>
+  <string name="MediaOverviewActivity_Oldest">အဟောင်းဆုံး</string>
+  <string name="MediaOverviewActivity_Storage_used">အသုံးပြုထားသော သိုလှောင်မှု</string>
+  <string name="MediaOverviewActivity_All_storage_use">သုံးနိုင်သော သိုလှောင်မှုအားလုံး</string>
+  <string name="MediaOverviewActivity_Grid_view_description">အကွက်လိုက် ကြည့်ရန်</string>
+  <string name="MediaOverviewActivity_List_view_description">စာရင်းလိုက်ကြည့်ရန်</string>
+  <string name="MediaOverviewActivity_Selected_description">ရွေးချယ်ထားသော</string>
   <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d ပစ္စည်းတွေ %2$s</item>
   </plurals>
@@ -785,9 +785,9 @@
   <string name="Megaphones_introducing_reactions">တုံ့ပြန်မှုကိုမိတ်ဆက်</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">သင်၏ခံစားချက်ကိုလျင်မြန်စွာမျှဝေရန်မည်သည့်စာကိုမဆိုထိပုတ်ပါ။</string>
   <string name="Megaphones_remind_me_later">နောက်မှပြန်သတိပေးပါ</string>
-  <string name="Megaphones_verify_your_signal_pin">သင်၏ Signal PIN နံပါတ်ကိုစစ်ဆေးပါ</string>
+  <string name="Megaphones_verify_your_signal_pin">သင်၏ Signal ပင်နံပါတ်ကို အတည်ပြုပါ</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ကျွန်ုပ်တို့သည်သင်၏ PIN နံပါတ်ကိုမှတ်မိစေရန်သင့် PIN ကိုအတည်ပြုရန်ရံဖန်ရံခါကျွန်ုပ်တို့တောင်းဆိုပါမည်။</string>
-  <string name="Megaphones_verify_pin">PIN နံပါတ်ကိုစစ်ဆေးပါ</string>
+  <string name="Megaphones_verify_pin">ပင်နံပါတ်ကို အတည်ပြုပါ</string>
   <string name="Megaphones_get_started">စတင်ပါ</string>
   <string name="Megaphones_new_group">အဖွဲ့သစ်</string>
   <string name="Megaphones_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
@@ -897,21 +897,21 @@
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">သင့်ကို အဖွဲ့သို့ ဖိတ်ခေါ်ထားသည်။</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-    <item quantity="other">%1$d လူများကို အဖွဲ့သို့ ဖိတ်ခေါ်ထားသည်။</item>
+    <item quantity="other">အယောက် %1$d ဦးကို အဖွဲ့သို့ ဖိတ်ခေါ်ထားသည်။</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="other">သင် %1$d အဖွဲ့သို့ ဖိတ်ခေါ်မှုကို ပြန်လည်ရုပ်သိမ်းခဲ့သည်။</item>
+    <item quantity="other">သင်မှ အဖွဲ့သို့ ဖိတ်ခေါ်မှု %1$d ခုကို ပြန်လည်ရုပ်သိမ်းခဲ့သည်။</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="other">%1$s သည်%2$d အဖွဲ့သို့ ဖိတ်ခေါ်မှုကို ပြန်လည်ရုတ်သိမ်းခဲ့သည်။</item>
+    <item quantity="other">%1$s မှ အဖွဲ့သို့ ဖိတ်ခေါ်မှု %2$d ခုကို ပြန်လည်ရုတ်သိမ်းခဲ့သည်။</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">တစ်စုံတစ်ဦးသည် အဖွဲ့သို့ ဖိတ်ခေါ်မှုကို ငြင်းဆိုခဲ့သည်။</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">သင်သည် အဖွဲ့သို့ ဖိတ်ခေါ်မှုကို ငြင်းဆိုခဲ့သည်။</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s သည် အဖွဲ့သို့ သင်၏ဖိတ်ခေါ်ချက်ကို ရုပ်သိမ်းလိုက်သည်။</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">အက်မင်သည် အဖွဲ့သို့ သင်၏ဖိတ်ခေါ်ချက်ကို ရုပ်သိမ်းလိုက်သည်။</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
-    <item quantity="other">%1$d အဖွဲ့သို့ ဖိတ်ခေါ်ချက်များကို ရုပ်သိမ်းလိုက်သည်။</item>
+    <item quantity="other">အဖွဲ့သို့ ဖိတ်ခေါ်ချက် %1$d ခုသည် ရုပ်သိမ်းခံခဲ့ရပါသည်။</item>
   </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">သင်သည် အဖွဲ့သို့ဖိတ်ခေါ်မှုကို လက်ခံခဲ့သည်။</string>
@@ -929,13 +929,11 @@
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">အဖွဲ့၏အချက်အလက်များအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို \"%1$s\" သို့ သင် ပြောင်းလိုက်သည်။</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s သည် အဖွဲ့၏အချက်အလက်များအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို \"%2$s\" သို့ ပြောင်းထားသည်။</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">အဖွဲ့၏အချက်အလက်များအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို 
-\"%1$s\" သို့ ပြောင်းလဲထားသည်။</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">အဖွဲ့၏အချက်အလက်များအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို \"%1$s\" သို့ ပြောင်းလဲထားသည်။</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည် ကို \"%1$s\" သို့ သင် ပြောင်းလိုက်သည်။</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s သည် အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည် ကို \"%2$s\" သို့ ပြောင်းလိုက်သည်။</string>
-  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို 
-\"%1$s\" သို့ ပြောင်းလဲထားသည်။</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">အဖွဲ့ဝင်ဖြစ်မှုအား မည်သူက ပြင်ဆင်ပြောင်းလဲနိုင်သည်ကို \"%1$s\" သို့ ပြောင်းလဲထားသည်။</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">အက်မင်၏သဘောတူညီချက်ကို ပိတ်ထားပြီး အဖွဲ့လင့်ခ်ကို သင်ဖွင့်လိုက်သည်။</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">အက်မင်၏သဘောတူညီချက်ကို ဖွင့်ထားပြီး အဖွဲ့လင့်ခ်ကို သင်ဖွင့်လိုက်သည်။</string>
@@ -953,27 +951,27 @@
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$sသည် အဖွဲ့လင့်ခ်အတွက် အက်မင်သဘောတူညီချက်ကို ဖွင့်ထားသည်။</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">အဖွဲ့လင့်ခ်အတွက် အက်မင်သဘောတူညီချက်ကို ပိတ်ထားသည်။</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">သငျသညျအုပ်စု link ကို reset ။</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$sအုပ်စု link ကို reset ။</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">အုပ်စုချိတ်ဆက်မှုကိုပြန်လည်သတ်မှတ်ထားသည်</string>
+  <string name="MessageRecord_you_reset_the_group_link">သင်သည် အဖွဲ့လင့်ခ်ကို ပြန်လည်သတ်မှတ် ထားခဲ့ပါသည်။</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s သည် အဖွဲ့လင့်ခ်ကို ပြန်လည်သတ်မှတ် ထားခဲ့ပါသည်။</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">အဖွဲ့လင့်ခ်ကို ပြန်လည်သတ်မှတ် ထားခဲ့ပါသည်။</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">သငျသညျအုပ်စု link ကိုကနေတဆင့်အုပ်စုဝင်ရောက်ခဲ့သည်။</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$sအုပ်စု link ကိုကနေတဆင့်အုပ်စုဝင်ရောက်ခဲ့သည်။</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">အဖွဲ့လင့်ခ်ဖြင့် သင်သည် အဖွဲ့သို့ ဝင်ခဲ့ပါသည်။</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">အဖွဲ့လင့်ခ်ဖြင့် %1$s သည် အဖွဲ့သို့ ဝင်ခဲ့ပါသည်။</string>
   <!--GV2 group link requests-->
-  <string name="MessageRecord_you_sent_a_request_to_join_the_group">အဖွဲ့ထဲဝင်ရန်သင်တောင်းဆိုချက်တစ်ခုပို့သည်။</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sအုပ်စုချိတ်ဆက်မှတဆင့်ပူးပေါင်းရန်တောင်းဆိုခဲ့သည်။</string>
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">အဖွဲ့ထဲဝင်ရန် သင်တောင်းဆိုချက် တစ်ခုပို့ခဲ့ပါသည်။</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s သည် အဖွဲ့သို့ အဖွဲ့လင့်ခ်ဖြင့်ဝင်ရန် တောင်းဆိုခဲ့ပါသည်။</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$sအဖွဲ့ထဲဝင်ရန်သင့်တောင်းဆိုချက်ကိုအတည်ပြုခဲ့သည်</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$sမှအုပ်စုနှင့်ပူးပေါင်းရန်တောင်းဆိုချက်ကိုအတည်ပြုခဲ့သည်%2$s ။</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">အဖွဲ့မှပါဝင်ရန်သင်တောင်းဆိုချက်ကိုသင်အတည်ပြုခဲ့သည်%1$s ။</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">အဖွဲ့ထဲဝင်ရန်သင့်တောင်းဆိုချက်ကိုအတည်ပြုပြီးဖြစ်သည်</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">အဖွဲ့မှပူးပေါင်းရန်တောင်းဆိုခြင်း%1$s အတည်ပြုပြီး</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s သည် အဖွဲ့ထဲဝင်ရန် သင့်တောင်းဆိုချက်ကို အတည်ပြုခဲ့သည်။</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%2$s မှ အဖွဲ့သို့ဝင်ရန် တောင်းဆိုချက်ကို %1$s သည် လက်ခံအတည်ပြုခဲ့ပါသည်။</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$s မှ အဖွဲ့သို့ဝင်ရန် တောင်းဆိုချက်ကို သင်သည် လက်ခံအတည်ပြုခဲ့ပါသည်။</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">အဖွဲ့ထဲဝင်ရန် သင့်တောင်းဆိုချက်သည် လက်ခံ ခံခဲ့ရပါသည်။</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">အဖွဲ့ထဲဝင်ရန် %1$s မှ တောင်းဆိုချက်သည် လက်ခံ ခံခဲ့ရပါသည်။</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">အုပ်စုထဲဝင်ရန်သင်၏တောင်းဆိုချက်ကိုအက်မင်မှငြင်းပယ်ထားသည်။</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$sမှအဖွဲ့သို့ဝင်ရန်တောင်းဆိုချက်ကိုငြင်းပယ်ခဲ့သည်%2$s ။</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">အဖွဲ့မှပူးပေါင်းရန်တောင်းဆိုခြင်း%1$s ငြင်းပယ်ခံခဲ့ရသည်</string>
-  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">အုပ်စုထဲဝင်ရန်သင်တောင်းဆိုချက်ကိုဖျက်သိမ်းလိုက်သည်။</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$sအုပ်စုထဲဝင်ရန်တောင်းဆိုမှုကိုဖျက်သိမ်းလိုက်သည်။</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">သင်၏ အဖွဲ့သို့ဝင်ရန် တောင်းဆိုချက်ကို စီမံသူမှ ငြင်းဆိုခဲ့ပါသည်။</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s မှ အဖွဲ့သို့ဝင်ရန် တောင်းဆိုချက်ကို %1$s သည် ငြင်းဆိုခဲ့ပါသည်။</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s မှ အဖွဲ့သို့ဝင်ရန် တောင်းဆိုချက်သည် ငြင်းဆိုခံခဲ့ရပါသည်။</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">အဖွဲ့ထဲဝင်ရန် သင့်တောင်းဆိုချက်ကို သင်ကိုယ်တိုင် ပယ်ဖျက်ခဲ့သည်။</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s မှ အဖွဲ့သို့ဝင်ရန် တောင်းဆိုချက်ကို ၎င်းကိုယ်တိုင်မှ ပယ်ဖျက်ခဲ့ပါသည်။</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">သင်နှင့် %s ၏ လုံခြုံရေးနံပါတ် ပြောင်းလဲသွားသည်။</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်များအား အတည်ပြုပြီးဖြစ်သည်။</string>
@@ -981,16 +979,16 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်များမှာ အတည်မပြုရသေးပါ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်အား အခြားဖုန်း/ကွန်ပျူတာမှ အတည်ပြုမထားပါ။</string>
   <!--Group Calling update messages-->
-  <string name="MessageRecord_s_started_a_group_call_s">%1$sအုပ်စုခေါ်ဆိုမှုတစ်ခုစတင်ခဲ့သည်·%2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$sအုပ်စုခေါ်ဆိုမှုတွင်·%2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s1">သင်အဖွဲ့လိုက်ဖုန်းခေါ်သည်။%1$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$sနှင့်%2$s အုပ်စုခေါ်ဆိုမှုတွင်·%3$s</string>
-  <string name="MessageRecord_group_call_s">အုပ်စုလိုက်ခေါ်ဆိုမှု·%1$s</string>
-  <string name="MessageRecord_s_started_a_group_call">%1$sအုပ်စုတစ်စုခေါ်ဆိုမှုစတင်ခဲ့သည်</string>
-  <string name="MessageRecord_s_is_in_the_group_call">%1$sအုပ်စုခေါ်ဆိုမှုတွင်ရှိသည်</string>
-  <string name="MessageRecord_you_are_in_the_group_call">သင်အုပ်စုဖွဲ့ခေါ်ဆိုမှုတွင်ရှိနေသည်</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$sနှင့်%2$s အုပ်စုခေါ်ဆိုမှု၌ရှိကြ၏</string>
-  <string name="MessageRecord_group_call">အုပ်စုလိုက်ဖုန်းခေါ်ပါ</string>
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည် · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည် · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">သင်သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲတွင် ရှိပါသည် · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s နှင့် %2$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည် · %3$s</string>
+  <string name="MessageRecord_group_call_s">အဖွဲ့လိုက်ခေါ်ဆိုမှု · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည်</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည်</string>
+  <string name="MessageRecord_you_are_in_the_group_call"> သင်သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည်</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s နှင့် %2$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည်</string>
+  <string name="MessageRecord_group_call">အဖွဲ့လိုက် ခေါ်ဆိုမှု</string>
   <string name="MessageRecord_you">သင်</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="other">%1$s,%2$s နှင့်%3$d အခြားသူများကအုပ်စုခေါ်ဆိုမှုတွင်·%4$s</item>
@@ -1014,17 +1012,17 @@
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ဤအဖွဲ့သို့ဆက်သွယ်ပါ။ သင်လက်ခံသည်အထိသူတို့မက်ဆေ့ခ်ျများကိုသင်မြင်ရသည်ကိုသူတို့မသိနိုင်ပါ။</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ဤအုပ်စုကိုဖွင့်ပြီးသင်၏အမည်နှင့်ဓာတ်ပုံကိုအဖွဲ့ဝင်များနှင့်မျှဝေပါ။ သူတို့ကိုပိတ်ဆို့ခြင်းမလုပ်မချင်းသင်မည်သည့်စာကိုမျှလက်ခံရရှိမည်မဟုတ်ပါ။</string>
   <string name="MessageRequestProfileView_view">ကြည့်မယ်</string>
-  <string name="MessageRequestProfileView_member_of_one_group">အဖွဲ့ဝင်%1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">အဖွဲ့ဝင်%1$s နှင့်%2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">အဖွဲ့ဝင်%1$s ,%2$s နှင့်%3$s</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s ၏ အဖွဲ့ဝင်</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s နှင့် %2$s အဖွဲ့တို့၏ အဖွဲ့ဝင်</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s၊ %2$s၊ နှင့် %3$s အဖွဲ့များတို့၏ အဖွဲ့ဝင်</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="other">%1$d အဖွဲ့ဝင်များ</item>
+    <item quantity="other">အဖွဲ့ဝင် %1$d ဦး</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$dအဖွဲ့ဝင် (+%2$d ဖိတ်ကြားခဲ့သည်)</item>
+    <item quantity="other">အဖွဲ့ဝင် %1$d ဦး (+%2$d ဦးကို ဖိတ်ခေါ်ထားပြီး) </item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="other">%dနောက်ထပ်အုပ်စုများ</item>
+    <item quantity="other">%d နောက်ထပ်အဖွဲ့များ</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">စကားဝှက်များ မတူညီပါ။</string>
@@ -1038,7 +1036,7 @@
 • စာများအားလုံးကိုဖတ်ရန်
 \n• သင့်အမည်ဖြင့်စာပို့ရန်</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ချိတ်ဆက်နေသည့်ဖုန်း/ကွန်ပျူတာ</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">ဖုန်း/ကွန်ပျူတာအသစ်နှင့်ချိတ်ဆက်နေသည်</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">စက်ပစ္စည်းအသစ်နှင့် ချိတ်ဆက်နေသည်…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">အတည်ပြုပြီးသည့်စက်</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ဘာစက်မှမတွေ့ပါ</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ကွန်ယက်မှားနေသည်</string>
@@ -1054,7 +1052,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">သင့်စာသည် အချိန်သတ်မှတ်ချက်မရှိပါ။</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ယခုစာတွဲတွင် ပေးပို့၊ရယူသော စာများသည် တွေ့ရှိပြီး %s အတွင်းပျက်သွားပါမည်။</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_update_now">ယခု Update လုပ်ပါ</string>
+  <string name="OutdatedBuildReminder_update_now">ယခု အပ်ဒိတ် လုပ်ပါ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">ဤအချက်ပြဗားရှင်းသည်ယနေ့ကုန်ဆုံးပါလိမ့်မည် လတ်တလောဗားရှင်းကို update လုပ်ပါ။</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="other">ဤအချက်ပြဗားရှင်းသည်သက်တမ်းကုန်သွားမည်%d ရက်ပေါင်း။ လတ်တလောဗားရှင်းကို update လုပ်ပါ။</item>
@@ -1068,14 +1066,14 @@
   <string name="PassphrasePromptActivity_signal_android_lock_screen">အချက်ပြ Android - သော့ခတ်မျက်နှာပြင်</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">မြေပုံ</string>
-  <string name="PlacePickerActivity_drop_pin">pin pin</string>
+  <string name="PlacePickerActivity_drop_pin">ပင်ချမယ်</string>
   <string name="PlacePickerActivity_accept_address">လိပ်စာလက်ခံပါ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">သင်သွင်းထားသော Google Play ဗားရှင်းသည် ကောင်းကောင်းအလုပ်မလုပ်ပါသဖြင့် အသစ်ပြန်သွင်းပြီး ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
   <!--PinRestoreEntryFragment-->
-  <string name="PinRestoreEntryFragment_incorrect_pin">PIN နံပါတ်မှားနေသည်</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">PIN နံပါတ်ကိုကျော်သွားပြီလား</string>
-  <string name="PinRestoreEntryFragment_need_help">အကူအညီလိုအပ်ပါသလား။</string>
+  <string name="PinRestoreEntryFragment_incorrect_pin">ပင်နံပါတ်မှားနေသည်</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">ပင်နံပါတ် ရိုက်ခြင်းကို ကျော်သွားမည်လား?</string>
+  <string name="PinRestoreEntryFragment_need_help">အကူအညီ လိုအပ်ပါသလား?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">သင်၏ PIN နံပါတ်မှာ%1$d သင်ဖန်တီးထားသောဂဏန်းကုဒ်နံပါတ် (သို့) အက္ခရာနံပါတ်များဖြစ်နိုင်သည်။ \ n \ n သင်၏ပင်နံပါတ်ကိုသင်မမှတ်မိပါကအသစ်တစ်ခုကိုသင်ဖန်တီးနိုင်သည်။ သင်၏အကောင့်ကို မှတ်ပုံတင်၍ သုံးနိုင်သည်၊ သို့သော်သင်၏ပရိုဖိုင်းအချက်အလက်ကဲ့သို့သောအချို့သောသိမ်းဆည်းထားသည့်အရာများဆုံးရှုံးမည်။</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">သင်၏ပင်နံပါတ်ကိုသင်မမှတ်မိပါကအသစ်တစ်ခုကိုသင်ဖန်တီးနိုင်သည်။ သင်၏အကောင့်ကို မှတ်ပုံတင်၍ သုံးနိုင်သည်၊ သို့သော်သင်၏ပရိုဖိုင်းအချက်အလက်ကဲ့သို့သောအချို့သောသိမ်းဆည်းထားသည့်အရာများဆုံးရှုံးမည်။</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ပင်နံပါတ်အသစ်ဖန်တီးပါ</string>
@@ -1542,6 +1540,8 @@
   <string name="ConversationUpdateItem_call_is_full">ခေါ်ဆိုမှုပြည့်သွားတယ်</string>
   <string name="ConversationUpdateItem_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play …ခေတ္တနားသည်</string>
   <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
@@ -2745,6 +2745,9 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">၎င်းသုံးသူသို့ ငွေပေးချေမှုပေးလိုလျှင် ၎င်းတို့သည် သင့်စီမှ မက်ဆေ့ချ်တောင်းဆိုမှု ကို လက်ခံရန်လိုပါမည်။ ၎င်းစီသို့ တောင်းဆိုရန် မက်ဆေ့ချ်ပို့လိုက်ပါ။</string>
   <string name="CanNotSendPaymentDialog__send_a_message">မက်ဆေ့ချ်ပို့မယ်</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">၎င်းပုဂ္ဂိုလ်နှင့်  သင့်ထံ တူညီသော အဖွဲ့များ မရှိပါ။ အလိုမရှိသော မက်ဆေ့ချ်များကို မလက်ခံမီ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">၎င်းအဖွဲ့ထဲတွင် သင်၏ အဆက်အသွယ်များ သို့မဟုတ် သင်နှင့် စကားပြောဆိုထားသူများ တစ်ယောက်မှ မရှိပါ။ အလိုမရှိသော မက်ဆေ့ချ်များကို မလက်ခံမီ တောင်းဆိုမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">မက်ဆေ့ခ်ျတောင်းဆိုမှုများ အကြောင်း</string>
   <string name="GroupsInCommonMessageRequest__okay">အိုကေ</string>
   <!--EOF-->
 </resources>

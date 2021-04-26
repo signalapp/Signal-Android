@@ -1602,6 +1602,7 @@
   <string name="ConversationUpdateItem_call_is_full">Повикот е полн</string>
   <string name="ConversationUpdateItem_invite_friends">Покани пријатели</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Вклучи известувања за повици</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Прегледувајте ги барањата внимателно.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пушти … Пауза</string>
   <string name="audio_view__download_accessibility_description">Преземи</string>
@@ -2637,8 +2638,11 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d"> Внесете збор %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Збор %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Следно</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Невалиден збор</string>
   <!--ClearClipboardAlarmReceiver-->
@@ -2648,6 +2652,7 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Прегледувајте ги барањата внимателно за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
   <!--EOF-->
 </resources>

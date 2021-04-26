@@ -2427,14 +2427,21 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeviceTransferSetup__turn_on_location_services">Hely szolgáltatások bekapcsolása</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Sikertelen a hely beállítások megnyitása.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi bekapcsolása</string>
+  <string name="DeviceTransferSetup__error_connecting">Hiba a csatlakozáskor</string>
   <string name="DeviceTransferSetup__retry">Újra</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Debug log elküldése</string>
   <string name="DeviceTransferSetup__verify_code">Kód ellenőrzés</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">A számok nem egyeznek</string>
   <string name="DeviceTransferSetup__continue">Folytatás</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">A szám nem egyezik</string>
   <string name="DeviceTransferSetup__stop_transfer">Átvitel megszakítása</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Sikertelen a régi eszköz felfedezése</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Sikertelen az új eszköz felfedezése</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Biztosítsd, hogy a következő jogosultságok és szolgáltatások engedélyezettek:</string>
   <string name="DeviceTransferSetup__location_permission">Hely jogosultságok</string>
   <string name="DeviceTransferSetup__location_services">Hely szolgáltatások</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Menj a támogatási oldalra</string>
   <string name="DeviceTransferSetup__try_again">Újra</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
@@ -2642,8 +2649,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentNotificationsView__view">Megtekintés</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Ahhoz, hogy fizethess ennek a felhasználónak, neki el kell fogadni egy üzenet kérelmet tőled. Küldj neki egy üzenetet, hogy létrehozz egy üzenet kérelmet.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Küldj egy üzenetet</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nincsennek közös csoportjai ezzel a személlyel. Ellenőrizd a kérelmet figyelmesen mielőtt elfogadod, hogy elkerüld a nem kívánt üzeneteket.</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--EOF-->
 </resources>

@@ -888,7 +888,7 @@
   <string name="MessageRecord_s_joined_signal">%s finns på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du inaktiverade försvinnande meddelanden.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s inaktiverade försvinnande meddelanden.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tidsgränsen för att försvinnande meddelanden till %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tidsgränsen för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denna grupp uppdaterades till en Ny grupp.</string>
@@ -1695,7 +1695,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%d andra</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs">Sök i GIF-bilder</string>
+  <string name="giphy_activity_toolbar__search_gifs">Sök GIF-bilder</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Inget hittat</string>
   <!--log_submit_activity-->

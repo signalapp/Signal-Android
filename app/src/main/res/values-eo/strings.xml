@@ -1502,6 +1502,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mesaĝo</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Mesaĝopeto</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Ludi videaĵon</string>
   <string name="ThumbnailView_Has_a_caption_description">Havas priskribon</string>
@@ -1608,6 +1609,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_call_is_full">La alvoko plenas</string>
   <string name="ConversationUpdateItem_invite_friends">Inviti amikojn</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Ŝalti la sciigojn pri alvoko</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Neniu komuna grupo. Kontroli la petojn zorgeme.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Neniu kontakto en tiu grupo. Kontroli la petojn zorgeme.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Ludi … Paŭzigi</string>
   <string name="audio_view__download_accessibility_description">Elŝuti</string>
@@ -1697,6 +1700,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">%d aliaj</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">Serĉi GIF-ojn</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nenio trovita</string>
   <!--log_submit_activity-->
@@ -2116,11 +2120,30 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="PaymentsTransferFragment__next">Sekva</string>
   <string name="PaymentsTransferFragment__invalid_address">Nevalida adreso</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Kontrolu la monujo-adreson, al kie vi provas transigi monon, kaj reprovu.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Por skani QR-kodo, Signal bezonas uzi la fotilon.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon. Iru al la aplikaĵaj agordoj, elektu „Permesoj“, kaj ŝaltu „Fotilo“.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Por skani QR-kodo, Signal bezonas uzi la fotilon.</string>
   <string name="PaymentsTransferFragment__settings">Agordoj</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skani adreso-QR-kodon</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Peto</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Baskuli</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">,</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Aldoni noton</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Noto</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__network_fee">Ret-kosto</string>
   <string name="ConfirmPayment__to">Al</string>
@@ -2731,6 +2754,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Sendi mesaĝon</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vi havas neniun komunan grupon kun tiu homo. Kontroli la petojn zorgeme antaŭ via akcepto por ne sendi nedeziratajn mesaĝojn.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Neniu el viaj kontaktoj aŭ homoj alparolataj estas en tiu grupo. Kontroli la petojn zorgeme antaŭ via akcepto por ne sendi nedeziratajn mesaĝojn.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Pri mesaĝopetoj</string>
   <string name="GroupsInCommonMessageRequest__okay">Bone</string>
   <!--EOF-->
 </resources>

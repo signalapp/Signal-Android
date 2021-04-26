@@ -1609,6 +1609,8 @@
   <string name="ConversationUpdateItem_call_is_full">چاقىرىق توشتى</string>
   <string name="ConversationUpdateItem_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">چاقىرىش ئۇقتۇرۇشلىرىنى قوزغات</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ھېچقانداق ئورتاق گۇرۇپپا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">بۇ گۇرۇپپىدا ھېچقانداق ئەزا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">قوي… تورمۇزلا</string>
   <string name="audio_view__download_accessibility_description">چۈشۈر</string>
@@ -1698,6 +1700,7 @@
     <item quantity="other">0</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">‫GIF ئىزدە</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ھىچنېمە تېپىلمىدى</string>
   <!--log_submit_activity-->
@@ -2828,6 +2831,9 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">بۇ ئىشلەتكۈچىگە بىر چىقىم يوللاش ئۈچۈن، ئۇلار سىزدىن كەلگەن بىر ئۇچۇر ئىلتىماسىنى قوبۇل قىلىشى كېرەك. ئۇچۇر ئىلتىماسىنى قۇرۇشى ئۈچۈن ئۇلارغا بىر ئۇچۇر ئەۋەتىڭ. </string>
   <string name="CanNotSendPaymentDialog__send_a_message">بىز ئۇچۇر يوللا</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">بۇ كىشى بىلەن ئورتاق گۇرۇپپىڭىز يوق. كېرەكسىز ئۇچۇرلاردىن ساقلىنىش ئۈچۈن قوشۇلۇشتىن ئىلگىرى تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">بۇ گۇرۇپپىدا ئالاقەداشلىرىڭىز ياكى سىز پاراڭلاشقان كىشى يوق كېرەكسىز ئۇچۇرلاردىن ساقلىنىش ئۈچۈن قوشۇلۇشتىن ئىلگىرى تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">ئۇچۇر ئىلتىماسى ھەققىدە</string>
   <string name="GroupsInCommonMessageRequest__okay">جەزملە</string>
   <!--EOF-->
 </resources>

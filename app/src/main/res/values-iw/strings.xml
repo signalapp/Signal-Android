@@ -1740,6 +1740,8 @@
   <string name="ConversationUpdateItem_call_is_full">השיחה מלאה</string>
   <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string>
   <string name="ConversationUpdateItem_enable_call_notifications">אפשר התראות שיחה</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">אין קבוצות במשותף. סקור בקשות בזהירות.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">אין אנשי קשר בקבוצה הזאת. סקור בקשות בזהירות.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -2994,6 +2996,9 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">כדי לשלוח תשלום אל המשתמש הזה, הוא צריך לאשר בקשת הודעה ממך. שלח לו הודעה כדי ליצור בקשת הודעה.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">שלח הודעה</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">אין לך קבוצות משותפות עם האיש הזה. סקור בקשות בזהירות טרם אישור שלהן כדי להימנע מהודעות בלתי רצויות.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">אף אחד מחברי הקבוצה שלך או האנשים שאתה מתכתב איתם נמצאים בקבוצה הזאת. סקור בקשות בזהירות טרם אישור שלהן כדי להימנע מהודעות בלתי רצויות.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">על אודות בקשות הודעה</string>
   <string name="GroupsInCommonMessageRequest__okay">בסדר</string>
   <!--EOF-->
 </resources>

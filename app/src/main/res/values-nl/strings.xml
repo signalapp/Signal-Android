@@ -286,8 +286,8 @@
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
-  <string name="ConversationFragment__tap_to_review">Tik hier om te evalueren</string>
-  <string name="ConversationFragment__review_requests_carefully">Overweeg verzoeken zorgvuldig</string>
+  <string name="ConversationFragment__tap_to_review">Tik hier om te vergelijken</string>
+  <string name="ConversationFragment__review_requests_carefully">Overweeg dit verzoek zorgvuldig</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal heeft een ander contactpersoon gevonden met dezelfde naam.</string>
   <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
   <string name="ConversationFragment_verify">Verifiëren</string>
@@ -1614,8 +1614,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
-  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Geen gemeenschappelijke groepen: overweeg de uitnodiging zorgvuldig.</string>
-  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt met deze persoon geen gemeenschappelijke groep: overweeg dit gespreksverzoek zorgvuldig.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Er is in deze groep geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -2658,10 +2658,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="BlockedUsersActivity__failed_to_block_s">“%1$s” blokkeren is mislukt.</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">“%1$s” is gedeblokkeerd.</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">Groepsleden evalueren</string>
-  <string name="ReviewCardDialogFragment__review_request">Verzoek evalueren</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde namen. Evalueer de groepsleden hieronder en neem actie indien nodig.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Evalueer de contactpersonen hieronder en onderneem actie als je niet zeker bent van wie het verzoek afkomstig is.</string>
+  <string name="ReviewCardDialogFragment__review_members">Groepsleden vergelijken</string>
+  <string name="ReviewCardDialogFragment__review_request">Lidmaatschapsverzoeken vergelijken</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam. Vergelijk deze groepsleden hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk als je niet zeker bent van wie het lidmaatschapsverzoek afkomstig is de personen hieronder  en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Geen gemeenschappelijke groepen.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2677,7 +2677,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Het verwijderen van een groepslid is mislukt.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Lid</string>
-  <string name="ReviewCard__request">Verzoek</string>
+  <string name="ReviewCard__request">Lidmaatschapsverzoek</string>
   <string name="ReviewCard__your_contact">Je contactpersoon</string>
   <string name="ReviewCard__remove_from_group">Van de groep verwijderen</string>
   <string name="ReviewCard__update_contact">Contactpersoon bijwerken</string>
@@ -2837,7 +2837,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CanNotSendPaymentDialog__send_a_message">Een bericht verzenden</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Je hebt geen gemeenschappelijke groep met deze persoon. Overweeg zorgvuldig of je dit gespreksverzoek wilt accepteren om ongewenste berichten te vermijden.</string>
-  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een gesprek voert in deze groep. Overweeg zorgvuldig of je dit gespreksverzoek wilt accepteren om ongewenste berichten te vermijden.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een gesprek voert in deze groep. Overweeg zorgvuldig of je deze groepsuitnodiging wilt accepteren om ongewenste berichten te vermijden.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Over gespreksverzoeken</string>
   <string name="GroupsInCommonMessageRequest__okay">Oké</string>
   <!--EOF-->
