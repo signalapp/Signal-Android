@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.get
+import org.thoughtcrime.securesms.loki.utilities.getLong
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
 
