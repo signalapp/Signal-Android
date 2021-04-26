@@ -437,6 +437,7 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
+
     // Notify the user
     if (userPublicKey == senderPublicKey) {
         // sender is a linked device
@@ -526,12 +527,17 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
             else SignalServiceGroup.Type.MEMBER_REMOVED
 
     // Notify the user
-    if (userPublicKey == senderPublicKey) {
-        // sender is a linked device
-        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-        storage.insertOutgoingInfoMessage(context, groupID, type, name, updateMembers, admins, threadID, message.sentTimestamp!!)
-    } else {
-        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type, name, updateMembers, admins, message.sentTimestamp!!)
+    // we don't display zombie members in the notification as users have already been notified when those members left
+    val notificationMembers = updateMembers.minus(zombies)
+    if (notificationMembers.isNotEmpty()) {
+        // no notification to display when only zombies have been removed
+        if (userPublicKey == senderPublicKey) {
+            // sender is a linked device
+            val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+            storage.insertOutgoingInfoMessage(context, groupID, type, name, notificationMembers, admins, threadID, message.sentTimestamp!!)
+        } else {
+            storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, type, name, notificationMembers, admins, message.sentTimestamp!!)
+        }
     }
 }
 

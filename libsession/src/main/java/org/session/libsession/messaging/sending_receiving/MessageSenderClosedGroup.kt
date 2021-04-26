@@ -201,9 +201,14 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
     // Notify the user
 
     // Insert an outgoing notification
-    val infoType = SignalServiceGroup.Type.MEMBER_REMOVED
-    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, membersToRemove, admins, threadID, sentTime)
+    // we don't display zombie members in the notification as users have already been notified when those members left
+    val notificationMembers = membersToRemove.minus(oldZombies)
+    if (notificationMembers.isNotEmpty()) {
+        // no notification to display when only zombies have been removed
+        val infoType = SignalServiceGroup.Type.MEMBER_REMOVED
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, infoType, name, notificationMembers, admins, threadID, sentTime)
+    }
 }
 
 fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
