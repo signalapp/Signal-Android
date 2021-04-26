@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
-import org.thoughtcrime.securesms.jobs.StorageSyncJobV2;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -194,7 +194,7 @@ public class DirectoryHelper {
 
     if (newRegisteredState != originalRegisteredState) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob());
-      ApplicationDependencies.getJobManager().add(new StorageSyncJobV2());
+      ApplicationDependencies.getJobManager().add(new StorageSyncJob());
 
       if (notifyOfNewUsers && newRegisteredState == RegisteredState.REGISTERED && recipient.resolve().isSystemContact()) {
         notifyNewUsers(context, Collections.singletonList(recipient.getId()));

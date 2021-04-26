@@ -34,7 +34,7 @@ public class DirectoryRefreshJob extends BaseJob {
                              boolean notifyOfNewUsers)
   {
     this(new Job.Parameters.Builder()
-                           .setQueue(StorageSyncJobV2.QUEUE_KEY)
+                           .setQueue(StorageSyncJob.QUEUE_KEY)
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
                            .build(),

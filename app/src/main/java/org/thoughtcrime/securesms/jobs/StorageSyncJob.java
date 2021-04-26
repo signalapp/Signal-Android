@@ -136,14 +136,14 @@ import java.util.concurrent.TimeUnit;
  *   to enqueue a {@link StorageServiceMigrationJob} as an app migration to make sure it gets
  *   synced.
  */
-public class StorageSyncJobV2 extends BaseJob {
+public class StorageSyncJob extends BaseJob {
 
   public static final String KEY       = "StorageSyncJobV2";
   public static final String QUEUE_KEY = "StorageSyncingJobs";
 
-  private static final String TAG = Log.tag(StorageSyncJobV2.class);
+  private static final String TAG = Log.tag(StorageSyncJob.class);
 
-  public StorageSyncJobV2() {
+  public StorageSyncJob() {
     this(new Parameters.Builder().addConstraint(NetworkConstraint.KEY)
                                  .setQueue(QUEUE_KEY)
                                  .setMaxInstancesForFactory(2)
@@ -152,7 +152,7 @@ public class StorageSyncJobV2 extends BaseJob {
                                  .build());
   }
 
-  private StorageSyncJobV2(@NonNull Parameters parameters) {
+  private StorageSyncJob(@NonNull Parameters parameters) {
     super(parameters);
   }
 
@@ -506,10 +506,10 @@ public class StorageSyncJobV2 extends BaseJob {
     }
   }
 
-  public static final class Factory implements Job.Factory<StorageSyncJobV2> {
+  public static final class Factory implements Job.Factory<StorageSyncJob> {
     @Override
-    public @NonNull StorageSyncJobV2 create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new StorageSyncJobV2(parameters);
+    public @NonNull StorageSyncJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new StorageSyncJob(parameters);
     }
   }
 }
