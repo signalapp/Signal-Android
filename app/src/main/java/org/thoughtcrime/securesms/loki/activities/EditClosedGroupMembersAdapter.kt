@@ -51,6 +51,8 @@ class EditClosedGroupMembersAdapter(
 
         if (zombieMembers.contains(member))
             viewHolder.view.alpha = 0.5F
+        else
+            viewHolder.view.alpha = 1F
 
         if (unlocked) {
             viewHolder.view.setOnClickListener { this.memberClickListener?.invoke(member) }
