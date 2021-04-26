@@ -100,6 +100,7 @@ public class ShareViewModel extends ViewModel {
   }
 
   void onNonExternalShare() {
+    shareData.setValue(Optional.absent());
     externalShare = false;
   }
 
