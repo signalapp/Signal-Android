@@ -173,8 +173,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int CLEAN_STORAGE_IDS                = 92;
   private static final int MP4_GIF_SUPPORT                  = 93;
   private static final int BLUR_AVATARS                     = 94;
+  private static final int CLEAN_STORAGE_IDS_WITHOUT_INFO   = 95;
 
-  private static final int    DATABASE_VERSION = 94;
+  private static final int    DATABASE_VERSION = 95;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1320,6 +1321,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
                                              + "SELECT 1 FROM groups AS g INNER JOIN recipient AS gr ON (g.recipient_id = gr._id AND gr.profile_sharing = 1) WHERE g.active = 1 AND (g.members LIKE r._id || ',%' OR g.members LIKE '%,' || r._id || ',%' OR g.members LIKE '%,' || r._id)"
                                              + ")";
         db.rawExecSQL("UPDATE recipient SET groups_in_common = 1 WHERE _id IN (" + selectIdsWithGroupsInCommon + ")");
+      }
+
+      if (oldVersion < CLEAN_STORAGE_IDS_WITHOUT_INFO) {
+        ContentValues values = new ContentValues();
+        values.putNull("storage_service_key");
+        int count = db.update("recipient", values, "storage_service_key NOT NULL AND phone IS NULL AND uuid IS NULL AND group_id IS NULL", null);
+        Log.i(TAG, "There were " + count + " bad rows that had their storageID removed due to not having any other identifier.");
       }
 
       db.setTransactionSuccessful();
