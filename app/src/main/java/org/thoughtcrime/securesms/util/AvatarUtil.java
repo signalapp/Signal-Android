@@ -113,7 +113,7 @@ public final class AvatarUtil {
       }
       return Icon.createWithAdaptiveBitmap(glideRequest.submit().get());
     } catch (ExecutionException | InterruptedException e) {
-      throw new AssertionError("This call should not fail.");
+      throw new AssertionError("This call should not fail.", e);
     }
   }
 
@@ -126,7 +126,7 @@ public final class AvatarUtil {
       }
       return IconCompat.createWithAdaptiveBitmap(glideRequest.submit().get());
     } catch (ExecutionException | InterruptedException e) {
-      throw new AssertionError("This call should not fail.");
+      throw new AssertionError("This call should not fail.", e);
     }
   }
 
