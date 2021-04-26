@@ -158,9 +158,10 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         if (userPublicKey == message.sender && displayName.isNotEmpty()) {
             // Update the user's local name if the message came from their master device
             TextSecurePreferences.setProfileName(context, displayName)
+        } else if (displayName.isNotEmpty()) {
+            profileManager.setDisplayName(context, recipient, displayName)
         }
-        profileManager.setDisplayName(context, recipient, displayName)
-        if (recipient.profileKey?.isNotEmpty() == true && !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
+        if (newProfile.profileKey?.isNotEmpty() == true && !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             val newUrl = newProfile.profilePictureURL
