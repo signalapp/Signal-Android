@@ -148,17 +148,14 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
     val storage = MessagingConfiguration.shared.storage
     val context = MessagingConfiguration.shared.context
+    val userPublicKey = storage.getUserPublicKey()
     // Update profile if needed
     val newProfile = message.profile
-    if (newProfile != null && openGroupID.isNullOrEmpty()) {
+    if (newProfile != null && openGroupID.isNullOrEmpty() && userPublicKey != message.sender) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!
-        val userPublicKey = storage.getUserPublicKey()
-        if (userPublicKey == message.sender && displayName.isNotEmpty()) {
-            // Update the user's local name if the message came from their master device
-            TextSecurePreferences.setProfileName(context, displayName)
-        } else if (displayName.isNotEmpty()) {
+        if (displayName.isNotEmpty()) {
             profileManager.setDisplayName(context, recipient, displayName)
         }
         if (newProfile.profileKey?.isNotEmpty() == true && !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
