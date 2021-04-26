@@ -185,14 +185,14 @@ open class DotNetAPI {
     /**
      * Blocks the calling thread.
      */
-    fun downloadFile(destination: File, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
+    fun downloadFile(destination: File, url: String, listener: SignalServiceAttachment.ProgressListener?) {
         val outputStream = FileOutputStream(destination) // Throws
         var remainingAttempts = 4
         var exception: Exception? = null
         while (remainingAttempts > 0) {
             remainingAttempts -= 1
             try {
-                downloadFile(outputStream, url, maxSize, listener)
+                downloadFile(outputStream, url, listener)
                 exception = null
                 break
             } catch (e: Exception) {
@@ -205,7 +205,7 @@ open class DotNetAPI {
     /**
      * Blocks the calling thread.
      */
-    fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
+    fun downloadFile(outputStream: OutputStream, url: String, listener: SignalServiceAttachment.ProgressListener?) {
         // We need to throw a PushNetworkException or NonSuccessfulResponseCodeException
         // because the underlying Signal logic requires these to work correctly
         val oldPrefixedHost = "https://" + HttpUrl.get(url).host()
@@ -228,7 +228,7 @@ open class DotNetAPI {
                 throw PushNetworkException("Missing response body.")
             }
             val body = Base64.decode(result)
-            if (body.size > maxSize) {
+            if (body.size > FileServerAPI.maxFileSize) {
                 Log.d("Loki", "Attachment size limit exceeded.")
                 throw PushNetworkException("Max response size exceeded.")
             }
@@ -239,7 +239,7 @@ open class DotNetAPI {
             while (bytes >= 0) {
                 outputStream.write(buffer, 0, bytes)
                 count += bytes
-                if (count > maxSize) {
+                if (count > FileServerAPI.maxFileSize) {
                     Log.d("Loki", "Attachment size limit exceeded.")
                     throw PushNetworkException("Max response size exceeded.")
                 }

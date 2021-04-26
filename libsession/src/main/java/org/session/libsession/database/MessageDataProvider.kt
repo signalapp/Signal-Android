@@ -30,7 +30,6 @@ interface MessageDataProvider {
     fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult)
     fun updateAttachmentAfterUploadFailed(attachmentId: Long)
 
-    // Quotes
     fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>?
     fun getAttachmentsAndLinkPreviewFor(mmsId: Long): List<Attachment>
     fun getMessageBodyFor(timestamp: Long, author: String): String

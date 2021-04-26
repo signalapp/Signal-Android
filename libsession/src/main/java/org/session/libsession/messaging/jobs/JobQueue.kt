@@ -14,19 +14,17 @@ import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToLong
 
-
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
-
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
-
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
+
     val timer = Timer()
 
     init {
-        // process jobs
+        // Process jobs
         scope.launch(dispatcher) {
             while (isActive) {
                 queue.receive().let { job ->
@@ -49,7 +47,7 @@ class JobQueue : JobDelegate {
 
     private fun addWithoutExecuting(job: Job) {
         // When adding multiple jobs in rapid succession, timestamps might not be good enough as a unique ID. To
-        // deal with this we keep track of the number of jobs with a given timestamp and that to the end of the
+        // deal with this we keep track of the number of jobs with a given timestamp and add that to the end of the
         // timestamp to make it a unique ID. We can't use a random number because we do still want to keep track
         // of the order in which the jobs were added.
         val currentTime = System.currentTimeMillis()
@@ -70,7 +68,7 @@ class JobQueue : JobDelegate {
             val allPendingJobs = MessagingConfiguration.shared.storage.getAllPendingJobs(type)
             allPendingJobs.sortedBy { it.id }.forEach { job ->
                 Log.i("Jobs", "Resuming pending job of type: ${job::class.simpleName}.")
-                queue.offer(job) // offer always called on unlimited capacity
+                queue.offer(job) // Offer always called on unlimited capacity
             }
         }
     }

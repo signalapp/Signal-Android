@@ -28,14 +28,9 @@ class ClosedGroupControlMessage() : ControlMessage() {
 
     var kind: Kind? = null
 
-    // Kind enum
     sealed class Kind {
         class New(var publicKey: ByteString, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<ByteString>, var admins: List<ByteString>) : Kind() {
             internal constructor(): this(ByteString.EMPTY, "", null, listOf(), listOf())
-        }
-        /// - Note: Deprecated in favor of more explicit group updates.
-        class Update(var name: String, var members: List<ByteString>) : Kind() {
-            internal constructor(): this("", listOf())
         }
         /// An encryption key pair encrypted for each member individually.
         ///
@@ -53,18 +48,15 @@ class ClosedGroupControlMessage() : ControlMessage() {
             internal constructor(): this(listOf())
         }
         class MemberLeft() : Kind()
-        class EncryptionKeyPairRequest(): Kind()
 
         val description: String =
             when(this) {
                 is New -> "new"
-                is Update -> "update"
                 is EncryptionKeyPair -> "encryptionKeyPair"
                 is NameChange -> "nameChange"
                 is MembersAdded -> "membersAdded"
                 is MembersRemoved -> "membersRemoved"
                 is MemberLeft -> "memberLeft"
-                is EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
             }
     }
 
@@ -75,12 +67,11 @@ class ClosedGroupControlMessage() : ControlMessage() {
             if (!proto.hasDataMessage() || !proto.dataMessage.hasClosedGroupControlMessage()) return null
             val closedGroupControlMessageProto = proto.dataMessage?.closedGroupControlMessage!!
             val kind: Kind
-            when(closedGroupControlMessageProto.type) {
+            when (closedGroupControlMessageProto.type) {
                 DataMessage.ClosedGroupControlMessage.Type.NEW -> {
                     val publicKey = closedGroupControlMessageProto.publicKey ?: return null
                     val name = closedGroupControlMessageProto.name ?: return null
                     val encryptionKeyPairAsProto = closedGroupControlMessageProto.encryptionKeyPair ?: return null
-
                     try {
                         val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray()), DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                         kind = Kind.New(publicKey, name, encryptionKeyPair, closedGroupControlMessageProto.membersList, closedGroupControlMessageProto.adminsList)
@@ -88,10 +79,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
                         Log.w(TAG, "Couldn't parse key pair")
                         return null
                     }
-                }
-                DataMessage.ClosedGroupControlMessage.Type.UPDATE -> {
-                    val name = closedGroupControlMessageProto.name ?: return null
-                    kind = Kind.Update(name, closedGroupControlMessageProto.membersList)
                 }
                 DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR -> {
                     val publicKey = closedGroupControlMessageProto.publicKey
@@ -111,35 +98,28 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT -> {
                     kind = Kind.MemberLeft()
                 }
-                DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR_REQUEST -> {
-                    kind = Kind.EncryptionKeyPairRequest()
-                }
             }
             return ClosedGroupControlMessage(kind)
         }
     }
 
-    // constructor
     internal constructor(kind: Kind?) : this() {
         this.kind = kind
     }
 
-    // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         val kind = kind ?: return false
         return when(kind) {
             is Kind.New -> {
                 !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair!!.publicKey != null
-                        && kind.encryptionKeyPair!!.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
+                    && kind.encryptionKeyPair!!.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
             }
-            is Kind.Update -> kind.name.isNotEmpty()
             is Kind.EncryptionKeyPair -> true
             is Kind.NameChange -> kind.name.isNotEmpty()
             is Kind.MembersAdded -> kind.members.isNotEmpty()
             is Kind.MembersRemoved -> kind.members.isNotEmpty()
             is Kind.MemberLeft -> true
-            is Kind.EncryptionKeyPairRequest -> true
         }
     }
 
@@ -163,11 +143,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     closedGroupControlMessage.addAllMembers(kind.members)
                     closedGroupControlMessage.addAllAdmins(kind.admins)
                 }
-                is Kind.Update -> {
-                    closedGroupControlMessage.type = DataMessage.ClosedGroupControlMessage.Type.UPDATE
-                    closedGroupControlMessage.name = kind.name
-                    closedGroupControlMessage.addAllMembers(kind.members)
-                }
                 is Kind.EncryptionKeyPair -> {
                     closedGroupControlMessage.type = DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR
                     closedGroupControlMessage.publicKey = kind.publicKey
@@ -188,9 +163,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 is Kind.MemberLeft -> {
                     closedGroupControlMessage.type = DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT
                 }
-                is Kind.EncryptionKeyPairRequest -> {
-                    // TODO: closedGroupControlMessage.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.ENCRYPTION_KEY_PAIR_REQUEST
-                }
             }
             val contentProto = SignalServiceProtos.Content.newBuilder()
             val dataMessageProto = DataMessage.newBuilder()
@@ -199,7 +171,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             setGroupContext(dataMessageProto)
             // Expiration timer
             // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
-            // if it receives a message without the current expiration timer value attached to it...
+            //       if it receives a message without the current expiration timer value attached to it...
             dataMessageProto.expireTimer = Recipient.from(MessagingConfiguration.shared.context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()

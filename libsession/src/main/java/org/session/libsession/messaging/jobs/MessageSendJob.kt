@@ -11,7 +11,6 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsignal.utilities.logging.Log
 
 class MessageSendJob(val message: Message, val destination: Destination) : Job {
-
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -22,7 +21,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val TAG = MessageSendJob::class.simpleName
         val KEY: String = "MessageSendJob"
 
-        //keys used for database storage purpose
+        // Keys used for database storage
         private val KEY_MESSAGE = "message"
         private val KEY_DESTINATION = "destination"
     }
@@ -77,10 +76,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         delegate?.handleJobFailed(this, error)
     }
 
-    //database functions
-
     override fun serialize(): Data {
-        //serialize Message and Destination properties
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
         val output = Output(ByteArray(4096), -1) // maxBufferSize '-1' will dynamically grow internally if we run out of room serializing the message
@@ -92,8 +88,8 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         output.close()
         val serializedDestination = output.toBytes()
         return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
-                .putByteArray(KEY_DESTINATION, serializedDestination)
-                .build();
+            .putByteArray(KEY_DESTINATION, serializedDestination)
+            .build();
     }
 
     override fun getFactoryKey(): String {
@@ -101,10 +97,10 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     }
 
     class Factory: Job.Factory<MessageSendJob> {
+
         override fun create(data: Data): MessageSendJob {
             val serializedMessage = data.getByteArray(KEY_MESSAGE)
             val serializedDestination = data.getByteArray(KEY_DESTINATION)
-            //deserialize Message and Destination properties
             val kryo = Kryo()
             var input = Input(serializedMessage)
             val message = kryo.readClassAndObject(input) as Message

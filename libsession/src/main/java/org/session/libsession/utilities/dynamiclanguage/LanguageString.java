@@ -7,8 +7,7 @@ import java.util.Locale;
 
 public final class LanguageString {
 
-  private LanguageString() {
-  }
+  private LanguageString() { }
 
   /**
    * @param languageString String in format language_REGION, e.g. en_US
