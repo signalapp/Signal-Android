@@ -53,15 +53,23 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
             val tempFile = createTempFile()
 
-            FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
+            val threadId = MessagingConfiguration.shared.storage.getThreadIdForMms(databaseMessageID)
+            val openGroupV2 = MessagingConfiguration.shared.storage.getV2OpenGroup(threadId.toString())
 
-            // DECRYPTION
+            val isOpenGroupV2 = false
+            if (!isOpenGroupV2) {
+                FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
 
-            // Assume we're retrieving an attachment for an open group server if the digest is not set
-            val stream = if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
-            else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
+                // DECRYPTION
 
-            messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)
+                // Assume we're retrieving an attachment for an open group server if the digest is not set
+                val stream = if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
+                else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
+
+                messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)
+            } else {
+//                val bytes = OpenGroupAPIV2.download()
+            }
 
             tempFile.delete()
             handleSuccess()

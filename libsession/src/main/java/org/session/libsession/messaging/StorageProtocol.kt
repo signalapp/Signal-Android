@@ -136,6 +136,7 @@ interface StorageProtocol {
     fun getOrCreateThreadIdFor(address: Address): Long
     fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long
     fun getThreadIdFor(address: Address): Long?
+    fun getThreadIdForMms(messageId: Long): Long
 
     // Session Request
     fun getSessionRequestSentTimestamp(publicKey: String): Long?

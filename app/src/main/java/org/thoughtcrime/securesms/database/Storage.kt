@@ -576,6 +576,13 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return if (threadID < 0) null else threadID
     }
 
+    override fun getThreadIdForMms(mmsId: Long): Long {
+        val mmsDb = DatabaseFactory.getMmsDatabase(context)
+        val cursor = mmsDb.getMessage(mmsId)
+        val reader = mmsDb.readerFor(cursor)
+        return reader.current.threadId
+    }
+
     override fun getSessionRequestSentTimestamp(publicKey: String): Long? {
         return DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestSentTimestamp(publicKey)
     }

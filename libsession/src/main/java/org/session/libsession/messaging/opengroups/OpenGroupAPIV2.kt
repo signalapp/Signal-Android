@@ -350,6 +350,10 @@ object OpenGroupAPIV2 {
         val storage = MessagingConfiguration.shared.storage
         storage.setOpenGroupPublicKey(DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)
         return getAllRooms(DEFAULT_SERVER).map { groups ->
+            val earlyGroups = groups.map { group ->
+                DefaultGroup(group.id, group.name, null)
+            }
+            defaultRooms.tryEmit(earlyGroups) // TODO: take into account cached w/ images groups
             val images = groups.map { group ->
                 group.id to downloadOpenGroupProfilePicture(group.id, DEFAULT_SERVER)
             }.toMap()

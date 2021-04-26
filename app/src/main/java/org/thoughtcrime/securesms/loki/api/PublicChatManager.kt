@@ -110,7 +110,7 @@ class PublicChatManager(private val context: Context) {
   fun addChat(server: String, room: String, info: OpenGroupAPIV2.Info, publicKey: String): OpenGroupV2 {
     val chat = OpenGroupV2(server, room, info.name, publicKey)
     var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
-    var profilePicture: Bitmap? = null
+    val profilePicture: Bitmap?
     if (threadID < 0) {
         val profilePictureAsByteArray = try {
           OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id,server).get()
