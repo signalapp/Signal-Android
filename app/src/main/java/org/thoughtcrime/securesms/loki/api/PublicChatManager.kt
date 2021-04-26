@@ -12,7 +12,6 @@ import org.session.libsession.messaging.open_groups.OpenGroupInfo
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -75,7 +74,7 @@ class PublicChatManager(private val context: Context) {
 
   @WorkerThread
   public fun addChat(server: String, channel: Long, info: OpenGroupInfo): OpenGroup {
-    val chat = PublicChat(channel, server, info.displayName, true)
+    val chat = OpenGroup(channel, server, info.displayName, true)
     var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     // Create the group if we don't have one
@@ -96,12 +95,12 @@ class PublicChatManager(private val context: Context) {
     // Start polling
     Util.runOnMain { startPollersIfNeeded() }
 
-    return OpenGroup.from(chat)
+    return chat
   }
 
   public fun removeChat(server: String, channel: Long) {
     val threadDB = DatabaseFactory.getThreadDatabase(context)
-    val groupId = PublicChat.getId(channel, server)
+    val groupId = OpenGroup.getId(channel, server)
     val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
     val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
     GroupManager.deleteGroup(groupAddress, context)

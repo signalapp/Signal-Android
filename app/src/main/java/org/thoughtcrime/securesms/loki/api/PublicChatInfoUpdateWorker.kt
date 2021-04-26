@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import androidx.work.*
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 /**
  * Delegates the [OpenGroupUtilities.updateGroupInfo] call to the work manager.
@@ -40,7 +40,7 @@ class PublicChatInfoUpdateWorker(val context: Context, params: WorkerParameters)
         val serverUrl = inputData.getString(DATA_KEY_SERVER_URL)!!
         val channel = inputData.getLong(DATA_KEY_CHANNEL, -1)
 
-        val publicChatId = PublicChat.getId(channel, serverUrl)
+        val publicChatId = OpenGroup.getId(channel, serverUrl)
 
         return try {
             Log.v(TAG, "Updating open group info for $publicChatId.")

@@ -8,7 +8,6 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -23,10 +22,10 @@ object OpenGroupUtilities {
     @Throws(Exception::class)
     fun addGroup(context: Context, url: String, channel: Long): OpenGroup {
         // Check for an existing group.
-        val groupID = PublicChat.getId(channel, url)
+        val groupID = OpenGroup.getId(channel, url)
         val threadID = GroupManager.getOpenGroupThreadID(groupID, context)
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        if (openGroup != null) { return OpenGroup.from(openGroup) }
+        if (openGroup != null) { return openGroup }
 
         // Add the new group.
         val application = ApplicationContext.getInstance(context)
@@ -56,7 +55,7 @@ object OpenGroupUtilities {
     @Throws(Exception::class)
     fun updateGroupInfo(context: Context, url: String, channel: Long) {
         // Check if open group has a related DB record.
-        val groupId = GroupUtil.getEncodedOpenGroupID(PublicChat.getId(channel, url).toByteArray())
+        val groupId = GroupUtil.getEncodedOpenGroupID(OpenGroup.getId(channel, url).toByteArray())
         if (!DatabaseFactory.getGroupDatabase(context).hasGroup(groupId)) {
             throw IllegalStateException("Attempt to update open group info for non-existent DB record: $groupId")
         }
