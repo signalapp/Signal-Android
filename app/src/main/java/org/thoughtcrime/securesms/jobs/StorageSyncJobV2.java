@@ -217,7 +217,7 @@ public class StorageSyncJobV2 extends BaseJob {
     boolean                         needsMultiDeviceSync  = false;
     boolean                         needsForcePush        = false;
     long                            localManifestVersion  = TextSecurePreferences.getStorageManifestVersion(context);
-    Optional<SignalStorageManifest> remoteManifest        = FeatureFlags.internalUser() ? accountManager.getStorageManifest(storageServiceKey) : accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
+    Optional<SignalStorageManifest> remoteManifest        = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
     long                            remoteManifestVersion = remoteManifest.transform(SignalStorageManifest::getVersion).or(localManifestVersion);
 
     stopwatch.split("remote-manifest");
@@ -395,7 +395,7 @@ public class StorageSyncJobV2 extends BaseJob {
         throw new AssertionError("Decided there were local writes, but our write result was empty!");
       }
 
-      StorageSyncValidations.validate(localWrite, FeatureFlags.internalUser() ? remoteManifest : Optional.absent(), needsForcePush, self);
+      StorageSyncValidations.validate(localWrite, Optional.absent(), needsForcePush, self);
 
       Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, localWrite.getManifest(), localWrite.getInserts(), localWrite.getDeletes());
 
