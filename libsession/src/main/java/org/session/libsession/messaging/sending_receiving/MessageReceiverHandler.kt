@@ -111,7 +111,7 @@ private fun MessageReceiver.handleDataExtractionNotification(message: DataExtrac
 
 // Configuration message handling
 
-private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMessage) {
+private fun handleConfigurationMessage(message: ConfigurationMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, message.sentTimestamp!!)) return
@@ -150,25 +150,25 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val context = MessagingConfiguration.shared.context
     // Update profile if needed
     val newProfile = message.profile
-    if (newProfile != null) {
+    if (newProfile != null && openGroupID.isNullOrEmpty()) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!
         val userPublicKey = storage.getUserPublicKey()
-        if (openGroupID == null) {
-            if (userPublicKey == message.sender) {
-                // Update the user's local name if the message came from their master device
-                TextSecurePreferences.setProfileName(context, displayName)
-            }
-            profileManager.setDisplayName(context, recipient, displayName)
+        if (userPublicKey == message.sender && displayName.isNotEmpty()) {
+            // Update the user's local name if the message came from their master device
+            TextSecurePreferences.setProfileName(context, displayName)
         }
-        if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
+        profileManager.setDisplayName(context, recipient, displayName)
+        if (recipient.profileKey?.isNotEmpty() == true && !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
-            val url = newProfile.profilePictureURL.orEmpty()
-            profileManager.setProfilePictureURL(context, recipient, url)
-            if (userPublicKey == message.sender) {
-                profileManager.updateOpenGroupProfilePicturesIfNeeded(context)
+            val newUrl = newProfile.profilePictureURL
+            if (!newUrl.isNullOrEmpty()) {
+                profileManager.setProfilePictureURL(context, recipient, newUrl)
+                if (userPublicKey == message.sender) {
+                    profileManager.updateOpenGroupProfilePicturesIfNeeded(context)
+                }
             }
         }
     }
