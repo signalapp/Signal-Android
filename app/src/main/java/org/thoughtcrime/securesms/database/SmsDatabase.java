@@ -465,6 +465,7 @@ public class SmsDatabase extends MessageDatabase {
     ContentValues  contentValues = new ContentValues();
 
     contentValues.put(NOTIFIED, 1);
+    contentValues.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
 
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }

@@ -35,6 +35,8 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
 
       if (ids == null || mms == null || ids.length != mms.length) return;
 
+      PendingResult finisher = goAsync();
+
       SignalExecutors.BOUNDED.execute(() -> {
         for (int i = 0; i < ids.length; i++) {
           if (!mms[i]) {
@@ -43,6 +45,7 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
             DatabaseFactory.getMmsDatabase(context).markAsNotified(ids[i]);
           }
         }
+        finisher.finish();
       });
     }
   }
