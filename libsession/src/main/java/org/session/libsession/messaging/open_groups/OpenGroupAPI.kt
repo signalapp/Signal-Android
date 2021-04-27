@@ -6,7 +6,9 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
@@ -315,7 +317,7 @@ object OpenGroupAPI: DotNetAPI() {
         Log.d("Loki", "Downloading open group profile picture from \"$url\".")
         val outputStream = ByteArrayOutputStream()
         try {
-            throw IOException();
+            DownloadUtilities.downloadFile(outputStream, url, FileServerAPI.maxFileSize, null)
             Log.d("Loki", "Open group profile picture was successfully loaded from \"$url\"")
             return outputStream.toByteArray()
         } catch (e: Exception) {
