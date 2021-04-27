@@ -60,6 +60,7 @@ import com.annimon.stream.Stream;
 import org.session.libsession.messaging.messages.control.DataExtractionNotification;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -94,7 +95,6 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
@@ -396,7 +396,7 @@ public class ConversationFragment extends Fragment
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+      OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
       boolean isPublicChat = (publicChat != null);
       int selectedMessageCount = messageRecords.size();
       boolean areAllSentByUser = true;
@@ -508,7 +508,7 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -591,7 +591,7 @@ public class ConversationFragment extends Fragment
     builder.setTitle(R.string.ConversationFragment_ban_selected_user);
     builder.setCancelable(true);
 
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.ban, (dialog, which) -> {
       ConversationAdapter chatAdapter = getListAdapter();

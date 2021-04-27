@@ -33,6 +33,7 @@ import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.jobs.JobQueue;
+import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
@@ -48,7 +49,6 @@ import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsession.utilities.preferences.ProfileKeyUtil;
 import org.session.libsignal.service.api.util.StreamDetails;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
-import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.utilities.logging.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -175,7 +175,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 new SessionProtocolImpl(this));
         SnodeModule.Companion.configure(apiDB, broadcaster);
         if (userPublicKey != null) {
-            MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
+            MentionsManager.Companion.configureIfNeeded(userPublicKey, userDB);
         }
         setUpStorageAPIIfNeeded();
         resubmitProfilePictureIfNeeded();
