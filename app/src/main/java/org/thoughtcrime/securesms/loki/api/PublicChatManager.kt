@@ -172,6 +172,7 @@ class PublicChatManager(private val context: Context) {
 
       DatabaseFactory.getLokiThreadDatabase(context).removePublicChat(threadID)
       pollers.remove(threadID)?.stop()
+      v2Pollers.remove(threadID)?.stop()
       observers.remove(threadID)
       startPollersIfNeeded()
     }

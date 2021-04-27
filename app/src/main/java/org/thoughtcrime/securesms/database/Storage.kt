@@ -580,7 +580,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val mmsDb = DatabaseFactory.getMmsDatabase(context)
         val cursor = mmsDb.getMessage(mmsId)
         val reader = mmsDb.readerFor(cursor)
-        return reader.current.threadId
+        return reader.next.threadId
     }
 
     override fun getSessionRequestSentTimestamp(publicKey: String): Long? {

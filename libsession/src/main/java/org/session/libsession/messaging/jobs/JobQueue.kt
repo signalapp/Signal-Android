@@ -21,6 +21,7 @@ class JobQueue : JobDelegate {
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
 
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val multiDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
     val timer = Timer()
@@ -30,8 +31,15 @@ class JobQueue : JobDelegate {
         scope.launch(dispatcher) {
             while (isActive) {
                 queue.receive().let { job ->
-                    job.delegate = this@JobQueue
-                    job.execute()
+                    if (job.canExecuteParallel()) {
+                        launch(multiDispatcher) {
+                            job.delegate = this@JobQueue
+                            job.execute()
+                        }
+                    } else {
+                        job.delegate = this@JobQueue
+                        job.execute()
+                    }
                 }
             }
         }
@@ -40,6 +48,13 @@ class JobQueue : JobDelegate {
     companion object {
         @JvmStatic
         val shared: JobQueue by lazy { JobQueue() }
+    }
+
+    private fun Job.canExecuteParallel(): Boolean {
+        return this.javaClass in arrayOf(
+                AttachmentUploadJob::class.java,
+                AttachmentDownloadJob::class.java
+        )
     }
 
     fun add(job: Job) {

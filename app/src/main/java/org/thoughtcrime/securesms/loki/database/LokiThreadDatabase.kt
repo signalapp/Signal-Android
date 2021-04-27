@@ -89,7 +89,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
             return null
         }
         val database = databaseHelper.readableDatabase
-        return database.get(publicChat, "${Companion.threadID} = ?", arrayOf(threadID.toString())) { cursor ->
+        return database.get(publicChatTable, "${Companion.threadID} = ?", arrayOf(threadID.toString())) { cursor ->
             val json = cursor.getString(publicChat)
             OpenGroupV2.fromJson(json)
         }

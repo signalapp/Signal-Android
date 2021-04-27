@@ -36,6 +36,7 @@ object MessageReceiver {
             is UnknownEnvelopeType -> false
             is InvalidSignature -> false
             is NoData -> false
+            is NoThread -> false
             is SenderBlocked -> false
             is SelfSend -> false
             else -> true

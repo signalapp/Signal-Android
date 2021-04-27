@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.opengroups
 
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Base64.decode
@@ -61,7 +62,7 @@ data class OpenGroupMessageV2(
         return jsonMap
     }
 
-    fun toProto(): SignalServiceProtos.DataMessage = decode(base64EncodedData).let { bytes ->
+    fun toProto(): SignalServiceProtos.DataMessage = decode(base64EncodedData).let(PushTransportDetails::getStrippedPaddingMessageBody).let { bytes ->
         SignalServiceProtos.DataMessage.parseFrom(bytes)
     }
 

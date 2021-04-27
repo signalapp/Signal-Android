@@ -2,6 +2,7 @@ package org.session.libsession.messaging.opengroups
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
@@ -35,6 +36,8 @@ object OpenGroupAPIV2 {
     const val DEFAULT_SERVER = "https://sog.ibolpap.finance"
     private const val DEFAULT_SERVER_PUBLIC_KEY = "b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10"
 
+    // https://sog.ibolpap.finance/main?public_key=b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10
+
     val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
 
     private val sharedContext = Kovenant.createContext()
@@ -51,7 +54,9 @@ object OpenGroupAPIV2 {
 
     data class DefaultGroup(val id: String,
                             val name: String,
-                            val image: ByteArray?)
+                            val image: ByteArray?) {
+        fun toJoinUrl(): String = "$DEFAULT_SERVER/$id?public_key=$DEFAULT_SERVER_PUBLIC_KEY"
+    }
 
     data class Info(
             val id: String,
@@ -120,9 +125,13 @@ object OpenGroupAPIV2 {
                         ?: return Promise.ofFail(Error.NO_PUBLIC_KEY)
                 return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), request.server, publicKey)
                         .fail { e ->
-                            if (e is OnionRequestAPI.HTTPRequestFailedAtDestinationException
-                                    && e.statusCode == 401) {
-                                MessagingConfiguration.shared.storage.removeAuthToken(request.server)
+                            if (e is OnionRequestAPI.HTTPRequestFailedAtDestinationException && e.statusCode == 401) {
+                                val storage = MessagingConfiguration.shared.storage
+                                if (request.room != null) {
+                                    storage.removeAuthToken("${request.server}.${request.room}")
+                                } else {
+                                    storage.removeAuthToken(request.server)
+                                }
                             }
                         }
             } else {
@@ -353,7 +362,11 @@ object OpenGroupAPIV2 {
             val earlyGroups = groups.map { group ->
                 DefaultGroup(group.id, group.name, null)
             }
-            defaultRooms.tryEmit(earlyGroups) // TODO: take into account cached w/ images groups
+            defaultRooms.replayCache.firstOrNull()?.let { groups ->
+                if (groups.none { it.image?.isNotEmpty() == true}) {
+                    defaultRooms.tryEmit(earlyGroups)
+                }
+            }
             val images = groups.map { group ->
                 group.id to downloadOpenGroupProfilePicture(group.id, DEFAULT_SERVER)
             }.toMap()

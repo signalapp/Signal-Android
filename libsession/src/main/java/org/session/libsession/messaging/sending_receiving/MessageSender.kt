@@ -113,9 +113,9 @@ object MessageSender {
             if (message is VisibleMessage) {
                 val displayName = storage.getUserDisplayName()!!
                 val profileKey = storage.getUserProfileKey()
-                val profilePrictureUrl = storage.getUserProfilePictureURL()
-                if (profileKey != null && profilePrictureUrl != null) {
-                    message.profile = Profile(displayName, profileKey, profilePrictureUrl)
+                val profilePictureUrl = storage.getUserProfilePictureURL()
+                if (profileKey != null && profilePictureUrl != null) {
+                    message.profile = Profile(displayName, profileKey, profilePictureUrl)
                 } else {
                     message.profile = Profile(displayName)
                 }
@@ -242,6 +242,18 @@ object MessageSender {
                     message.recipient = "${destination.server}.${destination.room}"
                     val server = destination.server
                     val room = destination.room
+
+                    // Attach the user's profile if needed
+                    if (message is VisibleMessage) {
+                        val displayName = storage.getUserDisplayName()!!
+                        val profileKey = storage.getUserProfileKey()
+                        val profilePictureUrl = storage.getUserProfilePictureURL()
+                        if (profileKey != null && profilePictureUrl != null) {
+                            message.profile = Profile(displayName, profileKey, profilePictureUrl)
+                        } else {
+                            message.profile = Profile(displayName)
+                        }
+                    }
 
                     // Validate the message
                     if (message !is VisibleMessage || !message.isValid()) {
