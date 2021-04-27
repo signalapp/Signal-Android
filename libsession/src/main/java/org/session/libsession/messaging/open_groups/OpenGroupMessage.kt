@@ -1,6 +1,6 @@
-package org.session.libsession.messaging.opengroups
+package org.session.libsession.messaging.open_groups
 
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
@@ -24,7 +24,7 @@ data class OpenGroupMessage(
     // region Settings
     companion object {
         fun from(message: VisibleMessage, server: String): OpenGroupMessage? {
-            val storage = MessagingConfiguration.shared.storage
+            val storage = MessagingModuleConfiguration.shared.storage
             val userPublicKey = storage.getUserPublicKey() ?: return null
             val attachmentIDs = message.attachmentIDs
             // Validation
@@ -50,7 +50,7 @@ data class OpenGroupMessage(
             linkPreview?.let {
                 if (!linkPreview.isValid()) { return@let }
                 val attachmentID = linkPreview.attachmentID ?: return@let
-                val attachment = MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID) ?: return@let
+                val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID) ?: return@let
                 val openGroupLinkPreview = Attachment(
                         Attachment.Kind.LinkPreview,
                         server,
@@ -69,7 +69,7 @@ data class OpenGroupMessage(
             }
             // Attachments
             val attachments = message.attachmentIDs.mapNotNull {
-                val attachment = MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) ?: return@mapNotNull null
+                val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) ?: return@mapNotNull null
                 return@mapNotNull Attachment(
                         Attachment.Kind.Attachment,
                         server,

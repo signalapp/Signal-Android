@@ -1,14 +1,14 @@
-package org.session.libsignal.service.loki.utilities
+package org.session.libsession.utilities
 
 import okhttp3.HttpUrl
 import okhttp3.Request
+import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import java.io.*
 
 object DownloadUtilities {
@@ -53,7 +53,7 @@ object DownloadUtilities {
         val request = Request.Builder().url(sanitizedURL).get()
         try {
             val serverPublicKey = if (newPrefixedHost.contains(FileServerAPI.shared.server)) FileServerAPI.fileServerPublicKey
-                else FileServerAPI.shared.getPublicKeyForOpenGroupServer(newPrefixedHost).get()
+            else FileServerAPI.shared.getPublicKeyForOpenGroupServer(newPrefixedHost).get()
             val json = OnionRequestAPI.sendOnionRequest(request.build(), newPrefixedHost, serverPublicKey, isJSONRequired = false).get()
             val result = json["result"] as? String
             if (result == null) {

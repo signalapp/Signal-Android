@@ -1,17 +1,10 @@
-package org.session.libsignal.service.loki.api
+package org.session.libsignal.service.loki
 
-public class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
-
+class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
     val ip: String get() = address.removePrefix("https://")
 
-    enum class Method(val rawValue: String) {
-        /**
-         * Only supported by snode targets.
-         */
+    public enum class Method(val rawValue: String) {
         GetSwarm("get_snodes_for_pubkey"),
-        /**
-         * Only supported by snode targets.
-         */
         GetMessages("retrieve"),
         SendMessage("store")
     }

@@ -5,7 +5,7 @@ import com.goterl.lazycode.lazysodium.SodiumAndroid
 import com.goterl.lazycode.lazysodium.interfaces.Box
 import com.goterl.lazycode.lazysodium.interfaces.Sign
 
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.utilities.KeyPairUtilities
 
@@ -26,7 +26,7 @@ object MessageSenderEncryption {
      * @return the encrypted message.
      */
     internal fun encryptWithSessionProtocol(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray{
-        val context = MessagingConfiguration.shared.context
+        val context = MessagingModuleConfiguration.shared.context
         val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: throw Error.NoUserED25519KeyPair
         val recipientX25519PublicKey = Hex.fromStringCondensed(recipientHexEncodedX25519PublicKey.removing05PrefixIfNeeded())
 

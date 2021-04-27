@@ -1,6 +1,5 @@
 package org.session.libsession.utilities.views;
 
-
 import android.view.ViewStub;
 
 import androidx.annotation.NonNull;

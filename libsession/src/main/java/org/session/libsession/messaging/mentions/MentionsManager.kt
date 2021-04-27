@@ -1,19 +1,20 @@
-package org.session.libsignal.service.loki.utilities.mentions
+package org.session.libsession.messaging.mentions
 
-import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsignal.service.loki.utilities.mentions.Mention
+
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol
 
-class MentionsManager(private val userPublicKey: String, private val threadDatabase: LokiThreadDatabaseProtocol,
-    private val userDatabase: LokiUserDatabaseProtocol) {
+class MentionsManager(private val userPublicKey: String, private val userDatabase: LokiUserDatabaseProtocol) {
     var userPublicKeyCache = mutableMapOf<Long, Set<String>>() // Thread ID to set of user hex encoded public keys
 
     companion object {
 
         public lateinit var shared: MentionsManager
 
-        public fun configureIfNeeded(userPublicKey: String, threadDatabase: LokiThreadDatabaseProtocol, userDatabase: LokiUserDatabaseProtocol) {
+        public fun configureIfNeeded(userPublicKey: String, userDatabase: LokiUserDatabaseProtocol) {
             if (::shared.isInitialized) { return; }
-            shared = MentionsManager(userPublicKey, threadDatabase, userDatabase)
+            shared = MentionsManager(userPublicKey, userDatabase)
         }
     }
 
@@ -30,7 +31,7 @@ class MentionsManager(private val userPublicKey: String, private val threadDatab
         // Prepare
         val cache = userPublicKeyCache[threadID] ?: return listOf()
         // Gather candidates
-        val publicChat = threadDatabase.getPublicChat(threadID)
+        val publicChat = MessagingModuleConfiguration.shared.messageDataProvider.getOpenGroup(threadID)
         var candidates: List<Mention> = cache.mapNotNull { publicKey ->
             val displayName: String?
             if (publicChat != null) {

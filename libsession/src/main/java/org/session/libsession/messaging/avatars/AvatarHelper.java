@@ -1,6 +1,5 @@
 package org.session.libsession.messaging.avatars;
 
-
 import android.content.Context;
 
 import androidx.annotation.NonNull;

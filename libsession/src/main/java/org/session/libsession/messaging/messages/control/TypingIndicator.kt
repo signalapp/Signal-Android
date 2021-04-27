@@ -4,8 +4,8 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.logging.Log
 
 class TypingIndicator() : ControlMessage() {
-
     override val ttl: Long = 30 * 1000
+    var kind: Kind? = null
 
     companion object {
         const val TAG = "TypingIndicator"
@@ -17,11 +17,8 @@ class TypingIndicator() : ControlMessage() {
         }
     }
 
-    // Kind enum
     enum class Kind {
-        STARTED,
-        STOPPED,
-        ;
+        STARTED, STOPPED;
 
         companion object {
             @JvmStatic
@@ -40,14 +37,10 @@ class TypingIndicator() : ControlMessage() {
         }
     }
 
-    var kind: Kind? = null
-
-    //constructor
     internal constructor(kind: Kind) : this() {
         this.kind = kind
     }
 
-    // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         return kind != null

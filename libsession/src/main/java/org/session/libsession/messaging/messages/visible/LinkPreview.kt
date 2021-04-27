@@ -1,12 +1,11 @@
 package org.session.libsession.messaging.messages.visible
 
-import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreiview
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreiview
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class LinkPreview() {
-
     var title: String? = null
     var url: String? = null
     var attachmentID: Long? = 0
@@ -29,15 +28,12 @@ class LinkPreview() {
         }
     }
 
-    //constructor
     internal constructor(title: String?, url: String, attachmentID: Long?) : this() {
         this.title = title
         this.url = url
         this.attachmentID = attachmentID
     }
 
-
-    // validation
     fun isValid(): Boolean {
         return (title != null && url != null && attachmentID != null)
     }
@@ -53,7 +49,7 @@ class LinkPreview() {
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID)?.let {
+            MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID)?.let {
                 val attachmentProto = Attachment.createAttachmentPointer(it)
                 linkPreviewProto.image = attachmentProto
             }
