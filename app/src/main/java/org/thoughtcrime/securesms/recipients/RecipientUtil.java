@@ -102,7 +102,7 @@ public class RecipientUtil {
                                                    .toList();
 
     if (recipientsWithoutUuids.size() > 0) {
-      DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
+      DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false, true);
       return true;
     } else {
       return false;

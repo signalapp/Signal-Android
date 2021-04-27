@@ -67,7 +67,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
                                          .map(s -> Recipient.external(getContext(), s))
                                          .toList();
       try {
-        DirectoryHelper.refreshDirectoryFor(context, recipients, true);
+        DirectoryHelper.refreshDirectoryFor(context, recipients, true, false);
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh! Scheduling for later.", e);
         ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));

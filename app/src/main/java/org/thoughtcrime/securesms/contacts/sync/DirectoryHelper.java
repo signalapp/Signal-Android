@@ -99,13 +99,13 @@ public class DirectoryHelper {
     Set<String>       databaseNumbers   = sanitizeNumbers(recipientDatabase.getAllPhoneNumbers());
     Set<String>       systemNumbers     = sanitizeNumbers(ContactAccessor.getInstance().getAllContactsWithNumbers(context));
 
-    refreshNumbers(context, databaseNumbers, systemNumbers, notifyOfNewUsers);
+    refreshNumbers(context, databaseNumbers, systemNumbers, notifyOfNewUsers, true);
 
     StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   @WorkerThread
-  public static void refreshDirectoryFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean notifyOfNewUsers) throws IOException {
+  public static void refreshDirectoryFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean notifyOfNewUsers, boolean removeNonIncludedNumbers) throws IOException {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
 
     for (Recipient recipient : recipients) {
@@ -123,7 +123,7 @@ public class DirectoryHelper {
                                 .map(Recipient::requireE164)
                                 .collect(Collectors.toSet());
 
-    refreshNumbers(context, numbers, numbers, notifyOfNewUsers);
+    refreshNumbers(context, numbers, numbers, notifyOfNewUsers, removeNonIncludedNumbers);
   }
 
   @WorkerThread
@@ -217,7 +217,7 @@ public class DirectoryHelper {
   }
 
   @WorkerThread
-  private static void refreshNumbers(@NonNull Context context, @NonNull Set<String> databaseNumbers, @NonNull Set<String> systemNumbers, boolean notifyOfNewUsers) throws IOException {
+  private static void refreshNumbers(@NonNull Context context, @NonNull Set<String> databaseNumbers, @NonNull Set<String> systemNumbers, boolean notifyOfNewUsers, boolean removeNonIncludedNumbers) throws IOException {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     Set<String>       allNumbers        = SetUtil.union(databaseNumbers, systemNumbers);
 
@@ -266,7 +266,7 @@ public class DirectoryHelper {
 
     stopwatch.split("update-registered");
 
-    updateContactsDatabase(context, activeIds, true, result.getNumberRewrites());
+    updateContactsDatabase(context, activeIds, removeNonIncludedNumbers, result.getNumberRewrites());
 
     stopwatch.split("contacts-db");
 
