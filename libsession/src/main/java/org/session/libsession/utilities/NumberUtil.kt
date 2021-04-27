@@ -3,7 +3,6 @@ package org.session.libsession.utilities
 import android.telephony.PhoneNumberUtils
 import android.util.Patterns
 
-
 object NumberUtil {
     private val emailPattern = Patterns.EMAIL_ADDRESS
 

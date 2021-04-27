@@ -8,8 +8,8 @@ option java_outer_classname = "SignalServiceProtos";
 message Envelope {
 
   enum Type {
-    UNIDENTIFIED_SENDER     = 6;
-    CLOSED_GROUP_CIPHERTEXT = 7;
+    SESSION_MESSAGE      = 6;
+    CLOSED_GROUP_MESSAGE = 7;
   }
 
   // @required
@@ -17,37 +17,30 @@ message Envelope {
   optional string source          = 2;
   optional uint32 sourceDevice    = 7;
   // @required
-  optional uint64 timestamp       = 5;
+  required uint64 timestamp       = 5;
   optional bytes  content         = 8;
   optional uint64 serverTimestamp = 10;
 }
 
 message TypingMessage {
 
-  enum Action {
-    STARTED = 0;
-    STOPPED = 1;
-  }
+    enum Action {
+        STARTED = 0;
+        STOPPED = 1;
+    }
 
-  // @required
-  optional uint64 timestamp = 1;
-  // @required
-  optional Action action = 2;
+    // @required
+    required uint64 timestamp = 1;
+    // @required
+    required Action action    = 2;
 }
 
 message Content {
-  optional DataMessage                dataMessage          = 1;
-  optional ReceiptMessage             receiptMessage       = 5;
-  optional TypingMessage              typingMessage        = 6;
-  optional ConfigurationMessage       configurationMessage = 7;
+  optional DataMessage                dataMessage                = 1;
+  optional ReceiptMessage             receiptMessage             = 5;
+  optional TypingMessage              typingMessage              = 6;
+  optional ConfigurationMessage       configurationMessage       = 7;
   optional DataExtractionNotification dataExtractionNotification = 82;
-}
-
-message ClosedGroupCiphertextMessageWrapper {
-  // @required
-  optional bytes ciphertext = 1;
-  // @required
-  optional bytes ephemeralPublicKey = 2;
 }
 
 message KeyPair {
@@ -90,87 +83,16 @@ message DataMessage {
     }
 
     // @required
-    optional uint64            id          = 1;
+    required uint64            id          = 1;
     // @required
-    optional string            author      = 2;
+    required string            author      = 2;
     optional string            text        = 3;
     repeated QuotedAttachment  attachments = 4;
   }
 
-  message Contact {
-
-    message Name {
-      optional string givenName   = 1;
-      optional string familyName  = 2;
-      optional string prefix      = 3;
-      optional string suffix      = 4;
-      optional string middleName  = 5;
-      optional string displayName = 6;
-    }
-
-    message Phone {
-
-      enum Type {
-        HOME   = 1;
-        MOBILE = 2;
-        WORK   = 3;
-        CUSTOM = 4;
-      }
-
-      optional string value = 1;
-      optional Type   type  = 2;
-      optional string label = 3;
-    }
-
-    message Email {
-
-      enum Type {
-        HOME   = 1;
-        MOBILE = 2;
-        WORK   = 3;
-        CUSTOM = 4;
-      }
-
-      optional string value = 1;
-      optional Type   type  = 2;
-      optional string label = 3;
-    }
-
-    message PostalAddress {
-
-      enum Type {
-        HOME   = 1;
-        WORK   = 2;
-        CUSTOM = 3;
-      }
-
-      optional Type   type         = 1;
-      optional string label        = 2;
-      optional string street       = 3;
-      optional string pobox        = 4;
-      optional string neighborhood = 5;
-      optional string city         = 6;
-      optional string region       = 7;
-      optional string postcode     = 8;
-      optional string country      = 9;
-    }
-
-    message Avatar {
-      optional AttachmentPointer avatar    = 1;
-      optional bool              isProfile = 2;
-    }
-
-    optional Name              name            = 1;
-    repeated Phone             number          = 3;
-    repeated Email             email           = 4;
-    repeated PostalAddress     address         = 5;
-    optional Avatar            avatar          = 6;
-    optional string            organization    = 7;
-  }
-
   message Preview {
     // @required
-    optional string            url   = 1;
+    required string            url   = 1;
     optional string            title = 2;
     optional AttachmentPointer image = 3;
   }
@@ -184,13 +106,11 @@ message DataMessage {
 
     enum Type {
       NEW                         = 1; // publicKey, name, encryptionKeyPair, members, admins
-      UPDATE                      = 2; // name, members
       ENCRYPTION_KEY_PAIR         = 3; // publicKey, wrappers
       NAME_CHANGE                 = 4; // name
       MEMBERS_ADDED               = 5; // members
       MEMBERS_REMOVED             = 6; // members
       MEMBER_LEFT                 = 7;
-      ENCRYPTION_KEY_PAIR_REQUEST = 8;
     }
 
     message KeyPairWrapper {
@@ -218,12 +138,10 @@ message DataMessage {
   optional bytes                     profileKey                = 6;
   optional uint64                    timestamp                 = 7;
   optional Quote                     quote                     = 8;
-  repeated Contact                   contact                   = 9;
   repeated Preview                   preview                   = 10;
   optional LokiProfile               profile                   = 101;
   optional ClosedGroupControlMessage closedGroupControlMessage = 104;
   optional string                    syncTarget                = 105;
-  optional PublicChatInfo            publicChatInfo            = 999;
 }
 
 message ConfigurationMessage {
@@ -261,7 +179,7 @@ message ReceiptMessage {
   }
 
   // @required
-  optional Type   type      = 1;
+  required Type   type      = 1;
   repeated uint64 timestamp = 2;
 }
 
@@ -272,7 +190,7 @@ message AttachmentPointer {
   }
 
   // @required
-  optional fixed64 id          = 1;
+  required fixed64 id          = 1;
   optional string  contentType = 2;
   optional bytes   key         = 3;
   optional uint32  size        = 4;
@@ -304,45 +222,4 @@ message GroupContext {
   repeated string            members = 4;
   optional AttachmentPointer avatar  = 5;
   repeated string            admins  = 6;
-}
-
-message ContactDetails {
-
-  message Avatar {
-    optional string contentType = 1;
-    optional uint32 length      = 2;
-  }
-
-  // @required
-  optional string   number      = 1;
-  optional string   name        = 2;
-  optional Avatar   avatar      = 3;
-  optional string   color       = 4;
-  optional bytes    profileKey  = 6;
-  optional bool     blocked     = 7;
-  optional uint32   expireTimer = 8;
-  optional string   nickname    = 101;
-}
-
-message GroupDetails {
-
-  message Avatar {
-    optional string contentType = 1;
-    optional uint32 length      = 2;
-  }
-
-  // @required
-  optional bytes  id          = 1;
-  optional string name        = 2;
-  repeated string members     = 3;
-  optional Avatar avatar      = 4;
-  optional bool   active      = 5 [default = true];
-  optional uint32 expireTimer = 6;
-  optional string color       = 7;
-  optional bool   blocked     = 8;
-  repeated string admins      = 9;
-}
-
-message PublicChatInfo { // Intended for internal use only
-  optional uint64 serverID = 1;
 }

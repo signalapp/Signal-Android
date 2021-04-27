@@ -1,8 +1,6 @@
 package org.session.libsignal.service.api.messages;
 
 
-import org.session.libsignal.service.loki.utilities.TTLUtilities;
-
 import java.util.List;
 
 public class SignalServiceReceiptMessage {
@@ -41,5 +39,5 @@ public class SignalServiceReceiptMessage {
     return type == Type.READ;
   }
 
-  public int getTTL() { return TTLUtilities.getTTL(TTLUtilities.MessageType.Receipt); }
+  public int getTTL() { return 0; }
 }

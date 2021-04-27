@@ -5,7 +5,6 @@ import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class Profile() {
-
     var displayName: String? = null
     var profileKey: ByteArray? = null
     var profilePictureURL: String? = null
@@ -27,7 +26,6 @@ class Profile() {
         }
     }
 
-    //constructor
     internal constructor(displayName: String, profileKey: ByteArray? = null, profilePictureURL: String? = null) : this() {
         this.displayName = displayName
         this.profileKey = profileKey

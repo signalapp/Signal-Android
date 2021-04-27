@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.sending_receiving.dataextraction
+package org.session.libsession.messaging.sending_receiving.data_extraction
 
 class DataExtractionNotificationInfoMessage {
 

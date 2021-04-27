@@ -11,7 +11,6 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
 
 class Attachment {
-
     var fileName: String? = null
     var contentType: String? = null
     var key: ByteArray? = null
@@ -23,6 +22,7 @@ class Attachment {
     var url: String? = null
 
     companion object {
+
         fun fromProto(proto: SignalServiceProtos.AttachmentPointer): Attachment {
             val result = Attachment()
             result.fileName = proto.fileName
@@ -88,7 +88,6 @@ class Attachment {
         GENERIC
     }
 
-    // validation
     fun isValid(): Boolean {
         // key and digest can be nil for open group attachments
         return (contentType != null && kind != null && size != null && sizeInBytes != null && url != null)

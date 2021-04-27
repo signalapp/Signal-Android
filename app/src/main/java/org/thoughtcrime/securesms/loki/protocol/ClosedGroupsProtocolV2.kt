@@ -31,6 +31,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import java.util.*
 
 object ClosedGroupsProtocolV2 {
+
     @JvmStatic
     fun handleMessage(context: Context, closedGroupUpdate: DataMessage.ClosedGroupControlMessage, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
         if (!isValid(context, closedGroupUpdate, senderPublicKey, sentTimestamp)) { return }
@@ -40,7 +41,6 @@ object ClosedGroupsProtocolV2 {
             DataMessage.ClosedGroupControlMessage.Type.MEMBERS_ADDED -> handleClosedGroupMembersAdded(context, closedGroupUpdate, sentTimestamp, groupPublicKey, senderPublicKey)
             DataMessage.ClosedGroupControlMessage.Type.NAME_CHANGE -> handleClosedGroupNameChange(context, closedGroupUpdate, sentTimestamp, groupPublicKey, senderPublicKey)
             DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT -> handleClosedGroupMemberLeft(context, sentTimestamp, groupPublicKey, senderPublicKey)
-            DataMessage.ClosedGroupControlMessage.Type.UPDATE -> handleClosedGroupUpdate(context, closedGroupUpdate, sentTimestamp, groupPublicKey, senderPublicKey)
             DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR -> handleGroupEncryptionKeyPair(context, closedGroupUpdate, groupPublicKey, senderPublicKey)
             else -> {
                 Log.d("Loki","Can't handle closed group update of unknown type: ${closedGroupUpdate.type}")
@@ -64,7 +64,6 @@ object ClosedGroupsProtocolV2 {
             DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT -> {
                 senderPublicKey.isNotEmpty()
             }
-            DataMessage.ClosedGroupControlMessage.Type.UPDATE,
             DataMessage.ClosedGroupControlMessage.Type.NAME_CHANGE -> {
                 !closedGroupUpdate.name.isNullOrEmpty()
             }

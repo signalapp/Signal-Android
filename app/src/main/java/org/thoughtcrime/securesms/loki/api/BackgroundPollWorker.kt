@@ -8,13 +8,14 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.SnodeAPI
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -70,7 +71,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
 
             // Private chats
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
-            val privateChatsPromise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
+            val privateChatsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
                 envelopes.map { envelope ->
                     MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
                 }
