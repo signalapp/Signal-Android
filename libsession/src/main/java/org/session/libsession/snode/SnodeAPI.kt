@@ -6,7 +6,9 @@ import android.os.Build
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.utilities.getRandomElement
+import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
@@ -226,13 +228,14 @@ object SnodeAPI {
         }
     }
 
-    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<*> {
+    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<SignalServiceProtos.Envelope> {
         val messages = rawResponse["messages"] as? List<*>
         return if (messages != null) {
             updateLastMessageHashValueIfPossible(snode, publicKey, messages)
-            removeDuplicates(publicKey, messages)
+            val newRawMessages = removeDuplicates(publicKey, messages)
+            return parseEnvelopes(newRawMessages);
         } else {
-            listOf<Map<*,*>>()
+            listOf()
         }
     }
 
@@ -262,6 +265,26 @@ object SnodeAPI {
             }
         }
     }
+
+    private fun parseEnvelopes(rawMessages: List<*>): List<SignalServiceProtos.Envelope> {
+        return rawMessages.mapNotNull { rawMessage ->
+            val rawMessageAsJSON = rawMessage as? Map<*, *>
+            val base64EncodedData = rawMessageAsJSON?.get("data") as? String
+            val data = base64EncodedData?.let { Base64.decode(it) }
+            if (data != null) {
+                try {
+                    MessageWrapper.unwrap(data)
+                } catch (e: Exception) {
+                    Log.d("Loki", "Failed to unwrap data for message: ${rawMessage.prettifiedDescription()}.")
+                    null
+                }
+            } else {
+                Log.d("Loki", "Failed to decode data for message: ${rawMessage?.prettifiedDescription()}.")
+                null
+            }
+        }
+    }
+    // endregion
 
     // Error Handling
     internal fun handleSnodeError(statusCode: Int, json: Map<*, *>?, snode: Snode, publicKey: String? = null): Exception? {
@@ -310,5 +333,5 @@ object SnodeAPI {
 
 // Type Aliases
 typealias RawResponse = Map<*, *>
-typealias MessageListPromise = Promise<List<*>, Exception>
+typealias MessageListPromise = Promise<List<SignalServiceProtos.Envelope>, Exception>
 typealias RawResponsePromise = Promise<RawResponse, Exception>

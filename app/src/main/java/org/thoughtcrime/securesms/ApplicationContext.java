@@ -32,6 +32,7 @@ import androidx.multidex.MultiDexApplication;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.messaging.file_server.FileServerAPI;
 import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
@@ -93,6 +94,7 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Date;
 import java.util.HashSet;
@@ -420,7 +422,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
         LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        org.session.libsession.messaging.file_server.FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
+        FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
         return true;
     }
 
@@ -492,13 +494,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             try {
                 File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
                 StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
-                throw new IOException();
-//                FileServerAPI.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
-//                    TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
-//                    TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
-//                    ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
-//                    return Unit.INSTANCE;
-//                });
+                FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
+                    TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
+                    TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
+                    ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
+                    return Unit.INSTANCE;
+                });
             } catch (Exception exception) {
                 // Do nothing
             }

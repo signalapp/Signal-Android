@@ -97,7 +97,7 @@ class Poller {
                     val rawMessageAsJSON = message as? Map<*, *>
                     val base64EncodedData = rawMessageAsJSON?.get("data") as? String
                     val data = base64EncodedData?.let { Base64.decode(it) } ?: return@forEach
-                    val job = MessageReceiveJob(MessageWrapper.unwrap(data), false)
+                    val job = MessageReceiveJob(MessageWrapper.unwrap(data).toByteArray(), false)
                     JobQueue.shared.add(job)
                 }
                 poll(snode, deferred)

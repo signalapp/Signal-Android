@@ -7,6 +7,7 @@ import androidx.work.*
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
+import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
 import org.session.libsession.snode.SnodeAPI
@@ -71,10 +72,9 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             // Private chats
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
             val privateChatsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
-                throw IOException()
-//                envelopes.map { envelope ->
-//                    MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
-//                }
+                envelopes.map { envelope ->
+                    MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
+                }
             }
             promises.addAll(privateChatsPromise.get())
 
