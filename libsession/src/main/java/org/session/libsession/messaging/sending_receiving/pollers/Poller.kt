@@ -93,11 +93,8 @@ class Poller {
                 task { Unit } // The long polling connection has been canceled; don't recurse
             } else {
                 val messages = SnodeAPI.parseRawMessagesResponse(rawResponse, snode, userPublicKey)
-                messages.forEach { message ->
-                    val rawMessageAsJSON = message as? Map<*, *>
-                    val base64EncodedData = rawMessageAsJSON?.get("data") as? String
-                    val data = base64EncodedData?.let { Base64.decode(it) } ?: return@forEach
-                    val job = MessageReceiveJob(MessageWrapper.unwrap(data).toByteArray(), false)
+                messages.forEach { envelope ->
+                    val job = MessageReceiveJob(envelope.toByteArray(), false)
                     JobQueue.shared.add(job)
                 }
                 poll(snode, deferred)
