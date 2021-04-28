@@ -462,6 +462,18 @@ dependencyVerification {
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
 
+        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
+         'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],
+
+        ['org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32',
+         '5f801e75ca27d8791c14b07943c608da27620d910a8093022af57f543d5d98b6'],
+
+        ['org.jetbrains.kotlin:kotlin-stdlib:1.4.32',
+         '13e9fd3e69dc7230ce0fc873a92a4e5d521d179bcf1bef75a6705baac3bfecba'],
+
+        ['org.jetbrains:annotations:13.0',
+         'ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478'],
+
         ['org.jsoup:jsoup:1.8.3',
          'abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473'],
 
