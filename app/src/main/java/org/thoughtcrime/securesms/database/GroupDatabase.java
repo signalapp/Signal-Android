@@ -28,7 +28,6 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -44,6 +43,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
           static final String GROUP_ID            = "group_id";
   private static final String TITLE               = "title";
   private static final String MEMBERS             = "members";
+  private static final String ZOMBIE_MEMBERS      = "zombie_members";
   private static final String AVATAR              = "avatar";
   private static final String AVATAR_ID           = "avatar_id";
   private static final String AVATAR_KEY          = "avatar_key";
@@ -64,6 +64,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
           GROUP_ID + " TEXT, " +
           TITLE + " TEXT, " +
           MEMBERS + " TEXT, " +
+          ZOMBIE_MEMBERS + " TEXT, " +
           AVATAR + " BLOB, " +
           AVATAR_ID + " INTEGER, " +
           AVATAR_KEY + " BLOB, " +
@@ -81,7 +82,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
   };
 
   private static final String[] GROUP_PROJECTION = {
-      GROUP_ID, TITLE, MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
+      GROUP_ID, TITLE, MEMBERS, ZOMBIE_MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
       TIMESTAMP, ACTIVE, MMS, AVATAR_URL, ADMINS
   };
 
@@ -162,7 +163,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
   }
 
   public @NonNull List<Recipient> getGroupMembers(String groupId, boolean includeSelf) {
-    List<Address>   members     = getCurrentMembers(groupId);
+    List<Address>   members     = getCurrentMembers(groupId, false);
     List<Recipient> recipients  = new LinkedList<>();
 
     for (Address member : members) {
@@ -172,6 +173,17 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
       if (member.isContact()) {
         recipients.add(Recipient.from(context, member, false));
       }
+    }
+
+    return recipients;
+  }
+
+  public @NonNull List<Recipient> getGroupZombieMembers(String groupId) {
+    List<Address>   members     = getCurrentZombieMembers(groupId);
+    List<Recipient> recipients  = new LinkedList<>();
+
+    for (Address member : members) {
+        recipients.add(Recipient.from(context, member, false));
     }
 
     return recipients;
@@ -300,6 +312,16 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     });
   }
 
+  public void updateZombieMembers(String groupId, List<Address> members) {
+    Collections.sort(members);
+
+    ContentValues contents = new ContentValues();
+    contents.put(ZOMBIE_MEMBERS, Address.toSerializedList(members, ','));
+    contents.put(ACTIVE, 1);
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
+            new String[] {groupId});
+  }
+
   public void updateAdmins(String groupId, List<Address> admins) {
     Collections.sort(admins);
 
@@ -311,7 +333,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
   }
 
   public void removeMember(String groupId, Address source) {
-    List<Address> currentMembers = getCurrentMembers(groupId);
+    List<Address> currentMembers = getCurrentMembers(groupId, false);
     currentMembers.remove(source);
 
     ContentValues contents = new ContentValues();
@@ -329,18 +351,22 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     });
   }
 
-  private List<Address> getCurrentMembers(String groupId) {
+  private List<Address> getCurrentMembers(String groupId, boolean zombieMembers) {
     Cursor cursor = null;
 
+    String membersColumn = MEMBERS;
+    if (zombieMembers) membersColumn = ZOMBIE_MEMBERS;
+
     try {
-      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {MEMBERS},
+      cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {membersColumn},
                                                           GROUP_ID + " = ?",
                                                           new String[] {groupId},
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
-        return Address.fromSerializedList(serializedMembers, ',');
+        String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(membersColumn));
+        if (serializedMembers != null && !serializedMembers.isEmpty())
+          return Address.fromSerializedList(serializedMembers, ',');
       }
 
       return new LinkedList<>();
@@ -348,6 +374,10 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  private List<Address> getCurrentZombieMembers(String groupId) {
+    return getCurrentMembers(groupId, true);
   }
 
   public boolean isActive(String groupId) {
