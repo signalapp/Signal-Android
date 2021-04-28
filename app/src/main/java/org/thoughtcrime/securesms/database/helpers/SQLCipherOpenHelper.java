@@ -178,8 +178,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int BLUR_AVATARS                     = 94;
   private static final int CLEAN_STORAGE_IDS_WITHOUT_INFO   = 95;
   private static final int CLEAN_REACTION_NOTIFICATIONS     = 96;
+  private static final int STORAGE_SERVICE_REFACTOR         = 97;
 
-  private static final int    DATABASE_VERSION = 96;
+  private static final int    DATABASE_VERSION = 97;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1394,6 +1395,47 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
           Log.d(TAG, "Updating " + mmsIds.size() + " records in mms");
           db.execSQL("UPDATE mms SET reactions_last_seen = notified_timestamp WHERE _id in (" + Util.join(mmsIds, ",") + ")");
         }
+      }
+
+      if (oldVersion < STORAGE_SERVICE_REFACTOR) {
+        int deleteCount;
+        int insertCount;
+        int updateCount;
+        int dirtyCount;
+
+        ContentValues deleteValues = new ContentValues();
+        deleteValues.putNull("storage_service_key");
+        deleteCount = db.update("recipient", deleteValues, "storage_service_key NOT NULL AND (dirty = 3 OR group_type = 1 OR (group_type = 0 AND registered = 2))", null);
+
+        try (Cursor cursor = db.query("recipient", new String[]{"_id"}, "storage_service_key IS NULL AND (dirty = 2 OR registered = 1)", null, null, null, null)) {
+          insertCount = cursor.getCount();
+
+          while (cursor.moveToNext()) {
+            ContentValues insertValues = new ContentValues();
+            insertValues.put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()));
+
+            long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+            db.update("recipient", insertValues, "_id = ?", SqlUtil.buildArgs(id));
+          }
+        }
+
+        try (Cursor cursor = db.query("recipient", new String[]{"_id"}, "storage_service_key NOT NULL AND dirty = 1", null, null, null, null)) {
+          updateCount = cursor.getCount();
+
+          while (cursor.moveToNext()) {
+            ContentValues updateValues = new ContentValues();
+            updateValues.put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()));
+
+            long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+            db.update("recipient", updateValues, "_id = ?", SqlUtil.buildArgs(id));
+          }
+        }
+
+        ContentValues clearDirtyValues = new ContentValues();
+        clearDirtyValues.put("dirty", 0);
+        dirtyCount = db.update("recipient", clearDirtyValues, "dirty != 0", null);
+
+        Log.d(TAG, String.format(Locale.US, "For storage service refactor migration, there were %d inserts, %d updated, and %d deletes. Cleared the dirty status on %d rows.", insertCount, updateCount, deleteCount, dirtyCount));
       }
 
       db.setTransactionSuccessful();

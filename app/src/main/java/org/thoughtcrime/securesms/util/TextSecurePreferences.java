@@ -1224,10 +1224,6 @@ public class TextSecurePreferences {
     setBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, value);
   }
 
-  public static long getStorageManifestVersion(Context context) {
-    return getLongPreference(context, STORAGE_MANIFEST_VERSION, 0);
-  }
-
   public static void setStorageManifestVersion(Context context, long version) {
     setLongPreference(context, STORAGE_MANIFEST_VERSION, version);
   }

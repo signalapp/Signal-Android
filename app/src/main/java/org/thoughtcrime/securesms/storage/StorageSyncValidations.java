@@ -30,7 +30,7 @@ public final class StorageSyncValidations {
   private StorageSyncValidations() {}
 
   public static void validate(@NonNull StorageSyncHelper.WriteOperationResult result,
-                              @NonNull Optional<SignalStorageManifest> previousManifest,
+                              @NonNull SignalStorageManifest previousManifest,
                               boolean forcePushPending,
                               @NonNull Recipient self)
   {
@@ -47,12 +47,12 @@ public final class StorageSyncValidations {
       }
     }
 
-    if (!previousManifest.isPresent()) {
-      Log.i(TAG, "No previous manifest, not bothering with additional validations around the diffs between the two manifests.");
+    if (previousManifest.getVersion() == 0) {
+      Log.i(TAG, "Previous manifest is empty, not bothering with additional validations around the diffs between the two manifests.");
       return;
     }
 
-    if (result.getManifest().getVersion() != previousManifest.get().getVersion() + 1) {
+    if (result.getManifest().getVersion() != previousManifest.getVersion() + 1) {
       throw new IncorrectManifestVersionError();
     }
 
@@ -61,7 +61,7 @@ public final class StorageSyncValidations {
       return;
     }
 
-    Set<ByteBuffer> previousIds = Stream.of(previousManifest.get().getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> previousIds = Stream.of(previousManifest.getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
     Set<ByteBuffer> newIds      = Stream.of(result.getManifest().getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     Set<ByteBuffer> manifestInserts = SetUtil.difference(newIds, previousIds);

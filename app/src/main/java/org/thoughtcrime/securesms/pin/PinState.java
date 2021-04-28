@@ -126,7 +126,7 @@ public final class PinState {
       Log.i(TAG, "Has a PIN to restore.");
       SignalStore.kbsValues().clearRegistrationLockAndPin();
       TextSecurePreferences.setV1RegistrationLockEnabled(context, false);
-      SignalStore.storageServiceValues().setNeedsAccountRestore(true);
+      SignalStore.storageService().setNeedsAccountRestore(true);
     } else {
       Log.i(TAG, "No registration lock or PIN at all.");
       SignalStore.kbsValues().clearRegistrationLockAndPin();
@@ -145,7 +145,7 @@ public final class PinState {
     SignalStore.kbsValues().setKbsMasterKey(kbsData, pin);
     SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
     SignalStore.pinValues().resetPinReminders();
-    SignalStore.storageServiceValues().setNeedsAccountRestore(false);
+    SignalStore.storageService().setNeedsAccountRestore(false);
     resetPinRetryCount(context, pin);
     ClearFallbackKbsEnclaveJob.clearAll();
 
@@ -157,7 +157,7 @@ public final class PinState {
    */
   public static synchronized void onPinRestoreForgottenOrSkipped() {
     SignalStore.kbsValues().clearRegistrationLockAndPin();
-    SignalStore.storageServiceValues().setNeedsAccountRestore(false);
+    SignalStore.storageService().setNeedsAccountRestore(false);
 
     updateState(buildInferredStateFromOtherFields());
   }

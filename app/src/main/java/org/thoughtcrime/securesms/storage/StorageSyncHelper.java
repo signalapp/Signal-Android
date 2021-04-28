@@ -58,123 +58,6 @@ public final class StorageSyncHelper {
   private static final long REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   /**
-   * Given the local state of pending storage mutations, this will generate a result that will
-   * include that data that needs to be written to the storage service, as well as any changes you
-   * need to write back to local storage (like storage keys that might have changed for updated
-   * contacts).
-   *
-   * @param currentManifestVersion What you think the version is locally.
-   * @param currentLocalKeys All local keys you have. This assumes that 'inserts' were given keys
-   *                         already, and that deletes still have keys.
-   * @param updates Contacts that have been altered.
-   * @param inserts Contacts that have been inserted (or newly marked as registered).
-   * @param deletes Contacts that are no longer registered.
-   *
-   * @return If changes need to be written, then it will return those changes. If no changes need
-   *         to be written, this will return {@link Optional#absent()}.
-   */
-  public static @NonNull Optional<LocalWriteResult> buildStorageUpdatesForLocal(long currentManifestVersion,
-                                                                                @NonNull List<StorageId> currentLocalKeys,
-                                                                                @NonNull List<RecipientSettings> updates,
-                                                                                @NonNull List<RecipientSettings> inserts,
-                                                                                @NonNull List<RecipientSettings> deletes,
-                                                                                @NonNull Optional<SignalAccountRecord> accountUpdate,
-                                                                                @NonNull Optional<SignalAccountRecord> accountInsert)
-  {
-    int accountCount = Stream.of(currentLocalKeys)
-                             .filter(id -> id.getType() == ManifestRecord.Identifier.Type.ACCOUNT_VALUE)
-                             .toList()
-                             .size();
-
-    if (accountCount > 1) {
-      throw new MultipleExistingAccountsException();
-    }
-
-    Optional<StorageId> accountId = Optional.fromNullable(Stream.of(currentLocalKeys)
-                                            .filter(id -> id.getType() == ManifestRecord.Identifier.Type.ACCOUNT_VALUE)
-                                            .findFirst()
-                                            .orElse(null));
-
-
-    if (accountId.isPresent() && accountInsert.isPresent() && !accountInsert.get().getId().equals(accountId.get())) {
-      throw new InvalidAccountInsertException();
-    }
-
-    if (accountId.isPresent() && accountUpdate.isPresent() && !accountUpdate.get().getId().equals(accountId.get())) {
-      throw new InvalidAccountUpdateException();
-    }
-
-    if (accountUpdate.isPresent() && accountInsert.isPresent()) {
-      throw new InvalidAccountDualInsertUpdateException();
-    }
-
-    Set<StorageId>           completeIds       = new LinkedHashSet<>(currentLocalKeys);
-    Set<SignalStorageRecord> storageInserts    = new LinkedHashSet<>();
-    Set<ByteBuffer>          storageDeletes    = new LinkedHashSet<>();
-    Map<RecipientId, byte[]> storageKeyUpdates = new HashMap<>();
-
-    for (RecipientSettings insert : inserts) {
-      if (insert.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && insert.getSyncExtras().getGroupMasterKey() == null) {
-        Log.w(TAG, "Missing master key on gv2 recipient");
-        continue;
-      }
-
-      SignalStorageRecord insertRecord = StorageSyncModels.localToRemoteRecord(insert);
-      storageInserts.add(insertRecord);
-      completeIds.add(insertRecord.getId());
-    }
-
-    if (accountInsert.isPresent()) {
-      storageInserts.add(SignalStorageRecord.forAccount(accountInsert.get()));
-      completeIds.add(accountInsert.get().getId());
-    }
-
-    for (RecipientSettings delete : deletes) {
-      byte[] key = Objects.requireNonNull(delete.getStorageId());
-      storageDeletes.add(ByteBuffer.wrap(key));
-      completeIds.removeIf(id -> Arrays.equals(id.getRaw(), key));
-    }
-
-    for (RecipientSettings update : updates) {
-      byte[] oldId = update.getStorageId();
-      byte[] newId = generateKey();
-
-      SignalStorageRecord insert = StorageSyncModels.localToRemoteRecord(update, newId);
-
-      storageInserts.add(insert);
-      storageDeletes.add(ByteBuffer.wrap(oldId));
-
-      completeIds.add(insert.getId());
-      completeIds.removeIf(id -> Arrays.equals(id.getRaw(), oldId));
-
-      storageKeyUpdates.put(update.getId(), newId);
-    }
-
-    if (accountUpdate.isPresent()) {
-      StorageId oldId = accountUpdate.get().getId();
-      StorageId newId = StorageId.forAccount(generateKey());
-
-      storageInserts.add(SignalStorageRecord.forAccount(newId, accountUpdate.get()));
-      storageDeletes.add(ByteBuffer.wrap(oldId.getRaw()));
-
-      completeIds.remove(oldId);
-      completeIds.add(newId);
-
-      storageKeyUpdates.put(Recipient.self().getId(), newId.getRaw());
-    }
-
-    if (storageInserts.isEmpty() && storageDeletes.isEmpty()) {
-      return Optional.absent();
-    } else {
-      List<byte[]>          storageDeleteBytes   = Stream.of(storageDeletes).map(ByteBuffer::array).toList();
-      SignalStorageManifest manifest             = new SignalStorageManifest(currentManifestVersion + 1, new ArrayList<>(completeIds));
-      WriteOperationResult  writeOperationResult = new WriteOperationResult(manifest, new ArrayList<>(storageInserts), storageDeleteBytes);
-
-      return Optional.of(new LocalWriteResult(writeOperationResult, storageKeyUpdates));
-    }
-  }
-
-  /**
    * Given a list of all the local and remote keys you know about, this will return a result telling
    * you which keys are exclusively remote and which are exclusively local.
    *
@@ -225,20 +108,6 @@ public final class StorageSyncHelper {
 
   public static boolean profileKeyChanged(StorageRecordUpdate<SignalContactRecord> update) {
     return !OptionalUtil.byteArrayEquals(update.getOld().getProfileKey(), update.getNew().getProfileKey());
-  }
-
-  public static Optional<SignalAccountRecord> getPendingAccountSyncUpdate(@NonNull Context context, @NonNull Recipient self) {
-    if (DatabaseFactory.getRecipientDatabase(context).getDirtyState(self.getId()) != RecipientDatabase.DirtyState.UPDATE) {
-      return Optional.absent();
-    }
-    return Optional.of(buildAccountRecord(context, self).getAccount().get());
-  }
-
-  public static Optional<SignalAccountRecord> getPendingAccountSyncInsert(@NonNull Context context, @NonNull Recipient self) {
-    if (DatabaseFactory.getRecipientDatabase(context).getDirtyState(self.getId()) != RecipientDatabase.DirtyState.INSERT) {
-      return Optional.absent();
-    }
-    return Optional.of(buildAccountRecord(context, self).getAccount().get());
   }
 
   public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
@@ -296,7 +165,7 @@ public final class StorageSyncHelper {
   }
 
   public static void scheduleRoutineSync() {
-    long timeSinceLastSync = System.currentTimeMillis() - SignalStore.storageServiceValues().getLastSyncTime();
+    long timeSinceLastSync = System.currentTimeMillis() - SignalStore.storageService().getLastSyncTime();
 
     if (timeSinceLastSync > REFRESH_INTERVAL) {
       Log.d(TAG, "Scheduling a sync. Last sync was " + timeSinceLastSync + " ms ago.");
@@ -390,27 +259,4 @@ public final class StorageSyncHelper {
       }
     }
   }
-
-  public static class LocalWriteResult {
-    private final WriteOperationResult     writeResult;
-    private final Map<RecipientId, byte[]> storageKeyUpdates;
-
-    private LocalWriteResult(WriteOperationResult writeResult, Map<RecipientId, byte[]> storageKeyUpdates) {
-      this.writeResult       = writeResult;
-      this.storageKeyUpdates = storageKeyUpdates;
-    }
-
-    public @NonNull WriteOperationResult getWriteResult() {
-      return writeResult;
-    }
-
-    public @NonNull Map<RecipientId, byte[]> getStorageKeyUpdates() {
-      return storageKeyUpdates;
-    }
-  }
-
-  private static final class MultipleExistingAccountsException extends IllegalArgumentException {}
-  private static final class InvalidAccountInsertException extends IllegalArgumentException {}
-  private static final class InvalidAccountUpdateException extends IllegalArgumentException {}
-  private static final class InvalidAccountDualInsertUpdateException extends IllegalArgumentException {}
 }

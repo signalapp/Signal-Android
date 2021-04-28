@@ -166,7 +166,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_UI_BLOCKING_UPGRADE;
     } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
       return STATE_WELCOME_PUSH_SCREEN;
-    } else if (SignalStore.storageServiceValues().needsAccountRestore()) {
+    } else if (SignalStore.storageService().needsAccountRestore()) {
       return STATE_ENTER_SIGNAL_PIN;
     } else if (userMustSetProfileName()) {
       return STATE_CREATE_PROFILE_NAME;

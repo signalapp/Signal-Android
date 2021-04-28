@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor;
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.LocalWriteResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
@@ -52,6 +51,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
+import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,10 +105,9 @@ import java.util.concurrent.TimeUnit;
  *   the diff in IDs.
  * - Then, we fetch the actual records that correspond to the remote-only IDs.
  * - Afterwards, we take those records and merge them into our local data store.
- * - The merging process could result in changes that need to be written back to the service, so
- *   we write those back.
- * - Finally, we look at any other local changes that were made (independent of the ID diff) and
- *   make sure those are written to the service.
+ * - Finally, we assume that our local state represents the most up-to-date information, and so we
+ *   calculate and write a change set that represents the diff between our state and the remote
+ *   state.
  *
  * Of course, you'll notice that there's a lot of code to support that goal. That's mostly because
  * converting local data into a format that can be compared with, merged, and eventually written
@@ -130,8 +129,8 @@ import java.util.concurrent.TimeUnit;
  * - Update builder usage in StorageSyncModels
  * - Handle the new data when writing to the local storage
  *   (i.e. {@link RecipientDatabase#applyStorageSyncContactUpdate(StorageRecordUpdate)}).
- * - Make sure that whenever you change the field in the UI, we mark the row as dirty and call
- *   {@link StorageSyncHelper#scheduleSyncForDataChange()}.
+ * - Make sure that whenever you change the field in the UI, we rotate the storageId for that row
+ *   and call {@link StorageSyncHelper#scheduleSyncForDataChange()}.
  * - If you're syncing a field that was otherwise already present in the UI, you'll probably want
  *   to enqueue a {@link StorageServiceMigrationJob} as an app migration to make sure it gets
  *   synced.
@@ -185,7 +184,7 @@ public class StorageSyncJob extends BaseJob {
         ApplicationDependencies.getJobManager().add(new MultiDeviceStorageSyncRequestJob());
       }
 
-      SignalStore.storageServiceValues().onSyncCompleted();
+      SignalStore.storageService().onSyncCompleted();
     } catch (InvalidKeyException e) {
       Log.w(TAG, "Failed to decrypt remote storage! Force-pushing and syncing the storage key to linked devices.", e);
 
@@ -206,29 +205,28 @@ public class StorageSyncJob extends BaseJob {
   }
 
   private boolean performSync() throws IOException, RetryLaterException, InvalidKeyException {
-    Stopwatch                   stopwatch          = new Stopwatch("StorageSync");
-    Recipient                   self               = Recipient.self().fresh();
-    SQLiteDatabase              db                 = DatabaseFactory.getInstance(context).getRawDatabase();
-    SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    UnknownStorageIdDatabase    storageIdDatabase  = DatabaseFactory.getUnknownStorageIdDatabase(context);
-    StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageKey();
+    final Stopwatch                   stopwatch         = new Stopwatch("StorageSync");
+    final SQLiteDatabase              db                = DatabaseFactory.getInstance(context).getRawDatabase();
+    final SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+    final UnknownStorageIdDatabase    storageIdDatabase = DatabaseFactory.getUnknownStorageIdDatabase(context);
+    final StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
-    boolean                         needsMultiDeviceSync  = false;
-    boolean                         needsForcePush        = false;
-    long                            localManifestVersion  = TextSecurePreferences.getStorageManifestVersion(context);
-    Optional<SignalStorageManifest> remoteManifest        = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
-    long                            remoteManifestVersion = remoteManifest.transform(SignalStorageManifest::getVersion).or(localManifestVersion);
+    final SignalStorageManifest localManifest  = SignalStore.storageService().getManifest();
+    final SignalStorageManifest remoteManifest = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.getVersion()).or(localManifest);
+
+    Recipient self                 = Recipient.self().fresh();
+    boolean   needsMultiDeviceSync = false;
+    boolean   needsForcePush       = false;
 
     stopwatch.split("remote-manifest");
 
-    Log.i(TAG, "Our version: " + localManifestVersion + ", their version: " + remoteManifestVersion);
+    Log.i(TAG, "Our version: " + localManifest.getVersion() + ", their version: " + remoteManifest.getVersion());
 
-    if (remoteManifest.isPresent() && remoteManifestVersion > localManifestVersion) {
+    if (remoteManifest.getVersion() > localManifest.getVersion()) {
       Log.i(TAG, "[Remote Sync] Newer manifest version found!");
 
       List<StorageId>    localStorageIdsBeforeMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
-      IdDifferenceResult idDifference               = StorageSyncHelper.findIdDifference(remoteManifest.get().getStorageIds(), localStorageIdsBeforeMerge);
+      IdDifferenceResult idDifference               = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIdsBeforeMerge);
 
       if (idDifference.hasTypeMismatches()) {
         Log.w(TAG, "[Remote Sync] Found type mismatches in the ID sets! Scheduling a force push after this sync completes.");
@@ -247,8 +245,7 @@ public class StorageSyncJob extends BaseJob {
         stopwatch.split("remote-records");
 
         if (remoteOnly.size() != idDifference.getRemoteOnlyIds().size()) {
-          Log.w(TAG, "[Remote Sync] Could not find all remote-only records! Requested: " + idDifference.getRemoteOnlyIds().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
-          needsForcePush = true;
+          Log.w(TAG, "[Remote Sync] Could not find all remote-only records! Requested: " + idDifference.getRemoteOnlyIds().size() + ", Found: " + remoteOnly.size() + ". These stragglers should naturally get deleted during the sync.");
         }
 
         List<SignalContactRecord> remoteContacts = new LinkedList<>();
@@ -271,8 +268,6 @@ public class StorageSyncJob extends BaseJob {
           }
         }
 
-        WriteOperationResult mergeWriteOperation;
-
         db.beginTransaction();
         try {
           new ContactRecordProcessor(context, self).process(remoteContacts, StorageSyncHelper.KEY_GENERATOR);
@@ -285,150 +280,73 @@ public class StorageSyncJob extends BaseJob {
           List<SignalStorageRecord> unknownInserts = remoteUnknown;
           List<StorageId>           unknownDeletes = Stream.of(idDifference.getLocalOnlyIds()).filter(StorageId::isUnknown).toList();
 
-          storageIdDatabase.insert(unknownInserts);
-          storageIdDatabase.delete(unknownDeletes);
-
           Log.i(TAG, "[Remote Sync] Unknowns :: " + unknownInserts.size() + " inserts, " + unknownDeletes.size() + " deletes");
 
-          List<StorageId> localStorageIdsAfterMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
-          Set<StorageId>  localIdsAdded             = SetUtil.difference(localStorageIdsAfterMerge, localStorageIdsBeforeMerge);
-          Set<StorageId>  localIdsRemoved           = SetUtil.difference(localStorageIdsBeforeMerge, localStorageIdsAfterMerge);
-
-          Log.i(TAG, "[Remote Sync] Local ID Changes :: " + localIdsAdded.size() + " inserts, " + localIdsRemoved.size() + " deletes");
-
-          IdDifferenceResult        postMergeIdDifference = StorageSyncHelper.findIdDifference(remoteManifest.get().getStorageIds(), localStorageIdsAfterMerge);
-          List<SignalStorageRecord> remoteInserts         = buildLocalStorageRecords(context, self, postMergeIdDifference.getLocalOnlyIds());
-          List<byte[]>              remoteDeletes         = Stream.of(postMergeIdDifference.getRemoteOnlyIds()).map(StorageId::getRaw).toList();
-
-          Log.i(TAG, "[Remote Sync] Post-Merge ID Difference :: " + postMergeIdDifference);
-
-          mergeWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifestVersion + 1, localStorageIdsAfterMerge),
-                                                         remoteInserts,
-                                                         remoteDeletes);
-
-          recipientDatabase.clearDirtyStateForStorageIds(Util.concatenatedList(localIdsAdded, localIdsRemoved));
+          storageIdDatabase.insert(unknownInserts);
+          storageIdDatabase.delete(unknownDeletes);
 
           db.setTransactionSuccessful();
         } finally {
           db.endTransaction();
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
+          stopwatch.split("remote-merge-transaction");
         }
-
-        stopwatch.split("remote-merge-transaction");
-
-        Log.i(TAG, "[Remote Sync] WriteOperationResult :: " + mergeWriteOperation);
-
-        if (!mergeWriteOperation.isEmpty()) {
-          Log.i(TAG, "[Remote Sync] We have something to write remotely.");
-
-          StorageSyncValidations.validate(mergeWriteOperation, remoteManifest, needsForcePush, self);
-
-          Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, mergeWriteOperation.getManifest(), mergeWriteOperation.getInserts(), mergeWriteOperation.getDeletes());
-
-          if (conflict.isPresent()) {
-            Log.w(TAG, "[Remote Sync] Hit a conflict when trying to resolve the conflict! Retrying.");
-            throw new RetryLaterException();
-          }
-
-          stopwatch.split("remote-merge-write");
-
-          remoteManifestVersion = mergeWriteOperation.getManifest().getVersion();
-          remoteManifest        = Optional.of(mergeWriteOperation.getManifest());
-
-          needsMultiDeviceSync = true;
-        } else {
-          Log.i(TAG, "[Remote Sync] No remote writes needed.");
-        }
-
-        Log.i(TAG, "[Remote Sync] Updating local manifest version to: " + remoteManifestVersion);
-        TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);
       } else {
-        Log.i(TAG, "[Remote Sync] Remote version was newer, there were no remote-only IDs.");
-        Log.i(TAG, "[Remote Sync] Updating local manifest version to: " + remoteManifest.get().getVersion());
-        TextSecurePreferences.setStorageManifestVersion(context, remoteManifest.get().getVersion());
+        Log.i(TAG, "[Remote Sync] Remote version was newer, but there were no remote-only IDs.");
       }
-    } else if (remoteManifest.isPresent() && remoteManifestVersion < localManifestVersion) {
-      Log.w(TAG, "[Remote Sync] Remote version was older. User might have switched accounts. Making our version match.");
-      TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);
+    } else if (remoteManifest.getVersion() < localManifest.getVersion()) {
+      Log.w(TAG, "[Remote Sync] Remote version was older. User might have switched accounts.");
     }
 
-    localManifestVersion = TextSecurePreferences.getStorageManifestVersion(context);
+    if (remoteManifest != localManifest) {
+      Log.i(TAG, "[Remote Sync] Saved new manifest. Now at version: " + remoteManifest.getVersion());
+      SignalStore.storageService().setManifest(remoteManifest);
+    }
 
-    List<StorageId>               allLocalStorageIds;
-    List<RecipientSettings>       pendingUpdates;
-    List<RecipientSettings>       pendingInsertions;
-    List<RecipientSettings>       pendingDeletions;
-    Optional<SignalAccountRecord> pendingAccountInsert;
-    Optional<SignalAccountRecord> pendingAccountUpdate;
-    Optional<LocalWriteResult>    localWriteResult;
+    Log.i(TAG, "We are up-to-date with the remote storage state.");
+
+    final WriteOperationResult remoteWriteOperation;
 
     db.beginTransaction();
     try {
-      allLocalStorageIds   = getAllLocalStorageIds(context, self);
-      pendingUpdates       = recipientDatabase.getPendingRecipientSyncUpdates();
-      pendingInsertions    = recipientDatabase.getPendingRecipientSyncInsertions();
-      pendingDeletions     = recipientDatabase.getPendingRecipientSyncDeletions();
-      pendingAccountInsert = StorageSyncHelper.getPendingAccountSyncInsert(context, self);
-      pendingAccountUpdate = StorageSyncHelper.getPendingAccountSyncUpdate(context, self);
-      localWriteResult     = StorageSyncHelper.buildStorageUpdatesForLocal(localManifestVersion,
-                                                                           allLocalStorageIds,
-                                                                           pendingUpdates,
-                                                                           pendingInsertions,
-                                                                           pendingDeletions,
-                                                                           pendingAccountUpdate,
-                                                                           pendingAccountInsert);
+      List<StorageId>           localStorageIds = getAllLocalStorageIds(context, Recipient.self().fresh());
+      IdDifferenceResult        idDifference    = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIds);
+      List<SignalStorageRecord> remoteInserts   = buildLocalStorageRecords(context, self, idDifference.getLocalOnlyIds());
+      List<byte[]>              remoteDeletes   = Stream.of(idDifference.getRemoteOnlyIds()).map(StorageId::getRaw).toList();
+
+      Log.i(TAG, "ID Difference :: " + idDifference);
+
+      remoteWriteOperation = new WriteOperationResult(new SignalStorageManifest(remoteManifest.getVersion() + 1, localStorageIds),
+                                                      remoteInserts,
+                                                      remoteDeletes);
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+      stopwatch.split("local-data-transaction");
     }
 
-    stopwatch.split("local-changes-transaction");
+    if (!remoteWriteOperation.isEmpty()) {
+      Log.i(TAG, "We have something to write remotely.");
+      Log.i(TAG, "WriteOperationResult :: " + remoteWriteOperation);
 
-    if (localWriteResult.isPresent()) {
-      Log.i(TAG, String.format(Locale.ENGLISH, "[Local Changes] Local changes present. %d updates, %d inserts, %d deletes, account update: %b, account insert: %b.", pendingUpdates.size(), pendingInsertions.size(), pendingDeletions.size(), pendingAccountUpdate.isPresent(), pendingAccountInsert.isPresent()));
+      StorageSyncValidations.validate(remoteWriteOperation, remoteManifest, needsForcePush, self);
 
-      WriteOperationResult localWrite = localWriteResult.get().getWriteResult();
-
-      Log.i(TAG, "[Local Changes] WriteOperationResult :: " + localWrite);
-
-      if (localWrite.isEmpty()) {
-        throw new AssertionError("Decided there were local writes, but our write result was empty!");
-      }
-
-      StorageSyncValidations.validate(localWrite, Optional.absent(), needsForcePush, self);
-
-      Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, localWrite.getManifest(), localWrite.getInserts(), localWrite.getDeletes());
+      Optional<SignalStorageManifest> conflict = accountManager.writeStorageRecords(storageServiceKey, remoteWriteOperation.getManifest(), remoteWriteOperation.getInserts(), remoteWriteOperation.getDeletes());
 
       if (conflict.isPresent()) {
-        Log.w(TAG, "[Local Changes] Hit a conflict when trying to upload our local writes! Retrying.");
+        Log.w(TAG, "Hit a conflict when trying to resolve the conflict! Retrying.");
         throw new RetryLaterException();
       }
 
-      stopwatch.split("remote-change-write");
+      Log.i(TAG, "Saved new manifest. Now at version: " + remoteWriteOperation.getManifest().getVersion());
+      SignalStore.storageService().setManifest(remoteWriteOperation.getManifest());
 
-      List<RecipientId> clearIds = Util.concatenatedList(Stream.of(pendingUpdates).map(RecipientSettings::getId).toList(),
-                                                         Stream.of(pendingInsertions).map(RecipientSettings::getId).toList(),
-                                                         Stream.of(pendingDeletions).map(RecipientSettings::getId).toList(),
-                                                         Collections.singletonList(Recipient.self().getId()));
-
-      db.beginTransaction();
-      try {
-        recipientDatabase.clearDirtyState(clearIds);
-        recipientDatabase.updateStorageIds(localWriteResult.get().getStorageKeyUpdates());
-
-        db.setTransactionSuccessful();
-      } finally {
-        db.endTransaction();
-      }
-
-      stopwatch.split("local-db-clean");
+      stopwatch.split("remote-write");
 
       needsMultiDeviceSync = true;
-
-      Log.i(TAG, "[Local Changes] Updating local manifest version to: " + localWriteResult.get().getWriteResult().getManifest().getVersion());
-      TextSecurePreferences.setStorageManifestVersion(context, localWriteResult.get().getWriteResult().getManifest().getVersion());
     } else {
-      Log.i(TAG, "[Local Changes] No local changes.");
+      Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.getVersion());
     }
 
     if (needsForcePush) {

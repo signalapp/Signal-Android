@@ -62,7 +62,7 @@ public final class SignalStore {
     registrationValues().onFirstEverAppLaunch();
     pinValues().onFirstEverAppLaunch();
     remoteConfigValues().onFirstEverAppLaunch();
-    storageServiceValues().onFirstEverAppLaunch();
+    storageService().onFirstEverAppLaunch();
     uiHints().onFirstEverAppLaunch();
     tooltips().onFirstEverAppLaunch();
     misc().onFirstEverAppLaunch();
@@ -83,7 +83,7 @@ public final class SignalStore {
     keys.addAll(registrationValues().getKeysToIncludeInBackup());
     keys.addAll(pinValues().getKeysToIncludeInBackup());
     keys.addAll(remoteConfigValues().getKeysToIncludeInBackup());
-    keys.addAll(storageServiceValues().getKeysToIncludeInBackup());
+    keys.addAll(storageService().getKeysToIncludeInBackup());
     keys.addAll(uiHints().getKeysToIncludeInBackup());
     keys.addAll(tooltips().getKeysToIncludeInBackup());
     keys.addAll(misc().getKeysToIncludeInBackup());
@@ -124,7 +124,7 @@ public final class SignalStore {
     return INSTANCE.remoteConfigValues;
   }
 
-  public static @NonNull StorageServiceValues storageServiceValues() {
+  public static @NonNull StorageServiceValues storageService() {
     return INSTANCE.storageServiceValues;
   }
 
