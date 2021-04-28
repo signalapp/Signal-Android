@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.opengroups
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import com.fasterxml.jackson.databind.annotation.JsonNaming
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -36,8 +38,6 @@ object OpenGroupAPIV2 {
     const val DEFAULT_SERVER = "https://sog.ibolpap.finance"
     private const val DEFAULT_SERVER_PUBLIC_KEY = "b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10"
 
-    // https://sog.ibolpap.finance/main?public_key=b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10
-
     val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
 
     private val sharedContext = Kovenant.createContext()
@@ -64,6 +64,13 @@ object OpenGroupAPIV2 {
             val imageID: String?
     )
 
+    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy::class)
+    data class CompactPollRequest(val roomId: String,
+                                  val authToken: String,
+                                  val fromDeletionServerId: Long?,
+                                  val fromMessageServerId: Long?
+    )
+
     data class CompactPollResult(val messages: List<OpenGroupMessageV2>,
                                  val deletions: List<Long>,
                                  val moderators: List<String>
@@ -83,7 +90,9 @@ object OpenGroupAPIV2 {
             val useOnionRouting: Boolean = true
     )
 
-    private fun createBody(parameters: Any): RequestBody {
+    private fun createBody(parameters: Any?): RequestBody? {
+        if (parameters == null) return null
+
         val parametersAsJSON = JsonUtil.toJson(parameters)
         return RequestBody.create(MediaType.get("application/json"), parametersAsJSON)
     }
@@ -111,9 +120,9 @@ object OpenGroupAPIV2 {
             }
             when (request.verb) {
                 GET -> requestBuilder.get()
-                PUT -> requestBuilder.put(createBody(request.parameters!!))
-                POST -> requestBuilder.post(createBody(request.parameters!!))
-                DELETE -> requestBuilder.delete(createBody(request.parameters!!))
+                PUT -> requestBuilder.put(createBody(request.parameters))
+                POST -> requestBuilder.post(createBody(request.parameters))
+                DELETE -> requestBuilder.delete(createBody(request.parameters))
             }
 
             if (!request.room.isNullOrEmpty()) {
@@ -142,21 +151,6 @@ object OpenGroupAPIV2 {
             getAuthToken(request.room!!, request.server).bind(sharedContext) { execute(it) }
         } else {
             execute(null)
-        }
-    }
-
-    fun downloadOpenGroupProfilePicture(imageUrl: String): ByteArray? {
-        Log.d("Loki", "Downloading open group profile picture from \"$imageUrl\".")
-        val outputStream = ByteArrayOutputStream()
-        try {
-            DownloadUtilities.downloadFile(outputStream, imageUrl, FileServerAPI.maxFileSize, null)
-            Log.d("Loki", "Open group profile picture was successfully loaded from \"$imageUrl\"")
-            return outputStream.toByteArray()
-        } catch (e: Exception) {
-            Log.d("Loki", "Failed to download open group profile picture from \"$imageUrl\" due to error: $e.")
-            return null
-        } finally {
-            outputStream.close()
         }
     }
 
@@ -291,8 +285,9 @@ object OpenGroupAPIV2 {
     // endregion
 
     // region Message Deletion
+    @JvmStatic
     fun deleteMessage(serverID: Long, room: String, server: String): Promise<Unit, Exception> {
-        val request = Request(verb = DELETE, room = room, server = server, endpoint = "message/$serverID")
+        val request = Request(verb = DELETE, room = room, server = server, endpoint = "messages/$serverID")
         return send(request).map(sharedContext) {
             Log.d("Loki", "Deleted server message")
         }
@@ -306,9 +301,9 @@ object OpenGroupAPIV2 {
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "deleted_messages", queryParameters = queryParameters)
         return send(request).map(sharedContext) { json ->
-            @Suppress("UNCHECKED_CAST") val serverIDs = json["ids"] as? List<Long>
+            @Suppress("UNCHECKED_CAST") val serverIDs = (json["ids"] as? List<Int>)?.map { it.toLong() }
                     ?: throw Error.PARSING_FAILED
-            val lastMessageServerId = storage.getLastMessageServerId(room, server) ?: 0
+            val lastMessageServerId = storage.getLastDeletionServerId(room, server) ?: 0
             val serverID = serverIDs.maxOrNull() ?: 0
             if (serverID > lastMessageServerId) {
                 storage.setLastDeletionServerId(room, server, serverID)
@@ -330,6 +325,7 @@ object OpenGroupAPIV2 {
         }
     }
 
+    @JvmStatic
     fun ban(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
         val parameters = mapOf("public_key" to publicKey)
         val request = Request(verb = POST, room = room, server = server, endpoint = "block_list", parameters = parameters)
@@ -351,8 +347,11 @@ object OpenGroupAPIV2 {
     // endregion
 
     // region General
-//    fun getCompactPoll(): Promise<CompactPollResult, Exception> {
-//        val request = Request()
+//    fun getCompactPoll(rooms: List<String>, server: String): Promise<Map<String,CompactPollResult>, Exception> {
+//        val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false)
+//
+//        // build a request for all rooms
+//
 //    }
 
     fun getDefaultRoomsIfNeeded(): Promise<List<DefaultGroup>, Exception> {
@@ -362,8 +361,9 @@ object OpenGroupAPIV2 {
             val earlyGroups = groups.map { group ->
                 DefaultGroup(group.id, group.name, null)
             }
-            defaultRooms.replayCache.firstOrNull()?.let { groups ->
-                if (groups.none { it.image?.isNotEmpty() == true}) {
+            // see if we have any cached rooms, and if they already have images, don't overwrite with early non-image results
+            defaultRooms.replayCache.firstOrNull()?.let { replayed ->
+                if (replayed.none { it.image?.isNotEmpty() == true}) {
                     defaultRooms.tryEmit(earlyGroups)
                 }
             }

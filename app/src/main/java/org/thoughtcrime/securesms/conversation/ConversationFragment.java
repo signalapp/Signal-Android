@@ -409,11 +409,11 @@ public class ConversationFragment extends Fragment
       }
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
-      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext());
       boolean userCanModerate =
               (isPublicChat &&
-                      (OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer())
-                       || OpenGroupAPIV2.isUserModerator(userHexEncodedPublicKey, openGroupChat.getRoom(), openGroupChat.getServer()))
+                      ((publicChat != null && OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer()))
+                       || (openGroupChat != null && OpenGroupAPIV2.isUserModerator(userHexEncodedPublicKey, openGroupChat.getRoom(), openGroupChat.getServer())))
               );
       boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       // allow banning if moderating a public chat and only one user's messages are selected
@@ -515,6 +515,7 @@ public class ConversationFragment extends Fragment
     builder.setCancelable(true);
 
     PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -525,7 +526,7 @@ public class ConversationFragment extends Fragment
         {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
-            if (publicChat != null) {
+            if (publicChat != null || openGroupChat != null) {
               ArrayList<Long> serverIDs = new ArrayList<>();
               ArrayList<Long> ignoredMessages = new ArrayList<>();
               ArrayList<Long> failedMessages = new ArrayList<>();
@@ -561,7 +562,29 @@ public class ConversationFragment extends Fragment
                   Log.w("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
                   return null;
                 });
-              }
+              } else if (openGroupChat != null) {
+                for (Long serverId : serverIDs) {
+                  OpenGroupAPIV2
+                          .deleteMessage(serverId, openGroupChat.getRoom(), openGroupChat.getServer())
+                          .success(l -> {
+                            for (MessageRecord messageRecord : messageRecords) {
+                              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                              if (serverID != null && serverID.equals(serverId)) {
+                                if (messageRecord.isMms()) {
+                                  DatabaseFactory.getMmsDatabase(getContext()).delete(messageRecord.getId());
+                                } else {
+                                  DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(messageRecord.getId());
+                                }
+                                break;
+                              }
+                            }
+                            return null;
+                          }).fail(e->{
+                            Log.e("Loki", "Couldn't delete message due to error",e);
+                            return null;
+                          });
+                  }
+                }
             } else {
               for (MessageRecord messageRecord : messageRecords) {
                 if (messageRecord.isMms()) {
@@ -597,7 +620,8 @@ public class ConversationFragment extends Fragment
     builder.setTitle(R.string.ConversationFragment_ban_selected_user);
     builder.setCancelable(true);
 
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    final PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    final OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
 
     builder.setPositiveButton(R.string.ban, (dialog, which) -> {
       ConversationAdapter chatAdapter = getListAdapter();
@@ -616,9 +640,19 @@ public class ConversationFragment extends Fragment
                         Log.d("Loki", "User banned");
                         return Unit.INSTANCE;
                       }).fail(e -> {
-                Log.d("Loki", "Couldn't ban user due to error: " + e.toString() + ".");
+                Log.e("Loki", "Couldn't ban user due to error",e);
                 return null;
               });
+          } else if (openGroupChat != null) {
+            OpenGroupAPIV2
+                    .ban(userPublicKey, openGroupChat.getRoom(), openGroupChat.getServer())
+                    .success(l -> {
+                      Log.d("Loki", "User banned");
+                      return Unit.INSTANCE;
+                    }).fail(e -> {
+                      Log.e("Loki", "Failed to ban user",e);
+                      return null;
+                    });
           } else {
             Log.d("Loki", "Tried to ban user from a non-public chat");
           }
