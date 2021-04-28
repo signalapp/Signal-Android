@@ -205,7 +205,7 @@
   <string name="ConversationActivity_specify_recipient">لطفاً یک مخاطب را انتخاب کنید</string>
   <string name="ConversationActivity_unblock">رفع مسدودیت</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل پیوست شده بیش از اندازۀ مجاز برای این نوع پیامی است که در حال ارسال آن هستید.</string>
-  <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
+  <string name="ConversationActivity_unable_to_record_audio">ضبط صدا ممکن نیست!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، چون دیگر عضو نیستید.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که به درخواست شما پاسخ دهند مطلع خواهید شد.</string>
@@ -258,7 +258,7 @@
     <item quantity="one">خطا در هنگام ذخیره‌ پیوست در حافظه!</item>
     <item quantity="other">خطا در هنگام ذخیرهٔ پیوست‌ها در حافظه!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر به ذخیره‌‌سازی نیست!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">نوشتن در حافظه ممکن نیست!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">در حال ذخیره پیوست</item>
     <item quantity="other">در حال ذخیره‌ %1$d پیوست</item>
@@ -409,7 +409,7 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">نمایش</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">اشتراک‌گذاشتن با</string>
+  <string name="ShareActivity_share_with">اشتراک‌گذاری با</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">انتخاب چندگانهٔ پیوست‌ها فقط برای عکس‌ها و ویدئوها پشتیبانی می‌شود.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">خرابی دائم در ارتباط سیگنال!</string>
@@ -536,7 +536,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">شما هیچ دعوت در حال انتظاری ندارید</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">دعوت‌های سایر اعضای گروه</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">هیچ دعوتی از سایر اعضای گروه وجود ندارد</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">اطلاعات افرادی که از سوی سایر اعضای گروه دعوت شدند، نشان داده نمی‌شود. اطلاعات آن‌ها زمانی که تصمیم به پیوستن به گروه بگیرند به اشتراک گذاشته خواهد شد. آن‌ها تا زمانی که به گروه نپیوندند هیچ پیامی را از گروه مشاهده نخواهند کرد.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">اطلاعات افرادی که از سوی سایر اعضای گروه دعوت شدند، نشان داده نمی‌شود. اطلاعات آن‌ها زمانی که تصمیم پیوستن به گروه بگیرند به اشتراک گذاشته خواهد شد. آن‌ها تا زمانی که به گروه نپیوندند هیچ پیامی را از گروه مشاهده نخواهند کرد.</string>
   <string name="PendingMembersActivity_revoke_invite">لغو دعوت</string>
   <string name="PendingMembersActivity_revoke_invites">لغو دعوت‌ها</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -719,7 +719,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً‌ دوباره امتحان کنید</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">آیا می‌خواهید به این گروه بپیوندید و شماره و عکس خود را با اعضای آن به اشتراک بگذارید؟</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">یک مدیر از این گروه باید با درخواست شما قبل از پیوستن به گروه، موافقت کند. هنگامی که درخواست عضویت می‌دهید، نام و عکس شما با اعضای گروه به اشتراک گذاشته خواهد شد.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -755,7 +755,7 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن پیام صوتی ضربه زده و نگه دارید، برای ارسال رها کنید</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک‌گذاری</string>
-  <string name="InviteActivity_share_with_contacts">اشتراک‌گذاشتن با مخاطبین</string>
+  <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبین</string>
   <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string>
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال…</string>
@@ -775,7 +775,7 @@
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">بیشتر یاد بگیرید</string>
   <!--LongMessageActivity-->
-  <string name="LongMessageActivity_unable_to_find_message">عدم توانایی در پیدا کردن پیام</string>
+  <string name="LongMessageActivity_unable_to_find_message">پیدا کردن پیام ممکن نیست</string>
   <string name="LongMessageActivity_message_from_s">پیام از %1$s</string>
   <string name="LongMessageActivity_your_message">پیام شما</string>
   <!--MessageRetrievalService-->
@@ -1103,7 +1103,7 @@
   <string name="DeviceProvisioningActivity_link_a_signal_device">پیوند یک دستگاه سیگنال؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">به نظر می آید شما سعی دارید از طریق یک اسکنر شخص ثالث دستگاه سیگنال خود را پیوند دهید. جهت حفظ امنیت، لطفاً کد را دوباره از داخل سیگنال اسکن کنید.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">سیگنال جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید.</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">اسکن کردن کد QR بدون مجوز دوربین ممکن نیست</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">پیام‌های شما ناپدید نخواهند شد.</string>
@@ -1127,7 +1127,7 @@
   <string name="PlacePickerActivity_drop_pin">قرار دادن نشانگر</string>
   <string name="PlacePickerActivity_accept_address">پذیرفتن نشانی</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخهٔ خدمات Google Play که نصب کرده‌اید به درستی کار نمی‌کند. لطفاً دوباره آن را نصب کرده و مجدداً امتحان کنید.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخهٔ خدمات Google Play که نصب کرده‌اید بدرستی کار نمی‌کند. لطفاً دوباره آن را نصب کرده و مجدداً امتحان کنید.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">پین نادرست</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">رد کردن ورود پین؟</string>
@@ -1247,7 +1247,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">برای ارتباط با دوستان، تبادل پیام و برقراری تماس امن سیگنال نیاز دارد تا به مخاطبین و رسانه‌های شما دسترسی داشته باشد</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">سیگنال به دسترسی به مخاطبین شما برای برقراری ارتباط با دوستان، تبادل پیام و گرفتن تماس‌های امن نیاز دارد.</string>
   <string name="RegistrationActivity_rate_limited_to_service">شما تلاش‌های بسیاری برای ثبت‌نام این شماره انجام داده‌اید. لطفاً دوباره امتحان کنید.</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">عدم توانایی در اتصال به سرویس. لطفاً اتصال شبکه را بررسی کرده و دوباره تلاش کنید.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">اتصال به سرویس ممکن نیست. لطفاً اتصال شبکه را بررسی کرده و دوباره امتحان کنید.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">شما %d قدم از ثبت گزارش اشکال زدایی فاصله دارید.</item>
     <item quantity="other">شما  %d قدم از ارسال گزارش اشکال‌زدایی فاصله دارید.</item>
@@ -1408,13 +1408,13 @@
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی سیگنال است. لطفاً پیش از تأیید شمارهٔ امنیتی شما از او بخواهید به‌روزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر سیگنال با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده، یک کد تأیید عدد امنیتی است که به صورت صحیح قالب‌بندی نشده است. لطفاً دوباره اسکن کنید.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده، یک کد تأیید شمارهٔ امنیتی است که بدرستی قالب‌بندی نشده است. لطفاً دوباره اسکن کنید.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">اشتراک‌گذاری شمارهٔ امنیتی از طریق…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">شمارهٔ امنیتی سیگنال ما:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می‌رسد که شما هیچ برنامه‌ای برای اشتراک‌گذاری ندارید.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شمارهٔ امنیتی برای مقایسه در کلیپ‌بورد پیدا نشد</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">سیگنال جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">اسکن کردن کد QR بدون مجوز دوربین ممکن نیست</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">شما باید ابتدا چند پیام مبادله کنید تا شمارهٔ امنیتی %1$s را مشاهده کنید.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
@@ -1439,7 +1439,7 @@
   <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده</string>
   <string name="MediaPreviewActivity_draft">پیش‌نویس</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">سیگنال  به منظور ذخیره سازی روی حافظهٔ خارجی نیاز به مجوز حافظه دارد اما اجازه اینکار به طور دائمی رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «حافظه» را فعال کنید.</string>
-  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">عدم توانایی در ذخیره بر روی حافظهٔ خارجی بدون مجوز</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ذخیره کردن بر روی حافظهٔ خارجی بدون مجوزها ممکن نیست</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">حذف پیام؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">این گزینه این پیام را به طور دائم حذف خواهد کرد.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s به %2$s</string>
@@ -1887,7 +1887,7 @@
   <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">صفحه و اعلان‌ها را با یک گذرواژه قفل کنید</string>
   <string name="preferences__screen_security">امنیت صفحه</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">مسدود کردن تصویربرداری از صفحه‌نمایش در فهرست آخرین‌ها و در درون برنامه</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">مسدود کردن عکس از صفحه در فهرست آخرین‌ها و درون برنامه</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال بعد از یک بازهٔ زمانی تعیین شدهٔ عدم فعالیت </string>
   <string name="preferences__inactivity_timeout_passphrase">گذرواژهٔ پایان مهلت عدم فعالیت</string>
   <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
@@ -2076,11 +2076,11 @@
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">شما قادر به دریافت یا ارسال MobileCoin در سیگنال نخواهید بود اگر پرداخت‌ها را غیرفعال کنید.</string>
   <string name="PaymentsHomeFragment__deactivate">غیرفعال کردن</string>
   <string name="PaymentsHomeFragment__continue">ادامه</string>
-  <string name="PaymentsHomeFragment__balance_is_not_currently_available">مانده حساب در حال حاضر موجود نیست.</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">مانده‌حساب در حال حاضر موجود نیست.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">پرداخت‌ها غیرفعال شدند</string>
   <string name="PaymentsHomeFragment__payment_failed">پرداخت ناموفق بود</string>
   <string name="PaymentsHomeFragment__details">جزئیات</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">شما می‌توانید از سیگنال برای ارسال و دریافت MobileCoin استفاده کنید. همهٔ پرداخت‌ها شامل شرایط استفادهٔ MobileCoin و کیف پول MobileCoin می‌شوند. این یک قابلیت بتا است، بنابراین ممکن است شما با اشکالاتی مواجه شوید و پرداخت‌ها و مانده حساب‌هایی را که ممکن است از دست بدهید قابل بازیابی نخواهند بود.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">شما می‌توانید از سیگنال برای ارسال و دریافت MobileCoin استفاده کنید. همهٔ پرداخت‌ها شامل شرایط استفادهٔ MobileCoin و کیف پول MobileCoin می‌شوند. این یک قابلیت بتا است، بنابراین ممکن است شما با اشکالاتی مواجه شوید و پرداخت‌ها و مانده‌حساب‌هایی را که ممکن است از دست بدهید قابل بازیابی نخواهند بود.</string>
   <string name="PaymentsHomeFragment__activate">فعال کردن</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">مشاهدهٔ شرایط MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">پرداخت‌ها در سیگنال دیگر در دسترس نیستند. شما هنوز می‌توانید به صرافی انتقال اعتبار دهید ولی دیگر نمی‌توانید پرداخت‌ها را دریافت یا اعتبار اضافه کنید.</string>
@@ -2120,15 +2120,18 @@
   <string name="PaymentsTransferFragment__next">بعدی</string>
   <string name="PaymentsTransferFragment__invalid_address">نشانی نامعتبر</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">نشانی کیف پولی که را که در حال تلاش برای انتقال به آن هستید را بررسی کنید و دوباره امتحان کنید.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">شما نمی‌توانید به نشانی کیف پول سیگنال خودتان انتقال دهید. نشانی کیف پول را از حساب کاربری خود در یک صرافی پشتیبانی شده وارد نمایید.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">شما نمی‌توانید به نشانی کیف پول سیگنال خودتان انتقال دهید. نشانی کیف پول حساب خود در یک صرافی پشتیبانی شده را وارد نمایید.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">برای اسکن کردن یک کد QR، سیگنال به دسترسی دوربین نیاز دارد.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">سیگنال به مجوز دوربین برای گرفتن کد QR نیاز دارد. به تنظیمات بروید، «مجوزها» را انتخاب کنید، و «دوربین» را فعال کنید.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">برای اسکن کردن یک کد QR، سیگنال به دسترسی دوربین نیاز دارد.</string>
   <string name="PaymentsTransferFragment__settings">تنظیمات</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">اسکن کردن کد QR نشانی</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">کد QR نشانی پرداخت شونده را اسکن کنید</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">درخواست</string>
   <string name="CreatePaymentFragment__pay">پرداخت</string>
-  <string name="CreatePaymentFragment__available_balance_s">مانده حساب موجود: %1$s</string>
+  <string name="CreatePaymentFragment__available_balance_s">مانده‌حساب در دسترس: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">تعویض</string>
   <string name="CreatePaymentFragment__1">۱</string>
   <string name="CreatePaymentFragment__2">۲</string>
@@ -2142,19 +2145,31 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">۰</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">افزودن یادداشت</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">تبدیل‌ها صرفاً تخمین هستند و ممکن است دقیق نباشند.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">یادداشت</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">پرداخت را تأیید کنید</string>
   <string name="ConfirmPayment__network_fee">هزینهٔ شبکه</string>
+  <string name="ConfirmPayment__error_getting_fee">خطا در دریافت هزینه</string>
+  <string name="ConfirmPayment__estimated_s">زمان تخمین زده %1$s</string>
   <string name="ConfirmPayment__to">به</string>
+  <string name="ConfirmPayment__total_amount">کل مقدار</string>
+  <string name="ConfirmPayment__balance_s">مانده‌حساب: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">در حال ارسال پرداخت…</string>
   <string name="ConfirmPayment__processing_payment">در حال پردازش پرداخت…</string>
   <string name="ConfirmPayment__payment_complete">پرداخت کامل شد</string>
   <string name="ConfirmPayment__payment_failed">پرداخت ناموفق بود</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">پردازش پرداخت‌ها ادامه خواهد یافت</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">گیرندهٔ نامعتبر</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">این شخص پرداخت‌ها را فعال نکرده است</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">درخواست هزینهٔ شبکه ممکن نیست. برای ادامهٔ این پرداخت روی خوب ضربه بزنید تا دوباره امتحان کنید.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s در %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">تعیین ارز</string>
   <string name="SetCurrencyFragment__all_currencies">همه ارزها</string>
   <!--****************************************-->
   <!--menus-->
@@ -2390,7 +2405,7 @@
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزنگاری خواهند شد. شما برای بازگردانی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">شما باید این گذرواژه را برای بازگردانی پشتیبان داشته باشید.</string>
   <string name="backup_enable_dialog__folder">پوشه</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر نخواهم بود پشتیبان خود را بازگردانی کنم.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازگردانی پشتیبان خود نخواهم بود.</string>
   <string name="registration_activity__restore_backup">بازگردانی پشتیبان</string>
   <string name="registration_activity__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
   <string name="registration_activity__transfer_account">انتقال حساب کاربری</string>
@@ -2443,9 +2458,9 @@
   <string name="PhoneNumberPrivacy_nobody">هیچ‌کس</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">شماره‌ٔ همراه شما برای همهٔ افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل رؤیت خواهد بود.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">هرکسی که شمارهٔ همراه شما را در مخاطبین خود داشته باشد، شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند شما را در جستجو پیدا کنند.</string>
-  <string name="preferences_app_protection__screen_lock">قفل صفحه‌نمایش</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل کردن دسترسی به سیگنال با قفل صفحه‌نمایش اندروید یا اثر انگشت</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">مهلت زمان قفل شدن صفحه</string>
+  <string name="preferences_app_protection__screen_lock">قفل صفحه</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل کردن دسترسی به سیگنال با قفل صفحهٔ اندروید یا اثر انگشت</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">مهلت قفل صفحه</string>
   <string name="preferences_app_protection__signal_pin">پین سیگنال</string>
   <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
@@ -2508,10 +2523,10 @@
   <string name="OldDeviceTransferSetup__create_a_backup">ایجاد یک پشتیبان</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید جدید شما رخ داد.</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">باز کردن تنظیمات Wi-Fi ممکن نبود. لطفاً Wi-Fi را به صورت دستی روشن کنید.</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">باز کردن تنظیمات Wi-Fi ممکن نیست. لطفاً Wi-Fi را به صورت دستی روشن کنید.</string>
   <string name="DeviceTransferSetup__grant_location_permission">اعطای مجوز مکان</string>
   <string name="DeviceTransferSetup__turn_on_location_services">سرویس‌های مکان را روشن کنید</string>
-  <string name="DeviceTransferSetup__unable_to_open_location_settings">باز کردن تنظیمات مکان ممکن نبود.</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">باز کردن تنظیمات مکان ممکن نیست.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">روشن کردن Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">خطا در اتصال</string>
   <string name="DeviceTransferSetup__retry">تلاش مجدد</string>
@@ -2585,7 +2600,9 @@
   <string name="OldDeviceTransferLockedDialog__done">انجام شد</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">لغو و فعال کردن این دستگاه</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">مانده حساب شما %1$s است. اگر قبل از حذف کردن حساب کاربری خود اعتبار خود را به نشانی کیف پول دیگری انتقال ندهید، آن را برای همیشه از دست خواهید داد.</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">انتقال مانده‌حساب MOB؟</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">مانده‌حساب شما %1$s است. اگر قبل از حذف کردن حساب خود اعتبار خود را به نشانی کیف پول دیگری انتقال ندهید، اعتبار خود را برای همیشه از دست خواهید داد.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">انتقال نده</string>
   <string name="AdvancedPreferenceFragment__transfer">انتقال</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
@@ -2679,6 +2696,7 @@
   <string name="DeleteAccountFragment__delete_account">حذف حساب کاربری</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را حذف کنید</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">تمام پیام‌های خود را حذف کنید</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s را از حساب پرداخت‌های خود حذف کنید</string>
   <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
   <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
   <string name="DeleteAccountFragment__the_phone_number">شمارهٔ همراهی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
@@ -2734,15 +2752,25 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">خطا در تنظیم کاغذدیواری.</string>
   <string name="WallpaperCropActivity__blur_photo">مات کردن عکس</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">دربارهٔ MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin یک ارز دیجیتال متمرکز بر حریم خصوصی است.</string>
   <string name="payment_info_card_adding_funds">افزودن اعتبار</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">شما می‌توانید با ارسال MobileCoin به نشانی کیف پول خود اعتبار برای استفاده در سیگنال اضافه کنید.</string>
+  <string name="payment_info_card_cashing_out">نقدینه کردن</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">می‌توانید MobileCoin را هر زمانی در یک صرافی که از MobileCoin پشتیبانی می‌کند، نقدینه کنید. فقط یک انتقال به حساب خود در آن صرافی انجام دهید.</string>
+  <string name="payment_info_card_hide_this_card">پنهان کردن این کارت؟</string>
   <string name="payment_info_card_hide">مخفی‌سازی</string>
   <string name="payment_info_card_record_recovery_phrase">ذخیره عبارت بازیابی</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">عبارت بازیابی راه دیگری برای بازگردانی حساب کاربری پرداخت‌های شما را فراهم می‌کند.</string>
+  <string name="payment_info_card_record_your_phrase">عبارت خود را ضبط کنید</string>
+  <string name="payment_info_card_update_your_pin">پین خود را به‌روزرسانی کنید</string>
+  <string name="payment_info_card_with_a_high_balance">در صورت داشتن مقدار بالای مانده‌حساب، برای محافظت بیشتر از حساب خود بهتر است پین خود را به یک پین حرفی-عددی به‌روزرسانی کنید.</string>
   <string name="payment_info_card_update_pin">به‌روزرسانی پین</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">غیرفعال کردن کیف پول</string>
+  <string name="DeactivateWalletFragment__your_balance">مانده‌حساب شما</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">توصیه می‌شود که قبل از غیرفعال کردن پرداخت‌ها، اعتبار خود را به نشانی کیف پول دیگری انتقال دهید. اگر اکنون تصمیم به عدم انتقال اعتبار خود بگیرید، در صورتی که پرداخت‌ها را غیرفعال کنید آن‌ها در کیف پول شما که به سیگنال پیوند داده شده است باقی خواهند ماند، .</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">انتقال مانده‌حساب باقیمانده</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">غیرفعال کردن بدون انتقال</string>
   <string name="DeactivateWalletFragment__deactivate">غیرفعال کردن</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">غیرفعال کردن بدون انتقال؟</string>
@@ -2750,6 +2778,10 @@
   <string name="DeactivateWalletFragment__error_deactivating_wallet">خطا در غیرفعال کردن کیف پول.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">عبارت بازیابی</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">مشاهدهٔ عبارت بازیابی</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">عبارت بازیابی را وارد کنید</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">مانده‌حساب شما اگر پین سیگنال خود را تأیید کنید هنگام نصب دوبارهٔ سیگنال به صورت خودکار بازگردانی خواهد شد. شما همچنین می‌توانید مانده‌حساب خود را با استفاده از یک عبارت بازیابی، که یک عبارت %1$d-کلمه‌ای مختص شما است، بازگردانی کنید. آن را یادداشت و در یک مکان امن نگهداری کنید.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">عبارت بازیابی شما یک عبارت %1$d-کلمه‌ای مختص شماست. از این عبارت برای بازگردانی مانده‌حساب خود استفاده کنید.</string>
   <string name="PaymentsRecoveryStartFragment__start">شروع</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">به صورت دستی وارد کنید</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">جایگذاری از کلیپ‌بورد</string>
@@ -2763,15 +2795,31 @@
   <string name="PaymentsRecoveryPhraseFragment__next">بعدی</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ویرایش</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">قبلی</string>
-  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">حساب کاربری پرداخت‌ها بازگردانی شد.</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">عبارت بازیابی شما</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">%1$d کلمهٔ زیر را به ترتیب یادداشت کنید. فهرست خود را در یک جای امن ذخیره کنید.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">مطمئن شوید عبارت خود را بدرستی وارد کرده‌اید.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">عکس از صفحه نگیرید و یا با ایمیل ارسال نکنید.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">حساب پرداخت‌ها بازگردانی شد.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">عبارت بازیابی نامعتبر</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">مطمئن شوید عبارت خود را بدرستی وارد کرده‌اید و دوباره امتحان کنید.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">کپی به کلیپ‌بورد؟</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">اگر تصمیم گرفتید عبارت بازیابی خود را به صورت دیجیتالی بازیابی کنید، مطمئن شوید که به صورت امن در جایی که مورد اطمینان شماست ذخیره شده است.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">کپی</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">عبارت بازیابی را تأیید کنید</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">کلمات زیر را از عبارت بازیابی خود وارد کنید.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">کلمه %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">دبدن دوبارهٔ عبارت</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">انجام شد</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">عبارت بازیابی تأیید شد</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">عبارت بازیابی را وارد کنید</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">کلمهٔ %1$d را وارد کنید</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">کلمه %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">بعدی</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">کلمه نامعتبر</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">کلیپ‌بورد پاک شد.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">نمایش</string>
   <!--UnreadPayments-->
@@ -2783,6 +2831,7 @@
   <string name="CanNotSendPaymentDialog__send_a_message">ارسال پیام</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">شما هیچ گروه مشترکی با این فرد ندارید. پرای جلوگیری از پیام‌های ناخواسته، پیش از قبول درخواست‌ها، آن‌ها را با دقت بررسی کنید.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">هیچ‌کدام از مخاطبین یا افرادی که با آنان گفتگو می‌کنید در این گروه حضور ندارند. قبل از پذیرفتن درخواست‌ها را به دقت بازبینی کنید تا از پیام‌های ناخواسته جلوگیری کنید.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">دربارهٔ درخواست‌های تبادل پیام</string>
   <string name="GroupsInCommonMessageRequest__okay">خوب</string>
   <!--EOF-->

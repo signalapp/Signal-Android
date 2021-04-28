@@ -1686,6 +1686,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
     <item quantity="other">%d wiyyaḍ</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">Nadi GIFs</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ulac tadfert</string>
   <!--log_submit_activity-->
@@ -2036,6 +2037,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentsHomeFragment__pending_requests">Tuttriwin yettraǧun</string>
   <string name="PaymentsHomeFragment__recent_activity">Amahil aneggaru</string>
   <string name="PaymentsHomeFragment__see_all">Wali akk</string>
+  <string name="PaymentsHomeFragment__add_funds">Rnu tadrimt</string>
   <string name="PaymentsHomeFragment__send">Azen</string>
   <string name="PaymentsHomeFragment__sent_s">Yettwazen %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Yettwaṭṭef-d %1$s</string>
@@ -2052,6 +2054,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentsHomeFragment__details">Talqayt</string>
   <string name="PaymentsHomeFragment__activate">Rmed</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Rnu tadrimt</string>
   <string name="PaymentsAddMoneyFragment__copy">Nɣel</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Aḍris yettwanɣel ɣef afus</string>
   <!--PaymentsDetailsFragment-->
@@ -2061,12 +2064,16 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentsDetailsFragment__sent_by">Yettwazen-d sɣur</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Yettwazen-d ɣer %1$s</string>
   <string name="PaymentsDetailsFragment__to">Ɣer</string>
+  <string name="PaymentsDetailsFragment__from">Sɣur</string>
   <string name="PaymentsDetailsFragment__sent_payment">Lexlaṣ yettwaznen</string>
   <string name="PaymentsDetailsFragment__received_payment">Lexlaṣ yettwaṭṭfen</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Axelleṣ yemmed%1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">Sewḥel uṭṭun</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Azen</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Semḍen tangalt QR</string>
   <string name="PaymentsTransferFragment__next">Ɣer zdat</string>
+  <string name="PaymentsTransferFragment__invalid_address">Yir tansa</string>
   <string name="PaymentsTransferFragment__settings">Iɣewwaṛen</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
@@ -2083,11 +2090,14 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Rnu tazmilt</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Tazmilt</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Ɣer</string>
   <string name="ConfirmPayment__payment_failed">Axelles yecceḍ</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s ɣer %2$s</string>
   <!--SetCurrencyFragment-->
   <!--****************************************-->
   <!--menus-->
@@ -2418,6 +2428,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__create_a_backup">Snulfu-d aḥraz</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__turn_on_wifi">Rmed Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Tuccḍa deg tuqqna</string>
@@ -2429,6 +2440,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="DeviceTransferSetup__stop_transfer">Seḥbes tuzna</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Negguma ad d-naf ibenk aqbur</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Negguma ad d-naf ibenk amaynut</string>
+  <string name="DeviceTransferSetup__location_services">Imeẓla n wadig</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__go_to_support_page">Ddu ɣer usebter n tallelt</string>
   <string name="DeviceTransferSetup__try_again">Ɛreḍ tikkelt-nniḍen</string>
@@ -2618,28 +2630,38 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Tuccḍa deg usbadu n ugilal n ugdil.</string>
   <string name="WallpaperCropActivity__blur_photo">Tawlaft yerwin</string>
   <!--InfoCard-->
+  <string name="payment_info_card_hide_this_card">Ffer takarḍiwt-agi?</string>
   <string name="payment_info_card_hide">Ffer</string>
   <string name="payment_info_card_update_pin">Snifel PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate">Sens</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Tifyirt n tririt</string>
+  <string name="PaymentsRecoveryStartFragment__start">Bdu</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Sekcem s ufus</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Tifyirt n tririt</string>
   <string name="PaymentsRecoveryPasteFragment__next">Ɣer zdat</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Ɣer zdat</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Ẓreg</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Yezrin</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Nɣel s ɣef-afus?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Nɣel</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Awal %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Yemmed</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Sekcem awal %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Awal %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Ɣer zdat</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Awal d arameɣtu</string>
   <!--ClearClipboardAlarmReceiver-->
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Askan</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__send_a_message">Azen izen</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">IH</string>
   <!--EOF-->

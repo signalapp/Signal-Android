@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN Ternonaktifkan.</string>
   <string name="ApplicationPreferencesActivity_hide">Sembunyikan</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Sembunyikan pengingat?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekam frasa pemulihan pembayaran</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Rekam frasa</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sebelum Anda dapat menonaktifkan PIN, Anda harus merekam frasa pemulihan pembayaran Anda untuk memastikan Anda dapat memulihkan akun pembayaran Anda.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%dmenit</item>
@@ -56,6 +59,7 @@
   <string name="AttachmentKeyboard_location">Lokasi</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal memerlukan izin untuk menampilkan foto dan video Anda.</string>
   <string name="AttachmentKeyboard_give_access">Berikan Akses</string>
+  <string name="AttachmentKeyboard_payment">Pembayaran</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk membuka media yang dipilih.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal memerlukan izin Penyimpanan untuk melampirkan foto, video, atau audio, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
@@ -575,6 +579,7 @@
   <string name="ManageGroupActivity_mentions">Menyebut</string>
   <string name="ManageGroupActivity_chat_wallpaper">Gambar latar percakapan</string>
   <string name="ManageGroupActivity_until_s">Sampai %1$s</string>
+  <string name="ManageGroupActivity_always">Selalu</string>
   <string name="ManageGroupActivity_off">Mati</string>
   <string name="ManageGroupActivity_on">Aktif</string>
   <string name="ManageGroupActivity_view_all_members">Lihat semua anggota</string>
@@ -624,6 +629,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Senyapkan pemberitahuan</string>
   <string name="ManageRecipientActivity_custom_notifications">Notifikasi khusus</string>
   <string name="ManageRecipientActivity_until_s">Sampai %1$s</string>
+  <string name="ManageRecipientActivity_always">Selalu</string>
   <string name="ManageRecipientActivity_off">Mati</string>
   <string name="ManageRecipientActivity_on">Aktif</string>
   <string name="ManageRecipientActivity_add_to_a_group">Tambahkan ke grup</string>
@@ -790,6 +796,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Menghentikan layanan panggilan Signal</string>
   <string name="NotificationBarManager__deny_call">Tolak panggilan</string>
   <string name="NotificationBarManager__answer_call">Terima panggilan</string>
   <string name="NotificationBarManager__end_call">Akhiri panggilan</string>
@@ -1433,6 +1440,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Permintaan pesan</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Putar video</string>
   <string name="ThumbnailView_Has_a_caption_description">Memiliki keterangan</string>
@@ -1535,6 +1543,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationUpdateItem_return_to_call">Kembali ke panggilan</string>
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
   <string name="ConversationUpdateItem_invite_friends">Undang teman</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Aktifkan Notifikasi Panggilan</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Tidak ada grup yang sama. Periksa permintaan secara hati-hati.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kontak di grup ini. Periksa permintaan secara hati-hati.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Putar … Jeda</string>
   <string name="audio_view__download_accessibility_description">Unduh</string>
@@ -1559,6 +1570,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="safety_number_change_dialog__view">Lihat</string>
   <string name="safety_number_change_dialog__previous_verified">Diverifikasi sebelumnya</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Notifikasi panggilan diaktifkan.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Aktifkan notifikasi panggilan</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Untuk menerima notifikasi panggilan, ketuk di sini dan nyalakan \"Tampilkan notifikasi.\"</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Pengaturan</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Memuat daftar negara…</string>
@@ -1741,6 +1755,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="arrays__mute_for_one_hour">Senyapkan selama 1 jam</string>
   <string name="arrays__mute_for_one_day">Senyapkan selama 1 hari</string>
   <string name="arrays__mute_for_seven_days">Senyapkan selama 7 hari</string>
+  <string name="arrays__always">Selalu</string>
   <string name="arrays__settings_default">Pengaturan standar</string>
   <string name="arrays__enabled">Aktif</string>
   <string name="arrays__disabled">Nonaktif</string>
