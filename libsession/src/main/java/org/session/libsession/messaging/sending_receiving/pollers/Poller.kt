@@ -2,13 +2,13 @@ package org.session.libsession.messaging.sending_receiving.pollers
 
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.snode.SnodeConfiguration
-import org.session.libsignal.service.loki.api.Snode
+import org.session.libsession.snode.SnodeModule
+import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import java.security.SecureRandom
@@ -17,7 +17,7 @@ import java.util.*
 private class PromiseCanceledException : Exception("Promise canceled.")
 
 class Poller {
-    var userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: ""
+    var userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: ""
     private var hasStarted: Boolean = false
     private val usedSnodes: MutableSet<Snode> = mutableSetOf()
     public var isCaughtUp = false
@@ -47,9 +47,9 @@ class Poller {
     private fun setUpPolling() {
         if (!hasStarted) { return; }
         val thread = Thread.currentThread()
-        SnodeAPI.getSwarm(userPublicKey).bind(SnodeAPI.messagePollingContext) {
+        SnodeAPI.getSwarm(userPublicKey).bind {
             usedSnodes.clear()
-            val deferred = deferred<Unit, Exception>(SnodeAPI.messagePollingContext)
+            val deferred = deferred<Unit, Exception>()
             pollNextSnode(deferred)
             deferred.promise
         }.always {
@@ -63,7 +63,7 @@ class Poller {
     }
 
     private fun pollNextSnode(deferred: Deferred<Unit, Exception>) {
-        val swarm = SnodeConfiguration.shared.storage.getSwarm(userPublicKey) ?: setOf()
+        val swarm = SnodeModule.shared.storage.getSwarm(userPublicKey) ?: setOf()
         val unusedSnodes = swarm.subtract(usedSnodes)
         if (unusedSnodes.isNotEmpty()) {
             val index = SecureRandom().nextInt(unusedSnodes.size)
@@ -87,17 +87,14 @@ class Poller {
 
     private fun poll(snode: Snode, deferred: Deferred<Unit, Exception>): Promise<Unit, Exception> {
         if (!hasStarted) { return Promise.ofFail(PromiseCanceledException()) }
-        return SnodeAPI.getRawMessages(snode, userPublicKey).bind(SnodeAPI.messagePollingContext) { rawResponse ->
+        return SnodeAPI.getRawMessages(snode, userPublicKey).bind { rawResponse ->
             isCaughtUp = true
             if (deferred.promise.isDone()) {
                 task { Unit } // The long polling connection has been canceled; don't recurse
             } else {
                 val messages = SnodeAPI.parseRawMessagesResponse(rawResponse, snode, userPublicKey)
-                messages.forEach { message ->
-                    val rawMessageAsJSON = message as? Map<*, *>
-                    val base64EncodedData = rawMessageAsJSON?.get("data") as? String
-                    val data = base64EncodedData?.let { Base64.decode(it) } ?: return@forEach
-                    val job = MessageReceiveJob(MessageWrapper.unwrap(data), false)
+                messages.forEach { envelope ->
+                    val job = MessageReceiveJob(envelope.toByteArray(), false)
                     JobQueue.shared.add(job)
                 }
                 poll(snode, deferred)

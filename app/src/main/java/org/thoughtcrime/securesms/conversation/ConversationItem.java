@@ -54,10 +54,11 @@ import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob;
 import org.session.libsession.messaging.jobs.JobQueue;
-import org.session.libsession.messaging.opengroups.OpenGroupAPI;
+import org.session.libsession.messaging.open_groups.OpenGroup;
+import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.GroupUtil;
@@ -67,7 +68,6 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.views.Stub;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -724,7 +724,7 @@ public class ConversationItem extends LinearLayout
     String publicKey = recipient.getAddress().toString();
     profilePictureView.setPublicKey(publicKey);
     String displayName = recipient.getName();
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
     if (displayName == null && publicChat != null) {
       displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), publicKey);
     }
@@ -911,7 +911,7 @@ public class ConversationItem extends LinearLayout
         profilePictureView.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
-        PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
+        OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
         if (publicChat != null) {
           boolean isModerator = OpenGroupAPI.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;

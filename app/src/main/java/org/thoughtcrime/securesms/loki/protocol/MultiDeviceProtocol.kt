@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import com.google.protobuf.ByteString
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender

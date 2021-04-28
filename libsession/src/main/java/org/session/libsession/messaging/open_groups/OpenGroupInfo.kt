@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.opengroups
+package org.session.libsession.messaging.open_groups
 
 data class OpenGroupInfo (
     val displayName: String,

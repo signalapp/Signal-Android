@@ -6,14 +6,10 @@ import androidx.annotation.Nullable;
 import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsignal.utilities.Base64;
 
-import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
-
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 

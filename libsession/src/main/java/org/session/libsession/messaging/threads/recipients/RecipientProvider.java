@@ -23,7 +23,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsession.messaging.threads.Address;
@@ -115,7 +115,7 @@ class RecipientProvider {
 
   private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, @NonNull Address address, Optional<RecipientSettings> settings) {
     if (!settings.isPresent()) {
-      settings = Optional.fromNullable(MessagingConfiguration.shared.getStorage().getRecipientSettings(address));
+      settings = Optional.fromNullable(MessagingModuleConfiguration.shared.getStorage().getRecipientSettings(address));
     }
 
     if (!settings.isPresent() && STATIC_DETAILS.containsKey(address.serialize())) {
@@ -130,12 +130,12 @@ class RecipientProvider {
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId, Optional<GroupRecord> groupRecord, Optional<RecipientSettings> settings, boolean asynchronous) {
 
     if (!groupRecord.isPresent()) {
-      groupRecord = Optional.fromNullable(MessagingConfiguration.shared.getStorage().getGroup(groupId.toGroupString()));
+      groupRecord = Optional.fromNullable(MessagingModuleConfiguration.shared.getStorage().getGroup(groupId.toGroupString()));
     }
 
     if (!settings.isPresent()) {
 
-      settings = Optional.fromNullable(MessagingConfiguration.shared.getStorage().getRecipientSettings(groupId));
+      settings = Optional.fromNullable(MessagingModuleConfiguration.shared.getStorage().getRecipientSettings(groupId));
     }
 
     if (groupRecord.isPresent()) {

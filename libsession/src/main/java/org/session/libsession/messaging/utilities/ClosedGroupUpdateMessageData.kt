@@ -9,7 +9,7 @@ import org.session.libsignal.utilities.logging.Log
 import java.util.*
 
 // class used to save update messages details
-class UpdateMessageData () {
+class ClosedGroupUpdateMessageData () {
 
     var kind: Kind? = null
 
@@ -41,22 +41,22 @@ class UpdateMessageData () {
     }
 
     companion object {
-        val TAG = UpdateMessageData::class.simpleName
+        val TAG = ClosedGroupUpdateMessageData::class.simpleName
 
-        fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): UpdateMessageData? {
+        fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): ClosedGroupUpdateMessageData? {
             return when(type) {
-                SignalServiceGroup.Type.CREATION -> UpdateMessageData(Kind.GroupCreation())
-                SignalServiceGroup.Type.NAME_CHANGE -> UpdateMessageData(Kind.GroupNameChange(name))
-                SignalServiceGroup.Type.MEMBER_ADDED -> UpdateMessageData(Kind.GroupMemberAdded(members))
-                SignalServiceGroup.Type.MEMBER_REMOVED -> UpdateMessageData(Kind.GroupMemberRemoved(members))
-                SignalServiceGroup.Type.QUIT -> UpdateMessageData(Kind.GroupMemberLeft())
+                SignalServiceGroup.Type.CREATION -> ClosedGroupUpdateMessageData(Kind.GroupCreation())
+                SignalServiceGroup.Type.NAME_CHANGE -> ClosedGroupUpdateMessageData(Kind.GroupNameChange(name))
+                SignalServiceGroup.Type.MEMBER_ADDED -> ClosedGroupUpdateMessageData(Kind.GroupMemberAdded(members))
+                SignalServiceGroup.Type.MEMBER_REMOVED -> ClosedGroupUpdateMessageData(Kind.GroupMemberRemoved(members))
+                SignalServiceGroup.Type.QUIT -> ClosedGroupUpdateMessageData(Kind.GroupMemberLeft())
                 else -> null
             }
         }
 
-        fun fromJSON(json: String): UpdateMessageData? {
+        fun fromJSON(json: String): ClosedGroupUpdateMessageData? {
              return try {
-                JsonUtil.fromJson(json, UpdateMessageData::class.java)
+                JsonUtil.fromJson(json, ClosedGroupUpdateMessageData::class.java)
             } catch (e: JsonParseException) {
                 Log.e(TAG, "${e.message}")
                 null

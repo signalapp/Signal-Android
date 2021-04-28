@@ -7,7 +7,7 @@ import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import org.session.libsignal.utilities.logging.Log
 import com.opencsv.CSVReader
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
+import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.ThreadUtils
 import java.io.File
 import java.io.FileOutputStream

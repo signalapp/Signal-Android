@@ -1,15 +1,15 @@
-package org.session.libsignal.service.loki.api.opengroups
+package org.session.libsession.messaging.open_groups
 
 import org.session.libsignal.utilities.JsonUtil
 
-public data class PublicChat(
-    public val channel: Long,
+data class OpenGroup(
+    val channel: Long,
     private val serverURL: String,
-    public val displayName: String,
-    public val isDeletable: Boolean
+    val displayName: String,
+    val isDeletable: Boolean
 ) {
-    public val server get() = serverURL.toLowerCase()
-    public val id get() = getId(channel, server)
+    val server get() = serverURL.toLowerCase()
+    val id get() = getId(channel, server)
 
     companion object {
 
@@ -17,21 +17,21 @@ public data class PublicChat(
             return "$server.$channel"
         }
 
-        @JvmStatic fun fromJSON(jsonAsString: String): PublicChat? {
+        @JvmStatic fun fromJSON(jsonAsString: String): OpenGroup? {
             try {
                 val json = JsonUtil.fromJson(jsonAsString)
                 val channel = json.get("channel").asLong()
                 val server = json.get("server").asText().toLowerCase()
                 val displayName = json.get("displayName").asText()
                 val isDeletable = json.get("isDeletable").asBoolean()
-                return PublicChat(channel, server, displayName, isDeletable)
+                return OpenGroup(channel, server, displayName, isDeletable)
             } catch (e: Exception) {
                 return null
             }
         }
     }
 
-    public fun toJSON(): Map<String, Any> {
+    fun toJSON(): Map<String, Any> {
         return mapOf( "channel" to channel, "server" to server, "displayName" to displayName, "isDeletable" to isDeletable )
     }
 }

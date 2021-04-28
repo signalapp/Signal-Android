@@ -40,6 +40,7 @@ import androidx.loader.content.Loader;
 import org.session.libsession.messaging.messages.visible.LinkPreview;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.lang.ref.WeakReference;
 import java.sql.Date;
@@ -263,7 +263,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
     toFrom.setText(toFromRes);
     long threadID = messageRecord.getThreadId();
-    PublicChat openGroup = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadID);
+    OpenGroup openGroup = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadID);
     if (openGroup != null && messageRecord.isOutgoing()) {
       toFrom.setVisibility(View.GONE);
       separator.setVisibility(View.GONE);

@@ -1,22 +1,20 @@
-package org.session.libsignal.service.loki.api.fileserver
+package org.session.libsession.messaging.file_server
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
+import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.api.LokiDotNetAPI
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.*
 import java.net.URL
-import java.util.concurrent.ConcurrentHashMap
 
-class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : LokiDotNetAPI(userPublicKey, userPrivateKey, database) {
+class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : DotNetAPI() {
 
     companion object {
-        // region Settings
         internal val fileServerPublicKey = "62509D59BDEEC404DD0D489C1E15BA8F94FD3D619B01C1BF48A9922BFCB7311C"
         internal val maxRetryCount = 4
 

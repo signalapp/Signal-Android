@@ -37,8 +37,14 @@ import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private val originalMembers = HashSet<String>()
+    private val zombies = HashSet<String>()
     private val members = HashSet<String>()
+    private val allMembers: Set<String>
+        get() {
+            return members + zombies
+        }
     private var hasNameChanged = false
+    private var isSelfAdmin = false
     private var isLoading = false
         set(newValue) { field = newValue; invalidateOptionsMenu() }
 
@@ -54,7 +60,10 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
 
     private val memberListAdapter by lazy {
-        EditClosedGroupMembersAdapter(this, GlideApp.with(this), this::onMemberClick)
+        if (isSelfAdmin)
+            EditClosedGroupMembersAdapter(this, GlideApp.with(this), isSelfAdmin, this::onMemberClick)
+        else
+            EditClosedGroupMembersAdapter(this, GlideApp.with(this), isSelfAdmin)
     }
 
     private lateinit var mainContentContainer: LinearLayout
@@ -81,7 +90,10 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 ThemeUtil.getThemedDrawableResId(this, R.attr.actionModeCloseDrawable))
 
         groupID = intent.getStringExtra(groupIDKey)!!
-        originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
+        val groupInfo = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get()
+        originalName = groupInfo.title
+        isSelfAdmin = groupInfo.admins.any{ it.serialize() == TextSecurePreferences.getLocalNumber(this) }
+
         name = originalName
 
         mainContentContainer = findViewById(R.id.mainContentContainer)
@@ -116,31 +128,35 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             }
         }
 
-        LoaderManager.getInstance(this).initLoader(loaderID, null, object : LoaderManager.LoaderCallbacks<List<String>> {
+        LoaderManager.getInstance(this).initLoader(loaderID, null, object : LoaderManager.LoaderCallbacks<GroupMembers> {
 
-            override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
+            override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<GroupMembers> {
                 return EditClosedGroupLoader(this@EditClosedGroupActivity, groupID)
             }
 
-            override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
+            override fun onLoadFinished(loader: Loader<GroupMembers>, groupMembers: GroupMembers) {
                 // We no longer need any subsequent loading events
                 // (they will occur on every activity resume).
                 LoaderManager.getInstance(this@EditClosedGroupActivity).destroyLoader(loaderID)
 
+                members.clear()
+                members.addAll(groupMembers.members.toHashSet())
+                zombies.clear()
+                zombies.addAll(groupMembers.zombieMembers.toHashSet())
                 originalMembers.clear()
-                originalMembers.addAll(members.toHashSet())
-                updateMembers(originalMembers)
+                originalMembers.addAll(members + zombies)
+                updateMembers()
             }
 
-            override fun onLoaderReset(loader: Loader<List<String>>) {
-                updateMembers(setOf())
+            override fun onLoaderReset(loader: Loader<GroupMembers>) {
+                updateMembers()
             }
         })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_edit_closed_group, menu)
-        return members.isNotEmpty() && !isLoading
+        return allMembers.isNotEmpty() && !isLoading
     }
     // endregion
 
@@ -153,8 +169,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 if (data == null || data.extras == null || !data.hasExtra(SelectContactsActivity.selectedContactsKey)) return
 
                 val selectedContacts = data.extras!!.getStringArray(SelectContactsActivity.selectedContactsKey)!!.toSet()
-                val changedMembers = members + selectedContacts
-                updateMembers(changedMembers)
+                members.addAll(selectedContacts)
+                updateMembers()
             }
         }
     }
@@ -173,17 +189,12 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
     }
 
-    private fun updateMembers(members: Set<String>) {
-        this.members.clear()
-        this.members.addAll(members)
-        memberListAdapter.setMembers(members)
+    private fun updateMembers() {
+        memberListAdapter.setMembers(allMembers)
+        memberListAdapter.setZombieMembers(zombies)
 
-        val admins = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().admins.map { it.toString() }.toMutableSet()
-        admins.remove(TextSecurePreferences.getLocalNumber(this))
-        memberListAdapter.setLockedMembers(admins)
-
-        mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
-        emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
+        mainContentContainer.visibility = if (allMembers.isEmpty()) View.GONE else View.VISIBLE
+        emptyStateContainer.visibility = if (allMembers.isEmpty()) View.VISIBLE else View.GONE
 
         invalidateOptionsMenu()
     }
@@ -200,8 +211,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private fun onMemberClick(member: String) {
         val bottomSheet = ClosedGroupEditingOptionsBottomSheet()
         bottomSheet.onRemoveTapped = {
-            val changedMembers = members - member
-            updateMembers(changedMembers)
+            if (zombies.contains(member)) zombies.remove(member)
+            else members.remove(member)
+            updateMembers()
             bottomSheet.dismiss()
         }
         bottomSheet.show(supportFragmentManager, "GroupEditingOptionsBottomSheet")
@@ -209,7 +221,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
     private fun onAddMembersClick() {
         val intent = Intent(this@EditClosedGroupActivity, SelectContactsActivity::class.java)
-        intent.putExtra(SelectContactsActivity.usersToExcludeKey, members.toTypedArray())
+        intent.putExtra(SelectContactsActivity.usersToExcludeKey, allMembers.toTypedArray())
         intent.putExtra(SelectContactsActivity.emptyStateTextKey, "No contacts to add")
         startActivityForResult(intent, addUsersRequestCode)
     }
@@ -229,7 +241,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun commitChanges() {
-        val hasMemberListChanges = (members != originalMembers)
+        val hasMemberListChanges = (allMembers != originalMembers)
 
         if (!hasNameChanged && !hasMemberListChanges) {
             return finish()
@@ -237,14 +249,12 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
         val name = if (hasNameChanged) this.name else originalName
 
-        val members = this.members.map {
+        val members = this.allMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
         val originalMembers = this.originalMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
-
-        val admins = members.toSet() //TODO For now, consider all the users to be admins.
 
         var isClosedGroup: Boolean
         var groupPublicKey: String?
@@ -303,4 +313,6 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             }
         }
     }
+
+    class GroupMembers(val members: List<String>, val zombieMembers: List<String>) { }
 }

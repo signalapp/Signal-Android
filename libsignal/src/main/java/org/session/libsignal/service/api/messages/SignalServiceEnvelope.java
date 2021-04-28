@@ -133,10 +133,10 @@ public class SignalServiceEnvelope {
   }
 
   public boolean isUnidentifiedSender() {
-    return envelope.getType().getNumber() == Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
+    return envelope.getType().getNumber() == Envelope.Type.SESSION_MESSAGE_VALUE;
   }
 
   public boolean isClosedGroupCiphertext() {
-      return envelope.getType().getNumber() == Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE;
+      return envelope.getType().getNumber() == Envelope.Type.CLOSED_GROUP_MESSAGE_VALUE;
   }
 }
