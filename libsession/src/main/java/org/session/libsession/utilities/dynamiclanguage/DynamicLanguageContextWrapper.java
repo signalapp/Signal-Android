@@ -30,5 +30,4 @@ public final class DynamicLanguageContextWrapper {
     copy.setLocale(locale);
     return copy;
   }
-
 }

@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.sending_receiving.linkpreview;
+package org.session.libsession.messaging.sending_receiving.link_preview;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

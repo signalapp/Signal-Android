@@ -1,14 +1,13 @@
 package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class Quote() {
-
     var timestamp: Long? = 0
     var publicKey: String? = null
     var text: String? = null
@@ -34,7 +33,6 @@ class Quote() {
         }
     }
 
-    //constructor
     internal constructor(timestamp: Long, publicKey: String, text: String?, attachmentID: Long?) : this() {
         this.timestamp = timestamp
         this.publicKey = publicKey
@@ -42,7 +40,6 @@ class Quote() {
         this.attachmentID = attachmentID
     }
 
-    // validation
     fun isValid(): Boolean {
         return (timestamp != null && publicKey != null)
     }
@@ -70,7 +67,7 @@ class Quote() {
 
     private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
         if (attachmentID == null) return
-        val attachment = MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID!!)
+        val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID!!)
         if (attachment == null) {
             Log.w(TAG, "Ignoring invalid attachment for quoted message.")
             return

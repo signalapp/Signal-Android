@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.loki.api
 import android.content.Context
 import nl.komponents.kovenant.functional.map
 import okhttp3.*
+import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.snode.OnionRequestAPI
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.api.PushNotificationAPI
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 
 object LokiPushNotificationManager {
@@ -16,10 +16,10 @@ object LokiPushNotificationManager {
     private val tokenExpirationInterval = 12 * 60 * 60 * 1000
 
     private val server by lazy {
-        PushNotificationAPI.shared.server
+        PushNotificationAPI.server
     }
     private val pnServerPublicKey by lazy {
-        PushNotificationAPI.pnServerPublicKey
+        PushNotificationAPI.serverPublicKey
     }
 
     enum class ClosedGroupOperation {

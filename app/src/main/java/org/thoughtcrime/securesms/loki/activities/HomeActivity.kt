@@ -30,10 +30,10 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
+import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.utilities.*
-import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
@@ -139,7 +139,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         if (userPublicKey != null) {
-            MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
+            MentionsManager.configureIfNeeded(userPublicKey, userDB)
             application.publicChatManager.startPollersIfNeeded()
             JobQueue.shared.resumePendingJobs()
         }

@@ -1,6 +1,9 @@
 package org.session.libsession.snode
 
+import org.session.libsignal.service.loki.Snode
+
 interface SnodeStorageProtocol {
+
     fun getSnodePool(): Set<Snode>
     fun setSnodePool(newValue: Set<Snode>)
     fun getOnionRequestPaths(): List<List<Snode>>

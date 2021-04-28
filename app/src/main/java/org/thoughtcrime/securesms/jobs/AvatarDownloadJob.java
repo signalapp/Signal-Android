@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.utilities.DownloadUtilities;
+import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.session.libsession.messaging.threads.GroupRecord;
@@ -22,6 +24,7 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -91,9 +94,20 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
-        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent(), url);
-        InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
-        Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
+        SignalServiceAttachmentPointer pointer = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent(), url);
+
+        if (pointer.getUrl().isEmpty()) throw new InvalidMessageException("Missing attachment URL.");
+        DownloadUtilities.downloadFile(attachment, pointer.getUrl(), MAX_AVATAR_SIZE, null);
+
+        // Assume we're retrieving an attachment for an open group server if the digest is not set
+        InputStream inputStream;
+        if (!pointer.getDigest().isPresent()) {
+          inputStream = new FileInputStream(attachment);
+        } else {
+          inputStream = AttachmentCipherInputStream.createForAttachment(attachment, pointer.getSize().or(0), pointer.getKey(), pointer.getDigest().get());
+        }
+
+        Bitmap avatar = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
 
         database.updateProfilePicture(groupId, avatar);
         inputStream.close();

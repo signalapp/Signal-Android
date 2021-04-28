@@ -1,6 +1,5 @@
 package org.session.libsession.utilities;
 
-
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class LinkedBlockingLifoQueue<E> extends LinkedBlockingDeque<E> {
