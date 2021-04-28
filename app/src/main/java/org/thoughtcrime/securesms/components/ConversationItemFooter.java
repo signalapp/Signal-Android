@@ -99,7 +99,7 @@ public class ConversationItemFooter extends LinearLayout {
     presentTimer(messageRecord);
     presentInsecureIndicator(messageRecord);
     presentDeliveryStatus(messageRecord);
-    hideAudioDurationViews();
+    presentAudioDuration(messageRecord);
   }
 
   public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
@@ -259,6 +259,12 @@ public class ConversationItemFooter extends LinearLayout {
           moveAudioViewsForIncoming();
         }
         showAudioDurationViews();
+
+        if (messageRecord.getViewedReceiptCount() > 0) {
+          revealDot.setProgress(1f);
+        } else {
+          revealDot.setProgress(0f);
+        }
       } else {
         hideAudioDurationViews();
       }
@@ -295,7 +301,7 @@ public class ConversationItemFooter extends LinearLayout {
 
   private void showAudioDurationViews() {
     audioSpace.setVisibility(View.VISIBLE);
-    audioDuration.setVisibility(View.VISIBLE);
+    audioDuration.setVisibility(View.GONE);
 
     if (FeatureFlags.viewedReceipts()) {
       revealDot.setVisibility(View.VISIBLE);

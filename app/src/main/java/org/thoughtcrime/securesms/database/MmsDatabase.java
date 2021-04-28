@@ -412,39 +412,56 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public @Nullable MarkedMessageInfo setIncomingMessageViewed(long messageId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    String[]       columns  = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
-    String         where    = ID_WHERE + " AND " + VIEWED_RECEIPT_COUNT + " = 0";
-    String[]       args     = SqlUtil.buildArgs(messageId);
+    List<MarkedMessageInfo> results = setIncomingMessagesViewed(Collections.singletonList(messageId));
+
+    if (results.isEmpty()) {
+      return null;
+    } else {
+      return results.get(0);
+    }
+  }
+
+  @Override
+  public @NonNull List<MarkedMessageInfo> setIncomingMessagesViewed(@NonNull List<Long> messageIds) {
+    if (messageIds.isEmpty()) {
+      return Collections.emptyList();
+    }
+
+    SQLiteDatabase          database    = databaseHelper.getWritableDatabase();
+    String[]                columns     = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
+    String                  where       = ID + " IN (" + Util.join(messageIds, ",") + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
+    List<MarkedMessageInfo> results     = new LinkedList<>();
 
     database.beginTransaction();
-    try (Cursor cursor = database.query(TABLE_NAME, columns, where, args, null, null, null)) {
-      if (cursor == null || !cursor.moveToFirst()) {
-        return null;
+    try (Cursor cursor = database.query(TABLE_NAME, columns, where, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
+        if (Types.isSecureType(type) && Types.isInboxType(type)) {
+          long          threadId      = CursorUtil.requireLong(cursor, THREAD_ID);
+          RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+          long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
+          SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+
+          results.add(new MarkedMessageInfo(threadId, syncMessageId, null));
+
+          ContentValues contentValues = new ContentValues();
+          contentValues.put(VIEWED_RECEIPT_COUNT, 1);
+
+          database.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(CursorUtil.requireLong(cursor, ID)));
+        }
       }
-
-      long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
-      if (Types.isSecureType(type) && Types.isInboxType(type)) {
-        long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
-        RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
-        long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
-        SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
-
-        MarkedMessageInfo result = new MarkedMessageInfo(threadId, syncMessageId, null);
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(VIEWED_RECEIPT_COUNT, 1);
-
-        database.update(TABLE_NAME, contentValues, where, args);
-        database.setTransactionSuccessful();
-
-        return result;
-      } else {
-        return null;
-      }
+      database.setTransactionSuccessful();
     } finally {
       database.endTransaction();
     }
+
+    Set<Long> threadsUpdated = Stream.of(results)
+                                     .map(MarkedMessageInfo::getThreadId)
+                                     .collect(Collectors.toSet());
+
+    notifyConversationListeners(threadsUpdated);
+
+    return results;
   }
 
   @Override

@@ -57,7 +57,7 @@ public class SendViewedReceiptJob extends BaseJob {
                            .build(),
          threadId,
          recipientId,
-         syncTimestamps,
+         SendReadReceiptJob.ensureSize(syncTimestamps, SendReadReceiptJob.MAX_TIMESTAMPS),
          System.currentTimeMillis());
   }
 

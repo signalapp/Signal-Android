@@ -403,6 +403,12 @@ message SyncMessage {
     optional uint64 timestamp  = 2;
   }
 
+  message Viewed {
+    optional string senderE164 = 1;
+    optional string senderUuid = 3;
+    optional uint64 timestamp = 2;
+  }
+
   message Configuration {
     optional bool   readReceipts                   = 1;
     optional bool   unidentifiedDeliveryIndicators = 2;
@@ -495,6 +501,7 @@ message SyncMessage {
   optional Keys                   keys                   = 13;
   optional MessageRequestResponse messageRequestResponse = 14;
   optional OutgoingPayment        outgoingPayment        = 15;
+  repeated Viewed                 viewed                 = 16;
 }
 
 message AttachmentPointer {
