@@ -41,8 +41,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private val members = HashSet<String>()
     private val allMembers: Set<String>
         get() {
-            return if (zombies.isNotEmpty()) (members + zombies)
-            else members
+            return members + zombies
         }
     private var hasNameChanged = false
     private var isSelfAdmin = false

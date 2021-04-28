@@ -183,9 +183,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     List<Recipient> recipients  = new LinkedList<>();
 
     for (Address member : members) {
-      if (member.isContact()) {
         recipients.add(Recipient.from(context, member, false));
-      }
     }
 
     return recipients;

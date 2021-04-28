@@ -522,11 +522,7 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
         // admin left the group of linked device left the group
         disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
     } else {
-        //val isCurrentUserAdmin = admins.contains(userPublicKey)
         storage.updateMembers(groupID, updatedMemberList.map { Address.fromSerialized(it) })
-        //if (isCurrentUserAdmin) {
-        //    MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMemberList)
-        //}
         // update zombie members
         val zombies = storage.getZombieMember(groupID)
         storage.updateZombieMembers(groupID, zombies.plus(senderPublicKey).map { Address.fromSerialized(it) })
