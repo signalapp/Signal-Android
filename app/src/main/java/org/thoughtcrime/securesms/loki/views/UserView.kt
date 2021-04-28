@@ -82,6 +82,11 @@ class UserView : LinearLayout {
         }
     }
 
+    fun toggleCheckbox(isSelected: Boolean = false) {
+        actionIndicatorImageView.visibility = View.VISIBLE
+        actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+    }
+
     fun unbind() {
 
     }

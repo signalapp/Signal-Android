@@ -9,7 +9,6 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
-import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -104,11 +103,11 @@ object ClosedGroupsProtocolV2 {
         apiDB.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
         // Notify the user (if we didn't make the group)
         if (userPublicKey != senderPublicKey) {
-            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
         } else if (prevGroup == null) {
             // only notify if we created this group
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         }
         // Notify the PN server
         LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
@@ -156,14 +155,14 @@ object ClosedGroupsProtocolV2 {
                 MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey, newMembers)
             }
         }
-        val (contextType, signalType) =
-                if (senderLeft) GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
-                else GroupContext.Type.UPDATE to SignalServiceGroup.Type.UPDATE
+        val type =
+                if (senderLeft) SignalServiceGroup.Type.QUIT
+                else SignalServiceGroup.Type.UPDATE
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, type, name, members, admins, threadID, sentTimestamp)
         } else {
-            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, type, name, members, admins, sentTimestamp)
         }
     }
 
@@ -191,9 +190,9 @@ object ClosedGroupsProtocolV2 {
         groupDB.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
-            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
         }
         if (userPublicKey in admins) {
             // send current encryption key to the latest added members
@@ -230,9 +229,9 @@ object ClosedGroupsProtocolV2 {
         // Notify the user
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
-            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
         }
     }
 
@@ -272,9 +271,9 @@ object ClosedGroupsProtocolV2 {
         // Notify user
         if (userLeft) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.QUIT, name, members, admins, threadID, sentTimestamp)
         } else {
-            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceGroup.Type.QUIT, name, members, admins, sentTimestamp)
         }
     }
 
@@ -385,14 +384,13 @@ object ClosedGroupsProtocolV2 {
         }
         // Notify the user
         val wasSenderRemoved = !members.contains(senderPublicKey)
-        val type0 = if (wasSenderRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
-        val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
+        val type = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
         val admins = group.admins.map { it.toString() }
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, type0, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, type, name, members, admins, threadID, sentTimestamp)
         } else {
-            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, type, name, members, admins, sentTimestamp)
         }
     }
     // endregion

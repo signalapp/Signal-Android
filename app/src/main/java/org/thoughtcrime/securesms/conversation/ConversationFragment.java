@@ -59,6 +59,7 @@ import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.control.DataExtractionNotification;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.opengroups.OpenGroupAPI;
@@ -751,6 +752,11 @@ public class ConversationFragment extends Fragment
                 if (!Util.isEmpty(attachments)) {
                   SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
                   saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
+                  // Sending a Data extraction notification (for incoming attachments only)
+                  if(!message.isOutgoing()) {
+                    //TODO uncomment line below when Data extraction will be activated
+                    //sendMediaSavedNotificationIfNeeded();
+                  }
                   return;
                 }
 
@@ -761,6 +767,16 @@ public class ConversationFragment extends Fragment
               })
               .execute();
     });
+  }
+
+  /**
+   * Send a MediaSaved notification to the recipient
+   */
+  private void sendMediaSavedNotificationIfNeeded() {
+    // we don't send media saved notification for groups
+    if (recipient.isGroupRecipient()) return;
+    DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
+    MessageSender.send(message, recipient.getAddress());
   }
 
   @Override

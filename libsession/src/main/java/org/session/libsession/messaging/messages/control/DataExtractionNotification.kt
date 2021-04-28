@@ -9,7 +9,7 @@ class DataExtractionNotification(): ControlMessage() {
     // Kind enum
     sealed class Kind {
         class Screenshot() : Kind()
-        class MediaSaved(val timestanp: Long) : Kind()
+        class MediaSaved(val timestamp: Long) : Kind()
 
         val description: String =
             when(this) {
@@ -46,7 +46,7 @@ class DataExtractionNotification(): ControlMessage() {
         val kind = kind ?: return false
         return when(kind) {
             is Kind.Screenshot -> true
-            is Kind.MediaSaved -> kind.timestanp > 0
+            is Kind.MediaSaved -> kind.timestamp > 0
         }
     }
 
@@ -62,7 +62,7 @@ class DataExtractionNotification(): ControlMessage() {
                 is Kind.Screenshot -> dataExtractionNotification.type = SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT
                 is Kind.MediaSaved -> {
                     dataExtractionNotification.type = SignalServiceProtos.DataExtractionNotification.Type.MEDIA_SAVED
-                    dataExtractionNotification.timestamp = kind.timestanp
+                    dataExtractionNotification.timestamp = kind.timestamp
                 }
             }
             val contentProto = SignalServiceProtos.Content.newBuilder()
@@ -73,5 +73,4 @@ class DataExtractionNotification(): ControlMessage() {
             return null
         }
     }
-
 }

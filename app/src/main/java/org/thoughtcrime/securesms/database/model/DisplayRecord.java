@@ -109,6 +109,7 @@ public abstract class DisplayRecord {
 
   public boolean isLokiSessionRestoreDone() { return SmsDatabase.Types.isLokiSessionRestoreDoneType(type); }
 
+  // TODO isGroupUpdate and isGroupQuit are kept for compatibility with old update messages, they can be removed later on
   public boolean isGroupUpdate() {
     return SmsDatabase.Types.isGroupUpdate(type);
   }
@@ -117,12 +118,31 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isGroupQuit(type);
   }
 
+  public boolean isGroupUpdateMessage() {
+    return SmsDatabase.Types.isGroupUpdateMessage(type);
+  }
+
+  //TODO isGroupAction can be replaced by isGroupUpdateMessage in the code when the 2 functions above are removed
   public boolean isGroupAction() {
-    return isGroupUpdate() || isGroupQuit();
+    return isGroupUpdate() || isGroupQuit() || isGroupUpdateMessage();
   }
 
   public boolean isExpirationTimerUpdate() {
     return SmsDatabase.Types.isExpirationTimerUpdate(type);
+  }
+
+  // Data extraction
+
+  public boolean isMediaSavedExtraction() {
+    return MmsSmsColumns.Types.isMediaSavedExtraction(type);
+  }
+
+  public boolean isScreenshotExtraction() {
+    return MmsSmsColumns.Types.isScreenshotExtraction(type);
+  }
+
+  public boolean isDataExtraction() {
+    return isMediaSavedExtraction() || isScreenshotExtraction();
   }
 
   public boolean isCallLog() {
