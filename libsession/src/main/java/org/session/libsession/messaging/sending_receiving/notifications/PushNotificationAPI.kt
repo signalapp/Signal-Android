@@ -5,16 +5,16 @@ import nl.komponents.kovenant.functional.map
 import okhttp3.MediaType
 import okhttp3.Request
 import okhttp3.RequestBody
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.logging.Log
 
 @SuppressLint("StaticFieldLeak")
 object PushNotificationAPI {
-    val context = MessagingConfiguration.shared.context
+    val context = MessagingModuleConfiguration.shared.context
     val server = "https://live.apns.getsession.org"
     val serverPublicKey = "642a6585919742e5a2d4dc51244964fbcd8bcab2b75612407de58b810740d049"
     private val maxRetryCount = 4
@@ -50,8 +50,8 @@ object PushNotificationAPI {
             }
         }
         // Unsubscribe from all closed groups
-        val allClosedGroupPublicKeys = MessagingConfiguration.shared.storage.getAllClosedGroupPublicKeys()
-        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey()!!
+        val allClosedGroupPublicKeys = MessagingModuleConfiguration.shared.storage.getAllClosedGroupPublicKeys()
+        val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey()!!
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
         }
@@ -80,7 +80,7 @@ object PushNotificationAPI {
             }
         }
         // Subscribe to all closed groups
-        val allClosedGroupPublicKeys = MessagingConfiguration.shared.storage.getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = MessagingModuleConfiguration.shared.storage.getAllClosedGroupPublicKeys()
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }

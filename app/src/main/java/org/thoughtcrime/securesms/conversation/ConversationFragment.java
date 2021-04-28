@@ -57,17 +57,18 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.messages.control.DataExtractionNotification;
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
-import org.session.libsession.messaging.messages.control.DataExtractionNotification;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.opengroups.OpenGroupAPI;
-import org.session.libsession.messaging.opengroups.OpenGroupAPIV2;
-import org.session.libsession.messaging.opengroups.OpenGroupV2;
+import org.session.libsession.messaging.open_groups.OpenGroup;
+import org.session.libsession.messaging.open_groups.OpenGroupAPI;
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2;
+import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.TextSecurePreferences;
@@ -76,7 +77,6 @@ import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.SimpleTask;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -397,7 +397,7 @@ public class ConversationFragment extends Fragment
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+      OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
       OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
       boolean isPublicChat = (publicChat != null || openGroupChat != null);
       int selectedMessageCount = messageRecords.size();
@@ -514,7 +514,7 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
     OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -620,7 +620,7 @@ public class ConversationFragment extends Fragment
     builder.setTitle(R.string.ConversationFragment_ban_selected_user);
     builder.setCancelable(true);
 
-    final PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    final OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
     final OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
 
     builder.setPositiveButton(R.string.ban, (dialog, which) -> {

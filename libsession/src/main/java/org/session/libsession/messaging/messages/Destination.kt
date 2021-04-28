@@ -1,12 +1,14 @@
 package org.session.libsession.messaging.messages
 
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.open_groups.OpenGroupV2
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.loki.utilities.toHexString
 
-typealias OpenGroupModel = org.session.libsession.messaging.opengroups.OpenGroup
-typealias OpenGroupV2Model = org.session.libsession.messaging.opengroups.OpenGroupV2
+typealias OpenGroupModel = OpenGroup
+typealias OpenGroupV2Model = OpenGroupV2
 
 sealed class Destination {
 
@@ -35,7 +37,7 @@ sealed class Destination {
                     ClosedGroup(groupPublicKey)
                 }
                 address.isOpenGroup -> {
-                    val storage = MessagingConfiguration.shared.storage
+                    val storage = MessagingModuleConfiguration.shared.storage
                     val threadID = storage.getThreadID(address.contactIdentifier())!!
                     when (val openGroup = storage.getOpenGroup(threadID) ?: storage.getV2OpenGroup(threadID)) {
                         is OpenGroupModel -> OpenGroup(openGroup.channel, openGroup.server)

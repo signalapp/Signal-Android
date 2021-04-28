@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.mentions.MentionsManager
+import org.session.libsession.messaging.mentions.MentionsManager
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 

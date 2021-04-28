@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 
 public class DatabaseAttachment extends Attachment {
 
@@ -33,7 +33,7 @@ public class DatabaseAttachment extends Attachment {
   @Nullable
   public Uri getDataUri() {
     if (hasData) {
-      return MessagingConfiguration.shared.getStorage().getAttachmentDataUri(attachmentId);
+      return MessagingModuleConfiguration.shared.getStorage().getAttachmentDataUri(attachmentId);
     } else {
       return null;
     }
@@ -43,7 +43,7 @@ public class DatabaseAttachment extends Attachment {
   @Nullable
   public Uri getThumbnailUri() {
     if (hasThumbnail) {
-      return MessagingConfiguration.shared.getStorage().getAttachmentThumbnailUri(attachmentId);
+      return MessagingModuleConfiguration.shared.getStorage().getAttachmentThumbnailUri(attachmentId);
     } else {
       return null;
     }

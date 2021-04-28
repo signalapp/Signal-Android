@@ -26,7 +26,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     companion object {
         val KEY: String = "NotifyPNServerJob"
 
-        //keys used for database storage purpose
+        // Keys used for database storage
         private val KEY_MESSAGE = "message"
     }
 
@@ -61,18 +61,14 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         delegate?.handleJobFailed(this, error)
     }
 
-    //database functions
-
     override fun serialize(): Data {
-        //serialize SnodeMessage property
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
         val serializedMessage = ByteArray(4096)
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
-                .build();
+        return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage).build();
     }
 
     override fun getFactoryKey(): String {
@@ -80,9 +76,9 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     }
 
     class Factory: Job.Factory<NotifyPNServerJob> {
+
         override fun create(data: Data): NotifyPNServerJob {
             val serializedMessage = data.getByteArray(KEY_MESSAGE)
-            //deserialize SnodeMessage property
             val kryo = Kryo()
             val input = Input(serializedMessage)
             val message: SnodeMessage = kryo.readObject(input, SnodeMessage::class.java)

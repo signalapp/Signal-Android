@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.threads.Address
@@ -12,13 +12,11 @@ import org.session.libsignal.utilities.logging.Log
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 
 class VisibleMessage : Message()  {
-
     var syncTarget: String? = null
     var text: String? = null
     val attachmentIDs: MutableList<Long> = mutableListOf()
     var quote: Quote? = null
     var linkPreview: LinkPreview? = null
-    var contact: Contact? = null
     var profile: Profile? = null
 
     override val isSelfSendValid: Boolean = true
@@ -60,10 +58,9 @@ class VisibleMessage : Message()  {
     }
 
     fun isMediaMessage(): Boolean {
-        return attachmentIDs.isNotEmpty() || quote != null || linkPreview != null || contact != null
+        return attachmentIDs.isNotEmpty() || quote != null || linkPreview != null
     }
 
-    // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         if (attachmentIDs.isNotEmpty()) return true
@@ -98,7 +95,7 @@ class VisibleMessage : Message()  {
             }
         }
         //Attachments
-        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) }
+        val attachments = attachmentIDs.mapNotNull { MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) }
         if (!attachments.all { !it.url.isNullOrEmpty() }) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure
@@ -111,8 +108,8 @@ class VisibleMessage : Message()  {
         // Expiration timer
         // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
         // if it receives a message without the current expiration timer value attached to it...
-        val storage = MessagingConfiguration.shared.storage
-        val context = MessagingConfiguration.shared.context
+        val storage = MessagingModuleConfiguration.shared.storage
+        val context = MessagingModuleConfiguration.shared.context
         val expiration = if (storage.isClosedGroup(recipient!!)) Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
                          else Recipient.from(context, Address.fromSerialized(recipient!!), false).expireMessages
         dataMessage.expireTimer = expiration

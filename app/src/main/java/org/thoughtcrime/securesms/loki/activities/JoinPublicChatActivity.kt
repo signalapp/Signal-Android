@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import okhttp3.HttpUrl
-import org.session.libsession.messaging.opengroups.OpenGroupAPIV2.DefaultGroup
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.DefaultGroup
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.DistributionTypes
 import org.session.libsession.messaging.threads.recipients.Recipient

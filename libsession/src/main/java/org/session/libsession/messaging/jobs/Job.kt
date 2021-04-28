@@ -8,14 +8,12 @@ interface Job {
     val maxFailureCount: Int
 
     companion object {
-        //keys used for database storage purpose
+        // Keys used for database storage
         private val KEY_ID = "id"
         private val KEY_FAILURE_COUNT = "failure_count"
     }
 
     fun execute()
-
-    //database functions
 
     fun serialize(): Data
 

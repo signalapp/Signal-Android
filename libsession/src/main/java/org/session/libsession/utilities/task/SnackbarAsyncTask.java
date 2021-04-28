@@ -10,7 +10,6 @@ public abstract class SnackbarAsyncTask<Params>
     extends AsyncTask<Params, Void, Void>
     implements View.OnClickListener
 {
-
   private final View    view;
   private final String  snackbarText;
   private final String  snackbarActionText;

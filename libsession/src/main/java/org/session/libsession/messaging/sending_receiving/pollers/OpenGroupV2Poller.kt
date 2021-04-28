@@ -2,11 +2,11 @@ package org.session.libsession.messaging.sending_receiving.pollers
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.opengroups.OpenGroupAPIV2
-import org.session.libsession.messaging.opengroups.OpenGroupV2
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.successBackground
@@ -72,7 +72,7 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
                     content.dataMessage = dataMessageProto
                     // Envelope
                     val builder = SignalServiceProtos.Envelope.newBuilder()
-                    builder.type = SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER
+                    builder.type = SignalServiceProtos.Envelope.Type.SESSION_MESSAGE
                     builder.source = senderPublicKey
                     builder.sourceDevice = 1
                     builder.content = content.build().toByteString()
@@ -102,9 +102,9 @@ class OpenGroupV2Poller(private val openGroup: OpenGroupV2, private val executor
 
     private fun pollForDeletedMessages() {
         OpenGroupAPIV2.getDeletedMessages(openGroup.room, openGroup.server).success { deletedMessageServerIDs ->
-            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getMessageID(it) }
+            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { MessagingModuleConfiguration.shared.messageDataProvider.getMessageID(it) }
             deletedMessageIDs.forEach {
-                MessagingConfiguration.shared.messageDataProvider.deleteMessage(it)
+                MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(it)
             }
         }.fail {
             Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${openGroup.room} on server: ${openGroup.server}.")

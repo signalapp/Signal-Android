@@ -7,7 +7,6 @@ import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsignal.utilities.logging.Log
 
 class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
-
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -20,7 +19,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
 
         private val RECEIVE_LOCK = Object()
 
-        //keys used for database storage purpose
+        // Keys used for database storage
         private val KEY_DATA = "data"
         private val KEY_IS_BACKGROUND_POLL = "is_background_poll"
         private val KEY_OPEN_GROUP_MESSAGE_SERVER_ID = "openGroupMessageServerID"
@@ -68,8 +67,6 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         delegate?.handleJobFailed(this, e)
     }
 
-    //database functions
-
     override fun serialize(): Data {
         val builder = Data.Builder().putByteArray(KEY_DATA, data)
                 .putBoolean(KEY_IS_BACKGROUND_POLL, isBackgroundPoll)
@@ -83,6 +80,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     }
 
     class Factory: Job.Factory<MessageReceiveJob> {
+
         override fun create(data: Data): MessageReceiveJob {
             return MessageReceiveJob(data.getByteArray(KEY_DATA), data.getBoolean(KEY_IS_BACKGROUND_POLL), data.getLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID), data.getString(KEY_OPEN_GROUP_ID))
         }

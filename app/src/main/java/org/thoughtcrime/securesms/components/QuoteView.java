@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -35,7 +36,6 @@ import org.session.libsession.messaging.threads.recipients.RecipientModifiedList
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.util.List;
 
@@ -201,7 +201,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
     long threadID = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(conversationRecipient);
     String senderHexEncodedPublicKey = author.getAddress().serialize();
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
     if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
       quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
     } else if (publicChat != null) {

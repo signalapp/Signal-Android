@@ -10,7 +10,6 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ClosedGroupControlMessage;
-import org.session.libsignal.service.loki.utilities.TTLUtilities;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -247,7 +246,7 @@ public class SignalServiceDataMessage {
   }
 
   public int getTTL() {
-    return TTLUtilities.getTTL(TTLUtilities.MessageType.Regular);
+    return 0;
   }
 
   public static class Builder {
