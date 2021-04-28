@@ -39,6 +39,10 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
   val mostRecentSender: Recipient
     get() = mostRecentNotification.individualRecipient
 
+  fun getNonVisibleConversation(visibleThreadId: Long): List<NotificationConversation> {
+    return conversations.filterNot { it.threadId == visibleThreadId }
+  }
+
   fun getDeleteIntent(context: Context): PendingIntent? {
     val ids = LongArray(messageCount)
     val mms = BooleanArray(ids.size)

@@ -343,7 +343,7 @@ public final class FeatureFlags {
 
   /** Whether or not to use the new notification system. */
   public static boolean useNewNotificationSystem() {
-    return getBoolean(NOTIFICATION_REWRITE, false) && Build.VERSION.SDK_INT >= 26;
+    return Build.VERSION.SDK_INT >= 26 || getBoolean(NOTIFICATION_REWRITE, false);
   }
 
   public static boolean mp4GifSendSupport() {

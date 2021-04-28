@@ -80,6 +80,10 @@ android {
     flavorDimensions 'distribution', 'environment'
     useLibrary 'org.apache.http.legacy'
 
+    kotlinOptions {
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+    }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }

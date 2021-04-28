@@ -79,7 +79,7 @@ public final class NotificationCancellationHelper {
   }
 
   public static void cancelMessageSummaryIfSoleNotification(@NonNull Context context) {
-    if (Build.VERSION.SDK_INT >= 23) {
+    if (Build.VERSION.SDK_INT > 23) {
       try {
         NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
         StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();

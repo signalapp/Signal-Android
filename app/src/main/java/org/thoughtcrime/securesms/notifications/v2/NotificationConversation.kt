@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.notifications.v2
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.SpannableStringBuilder
@@ -25,13 +24,11 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 
-private const val LARGE_ICON_DIMEN = 250
-
 /**
  * Encapsulate all the notifications for a given conversation (thread) and the top
  * level information about said conversation.
  */
-class NotificationConversation(
+data class NotificationConversation(
   val recipient: Recipient,
   val threadId: Long,
   val notificationItems: List<NotificationItemV2>
@@ -51,18 +48,7 @@ class NotificationConversation(
     }
   }
 
-  fun getLargeIcon(context: Context): Bitmap? {
-    if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage) {
-      val largeIconUri: Uri? = getSlideLargeIcon()
-      if (largeIconUri != null) {
-        return largeIconUri.toBitmap(context, LARGE_ICON_DIMEN)
-      }
-    }
-
-    return getContactLargeIcon(context).toLargeBitmap(context)
-  }
-
-  private fun getContactLargeIcon(context: Context): Drawable? {
+  fun getContactLargeIcon(context: Context): Drawable? {
     return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
@@ -76,10 +62,6 @@ class NotificationConversation(
     } else {
       null
     }
-  }
-
-  private fun getSlideLargeIcon(): Uri? {
-    return if (notificationItems.size == 1) mostRecentNotification.getLargeIconUri() else null
   }
 
   fun getSlideBigPictureUri(context: Context): Uri? {

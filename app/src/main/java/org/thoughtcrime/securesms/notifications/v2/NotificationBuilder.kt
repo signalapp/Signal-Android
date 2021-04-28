@@ -332,10 +332,18 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun setGroup(group: String) {
+      if (Build.VERSION.SDK_INT < 23) {
+        return
+      }
+
       builder.setGroup(group)
     }
 
     override fun setGroupAlertBehavior(behavior: Int) {
+      if (Build.VERSION.SDK_INT < 23) {
+        return
+      }
+
       builder.setGroupAlertBehavior(behavior)
     }
 
@@ -479,15 +487,6 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean) {
-      val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)
-      if (bigPictureUri != null) {
-        builder.style = Notification.BigPictureStyle()
-          .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
-          .setSummaryText(conversation.getContentText(context))
-          .bigLargeIcon(null as Bitmap?)
-        return
-      }
-
       val self: Person = Person.Builder()
         .setBot(false)
         .setName(Recipient.self().getDisplayName(context))

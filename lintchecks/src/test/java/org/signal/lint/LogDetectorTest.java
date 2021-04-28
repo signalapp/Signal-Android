@@ -153,6 +153,27 @@ public final class LogDetectorTest {
   }
 
   @Test
+  public void log_uses_tag_companion_kotlin() {
+    lint()
+        .files(appLogStub,
+               kotlin("package foo\n" +
+                      "import org.signal.core.util.logging.Log\n" +
+                      "class Example {\n" +
+                      "  companion object { val TAG: String = Log.tag(Example::class.java) }\n" +
+                      "  fun log() {\n" +
+                      "    Log.d(TAG, \"msg\")\n" +
+                      "  }\n" +
+                      "}\n"+
+                      "fun logOutsie() {\n" +
+                      "  Log.d(Example.TAG, \"msg\")\n" +
+                      "}\n")
+        )
+        .issues(SignalLogDetector.INLINE_TAG)
+        .run()
+        .expectClean();
+  }
+
+  @Test
   public void log_uses_inline_tag() {
     lint()
       .files(appLogStub,

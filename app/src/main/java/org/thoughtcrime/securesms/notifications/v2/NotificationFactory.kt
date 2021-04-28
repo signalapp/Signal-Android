@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.notifications.v2
 
+import android.annotation.TargetApi
 import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -44,67 +45,114 @@ object NotificationFactory {
     targetThreadId: Long,
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
-    notificationConfigurationChanged: Boolean,
     alertOverrides: Set<Long>
   ): Set<Long> {
     if (state.isEmpty) {
       Log.d(TAG, "State is empty, bailing")
       return emptySet()
     }
+
+    val nonVisibleThreadCount = state.conversations.count { it.threadId != visibleThreadId }
+    return if (Build.VERSION.SDK_INT < 23) {
+      notify19(
+        context = context,
+        state = state,
+        visibleThreadId = visibleThreadId,
+        targetThreadId = targetThreadId,
+        defaultBubbleState = defaultBubbleState,
+        lastAudibleNotification = lastAudibleNotification,
+        alertOverrides = alertOverrides,
+        nonVisibleThreadCount = nonVisibleThreadCount
+      )
+    } else {
+      notify23(
+        context = context,
+        state = state,
+        visibleThreadId = visibleThreadId,
+        targetThreadId = targetThreadId,
+        defaultBubbleState = defaultBubbleState,
+        lastAudibleNotification = lastAudibleNotification,
+        alertOverrides = alertOverrides,
+        nonVisibleThreadCount = nonVisibleThreadCount
+      )
+    }
+  }
+
+  private fun notify19(
+    context: Context,
+    state: NotificationStateV2,
+    visibleThreadId: Long,
+    targetThreadId: Long,
+    defaultBubbleState: BubbleUtil.BubbleState,
+    lastAudibleNotification: Long,
+    alertOverrides: Set<Long>,
+    nonVisibleThreadCount: Int
+  ): Set<Long> {
     val threadsThatNewlyAlerted: MutableSet<Long> = mutableSetOf()
 
-    if (Build.VERSION.SDK_INT >= 23 || state.conversations.size == 1) {
-      state.conversations.forEach { conversation ->
-        if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
-          Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
-          notifyInThread(context, conversation.recipient, lastAudibleNotification)
-        } else if (notificationConfigurationChanged || conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
-
-          if (conversation.hasNewNotifications()) {
-            threadsThatNewlyAlerted += conversation.threadId
-          }
-
-          notifyForConversation(
-            context = context,
-            conversation = conversation,
-            targetThreadId = targetThreadId,
-            defaultBubbleState = defaultBubbleState,
-            shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) && !conversation.mostRecentNotification.individualRecipient.isSelf
-          )
-        }
+    state.conversations.find { it.threadId == visibleThreadId }?.let { conversation ->
+      if (conversation.hasNewNotifications()) {
+        Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
+        notifyInThread(context, conversation.recipient, lastAudibleNotification)
       }
     }
 
-    if ((state.conversations.size > 1 && threadsThatNewlyAlerted.isNotEmpty()) || ServiceUtil.getNotificationManager(context).isDisplayingSummaryNotification()) {
-      val builder: NotificationBuilder = NotificationBuilder.create(context)
-
-      builder.apply {
-        setSmallIcon(R.drawable.ic_notification)
-        setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
-        setCategory(NotificationCompat.CATEGORY_MESSAGE)
-        setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
-        setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
-        setChannelId(NotificationChannels.getMessagesChannel(context))
-        setContentTitle(context.getString(R.string.app_name))
-        setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), 0))
-        setGroupSummary(true)
-        setSubText(context.getString(R.string.MessageNotifier_d_new_messages_in_d_conversations, state.messageCount, state.threadCount))
-        setContentInfo(state.messageCount.toString())
-        setNumber(state.messageCount)
-        setSummaryContentText(state.mostRecentSender)
-        setDeleteIntent(state.getDeleteIntent(context))
-        setWhen(state.mostRecentNotification)
-        addMarkAsReadAction(state)
-        addMessages(state)
-        setOnlyAlertOnce(!state.notificationItems.any { it.isNewNotification })
-        setPriority(TextSecurePreferences.getNotificationPriority(context))
-        setLights()
-        setAlarms(state.mostRecentSender)
-        setTicker(state.mostRecentNotification.getStyledPrimaryText(context, true))
+    if (nonVisibleThreadCount == 1) {
+      state.conversations.first { it.threadId != visibleThreadId }.let { conversation ->
+        notifyForConversation(
+          context = context,
+          conversation = conversation,
+          targetThreadId = targetThreadId,
+          defaultBubbleState = defaultBubbleState,
+          shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) && !conversation.mostRecentNotification.individualRecipient.isSelf
+        )
+        if (conversation.hasNewNotifications()) {
+          threadsThatNewlyAlerted += conversation.threadId
+        }
       }
+    } else if (nonVisibleThreadCount > 1) {
+      val nonVisibleConversations: List<NotificationConversation> = state.getNonVisibleConversation(visibleThreadId)
+      threadsThatNewlyAlerted += nonVisibleConversations.filter { it.hasNewNotifications() }.map { it.threadId }
+      notifySummary(context = context, state = state.copy(conversations = nonVisibleConversations))
+    }
 
-      Log.d(TAG, "showing summary notification")
-      NotificationManagerCompat.from(context).safelyNotify(context, null, NotificationIds.MESSAGE_SUMMARY, builder.build())
+    return threadsThatNewlyAlerted
+  }
+
+  @TargetApi(23)
+  private fun notify23(
+    context: Context,
+    state: NotificationStateV2,
+    visibleThreadId: Long,
+    targetThreadId: Long,
+    defaultBubbleState: BubbleUtil.BubbleState,
+    lastAudibleNotification: Long,
+    alertOverrides: Set<Long>,
+    nonVisibleThreadCount: Int
+  ): Set<Long> {
+    val threadsThatNewlyAlerted: MutableSet<Long> = mutableSetOf()
+
+    state.conversations.forEach { conversation ->
+      if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
+        Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
+        notifyInThread(context, conversation.recipient, lastAudibleNotification)
+      } else {
+        if (conversation.hasNewNotifications()) {
+          threadsThatNewlyAlerted += conversation.threadId
+        }
+
+        notifyForConversation(
+          context = context,
+          conversation = conversation,
+          targetThreadId = targetThreadId,
+          defaultBubbleState = defaultBubbleState,
+          shouldAlert = (conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) && !conversation.mostRecentNotification.individualRecipient.isSelf
+        )
+      }
+    }
+
+    if (nonVisibleThreadCount > 1 || ServiceUtil.getNotificationManager(context).isDisplayingSummaryNotification()) {
+      notifySummary(context = context, state = state.copy(conversations = state.getNonVisibleConversation(visibleThreadId)))
     }
 
     return threadsThatNewlyAlerted
@@ -127,7 +175,7 @@ object NotificationFactory {
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
       setChannelId(conversation.getChannelId(context))
       setContentTitle(conversation.getContentTitle(context))
-      setLargeIcon(conversation.getLargeIcon(context))
+      setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
       addPerson(conversation.recipient)
       setShortcutId(ConversationUtil.getShortcutId(conversation.recipient))
       setContentInfo(conversation.messageCount.toString())
@@ -151,7 +199,41 @@ object NotificationFactory {
       builder.addTurnOffJoinedNotificationsAction(conversation.getTurnOffJoinedNotificationsIntent(context))
     }
 
-    NotificationManagerCompat.from(context).safelyNotify(context, conversation.recipient, conversation.notificationId, builder.build())
+    val notificationId: Int = if (Build.VERSION.SDK_INT < 23) NotificationIds.MESSAGE_SUMMARY else conversation.notificationId
+
+    NotificationManagerCompat.from(context).safelyNotify(context, conversation.recipient, notificationId, builder.build())
+  }
+
+  private fun notifySummary(context: Context, state: NotificationStateV2) {
+    val builder: NotificationBuilder = NotificationBuilder.create(context)
+
+    builder.apply {
+      setSmallIcon(R.drawable.ic_notification)
+      setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
+      setCategory(NotificationCompat.CATEGORY_MESSAGE)
+      setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
+      setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
+      setChannelId(NotificationChannels.getMessagesChannel(context))
+      setContentTitle(context.getString(R.string.app_name))
+      setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), 0))
+      setGroupSummary(true)
+      setSubText(context.getString(R.string.MessageNotifier_d_new_messages_in_d_conversations, state.messageCount, state.threadCount))
+      setContentInfo(state.messageCount.toString())
+      setNumber(state.messageCount)
+      setSummaryContentText(state.mostRecentSender)
+      setDeleteIntent(state.getDeleteIntent(context))
+      setWhen(state.mostRecentNotification)
+      addMarkAsReadAction(state)
+      addMessages(state)
+      setOnlyAlertOnce(!state.notificationItems.any { it.isNewNotification })
+      setPriority(TextSecurePreferences.getNotificationPriority(context))
+      setLights()
+      setAlarms(state.mostRecentSender)
+      setTicker(state.mostRecentNotification.getStyledPrimaryText(context, true))
+    }
+
+    Log.d(TAG, "showing summary notification")
+    NotificationManagerCompat.from(context).safelyNotify(context, null, NotificationIds.MESSAGE_SUMMARY, builder.build())
   }
 
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
