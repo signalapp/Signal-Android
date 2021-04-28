@@ -6,11 +6,6 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/empty_conversation_banner"
-        layout="@layout/conversation_item_banner"
-        android:visibility="gone" />
-
     <FrameLayout
         android:id="@+id/video_container"
         android:layout_width="0dp"
@@ -29,6 +24,11 @@
         android:clipToPadding="false"
         android:paddingBottom="2dp"
         android:scrollbars="vertical" />
+
+    <include
+        android:id="@+id/empty_conversation_banner"
+        layout="@layout/conversation_item_banner"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/scroll_date_header"
