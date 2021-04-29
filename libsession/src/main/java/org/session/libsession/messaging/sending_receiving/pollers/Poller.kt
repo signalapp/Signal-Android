@@ -5,11 +5,9 @@ import nl.komponents.kovenant.functional.bind
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
 import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import java.security.SecureRandom
 import java.util.*
