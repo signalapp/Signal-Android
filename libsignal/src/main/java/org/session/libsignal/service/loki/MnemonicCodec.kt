@@ -1,6 +1,5 @@
-package org.session.libsignal.service.loki.crypto
+package org.session.libsignal.service.loki
 
-import java.io.File
 import java.util.zip.CRC32
 
 /**
@@ -95,8 +94,10 @@ class MnemonicCodec(private val loadFileContents: (String) -> String) {
         var result = ""
         val n = truncatedWordSet.size.toLong()
         // Check preconditions
-        if (words.size < 12) { throw DecodingError.InputTooShort }
-        if (words.size % 3 == 0) { throw DecodingError.MissingLastWord }
+        if (words.size < 12) { throw DecodingError.InputTooShort
+        }
+        if (words.size % 3 == 0) { throw DecodingError.MissingLastWord
+        }
         // Get checksum word
         val checksumWord = words.removeAt(words.lastIndex)
         // Decode
@@ -106,7 +107,8 @@ class MnemonicCodec(private val loadFileContents: (String) -> String) {
                 val w2 = truncatedWordSet.indexOf(words[chunkStartIndex + 1].substring(0 until prefixLength))
                 val w3 = truncatedWordSet.indexOf(words[chunkStartIndex + 2].substring(0 until prefixLength))
                 val x = w1 + n * ((n - w1 + w2) % n) + n * n * ((n - w2 + w3) % n)
-                if (x % n != w1.toLong()) { throw DecodingError.Generic }
+                if (x % n != w1.toLong()) { throw DecodingError.Generic
+                }
                 val string = "0000000" + x.toString(16)
                 result += swap(string.substring(string.length - 8 until string.length))
             } catch (e: Exception) {
@@ -116,7 +118,8 @@ class MnemonicCodec(private val loadFileContents: (String) -> String) {
         // Verify checksum
         val checksumIndex = determineChecksumIndex(words, prefixLength)
         val expectedChecksumWord = words[checksumIndex]
-        if (expectedChecksumWord.substring(0 until prefixLength) != checksumWord.substring(0 until prefixLength)) { throw DecodingError.VerificationFailed }
+        if (expectedChecksumWord.substring(0 until prefixLength) != checksumWord.substring(0 until prefixLength)) { throw DecodingError.VerificationFailed
+        }
         // Return
         return result
     }

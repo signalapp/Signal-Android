@@ -95,7 +95,7 @@ import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.utilities.mentions.Mention;
+import org.session.libsignal.service.loki.Mention;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 import org.thoughtcrime.securesms.ApplicationContext;
