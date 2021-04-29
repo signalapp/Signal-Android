@@ -388,8 +388,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return database.getMessageFor(timestamp, address)?.getId()
     }
 
-    override fun setOpenGroupServerMessageID(messageID: Long, serverID: Long) {
-        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID)
+    override fun setOpenGroupServerMessageID(messageID: Long, serverID: Long, threadID: Long, isSms: Boolean) {
+        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID, isSms)
+        DatabaseFactory.getLokiMessageDatabase(context).setOriginalThreadID(messageID, serverID, threadID)
     }
 
     override fun getQuoteServerID(quoteID: Long, publicKey: String): Long? {

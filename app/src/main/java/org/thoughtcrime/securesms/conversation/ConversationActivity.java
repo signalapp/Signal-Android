@@ -1718,7 +1718,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = message.length() > characterCalculator.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent()        ||
-                                       recipient.isGroupRecipient()                   ||
+//                                       recipient.isGroupRecipient()                   ||
                                        inputPanel.getQuote().isPresent()              ||
                                        linkPreviewViewModel.hasLinkPreview()          ||
                                        LinkPreviewUtil.isValidMediaUrl(message) || // Loki - Send GIFs as media messages

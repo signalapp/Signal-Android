@@ -3,8 +3,10 @@ package org.session.libsignal.utilities;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.ResolvedType;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -39,6 +41,10 @@ public class JsonUtil {
   }
 
   public static <T> T fromJson(String serialized, Class<T> clazz) throws IOException {
+    return objectMapper.readValue(serialized, clazz);
+  }
+
+  public static<T> T fromJson(String serialized, JavaType clazz) throws IOException {
     return objectMapper.readValue(serialized, clazz);
   }
 

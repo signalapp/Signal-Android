@@ -11,7 +11,8 @@ import java.io.InputStream
 interface MessageDataProvider {
 
     fun getMessageID(serverID: Long): Long?
-    fun deleteMessage(messageID: Long)
+    fun getMessageID(serverId: Long, threadId: Long): Pair<Long, Boolean>?
+    fun deleteMessage(messageID: Long, isSms: Boolean)
 
     fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment?
 

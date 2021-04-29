@@ -533,7 +533,7 @@ public class ConversationFragment extends Fragment
               boolean isSentByUser = true;
               for (MessageRecord messageRecord : messageRecords) {
                 isSentByUser = isSentByUser && messageRecord.isOutgoing();
-                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
                 if (serverID != null) {
                   serverIDs.add(serverID);
                 } else {
@@ -545,7 +545,7 @@ public class ConversationFragment extends Fragment
                 .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
                 .success(l -> {
                   for (MessageRecord messageRecord : messageRecords) {
-                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
                     if (l.contains(serverID)) {
                       if (messageRecord.isMms()) {
                         DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
@@ -568,7 +568,7 @@ public class ConversationFragment extends Fragment
                           .deleteMessage(serverId, openGroupChat.getRoom(), openGroupChat.getServer())
                           .success(l -> {
                             for (MessageRecord messageRecord : messageRecords) {
-                              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
                               if (serverID != null && serverID.equals(serverId)) {
                                 if (messageRecord.isMms()) {
                                   DatabaseFactory.getMmsDatabase(getContext()).delete(messageRecord.getId());

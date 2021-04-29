@@ -2,6 +2,7 @@ package org.session.libsession.messaging.open_groups
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
+import com.fasterxml.jackson.databind.type.TypeFactory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import nl.komponents.kovenant.Kovenant
@@ -27,6 +28,8 @@ import org.session.libsignal.utilities.createContext
 import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 import java.util.*
+
+typealias DeletionList = List<OpenGroupAPIV2.MessageDeletion>
 
 object OpenGroupAPIV2 {
 
@@ -60,7 +63,7 @@ object OpenGroupAPIV2 {
             val imageID: String?
     )
 
-    @JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy::class)
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class CompactPollRequest(val roomId: String,
                                   val authToken: String,
                                   val fromDeletionServerId: Long?,
@@ -70,6 +73,11 @@ object OpenGroupAPIV2 {
     data class CompactPollResult(val messages: List<OpenGroupMessageV2>,
                                  val deletions: List<Long>,
                                  val moderators: List<String>
+    )
+
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
+    data class MessageDeletion @JvmOverloads constructor(val id: Long = 0,
+                                                         val deletedMessageId: Long = 0
     )
 
     data class Request(
@@ -93,7 +101,7 @@ object OpenGroupAPIV2 {
         return RequestBody.create(MediaType.get("application/json"), parametersAsJSON)
     }
 
-    private fun send(request: Request): Promise<Map<*, *>, Exception> {
+    private fun send(request: Request, isJsonRequired: Boolean = true): Promise<Map<*, *>, Exception> {
         val parsed = HttpUrl.parse(request.server) ?: return Promise.ofFail(Error.INVALID_URL)
         val urlBuilder = HttpUrl.Builder()
                 .scheme(parsed.scheme())
@@ -128,7 +136,7 @@ object OpenGroupAPIV2 {
             if (request.useOnionRouting) {
                 val publicKey = MessagingModuleConfiguration.shared.storage.getOpenGroupPublicKey(request.server)
                         ?: return Promise.ofFail(Error.NO_PUBLIC_KEY)
-                return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), request.server, publicKey)
+                return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), request.server, publicKey, isJSONRequired = isJsonRequired)
                         .fail { e ->
                             if (e is OnionRequestAPI.HTTPRequestFailedAtDestinationException && e.statusCode == 401) {
                                 val storage = MessagingModuleConfiguration.shared.storage
@@ -289,7 +297,7 @@ object OpenGroupAPIV2 {
         }
     }
 
-    fun getDeletedMessages(room: String, server: String): Promise<List<Long>, Exception> {
+    fun getDeletedMessages(room: String, server: String): Promise<List<MessageDeletion>, Exception> {
         val storage = MessagingModuleConfiguration.shared.storage
         val queryParameters = mutableMapOf<String, String>()
         storage.getLastDeletionServerId(room, server)?.let { last ->
@@ -297,12 +305,13 @@ object OpenGroupAPIV2 {
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "deleted_messages", queryParameters = queryParameters)
         return send(request).map(sharedContext) { json ->
-            @Suppress("UNCHECKED_CAST") val serverIDs = (json["ids"] as? List<Int>)?.map { it.toLong() }
-                    ?: throw Error.PARSING_FAILED
+            val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
+            val idsAsString = JsonUtil.toJson(json["ids"])
+            val serverIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.PARSING_FAILED
             val lastMessageServerId = storage.getLastDeletionServerId(room, server) ?: 0
-            val serverID = serverIDs.maxOrNull() ?: 0
-            if (serverID > lastMessageServerId) {
-                storage.setLastDeletionServerId(room, server, serverID)
+            val serverID = serverIDs.maxByOrNull {it.id } ?: serverIDs.first()
+            if (serverID.id > lastMessageServerId) {
+                storage.setLastDeletionServerId(room, server, serverID.id)
             }
             serverIDs
         }
@@ -343,14 +352,14 @@ object OpenGroupAPIV2 {
     // endregion
 
     // region General
-    fun getCompactPoll(rooms: List<String>, server: String): Promise<Map<String,CompactPollResult>, Exception> {
-        val requestAuths = rooms.associateWith { room -> getAuthToken(room,server) }
+    fun getCompactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
+        val requestAuths = rooms.associateWith { room -> getAuthToken(room, server) }
         val storage = MessagingModuleConfiguration.shared.storage
         val requests = rooms.mapNotNull { room ->
             val authToken = try {
                 requestAuths[room]?.get()
             } catch (e: Exception) {
-                Log.e("Loki", "Failed to get auth token for $room",e)
+                Log.e("Loki", "Failed to get auth token for $room", e)
                 null
             } ?: return@mapNotNull null
 
@@ -363,7 +372,7 @@ object OpenGroupAPIV2 {
         val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false, parameters = mapOf("requests" to requests))
         // build a request for all rooms
         return send(request = request).map(sharedContext) { json ->
-            val results = json["results"] as? Map<*,*> ?: throw Error.PARSING_FAILED
+            val results = json["results"] as? Map<*, *> ?: throw Error.PARSING_FAILED
             TODO()
         }
     }

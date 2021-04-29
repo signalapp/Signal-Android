@@ -9,6 +9,8 @@ import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.open_groups.OpenGroupMessage
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos.*
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.successBackground
@@ -210,10 +212,13 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     }
 
     private fun pollForDeletedMessages() {
+        val messagingModule = MessagingModuleConfiguration.shared
+        val address = GroupUtil.getEncodedOpenGroupID(openGroup.id.toByteArray())
+        val threadId = messagingModule.storage.getThreadIdFor(Address.fromSerialized(address)) ?: return
         OpenGroupAPI.getDeletedMessageServerIDs(openGroup.channel, openGroup.server).success { deletedMessageServerIDs ->
-            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { MessagingModuleConfiguration.shared.messageDataProvider.getMessageID(it) }
-            deletedMessageIDs.forEach {
-                MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(it)
+            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { messagingModule.messageDataProvider.getMessageID(it, threadId) }
+            deletedMessageIDs.forEach { (messageId, isSms) ->
+                MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(messageId, isSms)
             }
         }.fail {
             Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${openGroup.channel} on server: ${openGroup.server}.")

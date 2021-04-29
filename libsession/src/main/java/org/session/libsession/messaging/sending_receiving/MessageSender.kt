@@ -12,16 +12,15 @@ import org.session.libsession.messaging.messages.control.ClosedGroupControlMessa
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
-import org.session.libsession.messaging.open_groups.OpenGroupAPI
-import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
-import org.session.libsession.messaging.open_groups.OpenGroupMessage
-import org.session.libsession.messaging.open_groups.OpenGroupMessageV2
+import org.session.libsession.messaging.open_groups.*
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
 import org.session.libsession.snode.SnodeMessage
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -290,8 +289,12 @@ object MessageSender {
         // Ignore future self-sends
         storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
         // Track the open group server message ID
-        if (message.openGroupServerMessageID != null) {
-            storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
+        if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
+            val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())
+            val threadID = storage.getThreadIdFor(Address.fromSerialized(encoded))
+            if (threadID != null && threadID >= 0) {
+                storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!, threadID, !(message as VisibleMessage).isMediaMessage())
+            }
         }
         // Mark the message as sent
         storage.markAsSent(message.sentTimestamp!!, message.sender?:userPublicKey)

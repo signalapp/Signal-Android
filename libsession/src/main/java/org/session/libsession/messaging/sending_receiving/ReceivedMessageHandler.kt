@@ -151,9 +151,19 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val storage = MessagingModuleConfiguration.shared.storage
     val context = MessagingModuleConfiguration.shared.context
     val userPublicKey = storage.getUserPublicKey()
+
+    // Get or create thread
+    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
+            ?: message.sender!!, message.groupPublicKey, openGroupID)
+
+    val openGroup = threadID.let {
+        storage.getOpenGroup(it.toString())
+    }
+
     // Update profile if needed
     val newProfile = message.profile
-    if (newProfile != null && openGroupID.isNullOrEmpty() && userPublicKey != message.sender) {
+
+    if (newProfile != null && userPublicKey != message.sender && openGroup == null) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!
@@ -172,9 +182,6 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             }
         }
     }
-    // Get or create thread
-    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
-            ?: message.sender!!, message.groupPublicKey, openGroupID)
     // Parse quote if needed
     var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
@@ -223,6 +230,10 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
             JobQueue.shared.add(downloadJob)
         }
+    }
+    val openGroupServerID = message.openGroupServerMessageID
+    if (openGroupServerID != null) {
+        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !(message.isMediaMessage() || attachments.isNotEmpty()))
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)
