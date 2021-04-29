@@ -214,11 +214,17 @@ public class StorageSyncJob extends BaseJob {
     final SignalStorageManifest localManifest  = SignalStore.storageService().getManifest();
     final SignalStorageManifest remoteManifest = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.getVersion()).or(localManifest);
 
+    stopwatch.split("remote-manifest");
+
     Recipient self                 = Recipient.self().fresh();
     boolean   needsMultiDeviceSync = false;
     boolean   needsForcePush       = false;
 
-    stopwatch.split("remote-manifest");
+    if (self.getStorageServiceId() == null) {
+      Log.w(TAG, "No storageId for self. Generating.");
+      DatabaseFactory.getRecipientDatabase(context).updateStorageId(self.getId(), StorageSyncHelper.generateKey());
+      self = Recipient.self().fresh();
+    }
 
     Log.i(TAG, "Our version: " + localManifest.getVersion() + ", their version: " + remoteManifest.getVersion());
 

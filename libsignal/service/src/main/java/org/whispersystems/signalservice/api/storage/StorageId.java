@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.util.Arrays;
@@ -10,19 +11,19 @@ public class StorageId {
   private final byte[] raw;
 
   public static StorageId forContact(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.CONTACT_VALUE, raw);
+    return new StorageId(ManifestRecord.Identifier.Type.CONTACT_VALUE, Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forGroupV1(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.GROUPV1_VALUE, raw);
+    return new StorageId(ManifestRecord.Identifier.Type.GROUPV1_VALUE, Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forGroupV2(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.GROUPV2_VALUE, raw);
+    return new StorageId(ManifestRecord.Identifier.Type.GROUPV2_VALUE, Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forAccount(byte[] raw) {
-    return new StorageId(ManifestRecord.Identifier.Type.ACCOUNT_VALUE, raw);
+    return new StorageId(ManifestRecord.Identifier.Type.ACCOUNT_VALUE, Preconditions.checkNotNull(raw));
   }
 
   public static StorageId forType(byte[] raw, int type) {
