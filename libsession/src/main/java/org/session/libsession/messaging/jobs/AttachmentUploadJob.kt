@@ -14,7 +14,7 @@ import org.session.libsignal.service.internal.crypto.PaddingInputStream
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.service.internal.util.Util
-import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory
+import org.session.libsignal.service.loki.PlaintextOutputStreamFactory
 import org.session.libsignal.utilities.logging.Log
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {

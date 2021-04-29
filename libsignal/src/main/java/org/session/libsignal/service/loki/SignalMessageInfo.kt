@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.api
+package org.session.libsignal.service.loki
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 

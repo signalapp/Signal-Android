@@ -58,7 +58,7 @@ public class JsonUtil {
     return objectMapper.writeValueAsString(object);
   }
 
-    public static String toJson(Object object) {
+  public static String toJson(Object object) {
     try {
       return objectMapper.writeValueAsString(object);
     } catch (JsonProcessingException e) {
@@ -67,32 +67,11 @@ public class JsonUtil {
     }
   }
 
-  public static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {
-    @Override
-    public void serialize(IdentityKey value, JsonGenerator gen, SerializerProvider serializers)
-            throws IOException
-    {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
-    }
-  }
-
-  public static class IdentityKeyDeserializer extends JsonDeserializer<IdentityKey> {
-    @Override
-    public IdentityKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-      try {
-        return new IdentityKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
-      } catch (InvalidKeyException e) {
-        throw new IOException(e);
-      }
-    }
-  }
-
   public static ObjectMapper getMapper() {
     return objectMapper;
   }
 
   public static class SaneJSONObject {
-
     private final JSONObject delegate;
 
     public SaneJSONObject(JSONObject delegate) {

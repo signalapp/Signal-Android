@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.database
+package org.session.libsignal.service.loki
 
 interface LokiMessageDatabaseProtocol {
 

@@ -1,7 +1,7 @@
 package org.session.libsession.snode
 
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.Broadcaster
+import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.Broadcaster
 
 class SnodeModule(val storage: LokiAPIDatabaseProtocol, val broadcaster: Broadcaster) {
 

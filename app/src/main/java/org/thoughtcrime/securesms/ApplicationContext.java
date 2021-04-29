@@ -49,7 +49,7 @@ import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWr
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsession.utilities.preferences.ProfileKeyUtil;
 import org.session.libsignal.service.api.util.StreamDetails;
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
+import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
 import org.session.libsignal.utilities.logging.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -93,7 +93,6 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Date;
