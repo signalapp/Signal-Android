@@ -60,7 +60,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
 
     fun getMessageID(serverID: Long, threadID: Long): Pair<Long,Boolean>? {
         val database = databaseHelper.readableDatabase
-        return database.get("$messageIDTable INNER JOIN $messageThreadMappingTable ON $messageIDTable.$messageID = $messageThreadMappingTable.$messageID",
+        return database.get("$messageIDTable INNER JOIN $messageThreadMappingTable ON $messageIDTable.$messageID = $messageThreadMappingTable.$messageID AND $messageIDTable.${Companion.serverID} = $messageThreadMappingTable.${Companion.serverID}",
                 "${Companion.serverID} = ? AND ${Companion.threadID} = ?",
                 arrayOf(serverID.toString(),threadID.toString())) { cursor ->
             cursor.getLong(messageID) to (cursor.getInt(messageType) == SMS_TYPE)
