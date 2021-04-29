@@ -119,7 +119,6 @@ public class KeyCachingService extends Service {
       KeyCachingService.masterSecret = masterSecret;
 
       foregroundService();
-      startTimeoutIfAppropriate(this);
       
       new AsyncTask<Void, Void, Void>() {
         @Override
