@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.api.utilities
+package org.session.libsignal.service.loki
 
 import okhttp3.*
 import org.session.libsignal.utilities.logging.Log

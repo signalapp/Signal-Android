@@ -22,7 +22,6 @@ import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.internal.push.PushTransportDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
@@ -34,7 +33,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMe
 import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
+import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

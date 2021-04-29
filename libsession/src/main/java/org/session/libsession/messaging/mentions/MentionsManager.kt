@@ -1,9 +1,9 @@
 package org.session.libsession.messaging.mentions
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsignal.service.loki.utilities.mentions.Mention
+import org.session.libsignal.service.loki.Mention
 
-import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol
+import org.session.libsignal.service.loki.LokiUserDatabaseProtocol
 
 class MentionsManager(private val userPublicKey: String, private val userDatabase: LokiUserDatabaseProtocol) {
     var userPublicKeyCache = mutableMapOf<Long, Set<String>>() // Thread ID to set of user hex encoded public keys
