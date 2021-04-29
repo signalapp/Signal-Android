@@ -97,80 +97,6 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
         }
     }
 
-    /*@Throws(IOException::class)
-    private fun saveAttachment(context: Context, attachment: Attachment): String? {
-        val resolver = context.contentResolver
-
-        val contentType = MediaUtil.getCorrectedMimeType(attachment.contentType)!!
-        val fileName = if (attachment.fileName != null) sanitizeOutputFileName(attachment.fileName)
-                else sanitizeOutputFileName(generateOutputFileName(contentType, attachment.date))
-
-
-        val mediaRecord = ContentValues()
-        val mediaVolume = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-            MediaStore.VOLUME_EXTERNAL
-        } else {
-            MediaStore.VOLUME_EXTERNAL_PRIMARY
-        }
-        val collectionUri: Uri
-
-        when {
-            contentType.startsWith("video/") -> {
-                collectionUri = MediaStore.Video.Media.getContentUri(mediaVolume)
-                mediaRecord.put(MediaStore.Video.Media.DISPLAY_NAME, fileName)
-                mediaRecord.put(MediaStore.Video.Media.MIME_TYPE, contentType)
-                // Add the date meta data to ensure the image is added at the front of the gallery
-                mediaRecord.put(MediaStore.Video.Media.DATE_ADDED, System.currentTimeMillis())
-                mediaRecord.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis())
-
-            }
-            contentType.startsWith("audio/") -> {
-                collectionUri = MediaStore.Audio.Media.getContentUri(mediaVolume)
-                mediaRecord.put(MediaStore.Audio.Media.TITLE, "test")
-                mediaRecord.put(MediaStore.Audio.Media.DISPLAY_NAME, "test")
-                mediaRecord.put(MediaStore.Audio.Media.MIME_TYPE, contentType)
-                mediaRecord.put(MediaStore.Audio.Media.DATE_ADDED, System.currentTimeMillis())
-                mediaRecord.put(MediaStore.Audio.Media.DATE_TAKEN, System.currentTimeMillis())
-                val directory = context.getExternalFilesDir(Environment.DIRECTORY_MUSIC)
-                mediaRecord.put(MediaStore.Audio.Media.DATA, String.format("%s/%s", directory, fileName))
-                //collectionUri = directory?.toUri()!!
-
-            }
-            contentType.startsWith("image/") -> {
-                collectionUri = MediaStore.Images.Media.getContentUri(mediaVolume)
-                mediaRecord.put(MediaStore.Images.Media.TITLE, fileName)
-                mediaRecord.put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
-                mediaRecord.put(MediaStore.Images.Media.MIME_TYPE, contentType)
-                mediaRecord.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis())
-                mediaRecord.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
-
-            }
-            else -> {
-                mediaRecord.put(MediaStore.Files.FileColumns.DISPLAY_NAME, fileName)
-                collectionUri = MediaStore.Files.getContentUri(mediaVolume)
-            }
-        }
-
-        var mediaFileUri: Uri?
-        try {
-            mediaFileUri = resolver.insert(collectionUri, mediaRecord)
-        } catch (exception: Exception) {
-            return null
-        }
-        if (mediaFileUri == null) return null
-
-        val inputStream = PartAuthority.getAttachmentStream(context, attachment.uri)
-        if (inputStream == null) return null
-
-        inputStream.use {
-            resolver.openOutputStream(mediaFileUri).use {
-                Util.copy(inputStream, it)
-            }
-        }
-
-        return mediaFileUri.toString()
-    }*/
-
     @Throws(IOException::class)
     private fun saveAttachment(context: Context, attachment: Attachment): String? {
         val contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType))!!
@@ -246,12 +172,12 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
             return Uri.fromFile(outputFile)
         } else {
             var outputFileName = fileName
-            var dataPath = java.lang.String.format("%s/%s", getMediaStoreContentUriForType(contentType), outputFileName)
+            var dataPath = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName)
             var i = 0
             while (pathTaken(outputUri, dataPath)) {
                 Log.d(TAG, "The content exists. Rename and check again.")
                 outputFileName = base + "-" + ++i + "." + extension
-                dataPath = java.lang.String.format("%s/%s", getMediaStoreContentUriForType(contentType), outputFileName)
+                dataPath = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName)
             }
             contentValues.put(MediaStore.MediaColumns.DATA, dataPath)
         }
@@ -266,13 +192,13 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
     private fun getExternalPathToFileForType(contentType: String): String {
         val storage: File = when {
             contentType.startsWith("video/") ->
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
+                context.getExternalFilesDir(Environment.DIRECTORY_MOVIES)!!
             contentType.startsWith("audio/") ->
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
+                context.getExternalFilesDir(Environment.DIRECTORY_MUSIC)!!
             contentType.startsWith("image/") ->
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
             else ->
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+                context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)!!
         }
         return storage.absolutePath
     }
