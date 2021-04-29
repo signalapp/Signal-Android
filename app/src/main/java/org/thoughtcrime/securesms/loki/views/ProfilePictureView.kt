@@ -11,10 +11,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.avatars.ProfileContactPhoto
+import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -146,13 +146,13 @@ class ProfilePictureView : RelativeLayout {
     private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
         if (publicKey.isNotEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
-            if (imagesCached.contains(recipient.profileAvatar.orEmpty())) return
+            if (imagesCached.contains(publicKey)) return
             val signalProfilePicture = recipient.contactPhoto
             if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
                     && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
                 glide.clear(imageView)
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
-                imagesCached.add(recipient.profileAvatar.orEmpty())
+                imagesCached.add(publicKey)
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 glide.clear(imageView)
@@ -162,7 +162,7 @@ class ProfilePictureView : RelativeLayout {
                         publicKey,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                imagesCached.add(recipient.profileAvatar.orEmpty())
+                imagesCached.add(publicKey)
             }
         } else {
             imageView.setImageDrawable(null)

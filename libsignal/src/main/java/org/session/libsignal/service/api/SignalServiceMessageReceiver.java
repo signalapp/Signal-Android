@@ -12,7 +12,6 @@ import org.session.libsignal.service.api.crypto.ProfileCipherInputStream;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment.ProgressListener;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
-import org.session.libsignal.service.loki.utilities.DownloadUtilities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,8 +45,7 @@ public class SignalServiceMessageReceiver {
   public InputStream retrieveProfileAvatar(String path, File destination, byte[] profileKey, int maxSizeBytes)
     throws IOException
   {
-    DownloadUtilities.downloadFile(destination, path, maxSizeBytes, null);
-    return new ProfileCipherInputStream(new FileInputStream(destination), profileKey);
+    throw new IOException();
   }
 
   /**
@@ -65,13 +63,6 @@ public class SignalServiceMessageReceiver {
   public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, int maxSizeBytes, ProgressListener listener)
       throws IOException, InvalidMessageException
   {
-    // Loki - Fetch attachment
-    if (pointer.getUrl().isEmpty()) throw new InvalidMessageException("Missing attachment URL.");
-    DownloadUtilities.downloadFile(destination, pointer.getUrl(), maxSizeBytes, listener);
-
-    // Loki - Assume we're retrieving an attachment for an open group server if the digest is not set
-    if (!pointer.getDigest().isPresent()) { return new FileInputStream(destination); }
-
-    return AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().or(0), pointer.getKey(), pointer.getDigest().get());
+    throw new IOException();
   }
 }

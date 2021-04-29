@@ -14,6 +14,7 @@ class SSKEnvironment(
         val notificationManager: MessageNotifier,
         val messageExpirationManager: MessageExpirationManagerProtocol
 ) {
+
     interface TypingIndicatorsProtocol {
         fun didReceiveTypingStartedMessage(context: Context, threadId: Long, author: Address, device: Int)
         fun didReceiveTypingStoppedMessage(context: Context, threadId: Long, author: Address, device: Int, isReplacedByIncomingMessage: Boolean)

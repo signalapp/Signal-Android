@@ -9,11 +9,11 @@ import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
@@ -21,7 +21,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSe
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 interface StorageProtocol {
 
@@ -109,8 +108,10 @@ interface StorageProtocol {
     fun createGroup(groupID: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>, formationTimestamp: Long)
     fun isGroupActive(groupPublicKey: String): Boolean
     fun setActive(groupID: String, value: Boolean)
+    fun getZombieMember(groupID: String): Set<String>
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)
+    fun updateZombieMembers(groupID: String, members: List<Address>)
     // Closed Group
     fun getAllClosedGroupPublicKeys(): Set<String>
     fun getAllActiveClosedGroupPublicKeys(): Set<String>

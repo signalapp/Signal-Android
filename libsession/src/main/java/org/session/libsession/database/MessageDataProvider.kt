@@ -1,5 +1,6 @@
 package org.session.libsession.database
 
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
@@ -30,7 +31,6 @@ interface MessageDataProvider {
     fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult)
     fun updateAttachmentAfterUploadFailed(attachmentId: Long)
 
-    // Quotes
     fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>?
     fun getAttachmentsAndLinkPreviewFor(mmsId: Long): List<Attachment>
     fun getMessageBodyFor(timestamp: Long, author: String): String
@@ -38,4 +38,5 @@ interface MessageDataProvider {
     fun getAttachmentIDsFor(messageID: Long): List<Long>
     fun getLinkPreviewAttachmentIDFor(messageID: Long): Long?
 
+    fun getOpenGroup(threadID: Long): OpenGroup?
 }

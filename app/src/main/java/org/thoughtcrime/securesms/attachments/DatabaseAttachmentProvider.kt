@@ -5,6 +5,7 @@ import android.text.TextUtils
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.IOException
 import java.io.InputStream
-
 
 class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), MessageDataProvider {
 
@@ -102,6 +102,10 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         val smsDatabase = DatabaseFactory.getSmsDatabase(context)
         val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
         return smsDatabase.isOutgoingMessage(timestamp) || mmsDatabase.isOutgoingMessage(timestamp)
+    }
+
+    override fun getOpenGroup(threadID: Long): OpenGroup? {
+        return null // TODO: Implement
     }
 
     override fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {

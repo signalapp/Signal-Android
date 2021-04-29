@@ -12,7 +12,6 @@ import org.session.libsession.utilities.ParcelableUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO AC: For now parcelable objects utilize byteArrays field to store their data into.
 // Introduce a dedicated Map<String, byte[]> field specifically for parcelable needs.
 public class Data {
 

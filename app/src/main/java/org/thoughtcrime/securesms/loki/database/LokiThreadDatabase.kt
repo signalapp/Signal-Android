@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import org.session.libsession.messaging.open_groups.OpenGroup
 
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -12,13 +13,11 @@ import org.thoughtcrime.securesms.loki.utilities.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
-class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
+class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
         private val sessionResetTable = "loki_thread_session_reset_database"
@@ -31,22 +30,22 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         @JvmStatic val createPublicChatTableCommand = "CREATE TABLE $publicChatTable ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
     }
 
-    override fun getThreadID(hexEncodedPublicKey: String): Long {
+    fun getThreadID(hexEncodedPublicKey: String): Long {
         val address = Address.fromSerialized(hexEncodedPublicKey)
         val recipient = Recipient.from(context, address, false)
         return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
     }
 
-    fun getAllPublicChats(): Map<Long, PublicChat> {
+    fun getAllPublicChats(): Map<Long, OpenGroup> {
         val database = databaseHelper.readableDatabase
         var cursor: Cursor? = null
-        val result = mutableMapOf<Long, PublicChat>()
+        val result = mutableMapOf<Long, OpenGroup>()
         try {
             cursor = database.rawQuery("select * from $publicChatTable", null)
             while (cursor != null && cursor.moveToNext()) {
                 val threadID = cursor.getLong(threadID)
                 val string = cursor.getString(publicChat)
-                val publicChat = PublicChat.fromJSON(string)
+                val publicChat = OpenGroup.fromJSON(string)
                 if (publicChat != null) { result[threadID] = publicChat }
             }
         } catch (e: Exception) {
@@ -61,16 +60,16 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         return getAllPublicChats().values.fold(setOf()) { set, chat -> set.plus(chat.server) }
     }
 
-    override fun getPublicChat(threadID: Long): PublicChat? {
+    fun getPublicChat(threadID: Long): OpenGroup? {
         if (threadID < 0) { return null }
         val database = databaseHelper.readableDatabase
         return database.get(publicChatTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             val publicChatAsJSON = cursor.getString(publicChat)
-            PublicChat.fromJSON(publicChatAsJSON)
+            OpenGroup.fromJSON(publicChatAsJSON)
         }
     }
 
-    override fun setPublicChat(publicChat: PublicChat, threadID: Long) {
+    fun setPublicChat(publicChat: OpenGroup, threadID: Long) {
         if (threadID < 0) { return }
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
@@ -79,7 +78,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         database.insertOrUpdate(publicChatTable, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 
-    override fun removePublicChat(threadID: Long) {
+    fun removePublicChat(threadID: Long) {
         databaseHelper.writableDatabase.delete(publicChatTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 }

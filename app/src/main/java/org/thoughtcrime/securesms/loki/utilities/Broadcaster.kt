@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import android.content.Intent
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import org.session.libsignal.service.loki.Broadcaster
 
-class Broadcaster(private val context: Context) : org.session.libsignal.service.loki.utilities.Broadcaster {
+class Broadcaster(private val context: Context) : Broadcaster {
 
     override fun broadcast(event: String) {
         val intent = Intent(event)

@@ -28,7 +28,6 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
-import com.google.protobuf.ByteString;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -60,7 +59,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;

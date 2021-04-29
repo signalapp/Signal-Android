@@ -28,7 +28,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.function.Consumer;
 
 import org.greenrobot.eventbus.EventBus;
-import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.avatars.TransparentContactPhoto;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
@@ -286,7 +286,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable String getName() {
-    String displayName = MessagingConfiguration.shared.getStorage().getDisplayName(this.address.toString());
+    String displayName = MessagingModuleConfiguration.shared.getStorage().getDisplayName(this.address.toString());
     if (displayName != null) { return displayName; }
 
     if (this.name == null && isMmsGroupRecipient()) {

@@ -1,7 +1,5 @@
 package org.session.libsignal.service.api.messages;
 
-import org.session.libsignal.service.loki.utilities.TTLUtilities;
-
 public class SignalServiceTypingMessage {
 
   public enum Action {
@@ -32,5 +30,5 @@ public class SignalServiceTypingMessage {
     return action == Action.STOPPED;
   }
 
-  public int getTTL() { return TTLUtilities.getTTL(TTLUtilities.MessageType.TypingIndicator); }
+  public int getTTL() { return 0; }
 }
