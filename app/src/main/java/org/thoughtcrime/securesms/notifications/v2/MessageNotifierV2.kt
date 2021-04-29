@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.whispersystems.signalservice.internal.util.Util
-import java.lang.UnsupportedOperationException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -167,6 +166,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       targetThreadId = threadId,
       defaultBubbleState = defaultBubbleState,
       lastAudibleNotification = lastAudibleNotification,
+      notificationConfigurationChanged = notificationConfigurationChanged,
       alertOverrides = alertOverrides
     )
 

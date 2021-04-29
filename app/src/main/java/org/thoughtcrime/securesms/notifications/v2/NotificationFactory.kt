@@ -45,6 +45,7 @@ object NotificationFactory {
     targetThreadId: Long,
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
+    notificationConfigurationChanged: Boolean,
     alertOverrides: Set<Long>
   ): Set<Long> {
     if (state.isEmpty) {
@@ -72,6 +73,7 @@ object NotificationFactory {
         targetThreadId = targetThreadId,
         defaultBubbleState = defaultBubbleState,
         lastAudibleNotification = lastAudibleNotification,
+        notificationConfigurationChanged = notificationConfigurationChanged,
         alertOverrides = alertOverrides,
         nonVisibleThreadCount = nonVisibleThreadCount
       )
@@ -127,6 +129,7 @@ object NotificationFactory {
     targetThreadId: Long,
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
+    notificationConfigurationChanged: Boolean,
     alertOverrides: Set<Long>,
     nonVisibleThreadCount: Int
   ): Set<Long> {
@@ -136,7 +139,7 @@ object NotificationFactory {
       if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
         Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
         notifyInThread(context, conversation.recipient, lastAudibleNotification)
-      } else {
+      } else if (notificationConfigurationChanged || conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
         if (conversation.hasNewNotifications()) {
           threadsThatNewlyAlerted += conversation.threadId
         }
@@ -165,6 +168,10 @@ object NotificationFactory {
     defaultBubbleState: BubbleUtil.BubbleState,
     shouldAlert: Boolean
   ) {
+    if (conversation.notificationItems.isEmpty()) {
+      return
+    }
+
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
     builder.apply {
@@ -205,6 +212,10 @@ object NotificationFactory {
   }
 
   private fun notifySummary(context: Context, state: NotificationStateV2) {
+    if (state.messageCount == 0) {
+      return
+    }
+
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
     builder.apply {
