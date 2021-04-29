@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.net.Uri
-import com.google.protobuf.ByteString
 import org.session.libsession.messaging.StorageProtocol
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
@@ -13,18 +12,17 @@ import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
-import org.session.libsession.messaging.sending_receiving.dataextraction.DataExtractionNotificationInfoMessage
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.Address.Companion.fromSerialized
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.session.libsession.messaging.utilities.UpdateMessageBuilder
-import org.session.libsession.messaging.utilities.UpdateMessageData
+import org.session.libsession.messaging.utilities.ClosedGroupUpdateMessageData
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
@@ -34,7 +32,6 @@ import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
@@ -44,7 +41,6 @@ import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.PartAuthority
-import java.util.*
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -389,6 +385,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getGroupDatabase(context).setActive(groupID, value)
     }
 
+    override fun getZombieMember(groupID: String): Set<String> {
+        return DatabaseFactory.getGroupDatabase(context).getGroupZombieMembers(groupID).map { it.address.serialize() }.toHashSet()
+    }
+
     override fun removeMember(groupID: String, member: Address) {
         DatabaseFactory.getGroupDatabase(context).removeMember(groupID, member)
     }
@@ -397,10 +397,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getGroupDatabase(context).updateMembers(groupID, members)
     }
 
+    override fun updateZombieMembers(groupID: String, members: List<Address>) {
+        DatabaseFactory.getGroupDatabase(context).updateZombieMembers(groupID, members)
+    }
+
     override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
         val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
-        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON()
+        val updateData = ClosedGroupUpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON()
         val infoMessage = IncomingGroupMessage(m, groupID, updateData, true)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
@@ -410,7 +414,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val userPublicKey = getUserPublicKey()
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
 
-        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON() ?: ""
+        val updateData = ClosedGroupUpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON() ?: ""
         val infoMessage = OutgoingGroupMediaMessage(recipient, updateData, groupID, null, sentTimestamp, 0, true, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)

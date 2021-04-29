@@ -1,7 +1,5 @@
 package org.session.libsession.messaging.messages.signal;
 
-import static org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
-
 public class IncomingGroupMessage extends IncomingTextMessage {
 
   private final String groupID;

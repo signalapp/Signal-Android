@@ -22,7 +22,6 @@ import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.internal.push.PushTransportDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
@@ -34,8 +33,9 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMe
 import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
+import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -153,7 +153,6 @@ public class SignalServiceCipher {
     List<SignalServiceAttachment>  attachments                 = new LinkedList<SignalServiceAttachment>();
     boolean                        expirationUpdate            = ((content.getFlags() & DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
     SignalServiceDataMessage.Quote quote                       = createQuote(content);
-    List<SharedContact>            sharedContacts              = createSharedContacts(content);
     List<Preview>                  previews                    = createPreviews(content);
     ClosedGroupControlMessage      closedGroupControlMessage   = content.getClosedGroupControlMessage();
     String                         syncTarget                  = content.getSyncTarget();
@@ -176,7 +175,7 @@ public class SignalServiceCipher {
             expirationUpdate,
             content.hasProfileKey() ? content.getProfileKey().toByteArray() : null,
             quote,
-            sharedContacts,
+            new ArrayList<>(),
             previews,
             closedGroupControlMessage,
             syncTarget);
@@ -240,101 +239,6 @@ public class SignalServiceCipher {
       results.add(new Preview(preview.getUrl(),
               preview.getTitle(),
               Optional.fromNullable(attachment)));
-    }
-
-    return results;
-  }
-
-  private List<SharedContact> createSharedContacts(DataMessage content) {
-    if (content.getContactCount() <= 0) return null;
-
-    List<SharedContact> results = new LinkedList<SharedContact>();
-
-    for (DataMessage.Contact contact : content.getContactList()) {
-      SharedContact.Builder builder = SharedContact.newBuilder()
-              .setName(SharedContact.Name.newBuilder()
-                      .setDisplay(contact.getName().getDisplayName())
-                      .setFamily(contact.getName().getFamilyName())
-                      .setGiven(contact.getName().getGivenName())
-                      .setMiddle(contact.getName().getMiddleName())
-                      .setPrefix(contact.getName().getPrefix())
-                      .setSuffix(contact.getName().getSuffix())
-                      .build());
-
-      if (contact.getAddressCount() > 0) {
-        for (DataMessage.Contact.PostalAddress address : contact.getAddressList()) {
-          SharedContact.PostalAddress.Type type = SharedContact.PostalAddress.Type.HOME;
-
-          switch (address.getType()) {
-            case WORK:   type = SharedContact.PostalAddress.Type.WORK;   break;
-            case HOME:   type = SharedContact.PostalAddress.Type.HOME;   break;
-            case CUSTOM: type = SharedContact.PostalAddress.Type.CUSTOM; break;
-          }
-
-          builder.withAddress(SharedContact.PostalAddress.newBuilder()
-                  .setCity(address.getCity())
-                  .setCountry(address.getCountry())
-                  .setLabel(address.getLabel())
-                  .setNeighborhood(address.getNeighborhood())
-                  .setPobox(address.getPobox())
-                  .setPostcode(address.getPostcode())
-                  .setRegion(address.getRegion())
-                  .setStreet(address.getStreet())
-                  .setType(type)
-                  .build());
-        }
-      }
-
-      if (contact.getNumberCount() > 0) {
-        for (DataMessage.Contact.Phone phone : contact.getNumberList()) {
-          SharedContact.Phone.Type type = SharedContact.Phone.Type.HOME;
-
-          switch (phone.getType()) {
-            case HOME:   type = SharedContact.Phone.Type.HOME;   break;
-            case WORK:   type = SharedContact.Phone.Type.WORK;   break;
-            case MOBILE: type = SharedContact.Phone.Type.MOBILE; break;
-            case CUSTOM: type = SharedContact.Phone.Type.CUSTOM; break;
-          }
-
-          builder.withPhone(SharedContact.Phone.newBuilder()
-                  .setLabel(phone.getLabel())
-                  .setType(type)
-                  .setValue(phone.getValue())
-                  .build());
-        }
-      }
-
-      if (contact.getEmailCount() > 0) {
-        for (DataMessage.Contact.Email email : contact.getEmailList()) {
-          SharedContact.Email.Type type = SharedContact.Email.Type.HOME;
-
-          switch (email.getType()) {
-            case HOME:   type = SharedContact.Email.Type.HOME;   break;
-            case WORK:   type = SharedContact.Email.Type.WORK;   break;
-            case MOBILE: type = SharedContact.Email.Type.MOBILE; break;
-            case CUSTOM: type = SharedContact.Email.Type.CUSTOM; break;
-          }
-
-          builder.withEmail(SharedContact.Email.newBuilder()
-                  .setLabel(email.getLabel())
-                  .setType(type)
-                  .setValue(email.getValue())
-                  .build());
-        }
-      }
-
-      if (contact.hasAvatar()) {
-        builder.setAvatar(SharedContact.Avatar.newBuilder()
-                .withAttachment(createAttachmentPointer(contact.getAvatar().getAvatar()))
-                .withProfileFlag(contact.getAvatar().getIsProfile())
-                .build());
-      }
-
-      if (contact.hasOrganization()) {
-        builder.withOrganization(contact.getOrganization());
-      }
-
-      results.add(builder.build());
     }
 
     return results;

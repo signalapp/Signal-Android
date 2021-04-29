@@ -2,24 +2,13 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.Hex
-import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 
 object MultiDeviceProtocol {
 
@@ -51,80 +40,4 @@ object MultiDeviceProtocol {
         TextSecurePreferences.setLastConfigurationSyncTime(context, System.currentTimeMillis())
     }
 
-    // TODO: remove this after we migrate to new message receiving pipeline
-    @JvmStatic
-    fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
-        synchronized(this) {
-            val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
-            if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, timestamp)) return
-            if (senderPublicKey != userPublicKey) return
-            TextSecurePreferences.setConfigurationMessageSynced(context, true)
-            TextSecurePreferences.setLastProfileUpdateTime(context, timestamp)
-
-            val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
-
-            val storage = MessagingConfiguration.shared.storage
-            val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
-
-            val threadDatabase = DatabaseFactory.getThreadDatabase(context)
-            val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
-
-            val ourRecipient = Recipient.from(context, Address.fromSerialized(userPublicKey),false)
-
-            for (closedGroup in configurationMessage.closedGroups) {
-                if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
-
-                val closedGroupUpdate = DataMessage.ClosedGroupControlMessage.newBuilder()
-                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.NEW
-                closedGroupUpdate.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(closedGroup.publicKey))
-                closedGroupUpdate.name = closedGroup.name
-                val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
-                encryptionKeyPair.publicKey = ByteString.copyFrom(closedGroup.encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
-                encryptionKeyPair.privateKey = ByteString.copyFrom(closedGroup.encryptionKeyPair!!.privateKey.serialize())
-                closedGroupUpdate.encryptionKeyPair =  encryptionKeyPair.build()
-                closedGroupUpdate.addAllMembers(closedGroup.members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
-                closedGroupUpdate.addAllAdmins(closedGroup.admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
-
-                ClosedGroupsProtocolV2.handleNewClosedGroup(context, closedGroupUpdate.build(), userPublicKey, timestamp)
-            }
-            val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
-            for (openGroup in configurationMessage.openGroups) {
-                if (allOpenGroups.contains(openGroup)) continue
-                OpenGroupUtilities.addGroup(context, openGroup, 1)
-            }
-            if (configurationMessage.displayName.isNotEmpty()) {
-                TextSecurePreferences.setProfileName(context, configurationMessage.displayName)
-                recipientDatabase.setProfileName(ourRecipient, configurationMessage.displayName)
-            }
-            if (configurationMessage.profileKey.isNotEmpty()) {
-                val profileKey = Base64.encodeBytes(configurationMessage.profileKey)
-                ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
-                recipientDatabase.setProfileKey(ourRecipient, configurationMessage.profileKey)
-                if (!configurationMessage.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != configurationMessage.profilePicture) {
-                    TextSecurePreferences.setProfilePictureURL(context, configurationMessage.profilePicture)
-                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, configurationMessage.profilePicture))
-                }
-            }
-            for (contact in configurationMessage.contacts) {
-                val address = Address.fromSerialized(contact.publicKey)
-                val recipient = Recipient.from(context, address, true)
-                if (!contact.profilePicture.isNullOrEmpty()) {
-                    recipientDatabase.setProfileAvatar(recipient, contact.profilePicture)
-                }
-                if (contact.profileKey?.isNotEmpty() == true) {
-                    recipientDatabase.setProfileKey(recipient, contact.profileKey)
-                }
-                if (contact.name.isNotEmpty()) {
-                    recipientDatabase.setProfileName(recipient, contact.name)
-                }
-                recipientDatabase.setProfileSharing(recipient, true)
-                recipientDatabase.setRegistered(recipient, Recipient.RegisteredState.REGISTERED)
-                // create Thread if needed
-                threadDatabase.getOrCreateThreadIdFor(recipient)
-            }
-            if (configurationMessage.contacts.isNotEmpty()) {
-                threadDatabase.notifyUpdatedFromConfig()
-            }
-        }
-    }
 }

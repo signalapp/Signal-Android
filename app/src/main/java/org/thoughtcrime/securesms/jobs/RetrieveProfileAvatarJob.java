@@ -10,9 +10,11 @@ import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.jobs.Data;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.crypto.ProfileCipherInputStream;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -22,6 +24,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -102,7 +105,8 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     File downloadDestination = File.createTempFile("avatar", ".jpg", context.getCacheDir());
 
     try {
-      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
+      DownloadUtilities.downloadFile(downloadDestination, profileAvatar, MAX_PROFILE_SIZE_BYTES, null);
+      InputStream avatarStream       = new ProfileCipherInputStream(new FileInputStream(downloadDestination), profileKey);
       File        decryptDestination = File.createTempFile("avatar", ".jpg", context.getCacheDir());
 
       Util.copy(avatarStream, new FileOutputStream(decryptDestination));

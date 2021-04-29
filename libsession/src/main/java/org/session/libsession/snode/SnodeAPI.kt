@@ -6,24 +6,25 @@ import android.os.Build
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.utilities.getRandomElement
-import org.session.libsignal.service.loki.api.Snode
-import org.session.libsignal.service.loki.api.utilities.HTTP
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.Broadcaster
+import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.Snode
+import org.session.libsignal.service.loki.HTTP
+import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.Broadcaster
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.logging.Log
 import java.security.SecureRandom
 
 object SnodeAPI {
-    val database: LokiAPIDatabaseProtocol
-        get() = SnodeConfiguration.shared.storage
-    val broadcaster: Broadcaster
-        get() = SnodeConfiguration.shared.broadcaster
-    val sharedContext = Kovenant.createContext()
-    val messagePollingContext = Kovenant.createContext()
+    private val database: LokiAPIDatabaseProtocol
+        get() = SnodeModule.shared.storage
+    private val broadcaster: Broadcaster
+        get() = SnodeModule.shared.broadcaster
 
     internal var snodeFailureCount: MutableMap<Snode, Int> = mutableMapOf()
     internal var snodePool: Set<Snode>
@@ -32,28 +33,27 @@ object SnodeAPI {
 
     // Settings
     private val maxRetryCount = 6
-    private val minimumSnodePoolCount = 64
+    private val minimumSnodePoolCount = 24
     private val minimumSwarmSnodeCount = 2
-
-    // use port 4433 if API level can handle network security config and enforce pinned certificates
-    private val seedPort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
-    private val seedNodePool: Set<String> = setOf(
-            "https://storage.seed1.loki.network:$seedPort",
-            "https://storage.seed3.loki.network:$seedPort",
-            "https://public.loki.foundation:$seedPort"
-    )
-    internal val snodeFailureThreshold = 4
+    // Use port 4433 if the API level can handle the network security configuration and enforce pinned certificates
+    private val seedNodePort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
+    private val seedNodePool by lazy {
+        if (useTestnet) {
+            setOf( "http://public.loki.foundation:38157" )
+        } else {
+            setOf( "https://storage.seed1.loki.network:$seedNodePort", "https://storage.seed3.loki.network:$seedNodePort", "https://public.loki.foundation:$seedNodePort" )
+        }
+    }
+    private val snodeFailureThreshold = 4
     private val targetSwarmSnodeCount = 2
-
     private val useOnionRequests = true
 
-    internal var powDifficulty = 1
+    internal val useTestnet = false
 
     // Error
     internal sealed class Error(val description: String) : Exception(description) {
         object Generic : Error("An error occurred.")
-        object ClockOutOfSync : Error("The user's clock is out of sync with the service node network.")
-        object RandomSnodePoolUpdatingFailed : Error("Failed to update random service node pool.")
+        object ClockOutOfSync : Error("Your clock is out of sync with the Service Node network.")
     }
 
     // Internal API
@@ -91,12 +91,12 @@ object SnodeAPI {
             val parameters = mapOf(
                     "method" to "get_n_service_nodes",
                     "params" to mapOf(
-                            "active_only" to true,
-                            "fields" to mapOf( "public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true )
+                        "active_only" to true,
+                        "fields" to mapOf( "public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true )
                     )
             )
             val deferred = deferred<Snode, Exception>()
-            deferred<org.session.libsignal.service.loki.api.Snode, Exception>(SnodeAPI.sharedContext)
+            deferred<Snode, Exception>()
             ThreadUtils.queue {
                 try {
                     val json = HTTP.execute(HTTP.Verb.POST, url, parameters, useSeedNodeConnection = true)
@@ -164,10 +164,10 @@ object SnodeAPI {
             cachedSwarmCopy.addAll(cachedSwarm)
             return task { cachedSwarmCopy }
         } else {
-            val parameters = mapOf( "pubKey" to publicKey )
+            val parameters = mapOf( "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey )
             return getRandomSnode().bind {
                 invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
-            }.map(sharedContext) {
+            }.map {
                 parseSnodes(it).toSet()
             }.success {
                 database.setSwarm(publicKey, it)
@@ -177,38 +177,26 @@ object SnodeAPI {
 
     fun getRawMessages(snode: Snode, publicKey: String): RawResponsePromise {
         val lastHashValue = database.getLastMessageHashValue(snode, publicKey) ?: ""
-        val parameters = mapOf( "pubKey" to publicKey, "lastHash" to lastHashValue )
+        val parameters = mapOf( "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey, "lastHash" to lastHashValue )
         return invoke(Snode.Method.GetMessages, snode, publicKey, parameters)
     }
 
     fun getMessages(publicKey: String): MessageListPromise {
         return retryIfNeeded(maxRetryCount) {
-           getSingleTargetSnode(publicKey).bind(messagePollingContext) { snode ->
-                getRawMessages(snode, publicKey).map(messagePollingContext) { parseRawMessagesResponse(it, snode, publicKey) }
+           getSingleTargetSnode(publicKey).bind { snode ->
+                getRawMessages(snode, publicKey).map { parseRawMessagesResponse(it, snode, publicKey) }
             }
         }
     }
 
     fun sendMessage(message: SnodeMessage): Promise<Set<RawResponsePromise>, Exception> {
-        val destination = message.recipient
+        val destination = if (useTestnet) message.recipient.removing05PrefixIfNeeded() else message.recipient
         return retryIfNeeded(maxRetryCount) {
             getTargetSnodes(destination).map { swarm ->
                 swarm.map { snode ->
                     val parameters = message.toJSON()
                     retryIfNeeded(maxRetryCount) {
-                        invoke(Snode.Method.SendMessage, snode, destination, parameters).map { rawResponse ->
-                            val json = rawResponse as? Map<*, *>
-                            val powDifficulty = json?.get("difficulty") as? Int
-                            if (powDifficulty != null) {
-                                if (powDifficulty != SnodeAPI.powDifficulty && powDifficulty < 100) {
-                                    Log.d("Loki", "Setting proof of work difficulty to $powDifficulty (snode: $snode).")
-                                    SnodeAPI.powDifficulty = powDifficulty
-                                }
-                            } else {
-                                Log.d("Loki", "Failed to update proof of work difficulty from: ${rawResponse.prettifiedDescription()}.")
-                            }
-                            rawResponse
-                        }
+                        invoke(Snode.Method.SendMessage, snode, destination, parameters)
                     }
                 }.toSet()
             }
@@ -240,20 +228,20 @@ object SnodeAPI {
         }
     }
 
-    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<*> {
+    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<SignalServiceProtos.Envelope> {
         val messages = rawResponse["messages"] as? List<*>
         return if (messages != null) {
             updateLastMessageHashValueIfPossible(snode, publicKey, messages)
-            removeDuplicates(publicKey, messages)
+            val newRawMessages = removeDuplicates(publicKey, messages)
+            return parseEnvelopes(newRawMessages);
         } else {
-            listOf<Map<*,*>>()
+            listOf()
         }
     }
 
     private fun updateLastMessageHashValueIfPossible(snode: Snode, publicKey: String, rawMessages: List<*>) {
         val lastMessageAsJSON = rawMessages.lastOrNull() as? Map<*, *>
         val hashValue = lastMessageAsJSON?.get("hash") as? String
-        val expiration = lastMessageAsJSON?.get("expiration") as? Int
         if (hashValue != null) {
             database.setLastMessageHashValue(snode, publicKey, hashValue)
         } else if (rawMessages.isNotEmpty()) {
@@ -277,6 +265,26 @@ object SnodeAPI {
             }
         }
     }
+
+    private fun parseEnvelopes(rawMessages: List<*>): List<SignalServiceProtos.Envelope> {
+        return rawMessages.mapNotNull { rawMessage ->
+            val rawMessageAsJSON = rawMessage as? Map<*, *>
+            val base64EncodedData = rawMessageAsJSON?.get("data") as? String
+            val data = base64EncodedData?.let { Base64.decode(it) }
+            if (data != null) {
+                try {
+                    MessageWrapper.unwrap(data)
+                } catch (e: Exception) {
+                    Log.d("Loki", "Failed to unwrap data for message: ${rawMessage.prettifiedDescription()}.")
+                    null
+                }
+            } else {
+                Log.d("Loki", "Failed to decode data for message: ${rawMessage?.prettifiedDescription()}.")
+                null
+            }
+        }
+    }
+    // endregion
 
     // Error Handling
     internal fun handleSnodeError(statusCode: Int, json: Map<*, *>?, snode: Snode, publicKey: String? = null): Exception? {
@@ -313,20 +321,6 @@ object SnodeAPI {
                     Log.d("Loki", "Got a 421 without an associated public key.")
                 }
             }
-            432 -> {
-                // The PoW difficulty is too low
-                val powDifficulty = json?.get("difficulty") as? Int
-                if (powDifficulty != null) {
-                    if (powDifficulty < 100) {
-                        Log.d("Loki", "Setting proof of work difficulty to $powDifficulty (snode: $snode).")
-                        SnodeAPI.powDifficulty = powDifficulty
-                    } else {
-                        handleBadSnode()
-                    }
-                } else {
-                    Log.d("Loki", "Failed to update proof of work difficulty.")
-                }
-            }
             else -> {
                 handleBadSnode()
                 Log.d("Loki", "Unhandled response code: ${statusCode}.")
@@ -335,11 +329,9 @@ object SnodeAPI {
         }
         return null
     }
-
-
 }
 
 // Type Aliases
 typealias RawResponse = Map<*, *>
-typealias MessageListPromise = Promise<List<*>, Exception>
+typealias MessageListPromise = Promise<List<SignalServiceProtos.Envelope>, Exception>
 typealias RawResponsePromise = Promise<RawResponse, Exception>

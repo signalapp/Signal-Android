@@ -28,8 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
-import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;

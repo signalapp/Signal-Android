@@ -13,6 +13,7 @@ class GroupRecord(
 ) {
     var members: List<Address> = LinkedList<Address>()
     var admins: List<Address> = LinkedList<Address>()
+
     fun getId(): ByteArray {
         return try {
             GroupUtil.getDecodedGroupIDAsData(encodedId)

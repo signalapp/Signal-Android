@@ -89,8 +89,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
+import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.utilities.GroupUtil;
@@ -98,9 +100,7 @@ import org.session.libsession.utilities.MediaTypes;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.utilities.mentions.Mention;
-import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
+import org.session.libsignal.service.loki.Mention;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -188,7 +188,7 @@ import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.Util;
 
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.ExpirationUtil;
@@ -426,7 +426,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
 
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
       // Request open group info update and handle the successful result in #onOpenGroupInfoUpdated().
       PublicChatInfoUpdateWorker.scheduleInstant(this, publicChat.getServer(), publicChat.getChannel());
@@ -1454,7 +1454,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onOpenGroupInfoUpdated(OpenGroupUtilities.GroupInfoUpdatedEvent event) {
-    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null &&
             publicChat.getChannel() == event.getChannel() &&
             publicChat.getServer().equals(event.getUrl())) {
@@ -2392,7 +2392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
-      PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+      OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
       if (publicChat != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
         if (userCount == null) { userCount = 0; }

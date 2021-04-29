@@ -19,7 +19,6 @@ import org.session.libsession.utilities.ViewUtil;
 
 import java.util.regex.Pattern;
 
-
 public class GeneratedContactPhoto implements FallbackContactPhoto {
 
   private static final Pattern  PATTERN  = Pattern.compile("[^\\p{L}\\p{Nd}\\p{S}]+");

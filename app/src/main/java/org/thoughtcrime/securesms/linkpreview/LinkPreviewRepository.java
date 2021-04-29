@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.io.ByteArrayOutputStream;

@@ -1,6 +1,5 @@
 package org.session.libsession.utilities.preferences;
 
-
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
