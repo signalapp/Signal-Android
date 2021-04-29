@@ -39,14 +39,12 @@ class RegisterActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         setUpActionBarSessionLogo()
-        // Set the registration sync variables
         TextSecurePreferences.apply {
             setHasViewedSeed(this@RegisterActivity, false)
             setConfigurationMessageSynced(this@RegisterActivity, true)
             setRestorationTime(this@RegisterActivity, 0)
             setLastProfileUpdateTime(this@RegisterActivity, System.currentTimeMillis())
         }
-        // registration variables are synced
         registerButton.setOnClickListener { register() }
         copyButton.setOnClickListener { copyPublicKey() }
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")
