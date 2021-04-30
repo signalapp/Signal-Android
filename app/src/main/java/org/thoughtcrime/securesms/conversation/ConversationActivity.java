@@ -1361,6 +1361,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     homeButtonContainer.setOnClickListener(v -> onSupportNavigateUp());
 
     cancelButtonContainer.setOnClickListener(v -> {
+      titleTextView.setText("");
+      SSKEnvironment.shared.getProfileManager().setDisplayName(this, getRecipient(), "");
       titleTextView.clearFocus();
     });
   }
