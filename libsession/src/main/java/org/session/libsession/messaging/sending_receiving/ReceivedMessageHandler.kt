@@ -48,9 +48,12 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
         is DataExtractionNotification -> handleDataExtractionNotification(message)
         is ConfigurationMessage -> handleConfigurationMessage(message)
+        is OpenGroupInvitation -> handleOpenGroupInvitation(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
 }
+
+//region ControlMessage
 
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
     val context = MessagingModuleConfiguration.shared.context
@@ -145,6 +148,18 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
     storage.addContacts(message.contacts)
 }
 
+// Open group invitation handling
+
+fun handleOpenGroupInvitation(message: OpenGroupInvitation) {
+    //TODO
+}
+
+//endregion
+
+//region VisibleMessage
+
+// Visible message handling
+
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
     val storage = MessagingModuleConfiguration.shared.storage
     val context = MessagingModuleConfiguration.shared.context
@@ -227,6 +242,10 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     //Notify the user if needed
     SSKEnvironment.shared.notificationManager.updateNotification(context, threadID)
 }
+
+//endregion
+
+//region ClosedGroupControlMessage
 
 private fun MessageReceiver.handleClosedGroupControlMessage(message: ClosedGroupControlMessage) {
     when (message.kind!!) {
@@ -563,3 +582,5 @@ fun MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey: String, grou
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
 }
+
+//endregion
