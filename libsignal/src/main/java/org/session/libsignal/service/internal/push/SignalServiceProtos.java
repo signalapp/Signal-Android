@@ -1765,19 +1765,33 @@ public final class SignalServiceProtos {
      */
     org.session.libsignal.service.internal.push.SignalServiceProtos.ConfigurationMessageOrBuilder getConfigurationMessageOrBuilder();
 
-    // optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;
+    // optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;
     /**
-     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     boolean hasDataExtractionNotification();
     /**
-     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification getDataExtractionNotification();
     /**
-     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotificationOrBuilder getDataExtractionNotificationOrBuilder();
+
+    // optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;
+    /**
+     * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+     */
+    boolean hasOpenGroupInvitation();
+    /**
+     * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation getOpenGroupInvitation();
+    /**
+     * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder getOpenGroupInvitationOrBuilder();
   }
   /**
    * Protobuf type {@code signalservice.Content}
@@ -1882,7 +1896,7 @@ public final class SignalServiceProtos {
               bitField0_ |= 0x00000008;
               break;
             }
-            case 658: {
+            case 66: {
               org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.Builder subBuilder = null;
               if (((bitField0_ & 0x00000010) == 0x00000010)) {
                 subBuilder = dataExtractionNotification_.toBuilder();
@@ -1893,6 +1907,19 @@ public final class SignalServiceProtos {
                 dataExtractionNotification_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000010;
+              break;
+            }
+            case 74: {
+              org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
+                subBuilder = openGroupInvitation_.toBuilder();
+              }
+              openGroupInvitation_ = input.readMessage(org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(openGroupInvitation_);
+                openGroupInvitation_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000020;
               break;
             }
           }
@@ -2023,26 +2050,48 @@ public final class SignalServiceProtos {
       return configurationMessage_;
     }
 
-    // optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;
-    public static final int DATAEXTRACTIONNOTIFICATION_FIELD_NUMBER = 82;
+    // optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;
+    public static final int DATAEXTRACTIONNOTIFICATION_FIELD_NUMBER = 8;
     private org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification dataExtractionNotification_;
     /**
-     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     public boolean hasDataExtractionNotification() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     public org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification getDataExtractionNotification() {
       return dataExtractionNotification_;
     }
     /**
-     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+     * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
      */
     public org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotificationOrBuilder getDataExtractionNotificationOrBuilder() {
       return dataExtractionNotification_;
+    }
+
+    // optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;
+    public static final int OPENGROUPINVITATION_FIELD_NUMBER = 9;
+    private org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation openGroupInvitation_;
+    /**
+     * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+     */
+    public boolean hasOpenGroupInvitation() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation getOpenGroupInvitation() {
+      return openGroupInvitation_;
+    }
+    /**
+     * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder getOpenGroupInvitationOrBuilder() {
+      return openGroupInvitation_;
     }
 
     private void initFields() {
@@ -2051,6 +2100,7 @@ public final class SignalServiceProtos {
       typingMessage_ = org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage.getDefaultInstance();
       configurationMessage_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ConfigurationMessage.getDefaultInstance();
       dataExtractionNotification_ = org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.getDefaultInstance();
+      openGroupInvitation_ = org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2107,7 +2157,10 @@ public final class SignalServiceProtos {
         output.writeMessage(7, configurationMessage_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(82, dataExtractionNotification_);
+        output.writeMessage(8, dataExtractionNotification_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeMessage(9, openGroupInvitation_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2136,7 +2189,11 @@ public final class SignalServiceProtos {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(82, dataExtractionNotification_);
+          .computeMessageSize(8, dataExtractionNotification_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, openGroupInvitation_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2251,6 +2308,7 @@ public final class SignalServiceProtos {
           getTypingMessageFieldBuilder();
           getConfigurationMessageFieldBuilder();
           getDataExtractionNotificationFieldBuilder();
+          getOpenGroupInvitationFieldBuilder();
         }
       }
       private static Builder create() {
@@ -2289,6 +2347,12 @@ public final class SignalServiceProtos {
           dataExtractionNotificationBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000010);
+        if (openGroupInvitationBuilder_ == null) {
+          openGroupInvitation_ = org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance();
+        } else {
+          openGroupInvitationBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -2357,6 +2421,14 @@ public final class SignalServiceProtos {
         } else {
           result.dataExtractionNotification_ = dataExtractionNotificationBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        if (openGroupInvitationBuilder_ == null) {
+          result.openGroupInvitation_ = openGroupInvitation_;
+        } else {
+          result.openGroupInvitation_ = openGroupInvitationBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2387,6 +2459,9 @@ public final class SignalServiceProtos {
         }
         if (other.hasDataExtractionNotification()) {
           mergeDataExtractionNotification(other.getDataExtractionNotification());
+        }
+        if (other.hasOpenGroupInvitation()) {
+          mergeOpenGroupInvitation(other.getOpenGroupInvitation());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2913,18 +2988,18 @@ public final class SignalServiceProtos {
         return configurationMessageBuilder_;
       }
 
-      // optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;
+      // optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;
       private org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification dataExtractionNotification_ = org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification, org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotificationOrBuilder> dataExtractionNotificationBuilder_;
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public boolean hasDataExtractionNotification() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification getDataExtractionNotification() {
         if (dataExtractionNotificationBuilder_ == null) {
@@ -2934,7 +3009,7 @@ public final class SignalServiceProtos {
         }
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public Builder setDataExtractionNotification(org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification value) {
         if (dataExtractionNotificationBuilder_ == null) {
@@ -2950,7 +3025,7 @@ public final class SignalServiceProtos {
         return this;
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public Builder setDataExtractionNotification(
           org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.Builder builderForValue) {
@@ -2964,7 +3039,7 @@ public final class SignalServiceProtos {
         return this;
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public Builder mergeDataExtractionNotification(org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification value) {
         if (dataExtractionNotificationBuilder_ == null) {
@@ -2983,7 +3058,7 @@ public final class SignalServiceProtos {
         return this;
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public Builder clearDataExtractionNotification() {
         if (dataExtractionNotificationBuilder_ == null) {
@@ -2996,7 +3071,7 @@ public final class SignalServiceProtos {
         return this;
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.Builder getDataExtractionNotificationBuilder() {
         bitField0_ |= 0x00000010;
@@ -3004,7 +3079,7 @@ public final class SignalServiceProtos {
         return getDataExtractionNotificationFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       public org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotificationOrBuilder getDataExtractionNotificationOrBuilder() {
         if (dataExtractionNotificationBuilder_ != null) {
@@ -3014,7 +3089,7 @@ public final class SignalServiceProtos {
         }
       }
       /**
-       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 82;</code>
+       * <code>optional .signalservice.DataExtractionNotification dataExtractionNotification = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification, org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotification.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataExtractionNotificationOrBuilder> 
@@ -3028,6 +3103,123 @@ public final class SignalServiceProtos {
           dataExtractionNotification_ = null;
         }
         return dataExtractionNotificationBuilder_;
+      }
+
+      // optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;
+      private org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation openGroupInvitation_ = org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder> openGroupInvitationBuilder_;
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public boolean hasOpenGroupInvitation() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation getOpenGroupInvitation() {
+        if (openGroupInvitationBuilder_ == null) {
+          return openGroupInvitation_;
+        } else {
+          return openGroupInvitationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public Builder setOpenGroupInvitation(org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation value) {
+        if (openGroupInvitationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          openGroupInvitation_ = value;
+          onChanged();
+        } else {
+          openGroupInvitationBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public Builder setOpenGroupInvitation(
+          org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder builderForValue) {
+        if (openGroupInvitationBuilder_ == null) {
+          openGroupInvitation_ = builderForValue.build();
+          onChanged();
+        } else {
+          openGroupInvitationBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public Builder mergeOpenGroupInvitation(org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation value) {
+        if (openGroupInvitationBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+              openGroupInvitation_ != org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance()) {
+            openGroupInvitation_ =
+              org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.newBuilder(openGroupInvitation_).mergeFrom(value).buildPartial();
+          } else {
+            openGroupInvitation_ = value;
+          }
+          onChanged();
+        } else {
+          openGroupInvitationBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public Builder clearOpenGroupInvitation() {
+        if (openGroupInvitationBuilder_ == null) {
+          openGroupInvitation_ = org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance();
+          onChanged();
+        } else {
+          openGroupInvitationBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder getOpenGroupInvitationBuilder() {
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return getOpenGroupInvitationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder getOpenGroupInvitationOrBuilder() {
+        if (openGroupInvitationBuilder_ != null) {
+          return openGroupInvitationBuilder_.getMessageOrBuilder();
+        } else {
+          return openGroupInvitation_;
+        }
+      }
+      /**
+       * <code>optional .signalservice.OpenGroupInvitation openGroupInvitation = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder> 
+          getOpenGroupInvitationFieldBuilder() {
+        if (openGroupInvitationBuilder_ == null) {
+          openGroupInvitationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder>(
+                  openGroupInvitation_,
+                  getParentForChildren(),
+                  isClean());
+          openGroupInvitation_ = null;
+        }
+        return openGroupInvitationBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:signalservice.Content)
@@ -12760,6 +12952,714 @@ public final class SignalServiceProtos {
     // @@protoc_insertion_point(class_scope:signalservice.DataMessage)
   }
 
+  public interface OpenGroupInvitationOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string serverAddress = 1;
+    /**
+     * <code>optional string serverAddress = 1;</code>
+     */
+    boolean hasServerAddress();
+    /**
+     * <code>optional string serverAddress = 1;</code>
+     */
+    java.lang.String getServerAddress();
+    /**
+     * <code>optional string serverAddress = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getServerAddressBytes();
+
+    // optional uint32 channelId = 2;
+    /**
+     * <code>optional uint32 channelId = 2;</code>
+     */
+    boolean hasChannelId();
+    /**
+     * <code>optional uint32 channelId = 2;</code>
+     */
+    int getChannelId();
+
+    // optional string serverName = 3;
+    /**
+     * <code>optional string serverName = 3;</code>
+     */
+    boolean hasServerName();
+    /**
+     * <code>optional string serverName = 3;</code>
+     */
+    java.lang.String getServerName();
+    /**
+     * <code>optional string serverName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServerNameBytes();
+  }
+  /**
+   * Protobuf type {@code signalservice.OpenGroupInvitation}
+   */
+  public static final class OpenGroupInvitation extends
+      com.google.protobuf.GeneratedMessage
+      implements OpenGroupInvitationOrBuilder {
+    // Use OpenGroupInvitation.newBuilder() to construct.
+    private OpenGroupInvitation(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private OpenGroupInvitation(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final OpenGroupInvitation defaultInstance;
+    public static OpenGroupInvitation getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public OpenGroupInvitation getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private OpenGroupInvitation(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              serverAddress_ = input.readBytes();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              channelId_ = input.readUInt32();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              serverName_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_OpenGroupInvitation_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_OpenGroupInvitation_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.class, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<OpenGroupInvitation> PARSER =
+        new com.google.protobuf.AbstractParser<OpenGroupInvitation>() {
+      public OpenGroupInvitation parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new OpenGroupInvitation(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<OpenGroupInvitation> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string serverAddress = 1;
+    public static final int SERVERADDRESS_FIELD_NUMBER = 1;
+    private java.lang.Object serverAddress_;
+    /**
+     * <code>optional string serverAddress = 1;</code>
+     */
+    public boolean hasServerAddress() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string serverAddress = 1;</code>
+     */
+    public java.lang.String getServerAddress() {
+      java.lang.Object ref = serverAddress_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          serverAddress_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string serverAddress = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServerAddressBytes() {
+      java.lang.Object ref = serverAddress_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        serverAddress_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional uint32 channelId = 2;
+    public static final int CHANNELID_FIELD_NUMBER = 2;
+    private int channelId_;
+    /**
+     * <code>optional uint32 channelId = 2;</code>
+     */
+    public boolean hasChannelId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 channelId = 2;</code>
+     */
+    public int getChannelId() {
+      return channelId_;
+    }
+
+    // optional string serverName = 3;
+    public static final int SERVERNAME_FIELD_NUMBER = 3;
+    private java.lang.Object serverName_;
+    /**
+     * <code>optional string serverName = 3;</code>
+     */
+    public boolean hasServerName() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string serverName = 3;</code>
+     */
+    public java.lang.String getServerName() {
+      java.lang.Object ref = serverName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          serverName_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string serverName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServerNameBytes() {
+      java.lang.Object ref = serverName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        serverName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      serverAddress_ = "";
+      channelId_ = 0;
+      serverName_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getServerAddressBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, channelId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getServerNameBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getServerAddressBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, channelId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getServerNameBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code signalservice.OpenGroupInvitation}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_OpenGroupInvitation_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_OpenGroupInvitation_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.class, org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.Builder.class);
+      }
+
+      // Construct using org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        serverAddress_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        channelId_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        serverName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_OpenGroupInvitation_descriptor;
+      }
+
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation getDefaultInstanceForType() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance();
+      }
+
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation build() {
+        org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation buildPartial() {
+        org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation result = new org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.serverAddress_ = serverAddress_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.channelId_ = channelId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.serverName_ = serverName_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation) {
+          return mergeFrom((org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation other) {
+        if (other == org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance()) return this;
+        if (other.hasServerAddress()) {
+          bitField0_ |= 0x00000001;
+          serverAddress_ = other.serverAddress_;
+          onChanged();
+        }
+        if (other.hasChannelId()) {
+          setChannelId(other.getChannelId());
+        }
+        if (other.hasServerName()) {
+          bitField0_ |= 0x00000004;
+          serverName_ = other.serverName_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string serverAddress = 1;
+      private java.lang.Object serverAddress_ = "";
+      /**
+       * <code>optional string serverAddress = 1;</code>
+       */
+      public boolean hasServerAddress() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string serverAddress = 1;</code>
+       */
+      public java.lang.String getServerAddress() {
+        java.lang.Object ref = serverAddress_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          serverAddress_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string serverAddress = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServerAddressBytes() {
+        java.lang.Object ref = serverAddress_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          serverAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string serverAddress = 1;</code>
+       */
+      public Builder setServerAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        serverAddress_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string serverAddress = 1;</code>
+       */
+      public Builder clearServerAddress() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        serverAddress_ = getDefaultInstance().getServerAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string serverAddress = 1;</code>
+       */
+      public Builder setServerAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        serverAddress_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 channelId = 2;
+      private int channelId_ ;
+      /**
+       * <code>optional uint32 channelId = 2;</code>
+       */
+      public boolean hasChannelId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 channelId = 2;</code>
+       */
+      public int getChannelId() {
+        return channelId_;
+      }
+      /**
+       * <code>optional uint32 channelId = 2;</code>
+       */
+      public Builder setChannelId(int value) {
+        bitField0_ |= 0x00000002;
+        channelId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 channelId = 2;</code>
+       */
+      public Builder clearChannelId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        channelId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional string serverName = 3;
+      private java.lang.Object serverName_ = "";
+      /**
+       * <code>optional string serverName = 3;</code>
+       */
+      public boolean hasServerName() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string serverName = 3;</code>
+       */
+      public java.lang.String getServerName() {
+        java.lang.Object ref = serverName_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          serverName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string serverName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServerNameBytes() {
+        java.lang.Object ref = serverName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          serverName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string serverName = 3;</code>
+       */
+      public Builder setServerName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        serverName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string serverName = 3;</code>
+       */
+      public Builder clearServerName() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        serverName_ = getDefaultInstance().getServerName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string serverName = 3;</code>
+       */
+      public Builder setServerNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        serverName_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:signalservice.OpenGroupInvitation)
+    }
+
+    static {
+      defaultInstance = new OpenGroupInvitation(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:signalservice.OpenGroupInvitation)
+  }
+
   public interface ConfigurationMessageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -20200,6 +21100,11 @@ public final class SignalServiceProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_signalservice_DataMessage_ClosedGroupControlMessage_KeyPairWrapper_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signalservice_OpenGroupInvitation_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signalservice_OpenGroupInvitation_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_signalservice_ConfigurationMessage_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -20247,84 +21152,88 @@ public final class SignalServiceProtos {
       "SSAGE\020\007\"{\n\rTypingMessage\022\021\n\ttimestamp\030\001 " +
       "\002(\004\0223\n\006action\030\002 \002(\0162#.signalservice.Typi" +
       "ngMessage.Action\"\"\n\006Action\022\013\n\007STARTED\020\000\022" +
-      "\013\n\007STOPPED\020\001\"\270\002\n\007Content\022/\n\013dataMessage\030",
+      "\013\n\007STOPPED\020\001\"\371\002\n\007Content\022/\n\013dataMessage\030",
       "\001 \001(\0132\032.signalservice.DataMessage\0225\n\016rec" +
       "eiptMessage\030\005 \001(\0132\035.signalservice.Receip" +
       "tMessage\0223\n\rtypingMessage\030\006 \001(\0132\034.signal" +
       "service.TypingMessage\022A\n\024configurationMe" +
       "ssage\030\007 \001(\0132#.signalservice.Configuratio" +
-      "nMessage\022M\n\032dataExtractionNotification\030R" +
+      "nMessage\022M\n\032dataExtractionNotification\030\010" +
       " \001(\0132).signalservice.DataExtractionNotif" +
-      "ication\"0\n\007KeyPair\022\021\n\tpublicKey\030\001 \002(\014\022\022\n" +
-      "\nprivateKey\030\002 \002(\014\"\226\001\n\032DataExtractionNoti" +
-      "fication\022<\n\004type\030\001 \002(\0162..signalservice.D",
-      "ataExtractionNotification.Type\022\021\n\ttimest" +
-      "amp\030\002 \001(\004\"\'\n\004Type\022\016\n\nSCREENSHOT\020\001\022\017\n\013MED" +
-      "IA_SAVED\020\002\"\215\013\n\013DataMessage\022\014\n\004body\030\001 \001(\t" +
-      "\0225\n\013attachments\030\002 \003(\0132 .signalservice.At" +
-      "tachmentPointer\022*\n\005group\030\003 \001(\0132\033.signals" +
-      "ervice.GroupContext\022\r\n\005flags\030\004 \001(\r\022\023\n\013ex" +
-      "pireTimer\030\005 \001(\r\022\022\n\nprofileKey\030\006 \001(\014\022\021\n\tt" +
-      "imestamp\030\007 \001(\004\022/\n\005quote\030\010 \001(\0132 .signalse" +
-      "rvice.DataMessage.Quote\0223\n\007preview\030\n \003(\013" +
-      "2\".signalservice.DataMessage.Preview\0227\n\007",
-      "profile\030e \001(\0132&.signalservice.DataMessag" +
-      "e.LokiProfile\022W\n\031closedGroupControlMessa" +
-      "ge\030h \001(\01324.signalservice.DataMessage.Clo" +
-      "sedGroupControlMessage\022\022\n\nsyncTarget\030i \001" +
-      "(\t\032\225\002\n\005Quote\022\n\n\002id\030\001 \002(\004\022\016\n\006author\030\002 \002(\t" +
-      "\022\014\n\004text\030\003 \001(\t\022F\n\013attachments\030\004 \003(\01321.si" +
-      "gnalservice.DataMessage.Quote.QuotedAtta" +
-      "chment\032\231\001\n\020QuotedAttachment\022\023\n\013contentTy" +
-      "pe\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\0223\n\tthumbnail\030" +
-      "\003 \001(\0132 .signalservice.AttachmentPointer\022",
-      "\r\n\005flags\030\004 \001(\r\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE" +
-      "\020\001\032V\n\007Preview\022\013\n\003url\030\001 \002(\t\022\r\n\005title\030\002 \001(" +
-      "\t\022/\n\005image\030\003 \001(\0132 .signalservice.Attachm" +
-      "entPointer\032:\n\013LokiProfile\022\023\n\013displayName" +
-      "\030\001 \001(\t\022\026\n\016profilePicture\030\002 \001(\t\032\343\003\n\031Close" +
-      "dGroupControlMessage\022G\n\004type\030\001 \002(\01629.sig" +
-      "nalservice.DataMessage.ClosedGroupContro" +
-      "lMessage.Type\022\021\n\tpublicKey\030\002 \001(\014\022\014\n\004name" +
-      "\030\003 \001(\t\0221\n\021encryptionKeyPair\030\004 \001(\0132\026.sign" +
-      "alservice.KeyPair\022\017\n\007members\030\005 \003(\014\022\016\n\006ad",
-      "mins\030\006 \003(\014\022U\n\010wrappers\030\007 \003(\0132C.signalser" +
-      "vice.DataMessage.ClosedGroupControlMessa" +
-      "ge.KeyPairWrapper\032=\n\016KeyPairWrapper\022\021\n\tp" +
-      "ublicKey\030\001 \002(\014\022\030\n\020encryptedKeyPair\030\002 \002(\014" +
-      "\"r\n\004Type\022\007\n\003NEW\020\001\022\027\n\023ENCRYPTION_KEY_PAIR" +
-      "\020\003\022\017\n\013NAME_CHANGE\020\004\022\021\n\rMEMBERS_ADDED\020\005\022\023" +
-      "\n\017MEMBERS_REMOVED\020\006\022\017\n\013MEMBER_LEFT\020\007\"$\n\005" +
-      "Flags\022\033\n\027EXPIRATION_TIMER_UPDATE\020\002\"\316\003\n\024C" +
-      "onfigurationMessage\022E\n\014closedGroups\030\001 \003(" +
-      "\0132/.signalservice.ConfigurationMessage.C",
-      "losedGroup\022\022\n\nopenGroups\030\002 \003(\t\022\023\n\013displa" +
-      "yName\030\003 \001(\t\022\026\n\016profilePicture\030\004 \001(\t\022\022\n\np" +
-      "rofileKey\030\005 \001(\014\022=\n\010contacts\030\006 \003(\0132+.sign" +
-      "alservice.ConfigurationMessage.Contact\032\202" +
-      "\001\n\013ClosedGroup\022\021\n\tpublicKey\030\001 \001(\014\022\014\n\004nam" +
-      "e\030\002 \001(\t\0221\n\021encryptionKeyPair\030\003 \001(\0132\026.sig" +
-      "nalservice.KeyPair\022\017\n\007members\030\004 \003(\014\022\016\n\006a" +
-      "dmins\030\005 \003(\014\032V\n\007Contact\022\021\n\tpublicKey\030\001 \002(" +
-      "\014\022\014\n\004name\030\002 \002(\t\022\026\n\016profilePicture\030\003 \001(\t\022" +
-      "\022\n\nprofileKey\030\004 \001(\014\"u\n\016ReceiptMessage\0220\n",
-      "\004type\030\001 \002(\0162\".signalservice.ReceiptMessa" +
-      "ge.Type\022\021\n\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DE" +
-      "LIVERY\020\000\022\010\n\004READ\020\001\"\354\001\n\021AttachmentPointer" +
-      "\022\n\n\002id\030\001 \002(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key" +
-      "\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthumbnail\030\005 \001(\014\022" +
-      "\016\n\006digest\030\006 \001(\014\022\020\n\010fileName\030\007 \001(\t\022\r\n\005fla" +
-      "gs\030\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006height\030\n \001(\r\022" +
-      "\017\n\007caption\030\013 \001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Flags\022\021" +
-      "\n\rVOICE_MESSAGE\020\001\"\365\001\n\014GroupContext\022\n\n\002id" +
-      "\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 .signalservice.Gro",
-      "upContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030" +
-      "\004 \003(\t\0220\n\006avatar\030\005 \001(\0132 .signalservice.At" +
-      "tachmentPointer\022\016\n\006admins\030\006 \003(\t\"H\n\004Type\022" +
-      "\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n" +
-      "\004QUIT\020\003\022\020\n\014REQUEST_INFO\020\004BB\n+org.session" +
-      ".libsignal.service.internal.pushB\023Signal" +
-      "ServiceProtos"
+      "ication\022?\n\023openGroupInvitation\030\t \001(\0132\".s" +
+      "ignalservice.OpenGroupInvitation\"0\n\007KeyP" +
+      "air\022\021\n\tpublicKey\030\001 \002(\014\022\022\n\nprivateKey\030\002 \002",
+      "(\014\"\226\001\n\032DataExtractionNotification\022<\n\004typ" +
+      "e\030\001 \002(\0162..signalservice.DataExtractionNo" +
+      "tification.Type\022\021\n\ttimestamp\030\002 \001(\004\"\'\n\004Ty" +
+      "pe\022\016\n\nSCREENSHOT\020\001\022\017\n\013MEDIA_SAVED\020\002\"\215\013\n\013" +
+      "DataMessage\022\014\n\004body\030\001 \001(\t\0225\n\013attachments" +
+      "\030\002 \003(\0132 .signalservice.AttachmentPointer" +
+      "\022*\n\005group\030\003 \001(\0132\033.signalservice.GroupCon" +
+      "text\022\r\n\005flags\030\004 \001(\r\022\023\n\013expireTimer\030\005 \001(\r" +
+      "\022\022\n\nprofileKey\030\006 \001(\014\022\021\n\ttimestamp\030\007 \001(\004\022" +
+      "/\n\005quote\030\010 \001(\0132 .signalservice.DataMessa",
+      "ge.Quote\0223\n\007preview\030\n \003(\0132\".signalservic" +
+      "e.DataMessage.Preview\0227\n\007profile\030e \001(\0132&" +
+      ".signalservice.DataMessage.LokiProfile\022W" +
+      "\n\031closedGroupControlMessage\030h \001(\01324.sign" +
+      "alservice.DataMessage.ClosedGroupControl" +
+      "Message\022\022\n\nsyncTarget\030i \001(\t\032\225\002\n\005Quote\022\n\n" +
+      "\002id\030\001 \002(\004\022\016\n\006author\030\002 \002(\t\022\014\n\004text\030\003 \001(\t\022" +
+      "F\n\013attachments\030\004 \003(\01321.signalservice.Dat" +
+      "aMessage.Quote.QuotedAttachment\032\231\001\n\020Quot" +
+      "edAttachment\022\023\n\013contentType\030\001 \001(\t\022\020\n\010fil",
+      "eName\030\002 \001(\t\0223\n\tthumbnail\030\003 \001(\0132 .signals" +
+      "ervice.AttachmentPointer\022\r\n\005flags\030\004 \001(\r\"" +
+      "\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\032V\n\007Preview\022\013" +
+      "\n\003url\030\001 \002(\t\022\r\n\005title\030\002 \001(\t\022/\n\005image\030\003 \001(" +
+      "\0132 .signalservice.AttachmentPointer\032:\n\013L" +
+      "okiProfile\022\023\n\013displayName\030\001 \001(\t\022\026\n\016profi" +
+      "lePicture\030\002 \001(\t\032\343\003\n\031ClosedGroupControlMe" +
+      "ssage\022G\n\004type\030\001 \002(\01629.signalservice.Data" +
+      "Message.ClosedGroupControlMessage.Type\022\021" +
+      "\n\tpublicKey\030\002 \001(\014\022\014\n\004name\030\003 \001(\t\0221\n\021encry",
+      "ptionKeyPair\030\004 \001(\0132\026.signalservice.KeyPa" +
+      "ir\022\017\n\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003(\014\022U\n\010w" +
+      "rappers\030\007 \003(\0132C.signalservice.DataMessag" +
+      "e.ClosedGroupControlMessage.KeyPairWrapp" +
+      "er\032=\n\016KeyPairWrapper\022\021\n\tpublicKey\030\001 \002(\014\022" +
+      "\030\n\020encryptedKeyPair\030\002 \002(\014\"r\n\004Type\022\007\n\003NEW" +
+      "\020\001\022\027\n\023ENCRYPTION_KEY_PAIR\020\003\022\017\n\013NAME_CHAN" +
+      "GE\020\004\022\021\n\rMEMBERS_ADDED\020\005\022\023\n\017MEMBERS_REMOV" +
+      "ED\020\006\022\017\n\013MEMBER_LEFT\020\007\"$\n\005Flags\022\033\n\027EXPIRA" +
+      "TION_TIMER_UPDATE\020\002\"S\n\023OpenGroupInvitati",
+      "on\022\025\n\rserverAddress\030\001 \001(\t\022\021\n\tchannelId\030\002" +
+      " \001(\r\022\022\n\nserverName\030\003 \001(\t\"\316\003\n\024Configurati" +
+      "onMessage\022E\n\014closedGroups\030\001 \003(\0132/.signal" +
+      "service.ConfigurationMessage.ClosedGroup" +
+      "\022\022\n\nopenGroups\030\002 \003(\t\022\023\n\013displayName\030\003 \001(" +
+      "\t\022\026\n\016profilePicture\030\004 \001(\t\022\022\n\nprofileKey\030" +
+      "\005 \001(\014\022=\n\010contacts\030\006 \003(\0132+.signalservice." +
+      "ConfigurationMessage.Contact\032\202\001\n\013ClosedG" +
+      "roup\022\021\n\tpublicKey\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\0221\n" +
+      "\021encryptionKeyPair\030\003 \001(\0132\026.signalservice",
+      ".KeyPair\022\017\n\007members\030\004 \003(\014\022\016\n\006admins\030\005 \003(" +
+      "\014\032V\n\007Contact\022\021\n\tpublicKey\030\001 \002(\014\022\014\n\004name\030" +
+      "\002 \002(\t\022\026\n\016profilePicture\030\003 \001(\t\022\022\n\nprofile" +
+      "Key\030\004 \001(\014\"u\n\016ReceiptMessage\0220\n\004type\030\001 \002(" +
+      "\0162\".signalservice.ReceiptMessage.Type\022\021\n" +
+      "\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022\010" +
+      "\n\004READ\020\001\"\354\001\n\021AttachmentPointer\022\n\n\002id\030\001 \002" +
+      "(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004" +
+      "size\030\004 \001(\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030" +
+      "\006 \001(\014\022\020\n\010fileName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r",
+      "\n\005width\030\t \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption" +
+      "\030\013 \001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_ME" +
+      "SSAGE\020\001\"\365\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004" +
+      "type\030\002 \001(\0162 .signalservice.GroupContext." +
+      "Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006a" +
+      "vatar\030\005 \001(\0132 .signalservice.AttachmentPo" +
+      "inter\022\016\n\006admins\030\006 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN" +
+      "\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n" +
+      "\014REQUEST_INFO\020\004BB\n+org.session.libsignal" +
+      ".service.internal.pushB\023SignalServicePro",
+      "tos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -20348,7 +21257,7 @@ public final class SignalServiceProtos {
           internal_static_signalservice_Content_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Content_descriptor,
-              new java.lang.String[] { "DataMessage", "ReceiptMessage", "TypingMessage", "ConfigurationMessage", "DataExtractionNotification", });
+              new java.lang.String[] { "DataMessage", "ReceiptMessage", "TypingMessage", "ConfigurationMessage", "DataExtractionNotification", "OpenGroupInvitation", });
           internal_static_signalservice_KeyPair_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_signalservice_KeyPair_fieldAccessorTable = new
@@ -20403,8 +21312,14 @@ public final class SignalServiceProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_ClosedGroupControlMessage_KeyPairWrapper_descriptor,
               new java.lang.String[] { "PublicKey", "EncryptedKeyPair", });
-          internal_static_signalservice_ConfigurationMessage_descriptor =
+          internal_static_signalservice_OpenGroupInvitation_descriptor =
             getDescriptor().getMessageTypes().get(6);
+          internal_static_signalservice_OpenGroupInvitation_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signalservice_OpenGroupInvitation_descriptor,
+              new java.lang.String[] { "ServerAddress", "ChannelId", "ServerName", });
+          internal_static_signalservice_ConfigurationMessage_descriptor =
+            getDescriptor().getMessageTypes().get(7);
           internal_static_signalservice_ConfigurationMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ConfigurationMessage_descriptor,
@@ -20422,19 +21337,19 @@ public final class SignalServiceProtos {
               internal_static_signalservice_ConfigurationMessage_Contact_descriptor,
               new java.lang.String[] { "PublicKey", "Name", "ProfilePicture", "ProfileKey", });
           internal_static_signalservice_ReceiptMessage_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_signalservice_ReceiptMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ReceiptMessage_descriptor,
               new java.lang.String[] { "Type", "Timestamp", });
           internal_static_signalservice_AttachmentPointer_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_signalservice_AttachmentPointer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_AttachmentPointer_descriptor,
               new java.lang.String[] { "Id", "ContentType", "Key", "Size", "Thumbnail", "Digest", "FileName", "Flags", "Width", "Height", "Caption", "Url", });
           internal_static_signalservice_GroupContext_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_signalservice_GroupContext_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_GroupContext_descriptor,

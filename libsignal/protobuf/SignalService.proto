@@ -40,7 +40,8 @@ message Content {
   optional ReceiptMessage             receiptMessage             = 5;
   optional TypingMessage              typingMessage              = 6;
   optional ConfigurationMessage       configurationMessage       = 7;
-  optional DataExtractionNotification dataExtractionNotification = 82;
+  optional DataExtractionNotification dataExtractionNotification = 8;
+  optional OpenGroupInvitation        openGroupInvitation        = 9;
 }
 
 message KeyPair {
@@ -143,6 +144,12 @@ message DataMessage {
   optional ClosedGroupControlMessage closedGroupControlMessage = 104;
   optional string                    syncTarget                = 105;
 }
+
+message OpenGroupInvitation {
+    optional string serverAddress = 1;
+    optional uint32 channelId = 2;
+    optional string serverName = 3;
+  }
 
 message ConfigurationMessage {
 
