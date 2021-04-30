@@ -54,7 +54,7 @@ class PublicChatManager(private val context: Context) {
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
     }
     for ((threadId, chat) in v2Chats) {
-      val poller = v2Pollers[threadId] ?: OpenGroupV2Poller(chat, executorService)
+      val poller = v2Pollers[threadId] ?: OpenGroupV2Poller(listOf(chat), executorService)
       poller.startIfNeeded()
       listenToThreadDeletion(threadId)
       if (!v2Pollers.containsKey(threadId)) { v2Pollers[threadId] = poller }

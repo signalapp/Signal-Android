@@ -323,13 +323,17 @@ object OpenGroupAPIV2 {
     // endregion
 
     // region Moderation
+    private fun handleModerators(serverRoomId: String, moderatorList: List<String>) {
+        moderators[serverRoomId] = moderatorList.toMutableSet()
+    }
+
     fun getModerators(room: String, server: String): Promise<List<String>, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "moderators")
         return send(request).map(sharedContext) { json ->
             @Suppress("UNCHECKED_CAST") val moderatorsJson = json["moderators"] as? List<String>
                     ?: throw Error.PARSING_FAILED
             val id = "$server.$room"
-            moderators[id] = moderatorsJson.toMutableSet()
+            handleModerators(id, moderatorsJson)
             moderatorsJson
         }
     }
@@ -356,6 +360,7 @@ object OpenGroupAPIV2 {
     // endregion
 
     // region General
+    @Suppress("UNCHECKED_CAST")
     fun getCompactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
         val requestAuths = rooms.associateWith { room -> getAuthToken(room, server) }
         val storage = MessagingModuleConfiguration.shared.storage
@@ -376,8 +381,51 @@ object OpenGroupAPIV2 {
         val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false, parameters = mapOf("requests" to requests))
         // build a request for all rooms
         return send(request = request).map(sharedContext) { json ->
-            val results = json["results"] as? Map<*, *> ?: throw Error.PARSING_FAILED
-            TODO()
+            val results = json["results"] as? List<*> ?: throw Error.PARSING_FAILED
+
+            results.mapNotNull { roomJson ->
+                if (roomJson !is Map<*,*>) return@mapNotNull null
+                val roomId = roomJson["room_id"] as? String ?: return@mapNotNull null
+
+                // check the status was fine
+                val statusCode = roomJson["status_code"] as? Int ?: return@mapNotNull null
+                if (statusCode == 401) {
+                    // delete auth token and return null
+                    storage.removeAuthToken(roomId, server)
+                }
+
+                // check and store mods
+                val moderators = roomJson["moderators"] as? List<String> ?: return@mapNotNull null
+                handleModerators("$server.$roomId", moderators)
+
+                // get deletions
+                val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
+                val idsAsString = JsonUtil.toJson(roomJson["deletions"])
+                val deletedServerIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.PARSING_FAILED
+                val lastDeletionServerId = storage.getLastDeletionServerId(roomId, server) ?: 0
+                val serverID = deletedServerIDs.maxByOrNull {it.id } ?: MessageDeletion.EMPTY
+                if (serverID.id > lastDeletionServerId) {
+                    storage.setLastDeletionServerId(roomId, server, serverID.id)
+                }
+
+                // get messages
+                val rawMessages = roomJson["messages"] as? List<Map<String, Any>> ?: return@mapNotNull null // parsing failed
+
+                val lastMessageServerId = storage.getLastMessageServerId(roomId, server) ?: 0
+                var currentMax = lastMessageServerId
+                val messages = rawMessages.mapNotNull { rawMessage ->
+                    val message = OpenGroupMessageV2.fromJSON(rawMessage)?.apply {
+                        currentMax = maxOf(currentMax,this.serverID ?: 0)
+                    }
+                    message
+                }
+                storage.setLastMessageServerId(roomId, server, currentMax)
+                roomId to CompactPollResult(
+                        messages = messages,
+                        deletions = deletedServerIDs.map { it.deletedMessageId },
+                        moderators = moderators
+                )
+            }.toMap()
         }
     }
 
