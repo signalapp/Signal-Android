@@ -1398,15 +1398,15 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">လတ်တလော သတိပေးချက်များ ကိုစစ်ဆေးရန် Signal ကိုဖွင့်ပါ။</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">အဆက်အသွယ်</string>
-  <string name="MessageNotifier_reacted_s_to_s">တုံ့ပြန်ခဲ့သည်%1$s to: "%2$s "</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">တုံ့ပြန်ခဲ့သည်%1$s သင့်ဗီဒီယိုသို့</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">တုံ့ပြန်ခဲ့သည်%1$s သင့်ပုံရိပ်သို့</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">တုံ့ပြန်ခဲ့သည်%1$s သင်၏ဖိုင်သို့</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">တုံ့ပြန်ခဲ့သည်%1$s သင့်အသံသို့</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">တုံ့ပြန်ခဲ့သည်%1$s သင်၏အမြင် - တစ်ချိန်ကမီဒီယာရန်။</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">တုံ့ပြန်ခဲ့သည်%1$s သင့်ရဲ့စတစ်ကာရန်။</string>
-  <string name="MessageNotifier_this_message_was_deleted">ဒီစာကိုဖျက်လိုက်သည်။</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ဆက်သွယ်မှုပိတ်ပါ Signal အကြောင်းကြားစာများဝင်ရောက်? သူတို့ကို Signal &amp; gt တွင်ထပ်မံဖွင့်နိုင်သည်။ ဆက်တင်များ &amp; gt; အသိပေးချက်များ။</string>
+  <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">သင့် ဗီဒီယို သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">သင့် ရုပ်ပုံ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">သင့် ဖိုင်သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">သင့် အသံဖိုင် သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">သင့် တစ်ခါကြည့် မီဒီယာ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">သင့် စတစ်ကာ သို့ %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်။</string>
+  <string name="MessageNotifier_this_message_was_deleted">၎င်းမက်ဆေ့ချ်ကို ဖျက်ပြီးပါပြီ။</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">အဆက်အသွယ်မှ​ Signal သို့ ဝင်ရောက်သည်ဆိုသည့် အသိပေးချက်များကို ပိတ်မည်လား? Signal &gt; အပြင်အဆင်များ &gt; အသိပေးချက်များ ထဲဝင်၍ ၎င်းအသိပေးချက်များကို ဖွင့်လို့ရပါသည်။</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">မက်ဆေ့ချ်များ</string>
   <string name="NotificationChannel_calls">ဖုန်းခေါ်ဆိုမှုများ</string>
@@ -1419,7 +1419,7 @@
   <string name="NotificationChannel_missing_display_name">မသိ</string>
   <string name="NotificationChannel_voice_notes">အသံမှတ်စုများ</string>
   <string name="NotificationChannel_contact_joined_signal">အဆက်အသွယ်သည် Signal ပေါ်တက်ရောက်လာပါပြီ</string>
-  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">သတိပေးချက်လိုင်း၏ အပြင်အဆင်များကို ဖွင့်ရန် လှုပ်ရှားမှုမရှိပါ။</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">အသိပေးချက်လိုင်း၏ အပြင်အဆင်များကို ဖွင့်ရန် လှုပ်ရှားမှုမရှိပါ။</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>
@@ -1429,7 +1429,7 @@
   <string name="SaveAttachmentTask_saved">သိမ်းပြီး</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">ရှာရန်</string>
-  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">စကားပြောဆိုမှုများ၊ အဆက်အသွယ်များနှင့်မက်ဆေ့ခ်ျများကိုရှာဖွေပါ</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">စကားပြောဆိုမှုများ၊ အဆက်အသွယ်များ နှင့် မက်ဆေ့ခ်ျများကို ရှာဖွေပါ</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">မမှန်ကန်သောဖြတ်လမ်း</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1441,7 +1441,7 @@
   <string name="ThumbnailView_Has_a_caption_description">စာတန်းပါရှိတယ်</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="other">|||UNTRANSLATED_CONTENT_START|||%d Items|||UNTRANSLATED_CONTENT_END|||</item>
+    <item quantity="other">အရာများ %d ခု</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">ယခုဖုန်းမှာ မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ</string>
@@ -1449,12 +1449,12 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%sမှ ဖုန်းကိုဖြေဆိုရန် Signal အား မိုက်ခရိုဖုန်းအသုံးပြုခွင့်ပေးပါ။</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">ဖုန်းခေါ်ဆိုမှုပြုနိုင်ရန် Signalမှ မိုက်ခရိုဖုန်း နှင့် ကင်မရာအား အသုံးပြုခွင့် ရရန်လိုအပ်သည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ မိုက်ခရိုဖုန်း နှင့် ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
-  <string name="WebRtcCallActivity__answered_on_a_linked_device">ချိတ်ဆက်ထားတဲ့စက်မှာအဖြေ</string>
-  <string name="WebRtcCallActivity__declined_on_a_linked_device">ချိတ်ဆက်ထားသောကိရိယာပေါ်တွင်ငြင်းဆိုခဲ့သည်</string>
-  <string name="WebRtcCallActivity__busy_on_a_linked_device">ချိတ်ဆက်ထားတဲ့စက်မှာအလုပ်များ</string>
-  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">တစ်စုံတစ် ဦး ကပြောင်းလဲသွားပြီဖြစ်သောလုံခြုံမှုနံပါတ်နှင့်ဤခေါ်ဆိုမှုကိုဆက်သွယ်ခဲ့သည်</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">ချိတ်ဆက်ထားသော စက်ပေါ်တွင် ဖြေဆိုခဲ့ပါသည်။</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">ချိတ်ဆက်ထားသော စက်ပေါ်တွင် ငြင်းဆိုခဲ့ပါသည်။</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">ချိတ်ဆက်ထားသော စက်ပေါ်တွင် မအားပါ။</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">ပြောင်းလဲထားသော လုံခြုံရေးနံပါတ်ဖြင့် ခေါ်ဆိုမှုထဲ ဝင်လာသော တစ်ဦးရှိပါသည်။</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_swipe_up_to_change_views">အမြင်များပြောင်းရန်အပေါ်သို့ပွတ်ဆွဲပါ</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">အပေါ်သို့ နှိပ်ဆွဲ၍ မြင်ကွင်းပြောင်းပါ</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">ငြင်းပယ်မယ်</string>
   <string name="WebRtcCallScreen__answer">ဖြေဆိုမယ်</string>
@@ -1900,12 +1900,12 @@
   <string name="preferences_storage__review_storage">သိုလှောင်မှုကို ပြန်သုံးသပ်မယ်</string>
   <string name="preferences_storage__delete_older_messages">မက်ဆေ့ခ်ျအဟောင်းများကို ဖျက်မည်လား?</string>
   <string name="preferences_storage__clear_message_history">မက်ဆေ့ရာဇဝင်ကို ရှင်းလင်းမည်လား?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">၎င်းသည်မက်ဆေ့ခ်ျသမိုင်းနှင့်မီဒီယာအားလုံးကိုသင့်စက်မှဟောင်းသောဖျက်ပစ်လိမ့်မည်%1$s ။</string>
-  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">၎င်းသည်စကားဝိုင်းအားလုံးကိုအမြဲတမ်းချုံ့ပေးလိမ့်မည်%1$s လတ်တလောမက်ဆေ့ခ်ျများ</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">၎င်းသည်သင်၏စက်ပစ္စည်းမှမက်ဆေ့ခ်ျမှတ်တမ်းနှင့်မီဒီယာအားလုံးကိုအမြဲတမ်းဖျက်ပစ်လိမ့်မည်။</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">မက်ဆေ့ခ်ျသမိုင်းကြောင်းအားလုံးကိုသင်ဖျက်ချင်ပါသလား။</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">မက်ဆေ့ခ်ျမှတ်တမ်းအားလုံးကိုအမြဲတမ်းဖယ်ရှားလိမ့်မည် ဒီလုပ်ဆောင်ချက်ကိုဖျက်သိမ်းလို့မရပါ</string>
-  <string name="preferences_storage__delete_all_now">အားလုံးကိုဖျက်ပစ်ပါ</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">၎င်းလုပ်ဆောင်ချက်သည် သင့်စက်ပေါ်ရှိ %1$s ထက်ကြာသော မက်ဆေ့ချ်ရာဇဝင် နှင့် မီဒီယာများကို ဖျက်သိမ်းလိုက်ပါမည်။</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">၎င်းလုပ်ဆောင်ချက်သည် သင်၏ စကားပြောဆိုမှုများအားလုံးကို နောက်ဆုံးမက်ဆေ့ချ် %1$s ခုထိ ဖြတ်လိုက်ပါမည်။</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">၎င်းလုပ်ဆောင်ချက်သည် သင့်စက်ပေါ်ရှိ မက်ဆေ့ချ်ရာဇဝင် နှင့် မီဒီယာများ အားလုံးကို ဖျက်သိမ်းလိုက်ပါမည်။</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">သင်မှ မက်ဆေ့ချ်ရာဇဝင် များအားလုံးကို ဖျက်မည်ဆိုတာ သေချာပါသလား?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">မက်ဆေ့ချ်ရာဇဝင်များအားလုံးကို အမြဲတမ်းဖျက်သိမ်းလုပ်ပါမည်။ ၎င်းလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်းလို့် မရပါ။</string>
+  <string name="preferences_storage__delete_all_now">အားလုံးကို ယခု ဖျက်သိမ်းမယ်</string>
   <string name="preferences_storage__forever">အမြဲတမ်း</string>
   <string name="preferences_storage__one_year">1 နှစ်</string>
   <string name="preferences_storage__six_months">6 လ</string>
@@ -1939,11 +1939,11 @@
   <string name="preferences_chats__message_text_size">စာလုံးအရွယ်အစား</string>
   <string name="preferences_events__contact_joined_signal">Signal ကို လာသုံးနေပြီ</string>
   <string name="preferences_notifications__priority">ဦးစားပေး</string>
-  <string name="preferences_communication__category_sealed_sender">ပေးပို့သူ</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">ပြညွှန်ကိန်းများ</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">တံဆိပ်ခတ်သူအား သုံး၍ ပို့သောမက်ဆေ့ခ်ျများပေါ်တွင်“ သတင်းအချက်အလက်အသေးစိတ်” ကိုရွေးသောအခါ status အိုင်ကွန်ကိုပြပါ။</string>
+  <string name="preferences_communication__category_sealed_sender">ဖုံးကွယ်ထားသော ပေးပို့သူ</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">ပြသမှု ညွှန်ကိန်းများ</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">ဖုံးကွယ်ထားသော ပေးပို့သူ ကိုသုံး၍ ပေးပို့သော မက်ဆေ့ချ်များအတွက် \"မက်ဆေ့ချ် အချက်အလက်များ\" ကိုရွေးလျှင် အခြေအနေအိုင်ကွန် ကိုပြသပါ။</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">မည်သူမဆိုထံမှခွင့်ပြုပါ</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">သင်နှင့်သင်၏ကိုယ်ရေးကိုယ်တာအချက်အလက်များကိုမဝေမျှသူများနှင့်အဆက်အသွယ်မဟုတ်သူများထံမှလာသည့်မက်ဆေ့ခ်ျများအတွက်တံဆိပ်ခတ်သောပေးပို့သူကိုခွင့်ပြုပါ။</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">အဆက်အသွယ်မဟုတ်သောသူများ နှင့် သင်၏ ပရိုဖိုင်းကို မမျှဝေရသေးသော သူများ မှ အဝင်မက်ဆေ့ချ်များအတွက် ပေးပိုးသူဖုံးခြင်း ဖွင့်ပါ။</string>
   <string name="preferences_communication__sealed_sender_learn_more">ထပ်မံလေ့လာရန်</string>
   <string name="preferences_setup_a_username">သုံးစွဲသူအမည်တစ်ခုသတ်မှတ်ပါ</string>
   <string name="preferences_proxy">ကြားခံ</string>
@@ -2024,8 +2024,8 @@
   <string name="PaymentsDetailsFragment__network_fee">ကွန်ယက်အခကြေးငွေ</string>
   <string name="PaymentsDetailsFragment__sent_by">မှပေးပို့သည်</string>
   <string name="PaymentsDetailsFragment__sent_to_s">%1$s သို့ပေးပို့ခဲ့ပြီး</string>
-  <string name="PaymentsDetailsFragment__you_on_s_at_s">သင့်ကို %1$s နေ့ရက်၊ %2$s အချိန်တွင်</string>
-  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ကို %2$s နေ့ရက်၊ %3$s အချိန်တွင်</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">သင့်ကို %1$s ၊ %2$s အချိန်တွင်</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ကို %2$s ၊ %3$s အချိန်တွင်</string>
   <string name="PaymentsDetailsFragment__to">သို့</string>
   <string name="PaymentsDetailsFragment__from">မှ</string>
   <string name="PaymentsDetailsFragment__information">ငွေပေးချေမှု ငွေပမာဏ နှင့် လုပ်ဆောင်သည့်အချိန် အပါအဝင် ငွေပေးငွေယူသည့် အသေးစိတ်အချက်အလက်များသည်  MobileCoin စာအုပ်စာရင်း၏ အစိတ်အပိုင်းတစ်ခု ဖြစ်ပါသည်။</string>
@@ -2211,10 +2211,10 @@
   <string name="InsightsModalFragment__description">သင်၏ အထွက်စာများ မည်မျှလုံလုံခြုံခြုံ ပေးပို့ခဲ့သည်ကို ရှာဖွေပါ။ သင်၏ Signal ရာခိုင်နှုန်းကို တိုးစေရန် အဆက်အသွယ်အသစ်များကို လျင်မြန်စွာဖိတ်ပါ။</string>
   <string name="InsightsModalFragment__view_insights">ထင်မြင်ချက်များ ကိုကြည့်မယ်</string>
   <string name="FirstInviteReminder__title">Signal သို့ ဖိတ်ခေါ်မည်</string>
-  <string name="FirstInviteReminder__description">သင်ပေးပို့လိုက်သောစာဝှက်ထားသောစာအရေအတွက်ကိုတိုးမြှင့်နိုင်သည်%1$d%%</string>
+  <string name="FirstInviteReminder__description">သင်ပေးပို့သည့် ကုဒ်ဖြင့်ဝှက်ထားသော မက်ဆေ့ချ်အရေအတွက်ကို %1$d %% ထက်တိုးမြှင့်နိုင်ပါသည်</string>
   <string name="SecondInviteReminder__title">သင်၏ Signal ကိုမြှင့်တင်ပါ</string>
-  <string name="SecondInviteReminder__description">ဖိတ်ကြားပါ%1$s</string>
-  <string name="InsightsReminder__view_insights">Insights ကိုကြည့်ပါ</string>
+  <string name="SecondInviteReminder__description">%1$s ကို ဖိတ်ခေါ်မယ်</string>
+  <string name="InsightsReminder__view_insights">ထင်မြင်ချက်များ (Insights) ကိုကြည့်မယ်</string>
   <string name="InsightsReminder__invite">ဖိတ်ခေါ်မယ်</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
@@ -2276,7 +2276,7 @@
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal မှတ်ပုံတင်ခြင်း - Android ပေါ်တွင် ပင်နံပါတ် (v1 PIN) နှင့်ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal မှတ်ပုံတင်ခြင်း - Android ပေါ်တွင် ပင်နံပါတ် (v2 PIN) နှင့်ပါတ်သက်သော အကူအညီရယူလိုပါသည်</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="other">ကိုယ်ရေးကိုယ်တာ လုံခြုံရေးအတွက် သင်၏ PIN ကို ပြန်လည်ရယူရန် မဖြစ်နိုင်ပါ။ PIN ကိုမမှတ်မိနိုင်ပါက စာတိုဖြင့်အတည်ပြုကုဒ်ဖြင့် ရက်ပေါင်း %1$d ရက်အတွင်းအသုံးမပြုဘဲ ရယူနိုင်ပါသည်။ ဤအခြေအနေတွင် သင့်အကောင့် အသုံးပြုမှုမှတ်တမ်းများအားလုံးကို ဖျက်ပစ်ပြီးဖြစ်သည်</item>
+    <item quantity="other">ကိုယ်ရေးကိုယ်တာ လုံခြုံရေးအတွက် သင်၏ ပင်နံပါတ်ကို ပြန်လည်ရယူရန် မဖြစ်နိုင်ပါ။ ပင်နံပါတ် ကိုမမှတ်မိနိုင်ပါက SMS စာတိုဖြင့် အတည်ပြုကုဒ်ဖြင့် ရက်ပေါင်း %1$d ရက်အတွင်းအသုံးမပြုဘဲ ရယူနိုင်ပါသည်။ ဤအခြေအနေတွင် သင့်အကောင့် အသုံးပြုမှုမှတ်တမ်းများအားလုံးကို ဖျက်ပစ်ပြီးဖြစ်သည်။</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="other">ပင်နံပါတ် မမှန်ကန်ပါ။​ ကြိုးစားရန် %1$d ကြိမ် ကျန်ရှိပါသည်။</item>
@@ -2558,21 +2558,21 @@
   <string name="GroupLinkBottomSheet_qr_code">QR ကုဒ်</string>
   <string name="GroupLinkBottomSheet_share">ဝေမျှမည်</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ကလစ်ဘုတ် သို့ ကူးယူပြီး</string>
-  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ဒီလင့်ခ်သည်လက်ရှိမလုပ်ဆောင်ပါ</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">၎င်းအဖွဲ့လင့်ခ်သည် အသက်မဝင်ပါ</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">အသံစာတို %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">အသံ မက်ဆေ့ချ် · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sမှ %2$sသို့</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
-  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"ပိတ်ဆို့ထားသည်</string>
-  <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ကိုပိတ်ဆို့ခြင်းမအောင်မြင်ပါ </string>
-  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\"ကိုအပိတ်အဆို့ဖယ်ရှားသည်</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ကို ပိတ်ပယ်ထားပါသည်</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" ကို ပိတ်ပယ်ခြင်း မအောင်မြင်ပါ</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ကို ပိတ်ပင်ခြင်းမှ ပြန်ဖြည်လိုက်ပြီ</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">အသင်းဝင်များကိုပြန်လည်စစ်ဆေးပါ</string>
-  <string name="ReviewCardDialogFragment__review_request">တောင်းဆိုမှုများကိုပြန်လည်ဆန်းစစ်ပါ</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d အဖွဲ့ ၀င်များသည်နာမည်ထပ်တူနေပါသော‌ကြောင့်အောက်ပါအသင်း ၀င်များကိုပြန်လည်စစ်ဆေးပြီးအရေးယူပါ</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">တောင်းဆိုမှုသည်မည်သူဖြစ်သည်ကိုမသိလျှင်အောက်ပါလိပ်စာများကိုပြန်လည်စစ်ဆေးပြီးအရေးယူပါ</string>
+  <string name="ReviewCardDialogFragment__review_members">အဖွဲ့ဝင်များကို ပြန်လည်စစ်ဆေးပါ</string>
+  <string name="ReviewCardDialogFragment__review_request">တောင်းဆိုမှုကို ပြန်လည်ဆန်းစစ်ပါ</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">အဖွဲ့ဝင် %1$d ဦးသည် အမည်တူနေပါသည်၊ အောက်ပါအဖွဲ့ဝင်များကို စစ်ဆေးပါ သို့မဟုတ် လုပ်ဆောင်ချက်တစ်ခုလုပ်ရန် ရွေးချယ်ပါ။</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">မည်သူမှ တောင်းဆိုသည်ကို မသေချာပါက အောက်ပါ အဆက်အသွယ်များကို ပြန်လည်စစ်ဆေးပြီး လုပ်ဆောင်ချက်တစ်ခု ရွေးပါ။</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">အခြား တူညီသော အဖွဲ့များမရှိပါ</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">အခြား တူညီသော အဖွဲ့များမရှိပါ</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2595,13 +2595,13 @@
   <string name="ReviewCard__recently_changed">မကြာသေးမီက ပရိုဖိုင်းအမည်ကို %1$s မှ %2$s သို့ ပြောင်းထားခဲ့ပါသည်။</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">အဖွဲ့ထဲ %1$s ၀င်ရောက်လာသည်။</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s နှင့် %2$s အဖွဲ့ဝင်သည်</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s နှင့် %3$s အဖွဲ့ဝင်သည်</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s နှင့် %3$d အခြားသူများအဖွဲ့ဝင်သည်</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s အုပ်စုမှထွက်ခွာသည်</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s နှင့် %2$s အုပ်စုမှထွက်ခွာသည် </string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s နှင့် %3$s အုပ်စုမှထွက်ခွာသည် </string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s နှင့် %3$d အခြားသူများအုပ်စုမှထွက်ခွာသည် </string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s နှင့် %2$s တို့သည် အဖွဲ့ထဲသို့ ဝင်လာပါသည်</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s နှင့် %3$s တို့သည် အဖွဲ့ထဲသို့ ဝင်လာပါသည်</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s နှင့် အခြား %3$d ဦးသည် အဖွဲ့ထဲသို့ ဝင်လာပါသည်</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s အဖွဲ့မှ ထွက်သွားသည်</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s နှင့် %2$s တို့သည်  အဖွဲ့မှ ထွက်သွားသည်</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s နှင့် %3$s တို့သည် အဖွဲ့မှ ထွက်သွားသည်</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s နှင့် အခြား %3$d ဦးသည် အဖွဲ့မှ ထွက်သွားသည်</string>
   <string name="CallParticipant__you">သင်</string>
   <string name="CallParticipant__you_on_another_device">သင် (အခြားစက်ကိရိယာပေါ်တွင်)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (အခြားစက်ကိရိယာပေါ်တွင်)</string>

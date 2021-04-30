@@ -1101,7 +1101,7 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">پوزش، تا کنون دستگاه‌های زیادی را پیوند داده‌اید، سعی کنید برخی از آن‌ها را حذف کنید.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">متاسفانه این کد QR برای اتصال دستگاه معتبر نيست.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">پیوند یک دستگاه سیگنال؟</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">به نظر می آید شما سعی دارید از طریق یک اسکنر شخص ثالث دستگاه سیگنال خود را پیوند دهید. جهت حفظ امنیت، لطفاً کد را دوباره از داخل سیگنال اسکن کنید.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">به نظر می‌رسد شما سعی دارید از طریق یک اسکنر شخص ثالث دستگاه سیگنال خود را پیوند دهید. جهت حفظ امنیت خود، لطفاً کد را دوباره از داخل سیگنال اسکن کنید.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">سیگنال جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">اسکن کردن کد QR بدون مجوز دوربین ممکن نیست</string>
   <!--ExpirationDialog-->
