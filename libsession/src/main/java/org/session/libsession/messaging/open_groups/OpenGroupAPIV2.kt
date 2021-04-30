@@ -78,7 +78,11 @@ object OpenGroupAPIV2 {
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class MessageDeletion @JvmOverloads constructor(val id: Long = 0,
                                                          val deletedMessageId: Long = 0
-    )
+    ) {
+        companion object {
+            val EMPTY = MessageDeletion()
+        }
+    }
 
     data class Request(
             val verb: HTTP.Verb,
@@ -309,7 +313,7 @@ object OpenGroupAPIV2 {
             val idsAsString = JsonUtil.toJson(json["ids"])
             val serverIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.PARSING_FAILED
             val lastMessageServerId = storage.getLastDeletionServerId(room, server) ?: 0
-            val serverID = serverIDs.maxByOrNull {it.id } ?: serverIDs.first()
+            val serverID = serverIDs.maxByOrNull {it.id } ?: MessageDeletion.EMPTY
             if (serverID.id > lastMessageServerId) {
                 storage.setLastDeletionServerId(room, server, serverID.id)
             }

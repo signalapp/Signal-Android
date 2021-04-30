@@ -150,6 +150,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
             val db = DatabaseFactory.getMmsDatabase(context)
             db.delete(messageID)
         }
+        DatabaseFactory.getLokiMessageDatabase(context).deleteMessage(messageID, isSms)
     }
 
     override fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment? {

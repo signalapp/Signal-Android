@@ -57,6 +57,7 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.messages.control.DataExtractionNotification;
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
@@ -570,11 +571,7 @@ public class ConversationFragment extends Fragment
                             for (MessageRecord messageRecord : messageRecords) {
                               Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
                               if (serverID != null && serverID.equals(serverId)) {
-                                if (messageRecord.isMms()) {
-                                  DatabaseFactory.getMmsDatabase(getContext()).delete(messageRecord.getId());
-                                } else {
-                                  DatabaseFactory.getSmsDatabase(getContext()).deleteMessage(messageRecord.getId());
-                                }
+                                MessagingModuleConfiguration.shared.getMessageDataProvider().deleteMessage(messageRecord.id, !messageRecord.isMms());
                                 break;
                               }
                             }
