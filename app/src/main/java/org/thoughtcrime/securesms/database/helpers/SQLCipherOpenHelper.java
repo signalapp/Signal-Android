@@ -179,8 +179,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int CLEAN_STORAGE_IDS_WITHOUT_INFO   = 95;
   private static final int CLEAN_REACTION_NOTIFICATIONS     = 96;
   private static final int STORAGE_SERVICE_REFACTOR         = 97;
+  private static final int CLEAR_MMS_STORAGE_IDS            = 98;
 
-  private static final int    DATABASE_VERSION = 97;
+  private static final int    DATABASE_VERSION = 98;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1436,6 +1437,15 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         dirtyCount = db.update("recipient", clearDirtyValues, "dirty != 0", null);
 
         Log.d(TAG, String.format(Locale.US, "For storage service refactor migration, there were %d inserts, %d updated, and %d deletes. Cleared the dirty status on %d rows.", insertCount, updateCount, deleteCount, dirtyCount));
+      }
+
+      if (oldVersion < CLEAR_MMS_STORAGE_IDS) {
+        ContentValues deleteValues = new ContentValues();
+        deleteValues.putNull("storage_service_key");
+
+        int deleteCount = db.update("recipient", deleteValues, "storage_service_key NOT NULL AND (group_type = 1 OR (group_type = 0 AND phone IS NULL AND uuid IS NULL))", null);
+
+        Log.d(TAG, "Cleared storageIds from " + deleteCount + " rows. They were either MMS groups or empty contacts.");
       }
 
       db.setTransactionSuccessful();

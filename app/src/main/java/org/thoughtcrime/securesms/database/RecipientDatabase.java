@@ -2662,12 +2662,17 @@ public class RecipientDatabase extends Database {
 
   /**
    * Does not trigger any recipient refreshes -- it is assumed the caller handles this.
+   * Will *not* give storageIds to those that shouldn't get them (e.g. MMS groups, unregistered
+   * users).
    */
   void rotateStorageId(@NonNull RecipientId recipientId) {
     ContentValues values = new ContentValues(1);
     values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
+    String   query = ID + " = ? AND (" + GROUP_TYPE + " IN (?, ?) OR " + REGISTERED + " = ?)";
+    String[] args  = SqlUtil.buildArgs(recipientId, GroupType.SIGNAL_V1.getId(), GroupType.SIGNAL_V2.getId(), RegisteredState.REGISTERED.getId());
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, values, query, args);
   }
 
   /**
