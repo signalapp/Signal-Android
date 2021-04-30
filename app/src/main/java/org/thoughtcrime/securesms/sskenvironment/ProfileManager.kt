@@ -21,6 +21,7 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
     override fun setProfileName(context: Context, recipient: Recipient, profileName: String) {
         val database = DatabaseFactory.getRecipientDatabase(context)
         database.setProfileName(recipient, profileName)
+        recipient.notifyListeners()
     }
 
     override fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String) {
