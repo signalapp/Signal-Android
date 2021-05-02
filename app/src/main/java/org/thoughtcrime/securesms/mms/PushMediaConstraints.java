@@ -6,13 +6,13 @@ import org.thoughtcrime.securesms.util.Util;
 
 public class PushMediaConstraints extends MediaConstraints {
 
-  private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;
-  private static final int MAX_IMAGE_DIMEN        = 1600;
+  private static final int MAX_IMAGE_DIMEN_LOWMEM = 1080;
+  private static final int MAX_IMAGE_DIMEN        = 2160;
   private static final int KB                     = 1024;
   private static final int MB                     = 1024 * KB;
 
-  private static final int[] FALLBACKS        = { MAX_IMAGE_DIMEN, 1024, 768, 512 };
-  private static final int[] FALLBACKS_LOWMEM = { MAX_IMAGE_DIMEN_LOWMEM, 512 };
+  private static final int[] FALLBACKS        = { MAX_IMAGE_DIMEN, 1440, 1080, 720, 540 };
+  private static final int[] FALLBACKS_LOWMEM = { MAX_IMAGE_DIMEN_LOWMEM, 720, 540, 360 };
 
   @Override
   public int getImageMaxWidth(Context context) {
