@@ -81,10 +81,10 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   @Override
-  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+  protected void onSizeChanged(int w, int h, int oldW, int oldH) {
     updateRotation();
     updateKeyboardState();
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    super.onSizeChanged(w, h, oldW, oldH);
   }
 
   private void updateRotation() {
