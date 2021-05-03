@@ -1,7 +1,7 @@
 package org.session.libsignal.service.loki.api.crypto
 
 import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
 
 interface SessionProtocol {
 

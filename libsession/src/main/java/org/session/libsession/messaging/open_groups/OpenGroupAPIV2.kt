@@ -17,16 +17,13 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.Error
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
-import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.utilities.HTTP
-import org.session.libsignal.service.loki.api.utilities.HTTP.Verb.*
+import org.session.libsignal.service.loki.HTTP
+import org.session.libsignal.service.loki.HTTP.Verb.*
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Base64.*
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.createContext
 import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 import java.util.*
@@ -39,7 +36,6 @@ object OpenGroupAPIV2 {
 
     val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
 
-    private val sharedContext = Kovenant.createContext()
     private val curve = Curve25519.getInstance(Curve25519.BEST)
 
     sealed class Error : Exception() {
@@ -128,8 +124,8 @@ object OpenGroupAPIV2 {
             }
             when (request.verb) {
                 GET -> requestBuilder.get()
-                PUT -> requestBuilder.put(createBody(request.parameters))
-                POST -> requestBuilder.post(createBody(request.parameters))
+                PUT -> requestBuilder.put(createBody(request.parameters)!!)
+                POST -> requestBuilder.post(createBody(request.parameters)!!)
                 DELETE -> requestBuilder.delete(createBody(request.parameters))
             }
 
@@ -156,7 +152,7 @@ object OpenGroupAPIV2 {
             }
         }
         return if (request.isAuthRequired) {
-            getAuthToken(request.room!!, request.server).bind(sharedContext) { execute(it) }
+            getAuthToken(request.room!!, request.server).bind { execute(it) }
         } else {
             execute(null)
         }
@@ -164,7 +160,7 @@ object OpenGroupAPIV2 {
 
     fun downloadOpenGroupProfilePicture(roomID: String, server: String): Promise<ByteArray, Exception> {
         val request = Request(verb = GET, room = roomID, server = server, endpoint = "rooms/$roomID/image", isAuthRequired = false)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val result = json["result"] as? String ?: throw Error.PARSING_FAILED
             decode(result)
         }
@@ -176,7 +172,7 @@ object OpenGroupAPIV2 {
             Promise.of(it)
         } ?: run {
             requestNewAuthToken(room, server)
-                    .bind(sharedContext) { claimAuthToken(it, room, server) }
+                    .bind { claimAuthToken(it, room, server) }
                     .success { authToken ->
                         storage.setAuthToken(room, server, authToken)
                     }
@@ -188,7 +184,7 @@ object OpenGroupAPIV2 {
                 ?: return Promise.ofFail(Error.GENERIC)
         val queryParameters = mutableMapOf("public_key" to publicKey)
         val request = Request(GET, room, server, "auth_token_challenge", queryParameters, isAuthRequired = false, parameters = null)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val challenge = json["challenge"] as? Map<*, *> ?: throw Error.PARSING_FAILED
             val base64EncodedCiphertext = challenge["ciphertext"] as? String
                     ?: throw Error.PARSING_FAILED
@@ -211,12 +207,12 @@ object OpenGroupAPIV2 {
         val headers = mapOf("Authorization" to authToken)
         val request = Request(verb = POST, room = room, server = server, endpoint = "claim_auth_token",
                 parameters = parameters, headers = headers, isAuthRequired = false)
-        return send(request).map(sharedContext) { authToken }
+        return send(request).map { authToken }
     }
 
     fun deleteAuthToken(room: String, server: String): Promise<Unit, Exception> {
         val request = Request(verb = DELETE, room = room, server = server, endpoint = "auth_token")
-        return send(request).map(sharedContext) {
+        return send(request).map {
             MessagingModuleConfiguration.shared.storage.removeAuthToken(room, server)
         }
     }
@@ -226,14 +222,14 @@ object OpenGroupAPIV2 {
         val base64EncodedFile = encodeBytes(file)
         val parameters = mapOf("file" to base64EncodedFile)
         val request = Request(verb = POST, room = room, server = server, endpoint = "files", parameters = parameters)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             json["result"] as? Long ?: throw Error.PARSING_FAILED
         }
     }
 
     fun download(file: Long, room: String, server: String): Promise<ByteArray, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "files/$file")
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val base64EncodedFile = json["result"] as? String ?: throw Error.PARSING_FAILED
             decode(base64EncodedFile) ?: throw Error.PARSING_FAILED
         }
@@ -243,7 +239,7 @@ object OpenGroupAPIV2 {
         val signedMessage = message.sign() ?: return Promise.ofFail(Error.SIGNING_FAILED)
         val jsonMessage = signedMessage.toJSON()
         val request = Request(verb = POST, room = room, server = server, endpoint = "messages", parameters = jsonMessage)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String, Any>
                     ?: throw Error.PARSING_FAILED
             OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.PARSING_FAILED
@@ -259,7 +255,7 @@ object OpenGroupAPIV2 {
             queryParameters += "from_server_id" to lastId.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "messages", queryParameters = queryParameters)
-        return send(request).map(sharedContext) { jsonList ->
+        return send(request).map { jsonList ->
             @Suppress("UNCHECKED_CAST") val rawMessages = jsonList["messages"] as? List<Map<String, Any>>
                     ?: throw Error.PARSING_FAILED
             val lastMessageServerId = storage.getLastMessageServerId(room, server) ?: 0
@@ -296,7 +292,7 @@ object OpenGroupAPIV2 {
     @JvmStatic
     fun deleteMessage(serverID: Long, room: String, server: String): Promise<Unit, Exception> {
         val request = Request(verb = DELETE, room = room, server = server, endpoint = "messages/$serverID")
-        return send(request).map(sharedContext) {
+        return send(request).map {
             Log.d("Loki", "Deleted server message")
         }
     }
@@ -308,7 +304,7 @@ object OpenGroupAPIV2 {
             queryParameters["from_server_id"] = last.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "deleted_messages", queryParameters = queryParameters)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
             val idsAsString = JsonUtil.toJson(json["ids"])
             val serverIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.PARSING_FAILED
@@ -329,7 +325,7 @@ object OpenGroupAPIV2 {
 
     fun getModerators(room: String, server: String): Promise<List<String>, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "moderators")
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             @Suppress("UNCHECKED_CAST") val moderatorsJson = json["moderators"] as? List<String>
                     ?: throw Error.PARSING_FAILED
             val id = "$server.$room"
@@ -342,14 +338,14 @@ object OpenGroupAPIV2 {
     fun ban(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
         val parameters = mapOf("public_key" to publicKey)
         val request = Request(verb = POST, room = room, server = server, endpoint = "block_list", parameters = parameters)
-        return send(request).map(sharedContext) {
+        return send(request).map {
             Log.d("Loki", "Banned user $publicKey from $server.$room")
         }
     }
 
     fun unban(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
         val request = Request(verb = DELETE, room = room, server = server, endpoint = "block_list/$publicKey")
-        return send(request).map(sharedContext) {
+        return send(request).map {
             Log.d("Loki", "Unbanned user $publicKey from $server.$room")
         }
     }
@@ -380,7 +376,7 @@ object OpenGroupAPIV2 {
         }
         val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false, parameters = mapOf("requests" to requests))
         // build a request for all rooms
-        return send(request = request).map(sharedContext) { json ->
+        return send(request = request).map { json ->
             val results = json["results"] as? List<*> ?: throw Error.PARSING_FAILED
 
             results.mapNotNull { roomJson ->
@@ -462,7 +458,7 @@ object OpenGroupAPIV2 {
 
     fun getInfo(room: String, server: String): Promise<Info, Exception> {
         val request = Request(verb = GET, room = null, server = server, endpoint = "rooms/$room", isAuthRequired = false)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val rawRoom = json["room"] as? Map<*, *> ?: throw Error.PARSING_FAILED
             val id = rawRoom["id"] as? String ?: throw Error.PARSING_FAILED
             val name = rawRoom["name"] as? String ?: throw Error.PARSING_FAILED
@@ -473,7 +469,7 @@ object OpenGroupAPIV2 {
 
     fun getAllRooms(server: String): Promise<List<Info>, Exception> {
         val request = Request(verb = GET, room = null, server = server, endpoint = "rooms", isAuthRequired = false)
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val rawRooms = json["rooms"] as? List<Map<*, *>> ?: throw Error.PARSING_FAILED
             rawRooms.mapNotNull {
                 val roomJson = it as? Map<*, *> ?: return@mapNotNull null
@@ -487,7 +483,7 @@ object OpenGroupAPIV2 {
 
     fun getMemberCount(room: String, server: String): Promise<Long, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "member_count")
-        return send(request).map(sharedContext) { json ->
+        return send(request).map { json ->
             val memberCount = json["member_count"] as? Long ?: throw Error.PARSING_FAILED
             val storage = MessagingModuleConfiguration.shared.storage
             storage.setUserCount(room, server, memberCount)

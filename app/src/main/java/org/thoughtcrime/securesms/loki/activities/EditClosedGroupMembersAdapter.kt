@@ -7,15 +7,17 @@ import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
 
 class EditClosedGroupMembersAdapter(
     private val context: Context,
     private val glide: GlideRequests,
+    private val admin: Boolean,
     private val memberClickListener: ((String) -> Unit)? = null
 ) : RecyclerView.Adapter<EditClosedGroupMembersAdapter.ViewHolder>() {
 
     private val members = ArrayList<String>()
-    private val lockedMembers = HashSet<String>()
+    private val zombieMembers = ArrayList<String>()
 
     fun setMembers(members: Collection<String>) {
         this.members.clear()
@@ -23,9 +25,9 @@ class EditClosedGroupMembersAdapter(
         notifyDataSetChanged()
     }
 
-    fun setLockedMembers(members: Collection<String>) {
-        this.lockedMembers.clear()
-        this.lockedMembers.addAll(members)
+    fun setZombieMembers(members: Collection<String>) {
+        this.zombieMembers.clear()
+        this.zombieMembers.addAll(members)
         notifyDataSetChanged()
     }
 
@@ -39,15 +41,20 @@ class EditClosedGroupMembersAdapter(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val member = members[position]
 
-        val lockedMember = lockedMembers.contains(member)
+        val unlocked = admin && member != TextSecurePreferences.getLocalNumber(context)
 
         viewHolder.view.bind(Recipient.from(
             context,
             Address.fromSerialized(member), false),
             glide,
-            if (lockedMember) UserView.ActionIndicator.None else UserView.ActionIndicator.Menu)
+            if (unlocked) UserView.ActionIndicator.Menu else UserView.ActionIndicator.None)
 
-        if (!lockedMember) {
+        if (zombieMembers.contains(member))
+            viewHolder.view.alpha = 0.5F
+        else
+            viewHolder.view.alpha = 1F
+
+        if (unlocked) {
             viewHolder.view.setOnClickListener { this.memberClickListener?.invoke(member) }
         }
     }

@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.utilities
+package org.session.libsignal.service.loki
 
 import org.session.libsignal.service.api.crypto.DigestingOutputStream
 import org.session.libsignal.service.internal.push.http.OutputStreamFactory

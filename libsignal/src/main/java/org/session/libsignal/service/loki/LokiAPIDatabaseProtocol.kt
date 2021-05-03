@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.database
+package org.session.libsignal.service.loki
 
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.loki.Snode

@@ -98,13 +98,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/home_activity_gradient" />
 
-        <org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
-            android:id="@+id/newConversationButtonSet"
-            android:layout_width="276dp"
-            android:layout_height="236dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" />
-
         <LinearLayout
             android:id="@+id/emptyStateContainer"
             android:layout_width="wrap_content"
@@ -130,6 +123,13 @@
                 android:text="@string/activity_home_empty_state_button_title" />
 
         </LinearLayout>
+
+        <org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
+            android:id="@+id/newConversationButtonSet"
+            android:layout_width="276dp"
+            android:layout_height="236dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

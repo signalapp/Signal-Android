@@ -7,10 +7,8 @@ import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsignal.service.loki.utilities.getRandomElementOrNull
-import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.successBackground
 
@@ -71,11 +69,8 @@ class ClosedGroupPoller {
                     // ignore inactive group's messages
                     return@successBackground
                 }
-                messages.forEach { message ->
-                    val rawMessageAsJSON = message as? Map<*, *>
-                    val base64EncodedData = rawMessageAsJSON?.get("data") as? String
-                    val data = base64EncodedData?.let { Base64.decode(it) } ?: return@forEach
-                    val job = MessageReceiveJob(MessageWrapper.unwrap(data).toByteArray(), false)
+                messages.forEach { envelope ->
+                    val job = MessageReceiveJob(envelope.toByteArray(), false)
                     JobQueue.shared.add(job)
                 }
             }

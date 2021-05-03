@@ -145,7 +145,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 }
                 is Kind.EncryptionKeyPair -> {
                     closedGroupControlMessage.type = DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR
-                    closedGroupControlMessage.publicKey = kind.publicKey
+                    closedGroupControlMessage.publicKey = kind.publicKey ?: ByteString.EMPTY
                     closedGroupControlMessage.addAllWrappers(kind.wrappers.map { it.toProto() })
                 }
                 is Kind.NameChange -> {

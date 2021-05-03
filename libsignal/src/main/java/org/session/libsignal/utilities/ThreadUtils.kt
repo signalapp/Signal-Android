@@ -3,7 +3,6 @@ package org.session.libsignal.utilities
 import java.util.concurrent.*
 
 object ThreadUtils {
-
     val executorPool = Executors.newCachedThreadPool()
 
     @JvmStatic
@@ -17,10 +16,8 @@ object ThreadUtils {
 
     @JvmStatic
     fun newDynamicSingleThreadedExecutor(): ExecutorService {
-        val executor = ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS,
-                LinkedBlockingQueue())
+        val executor = ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS, LinkedBlockingQueue())
         executor.allowCoreThreadTimeOut(true)
         return executor
     }
-
 }

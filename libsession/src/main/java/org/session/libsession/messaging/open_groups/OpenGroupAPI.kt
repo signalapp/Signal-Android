@@ -21,7 +21,6 @@ import java.util.*
 object OpenGroupAPI: DotNetAPI() {
 
     private val moderators: HashMap<String, HashMap<Long, Set<String>>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-    val sharedContext = Kovenant.createContext()
 
     // region Settings
     private val fallbackBatchCount = 64
@@ -61,7 +60,7 @@ object OpenGroupAPI: DotNetAPI() {
             parameters["count"] = fallbackBatchCount
             parameters["include_deleted"] = 0
         }
-        return execute(HTTPVerb.GET, server, "channels/$channel/messages", parameters = parameters).then(sharedContext) { json ->
+        return execute(HTTPVerb.GET, server, "channels/$channel/messages", parameters = parameters).then { json ->
             try {
                 val data = json["data"] as List<Map<*, *>>
                 val messages = data.mapNotNull { message ->
@@ -166,7 +165,7 @@ object OpenGroupAPI: DotNetAPI() {
         } else {
             parameters["count"] = fallbackBatchCount
         }
-        return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/deletes", parameters = parameters).then(sharedContext) { json ->
+        return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/deletes", parameters = parameters).then { json ->
             try {
                 val deletedMessageServerIDs = (json["data"] as List<Map<*, *>>).mapNotNull { deletion ->
                     try {
@@ -202,7 +201,7 @@ object OpenGroupAPI: DotNetAPI() {
                 retryIfNeeded(maxRetryCount) {
                     Log.d("Loki", "Sending message to open group with ID: $channel on server: $server.")
                     val parameters = signedMessage.toJSON()
-                    execute(HTTPVerb.POST, server, "channels/$channel/messages", parameters = parameters).then(sharedContext) { json ->
+                    execute(HTTPVerb.POST, server, "channels/$channel/messages", parameters = parameters).then { json ->
                         try {
                             val data = json["data"] as Map<*, *>
                             val serverID = (data["id"] as? Long) ?: (data["id"] as? Int)?.toLong() ?: (data["id"] as String).toLong()
@@ -255,7 +254,7 @@ object OpenGroupAPI: DotNetAPI() {
 
     @JvmStatic
     fun getModerators(channel: Long, server: String): Promise<Set<String>, Exception> {
-        return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/get_moderators").then(sharedContext) { json ->
+        return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/get_moderators").then { json ->
             try {
                 @Suppress("UNCHECKED_CAST") val moderators = json["moderators"] as? List<String>
                 val moderatorsAsSet = moderators.orEmpty().toSet()
@@ -276,7 +275,7 @@ object OpenGroupAPI: DotNetAPI() {
     fun getChannelInfo(channel: Long, server: String): Promise<OpenGroupInfo, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val parameters = mapOf( "include_annotations" to 1 )
-            execute(HTTPVerb.GET, server, "/channels/$channel", parameters = parameters).then(sharedContext) { json ->
+            execute(HTTPVerb.GET, server, "/channels/$channel", parameters = parameters).then { json ->
                 try {
                     val data = json["data"] as Map<*, *>
                     val annotations = data["annotations"] as List<Map<*, *>>
@@ -357,7 +356,7 @@ object OpenGroupAPI: DotNetAPI() {
 
     @JvmStatic
     fun getDisplayNames(publicKeys: Set<String>, server: String): Promise<Map<String, String>, Exception> {
-        return getUserProfiles(publicKeys, server, false).map(sharedContext) { json ->
+        return getUserProfiles(publicKeys, server, false).map { json ->
             val mapping = mutableMapOf<String, String>()
             for (user in json) {
                 if (user["username"] != null) {

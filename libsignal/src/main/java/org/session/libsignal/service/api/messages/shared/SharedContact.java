@@ -1,6 +1,5 @@
 package org.session.libsignal.service.api.messages.shared;
 
-
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 

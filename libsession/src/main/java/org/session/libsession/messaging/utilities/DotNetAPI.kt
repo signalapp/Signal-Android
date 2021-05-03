@@ -20,9 +20,10 @@ import org.session.libsignal.service.internal.push.ProfileAvatarData
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
-import org.session.libsignal.service.loki.api.utilities.HTTP
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.JsonUtil
+import org.session.libsignal.service.loki.HTTP
+import org.session.libsignal.service.loki.utilities.*
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
