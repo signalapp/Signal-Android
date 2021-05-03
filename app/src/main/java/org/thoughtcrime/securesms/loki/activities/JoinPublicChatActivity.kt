@@ -102,7 +102,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
                     threadID to groupID
                 } else {
                     val channel: Long = 1
-                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, properString, channel)
                     val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
                     val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
                     threadID to groupID

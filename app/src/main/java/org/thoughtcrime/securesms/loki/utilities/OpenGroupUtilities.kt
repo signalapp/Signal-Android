@@ -8,12 +8,14 @@ import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupV2
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
+import java.util.*
 
 //TODO Refactor so methods declare specific type of checked exceptions and not generalized Exception.
 object OpenGroupUtilities {
@@ -91,6 +93,16 @@ object OpenGroupUtilities {
 
         EventBus.getDefault().post(GroupInfoUpdatedEvent(url, channel))
     }
+
+    /**
+     * Return a generated name for users in the style of `$name (...$hex.takeLast(8))` for public groups
+     */
+    @JvmStatic
+    fun getDisplayName(recipient: Recipient): String {
+        return String.format(Locale.ROOT, PUBLIC_GROUP_STRING_FORMAT, recipient.name, recipient.address.serialize().takeLast(8))
+    }
+
+    const val PUBLIC_GROUP_STRING_FORMAT = "%s (...%s)"
 
     data class GroupInfoUpdatedEvent(val url: String, val channel: Long)
 }

@@ -34,7 +34,7 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
         }
         val sampleWindow = System.currentTimeMillis() - pollForNewMessagesInterval * 2
         val numberInSample = receivedQueue.toList().filter { it > sampleWindow }.size.coerceAtLeast(1)
-        return ((2 + (50 / numberInSample / 20)*10) * 1000).toLong()
+        return ((2 + (50 / numberInSample / 20)*5) * 1000).toLong()
     }
 
     // region Settings
@@ -80,7 +80,6 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
             isPollOngoing = false
             if (!isBackgroundPoll) {
                 val delay = calculatePollInterval()
-                Log.d("Loki", "polling in ${delay}ms")
                 executorService?.schedule(this@OpenGroupV2Poller::compactPoll, delay, TimeUnit.MILLISECONDS)
             }
         }
