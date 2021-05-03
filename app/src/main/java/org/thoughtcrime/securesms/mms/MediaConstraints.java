@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Pair;
 
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
@@ -42,6 +43,10 @@ public abstract class MediaConstraints {
 
   public abstract int getGifMaxSize(Context context);
   public abstract int getVideoMaxSize(Context context);
+
+  public @IntRange(from = 0, to = 100) int getImageCompressionQualitySetting(@NonNull Context context) {
+    return 70;
+  }
 
   public int getUncompressedVideoMaxSize(Context context) {
     return getVideoMaxSize(context);

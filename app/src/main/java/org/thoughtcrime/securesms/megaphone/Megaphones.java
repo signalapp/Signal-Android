@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.PopulationFeatureFlags;
+import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -308,11 +308,11 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowResearchMegaphone(@NonNull Context context) {
-    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && PopulationFeatureFlags.isInResearchMegaphone();
+    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && LocaleFeatureFlags.isInResearchMegaphone();
   }
 
   private static boolean shouldShowDonateMegaphone(@NonNull Context context) {
-    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && PopulationFeatureFlags.isInDonateMegaphone();
+    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && LocaleFeatureFlags.isInDonateMegaphone();
   }
 
   private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {

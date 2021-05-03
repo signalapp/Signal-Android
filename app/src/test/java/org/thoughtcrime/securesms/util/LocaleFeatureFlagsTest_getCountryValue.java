@@ -17,7 +17,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class PopulationFeatureFlagsTest_determineCountEnabled {
+public class LocaleFeatureFlagsTest_getCountryValue {
 
   private final String               phoneNumber;
   private final Map<String, Integer> countryCounts;
@@ -66,9 +66,9 @@ public class PopulationFeatureFlagsTest_determineCountEnabled {
     Log.initialize(new EmptyLogger());
   }
 
-  public PopulationFeatureFlagsTest_determineCountEnabled(@NonNull String phoneNumber,
-                                                          @NonNull Map<String, Integer> countryCounts,
-                                                          long output)
+  public LocaleFeatureFlagsTest_getCountryValue(@NonNull String phoneNumber,
+                                                @NonNull Map<String, Integer> countryCounts,
+                                                long output)
   {
     this.phoneNumber   = phoneNumber;
     this.countryCounts = countryCounts;
@@ -77,7 +77,7 @@ public class PopulationFeatureFlagsTest_determineCountEnabled {
 
   @Test
   public void determineCountEnabled() {
-    assertEquals(output, PopulationFeatureFlags.determineCountEnabled(countryCounts, phoneNumber));
+    assertEquals(output, LocaleFeatureFlags.getCountryValue(countryCounts, phoneNumber, 0));
   }
 
 }

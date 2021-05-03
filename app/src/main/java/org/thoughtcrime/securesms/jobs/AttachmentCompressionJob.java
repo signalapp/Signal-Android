@@ -319,7 +319,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                                 new DecryptableStreamUriLoader.DecryptableUri(uri),
                                                                 size,
                                                                 mediaConstraints.getImageMaxSize(context),
-                                                                70);
+                                                                mediaConstraints.getImageCompressionQualitySetting(context));
         if (result != null) {
           break;
         }
