@@ -262,7 +262,7 @@ object MessageSender {
                     val openGroupMessage = OpenGroupMessageV2(
                             sender = message.sender,
                             sentTimestamp = message.sentTimestamp!!,
-                            base64EncodedData = Base64.encodeBytes(PushTransportDetails.getPaddedMessageBody(proto.dataMessage!!.toByteArray())),
+                            base64EncodedData = Base64.encodeBytes(proto.toByteArray()),
                     )
 
                     OpenGroupAPIV2.send(openGroupMessage,room,server).success {

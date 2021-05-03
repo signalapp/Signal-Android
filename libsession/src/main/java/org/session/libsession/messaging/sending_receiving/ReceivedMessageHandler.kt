@@ -170,7 +170,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         if (displayName.isNotEmpty()) {
             profileManager.setDisplayName(context, recipient, displayName)
         }
-        if (newProfile.profileKey?.isNotEmpty() == true && !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
+        if (newProfile.profileKey?.isNotEmpty() == true
+                && (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey))) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             val newUrl = newProfile.profilePictureURL

@@ -62,8 +62,8 @@ data class OpenGroupMessageV2(
         return jsonMap
     }
 
-    fun toProto(): SignalServiceProtos.DataMessage = decode(base64EncodedData).let(PushTransportDetails::getStrippedPaddingMessageBody).let { bytes ->
-        SignalServiceProtos.DataMessage.parseFrom(bytes)
+    fun toProto(): SignalServiceProtos.Content = decode(base64EncodedData).let(PushTransportDetails::getStrippedPaddingMessageBody).let { bytes ->
+        SignalServiceProtos.Content.parseFrom(bytes)
     }
 
 }

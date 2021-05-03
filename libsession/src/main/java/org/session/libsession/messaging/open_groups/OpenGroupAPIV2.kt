@@ -17,6 +17,8 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.Error
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
+import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.api.utilities.HTTP.Verb.*
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
@@ -29,13 +31,11 @@ import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 import java.util.*
 
-typealias DeletionList = List<OpenGroupAPIV2.MessageDeletion>
-
 object OpenGroupAPIV2 {
 
     private val moderators: HashMap<String, Set<String>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-    const val DEFAULT_SERVER = "https://sog.ibolpap.finance"
-    private const val DEFAULT_SERVER_PUBLIC_KEY = "b464aa186530c97d6bcf663a3a3b7465a5f782beaa67c83bee99468824b4aa10"
+    const val DEFAULT_SERVER = "http://116.203.70.33"
+    private const val DEFAULT_SERVER_PUBLIC_KEY = "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
 
     val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
 

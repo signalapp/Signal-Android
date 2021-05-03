@@ -79,7 +79,7 @@ object OnionRequestAPI {
 
     internal sealed class Destination {
         class Snode(val snode: org.session.libsignal.service.loki.Snode) : Destination()
-        class Server(val host: String, val target: String, val x25519PublicKey: String) : Destination()
+        class Server(val host: String, val target: String, val x25519PublicKey: String, val scheme: String, val port: Int) : Destination()
     }
 
     // region Private API
@@ -461,7 +461,8 @@ object OnionRequestAPI {
             "method" to request.method(),
             "headers" to headers
         )
-        val destination = Destination.Server(host, target, x25519PublicKey)
+        url.isHttps
+        val destination = Destination.Server(host, target, x25519PublicKey, url.scheme(), url.port())
         return sendOnionRequest(destination, payload, isJSONRequired).recover { exception ->
             Log.d("Loki", "Couldn't reach server: $urlAsString due to error: $exception.")
             throw exception
