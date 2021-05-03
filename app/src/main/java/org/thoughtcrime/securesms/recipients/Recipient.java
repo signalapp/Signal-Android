@@ -650,6 +650,10 @@ public class Recipient {
     return getUuid().isPresent();
   }
 
+  public boolean isUuidOnly() {
+    return hasUuid() && !hasSmsAddress();
+  }
+
   public @NonNull GroupId requireGroupId() {
     GroupId resolved = resolving ? resolve().groupId : groupId;
 
