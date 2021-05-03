@@ -2913,10 +2913,10 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">О MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin — это новая цифровая валюта c акцентом на конфиденциальность.</string>
-  <string name="payment_info_card_adding_funds">Добавление средств</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Вы можете добавить средства для использования их в Signal, отправляя MobileCoin на адрес вашего кошелька.</string>
+  <string name="payment_info_card_adding_funds">Пополнение</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Вы можете пополнить баланс средств, доступных для использования в Signal, отправив MobileCoin на адрес своего кошелька.</string>
   <string name="payment_info_card_cashing_out">Вывод средств</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">Вы можете вывести MobileCoin в любое время в сервисе обмена, который поддерживает MobileCoin. Просто переведите средства на свою учётную запись в этом сервисе обмена.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Вы можете вывести MobileCoin в любое время на любую биржу, которая поддерживает MobileCoin. Просто переведите средства на свою учётную запись на этой бирже.</string>
   <string name="payment_info_card_hide_this_card">Скрыть эту карточку?</string>
   <string name="payment_info_card_hide">Скрыть</string>
   <string name="payment_info_card_record_recovery_phrase">Запишите фразу восстановления</string>

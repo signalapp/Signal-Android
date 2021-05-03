@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN yettwakkes.</string>
   <string name="ApplicationPreferencesActivity_hide">Ffer</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Ffer asmekti?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Sekles tafyirt n tririt n uxelleṣ</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Sekles tafyirt</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -837,6 +838,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Asiwel seg Signal iteddu</string>
   <string name="NotificationBarManager__establishing_signal_call">Aqεad n usiwel n Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Asiwel n Signal i d-iteddun</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Asens n umeẓlu n usiwel n Signal</string>
   <string name="NotificationBarManager__deny_call">Agi asiwel</string>
   <string name="NotificationBarManager__answer_call">Err ɣef usiwel</string>
   <string name="NotificationBarManager__end_call">Fakk asiwel</string>
@@ -2032,8 +2034,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentsAllActivityFragment__all">Akk</string>
   <string name="PaymentsAllActivityFragment__sent">Ttwazanen</string>
   <string name="PaymentsAllActivityFragment__received">Yettwarmes</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Aseddu n uxelleṣ (Beta)</string>
   <string name="PaymentsHomeFragment__activate_payments">Rmed axelleṣ</string>
   <string name="PaymentsHomeFragment__activating_payments">Rmed axelleṣ…</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ulac εad amahil aneggaru</string>
   <string name="PaymentsHomeFragment__pending_requests">Tuttriwin yettraǧun</string>
   <string name="PaymentsHomeFragment__recent_activity">Amahil aneggaru</string>
   <string name="PaymentsHomeFragment__see_all">Wali akk</string>
@@ -2041,6 +2045,9 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentsHomeFragment__send">Azen</string>
   <string name="PaymentsHomeFragment__sent_s">Yettwazen %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Yettwaṭṭef-d %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Azen i ubeddel</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Abeddel n tedrimt</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Sens axelleṣ</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Tifyirt n tririt</string>
   <string name="PaymentsHomeFragment__help">Tallalt</string>
   <string name="PaymentsHomeFragment__sent_payment">Lexlaṣ yettwaznen</string>

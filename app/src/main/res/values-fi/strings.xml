@@ -1493,6 +1493,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Viestipyyntö</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Toista video</string>
   <string name="ThumbnailView_Has_a_caption_description">Sisältää kuvatekstin</string>
@@ -1599,6 +1600,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_call_is_full">Puhelu on täynnä</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu ystäviä</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Näytä ilmoitukset puheluista</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ei yhteisiä ryhmiä. Tarkista pyynnöt huolellisesti.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei kontakteja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Soita … Keskeytä</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
@@ -1688,6 +1691,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%d muuta</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">Etsi GIFfejä</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ei hakutuloksia</string>
   <!--log_submit_activity-->
@@ -2712,6 +2716,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CanNotSendPaymentDialog__cant_send_payment">Maksun lähetys ei ole mahdollista</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Lähetä viesti</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Et kuulu samoihin ryhmiin tämän henkilön kanssa. Käy pyynnöt tarkasti läpi ennen hyväksymistä vältääksesi epätoivotut viestit.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ryhmässä ei ole ketään kontakteistasi tai ihmisistä joiden kanssa puhut. Käy pyynnöt tarkasti läpi ennen hyväksymistä välttääksesi epätoivotut viestit.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Tietoa viestipyynnöistä</string>
   <string name="GroupsInCommonMessageRequest__okay">Selvä</string>
   <!--EOF-->
 </resources>

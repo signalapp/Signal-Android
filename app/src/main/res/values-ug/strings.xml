@@ -1989,7 +1989,7 @@
   <string name="preferences_storage__thirty_days">30 كۈن</string>
   <string name="preferences_storage__none">ھېچنېمە</string>
   <string name="preferences_storage__s_messages">%1$s ئۇچۇرلار</string>
-  <string name="preferences_storage__custom">ئۆزلەشتۈرمە</string>
+  <string name="preferences_storage__custom">ئىختىيارى</string>
   <string name="preferences_advanced__use_system_emoji">سېسىتما ئىپادىسىنى قوللان</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal نىڭ ئىچكى ئىپادە قوللاشلىرىنى ئېتىۋەت</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP ئادرېسىڭىزنىڭ باشقىلارغا كۆرۈنۈپ قېلىشىدىن ساقلىنىش ئۈچۈن، بارلىق چاقىرىقلارنى Signal مۇلازىمېتىر ئارقىلىق ئالاقىداشلىرىڭىزغا ئۇلاپ يوللاڭ. قوزغاتسىڭىز چاقىرىق سۈپىتىنى تۆۋەنلىتىشى مۈمكىن.</string>
@@ -2768,7 +2768,7 @@
   <string name="payment_info_card_with_a_high_balance">قالدۇقىڭىز يۇقىرى بولسا، بەلكىم سان-ھەرپلىك بىر PIN غا يېڭىلاپ، ھېساباتىڭىزنى تېخىمۇ بەكرەك قوغدىغىڭىز كېلىشى مۈمكىن.</string>
   <string name="payment_info_card_update_pin">PIN يېڭىلا</string>
   <!--DeactivateWalletFragment-->
-  <string name="DeactivateWalletFragment__deactivate_wallet">ھەمياننى ئاكتىپسىزلە</string>
+  <string name="DeactivateWalletFragment__deactivate_wallet">ھەمياننى ئاكتىپسىزلا</string>
   <string name="DeactivateWalletFragment__your_balance">قالدۇقىڭىز</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">چىقىمنى ئاكتىپسىزلاشتىن بۇرۇن مەبلىغىڭىزنى باشقا ھەميان ئادرېسىغا يۆتكەش تەۋسىيە قىلىنىدۇ. ئەگەر ھازىر مەبلىغىڭىزنى يۆتكىمەسلىكنى تاللىسىڭىز ، چىقىمنى قايتا ئاكتىپلىسىڭىز ئۇلار Signal غا باغلانغان ھەميانىڭىزدا قالىدۇ.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">قالغان قالدۇقنى يۆتكە</string>

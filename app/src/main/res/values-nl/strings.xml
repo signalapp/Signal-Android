@@ -1846,10 +1846,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--arrays.xml-->
   <string name="arrays__use_default">Gebruik systeemstandaard</string>
   <string name="arrays__use_custom">Gebruik eigen instelling</string>
-  <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
-  <string name="arrays__mute_for_eight_hours">Demp voor 8 uur</string>
-  <string name="arrays__mute_for_one_day">Demp voor 1 dag</string>
-  <string name="arrays__mute_for_seven_days">Demp voor 7 dagen</string>
+  <string name="arrays__mute_for_one_hour">1 uur lang dempen</string>
+  <string name="arrays__mute_for_eight_hours">8 uur lang dempen</string>
+  <string name="arrays__mute_for_one_day">1 dag lang dempen</string>
+  <string name="arrays__mute_for_seven_days">7 dagen lang dempen</string>
   <string name="arrays__always">Voor altijd</string>
   <string name="arrays__settings_default">Gebruik systeemstandaard</string>
   <string name="arrays__enabled">Ingeschakeld</string>

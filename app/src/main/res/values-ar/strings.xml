@@ -2716,6 +2716,7 @@
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">نقل الحساب</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">يُرجى تحديد « نقل انطلاقا من جهاز أندرويد » عند ظهورها، ثم \"استمر\". يُرجى جعل الجهازين قريبين من بعضهما.</string>
   <string name="OldDeviceTransferInstructions__continue">الاِستِمرار</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">إغلاق</string>
