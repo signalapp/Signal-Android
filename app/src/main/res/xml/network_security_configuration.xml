@@ -3,7 +3,7 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">127.0.0.1</domain>
     </domain-config>
-    <domain-config cleartextTrafficPermitted="true">
+    <domain-config cleartextTrafficPermitted="false">
         <domain includeSubdomains="false">public.loki.foundation</domain>
         <trust-anchors>
             <certificates src="@raw/lf_session_cert"/>
@@ -21,13 +21,4 @@
             <certificates src="@raw/seed3cert"/>
         </trust-anchors>
     </domain-config>
-    <debug-overrides>
-        <base-config cleartextTrafficPermitted="true">
-            <trust-anchors>
-                <!-- Trust user added CAs while debuggable only -->
-                <certificates src="user" />
-                <certificates src="system" />
-            </trust-anchors>
-        </base-config>
-    </debug-overrides>
 </network-security-config>
