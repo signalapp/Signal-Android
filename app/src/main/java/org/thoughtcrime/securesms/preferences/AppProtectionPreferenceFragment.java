@@ -102,7 +102,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         if (duration == 0) {
           TextSecurePreferences.setScreenLockTimeout(getContext(), 0);
         } else {
-          long timeoutSeconds = Math.max(TimeUnit.MILLISECONDS.toSeconds(duration), 60);
+          long timeoutSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+//          long timeoutSeconds = Math.max(TimeUnit.MILLISECONDS.toSeconds(duration), 60);
           TextSecurePreferences.setScreenLockTimeout(getContext(), timeoutSeconds);
         }
 
