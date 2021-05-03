@@ -5,39 +5,34 @@ import org.session.libsignal.utilities.logging.Log
 
 class OpenGroupInvitation() : ControlMessage() {
 
-    var serverAddress: String? = null;
-    var channelId: Int? = 0;
-    var serverName: String? = null;
+    var groupUrl: String? = null;
+    var groupName: String? = null;
 
     companion object {
         const val TAG = "OpenGroupInvitation"
 
         fun fromProto(proto: SignalServiceProtos.Content): OpenGroupInvitation? {
             val openGroupInvitationProto = if (proto.hasOpenGroupInvitation()) proto.openGroupInvitation else return null
-            val serverAddress = openGroupInvitationProto.serverAddress
-            val channelId = openGroupInvitationProto.channelId
-            val serverName = openGroupInvitationProto.serverName
-            return OpenGroupInvitation(serverAddress, channelId, serverName)
+            val serverAddress = openGroupInvitationProto.groupUrl
+            val serverName = openGroupInvitationProto.groupName
+            return OpenGroupInvitation(serverAddress, serverName)
         }
     }
 
-    constructor(serverAddress: String?, channelId: Int, serverName: String?): this() {
-        this.serverAddress = serverAddress
-        this.channelId = channelId
-        this.serverName = serverName
+    constructor(url: String?, serverName: String?): this() {
+        this.groupUrl = url
+        this.groupName = serverName
     }
 
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
-        //TODO determine what's required
-        return (serverAddress != null && channelId != null && serverName != null)
+        return (groupUrl != null && groupName != null)
     }
 
     override fun toProto(): SignalServiceProtos.Content? {
         val openGroupInvitationProto = SignalServiceProtos.OpenGroupInvitation.newBuilder()
-        openGroupInvitationProto.serverAddress = serverAddress
-        openGroupInvitationProto.channelId = channelId ?: 0
-        openGroupInvitationProto.serverName = serverName
+        openGroupInvitationProto.groupUrl = groupUrl
+        openGroupInvitationProto.groupName = groupName
 
         val proto = SignalServiceProtos.Content.newBuilder()
         return try {

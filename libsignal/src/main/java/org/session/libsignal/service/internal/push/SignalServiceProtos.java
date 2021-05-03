@@ -12955,45 +12955,35 @@ public final class SignalServiceProtos {
   public interface OpenGroupInvitationOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // optional string serverAddress = 1;
+    // optional string groupUrl = 1;
     /**
-     * <code>optional string serverAddress = 1;</code>
+     * <code>optional string groupUrl = 1;</code>
      */
-    boolean hasServerAddress();
+    boolean hasGroupUrl();
     /**
-     * <code>optional string serverAddress = 1;</code>
+     * <code>optional string groupUrl = 1;</code>
      */
-    java.lang.String getServerAddress();
+    java.lang.String getGroupUrl();
     /**
-     * <code>optional string serverAddress = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getServerAddressBytes();
-
-    // optional uint32 channelId = 2;
-    /**
-     * <code>optional uint32 channelId = 2;</code>
-     */
-    boolean hasChannelId();
-    /**
-     * <code>optional uint32 channelId = 2;</code>
-     */
-    int getChannelId();
-
-    // optional string serverName = 3;
-    /**
-     * <code>optional string serverName = 3;</code>
-     */
-    boolean hasServerName();
-    /**
-     * <code>optional string serverName = 3;</code>
-     */
-    java.lang.String getServerName();
-    /**
-     * <code>optional string serverName = 3;</code>
+     * <code>optional string groupUrl = 1;</code>
      */
     com.google.protobuf.ByteString
-        getServerNameBytes();
+        getGroupUrlBytes();
+
+    // optional string groupName = 2;
+    /**
+     * <code>optional string groupName = 2;</code>
+     */
+    boolean hasGroupName();
+    /**
+     * <code>optional string groupName = 2;</code>
+     */
+    java.lang.String getGroupName();
+    /**
+     * <code>optional string groupName = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getGroupNameBytes();
   }
   /**
    * Protobuf type {@code signalservice.OpenGroupInvitation}
@@ -13048,17 +13038,12 @@ public final class SignalServiceProtos {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              serverAddress_ = input.readBytes();
+              groupUrl_ = input.readBytes();
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              channelId_ = input.readUInt32();
-              break;
-            }
-            case 26: {
-              bitField0_ |= 0x00000004;
-              serverName_ = input.readBytes();
+              groupName_ = input.readBytes();
               break;
             }
           }
@@ -13101,20 +13086,20 @@ public final class SignalServiceProtos {
     }
 
     private int bitField0_;
-    // optional string serverAddress = 1;
-    public static final int SERVERADDRESS_FIELD_NUMBER = 1;
-    private java.lang.Object serverAddress_;
+    // optional string groupUrl = 1;
+    public static final int GROUPURL_FIELD_NUMBER = 1;
+    private java.lang.Object groupUrl_;
     /**
-     * <code>optional string serverAddress = 1;</code>
+     * <code>optional string groupUrl = 1;</code>
      */
-    public boolean hasServerAddress() {
+    public boolean hasGroupUrl() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional string serverAddress = 1;</code>
+     * <code>optional string groupUrl = 1;</code>
      */
-    public java.lang.String getServerAddress() {
-      java.lang.Object ref = serverAddress_;
+    public java.lang.String getGroupUrl() {
+      java.lang.Object ref = groupUrl_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
@@ -13122,58 +13107,42 @@ public final class SignalServiceProtos {
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
-          serverAddress_ = s;
+          groupUrl_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>optional string serverAddress = 1;</code>
+     * <code>optional string groupUrl = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getServerAddressBytes() {
-      java.lang.Object ref = serverAddress_;
+        getGroupUrlBytes() {
+      java.lang.Object ref = groupUrl_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        serverAddress_ = b;
+        groupUrl_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    // optional uint32 channelId = 2;
-    public static final int CHANNELID_FIELD_NUMBER = 2;
-    private int channelId_;
+    // optional string groupName = 2;
+    public static final int GROUPNAME_FIELD_NUMBER = 2;
+    private java.lang.Object groupName_;
     /**
-     * <code>optional uint32 channelId = 2;</code>
+     * <code>optional string groupName = 2;</code>
      */
-    public boolean hasChannelId() {
+    public boolean hasGroupName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional uint32 channelId = 2;</code>
+     * <code>optional string groupName = 2;</code>
      */
-    public int getChannelId() {
-      return channelId_;
-    }
-
-    // optional string serverName = 3;
-    public static final int SERVERNAME_FIELD_NUMBER = 3;
-    private java.lang.Object serverName_;
-    /**
-     * <code>optional string serverName = 3;</code>
-     */
-    public boolean hasServerName() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional string serverName = 3;</code>
-     */
-    public java.lang.String getServerName() {
-      java.lang.Object ref = serverName_;
+    public java.lang.String getGroupName() {
+      java.lang.Object ref = groupName_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
@@ -13181,22 +13150,22 @@ public final class SignalServiceProtos {
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
-          serverName_ = s;
+          groupName_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>optional string serverName = 3;</code>
+     * <code>optional string groupName = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getServerNameBytes() {
-      java.lang.Object ref = serverName_;
+        getGroupNameBytes() {
+      java.lang.Object ref = groupName_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        serverName_ = b;
+        groupName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -13204,9 +13173,8 @@ public final class SignalServiceProtos {
     }
 
     private void initFields() {
-      serverAddress_ = "";
-      channelId_ = 0;
-      serverName_ = "";
+      groupUrl_ = "";
+      groupName_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -13221,13 +13189,10 @@ public final class SignalServiceProtos {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getServerAddressBytes());
+        output.writeBytes(1, getGroupUrlBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, channelId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getServerNameBytes());
+        output.writeBytes(2, getGroupNameBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -13240,15 +13205,11 @@ public final class SignalServiceProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getServerAddressBytes());
+          .computeBytesSize(1, getGroupUrlBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, channelId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getServerNameBytes());
+          .computeBytesSize(2, getGroupNameBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -13366,12 +13327,10 @@ public final class SignalServiceProtos {
 
       public Builder clear() {
         super.clear();
-        serverAddress_ = "";
+        groupUrl_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        channelId_ = 0;
+        groupName_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        serverName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -13403,15 +13362,11 @@ public final class SignalServiceProtos {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.serverAddress_ = serverAddress_;
+        result.groupUrl_ = groupUrl_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.channelId_ = channelId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.serverName_ = serverName_;
+        result.groupName_ = groupName_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -13428,17 +13383,14 @@ public final class SignalServiceProtos {
 
       public Builder mergeFrom(org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation other) {
         if (other == org.session.libsignal.service.internal.push.SignalServiceProtos.OpenGroupInvitation.getDefaultInstance()) return this;
-        if (other.hasServerAddress()) {
+        if (other.hasGroupUrl()) {
           bitField0_ |= 0x00000001;
-          serverAddress_ = other.serverAddress_;
+          groupUrl_ = other.groupUrl_;
           onChanged();
         }
-        if (other.hasChannelId()) {
-          setChannelId(other.getChannelId());
-        }
-        if (other.hasServerName()) {
-          bitField0_ |= 0x00000004;
-          serverName_ = other.serverName_;
+        if (other.hasGroupName()) {
+          bitField0_ |= 0x00000002;
+          groupName_ = other.groupName_;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -13468,183 +13420,150 @@ public final class SignalServiceProtos {
       }
       private int bitField0_;
 
-      // optional string serverAddress = 1;
-      private java.lang.Object serverAddress_ = "";
+      // optional string groupUrl = 1;
+      private java.lang.Object groupUrl_ = "";
       /**
-       * <code>optional string serverAddress = 1;</code>
+       * <code>optional string groupUrl = 1;</code>
        */
-      public boolean hasServerAddress() {
+      public boolean hasGroupUrl() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional string serverAddress = 1;</code>
+       * <code>optional string groupUrl = 1;</code>
        */
-      public java.lang.String getServerAddress() {
-        java.lang.Object ref = serverAddress_;
+      public java.lang.String getGroupUrl() {
+        java.lang.Object ref = groupUrl_;
         if (!(ref instanceof java.lang.String)) {
           java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
-          serverAddress_ = s;
+          groupUrl_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string serverAddress = 1;</code>
+       * <code>optional string groupUrl = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getServerAddressBytes() {
-        java.lang.Object ref = serverAddress_;
+          getGroupUrlBytes() {
+        java.lang.Object ref = groupUrl_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          serverAddress_ = b;
+          groupUrl_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string serverAddress = 1;</code>
+       * <code>optional string groupUrl = 1;</code>
        */
-      public Builder setServerAddress(
+      public Builder setGroupUrl(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        serverAddress_ = value;
+        groupUrl_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string serverAddress = 1;</code>
+       * <code>optional string groupUrl = 1;</code>
        */
-      public Builder clearServerAddress() {
+      public Builder clearGroupUrl() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        serverAddress_ = getDefaultInstance().getServerAddress();
+        groupUrl_ = getDefaultInstance().getGroupUrl();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string serverAddress = 1;</code>
+       * <code>optional string groupUrl = 1;</code>
        */
-      public Builder setServerAddressBytes(
+      public Builder setGroupUrlBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        serverAddress_ = value;
+        groupUrl_ = value;
         onChanged();
         return this;
       }
 
-      // optional uint32 channelId = 2;
-      private int channelId_ ;
+      // optional string groupName = 2;
+      private java.lang.Object groupName_ = "";
       /**
-       * <code>optional uint32 channelId = 2;</code>
+       * <code>optional string groupName = 2;</code>
        */
-      public boolean hasChannelId() {
+      public boolean hasGroupName() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional uint32 channelId = 2;</code>
+       * <code>optional string groupName = 2;</code>
        */
-      public int getChannelId() {
-        return channelId_;
-      }
-      /**
-       * <code>optional uint32 channelId = 2;</code>
-       */
-      public Builder setChannelId(int value) {
-        bitField0_ |= 0x00000002;
-        channelId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 channelId = 2;</code>
-       */
-      public Builder clearChannelId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        channelId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional string serverName = 3;
-      private java.lang.Object serverName_ = "";
-      /**
-       * <code>optional string serverName = 3;</code>
-       */
-      public boolean hasServerName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string serverName = 3;</code>
-       */
-      public java.lang.String getServerName() {
-        java.lang.Object ref = serverName_;
+      public java.lang.String getGroupName() {
+        java.lang.Object ref = groupName_;
         if (!(ref instanceof java.lang.String)) {
           java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
-          serverName_ = s;
+          groupName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string serverName = 3;</code>
+       * <code>optional string groupName = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getServerNameBytes() {
-        java.lang.Object ref = serverName_;
+          getGroupNameBytes() {
+        java.lang.Object ref = groupName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          serverName_ = b;
+          groupName_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string serverName = 3;</code>
+       * <code>optional string groupName = 2;</code>
        */
-      public Builder setServerName(
+      public Builder setGroupName(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
-        serverName_ = value;
+  bitField0_ |= 0x00000002;
+        groupName_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string serverName = 3;</code>
+       * <code>optional string groupName = 2;</code>
        */
-      public Builder clearServerName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        serverName_ = getDefaultInstance().getServerName();
+      public Builder clearGroupName() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        groupName_ = getDefaultInstance().getGroupName();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string serverName = 3;</code>
+       * <code>optional string groupName = 2;</code>
        */
-      public Builder setServerNameBytes(
+      public Builder setGroupNameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
-        serverName_ = value;
+  bitField0_ |= 0x00000002;
+        groupName_ = value;
         onChanged();
         return this;
       }
@@ -21202,38 +21121,37 @@ public final class SignalServiceProtos {
       "\020\001\022\027\n\023ENCRYPTION_KEY_PAIR\020\003\022\017\n\013NAME_CHAN" +
       "GE\020\004\022\021\n\rMEMBERS_ADDED\020\005\022\023\n\017MEMBERS_REMOV" +
       "ED\020\006\022\017\n\013MEMBER_LEFT\020\007\"$\n\005Flags\022\033\n\027EXPIRA" +
-      "TION_TIMER_UPDATE\020\002\"S\n\023OpenGroupInvitati",
-      "on\022\025\n\rserverAddress\030\001 \001(\t\022\021\n\tchannelId\030\002" +
-      " \001(\r\022\022\n\nserverName\030\003 \001(\t\"\316\003\n\024Configurati" +
-      "onMessage\022E\n\014closedGroups\030\001 \003(\0132/.signal" +
-      "service.ConfigurationMessage.ClosedGroup" +
-      "\022\022\n\nopenGroups\030\002 \003(\t\022\023\n\013displayName\030\003 \001(" +
-      "\t\022\026\n\016profilePicture\030\004 \001(\t\022\022\n\nprofileKey\030" +
-      "\005 \001(\014\022=\n\010contacts\030\006 \003(\0132+.signalservice." +
-      "ConfigurationMessage.Contact\032\202\001\n\013ClosedG" +
-      "roup\022\021\n\tpublicKey\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\0221\n" +
-      "\021encryptionKeyPair\030\003 \001(\0132\026.signalservice",
-      ".KeyPair\022\017\n\007members\030\004 \003(\014\022\016\n\006admins\030\005 \003(" +
-      "\014\032V\n\007Contact\022\021\n\tpublicKey\030\001 \002(\014\022\014\n\004name\030" +
-      "\002 \002(\t\022\026\n\016profilePicture\030\003 \001(\t\022\022\n\nprofile" +
-      "Key\030\004 \001(\014\"u\n\016ReceiptMessage\0220\n\004type\030\001 \002(" +
-      "\0162\".signalservice.ReceiptMessage.Type\022\021\n" +
-      "\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022\010" +
-      "\n\004READ\020\001\"\354\001\n\021AttachmentPointer\022\n\n\002id\030\001 \002" +
-      "(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004" +
-      "size\030\004 \001(\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030" +
-      "\006 \001(\014\022\020\n\010fileName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r",
-      "\n\005width\030\t \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption" +
-      "\030\013 \001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_ME" +
-      "SSAGE\020\001\"\365\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004" +
-      "type\030\002 \001(\0162 .signalservice.GroupContext." +
-      "Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006a" +
-      "vatar\030\005 \001(\0132 .signalservice.AttachmentPo" +
-      "inter\022\016\n\006admins\030\006 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN" +
-      "\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n" +
-      "\014REQUEST_INFO\020\004BB\n+org.session.libsignal" +
-      ".service.internal.pushB\023SignalServicePro",
-      "tos"
+      "TION_TIMER_UPDATE\020\002\":\n\023OpenGroupInvitati",
+      "on\022\020\n\010groupUrl\030\001 \001(\t\022\021\n\tgroupName\030\002 \001(\t\"" +
+      "\316\003\n\024ConfigurationMessage\022E\n\014closedGroups" +
+      "\030\001 \003(\0132/.signalservice.ConfigurationMess" +
+      "age.ClosedGroup\022\022\n\nopenGroups\030\002 \003(\t\022\023\n\013d" +
+      "isplayName\030\003 \001(\t\022\026\n\016profilePicture\030\004 \001(\t" +
+      "\022\022\n\nprofileKey\030\005 \001(\014\022=\n\010contacts\030\006 \003(\0132+" +
+      ".signalservice.ConfigurationMessage.Cont" +
+      "act\032\202\001\n\013ClosedGroup\022\021\n\tpublicKey\030\001 \001(\014\022\014" +
+      "\n\004name\030\002 \001(\t\0221\n\021encryptionKeyPair\030\003 \001(\0132" +
+      "\026.signalservice.KeyPair\022\017\n\007members\030\004 \003(\014",
+      "\022\016\n\006admins\030\005 \003(\014\032V\n\007Contact\022\021\n\tpublicKey" +
+      "\030\001 \002(\014\022\014\n\004name\030\002 \002(\t\022\026\n\016profilePicture\030\003" +
+      " \001(\t\022\022\n\nprofileKey\030\004 \001(\014\"u\n\016ReceiptMessa" +
+      "ge\0220\n\004type\030\001 \002(\0162\".signalservice.Receipt" +
+      "Message.Type\022\021\n\ttimestamp\030\002 \003(\004\"\036\n\004Type\022" +
+      "\014\n\010DELIVERY\020\000\022\010\n\004READ\020\001\"\354\001\n\021AttachmentPo" +
+      "inter\022\n\n\002id\030\001 \002(\006\022\023\n\013contentType\030\002 \001(\t\022\013" +
+      "\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthumbnail\030\005" +
+      " \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010fileName\030\007 \001(\t\022\r" +
+      "\n\005flags\030\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006height\030\n",
+      " \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Fl" +
+      "ags\022\021\n\rVOICE_MESSAGE\020\001\"\365\001\n\014GroupContext\022" +
+      "\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 .signalservic" +
+      "e.GroupContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007mem" +
+      "bers\030\004 \003(\t\0220\n\006avatar\030\005 \001(\0132 .signalservi" +
+      "ce.AttachmentPointer\022\016\n\006admins\030\006 \003(\t\"H\n\004" +
+      "Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER" +
+      "\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_INFO\020\004BB\n+org.se" +
+      "ssion.libsignal.service.internal.pushB\023S" +
+      "ignalServiceProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -21317,7 +21235,7 @@ public final class SignalServiceProtos {
           internal_static_signalservice_OpenGroupInvitation_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_OpenGroupInvitation_descriptor,
-              new java.lang.String[] { "ServerAddress", "ChannelId", "ServerName", });
+              new java.lang.String[] { "GroupUrl", "GroupName", });
           internal_static_signalservice_ConfigurationMessage_descriptor =
             getDescriptor().getMessageTypes().get(7);
           internal_static_signalservice_ConfigurationMessage_fieldAccessorTable = new

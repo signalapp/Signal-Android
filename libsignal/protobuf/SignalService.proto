@@ -146,9 +146,8 @@ message DataMessage {
 }
 
 message OpenGroupInvitation {
-    optional string serverAddress = 1;
-    optional uint32 channelId = 2;
-    optional string serverName = 3;
+    optional string groupUrl = 1;
+    optional string groupName = 2;
   }
 
 message ConfigurationMessage {
