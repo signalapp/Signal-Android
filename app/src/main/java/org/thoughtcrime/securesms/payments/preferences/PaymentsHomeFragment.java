@@ -90,7 +90,6 @@ public class PaymentsHomeFragment extends LoggingFragment {
     viewModel = ViewModelProviders.of(this, new PaymentsHomeViewModel.Factory()).get(PaymentsHomeViewModel.class);
 
     viewModel.getList().observe(getViewLifecycleOwner(), list -> {
-      // TODO [alex] -- this is a bit of a hack
       boolean hadPaymentItems = Stream.of(adapter.getCurrentList()).anyMatch(model -> model instanceof PaymentItem);
 
       if (!hadPaymentItems) {

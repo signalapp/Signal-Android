@@ -126,6 +126,27 @@ message Wallpaper {
     float dimLevelInDarkTheme = 4;
 }
 
+message ChatColor {
+    message SingleColor {
+        int32 color = 1;
+    }
+
+    message LinearGradient {
+        float rotation  = 1;
+        repeated int32 colors    = 2;
+        repeated float positions = 3;
+    }
+
+    message File {
+        string uri = 1;
+    }
+
+    oneof chatColor {
+        SingleColor    singleColor    = 1;
+        LinearGradient linearGradient = 2;
+    }
+}
+
 message RecipientExtras {
     bool manuallyShownAvatar = 1;
 }

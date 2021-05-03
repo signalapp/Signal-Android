@@ -22,10 +22,14 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.ChatColorsDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -77,6 +81,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatabase {
@@ -182,8 +187,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int STORAGE_SERVICE_REFACTOR         = 97;
   private static final int CLEAR_MMS_STORAGE_IDS            = 98;
   private static final int SERVER_GUID                      = 99;
+  private static final int CHAT_COLORS                      = 100;
 
-  private static final int    DATABASE_VERSION = 99;
+  private static final int    DATABASE_VERSION = 100;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -215,6 +221,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(UnknownStorageIdDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
     db.execSQL(PaymentDatabase.CREATE_TABLE);
+    db.execSQL(ChatColorsDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
 
@@ -1461,6 +1468,27 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < SERVER_GUID) {
         db.execSQL("ALTER TABLE sms ADD COLUMN server_guid TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE mms ADD COLUMN server_guid TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < CHAT_COLORS) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN chat_colors BLOB DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN custom_chat_colors_id INTEGER DEFAULT 0");
+        db.execSQL("CREATE TABLE chat_colors (" +
+                   "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                   "chat_colors BLOB)");
+
+        Set<Map.Entry<MaterialColor, ChatColors>> entrySet = ChatColorsMapper.getEntrySet();
+        String                                    where    = "color = ? AND group_id is NULL";
+
+        for (Map.Entry<MaterialColor, ChatColors> entry : entrySet) {
+          String[]      whereArgs = SqlUtil.buildArgs(entry.getKey().serialize());
+          ContentValues values    = new ContentValues(2);
+
+          values.put("chat_colors", entry.getValue().serialize().toByteArray());
+          values.put("custom_chat_colors_id", entry.getValue().getId().getLongValue());
+
+          db.update("recipient", values, where, whereArgs);
+        }
       }
 
       db.setTransactionSuccessful();

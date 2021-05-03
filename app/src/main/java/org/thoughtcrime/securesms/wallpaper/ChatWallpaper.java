@@ -5,6 +5,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 
 import java.util.Arrays;
@@ -14,31 +17,44 @@ public interface ChatWallpaper extends Parcelable {
 
   float FIXED_DIM_LEVEL_FOR_DARK_THEME = 0.2f;
 
-  List<ChatWallpaper> BUILTINS = Arrays.asList(SingleColorChatWallpaper.SOLID_1,
-                                               SingleColorChatWallpaper.SOLID_2,
-                                               SingleColorChatWallpaper.SOLID_3,
-                                               SingleColorChatWallpaper.SOLID_4,
-                                               SingleColorChatWallpaper.SOLID_5,
-                                               SingleColorChatWallpaper.SOLID_6,
-                                               SingleColorChatWallpaper.SOLID_7,
-                                               SingleColorChatWallpaper.SOLID_8,
-                                               SingleColorChatWallpaper.SOLID_9,
-                                               SingleColorChatWallpaper.SOLID_10,
-                                               SingleColorChatWallpaper.SOLID_11,
-                                               SingleColorChatWallpaper.SOLID_12,
-                                               GradientChatWallpaper.GRADIENT_1,
-                                               GradientChatWallpaper.GRADIENT_2,
-                                               GradientChatWallpaper.GRADIENT_3,
-                                               GradientChatWallpaper.GRADIENT_4,
-                                               GradientChatWallpaper.GRADIENT_5,
-                                               GradientChatWallpaper.GRADIENT_6,
-                                               GradientChatWallpaper.GRADIENT_7,
-                                               GradientChatWallpaper.GRADIENT_8,
-                                               GradientChatWallpaper.GRADIENT_9);
-
   float getDimLevelForDarkTheme();
+
+  default @NonNull ChatColors getAutoChatColors() {
+    return ChatColorsMapper.getChatColors(this).withId(ChatColors.Id.Auto.INSTANCE);
+  }
+
+  boolean isSameSource(@NonNull ChatWallpaper chatWallpaper);
 
   void loadInto(@NonNull ImageView imageView);
 
   @NonNull Wallpaper serialize();
+
+  enum BuiltIns {
+    INSTANCE;
+
+    @NonNull List<ChatWallpaper> getAllBuiltIns() {
+      return Arrays.asList(
+          SingleColorChatWallpaper.BLUSH,
+          SingleColorChatWallpaper.COPPER,
+          SingleColorChatWallpaper.DUST,
+          SingleColorChatWallpaper.CELADON,
+          SingleColorChatWallpaper.RAINFOREST,
+          SingleColorChatWallpaper.PACIFIC,
+          SingleColorChatWallpaper.FROST,
+          SingleColorChatWallpaper.NAVY,
+          SingleColorChatWallpaper.LILAC,
+          SingleColorChatWallpaper.PINK,
+          SingleColorChatWallpaper.EGGPLANT,
+          SingleColorChatWallpaper.SILVER,
+          GradientChatWallpaper.SUNSET,
+          GradientChatWallpaper.NOIR,
+          GradientChatWallpaper.HEATMAP,
+          GradientChatWallpaper.AQUA,
+          GradientChatWallpaper.IRIDESCENT,
+          GradientChatWallpaper.MONSTERA,
+          GradientChatWallpaper.BLISS,
+          GradientChatWallpaper.SKY,
+          GradientChatWallpaper.PEACH);
+    }
+  }
 }

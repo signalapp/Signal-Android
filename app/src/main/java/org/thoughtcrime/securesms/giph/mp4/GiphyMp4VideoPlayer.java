@@ -20,6 +20,7 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CornerMask;
+import org.thoughtcrime.securesms.util.Projection;
 
 /**
  * Video Player class specifically created for the GiphyMp4Fragment.
@@ -72,8 +73,13 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     exoPlayer.prepare(mediaSource);
   }
 
-  void setCornerMask(@Nullable CornerMask cornerMask) {
-    this.cornerMask = new CornerMask(this, cornerMask);
+  void setCorners(@Nullable Projection.Corners corners) {
+    if (corners == null) {
+      this.cornerMask = null;
+    } else {
+      this.cornerMask = new CornerMask(this);
+      this.cornerMask.setRadii(corners.getTopLeft(), corners.getTopRight(), corners.getBottomRight(), corners.getBottomLeft());
+    }
     invalidate();
   }
   

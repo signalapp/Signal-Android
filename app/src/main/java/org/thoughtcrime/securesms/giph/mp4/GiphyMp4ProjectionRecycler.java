@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback;
+import org.thoughtcrime.securesms.util.Projection;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +19,7 @@ import java.util.Set;
 /**
  * Logic for updating content and positioning of videos as the user scrolls the list of gifs.
  */
-public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackController.Callback, GiphyMp4DisplayUpdater {
+public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackController.Callback {
 
   private final List<GiphyMp4ProjectionPlayerHolder>        holders;
   private final SparseArray<GiphyMp4ProjectionPlayerHolder> playing;
@@ -48,7 +51,6 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     }
   }
 
-  @Override
   public void updateDisplay(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4Playable holder) {
     GiphyMp4ProjectionPlayerHolder playerHolder = getCurrentHolder(holder.getAdapterPosition());
     if (playerHolder != null) {
@@ -84,7 +86,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
   }
 
   private void updateDisplay(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {
-    GiphyMp4Projection projection = giphyMp4Playable.getProjection(recyclerView);
+    Projection projection = giphyMp4Playable.getProjection(recyclerView);
 
     holder.getContainer().setX(projection.getX());
     holder.getContainer().setY(projection.getY());
@@ -96,7 +98,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
       holder.getContainer().setLayoutParams(params);
     }
 
-    holder.setCornerMask(projection.getCornerMask());
+    holder.setCorners(projection.getCorners());
   }
 
   private void startPlayback(@NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {

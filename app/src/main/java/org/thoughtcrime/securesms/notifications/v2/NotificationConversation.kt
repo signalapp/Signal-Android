@@ -9,9 +9,9 @@ import android.text.SpannableStringBuilder
 import androidx.core.app.TaskStackBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.TurnOffContactJoinedNotificationsActivity
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.DeleteNotificationReceiver
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
@@ -52,7 +52,7 @@ data class NotificationConversation(
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
-      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, ContactColors.UNKNOWN_COLOR.toConversationColor(context))
+      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, ChatColorsPalette.UNKNOWN_CONTACT)
     }
   }
 

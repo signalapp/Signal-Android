@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/preference_divider">
 
+    <org.thoughtcrime.securesms.conversation.colors.ColorizerView
+        android:id="@+id/message_details_colorizer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <FrameLayout
         android:id="@+id/video_container"
         android:layout_width="match_parent"

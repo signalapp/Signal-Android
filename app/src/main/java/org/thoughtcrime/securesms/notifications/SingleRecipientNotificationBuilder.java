@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -97,7 +98,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     } else {
       setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
-      setLargeIcon(new GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, ContactColors.UNKNOWN_COLOR.toConversationColor(context)));
+      setLargeIcon(new GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, ChatColorsPalette.UNKNOWN_CONTACT));
     }
 
     setShortcutId(ConversationUtil.getShortcutId(recipient));
@@ -123,10 +124,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                             context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
                                     .get();
       } catch (InterruptedException | ExecutionException e) {
-        return fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context));
+        return fallbackContactPhoto.asDrawable(context, recipient.getChatColors());
       }
     } else {
-      return fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context));
+      return fallbackContactPhoto.asDrawable(context, recipient.getChatColors());
     }
   }
 

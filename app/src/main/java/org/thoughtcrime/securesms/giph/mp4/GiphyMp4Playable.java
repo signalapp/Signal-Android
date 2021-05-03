@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.source.MediaSource;
+
+import org.thoughtcrime.securesms.util.Projection;
 
 public interface GiphyMp4Playable {
   /**
@@ -40,8 +43,9 @@ public interface GiphyMp4Playable {
 
   /**
    * Width, height, and (x,y) of view which video player will "project" into
+   * @param viewGroup
    */
-  @NonNull GiphyMp4Projection getProjection(@NonNull RecyclerView recyclerview);
+  @NonNull Projection getProjection(@NonNull ViewGroup viewGroup);
 
   /**
    * Specifies whether the content can start playing.

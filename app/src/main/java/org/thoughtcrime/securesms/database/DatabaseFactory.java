@@ -64,6 +64,7 @@ public class DatabaseFactory {
   private final RemappedRecordsDatabase  remappedRecordsDatabase;
   private final MentionDatabase          mentionDatabase;
   private final PaymentDatabase          paymentDatabase;
+  private final ChatColorsDatabase       chatColorsDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     if (instance == null) {
@@ -174,6 +175,10 @@ public class DatabaseFactory {
     return getInstance(context).databaseHelper.getReadableDatabase().getSqlCipherDatabase();
   }
 
+  public static ChatColorsDatabase getChatColorsDatabase(Context context) {
+    return getInstance(context).chatColorsDatabase;
+  }
+
   public static void upgradeRestored(Context context, SQLiteDatabase database){
     synchronized (lock) {
       getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
@@ -223,6 +228,7 @@ public class DatabaseFactory {
     this.remappedRecordsDatabase = new RemappedRecordsDatabase(context, databaseHelper);
     this.mentionDatabase         = new MentionDatabase(context, databaseHelper);
     this.paymentDatabase         = new PaymentDatabase(context, databaseHelper);
+    this.chatColorsDatabase      = new ChatColorsDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

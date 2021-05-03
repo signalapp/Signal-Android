@@ -9,10 +9,10 @@ import androidx.core.util.Consumer;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -67,11 +67,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
     SimpleTask.run(() -> {
       Recipient     self          = Recipient.self().resolve();
       String        name          = Optional.fromNullable(self.getDisplayName(context)).or("");
-      MaterialColor fallbackColor = self.getColor();
-
-      if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-        fallbackColor = ContactColors.generateFor(name);
-      }
+      ChatColors    fallbackColor = self.getChatColors();
 
       return new InsightsUserAvatar(new ProfileContactPhoto(self, self.getProfileAvatar()),
                                     fallbackColor,

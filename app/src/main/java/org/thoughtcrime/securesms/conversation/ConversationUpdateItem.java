@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -24,6 +23,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
+import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
@@ -31,12 +31,12 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Projection;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -47,6 +47,8 @@ import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
@@ -109,7 +111,8 @@ public final class ConversationUpdateItem extends FrameLayout
                    boolean hasWallpaper,
                    boolean isMessageRequestAccepted,
                    @NonNull AttachmentMediaSourceFactory attachmentMediaSourceFactory,
-                   boolean allowedToPlayInline)
+                   boolean allowedToPlayInline,
+                   @NonNull Colorizer colorizer)
   {
     this.batchSelected = batchSelected;
 
@@ -206,13 +209,18 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   @Override
-  public @NonNull GiphyMp4Projection getProjection(@NonNull RecyclerView recyclerView) {
+  public @NonNull Projection getProjection(@NonNull ViewGroup recyclerView) {
     throw new UnsupportedOperationException("ConversationUpdateItems cannot be projected into.");
   }
 
   @Override
   public boolean canPlayContent() {
     return false;
+  }
+
+  @Override
+  public @NonNull List<Projection> getColorizerProjections() {
+    return Collections.emptyList();
   }
 
   static final class RecipientObserverManager {

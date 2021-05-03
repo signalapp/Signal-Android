@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <org.thoughtcrime.securesms.conversation.colors.ColorizerView
+        android:id="@+id/colorizer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/status_bar_guideline"
         android:layout_width="wrap_content"
@@ -61,7 +66,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="48dp"
-        android:background="@drawable/chat_wallpaper_preview_bubble_background_accent"
+        android:background="@drawable/chat_wallpaper_preview_bubble_background"
         android:orientation="vertical"
         android:paddingStart="12dp"
         android:paddingTop="7dp"
@@ -78,14 +83,14 @@
             android:layout_height="wrap_content"
             android:text="@string/WallpaperCropActivity__pinch_to_zoom_drag_to_adjust"
             android:textAppearance="@style/Signal.Text.Body"
-            android:textColor="@color/core_white" />
+            android:textColor="@color/signal_text_primary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/DateUtils_just_now"
             android:textAppearance="@style/Signal.Text.Caption"
-            android:textColor="@color/transparent_white_80" />
+            android:textColor="@color/signal_inverse_transparent_80" />
 
     </LinearLayout>
 
@@ -96,7 +101,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/chat_wallpaper_preview_bubble_background"
+        android:background="@drawable/chat_wallpaper_preview_bubble_background_accent"
         android:orientation="vertical"
         android:paddingStart="12dp"
         android:paddingTop="7dp"
@@ -114,7 +119,7 @@
             android:layout_height="wrap_content"
             android:text="@string/WallpaperCropActivity__set_wallpaper_for_all_chats"
             android:textAppearance="@style/Signal.Text.Body"
-            android:textColor="@color/signal_text_primary" />
+            android:textColor="@color/core_white" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -123,9 +128,9 @@
             android:drawablePadding="4dp"
             android:text="@string/DateUtils_just_now"
             android:textAppearance="@style/Signal.Text.Caption"
-            android:textColor="@color/signal_text_secondary"
+            android:textColor="@color/transparent_white_80"
             app:drawableEndCompat="@drawable/ic_delivery_status_read"
-            app:drawableTint="@color/signal_text_secondary" />
+            app:drawableTint="@color/transparent_white_80" />
 
     </LinearLayout>
 

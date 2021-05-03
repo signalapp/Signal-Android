@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="68dp"
+    android:layout_marginBottom="20dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/chat_color"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:background="@drawable/circle_tintable"
+        android:cropToPadding="true"
+        android:padding="16dp"
+        android:contentDescription="@string/ChatColorSelectionFragment__use_custom_colors"
+        app:backgroundTint="@color/signal_background_secondary"
+        app:srcCompat="@drawable/ic_plus_24"
+        app:tint="@color/signal_icon_tint_primary" />
+</FrameLayout>

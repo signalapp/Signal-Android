@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -225,7 +226,10 @@ public class CallParticipantView extends ConstraintLayout {
             .into(pipAvatar);
 
     pipAvatar.setScaleType(contactPhoto == null ? ImageView.ScaleType.CENTER_INSIDE : ImageView.ScaleType.CENTER_CROP);
-    pipAvatar.setBackgroundColor(recipient.getColor().toActionBarColor(getContext()));
+
+    ChatColors chatColors = recipient.getChatColors();
+
+    pipAvatar.setBackground(chatColors.getChatBubbleMask());
   }
 
   private void showBlockedDialog(@NonNull Recipient recipient) {

@@ -43,11 +43,12 @@ import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.MaskView;
+import org.thoughtcrime.securesms.conversation.colors.Colorizable;
+import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Projection;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -123,13 +124,15 @@ public class ConversationAdapter
   private boolean             hasWallpaper;
   private boolean             isMessageRequestAccepted;
   private ConversationMessage inlineContent;
+  private Colorizer           colorizer;
 
   ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
                       @NonNull Recipient recipient,
-                      @NonNull AttachmentMediaSourceFactory attachmentMediaSourceFactory)
+                      @NonNull AttachmentMediaSourceFactory attachmentMediaSourceFactory,
+                      @NonNull Colorizer colorizer)
   {
     super(new DiffUtil.ItemCallback<ConversationMessage>() {
       @Override
@@ -157,6 +160,7 @@ public class ConversationAdapter
     this.hasWallpaper                 = recipient.hasWallpaper();
     this.isMessageRequestAccepted     = true;
     this.attachmentMediaSourceFactory = attachmentMediaSourceFactory;
+    this.colorizer                    = colorizer;
 
     setHasStableIds(true);
   }
@@ -271,7 +275,8 @@ public class ConversationAdapter
                                                   hasWallpaper,
                                                   isMessageRequestAccepted,
                                                   attachmentMediaSourceFactory,
-                                                  conversationMessage == inlineContent);
+                                                  conversationMessage == inlineContent,
+                                                  colorizer);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
@@ -635,7 +640,7 @@ public class ConversationAdapter
     }
   }
 
-  final static class ConversationViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable {
+  final static class ConversationViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
     public ConversationViewHolder(final @NonNull View itemView) {
       super(itemView);
     }
@@ -665,13 +670,18 @@ public class ConversationAdapter
     }
 
     @NonNull
-    public @Override GiphyMp4Projection getProjection(@NonNull RecyclerView recyclerView) {
+    public @Override Projection getProjection(@NonNull ViewGroup recyclerView) {
       return getBindable().getProjection(recyclerView);
     }
 
     @Override
     public boolean canPlayContent() {
       return getBindable().canPlayContent();
+    }
+
+    @Override
+    public @NonNull List<Projection> getColorizerProjections() {
+      return getBindable().getColorizerProjections();
     }
   }
 

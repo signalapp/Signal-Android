@@ -65,7 +65,7 @@ class VoiceNoteMediaDescriptionCompatFactory {
     extras.putString(EXTRA_AVATAR_RECIPIENT_ID, avatarRecipient.getId().serialize());
     extras.putLong(EXTRA_MESSAGE_POSITION, startingPosition);
     extras.putLong(EXTRA_THREAD_ID, messageRecord.getThreadId());
-    extras.putString(EXTRA_COLOR, threadRecipient.getColor().serialize());
+    extras.putLong(EXTRA_COLOR, threadRecipient.getChatColors().asSingleColor());
     extras.putLong(EXTRA_MESSAGE_ID, messageRecord.getId());
 
     NotificationPrivacyPreference preference = SignalStore.settings().getMessageNotificationsPrivacy();

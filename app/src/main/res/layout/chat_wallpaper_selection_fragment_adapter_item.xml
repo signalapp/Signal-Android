@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="117dp"
-    android:layout_height="206dp"
+    android:id="@+id/chat_wallpaper_preview_frame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginStart="2dp"
     android:layout_marginEnd="2dp"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="4dp"
+    app:resize_mode="fixed_width">
 
     <ImageView
         android:id="@+id/chat_wallpaper_preview"
@@ -23,4 +26,4 @@
         tools:alpha="0.2f"
         tools:visibility="visible" />
 
-</FrameLayout>
+</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>

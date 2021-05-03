@@ -7,6 +7,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,8 +68,8 @@ public class ConversationIntents {
     private final StickerLocator   stickerLocator;
     private final boolean          isBorderless;
     private final int              distributionType;
-    private final int     startingPosition;
-    private final boolean firstTimeInSelfCreatedGroup;
+    private final int              startingPosition;
+    private final boolean          firstTimeInSelfCreatedGroup;
 
     static Args from(@NonNull Intent intent) {
       if (isBubbleIntent(intent)) {
@@ -154,6 +155,10 @@ public class ConversationIntents {
     public @Nullable ChatWallpaper getWallpaper() {
       // TODO [greyson][wallpaper] Is it worth it to do this beforehand?
       return Recipient.resolved(recipientId).getWallpaper();
+    }
+
+    public @NonNull ChatColors getChatColors() {
+      return Recipient.resolved(recipientId).getChatColors();
     }
   }
 

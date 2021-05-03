@@ -407,6 +407,10 @@ public class Util {
     return elements[new SecureRandom().nextInt(elements.length)];
   }
 
+  public static <T> T getRandomElement(List<T> elements) {
+    return elements.get(new SecureRandom().nextInt(elements.size()));
+  }
+
   public static boolean equals(@Nullable Object a, @Nullable Object b) {
     return a == b || (a != null && a.equals(b));
   }

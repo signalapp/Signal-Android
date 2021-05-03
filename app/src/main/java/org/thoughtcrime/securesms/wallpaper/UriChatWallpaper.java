@@ -15,7 +15,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -76,6 +79,15 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(uri.toString());
     dest.writeFloat(dimLevelInDarkTheme);
+  }
+
+  @Override
+  public boolean isSameSource(@NonNull ChatWallpaper chatWallpaper) {
+    if (this == chatWallpaper) return true;
+    if (getClass() != chatWallpaper.getClass()) return false;
+    UriChatWallpaper that = (UriChatWallpaper) chatWallpaper;
+
+    return uri.equals(that.uri);
   }
 
   @Override

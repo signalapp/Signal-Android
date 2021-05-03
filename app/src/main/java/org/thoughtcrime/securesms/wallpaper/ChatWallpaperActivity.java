@@ -41,14 +41,6 @@ public final class ChatWallpaperActivity extends PassphraseRequiredActivity {
     dynamicTheme.onCreate(this);
     setContentView(R.layout.chat_wallpaper_activity);
 
-    Toolbar toolbar = findViewById(R.id.toolbar);
-
-    toolbar.setNavigationOnClickListener(unused -> {
-      if (!Navigation.findNavController(this, R.id.nav_host_fragment).popBackStack()) {
-        finish();
-      }
-    });
-
     if (savedInstanceState == null) {
       Bundle   extras = getIntent().getExtras();
       NavGraph graph  = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();

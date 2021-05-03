@@ -393,7 +393,7 @@ public final class ConversationListItem extends ConstraintLayout
   private void setRippleColor(Recipient recipient) {
     if (Build.VERSION.SDK_INT >= 21) {
       ((RippleDrawable)(getBackground()).mutate())
-          .setColor(ColorStateList.valueOf(recipient.getColor().toConversationColor(getContext())));
+          .setColor(ColorStateList.valueOf(recipient.getChatColors().asSingleColor()));
     }
   }
 

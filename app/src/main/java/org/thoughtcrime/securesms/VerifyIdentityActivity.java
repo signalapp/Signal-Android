@@ -218,12 +218,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  private void setActionBarNotificationBarColor(MaterialColor color) {
-    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-
-    WindowUtil.setStatusBarColor(getWindow(), color.toStatusBarColor(this));
-  }
-
   public static class VerifyDisplayFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
 
     public static final String RECIPIENT_ID    = "recipient_id";

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
-import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
@@ -38,7 +38,6 @@ public class RecipientDetails {
   final Uri                        systemContactPhoto;
   final Uri                        contactUri;
   final Optional<Long>             groupAvatarId;
-  final MaterialColor              color;
   final Uri                        messageRingtone;
   final Uri                        callRingtone;
   final long                       mutedUntil;
@@ -67,6 +66,7 @@ public class RecipientDetails {
   final byte[]                     storageId;
   final MentionSetting             mentionSetting;
   final ChatWallpaper              wallpaper;
+  final ChatColors                 chatColors;
   final String                     about;
   final String                     aboutEmoji;
   final ProfileName                systemProfileName;
@@ -91,7 +91,6 @@ public class RecipientDetails {
     this.e164                        = settings.getE164();
     this.email                       = settings.getEmail();
     this.groupId                     = settings.getGroupId();
-    this.color                       = settings.getColor();
     this.messageRingtone             = settings.getMessageRingtone();
     this.callRingtone                = settings.getCallRingtone();
     this.mutedUntil                  = settings.getMuteUntil();
@@ -120,6 +119,7 @@ public class RecipientDetails {
     this.storageId                   = settings.getStorageId();
     this.mentionSetting              = settings.getMentionSetting();
     this.wallpaper                   = settings.getWallpaper();
+    this.chatColors                  = settings.getChatColors();
     this.about                       = settings.getAbout();
     this.aboutEmoji                  = settings.getAboutEmoji();
     this.systemProfileName           = settings.getSystemProfileName();
@@ -142,7 +142,6 @@ public class RecipientDetails {
     this.e164                        = null;
     this.email                       = null;
     this.groupId                     = null;
-    this.color                       = null;
     this.messageRingtone             = null;
     this.callRingtone                = null;
     this.mutedUntil                  = 0;
@@ -172,6 +171,7 @@ public class RecipientDetails {
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
+    this.chatColors                  = null;
     this.about                       = null;
     this.aboutEmoji                  = null;
     this.systemProfileName           = ProfileName.EMPTY;

@@ -15,6 +15,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -42,12 +43,12 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color) {
-    return asDrawable(context, color,false);
+  public Drawable asDrawable(@NonNull Context context, @NonNull ChatColors chatColors) {
+    return asDrawable(context, chatColors, false);
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color, boolean inverted) {
+  public Drawable asDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
     int targetSize = this.targetSize != -1
                      ? this.targetSize
                      : context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
@@ -55,34 +56,36 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
     String character = getAbbreviation(name);
 
     if (!TextUtils.isEmpty(character)) {
+      Drawable background = chatColors.asCircle();
+
       Drawable base = TextDrawable.builder()
                                   .beginConfig()
                                   .width(targetSize)
                                   .height(targetSize)
                                   .useFont(TYPEFACE)
                                   .fontSize(fontSize)
-                                  .textColor(inverted ? color : Color.WHITE)
+                                  .textColor(inverted ? chatColors.asSingleColor() : Color.WHITE)
                                   .endConfig()
-                                  .buildRound(character, inverted ? Color.WHITE : color);
+                                  .buildRound(character, inverted ? Color.WHITE : Color.TRANSPARENT);
 
       Drawable gradient = ContextUtil.requireDrawable(context, R.drawable.avatar_gradient);
-      return new LayerDrawable(new Drawable[] { base, gradient });
+      return new LayerDrawable(new Drawable[] { background, base, gradient });
     }
 
-    return newFallbackDrawable(context, color, inverted);
+    return newFallbackDrawable(context, chatColors, inverted);
   }
 
   @Override
-  public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
-    return asDrawable(context, color, inverted);
+  public Drawable asSmallDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+    return asDrawable(context, chatColors, inverted);
   }
 
   protected @DrawableRes int getFallbackResId() {
     return fallbackResId;
   }
 
-  protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
-    return new ResourceContactPhoto(fallbackResId).asDrawable(context, color, inverted);
+  protected Drawable newFallbackDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+    return new ResourceContactPhoto(fallbackResId).asDrawable(context, chatColors, inverted);
   }
 
   private @Nullable String getAbbreviation(String name) {

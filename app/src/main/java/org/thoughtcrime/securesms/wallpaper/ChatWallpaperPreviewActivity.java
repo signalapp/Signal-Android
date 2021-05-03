@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.wallpaper;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,15 +16,21 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.Collections;
+import java.util.Objects;
 
 public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
 
@@ -32,6 +39,12 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
   private static final String EXTRA_RECIPIENT_ID     = "extra.recipient.id";
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
+
+  private ChatWallpaperPreviewAdapter adapter;
+  private ColorizerView               colorizerView;
+  private View                        bubble2;
+  private OnPageChanged               onPageChanged;
+  private ViewPager2                  viewPager;
 
   public static @NonNull Intent create(@NonNull Context context, @NonNull ChatWallpaper selection, @NonNull RecipientId recipientId, boolean dimInDarkMode) {
     Intent intent = new Intent(context, ChatWallpaperPreviewActivity.class);
@@ -49,15 +62,17 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
 
     setContentView(R.layout.chat_wallpaper_preview_activity);
 
-    ViewPager2                       viewPager  = findViewById(R.id.preview_pager);
-    ChatWallpaperPreviewAdapter      adapter    = new ChatWallpaperPreviewAdapter();
-    View                             submit     = findViewById(R.id.preview_set_wallpaper);
-    ChatWallpaperRepository          repository = new ChatWallpaperRepository();
-    ChatWallpaper                    selected   = getIntent().getParcelableExtra(EXTRA_CHAT_WALLPAPER);
-    boolean                          dim        = getIntent().getBooleanExtra(EXTRA_DIM_IN_DARK_MODE, false);
-    Toolbar                          toolbar    = findViewById(R.id.toolbar);
-    View                             bubble1    = findViewById(R.id.preview_bubble_1);
-    TextView                         bubble2    = findViewById(R.id.preview_bubble_2_text);
+    adapter       = new ChatWallpaperPreviewAdapter();
+    colorizerView = findViewById(R.id.colorizer);
+    bubble2       = findViewById(R.id.preview_bubble_2);
+    viewPager     = findViewById(R.id.preview_pager);
+
+    View                             submit        = findViewById(R.id.preview_set_wallpaper);
+    ChatWallpaperRepository          repository    = new ChatWallpaperRepository();
+    ChatWallpaper                    selected      = getIntent().getParcelableExtra(EXTRA_CHAT_WALLPAPER);
+    boolean                          dim           = getIntent().getBooleanExtra(EXTRA_DIM_IN_DARK_MODE, false);
+    Toolbar                          toolbar       = findViewById(R.id.toolbar);
+    TextView                         bubble2Text   = findViewById(R.id.preview_bubble_2_text);
 
     toolbar.setNavigationOnClickListener(unused -> {
       finish();
@@ -79,15 +94,58 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     });
 
     RecipientId recipientId = getIntent().getParcelableExtra(EXTRA_RECIPIENT_ID);
-    if (recipientId != null) {
+
+    final ChatColors chatColors;
+    if (recipientId != null && Recipient.live(recipientId).get().hasOwnChatColors()) {
       Recipient recipient = Recipient.live(recipientId).get();
-      bubble1.getBackground().setColorFilter(recipient.getColor().toConversationColor(this), PorterDuff.Mode.SRC_IN);
-      bubble2.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s, recipient.getDisplayName(this)));
+      bubble2Text.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s, recipient.getDisplayName(this)));
+      chatColors = recipient.getChatColors();
+      bubble2.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        updateChatColors(chatColors);
+      });
+    } else if (SignalStore.chatColorsValues().hasChatColors()) {
+      chatColors = Objects.requireNonNull(SignalStore.chatColorsValues().getChatColors());
+      bubble2.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        updateChatColors(chatColors);
+      });
+    } else {
+      onPageChanged = new OnPageChanged();
+      viewPager.registerOnPageChangeCallback(onPageChanged);
     }
 
     new FullscreenHelper(this).showSystemUI();
     WindowUtil.setLightStatusBarFromTheme(this);
     WindowUtil.setLightNavigationBarFromTheme(this);
+  }
+
+  @Override protected void onDestroy() {
+    if (onPageChanged != null) {
+      viewPager.unregisterOnPageChangeCallback(onPageChanged);
+    }
+
+    super.onDestroy();
+  }
+
+  private class OnPageChanged extends ViewPager2.OnPageChangeCallback {
+    @Override
+    public void onPageSelected(int position) {
+      ChatWallpaperSelectionMappingModel model = (ChatWallpaperSelectionMappingModel) adapter.getCurrentList().get(position);
+
+
+      updateChatColors(model.getWallpaper().getAutoChatColors());
+    }
+  }
+
+  private void updateChatColors(@NonNull ChatColors chatColors) {
+    Drawable mask = chatColors.getChatBubbleMask();
+
+    colorizerView.setBackground(mask);
+
+    colorizerView.setProjections(
+        Collections.singletonList(Projection.relativeToViewWithCommonRoot(bubble2, colorizerView, new Projection.Corners(ViewUtil.dpToPx(18))))
+    );
+
+    bubble2.getBackground().setColorFilter(chatColors.getChatBubbleColorFilter());
   }
 
   @Override

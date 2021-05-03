@@ -240,10 +240,6 @@ public final class ManageRecipientViewModel extends ViewModel {
     return sharedGroupsCountSummary;
   }
 
-  void onSelectColor(int color) {
-   manageRecipientRepository.setColor(color);
-  }
-
   void onGroupClicked(@NonNull Activity activity, @NonNull Recipient recipient) {
     CommunicationActions.startConversation(activity, recipient, null);
     activity.finish();

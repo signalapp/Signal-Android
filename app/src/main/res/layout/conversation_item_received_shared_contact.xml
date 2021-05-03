@@ -5,7 +5,7 @@
     android:id="@+id/shared_contact_view"
     android:layout_width="@dimen/media_bubble_default_dimens"
     android:layout_height="wrap_content"
-    app:contact_titleColor="@color/conversation_item_received_text_primary_color"
-    app:contact_captionColor="@color/conversation_item_received_text_secondary_color"
-    app:contact_footerIconColor="@color/conversation_item_received_text_secondary_color"
+    app:contact_titleColor="@color/signal_text_primary"
+    app:contact_captionColor="@color/signal_text_secondary"
+    app:contact_footerIconColor="@color/conversation_item_recv_icon_color"
     app:contact_footerAlpha="0.7"/>

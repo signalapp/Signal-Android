@@ -16,6 +16,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.util.ContextUtil;
 
 public class ResourceContactPhoto implements FallbackContactPhoto {
@@ -45,29 +46,29 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
   }
 
   @Override
-  public @NonNull Drawable asDrawable(@NonNull Context context, int color) {
-    return asDrawable(context, color, false);
+  public @NonNull Drawable asDrawable(@NonNull Context context, @NonNull ChatColors chatColors) {
+    return asDrawable(context, chatColors, false);
   }
 
   @Override
-  public @NonNull Drawable asDrawable(@NonNull Context context, int color, boolean inverted) {
-    return buildDrawable(context, resourceId, color, inverted);
+  public @NonNull Drawable asDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+    return buildDrawable(context, resourceId, chatColors, inverted);
   }
 
   @Override
-  public @NonNull Drawable asSmallDrawable(@NonNull Context context, int color, boolean inverted) {
-    return buildDrawable(context, smallResourceId, color, inverted);
+  public @NonNull Drawable asSmallDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+    return buildDrawable(context, smallResourceId, chatColors, inverted);
   }
 
-  private @NonNull Drawable buildDrawable(@NonNull Context context, int resourceId, int color, boolean inverted) {
-    Drawable        background = TextDrawable.builder().buildRound(" ", inverted ? Color.WHITE : color);
+  private @NonNull Drawable buildDrawable(@NonNull Context context, int resourceId, @NonNull ChatColors chatColors, boolean inverted) {
+    Drawable        background = chatColors.asCircle();
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
     //noinspection ConstantConditions
     foreground.setScaleType(scaleType);
 
     if (inverted) {
-      foreground.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+      foreground.setColorFilter(chatColors.asSingleColor(), PorterDuff.Mode.SRC_ATOP);
     }
 
     Drawable gradient = ContextUtil.requireDrawable(context, R.drawable.avatar_gradient);

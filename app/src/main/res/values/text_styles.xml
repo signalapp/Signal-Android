@@ -52,7 +52,7 @@
     </style>
 
     <style name="Signal.Text.Caption.MessageReceived">
-        <item name="android:textColor">@color/conversation_item_received_text_secondary_color</item>
+        <item name="android:textColor">@color/conversation_item_sent_text_secondary_color</item>
         <item name="android:shadowRadius">0</item>
         <item name="android:alpha">0.7</item>
     </style>

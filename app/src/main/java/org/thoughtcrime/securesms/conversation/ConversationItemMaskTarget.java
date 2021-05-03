@@ -2,23 +2,30 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thoughtcrime.securesms.components.CornerMask;
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.components.MaskView;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Projection;
+import org.thoughtcrime.securesms.util.Projection;
 
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Masking area to ensure proper rendering of Reactions overlay.
+ */
 public final class ConversationItemMaskTarget extends MaskView.MaskTarget {
 
   private final ConversationItem conversationItem;
   private final View             videoContainer;
+  private final Paint            paint;
 
   public ConversationItemMaskTarget(@NonNull ConversationItem conversationItem,
                                     @Nullable View videoContainer)
@@ -26,6 +33,10 @@ public final class ConversationItemMaskTarget extends MaskView.MaskTarget {
     super(conversationItem);
     this.conversationItem = conversationItem;
     this.videoContainer   = videoContainer;
+    this.paint            = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    paint.setColor(Color.BLACK);
+    paint.setStyle(Paint.Style.FILL);
   }
 
   @Override
@@ -41,19 +52,16 @@ public final class ConversationItemMaskTarget extends MaskView.MaskTarget {
   protected void draw(@NonNull Canvas canvas) {
     super.draw(canvas);
 
-    if (videoContainer == null) {
-      return;
+    List<Projection> projections = Stream.of(conversationItem.getColorizerProjections()).map(p ->
+      Projection.translateFromRootToDescendantCoords(p, conversationItem)
+    ).toList();
+
+    if (videoContainer != null) {
+      projections.add(conversationItem.getProjection((RecyclerView) conversationItem.getParent()));
     }
 
-    GiphyMp4Projection projection = conversationItem.getProjection((RecyclerView) conversationItem.getParent());
-    CornerMask         cornerMask = projection.getCornerMask();
-
-    canvas.clipRect(conversationItem.bodyBubble.getLeft(),
-                    conversationItem.bodyBubble.getTop(),
-                    conversationItem.bodyBubble.getRight(),
-                    conversationItem.bodyBubble.getTop() + projection.getHeight());
-
-    canvas.drawColor(Color.BLACK);
-    cornerMask.mask(canvas);
+    for (Projection projection : projections) {
+      canvas.drawPath(projection.getPath(), paint);
+    }
   }
 }

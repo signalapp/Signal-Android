@@ -180,4 +180,6 @@
     <dimen name="payment_recovery_phrase_outline_margin">32dp</dimen>
 
     <dimen name="dsl_settings_gutter">16dp</dimen>
+
+    <dimen name="chat_colors_preview_bubble_max_width">240dp</dimen>
 </resources>

@@ -280,4 +280,8 @@
         <attr name="always_show_sign" format="boolean" />
         <attr name="money" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="ChatColorPreviewView">
+        <attr name="ccpv_chat_bubble_count" format="integer" />
+    </declare-styleable>
 </resources>

@@ -42,7 +42,7 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__chat_wallpaper),
+        title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appearanceSettings_to_wallpaperActivity)
         }

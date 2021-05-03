@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 
 /**
  * Drawable which lets you punch a hole through another drawable.
+ *
+ * TODO: Remove in favor of ClipProjectionDrawable
  */
 public final class MaskDrawable extends Drawable {
 

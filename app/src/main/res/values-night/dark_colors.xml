@@ -50,6 +50,7 @@
 
     <color name="signal_inverse_transparent">@color/transparent</color>
     <color name="signal_inverse_transparent_05">@color/transparent_white_05</color>
+    <color name="signal_inverse_transparent_10">@color/transparent_white_10</color>
     <color name="signal_inverse_transparent_15">@color/transparent_white_15</color>
     <color name="signal_inverse_transparent_20">@color/transparent_white_20</color>
     <color name="signal_inverse_transparent_40">@color/transparent_white_40</color>
@@ -67,10 +68,10 @@
     <color name="insight_body_2">@color/core_grey_25</color>
     <color name="insight_progress_background">@color/core_grey_60</color>
 
-    <color name="conversation_item_received_text_primary_color">@color/transparent_white_90</color>
-    <color name="conversation_item_received_text_secondary_color">@color/transparent_white_60</color>
+    <color name="conversation_item_sent_text_primary_color">@color/transparent_white_90</color>
+    <color name="conversation_item_sent_text_secondary_color">@color/transparent_white_60</color>
     <color name="conversation_item_update_text_color">@color/core_grey_45</color>
-    <color name="conversation_item_sent_icon_color">@color/core_grey_25</color>
+    <color name="conversation_item_recv_icon_color">@color/core_grey_25</color>
     <color name="conversation_item_quote_text_color">@color/core_grey_05</color>
     <color name="conversation_item_wallpaper_bubble_color">@color/core_grey_95</color>
 
@@ -131,4 +132,9 @@
     <color name="payment_currency_code_foreground_color">@color/core_grey_55</color>
 
     <color name="settings_ripple_color">@color/transparent_white_10</color>
+
+    <color name="quote_view_background">@color/transparent_black_40</color>
+    <color name="conversation_typing_indicator_bg">@color/core_grey_25</color>
+    <color name="conversation_item_outgoing_footer_fg">@color/transparent_white_60</color>
+    <color name="quote_preview_background">@color/core_grey_80</color>
 </resources>

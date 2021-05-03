@@ -82,16 +82,6 @@ final class ManageRecipientRepository {
     SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getRecipientDatabase(context).setMuted(recipientId, until));
   }
 
-  void setColor(int color) {
-    SignalExecutors.BOUNDED.execute(() -> {
-      MaterialColor selectedColor = MaterialColors.CONVERSATION_PALETTE.getByColor(context, color);
-      if (selectedColor != null) {
-        DatabaseFactory.getRecipientDatabase(context).setColor(recipientId, selectedColor);
-        ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(recipientId));
-      }
-    });
-  }
-
   void refreshRecipient() {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {

@@ -18,6 +18,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import org.signal.glide.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CornerMask;
+import org.thoughtcrime.securesms.util.Projection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,7 +121,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.EventListene
     return holders;
   }
 
-  public void setCornerMask(@Nullable CornerMask cornerMask) {
-    player.setCornerMask(cornerMask);
+  public void setCorners(@Nullable Projection.Corners corners) {
+    player.setCorners(corners);
   }
 }

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -177,9 +178,9 @@ public final class ConversationShortcutPhoto implements Key {
         photoSource = R.drawable.ic_profile_80;
       }
 
-      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getColor().toAvatarColor(context))
+      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getChatColors())
                                                                                : new ShortcutGeneratedContactPhoto(recipient.getDisplayName(context), photoSource, ViewUtil.dpToPx(80), ViewUtil.dpToPx(28));
-      Bitmap               toWrap  = DrawableUtil.toBitmap(photo.asDrawable(context, recipient.getColor().toAvatarColor(context)), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
+      Bitmap               toWrap  = DrawableUtil.toBitmap(photo.asDrawable(context, recipient.getChatColors()), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
       Bitmap               wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
 
       toWrap.recycle();
@@ -198,8 +199,8 @@ public final class ConversationShortcutPhoto implements Key {
     }
 
     @Override
-    protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
-      return new FallbackPhoto80dp(getFallbackResId(), color).asDrawable(context, -1);
+    protected Drawable newFallbackDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+      return new FallbackPhoto80dp(getFallbackResId(), chatColors).asDrawable(context, chatColors);
     }
   }
 }

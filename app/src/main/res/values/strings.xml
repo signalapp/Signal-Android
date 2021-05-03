@@ -716,7 +716,7 @@
     <string name="ManageGroupActivity_mute_notifications">Mute notifications</string>
     <string name="ManageGroupActivity_custom_notifications">Custom notifications</string>
     <string name="ManageGroupActivity_mentions">Mentions</string>
-    <string name="ManageGroupActivity_chat_wallpaper">Chat wallpaper</string>
+    <string name="ManageGroupActivity_chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
     <string name="ManageGroupActivity_until_s">Until %1$s</string>
     <string name="ManageGroupActivity_always">Always</string>
     <string name="ManageGroupActivity_off">Off</string>
@@ -2311,6 +2311,7 @@
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
     <string name="preferences__chat_wallpaper">Chat wallpaper</string>
+    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
     <string name="preferences__disable_pin">Disable PIN</string>
     <string name="preferences__enable_pin">Enable PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
@@ -3242,17 +3243,25 @@
     <string name="ChatWallpaperActivity__chat_wallpaper">Chat wallpaper</string>
 
     <!-- ChatWallpaperFragment -->
+    <string name="ChatWallpaperFragment__chat_color">Chat color</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Reset chat colors</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Reset chat color</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Reset chat color?</string>
     <string name="ChatWallpaperFragment__set_wallpaper">Set wallpaper</string>
-    <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dark theme dims wallpaper</string>
-    <string name="ChatWallpaperFragment__clear_wallpaper">Clear wallpaper</string>
-    <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Clear wallpaper for this chat?</string>
-    <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Clear wallpaper? This will not clear custom wallpapers you’ve set for your chats.</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Reset all wallpapers, including custom wallpapers you’ve set for your chats?</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Dark mode dims wallpaper</string>
     <string name="ChatWallpaperFragment__contact_name">Contact name</string>
     <string name="ChatWallpaperFragment__reset">Reset</string>
     <string name="ChatWallpaperFragment__clear">Clear</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Wallpaper preview</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Would you like to override all chat colors?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Would you like to override all wallpapers?</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default colors</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Reset all colors</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Reset default wallpaper</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
+    <string name="ChatWallpaperFragment__reset_wallpapers">Reset wallpapers</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper">Reset wallpaper</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper_question">Reset wallpaper?</string>
 
     <!-- ChatWallpaperSelectionFragment -->
     <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choose from photos</string>
@@ -3379,6 +3388,8 @@
     <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
     <string name="GroupsInCommonMessageRequest__okay">Okay</string>
     <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Here\'s a preview of the chat color.</string>
+    <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">The color is visible to only you.</string>
 
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Group description</string>
@@ -3459,6 +3470,37 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+
+    <!-- ChatColorSelectionFragment -->
+    <string name="ChatColorSelectionFragment__auto">Auto</string>
+    <string name="ChatColorSelectionFragment__use_custom_colors">Use custom colors</string>
+    <string name="ChatColorSelectionFragment__chat_color">Chat color</string>
+    <string name="ChatColorSelectionFragment__edit">Edit</string>
+    <string name="ChatColorSelectionFragment__duplicate">Duplicate</string>
+    <string name="ChatColorSelectionFragment__delete">Delete</string>
+    <string name="ChatColorSelectionFragment__delete_color">Delete color</string>
+    <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+        <item quantity="one">This custom color is used in %1$d chat. Do you want to delete it for all chats?</item>
+        <item quantity="other">This custom color is used in %1$d chats. Do you want to delete it for all chats?</item>
+    </plurals>
+
+    <!-- CustomChatColorCreatorFragment -->
+    <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+    <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+    <string name="CustomChatColorCreatorFragment__hue">Hue</string>
+    <string name="CustomChatColorCreatorFragment__saturation">Saturation</string>
+
+    <!-- CustomChatColorCreatorFragmentPage -->
+    <string name="CustomChatColorCreatorFragmentPage__save">Save</string>
+    <string name="CustomChatColorCreatorFragmentPage__edit_color">Edit color</string>
+    <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+        <item quantity="one">This color is used in %1$d chat. Do you want to save changes for all chats?</item>
+        <item quantity="other">This color is used in %1$d chat. Do you want to save changes for all chats?</item>
+    </plurals>
+
+    <!-- ChatColorGradientTool -->
+    <string name="ChatColorGradientTool_top_edge_selector">Top edge selector</string>
+    <string name="ChatColorGradientTool_bottom_edge_selector">Bottom edge selector</string>
 
     <!-- EOF -->
 

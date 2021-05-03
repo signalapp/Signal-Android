@@ -17,4 +17,6 @@
 
     <dimen name="media_bubble_gif_width">260dp</dimen>
     <dimen name="dsl_settings_gutter">24dp</dimen>
+
+    <dimen name="chat_colors_preview_bubble_max_width">260dp</dimen>
 </resources>

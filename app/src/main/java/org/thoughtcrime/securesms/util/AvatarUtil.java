@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -172,12 +174,8 @@ public final class AvatarUtil {
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient) {
     String        name          = Optional.fromNullable(recipient.getDisplayName(context)).or("");
-    MaterialColor fallbackColor = recipient.getColor();
+    ChatColors    fallbackColor = recipient.getChatColors();
 
-    if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-      fallbackColor = ContactColors.generateFor(name);
-    }
-
-    return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40).asDrawable(context, fallbackColor.toAvatarColor(context));
+    return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40).asDrawable(context, fallbackColor);
   }
 }

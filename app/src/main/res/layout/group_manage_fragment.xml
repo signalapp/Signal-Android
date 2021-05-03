@@ -353,7 +353,7 @@
                         android:gravity="start|center_vertical"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
                         android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                        android:text="@string/ManageGroupActivity_chat_wallpaper"
+                        android:text="@string/ManageGroupActivity_chat_color_and_wallpaper"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/Signal.Text.Body"/>
 

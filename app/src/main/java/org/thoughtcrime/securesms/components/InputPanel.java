@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
@@ -22,6 +23,7 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +35,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
+import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -42,7 +45,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -50,6 +52,7 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends LinearLayout
@@ -74,7 +77,7 @@ public class InputPanel extends LinearLayout
   private View            buttonToggle;
   private View            recordingContainer;
   private View            recordLockCancel;
-  private View            composeContainer;
+  private ViewGroup       composeContainer;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
@@ -161,9 +164,10 @@ public class InputPanel extends LinearLayout
                        long id,
                        @NonNull Recipient author,
                        @NonNull CharSequence body,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments,
+                       @NonNull Colorizer colorizer)
   {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, colorizer);
 
     int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
                                                                    : 0;
@@ -290,11 +294,11 @@ public class InputPanel extends LinearLayout
 
   public void setWallpaperEnabled(boolean enabled) {
     if (enabled) {
-      setBackgroundColor(getContext().getResources().getColor(R.color.wallpaper_compose_background));
-      composeContainer.setBackgroundResource(R.drawable.compose_background_wallpaper);
+      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.wallpaper_compose_background)));
+      composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background_wallpaper)));
     } else {
-      setBackgroundColor(getResources().getColor(R.color.signal_background_primary));
-      composeContainer.setBackgroundResource(R.drawable.compose_background);
+      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.signal_background_primary)));
+      composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background)));
     }
   }
 

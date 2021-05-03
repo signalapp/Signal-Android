@@ -21,12 +21,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
@@ -88,7 +88,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
 
     groupCancelButton.setOnClickListener(v -> dismiss());
 
-    avatar.setImageBytesForGroup(null, new FallbackPhotoProvider(), MaterialColor.STEEL);
+    avatar.setImageBytesForGroup(null, new FallbackPhotoProvider(), ChatColorsPalette.UNKNOWN_CONTACT);
 
     return view;
   }
@@ -130,7 +130,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
           break;
       }
 
-      avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), MaterialColor.STEEL);
+      avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), ChatColorsPalette.UNKNOWN_CONTACT);
 
       groupCancelButton.setVisibility(View.VISIBLE);
     });

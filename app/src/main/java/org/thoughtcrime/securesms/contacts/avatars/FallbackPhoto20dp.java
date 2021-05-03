@@ -7,9 +7,9 @@ import android.graphics.drawable.LayerDrawable;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
@@ -26,18 +26,18 @@ public final class FallbackPhoto20dp implements FallbackContactPhoto {
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color) {
-    return buildDrawable(context, color);
+  public Drawable asDrawable(@NonNull Context context, @NonNull ChatColors chatColors) {
+    return buildDrawable(context, chatColors);
   }
 
   @Override
-  public Drawable asDrawable(Context context, int color, boolean inverted) {
-    return buildDrawable(context, color);
+  public Drawable asDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+    return buildDrawable(context, chatColors);
   }
 
   @Override
-  public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
-    return buildDrawable(context, color);
+  public Drawable asSmallDrawable(@NonNull Context context, @NonNull ChatColors chatColors, boolean inverted) {
+    return buildDrawable(context, chatColors);
   }
 
   @Override
@@ -45,14 +45,12 @@ public final class FallbackPhoto20dp implements FallbackContactPhoto {
     throw new UnsupportedOperationException();
   }
 
-  private @NonNull Drawable buildDrawable(@NonNull Context context, int color) {
-    Drawable      background      = DrawableCompat.wrap(Objects.requireNonNull(AppCompatResources.getDrawable(context, R.drawable.circle_tintable))).mutate();
+  private @NonNull Drawable buildDrawable(@NonNull Context context, @NonNull ChatColors backgroundColor) {
+    Drawable      background      = backgroundColor.asCircle();
     Drawable      foreground      = AppCompatResources.getDrawable(context, drawable20dp);
     Drawable      gradient        = AppCompatResources.getDrawable(context, R.drawable.avatar_gradient);
     LayerDrawable drawable        = new LayerDrawable(new Drawable[]{background, foreground, gradient});
     int           foregroundInset = ViewUtil.dpToPx(2);
-
-    DrawableCompat.setTint(background, color);
 
     drawable.setLayerInset(1, foregroundInset, foregroundInset, foregroundInset, foregroundInset);
 

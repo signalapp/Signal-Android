@@ -489,40 +489,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
-                        android:id="@+id/color_row"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/group_manage_fragment_row_height"
-                        android:background="?selectableItemBackground"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|start"
-                            android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:text="@string/ManageRecipientActivity_chat_color"
-                            android:textAlignment="viewStart"
-                            android:textAppearance="@style/Signal.Text.Body" />
-
-                        <ImageView
-                            android:id="@+id/color_chip"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:contentDescription="@string/ManageRecipientActivity_chat_color"
-                            android:gravity="center"
-                            tools:src="@drawable/circle_tintable"
-                            tools:tint="@color/core_ultramarine_light" />
-
-                    </LinearLayout>
-
                     <TextView
                         android:id="@+id/chat_wallpaper"
                         android:layout_width="match_parent"
@@ -532,7 +498,7 @@
                         android:gravity="center_vertical|start"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
                         android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                        android:text="@string/ManageRecipientActivity_chat_wallpaper"
+                        android:text="@string/preferences__chat_color_and_wallpaper"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/Signal.Text.Body" />
                 </LinearLayout>

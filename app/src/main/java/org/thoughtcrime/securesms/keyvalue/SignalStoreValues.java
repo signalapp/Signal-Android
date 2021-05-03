@@ -69,6 +69,6 @@ abstract class SignalStoreValues {
   }
 
   void remove(@NonNull String key) {
-    store.beginWrite().remove(key);
+    store.beginWrite().remove(key).apply();
   }
 }

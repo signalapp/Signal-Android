@@ -10,6 +10,8 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.annimon.stream.Stream;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -18,8 +20,13 @@ import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
+import org.thoughtcrime.securesms.conversation.colors.NameColor;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.LiveGroup;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaRequiredEvent;
@@ -30,8 +37,11 @@ import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class ConversationViewModel extends ViewModel {
 
@@ -52,6 +62,7 @@ public class ConversationViewModel extends ViewModel {
   private final MutableLiveData<RecipientId>        recipientId;
   private final LiveData<ChatWallpaper>             wallpaper;
   private final SingleLiveEvent<Event>              events;
+  private final LiveData<ChatColors>                chatColors;
 
   private ConversationIntents.Args args;
   private int                      jumpToPosition;
@@ -114,11 +125,15 @@ public class ConversationViewModel extends ViewModel {
 
     conversationMetadata = Transformations.switchMap(messages, m -> metadata);
     canShowAsBubble      = LiveDataUtil.mapAsync(threadId, conversationRepository::canShowAsBubble);
-    wallpaper            = Transformations.distinctUntilChanged(Transformations.map(Transformations.switchMap(recipientId,
-                                                                                                              id -> Recipient.live(id).getLiveData()),
-                                                                                    Recipient::getWallpaper));
+    wallpaper            = LiveDataUtil.mapDistinct(Transformations.switchMap(recipientId,
+                                                                              id -> Recipient.live(id).getLiveData()),
+                                                                              Recipient::getWallpaper);
 
     EventBus.getDefault().register(this);
+
+    chatColors = LiveDataUtil.mapDistinct(Transformations.switchMap(recipientId,
+                                                                    id -> Recipient.live(id).getLiveData()),
+                                                                    Recipient::getChatColors);
   }
 
   void onAttachmentKeyboardOpen() {
@@ -159,6 +174,10 @@ public class ConversationViewModel extends ViewModel {
     return events;
   }
 
+  @NonNull LiveData<ChatColors> getChatColors() {
+    return chatColors;
+  }
+
   void setHasUnreadMentions(boolean hasUnreadMentions) {
     this.hasUnreadMentions.setValue(hasUnreadMentions);
   }
@@ -181,6 +200,35 @@ public class ConversationViewModel extends ViewModel {
 
   @NonNull PagingController getPagingController() {
     return pagingController;
+  }
+
+  @NonNull LiveData<Map<RecipientId, NameColor>> getNameColorsMap() {
+    LiveData<Recipient>                         recipient       = Transformations.switchMap(recipientId, r -> Recipient.live(r).getLiveData());
+    LiveData<Recipient>                         groupRecipients = LiveDataUtil.filter(recipient, Recipient::isGroup);
+    LiveData<List<GroupMemberEntry.FullMember>> groupMembers    = Transformations.switchMap(groupRecipients, r -> new LiveGroup(r.getGroupId().get()).getFullMembers());
+
+    return Transformations.map(groupMembers, members -> {
+      List<GroupMemberEntry.FullMember> sorted = Stream.of(members)
+                                                       .filter(member -> !Objects.equals(member.getMember(), Recipient.self()))
+                                                       .sortBy(this::getMemberIdentifier)
+                                                       .toList();
+
+      List<NameColor> names = ChatColorsPalette.Names.getAll();
+      Map<RecipientId, NameColor> colors = new HashMap<>();
+      for (int i = 0; i < sorted.size(); i++) {
+        colors.put(sorted.get(i).getMember().getId(), names.get(i % names.size()));
+      }
+
+      return colors;
+    });
+  }
+
+  private @NonNull String getMemberIdentifier(@NonNull GroupMemberEntry.FullMember fullMember) {
+    return fullMember.getMember()
+                     .getUuid()
+                     .transform(UUID::toString)
+                     .or(fullMember.getMember().getE164())
+                     .or("");
   }
 
   long getLastSeen() {

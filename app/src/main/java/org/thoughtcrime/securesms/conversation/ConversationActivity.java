@@ -1097,7 +1097,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
         break;
       case GIF:
-        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText, recipient.get().getColor().toConversationColor(this));
+        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText, recipient.get().getChatColors().asSingleColor());
         break;
       case FILE:
         AttachmentManager.selectDocument(this, PICK_DOCUMENT);
@@ -1252,7 +1252,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     GlideApp.with(this)
             .asBitmap()
             .load(recipient.getContactPhoto())
-            .error(recipient.getFallbackContactPhoto().asDrawable(this, recipient.getColor().toAvatarColor(this), false))
+            .error(recipient.getFallbackContactPhoto().asDrawable(this, recipient.getChatColors(), false))
             .into(new CustomTarget<Bitmap>() {
               @Override
               public void onLoadFailed(@Nullable Drawable errorDrawable) {
@@ -3506,7 +3506,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                           messageRecord.getDateSent(),
                           author,
                           body,
-                          slideDeck);
+                          slideDeck,
+                          fragment.getColorizer());
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -3520,7 +3521,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                           messageRecord.getDateSent(),
                           author,
                           conversationMessage.getDisplayBody(this),
-                          slideDeck);
+                          slideDeck,
+                          fragment.getColorizer());
     } else {
       SlideDeck slideDeck = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck();
 
@@ -3534,7 +3536,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                           messageRecord.getDateSent(),
                           author,
                           conversationMessage.getDisplayBody(this),
-                          slideDeck);
+                          slideDeck,
+                          fragment.getColorizer());
     }
 
     inputPanel.clickOnComposeInput();

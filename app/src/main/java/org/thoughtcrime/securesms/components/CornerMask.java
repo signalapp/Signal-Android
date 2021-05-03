@@ -22,20 +22,12 @@ public class CornerMask {
   private final RectF   bounds     = new RectF();
 
   public CornerMask(@NonNull View view) {
-    this(view, null);
-  }
-
-  public CornerMask(@NonNull View view, @Nullable CornerMask toClone) {
     view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
     clearPaint.setColor(Color.BLACK);
     clearPaint.setStyle(Paint.Style.FILL);
     clearPaint.setAntiAlias(true);
     clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-
-    if (toClone != null) {
-      System.arraycopy(toClone.radii, 0, radii, 0, radii.length);
-    }
   }
 
   public void mask(Canvas canvas) {
@@ -58,6 +50,13 @@ public class CornerMask {
   }
 
   public void setRadii(int topLeft, int topRight, int bottomRight, int bottomLeft) {
+    radii[0] = radii[1] = topLeft;
+    radii[2] = radii[3] = topRight;
+    radii[4] = radii[5] = bottomRight;
+    radii[6] = radii[7] = bottomLeft;
+  }
+
+  public void setRadii(float topLeft, float topRight, float bottomRight, float bottomLeft) {
     radii[0] = radii[1] = topLeft;
     radii[2] = radii[3] = topRight;
     radii[4] = radii[5] = bottomRight;
