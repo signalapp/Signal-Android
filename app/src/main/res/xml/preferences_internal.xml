@@ -39,8 +39,8 @@
         android:title="@string/preferences__internal_display">
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-            android:key="internal.recipient_details"
             android:defaultValue="false"
+            android:key="internal.recipient_details"
             android:summary="@string/preferences__internal_user_details_description"
             android:title="@string/preferences__internal_user_details" />
 
@@ -121,6 +121,15 @@
             android:key="pref_delete_dynamic_shortcuts"
             android:summary="@string/preferences__internal_click_to_delete_all_dynamic_shortcuts"
             android:title="@string/preferences__internal_delete_all_dynamic_shortcuts" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences__internal_emoji">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="internal.force_built_in_emoji"
+            android:title="@string/preferences__internal_use_built_in_emoji_set" />
 
     </PreferenceCategory>
 

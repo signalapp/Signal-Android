@@ -2,19 +2,18 @@ package org.thoughtcrime.securesms.emoji
 
 import android.net.Uri
 import androidx.annotation.WorkerThread
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.Emoji
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.StaticEmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.util.ScreenDensity
 import java.io.InputStream
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicReference
-import kotlin.math.min
 
 /**
  * The entry point for the application to request Emoji data for custom emojis.
@@ -88,27 +87,27 @@ class EmojiSource(
     }
 
     private fun loadRemoteBasedEmojis(): EmojiSource? {
+      if (SignalStore.internalValues().forceBuiltInEmoji()) {
+        return null
+      }
+
       val context = ApplicationDependencies.getApplication()
       val version = EmojiFiles.Version.readVersion(context) ?: return null
       val emojiData = EmojiFiles.getLatestEmojiData(context, version)
       val density = ScreenDensity.xhdpiRelativeDensityScaleFactor(version.density)
 
       return emojiData?.let {
-        val decodeScale = min(1f, context.resources.getDimension(R.dimen.emoji_drawer_size) / it.metrics.rawHeight)
-
-        EmojiSource(decodeScale * density, it) { uri: Uri -> EmojiPageReference(DecryptableStreamUriLoader.DecryptableUri(uri)) }
+        EmojiSource(density, it) { uri: Uri -> EmojiPageReference(DecryptableStreamUriLoader.DecryptableUri(uri)) }
       }
     }
 
     private fun loadAssetBasedEmojis(): EmojiSource {
-      val context = ApplicationDependencies.getApplication()
       val emojiData: InputStream = ApplicationDependencies.getApplication().assets.open("emoji/emoji_data.json")
 
       emojiData.use {
         val parsedData: ParsedEmojiData = EmojiJsonParser.parse(it, ::getAssetsUri).getOrThrow()
-        val decodeScale = min(1f, context.resources.getDimension(R.dimen.emoji_drawer_size) / parsedData.metrics.rawHeight)
         return EmojiSource(
-          decodeScale * ScreenDensity.xhdpiRelativeDensityScaleFactor("xhdpi"),
+          ScreenDensity.xhdpiRelativeDensityScaleFactor("xhdpi"),
           parsedData.copy(
             displayPages = parsedData.displayPages + PAGE_EMOTICONS,
             dataPages = parsedData.dataPages + PAGE_EMOTICONS

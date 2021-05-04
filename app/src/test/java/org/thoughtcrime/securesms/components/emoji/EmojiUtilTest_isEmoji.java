@@ -19,6 +19,8 @@ import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.thoughtcrime.securesms.keyvalue.InternalValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -31,7 +33,7 @@ import static org.mockito.Mockito.mock;
 @RunWith(ParameterizedRobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*" })
-@PrepareForTest({ApplicationDependencies.class, AttachmentSecretProvider.class})
+@PrepareForTest({ApplicationDependencies.class, AttachmentSecretProvider.class, SignalStore.class, InternalValues.class})
 public class EmojiUtilTest_isEmoji {
 
   public @Rule PowerMockRule rule = new PowerMockRule();
@@ -68,13 +70,16 @@ public class EmojiUtilTest_isEmoji {
   }
 
   @Test
-  public void isEmoji() {
+  public void isEmoji() throws Exception {
     Context context = ApplicationProvider.getApplicationContext();
 
     PowerMockito.mockStatic(ApplicationDependencies.class);
     PowerMockito.when(ApplicationDependencies.getApplication()).thenReturn((Application) context);
     PowerMockito.mockStatic(AttachmentSecretProvider.class);
     PowerMockito.when(AttachmentSecretProvider.getInstance(any())).thenThrow(IOException.class);
+    PowerMockito.whenNew(SignalStore.class).withAnyArguments().thenReturn(null);
+    PowerMockito.mockStatic(SignalStore.class);
+    PowerMockito.when(SignalStore.internalValues()).thenReturn(PowerMockito.mock(InternalValues.class));
     EmojiSource.refresh();
 
     assertEquals(output, EmojiUtil.isEmoji(context, input));

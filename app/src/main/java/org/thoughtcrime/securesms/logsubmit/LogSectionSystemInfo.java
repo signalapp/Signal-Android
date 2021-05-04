@@ -14,6 +14,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.emoji.EmojiFiles;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
@@ -66,6 +68,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Linked Devices: ").append(TextSecurePreferences.isMultiDevice(context)).append("\n");
     builder.append("First Version : ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
     builder.append("Days Installed: ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
+    builder.append("Emoji Version : ").append(getEmojiVersionString(context)).append("\n");
     builder.append("App           : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
@@ -145,5 +148,15 @@ public class LogSectionSystemInfo implements LogSection {
   private static String getPlayServicesString(@NonNull Context context) {
     int result = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
     return result == ConnectionResult.SUCCESS ? "true" : "false (" + result + ")";
+  }
+
+  private static String getEmojiVersionString(@NonNull Context context) {
+    EmojiFiles.Version version = EmojiFiles.Version.readVersion(context);
+
+    if (version == null) {
+      return "None";
+    } else {
+      return version.getVersion() + " (" + version.getDensity() + ")";
+    }
   }
 }
