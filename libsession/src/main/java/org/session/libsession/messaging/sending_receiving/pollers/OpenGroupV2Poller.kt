@@ -66,7 +66,7 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
     }
 
     fun compactPoll(isBackgroundPoll: Boolean): Promise<Any, Exception> {
-        if (isPollOngoing) return Promise.of(Unit)
+        if (isPollOngoing || !hasStarted) return Promise.of(Unit)
         isPollOngoing = true
         val server = openGroups.first().server // assume all the same server
         val rooms = openGroups.map { it.room }
@@ -74,7 +74,7 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
             results.forEach { (room, results) ->
                 val serverRoomId = "$server.$room"
                 handleDeletedMessages(serverRoomId,results.deletions)
-                handleNewMessages(serverRoomId, results.messages, isBackgroundPoll)
+                handleNewMessages(serverRoomId, results.messages.sortedBy { it.serverID }, isBackgroundPoll)
             }
         }.always {
             isPollOngoing = false
@@ -86,6 +86,7 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
     }
 
     private fun handleNewMessages(serverRoomId: String, newMessages: List<OpenGroupMessageV2>, isBackgroundPoll: Boolean) {
+        if (!hasStarted) return
         newMessages.forEach { message ->
             try {
                 val senderPublicKey = message.sender!!

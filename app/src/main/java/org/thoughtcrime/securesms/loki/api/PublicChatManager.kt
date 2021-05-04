@@ -21,7 +21,7 @@ class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, OpenGroup>()
   private var v2Chats = mutableMapOf<Long, OpenGroupV2>()
   private val pollers = mutableMapOf<Long, OpenGroupPoller>()
-  private val v2Pollers = mutableMapOf<Long, OpenGroupV2Poller>()
+  private val v2Pollers = mutableMapOf<String, OpenGroupV2Poller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
   private val executorService = Executors.newScheduledThreadPool(4)
@@ -53,12 +53,17 @@ class PublicChatManager(private val context: Context) {
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
     }
-    for ((threadId, chat) in v2Chats) {
-      val poller = v2Pollers[threadId] ?: OpenGroupV2Poller(listOf(chat), executorService)
+    v2Pollers.values.forEach { it.stop() }
+    v2Pollers.clear()
+    v2Chats.entries.groupBy { (_, group) -> group.server }.forEach { (server, threadedRooms) ->
+      val poller = OpenGroupV2Poller(threadedRooms.map { it.value }, executorService)
       poller.startIfNeeded()
-      listenToThreadDeletion(threadId)
-      if (!v2Pollers.containsKey(threadId)) { v2Pollers[threadId] = poller }
+      threadedRooms.forEach { (thread, _) ->
+        listenToThreadDeletion(thread)
+      }
+      v2Pollers[server] = poller
     }
+
     isPolling = true
   }
 
@@ -171,7 +176,8 @@ class PublicChatManager(private val context: Context) {
 
       DatabaseFactory.getLokiThreadDatabase(context).removePublicChat(threadID)
       pollers.remove(threadID)?.stop()
-      v2Pollers.remove(threadID)?.stop()
+      v2Pollers.values.forEach { it.stop() }
+      v2Pollers.clear()
       observers.remove(threadID)
       startPollersIfNeeded()
     }
