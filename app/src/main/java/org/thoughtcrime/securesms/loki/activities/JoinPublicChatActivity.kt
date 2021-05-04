@@ -95,7 +95,12 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val (threadID, groupID) = if (isV2OpenGroup) {
-                    val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).build()
+                    val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).apply {
+                        if (httpUrl.port() != 80 || httpUrl.port() != 443) {
+                            // non-standard port, add to server
+                            this.port(httpUrl.port())
+                        }
+                    }.build()
                     val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server.toString().removeSuffix("/"), room!!, publicKey!!)
                     val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
                     val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())

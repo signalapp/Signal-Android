@@ -106,6 +106,7 @@ object OpenGroupAPIV2 {
         val urlBuilder = HttpUrl.Builder()
                 .scheme(parsed.scheme())
                 .host(parsed.host())
+                .port(parsed.port())
                 .addPathSegments(request.endpoint)
 
         if (request.verb == GET) {
