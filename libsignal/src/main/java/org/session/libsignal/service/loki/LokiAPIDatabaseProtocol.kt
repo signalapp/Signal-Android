@@ -28,7 +28,7 @@ interface LokiAPIDatabaseProtocol {
     fun setLastMessageServerID(room: String, server: String, newValue: Long)
     fun getLastDeletionServerID(room: String, server: String): Long?
     fun setLastDeletionServerID(room: String, server: String, newValue: Long)
-    fun setUserCount(room: String, server: String, newValue: Long)
+    fun setUserCount(room: String, server: String, newValue: Int)
     fun getSessionRequestSentTimestamp(publicKey: String): Long?
     fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long)
     fun getSessionRequestProcessedTimestamp(publicKey: String): Long?

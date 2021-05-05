@@ -330,7 +330,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(room, server)
     }
 
-    override fun setUserCount(room: String, server: String, newValue: Long) {
+    override fun setUserCount(room: String, server: String, newValue: Int) {
         DatabaseFactory.getLokiAPIDatabase(context).setUserCount(room, server, newValue)
     }
 

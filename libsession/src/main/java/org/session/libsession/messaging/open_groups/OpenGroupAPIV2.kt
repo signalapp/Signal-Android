@@ -482,10 +482,10 @@ object OpenGroupAPIV2 {
         }
     }
 
-    fun getMemberCount(room: String, server: String): Promise<Long, Exception> {
+    fun getMemberCount(room: String, server: String): Promise<Int, Exception> {
         val request = Request(verb = GET, room = room, server = server, endpoint = "member_count")
         return send(request).map { json ->
-            val memberCount = json["member_count"] as? Long ?: throw Error.PARSING_FAILED
+            val memberCount = json["member_count"] as? Int ?: throw Error.PARSING_FAILED
             val storage = MessagingModuleConfiguration.shared.storage
             storage.setUserCount(room, server, memberCount)
             memberCount

@@ -79,7 +79,7 @@ interface StorageProtocol {
 
     fun updateTitle(groupID: String, newValue: String)
     fun updateProfilePicture(groupID: String, newValue: ByteArray)
-    fun setUserCount(room: String, server: String, newValue: Long)
+    fun setUserCount(room: String, server: String, newValue: Int)
 
     // Last Message Server ID
     fun getLastMessageServerId(room: String, server: String): Long?

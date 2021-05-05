@@ -94,6 +94,21 @@ object OpenGroupUtilities {
         EventBus.getDefault().post(GroupInfoUpdatedEvent(url, channel))
     }
 
+    @JvmStatic
+    @WorkerThread
+    @Throws(Exception::class)
+    fun updateGroupInfo(context: Context, server: String, room: String) {
+        val groupId = GroupUtil.getEncodedOpenGroupID("$server.$room".toByteArray())
+        if (!DatabaseFactory.getGroupDatabase(context).hasGroup(groupId)) {
+            throw IllegalStateException("Attempt to update open group info for non-existent DB record: $groupId")
+        }
+
+        val info = OpenGroupAPIV2.getInfo(room, server).get() // store info again?
+        OpenGroupAPIV2.getMemberCount(room, server).get()
+
+        EventBus.getDefault().post(GroupInfoUpdatedEvent(server, room = room))
+    }
+
     /**
      * Return a generated name for users in the style of `$name (...$hex.takeLast(8))` for public groups
      */
@@ -104,5 +119,5 @@ object OpenGroupUtilities {
 
     const val PUBLIC_GROUP_STRING_FORMAT = "%s (...%s)"
 
-    data class GroupInfoUpdatedEvent(val url: String, val channel: Long)
+    data class GroupInfoUpdatedEvent(val url: String, val channel: Long = -1, val room: String = "")
 }

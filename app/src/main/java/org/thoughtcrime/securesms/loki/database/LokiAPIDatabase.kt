@@ -385,7 +385,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(userCountTable, row, "$publicChatID = ?", wrap(index))
     }
 
-    override fun setUserCount(room: String, server: String, newValue: Long) {
+    override fun setUserCount(room: String, server: String, newValue: Int) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$room"
         val row = wrap(mapOf( publicChatID to index, userCount to newValue.toString() ))
