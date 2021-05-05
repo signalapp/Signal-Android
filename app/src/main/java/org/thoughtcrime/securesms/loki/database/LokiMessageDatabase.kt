@@ -5,10 +5,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.utilities.get
-import org.thoughtcrime.securesms.loki.utilities.getInt
-import org.thoughtcrime.securesms.loki.utilities.getString
-import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
+import org.thoughtcrime.securesms.loki.utilities.*
 import org.session.libsignal.service.loki.LokiMessageDatabaseProtocol
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
@@ -22,56 +19,111 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         private val friendRequestStatus = "friend_request_status"
         private val threadID = "thread_id"
         private val errorMessage = "error_message"
-        @JvmStatic val createMessageIDTableCommand = "CREATE TABLE $messageIDTable ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
-        @JvmStatic val createMessageToThreadMappingTableCommand = "CREATE TABLE IF NOT EXISTS $messageThreadMappingTable ($messageID INTEGER PRIMARY KEY, $threadID INTEGER);"
-        @JvmStatic val createErrorMessageTableCommand = "CREATE TABLE IF NOT EXISTS $errorMessageTable ($messageID INTEGER PRIMARY KEY, $errorMessage STRING);"
+        private val messageType = "message_type"
+        @JvmStatic
+        val createMessageIDTableCommand = "CREATE TABLE $messageIDTable ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
+        @JvmStatic
+        val createMessageToThreadMappingTableCommand = "CREATE TABLE IF NOT EXISTS $messageThreadMappingTable ($messageID INTEGER PRIMARY KEY, $threadID INTEGER);"
+        @JvmStatic
+        val createErrorMessageTableCommand = "CREATE TABLE IF NOT EXISTS $errorMessageTable ($messageID INTEGER PRIMARY KEY, $errorMessage STRING);"
+        @JvmStatic
+        val updateMessageIDTableForType = "ALTER TABLE $messageIDTable ADD COLUMN $messageType INTEGER DEFAULT 0; ALTER TABLE $messageIDTable ADD CONSTRAINT PK_$messageIDTable PRIMARY KEY ($messageID, $serverID);"
+        @JvmStatic
+        val updateMessageMappingTable = "ALTER TABLE $messageThreadMappingTable ADD COLUMN $serverID INTEGER DEFAULT 0; ALTER TABLE $messageThreadMappingTable ADD CONSTRAINT PK_$messageThreadMappingTable PRIMARY KEY ($messageID, $serverID);"
+
+        const val SMS_TYPE = 0
+        const val MMS_TYPE = 1
+
     }
 
     override fun getQuoteServerID(quoteID: Long, quoteePublicKey: String): Long? {
         val message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quoteID, quoteePublicKey)
-        return if (message != null) getServerID(message.getId()) else null
+        return if (message != null) getServerID(message.getId(), !message.isMms) else null
     }
 
     fun getServerID(messageID: Long): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(messageIDTable, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+        return database.get(messageIDTable, "${Companion.messageID} = ?", arrayOf(messageID.toString())) { cursor ->
+            cursor.getInt(serverID)
+        }?.toLong()
+    }
+
+    fun getServerID(messageID: Long, isSms: Boolean): Long? {
+        val database = databaseHelper.readableDatabase
+        return database.get(messageIDTable, "${Companion.messageID} = ? AND $messageType = ?", arrayOf(messageID.toString(), if (isSms) SMS_TYPE.toString() else MMS_TYPE.toString())) { cursor ->
             cursor.getInt(serverID)
         }?.toLong()
     }
 
     fun getMessageID(serverID: Long): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(messageIDTable, "${Companion.serverID} = ?", arrayOf( serverID.toString() )) { cursor ->
+        return database.get(messageIDTable, "${Companion.serverID} = ?", arrayOf(serverID.toString())) { cursor ->
             cursor.getInt(messageID)
         }?.toLong()
     }
 
-    override fun setServerID(messageID: Long, serverID: Long) {
+    fun deleteMessage(messageID: Long, isSms: Boolean) {
+        val database = databaseHelper.writableDatabase
+
+        val serverID = database.get(messageIDTable,
+                "${Companion.messageID} = ? AND ${Companion.messageType} = ?",
+                arrayOf(messageID.toString(), (if (isSms) SMS_TYPE else MMS_TYPE).toString())) { cursor ->
+            cursor.getInt(Companion.serverID).toLong()
+        } ?: return
+
+        database.beginTransaction()
+
+        database.delete(messageIDTable, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageID.toString(), serverID.toString()))
+        database.delete(messageThreadMappingTable, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageID.toString(), serverID.toString()))
+
+        database.setTransactionSuccessful()
+        database.endTransaction()
+    }
+
+    fun getMessageID(serverID: Long, threadID: Long): Pair<Long, Boolean>? {
+        val database = databaseHelper.readableDatabase
+        val mappingResult = database.get(messageThreadMappingTable, "${Companion.serverID} = ? AND ${Companion.threadID} = ?",
+                arrayOf(serverID.toString(), threadID.toString())) { cursor ->
+            cursor.getInt(messageID) to cursor.getInt(Companion.serverID)
+        } ?: return null
+
+        val (mappedID, mappedServerID) = mappingResult
+
+        return database.get(messageIDTable,
+                "$messageID = ? AND ${Companion.serverID} = ?",
+                arrayOf(mappedID.toString(), mappedServerID.toString())) { cursor ->
+            cursor.getInt(Companion.messageID).toLong() to (cursor.getInt(messageType) == SMS_TYPE)
+        }
+    }
+
+    override fun setServerID(messageID: Long, serverID: Long, isSms: Boolean) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.serverID, serverID)
-        database.insertOrUpdate(messageIDTable, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+        contentValues.put(messageType, if (isSms) SMS_TYPE else MMS_TYPE)
+        database.insertOrUpdate(messageIDTable, contentValues, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageID.toString(), serverID.toString()))
     }
 
     fun getOriginalThreadID(messageID: Long): Long {
         val database = databaseHelper.readableDatabase
-        return database.get(messageThreadMappingTable, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+        return database.get(messageThreadMappingTable, "${Companion.messageID} = ?", arrayOf(messageID.toString())) { cursor ->
             cursor.getInt(threadID)
         }?.toLong() ?: -1L
     }
 
-    fun setOriginalThreadID(messageID: Long, threadID: Long) {
+    fun setOriginalThreadID(messageID: Long, serverID: Long, threadID: Long) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.messageID, messageID)
+        contentValues.put(Companion.serverID, serverID)
         contentValues.put(Companion.threadID, threadID)
-        database.insertOrUpdate(messageThreadMappingTable, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+        database.insertOrUpdate(messageThreadMappingTable, contentValues, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageID.toString(), serverID.toString()))
     }
 
     fun getErrorMessage(messageID: Long): String? {
         val database = databaseHelper.readableDatabase
-        return database.get(errorMessageTable, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+        return database.get(errorMessageTable, "${Companion.messageID} = ?", arrayOf(messageID.toString())) { cursor ->
             cursor.getString(errorMessage)
         }
     }
@@ -81,6 +133,6 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val contentValues = ContentValues(2)
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.errorMessage, errorMessage)
-        database.insertOrUpdate(errorMessageTable, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+        database.insertOrUpdate(errorMessageTable, contentValues, "${Companion.messageID} = ?", arrayOf(messageID.toString()))
     }
 }

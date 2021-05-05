@@ -125,6 +125,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
     db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
+    db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
+    db.execSQL(LokiMessageDatabase.getUpdateMessageMappingTable());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -275,6 +277,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV23) {
         db.execSQL("ALTER TABLE groups ADD COLUMN zombie_members TEXT");
+        db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
+        db.execSQL(LokiMessageDatabase.getUpdateMessageMappingTable());
       }
 
       db.setTransactionSuccessful();

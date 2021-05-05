@@ -16,10 +16,10 @@ data class SnodeMessage(
     internal fun toJSON(): Map<String, String> {
         return mapOf(
             "pubKey" to if (SnodeAPI.useTestnet) recipient.removing05PrefixIfNeeded() else recipient,
-            "data" to data,
-            "ttl" to ttl.toString(),
-            "timestamp" to timestamp.toString(),
-            "nonce" to ""
+                "data" to data,
+                "ttl" to ttl.toString(),
+                "timestamp" to timestamp.toString(),
+                "nonce" to ""
         )
     }
 }

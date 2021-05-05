@@ -10,7 +10,6 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.messaging.file_server.FileServerAPI
 
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
@@ -27,7 +26,7 @@ import org.session.libsignal.service.loki.HTTP
 import org.session.libsignal.service.loki.utilities.*
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-
+import org.session.libsignal.utilities.logging.Log
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -269,13 +268,13 @@ open class DotNetAPI {
         return upload(server, request) { json -> // Retrying is handled by AttachmentUploadJob
             val data = json["data"] as? Map<*, *>
             if (data == null) {
-                Log.d("Loki", "Couldn't parse attachment from: $json.")
+                Log.e("Loki", "Couldn't parse attachment from: $json.")
                 throw Error.ParsingFailed
             }
             val id = data["id"] as? Long ?: (data["id"] as? Int)?.toLong() ?: (data["id"] as? String)?.toLong()
             val url = data["url"] as? String
             if (id == null || url == null || url.isEmpty()) {
-                Log.d("Loki", "Couldn't parse upload from: $json.")
+                Log.e("Loki", "Couldn't parse upload from: $json.")
                 throw Error.ParsingFailed
             }
             UploadResult(id, url, file.transmittedDigest)
