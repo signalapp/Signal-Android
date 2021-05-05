@@ -1503,6 +1503,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Pedido de mensagem</string>
+  <string name="SingleRecipientNotificationBuilder_you">Você</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Reproduzir vídeo</string>
   <string name="ThumbnailView_Has_a_caption_description">Tem uma legenda</string>

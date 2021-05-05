@@ -1472,6 +1472,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">नया Signal मेसेज</string>
+  <string name="SingleRecipientNotificationBuilder_you">आप</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">वीडियो चलाएं</string>
   <string name="ThumbnailView_Has_a_caption_description">कैप्शन है</string>

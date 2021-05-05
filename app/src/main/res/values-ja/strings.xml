@@ -1429,6 +1429,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新着メッセージ</string>
   <string name="SingleRecipientNotificationBuilder_message_request">メッセージ申請</string>
+  <string name="SingleRecipientNotificationBuilder_you">あなた</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">動画を再生</string>
   <string name="ThumbnailView_Has_a_caption_description">キャプション付き</string>

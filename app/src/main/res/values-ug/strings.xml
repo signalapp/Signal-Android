@@ -1503,6 +1503,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal </string>
   <string name="SingleRecipientNotificationBuilder_new_message">يېڭى ئۇچۇر</string>
   <string name="SingleRecipientNotificationBuilder_message_request">ئۇچۇر ئىلتىماسى</string>
+  <string name="SingleRecipientNotificationBuilder_you">سىز</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">سىن قويۇش</string>
   <string name="ThumbnailView_Has_a_caption_description">خەتلىك</string>

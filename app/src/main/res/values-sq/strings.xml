@@ -1504,6 +1504,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Kërkesë mesazhi</string>
+  <string name="SingleRecipientNotificationBuilder_you">Ju</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Luaje videon</string>
   <string name="ThumbnailView_Has_a_caption_description">Ka përshkrim</string>

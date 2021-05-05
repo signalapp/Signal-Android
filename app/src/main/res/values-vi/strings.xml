@@ -1427,6 +1427,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+  <string name="SingleRecipientNotificationBuilder_you">Bạn</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Phát video</string>
   <string name="ThumbnailView_Has_a_caption_description">Có tiêu đề</string>

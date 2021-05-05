@@ -1743,6 +1743,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
+  <string name="SingleRecipientNotificationBuilder_you">أنت</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">شغّل الفيديو</string>
   <string name="ThumbnailView_Has_a_caption_description">فيه تعليق</string>

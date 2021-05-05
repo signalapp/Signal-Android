@@ -1496,6 +1496,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Viestipyyntö</string>
+  <string name="SingleRecipientNotificationBuilder_you">Sinä</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Toista video</string>
   <string name="ThumbnailView_Has_a_caption_description">Sisältää kuvatekstin</string>

@@ -1498,6 +1498,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nytt meddelande</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Meddelandeförfrågan</string>
+  <string name="SingleRecipientNotificationBuilder_you">Du</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spela video</string>
   <string name="ThumbnailView_Has_a_caption_description">Har en bildtext</string>

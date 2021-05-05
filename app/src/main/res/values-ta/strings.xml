@@ -1492,6 +1492,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
+  <string name="SingleRecipientNotificationBuilder_you">நீங்கள்</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
   <string name="ThumbnailView_Has_a_caption_description">ஒரு தலைப்பு உள்ளது</string>

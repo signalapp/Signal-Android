@@ -1495,6 +1495,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Meldingsforespørsel</string>
+  <string name="SingleRecipientNotificationBuilder_you">Deg</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spill av video</string>
   <string name="ThumbnailView_Has_a_caption_description">Har bildetekst</string>

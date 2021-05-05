@@ -1436,6 +1436,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
   <string name="SingleRecipientNotificationBuilder_message_request">메시지 요청</string>
+  <string name="SingleRecipientNotificationBuilder_you">나</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">동영상 재생</string>
   <string name="ThumbnailView_Has_a_caption_description">자막 있음</string>

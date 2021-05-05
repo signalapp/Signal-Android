@@ -1441,7 +1441,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="KeyCachingService_passphrase_cached">Signal is ontgrendeld</string>
   <string name="KeyCachingService_lock">Vergrendel Signal</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">jou</string>
+  <string name="MediaPreviewActivity_you">Door jou verzonden</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
@@ -1508,6 +1508,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Gespreksverzoek</string>
+  <string name="SingleRecipientNotificationBuilder_you">Jij</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Video afspelen</string>
   <string name="ThumbnailView_Has_a_caption_description">Heeft een bijschrift</string>

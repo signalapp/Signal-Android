@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Скрыть напоминание?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Запишите платёжную фразу восстановления</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Записать фразу</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед тем, как вы отключить PIN-код, вы должны записать свою платёжную фразу восстановления, чтобы обеспечить возможность восстановления своей платёжной учётной записи при необходимости.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед тем, как отключить PIN-код, вы должны записать свою платёжную фразу восстановления, чтобы обеспечить возможность восстановления своей платёжной учётной записи при необходимости.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минута</item>
@@ -1621,6 +1621,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Запрос на общение</string>
+  <string name="SingleRecipientNotificationBuilder_you">Вы</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Воспроизвести видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Есть подпись</string>
@@ -2247,7 +2248,7 @@
   <string name="PaymentsDetailsFragment__from">От</string>
   <string name="PaymentsDetailsFragment__information">Подробности транзакции, включая сумму платежа и время транзакции, являются частью распределённого реестра MobileCoin.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Комиссия за очистку монет</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">«Комиссия за очистку монет» взимается, когда монеты, которыми вы владеете, невозможно объединить, чтобы совершить транзакцию. Очистка позволит вам продолжить отправлять платежи.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">«Комиссия за очистку монет» взимается, когда монеты, которыми вы владеете, невозможно объединить, чтобы совершить транзакцию. После очистки вы сможете продолжить отправлять платежи.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Для этой транзакции недоступно больше информации</string>
   <string name="PaymentsDetailsFragment__sent_payment">Отправленный платёж</string>
   <string name="PaymentsDetailsFragment__received_payment">Полученный платёж</string>
@@ -2920,7 +2921,7 @@
   <string name="payment_info_card_hide_this_card">Скрыть эту карточку?</string>
   <string name="payment_info_card_hide">Скрыть</string>
   <string name="payment_info_card_record_recovery_phrase">Запишите фразу восстановления</string>
-  <string name="payment_info_card_your_recovery_phrase_gives_you">Ваша фраза восстановления — это дополнительный способ восстановления вашей платёжной учётной записи.</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Ваша фраза восстановления — это дополнительный способ восстановить вашу платёжную учётную запись.</string>
   <string name="payment_info_card_record_your_phrase">Записать фразу</string>
   <string name="payment_info_card_update_your_pin">Обновите свой PIN-код</string>
   <string name="payment_info_card_with_a_high_balance">Так как у вас большой баланс, возможно, вы захотите обновить свой PIN-код на буквенно-цифровой, чтобы лучше защитить свою учётную запись.</string>
@@ -2940,7 +2941,7 @@
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Просмотр фразы восстановления</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Введите фразу восстановления</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Ваши средства будут автоматически восстановлены, когда вы переустановите Signal, если вы введёте верный PIN-код. Вы также можете восстановить свои средства с помощью своей уникальной фразы восстановления, которая состоит из %1$d слов. Запишите её и храните в безопасном месте.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза восстановления — это уникальная фраза, состоящая из %1$d слов. Используйте её, чтобы восстановить свой баланс.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша фраза восстановления — это уникальная фраза, состоящая из %1$d слов. Она понадобится вам, чтобы восстановить свой баланс.</string>
   <string name="PaymentsRecoveryStartFragment__start">Начать</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Ввести вручную</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Вставить из буфера обмена</string>

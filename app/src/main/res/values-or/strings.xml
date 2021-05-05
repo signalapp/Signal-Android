@@ -1495,6 +1495,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ନୂତନ ବାର୍ତ୍ତା</string>
+  <string name="SingleRecipientNotificationBuilder_you">ଆପଣ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ଭିଡ଼ିଓ ଚଲାନ୍ତୁ</string>
   <string name="ThumbnailView_Has_a_caption_description">ଏକ ଲେଖା ଅଛି</string>

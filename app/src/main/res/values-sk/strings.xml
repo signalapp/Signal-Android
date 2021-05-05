@@ -1627,6 +1627,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Žiadosť o správu</string>
+  <string name="SingleRecipientNotificationBuilder_you">Vy</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Prehrať video</string>
   <string name="ThumbnailView_Has_a_caption_description">Má popis</string>

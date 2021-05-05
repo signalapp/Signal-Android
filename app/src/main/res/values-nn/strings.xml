@@ -1508,6 +1508,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Meldingsspørsmål</string>
+  <string name="SingleRecipientNotificationBuilder_you">Du</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Snurr film</string>
   <string name="ThumbnailView_Has_a_caption_description">Har bildetekst</string>

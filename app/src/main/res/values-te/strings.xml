@@ -612,6 +612,7 @@
   <string name="ManageGroupActivity_mentions">ప్రస్తావనలు</string>
   <string name="ManageGroupActivity_chat_wallpaper">సంభాషణ వాల్పేపర్</string>
   <string name="ManageGroupActivity_until_s">వరకు %1$s</string>
+  <string name="ManageGroupActivity_always">ఎల్లప్పుడూ</string>
   <string name="ManageGroupActivity_off">ఆఫ్</string>
   <string name="ManageGroupActivity_on">ఆన్</string>
   <string name="ManageGroupActivity_view_all_members">సభ్యులందరినీ చూడండి</string>
@@ -664,6 +665,7 @@
   <string name="ManageRecipientActivity_mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
   <string name="ManageRecipientActivity_custom_notifications">అనుకూల ప్రకటనలను</string>
   <string name="ManageRecipientActivity_until_s">వరకు %1$s</string>
+  <string name="ManageRecipientActivity_always">ఎల్లప్పుడూ</string>
   <string name="ManageRecipientActivity_off">ఆఫ్</string>
   <string name="ManageRecipientActivity_on">ఆన్</string>
   <string name="ManageRecipientActivity_add_to_a_group">సమూహానికి జోడించండి</string>
@@ -1498,6 +1500,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">కొత్త సందేశం</string>
+  <string name="SingleRecipientNotificationBuilder_you">మీరు</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">వీడియో ప్లే చేయండి</string>
   <string name="ThumbnailView_Has_a_caption_description">శీర్షిక ఉంది</string>
@@ -1816,6 +1819,7 @@
   <string name="arrays__mute_for_one_hour">1 గంట నిశబ్దంగా ఉంచు</string>
   <string name="arrays__mute_for_one_day">1 రోజు నిశబ్దంగా ఉంచు</string>
   <string name="arrays__mute_for_seven_days">7 రోజులు నిశబ్దంగా ఉంచు</string>
+  <string name="arrays__always">ఎల్లప్పుడూ</string>
   <string name="arrays__settings_default">అప్రమేయ అమరికలు</string>
   <string name="arrays__enabled">చేతనం అయింది</string>
   <string name="arrays__disabled">అచేతనం అయింది</string>
@@ -1902,6 +1906,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">మీరు పంపే ప్రతి SMS కోసం బట్వాడా నివేదికను అభ్యర్థించండి</string>
   <string name="preferences__data_and_storage">డేటా మరియు నిల్వ</string>
   <string name="preferences__storage">నిల్వ</string>
+  <string name="preferences__payments">చెల్లింపులు</string>
   <string name="preferences__conversation_length_limit">సంభాషణ విస్తృతికి పరిమితి</string>
   <string name="preferences__keep_messages">సందేశాలను ఉంచు</string>
   <string name="preferences__clear_message_history">సందేశ చరిత్రను తొలగించు</string>
@@ -2524,11 +2529,13 @@
   <string name="payment_info_card_update_pin">పిన్‌ను నవీకరించండి</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">ప్రారంభించండి</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">తరువాత</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">తరువాత</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">సరిచేయు</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">మునుపటి</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">నకలు</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">పూర్తి</string>

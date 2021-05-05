@@ -1485,6 +1485,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">نيا پیغام</string>
+  <string name="SingleRecipientNotificationBuilder_you">آپ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ویڈیو چلائیں</string>
   <string name="ThumbnailView_Has_a_caption_description">ایک عنوان ہے</string>

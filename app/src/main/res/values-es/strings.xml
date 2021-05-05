@@ -1504,6 +1504,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Solicitud de chat</string>
+  <string name="SingleRecipientNotificationBuilder_you">Tú</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Reproducir vídeo</string>
   <string name="ThumbnailView_Has_a_caption_description">Contiene una explicación</string>

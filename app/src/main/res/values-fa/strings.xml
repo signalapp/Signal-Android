@@ -567,7 +567,7 @@
   <string name="AddGroupDetailsFragment__create">ایجاد</string>
   <string name="AddGroupDetailsFragment__members">اعضا</string>
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">می‌توانید دوستان را بعد از ایجاد این گروه دعوت یا اضافه کنید.</string>
-  <string name="AddGroupDetailsFragment__group_name_required">نام گروه (ضروری)</string>
+  <string name="AddGroupDetailsFragment__group_name_required">نام گروه (الزامی)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">نام گروه (اختیاری)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">پر کردن این قسمت الزامی است.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه موفق نبود.</string>
@@ -1502,6 +1502,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">سیگنال</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
   <string name="SingleRecipientNotificationBuilder_message_request">درخواست تبادل پیام</string>
+  <string name="SingleRecipientNotificationBuilder_you">شما</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">پخش ویدئو</string>
   <string name="ThumbnailView_Has_a_caption_description">حاوی زیرنویس</string>
@@ -1731,7 +1732,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">سیگنال برای تحویل رسانه‌ها و پیام‌های گروهی از طریق اپراتور همراه شما به تنظیمات فراپیام نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مشکل معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
   <!--profile_create_activity-->
-  <string name="CreateProfileActivity_first_name_required">نام (لازم)</string>
+  <string name="CreateProfileActivity_first_name_required">نام (الزامی)</string>
   <string name="CreateProfileActivity_last_name_optional">نام خانوادگی (اختیاری)</string>
   <string name="CreateProfileActivity_next">بعدی</string>
   <string name="CreateProfileActivity__username">نام کاربری</string>

@@ -1440,6 +1440,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
   <string name="SingleRecipientNotificationBuilder_message_request">คำขอส่งข้อความ</string>
+  <string name="SingleRecipientNotificationBuilder_you">คุณ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">เล่นวิดีโอ</string>
   <string name="ThumbnailView_Has_a_caption_description">มีคำบรรยายภาพ</string>

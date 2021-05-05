@@ -1397,6 +1397,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Peyama nû</string>
+  <string name="SingleRecipientNotificationBuilder_you">Tu</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Vîdyoyê lêde</string>
   <string name="ThumbnailView_Has_a_caption_description">Sernavê wê heye</string>

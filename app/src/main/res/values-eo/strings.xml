@@ -1503,6 +1503,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mesaĝo</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Mesaĝopeto</string>
+  <string name="SingleRecipientNotificationBuilder_you">Vi</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Ludi videaĵon</string>
   <string name="ThumbnailView_Has_a_caption_description">Havas priskribon</string>

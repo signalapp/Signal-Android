@@ -1489,6 +1489,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">പുതിയ സന്ദേശം</string>
+  <string name="SingleRecipientNotificationBuilder_you">നിങ്ങൾ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">വീഡിയോ പ്ലേ ചെയ്യുക</string>
   <string name="ThumbnailView_Has_a_caption_description">ഒരു അടിക്കുറിപ്പ് ഉണ്ട്</string>

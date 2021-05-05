@@ -1504,6 +1504,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Richiesta di messaggio</string>
+  <string name="SingleRecipientNotificationBuilder_you">Tu</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Riproduci video</string>
   <string name="ThumbnailView_Has_a_caption_description">Ha una didascalia</string>

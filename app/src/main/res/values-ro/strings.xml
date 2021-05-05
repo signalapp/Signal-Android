@@ -1556,6 +1556,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
+  <string name="SingleRecipientNotificationBuilder_you">Dvs.</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Redați video</string>
   <string name="ThumbnailView_Has_a_caption_description">Are un titlu</string>

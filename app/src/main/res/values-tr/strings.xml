@@ -1502,6 +1502,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni ileti</string>
   <string name="SingleRecipientNotificationBuilder_message_request">İleti isteği</string>
+  <string name="SingleRecipientNotificationBuilder_you">Siz</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Videoyu oynat</string>
   <string name="ThumbnailView_Has_a_caption_description">Başlığı var</string>

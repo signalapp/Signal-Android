@@ -1438,6 +1438,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <string name="SingleRecipientNotificationBuilder_message_request">訊息要求</string>
+  <string name="SingleRecipientNotificationBuilder_you">你</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播放影片</string>
   <string name="ThumbnailView_Has_a_caption_description">有一個標題</string>

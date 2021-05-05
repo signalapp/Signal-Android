@@ -1627,6 +1627,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová zpráva</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Žádost o zprávu</string>
+  <string name="SingleRecipientNotificationBuilder_you">Vy</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Přehrát video</string>
   <string name="ThumbnailView_Has_a_caption_description">Má popisek</string>

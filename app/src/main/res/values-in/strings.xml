@@ -1441,6 +1441,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Permintaan pesan</string>
+  <string name="SingleRecipientNotificationBuilder_you">Anda</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Putar video</string>
   <string name="ThumbnailView_Has_a_caption_description">Memiliki keterangan</string>

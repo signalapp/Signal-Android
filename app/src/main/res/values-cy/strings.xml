@@ -1630,6 +1630,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Cais am neges</string>
+  <string name="SingleRecipientNotificationBuilder_you">Chi</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Chwarae fideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Mae ganddo bennawd</string>

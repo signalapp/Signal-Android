@@ -1496,6 +1496,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mezu berria</string>
+  <string name="SingleRecipientNotificationBuilder_you">Zu</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Erreproduzitu bideoa</string>
   <string name="ThumbnailView_Has_a_caption_description">Azpititulua dauka</string>

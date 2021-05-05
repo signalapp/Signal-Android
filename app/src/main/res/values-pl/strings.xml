@@ -1620,6 +1620,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Prośba o kontakt</string>
+  <string name="SingleRecipientNotificationBuilder_you">Ty</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Odtwórz wideo</string>
   <string name="ThumbnailView_Has_a_caption_description">Posiada opis</string>

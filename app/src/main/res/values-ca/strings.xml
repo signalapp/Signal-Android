@@ -1498,6 +1498,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Missatge nou</string>
   <string name="SingleRecipientNotificationBuilder_message_request">Sol·licitud de missatge</string>
+  <string name="SingleRecipientNotificationBuilder_you">Vós</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Reprodueix el vídeo</string>
   <string name="ThumbnailView_Has_a_caption_description">Té un títol</string>

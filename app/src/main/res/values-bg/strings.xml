@@ -1490,6 +1490,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
+  <string name="SingleRecipientNotificationBuilder_you">Ти</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Възпроизвеждане на видео</string>
   <string name="ThumbnailView_Has_a_caption_description">Има надпис</string>
