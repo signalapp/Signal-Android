@@ -15,18 +15,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.thoughtcrime.securesms.emoji.EmojiBitmapDecoder;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.util.DeviceProperties;
 
 class EmojiProvider {
 
@@ -89,12 +93,16 @@ class EmojiProvider {
       return null;
     }
 
-    final EmojiSource   source   = EmojiSource.getLatest();
-    final EmojiDrawable drawable = new EmojiDrawable(source, drawInfo);
+    final int           lowMemoryDecodeScale = DeviceProperties.isLowMemoryDevice(context) ? 2 : 1;
+    final EmojiSource   source               = EmojiSource.getLatest();
+    final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
     GlideApp.with(context)
             .asBitmap()
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .load(drawInfo.getPage().getModel())
+            .priority(Priority.HIGH)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .apply(new RequestOptions().set(EmojiBitmapDecoder.OPTION, lowMemoryDecodeScale))
             .addListener(new RequestListener<Bitmap>() {
               @Override
               public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
@@ -130,12 +138,12 @@ class EmojiProvider {
       return (int) intrinsicHeight;
     }
 
-    EmojiDrawable(@NonNull EmojiSource source, @NonNull EmojiDrawInfo info) {
-      this.intrinsicWidth  = source.getMetrics().getRawWidth() * source.getDecodeScale();
-      this.intrinsicHeight = source.getMetrics().getRawHeight() * source.getDecodeScale();
+    EmojiDrawable(@NonNull EmojiSource source, @NonNull EmojiDrawInfo info, int lowMemoryDecodeScale) {
+      this.intrinsicWidth  = (source.getMetrics().getRawWidth() * source.getDecodeScale()) / lowMemoryDecodeScale;
+      this.intrinsicHeight = (source.getMetrics().getRawHeight() * source.getDecodeScale()) / lowMemoryDecodeScale;
 
-      final int glyphWidth  = (int) (source.getMetrics().getRawWidth() * source.getDecodeScale());
-      final int glyphHeight = (int) (source.getMetrics().getRawHeight() * source.getDecodeScale());
+      final int glyphWidth  = (int) (intrinsicWidth);
+      final int glyphHeight = (int) (intrinsicHeight);
       final int index       = info.getIndex();
       final int emojiPerRow = source.getMetrics().getPerRow();
       final int xStart      = (index % emojiPerRow) * glyphWidth;

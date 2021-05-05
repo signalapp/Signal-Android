@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.blurhash.BlurHashResourceDecoder;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.emoji.EmojiBitmapDecoder;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.glide.ChunkedImageUrlLoader;
 import org.thoughtcrime.securesms.glide.ContactPhotoLoader;
@@ -82,6 +83,7 @@ public class SignalGlideModule extends AppGlideModule {
     ApngBufferCacheDecoder apngBufferCacheDecoder = new ApngBufferCacheDecoder();
     ApngStreamCacheDecoder apngStreamCacheDecoder = new ApngStreamCacheDecoder(apngBufferCacheDecoder);
 
+    registry.prepend(InputStream.class, Bitmap.class, new EmojiBitmapDecoder(glide.getBitmapPool()));
     registry.prepend(InputStream.class, APNGDecoder.class, apngStreamCacheDecoder);
     registry.prepend(ByteBuffer.class, APNGDecoder.class, apngBufferCacheDecoder);
     registry.prepend(APNGDecoder.class, new EncryptedApngCacheEncoder(secret));
