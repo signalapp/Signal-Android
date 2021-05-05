@@ -63,7 +63,7 @@ interface StorageProtocol {
 
     // Open Groups
     fun getThreadID(openGroupID: String): String?
-    fun addOpenGroup(server: String, channel: Long)
+    fun addOpenGroup(serverUrl: String, channel: Long)
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long, threadID: Long, isSms: Boolean)
     fun getQuoteServerID(quoteID: Long, publicKey: String): Long?
 

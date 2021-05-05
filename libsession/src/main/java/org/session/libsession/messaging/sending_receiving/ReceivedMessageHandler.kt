@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -125,10 +126,9 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair!!, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
-    val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.server }
+    val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.toJoinUrl() }
     for (openGroup in message.openGroups) {
-        if (allOpenGroups.contains(openGroup)) continue
-        // TODO: add in v2
+        if (allOpenGroups.contains(openGroup) || allV2OpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)
     }
     if (message.displayName.isNotEmpty()) {

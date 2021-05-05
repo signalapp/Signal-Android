@@ -287,7 +287,7 @@ object MessageSender {
         val userPublicKey = storage.getUserPublicKey()!!
         val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
-        storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
+//        storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
         // Track the open group server message ID
         if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
             val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())

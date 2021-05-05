@@ -39,6 +39,8 @@ data class OpenGroupV2(
 
     }
 
+    fun toJoinUrl(): String = "$server/$id?public_key=$publicKey"
+
     fun toJson(): Map<String,String> = mapOf(
             "room" to room,
             "server" to server,

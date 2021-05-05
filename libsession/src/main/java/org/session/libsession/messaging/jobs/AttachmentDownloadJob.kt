@@ -3,9 +3,11 @@ package org.session.libsession.messaging.jobs
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.utilities.DownloadUtilities
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
@@ -58,10 +60,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             val openGroupV2 = MessagingModuleConfiguration.shared.storage.getV2OpenGroup(threadId.toString())
 
             val stream = if (openGroupV2 == null) {
-                FileServerAPI.shared.downloadFile(tempFile, attachment.url,  null)
-
-
-
+                DownloadUtilities.downloadFile(tempFile, attachment.url, FileServerAPI.maxFileSize, null)
                 // Assume we're retrieving an attachment for an open group server if the digest is not set
                 if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
                 else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)

@@ -203,7 +203,7 @@ open class DotNetAPI {
     /**
      * Blocks the calling thread.
      */
-    fun downloadFile(outputStream: OutputStream, url: String, listener: SignalServiceAttachment.ProgressListener?) {
+    private fun downloadFile(outputStream: OutputStream, url: String, listener: SignalServiceAttachment.ProgressListener?) {
         // We need to throw a PushNetworkException or NonSuccessfulResponseCodeException
         // because the underlying Signal logic requires these to work correctly
         val oldPrefixedHost = "https://" + HttpUrl.get(url).host()
