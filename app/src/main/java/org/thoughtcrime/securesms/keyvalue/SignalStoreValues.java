@@ -67,4 +67,8 @@ abstract class SignalStoreValues {
   void putString(@NonNull String key, String value) {
     store.beginWrite().putString(key, value).apply();
   }
+
+  void remove(@NonNull String key) {
+    store.beginWrite().remove(key);
+  }
 }

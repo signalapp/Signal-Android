@@ -161,6 +161,8 @@ public class ConversationItemFooter extends LinearLayout {
       dateView.setText(errorMsg);
     } else if (messageRecord.isPendingInsecureSmsFallback()) {
       dateView.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+    } else if (messageRecord.isRateLimited()) {
+      dateView.setText(R.string.ConversationItem_send_paused);
     } else {
       dateView.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
     }

@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
@@ -319,6 +318,27 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public void markAsForcedSms(long id) {
     updateTypeBitmask(id, Types.PUSH_MESSAGE_BIT, Types.MESSAGE_FORCE_SMS_BIT);
+  }
+
+  @Override
+  public void markAsRateLimited(long id) {
+    updateTypeBitmask(id, 0, Types.MESSAGE_RATE_LIMITED_BIT);
+  }
+
+  @Override
+  public void clearRateLimitStatus(@NonNull Collection<Long> ids) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      for (long id : ids) {
+        updateTypeBitmask(id, Types.MESSAGE_RATE_LIMITED_BIT, 0);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   @Override
@@ -885,6 +905,22 @@ public class SmsDatabase extends MessageDatabase {
     ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
 
     return new Pair<>(messageId, threadId);
+  }
+
+  @Override
+  public Set<Long> getAllRateLimitedMessageIds() {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         where = "(" + TYPE + " & " + Types.TOTAL_MASK + " & " + Types.MESSAGE_RATE_LIMITED_BIT + ") > 0";
+
+    Set<Long> ids = new HashSet<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID }, where, null, null, null, null)) {
+      while (cursor.moveToNext()) {
+        ids.add(CursorUtil.requireLong(cursor, ID));
+      }
+    }
+
+    return ids;
   }
 
   @Override

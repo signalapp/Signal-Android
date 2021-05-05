@@ -224,6 +224,15 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Perform an arbitrary update on enqueued jobs. Will not apply to jobs that are already running.
+   * You shouldn't use this if you can help it. You give yourself an opportunity to really screw
+   * things up.
+   */
+  public void update(@NonNull JobUpdater updater) {
+    runOnExecutor(() -> jobController.update(updater));
+  }
+
+  /**
    * Runs the specified job synchronously. Beware: All normal dependencies are respected, meaning
    * you must take great care where you call this. It could take a very long time to complete!
    *

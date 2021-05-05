@@ -69,4 +69,10 @@ public class AlertView extends LinearLayout {
     approvalIndicator.setVisibility(View.GONE);
     failedIndicator.setVisibility(View.VISIBLE);
   }
+
+  public void setRateLimited() {
+    this.setVisibility(View.VISIBLE);
+    approvalIndicator.setVisibility(View.VISIBLE);
+    failedIndicator.setVisibility(View.GONE);
+  }
 }

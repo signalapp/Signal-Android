@@ -47,6 +47,7 @@ public class RotateProfileKeyJob extends BaseJob {
 
     ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
     ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+    ApplicationDependencies.getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
 
     updateProfileKeyOnAllV2Groups();
   }

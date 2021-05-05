@@ -11,6 +11,9 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
@@ -39,6 +42,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
@@ -49,6 +53,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -60,7 +65,10 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.ProofRequiredResponse;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -72,12 +80,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
 
   private static final String TAG                           = Log.tag(PushSendJob.class);
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
+  private static final long   PUSH_CHALLENGE_TIMEOUT        = TimeUnit.SECONDS.toMillis(10);
 
   protected PushSendJob(Job.Parameters parameters) {
     super(parameters);
@@ -100,6 +110,11 @@ public abstract class PushSendJob extends SendJob {
     }
 
     onPushSend();
+
+    if (SignalStore.rateLimit().needsRecaptcha()) {
+      Log.i(TAG, "Successfully sent message. Assuming reCAPTCHA no longer needed.");
+      SignalStore.rateLimit().onProofAccepted();
+    }
   }
 
   @Override
@@ -124,15 +139,27 @@ public abstract class PushSendJob extends SendJob {
       return false;
     }
 
-    return exception instanceof IOException ||
-           exception instanceof RetryLaterException;
+    return exception instanceof IOException         ||
+           exception instanceof RetryLaterException ||
+           exception instanceof ProofRequiredException;
   }
 
   @Override
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
-    if (exception instanceof NonSuccessfulResponseCodeException) {
+    if (exception instanceof ProofRequiredException) {
+      long backoff = ((ProofRequiredException) exception).getRetryAfterSeconds();
+      warn(TAG, "[Proof Required] Retry-After is " + backoff + " seconds.");
+      if (backoff >= 0) {
+        return TimeUnit.SECONDS.toMillis(backoff);
+      }
+    } else if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
         return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getServerErrorMaxBackoff());
+      }
+    } else if (exception instanceof RetryLaterException) {
+      long backoff = ((RetryLaterException) exception).getBackoff();
+      if (backoff >= 0) {
+        return backoff;
       }
     }
 
@@ -422,6 +449,81 @@ public abstract class PushSendJob extends SendJob {
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 
+  protected void handleProofRequiredException(@NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
+      throws ProofRequiredException, RetryLaterException
+  {
+    try {
+      if (proofRequired.getOptions().contains(ProofRequiredException.Option.PUSH_CHALLENGE)) {
+        ApplicationDependencies.getSignalServiceAccountManager().requestRateLimitPushChallenge();
+        log(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to " + PUSH_CHALLENGE_TIMEOUT + " ms.");
+
+        boolean success = new PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess();
+
+        if (success) {
+          log(TAG, "Successfully responded to a push challenge. Retrying message send.");
+          throw new RetryLaterException(1);
+        } else {
+          warn(TAG, "Failed to respond to the push challenge in time. Falling back.");
+        }
+      }
+    } catch (NonSuccessfulResponseCodeException e) {
+      warn(TAG, "[Proof Required] Could not request a push challenge (" + e.getCode() + "). Falling back.", e);
+    } catch (IOException e) {
+      warn(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.");
+      throw new RetryLaterException(e);
+    }
+
+    warn(TAG, "[Proof Required] Marking message as rate-limited. (id: " + messageId + ", mms: " + isMms + ", thread: " + threadId + ")");
+    if (isMms) {
+      DatabaseFactory.getMmsDatabase(context).markAsRateLimited(messageId);
+    } else {
+      DatabaseFactory.getSmsDatabase(context).markAsRateLimited(messageId);
+    }
+
+    if (proofRequired.getOptions().contains(ProofRequiredException.Option.RECAPTCHA)) {
+      log(TAG, "[Proof Required] ReCAPTCHA required.");
+      SignalStore.rateLimit().markNeedsRecaptcha(proofRequired.getToken());
+
+      if (recipient != null) {
+        ApplicationDependencies.getMessageNotifier().notifyProofRequired(context, recipient, threadId);
+      } else {
+        warn(TAG, "[Proof Required] No recipient! Couldn't notify.");
+      }
+    }
+
+    throw proofRequired;
+  }
 
   protected abstract void onPushSend() throws Exception;
+
+  public static class PushChallengeRequest {
+    private final long           timeout;
+    private final CountDownLatch latch;
+    private final EventBus       eventBus;
+
+    private PushChallengeRequest(long timeout) {
+      this.timeout  = timeout;
+      this.latch    = new CountDownLatch(1);
+      this.eventBus = EventBus.getDefault();
+    }
+
+    public boolean blockUntilSuccess() {
+      eventBus.register(this);
+
+      try {
+        return latch.await(timeout, TimeUnit.MILLISECONDS);
+      } catch (InterruptedException e) {
+        Log.w(TAG, "[Proof Required] Interrupted?", e);
+        return false;
+      } finally {
+        eventBus.unregister(this);
+      }
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onSuccessReceived(SubmitRateLimitPushChallengeJob.SuccessEvent event) {
+      Log.i(TAG, "[Proof Required] Received a successful result!");
+      latch.countDown();
+    }
+  }
 }

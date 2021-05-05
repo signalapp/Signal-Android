@@ -55,6 +55,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
@@ -68,6 +69,7 @@ import org.whispersystems.signalservice.internal.push.AttachmentV3UploadAttribut
 import org.whispersystems.signalservice.internal.push.MismatchedDevices;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
+import org.whispersystems.signalservice.internal.push.ProofRequiredResponse;
 import org.whispersystems.signalservice.internal.push.ProvisioningProtos;
 import org.whispersystems.signalservice.internal.push.PushAttachmentData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -98,6 +100,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -1424,6 +1427,9 @@ public class SignalServiceMessageSender {
         } else if (e.getCause() instanceof ServerRejectedException) {
           Log.w(TAG, e);
           throw ((ServerRejectedException) e.getCause());
+        } else if (e.getCause() instanceof ProofRequiredException) {
+          Log.w(TAG, e);
+          results.add(SendMessageResult.proofRequiredFailure(recipient, (ProofRequiredException) e.getCause()));
         } else {
           throw new IOException(e);
         }

@@ -49,6 +49,10 @@ public final class JobSpec {
     this.memoryOnly          = memoryOnly;
   }
 
+  public @NonNull JobSpec withNextRunAttemptTime(long updated) {
+    return new JobSpec(id, factoryKey, queueKey, createTime, updated, runAttempt, maxAttempts, lifespan, serializedData, serializedInputData, isRunning, memoryOnly);
+  }
+
   public @NonNull String getId() {
     return id;
   }

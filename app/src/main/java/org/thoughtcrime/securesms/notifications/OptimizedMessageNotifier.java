@@ -53,8 +53,13 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
-  public void notifyMessageDeliveryFailed(Context context, Recipient recipient, long threadId) {
+  public void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
     getNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
+  }
+
+  @Override
+  public void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
+    getNotifier().notifyProofRequired(context, recipient, threadId);
   }
 
   @Override

@@ -16,7 +16,8 @@ public interface MessageNotifier {
   long getVisibleThread();
   void clearVisibleThread();
   void setLastDesktopActivityTimestamp(long timestamp);
-  void notifyMessageDeliveryFailed(Context context, Recipient recipient, long threadId);
+  void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, long threadId);
+  void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, long threadId);
   void cancelDelayedNotifications();
   void updateNotification(@NonNull Context context);
   void updateNotification(@NonNull Context context, long threadId);

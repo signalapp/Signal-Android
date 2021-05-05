@@ -144,7 +144,8 @@ public final class JobManagerFactories {
       put(StickerDownloadJob.KEY,                    new StickerDownloadJob.Factory());
       put(StickerPackDownloadJob.KEY,                new StickerPackDownloadJob.Factory());
       put(StorageForcePushJob.KEY,                   new StorageForcePushJob.Factory());
-      put(StorageSyncJob.KEY,                      new StorageSyncJob.Factory());
+      put(StorageSyncJob.KEY,                        new StorageSyncJob.Factory());
+      put(SubmitRateLimitPushChallengeJob.KEY,       new SubmitRateLimitPushChallengeJob.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());

@@ -255,7 +255,8 @@ public class WebSocketConnection extends WebSocketListener {
         OutgoingRequest listener = outgoingRequests.get(message.getResponse().getId());
         if (listener != null) {
           listener.getResponseFuture().set(new WebsocketResponse(message.getResponse().getStatus(),
-                                                                 new String(message.getResponse().getBody().toByteArray())));
+                                                                 new String(message.getResponse().getBody().toByteArray()),
+                                                                 message.getResponse().getHeadersList()));
         }
       }
 

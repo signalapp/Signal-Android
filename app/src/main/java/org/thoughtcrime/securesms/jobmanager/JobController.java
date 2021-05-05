@@ -177,6 +177,23 @@ class JobController {
   }
 
   @WorkerThread
+  synchronized void update(@NonNull JobUpdater updater) {
+    List<JobSpec> allJobs     = jobStorage.getAllJobSpecs();
+    List<JobSpec> updatedJobs = new LinkedList<>();
+
+    for (JobSpec job : allJobs) {
+      JobSpec updated = updater.update(job, dataSerializer);
+      if (updated != job) {
+        updatedJobs.add(updated);
+      }
+    }
+
+    jobStorage.updateJobs(updatedJobs);
+
+    notifyAll();
+  }
+
+  @WorkerThread
   synchronized void onRetry(@NonNull Job job, long backoffInterval) {
     if (backoffInterval <= 0) {
       throw new IllegalArgumentException("Invalid backoff interval! " + backoffInterval);

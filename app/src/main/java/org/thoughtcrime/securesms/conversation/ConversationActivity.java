@@ -228,6 +228,8 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.ratelimit.RecaptchaProofActivity;
+import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -579,6 +581,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     setVisibleThread(threadId);
     ConversationUtil.refreshRecipientShortcuts();
+
+    if (SignalStore.rateLimit().needsRecaptcha()) {
+      RecaptchaProofBottomSheetFragment.show(getSupportFragmentManager());
+    }
   }
 
   @Override
@@ -2200,6 +2206,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     this.viewModel.setArgs(args);
     this.viewModel.getWallpaper().observe(this, this::updateWallpaper);
+    this.viewModel.getEvents().observe(this, this::onViewModelEvent);
   }
 
   private void initializeGroupViewModel() {
@@ -2970,6 +2977,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
       } else {
         inlineAttachmentToggle.hide();
       }
+    }
+  }
+
+  private void onViewModelEvent(@NonNull ConversationViewModel.Event event) {
+    if (event == ConversationViewModel.Event.SHOW_RECAPTCHA) {
+      RecaptchaProofBottomSheetFragment.show(getSupportFragmentManager());
+    } else {
+      throw new AssertionError("Unexpected event!");
     }
   }
 

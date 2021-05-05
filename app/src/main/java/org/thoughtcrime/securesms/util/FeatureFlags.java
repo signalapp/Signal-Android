@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.app.Application;
 import android.os.Build;
 import android.text.TextUtils;
 

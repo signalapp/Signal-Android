@@ -8,7 +8,6 @@ package org.whispersystems.signalservice.api;
 
 import com.google.protobuf.ByteString;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
@@ -26,12 +25,14 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes;
 import org.whispersystems.signalservice.internal.push.AttachmentV3UploadAttributes;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
+import org.whispersystems.signalservice.internal.push.ProofRequiredResponse;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -196,6 +197,12 @@ public class SignalServiceMessagePipe {
     return FutureTransformers.map(response, value -> {
       if (value.getStatus() == 404) {
         throw new UnregisteredUserException(list.getDestination(), new NotFoundException("not found"));
+      } else if (value.getStatus() == 428) {
+        ProofRequiredResponse proofResponse = JsonUtil.fromJson(value.getBody(), ProofRequiredResponse.class);
+        String                retryAfterRaw = value.getHeader("Retry-After");
+        long                  retryAfter    = Util.parseInt(retryAfterRaw, -1);
+
+        throw new ProofRequiredException(proofResponse, retryAfter);
       } else if (value.getStatus() == 508) {
         throw new ServerRejectedException();
       } else if (value.getStatus() < 200 || value.getStatus() >= 300) {

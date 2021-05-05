@@ -76,6 +76,10 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     NotificationFactory.notifyMessageDeliveryFailed(context, recipient, threadId, visibleThread)
   }
 
+  override fun notifyProofRequired(context: Context, recipient: Recipient, threadId: Long) {
+    NotificationFactory.notifyProofRequired(context, recipient, threadId, visibleThread)
+  }
+
   override fun cancelDelayedNotifications() {
     executor.cancel()
   }

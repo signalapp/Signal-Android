@@ -85,6 +85,7 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
+import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -942,6 +943,11 @@ public final class MessageContentProcessor {
       if (threadId != -1) {
         DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
+      }
+
+      if (SignalStore.rateLimit().needsRecaptcha()) {
+        Log.i(TAG, "Got a sent transcript while in reCAPTCHA mode. Assuming we're good to message again.");
+        RateLimitUtil.retryAllRateLimitedMessages(context);
       }
 
       ApplicationDependencies.getMessageNotifier().setLastDesktopActivityTimestamp(message.getTimestamp());

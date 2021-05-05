@@ -11,7 +11,6 @@ import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -55,6 +54,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
@@ -151,7 +151,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
   @Override
   public void onPushSend()
-      throws IOException, MmsException, NoSuchMessageException,  RetryLaterException
+      throws IOException, MmsException, NoSuchMessageException, RetryLaterException
   {
     MessageDatabase           database                   = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
@@ -197,6 +197,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
       List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(findId(result.getAddress(), idByE164, idByUuid))).toList();
       List<IdentityKeyMismatch>        identityMismatches        = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(findId(result.getAddress(), idByE164, idByUuid), result.getIdentityFailure().getIdentityKey())).toList();
+      ProofRequiredException           proofRequired             = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
       List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
       List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(findId(result.getAddress(), idByE164, idByUuid), result.getSuccess().isUnidentified())).toList();
       Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
@@ -228,6 +229,10 @@ public final class PushGroupSendJob extends PushSendJob {
       }
 
       DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(successUnidentifiedStatus, messageId);
+
+      if (proofRequired != null) {
+        handleProofRequiredException(proofRequired, groupRecipient, threadId, messageId, true);
+      }
 
       if (existingNetworkFailures.isEmpty() && networkFailures.isEmpty() && identityMismatches.isEmpty() && existingIdentityMismatches.isEmpty()) {
         database.markAsSent(messageId, true);
@@ -389,6 +394,10 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     return RecipientUtil.getEligibleForSending(members);
+  }
+
+  public static long getMessageId(@NonNull Data data) {
+    return data.getLong(KEY_MESSAGE_ID);
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {

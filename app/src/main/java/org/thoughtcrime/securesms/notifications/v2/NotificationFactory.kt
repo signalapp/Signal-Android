@@ -315,6 +315,33 @@ object NotificationFactory {
     NotificationManagerCompat.from(context).safelyNotify(context, recipient, threadId.toInt(), builder.build())
   }
 
+  fun notifyProofRequired(context: Context, recipient: Recipient, threadId: Long, visibleThread: Long) {
+    if (threadId == visibleThread) {
+      notifyInThread(context, recipient, 0)
+      return
+    }
+
+    val intent: Intent = ConversationIntents.createBuilder(context, recipient.id, threadId)
+      .build()
+      .makeUniqueToPreventMerging()
+
+    val builder: NotificationBuilder = NotificationBuilder.create(context)
+
+    builder.apply {
+      setSmallIcon(R.drawable.ic_notification)
+      setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_info_outline))
+      setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_paused))
+      setContentText(context.getString(R.string.MessageNotifier_verify_to_continue_messaging_on_signal))
+      setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+      setOnlyAlertOnce(true)
+      setAutoCancel(true)
+      setAlarms(recipient)
+      setChannelId(NotificationChannels.FAILURES)
+    }
+
+    NotificationManagerCompat.from(context).safelyNotify(context, recipient, threadId.toInt(), builder.build())
+  }
+
   private fun NotificationManagerCompat.safelyNotify(context: Context, threadRecipient: Recipient?, notificationId: Int, notification: Notification) {
     try {
       notify(notificationId, notification)

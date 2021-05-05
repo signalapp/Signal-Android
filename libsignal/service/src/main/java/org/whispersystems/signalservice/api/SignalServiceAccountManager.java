@@ -198,7 +198,7 @@ public class SignalServiceAccountManager {
    * @param e164number        The number to associate it with.
    * @throws IOException
    */
-  public void requestPushChallenge(String gcmRegistrationId, String e164number) throws IOException {
+  public void requestRegistrationPushChallenge(String gcmRegistrationId, String e164number) throws IOException {
     this.pushServiceSocket.requestPushChallenge(gcmRegistrationId, e164number);
   }
 
@@ -709,6 +709,18 @@ public class SignalServiceAccountManager {
 
   public void deleteAccount() throws IOException {
     this.pushServiceSocket.deleteAccount();
+  }
+
+  public void requestRateLimitPushChallenge() throws IOException {
+    this.pushServiceSocket.requestRateLimitPushChallenge();
+  }
+
+  public void submitRateLimitPushChallenge(String challenge) throws IOException {
+    this.pushServiceSocket.submitRateLimitPushChallenge(challenge);
+  }
+
+  public void submitRateLimitRecaptchaChallenge(String challenge, String recaptchaToken) throws IOException {
+    this.pushServiceSocket.submitRateLimitRecaptchaChallenge(challenge, recaptchaToken);
   }
 
   public void setSoTimeoutMillis(long soTimeoutMillis) {
