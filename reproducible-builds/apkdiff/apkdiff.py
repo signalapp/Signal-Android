@@ -49,7 +49,7 @@ class ApkDiff:
                     sourceEntry      = sourceZip.open(sourceEntryInfo, 'r')
                     destinationEntry = destinationZip.open(destinationEntryInfo, 'r')
 
-                    if self.compareFiles(sourceEntry, destinationEntry) != True:
+                    if self.compareFiles(sourceEntry, destinationEntry) == False:
                         print("APK entry %s does not match %s!" % (sourceEntryInfo.filename, destinationEntryInfo.filename))
                         return False
 
