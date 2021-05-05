@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">Tunnusluku poistettu käytöstä.</string>
   <string name="ApplicationPreferencesActivity_hide">Piilota</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Piilotetaanko muistutus?</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä ota ylös palautuslause, joka tarvitaan tilin palauttamiseen.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuutti</item>
@@ -57,6 +58,7 @@
   <string name="AttachmentKeyboard_location">Sijainti</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal tarvitsee käyttöoikeutta kuvien ja videoiden näyttämistä varten.</string>
   <string name="AttachmentKeyboard_give_access">Myönnä käyttöoikeus</string>
+  <string name="AttachmentKeyboard_payment">Maksu</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
@@ -1871,7 +1873,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__enable_passphrase">Ota käyttöön näytön lukitus salalauseella</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukitse näyttö ja ilmoitukset salalauseella</string>
   <string name="preferences__screen_security">Näytön suojaus</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Estä kuvakaappaukset Viimeksi käytetyt sovellukset -näkymästä sekä sovelluksen sisältä</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Estä näyttökuvat Viimeksi käytetyt sovellukset -näkymästä sekä sovelluksen sisältä</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukitse automaattisesti salalauseella, jos Signalia ei ole käytetty määriteltynä aikavälinä</string>
   <string name="preferences__inactivity_timeout_passphrase">Ajasta lukitus</string>
   <string name="preferences__inactivity_timeout_interval">Automaattisen lukituksen aikaväli</string>
@@ -2029,6 +2031,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsAllActivityFragment__all">Kaikki</string>
   <string name="PaymentsAllActivityFragment__sent">Lähetetty</string>
   <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta. Aloita ottamalla käyttöön.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
   <string name="PaymentsHomeFragment__recent_activity">Viimeaikainen toiminta</string>
@@ -2038,6 +2041,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsHomeFragment__sent_s">Lähetettiin %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Vastaanotettiin %1$s</string>
   <string name="PaymentsHomeFragment__currency_conversion">Valuuttamuunnos</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Palautuslause</string>
   <string name="PaymentsHomeFragment__help">Tuki </string>
   <string name="PaymentsHomeFragment__sent_payment">Maksu lähetetty</string>
   <string name="PaymentsHomeFragment__received_payment">Maksu vastaanotettu</string>
@@ -2045,15 +2049,20 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuuttamuunnos ei saatavilla</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnoksen näyttäminen ei onnistu. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Poistetaanko maksut käytöstä?</string>
+  <string name="PaymentsHomeFragment__deactivate">Poista käytöstä</string>
   <string name="PaymentsHomeFragment__continue">Jatka</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Maksut otettu pois käytöstä</string>
   <string name="PaymentsHomeFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsHomeFragment__details">Lisätietoja</string>
   <string name="PaymentsHomeFragment__activate">Aktivoi</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Maksut eivät ole enää saatavilla Signalissa. Varat voi yhä siirtää toiseen kauppapaikkaan, mutta varojen lisääminen tai maksujen lähettäminen ja vastaanottaminen ei ole enää mahdollista.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Lisää varoja</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Lompakkosi osoite</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopioi</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Lisää varoja lähettämällä MobileCoineja lompakko-osoitteeseen. Aloita siirto tililtäsi MobileCoin-yhteensopivalla kauppapaikalla ja sitten skannaamalla QR-koodi tai kopioimalla lompakon osoite.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Lisätietoja</string>
   <string name="PaymentsDetailsFragment__status">Tila</string>
@@ -2063,12 +2072,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsDetailsFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
   <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
+  <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot kuten summa ja aika tallennetaan MobileCoiniin.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Jos siirtoon vaadittavat kolikot eivät mene tasan, veloitetaan \"kolikonjärjestelymaksu\". Järjestelyn jälkeen maksujen lähettäminen on jälleen mahdollista.</string>
   <string name="PaymentsDetailsFragment__sent_payment">Maksu lähetetty</string>
   <string name="PaymentsDetailsFragment__received_payment">Maksu vastaanotettu</string>
   <string name="PaymentsDetailsFragment__block_number">Estä numero</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Siirrä</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skannaa QR-koodi</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Vastaanottaja: skannaa tai syötä lompakko-osoite</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin-siirron voi tehdä yhteensopivan kauppapaikan lompakko-osoitteeseen, joka on tyypillisesti kirjaimista ja numeroista koostuva merkkisarja QR-koodin alapuolella.</string>
   <string name="PaymentsTransferFragment__next">Seuraava</string>
   <string name="PaymentsTransferFragment__invalid_address">Virheellinen osoite</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal tarvitsee luvan kameran käyttämiseen skannatakseen QR-koodin.</string>
@@ -2089,7 +2102,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Muunnokset ovat vain arvioita ja saattavat olla epätarkkoja.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Huomautus</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Vahvista maksu</string>
   <string name="ConfirmPayment__to">Vastaanottajat</string>
@@ -2680,15 +2695,27 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustakuvan asettaminen epäonnistui.</string>
   <string name="WallpaperCropActivity__blur_photo">Sumenna valokuva</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Tietoa MobileCoinista</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta.</string>
   <string name="payment_info_card_adding_funds">Lisätään varoja</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Lisää varoja Signalissa käyttöä varten lähettämällä MobileCoineja lompakko-osoitteeseen.</string>
+  <string name="payment_info_card_cashing_out">Nostaminen</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoinit voi nostaa rahana milloin tahansa MobileCoin-yhteensopivalla kauppapaikalla siirtämällä rahat sillä sijaitsevalle tilille.</string>
   <string name="payment_info_card_hide">Piilota</string>
-  <string name="payment_info_card_update_your_pin">Päivitä PIN</string>
+  <string name="payment_info_card_record_recovery_phrase">Tallenna palautuslause</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Palautuslauseella voi palauttaa tilin, jos tavanomaiset kirjautumismenetelmät eivät toimi.</string>
+  <string name="payment_info_card_update_your_pin">Päivitä tunnusluku</string>
+  <string name="payment_info_card_with_a_high_balance">Tili kannattaa suojata aakkosnumeerisella suojakoodilla, erityisesti jos sen kate on korkea.</string>
   <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Poista käytöstä</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Varat säilytetään Signal-tiliin liitetyssä lompakossa siltä varalta jos maksut otetaan uudestaan käyttöön.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Palautuslause</string>
   <string name="PaymentsRecoveryStartFragment__start">Aloita</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Liitä leikepöydältä</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Palautuslause</string>
   <string name="PaymentsRecoveryPasteFragment__next">Seuraava</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">Varmista että olet syöttänyt %1$d sanaa ja yritä uudelleen.</string>
   <!--PaymentsRecoveryPhraseFragment-->
@@ -2696,7 +2723,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsRecoveryPhraseFragment__edit">Muokkaa</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Edellinen</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Kirjoita muistiin seuraavat %1$d sanaa järjestyksessä. Laita lista talteen turvalliseen paikkaan.</string>
-  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopioi leikepöydälle?</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Älä ota näyttökuvaa tai lähetä sähköpostitse.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Maksutili palautettu.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopioidaanko leikepöydälle?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Jos salalause säilytetään digitaalisesti, tulee paikan olla turvallinen.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopioi</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Sana %1$d</string>
@@ -2714,6 +2744,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UnreadPayments__d_new_payment_notifications">%1$d uutta maksuilmoitusta</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Maksun lähetys ei ole mahdollista</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Hyväksy käyttäjän lähettämä viestipyyntö maksujen lähettämiseksi. Aloita viestin lähettäminen luomalla viestipyyntö.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Lähetä viesti</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Et kuulu samoihin ryhmiin tämän henkilön kanssa. Käy pyynnöt tarkasti läpi ennen hyväksymistä vältääksesi epätoivotut viestit.</string>

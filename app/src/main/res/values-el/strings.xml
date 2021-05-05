@@ -1484,7 +1484,7 @@
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_saved_to">Αποθηκεύτηκε σε %s</string>
+  <string name="SaveAttachmentTask_saved_to">Αποθηκεύτηκε στο %s</string>
   <string name="SaveAttachmentTask_saved">Αποθηκεύτηκε</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Αναζήτηση</string>
@@ -1601,6 +1601,8 @@
   <string name="ConversationUpdateItem_call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="ConversationUpdateItem_invite_friends">Πρόσκληση φίλων</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Ενεργοποίηση ειδοποιήσεων κλήσεων</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Χωρίς κοινές ομάδες. Έλεγξε τα αιτήματα προσεκτικά.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ομάδα με καμία γνωστή επαφή. Έλεγξε τα αιτήματα προσεκτικά.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>
@@ -2058,7 +2060,6 @@
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Λεπτομέρειες</string>
   <string name="PaymentsDetailsFragment__status">Κατάσταση</string>
-  <string name="PaymentsDetailsFragment__submitting_payment">Submitting payment…</string>
   <string name="PaymentsDetailsFragment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Η πληρωμή ολοκληρώθηκε</string>
   <string name="PaymentsDetailsFragment__payment_failed">Η πληρωμή απέτυχε</string>
@@ -2087,7 +2088,6 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
-  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Προσθήκη σημείωσης</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Σημείωση</string>
@@ -2096,7 +2096,6 @@
   <string name="ConfirmPayment__to">Προς</string>
   <string name="ConfirmPayment__total_amount">Συνολικό ποσό</string>
   <string name="ConfirmPayment__balance_s">Υπόλοιπο: %1$s</string>
-  <string name="ConfirmPayment__submitting_payment">Submitting payment…</string>
   <string name="ConfirmPayment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="ConfirmPayment__payment_complete">Η πληρωμή ολοκληρώθηκε</string>
   <string name="ConfirmPayment__payment_failed">Η πληρωμή απέτυχε</string>
@@ -2712,6 +2711,8 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Στείλε ένα μήνυμα</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Δεν είσαι σε κοινές ομάδες με αυτό το άτομο. Έλεγξε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Καμία από τις επαφές σου ή τα άτομα με τα οποία συνομιλείς δεν είναι σε αυτή την ομάδα. Έλεγξε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Σχετικά με αιτήματα μηνυμάτων</string>
   <string name="GroupsInCommonMessageRequest__okay">Εντάξει</string>
   <!--EOF-->

@@ -47,7 +47,7 @@
     <item quantity="other">%d مىنۇت</item>
   </plurals>
   <!--DraftDatabase-->
-  <string name="DraftDatabase_Draft_image_snippet">(سۈرەت)</string>
+  <string name="DraftDatabase_Draft_image_snippet">(رەسىم)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ئۈن)</string>
   <string name="DraftDatabase_Draft_video_snippet">(سىن)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ئورنى)</string>
@@ -63,7 +63,7 @@
   <string name="AttachmentKeyboard_payment">چىقىم</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ۋاسىتە تاللىغۇدەك بىر ئەپ تاپالمىدى.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal رەسىم ، سىن ياكى ئاۋاز ھۆججەتلىرىنى قوشۇش ئۈچۈن ساقلىغۇچ ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن، «ھوقۇقلار» نى تاللاپ ۋە «ساقلىغۇچ» نى قوزغىتىڭ.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal رەسىم ، سىن ياكى ئۈن ھۆججەتلىرىنى قوشۇش ئۈچۈن ساقلىغۇچ ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن، «ھوقۇقلار» نى تاللاپ ۋە «ساقلىغۇچ» نى قوزغىتىڭ.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">ئالاقىلىشىش ئۇچۇرلىرىنى چاپلاش ئۈچۈن Signal ئالاقەداشلار ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن «ھوقۇقلار» نى تاللاپ، «ئالاقەداشلار» نى قوزغىتىڭ.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal ئورۇن بەلگىلەش ئۈچۈن ئورۇن ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىگە بېرىڭ، «ھوقۇقلار» نى تاللاڭ ۋە «ئورۇن» نى قوزغىتىڭ.</string>
   <!--AttachmentUploadJob-->
@@ -210,8 +210,8 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ئۈسكۈنىڭىزدە بۇ ئۇلانمىنى بىر تەرەپ قىلالايدىغان ئەپ يوق.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">قوشۇلۇش تەلىپىڭىز گۇرۇپپا باشقۇرغۇچىسىغا ئەۋەتىلدى. ئۇلار قارار قىلغاندا سىزگە ئۇقتۇرۇلىدۇ.</string>
   <string name="ConversationActivity_cancel_request">ئىلتىماستىن ۋاز كەچ</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ئاۋازلىق ئۇچۇر يوللاش ئۈچۈن، Signal نىڭ مىكروفونىڭىزنى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ئاۋازلىق ئۇچۇر يوللاش ئۈچۈن Signal مىكروفون ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن «ھوقۇقلار» نى تاللاپ ۋە «مىكروفون» نى قوزغىتىڭ.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ئۈنلىك ئۇچۇر يوللاش ئۈچۈن، Signal نىڭ مىكروفونىڭىزنى زىيارەت قىلىشىغا رۇخسەت قىلىڭ.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ئۈنلىك ئۇچۇر يوللاش ئۈچۈن Signal مىكروفون ھوقۇقى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكى تىزىملىكىدىن «ھوقۇقلار» نى تاللاپ ۋە «مىكروفون» نى قوزغىتىڭ.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">سىز %sنى چاقىرىش ئۈچۈن Signal مىكروفون ۋە كامېرا ھوقۇقىغا ئېھتىياجلىق، ئەمما ئۇلار مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشىكىدىن، «ھوقۇقلار» نى تاللاپ ۋە «مىكروفون» ۋە «كامېرا» نى قوزغىتىڭ.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">رەسىم ۋە سىنغا ئېلىش ئۈچۈن ، Signal نىڭ كامېرانى زىيارەت قىلىشىغا يول قويۇڭ.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">رەسىم تارتىش ياكى سىنغا ئېلىش ئۈچۈن Signal كامېرا ھوقۇقىغا موھتاج ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشەكلىرىدىن، «ھوقۇقلار» نى تاللاپ ۋە «كامېرا» نى قوزغىتىڭ.</string>
@@ -820,7 +820,7 @@
   <string name="MediaOverviewActivity_file">ھۆججەت</string>
   <string name="MediaOverviewActivity_audio">ئۈن</string>
   <string name="MediaOverviewActivity_video">سىن</string>
-  <string name="MediaOverviewActivity_image">سۈرەت</string>
+  <string name="MediaOverviewActivity_image">رەسىم</string>
   <string name="MediaOverviewActivity_sent_by_s">يوللىغۇچى %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">سىز يوللىغىنى</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s دىن %2$s غا يوللانغان</string>
@@ -1299,7 +1299,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">بىر قانچە ھەپتىدىن كېيىن سىزنى قايتا ئەسكەرتىمىز.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">بىر ئايدىن كېيىن سىزنى قايتا ئەسكەرتىمىز.</string>
   <!--Slide-->
-  <string name="Slide_image">سۈرەت</string>
+  <string name="Slide_image">رەسىم</string>
   <string name="Slide_sticker">چىراي ئىپادە</string>
   <string name="Slide_audio">ئۈن</string>
   <string name="Slide_video">سىن</string>
@@ -1467,7 +1467,7 @@
   <string name="MessageNotifier_unknown_contact_message">ئالاقىلەشكۈچى</string>
   <string name="MessageNotifier_reacted_s_to_s">«%2$s» غا قايتۇرغان ئىنكاس %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">سىنىڭىزغا %1$s ئىنكاس قايتۇردى.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">سۈرىتىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">رەسىمىڭىزگە%1$s ئىنكاس قايتۇردى.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ھۆججىتىڭىز %1$s ئىنكاس قايتۇردى.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ئۈنىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">كۆرۈن-غايىپ ۋاسىتىڭىزگە %1$s ئىنكاس قايتۇردى.</string>
@@ -1584,8 +1584,8 @@
   <string name="conversation_activity__emoji_toggle_description">ئىپادە كۇنۇپكا تاختىسىنى ئالماشتۇر</string>
   <string name="conversation_activity__attachment_thumbnail">قوشۇمچىنىڭ كىچىك سۈرىتى</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تېز كامېرا قوشۇمچە تارتمىسىغا ئالماشتۇر</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ئاۋاز قوشۇمچىسىنى ئۇنگە ئال ۋە ئەۋەت</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ئاۋاز قوشۇمچىسىنى ئۈنگەئېلىشنى قۇلۇپلا</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ئۈن قوشۇمچىسىنى ئۇنگە ئال ۋە ئەۋەت</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ئۈن قوشۇمچىسىنى ئۈنگەئېلىشنى قۇلۇپلا</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal بىلەن ئۇچۇرلىشىشىنى ئاچ</string>
   <string name="conversation_activity__message_could_not_be_sent">ئۇچۇر ئەۋەتىلەلمىدى. ئۇلىنىشڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
   <!--conversation_input_panel-->
@@ -2216,7 +2216,7 @@
   <string name="conversation_list__chats">سۆھبەتلەر</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">سىز %1$d سۆھبەتنىلا قوندۇرالايسىز</string>
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">ئالاقەداش سۈرەت</string>
+  <string name="conversation_list_item_view__contact_photo_image">ئالاقەداش فوتو رەسىمى</string>
   <string name="conversation_list_item_view__archived">ئارخىپلاشتۇرۇلدى</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">يېڭى سۆھبەت</string>
