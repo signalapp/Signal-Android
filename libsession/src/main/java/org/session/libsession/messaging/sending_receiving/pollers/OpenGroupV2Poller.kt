@@ -97,7 +97,6 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
                 builder.source = senderPublicKey
                 builder.sourceDevice = 1
                 builder.content = message.toProto().toByteString()
-                builder.serverTimestamp = message.serverID ?: 0
                 builder.timestamp = message.sentTimestamp
                 val envelope = builder.build()
                 val job = MessageReceiveJob(envelope.toByteArray(), isBackgroundPoll, message.serverID, serverRoomId)
