@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.notifications.v2
 
 import android.annotation.TargetApi
 import android.app.Notification
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -46,15 +45,16 @@ object NotificationFactory {
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
     notificationConfigurationChanged: Boolean,
-    alertOverrides: Set<Long>
+    alertOverrides: Set<Long>,
+    previousState: NotificationStateV2
   ): Set<Long> {
     if (state.isEmpty) {
       Log.d(TAG, "State is empty, bailing")
       return emptySet()
     }
 
-    val nonVisibleThreadCount = state.conversations.count { it.threadId != visibleThreadId }
-    return if (Build.VERSION.SDK_INT < 23) {
+    val nonVisibleThreadCount: Int = state.conversations.count { it.threadId != visibleThreadId }
+    return if (Build.VERSION.SDK_INT < 24) {
       notify19(
         context = context,
         state = state,
@@ -66,7 +66,7 @@ object NotificationFactory {
         nonVisibleThreadCount = nonVisibleThreadCount
       )
     } else {
-      notify23(
+      notify24(
         context = context,
         state = state,
         visibleThreadId = visibleThreadId,
@@ -75,7 +75,8 @@ object NotificationFactory {
         lastAudibleNotification = lastAudibleNotification,
         notificationConfigurationChanged = notificationConfigurationChanged,
         alertOverrides = alertOverrides,
-        nonVisibleThreadCount = nonVisibleThreadCount
+        nonVisibleThreadCount = nonVisibleThreadCount,
+        previousState = previousState
       )
     }
   }
@@ -121,8 +122,8 @@ object NotificationFactory {
     return threadsThatNewlyAlerted
   }
 
-  @TargetApi(23)
-  private fun notify23(
+  @TargetApi(24)
+  private fun notify24(
     context: Context,
     state: NotificationStateV2,
     visibleThreadId: Long,
@@ -131,7 +132,8 @@ object NotificationFactory {
     lastAudibleNotification: Long,
     notificationConfigurationChanged: Boolean,
     alertOverrides: Set<Long>,
-    nonVisibleThreadCount: Int
+    nonVisibleThreadCount: Int,
+    previousState: NotificationStateV2
   ): Set<Long> {
     val threadsThatNewlyAlerted: MutableSet<Long> = mutableSetOf()
 
@@ -139,7 +141,7 @@ object NotificationFactory {
       if (conversation.threadId == visibleThreadId && conversation.hasNewNotifications()) {
         Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
         notifyInThread(context, conversation.recipient, lastAudibleNotification)
-      } else if (notificationConfigurationChanged || conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId)) {
+      } else if (notificationConfigurationChanged || conversation.hasNewNotifications() || alertOverrides.contains(conversation.threadId) || !conversation.hasSameContent(previousState.getConversation(conversation.threadId))) {
         if (conversation.hasNewNotifications()) {
           threadsThatNewlyAlerted += conversation.threadId
         }
@@ -206,7 +208,7 @@ object NotificationFactory {
       builder.addTurnOffJoinedNotificationsAction(conversation.getTurnOffJoinedNotificationsIntent(context))
     }
 
-    val notificationId: Int = if (Build.VERSION.SDK_INT < 23) NotificationIds.MESSAGE_SUMMARY else conversation.notificationId
+    val notificationId: Int = if (Build.VERSION.SDK_INT < 24) NotificationIds.MESSAGE_SUMMARY else conversation.notificationId
 
     NotificationManagerCompat.from(context).safelyNotify(context, conversation.recipient, notificationId, builder.build())
   }
@@ -240,7 +242,7 @@ object NotificationFactory {
       setPriority(TextSecurePreferences.getNotificationPriority(context))
       setLights()
       setAlarms(state.mostRecentSender)
-      setTicker(state.mostRecentNotification.getStyledPrimaryText(context, true))
+      setTicker(state.mostRecentNotification?.getStyledPrimaryText(context, true))
     }
 
     Log.d(TAG, "showing summary notification")
@@ -311,16 +313,6 @@ object NotificationFactory {
     }
 
     NotificationManagerCompat.from(context).safelyNotify(context, recipient, threadId.toInt(), builder.build())
-  }
-
-  private fun NotificationManager.isDisplayingSummaryNotification(): Boolean {
-    if (Build.VERSION.SDK_INT >= 23) {
-      try {
-        return activeNotifications.any { notification -> notification.id == NotificationIds.MESSAGE_SUMMARY }
-      } catch (e: Throwable) {
-      }
-    }
-    return false
   }
 
   private fun NotificationManagerCompat.safelyNotify(context: Context, threadRecipient: Recipient?, notificationId: Int, notification: Notification) {

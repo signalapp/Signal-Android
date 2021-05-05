@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.notifications.v2
 
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -17,6 +19,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.BlurTransformation
@@ -83,4 +86,14 @@ fun Intent.makeUniqueToPreventMerging(): Intent {
 
 fun Recipient.getFallback(context: Context): FallbackContactPhoto {
   return GeneratedContactPhoto(getDisplayName(context), R.drawable.ic_profile_outline_40)
+}
+
+fun NotificationManager.isDisplayingSummaryNotification(): Boolean {
+  if (Build.VERSION.SDK_INT > 23) {
+    try {
+      return activeNotifications.any { notification -> notification.id == NotificationIds.MESSAGE_SUMMARY }
+    } catch (e: Throwable) {
+    }
+  }
+  return false
 }

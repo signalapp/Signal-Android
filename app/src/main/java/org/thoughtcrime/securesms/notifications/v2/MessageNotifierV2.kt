@@ -48,6 +48,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   @Volatile private var lastScheduledReminder: Long = 0
   @Volatile private var previousLockedStatus: Boolean = KeyCachingService.isLocked(context)
   @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
+  @Volatile private var previousState: NotificationStateV2 = NotificationStateV2.EMPTY
 
   private val threadReminders: MutableMap<Long, Reminder> = ConcurrentHashMap()
   private val stickyThreads: MutableMap<Long, StickyThread> = mutableMapOf()
@@ -167,9 +168,11 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       defaultBubbleState = defaultBubbleState,
       lastAudibleNotification = lastAudibleNotification,
       notificationConfigurationChanged = notificationConfigurationChanged,
-      alertOverrides = alertOverrides
+      alertOverrides = alertOverrides,
+      previousState = previousState
     )
 
+    previousState = state
     lastAudibleNotification = System.currentTimeMillis()
 
     updateReminderTimestamps(context, alertOverrides, threadsThatAlerted)
@@ -281,7 +284,7 @@ private fun StatusBarNotification.isMessageNotification(): Boolean {
 }
 
 private fun NotificationManager.getDisplayedNotificationIds(): Result<Set<Int>> {
-  if (Build.VERSION.SDK_INT < 23) {
+  if (Build.VERSION.SDK_INT < 24) {
     return Result.failure(UnsupportedOperationException("SDK level too low"))
   }
 
@@ -294,7 +297,7 @@ private fun NotificationManager.getDisplayedNotificationIds(): Result<Set<Int>> 
 }
 
 private fun NotificationManager.cancelOrphanedNotifications(context: Context, state: NotificationStateV2, stickyNotifications: Set<Int>) {
-  if (Build.VERSION.SDK_INT < 23) {
+  if (Build.VERSION.SDK_INT < 24) {
     return
   }
 

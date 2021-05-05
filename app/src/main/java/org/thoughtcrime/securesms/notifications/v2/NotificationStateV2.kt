@@ -33,14 +33,18 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
       .toSet()
   }
 
-  val mostRecentNotification: NotificationItemV2
-    get() = notificationItems.last()
+  val mostRecentNotification: NotificationItemV2?
+    get() = notificationItems.lastOrNull()
 
-  val mostRecentSender: Recipient
-    get() = mostRecentNotification.individualRecipient
+  val mostRecentSender: Recipient?
+    get() = mostRecentNotification?.individualRecipient
 
   fun getNonVisibleConversation(visibleThreadId: Long): List<NotificationConversation> {
     return conversations.filterNot { it.threadId == visibleThreadId }
+  }
+
+  fun getConversation(threadId: Long): NotificationConversation? {
+    return conversations.firstOrNull { it.threadId == threadId }
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {

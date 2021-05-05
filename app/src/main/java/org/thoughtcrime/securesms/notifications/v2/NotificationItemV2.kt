@@ -90,7 +90,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
       individualRecipient.getDisplayName(context)
     } else {
-      ""
+      context.getString(R.string.SingleRecipientNotificationBuilder_signal)
     }
   }
 
@@ -131,6 +131,16 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
       TextSecurePreferences.getNotificationPrivacy(context).isDisplayNothing -> null
       else -> getStyledPrimaryText(context, true)
     }
+  }
+
+  fun hasSameContent(other: NotificationItemV2): Boolean {
+    return timestamp == other.timestamp &&
+      id == other.id &&
+      isMms == other.isMms &&
+      individualRecipient == other.individualRecipient &&
+      individualRecipient.hasSameContent(other.individualRecipient) &&
+      slideDeck?.thumbnailSlide?.isInProgress == other.slideDeck?.thumbnailSlide?.isInProgress &&
+      record.isRemoteDelete == other.record.isRemoteDelete
   }
 
   private fun CharSequence?.trimToDisplayLength(): CharSequence {

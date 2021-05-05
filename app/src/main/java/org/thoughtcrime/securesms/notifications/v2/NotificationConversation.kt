@@ -88,14 +88,10 @@ data class NotificationConversation(
   }
 
   fun getConversationTitle(context: Context): CharSequence? {
-    if (isGroup) {
-      return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
-        recipient.getDisplayName(context)
-      } else {
-        context.getString(R.string.SingleRecipientNotificationBuilder_signal)
-      }
+    if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
+      return if (isGroup) recipient.getDisplayName(context) else null
     }
-    return null
+    return context.getString(R.string.SingleRecipientNotificationBuilder_signal)
   }
 
   fun getWhen(): Long {
@@ -112,6 +108,14 @@ data class NotificationConversation(
     } else {
       recipient.notificationChannel ?: NotificationChannels.getMessagesChannel(context)
     }
+  }
+
+  fun hasSameContent(other: NotificationConversation?): Boolean {
+    if (other == null) {
+      return false
+    }
+
+    return messageCount == other.messageCount && notificationItems.zip(other.notificationItems).all { (item, otherItem) -> item.hasSameContent(otherItem) }
   }
 
   fun getPendingIntent(context: Context): PendingIntent {

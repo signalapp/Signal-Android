@@ -1751,6 +1751,7 @@
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
     <string name="SingleRecipientNotificationBuilder_message_request">Message request</string>
+    <string name="SingleRecipientNotificationBuilder_you">You</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>
