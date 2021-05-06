@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.util.ScreenDensity
 import java.io.InputStream
 import java.util.concurrent.CountDownLatch
@@ -21,7 +20,7 @@ import java.util.concurrent.atomic.AtomicReference
 class EmojiSource(
   val decodeScale: Float,
   private val emojiData: EmojiData,
-  private val emojiPageReferenceFactory: EmojiPageReferenceFactory
+  private val emojiPageFactory: EmojiPageFactory
 ) : EmojiData by emojiData {
 
   val variationMap: Map<String, String> by lazy {
@@ -50,9 +49,9 @@ class EmojiSource(
     dataPages
       .filter { it.spriteUri != null }
       .forEach { page ->
-        val reference = emojiPageReferenceFactory(page.spriteUri!!)
+        val emojiPage = emojiPageFactory(page.spriteUri!!)
         page.emoji.forEachIndexed { idx, emoji ->
-          tree.add(emoji, EmojiDrawInfo(reference, idx))
+          tree.add(emoji, EmojiDrawInfo(emojiPage, idx))
         }
       }
 
@@ -97,7 +96,7 @@ class EmojiSource(
       val density = ScreenDensity.xhdpiRelativeDensityScaleFactor(version.density)
 
       return emojiData?.let {
-        EmojiSource(density, it) { uri: Uri -> EmojiPageReference(DecryptableStreamUriLoader.DecryptableUri(uri)) }
+        EmojiSource(density, it) { uri: Uri -> EmojiPage.Disk(uri) }
       }
     }
 
@@ -112,7 +111,7 @@ class EmojiSource(
             displayPages = parsedData.displayPages + PAGE_EMOTICONS,
             dataPages = parsedData.dataPages + PAGE_EMOTICONS
           )
-        ) { uri: Uri -> EmojiPageReference(uri) }
+        ) { uri: Uri -> EmojiPage.Asset(uri) }
       }
     }
   }

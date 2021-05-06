@@ -3,19 +3,19 @@ package org.thoughtcrime.securesms.components.emoji.parsing;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.emoji.EmojiPageReference;
+import org.thoughtcrime.securesms.emoji.EmojiPage;
 
 public class EmojiDrawInfo {
 
-  private final EmojiPageReference page;
-  private final int                index;
+  private final EmojiPage page;
+  private final int       index;
 
-  public EmojiDrawInfo(final @NonNull EmojiPageReference page, final int index) {
+  public EmojiDrawInfo(final @NonNull EmojiPage page, final int index) {
     this.page  = page;
     this.index = index;
   }
 
-  public @NonNull EmojiPageReference getPage() {
+  public @NonNull EmojiPage getPage() {
     return page;
   }
 

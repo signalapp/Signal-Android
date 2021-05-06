@@ -27,7 +27,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.emoji.EmojiBitmapDecoder;
+import org.thoughtcrime.securesms.emoji.EmojiPage;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DeviceProperties;
@@ -99,10 +99,10 @@ class EmojiProvider {
     GlideApp.with(context)
             .asBitmap()
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .load(drawInfo.getPage().getModel())
+            .load(drawInfo.getPage())
             .priority(Priority.HIGH)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .apply(new RequestOptions().set(EmojiBitmapDecoder.OPTION, lowMemoryDecodeScale))
+            .apply(new RequestOptions().set(EmojiPage.IN_SAMPLE_SIZE, lowMemoryDecodeScale))
             .addListener(new RequestListener<Bitmap>() {
               @Override
               public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
