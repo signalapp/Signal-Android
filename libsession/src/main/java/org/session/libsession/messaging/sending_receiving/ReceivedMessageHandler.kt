@@ -395,6 +395,11 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
 
+    // update zombie members in case the added members are zombies
+    val zombies = storage.getZombieMember(groupID)
+    if (zombies.intersect(updateMembers).isNotEmpty())
+        storage.updateZombieMembers(groupID, zombies.minus(updateMembers).map { Address.fromSerialized(it) })
+
     // Notify the user
     if (userPublicKey == senderPublicKey) {
         // sender is a linked device
