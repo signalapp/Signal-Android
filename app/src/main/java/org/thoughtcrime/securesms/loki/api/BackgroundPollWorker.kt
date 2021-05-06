@@ -8,13 +8,16 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupV2
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
+import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.api.SnodeAPI
 import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -70,7 +73,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
 
             // Private chats
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
-            val privateChatsPromise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
+            val privateChatsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
                 envelopes.map { envelope ->
                     MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
                 }
@@ -78,7 +81,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             promises.addAll(privateChatsPromise.get())
 
             // Closed groups
-            promises.addAll(ApplicationContext.getInstance(context).closedGroupPoller.pollOnce())
+            promises.addAll(ClosedGroupPoller().pollOnce())
 
             // Open Groups
             val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { (_,chat)->
@@ -87,6 +90,14 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             for (openGroup in openGroups) {
                 val poller = OpenGroupPoller(openGroup)
                 promises.add(poller.pollForNewMessages())
+            }
+
+            val openGroupsV2 = DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups().values.groupBy(OpenGroupV2::server)
+
+            openGroupsV2.values.map { groups ->
+                OpenGroupV2Poller(groups)
+            }.forEach { poller ->
+                promises.add(poller.compactPoll(true).map{ /*Unit*/ })
             }
 
             // Wait till all the promises get resolved

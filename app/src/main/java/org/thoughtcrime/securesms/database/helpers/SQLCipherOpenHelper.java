@@ -54,9 +54,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV20                          = 41;
   private static final int lokiV21                          = 42;
   private static final int lokiV22                          = 43;
+  private static final int lokiV23                          = 44;
+  private static final int lokiV24                          = 45;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV22;
+  private static final int    DATABASE_VERSION = lokiV24;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -124,6 +126,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
     db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
+    db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
+    db.execSQL(LokiMessageDatabase.getUpdateMessageMappingTable());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -270,6 +274,21 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "RequestGroupInfoJob",
                 "ClosedGroupUpdateMessageSendJobV2",
                 "SendDeliveryReceiptJob");
+      }
+
+      if (oldVersion < lokiV23) {
+        db.execSQL("ALTER TABLE groups ADD COLUMN zombie_members TEXT");
+        db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
+        db.execSQL(LokiMessageDatabase.getUpdateMessageMappingTable());
+      }
+
+      if (oldVersion < lokiV24) {
+        String swarmTable = LokiAPIDatabase.Companion.getSwarmTable();
+        String snodePoolTable = LokiAPIDatabase.Companion.getSnodePoolTable();
+        db.execSQL("DROP TABLE " + swarmTable);
+        db.execSQL("DROP TABLE " + snodePoolTable);
+        db.execSQL(LokiAPIDatabase.getCreateSnodePoolTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateSwarmTableCommand());
       }
 
       db.setTransactionSuccessful();

@@ -3,8 +3,10 @@ package org.session.libsignal.utilities;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.ResolvedType;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -42,6 +44,10 @@ public class JsonUtil {
     return objectMapper.readValue(serialized, clazz);
   }
 
+  public static<T> T fromJson(String serialized, JavaType clazz) throws IOException {
+    return objectMapper.readValue(serialized, clazz);
+  }
+
   public static <T> T fromJson(InputStream serialized, Class<T> clazz) throws IOException {
     return objectMapper.readValue(serialized, clazz);
   }
@@ -58,7 +64,7 @@ public class JsonUtil {
     return objectMapper.writeValueAsString(object);
   }
 
-    public static String toJson(Object object) {
+  public static String toJson(Object object) {
     try {
       return objectMapper.writeValueAsString(object);
     } catch (JsonProcessingException e) {
@@ -67,32 +73,11 @@ public class JsonUtil {
     }
   }
 
-  public static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {
-    @Override
-    public void serialize(IdentityKey value, JsonGenerator gen, SerializerProvider serializers)
-            throws IOException
-    {
-      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
-    }
-  }
-
-  public static class IdentityKeyDeserializer extends JsonDeserializer<IdentityKey> {
-    @Override
-    public IdentityKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-      try {
-        return new IdentityKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
-      } catch (InvalidKeyException e) {
-        throw new IOException(e);
-      }
-    }
-  }
-
   public static ObjectMapper getMapper() {
     return objectMapper;
   }
 
   public static class SaneJSONObject {
-
     private final JSONObject delegate;
 
     public SaneJSONObject(JSONObject delegate) {

@@ -1,6 +1,5 @@
 package org.session.libsession.messaging.avatars;
 
-
 import android.content.Context;
 import android.net.Uri;
 
@@ -19,5 +18,4 @@ public interface ContactPhoto extends Key {
   @Nullable Uri getUri(@NonNull Context context);
 
   boolean isProfilePhoto();
-
 }

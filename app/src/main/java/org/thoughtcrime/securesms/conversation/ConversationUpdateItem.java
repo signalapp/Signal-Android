@@ -14,11 +14,10 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
-import org.thoughtcrime.securesms.loki.utilities.GroupDescription;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -106,6 +105,8 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isCallLog())                setCallRecord(messageRecord);
     else if (messageRecord.isJoined())                 setJoinedRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate())  setTimerRecord(messageRecord);
+    else if (messageRecord.isScreenshotExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
+    else if (messageRecord.isMediaSavedExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED);
     else if (messageRecord.isEndSession())             setEndSessionRecord(messageRecord);
     else if (messageRecord.isIdentityUpdate())         setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
@@ -149,6 +150,22 @@ public class ConversationUpdateItem extends LinearLayout
     date.setVisibility(GONE);
   }
 
+  private void setDataExtractionRecord(final MessageRecord messageRecord, DataExtractionNotificationInfoMessage.Kind kind) {
+    @ColorInt int color = GeneralUtilitiesKt.getColorWithID(getResources(), R.color.text, getContext().getTheme());
+    if (kind == DataExtractionNotificationInfoMessage.Kind.SCREENSHOT) {
+      icon.setImageResource(R.drawable.quick_camera_dark);
+    } else if (kind == DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED) {
+      icon.setImageResource(R.drawable.ic_file_download_white_36dp);
+    }
+    icon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+
+    body.setText(messageRecord.getDisplayBody(getContext()));
+
+    title.setVisibility(VISIBLE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
+  }
+
   private void setIdentityRecord(final MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_security_white_24dp);
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
@@ -174,8 +191,6 @@ public class ConversationUpdateItem extends LinearLayout
   private void setGroupRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
     icon.clearColorFilter();
-
-    GroupDescription.Companion.getDescription(getContext(), messageRecord.getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);

@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.utilities
 
 import com.google.protobuf.ByteString
+import org.session.libsignal.metadata.SignalProtos
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
 import org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketMessage
@@ -69,11 +70,11 @@ object MessageWrapper {
     /**
      * `data` shouldn't be base 64 encoded.
      */
-    fun unwrap(data: ByteArray): ByteArray {
+    fun unwrap(data: ByteArray): Envelope {
         try {
             val webSocketMessage = WebSocketMessage.parseFrom(data)
             val envelopeAsData = webSocketMessage.request.body
-            return envelopeAsData.toByteArray()
+            return Envelope.parseFrom(envelopeAsData);
         } catch (e: Exception) {
             Log.d("Loki", "Failed to unwrap data: ${e.message}.")
             throw Error.FailedToUnwrapData

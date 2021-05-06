@@ -1,14 +1,14 @@
 package org.session.libsession.messaging.messages.signal;
 
-import static org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
-
 public class IncomingGroupMessage extends IncomingTextMessage {
 
-  private final GroupContext groupContext;
+  private final String groupID;
+  private final boolean updateMessage;
 
-  public IncomingGroupMessage(IncomingTextMessage base, GroupContext groupContext, String body) {
+  public IncomingGroupMessage(IncomingTextMessage base, String groupID, String body, boolean updateMessage) {
     super(base, body);
-    this.groupContext = groupContext;
+    this.groupID = groupID;
+    this.updateMessage = updateMessage;
   }
 
     @Override
@@ -16,12 +16,6 @@ public class IncomingGroupMessage extends IncomingTextMessage {
     return true;
   }
 
-  public boolean isUpdate() {
-    return groupContext.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
-  }
-
-  public boolean isQuit() {
-    return groupContext.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
-  }
+  public boolean isUpdateMessage() { return updateMessage; }
 
 }

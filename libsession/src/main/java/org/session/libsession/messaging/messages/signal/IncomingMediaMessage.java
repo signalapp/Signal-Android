@@ -3,10 +3,11 @@ package org.session.libsession.messaging.messages.signal;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
-import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -26,8 +27,10 @@ public class IncomingMediaMessage {
   private final int           subscriptionId;
   private final long          expiresIn;
   private final boolean       expirationUpdate;
-  private final QuoteModel    quote;
   private final boolean       unidentified;
+
+  private final DataExtractionNotificationInfoMessage dataExtractionNotification;
+  private final QuoteModel                            quote;
 
   private final List<Attachment>  attachments    = new LinkedList<>();
   private final List<Contact>     sharedContacts = new LinkedList<>();
@@ -44,17 +47,19 @@ public class IncomingMediaMessage {
                               Optional<List<SignalServiceAttachment>> attachments,
                               Optional<QuoteModel> quote,
                               Optional<List<Contact>> sharedContacts,
-                              Optional<List<LinkPreview>> linkPreviews)
+                              Optional<List<LinkPreview>> linkPreviews,
+                              Optional<DataExtractionNotificationInfoMessage> dataExtractionNotification)
   {
-    this.push             = true;
-    this.from             = from;
-    this.sentTimeMillis   = sentTimeMillis;
-    this.body             = body.orNull();
-    this.subscriptionId   = subscriptionId;
-    this.expiresIn        = expiresIn;
-    this.expirationUpdate = expirationUpdate;
-    this.quote            = quote.orNull();
-    this.unidentified     = unidentified;
+    this.push                       = true;
+    this.from                       = from;
+    this.sentTimeMillis             = sentTimeMillis;
+    this.body                       = body.orNull();
+    this.subscriptionId             = subscriptionId;
+    this.expiresIn                  = expiresIn;
+    this.expirationUpdate           = expirationUpdate;
+    this.dataExtractionNotification = dataExtractionNotification.orNull();
+    this.quote                      = quote.orNull();
+    this.unidentified               = unidentified;
 
     if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.INSTANCE.getEncodedId(group.get()));
     else                   this.groupId = null;
@@ -73,7 +78,7 @@ public class IncomingMediaMessage {
                                           Optional<List<LinkPreview>> linkPreviews)
   {
     return new IncomingMediaMessage(from, message.getSentTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews);
+            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews, Optional.absent());
   }
 
   public int getSubscriptionId() {
@@ -114,6 +119,20 @@ public class IncomingMediaMessage {
 
   public boolean isGroupMessage() {
     return groupId != null;
+  }
+
+  public boolean isScreenshotDataExtraction() {
+    if (dataExtractionNotification == null) return false;
+    else {
+      return dataExtractionNotification.getKind() == DataExtractionNotificationInfoMessage.Kind.SCREENSHOT;
+    }
+  }
+
+  public boolean isMediaSavedDataExtraction() {
+    if (dataExtractionNotification == null) return false;
+    else {
+      return dataExtractionNotification.getKind() == DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED;
+    }
   }
 
   public QuoteModel getQuote() {

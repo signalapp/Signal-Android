@@ -6,13 +6,12 @@ import org.session.libsignal.utilities.logging.Log
 class DataExtractionNotification(): ControlMessage() {
     var kind: Kind? = null
 
-    // Kind enum
     sealed class Kind {
         class Screenshot() : Kind()
-        class MediaSaved(val timestanp: Long) : Kind()
+        class MediaSaved(val timestamp: Long) : Kind()
 
         val description: String =
-            when(this) {
+            when (this) {
                 is Screenshot -> "screenshot"
                 is MediaSaved -> "mediaSaved"
             }
@@ -35,18 +34,16 @@ class DataExtractionNotification(): ControlMessage() {
         }
     }
 
-    //constructor
     internal constructor(kind: Kind) : this() {
         this.kind = kind
     }
 
-    // MARK: Validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         val kind = kind ?: return false
         return when(kind) {
             is Kind.Screenshot -> true
-            is Kind.MediaSaved -> kind.timestanp > 0
+            is Kind.MediaSaved -> kind.timestamp > 0
         }
     }
 
@@ -62,7 +59,7 @@ class DataExtractionNotification(): ControlMessage() {
                 is Kind.Screenshot -> dataExtractionNotification.type = SignalServiceProtos.DataExtractionNotification.Type.SCREENSHOT
                 is Kind.MediaSaved -> {
                     dataExtractionNotification.type = SignalServiceProtos.DataExtractionNotification.Type.MEDIA_SAVED
-                    dataExtractionNotification.timestamp = kind.timestanp
+                    dataExtractionNotification.timestamp = kind.timestamp
                 }
             }
             val contentProto = SignalServiceProtos.Content.newBuilder()
@@ -73,5 +70,4 @@ class DataExtractionNotification(): ControlMessage() {
             return null
         }
     }
-
 }

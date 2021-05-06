@@ -9,7 +9,7 @@ import org.session.libsession.database.documents.IdentityKeyMismatch;
 import org.session.libsession.database.documents.NetworkFailure;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
@@ -26,7 +26,6 @@ public class OutgoingMediaMessage {
   private   final int                       distributionType;
   private   final int                       subscriptionId;
   private   final long                      expiresIn;
-  private   final boolean                   expirationUpdate;
   private   final QuoteModel                outgoingQuote;
 
   private   final List<NetworkFailure>      networkFailures       = new LinkedList<>();
@@ -37,7 +36,6 @@ public class OutgoingMediaMessage {
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
                               int subscriptionId, long expiresIn,
-                              boolean expirationUpdate,
                               int distributionType,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
@@ -52,7 +50,6 @@ public class OutgoingMediaMessage {
     this.attachments           = attachments;
     this.subscriptionId        = subscriptionId;
     this.expiresIn             = expiresIn;
-    this.expirationUpdate      = expirationUpdate;
     this.outgoingQuote         = outgoingQuote;
 
     this.contacts.addAll(contacts);
@@ -69,7 +66,6 @@ public class OutgoingMediaMessage {
     this.sentTimeMillis      = that.sentTimeMillis;
     this.subscriptionId      = that.subscriptionId;
     this.expiresIn           = that.expiresIn;
-    this.expirationUpdate    = that.expirationUpdate;
     this.outgoingQuote       = that.outgoingQuote;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
@@ -89,7 +85,7 @@ public class OutgoingMediaMessage {
       previews = Collections.singletonList(linkPreview);
     }
     return new OutgoingMediaMessage(recipient, message.getText(), attachments, message.getSentTimestamp(), -1,
-            recipient.getExpireMessages() * 1000, false, DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
+            recipient.getExpireMessages() * 1000, DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
             previews, Collections.emptyList(), Collections.emptyList());
   }
 
@@ -113,7 +109,7 @@ public class OutgoingMediaMessage {
     return false;
   }
 
-  public boolean isExpirationUpdate() { return expirationUpdate; }
+  public boolean isExpirationUpdate() { return false; }
 
   public long getSentTimeMillis() {
     return sentTimeMillis;

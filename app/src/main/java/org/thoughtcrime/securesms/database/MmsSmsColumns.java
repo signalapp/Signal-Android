@@ -70,6 +70,11 @@ public interface MmsSmsColumns {
     protected static final long GROUP_UPDATE_BIT            = 0x10000;
     protected static final long GROUP_QUIT_BIT              = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
+    protected static final long GROUP_UPDATE_MESSAGE_BIT    = 0x80000;
+
+    // Data Extraction Information
+    protected static final long MEDIA_SAVED_EXTRACTION_BIT = 0x01000;
+    protected static final long SCREENSHOT_EXTRACTION_BIT  = 0x02000;
 
     // Encrypted Storage Information XXX
     public    static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -197,6 +202,14 @@ public interface MmsSmsColumns {
       return (type & EXPIRATION_TIMER_UPDATE_BIT) != 0;
     }
 
+    public static boolean isMediaSavedExtraction(long type) {
+      return (type & MEDIA_SAVED_EXTRACTION_BIT) != 0;
+    }
+
+    public static boolean isScreenshotExtraction(long type) {
+      return (type & SCREENSHOT_EXTRACTION_BIT) != 0;
+    }
+
     public static boolean isIncomingCall(long type) {
       return type == INCOMING_CALL_TYPE;
     }
@@ -212,6 +225,8 @@ public interface MmsSmsColumns {
     public static boolean isGroupUpdate(long type) {
       return (type & GROUP_UPDATE_BIT) != 0;
     }
+
+    public static boolean isGroupUpdateMessage(long type) { return (type & GROUP_UPDATE_MESSAGE_BIT) != 0; }
 
     public static boolean isGroupQuit(long type) {
       return (type & GROUP_QUIT_BIT) != 0;

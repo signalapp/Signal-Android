@@ -13,9 +13,8 @@ import org.session.libsession.utilities.Debouncer;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 
-import java.util.Collections;
 import java.util.List;
 
 

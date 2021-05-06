@@ -6,12 +6,10 @@ import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
 import okhttp3.*
 
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
-import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.messaging.fileserver.FileServerAPI
+import org.session.libsession.messaging.file_server.FileServerAPI
 
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
@@ -24,11 +22,11 @@ import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.api.utilities.HTTP
+import org.session.libsignal.service.loki.HTTP
 import org.session.libsignal.service.loki.utilities.*
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-
+import org.session.libsignal.utilities.logging.Log
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -62,7 +60,7 @@ open class DotNetAPI {
     public data class UploadResult(val id: Long, val url: String, val digest: ByteArray?)
 
     fun getAuthToken(server: String): Promise<String, Exception> {
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         val token = storage.getAuthToken(server)
         if (token != null) { return Promise.of(token) }
         // Avoid multiple token requests to the server by caching
@@ -81,9 +79,9 @@ open class DotNetAPI {
 
     private fun requestNewAuthToken(server: String): Promise<String, Exception> {
         Log.d("Loki", "Requesting auth token for server: $server.")
-        val userKeyPair = MessagingConfiguration.shared.storage.getUserKeyPair() ?: throw Error.Generic
+        val userKeyPair = MessagingModuleConfiguration.shared.storage.getUserKeyPair() ?: throw Error.Generic
         val parameters: Map<String, Any> = mapOf( "pubKey" to userKeyPair.first )
-        return execute(HTTPVerb.GET, server, "loki/v1/get_challenge", false, parameters).map(SnodeAPI.sharedContext) { json ->
+        return execute(HTTPVerb.GET, server, "loki/v1/get_challenge", false, parameters).map { json ->
             try {
                 val base64EncodedChallenge = json["cipherText64"] as String
                 val challenge = Base64.decode(base64EncodedChallenge)
@@ -107,7 +105,7 @@ open class DotNetAPI {
 
     private fun submitAuthToken(token: String, server: String): Promise<String, Exception> {
         Log.d("Loki", "Submitting auth token for server: $server.")
-        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: throw Error.Generic
+        val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: throw Error.Generic
         val parameters = mapOf( "pubKey" to userPublicKey, "token" to token )
         return execute(HTTPVerb.POST, server, "loki/v1/submit_challenge", false, parameters, isJSONRequired = false).map { token }
     }
@@ -146,7 +144,7 @@ open class DotNetAPI {
                     if (exception is HTTP.HTTPRequestFailedException) {
                         val statusCode = exception.statusCode
                         if (statusCode == 401 || statusCode == 403) {
-                            MessagingConfiguration.shared.storage.setAuthToken(server, null)
+                            MessagingModuleConfiguration.shared.storage.setAuthToken(server, null)
                             throw Error.TokenExpired
                         }
                     }
@@ -180,80 +178,9 @@ open class DotNetAPI {
         return execute(HTTPVerb.PATCH, server, "users/me", parameters = parameters)
     }
 
-    // DOWNLOAD
-
-    /**
-     * Blocks the calling thread.
-     */
-    fun downloadFile(destination: File, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
-        val outputStream = FileOutputStream(destination) // Throws
-        var remainingAttempts = 4
-        var exception: Exception? = null
-        while (remainingAttempts > 0) {
-            remainingAttempts -= 1
-            try {
-                downloadFile(outputStream, url, maxSize, listener)
-                exception = null
-                break
-            } catch (e: Exception) {
-                exception = e
-            }
-        }
-        if (exception != null) { throw exception }
-    }
-
-    /**
-     * Blocks the calling thread.
-     */
-    fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
-        // We need to throw a PushNetworkException or NonSuccessfulResponseCodeException
-        // because the underlying Signal logic requires these to work correctly
-        val oldPrefixedHost = "https://" + HttpUrl.get(url).host()
-        var newPrefixedHost = oldPrefixedHost
-        if (oldPrefixedHost.contains(FileServerAPI.fileStorageBucketURL)) {
-            newPrefixedHost = FileServerAPI.shared.server
-        }
-        // Edge case that needs to work: https://file-static.lokinet.org/i1pNmpInq3w9gF3TP8TFCa1rSo38J6UM
-        // → https://file.getsession.org/loki/v1/f/XLxogNXVEIWHk14NVCDeppzTujPHxu35
-        val fileID = url.substringAfter(oldPrefixedHost).substringAfter("/f/")
-        val sanitizedURL = "$newPrefixedHost/loki/v1/f/$fileID"
-        val request = Request.Builder().url(sanitizedURL).get()
-        try {
-            val serverPublicKey = if (newPrefixedHost.contains(FileServerAPI.shared.server)) FileServerAPI.fileServerPublicKey
-            else FileServerAPI.shared.getPublicKeyForOpenGroupServer(newPrefixedHost).get()
-            val json = OnionRequestAPI.sendOnionRequest(request.build(), newPrefixedHost, serverPublicKey, isJSONRequired = false).get()
-            val result = json["result"] as? String
-            if (result == null) {
-                Log.d("Loki", "Couldn't parse attachment from: $json.")
-                throw PushNetworkException("Missing response body.")
-            }
-            val body = Base64.decode(result)
-            if (body.size > maxSize) {
-                Log.d("Loki", "Attachment size limit exceeded.")
-                throw PushNetworkException("Max response size exceeded.")
-            }
-            val input = body.inputStream()
-            val buffer = ByteArray(32768)
-            var count = 0
-            var bytes = input.read(buffer)
-            while (bytes >= 0) {
-                outputStream.write(buffer, 0, bytes)
-                count += bytes
-                if (count > maxSize) {
-                    Log.d("Loki", "Attachment size limit exceeded.")
-                    throw PushNetworkException("Max response size exceeded.")
-                }
-                listener?.onAttachmentProgress(body.size.toLong(), count.toLong())
-                bytes = input.read(buffer)
-            }
-        } catch (e: Exception) {
-            Log.d("Loki", "Couldn't download attachment due to error: $e.")
-            throw if (e is NonSuccessfulResponseCodeException) e else PushNetworkException(e)
-        }
-    }
-
     // UPLOAD
 
+    // TODO: migrate to v2 file server
     @Throws(PushNetworkException::class, NonSuccessfulResponseCodeException::class)
     fun uploadAttachment(server: String, attachment: PushAttachmentData): UploadResult {
         // This function mimics what Signal does in PushServiceSocket
@@ -270,13 +197,13 @@ open class DotNetAPI {
         return upload(server, request) { json -> // Retrying is handled by AttachmentUploadJob
             val data = json["data"] as? Map<*, *>
             if (data == null) {
-                Log.d("Loki", "Couldn't parse attachment from: $json.")
+                Log.e("Loki", "Couldn't parse attachment from: $json.")
                 throw Error.ParsingFailed
             }
             val id = data["id"] as? Long ?: (data["id"] as? Int)?.toLong() ?: (data["id"] as? String)?.toLong()
             val url = data["url"] as? String
             if (id == null || url == null || url.isEmpty()) {
-                Log.d("Loki", "Couldn't parse upload from: $json.")
+                Log.e("Loki", "Couldn't parse upload from: $json.")
                 throw Error.ParsingFailed
             }
             UploadResult(id, url, file.transmittedDigest)
@@ -335,7 +262,7 @@ open class DotNetAPI {
             if (exception is HTTP.HTTPRequestFailedException) {
                 val statusCode = exception.statusCode
                 if (statusCode == 401 || statusCode == 403) {
-                    MessagingConfiguration.shared.storage.setAuthToken(server, null)
+                    MessagingModuleConfiguration.shared.storage.setAuthToken(server, null)
                 }
                 throw NonSuccessfulResponseCodeException("Request returned with status code ${exception.statusCode}.")
             }

@@ -3,7 +3,7 @@ package org.session.libsession.messaging.jobs
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsignal.utilities.logging.Log
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -14,24 +14,30 @@ import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToLong
 
-
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
-
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
-
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val multiDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
+
     val timer = Timer()
 
     init {
-        // process jobs
+        // Process jobs
         scope.launch(dispatcher) {
             while (isActive) {
                 queue.receive().let { job ->
-                    job.delegate = this@JobQueue
-                    job.execute()
+                    if (job.canExecuteParallel()) {
+                        launch(multiDispatcher) {
+                            job.delegate = this@JobQueue
+                            job.execute()
+                        }
+                    } else {
+                        job.delegate = this@JobQueue
+                        job.execute()
+                    }
                 }
             }
         }
@@ -42,6 +48,13 @@ class JobQueue : JobDelegate {
         val shared: JobQueue by lazy { JobQueue() }
     }
 
+    private fun Job.canExecuteParallel(): Boolean {
+        return this.javaClass in arrayOf(
+                AttachmentUploadJob::class.java,
+                AttachmentDownloadJob::class.java
+        )
+    }
+
     fun add(job: Job) {
         addWithoutExecuting(job)
         queue.offer(job) // offer always called on unlimited capacity
@@ -49,14 +62,14 @@ class JobQueue : JobDelegate {
 
     private fun addWithoutExecuting(job: Job) {
         // When adding multiple jobs in rapid succession, timestamps might not be good enough as a unique ID. To
-        // deal with this we keep track of the number of jobs with a given timestamp and that to the end of the
+        // deal with this we keep track of the number of jobs with a given timestamp and add that to the end of the
         // timestamp to make it a unique ID. We can't use a random number because we do still want to keep track
         // of the order in which the jobs were added.
         val currentTime = System.currentTimeMillis()
         jobTimestampMap.putIfAbsent(currentTime, AtomicInteger())
         job.id = currentTime.toString() + jobTimestampMap[currentTime]!!.getAndIncrement().toString()
 
-        MessagingConfiguration.shared.storage.persistJob(job)
+        MessagingModuleConfiguration.shared.storage.persistJob(job)
     }
 
     fun resumePendingJobs() {
@@ -67,21 +80,21 @@ class JobQueue : JobDelegate {
         hasResumedPendingJobs = true
         val allJobTypes = listOf(AttachmentDownloadJob.KEY, AttachmentDownloadJob.KEY, MessageReceiveJob.KEY, MessageSendJob.KEY, NotifyPNServerJob.KEY)
         allJobTypes.forEach { type ->
-            val allPendingJobs = MessagingConfiguration.shared.storage.getAllPendingJobs(type)
+            val allPendingJobs = MessagingModuleConfiguration.shared.storage.getAllPendingJobs(type)
             allPendingJobs.sortedBy { it.id }.forEach { job ->
                 Log.i("Jobs", "Resuming pending job of type: ${job::class.simpleName}.")
-                queue.offer(job) // offer always called on unlimited capacity
+                queue.offer(job) // Offer always called on unlimited capacity
             }
         }
     }
 
     override fun handleJobSucceeded(job: Job) {
-        MessagingConfiguration.shared.storage.markJobAsSucceeded(job)
+        MessagingModuleConfiguration.shared.storage.markJobAsSucceeded(job)
     }
 
     override fun handleJobFailed(job: Job, error: Exception) {
         job.failureCount += 1
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         if (storage.isJobCanceled(job)) { return Log.i("Jobs", "${job::class.simpleName} canceled.")}
         storage.persistJob(job)
         if (job.failureCount == job.maxFailureCount) {
@@ -98,7 +111,7 @@ class JobQueue : JobDelegate {
 
     override fun handleJobFailedPermanently(job: Job, error: Exception) {
         job.failureCount += 1
-        val storage = MessagingConfiguration.shared.storage
+        val storage = MessagingModuleConfiguration.shared.storage
         storage.persistJob(job)
         storage.markJobAsFailed(job)
     }

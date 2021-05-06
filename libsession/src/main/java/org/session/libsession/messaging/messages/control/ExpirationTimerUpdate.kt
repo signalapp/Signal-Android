@@ -1,12 +1,11 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ExpirationTimerUpdate() : ControlMessage() {
-
     /// In the case of a sync message, the public key of the person the message was targeted at.
     /// - Note: `nil` if this isn't a sync message.
     var syncTarget: String? = null
@@ -27,13 +26,16 @@ class ExpirationTimerUpdate() : ControlMessage() {
         }
     }
 
-    //constructor
     internal constructor(syncTarget: String?, duration: Int) : this() {
         this.syncTarget = syncTarget
         this.duration = duration
     }
 
-    // validation
+    internal constructor(duration: Int) : this() {
+        this.syncTarget = null
+        this.duration = duration
+    }
+
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         return duration != null
@@ -53,7 +55,7 @@ class ExpirationTimerUpdate() : ControlMessage() {
             dataMessageProto.syncTarget = syncTarget
         }
         // Group context
-        if (MessagingConfiguration.shared.storage.isClosedGroup(recipient!!)) {
+        if (MessagingModuleConfiguration.shared.storage.isClosedGroup(recipient!!)) {
             try {
                 setGroupContext(dataMessageProto)
             } catch(e: Exception) {

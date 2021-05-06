@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
@@ -26,13 +26,14 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         }
 
         companion object {
+
             fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.ClosedGroup): ClosedGroup? {
                 if (!proto.hasPublicKey() || !proto.hasName() || !proto.hasEncryptionKeyPair()) return null
                 val publicKey = proto.publicKey.toByteArray().toHexString()
                 val name = proto.name
                 val encryptionKeyPairAsProto = proto.encryptionKeyPair
                 val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray().removing05PrefixIfNeeded()),
-                        DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
+                    DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                 val members = proto.membersList.map { it.toByteArray().toHexString() }
                 val admins = proto.adminsList.map { it.toByteArray().toHexString() }
                 return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins)
@@ -58,6 +59,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         internal constructor(): this("", "", null, null)
 
         companion object {
+
             fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.Contact): Contact? {
                 if (!proto.hasName() || !proto.hasProfileKey()) return null
                 val publicKey = proto.publicKey.toByteArray().toHexString()
@@ -87,7 +89,6 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         }
     }
 
-    override val ttl: Long = 4 * 24 * 60 * 60 * 1000
     override val isSelfSendValid: Boolean = true
 
     companion object {
@@ -95,7 +96,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         fun getCurrent(contacts: List<Contact>): ConfigurationMessage? {
             val closedGroups = mutableListOf<ClosedGroup>()
             val openGroups = mutableListOf<String>()
-            val sharedConfig = MessagingConfiguration.shared
+            val sharedConfig = MessagingModuleConfiguration.shared
             val storage = sharedConfig.storage
             val context = sharedConfig.context
             val displayName = TextSecurePreferences.getProfileName(context) ?: return null
@@ -112,8 +113,11 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                 }
                 if (groupRecord.isOpenGroup) {
                     val threadID = storage.getThreadID(groupRecord.encodedId) ?: continue
-                    val openGroup = storage.getOpenGroup(threadID) ?: continue
-                    openGroups.add(openGroup.server)
+                    val openGroup = storage.getOpenGroup(threadID)
+                    val openGroupV2 = storage.getV2OpenGroup(threadID)
+
+                    val shareUrl = openGroup?.server ?: openGroupV2?.toJoinUrl() ?: continue
+                    openGroups.add(shareUrl)
                 }
             }
 

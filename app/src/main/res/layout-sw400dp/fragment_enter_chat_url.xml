@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +21,36 @@
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
         android:inputType="textWebEmailAddress"
-        android:hint="Enter an open group URL" />
+        android:hint="@string/fragment_enter_chat_url_edit_text_hint" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:visibility="gone"
+        android:id="@+id/defaultRoomsLoader"
+        style="@style/SpinKitView.Small.WanderingCubes"
+        android:layout_marginVertical="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:paddingHorizontal="24dp"
+        android:id="@+id/defaultRoomsParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginVertical="16dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/activity_join_public_chat_join_rooms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <GridLayout
+            android:id="@+id/defaultRoomsGridLayout"
+            android:columnCount="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <View
         android:layout_width="0dp"

@@ -5,14 +5,12 @@ import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
-import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsession.messaging.opengroups.OpenGroup
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
-import org.session.libsession.messaging.opengroups.OpenGroupInfo
+import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.open_groups.*
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -21,15 +19,17 @@ import java.util.concurrent.Executors
 
 class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, OpenGroup>()
+  private var v2Chats = mutableMapOf<Long, OpenGroupV2>()
   private val pollers = mutableMapOf<Long, OpenGroupPoller>()
+  private val v2Pollers = mutableMapOf<String, OpenGroupV2Poller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
-  private val executorService = Executors.newScheduledThreadPool(16)
+  private val executorService = Executors.newScheduledThreadPool(4)
 
   public fun areAllCaughtUp(): Boolean {
     var areAllCaughtUp = true
     refreshChatsAndPollers()
-    for ((threadID, chat) in chats) {
+    for ((threadID, _) in chats) {
       val poller = pollers[threadID]
       areAllCaughtUp = if (poller != null) areAllCaughtUp && poller.isCaughtUp else true
     }
@@ -53,6 +53,17 @@ class PublicChatManager(private val context: Context) {
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
     }
+    v2Pollers.values.forEach { it.stop() }
+    v2Pollers.clear()
+    v2Chats.entries.groupBy { (_, group) -> group.server }.forEach { (server, threadedRooms) ->
+      val poller = OpenGroupV2Poller(threadedRooms.map { it.value }, executorService)
+      poller.startIfNeeded()
+      threadedRooms.forEach { (thread, _) ->
+        listenToThreadDeletion(thread)
+      }
+      v2Pollers[server] = poller
+    }
+
     isPolling = true
   }
 
@@ -75,7 +86,7 @@ class PublicChatManager(private val context: Context) {
 
   @WorkerThread
   public fun addChat(server: String, channel: Long, info: OpenGroupInfo): OpenGroup {
-    val chat = PublicChat(channel, server, info.displayName, true)
+    val chat = OpenGroup(channel, server, info.displayName, true)
     var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     // Create the group if we don't have one
@@ -96,12 +107,42 @@ class PublicChatManager(private val context: Context) {
     // Start polling
     Util.runOnMain { startPollersIfNeeded() }
 
-    return OpenGroup.from(chat)
+    return chat
+  }
+
+  @WorkerThread
+  fun addChat(server: String, room: String, info: OpenGroupAPIV2.Info, publicKey: String): OpenGroupV2 {
+    val chat = OpenGroupV2(server, room, info.name, publicKey)
+    var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
+    val profilePicture: Bitmap?
+    if (threadID < 0) {
+        val profilePictureAsByteArray = try {
+          OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id,server).get()
+        } catch (e: Exception) {
+          null
+        }
+        profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
+      val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, info.name)
+      threadID = result.threadId
+    }
+    DatabaseFactory.getLokiThreadDatabase(context).setOpenGroupChat(chat, threadID)
+    Util.runOnMain { startPollersIfNeeded() }
+    return chat
   }
 
   public fun removeChat(server: String, channel: Long) {
     val threadDB = DatabaseFactory.getThreadDatabase(context)
-    val groupId = PublicChat.getId(channel, server)
+    val groupId = OpenGroup.getId(channel, server)
+    val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
+    val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
+    GroupManager.deleteGroup(groupAddress, context)
+
+    Util.runOnMain { startPollersIfNeeded() }
+  }
+
+  fun removeChat(server: String, room: String) {
+    val threadDB = DatabaseFactory.getThreadDatabase(context)
+    val groupId = "$server.$room"
     val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
     val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
     GroupManager.deleteGroup(groupAddress, context)
@@ -110,13 +151,15 @@ class PublicChatManager(private val context: Context) {
   }
 
   private fun refreshChatsAndPollers() {
-    val storage = MessagingConfiguration.shared.storage
+    val storage = MessagingModuleConfiguration.shared.storage
     val chatsInDB = storage.getAllOpenGroups()
+    val v2ChatsInDB = storage.getAllV2OpenGroups()
     val removedChatThreadIds = chats.keys.filter { !chatsInDB.keys.contains(it) }
     removedChatThreadIds.forEach { pollers.remove(it)?.stop() }
 
     // Only append to chats if we have a thread for the chat
     chats = chatsInDB.filter { GroupManager.getOpenGroupThreadID(it.value.id, context) > -1 }.toMutableMap()
+    v2Chats = v2ChatsInDB.filter { GroupManager.getOpenGroupThreadID(it.value.id, context) > -1 }.toMutableMap()
   }
 
   private fun listenToThreadDeletion(threadID: Long) {
@@ -133,6 +176,8 @@ class PublicChatManager(private val context: Context) {
 
       DatabaseFactory.getLokiThreadDatabase(context).removePublicChat(threadID)
       pollers.remove(threadID)?.stop()
+      v2Pollers.values.forEach { it.stop() }
+      v2Pollers.clear()
       observers.remove(threadID)
       startPollersIfNeeded()
     }

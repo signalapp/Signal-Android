@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_mention_candidate.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
-import org.session.libsignal.service.loki.utilities.mentions.Mention
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
+import org.session.libsignal.service.loki.Mention
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {

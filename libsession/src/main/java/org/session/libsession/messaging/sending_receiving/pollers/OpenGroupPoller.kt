@@ -3,12 +3,14 @@ package org.session.libsession.messaging.sending_receiving.pollers
 import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.opengroups.OpenGroup
-import org.session.libsession.messaging.opengroups.OpenGroupAPI
-import org.session.libsession.messaging.opengroups.OpenGroupMessage
+import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupAPI
+import org.session.libsession.messaging.open_groups.OpenGroupMessage
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos.*
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.successBackground
@@ -26,7 +28,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     private val cancellableFutures = mutableListOf<ScheduledFuture<out Any>>()
 
     // region Convenience
-    private val userHexEncodedPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: ""
+    private val userHexEncodedPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: ""
     private var displayNameUpdates = setOf<String>()
     // endregion
 
@@ -43,10 +45,10 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     fun startIfNeeded() {
         if (hasStarted || executorService == null) return
         cancellableFutures += listOf(
-                executorService.scheduleAtFixedRate(::pollForNewMessages,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForDeletedMessages,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForModerators,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
-                executorService.scheduleAtFixedRate(::pollForDisplayNames,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
+            executorService.scheduleAtFixedRate(::pollForNewMessages,0, pollForNewMessagesInterval, TimeUnit.MILLISECONDS),
+            executorService.scheduleAtFixedRate(::pollForDeletedMessages,0, pollForDeletedMessagesInterval, TimeUnit.MILLISECONDS),
+            executorService.scheduleAtFixedRate(::pollForModerators,0, pollForModeratorsInterval, TimeUnit.MILLISECONDS),
+            executorService.scheduleAtFixedRate(::pollForDisplayNames,0, pollForDisplayNamesInterval, TimeUnit.MILLISECONDS)
         )
         hasStarted = true
     }
@@ -62,24 +64,23 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
 
     // region Polling
     fun pollForNewMessages(): Promise<Unit, Exception> {
-        return pollForNewMessages(false)
+        return pollForNewMessagesInternal(false)
     }
 
-    private fun pollForNewMessages(isBackgroundPoll: Boolean): Promise<Unit, Exception> {
+    private fun pollForNewMessagesInternal(isBackgroundPoll: Boolean): Promise<Unit, Exception> {
         if (isPollOngoing) { return Promise.of(Unit) }
         isPollOngoing = true
         val deferred = deferred<Unit, Exception>()
         // Kovenant propagates a context to chained promises, so OpenGroupAPI.sharedContext should be used for all of the below
         OpenGroupAPI.getMessages(openGroup.channel, openGroup.server).successBackground { messages ->
             // Process messages in the background
-            Log.d("Loki", "received ${messages.size} messages")
             messages.forEach { message ->
                 try {
                     val senderPublicKey = message.senderPublicKey
                     fun generateDisplayName(rawDisplayName: String): String {
                         return "$rawDisplayName (...${senderPublicKey.takeLast(8)})"
                     }
-                    val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.channel, openGroup.server) ?: generateDisplayName(message.displayName)
+                    val senderDisplayName = MessagingModuleConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.channel, openGroup.server) ?: generateDisplayName(message.displayName)
                     val id = openGroup.id.toByteArray()
                     // Main message
                     val dataMessageProto = DataMessage.newBuilder()
@@ -164,7 +165,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                     content.setDataMessage(dataMessageProto.build())
                     // Envelope
                     val builder = Envelope.newBuilder()
-                    builder.type = Envelope.Type.UNIDENTIFIED_SENDER
+                    builder.type = Envelope.Type.SESSION_MESSAGE
                     builder.source = senderPublicKey
                     builder.sourceDevice = 1
                     builder.setContent(content.build().toByteString())
@@ -203,7 +204,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
             for (pair in mapping.entries) {
                 if (pair.key == userHexEncodedPublicKey) continue
                 val senderDisplayName = "${pair.value} (...${pair.key.substring(pair.key.count() - 8)})"
-                MessagingConfiguration.shared.storage.setOpenGroupDisplayName(pair.key, openGroup.channel, openGroup.server, senderDisplayName)
+                MessagingModuleConfiguration.shared.storage.setOpenGroupDisplayName(pair.key, openGroup.channel, openGroup.server, senderDisplayName)
             }
         }.fail {
             displayNameUpdates = displayNameUpdates.union(hexEncodedPublicKeys)
@@ -211,10 +212,13 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
     }
 
     private fun pollForDeletedMessages() {
+        val messagingModule = MessagingModuleConfiguration.shared
+        val address = GroupUtil.getEncodedOpenGroupID(openGroup.id.toByteArray())
+        val threadId = messagingModule.storage.getThreadIdFor(Address.fromSerialized(address)) ?: return
         OpenGroupAPI.getDeletedMessageServerIDs(openGroup.channel, openGroup.server).success { deletedMessageServerIDs ->
-            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getMessageID(it) }
-            deletedMessageIDs.forEach {
-                MessagingConfiguration.shared.messageDataProvider.deleteMessage(it)
+            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { messagingModule.messageDataProvider.getMessageID(it, threadId) }
+            deletedMessageIDs.forEach { (messageId, isSms) ->
+                MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(messageId, isSms)
             }
         }.fail {
             Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${openGroup.channel} on server: ${openGroup.server}.")
