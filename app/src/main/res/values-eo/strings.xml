@@ -1165,6 +1165,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vi</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloki</string>
   <string name="RecipientPreferenceActivity_unblock">Malbloki</string>
@@ -1223,6 +1224,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Ĉu vi volas uzi tiun prokuran adreson?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Uzi prokurilon</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Konektado al prokurilo sukcesis.</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elektu vian landon</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vi devas specifi vian

@@ -1162,6 +1162,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Sinä</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Estä</string>
   <string name="RecipientPreferenceActivity_unblock">Poista esto</string>
@@ -1220,6 +1221,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Haluatko käyttää tätä proxyn osoitetta?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Käytä proxyä</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Yhteyden muodostaminen proxyyn onnistui.</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy
@@ -2053,10 +2055,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsHomeFragment__deactivate_payments_question">Poistetaanko maksut käytöstä?</string>
   <string name="PaymentsHomeFragment__deactivate">Poista käytöstä</string>
   <string name="PaymentsHomeFragment__continue">Jatka</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Saldo ei ole saatavilla tällä hetkellä.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Maksut otettu pois käytöstä</string>
   <string name="PaymentsHomeFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsHomeFragment__details">Lisätietoja</string>
   <string name="PaymentsHomeFragment__activate">Aktivoi</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näytä MobileCoin sanasto</string>
   <string name="PaymentsHomeFragment__payments_not_available">Maksut eivät ole enää saatavilla Signalissa. Varat voi yhä siirtää toiseen kauppapaikkaan, mutta varojen lisääminen tai maksujen lähettäminen ja vastaanottaminen ei ole enää mahdollista.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Lisää varoja</string>
@@ -2071,6 +2075,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsDetailsFragment__processing_payment">Käsitellään maksua…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Maksu valmis</string>
   <string name="PaymentsDetailsFragment__payment_failed">Maksu epäonnistui</string>
+  <string name="PaymentsDetailsFragment__network_fee">Verkkomaksu</string>
   <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
   <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
   <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot kuten summa ja aika tallennetaan MobileCoiniin.</string>
@@ -2103,12 +2108,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Lisää viesti</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">Muunnokset ovat vain arvioita ja saattavat olla epätarkkoja.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Huomautus</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Vahvista maksu</string>
+  <string name="ConfirmPayment__network_fee">Verkkomaksu</string>
   <string name="ConfirmPayment__to">Vastaanottajat</string>
+  <string name="ConfirmPayment__total_amount">Yhteensä</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Lähetetään maksua…</string>
   <string name="ConfirmPayment__processing_payment">Käsitellään maksua…</string>
   <string name="ConfirmPayment__payment_complete">Maksu valmis</string>
@@ -2702,6 +2712,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="payment_info_card_you_can_add_funds_for_use_in">Lisää varoja Signalissa käyttöä varten lähettämällä MobileCoineja lompakko-osoitteeseen.</string>
   <string name="payment_info_card_cashing_out">Nostaminen</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoinit voi nostaa rahana milloin tahansa MobileCoin-yhteensopivalla kauppapaikalla siirtämällä rahat sillä sijaitsevalle tilille.</string>
+  <string name="payment_info_card_hide_this_card">Piilota tämä kortti?</string>
   <string name="payment_info_card_hide">Piilota</string>
   <string name="payment_info_card_record_recovery_phrase">Tallenna palautuslause</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Palautuslauseella voi palauttaa tilin, jos tavanomaiset kirjautumismenetelmät eivät toimi.</string>
@@ -2709,11 +2720,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="payment_info_card_with_a_high_balance">Tili kannattaa suojata aakkosnumeerisella suojakoodilla, erityisesti jos sen kate on korkea.</string>
   <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__your_balance">Saldosi</string>
   <string name="DeactivateWalletFragment__deactivate">Poista käytöstä</string>
   <string name="DeactivateWalletFragment__your_balance_will_remain">Varat säilytetään Signal-tiliin liitetyssä lompakossa siltä varalta jos maksut otetaan uudestaan käyttöön.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Palautuslause</string>
   <string name="PaymentsRecoveryStartFragment__start">Aloita</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Syötä käsin</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Liitä leikepöydältä</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Palautuslause</string>

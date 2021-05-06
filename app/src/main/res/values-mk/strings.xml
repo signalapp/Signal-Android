@@ -1163,6 +1163,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Вие</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
@@ -1221,6 +1222,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Дали сакате да ја користите оваа proxy адресa?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Користи proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно се поврзав со proxy серверот.</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Внесете го повикувачкиот број

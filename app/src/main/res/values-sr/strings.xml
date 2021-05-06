@@ -170,6 +170,7 @@
   <string name="ConversationItem_error_network_not_delivered">Слање није успело</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Примљена порука размене кључева, тапните за обраду.</string>
   <string name="ConversationItem_group_action_left">%1$s напусти групу.</string>
+  <string name="ConversationItem_send_paused">Слање паузирано</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Слање није успело, тапните за необезбеђену одступницу</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да одступим на нешифровани СМС?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да одступим на нешифровани ММС?</string>
@@ -1223,6 +1224,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ви</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Верификујте да би се наставило преписивање</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Да бисте спречили спем у Signаl-у, испуните верификацију.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Након верификације, можете наставити са порукама. Било која паузирана порука ће аутоматски бити послана.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
@@ -1283,6 +1288,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Да ли желите да користите ову прокси адресу?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Користи проки</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно повезан са прокси сервером.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Неуспех слања</string>
+  <string name="RecaptchaProofActivity_complete_verification">Довршите верификацију</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изаберите вашу државу</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Морате навести позивни број
@@ -1514,6 +1522,8 @@
   <string name="MessageNotifier_message_delivery_failed">Испорука поруке није успела.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не успех да испоручим поруку.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при испоруци поруке.</string>
+  <string name="MessageNotifier_message_delivery_paused">Испорука поруке је паузирана.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Верификујте да би се наставило преписивање на Signal-у.</string>
   <string name="MessageNotifier_mark_all_as_read">Означи све прочитаним</string>
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_turn_off_these_notifications">Искључи ова обавештења</string>

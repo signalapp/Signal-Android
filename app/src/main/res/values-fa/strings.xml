@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">ارسال ناموفق بود</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید دریافت شد، برای ادامه، صفحه را لمس کنید.</string>
   <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
+  <string name="ConversationItem_send_paused">ارسال متوقف شد</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ارسال ناموفق بود، برای ارتباط ناامن ضربه بزنید</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">برگشت به حالت پیامک رمزگذاری نشده؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت فراپیام رمزگذاری نشده؟</string>
@@ -1165,6 +1166,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">شما</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">برای ادامهٔ پیام‌‌رسانی تأیید کنید</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">برای کمک به جلوگیری از هرزنگاری یا اسپم در سیگنال، لطفاً تأیید را کامل کنید.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">پس از تأیید کردن، می‌توانید به پیام‌رسانی ادامه دهید. هر پیام متوقف شده‌ای به صورت خودکار ارسال خواهد شد.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">مسدود کردن</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
@@ -1223,6 +1228,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">آیا می‌خواهید از این نشانی پروکسی استفاده کنید؟</string>
   <string name="ProxyBottomSheetFragment_use_proxy">استفاده از پروکسی</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">با موفقیت به پروکسی متصل شدید.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">ارسال موفق نبود</string>
+  <string name="RecaptchaProofActivity_complete_verification">تأیید را کامل کنید</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">شما باید کد کشور خود را
@@ -1452,6 +1460,8 @@
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام ناموفق بود.</string>
   <string name="MessageNotifier_failed_to_deliver_message">تحویل پیام ناموفق بود.</string>
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
+  <string name="MessageNotifier_message_delivery_paused">تحویل پیام متوقف شد.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">برای ادامهٔ پیام‌رسانی در سیگنال تأیید کنید.</string>
   <string name="MessageNotifier_mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
   <string name="MessageNotifier_mark_read">علامت‌گذاری به صورت خوانده شده</string>
   <string name="MessageNotifier_turn_off_these_notifications">این اعلان‌ها را خاموش کن</string>

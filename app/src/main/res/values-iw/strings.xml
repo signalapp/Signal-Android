@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">השליחה נכשלה</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">הודעת החלפת מפתחות התקבלה, הקש כדי לעבד.</string>
   <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
+  <string name="ConversationItem_send_paused">שליחה מושהית</string>
   <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">לסגת אל מסרון בלתי מוצפן?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">לסגת אל MMS בלתי מוצפן?</string>
@@ -1281,6 +1282,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">אתה</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">וודא כדי להמשיך להתכתב</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">כדי לעזור למנוע זבל ב‏‏־Signal, אנא השלם וידוא.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">לאחר וידוא, אתה יכול להמשיך להתכתב. הודעות מושהות כלשהן יישלחו באופן אוטומטי.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">חסום</string>
   <string name="RecipientPreferenceActivity_unblock">שחרר חסימה</string>
@@ -1343,6 +1348,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">האם אתה רוצה להשתמש בכתובת יפוי כוח זו?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">השתמש ביפוי כוח</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">התחברת בהצלחה אל יפוי כוח.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">נכשל בשליחה</string>
+  <string name="RecaptchaProofActivity_complete_verification">וידוא הושלם</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">בחר את מדינתך</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">אתה חייב לציין את
@@ -1578,6 +1586,8 @@
   <string name="MessageNotifier_message_delivery_failed">מסירת הודעה נכשלה.</string>
   <string name="MessageNotifier_failed_to_deliver_message">נכשל למסור הודעה.</string>
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת הודעה.</string>
+  <string name="MessageNotifier_message_delivery_paused">מסירת הודעה הושהתה.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">וודא כדי להמשיך להתכתב ב־Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">סמן שהכל נקרא</string>
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_turn_off_these_notifications">כבה התראות אלו</string>

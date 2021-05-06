@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Dërgimi dështoi</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">U mor mesazh shkëmbimi kyçesh, prekeni që të bëhet.</string>
   <string name="ConversationItem_group_action_left">%1$s e la grupin.</string>
+  <string name="ConversationItem_send_paused">Dërgimi i ndal</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Të përdoren SMS të pafshehtëzuara?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Të përdoren MMS të pafshehtëzuara?</string>
@@ -1168,6 +1169,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ju</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifikojeni, që të vazhdoni shkëmbim mesazhesh</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Që të ndihmoni të pengohen në Signal mesazhe të padëshiruar, ju lutemi, plotësoni verifikimin.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Pas verifikimit, mund të vazhdoni të shkëmbeni mesazhe. Çfarëdo mesazhesh të ndalur do të dërgohen automatikisht.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bllokoje</string>
   <string name="RecipientPreferenceActivity_unblock">Zhbllokoje</string>
@@ -1226,6 +1231,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Doni të përdoret kjo adresë ndërmjetësi?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Përdor ndërmjetës</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">U lidh me sukses te ndërmjetësi.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">S’u arrit të parashtrohej</string>
+  <string name="RecaptchaProofActivity_complete_verification">Plotësoni verifikimin</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -1454,6 +1462,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_message_delivery_failed">Dërgimi i mesazhit dështoi.</string>
   <string name="MessageNotifier_failed_to_deliver_message">S\’u arrit të dërgohej mesazhi.</string>
   <string name="MessageNotifier_error_delivering_message">Gabim në dërgimin e mesazhit.</string>
+  <string name="MessageNotifier_message_delivery_paused">U ndal dërgimi i mesazheve.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Që të vazhdoni të shkëmbeni mesazhe në Signal, verifikojeni.</string>
   <string name="MessageNotifier_mark_all_as_read">Vëru shenjë të gjithëve si të lexuar</string>
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_turn_off_these_notifications">Çaktivizoji këto njoftime</string>

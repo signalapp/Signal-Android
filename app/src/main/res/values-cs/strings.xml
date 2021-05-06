@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">Odeslání selhalo</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Byla vám doručena zpráva s klíčem, klepněte pro jeho zpracování.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil skupinu.</string>
+  <string name="ConversationItem_send_paused">Odesílání pozastaveno</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Odeslání se nezdařilo, klepněte pro odeslání nešifrovaným způsobem</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Použít záložní způsob přes nešifrovanou SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
@@ -1280,6 +1281,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vy</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Ověřte pro pokračování konverzace</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Dokončete prosím ověření, abyste pomohli s bojem proti spamu.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po dokončení ověření můžete pokračovat v konverzacích. Všechny pozastavené zprávy budou automaticky odeslány po ověření.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Zablokovat</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
@@ -1342,6 +1347,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Chcete použít tuto proxy adresu?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Použít proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Úspěšně připojeno k proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Odeslání selhalo</string>
+  <string name="RecaptchaProofActivity_complete_verification">Dokončit ověření</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
@@ -1577,6 +1585,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_message_delivery_failed">Selhalo doručení zprávy.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nepodařilo se zprávu doručit.</string>
   <string name="MessageNotifier_error_delivering_message">Chyba při doručení zprávy.</string>
+  <string name="MessageNotifier_message_delivery_paused">Doručení zprávy pozastaveno.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Ověřte pro pokračování konverzace na Signalu.</string>
   <string name="MessageNotifier_mark_all_as_read">Označit vše jako přečtené</string>
   <string name="MessageNotifier_mark_read">Označit jako přečtené</string>
   <string name="MessageNotifier_turn_off_these_notifications">Vypnout tato upozornění</string>

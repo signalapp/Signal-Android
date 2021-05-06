@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PINを無効にしました。</string>
   <string name="ApplicationPreferencesActivity_hide">閉じる</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">リマインダーを閉じますか？</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">フレーズを記録</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINを無効化する前に、口座を回復するためのリカバリーフレーズを保存しなければなりません。</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -166,6 +167,7 @@
   <string name="ConversationItem_error_network_not_delivered">送信に失敗しました。</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして処理します。</string>
   <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
+  <string name="ConversationItem_send_paused">送信を保留しました</string>
   <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして保護されていない通信に切り替える</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">暗号化されないSMSに切り替えますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">暗号化されないMMSに切り替えますか？</string>
@@ -1104,6 +1106,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">あなた</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">メッセージ送受信のため認証してください</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signalが迷惑メッセージを回避するために、認証を完了していください。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">認証後は、メッセージの送受信を再開できます。保留されたメッセージは、自動で送信されます。</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ブロックする</string>
   <string name="RecipientPreferenceActivity_unblock">ブロックを解除する</string>
@@ -1160,6 +1166,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">このプロキシアドレスを使用しますか？</string>
   <string name="ProxyBottomSheetFragment_use_proxy">プロキシを使用する</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">プロキシに接続しました。</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">送信失敗</string>
+  <string name="RecaptchaProofActivity_complete_verification">認証を完了してください</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">国を選択してください</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力してください</string>
@@ -1380,6 +1389,8 @@
   <string name="MessageNotifier_message_delivery_failed">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_error_delivering_message">メッセージの配信中にエラーが発生しました。</string>
+  <string name="MessageNotifier_message_delivery_paused">メッセージの配送が保留されました。</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signalでのメッセージ送受信を続けるために、認証してください。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_turn_off_these_notifications">これらの通知を無効にする</string>
@@ -1413,6 +1424,7 @@
   <string name="NotificationChannel_missing_display_name">不明</string>
   <string name="NotificationChannel_voice_notes">音声メモ</string>
   <string name="NotificationChannel_contact_joined_signal">連絡先のSignal参加時</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">通知チャネルの設定を開くためのアクティビティがありません。</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイックレスポンスを使えません！</string>
@@ -1565,8 +1577,11 @@
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">すべて順調そうです！</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">着信通知を受けるには、ここをタップして「通知を表示する」を有効にします。</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">着信通知を受けるには、ここをタップして通知を有効にし、音とポップアップが有効になっていることを確認してください。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">着信通知を受けるには、ここをタップして「バッテリー」設定でバックグラウンド動作を有効にします。</string>
   <string name="EnableCallNotificationSettingsDialog__settings">設定</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">着信通知を受けるには、設定をタップして「通知を表示する」を有効にします。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">着信通知を受けるには、設定をタップして通知を有効にし、音とポップアップが有効になっていることを確認してください。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">着信通知を受けるには、設定をタップして「バッテリー」設定でバックグラウンド動作を有効にします。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込んでいます…</string>
   <string name="country_selection_fragment__search">検索</string>
@@ -1955,6 +1970,7 @@
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">すべてのアクティビティ</string>
   <string name="PaymentsAllActivityFragment__all">全員</string>
   <string name="PaymentsAllActivityFragment__sent">送信</string>
   <string name="PaymentsAllActivityFragment__received">受信</string>
@@ -1996,12 +2012,15 @@
   <string name="PaymentsDetailsFragment__coin_cleanup_information">クリーンアップ手数料は、細分化されたコインを結合して取引を完了することができない場合に請求されます。クリーンアップすることで、送金を続けることができます。</string>
   <string name="PaymentsDetailsFragment__sent_payment">送金済み</string>
   <string name="PaymentsDetailsFragment__received_payment">受け取り済み</string>
+  <string name="PaymentsDetailsFragment__block_number">ブロック番号</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">QRコードをスキャンする</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">受取人: スキャンするかアドレスを入力</string>
   <string name="PaymentsTransferFragment__you_can_transfer">取引所のウォレットアドレスへの送金を完了することで、MobileCoinを送金できます。ウォレットアドレスは、QRコードの下にある文字列です。</string>
   <string name="PaymentsTransferFragment__next">次へ</string>
   <string name="PaymentsTransferFragment__invalid_address">無効なアドレス</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QRコードをスキャンするには、Signalにカメラへのアクセスを許可してください。</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QRコードをスキャンするには、Signalにカメラへのアクセスを許可してください。</string>
   <string name="PaymentsTransferFragment__settings">設定</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
@@ -2374,10 +2393,12 @@
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">新しいAndroid端末を検索しています…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">新しいAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">新しいAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signalが新しいAndroid端末を検出して接続するには、Wi-Fiが有効になっている必要があります。ただし、Wi-Fiネットワークに接続されている必要はありません。</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">申し訳ありませんが、この端末はWi-Fi Directに対応していないようです。Signalは、Wi-Fi Directを使って新しいAndroid端末を検出し、接続します。新しいAndroid端末でアカウントを復元するために、バックアップを作成することは可能です。</string>
   <string name="OldDeviceTransferSetup__create_a_backup">バックアップを作成する</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">新しいAndroid端末への接続時に、予期しないエラーが発生しました。</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi設定うぃ開けません。手動でWi-Fiをオンにしてください。</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi設定を開けません。手動でWi-Fiを有効にしてください。</string>
   <string name="DeviceTransferSetup__grant_location_permission">位置情報へのアクセスを許可する</string>
   <string name="DeviceTransferSetup__turn_on_location_services">位置情報サービスを有効にする</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">位置情報の設定を開けません。</string>
@@ -2629,8 +2650,10 @@
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">リカバリーフレーズを電子的に保存する場合、信頼できる安全な場所に保存してください。</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">コピー</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">単語 %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">完了</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__word_d">単語 %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">次へ</string>
   <!--ClearClipboardAlarmReceiver-->
   <string name="ClearClipboardAlarmReceiver__clipboard_cleared">クリップボードをクリアしました。</string>
@@ -2641,7 +2664,8 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">送金するには、このユーザーがあなたのメッセージリクエストを受け取る必要があります。リクエストを作成するため、先にメッセージを送ってください。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">メッセージ送信</string>
   <!--GroupsInCommonMessageRequest-->
-  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">この人と共通のグループがありません。望まないメッセージを避けるため、リクエストは慎重に検討してください。</string>
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">この人と共通のグループがありません。望まないメッセージを避けるため、申請は慎重に確認してください。</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">あなたの連絡先やチャット相手は、このグループにはいません。望まないメッセージを避けるために、申請は慎重に確認してください。</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">メッセージ申請について</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--EOF-->

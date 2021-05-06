@@ -1394,6 +1394,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">أنت</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">حظر</string>
   <string name="RecipientPreferenceActivity_unblock">رفع الحظر</string>
@@ -1460,6 +1461,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ألديك رغبة في استخدام عنوان الوكيل هذا ؟</string>
   <string name="ProxyBottomSheetFragment_use_proxy">استخدم الوكيل</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">نجح في الاتصال بالوكيل.</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">يجب عليك اختيار بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>

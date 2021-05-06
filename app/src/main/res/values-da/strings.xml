@@ -170,6 +170,7 @@
   <string name="ConversationItem_error_network_not_delivered">Send mislykkedes</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Udvekslingsnøgle er modtaget. Tap for at fortsætte</string>
   <string name="ConversationItem_group_action_left">%1$s har forladt gruppen</string>
+  <string name="ConversationItem_send_paused">Send sat på pause</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tap for at sende standard besked</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Godkend ukrypteret SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Godkend ukrypteret MMS?</string>
@@ -1166,6 +1167,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Dig</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Bekræft for at fortsætte beskedskrivning</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">For at hjælpe med at forhindre spam på Signal, skal du gennemføre bekræftelsen.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Efter bekræftelse kan du fortsætte med at sende beskeder. Alle beskeder, der er sat på pause, sendes automatisk.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokér</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokering</string>
@@ -1224,6 +1229,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Vil du bruge denne proxy-adresse?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Brug proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Forbundet til proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Det lykkedes ikke at indsende</string>
+  <string name="RecaptchaProofActivity_complete_verification">Gennemfør bekræftelsen</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
@@ -1454,6 +1462,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MessageNotifier_message_delivery_failed">Levering af besked mislykkedes</string>
   <string name="MessageNotifier_failed_to_deliver_message">Kunne ikke levere besked</string>
   <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked</string>
+  <string name="MessageNotifier_message_delivery_paused">Levering af besked sat på pause.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Bekræft for at fortsætte beskedskrivning på Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_turn_off_these_notifications">Deaktiver disse notifikationer</string>

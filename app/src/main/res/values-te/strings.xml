@@ -1168,6 +1168,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">మీరు</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">నిరోధించు</string>
   <string name="RecipientPreferenceActivity_unblock">అనుమతించు</string>
@@ -1226,6 +1227,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">మీరు ఈ ప్రాక్సీ చిరునామాను ఉపయోగించాలనుకుంటున్నారా?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">ప్రాక్సీని ఉపయోగించండి</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">ప్రాక్సీకి విజయవంతంగా కనెక్ట్ చేయబడింది.</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">మీ దేశాన్ని ఎంచుకోండి</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">మీరు మీ దేశం కోడ్

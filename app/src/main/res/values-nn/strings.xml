@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Sending feila</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling motteken. Trykk for å behandla.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlate gruppa.</string>
+  <string name="ConversationItem_send_paused">Sending på vent</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Feil ved sending, trykk for å senda med utrygg alternativ metode</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vil du bruka ukryptert SMS som reserveløysing?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruka ukryptert MMS som reserveløysing?</string>
@@ -1171,6 +1172,10 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Du</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Stadfest for å halda fram med meldingar</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Fullfør stadfestinga for å hjelpa oss å unngå spam på Signal</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Etter stadfesting kan du halda fram med meldingar. Meldingar som er på vent vil bli sende automatisk.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
@@ -1229,6 +1234,9 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Vil du bruka denne proxy-adressa?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Bruk proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Klarte å kopla til proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Klarte ikkje senda</string>
+  <string name="RecaptchaProofActivity_complete_verification">Fullfør stadfesting</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vel land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgje
@@ -1458,6 +1466,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_message_delivery_failed">Feil ved meldingslevering.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikkje å levera melding.</string>
   <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
+  <string name="MessageNotifier_message_delivery_paused">Meldingssending på vent.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Stadfest for å halda fram med Signal-meldingar.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alle som lesne</string>
   <string name="MessageNotifier_mark_read">Merk lesen</string>
   <string name="MessageNotifier_turn_off_these_notifications">Skru av desse varsla</string>

@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Att skicka meddelandet misslyckades</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tog emot meddelande för nyckelutbyte, tryck för att behandla.</string>
   <string name="ConversationItem_group_action_left">%1$s har lämnat gruppen.</string>
+  <string name="ConversationItem_send_paused">Sändning pausad</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sändningen misslyckades, tryck för oskyddad fallback</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
@@ -1164,6 +1165,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Du</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifiera för att fortsätta skicka meddelanden</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">För att förhindra skräppost på Signal, vänligen slutför verifieringen.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Efter verifiering kan du fortsätta skicka meddelanden. Alla pausade meddelanden skickas automatiskt.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockera</string>
   <string name="RecipientPreferenceActivity_unblock">Avblockera</string>
@@ -1222,6 +1227,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Vill du använda denna proxyadress?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Använd proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ansluten till proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Det gick inte att skicka</string>
+  <string name="RecaptchaProofActivity_complete_verification">Fullständig verifiering</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
@@ -1448,6 +1456,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_message_delivery_failed">Meddelandeleverans misslyckades.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Det gick inte att leverera meddelandet.</string>
   <string name="MessageNotifier_error_delivering_message">Fel vid leverans av meddelande.</string>
+  <string name="MessageNotifier_message_delivery_paused">Meddelandeleverans har pausats.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifiera för att fortsätta skicka meddelanden på Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Markera alla som lästa</string>
   <string name="MessageNotifier_mark_read">Läst</string>
   <string name="MessageNotifier_turn_off_these_notifications">Inaktivera dessa aviseringar</string>

@@ -1072,6 +1072,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Tu</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Asteng bike</string>
   <string name="RecipientPreferenceActivity_unblock">Astengê rake</string>
@@ -1130,6 +1131,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Tu dixwazê ve navnîşana proxy yê bikar bînî?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Proxy bikar bîne</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Bi serkeftî proxy yê va hate girêdan</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Welatê xwe hilbijêre</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Divê tu koda welatê xwe

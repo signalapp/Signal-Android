@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">Wysyłanie nie powiodło się</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Otrzymano wiadomość wymiany kluczy, dotknij aby kontynuować.</string>
   <string name="ConversationItem_group_action_left">%1$s opuścił(a) grupę.</string>
+  <string name="ConversationItem_send_paused">Wysyłanie wstrzymane</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Wysyłanie nie powiodło się, dotknij w celu użycia niezabezpieczonej alternatywy</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Powrócić do nieszyfrowanych wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Powrócić do nieszyfrowanych wiadomości MMS?</string>
@@ -1280,6 +1281,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ty</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Zweryfikuj, aby kontynuować wysyłanie wiadomości</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Dokończ weryfikację, aby pomóc zapobiegać wysyłaniu spamu w Signal.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po zweryfikowaniu będziesz móc kontynuować wysyłanie wiadomości. Wszystkie, wstrzymane wiadomości zostaną automatycznie wysłane.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Zablokuj</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokuj</string>
@@ -1342,6 +1347,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Czy chcesz użyć tego adresu proxy?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Użyj proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Udało się połączyć z serwerem proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Nie udało się wysłać</string>
+  <string name="RecaptchaProofActivity_complete_verification">Dokończ weryfikację</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Wybierz swój kraj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Podaj kod telefoniczny kraju</string>
@@ -1570,6 +1578,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Dostarczenie wiadomości nie powiodło się.</string>
   <string name="MessageNotifier_error_delivering_message">Błąd przy wysyłaniu wiadomości.</string>
+  <string name="MessageNotifier_message_delivery_paused">Dostarczanie wiadomości wstrzymane.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Zweryfikuj, aby kontynuować wysyłanie wiadomości w Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Oznacz wszystkie jako przeczytane</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_turn_off_these_notifications">Wyłącz te powiadomienia</string>

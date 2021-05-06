@@ -1159,6 +1159,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Zu</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokeatu</string>
   <string name="RecipientPreferenceActivity_unblock">Desblokeatu</string>
@@ -1217,6 +1218,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Proxy helbide hau erabili nahi duzu?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Erabili proxya</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Proxyra ondo konektatuta</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Aukeratu zure herrialdea</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen 

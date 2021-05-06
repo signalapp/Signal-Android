@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">ئەۋەتەلمىدى</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ئاچقۇچ ئالماشتۇرۇش ئۇچۇرى تاپشۇرۇۋېلىندى ، بىر تەرەپ قىلىش ئۈچۈن چېكىڭ.</string>
   <string name="ConversationItem_group_action_left">%1$s گۇرۇپپىدىن ئايرىلدى.</string>
+  <string name="ConversationItem_send_paused">يوللاش ۋاقىتلىق توختىتىلدى</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ئەۋەتەلمىدى ، چېكىلسە شىفىرلىماي ئەۋەتىدۇ</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">شىفىرلانمىغان قىسقا ئۇچۇرغا چېكىنەمسىز؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">شىفىرلانمىغان MMS غا چېكىنەمسىز؟</string>
@@ -1165,6 +1166,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">سىز</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ئۇچۇرلىشىشنى داۋاملاشتۇرۇش ئۈچۈن دەلىللەش زۆرۈر</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal دا ئەخلەت خەتنىڭ ئالدىنى ئېلىش ئۈچۈن، دەلىللەشنى تاماملاڭ.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">دەلىللىگەندىن كېيىن، ئۇچۇر يوللاشنى داۋاملاشتۇرالايسىز. ۋاقىتلىق توختىتىلغان ھەر قانداق ئۇچۇر ئۆزلۈكىدىن يوللىنىدۇ.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">چەكلەش</string>
   <string name="RecipientPreferenceActivity_unblock">قالدۇرۇش</string>
@@ -1223,6 +1228,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">بۇ ۋاكالەتچى ئادرېسنى ئىشلىتەمسىز؟</string>
   <string name="ProxyBottomSheetFragment_use_proxy">ۋاكالەتچى ئىشلىتىش</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">ۋاكالەتچىگە مۇۋەپپەقىيەتلىك باغلاندى.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">تاپشۇرالمىدى</string>
+  <string name="RecaptchaProofActivity_complete_verification">دەلىللەش تامام</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">دۆلىتىڭىزنى تاللاڭ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">دۆلىتىڭىزنىڭ كودىنى ئېنىق
@@ -1453,6 +1461,8 @@
   <string name="MessageNotifier_message_delivery_failed">ئۇچۇرنى يەتكۈزەلمىدى.</string>
   <string name="MessageNotifier_failed_to_deliver_message">ئۇچۇرنى يەتكۈزەلمىدى.</string>
   <string name="MessageNotifier_error_delivering_message">ئۇچۇر يەتكۈزۈشتە خاتالىق كۆرۈلدى.</string>
+  <string name="MessageNotifier_message_delivery_paused">ئۇچۇر يەتكۈزۈش ۋاقىتلىق توختىدى.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal دا ئۇچۇر يوللاشنى داۋاملاشتۇرۇش ئۈچۈن دەلىللەش زۆرۈر.</string>
   <string name="MessageNotifier_mark_all_as_read">ھەممىسى ئوقۇلدى</string>
   <string name="MessageNotifier_mark_read">ئوقۇلدى</string>
   <string name="MessageNotifier_turn_off_these_notifications">بۇ ئۇقتۇرۇشلارنى تاقا</string>
@@ -2703,7 +2713,7 @@
   <string name="DeleteAccountFragment__no_number">نومۇر كۆرسىتىلمىدى</string>
   <string name="DeleteAccountFragment__the_phone_number">كىرگۈزگەن تېلېفون نومۇرىڭىز ھېساباتىڭىزنىڭكى بىلەن ئوخشاش ئەمەس</string>
   <string name="DeleteAccountFragment__are_you_sure">راستلا ھېساباتىڭىزنى ئۆچۈرۈۋېتەمسىز؟</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">بۇ سىزنىڭ Signal ھېساباتىڭىزنى ئۆچۈرىدۇ ۋە قوللانما دېتالىڭىزنىمۇ قايتىدىن تەڭشەيدۇ. ئەپ بۇ جەريان تاماملانغاندىن كېيىن ئېتىلىدۇ.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">بۇ مەشغۇلات Signal ھېساباتىنى ئۆچۈرۈپ، ئەپنى ئەسلىگە قايتۇرىدۇ. بۇ مەشغۇلات تاماملانغاندا ئەپ تاقىلىدۇ.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">ھېساباتىڭىزنى ئۆچۈرۈش مەغلۇپ بولدى. تور ئۇلىنىشىڭىز بارمۇ؟</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">يەرلىكتىكى مەلۇماتلىرىڭىزنى ئۆچۈرۈش مەغلۇپ بولدى. سىز سىستېما قوللانما دېتاللىرى تەڭشەكلىرىدىن قولدا تازىلىۋەتسىڭىز بولىدۇ.</string>
   <string name="DeleteAccountFragment__launch_app_settings">ئەپ تەڭشەكلىرىنى قوزغات</string>

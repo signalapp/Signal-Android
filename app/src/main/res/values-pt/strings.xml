@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Falha no envio</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Foi recebida uma mensagem para troca de chaves, toque para processar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
+  <string name="ConversationItem_send_paused">Envio em pausa</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Falha ao enviar, toque para enviar pelo modo inseguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Recorrer a SMS não encriptado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Recorrer a MMS não encriptado?</string>
@@ -1164,6 +1165,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Você</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifique para continuar a conversar</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para ajudar a prevenir o spam no Signal, termine a verificação.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Depois de verificar, pode continuar a conversar. Todas as mensagens em pausa serão enviadas.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
@@ -1222,6 +1227,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Deseja utilizar este endereço de proxy?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Utilizar proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ligado com sucesso ao proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Falha ao submeter</string>
+  <string name="RecaptchaProofActivity_complete_verification">Verificação completa</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Deverá escolher o seu
@@ -1453,6 +1461,8 @@
   <string name="MessageNotifier_message_delivery_failed">Falha na entrega de mensagem.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Falha na entrega da mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro ao entregar a mensagem.</string>
+  <string name="MessageNotifier_message_delivery_paused">Entrega de mensagens em pausa.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifique para continuar a conversar no Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar tudo como lido</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_turn_off_these_notifications">Desativar estas notificações</string>

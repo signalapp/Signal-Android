@@ -168,6 +168,7 @@
   <string name="ConversationItem_error_network_not_delivered">傳送失敗</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">接收到金鑰交換訊息，按此開始處理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已經離開群組。</string>
+  <string name="ConversationItem_send_paused">傳送已暫停</string>
   <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，輕觸改用不安全的遞補方式</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">改用未加密的簡訊作為遞補方式？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">改用未加密的多媒體訊息作為遞補方式？</string>
@@ -1106,6 +1107,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">你</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">驗證以繼續傳送訊息</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">為了協助防止Signal上的垃圾訊息，請完成驗證。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證後，你可以繼續進行訊息傳送。 任何暫停的訊息將自動傳送。</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
@@ -1162,6 +1167,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">你要使用此代理伺服器位址嗎？</string>
   <string name="ProxyBottomSheetFragment_use_proxy">使用代理伺服器</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">成功連接到代理伺服器。</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">提交失敗</string>
+  <string name="RecaptchaProofActivity_complete_verification">完成驗證</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">選擇您的國家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">您必須輸入
@@ -1388,6 +1396,8 @@
   <string name="MessageNotifier_message_delivery_failed">訊息送達失敗。</string>
   <string name="MessageNotifier_failed_to_deliver_message">無法送達訊息。</string>
   <string name="MessageNotifier_error_delivering_message">送達訊息時發生錯誤。</string>
+  <string name="MessageNotifier_message_delivery_paused">訊息傳送已暫停。</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">驗證以繼續在Signal上進行訊息傳送。</string>
   <string name="MessageNotifier_mark_all_as_read">全部標示為已讀</string>
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_turn_off_these_notifications">關閉這些通知</string>

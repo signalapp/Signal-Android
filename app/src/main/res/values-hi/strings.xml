@@ -1148,6 +1148,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">आप</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ब्लॉक</string>
   <string name="RecipientPreferenceActivity_unblock">अनब्लॉक करें</string>
@@ -1201,6 +1202,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
   <!--ProxyBottomSheetFragment-->
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना देश कोड निर्दिष्ट करना होगा</string>

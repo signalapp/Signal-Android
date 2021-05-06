@@ -1102,6 +1102,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">나</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock">차단 해제</string>
@@ -1158,6 +1159,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">이 프록시 주소를 사용하시겠습니까?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">프록시 사용하기</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">프록시에 성공적으로 연결됨</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">국가 번호를

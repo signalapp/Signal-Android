@@ -170,6 +170,7 @@
   <string name="ConversationItem_error_network_not_delivered">Verzenden is mislukt</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik hier om het te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
+  <string name="ConversationItem_send_paused">Verzending is gepauzeerd</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde sms?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde mms?</string>
@@ -1167,6 +1168,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Jij</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Je moet je telefoonnummer verifiëren om door te kunnen gaan met het verzenden van berichten</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Om Signal te helpen spam te voorkomen is het nodig dat je je telefoonnummer verifieert.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Je kunt doorgaan met het verzenden van berichten nadat je je telefoonnummer hebt geverifieerd. Enig bericht waarvan verzending is gepauzeerd zal dan automatisch verzonden worden.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
   <string name="RecipientPreferenceActivity_unblock">Deblokkeren</string>
@@ -1225,6 +1230,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Wil je dit proxyadres gebruiken?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Proxy gebruiken</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sucesvol verbonden met de proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Indienen is mislukt</string>
+  <string name="RecaptchaProofActivity_complete_verification">Verificatie voltooien</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet jouw
@@ -1458,6 +1466,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
   <string name="MessageNotifier_error_delivering_message">Fout bij afleveren bericht.</string>
+  <string name="MessageNotifier_message_delivery_paused">Berichten-aflevering is gepauzeerd.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifieer je telefoonnummer om door te kunnen gaan met het verzenden en ontvangen van berichten via Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Alles markeren als gelezen</string>
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
   <string name="MessageNotifier_turn_off_these_notifications">Dit soort meldingen uitschakelen</string>
@@ -1592,7 +1602,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Camera overzicht weergeven/verbergen</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluid opnemen en verzenden</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Vergrendel opnemen van audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor sms</string>
+  <string name="conversation_activity__enable_signal_for_sms">Signal gebruiken om een sms-bericht te verzenden</string>
   <string name="conversation_activity__message_could_not_be_sent">het bericht kon niet worden verzonden. Ga na dat je apparaat verbonden is met internet of met je sms-provider en probeer het opnieuw.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Veeg om te annuleren</string>

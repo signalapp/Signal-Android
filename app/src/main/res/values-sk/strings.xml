@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">Odoslanie zlyhalo</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Správa výmeny kľúčov prijatá, ťuknutím pokračujte.</string>
   <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
+  <string name="ConversationItem_send_paused">Odoslanie pozastavené</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Odosielanie zlyhalo, ťuknutím pošlete nezabezpečenú správu</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Prepnúť na nezabezpečené SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
@@ -1280,6 +1281,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vy</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Pre pokračovanie v zasielaní správ overte</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Ak chcete zabrániť spamu v Signal, dokončite overenie.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po overení, môžete pokračovať v zasielaní správ. Pozastavené správy sa automaticky odošlú.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokovať</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
@@ -1342,6 +1347,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Chcete použiť túto proxy adresu?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Použiť proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Úspešne pripojené ku proxy.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Odoslanie zlyhalo</string>
+  <string name="RecaptchaProofActivity_complete_verification">Kompletné overenie</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Musíte zadať
@@ -1577,6 +1585,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_message_delivery_failed">Doručenie správy zlyhalo.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Správu sa nepodarilo doručiť.</string>
   <string name="MessageNotifier_error_delivering_message">Chyba doručovania správy.</string>
+  <string name="MessageNotifier_message_delivery_paused">Doručenie správy bolo pozastavené.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Pre pokračovanie v zasielaní správ overte v Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Označiť všetko ako prečítané</string>
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_turn_off_these_notifications">Vypnúť tieto upozornenia</string>

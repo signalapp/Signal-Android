@@ -1164,6 +1164,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vós</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloca</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloca</string>
@@ -1222,6 +1223,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Voleu usar aquesta adreça intermediària?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Usa un servidor intermediari</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Connexió correcta amb l\'intermediari</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Heu d\'especificar el

@@ -1165,6 +1165,7 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Siz</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Engelle</string>
   <string name="RecipientPreferenceActivity_unblock">Engeli kaldır</string>
@@ -1223,6 +1224,7 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Bu vekil adresini kullanmak istiyor musunuz?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Vekil sunucu kullan</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Vekil sunucuya başarıyla bağlanıldı.</string>
+  <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu

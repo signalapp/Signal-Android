@@ -170,6 +170,7 @@
   <string name="ConversationItem_error_network_not_delivered">Küldés sikertelen</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Kulcs-csere üzenet érkezett, koppints a feldolgozáshoz.</string>
   <string name="ConversationItem_group_action_left">%1$s kilépett a csoportból.</string>
+  <string name="ConversationItem_send_paused">Küldés felfüggesztve</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sikertelen küldés, koppints a titkosítatlan üzenetküldéshez</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Szeretnél visszaállni titkosítatlan SMS-re?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Szeretnél visszaállni titkosítatlan MMS-re?</string>
@@ -1167,6 +1168,10 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Te</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Az üzenetküldés folytatásához ellenőrzés szükséges</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">A Signal hálózatán küldött kéretlen üzenetek megelőzése érdekében kérlek végezd el az alábbi ellenőrzést!</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Az ellenőrzést követően folytathatod az üzenetküldést. Az összes felfüggesztett üzenetet automatikusan elküldjük.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokkolás</string>
   <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
@@ -1225,6 +1230,9 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Szeretnéd ezt a proxyt használni?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Proxy használata</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sikeresen csatlakozva a proxy szerverhez.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Sikertelen beküldés</string>
+  <string name="RecaptchaProofActivity_complete_verification">Ellenőrzés befejezése</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnod az
@@ -1456,6 +1464,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_message_delivery_failed">Üzenet kézbesítése sikertelen.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nem sikerült az üzenet kézbesítése.</string>
   <string name="MessageNotifier_error_delivering_message">Hiba történt az üzenet kézbesítése során.</string>
+  <string name="MessageNotifier_message_delivery_paused">Üzenetek kézbesítése felfüggesztve</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">A Signal hálózatán történő üzenetküldéshez ellenőrzés szükséges.</string>
   <string name="MessageNotifier_mark_all_as_read">Összes megjelölése olvasottként</string>
   <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
   <string name="MessageNotifier_turn_off_these_notifications">Értesítések kikapcsolása</string>

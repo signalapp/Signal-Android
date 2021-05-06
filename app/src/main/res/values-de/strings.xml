@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Versand gescheitert</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
   <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
+  <string name="ConversationItem_send_paused">Senden pausiert</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Versand gescheitert. Für Rückgriff auf unverschlüsselten Versand antippen.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
@@ -1105,7 +1106,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Verschwindende Nachrichten</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Deine Nachrichten laufen nicht ab.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">In dieser Unterhaltung gesendete und empfangene Nachrichten werden %s nach dem Lesen verschwinden.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Gesendete und empfangene Nachrichten dieser Unterhaltung werden %s nach dem Lesen verschwinden.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Jetzt aktualisieren</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere auf die neueste Version.</string>
@@ -1163,6 +1164,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Du</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren, um weiterhin Nachrichten zu senden</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Hilf dabei, Spam auf Signal zu verhindern, und schließe die Verifikation ab.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nach erfolgter Verifikation kannst du wieder Nachrichten senden. Alle pausierten Nachrichten werden dann automatisch versendet.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock">Freigeben</string>
@@ -1221,6 +1226,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Möchtest du diese Proxyadresse verwenden?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Proxy verwenden</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Erfolgreich mit Proxy verbunden.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Übermittlung gescheitert</string>
+  <string name="RecaptchaProofActivity_complete_verification">Verifikation abschließen</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Wähle dein Land aus</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du musst deine Landesvorwahl angeben</string>
@@ -1443,6 +1451,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenzustellung gescheitert.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nachricht konnte nicht zugestellt werden.</string>
   <string name="MessageNotifier_error_delivering_message">Fehler beim Zustellen der Nachricht</string>
+  <string name="MessageNotifier_message_delivery_paused">Nachrichtenzustellung pausiert.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifizieren, um weiterhin auf Signal Nachrichten zu senden.</string>
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_turn_off_these_notifications">Diese Benachrichtigungen ausschalten</string>

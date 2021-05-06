@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">Отправка не удалась</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получено сообщение обмена ключами. Обработать?</string>
   <string name="ConversationItem_group_action_left">%1$s покинул(-а) группу.</string>
+  <string name="ConversationItem_send_paused">Отправка приостановлена</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Не отправлено. Отправить незащищённым?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Отправить как незашифрованное SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Отправить как незашифрованное MMS?</string>
@@ -1280,6 +1281,10 @@
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Вы</string>
+  <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Пройдите проверку, чтобы продолжить общение</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Чтобы помочь предотвратить спам в Signal, пожалуйста, пройдите проверку.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">После проверки вы сможете продолжить общаться. Все приостановленные сообщения будут отправлены автоматически.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Заблокировать</string>
   <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>
@@ -1342,6 +1347,9 @@
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Вы хотите использовать этот адрес прокси?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Использовать прокси</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Signal успешно подключился к прокси.</string>
+  <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Не удалось отправить</string>
+  <string name="RecaptchaProofActivity_complete_verification">Пройдите проверку</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Выберите вашу страну</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Необходимо указать код страны</string>
@@ -1571,6 +1579,8 @@
   <string name="MessageNotifier_message_delivery_failed">Доставка сообщения не удалась.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не удалось доставить сообщение.</string>
   <string name="MessageNotifier_error_delivering_message">Ошибка при доставке сообщения.</string>
+  <string name="MessageNotifier_message_delivery_paused">Доставка сообщений приостановлена.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Пройдите проверку, чтобы продолжить общение в Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Всё прочитано</string>
   <string name="MessageNotifier_mark_read">Прочитано</string>
   <string name="MessageNotifier_turn_off_these_notifications">Отключить эти уведомления</string>
