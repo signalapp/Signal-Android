@@ -77,7 +77,10 @@ public class VerificationCodeParserTest extends BaseUnitTest {
         {"<#>El teu Signal codi de verificació és: 054247\nabAbCDEFO1g", "054247"},
         {"<#>Ang iyong pamberipikasyong code sa Signal ay: 054247\nabAbCDEFO1g", "054247"},
         {"<#>Ang iyong pamberipikasyong code sa Signal ay: 054-247\nabAbCDEFO1g", "054247"},
-        {"<#>Jou Signal verifikasiekode is: 054247\nabAbCDEFO1g", "054247"}
+        {"<#>Jou Signal verifikasiekode is: 054247\nabAbCDEFO1g", "054247"},
+
+        {"【SIGNAL】 Your code is: 423-431", "423431"},
+        {"<#>【SIGNAL】<#> Your code: 298-763\nabAbCDEFO1g", "298763"}
     });
   }
 
