@@ -567,7 +567,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       ApplicationDependencies.getJobManager()
                              .startChain(new RequestGroupV2InfoJob(groupId))
-                             .then(new GroupV2UpdateSelfProfileKeyJob(groupId))
+                             .then(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId))
                              .enqueue();
 
       if (viewModel.getArgs().isFirstTimeInSelfCreatedGroup()) {

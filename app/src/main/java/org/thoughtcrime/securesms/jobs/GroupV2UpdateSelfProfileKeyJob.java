@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -36,14 +37,33 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
 
   private final GroupId.V2 groupId;
 
-  public GroupV2UpdateSelfProfileKeyJob(@NonNull GroupId.V2 groupId) {
-    this(new Parameters.Builder()
-                       .addConstraint(NetworkConstraint.KEY)
-                       .setLifespan(TimeUnit.DAYS.toMillis(1))
-                       .setMaxAttempts(Parameters.UNLIMITED)
-                       .setQueue(QUEUE)
-                       .build(),
-         groupId);
+  /**
+   * Job will run regardless of how many times you enqueue it.
+   */
+  public static @NonNull GroupV2UpdateSelfProfileKeyJob withoutLimits(@NonNull GroupId.V2 groupId) {
+    return new GroupV2UpdateSelfProfileKeyJob(new Parameters.Builder()
+                                                            .addConstraint(NetworkConstraint.KEY)
+                                                            .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                            .setMaxAttempts(Parameters.UNLIMITED)
+                                                            .setQueue(QUEUE)
+                                                            .build(),
+                                              groupId);
+  }
+
+  /**
+   * Only one instance will be enqueued per group, and it won't run until after decryptions are
+   * drained.
+   */
+  public static @NonNull GroupV2UpdateSelfProfileKeyJob withQueueLimits(@NonNull GroupId.V2 groupId) {
+    return new GroupV2UpdateSelfProfileKeyJob(new Parameters.Builder()
+                                                            .addConstraint(NetworkConstraint.KEY)
+                                                            .addConstraint(DecryptionsDrainedConstraint.KEY)
+                                                            .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                            .setMaxAttempts(Parameters.UNLIMITED)
+                                                            .setQueue(QUEUE + "_" + groupId.toString())
+                                                            .setMaxInstancesForQueue(1)
+                                                            .build(),
+                                              groupId);
   }
 
   private GroupV2UpdateSelfProfileKeyJob(@NonNull Parameters parameters, @NonNull GroupId.V2 groupId) {

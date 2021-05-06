@@ -56,7 +56,7 @@ public class RotateProfileKeyJob extends BaseJob {
     List<GroupId.V2> allGv2Groups = DatabaseFactory.getGroupDatabase(context).getAllGroupV2Ids();
 
     for (GroupId.V2 groupId : allGv2Groups) {
-      ApplicationDependencies.getJobManager().add(new GroupV2UpdateSelfProfileKeyJob(groupId));
+      ApplicationDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId));
     }
   }
 

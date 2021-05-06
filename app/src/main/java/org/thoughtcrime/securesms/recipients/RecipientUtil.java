@@ -11,6 +11,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -263,6 +264,25 @@ public class RecipientUtil {
            threadRecipient.isSystemContact()  ||
            !threadRecipient.isRegistered()    ||
            threadRecipient.isForceSmsSelection();
+  }
+
+  /**
+   * @return True if this recipient should already have your profile key, otherwise false.
+   */
+  public static boolean shouldHaveProfileKey(@NonNull Context context, @NonNull Recipient recipient) {
+    if (recipient.isBlocked()) {
+      return false;
+    }
+
+    if (recipient.isProfileSharing()) {
+      return true;
+    } else {
+      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+      return groupDatabase.getPushGroupsContainingMember(recipient.getId())
+                          .stream()
+                          .anyMatch(GroupDatabase.GroupRecord::isV2Group);
+
+    }
   }
 
   @WorkerThread

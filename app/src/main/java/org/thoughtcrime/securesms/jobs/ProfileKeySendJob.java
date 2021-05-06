@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -44,9 +46,12 @@ public class ProfileKeySendJob extends BaseJob {
 
   /**
    * Suitable for a 1:1 conversation or a GV1 group only.
+   *
+   * @param queueLimits True if you only want one of these to be run per person after decryptions
+   *                    are drained, otherwise false.
    */
   @WorkerThread
-  public static ProfileKeySendJob create(@NonNull Context context, long threadId) {
+  public static ProfileKeySendJob create(@NonNull Context context, long threadId, boolean queueLimits) {
     Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
     if (conversationRecipient == null) {
@@ -62,11 +67,22 @@ public class ProfileKeySendJob extends BaseJob {
 
     recipients.remove(Recipient.self().getId());
 
-    return new ProfileKeySendJob(new Parameters.Builder()
-                                               .setQueue(conversationRecipient.getId().toQueueKey())
-                                               .setLifespan(TimeUnit.DAYS.toMillis(1))
-                                               .setMaxAttempts(Parameters.UNLIMITED)
-                                               .build(), threadId, recipients);
+    if (queueLimits) {
+      return new ProfileKeySendJob(new Parameters.Builder()
+                                                 .setQueue(conversationRecipient.getId().toQueueKey())
+                                                 .addConstraint(NetworkConstraint.KEY)
+                                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                                 .build(), threadId, recipients);
+    } else {
+      return new ProfileKeySendJob(new Parameters.Builder()
+                                                 .setQueue("ProfileKeySendJob_" + conversationRecipient.getId().toQueueKey())
+                                                 .addConstraint(NetworkConstraint.KEY)
+                                                 .addConstraint(DecryptionsDrainedConstraint.KEY)
+                                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                                 .build(), threadId, recipients);
+    }
   }
 
   private ProfileKeySendJob(@NonNull Parameters parameters, long threadId, @NonNull List<RecipientId> recipients) {
