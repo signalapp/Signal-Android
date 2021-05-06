@@ -15,22 +15,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
-
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.emoji.EmojiPage;
+import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DeviceProperties;
+import org.thoughtcrime.securesms.util.FutureTaskListener;
+
+import java.util.concurrent.ExecutionException;
 
 class EmojiProvider {
 
@@ -96,27 +90,20 @@ class EmojiProvider {
     final int           lowMemoryDecodeScale = DeviceProperties.isLowMemoryDevice(context) ? 2 : 1;
     final EmojiSource   source               = EmojiSource.getLatest();
     final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
-    GlideApp.with(context)
-            .asBitmap()
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .load(drawInfo.getPage())
-            .priority(Priority.HIGH)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .apply(new RequestOptions().set(EmojiPage.IN_SAMPLE_SIZE, lowMemoryDecodeScale))
-            .addListener(new RequestListener<Bitmap>() {
-              @Override
-              public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                Log.d(TAG, "Failed to load emoji bitmap resource", e);
-                return false;
-              }
 
-              @Override
-              public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                ThreadUtil.runOnMain(() -> drawable.setBitmap(resource));
-                return true;
-              }
-            })
-            .submit();
+    EmojiPageCache.INSTANCE
+                  .load(context, drawInfo.getPage(), lowMemoryDecodeScale)
+                  .addListener(new FutureTaskListener<Bitmap>() {
+                    @Override
+                    public void onSuccess(Bitmap result) {
+                      ThreadUtil.runOnMain(() -> drawable.setBitmap(result));
+                    }
+
+                    @Override
+                    public void onFailure(ExecutionException exception) {
+                      Log.d(TAG, "Failed to load emoji bitmap resource", exception);
+                    }
+                  });
 
     return drawable;
   }
