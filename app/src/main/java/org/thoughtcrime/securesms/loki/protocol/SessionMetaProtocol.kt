@@ -25,6 +25,15 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
+    fun clearReceivedMessages() {
+        timestamps.clear()
+    }
+
+    fun removeTimestamps(timestamps: Set<Long>) {
+        this.timestamps.removeAll(timestamps)
+    }
+
+    @JvmStatic
     fun shouldIgnoreMessage(timestamp: Long): Boolean {
         val shouldIgnoreMessage = timestamps.contains(timestamp)
         timestamps.add(timestamp)

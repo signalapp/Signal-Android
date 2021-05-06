@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 
@@ -410,6 +411,7 @@ public class ThreadDatabase extends Database {
     deleteThread(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
+    SessionMetaProtocol.clearReceivedMessages();
   }
 
   public boolean hasThread(long threadId) {

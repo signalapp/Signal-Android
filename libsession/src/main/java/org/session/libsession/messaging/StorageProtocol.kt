@@ -95,7 +95,7 @@ interface StorageProtocol {
     fun isMessageDuplicated(timestamp: Long, sender: String): Boolean
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
-//    fun removeReceivedMessageTimestamps(timestamps: Set<Long>)
+    fun removeReceivedMessageTimestamps(timestamps: Set<Long>)
     // Returns the IDs of the saved attachments.
     fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long>
     fun getAttachmentsForMessage(messageId: Long): List<DatabaseAttachment>
