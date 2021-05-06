@@ -27,7 +27,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val timestamp = "timestamp"
         private val snode = "snode"
         // Snode pool
-        private val snodePoolTable = "loki_snode_pool_cache"
+        public val snodePoolTable = "loki_snode_pool_cache"
         private val dummyKey = "dummy_key"
         private val snodePool = "snode_pool_key"
         @JvmStatic val createSnodePoolTableCommand = "CREATE TABLE $snodePoolTable ($dummyKey TEXT PRIMARY KEY, $snodePool TEXT);"
@@ -36,7 +36,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val indexPath = "index_path"
         @JvmStatic val createOnionRequestPathTableCommand = "CREATE TABLE $onionRequestPathTable ($indexPath TEXT PRIMARY KEY, $snode TEXT);"
         // Swarms
-        private val swarmTable = "loki_api_swarm_cache"
+        public val swarmTable = "loki_api_swarm_cache"
         private val swarmPublicKey = "hex_encoded_public_key"
         private val swarm = "swarm"
         @JvmStatic val createSwarmTableCommand = "CREATE TABLE $swarmTable ($swarmPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
