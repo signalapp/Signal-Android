@@ -89,7 +89,12 @@ class ShareRepository {
     if (PartAuthority.isLocalUri(uri)) {
       return ShareData.forIntentData(uri, mimeType, false, false);
     } else {
-      InputStream stream = context.getContentResolver().openInputStream(uri);
+      InputStream stream = null;
+      try {
+        stream = context.getContentResolver().openInputStream(uri);
+      } catch (SecurityException e) {
+        Log.w(TAG, "Failed to read stream!", e);
+      }
 
       if (stream == null) {
         throw new IOException("Failed to open stream!");
