@@ -45,6 +45,16 @@ object OpenGroupAPIV2 {
         object SIGNING_FAILED : Error()
         object INVALID_URL : Error()
         object NO_PUBLIC_KEY : Error()
+
+        fun errorDescription() = when (this) {
+            Error.GENERIC -> "An error occurred."
+            Error.PARSING_FAILED -> "Invalid response."
+            Error.DECRYPTION_FAILED -> "Couldn't decrypt response."
+            Error.SIGNING_FAILED -> "Couldn't sign message."
+            Error.INVALID_URL -> "Invalid URL."
+            Error.NO_PUBLIC_KEY -> "Couldn't find server public key."
+        }
+
     }
 
     data class DefaultGroup(val id: String,
@@ -493,13 +503,4 @@ object OpenGroupAPIV2 {
     }
     // endregion
 
-}
-
-fun Error.errorDescription() = when (this) {
-    Error.GENERIC -> "An error occurred."
-    Error.PARSING_FAILED -> "Invalid response."
-    Error.DECRYPTION_FAILED -> "Couldn't decrypt response."
-    Error.SIGNING_FAILED -> "Couldn't sign message."
-    Error.INVALID_URL -> "Invalid URL."
-    Error.NO_PUBLIC_KEY -> "Couldn't find server public key."
 }

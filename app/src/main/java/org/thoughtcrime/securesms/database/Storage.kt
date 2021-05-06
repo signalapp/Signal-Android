@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.net.Uri
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.StorageProtocol
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
@@ -378,9 +379,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         SessionMetaProtocol.addTimestamp(timestamp)
     }
 
-//    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
-//        TODO("Not yet implemented")
-//    }
+    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
+        SessionMetaProtocol.removeTimestamps(timestamps)
+    }
 
     override fun getMessageIdInDatabase(timestamp: Long, author: String): Long? {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
@@ -543,8 +544,23 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups()
     }
 
-    override fun addOpenGroup(server: String, channel: Long) {
-        OpenGroupUtilities.addGroup(context, server, channel)
+    override fun addOpenGroup(serverUrl: String, channel: Long) {
+        val httpUrl = HttpUrl.parse(serverUrl) ?: return
+        if (httpUrl.queryParameterNames().contains("public_key")) {
+            // open group v2
+            val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).apply {
+                if (httpUrl.port() != 80 || httpUrl.port() != 443) {
+                    // non-standard port, add to server
+                    this.port(httpUrl.port())
+                }
+            }.build()
+            val room = httpUrl.pathSegments().firstOrNull() ?: return
+            val publicKey = httpUrl.queryParameter("public_key") ?: return
+
+            OpenGroupUtilities.addGroup(context, server.toString().removeSuffix("/"), room, publicKey)
+        } else {
+            OpenGroupUtilities.addGroup(context, serverUrl, channel)
+        }
     }
 
     override fun getAllGroups(): List<GroupRecord> {
