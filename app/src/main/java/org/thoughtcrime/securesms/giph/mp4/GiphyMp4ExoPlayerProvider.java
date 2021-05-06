@@ -12,6 +12,7 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
@@ -37,9 +38,10 @@ final class GiphyMp4ExoPlayerProvider implements DefaultLifecycleObserver {
   }
 
   @MainThread final @NonNull ExoPlayer create() {
-    ExoPlayer exoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderersFactory, trackSelector, loadControl);
+    SimpleExoPlayer exoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderersFactory, trackSelector, loadControl);
 
     exoPlayer.setRepeatMode(Player.REPEAT_MODE_ALL);
+    exoPlayer.setVolume(0f);
 
     return exoPlayer;
   }
