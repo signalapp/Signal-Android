@@ -14,7 +14,6 @@ import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.open_groups.*
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
@@ -48,6 +47,7 @@ object MessageSender {
         object NoKeyPair: Error("Couldn't find a private key associated with the given group public key.")
         object NoPrivateKey : Error("Couldn't find a private key associated with the given group public key.")
         object InvalidClosedGroupUpdate : Error("Invalid group update.")
+        object ClosedGroupCreationFailure : Error("Couldn't create closed group.")
 
         // Precondition
         class PreconditionFailure(val reason: String): Error(reason)

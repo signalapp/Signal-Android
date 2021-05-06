@@ -19,6 +19,7 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.logging.Log
@@ -53,8 +54,11 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         for (member in members) {
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
             closedGroupControlMessage.sentTimestamp = sentTime
-            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member)).get()
+            retryIfNeeded(30) {
+                sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member))
+            }.get()
         }
+
         // Add the group to the user's set of public keys to poll for
         storage.addClosedGroupPublicKey(groupPublicKey)
         // Store the encryption key pair
