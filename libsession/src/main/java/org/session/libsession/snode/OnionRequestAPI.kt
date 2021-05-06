@@ -14,7 +14,6 @@ import org.session.libsignal.utilities.*
 import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.service.loki.*
 import org.session.libsession.utilities.AESGCM.EncryptionResult
-import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsession.utilities.getBodyForOnionRequest
 import org.session.libsession.utilities.getHeadersForOnionRequest
 import org.session.libsignal.service.loki.Broadcaster
@@ -82,7 +81,7 @@ object OnionRequestAPI {
 
     internal sealed class Destination {
         class Snode(val snode: org.session.libsignal.service.loki.Snode) : Destination()
-        class Server(val host: String, val target: String, val x25519PublicKey: String) : Destination()
+        class Server(val host: String, val target: String, val x25519PublicKey: String, val scheme: String, val port: Int) : Destination()
     }
 
     // region Private API
@@ -330,7 +329,7 @@ object OnionRequestAPI {
                         val plaintext = AESGCM.decrypt(ivAndCiphertext, destinationSymmetricKey)
                         try {
                             @Suppress("NAME_SHADOWING") val json = JsonUtil.fromJson(plaintext.toString(Charsets.UTF_8), Map::class.java)
-                            val statusCode = json["status"] as Int
+                            val statusCode = json["status_code"] as? Int ?: json["status"] as Int
                             if (statusCode == 406) {
                                 @Suppress("NAME_SHADOWING") val body = mapOf( "result" to "Your clock is out of sync with the service node network." )
                                 val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
@@ -454,7 +453,7 @@ object OnionRequestAPI {
         val urlAsString = url.toString()
         val host = url.host()
         val endpoint = when {
-            server.count() < urlAsString.count() -> urlAsString.substringAfter("$server/")
+            server.count() < urlAsString.count() -> urlAsString.substringAfter(server).removePrefix("/")
             else -> ""
         }
         val body = request.getBodyForOnionRequest() ?: "null"
@@ -464,7 +463,8 @@ object OnionRequestAPI {
             "method" to request.method(),
             "headers" to headers
         )
-        val destination = Destination.Server(host, target, x25519PublicKey)
+        url.isHttps
+        val destination = Destination.Server(host, target, x25519PublicKey, url.scheme(), url.port())
         return sendOnionRequest(destination, payload, isJSONRequired).recover { exception ->
             Log.d("Loki", "Couldn't reach server: $urlAsString due to error: $exception.")
             throw exception

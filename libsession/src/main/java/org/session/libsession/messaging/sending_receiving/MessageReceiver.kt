@@ -7,7 +7,6 @@ import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.logging.Log
 
 object MessageReceiver {
 
@@ -37,6 +36,7 @@ object MessageReceiver {
             is UnknownEnvelopeType -> false
             is InvalidSignature -> false
             is NoData -> false
+            is NoThread -> false
             is SenderBlocked -> false
             is SelfSend -> false
             else -> true
@@ -122,7 +122,6 @@ object MessageReceiver {
         message.recipient = userPublicKey
         message.sentTimestamp = envelope.timestamp
         message.receivedTimestamp = if (envelope.hasServerTimestamp()) envelope.serverTimestamp else System.currentTimeMillis()
-        Log.d("Loki", "time: ${envelope.timestamp}, sent: ${envelope.serverTimestamp}")
         message.groupPublicKey = groupPublicKey
         message.openGroupServerMessageID = openGroupServerID
         // Validate

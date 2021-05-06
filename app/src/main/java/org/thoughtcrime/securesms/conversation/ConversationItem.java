@@ -56,6 +56,8 @@ import org.session.libsession.messaging.jobs.AttachmentDownloadJob;
 import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2;
+import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
@@ -88,6 +90,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -724,9 +727,9 @@ public class ConversationItem extends LinearLayout
     String publicKey = recipient.getAddress().toString();
     profilePictureView.setPublicKey(publicKey);
     String displayName = recipient.getName();
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
-    if (displayName == null && publicChat != null) {
-      displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), publicKey);
+    OpenGroup openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+    if (displayName == null && openGroup != null) {
+      displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(openGroup.getId(), publicKey);
     }
     profilePictureView.setDisplayName(displayName);
     profilePictureView.setAdditionalPublicKey(null);
@@ -867,7 +870,12 @@ public class ConversationItem extends LinearLayout
       try {
         String serverId = GroupUtil.getDecodedGroupID(conversationRecipient.getAddress().serialize());
         String senderDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverId, recipient.getAddress().serialize());
-        if (senderDisplayName != null) { displayName = senderDisplayName; }
+        if (senderDisplayName != null) {
+          displayName = senderDisplayName;
+        } else {
+          // opengroupv2 format
+          displayName = OpenGroupUtilities.getDisplayName(recipient);
+        }
       } catch (Exception e) {
         // Do nothing
       }
@@ -912,8 +920,12 @@ public class ConversationItem extends LinearLayout
         int visibility = View.GONE;
 
         OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
+        OpenGroupV2 openGroupV2 = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(messageRecord.getThreadId());
         if (publicChat != null) {
           boolean isModerator = OpenGroupAPI.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
+          visibility = isModerator ? View.VISIBLE : View.GONE;
+        } else if (openGroupV2 != null) {
+          boolean isModerator = OpenGroupAPIV2.isUserModerator(current.getRecipient().getAddress().toString(), openGroupV2.getRoom(), openGroupV2.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         }
 

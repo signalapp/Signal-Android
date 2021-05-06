@@ -70,7 +70,13 @@ object OnionRequestEncryption {
                         payload = mutableMapOf( "destination" to rhs.snode.publicKeySet!!.ed25519Key )
                     }
                     is OnionRequestAPI.Destination.Server -> {
-                        payload = mutableMapOf( "host" to rhs.host, "target" to rhs.target, "method" to "POST" )
+                        payload = mutableMapOf(
+                                "host" to rhs.host,
+                                "target" to rhs.target,
+                                "method" to "POST",
+                                "protocol" to rhs.scheme,
+                                "port" to rhs.port
+                        )
                     }
                 }
                 payload["ephemeral_key"] = previousEncryptionResult.ephemeralPublicKey.toHexString()

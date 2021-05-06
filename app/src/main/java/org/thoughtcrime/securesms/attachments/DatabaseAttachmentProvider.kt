@@ -137,9 +137,20 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return openGroupMessagingDatabase.getMessageID(serverID)
     }
 
-    override fun deleteMessage(messageID: Long) {
-        val messagingDatabase = DatabaseFactory.getSmsDatabase(context)
-        messagingDatabase.deleteMessage(messageID)
+    override fun getMessageID(serverId: Long, threadId: Long): Pair<Long, Boolean>? {
+        val messageDB = DatabaseFactory.getLokiMessageDatabase(context)
+        return messageDB.getMessageID(serverId, threadId)
+    }
+
+    override fun deleteMessage(messageID: Long, isSms: Boolean) {
+        if (isSms) {
+            val db = DatabaseFactory.getSmsDatabase(context)
+            db.deleteMessage(messageID)
+        } else {
+            val db = DatabaseFactory.getMmsDatabase(context)
+            db.delete(messageID)
+        }
+        DatabaseFactory.getLokiMessageDatabase(context).deleteMessage(messageID, isSms)
     }
 
     override fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment? {

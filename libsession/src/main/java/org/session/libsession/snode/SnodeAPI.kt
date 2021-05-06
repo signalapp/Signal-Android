@@ -33,7 +33,7 @@ object SnodeAPI {
 
     // Settings
     private val maxRetryCount = 6
-    private val minimumSnodePoolCount = 24
+    private val minimumSnodePoolCount = 12
     private val minimumSwarmSnodeCount = 2
     // Use port 4433 if the API level can handle the network security configuration and enforce pinned certificates
     private val seedNodePort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
@@ -41,7 +41,7 @@ object SnodeAPI {
         if (useTestnet) {
             setOf( "http://public.loki.foundation:38157" )
         } else {
-            setOf( "https://storage.seed1.loki.network:$seedNodePort", "https://storage.seed3.loki.network:$seedNodePort", "https://public.loki.foundation:$seedNodePort" )
+            setOf( "https://storage.seed1.loki.network:$seedNodePort ", "https://storage.seed3.loki.network:$seedNodePort ", "https://public.loki.foundation:$seedNodePort" )
         }
     }
     private val snodeFailureThreshold = 4
@@ -92,6 +92,7 @@ object SnodeAPI {
                     "method" to "get_n_service_nodes",
                     "params" to mapOf(
                         "active_only" to true,
+                        "limit" to 256,
                         "fields" to mapOf( "public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true )
                     )
             )

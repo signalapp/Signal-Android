@@ -17,7 +17,7 @@ object MultiDeviceProtocol {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         val lastSyncTime = TextSecurePreferences.getLastConfigurationSyncTime(context)
         val now = System.currentTimeMillis()
-        if (now - lastSyncTime < 2 * 24 * 60 * 60 * 1000) return
+        if (now - lastSyncTime < 7 * 24 * 60 * 60 * 1000) return
         val contacts = ContactUtilities.getAllContacts(context).filter { recipient ->
             !recipient.isBlocked && !recipient.name.isNullOrEmpty() && !recipient.isLocalNumber && recipient.address.serialize().isNotEmpty()
         }.map { recipient ->

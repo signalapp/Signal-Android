@@ -84,6 +84,7 @@ public class PassphrasePromptActivity extends BaseActionBarActivity {
       }
       @Override
       public void onServiceDisconnected(ComponentName name) {
+        keyCachingService.setMasterSecret(new Object());
         keyCachingService = null;
       }
     }, Context.BIND_AUTO_CREATE);
@@ -133,7 +134,9 @@ public class PassphrasePromptActivity extends BaseActionBarActivity {
   private void handleAuthenticated() {
     authenticated = true;
     //TODO Replace with a proper call.
-    keyCachingService.setMasterSecret(new Object());
+    if (keyCachingService != null) {
+      keyCachingService.setMasterSecret(new Object());
+    }
 
     // Finish and proceed with the next intent.
     Intent nextIntent = getIntent().getParcelableExtra("next_intent");
@@ -188,6 +191,8 @@ public class PassphrasePromptActivity extends BaseActionBarActivity {
 
     if (!keyguardManager.isKeyguardSecure()) {
       Log.w(TAG ,"Keyguard not secure...");
+      TextSecurePreferences.setScreenLockEnabled(getApplicationContext(), false);
+      TextSecurePreferences.setScreenLockTimeout(getApplicationContext(), 0);
       handleAuthenticated();
       return;
     }

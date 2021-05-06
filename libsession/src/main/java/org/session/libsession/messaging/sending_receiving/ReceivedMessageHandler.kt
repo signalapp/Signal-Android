@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -128,8 +129,9 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair!!, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
+    val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.toJoinUrl() }
     for (openGroup in message.openGroups) {
-        if (allOpenGroups.contains(openGroup)) continue
+        if (allOpenGroups.contains(openGroup) || allV2OpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)
     }
     if (message.displayName.isNotEmpty()) {
@@ -164,16 +166,27 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val storage = MessagingModuleConfiguration.shared.storage
     val context = MessagingModuleConfiguration.shared.context
     val userPublicKey = storage.getUserPublicKey()
+
+    // Get or create thread
+    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
+            ?: message.sender!!, message.groupPublicKey, openGroupID)
+
+    val openGroup = threadID.let {
+        storage.getOpenGroup(it.toString())
+    }
+
     // Update profile if needed
     val newProfile = message.profile
-    if (newProfile != null && openGroupID.isNullOrEmpty() && userPublicKey != message.sender) {
+
+    if (newProfile != null && userPublicKey != message.sender && openGroup == null) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
         val displayName = newProfile.displayName!!
         if (displayName.isNotEmpty()) {
             profileManager.setDisplayName(context, recipient, displayName)
         }
-        if (newProfile.profileKey?.isNotEmpty() == true && !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
+        if (newProfile.profileKey?.isNotEmpty() == true
+                && (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey))) {
             profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             val newUrl = newProfile.profilePictureURL
@@ -185,9 +198,6 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             }
         }
     }
-    // Get or create thread
-    val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
-            ?: message.sender!!, message.groupPublicKey, openGroupID)
     // Parse quote if needed
     var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
@@ -228,7 +238,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     // Parse stickers if needed
     // Persist the message
     message.threadID = threadID
-    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.NoThread
+    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.DuplicateMessage
     // Parse & persist attachments
     // Start attachment downloads if needed
     storage.getAttachmentsForMessage(messageID).forEach { attachment ->
@@ -236,6 +246,10 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
             JobQueue.shared.add(downloadJob)
         }
+    }
+    val openGroupServerID = message.openGroupServerMessageID
+    if (openGroupServerID != null) {
+        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !(message.isMediaMessage() || attachments.isNotEmpty()))
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)

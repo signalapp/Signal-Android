@@ -9,8 +9,10 @@ import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.logging.Log
@@ -88,6 +90,14 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             for (openGroup in openGroups) {
                 val poller = OpenGroupPoller(openGroup)
                 promises.add(poller.pollForNewMessages())
+            }
+
+            val openGroupsV2 = DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups().values.groupBy(OpenGroupV2::server)
+
+            openGroupsV2.values.map { groups ->
+                OpenGroupV2Poller(groups)
+            }.forEach { poller ->
+                promises.add(poller.compactPoll(true).map{ /*Unit*/ })
             }
 
             // Wait till all the promises get resolved

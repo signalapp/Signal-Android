@@ -57,49 +57,51 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.messages.control.DataExtractionNotification;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2;
+import org.session.libsession.messaging.open_groups.OpenGroupV2;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.concurrent.SimpleTask;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.ShareActivity;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
-import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
-import org.session.libsignal.libsignal.util.guava.Optional;
-
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -397,7 +399,8 @@ public class ConversationFragment extends Fragment
 
     if (isGroupChat) {
       OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      boolean isPublicChat = (publicChat != null);
+      OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
+      boolean isPublicChat = (publicChat != null || openGroupChat != null);
       int selectedMessageCount = messageRecords.size();
       boolean areAllSentByUser = true;
       Set<String> uniqueUserSet = new HashSet<>();
@@ -407,8 +410,12 @@ public class ConversationFragment extends Fragment
       }
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
-      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = isPublicChat && OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext());
+      boolean userCanModerate =
+              (isPublicChat &&
+                      ((publicChat != null && OpenGroupAPI.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer()))
+                       || (openGroupChat != null && OpenGroupAPIV2.isUserModerator(userHexEncodedPublicKey, openGroupChat.getRoom(), openGroupChat.getServer())))
+              );
       boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
       // allow banning if moderating a public chat and only one user's messages are selected
       boolean isBanOptionVisible = isPublicChat && userCanModerate && !areAllSentByUser && uniqueUserSet.size() == 1;
@@ -509,6 +516,7 @@ public class ConversationFragment extends Fragment
     builder.setCancelable(true);
 
     OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -519,14 +527,14 @@ public class ConversationFragment extends Fragment
         {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
-            if (publicChat != null) {
+            if (publicChat != null || openGroupChat != null) {
               ArrayList<Long> serverIDs = new ArrayList<>();
               ArrayList<Long> ignoredMessages = new ArrayList<>();
               ArrayList<Long> failedMessages = new ArrayList<>();
               boolean isSentByUser = true;
               for (MessageRecord messageRecord : messageRecords) {
                 isSentByUser = isSentByUser && messageRecord.isOutgoing();
-                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
                 if (serverID != null) {
                   serverIDs.add(serverID);
                 } else {
@@ -538,7 +546,7 @@ public class ConversationFragment extends Fragment
                 .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
                 .success(l -> {
                   for (MessageRecord messageRecord : messageRecords) {
-                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
                     if (l.contains(serverID)) {
                       if (messageRecord.isMms()) {
                         DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
@@ -555,7 +563,25 @@ public class ConversationFragment extends Fragment
                   Log.w("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
                   return null;
                 });
-              }
+              } else if (openGroupChat != null) {
+                for (Long serverId : serverIDs) {
+                  OpenGroupAPIV2
+                          .deleteMessage(serverId, openGroupChat.getRoom(), openGroupChat.getServer())
+                          .success(l -> {
+                            for (MessageRecord messageRecord : messageRecords) {
+                              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
+                              if (serverID != null && serverID.equals(serverId)) {
+                                MessagingModuleConfiguration.shared.getMessageDataProvider().deleteMessage(messageRecord.id, !messageRecord.isMms());
+                                break;
+                              }
+                            }
+                            return null;
+                          }).fail(e->{
+                            Log.e("Loki", "Couldn't delete message due to error",e);
+                            return null;
+                          });
+                  }
+                }
             } else {
               for (MessageRecord messageRecord : messageRecords) {
                 if (messageRecord.isMms()) {
@@ -591,7 +617,8 @@ public class ConversationFragment extends Fragment
     builder.setTitle(R.string.ConversationFragment_ban_selected_user);
     builder.setCancelable(true);
 
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    final OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    final OpenGroupV2 openGroupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getOpenGroupChat(threadId);
 
     builder.setPositiveButton(R.string.ban, (dialog, which) -> {
       ConversationAdapter chatAdapter = getListAdapter();
@@ -610,9 +637,19 @@ public class ConversationFragment extends Fragment
                         Log.d("Loki", "User banned");
                         return Unit.INSTANCE;
                       }).fail(e -> {
-                Log.d("Loki", "Couldn't ban user due to error: " + e.toString() + ".");
+                Log.e("Loki", "Couldn't ban user due to error",e);
                 return null;
               });
+          } else if (openGroupChat != null) {
+            OpenGroupAPIV2
+                    .ban(userPublicKey, openGroupChat.getRoom(), openGroupChat.getServer())
+                    .success(l -> {
+                      Log.d("Loki", "User banned");
+                      return Unit.INSTANCE;
+                    }).fail(e -> {
+                      Log.e("Loki", "Failed to ban user",e);
+                      return null;
+                    });
           } else {
             Log.d("Loki", "Tried to ban user from a non-public chat");
           }

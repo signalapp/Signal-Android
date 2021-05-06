@@ -6,6 +6,7 @@ import com.esotericsoftware.kryo.io.Output
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
@@ -46,9 +47,14 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
                 ?: return handleFailure(Error.NoAttachment)
 
             val usePadding = false
+            val openGroupV2 = MessagingModuleConfiguration.shared.storage.getV2OpenGroup(threadID)
             val openGroup = MessagingModuleConfiguration.shared.storage.getOpenGroup(threadID)
-            val server = if (openGroup != null) openGroup.server else FileServerAPI.shared.server
-            val shouldEncrypt = (openGroup == null) // Encrypt if this isn't an open group
+            val server = openGroup?.let {
+                it.server
+            } ?: openGroupV2?.let {
+                it.server
+            } ?: FileServerAPI.shared.server
+            val shouldEncrypt = (openGroup == null && openGroupV2 == null) // Encrypt if this isn't an open group
 
             val attachmentKey = Util.getSecretBytes(64)
             val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
@@ -58,7 +64,11 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
             val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
 
-            val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
+            val uploadResult = if (openGroupV2 == null) FileServerAPI.shared.uploadAttachment(server, attachmentData) else {
+                val dataBytes = attachmentData.data.readBytes()
+                val result = OpenGroupAPIV2.upload(dataBytes, openGroupV2.room, openGroupV2.server).get()
+                DotNetAPI.UploadResult(result, "${openGroupV2.server}/files/$result", byteArrayOf())
+            }
             handleSuccess(attachment, attachmentKey, uploadResult)
         } catch (e: java.lang.Exception) {
             if (e == Error.NoAttachment) {
