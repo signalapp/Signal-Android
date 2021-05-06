@@ -75,9 +75,7 @@ object FileServerAPIV2 {
         }
 
         if (request.useOnionRouting) {
-            val publicKey = MessagingModuleConfiguration.shared.storage.getOpenGroupPublicKey(DEFAULT_SERVER)
-                    ?: return Promise.ofFail(OpenGroupAPIV2.Error.NO_PUBLIC_KEY)
-            return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), DEFAULT_SERVER, publicKey)
+            return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)
                     .fail { e ->
                         Log.e("Loki", "FileServerV2 failed with error",e)
                     }
