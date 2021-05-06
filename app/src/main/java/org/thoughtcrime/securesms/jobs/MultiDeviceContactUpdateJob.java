@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -21,6 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -275,13 +275,17 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   }
 
   private Optional<SignalServiceAttachmentStream> getAvatar(@NonNull RecipientId recipientId, @Nullable Uri uri) {
-    Optional<SignalServiceAttachmentStream> stream = getSystemAvatar(uri);
+    Optional<SignalServiceAttachmentStream> avatarStream = Optional.absent();
 
-    if (!stream.isPresent()) {
-      return getProfileAvatar(recipientId);
+    if (SignalStore.settings().isPreferSystemContactPhotos()) {
+      avatarStream = getSystemAvatar(uri);
     }
 
-    return stream;
+    if (avatarStream.isPresent()) {
+      return avatarStream;
+    } else {
+      return getProfileAvatar(recipientId);
+    }
   }
 
   private Optional<SignalServiceAttachmentStream> getProfileAvatar(@NonNull RecipientId recipientId) {
