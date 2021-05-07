@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import okio.HashingSink
 import okio.Okio
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
@@ -96,8 +97,12 @@ object EmojiFiles {
     val file = version.getFile(context, uuid)
 
     try {
-      getInputStream(context, file).use {
-        return Okio.buffer(Okio.source(it)).buffer.md5().toByteArray()
+      HashingSink.md5(Okio.blackhole()).use { hashingSink ->
+        Okio.buffer(Okio.source(getInputStream(context, file))).use { source ->
+          source.readAll(hashingSink)
+
+          return hashingSink.hash().toByteArray()
+        }
       }
     } catch (e: Exception) {
       Log.i(TAG, "Could not read emoji data file md5", e)
@@ -130,17 +135,20 @@ object EmojiFiles {
       private val objectMapper = ObjectMapper().registerKotlinModule()
 
       @JvmStatic
-      fun exists(context: Context): Boolean = context.getVersionFile().exists()
-
-      @JvmStatic
       fun readVersion(context: Context): Version? {
-        try {
+        val version = try {
           getInputStream(context, context.getVersionFile()).use {
-            return objectMapper.readValue(it, Version::class.java)
+            objectMapper.readValue(it, Version::class.java)
           }
         } catch (e: Exception) {
           Log.w(TAG, "Could not read current emoji version from disk.")
-          return null
+          null
+        }
+
+        return if (isVersionValid(context, version)) {
+          version
+        } else {
+          null
         }
       }
 
@@ -158,6 +166,30 @@ object EmojiFiles {
           }
         } catch (e: Exception) {
           Log.w(TAG, "Could not write current emoji version from disk.")
+        }
+      }
+
+      @JvmStatic
+      fun isVersionValid(context: Context, version: Version?): Boolean {
+        if (version == null) {
+          Log.d(TAG, "Version does not exist.")
+          return false
+        }
+
+        val nameCollection = NameCollection.read(context, version)
+
+        return if (nameCollection.names.isEmpty()) {
+          Log.d(TAG, "NameCollection file is empty.")
+          false
+        } else {
+          Log.d(TAG, "Verifying all name files exist.")
+          val allNamesExist = nameCollection.names
+            .map { version.getFile(context, it.uuid) }
+            .all { it.exists() }
+
+          Log.d(TAG, "All names exist? $allNamesExist")
+
+          allNamesExist
         }
       }
     }

@@ -156,7 +156,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
                             .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
                             .addNonBlocking(EmojiSource::refresh)
-                            .addNonBlocking(DownloadLatestEmojiDataJob::scheduleIfNecessary)
+                            .addNonBlocking(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
                             .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
                             .addPostRender(this::initializeExpiringMessageManager)
                             .execute();

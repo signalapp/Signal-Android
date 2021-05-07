@@ -41,6 +41,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.HashingSink;
 import okio.Okio;
+import okio.Sink;
 import okio.Source;
 
 /**
@@ -62,15 +63,17 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
 
   private EmojiFiles.Version targetVersion;
 
-  public static void scheduleIfNecessary() {
+  public static void scheduleIfNecessary(@NonNull Context context) {
     long nextScheduledCheck = SignalStore.emojiValues().getNextScheduledCheck();
 
     if (nextScheduledCheck <= System.currentTimeMillis()) {
       Log.i(TAG, "Scheduling DownloadLatestEmojiDataJob.");
       ApplicationDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
 
+      EmojiFiles.Version version = EmojiFiles.Version.readVersion(context);
+
       long interval;
-      if (EmojiFiles.Version.exists(ApplicationDependencies.getApplication())) {
+      if (EmojiFiles.Version.isVersionValid(context, version)) {
         interval = INTERVAL_WITH_REMOTE_DOWNLOAD;
       } else {
         interval = INTERVAL_WITHOUT_REMOTE_DOWNLOAD;
@@ -364,12 +367,16 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       byte[] savedMd5;
 
       try (OutputStream outputStream = EmojiFiles.openForWriting(context, version, name.getUuid())) {
-        Source      source = response.body().source();
-        HashingSink sink   = HashingSink.md5(Okio.sink(outputStream));
+        Source source = response.body().source();
+        Sink   sink   = Okio.sink(outputStream);
 
         Okio.buffer(source).readAll(sink);
+        outputStream.flush();
 
-        savedMd5 = sink.hash().toByteArray();
+        source.close();
+        sink.close();
+
+        savedMd5 = EmojiFiles.getMd5(context, version, name.getUuid());
       }
 
       if (!Arrays.equals(savedMd5, Hex.toByteArray(responseMD5))) {

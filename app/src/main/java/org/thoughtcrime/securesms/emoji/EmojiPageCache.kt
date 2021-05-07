@@ -45,7 +45,12 @@ object EmojiPageCache {
 
         SimpleTask.run(newTask::run) {
           try {
-            cache[emojiPageRequest] = newTask.get()
+            val newBitmap: Bitmap? = newTask.get()
+            if (newBitmap == null) {
+              Log.w(TAG, "Failed to load emoji bitmap for request $emojiPageRequest")
+            } else {
+              cache[emojiPageRequest] = newBitmap
+            }
           } finally {
             tasks.remove(emojiPageRequest)
           }
