@@ -78,7 +78,7 @@ class JobQueue : JobDelegate {
             return
         }
         hasResumedPendingJobs = true
-        val allJobTypes = listOf(AttachmentDownloadJob.KEY,
+        val allJobTypes = listOf(AttachmentUploadJob.KEY,
                 AttachmentDownloadJob.KEY,
                 MessageReceiveJob.KEY,
                 MessageSendJob.KEY,
