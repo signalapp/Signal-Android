@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.net.Uri
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.StorageProtocol
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
@@ -13,6 +14,7 @@ import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
@@ -220,12 +222,36 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).setAuthToken(server, null)
     }
 
+    override fun getAuthToken(room: String, server: String): String? {
+        val id = "$server.$room"
+        return DatabaseFactory.getLokiAPIDatabase(context).getAuthToken(id)
+    }
+
+    override fun setAuthToken(room: String, server: String, newValue: String) {
+        val id = "$server.$room"
+        DatabaseFactory.getLokiAPIDatabase(context).setAuthToken(id, newValue)
+    }
+
+    override fun removeAuthToken(room: String, server: String) {
+        val id = "$server.$room"
+        DatabaseFactory.getLokiAPIDatabase(context).setAuthToken(id, null)
+    }
+
     override fun getOpenGroup(threadID: String): OpenGroup? {
         if (threadID.toInt() < 0) { return null }
         val database = databaseHelper.readableDatabase
         return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadID)) { cursor ->
             val publicChatAsJSON = cursor.getString(LokiThreadDatabase.publicChat)
             OpenGroup.fromJSON(publicChatAsJSON)
+        }
+    }
+
+    override fun getV2OpenGroup(threadId: String): OpenGroupV2? {
+        if (threadId.toInt() < 0) { return null }
+        val database = databaseHelper.readableDatabase
+        return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadId)) { cursor ->
+            val publicChatAsJson = cursor.getString(LokiThreadDatabase.publicChat)
+            OpenGroupV2.fromJson(publicChatAsJson)
         }
     }
 
@@ -248,9 +274,31 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(groupID, publicKey, displayName)
     }
 
+    override fun setOpenGroupDisplayName(publicKey: String, room: String, server: String, displayName: String) {
+        val groupID = "$server.$room"
+        DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(groupID, publicKey, displayName)
+    }
+
     override fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String? {
         val groupID = "$server.$channel"
         return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(groupID, publicKey)
+    }
+
+    override fun getOpenGroupDisplayName(publicKey: String, room: String, server: String): String? {
+        val groupID = "$server.$room"
+        return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(groupID, publicKey)
+    }
+
+    override fun getLastMessageServerId(room: String, server: String): Long? {
+        return DatabaseFactory.getLokiAPIDatabase(context).getLastMessageServerID(room, server)
+    }
+
+    override fun setLastMessageServerId(room: String, server: String, newValue: Long) {
+        DatabaseFactory.getLokiAPIDatabase(context).setLastMessageServerID(room, server, newValue)
+    }
+
+    override fun removeLastMessageServerId(room: String, server: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(room, server)
     }
 
     override fun getLastMessageServerID(group: Long, server: String): Long? {
@@ -263,6 +311,22 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun removeLastMessageServerID(group: Long, server: String) {
         DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(group, server)
+    }
+
+    override fun getLastDeletionServerId(room: String, server: String): Long? {
+        return DatabaseFactory.getLokiAPIDatabase(context).getLastDeletionServerID(room, server)
+    }
+
+    override fun setLastDeletionServerId(room: String, server: String, newValue: Long) {
+        DatabaseFactory.getLokiAPIDatabase(context).setLastDeletionServerID(room, server, newValue)
+    }
+
+    override fun removeLastDeletionServerId(room: String, server: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(room, server)
+    }
+
+    override fun setUserCount(room: String, server: String, newValue: Int) {
+        DatabaseFactory.getLokiAPIDatabase(context).setUserCount(room, server, newValue)
     }
 
     override fun getLastDeletionServerID(group: Long, server: String): Long? {
@@ -309,9 +373,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         SessionMetaProtocol.addTimestamp(timestamp)
     }
 
-//    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
-//        TODO("Not yet implemented")
-//    }
+    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
+        SessionMetaProtocol.removeTimestamps(timestamps)
+    }
 
     override fun getMessageIdInDatabase(timestamp: Long, author: String): Long? {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
@@ -319,8 +383,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return database.getMessageFor(timestamp, address)?.getId()
     }
 
-    override fun setOpenGroupServerMessageID(messageID: Long, serverID: Long) {
-        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID)
+    override fun setOpenGroupServerMessageID(messageID: Long, serverID: Long, threadID: Long, isSms: Boolean) {
+        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID, isSms)
+        DatabaseFactory.getLokiMessageDatabase(context).setOriginalThreadID(messageID, serverID, threadID)
     }
 
     override fun getQuoteServerID(quoteID: Long, publicKey: String): Long? {
@@ -469,8 +534,27 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         }
     }
 
-    override fun addOpenGroup(server: String, channel: Long) {
-        OpenGroupUtilities.addGroup(context, server, channel)
+    override fun getAllV2OpenGroups(): Map<Long, OpenGroupV2> {
+        return DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups()
+    }
+
+    override fun addOpenGroup(serverUrl: String, channel: Long) {
+        val httpUrl = HttpUrl.parse(serverUrl) ?: return
+        if (httpUrl.queryParameterNames().contains("public_key")) {
+            // open group v2
+            val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).apply {
+                if (httpUrl.port() != 80 || httpUrl.port() != 443) {
+                    // non-standard port, add to server
+                    this.port(httpUrl.port())
+                }
+            }.build()
+            val room = httpUrl.pathSegments().firstOrNull() ?: return
+            val publicKey = httpUrl.queryParameter("public_key") ?: return
+
+            OpenGroupUtilities.addGroup(context, server.toString().removeSuffix("/"), room, publicKey)
+        } else {
+            OpenGroupUtilities.addGroup(context, serverUrl, channel)
+        }
     }
 
     override fun getAllGroups(): List<GroupRecord> {
@@ -505,6 +589,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val recipient = Recipient.from(context, address, false)
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient)
         return if (threadID < 0) null else threadID
+    }
+
+    override fun getThreadIdForMms(mmsId: Long): Long {
+        val mmsDb = DatabaseFactory.getMmsDatabase(context)
+        val cursor = mmsDb.getMessage(mmsId)
+        val reader = mmsDb.readerFor(cursor)
+        val threadId = reader.next.threadId
+        cursor.close()
+        return threadId
     }
 
     override fun getSessionRequestSentTimestamp(publicKey: String): Long? {

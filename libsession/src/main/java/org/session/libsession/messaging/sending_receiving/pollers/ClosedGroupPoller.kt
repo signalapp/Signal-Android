@@ -69,9 +69,6 @@ class ClosedGroupPoller {
                     // ignore inactive group's messages
                     return@successBackground
                 }
-                if (messages.isNotEmpty()) {
-                    Log.d("Loki", "Received ${messages.count()} new message(s) in closed group with public key: $publicKey.")
-                }
                 messages.forEach { envelope ->
                     val job = MessageReceiveJob(envelope.toByteArray(), false)
                     JobQueue.shared.add(job)
