@@ -79,7 +79,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override fun serialize(): Data {
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
-        val output = Output(ByteArray(4096), -1) // maxBufferSize '-1' will dynamically grow internally if we run out of room serializing the message
+        val output = Output(ByteArray(4096), 10_000_000)
         kryo.writeClassAndObject(output, message)
         output.close()
         val serializedMessage = output.toBytes()

@@ -180,15 +180,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getSessionJobDatabase(context).persistJob(job)
     }
 
-    override fun markJobAsSucceeded(job: Job) {
-        DatabaseFactory.getSessionJobDatabase(context).markJobAsSucceeded(job)
+    override fun markJobAsSucceeded(jobId: String) {
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsSucceeded(jobId)
     }
 
-    override fun markJobAsFailed(job: Job) {
-        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailed(job)
+    override fun markJobAsFailed(jobId: String) {
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailed(jobId)
     }
 
-    override fun getAllPendingJobs(type: String): List<Job> {
+    override fun getAllPendingJobs(type: String): Map<String, Job?> {
         return DatabaseFactory.getSessionJobDatabase(context).getAllPendingJobs(type)
     }
 

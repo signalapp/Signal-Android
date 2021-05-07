@@ -108,7 +108,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val messageSendJob = storage.getMessageSendJob(messageSendJobID)
         MessageSender.handleFailedMessageSend(this.message, e)
         if (messageSendJob != null) {
-            storage.markJobAsFailed(messageSendJob)
+            storage.markJobAsFailed(messageSendJobID)
         }
     }
 
