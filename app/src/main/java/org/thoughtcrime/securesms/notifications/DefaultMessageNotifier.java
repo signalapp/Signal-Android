@@ -434,7 +434,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     if (Build.VERSION.SDK_INT >= 23) {
       builder.setGroup(NOTIFICATION_GROUP);
-      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN);
+      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     }
 
     Notification notification = builder.build();
@@ -477,7 +477,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     if (Build.VERSION.SDK_INT >= 23) {
       builder.setGroup(NOTIFICATION_GROUP);
-      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN);
+      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     }
 
     long timestamp = notifications.get(0).getTimestamp();
