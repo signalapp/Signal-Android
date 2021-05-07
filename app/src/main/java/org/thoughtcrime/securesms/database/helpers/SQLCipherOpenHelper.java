@@ -1350,6 +1350,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
             byte[] reactions         = cursor.getBlob(cursor.getColumnIndexOrThrow("reactions"));
             long   notifiedTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow("notified_timestamp"));
 
+            if (reactions == null) {
+              continue;
+            }
+
             try {
               boolean hasReceiveLaterThanNotified = ReactionList.parseFrom(reactions)
                                                                 .getReactionsList()
