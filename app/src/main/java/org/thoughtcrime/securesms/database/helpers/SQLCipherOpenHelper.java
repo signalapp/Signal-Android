@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
 
@@ -56,9 +57,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV22                          = 43;
   private static final int lokiV23                          = 44;
   private static final int lokiV24                          = 45;
+  private static final int lokiV25                          = 46;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV24;
+  private static final int    DATABASE_VERSION = lokiV25;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -128,6 +130,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
     db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
     db.execSQL(LokiMessageDatabase.getUpdateMessageMappingTable());
+    db.execSQL(SessionContactDatabase.getCreateSessionContactTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -289,6 +292,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + snodePoolTable);
         db.execSQL(LokiAPIDatabase.getCreateSnodePoolTableCommand());
         db.execSQL(LokiAPIDatabase.getCreateSwarmTableCommand());
+      }
+
+      if (oldVersion < lokiV25) {
+        db.execSQL(SessionContactDatabase.getCreateSessionContactTableCommand());
       }
 
       db.setTransactionSuccessful();

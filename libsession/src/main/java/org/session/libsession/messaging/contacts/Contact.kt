@@ -10,7 +10,7 @@ class Contact(val sessionID: String) {
     // The key with which the profile picture is encrypted.
     var profilePictureEncryptionKey: ByteArray? = null
     // The ID of the thread associated with this contact.
-    var threadID: String? = null
+    var threadID: Int? = null
     // This flag is used to determine whether we should auto-download files sent by this contact.
     var isTrusted = false
 

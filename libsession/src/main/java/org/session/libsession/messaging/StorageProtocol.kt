@@ -3,6 +3,7 @@ package org.session.libsession.messaging
 
 import android.content.Context
 import android.net.Uri
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
@@ -146,9 +147,12 @@ interface StorageProtocol {
     fun getSessionRequestProcessedTimestamp(publicKey: String): Long?
     fun setSessionRequestProcessedTimestamp(publicKey: String, newValue: Long)
 
-    // Loki User
+    // Session Contact (Loki User)
     fun getDisplayName(publicKey: String): String?
     fun getProfilePictureURL(publicKey: String): String?
+    fun getContactWithSessionID(sessionID: String): Contact?
+    fun getAllContacts(): Set<Contact>
+    fun setContact(contact: Contact)
 
     // Recipient
     fun getRecipientSettings(address: Address): RecipientSettings?

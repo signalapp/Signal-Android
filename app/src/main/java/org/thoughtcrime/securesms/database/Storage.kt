@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.StorageProtocol
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
@@ -622,6 +623,18 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getProfilePictureURL(publicKey: String): String? {
         return DatabaseFactory.getLokiUserDatabase(context).getProfilePictureURL(publicKey)
+    }
+
+    override fun getContactWithSessionID(sessionID: String): Contact? {
+        return DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(sessionID)
+    }
+
+    override fun getAllContacts(): Set<Contact> {
+        return DatabaseFactory.getSessionContactDatabase(context).getAllContacts()
+    }
+
+    override fun setContact(contact: Contact) {
+        DatabaseFactory.getSessionContactDatabase(context).setContact(contact)
     }
 
     override fun getRecipientSettings(address: Address): Recipient.RecipientSettings? {

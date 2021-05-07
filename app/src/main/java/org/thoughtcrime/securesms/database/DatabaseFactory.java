@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
+import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 
 public class DatabaseFactory {
 
@@ -63,6 +64,7 @@ public class DatabaseFactory {
   private final LokiUserDatabase lokiUserDatabase;
   private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
   private final SessionJobDatabase sessionJobDatabase;
+  private final SessionContactDatabase sessionContactDatabase;
 
   // Refactor
   private final Storage storage;
@@ -157,6 +159,10 @@ public class DatabaseFactory {
   public static SessionJobDatabase getSessionJobDatabase(Context context) {
     return getInstance(context).sessionJobDatabase;
   }
+
+  public static SessionContactDatabase getSessionContactDatabase(Context context) {
+    return getInstance(context).sessionContactDatabase;
+  }
   // endregion
 
   // region Refactor
@@ -202,6 +208,7 @@ public class DatabaseFactory {
     this.storage                   = new Storage(context, databaseHelper);
     this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);
     this.sessionJobDatabase        = new SessionJobDatabase(context, databaseHelper);
+    this.sessionContactDatabase    = new SessionContactDatabase(context, databaseHelper);
   }
 
 }
