@@ -26,15 +26,21 @@ public final class ExpirationUtil {
     int secondsRemaining = expirationTime;
 
     int weeks = secondsRemaining / SECONDS_IN_WEEK;
-    displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_weeks, weeks);
+    if (weeks > 0) {
+      return getDisplayValue(context, displayValue, R.plurals.expiration_weeks, weeks);
+    }
     secondsRemaining = secondsRemaining - weeks * SECONDS_IN_WEEK;
 
     int days = secondsRemaining / SECONDS_IN_DAY;
-    displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_days, days);
+    if (days > 0) {
+      return getDisplayValue(context, displayValue, R.plurals.expiration_days, days);
+    }
     secondsRemaining = secondsRemaining - days * SECONDS_IN_DAY;
 
     int hours = secondsRemaining / SECONDS_IN_HOUR;
-    displayValue = getDisplayValue(context, displayValue, R.plurals.expiration_hours, hours);
+    if (hours > 0) {
+      return getDisplayValue(context, displayValue, R.plurals.expiration_hours, hours);
+    }
     secondsRemaining = secondsRemaining - hours * SECONDS_IN_HOUR;
 
     int minutes = secondsRemaining / SECONDS_IN_MINUTE;
