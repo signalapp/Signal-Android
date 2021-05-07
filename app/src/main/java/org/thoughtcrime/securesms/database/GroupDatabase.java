@@ -920,6 +920,14 @@ public final class GroupDatabase extends Database {
       return title;
     }
 
+    public @NonNull String getDescription() {
+      if (v2GroupProperties == null) {
+        return "";
+      } else {
+        return v2GroupProperties.getDecryptedGroup().getDescription();
+      }
+    }
+
     public @NonNull List<RecipientId> getMembers() {
       return members;
     }

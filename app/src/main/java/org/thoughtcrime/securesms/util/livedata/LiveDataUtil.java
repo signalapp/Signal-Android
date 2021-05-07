@@ -126,6 +126,10 @@ public final class LiveDataUtil {
     return new MutableLiveData<>(item);
   }
 
+  public static <A> LiveData<A> empty() {
+    return new MutableLiveData<>();
+  }
+
   /**
    * Emits {@param whileWaiting} until {@param main} starts emitting.
    */

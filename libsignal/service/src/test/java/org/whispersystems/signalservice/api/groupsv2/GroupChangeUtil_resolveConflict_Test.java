@@ -46,7 +46,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 19, maxFieldFound);
+                 20, maxFieldFound);
   }
 
   /**
@@ -59,7 +59,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + GroupChange.class.getName(),
-                 19, maxFieldFound);
+                 20, maxFieldFound);
   }
 
     /**
@@ -72,7 +72,7 @@ public final class GroupChangeUtil_resolveConflict_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 10, maxFieldFound);
+                 11, maxFieldFound);
   }
 
 
@@ -671,5 +671,39 @@ public final class GroupChangeUtil_resolveConflict_Test {
                                                       .setModifyInviteLinkPassword(GroupChange.Actions.ModifyInviteLinkPasswordAction.newBuilder().setInviteLinkPassword(password2))
                                                       .build();
     assertEquals(expected, resolvedActions);
+  }
+
+  @Test
+  public void field_20__description_change_is_preserved() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setDescription("Existing title")
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewDescription(DecryptedString.newBuilder().setValue("New title").build())
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyDescription(GroupChange.Actions.ModifyDescriptionAction.newBuilder().setDescription(ByteString.copyFrom("New title encrypted".getBytes())))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertEquals(change, resolvedActions);
+  }
+
+  @Test
+  public void field_20__no_description_change_is_removed() {
+    DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
+                                                         .setDescription("Existing title")
+                                                         .build();
+    DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
+                                                               .setNewDescription(DecryptedString.newBuilder().setValue("Existing title").build())
+                                                               .build();
+    GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
+                                                              .setModifyDescription(GroupChange.Actions.ModifyDescriptionAction.newBuilder().setDescription(ByteString.copyFrom("Existing title encrypted".getBytes())))
+                                                              .build();
+
+    GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
+
+    assertTrue(GroupChangeUtil.changeIsEmpty(resolvedActions));
   }
 }

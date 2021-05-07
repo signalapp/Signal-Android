@@ -17,9 +17,13 @@ interface EditProfileRepository {
 
   void getCurrentName(@NonNull Consumer<String> nameConsumer);
 
+  void getCurrentDescription(@NonNull Consumer<String> descriptionConsumer);
+
   void uploadProfile(@NonNull ProfileName profileName,
                      @NonNull String displayName,
                      boolean displayNameChanged,
+                     @NonNull String description,
+                     boolean descriptionChanged,
                      @Nullable byte[] avatar,
                      boolean avatarChanged,
                      @NonNull Consumer<UploadResult> uploadResultConsumer);

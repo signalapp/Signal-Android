@@ -62,17 +62,22 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static GroupActionResult updateGroupDetails(@NonNull  Context context,
-                                                     @NonNull  GroupId groupId,
-                                                     @Nullable byte[]  avatar,
-                                                               boolean avatarChanged,
-                                                     @NonNull  String  name,
-                                                               boolean nameChanged)
-    throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
+  public static GroupActionResult updateGroupDetails(@NonNull Context context,
+                                                     @NonNull GroupId groupId,
+                                                     @Nullable byte[] avatar,
+                                                     boolean avatarChanged,
+                                                     @NonNull String name,
+                                                     boolean nameChanged,
+                                                     @NonNull String description,
+                                                     boolean descriptionChanged)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     if (groupId.isV2()) {
       try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        return edit.updateGroupTitleAndAvatar(nameChanged ? name : null, avatar, avatarChanged);
+        return edit.updateGroupTitleDescriptionAndAvatar(nameChanged ? name : null,
+                                                         descriptionChanged ? description : null,
+                                                         avatar,
+                                                         avatarChanged);
       }
     } else if (groupId.isV1()) {
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context)

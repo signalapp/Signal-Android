@@ -80,6 +80,7 @@ public final class FeatureFlags {
   private static final String NOTIFICATION_REWRITE              = "android.notificationRewrite";
   private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
+  private static final String GROUPS_V2_DESCRIPTION_VERSION     = "android.groupsv2.descriptionVersion";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -113,7 +114,8 @@ public final class FeatureFlags {
       MESSAGE_PROCESSOR_DELAY,
       NOTIFICATION_REWRITE,
       MP4_GIF_SEND_SUPPORT,
-      MEDIA_QUALITY_LEVELS
+      MEDIA_QUALITY_LEVELS,
+      GROUPS_V2_DESCRIPTION_VERSION
   );
 
   @VisibleForTesting
@@ -159,7 +161,8 @@ public final class FeatureFlags {
       GV1_FORCED_MIGRATE,
       NOTIFICATION_REWRITE,
       MP4_GIF_SEND_SUPPORT,
-      MEDIA_QUALITY_LEVELS
+      MEDIA_QUALITY_LEVELS,
+      GROUPS_V2_DESCRIPTION_VERSION
   );
 
   /**
@@ -357,6 +360,10 @@ public final class FeatureFlags {
 
   public static @Nullable String getMediaQualityLevels() {
     return getString(MEDIA_QUALITY_LEVELS, "");
+  }
+
+  public static boolean groupsV2Description() {
+    return getVersionFlag(GROUPS_V2_DESCRIPTION_VERSION) == VersionFlag.ON;
   }
 
   /** Only for rendering debug info. */

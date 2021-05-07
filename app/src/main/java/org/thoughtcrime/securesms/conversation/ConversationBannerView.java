@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -87,6 +88,7 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public void setDescription(@Nullable CharSequence description) {
     contactDescription.setText(description);
+    contactDescription.setVisibility(TextUtils.isEmpty(description) ? GONE : VISIBLE);
   }
 
   public void showBackgroundBubble(boolean enabled) {
@@ -107,6 +109,10 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public void hideDescription() {
     contactDescription.setVisibility(View.GONE);
+  }
+
+  public void setLinkifyDescription(boolean enable) {
+    contactDescription.setMovementMethod(enable ? LinkMovementMethod.getInstance() : null);
   }
 
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {

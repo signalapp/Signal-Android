@@ -125,6 +125,10 @@ public final class LiveGroup {
     });
   }
 
+  public LiveData<String> getDescription() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getDescription);
+  }
+
   public LiveData<Recipient> getGroupRecipient() {
     return recipient;
   }

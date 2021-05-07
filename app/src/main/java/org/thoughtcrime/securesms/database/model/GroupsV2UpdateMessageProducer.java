@@ -98,6 +98,7 @@ final class GroupsV2UpdateMessageProducer {
       describeUnknownEditorRevokedInvitations(change, updates);
       describeUnknownEditorPromotePending(change, updates);
       describeUnknownEditorNewTitle(change, updates);
+      describeUnknownEditorNewDescription(change, updates);
       describeUnknownEditorNewAvatar(change, updates);
       describeUnknownEditorNewTimer(change, updates);
       describeUnknownEditorNewAttributeAccess(change, updates);
@@ -121,6 +122,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRevokedInvitations(change, updates);
       describePromotePending(change, updates);
       describeNewTitle(change, updates);
+      describeNewDescription(change, updates);
       describeNewAvatar(change, updates);
       describeNewTimer(change, updates);
       describeNewAttributeAccess(change, updates);
@@ -431,9 +433,27 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
+  private void describeNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+
+    if (change.hasNewDescription()) {
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), R.drawable.ic_update_group_name_16));
+      } else {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_changed_the_group_description, editor), R.drawable.ic_update_group_name_16));
+      }
+    }
+  }
+
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.hasNewTitle()) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.getNewTitle().getValue())), R.drawable.ic_update_group_name_16));
+    }
+  }
+
+  private void describeUnknownEditorNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    if (change.hasNewDescription()) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_description_has_changed), R.drawable.ic_update_group_name_16));
     }
   }
 

@@ -744,6 +744,8 @@
     <string name="ManageGroupActivity_upgrade_this_group">upgrade this group.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately, invite your contacts to Signal.</string>
     <string name="ManageGroupActivity_invite_now">Invite now</string>
+    <string name="ManageGroupActivity_more">…more</string>
+    <string name="ManageGroupActivity_add_group_description">Add group description...</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notify me for Mentions</string>
@@ -1126,6 +1128,11 @@
     <string name="MessageRecord_you_changed_the_group_name_to_s">You changed the group name to \"%1$s\".</string>
     <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s changed the group name to \"%2$s\".</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">The group name has changed to \"%1$s\".</string>
+
+    <!-- GV2 description change -->
+    <string name="MessageRecord_you_changed_the_group_description">You changed the group description.</string>
+    <string name="MessageRecord_s_changed_the_group_description">%1$s changed the group description.</string>
+    <string name="MessageRecord_the_group_description_has_changed">The group description has changed.</string>
 
     <!-- GV2 avatar change -->
     <string name="MessageRecord_you_changed_the_group_avatar">You changed the group avatar.</string>
@@ -1894,6 +1901,7 @@
     <string name="ConversationUpdateItem_enable_call_notifications">Enable Call Notifications</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common. Review requests carefully.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
+    <string name="ConversationUpdateItem_view">View</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -2057,6 +2065,7 @@
     <string name="CreateProfileActivity__username">Username</string>
     <string name="CreateProfileActivity__create_a_username">Create a username</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Custom MMS group names and photos will only be visible to you.</string>
+    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Group descriptions will be visible to members of this group and people who have been invited.</string>
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">About</string>
@@ -2073,6 +2082,7 @@
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group_name_and_photo">Edit group name and photo</string>
     <string name="EditProfileFragment__group_name">Group name</string>
+    <string name="EditProfileFragment__group_description">Group description</string>
     <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
@@ -3361,6 +3371,9 @@
     <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
     <string name="GroupsInCommonMessageRequest__okay">Okay</string>
     <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+
+    <!-- GroupDescriptionDialog -->
+    <string name="GroupDescriptionDialog__group_description">Group description</string>
 
     <!-- EOF -->
 

@@ -41,7 +41,7 @@ public final class GroupChangeReconstructTest {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
 
     assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 10, maxFieldFound);
+                 11, maxFieldFound);
   }
 
   @Test
@@ -72,6 +72,16 @@ public final class GroupChangeReconstructTest {
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
     assertEquals(DecryptedGroupChange.newBuilder().setNewTitle(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
+  }
+
+  @Test
+  public void description_change() {
+    DecryptedGroup from = DecryptedGroup.newBuilder().setDescription("A").build();
+    DecryptedGroup to   = DecryptedGroup.newBuilder().setDescription("B").build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder().setNewDescription(DecryptedString.newBuilder().setValue("B")).build(), decryptedGroupChange);
   }
 
   @Test

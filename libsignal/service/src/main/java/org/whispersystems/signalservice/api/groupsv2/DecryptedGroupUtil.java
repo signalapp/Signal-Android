@@ -274,6 +274,8 @@ public final class DecryptedGroupUtil {
 
     applyModifyTitleAction(builder, change);
 
+    applyModifyDescriptionAction(builder, change);
+
     applyModifyAvatarAction(builder, change);
 
     applyModifyDisappearingMessagesTimerAction(builder, change);
@@ -400,6 +402,12 @@ public final class DecryptedGroupUtil {
   protected static void applyModifyTitleAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
     if (change.hasNewTitle()) {
       builder.setTitle(change.getNewTitle().getValue());
+    }
+  }
+
+  protected static void applyModifyDescriptionAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    if (change.hasNewDescription()) {
+      builder.setDescription(change.getNewDescription().getValue());
     }
   }
 
@@ -578,7 +586,8 @@ public final class DecryptedGroupUtil {
            change.getNewRequestingMembersCount()     == 0 && // field 16
            change.getDeleteRequestingMembersCount()  == 0 && // field 17
            change.getPromoteRequestingMembersCount() == 0 && // field 18
-           change.getNewInviteLinkPassword().size()  == 0;   // field 19
+           change.getNewInviteLinkPassword().size()  == 0 && // field 19
+           !change.hasNewDescription();                      // field 20
   }
 
   static boolean isSet(AccessControl.AccessRequired newAttributeAccess) {
