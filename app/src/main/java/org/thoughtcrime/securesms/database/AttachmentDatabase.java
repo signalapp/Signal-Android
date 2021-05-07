@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormDat
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -1393,33 +1394,43 @@ public class AttachmentDatabase extends Database {
 
   public static final class TransformProperties {
 
+    private static final int DEFAULT_MEDIA_QUALITY = SentMediaQuality.STANDARD.getCode();
+
     @JsonProperty private final boolean skipTransform;
     @JsonProperty private final boolean videoTrim;
     @JsonProperty private final long    videoTrimStartTimeUs;
     @JsonProperty private final long    videoTrimEndTimeUs;
+    @JsonProperty private final int     sentMediaQuality;
 
     @JsonCreator
     public TransformProperties(@JsonProperty("skipTransform") boolean skipTransform,
                                @JsonProperty("videoTrim") boolean videoTrim,
                                @JsonProperty("videoTrimStartTimeUs") long videoTrimStartTimeUs,
-                               @JsonProperty("videoTrimEndTimeUs") long videoTrimEndTimeUs)
+                               @JsonProperty("videoTrimEndTimeUs") long videoTrimEndTimeUs,
+                               @JsonProperty("sentMediaQuality") int sentMediaQuality)
     {
       this.skipTransform        = skipTransform;
       this.videoTrim            = videoTrim;
       this.videoTrimStartTimeUs = videoTrimStartTimeUs;
       this.videoTrimEndTimeUs   = videoTrimEndTimeUs;
+      this.sentMediaQuality     = sentMediaQuality;
     }
 
     public static @NonNull TransformProperties empty() {
-      return new TransformProperties(false, false, 0, 0);
+      return new TransformProperties(false, false, 0, 0, DEFAULT_MEDIA_QUALITY);
     }
 
     public static @NonNull TransformProperties forSkipTransform() {
-      return new TransformProperties(true, false, 0, 0);
+      return new TransformProperties(true, false, 0, 0, DEFAULT_MEDIA_QUALITY);
     }
 
     public static @NonNull TransformProperties forVideoTrim(long videoTrimStartTimeUs, long videoTrimEndTimeUs) {
-      return new TransformProperties(false, true, videoTrimStartTimeUs, videoTrimEndTimeUs);
+      return new TransformProperties(false, true, videoTrimStartTimeUs, videoTrimEndTimeUs, DEFAULT_MEDIA_QUALITY);
+    }
+
+    public static @NonNull TransformProperties forSentMediaQuality(@NonNull Optional<TransformProperties> currentProperties, @NonNull SentMediaQuality sentMediaQuality) {
+      TransformProperties existing = currentProperties.or(empty());
+      return new TransformProperties(existing.skipTransform, existing.videoTrim, existing.videoTrimStartTimeUs, existing.videoTrimEndTimeUs, sentMediaQuality.getCode());
     }
 
     public boolean shouldSkipTransform() {
@@ -1440,6 +1451,10 @@ public class AttachmentDatabase extends Database {
 
     public long getVideoTrimEndTimeUs() {
       return videoTrimEndTimeUs;
+    }
+
+    public int getSentMediaQuality() {
+      return sentMediaQuality;
     }
 
     @NonNull String serialize() {

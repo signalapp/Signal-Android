@@ -92,7 +92,7 @@ public class EmojiTextView extends AppCompatTextView {
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
     EmojiProvider             provider   = EmojiProvider.getInstance(getContext());
-    EmojiParser.CandidateList candidates = provider.getCandidates(text);
+    EmojiParser.CandidateList candidates = !isInEditMode() ? provider.getCandidates(text) : null;
 
     if (scaleEmojis && candidates != null && candidates.allEmojis) {
       int   emojis = candidates.size();

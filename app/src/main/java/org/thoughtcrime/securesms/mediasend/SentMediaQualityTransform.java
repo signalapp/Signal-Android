@@ -9,12 +9,16 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-public final class VideoTrimTransform implements MediaTransform {
+/**
+ * Add a {@link SentMediaQuality} value for {@link AttachmentDatabase.TransformProperties#getSentMediaQuality()} on the
+ * transformed media. Safe to use in a pipeline with other transforms.
+ */
+public final class SentMediaQualityTransform implements MediaTransform {
 
-  private final MediaSendVideoFragment.Data data;
+  private final SentMediaQuality sentMediaQuality;
 
-  VideoTrimTransform(@NonNull MediaSendVideoFragment.Data data) {
-    this.data = data;
+  SentMediaQualityTransform(@NonNull SentMediaQuality sentMediaQuality) {
+    this.sentMediaQuality = sentMediaQuality;
   }
 
   @WorkerThread
@@ -31,6 +35,6 @@ public final class VideoTrimTransform implements MediaTransform {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     Optional.of(new AttachmentDatabase.TransformProperties(false, data.durationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.getCode())));
+                     Optional.of(AttachmentDatabase.TransformProperties.forSentMediaQuality(media.getTransformProperties(), sentMediaQuality)));
   }
 }

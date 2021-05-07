@@ -35,7 +35,9 @@ public class EmojiEditText extends AppCompatEditText {
     a.recycle();
 
     if (forceCustom || !TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
-      setFilters(appendEmojiFilter(this.getFilters()));
+      if (!isInEditMode()) {
+        setFilters(appendEmojiFilter(this.getFilters()));
+      }
     }
   }
 

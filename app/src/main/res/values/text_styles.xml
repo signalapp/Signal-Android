@@ -151,6 +151,10 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="TextAppearance.Signal.Subtitle.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
     </style>
 

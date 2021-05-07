@@ -14,13 +14,13 @@ import java.util.Arrays;
 
 public class PushMediaConstraints extends MediaConstraints {
 
-  private static final int KB                     = 1024;
-  private static final int MB                     = 1024 * KB;
+  private static final int KB = 1024;
+  private static final int MB = 1024 * KB;
 
   private final MediaConfig currentConfig;
 
-  public PushMediaConstraints() {
-    currentConfig = getCurrentConfig(ApplicationDependencies.getApplication());
+  public PushMediaConstraints(@Nullable SentMediaQuality sentMediaQuality) {
+    currentConfig = getCurrentConfig(ApplicationDependencies.getApplication(), sentMediaQuality);
   }
 
   @Override
@@ -80,11 +80,14 @@ public class PushMediaConstraints extends MediaConstraints {
     return currentConfig.qualitySetting;
   }
 
-  private static @NonNull MediaConfig getCurrentConfig(@NonNull Context context) {
+  private static @NonNull MediaConfig getCurrentConfig(@NonNull Context context, @Nullable SentMediaQuality sentMediaQuality) {
     if (Util.isLowMemory(context)) {
       return MediaConfig.LEVEL_1_LOW_MEMORY;
     }
 
+    if (sentMediaQuality == SentMediaQuality.HIGH) {
+      return MediaConfig.LEVEL_3;
+    }
     return LocaleFeatureFlags.getMediaQualityLevel().orElse(MediaConfig.getDefault(context));
   }
 
@@ -93,7 +96,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
     LEVEL_1(false, 1, MB, new int[] { 1600, 1024, 768, 512 }, 70),
     LEVEL_2(false, 2, (int) (1.5 * MB), new int[] { 2048, 1600, 1024, 768, 512 }, 75),
-    LEVEL_3(false, 3, (int) (2.5 * MB), new int[] { 3072, 2048, 1600, 1024, 768, 512 }, 80);
+    LEVEL_3(false, 3, (int) (3 * MB), new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75);
 
     private final boolean isLowMemory;
     private final int     level;

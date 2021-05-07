@@ -3375,6 +3375,13 @@
     <!-- GroupDescriptionDialog -->
     <string name="GroupDescriptionDialog__group_description">Group description</string>
 
+    <!-- QualitySelectorBottomSheetDialog -->
+    <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Faster, less data</string>
+    <string name="QualitySelectorBottomSheetDialog__high">High</string>
+    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Slower, more data</string>
+    <string name="QualitySelectorBottomSheetDialog__photo_quality">Photo quality</string>
+
     <!-- EOF -->
 
 </resources>
