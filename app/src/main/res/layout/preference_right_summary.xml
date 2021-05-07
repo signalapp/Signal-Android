@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="?android:attr/listPreferredItemHeight"
+              android:gravity="center_vertical"
+              android:paddingEnd="?android:attr/scrollbarSize"
+              android:paddingRight="?android:attr/scrollbarSize"
+              android:background="?android:attr/selectableItemBackground">
+
+    <TextView android:id="@android:id/title"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="15dip"
+              android:layout_marginLeft="15dip"
+              android:layout_marginTop="6dip"
+              android:layout_marginBottom="6dip"
+              android:layout_weight="1"
+              android:singleLine="true"
+              android:textSize="16sp"
+              android:textColor="?android:attr/textColorPrimary"
+              android:ellipsize="marquee"
+              android:fadingEdge="horizontal" />
+
+    <TextView android:id="@android:id/summary"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginEnd="6dip"
+              android:layout_marginRight="6dip"
+              android:layout_marginTop="6dip"
+              android:layout_marginBottom="6dip"
+              android:layout_weight="1"
+              android:layout_gravity="end|center_vertical"
+              android:gravity="end|center_vertical"
+              android:textSize="16sp"
+              android:textColor="?colorAccent"
+              android:singleLine="true"
+              android:ellipsize="marquee"/>
+
+</LinearLayout>

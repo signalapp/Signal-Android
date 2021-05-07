@@ -1,19 +1,13 @@
 package org.thoughtcrime.securesms.preferences.widgets;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceViewHolder;
 
 import org.thoughtcrime.securesms.R;
 
 public class SignalPreference extends Preference {
-
-  private TextView rightSummary;
-  private CharSequence summary;
 
   public SignalPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
@@ -36,26 +30,6 @@ public class SignalPreference extends Preference {
   }
 
   private void initialize() {
-    setWidgetLayoutResource(R.layout.preference_right_summary_widget);
+    setLayoutResource(R.layout.preference_right_summary);
   }
-
-  @Override
-  public void onBindViewHolder(PreferenceViewHolder view) {
-    super.onBindViewHolder(view);
-
-    this.rightSummary = (TextView)view.findViewById(R.id.right_summary);
-    setSummary(this.summary);
-  }
-
-  @Override
-  public void setSummary(CharSequence summary) {
-    super.setSummary(null);
-
-    this.summary = summary;
-
-    if (this.rightSummary != null) {
-      this.rightSummary.setText(summary);
-    }
-  }
-
 }
