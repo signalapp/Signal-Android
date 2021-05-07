@@ -71,10 +71,10 @@ public class EmojiUtilTest_isEmoji {
 
   @Test
   public void isEmoji() throws Exception {
-    Context context = ApplicationProvider.getApplicationContext();
+    Application application = ApplicationProvider.getApplicationContext();
 
     PowerMockito.mockStatic(ApplicationDependencies.class);
-    PowerMockito.when(ApplicationDependencies.getApplication()).thenReturn((Application) context);
+    PowerMockito.when(ApplicationDependencies.getApplication()).thenReturn(application);
     PowerMockito.mockStatic(AttachmentSecretProvider.class);
     PowerMockito.when(AttachmentSecretProvider.getInstance(any())).thenThrow(IOException.class);
     PowerMockito.whenNew(SignalStore.class).withAnyArguments().thenReturn(null);
@@ -82,6 +82,6 @@ public class EmojiUtilTest_isEmoji {
     PowerMockito.when(SignalStore.internalValues()).thenReturn(PowerMockito.mock(InternalValues.class));
     EmojiSource.refresh();
 
-    assertEquals(output, EmojiUtil.isEmoji(context, input));
+    assertEquals(output, EmojiUtil.isEmoji(input));
   }
 }

@@ -12,10 +12,7 @@ import org.thoughtcrime.securesms.emoji.ObsoleteEmoji;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -63,7 +60,7 @@ public final class EmojiUtil {
     if (Util.isEmpty(emoji)) {
       return null;
     } else {
-      return EmojiProvider.getInstance(context).getEmojiDrawable(emoji);
+      return EmojiProvider.getEmojiDrawable(context, emoji);
     }
   }
 
@@ -74,7 +71,7 @@ public final class EmojiUtil {
    * followed by a more wide check for all of the valid emoji unicode ranges (which could lead to
    * some false positives). YMMV.
    */
-  public static boolean isEmoji(@NonNull Context context, @Nullable String text) {
+  public static boolean isEmoji(@Nullable String text) {
     if (Util.isEmpty(text)) {
       return false;
     }
@@ -83,7 +80,7 @@ public final class EmojiUtil {
       return false;
     }
 
-    EmojiParser.CandidateList candidates = EmojiProvider.getInstance(context).getCandidates(text);
+    EmojiParser.CandidateList candidates = EmojiProvider.getCandidates(text);
 
     return (candidates != null && candidates.size() > 0) || EMOJI_PATTERN.matcher(text).matches();
   }

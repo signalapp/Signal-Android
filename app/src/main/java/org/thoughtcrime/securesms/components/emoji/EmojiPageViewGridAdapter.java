@@ -19,20 +19,17 @@ import java.util.List;
 public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageViewGridAdapter.EmojiViewHolder> implements PopupWindow.OnDismissListener {
 
   private final List<Emoji>                 emojiList;
-  private final EmojiProvider               emojiProvider;
   private final EmojiVariationSelectorPopup popup;
   private final VariationSelectorListener   variationSelectorListener;
   private final EmojiEventListener          emojiEventListener;
   private final boolean                     allowVariations;
 
-  public EmojiPageViewGridAdapter(@NonNull EmojiProvider emojiProvider,
-                                  @NonNull EmojiVariationSelectorPopup popup,
+  public EmojiPageViewGridAdapter(@NonNull EmojiVariationSelectorPopup popup,
                                   @NonNull EmojiEventListener emojiEventListener,
                                   @NonNull VariationSelectorListener variationSelectorListener,
                                   boolean allowVariations)
   {
     this.emojiList                 = new ArrayList<>();
-    this.emojiProvider             = emojiProvider;
     this.popup                     = popup;
     this.emojiEventListener        = emojiEventListener;
     this.variationSelectorListener = variationSelectorListener;
@@ -51,7 +48,7 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
   public void onBindViewHolder(@NonNull EmojiViewHolder viewHolder, int i) {
     Emoji emoji = emojiList.get(i);
 
-    Drawable drawable = emojiProvider.getEmojiDrawable(emoji.getValue());
+    final Drawable drawable = EmojiProvider.getEmojiDrawable(viewHolder.imageView.getContext(), emoji.getValue());
 
     if (drawable != null) {
       viewHolder.textView.setVisibility(View.GONE);
