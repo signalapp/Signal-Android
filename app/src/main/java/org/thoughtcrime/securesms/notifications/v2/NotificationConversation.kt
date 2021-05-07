@@ -148,12 +148,13 @@ data class NotificationConversation(
   }
 
   fun getMarkAsReadIntent(context: Context): PendingIntent {
-    val intent = Intent(context, MarkReadReceiver::class.java).setAction(MarkReadReceiver.CLEAR_ACTION)
+    val intent = Intent(context, MarkReadReceiver::class.java)
+      .setAction(MarkReadReceiver.CLEAR_ACTION)
       .putExtra(MarkReadReceiver.THREAD_IDS_EXTRA, longArrayOf(mostRecentNotification.threadId))
       .putExtra(MarkReadReceiver.NOTIFICATION_ID_EXTRA, notificationId)
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, (threadId * 2).toInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
   fun getQuickReplyIntent(context: Context): PendingIntent {
@@ -161,7 +162,7 @@ data class NotificationConversation(
       .build()
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getActivity(context, (threadId * 2).toInt() + 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
   fun getRemoteReplyIntent(context: Context, replyMethod: ReplyMethod): PendingIntent {
@@ -170,10 +171,9 @@ data class NotificationConversation(
       .putExtra(RemoteReplyReceiver.RECIPIENT_EXTRA, recipient.id)
       .putExtra(RemoteReplyReceiver.REPLY_METHOD, replyMethod)
       .putExtra(RemoteReplyReceiver.EARLIEST_TIMESTAMP, notificationItems.first().timestamp)
-      .setPackage(context.packageName)
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, (threadId * 2).toInt() + 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
   }
 
   fun getTurnOffJoinedNotificationsIntent(context: Context): PendingIntent {

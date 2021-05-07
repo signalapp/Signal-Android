@@ -164,11 +164,7 @@ sealed class NotificationBuilder(protected val context: Context) {
 
   companion object {
     fun create(context: Context): NotificationBuilder {
-      return if (Build.VERSION.SDK_INT >= 28) {
-        NotificationBuilderOS(context)
-      } else {
-        NotificationBuilderCompat(context)
-      }
+      return NotificationBuilderCompat(context)
     }
   }
 
@@ -182,6 +178,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       val markAsRead: PendingIntent = conversation.getMarkAsReadIntent(context)
       val markAsReadAction: NotificationCompat.Action = NotificationCompat.Action.Builder(R.drawable.check, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
         .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
+        .setShowsUserInterface(false)
         .build()
 
       val extender: NotificationCompat.WearableExtender = NotificationCompat.WearableExtender()
@@ -199,6 +196,7 @@ sealed class NotificationBuilder(protected val context: Context) {
           NotificationCompat.Action.Builder(R.drawable.ic_reply_white_36dp, actionName, remoteReply)
             .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_REPLY)
+            .setShowsUserInterface(false)
             .build()
         } else {
           NotificationCompat.Action(R.drawable.ic_reply_white_36dp, actionName, quickReply)
@@ -232,21 +230,24 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean) {
-      val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)
-      if (bigPictureUri != null) {
-        builder.setStyle(
-          NotificationCompat.BigPictureStyle()
-            .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
-            .setSummaryText(conversation.getContentText(context))
-            .bigLargeIcon(null)
-        )
-        return
+      if (Build.VERSION.SDK_INT < 24) {
+        val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)
+        if (bigPictureUri != null) {
+          builder.setStyle(
+            NotificationCompat.BigPictureStyle()
+              .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
+              .setSummaryText(conversation.getContentText(context))
+              .bigLargeIcon(null)
+          )
+          return
+        }
       }
 
       val self: PersonCompat = PersonCompat.Builder()
         .setBot(false)
         .setName(if (includeShortcut) Recipient.self().getDisplayName(context) else context.getString(R.string.SingleRecipientNotificationBuilder_you))
         .setIcon(if (includeShortcut) Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIconCompat() else null)
+        .setKey(ConversationUtil.getShortcutId(Recipient.self().id))
         .build()
 
       val messagingStyle: NotificationCompat.MessagingStyle = NotificationCompat.MessagingStyle(self)
@@ -313,10 +314,33 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
-      // Intentionally left blank
+      if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
+        return
+      }
+
+      val intent = PendingIntent.getActivity(
+        context,
+        0,
+        ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.threadId),
+        0
+      )
+
+      val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder()
+        .setIntent(intent)
+        .setIcon(AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
+        .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
+        .setDesiredHeight(600)
+        .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
+        .build()
+
+      builder.bubbleMetadata = bubbleMetadata
     }
 
     override fun setLights(@ColorInt color: Int, onTime: Int, offTime: Int) {
+      if (NotificationChannels.supported()) {
+        return
+      }
+
       builder.setLights(color, onTime, offTime)
     }
 
@@ -492,6 +516,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         .setBot(false)
         .setName(if (includeShortcut) Recipient.self().getDisplayName(context) else context.getString(R.string.SingleRecipientNotificationBuilder_you))
         .setIcon(if (includeShortcut) Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIcon() else null)
+        .setKey(ConversationUtil.getShortcutId(Recipient.self().id))
         .build()
 
       val messagingStyle: Notification.MessagingStyle = Notification.MessagingStyle(self)
