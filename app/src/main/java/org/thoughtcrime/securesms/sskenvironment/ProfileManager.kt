@@ -40,6 +40,15 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
 
     override fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String) {
         ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, profilePictureURL))
+        // New API
+        val sessionID = recipient.address.serialize()
+        val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
+        var contact = contactDatabase.getContactWithSessionID(sessionID)
+        if (contact == null) contact = Contact(sessionID)
+        if (contact.profilePictureURL != profilePictureURL) {
+            contact.profilePictureURL = profilePictureURL
+            contactDatabase.setContact(contact)
+        }
     }
 
     override fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray) {
