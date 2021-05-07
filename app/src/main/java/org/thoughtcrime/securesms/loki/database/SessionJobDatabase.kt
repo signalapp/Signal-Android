@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.jobs.*
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer
@@ -30,19 +31,25 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf(jobID))
     }
 
-    fun markJobAsSucceeded(job: Job) {
-        databaseHelper.writableDatabase.delete(sessionJobTable, "$jobID = ?", arrayOf(job.id))
+    fun markJobAsSucceeded(jobId: String) {
+        databaseHelper.writableDatabase.delete(sessionJobTable, "$jobID = ?", arrayOf(jobId))
     }
 
-    fun markJobAsFailed(job: Job) {
-        databaseHelper.writableDatabase.delete(sessionJobTable, "$jobID = ?", arrayOf(job.id))
+    fun markJobAsFailed(jobId: String) {
+        databaseHelper.writableDatabase.delete(sessionJobTable, "$jobID = ?", arrayOf(jobId))
     }
 
-    fun getAllPendingJobs(type: String): List<Job> {
+    fun getAllPendingJobs(type: String): Map<String, Job?> {
         val database = databaseHelper.readableDatabase
         return database.getAll(sessionJobTable, "$jobType = ?", arrayOf(type)) { cursor ->
-            jobFromCursor(cursor)
-        }
+            val jobId = cursor.getString(jobID)
+            try {
+                jobId to jobFromCursor(cursor)
+            } catch (e: Exception) {
+                Log.e("Loki", "Error serializing Job of type $type",e)
+                jobId to null
+            }
+        }.toMap()
     }
 
     fun getAttachmentUploadJob(attachmentID: Long): AttachmentUploadJob? {
