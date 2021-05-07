@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Gönderme başarısız</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Anahtar takas iletisi alındı, işlemek için dokunun.</string>
   <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
+  <string name="ConversationItem_send_paused">Gönderim duraklatıldı</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Gönderme başarısız oldu, şifresiz göndermek için dokunun</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrelenmemiş SMS\'e geri dönülsün mü?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrelenmemiş MMS\'e geri dönülsün mü?</string>
@@ -1166,6 +1167,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Siz</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">İleti gönderimine devam etmek için doğrulayın</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal\'de istenmeyen iletileri önlemek için, lütfen doğrulamayı tamamlayın.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Doğrulamadan sonra, ileti göndermeye devam edebilirsiniz. Tüm duraklatılmış iletiler otomatik olarak gönderilecektir.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Engelle</string>
   <string name="RecipientPreferenceActivity_unblock">Engeli kaldır</string>
@@ -1225,6 +1229,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Vekil sunucu kullan</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Vekil sunucuya başarıyla bağlanıldı.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Gönderim başarısız oldu</string>
+  <string name="RecaptchaProofActivity_complete_verification">Doğrulamayı tamamla</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -1454,6 +1460,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_message_delivery_failed">İleti teslimi başarısız oldu.</string>
   <string name="MessageNotifier_failed_to_deliver_message">İleti teslim edilemedi.</string>
   <string name="MessageNotifier_error_delivering_message">İleti tesliminde hata.</string>
+  <string name="MessageNotifier_message_delivery_paused">İleti gönderimi duraklatıldı</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal\'de ileti göndermeye devam etmek için doğrulamayı tamamlayın</string>
   <string name="MessageNotifier_mark_all_as_read">Tümünü okundu işaretle</string>
   <string name="MessageNotifier_mark_read">Okundu işaretle</string>
   <string name="MessageNotifier_turn_off_these_notifications">Bu bildirimleri kapat</string>
