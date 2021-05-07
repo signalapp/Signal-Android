@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -48,7 +49,7 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<GiphyImage> {
   private final OkHttpClient client;
 
   GiphyMp4PagedDataSource(@Nullable String searchQuery) {
-    this.searchString = searchQuery;
+    this.searchString = Optional.fromNullable(searchQuery).transform(String::trim).or("");
     this.client       = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build();
   }
 
