@@ -1829,6 +1829,7 @@
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توضیح هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>چیزی خراب شده است</item>
     <item>درخواست قابلیت جدید</item>
     <item>سؤال</item>

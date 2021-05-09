@@ -1974,6 +1974,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Něco nefunguje</item>
     <item>Požadavek na funkcionalitu</item>
     <item>Dotaz</item>

@@ -1746,6 +1746,7 @@
   <string name="HelpFragment__could_not_upload_logs">မှတ်တမ်းများ မတင်သွင်းနိုင်ပါ</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ကျွနှ်ပ်တို့နားလည်နိုင်ရန် ကိစ္စအကြောင်းကို တတ်နိုင်သမျှ ဖေါ်ပြပေးပါ။</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>အရာတစ်ခု အလုပ်မလုပ်ပါ</item>
     <item>အင်္ဂါရပ်တောင်းဆိုချက်</item>
     <item>မေးခွန်း</item>

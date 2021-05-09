@@ -1961,6 +1961,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Nekaj ne deluje</item>
     <item>Predlog za novo funkcijo</item>
     <item>Vprašanje</item>

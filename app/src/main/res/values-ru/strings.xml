@@ -1968,6 +1968,7 @@
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Что-то не работает</item>
     <item>Запросить новые функции</item>
     <item>Вопрос</item>

@@ -1830,6 +1830,7 @@
   <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>كاشىلا كۆرۈلدى</item>
     <item>ئىقتىدار ئىلتىماسى</item>
     <item>سوئال</item>

@@ -1831,6 +1831,7 @@
   <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Qualcosa non funziona</item>
     <item>Richiesta di funzionalità</item>
     <item>Domanda</item>

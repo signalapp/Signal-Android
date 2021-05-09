@@ -1818,6 +1818,7 @@
   <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Miski ei tööta</item>
     <item>Funktsioonisoov</item>
     <item>Küsimus</item>

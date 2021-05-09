@@ -1822,6 +1822,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__could_not_upload_logs">Protokolo ne alŝutiĝis</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Io ne funkcias</item>
     <item>Peto por nova funkcio</item>
     <item>Demando</item>

@@ -1825,6 +1825,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Något fungerar inte</item>
     <item>Funktionsbegäran</item>
     <item>Fråga</item>

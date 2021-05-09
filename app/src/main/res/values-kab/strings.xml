@@ -1810,6 +1810,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpFragment__could_not_upload_logs">Ur yezmir ara ad d-isali iɣmisen</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ttxil-k·m ɛreḍ ayen yellan fell-ak·am amek ara ad d-tgelmeḍ ugur i wakken ad aɣ-talleḍ ad t-negzu.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Yella wayen ur nteddu ara</item>
     <item>Asuter n tmahilt</item>
     <item>Asteqsi</item>

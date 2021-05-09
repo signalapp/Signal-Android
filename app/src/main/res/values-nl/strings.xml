@@ -1835,6 +1835,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Er werkt iets niet</item>
     <item>Verzoek voor nieuwe functionaliteit</item>
     <item>Vraag</item>

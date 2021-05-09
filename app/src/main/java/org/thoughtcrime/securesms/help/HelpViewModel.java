@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import org.thoughtcrime.securesms.logsubmit.LogLine;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -20,8 +21,8 @@ public class HelpViewModel extends ViewModel {
 
   private MutableLiveData<Boolean> problemMeetsLengthRequirements = new MutableLiveData<>();
   private MutableLiveData<Boolean> hasLines                       = new MutableLiveData<>(false);
+  private MutableLiveData<Integer> categoryIndex                  = new MutableLiveData<>(0);
   private LiveData<Boolean>        isFormValid                    = Transformations.map(new LiveDataPair<>(problemMeetsLengthRequirements, hasLines), this::transformValidationData);
-  private int                      categoryIndex                  = 0;
 
   private final SubmitDebugLogRepository submitDebugLogRepository;
 
@@ -34,6 +35,14 @@ public class HelpViewModel extends ViewModel {
       logLines = lines;
       hasLines.postValue(true);
     });
+
+    LiveData<Boolean> firstValid = LiveDataUtil.combineLatest(problemMeetsLengthRequirements, hasLines, (validLength, validLines) -> {
+      return validLength == Boolean.TRUE && validLines == Boolean.TRUE;
+    });
+
+    isFormValid = LiveDataUtil.combineLatest(firstValid, categoryIndex, (valid, index) -> {
+      return  valid == Boolean.TRUE && index > 0;
+    });
   }
 
   LiveData<Boolean> isFormValid() {
@@ -45,11 +54,11 @@ public class HelpViewModel extends ViewModel {
   }
 
   void onCategorySelected(int index) {
-    this.categoryIndex = index;
+    this.categoryIndex.setValue(index);
   }
 
   int getCategoryIndex() {
-    return this.categoryIndex;
+    return Optional.fromNullable(this.categoryIndex.getValue()).or(0);
   }
 
   LiveData<SubmitResult> onSubmitClicked(boolean includeDebugLogs) {

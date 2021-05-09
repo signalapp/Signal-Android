@@ -1820,6 +1820,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Etwas funktioniert nicht</item>
     <item>Erweiterungswunsch</item>
     <item>Frage</item>

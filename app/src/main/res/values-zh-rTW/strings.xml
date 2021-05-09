@@ -1755,6 +1755,7 @@
   <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>某事無法使用</item>
     <item>功能要求</item>
     <item>問題</item>

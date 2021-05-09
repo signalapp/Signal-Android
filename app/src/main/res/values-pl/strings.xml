@@ -1967,6 +1967,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Coś nie działa</item>
     <item>Prośba o dodanie funkcji</item>
     <item>Pytanie</item>

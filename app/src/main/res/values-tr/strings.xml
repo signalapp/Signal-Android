@@ -1829,6 +1829,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Bir Şey Çalışmıyor</item>
     <item>Özellik İsteği</item>
     <item>Soru</item>

@@ -1970,6 +1970,7 @@
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Kažkas neveikia</item>
     <item>Prašymas pridėti naują ypatybę</item>
     <item>Klausimas</item>

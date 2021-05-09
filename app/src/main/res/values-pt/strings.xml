@@ -1830,6 +1830,7 @@
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Algo não está a funcionar</item>
     <item>Pedido de recurso</item>
     <item>Questão</item>

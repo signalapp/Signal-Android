@@ -1974,6 +1974,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="HelpFragment__could_not_upload_logs">Nepodarilo sa nahrať denníky</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Niečo nefunguje</item>
     <item>Požiadať o novú funkciu</item>
     <item>Otázka</item>

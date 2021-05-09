@@ -1748,6 +1748,7 @@
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>機能の不具合k</item>
     <item>機能のリクエスト</item>
     <item>質問</item>

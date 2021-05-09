@@ -1824,6 +1824,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="HelpFragment__could_not_upload_logs">Gat ekki sent inn atvikaskrár</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lýstu þessu eins nákvæmlega og þú getur til að auðvelda okkur að skilja vandamálið.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Eitthvað er ekki að virka</item>
     <item>Beiðni um endurbætur</item>
     <item>Spurning</item>

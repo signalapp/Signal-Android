@@ -1823,6 +1823,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
   <string-array name="HelpFragment__categories">
+    <item></item>
     <item>Algo no funciona</item>
     <item>Solicitar una nueva función</item>
     <item>Pregunta</item>
