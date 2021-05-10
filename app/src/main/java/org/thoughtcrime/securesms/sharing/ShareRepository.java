@@ -20,6 +20,8 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants;
@@ -113,11 +115,15 @@ class ShareRepository {
         // TODO Convert to multi-session after file drafts are fixed.
       }
 
-      return ShareData.forIntentData(blobUri, mimeType, true, isMmsSupported(context, mimeType, size));
+      return ShareData.forIntentData(blobUri, mimeType, true, isMmsSupported(context, asUriAttachment(blobUri, mimeType, size)));
     }
   }
 
-  private boolean isMmsSupported(@NonNull Context context, @NonNull String mimeType, long size) {
+  private @NonNull UriAttachment asUriAttachment(@NonNull Uri uri, @NonNull String mimeType, long size) {
+    return new UriAttachment(uri, mimeType, -1, size, null, false, false, false, false, null, null, null, null, null);
+  }
+
+  private boolean isMmsSupported(@NonNull Context context, @NonNull Attachment attachment) {
     boolean canReadPhoneState = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
     if (!TextSecurePreferences.isSmsEnabled(context) || !canReadPhoneState || !Util.isMmsCapable(context)) {
       return false;
@@ -127,20 +133,7 @@ class ShareRepository {
     options.setDefaultTransport(TransportOption.Type.SMS);
     MediaConstraints mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.getSelectedTransport().getSimSubscriptionId().or(-1));
 
-    final boolean canMmsSupportFileSize;
-    if (MediaUtil.isGif(mimeType)) {
-      canMmsSupportFileSize = size <= mmsConstraints.getGifMaxSize(context);
-    } else if (MediaUtil.isVideo(mimeType)) {
-      canMmsSupportFileSize = size <= mmsConstraints.getVideoMaxSize(context);
-    } else if (MediaUtil.isImageType(mimeType)) {
-      canMmsSupportFileSize = size <= mmsConstraints.getImageMaxSize(context);
-    } else if (MediaUtil.isAudioType(mimeType)) {
-      canMmsSupportFileSize = size <= mmsConstraints.getAudioMaxSize(context);
-    } else {
-      canMmsSupportFileSize = size <= mmsConstraints.getDocumentMaxSize(context);
-    }
-
-    return canMmsSupportFileSize;
+    return mmsConstraints.isSatisfied(context, attachment) || mmsConstraints.canResize(attachment);
   }
 
   @WorkerThread
@@ -202,7 +195,7 @@ class ShareRepository {
 
     if (media.size() > 0) {
       boolean isMmsSupported = Stream.of(media)
-                                     .allMatch(m -> isMmsSupported(context, m.getMimeType(), m.getSize()));
+                                     .allMatch(m -> isMmsSupported(context, asUriAttachment(m.getUri(), m.getMimeType(), m.getSize())));
       return ShareData.forMedia(media, isMmsSupported);
     } else {
       return null;
