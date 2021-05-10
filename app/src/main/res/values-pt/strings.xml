@@ -17,7 +17,7 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desativar frase-chave?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá desbloquear permanentemente o Signal e as notificações de mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desativar</string>
-  <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo…</string>
+  <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo...</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">A eliminar o registo do serviço de mensagens e chamadas do Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desativar as mensagens e chamadas do Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desative as mensagens e chamadas do Signal eliminando o seu registo do servidor. Será necessário registar novamente o seu número de telefone caso as pretenda utilizar novamente no futuro.</string>
@@ -70,7 +70,7 @@
   <string name="AttachmentUploadJob_uploading_media">A carregar multimédia…</string>
   <string name="AttachmentUploadJob_compressing_video_start">A comprimir vídeo…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">A procurar por mensagens…</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">A procurar por mensagens...</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Utilizadores bloqueados</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adicionar utilizador bloqueado</string>
@@ -352,8 +352,8 @@
   <string name="BackupsPreferenceFragment__turn_off">Desativar</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Para poder restaurar uma cópia de segurança, instale uma nova cópia do Signal. Abra a aplicação e toque em \"Restaurar cópia de segurança\", aqui localize o ficheiro com a cópia de segurança. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Saber mais</string>
-  <string name="BackupsPreferenceFragment__in_progress">Em progresso…</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d até ao momento…</string>
+  <string name="BackupsPreferenceFragment__in_progress">Em progresso...</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d até ao momento...</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal requer permissão de acesso ao armazenamento externo para criar cópias de segurança, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione a aplicação Signal e nas \"Permissões\" ative \"Armazenamento\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
@@ -759,7 +759,7 @@
   <string name="InviteActivity_share_with_contacts">Partilhar com os contactos</string>
   <string name="InviteActivity_choose_how_to_share">Escolha como partilhar</string>
   <string name="InviteActivity_cancel">Cancelar</string>
-  <string name="InviteActivity_sending">A enviar…</string>
+  <string name="InviteActivity_sending">A enviar...</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -1175,9 +1175,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupo sem nome</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">A atender…</string>
-  <string name="RedPhone_ending_call">A terminar chamada…</string>
-  <string name="RedPhone_ringing">A tocar…</string>
+  <string name="RedPhone_answering">A atender...</string>
+  <string name="RedPhone_ending_call">A terminar chamada...</string>
+  <string name="RedPhone_ringing">A tocar...</string>
   <string name="RedPhone_busy">Ocupado</string>
   <string name="RedPhone_recipient_unavailable">Destinatário indisponível</string>
   <string name="RedPhone_network_failed">Falha de rede!</string>
@@ -1188,10 +1188,10 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toque aqui para ativar a sua câmara</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para telefonar a %1$s, o Signal necessita de aceder à sua câmara</string>
   <string name="WebRtcCallActivity__signal_s">Chamada Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">A chamar…</string>
+  <string name="WebRtcCallActivity__calling">A chamar...</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Chamada de voz do Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Chamada de vídeo do Signal…</string>
+  <string name="WebRtcCallView__signal_voice_call">Chamada de voz do Signal...</string>
+  <string name="WebRtcCallView__signal_video_call">Chamada de vídeo do Signal...</string>
   <string name="WebRtcCallView__start_call">Iniciar chamada</string>
   <string name="WebRtcCallView__join_call">Entrar na chamada</string>
   <string name="WebRtcCallView__call_is_full">A chamada encontra-se cheia</string>
@@ -1199,8 +1199,8 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\"  - Chamada de grupo</string>
   <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
   <string name="WebRtcCallView__your_video_is_off">O seu vídeo encontra-se desligado</string>
-  <string name="WebRtcCallView__reconnecting">A ligar novamente…</string>
-  <string name="WebRtcCallView__joining">A entrar…</string>
+  <string name="WebRtcCallView__reconnecting">A ligar novamente...</string>
+  <string name="WebRtcCallView__joining">A entrar...</string>
   <string name="WebRtcCallView__disconnected">Desligado</string>
   <string name="WebRtcCallView__no_one_else_is_here">Não se encontra mais ninguém aqui</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s está nesta chamada</string>
@@ -1751,7 +1751,7 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nome personalizados de grupos MMS e fotografias apenas serão visíveis para si.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si…</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si...</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Fale à vontade</string>
   <string name="EditAboutFragment_encrypted">Encriptado(a)</string>
@@ -1776,7 +1776,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se pretende verificar a segurança da sua encriptação ponta-a-ponta com o contacto %s, compare o número acima com o equivalente no dispositivo do seu contacto. Em alternativa, poderá fazer a digitalização do código QR exibido no outro dispositivo ou pedir que façam digitalização do seu código. <a href="https://signal.org/redirect/safety-numbers">Saber mais</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para ler</string>
-  <string name="verify_display_fragment__loading">A carregar…</string>
+  <string name="verify_display_fragment__loading">A carregar...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partilhar número de segurança</string>
@@ -2005,7 +2005,7 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desativar o suporte de emojis próprios do Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Passar todas as chamadas pelo servidor do Signal para evitar revelar o seu endereço IP ao destinatário. Ativar esta opção irá reduzir a qualidade da chamada.</string>
   <string name="preferences_advanced__always_relay_calls">Retransmitir todas as chamadas</string>
-  <string name="preferences_app_protection__who_can">Quem pode…</string>
+  <string name="preferences_app_protection__who_can">Quem pode...</string>
   <string name="preferences_app_protection__app_access">Acesso da aplicação</string>
   <string name="preferences_app_protection__communication">Comunicação</string>
   <string name="preferences_chats__chats">Conversas</string>
@@ -2042,7 +2042,7 @@
   <string name="preferences_only_use_a_proxy_if">Apenas utilize um proxy se você não conseguir ligar-se ao Signal através dos dados móveis ou Wi-Fi. </string>
   <string name="preferences_share">Partilhar</string>
   <string name="preferences_save">Guardar</string>
-  <string name="preferences_connecting_to_proxy">A ligar ao proxy…</string>
+  <string name="preferences_connecting_to_proxy">A ligar ao proxy...</string>
   <string name="preferences_connected_to_proxy">Ligado ao proxy</string>
   <string name="preferences_connection_failed">Falha de ligação</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Não é possível ligar ao proxy. Consulte o endereço de proxy e tente novamente.</string>
@@ -2060,7 +2060,7 @@
   <string name="PaymentsHomeFragment__introducing_payments">Introdução aos pagamentos (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilize o Signal para enviar e receber MobileCoin, uma nova privacidade focada na moeda digital. Ative para começar a utilizar.</string>
   <string name="PaymentsHomeFragment__activate_payments">Ativar os pagamentos</string>
-  <string name="PaymentsHomeFragment__activating_payments">A ativar pagamentos…</string>
+  <string name="PaymentsHomeFragment__activating_payments">A ativar pagamentos...</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Restaurar a conta de pagamentos</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Ainda sem atividade recente</string>
   <string name="PaymentsHomeFragment__pending_requests">Pedidos pendentes</string>
@@ -2105,8 +2105,8 @@
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalhes</string>
   <string name="PaymentsDetailsFragment__status">Estado</string>
-  <string name="PaymentsDetailsFragment__submitting_payment">A submeter pagamento…</string>
-  <string name="PaymentsDetailsFragment__processing_payment">A processar pagamento…</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">A submeter pagamento...</string>
+  <string name="PaymentsDetailsFragment__processing_payment">A processar pagamento...</string>
   <string name="PaymentsDetailsFragment__payment_complete">Pagamento concluido</string>
   <string name="PaymentsDetailsFragment__payment_failed">Falha de pagamento</string>
   <string name="PaymentsDetailsFragment__network_fee">Taxa de rede</string>
@@ -2170,8 +2170,8 @@
   <string name="ConfirmPayment__to">Para</string>
   <string name="ConfirmPayment__total_amount">Montante total</string>
   <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
-  <string name="ConfirmPayment__submitting_payment">A submeter pagamento…</string>
-  <string name="ConfirmPayment__processing_payment">A processar pagamento…</string>
+  <string name="ConfirmPayment__submitting_payment">A submeter pagamento...</string>
+  <string name="ConfirmPayment__processing_payment">A processar pagamento...</string>
   <string name="ConfirmPayment__payment_complete">Pagamento concluido</string>
   <string name="ConfirmPayment__payment_failed">Falha de pagamento</string>
   <string name="ConfirmPayment__payment_will_continue_processing">O pagamento irá continuar a ser processado</string>
@@ -2330,7 +2330,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">O seu PIN não foi guardado. Iremos pedir-lhe para criar o PIN mais tarde.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN criado.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Reintroduza o seu PIN</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">A criar PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">A criar PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introdução aos PINs</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Os PINs mantém encriptada a informação guardada no Signal de forma a que apenas você lhe possa aceder. O seu perfil, definições e contactos serão restaurados quando reinstalar o Signal. Não necessita do seu PIN para abrir a aplicação.</string>
@@ -2403,8 +2403,8 @@
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">O inquérito tem o host da Alchemer no domínio seguro surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
-  <string name="ConversationListFragment_loading">A carregar…</string>
-  <string name="CallNotificationBuilder_connecting">A ligar…</string>
+  <string name="ConversationListFragment_loading">A carregar...</string>
+  <string name="CallNotificationBuilder_connecting">A ligar...</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal requer permissão de acesso a SMS para enviar uma mensagem SMS, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione a aplicação Signal e, nas \"Permissões\" ative \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>
@@ -2517,9 +2517,9 @@
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toque em \'Transferir conta\' e depois em \'Continuar\' em ambos os dispositivos</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">A preparar para ligar para um dispositivo Android antigo…</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">A preparar para ligar para um dispositivo Android antigo...</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Aguarde um momento, deverá estar pronto muito em breve</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">A aguardar pelo dispositivo Android antigo para ligar…</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">A aguardar pelo dispositivo Android antigo para ligar...</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">O Signal necessita da permissão de localização para poder encontrar e depois ligar-se ao seu dispositivo Android antigo.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">O Signal necessita que os serviços de localização se encontrem ativos para poder encontrar e depois ligar-se ao seu dispositivo Android antigo.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">O Signal necessita de Wi-Fi para poder descobrir e ligar-se ao seu dispositivo Android antigo. O Wi-Fi precisa estar ligado, mas não precisa estar ligado a uma rede Wi-Fi.</string>
@@ -2527,7 +2527,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaurar uma cópia de segurança</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Ocorreu um erro inesperado ao tentar ligar ao seu dispositivo Android antigo.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">A pesquisar por um dispositivo Android novo…</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">A pesquisar por um dispositivo Android novo...</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">O Signal necessita da permissão de localização para poder encontrar e depois ligar-se ao seu dispositivo Android novo.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">O Signal necessita que os serviços de localização se encontrem ativos para poder encontrar e depois ligar-se ao seu dispositivo Android novo.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">O Signal necessita de Wi-Fi para poder descobrir e ligar-se ao seu dispositivo Android novo. O Wi-Fi precisa estar ligado, mas não precisa estar ligado a uma rede Wi-Fi.</string>
@@ -2564,13 +2564,13 @@
   <string name="DeviceTransferSetup__try_again">Tentar novamente</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">A aguardar por outro dispositivo</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toque em \'Continuar\' no seu outro dispositivo para iniciar a transferência.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toque em \'Continuar\' no seu outro dispositivo…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Toque em \'Continuar\' no seu outro dispositivo...</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Não é possível transferir a partir de versões mais recentes do Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">A transferir dados</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantenha ambos o dispositivos próximos um do outro. Não desligue os dispositivos e mantenha o Signal aberto. As transferÊncia são encriptadas ponta-a-ponta.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d mensagens até ao momento…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mensagens até ao momento...</string>
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Tentar novamente</string>
   <string name="DeviceTransfer__stop_transfer_question">Parar transferência?</string>
@@ -2600,12 +2600,12 @@
   <string name="NewDeviceTransferComplete__continue_registration">Continuar registo</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Transferir conta</string>
-  <string name="DeviceToDeviceTransferService_status_ready">A preparar para se ligar ao seu outro dispositivo Android…</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">A preparar para se ligar ao seu outro dispositivo Android…</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">A procurar o seu outro dispositivo Android…</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">A ligar ao seu outro dispositivo Android…</string>
+  <string name="DeviceToDeviceTransferService_status_ready">A preparar para se ligar ao seu outro dispositivo Android...</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">A preparar para se ligar ao seu outro dispositivo Android...</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">A procurar o seu outro dispositivo Android...</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">A ligar ao seu outro dispositivo Android...</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Necessária verificação</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">A transferir conta…</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">A transferir conta...</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Termine o registo no seu dispositivo novo</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">A sua conta do Signal foi transferida para o seu novo dispositivo, mas você deverá concluir o seu registo para continuar. O Signal ficará inativo neste dispositivo. </string>

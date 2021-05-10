@@ -3,14 +3,14 @@
   <string name="yes">Tak</string>
   <string name="no">Nie</string>
   <string name="delete">Usuń</string>
-  <string name="please_wait">Proszę czekać…</string>
+  <string name="please_wait">Proszę czekać...</string>
   <string name="save">Zapisz</string>
   <string name="note_to_self">Moje notatki</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Aktualizacja Signal…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Aktualizacja Signal...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Obecnie: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nie masz jeszcze ustawionego hasła!</string>
@@ -18,7 +18,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">To spowoduje odblokowanie na stałe aplikacji Signal i powiadomień wiadomości.</string>
   <string name="ApplicationPreferencesActivity_disable">Wyłącz</string>
   <string name="ApplicationPreferencesActivity_unregistering">Wyrejestrowanie </string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Wyrejestrowywanie z usług wiadomości i połączeń Signal…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Wyrejestrowywanie z usług wiadomości i połączeń Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Wyłączyć wiadomości i połączenia Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Wyłącz wiadomości i połączenia telefoniczne Signal poprzez wyrejestrowanie z serwera. Będziesz musiał(a) ponownie zarejestrować swój numer telefonu, jeśli będziesz chciał(a) go używać w przyszłości.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Błąd połączenia z serwerem!</string>
@@ -69,10 +69,10 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal wymaga pozwolenia na dostęp do kontaktów w celu dołączenia informacji o kontaktach, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal wymaga pozwolenia na dostęp do lokalizacji w celu załączenia lokalizacji w wiadomościach, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Lokalizacja\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Wysyłanie multimediów…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Kompresja wideo…</string>
+  <string name="AttachmentUploadJob_uploading_media">Wysyłanie multimediów...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Kompresja wideo...</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Szukam nowych wiadomości…</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Szukam nowych wiadomości...</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Zablokowani użytkownicy</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj zablokowanego użytkownika</string>
@@ -277,17 +277,17 @@
     <item quantity="other">Zapisywanie załączników</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Zapisywanie załącznika na dysku…</item>
-    <item quantity="few">Zapisywanie %1$d załączników na dysku…</item>
-    <item quantity="many">Zapisywanie %1$d załączników na dysku…</item>
-    <item quantity="other">Zapisywanie %1$d załączników na dysku…</item>
+    <item quantity="one">Zapisywanie załącznika na dysku...</item>
+    <item quantity="few">Zapisywanie %1$d załączników na dysku...</item>
+    <item quantity="many">Zapisywanie %1$d załączników na dysku...</item>
+    <item quantity="other">Zapisywanie %1$d załączników na dysku...</item>
   </plurals>
-  <string name="ConversationFragment_pending">Oczekiwanie…</string>
+  <string name="ConversationFragment_pending">Oczekiwanie...</string>
   <string name="ConversationFragment_push">Dane (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Usuwanie</string>
-  <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości…</string>
+  <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości...</string>
   <string name="ConversationFragment_delete_for_me">U mnie</string>
   <string name="ConversationFragment_delete_for_everyone">U wszystkich</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ta wiadomość zostanie usunięta u wszystkich uczestników tej konwersacji, jeśli używają najnowszej wersji Signal. Będą oni mogli zobaczyć, że skasowałeś(aś) wiadomość.</string>
@@ -320,8 +320,8 @@
     <item quantity="many">Spowoduje to trwałe usunięcie wszystkich %1$d zaznaczonych rozmów.</item>
     <item quantity="other">Spowoduje to trwałe usunięcie wszystkich %1$d zaznaczonych rozmów.</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">Usuwanie…</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Usuwanie zaznaczonych konwersacji…</string>
+  <string name="ConversationListFragment_deleting">Usuwanie...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Usuwanie zaznaczonych konwersacji...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Konwersacja została dodana do archiwum</item>
     <item quantity="few">%d konwersacji dodano do archiwum</item>
@@ -374,8 +374,8 @@
   <string name="BackupsPreferenceFragment__turn_off">Wyłącz</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Aby przywrócić kopię zapasową, zainstaluj nową kopię Signal. Otwórz aplikację i stuknij \"Przywróć kopię zapasową\", a następnie wybierz folder z plikiem kopii. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Dowiedz się więcej</string>
-  <string name="BackupsPreferenceFragment__in_progress">W trakcie…</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d wiadomości…</string>
+  <string name="BackupsPreferenceFragment__in_progress">W trakcie...</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d wiadomości...</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal wymaga dostępu do pamięci zewnętrznej urządzenia, aby móc tworzyć kopie zapasowe, ale uprawnienia zostały na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Pamięć\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
@@ -401,7 +401,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Wyrejestrowanie tego urządzenia spowoduje, że nie będziesz miał(a) możliwości wysyłania i odbierania wiadomości.</string>
   <string name="DeviceListActivity_network_connection_failed">Błąd połączenia sieciowego</string>
   <string name="DeviceListActivity_try_again">Spróbuj ponownie</string>
-  <string name="DeviceListActivity_unlinking_device">Odłączanie urządzenia…</string>
+  <string name="DeviceListActivity_unlinking_device">Odłączanie urządzenia...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Wyrejestrowywanie urządzenia</string>
   <string name="DeviceListActivity_network_failed">Błąd sieci!</string>
   <!--DeviceListItem-->
@@ -833,7 +833,7 @@
   <string name="InviteActivity_share_with_contacts">Udostępnij kontaktom</string>
   <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string>
   <string name="InviteActivity_cancel">Anuluj</string>
-  <string name="InviteActivity_sending">Wysyłanie…</string>
+  <string name="InviteActivity_sending">Wysyłanie...</string>
   <string name="InviteActivity_invitations_sent">Zaproszenie zostało wysłane!</string>
   <string name="InviteActivity_invite_to_signal">Zaproś do używania Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -880,9 +880,9 @@
     <item quantity="other">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Usuwanie</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Usuwanie wiadomości…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Usuwanie wiadomości...</string>
   <string name="MediaOverviewActivity_Select_all">Zaznacz wszystko</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Zbieranie załączników…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Zbieranie załączników...</string>
   <string name="MediaOverviewActivity_Sort_by">Sortuj według</string>
   <string name="MediaOverviewActivity_Newest">Najnowsze</string>
   <string name="MediaOverviewActivity_Oldest">Najstarsze</string>
@@ -944,7 +944,7 @@
   <string name="MediaPickerActivity_send_to">Wyślij do %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Otwórz aparat</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Dodaj opis…</string>
+  <string name="MediaSendActivity_add_a_caption">Dodaj opis...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Pozycja została usunięta, ponieważ przekroczyła limit wielkości</string>
   <string name="MediaSendActivity_camera_unavailable">Aparat niedostępny.</string>
   <string name="MediaSendActivity_message_to_s">Wiadomość do %s</string>
@@ -1205,7 +1205,7 @@
 • Czytać wszystkie Twoje wiadomości
 \n• Wysyłać wiadomości w Twoim imieniu</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Rejestrowanie urządzenia</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Łączenie nowego urządzenia…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Łączenie nowego urządzenia...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Urządzenie zostało zatwierdzone!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nie znaleziono żadnych urządzeń.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Błąd sieci.</string>
@@ -1291,9 +1291,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupa bez nazwy</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Odbieranie…</string>
-  <string name="RedPhone_ending_call">Kończenie połączenia…</string>
-  <string name="RedPhone_ringing">Dzwonienie…</string>
+  <string name="RedPhone_answering">Odbieranie...</string>
+  <string name="RedPhone_ending_call">Kończenie połączenia...</string>
+  <string name="RedPhone_ringing">Dzwonienie...</string>
   <string name="RedPhone_busy">Zajęty</string>
   <string name="RedPhone_recipient_unavailable">Odbiorca niedostępny</string>
   <string name="RedPhone_network_failed">Nieudane połączenie sieci</string>
@@ -1315,8 +1315,8 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\" Połączenie grupowe</string>
   <string name="WebRtcCallView__view_participants_list">Zobacz uczestników</string>
   <string name="WebRtcCallView__your_video_is_off">Twoje wideo jest wyłączone</string>
-  <string name="WebRtcCallView__reconnecting">Ponowne łączenie…</string>
-  <string name="WebRtcCallView__joining">Dołączanie…</string>
+  <string name="WebRtcCallView__reconnecting">Ponowne łączenie...</string>
+  <string name="WebRtcCallView__joining">Dołączanie...</string>
   <string name="WebRtcCallView__disconnected">Niepołączony</string>
   <string name="WebRtcCallView__no_one_else_is_here">Brak innych uczestników rozmowy</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s uczestniczy w rozmowie</string>
@@ -1535,7 +1535,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal. Poproś go o aktualizację przed weryfikacją twojego bezpiecznego numeru.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Twój kontakt używa nowszej wersji Signal z niekompatybilnym formatem kodu QR. Zaktualizuj, by porównać.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Zeskanowany kod QR nie jest poprawnie sformatowanym kodem weryfikującym numer bezpieczeństwa. Proszę spróbować ponownie zeskanować .</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Udostępnij number bezpieczeństwa przez…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Udostępnij number bezpieczeństwa przez...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Nasz numer bezpieczeństwa Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Brak numerów bezpieczeństwa do porównania w schowku.</string>
@@ -1678,7 +1678,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Pokaż klawiaturę numeryczną</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Brak kontaktów.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Ładowanie listy kontaktów…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Ładowanie listy kontaktów...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Obrazek kontaktu</string>
   <!--ContactSelectionListFragment-->
@@ -1746,7 +1746,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Brak wspólnych grup. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Brak kontaktów w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
+  <string name="audio_view__play_pause_accessibility_description">Odtwarzanie ... Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Dźwięk</string>
@@ -1781,7 +1781,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Aby otrzymywać powiadomienia o połączeniach, stuknij tutaj, włącz powiadomienia i upewnij się, że dźwięk i komunikaty są włączone.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Aby otrzymywać powiadomienia o połączeniach, stuknij Ustawienia i włącz aktywność w tle w  sekcji ustawień \"Bateria\".</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Wczytywanie krajów…</string>
+  <string name="country_selection_fragment__loading_countries">Wczytywanie krajów...</string>
   <string name="country_selection_fragment__search">Szukaj</string>
   <string name="country_selection_fragment__no_matching_countries">Brak pasujących krajów</string>
   <!--device_add_fragment-->
@@ -1888,7 +1888,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Własne nazwy i zdjęcia dla grup MMS będą widoczne tylko dla Ciebie.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O mnie</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napisz kilka słów o sobie…</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napisz kilka słów o sobie...</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Mówcie śmiało</string>
   <string name="EditAboutFragment_encrypted">Zaszyfrowany</string>
@@ -1913,7 +1913,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numery bezpieczeństwa na waszych urządzeniach. Możesz również zeskanować kod kontaktu lub poprosić go o zeskanowanie Twojego kodu. <a href="https://signal.org/redirect/safety-numbers">Dowiedz się więcej</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Dotknij, aby zeskanować</string>
-  <string name="verify_display_fragment__loading">Wczytywanie…</string>
+  <string name="verify_display_fragment__loading">Wczytywanie...</string>
   <string name="verify_display_fragment__verified">Zweryfikowano</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Udostępnij numer bezpieczeństwa</string>
@@ -2144,7 +2144,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia za pomocą serwerów Signal, aby uniknąć ujawnienia adresu IP Twoim kontaktom. Pogorszy to jakość połączenia.</string>
   <string name="preferences_advanced__always_relay_calls">Zawsze przekazuj połączenia</string>
-  <string name="preferences_app_protection__who_can">Kto może…</string>
+  <string name="preferences_app_protection__who_can">Kto może...</string>
   <string name="preferences_app_protection__app_access">Dostęp aplikacji</string>
   <string name="preferences_app_protection__communication">Komunikacja</string>
   <string name="preferences_chats__chats">Rozmowy</string>
@@ -2181,7 +2181,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_only_use_a_proxy_if">Używaj proxy tylko, jeśli nie możesz połączyć się z Signal przez sieć komórkową, ani Wi-Fi.</string>
   <string name="preferences_share">Udostępnij</string>
   <string name="preferences_save">Zapisz</string>
-  <string name="preferences_connecting_to_proxy">Łączenie z serwerem proxy…</string>
+  <string name="preferences_connecting_to_proxy">Łączenie z serwerem proxy...</string>
   <string name="preferences_connected_to_proxy">Połączono z proxy</string>
   <string name="preferences_connection_failed">Błąd połączenia</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Nie udało się połączyć z serwerem proxy. Sprawdź adres proxy i spróbuj ponownie.</string>
@@ -2199,7 +2199,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PaymentsHomeFragment__introducing_payments">Przedstawiamy płatności (beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Korzystaj z Signal, aby wysyłać i otrzymywać MobileCoin, nową, skupioną na prywatności, cyfrową walutę. Aktywuj płatności, aby rozpocząć.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktywuj płatności</string>
-  <string name="PaymentsHomeFragment__activating_payments">Aktywowanie płatności…</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktywowanie płatności...</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Przywróć konto płatności</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Brak ostatnich aktywności</string>
   <string name="PaymentsHomeFragment__pending_requests">Oczekujące prośby</string>
@@ -2244,8 +2244,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Szczegóły</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
-  <string name="PaymentsDetailsFragment__submitting_payment">Przesyłanie płatności…</string>
-  <string name="PaymentsDetailsFragment__processing_payment">Przetwarzanie płatności…</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Przesyłanie płatności...</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Przetwarzanie płatności...</string>
   <string name="PaymentsDetailsFragment__payment_complete">Płatność zakończona</string>
   <string name="PaymentsDetailsFragment__payment_failed">Płatność nie powiodła się</string>
   <string name="PaymentsDetailsFragment__network_fee">Opłata sieciowa</string>
@@ -2309,8 +2309,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConfirmPayment__to">Do</string>
   <string name="ConfirmPayment__total_amount">Suma</string>
   <string name="ConfirmPayment__balance_s">Środki: %1$s</string>
-  <string name="ConfirmPayment__submitting_payment">Przesyłanie płatności…</string>
-  <string name="ConfirmPayment__processing_payment">Przetwarzanie płatności…</string>
+  <string name="ConfirmPayment__submitting_payment">Przesyłanie płatności...</string>
+  <string name="ConfirmPayment__processing_payment">Przetwarzanie płatności...</string>
   <string name="ConfirmPayment__payment_complete">Płatność zakończona</string>
   <string name="ConfirmPayment__payment_failed">Płatność nie powiodła się</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Płatność będzie nadal przetwarzana.</string>
@@ -2326,7 +2326,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Nowa wiadomość do…</string>
+  <string name="contact_selection_list__unknown_contact">Nowa wiadomość do...</string>
   <string name="contact_selection_list__unknown_contact_block">Zablokuj użytkownika</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Dodaj do grupy</string>
   <!--conversation_callable_insecure-->
@@ -2556,8 +2556,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Ta ankieta jest hostowana przez Alchemer na zabezpieczonej domenie surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
-  <string name="ConversationListFragment_loading">Wczytywanie…</string>
-  <string name="CallNotificationBuilder_connecting">Łączenie…</string>
+  <string name="ConversationListFragment_loading">Wczytywanie...</string>
+  <string name="CallNotificationBuilder_connecting">Łączenie...</string>
   <string name="Permissions_permission_required">Wymagane uprawnienia</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal wymaga pozwolenia na dostęp do wiadomości SMS w celu wysyłania wiadomości SMS, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"SMS\".</string>
   <string name="Permissions_continue">Kontynuuj</string>
@@ -2584,7 +2584,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nie udało się zaimportować kopii zapasowej z nowszej wersji Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Nieprawidłowe hasło kopii zapasowej</string>
   <string name="RegistrationActivity_checking">Sprawdzanie…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d wiadomości…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d wiadomości...</string>
   <string name="RegistrationActivity_restore_from_backup">Przywrócić kopię zapasową?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Przywróć swoje wiadomości i multimedia z lokalnej kopii zapasowej. Jeśli nie zrobisz tego teraz, nie będzie można zrobić tego później.</string>
   <string name="RegistrationActivity_backup_size_s">Rozmiar kopii zapasowej: %s</string>
@@ -2603,7 +2603,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_verify">Zweryfikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>
   <string name="BackupDialog_passphrase_was_not_correct">Hasło jest nieprawidłowe</string>
-  <string name="LocalBackupJob_creating_backup">Tworzenie kopii zapasowej…</string>
+  <string name="LocalBackupJob_creating_backup">Tworzenie kopii zapasowej...</string>
   <string name="LocalBackupJobApi29_backup_failed">Zapisywanie kopii zapasowej nie powiodło się</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Twój folder kopii zapasowej został usunięty lub przeniesiony.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Twój plik kopii zapasowej jest zbyt duży, aby przechować go na tym wolumenie.</string>
@@ -2670,9 +2670,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Stuknij \"Przenieś konto\", a następnie \"Kontynuuj\", na obu urządzeniach</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Przygotowywanie do połączenia ze starym urządzeniem z systemem Android…</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Przygotowywanie do połączenia ze starym urządzeniem z systemem Android...</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">To chwilę potrwa, wkrótce wszystko powinno być gotowe</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Czekanie na połączenie ze starym urządzeniem z systemem Android…</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Czekanie na połączenie ze starym urządzeniem z systemem Android...</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal potrzebuje pozwolenia na dostęp do lokalizacji, aby znaleźć i połączyć się ze starym urządzeniem z systemem Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal potrzebuje włączonych usług lokalizacji, aby znaleźć i połączyć się ze starym urządzeniem z systemem Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal potrzebuje Wi-Fi, aby znaleźć i połączyć się ze starym urządzeniem z systemem Android. Wi-Fi musi być włączone, ale nie musi być połączone z siecią Wi-Fi.</string>
@@ -2680,7 +2680,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Przywróć kopię zapasową</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Podczas próby połączenia z Twoim, starym urządzeniem z systemem Android, wystąpił nieoczekiwany błąd.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Wyszukiwanie nowego urządzenia z systemem Android…</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Wyszukiwanie nowego urządzenia z systemem Android...</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal potrzebuje pozwolenia na dostęp do lokalizacji, aby znaleźć i połączyć się z nowym urządzeniem z systemem Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal potrzebuje włączonych usług lokalizacji, aby znaleźć i połączyć się z nowym urządzeniem z systemem Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal potrzebuje Wi-Fi, aby znaleźć i połączyć się z nowym urządzeniem z systemem Android. Wi-Fi musi być włączone, ale nie musi być połączone z siecią Wi-Fi.</string>
@@ -2717,13 +2717,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DeviceTransferSetup__try_again">Spróbuj ponownie</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Oczekiwanie na drugie urządzenie</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Stuknij Kontynuuj, na drugim urządzeniu, aby rozpocząć transfer.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Stuknij Kontynuuj, na drugim urządzeniu…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Stuknij Kontynuuj, na drugim urządzeniu...</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nie można przenosić z nowszych wersji Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Przenoszenie danych</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Urządzenia muszą znajdować się blisko siebie. Nie wyłączaj żadnego z urządzeń i nie zamykaj Signal. Przenoszenie jest szyfrowane metodą end-to-end.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d wiadomości…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d wiadomości...</string>
   <string name="DeviceTransfer__cancel">Anuluj</string>
   <string name="DeviceTransfer__try_again">Spróbuj ponownie</string>
   <string name="DeviceTransfer__stop_transfer_question">Zatrzymać przenoszenie?</string>
@@ -2753,12 +2753,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Kontynuuj rejestrację</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Przenoszenie konta</string>
-  <string name="DeviceToDeviceTransferService_status_ready">Przygotowywanie do połączenia z drugim urządzeniem z systemem Android…</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">Przygotowywanie do połączenia z drugim urządzeniem z systemem Android…</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">Wyszukiwanie Twojego, drugiego urządzenia z systemem Android…</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Łączenie z drugim urządzeniem z systemem Android…</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Przygotowywanie do połączenia z drugim urządzeniem z systemem Android...</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Przygotowywanie do połączenia z drugim urządzeniem z systemem Android...</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Wyszukiwanie Twojego, drugiego urządzenia z systemem Android...</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Łączenie z drugim urządzeniem z systemem Android...</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Wymagana weryfikacja</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">Przenoszenie konta…</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Przenoszenie konta...</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dokończ rejestrację na swoim, nowym urządzeniu</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Twoje konto Signal zostało przeniesione na nowe urządzenie, ale musisz dokończyć rejestrację na swoim, nowym urządzeniu. Signal przestanie być aktywny na tym urządzeniu.</string>
