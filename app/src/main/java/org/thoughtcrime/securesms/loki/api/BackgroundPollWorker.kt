@@ -17,7 +17,6 @@ import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -25,26 +24,10 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
     companion object {
         const val TAG = "BackgroundPollWorker"
 
-        private const val RETRY_ATTEMPTS = 3
-
-        @JvmStatic
-        fun scheduleInstant(context: Context) {
-            val workRequest = OneTimeWorkRequestBuilder<BackgroundPollWorker>()
-                    .setConstraints(Constraints.Builder()
-                            .setRequiredNetworkType(NetworkType.CONNECTED)
-                            .build()
-                    )
-                    .build()
-
-            WorkManager
-                    .getInstance(context)
-                    .enqueue(workRequest)
-        }
-
         @JvmStatic
         fun schedulePeriodic(context: Context) {
             Log.v(TAG, "Scheduling periodic work.")
-            val workRequest = PeriodicWorkRequestBuilder<BackgroundPollWorker>(15, TimeUnit.MINUTES)
+            val workRequest = PeriodicWorkRequestBuilder<BackgroundPollWorker>(5, TimeUnit.MINUTES)
                     .setConstraints(Constraints.Builder()
                             .setRequiredNetworkType(NetworkType.CONNECTED)
                             .build()
@@ -55,7 +38,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
                     .getInstance(context)
                     .enqueueUniquePeriodicWork(
                             TAG,
-                            ExistingPeriodicWorkPolicy.KEEP,
+                            ExistingPeriodicWorkPolicy.REPLACE,
                             workRequest
                     )
         }
@@ -105,9 +88,8 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
 
             return Result.success()
         } catch (exception: Exception) {
-            Log.v(TAG, "Background poll failed due to error: ${exception.message}.", exception)
-
-            return if (runAttemptCount < RETRY_ATTEMPTS) Result.retry() else Result.failure()
+            Log.e(TAG, "Background poll failed due to error: ${exception.message}.", exception)
+            return Result.retry()
         }
     }
 
@@ -116,8 +98,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action == Intent.ACTION_BOOT_COMPLETED) {
                 Log.v(TAG, "Boot broadcast caught.")
-                BackgroundPollWorker.scheduleInstant(context)
-                BackgroundPollWorker.schedulePeriodic(context)
+                schedulePeriodic(context)
             }
         }
     }
