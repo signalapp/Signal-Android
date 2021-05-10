@@ -3,14 +3,14 @@
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Izbriši</string>
-  <string name="please_wait">Molimo pričekajte...</string>
+  <string name="please_wait">Molimo pričekajte…</string>
   <string name="save">Spremi</string>
   <string name="note_to_self">Osobna bilješka</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se ažurira...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se ažurira…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
@@ -64,10 +64,10 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal zahtijeva dopuštenje za kontakte kako bi priložio podatke o kontaktu, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Kontakti\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal zahtijeva dopuštenje za lokaciju kako bi priložio lokaciju, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Lokacija\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Učitavanje medijskih zapisa...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Komprimiranje videozapisa...</string>
+  <string name="AttachmentUploadJob_uploading_media">Učitavanje medijskih zapisa…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Komprimiranje videozapisa…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Provjera ima li poruka...</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Provjera ima li poruka…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokirani korisnici</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj korisnika za blokiranje</string>
@@ -266,11 +266,11 @@
     <item quantity="other">Spremanje %1$d privitaka</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Spremanje privitka u prostor za pohranu...</item>
-    <item quantity="few">Spremanje %1$d privitka u prostor za pohranu...</item>
-    <item quantity="other">Spremanje %1$d privitaka u prostor za pohranu...</item>
+    <item quantity="one">Spremanje privitka u prostor za pohranu…</item>
+    <item quantity="few">Spremanje %1$d privitka u prostor za pohranu…</item>
+    <item quantity="other">Spremanje %1$d privitaka u prostor za pohranu…</item>
   </plurals>
-  <string name="ConversationFragment_pending">U tijeku...</string>
+  <string name="ConversationFragment_pending">U tijeku…</string>
   <string name="ConversationFragment_push">Internet (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -358,8 +358,8 @@
   <string name="BackupsPreferenceFragment__turn_off">Isključi</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Da biste vratili sigurnosnu kopiju, instalirajte novu kopiju Signala. Otvorite aplikaciju i pritisnite \"Vrati sigurnosnu kopiju\", a zatim pronađite datoteku sigurnosne kopije. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Saznajte više</string>
-  <string name="BackupsPreferenceFragment__in_progress">U tijeku...</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d za sada...</string>
+  <string name="BackupsPreferenceFragment__in_progress">U tijeku…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d za sada…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal zahtijeva dopuštenje za vanjski prostor za pohranu kako bi stvorio sigurnosne kopije, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
@@ -385,7 +385,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ovaj uređaj više neće moći slati i primati poruke ako je odspojen.</string>
   <string name="DeviceListActivity_network_connection_failed">Pogreška prilikom spajanja na mrežu</string>
   <string name="DeviceListActivity_try_again">Pokušajte ponovno</string>
-  <string name="DeviceListActivity_unlinking_device">Poništavanje veze uređaja...</string>
+  <string name="DeviceListActivity_unlinking_device">Poništavanje veze uređaja…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Poništavanje veze uređaja</string>
   <string name="DeviceListActivity_network_failed">Mrežna pogreška!</string>
   <!--DeviceListItem-->
@@ -896,7 +896,7 @@
   <string name="MediaPickerActivity_send_to">Pošalji za %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Otvori kameru</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Dodaj opis...</string>
+  <string name="MediaSendActivity_add_a_caption">Dodaj opis…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Stavka je uklonjena jer je premašila ograničenje veličine</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nije dostupna</string>
   <string name="MediaSendActivity_message_to_s">Poruka za %s</string>
@@ -1226,9 +1226,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Bezimena grupa</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Odgovaranje...</string>
-  <string name="RedPhone_ending_call">Završavanje poziva...</string>
-  <string name="RedPhone_ringing">Pozivanje...</string>
+  <string name="RedPhone_answering">Odgovaranje…</string>
+  <string name="RedPhone_ending_call">Završavanje poziva…</string>
+  <string name="RedPhone_ringing">Pozivanje…</string>
   <string name="RedPhone_busy">Zauzeto</string>
   <string name="RedPhone_recipient_unavailable">Primatelj nije dostupan</string>
   <string name="RedPhone_network_failed">Mrežna pogreška!</string>
@@ -1250,8 +1250,8 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupni poziv</string>
   <string name="WebRtcCallView__view_participants_list">Prikaži sudionike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš video je isključen</string>
-  <string name="WebRtcCallView__reconnecting">Ponovno povezivanje...</string>
-  <string name="WebRtcCallView__joining">Pridruživanje...</string>
+  <string name="WebRtcCallView__reconnecting">Ponovno povezivanje…</string>
+  <string name="WebRtcCallView__joining">Pridruživanje…</string>
   <string name="WebRtcCallView__disconnected">Odspojeno</string>
   <string name="WebRtcCallView__no_one_else_is_here">Nitko drugi nije ovdje</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s je na ovom pozivu</string>
@@ -1468,7 +1468,7 @@ broj telefona</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt koristi staru verziju Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju verziju Signala s nekompatibilnim formatom QR kôda. Molimo ažurirajte za usporedbu.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kôd nije ispravno oblikovan kôd za provjeru sigurnosnog broja. Pokušajte ponovo skenirati.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Podijelite sigurnosni broj putem...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Podijelite sigurnosni broj putem…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Naš Signal sigurnosni broj:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">U međuspremniku nije pronađen sigurnosni broj za usporedbu</string>
@@ -1607,7 +1607,7 @@ broj telefona</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Prikaži brojčanik</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nema kontakata.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Učitavanje kontakata...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Učitavanje kontakata…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Slika kontakta</string>
   <!--ContactSelectionListFragment-->
@@ -1805,7 +1805,7 @@ broj telefona</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nazivi i fotografije prilagođenih MMS grupa biti će vidljivi samo vama.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Opis</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite par riječi o sebi...</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite par riječi o sebi…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Govorite slobodno</string>
   <string name="EditAboutFragment_encrypted">Šifrirano</string>
@@ -1830,7 +1830,7 @@ broj telefona</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ukoliko želite provjeriti sigurnost vašeg šifriranja s %s, usporedite brojeve koje vidite iznad s brojevima na drugom uređaju. Također možete skenirati kôd s drugog telefona ili zamoliti da skeniraju kôd s vašeg telefona. <a href="https://signal.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisni za skeniranje</string>
-  <string name="verify_display_fragment__loading">Učitavanje...</string>
+  <string name="verify_display_fragment__loading">Učitavanje…</string>
   <string name="verify_display_fragment__verified">Provjereno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Podijeli sigurnosni broj</string>
@@ -2049,7 +2049,7 @@ broj telefona</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući ugrađenu Signal podršku za emotikone</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjerite sve pozive putem Signalnog poslužitelja kako biste izbjegli otkrivanje vaše IP adrese vašim kontaktima. Omogućavanje opcije će smanjiti kvalitetu poziva.</string>
   <string name="preferences_advanced__always_relay_calls">Uvijek preusmjeri pozive</string>
-  <string name="preferences_app_protection__who_can">Tko može...</string>
+  <string name="preferences_app_protection__who_can">Tko može…</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
   <string name="preferences_chats__chats">Razgovori</string>
@@ -2086,7 +2086,7 @@ broj telefona</string>
   <string name="preferences_only_use_a_proxy_if">Koristite proxy samo ako niste u mogućnosti povezati se na Signal putem mobilne ili Wi-Fi mreže.</string>
   <string name="preferences_share">Podijeli</string>
   <string name="preferences_save">Spremi</string>
-  <string name="preferences_connecting_to_proxy">Povezivanje na proxy...</string>
+  <string name="preferences_connecting_to_proxy">Povezivanje na proxy…</string>
   <string name="preferences_connected_to_proxy">Povezano na proxy</string>
   <string name="preferences_connection_failed">Pogreška prilikom spajanja</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Neuspješno spajanje s proxyjem. Provjerite adresu proxyja i pokušajte ponovo.</string>
@@ -2284,7 +2284,7 @@ broj telefona</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN nije spremljen. Kasnije ćemo vas zatražiti da stvorite PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN je stvoren</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ponovno unesite vaš PIN</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Stvaranje PIN-a...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Stvaranje PIN-a…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavljamo PIN-ove</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-ovi čuvaju šifrirane podatke pohranjene u Signalu tako da im možete pristupiti samo vi. Nakon ponovne instalacije vratiti će se vaš profil, postavke i kontakti. Neće vam trebati PIN kako biste otvorili aplikaciju.</string>
@@ -2362,8 +2362,8 @@ broj telefona</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu održava Alchemer na sigurnoj domeni o surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
-  <string name="ConversationListFragment_loading">Učitavanje...</string>
-  <string name="CallNotificationBuilder_connecting">Povezivanje...</string>
+  <string name="ConversationListFragment_loading">Učitavanje…</string>
+  <string name="CallNotificationBuilder_connecting">Povezivanje…</string>
   <string name="Permissions_permission_required">Potrebna je dozvola</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal zahtijeva dopuštenje za SMS za slanje SMS-a, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"SMS\".</string>
   <string name="Permissions_continue">Nastavi</string>
@@ -2476,9 +2476,9 @@ broj telefona</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Pritisnite \"Prijenos računa\" i zatim \"Nastavi\" na oba uređaja</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Priprema za povezivanje s starim Android uređajem...</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Priprema za povezivanje s starim Android uređajem…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Pričekajte trenutak, uskoro će biti spremno</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekanje da se stari Android uređaj poveže...</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekanje da se stari Android uređaj poveže…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal zahtijeva dopuštenje za lokaciju za otkrivanje i povezivanje s vašim starim Android uređajem.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal zahtijeva da su lokacijske usluge omogućene za otkrivanje i povezivanje s vašim starim Android uređajem.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signalu je potreban Wi-Fi da bi otkrio i povezao se sa vašim starim Android uređajem. Wi-Fi mora biti uključen, ali ne mora biti povezan s Wi-Fi mrežom.</string>
@@ -2486,7 +2486,7 @@ broj telefona</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Vrati iz sigurnosne kopije</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Došlo je do neočekivane pogreške prilikom pokušaja povezivanja sa vašim starim Android uređajem.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Traženje novog Android uređaja...</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Traženje novog Android uređaja…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal zahtijeva dopuštenje za lokaciju za otkrivanje i povezivanje s vašim novim Android uređajem.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal zahtijeva da su lokacijske usluge omogućene za otkrivanje i povezivanje s vašim novim Android uređajem.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signalu je potreban Wi-Fi da bi otkrio i povezao se sa vašim novim Android uređajem. Wi-Fi mora biti uključen, ali ne mora biti povezan s Wi-Fi mrežom.</string>
@@ -2523,7 +2523,7 @@ broj telefona</string>
   <string name="DeviceTransferSetup__try_again">Pokušajte ponovo</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Čekanje drugog uređaja</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Pritisnite Nastavi na drugom uređaju za početak prijenosa.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Pritisnite Nastavi na drugom uređaju...</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Pritisnite Nastavi na drugom uređaju…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nije moguć prijenos s novijih verzija Signala</string>
   <!--DeviceTransferFragment-->
@@ -2559,12 +2559,12 @@ broj telefona</string>
   <string name="NewDeviceTransferComplete__continue_registration">Nastavi registraciju</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Prijenos raču</string>
-  <string name="DeviceToDeviceTransferService_status_ready">Priprema za povezivanje s vašim drugim Android uređajem...</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">Priprema za povezivanje s vašim drugim Android uređajem...</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">Traženje vašeg drugog Android uređaja...</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Povezivanje s vašim drugim Android uređajem...</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Priprema za povezivanje s vašim drugim Android uređajem…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Priprema za povezivanje s vašim drugim Android uređajem…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Traženje vašeg drugog Android uređaja…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Povezivanje s vašim drugim Android uređajem…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Provjera je potrebna</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">Prijenos računa...</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Prijenos računa…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dovršite registraciju na vašem novom uređaju</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Vaš Signal račun je prebačen na vaš novi uređaj. Za nastavak, morate dovršiti registraciju na novom uređaju. Signal će biti neaktivan na ovom uređaju.</string>

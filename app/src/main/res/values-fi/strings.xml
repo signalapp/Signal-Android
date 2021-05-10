@@ -38,6 +38,8 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">Tunnusluku poistettu käytöstä.</string>
   <string name="ApplicationPreferencesActivity_hide">Piilota</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Piilotetaanko muistutus?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Tallenna maksujen palautuslause</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Tallenna lause</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä ota ylös palautuslause, joka tarvitaan tilin palauttamiseen.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -167,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Lähetys epäonnistui</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Avaintenvaihtoviesti vastaanotettu. Aloita käsittely napauttamalla.</string>
   <string name="ConversationItem_group_action_left">%1$s on poistunut ryhmästä.</string>
+  <string name="ConversationItem_send_paused">Lähetys keskeytetty</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Lähetys epäonnistui, lähetä suojaamattomana napauttamalla</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Käytetäänkö salaamattomia tekstiviestejä?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Käytetäänkö salaamattomia MMS-viestejä?</string>
@@ -1222,6 +1225,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Käytä proxyä</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Yhteyden muodostaminen proxyyn onnistui.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Lähettäminen epäonnistui</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy
@@ -1448,6 +1452,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_message_delivery_failed">Viestin toimitus epäonnistui.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Viestin lähetys ei onnistunut.</string>
   <string name="MessageNotifier_error_delivering_message">Virhe viestiä toimitettaessa.</string>
+  <string name="MessageNotifier_message_delivery_paused">Viestien toimitus keskeytetiin.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkitse kaikki luetuiksi</string>
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_turn_off_these_notifications">Poista nämä ilmoitukset käytöstä</string>
@@ -1814,6 +1819,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Jokin ei toimi</item>
+    <item>Parannusehdotus</item>
+    <item>Kysymys</item>
+    <item>Palaute</item>
+    <item>Muu</item>
+    <item>Maksut</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -2034,9 +2047,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsAllActivityFragment__all">Kaikki</string>
   <string name="PaymentsAllActivityFragment__sent">Lähetetty</string>
   <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Esittelyssä maksut (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta. Aloita ottamalla käyttöön.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Palauta maksutili</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ei viimeikaista toimintaa</string>
+  <string name="PaymentsHomeFragment__pending_requests">Odottavat pyynnöt</string>
   <string name="PaymentsHomeFragment__recent_activity">Viimeaikainen toiminta</string>
   <string name="PaymentsHomeFragment__see_all">Näytä kaikki</string>
   <string name="PaymentsHomeFragment__add_funds">Lisää varoja</string>
@@ -2044,6 +2061,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsHomeFragment__sent_s">Lähetettiin %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Vastaanotettiin %1$s</string>
   <string name="PaymentsHomeFragment__currency_conversion">Valuuttamuunnos</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Poista maksut käytöstä</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Palautuslause</string>
   <string name="PaymentsHomeFragment__help">Tuki </string>
   <string name="PaymentsHomeFragment__sent_payment">Maksu lähetetty</string>
@@ -2052,6 +2070,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuuttamuunnos ei saatavilla</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnoksen näyttäminen ei onnistu. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksut-toiminto ei ole saatavilla alueellasi.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Poistetaanko maksut käytöstä?</string>
   <string name="PaymentsHomeFragment__deactivate">Poista käytöstä</string>
   <string name="PaymentsHomeFragment__continue">Jatka</string>
@@ -2076,6 +2095,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PaymentsDetailsFragment__payment_complete">Maksu valmis</string>
   <string name="PaymentsDetailsFragment__payment_failed">Maksu epäonnistui</string>
   <string name="PaymentsDetailsFragment__network_fee">Verkkomaksu</string>
+  <string name="PaymentsDetailsFragment__sent_by">Lähettänyt</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Lähetetty henkilölle %1$s</string>
   <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
   <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
   <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot kuten summa ja aika tallennetaan MobileCoiniin.</string>
@@ -2098,6 +2119,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pyyntö</string>
   <string name="CreatePaymentFragment__pay">Maksa</string>
+  <string name="CreatePaymentFragment__available_balance_s">Käytettävissä oleva saldo: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Ota käyttöön</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2107,6 +2130,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">,</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__add_note">Lisää viesti</string>
@@ -2116,6 +2140,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Vahvista maksu</string>
   <string name="ConfirmPayment__network_fee">Verkkomaksu</string>
+  <string name="ConfirmPayment__estimated_s">Arviolta %1$s</string>
   <string name="ConfirmPayment__to">Vastaanottajat</string>
   <string name="ConfirmPayment__total_amount">Yhteensä</string>
   <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
@@ -2124,6 +2149,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmPayment__payment_complete">Maksu valmis</string>
   <string name="ConfirmPayment__payment_failed">Maksu epäonnistui</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Virheellinen vastaanottaja</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Tämä henkilö ei ole ottanut maksuja käyttöön</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">Aseta valuutta</string>
@@ -2716,10 +2742,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="payment_info_card_hide">Piilota</string>
   <string name="payment_info_card_record_recovery_phrase">Tallenna palautuslause</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Palautuslauseella voi palauttaa tilin, jos tavanomaiset kirjautumismenetelmät eivät toimi.</string>
+  <string name="payment_info_card_record_your_phrase">Tallenna lauseesi</string>
   <string name="payment_info_card_update_your_pin">Päivitä tunnusluku</string>
   <string name="payment_info_card_with_a_high_balance">Tili kannattaa suojata aakkosnumeerisella suojakoodilla, erityisesti jos sen kate on korkea.</string>
   <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Poista Wallet käytöstä</string>
   <string name="DeactivateWalletFragment__your_balance">Saldosi</string>
   <string name="DeactivateWalletFragment__deactivate">Poista käytöstä</string>
   <string name="DeactivateWalletFragment__your_balance_will_remain">Varat säilytetään Signal-tiliin liitetyssä lompakossa siltä varalta jos maksut otetaan uudestaan käyttöön.</string>

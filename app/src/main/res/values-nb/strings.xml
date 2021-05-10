@@ -166,6 +166,7 @@
   <string name="ConversationItem_error_network_not_delivered">Sending feilet</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling mottatt. Trykk for å behandle.</string>
   <string name="ConversationItem_group_action_left">%1$s har forlatt gruppen.</string>
+  <string name="ConversationItem_send_paused">Satt på pause</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sending mislyktes, trykk for usikret reserveløsning</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vil du bruke ukryptert SMS som reserveløsning?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruke ukryptert MMS som reserveløsning?</string>
@@ -1162,6 +1163,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Deg</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifiser for å fortsette å sende meldinger</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">For å hindre søppelpost på Signal ber vi deg fullføre verifiseringen.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Etter verifisering kan du fortsette med meldingene. Meldinger satt på pause vil automatisk bli sendt.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
@@ -1221,6 +1225,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Bruk proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Tilkobling til proxy vellykket.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Kunne ikke sende inn</string>
+  <string name="RecaptchaProofActivity_complete_verification">Fullfør verifisering</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgi
@@ -1447,6 +1453,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_message_delivery_failed">Levering av melding mislyktes.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Klarte ikke å levere melding.</string>
   <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
+  <string name="MessageNotifier_message_delivery_paused">Levering av meldinger satt på pause.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifiser for å fortsette å sende meldinger på Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alle som lest</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
   <string name="MessageNotifier_turn_off_these_notifications">Skru av disse varslene</string>
@@ -1813,6 +1821,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
+  <string-array name="HelpFragment__categories">
+    <item>Det er noe som ikke virker</item>
+    <item>Foreslå nye funksjoner</item>
+    <item>Hvordan kan jeg … ?</item>
+    <item>Tilbakemeldinger</item>
+    <item>Annet</item>
+    <item>Betalinger</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
@@ -1921,6 +1937,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__data_and_storage">Data og lagring</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__payments">Betalinger</string>
+  <string name="preferences__payments_beta">Betalinger (Beta)</string>
   <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
   <string name="preferences__keep_messages">Behold meldinger</string>
   <string name="preferences__clear_message_history">Slett meldingshistorikk</string>
@@ -2028,12 +2045,24 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="configurable_single_select__customize_option">Tilpass opsjon</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">All aktivitet</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
   <string name="PaymentsAllActivityFragment__sent">Sendt</string>
   <string name="PaymentsAllActivityFragment__received">Mottatt</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Vi introduserer betalinger (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Bruk Signal til å sende og motta MobileCoin, en ny, personvernorientert digital valuta. Aktiver for å komme i gang.</string>
+  <string name="PaymentsHomeFragment__activate_payments">Aktiver betalinger</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktiverer betalinger…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Gjenopprett betalingskonto</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Ingen nylig aktivitet</string>
   <string name="PaymentsHomeFragment__see_all">Se alle</string>
   <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Deaktiver betalinger</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsHomeFragment__help">Hjelp</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
+  <string name="PaymentsHomeFragment__received_payment">Mottatt betaling</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalinger er ikke tilgjengelige i regionen din.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Kunne ikke aktivere betalinger. Prøv igjen senere.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktivere betalinger?</string>
@@ -2041,18 +2070,32 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__deactivate">Deaktiver</string>
   <string name="PaymentsHomeFragment__continue">Fortsett</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">Balanse er ikke tilgjengelig for øyeblikket.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Betalinger er deaktivert</string>
+  <string name="PaymentsHomeFragment__payment_failed">Betaling mislyktes</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__activate">Aktiver</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiert til utklippstavle</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljer</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Sender inn betaling…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Behandler betaling …</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Betaling fullført</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Betaling mislyktes</string>
+  <string name="PaymentsDetailsFragment__network_fee">Nettverksgebyr</string>
+  <string name="PaymentsDetailsFragment__sent_by">Sendt av</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Sendt til %1$s</string>
   <string name="PaymentsDetailsFragment__to">Til</string>
   <string name="PaymentsDetailsFragment__from">Fra</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Myntoppryddingsgebyr\" belastes når myntene i din besittelse ikke kan kombineres for å fullføre en transaksjon. Oppryddingen vil tillate deg å fortsette å sende betalinger.</string>
+  <string name="PaymentsDetailsFragment__received_payment">Mottatt betaling</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Skann QR-kode</string>
   <string name="PaymentsTransferFragment__next">Neste</string>
+  <string name="PaymentsTransferFragment__invalid_address">Ugyldig adresse</string>
   <string name="PaymentsTransferFragment__settings">Innstillinger</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
@@ -2071,9 +2114,19 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Notat</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__network_fee">Nettverksgebyr</string>
+  <string name="ConfirmPayment__error_getting_fee">Kunne ikke laste inn gebyrinformasjon</string>
   <string name="ConfirmPayment__to">Til</string>
+  <string name="ConfirmPayment__total_amount">Totalt beløp</string>
+  <string name="ConfirmPayment__submitting_payment">Sender inn betaling…</string>
+  <string name="ConfirmPayment__processing_payment">Behandler betaling …</string>
+  <string name="ConfirmPayment__payment_complete">Betaling fullført</string>
+  <string name="ConfirmPayment__payment_failed">Betaling mislyktes</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Denne personen har ikke aktivert betalinger</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Kunne ikke laste inn nettverksgebyr. For å fortsette denne betalingen, trykk på OK for å prøve igjen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__all_currencies">Alle valutaer</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2595,6 +2648,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeleteAccountFragment__delete_account">Slett konto</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Slett din kontoinformasjon og profilbilde</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Slett alle dine meldinger</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Slett %1$s fra betalingskontoen</string>
   <string name="DeleteAccountFragment__no_country_code">Ingen landskode angitt</string>
   <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>
   <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
@@ -2651,29 +2705,49 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WallpaperCropActivity__blur_photo">Gjør bildet uskarpt</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny, personvernorientert digital valuta.</string>
   <string name="payment_info_card_hide">Skjul</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__your_balance">Din balanse</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktiver</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Skriv inn manuelt</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Lim inn fra utklippstavlen</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Lim inn gjenopprettingsfrasen</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Neste</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Vennligst sjekk at du har skrevet inn %1$d ord, og prøv på nytt.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Neste</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Rediger</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Forrige</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Gjenopprettingsfrasen din</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sjekk at du har oppgitt riktig gjenopprettingsfrase.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingskontoen ble gjenopprettet.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopier til utklippstavlen?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Bekreft gjenopprettingfrasen</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Ord %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Ferdig</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Skriv inn ord %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Ord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Neste</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Ugyldig ord</string>
   <!--ClearClipboardAlarmReceiver-->
   <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Utklippstavle tømt.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Vis</string>
   <!--UnreadPayments-->
   <string name="UnreadPayments__s_sent_you_s">%1$s sendte deg %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d nye betalingsvarsler</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Kan ikke sende betaling</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">For å sende en betaling til denne brukeren må de godta en forespørsel fra deg. Send dem en melding for å opprette en meldingsforespørsel.</string>

@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se aktualizuje...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se aktualizuje…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
@@ -72,7 +72,7 @@
   <string name="AttachmentUploadJob_uploading_media">Nahrávám médium…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimování videa…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Kontroluji zprávy...</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Kontroluji zprávy…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Zablokovaní uživatelé</string>
   <string name="BlockedUsersActivity__add_blocked_user">Přidat blokovaného uživatele</string>
@@ -280,7 +280,7 @@
     <item quantity="one">Příloha uložena do úložiště</item>
     <item quantity="few">Uloženo %1$d přílohy do úložiště</item>
     <item quantity="many">Uloženo %1$d příloh do úložiště</item>
-    <item quantity="other">Ukládání %1$d příloh do úložiště...</item>
+    <item quantity="other">Ukládání %1$d příloh do úložiště…</item>
   </plurals>
   <string name="ConversationFragment_pending">Probíhající:</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
@@ -374,8 +374,8 @@
   <string name="BackupsPreferenceFragment__turn_off">Vypnout</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Pro obnovení ze zálohy znovu nainstalujte aplikaci Signal. Spusťte aplikaci a klepněte na \"Obnovení ze zálohy\", pak najděte soubor se zálohou. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Zjistit více</string>
-  <string name="BackupsPreferenceFragment__in_progress">Probíhá...</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d dosud...</string>
+  <string name="BackupsPreferenceFragment__in_progress">Probíhá…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d dosud…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal potřebuje oprávnění pro přístup k úložišti, aby mohl vytvářet zálohy, ale toto oprávnění je nyní trvale zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
@@ -833,7 +833,7 @@
   <string name="InviteActivity_share_with_contacts">Sdílet s kontakty</string>
   <string name="InviteActivity_choose_how_to_share">Vybrat způsob sdílení</string>
   <string name="InviteActivity_cancel">Storno</string>
-  <string name="InviteActivity_sending">Odesílaní...</string>
+  <string name="InviteActivity_sending">Odesílaní…</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -944,7 +944,7 @@
   <string name="MediaPickerActivity_send_to">Poslat %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Zapnout kameru</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Přidat titulek...</string>
+  <string name="MediaSendActivity_add_a_caption">Přidat titulek…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka byla odebrána, protože překročila povolenou velikost.</string>
   <string name="MediaSendActivity_camera_unavailable">Fotoaparát není dostupný.</string>
   <string name="MediaSendActivity_message_to_s">Zpráva pro %s</string>
@@ -1291,8 +1291,8 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Nepojmenovaná skupina</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Odpovídám...</string>
-  <string name="RedPhone_ending_call">Ukončování hovoru...</string>
+  <string name="RedPhone_answering">Odpovídám…</string>
+  <string name="RedPhone_ending_call">Ukončování hovoru…</string>
   <string name="RedPhone_ringing">Vyzvánění…</string>
   <string name="RedPhone_busy">Obsazeno</string>
   <string name="RedPhone_recipient_unavailable">Příjemce nedostupný</string>
@@ -1304,10 +1304,10 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Klepnutím sem zapnete své video</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal potřebuje přístup k vašemu fotoaparátu pro volání %1$s</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Volání...</string>
+  <string name="WebRtcCallActivity__calling">Volání…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal hlasový hovor...</string>
-  <string name="WebRtcCallView__signal_video_call">Signal videohovor...</string>
+  <string name="WebRtcCallView__signal_voice_call">Signal hlasový hovor…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
   <string name="WebRtcCallView__start_call">Zahájit hovor</string>
   <string name="WebRtcCallView__join_call">Připojit se k hovoru</string>
   <string name="WebRtcCallView__call_is_full">Hovor je plný</string>
@@ -1315,8 +1315,8 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\" skupinový hovor</string>
   <string name="WebRtcCallView__view_participants_list">Zobrazit účastníky</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
-  <string name="WebRtcCallView__reconnecting">Opětovné připojování...</string>
-  <string name="WebRtcCallView__joining">Připojování...</string>
+  <string name="WebRtcCallView__reconnecting">Opětovné připojování…</string>
+  <string name="WebRtcCallView__joining">Připojování…</string>
   <string name="WebRtcCallView__disconnected">Odpojen</string>
   <string name="WebRtcCallView__no_one_else_is_here">Nikdo další tady není</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s se účastní tohoto hovoru</string>
@@ -1685,7 +1685,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="contact_filter_toolbar__show_dial_pad_description">Zobrazit číselník</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádné kontakty.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Fotografie kontaktu</string>
   <!--ContactSelectionListFragment-->
@@ -1895,7 +1895,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Názvy a fotografie vlastních skupin MMS se zobrazí pouze vám.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O mně</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište pár slov o sobě...</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište pár slov o sobě…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Vyjadřujte se svobodně</string>
   <string name="EditAboutFragment_encrypted">Šifrováno</string>
@@ -1920,7 +1920,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o bezpečnostních číslech.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
-  <string name="verify_display_fragment__loading">Načítání...</string>
+  <string name="verify_display_fragment__loading">Načítání…</string>
   <string name="verify_display_fragment__verified">Ověřeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sdílet bezpečnostní číslo</string>
@@ -1974,7 +1974,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Něco nefunguje</item>
     <item>Požadavek na funkcionalitu</item>
     <item>Dotaz</item>
@@ -2152,7 +2151,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
   <string name="preferences_advanced__always_relay_calls">Vždy předávat hovory</string>
-  <string name="preferences_app_protection__who_can">Kdo může...</string>
+  <string name="preferences_app_protection__who_can">Kdo může…</string>
   <string name="preferences_app_protection__app_access">Přístup aplikace</string>
   <string name="preferences_app_protection__communication">Komunikace</string>
   <string name="preferences_chats__chats">Konverzace</string>
@@ -2189,7 +2188,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_only_use_a_proxy_if">Proxy používat pouze v případě, kdy se nelze připojit k Signal prostřednictvím mobilní sítě nebo WiFi.</string>
   <string name="preferences_share">Sdílet</string>
   <string name="preferences_save">Uložit</string>
-  <string name="preferences_connecting_to_proxy">Připojuji k proxy...</string>
+  <string name="preferences_connecting_to_proxy">Připojuji k proxy…</string>
   <string name="preferences_connected_to_proxy">Připojeno k proxy</string>
   <string name="preferences_connection_failed">Spojení selhalo</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Nebylo možné se připojit k proxy. Zkontrolujte adresu proxy a zkuste to znovu.</string>
@@ -2207,7 +2206,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="PaymentsHomeFragment__introducing_payments">Představujeme platby (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Pomocí Signal můžete odesílat a přijímat MobileCoin, novou digitální měnu zaměřenou na soukromí. Aktivujte a začněte.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktivovat platby</string>
-  <string name="PaymentsHomeFragment__activating_payments">Aktivuji platby...</string>
+  <string name="PaymentsHomeFragment__activating_payments">Aktivuji platby…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Obnovit platební účet</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Zatím žádná nedávná aktivita</string>
   <string name="PaymentsHomeFragment__pending_requests">Čekající žádosti</string>
@@ -2253,7 +2252,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
   <string name="PaymentsDetailsFragment__status">Stav</string>
   <string name="PaymentsDetailsFragment__submitting_payment">Odesílání platby…</string>
-  <string name="PaymentsDetailsFragment__processing_payment">Zpracovávání platby...</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Zpracovávání platby…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Platba dokončena</string>
   <string name="PaymentsDetailsFragment__payment_failed">Platba selhala</string>
   <string name="PaymentsDetailsFragment__network_fee">Poplatek sítě</string>
@@ -2318,7 +2317,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConfirmPayment__total_amount">Celkové množství</string>
   <string name="ConfirmPayment__balance_s">Zůstatek: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Odesílání platby…</string>
-  <string name="ConfirmPayment__processing_payment">Zpracovávání platby...</string>
+  <string name="ConfirmPayment__processing_payment">Zpracovávání platby…</string>
   <string name="ConfirmPayment__payment_complete">Platba dokončena</string>
   <string name="ConfirmPayment__payment_failed">Platba selhala</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Platba bude pokračovat ve zpracování</string>
@@ -2481,7 +2480,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Váš PIN nebyl uložen. Vyzveme vás k vytvoření PIN později.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN vytvořen.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Zadejte znovu váš PIN </string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Představujeme PIN</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
@@ -2564,7 +2563,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu hostuje Alchemer na zabezpečené doméně surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <string name="ConversationListFragment_loading">Načítání...</string>
+  <string name="ConversationListFragment_loading">Načítání…</string>
   <string name="CallNotificationBuilder_connecting">Připojování…</string>
   <string name="Permissions_permission_required">Vyžadovaná oprávnění</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal potřebuje oprávnění pro přístup k SMS, aby mohl posílat SMS zprávy, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"SMS\".</string>
@@ -2678,9 +2677,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Klepněte na \"Přenést účet\" a poté \"Pokračovat\" na obou zařízeních</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Připravuji na připojení ke starému Android zařízení...</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Připravuji na připojení ke starému Android zařízení…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Chvíli to potrvá, brzy to bude připravené</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekám na připojení starého Android zařízení...</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Čekám na připojení starého Android zařízení…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal potřebuji oprávnění pro přístup k poloze pro nalezení a připojení ke staršímu Android zařízení.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal potřebuje povolené služby polohy pro nalezení a připojení ke starému Android zařízení.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal potřebuje zapnutou Wi-Fi pro nalezení a připojení ke starému Android zařízení. Wi-Fi musí být zapnuté, ale nemusí být připojené k žádné Wi-Fi síti.</string>
@@ -2688,7 +2687,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NewDeviceTransferSetup__restore_a_backup">Obnovit zálohu</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Nastala neočekávaná chyba při pokusu o připojení ke starému Android zařízení.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Hledám nové Android zařízení...</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Hledám nové Android zařízení…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal potřebuje oprávnění k poloze pro nalezení nového Android zařízení a připojení se k němu.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal potřebuje povolené služby polohy pro nalezení a připojení k novému Android zařízení.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal potřebuje zapnutou Wi-Fi pro nalezení a připojení k novému Android zařízení. Wi-Fi musí být zapnuté, ale nemusí být připojené k žádné Wi-Fi síti.</string>
@@ -2725,13 +2724,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="DeviceTransferSetup__try_again">Zkusit znovu</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Čekám na další zařízení</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Klepněte na pokračovat na svém druhém zařízení pro zahájení přenosu.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Klepněte na pokračovat na svém druhém zařízení...</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Klepněte na pokračovat na svém druhém zařízení…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nelze přenášet z novější verze Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Přenáším data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Ponechte obě zařízení blízko sebe. Nevypínejte zařízení a nechte spuštěnou aplikaci Signal. Přenos je koncově šifrován.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d zpráv zatím...</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d zpráv zatím…</string>
   <string name="DeviceTransfer__cancel">Zrušit</string>
   <string name="DeviceTransfer__try_again">Zkusit znovu</string>
   <string name="DeviceTransfer__stop_transfer_question">Zastavit přenos?</string>
@@ -2761,12 +2760,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NewDeviceTransferComplete__continue_registration">Pokračovat v registraci</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Přenos účtu</string>
-  <string name="DeviceToDeviceTransferService_status_ready">Příprava na připojení k vašemu druhému zařízení...</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">Příprava na připojení k vašemu druhému zařízení...</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">Hledání vašeho druhého zařízení...</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Připojování k vašemu druhému zařízení...</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Příprava na připojení k vašemu druhému zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Příprava na připojení k vašemu druhému zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Hledání vašeho druhého zařízení…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Připojování k vašemu druhému zařízení…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Vyžadováno ověření</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">Přenáším účet...</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Přenáším účet…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dokončit registraci na novém zařízení</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Váš Signal účet byl přenesen na nové zařízení, ale je potřeba na něm dokončit registraci pro pokračování. Signal bude neaktivní na tomto zařízení.</string>

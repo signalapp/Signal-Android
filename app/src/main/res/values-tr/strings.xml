@@ -858,7 +858,7 @@
   <string name="MediaPickerActivity_send_to">%s alıcısına gönder</string>
   <string name="MediaPickerActivity__menu_open_camera">Kamerayı aç</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin...</string>
+  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Boyut sınırını aştığı için bir öğe kaldırıldı.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
   <string name="MediaSendActivity_message_to_s">%s kişisine ileti</string>
@@ -1178,7 +1178,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">Yanıtlanıyor…</string>
   <string name="RedPhone_ending_call">Arama sonlandırılıyor…</string>
-  <string name="RedPhone_ringing">Çalıyor...</string>
+  <string name="RedPhone_ringing">Çalıyor…</string>
   <string name="RedPhone_busy">Meşgul</string>
   <string name="RedPhone_recipient_unavailable">Kişi müsait değil</string>
   <string name="RedPhone_network_failed">Ağ hatası!</string>
@@ -1189,10 +1189,10 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Görüntünüzü açmak için buraya dokunun</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ile arama yapmanız için, Signal\'in kameranıza erişime ihtiyacı var</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Aranıyor...</string>
+  <string name="WebRtcCallActivity__calling">Aranıyor…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal sesli arama...</string>
-  <string name="WebRtcCallView__signal_video_call">Signal görüntülü arama...</string>
+  <string name="WebRtcCallView__signal_voice_call">Signal sesli arama…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal görüntülü arama…</string>
   <string name="WebRtcCallView__start_call">Arama Başlat</string>
   <string name="WebRtcCallView__join_call">Çağrıya Katıl</string>
   <string name="WebRtcCallView__call_is_full">Arama dolu</string>
@@ -1201,7 +1201,7 @@
   <string name="WebRtcCallView__view_participants_list">Katılımcıları Görüntüle</string>
   <string name="WebRtcCallView__your_video_is_off">Görüntünüz kapalı</string>
   <string name="WebRtcCallView__reconnecting">Yeniden bağlanıyor…</string>
-  <string name="WebRtcCallView__joining">Katılınıyor...</string>
+  <string name="WebRtcCallView__joining">Katılınıyor…</string>
   <string name="WebRtcCallView__disconnected">Bağlantı yok</string>
   <string name="WebRtcCallView__no_one_else_is_here">Burada kimse yok</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s bu aramada</string>
@@ -1558,7 +1558,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Arama tuşlarını göster</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
@@ -1829,7 +1829,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Bir Şey Çalışmıyor</item>
     <item>Özellik İsteği</item>
     <item>Soru</item>
@@ -2042,7 +2041,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_only_use_a_proxy_if">Yalnızca mobil veri veya kablosuz ağ üzerinden İnternet\'e bağlanamıyorsanız vekil sunucu kullanın.</string>
   <string name="preferences_share">Paylaş</string>
   <string name="preferences_save">Kaydet</string>
-  <string name="preferences_connecting_to_proxy">Vekil sunucuya bağlanılıyor...</string>
+  <string name="preferences_connecting_to_proxy">Vekil sunucuya bağlanılıyor…</string>
   <string name="preferences_connected_to_proxy">Vekil sunucuya bağlanıldı</string>
   <string name="preferences_connection_failed">Bağlantı başarısız</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Vekil sunucuya bağlanılamadı. Vekil adresinizi kontrol edin ve tekrar deneyin.</string>
@@ -2330,7 +2329,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN\'iniz kaydedilmedi. PIN oluşturmanız için daha sonra hatırlatacağız.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN oluşturuldu.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN\'inizi tekrar girin</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de saklanan bilgiyi şifreler, böylece sadece siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz yeniden yüklediğinizde geri yüklenecektir. Uygulamayı açmak için PIN\'e ihtiyaç yoktur.</string>
@@ -2404,7 +2403,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>
-  <string name="CallNotificationBuilder_connecting">Bağlanıyor...</string>
+  <string name="CallNotificationBuilder_connecting">Bağlanıyor…</string>
   <string name="Permissions_permission_required">İzin gerekli</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"SMS\"i etkinleştirin.</string>
   <string name="Permissions_continue">Devam Et</string>

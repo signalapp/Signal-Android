@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">ข้อความใหม่</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal กำลังปรับรุ่น...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal กำลังปรับรุ่น…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ขณะนี้: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน</string>
@@ -18,7 +18,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">นี่จะปลดล็อก Signal และการแจ้งเตือนข้อความอย่างถาวร</string>
   <string name="ApplicationPreferencesActivity_disable">ปิดใช้งาน</string>
   <string name="ApplicationPreferencesActivity_unregistering">ยกเลิกการลงทะเบียน</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">ปิดใช้งานข้อความและการโทร Signal หรือไม่?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ปิดใช้งานข้อความและการโทร Signal ด้วยการยกเลิกการลงทะเบียนจากเซิร์ฟเวอร์ คุณจะต้องลงทะเบียนหมายเลขโทรศัพท์ใหม่หากต้องการกลับมาใช้งานอีกในอนาคต</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์</string>
@@ -65,10 +65,10 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้ง Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">กำลังอัปโหลดสื่อ...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">กำลังบีบอัดวิดีโอ...</string>
+  <string name="AttachmentUploadJob_uploading_media">กำลังอัปโหลดสื่อ…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">กำลังบีบอัดวิดีโอ…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">กำลังตรวจหาข้อความ...</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">กำลังตรวจหาข้อความ…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกปิดกั้นอยู่</string>
   <string name="BlockedUsersActivity__add_blocked_user">เพิ่มผู้ใช้ที่ปิดกั้น</string>
@@ -339,8 +339,8 @@
   <string name="BackupsPreferenceFragment__turn_off">ปิด</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">เพื่อกู้คืนข้อมูลสำรอง คุณต้องติดตั้ง Signal ใหม่ เปิดแอป แตะ \"กู้คืนข้อมูลสำรอง\" และระบุแฟ้มสำรองข้อมูล %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">เรียนรู้เพิ่มเติม</string>
-  <string name="BackupsPreferenceFragment__in_progress">อยู่ระหว่างดำเนินการ...</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d แล้ว...</string>
+  <string name="BackupsPreferenceFragment__in_progress">อยู่ระหว่างดำเนินการ…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d แล้ว…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูล Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ใช้ค่าที่กำหนดเอง: %s</string>
@@ -813,7 +813,7 @@
   <string name="MediaPickerActivity_send_to">ส่งถึง %s</string>
   <string name="MediaPickerActivity__menu_open_camera">เปิดกล้อง</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ...</string>
+  <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">รายการนี้ถูกลบเพราะมีขนาดใหญ่เกินกำหนด</string>
   <string name="MediaSendActivity_camera_unavailable">ใช้กล้องไม่ได้</string>
   <string name="MediaSendActivity_message_to_s">ข้อความถึง %s</string>
@@ -1113,8 +1113,8 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">กลุ่มที่ไม่มีชื่อ</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">กำลังรับสาย...</string>
-  <string name="RedPhone_ending_call">กำลังวางสาย...</string>
+  <string name="RedPhone_answering">กำลังรับสาย…</string>
+  <string name="RedPhone_ending_call">กำลังวางสาย…</string>
   <string name="RedPhone_ringing">กำลังเรียกสาย…</string>
   <string name="RedPhone_busy">ไม่ว่าง</string>
   <string name="RedPhone_recipient_unavailable">ผู้รับไม่พร้อมใช้งาน</string>
@@ -1128,8 +1128,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">โทรเสียง Signal...</string>
-  <string name="WebRtcCallView__signal_video_call">โทรวิดีโอ Signal...</string>
+  <string name="WebRtcCallView__signal_voice_call">โทรเสียง Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">โทรวิดีโอ Signal…</string>
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
   <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
@@ -1137,7 +1137,7 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\" โทรกลุ่ม</string>
   <string name="WebRtcCallView__view_participants_list">ดูผู้เข้าร่วม</string>
   <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
-  <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่...</string>
+  <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
   <string name="WebRtcCallView__joining">กำลังเข้าร่วม…</string>
   <string name="WebRtcCallView__disconnected">เลิกเชื่อมต่อแล้ว</string>
   <string name="WebRtcCallView__no_one_else_is_here">ไม่มีใครที่นี่</string>
@@ -1547,7 +1547,7 @@
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">เล่น ... หยุด</string>
+  <string name="audio_view__play_pause_accessibility_description">เล่น … หยุด</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">เสียง</string>
@@ -1740,7 +1740,6 @@
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>มีบางสิ่งไม่ทำงาน</item>
     <item>ขอความสามารถใหม่</item>
     <item>มีคำถาม</item>
@@ -1915,7 +1914,7 @@
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพการโทรลง</string>
   <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
-  <string name="preferences_app_protection__who_can">ใครสามารถ...</string>
+  <string name="preferences_app_protection__who_can">ใครสามารถ…</string>
   <string name="preferences_app_protection__app_access">การเข้าถึงแอป</string>
   <string name="preferences_app_protection__communication">การสื่อสาร</string>
   <string name="preferences_chats__chats">การพูดคุย</string>
@@ -1952,7 +1951,7 @@
   <string name="preferences_only_use_a_proxy_if">ใช้พร็อกซีเมื่อคุณไม่สามารถเชื่อมต่อ Signal บนเซลลูลาร์หรือWi-Fi ได้เท่านั้น</string>
   <string name="preferences_share">แบ่งปัน</string>
   <string name="preferences_save">บันทึก</string>
-  <string name="preferences_connecting_to_proxy">กำลังเชื่อมต่อพร็อกซี...</string>
+  <string name="preferences_connecting_to_proxy">กำลังเชื่อมต่อพร็อกซี…</string>
   <string name="preferences_connected_to_proxy">เชื่อมต่อพร็อกซีแล้ว</string>
   <string name="preferences_connection_failed">การเชื่อมต่อล้มเหลว</string>
   <string name="preferences_couldnt_connect_to_the_proxy">ไม่สามารถเชื่อมต่อไปยังพร็อกซีได้ โปรดตรวจสอบที่อยู่พร็อกซีและลองใหม่อีกครั้ง</string>
@@ -1969,7 +1968,7 @@
   <string name="PaymentsAllActivityFragment__received">ได้รับแล้ว</string>
   <string name="PaymentsHomeFragment__introducing_payments">แนะนำการชำระเงิน (รุ่นทดสอบ)</string>
   <string name="PaymentsHomeFragment__activate_payments">ใช้การชำระเงิน</string>
-  <string name="PaymentsHomeFragment__activating_payments">กำลังเปิดใช้การชำระเงิน...</string>
+  <string name="PaymentsHomeFragment__activating_payments">กำลังเปิดใช้การชำระเงิน…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">เรียกคืนบัญชีชำระเงิน</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">ยังไม่มีกิจกรรมเร็วๆ นี้</string>
   <string name="PaymentsHomeFragment__pending_requests">คำขอที่ค้างอยู่</string>
@@ -2005,8 +2004,8 @@
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">รายละเอียด</string>
   <string name="PaymentsDetailsFragment__status">สถานะ</string>
-  <string name="PaymentsDetailsFragment__submitting_payment">กำลังส่งคำสั่งจ่ายเงิน...</string>
-  <string name="PaymentsDetailsFragment__processing_payment">กำลังประมวลผลการจ่ายเงิน...</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">กำลังส่งคำสั่งจ่ายเงิน…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">กำลังประมวลผลการจ่ายเงิน…</string>
   <string name="PaymentsDetailsFragment__payment_complete">การจ่ายเงินสมบูรณ์</string>
   <string name="PaymentsDetailsFragment__payment_failed">การจ่ายเงินล้มเหลว</string>
   <string name="PaymentsDetailsFragment__network_fee">ค่าธรรมเนียมเครือข่าย</string>
@@ -2059,8 +2058,8 @@
   <string name="ConfirmPayment__to">ถึง</string>
   <string name="ConfirmPayment__total_amount">จำนวนรวม</string>
   <string name="ConfirmPayment__balance_s">ยอด: %1$s</string>
-  <string name="ConfirmPayment__submitting_payment">ส่งคำสั่งชำระเงิน...</string>
-  <string name="ConfirmPayment__processing_payment">กำลังประมวลผลการชำระเงิน...</string>
+  <string name="ConfirmPayment__submitting_payment">ส่งคำสั่งชำระเงิน…</string>
+  <string name="ConfirmPayment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
   <string name="ConfirmPayment__payment_complete">การชำระเงินสมบูรณ์</string>
   <string name="ConfirmPayment__payment_failed">การชำระเงินล้มเหลว</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ผู้รับไม่ถูกต้อง</string>
@@ -2406,7 +2405,7 @@
   <string name="NewDeviceTransferSetup__restore_a_backup">กู้คืนข้อมูลสำรอง</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">เกิดความผิดพลาดที่ไม่คาดคิดขึ้นขณะที่พยายามจะเชื่อมต่อกับอุปกรณ์ Android เครื่องเก่าของคุณ</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">กำลังค้นหาอุปกรณ์ Android เครื่องใหม่...</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">กำลังค้นหาอุปกรณ์ Android เครื่องใหม่…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal จำเป็นต้องได้รับอนุญาตในการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องใหม่ของคุณ</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal จำเป็นต้องเปิดใช้งานบริการการเข้าถึงตำแหน่งของคุณเพื่อค้นหาและเชื่อมต่ออุปรกณ์ Android เครื่องใหม่ของคุณ</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal จำเป็นต้องเปิด Wi-Fi- เพื่อค้นหาและเชื่อมต่อกับอุปกรณ์ Android เครื่องใหม่ของคุณ ซึ่ง Wi-Fi จำเป้นต้องเปิดไว้แต่ไม่จำเป็นต้องเชื่อมต่อกับเครือข่าย Wi-Fi</string>
@@ -2443,13 +2442,13 @@
   <string name="DeviceTransferSetup__try_again">ลองอีกครั้ง</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">กำลังรออุปกรณ์อีกเครื่อง</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">แตะปุ่มดำเนินการต่อบนอุปกรณ์อีกเครื่องของคุณเพื่อเริ่มการถ่ายโอน</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">แตะปุ่มดำเนินการต่อบนอุปกรณ์อีกเครื่องของคุณ...</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">แตะปุ่มดำเนินการต่อบนอุปกรณ์อีกเครื่องของคุณ…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">ไม่สามารถถ่ายโอนจาก Signal รุ่นที่ใหม่กว่า</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">กำลังถ่ายโอนข้อมูล</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">ทำให้แน่ใจว่าอุปกรณ์ทั้งคู่อยู่ใกล้กัน อย่าปิดเครื่องใด และให้เปิด Signal อยู่ตลอดเวลา การถ่ายโอนนั้นจะถูกเข้ารหัสลับตั้งแต่ต้นทางถึงปลายทาง</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d ข้อความจนถึงตอนนี้...</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d ข้อความจนถึงตอนนี้…</string>
   <string name="DeviceTransfer__cancel">ยกเลิก</string>
   <string name="DeviceTransfer__try_again">ลองอีกครั้ง</string>
   <string name="DeviceTransfer__stop_transfer_question">หยุดการถ่ายโอนหรือไม่?</string>
@@ -2479,12 +2478,12 @@
   <string name="NewDeviceTransferComplete__continue_registration">ดำเนินการลงทะเบียนต่อ</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">ถ่ายโอนบัญชีผู้ใช้</string>
-  <string name="DeviceToDeviceTransferService_status_ready">กำลังเตรียมเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ...</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">กำลังเตรียมการเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ...</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">กำลังค้นหาอุปกรณ์ Android อีกเครื่องของคุณ...</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">กำลังเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ...</string>
+  <string name="DeviceToDeviceTransferService_status_ready">กำลังเตรียมเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">กำลังเตรียมการเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">กำลังค้นหาอุปกรณ์ Android อีกเครื่องของคุณ…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">กำลังเชื่อมต่อไปยังอุปกรณ์ Android อีกเครื่องของคุณ…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">จำเป็นต้องได้รับการตรวจยืนยัน</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">กำลังถ่ายโอนบัญชีผู้ใช้...</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">กำลังถ่ายโอนบัญชีผู้ใช้…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">โปรดลงทะเบียนบนอุปกรณ์เครื่องใหม่ของคุณให้เสร็จสิ้น</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">บัญชี Signal ของคุณได้รับการถ่ายโอนไปยังอุปกรณ์เครื่องใหม่ของคุณ แต่คุณจะต้องลงทะเบียนให้แล้วเสร็จเพื่อดำเนินการต่อ โดย Signal จะยังคงไม่เปิดใช้งานบนอุปกรณ์เครื่องนี้</string>

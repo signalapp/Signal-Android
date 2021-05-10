@@ -1748,7 +1748,6 @@
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>機能の不具合k</item>
     <item>機能のリクエスト</item>
     <item>質問</item>
@@ -2432,7 +2431,7 @@
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">より新しいバージョンのSignalからは移行できません</string>
   <!--DeviceTransferFragment-->
-  <string name="DeviceTransfer__transferring_data">データを転送しています</string>
+  <string name="DeviceTransfer__transferring_data">データを移行しています</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">端末同士を近づけてください。どちらの端末も電源を切らず、Signalを開いたままにしてください。転送はエンドツーエンドで暗号化されます。</string>
   <string name="DeviceTransfer__d_messages_so_far">これまで%1$d件のメッセージ…</string>
   <string name="DeviceTransfer__cancel">キャンセル</string>

@@ -1975,7 +1975,6 @@
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>משהו לא עובד</item>
     <item>בקשת מאפיין</item>
     <item>שאלה</item>

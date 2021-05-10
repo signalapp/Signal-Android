@@ -1811,7 +1811,6 @@
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Нешто не работи</item>
     <item>Барање за опција</item>
     <item>Прашање</item>

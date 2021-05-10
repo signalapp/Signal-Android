@@ -72,7 +72,7 @@
   <string name="AttachmentUploadJob_uploading_media">Llwytho cyfrwng…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Cywasgu fideo…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Gwirio am negeseuon...</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Gwirio am negeseuon…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="BlockedUsersActivity__add_blocked_user">Ychwanegu defnyddiwr sydd wedi\'i rwystro</string>
@@ -375,8 +375,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupsPreferenceFragment__turn_off">Diffodd</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">I adfer copi wrth gefn, gosodwch gopi newydd o Signal. Agorwch yr app a thapio \"Adfer copi wrth gefn\", yna canfod y ffeil wrth gefn. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Dysgu rhagor</string>
-  <string name="BackupsPreferenceFragment__in_progress">Cynnydd...</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d hyd yn hyn...</string>
+  <string name="BackupsPreferenceFragment__in_progress">Cynnydd…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d hyd yn hyn…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe’i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau’r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
@@ -1290,9 +1290,9 @@ Send neges heb ei ddiogelu?</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grŵp dienw</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Yn ateb...</string>
-  <string name="RedPhone_ending_call">Yn gorffen galwad...</string>
-  <string name="RedPhone_ringing">Yn canu...</string>
+  <string name="RedPhone_answering">Yn ateb…</string>
+  <string name="RedPhone_ending_call">Yn gorffen galwad…</string>
+  <string name="RedPhone_ringing">Yn canu…</string>
   <string name="RedPhone_busy">Prysur</string>
   <string name="RedPhone_recipient_unavailable">Nid yw\'r derbynnydd ar gael</string>
   <string name="RedPhone_network_failed">Methodd y rhwydwaith!</string>
@@ -1314,7 +1314,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__s_group_call">Galwad Grŵp \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
   <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
-  <string name="WebRtcCallView__reconnecting">Yn Ailgysylltu...</string>
+  <string name="WebRtcCallView__reconnecting">Yn Ailgysylltu…</string>
   <string name="WebRtcCallView__joining">Yn ymuno…</string>
   <string name="WebRtcCallView__disconnected">Datgysylltwyd</string>
   <string name="WebRtcCallView__no_one_else_is_here">Does neb arall yma</string>
@@ -1748,7 +1748,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Dim grwpiau\'n gyffredin. Ystyriwch y ceisiadau\'n ofalus</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Dim cysylltiadau\'n y grŵp hwn. Ystyriwch y ceisiadau\'n ofalus</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Chwarae ... Oedi</string>
+  <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sain</string>
@@ -1890,7 +1890,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Dim ond i chi y bydd enwau a lluniau grŵp MMS cyfaddas yn weladwy.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Ynghylch</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Ysgrifennwch ychydig o eiriau amdanoch...</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Ysgrifennwch ychydig o eiriau amdanoch…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Siarad yn rhydd</string>
   <string name="EditAboutFragment_encrypted">Amgryptiedig</string>
@@ -1969,7 +1969,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Mae Rhywbeth Wedi Torri</item>
     <item>Cais Nodwedd</item>
     <item>Cwestiwn</item>
@@ -2147,7 +2146,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth gwenogluniau Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ail-alw pob galwad drwy\'r gweinydd Signal i osgoi datgelu eich cyfeiriad IP i\'ch cyswllt. Bydd galluogi yn lleihau ansawdd galwadau.</string>
   <string name="preferences_advanced__always_relay_calls">Anfon galwadau ymlaen bob tro</string>
-  <string name="preferences_app_protection__who_can">Pwy all...</string>
+  <string name="preferences_app_protection__who_can">Pwy all…</string>
   <string name="preferences_app_protection__app_access">Mynediad i ap</string>
   <string name="preferences_app_protection__communication">Cyfathrebu</string>
   <string name="preferences_chats__chats">Sgyrsiau</string>
@@ -2184,7 +2183,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_only_use_a_proxy_if">Defnyddiwch ddirprwy dim ond os nad ydych chi\'n gallu cysylltu â Signal ar gellog neu ddiwifr.</string>
   <string name="preferences_share">Rhannu</string>
   <string name="preferences_save">Cadw</string>
-  <string name="preferences_connecting_to_proxy">Yn cysylltu â dirprwy ...</string>
+  <string name="preferences_connecting_to_proxy">Yn cysylltu â dirprwy …</string>
   <string name="preferences_connected_to_proxy">Wedi cysylltu â dirprwy</string>
   <string name="preferences_connection_failed">Methodd y cysylltiad</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Methu cysylltu â\'r dirprwy. Gwiriwch y cyfeiriad dirprwy a cheisiwch eto.</string>
@@ -2202,7 +2201,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="PaymentsHomeFragment__introducing_payments">Yn cyflwyno taliadau (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Defnyddiwch Signal i anfon a derbyn MobileCoin, arian cyfred digidol newydd sy\'n canolbwyntio ar breifatrwydd. Gweithredwch i ddechrau.</string>
   <string name="PaymentsHomeFragment__activate_payments">Cychwyn Taliadau</string>
-  <string name="PaymentsHomeFragment__activating_payments">Yn cychwyn taliadau...</string>
+  <string name="PaymentsHomeFragment__activating_payments">Yn cychwyn taliadau…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Adfer cyfrif taliadau</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Dim gweithgaredd diweddar eto</string>
   <string name="PaymentsHomeFragment__pending_requests">Ceisiadau o dan ystyriaeth</string>
@@ -2313,7 +2312,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConfirmPayment__total_amount">Cyfanswm</string>
   <string name="ConfirmPayment__balance_s">Balans: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Yn cyflwyno taliad…</string>
-  <string name="ConfirmPayment__processing_payment">Yn prosesu taliad...</string>
+  <string name="ConfirmPayment__processing_payment">Yn prosesu taliad…</string>
   <string name="ConfirmPayment__payment_complete">Taliad wedi\'i gwblhau</string>
   <string name="ConfirmPayment__payment_failed">Methodd y taliad</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Bydd y taliad yn parhau i brosesu</string>
@@ -2673,7 +2672,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tapiwch \"Trosglwyddo Cyfrif\" ac yna \"Parhau\" ar y ddau ddyfais</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Yn paratoi i gysylltu â hen ddyfais Android...</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Yn paratoi i gysylltu â hen ddyfais Android…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Dylai cymryd eiliad, bydd yn barod cyn bo hir</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Yn aros i hen ddyfais Android i gysylltu…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Mae angen caniatâd lleoliad ar Signal i ddarganfod a chysylltu â\'ch hen ddyfais Android.</string>
@@ -2726,7 +2725,7 @@ Send neges heb ei ddiogelu?</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Yn trosglwyddo data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Cadwch y ddwy ddyfais yn agos at ei gilydd. Peidiwch â diffodd y dyfeisiau a chadwch Signal ar agor. Mae trosglwyddiadau wedi\'u hamgryptio o\'r dechrau i\'r diwedd.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d neges hyd yma...</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d neges hyd yma…</string>
   <string name="DeviceTransfer__cancel">Canslo</string>
   <string name="DeviceTransfer__try_again">Ceisio eto</string>
   <string name="DeviceTransfer__stop_transfer_question">Stopio\'r trosglwyddo?</string>
@@ -2756,10 +2755,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="NewDeviceTransferComplete__continue_registration">Parhau i gofrestru</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Trosglwyddo cyfrif</string>
-  <string name="DeviceToDeviceTransferService_status_ready">Yn paratoi i gysylltu â\'ch dyfais Android arall ...</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">Yn paratoi i gysylltu â\'ch dyfais Android arall...</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">Yn chwilio am eich dyfais Android arall...</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Yn cysylltu â\'ch dyfais Android arall...</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Yn paratoi i gysylltu â\'ch dyfais Android arall …</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Yn paratoi i gysylltu â\'ch dyfais Android arall…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Yn chwilio am eich dyfais Android arall…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Yn cysylltu â\'ch dyfais Android arall…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Mae angen dilysu</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Yn trosglwyddo cyfrif…</string>
   <!--OldDeviceTransferLockedDialog-->

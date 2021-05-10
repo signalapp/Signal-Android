@@ -66,7 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Enviando mídia…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Comprimindo vídeo…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Procurando mensagens...</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Procurando mensagens…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Pessoas bloqueadas</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adicionar uma pessoa bloqueada</string>
@@ -754,7 +754,7 @@
   <string name="InviteActivity_share_with_contacts">Compartilhar com contatos</string>
   <string name="InviteActivity_choose_how_to_share">Escolher como compartilhar</string>
   <string name="InviteActivity_cancel">Cancelar</string>
-  <string name="InviteActivity_sending">Enviando...</string>
+  <string name="InviteActivity_sending">Enviando…</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -853,7 +853,7 @@
   <string name="MediaPickerActivity_send_to">Enviar para %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Abrir câmera</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Adicionar legenda...</string>
+  <string name="MediaSendActivity_add_a_caption">Adicionar legenda…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Um item foi removido porque excedeu o limite de tamanho</string>
   <string name="MediaSendActivity_camera_unavailable">Câmera indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
@@ -1170,7 +1170,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">Atendendo…</string>
   <string name="RedPhone_ending_call">Encerrando a chamada…</string>
-  <string name="RedPhone_ringing">Chamando...</string>
+  <string name="RedPhone_ringing">Chamando…</string>
   <string name="RedPhone_busy">Ocupado</string>
   <string name="RedPhone_recipient_unavailable">Destinatário não disponível</string>
   <string name="RedPhone_network_failed">Rede falhou!</string>
@@ -1181,10 +1181,10 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toque para ligar seu vídeo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para ligar para %1$s, Signal precisa ter acesso à sua câmera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Chamando...</string>
+  <string name="WebRtcCallActivity__calling">Chamando…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Mensagem de voz Signal...</string>
-  <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal...</string>
+  <string name="WebRtcCallView__signal_voice_call">Mensagem de voz Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal…</string>
   <string name="WebRtcCallView__start_call">Começar a chamada</string>
   <string name="WebRtcCallView__join_call">Participar da chamada</string>
   <string name="WebRtcCallView__call_is_full">A chamada está lotada</string>
@@ -1192,7 +1192,7 @@
   <string name="WebRtcCallView__s_group_call">Chamada em grupo \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Ver os participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Seu vídeo está desligado</string>
-  <string name="WebRtcCallView__reconnecting">Reconectando...</string>
+  <string name="WebRtcCallView__reconnecting">Reconectando…</string>
   <string name="WebRtcCallView__joining">Entrando…</string>
   <string name="WebRtcCallView__disconnected">Desconectado</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ninguém mais está aqui</string>
@@ -1547,7 +1547,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostrar discador</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nenhum contato.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
   <!--ContactSelectionListFragment-->
@@ -1761,7 +1761,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se você quiser verificar a segurança da sua criptografia ponta a ponta com %s, compare os números acima com os números no dispositivo dessa pessoa. Outra opção é escanear o código QR no telefone dela, ou pedir que ela escaneie o código no seu dispositivo. <a href="https://signal.org/redirect/safety-numbers">Saiba mais.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para escanear</string>
-  <string name="verify_display_fragment__loading">Carregando...</string>
+  <string name="verify_display_fragment__loading">Carregando…</string>
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
@@ -2285,8 +2285,8 @@
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">A pesquisa é hospedada pelo Alchemer no domínio seguro: surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
-  <string name="ConversationListFragment_loading">Carregando...</string>
-  <string name="CallNotificationBuilder_connecting">Conectando...</string>
+  <string name="ConversationListFragment_loading">Carregando…</string>
+  <string name="CallNotificationBuilder_connecting">Conectando…</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>

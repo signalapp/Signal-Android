@@ -1229,7 +1229,7 @@
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ansluten till proxy.</string>
   <!--RecaptchaProofActivity-->
   <string name="RecaptchaProofActivity_failed_to_submit">Det gick inte att skicka</string>
-  <string name="RecaptchaProofActivity_complete_verification">Fullständig verifiering</string>
+  <string name="RecaptchaProofActivity_complete_verification">Slutför verifiering</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
@@ -1825,7 +1825,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Något fungerar inte</item>
     <item>Funktionsbegäran</item>
     <item>Fråga</item>
@@ -2027,7 +2026,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Visa indikatorer</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Visa en statusikon när du väljer \"Meddelandedetaljer\" på meddelanden som levererades med dold avsändare.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillåt från alla</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer som du inte delat din profil med.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer du inte delat din profil med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Läs mer</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <string name="preferences_proxy">Proxy</string>

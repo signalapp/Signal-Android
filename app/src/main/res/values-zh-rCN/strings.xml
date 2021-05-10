@@ -1750,7 +1750,6 @@
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>出现问题</item>
     <item>功能请求</item>
     <item>疑问</item>

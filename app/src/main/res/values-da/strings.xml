@@ -1831,7 +1831,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Noget virker ikke</item>
     <item>Funktionsanmodning</item>
     <item>Spørgsmål</item>

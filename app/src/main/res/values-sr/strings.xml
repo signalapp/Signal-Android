@@ -1902,7 +1902,6 @@
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Нешто не ради</item>
     <item>Захтев способности</item>
     <item>Питање</item>

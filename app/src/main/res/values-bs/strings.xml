@@ -1903,7 +1903,6 @@
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Nešto ne funkcioniše</item>
     <item>Zahtjev za novim funkcijama</item>
     <item>Pitanje</item>

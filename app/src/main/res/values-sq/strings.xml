@@ -1831,7 +1831,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
   <string-array name="HelpFragment__categories">
-    <item></item>
     <item>Diçka S’Funksionon</item>
     <item>Kërkesë Veçorie</item>
     <item>Pyetje</item>
