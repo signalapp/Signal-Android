@@ -16,17 +16,77 @@
         android:id="@+id/profilePictureView"
         android:layout_width="@dimen/large_profile_picture_size"
         android:layout_height="@dimen/large_profile_picture_size"
-        android:layout_marginTop="@dimen/large_spacing" />
+        android:layout_marginTop="@dimen/large_spacing"/>
 
-    <TextView
-        android:id="@+id/nameTextView"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:textSize="@dimen/massive_font_size"
-        android:textStyle="bold"
-        android:textColor="@color/text"
-        android:text="Spiderman" />
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/nameTextViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/massive_font_size"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+                android:text="Spiderman"
+                android:paddingStart="24dp"
+                android:paddingEnd="0dp"
+                android:drawablePadding="@dimen/small_spacing"
+                app:drawableEndCompat="@drawable/ic_baseline_edit_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nameEditContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/btnCancelNickNameEdit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_clear_24"/>
+
+            <EditText
+                android:id="@+id/nameEditText"
+                style="@style/SessionEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/small_spacing"
+                android:layout_marginEnd="@dimen/small_spacing"
+                android:textAlignment="center"
+                android:textSize="@dimen/very_large_font_size"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:hint="Enter a name"/>
+
+            <ImageView
+                android:id="@+id/btnSaveNickNameEdit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_done_24"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <TextView
         style="@style/SessionIDTextView"

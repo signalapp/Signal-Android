@@ -51,7 +51,7 @@
                 android:layout_marginStart="@dimen/medium_spacing"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/titleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,10 +59,8 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:text="Conversation"
-                    android:hint="Enter a name"
                     android:textColor="@color/text"
                     android:textSize="@dimen/large_font_size"
-                    android:inputType="text"
                     android:fontFamily="sans-serif-medium" />
 
                 <LinearLayout

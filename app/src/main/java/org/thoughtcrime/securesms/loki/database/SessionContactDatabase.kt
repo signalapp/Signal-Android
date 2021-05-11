@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
+import androidx.core.database.getStringOrNull
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.Job
@@ -35,7 +36,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
 
     fun getContactWithSessionID(sessionID: String): Contact? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionContactTable, "$sessionID = ?", arrayOf(sessionID)) { cursor ->
+        return database.get(sessionContactTable, "${SessionContactDatabase.sessionID} = ?", arrayOf(sessionID)) { cursor ->
             contactFromCursor(cursor)
         }
     }
@@ -55,7 +56,9 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         contentValues.put(nickname, contact.nickname)
         contentValues.put(profilePictureURL, contact.profilePictureURL)
         contentValues.put(profilePictureFileName, contact.profilePictureFileName)
-        contentValues.put(profilePictureEncryptionKey, Base64.encodeBytes(contact.profilePictureEncryptionKey))
+        contact.profilePictureEncryptionKey?.let {
+            contentValues.put(profilePictureEncryptionKey, Base64.encodeBytes(it))
+        }
         contentValues.put(threadID, threadID)
         contentValues.put(isTrusted, if (contact.isTrusted) 1 else 0)
         database.insertOrUpdate(sessionContactTable, contentValues, "$sessionID = ?", arrayOf(contact.sessionID))
@@ -64,11 +67,13 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
     private fun contactFromCursor(cursor: Cursor): Contact {
         val sessionID = cursor.getString(sessionID)
         val contact = Contact(sessionID)
-        contact.name = cursor.getString(name)
-        contact.nickname = cursor.getString(nickname)
-        contact.profilePictureURL = cursor.getString(profilePictureURL)
-        contact.profilePictureFileName = cursor.getString(profilePictureFileName)
-        contact.profilePictureEncryptionKey = Base64.decode(cursor.getString(profilePictureEncryptionKey))
+        contact.name = cursor.getStringOrNull(name)
+        contact.nickname = cursor.getStringOrNull(nickname)
+        contact.profilePictureURL = cursor.getStringOrNull(profilePictureURL)
+        contact.profilePictureFileName = cursor.getStringOrNull(profilePictureFileName)
+        cursor.getStringOrNull(profilePictureEncryptionKey)?.let {
+            contact.profilePictureEncryptionKey = Base64.decode(it)
+        }
         contact.threadID = cursor.getInt(threadID)
         contact.isTrusted = cursor.getInt(isTrusted) != 0
         return contact

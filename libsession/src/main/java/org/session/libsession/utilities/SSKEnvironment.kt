@@ -36,6 +36,7 @@ class SSKEnvironment(
         fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray)
         fun setUnidentifiedAccessMode(context: Context, recipient: Recipient, unidentifiedAccessMode: Recipient.UnidentifiedAccessMode)
         fun updateOpenGroupProfilePicturesIfNeeded(context: Context)
+        fun getDisplayName(context: Context, recipient: Recipient): String?
     }
 
     interface MessageExpirationManagerProtocol {

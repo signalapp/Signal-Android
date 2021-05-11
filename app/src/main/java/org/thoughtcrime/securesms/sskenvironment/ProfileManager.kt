@@ -73,4 +73,16 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
     override fun updateOpenGroupProfilePicturesIfNeeded(context: Context) {
         ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
     }
+
+    override fun getDisplayName(context: Context, recipient: Recipient): String? {
+        val sessionID = recipient.address.serialize()
+        val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
+        var contact = contactDatabase.getContactWithSessionID(sessionID)
+        if (contact == null) {
+            contact = Contact(sessionID)
+            contact.name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(sessionID) ?: recipient.profileName ?: recipient.name
+            contactDatabase.setContact(contact)
+        }
+        return contact.displayName(Contact.contextForRecipient(recipient))
+    }
 }
