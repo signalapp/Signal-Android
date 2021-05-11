@@ -782,6 +782,9 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="audio_view__play_accessibility_description">Lire</string>
   <string name="audio_view__pause_accessibility_description">Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
+  <!-- open_group_invitation_view -->
+  <string name="open_group_invitation_view__join_accessibility_description">Rejoindre</string>
+  <string name="open_group_invitation_view__open_group_invitation">Invitation à un groupe public</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Contenu audio</string>
   <string name="QuoteView_video">Vidéo</string>

@@ -1,38 +1,39 @@
 package org.session.libsession.utilities
 
-import java.net.MalformedURLException
-import java.net.URL
+import okhttp3.HttpUrl
 
 object OpenGroupUrlParser {
 
     // Error
     sealed class Error(val description: String) : Exception(description) {
-        class MalformedUrl(message: String?) : Error("Malformed URL: $message.")
+        class MalformedUrl() : Error("Malformed URL.")
         object NoRoomSpecified : Error("No room specified in the URL.")
         object NoPublicKeySpecified : Error("No public key specified in the URL.")
-        object WrongQuery : Error("'public_key' argument is missing.")
         object InvalidPublicKeyProvided : Error("Invalid public key provided.")
     }
 
-    private const val pathPrefix = "/"
-    private const val queryPrefix = "public_key="
+    private const val queryPrefix = "public_key"
 
-    fun parseUrl(url: String): OpenGroupRoom {
+    fun parseUrl(stringUrl: String): OpenGroupRoom {
+        // Url have to start with 'http://'
+        val url = if (!stringUrl.startsWith("http")) "http://$stringUrl" else stringUrl
         // If the URL is malformed, it will throw an exception
-        val url = try { URL(url) } catch (e: MalformedURLException) { throw Error.MalformedUrl(e.message) }
+        val httpUrl = HttpUrl.parse(url) ?: throw Error.MalformedUrl()
 
-        val host = url.host
+        val host = httpUrl.host()
         // Test if the room is specified in the URL
-        val room = if (!url.path.isNullOrEmpty()) url.path.removePrefix(pathPrefix) else throw Error.NoRoomSpecified
+        val room = httpUrl.pathSegments().firstOrNull { !it.isNullOrEmpty() } ?: throw Error.NoRoomSpecified
         // Test if the query is specified in the URL
-        val query = if (!url.query.isNullOrEmpty()) url.query else throw Error.NoPublicKeySpecified
-        // Test if 'public_key' is specified in the URL
-        val publicKey = if (query.contains(queryPrefix)) url.query.removePrefix(queryPrefix) else throw Error.WrongQuery
+        val publicKey = httpUrl.queryParameter(queryPrefix) ?: throw Error.NoPublicKeySpecified
         // Public key must be 64 characters
         if (publicKey.length != 64) throw Error.InvalidPublicKeyProvided
 
         return OpenGroupRoom(host,room,publicKey)
     }
+
+    fun trimParameter(stringUrl: String): String {
+        return stringUrl.substringBefore("?$queryPrefix")
+    }
 }
 
-class OpenGroupRoom(val serverHost: String, val room: String, val serverPublicKey: String) {}
+class OpenGroupRoom(val serverHost: String, val room: String, val serverPublicKey: String) { }

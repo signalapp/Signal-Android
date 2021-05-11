@@ -350,7 +350,9 @@ public class SmsDatabase extends MessagingDatabase {
       if (((IncomingGroupMessage)message).isUpdateMessage()) type |= Types.GROUP_UPDATE_MESSAGE_BIT;
     }
 
-    if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isPush()) type |= Types.PUSH_MESSAGE_BIT;
+
+    if (message.isOpenGroupInvitation()) type |= Types.OPEN_GROUP_INVITATION_BIT;
 
     Recipient recipient = Recipient.from(context, message.getSender(), true);
 
@@ -443,8 +445,9 @@ public class SmsDatabase extends MessagingDatabase {
   {
     long type = Types.BASE_SENDING_TYPE;
 
-    if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
-    if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
+    if (message.isSecureMessage())       type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
+    if (forceSms)                        type |= Types.MESSAGE_FORCE_SMS_BIT;
+    if (message.isOpenGroupInvitation()) type |= Types.OPEN_GROUP_INVITATION_BIT;
 
     Address            address               = message.getRecipient().getAddress();
     Map<Address, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);

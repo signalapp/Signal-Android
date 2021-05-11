@@ -41,7 +41,7 @@ message Content {
   optional TypingMessage              typingMessage              = 6;
   optional ConfigurationMessage       configurationMessage       = 7;
   optional DataExtractionNotification dataExtractionNotification = 8;
-  optional OpenGroupInvitation        openGroupInvitation        = 9;
+
 }
 
 message KeyPair {
@@ -103,6 +103,13 @@ message DataMessage {
     optional string profilePicture = 2;
   }
 
+  message OpenGroupInvitation {
+    // @required
+    required string url = 1;
+    // @required
+    required string name = 3;
+  }
+
   message ClosedGroupControlMessage {
 
     enum Type {
@@ -141,14 +148,10 @@ message DataMessage {
   optional Quote                     quote                     = 8;
   repeated Preview                   preview                   = 10;
   optional LokiProfile               profile                   = 101;
+  optional OpenGroupInvitation       openGroupInvitation       = 102;
   optional ClosedGroupControlMessage closedGroupControlMessage = 104;
   optional string                    syncTarget                = 105;
 }
-
-message OpenGroupInvitation {
-    optional string groupUrl = 1;
-    optional string groupName = 2;
-  }
 
 message ConfigurationMessage {
 

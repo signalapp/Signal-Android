@@ -121,7 +121,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
                 }
 
             } catch (e: Exception) {
-                Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
+                Log.e("JoinPublicChatActivity", "Failed to join open group.", e)
                 withContext(Dispatchers.Main) {
                     hideLoader()
                     Toast.makeText(this@JoinPublicChatActivity, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()

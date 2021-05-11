@@ -5,11 +5,14 @@ import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
 
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.utilities.logging.Log;
 
 public class IncomingTextMessage implements Parcelable {
 
@@ -39,6 +42,8 @@ public class IncomingTextMessage implements Parcelable {
   private final int     subscriptionId;
   private final long    expiresInMillis;
   private final boolean unidentified;
+
+  private boolean isOpenGroupInvitation = false;
 
   public IncomingTextMessage(Address sender, int senderDeviceId, long sentTimestampMillis,
                              String encodedBody, Optional<SignalServiceGroup> group,
@@ -94,6 +99,7 @@ public class IncomingTextMessage implements Parcelable {
     this.subscriptionId       = base.getSubscriptionId();
     this.expiresInMillis      = base.getExpiresIn();
     this.unidentified         = base.isUnidentified();
+    this.isOpenGroupInvitation= base.isOpenGroupInvitation();
   }
 
   public static IncomingTextMessage from(VisibleMessage message,
@@ -102,6 +108,14 @@ public class IncomingTextMessage implements Parcelable {
                                          long expiresInMillis)
   {
     return new IncomingTextMessage(sender, 1, message.getSentTimestamp(), message.getText(), group, expiresInMillis, false);
+  }
+
+  public static IncomingTextMessage fromOpenGroupInvitation(OpenGroupInvitation openGroupInvitation, Address sender, Long sentTimestamp)
+  {
+    String body = UpdateMessageData.Companion.buildOpenGroupInvitation(openGroupInvitation.getGroupUrl(), openGroupInvitation.getGroupName()).toJSON();
+    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(sender, 1, sentTimestamp, body, Optional.absent(), 0, false);
+    incomingTextMessage.isOpenGroupInvitation = true;
+    return incomingTextMessage;
   }
 
   public int getSubscriptionId() {
@@ -163,6 +177,9 @@ public class IncomingTextMessage implements Parcelable {
   public boolean isUnidentified() {
     return unidentified;
   }
+
+  public boolean isOpenGroupInvitation() { return isOpenGroupInvitation; }
+
   @Override
   public int describeContents() {
     return 0;

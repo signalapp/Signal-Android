@@ -9,7 +9,7 @@ import org.session.libsignal.utilities.logging.Log
 import java.util.*
 
 // class used to save update messages details
-class ClosedGroupUpdateMessageData () {
+class UpdateMessageData () {
 
     var kind: Kind? = null
 
@@ -20,7 +20,8 @@ class ClosedGroupUpdateMessageData () {
             JsonSubTypes.Type(Kind.GroupNameChange::class, name = "GroupNameChange"),
             JsonSubTypes.Type(Kind.GroupMemberAdded::class, name = "GroupMemberAdded"),
             JsonSubTypes.Type(Kind.GroupMemberRemoved::class, name = "GroupMemberRemoved"),
-            JsonSubTypes.Type(Kind.GroupMemberLeft::class, name = "GroupMemberLeft")
+            JsonSubTypes.Type(Kind.GroupMemberLeft::class, name = "GroupMemberLeft"),
+            JsonSubTypes.Type(Kind.OpenGroupInvitation::class, name = "OpenGroupInvitation")
     )
     sealed class Kind() {
         class GroupCreation(): Kind()
@@ -34,6 +35,9 @@ class ClosedGroupUpdateMessageData () {
             constructor(): this(Collections.emptyList())
         }
         class GroupMemberLeft(): Kind()
+        class OpenGroupInvitation(val groupUrl: String, val groupName: String): Kind() {
+            constructor(): this("", "")
+        }
     }
 
     constructor(kind: Kind): this() {
@@ -41,22 +45,26 @@ class ClosedGroupUpdateMessageData () {
     }
 
     companion object {
-        val TAG = ClosedGroupUpdateMessageData::class.simpleName
+        val TAG = UpdateMessageData::class.simpleName
 
-        fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): ClosedGroupUpdateMessageData? {
+        fun buildGroupUpdate(type: SignalServiceGroup.Type, name: String, members: Collection<String>): UpdateMessageData? {
             return when(type) {
-                SignalServiceGroup.Type.CREATION -> ClosedGroupUpdateMessageData(Kind.GroupCreation())
-                SignalServiceGroup.Type.NAME_CHANGE -> ClosedGroupUpdateMessageData(Kind.GroupNameChange(name))
-                SignalServiceGroup.Type.MEMBER_ADDED -> ClosedGroupUpdateMessageData(Kind.GroupMemberAdded(members))
-                SignalServiceGroup.Type.MEMBER_REMOVED -> ClosedGroupUpdateMessageData(Kind.GroupMemberRemoved(members))
-                SignalServiceGroup.Type.QUIT -> ClosedGroupUpdateMessageData(Kind.GroupMemberLeft())
+                SignalServiceGroup.Type.CREATION -> UpdateMessageData(Kind.GroupCreation())
+                SignalServiceGroup.Type.NAME_CHANGE -> UpdateMessageData(Kind.GroupNameChange(name))
+                SignalServiceGroup.Type.MEMBER_ADDED -> UpdateMessageData(Kind.GroupMemberAdded(members))
+                SignalServiceGroup.Type.MEMBER_REMOVED -> UpdateMessageData(Kind.GroupMemberRemoved(members))
+                SignalServiceGroup.Type.QUIT -> UpdateMessageData(Kind.GroupMemberLeft())
                 else -> null
             }
         }
 
-        fun fromJSON(json: String): ClosedGroupUpdateMessageData? {
+        fun buildOpenGroupInvitation(url: String, name: String): UpdateMessageData {
+            return UpdateMessageData(Kind.OpenGroupInvitation(url, name))
+        }
+
+        fun fromJSON(json: String): UpdateMessageData? {
              return try {
-                JsonUtil.fromJson(json, ClosedGroupUpdateMessageData::class.java)
+                JsonUtil.fromJson(json, UpdateMessageData::class.java)
             } catch (e: JsonParseException) {
                 Log.e(TAG, "${e.message}")
                 null

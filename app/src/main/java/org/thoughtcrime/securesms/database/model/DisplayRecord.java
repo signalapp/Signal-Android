@@ -145,6 +145,12 @@ public abstract class DisplayRecord {
     return isMediaSavedExtraction() || isScreenshotExtraction();
   }
 
+  // Open Group Invitation
+
+  public boolean isOpenGroupInvitation() {
+    return MmsSmsColumns.Types.isOpenGroupInvitation(type);
+  }
+
   public boolean isCallLog() {
     return SmsDatabase.Types.isCallLog(type);
   }

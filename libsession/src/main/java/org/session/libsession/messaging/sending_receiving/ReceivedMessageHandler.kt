@@ -1,13 +1,13 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
-import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.Attachment
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
@@ -49,7 +49,6 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
         is DataExtractionNotification -> handleDataExtractionNotification(message)
         is ConfigurationMessage -> handleConfigurationMessage(message)
-        is OpenGroupInvitation -> handleOpenGroupInvitation(message)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
 }
@@ -148,12 +147,6 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         }
     }
     storage.addContacts(message.contacts)
-}
-
-// Open group invitation handling
-
-fun handleOpenGroupInvitation(message: OpenGroupInvitation) {
-    //TODO
 }
 
 //endregion

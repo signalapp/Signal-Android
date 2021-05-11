@@ -18,6 +18,7 @@ class VisibleMessage : Message()  {
     var quote: Quote? = null
     var linkPreview: LinkPreview? = null
     var profile: Profile? = null
+    var openGroupInvitation: OpenGroupInvitation? = null
 
     override val isSelfSendValid: Boolean = true
 
@@ -41,6 +42,11 @@ class VisibleMessage : Message()  {
             linkPreviewProto?.let {
                 val linkPreview = LinkPreview.fromProto(linkPreviewProto)
                 linkPreview?.let { result.linkPreview = linkPreview }
+            }
+            val openGroupInvitationProto = if (dataMessage.hasOpenGroupInvitation()) dataMessage.openGroupInvitation else null
+            openGroupInvitationProto?.let {
+                val openGroupInvitation = OpenGroupInvitation.fromProto(openGroupInvitationProto)
+                openGroupInvitation?.let { result.openGroupInvitation = openGroupInvitation}
             }
             // TODO Contact
             val profile = Profile.fromProto(dataMessage)
@@ -66,6 +72,7 @@ class VisibleMessage : Message()  {
         if (attachmentIDs.isNotEmpty()) return true
         val text = text?.trim() ?: return false
         if (text.isNotEmpty()) return true
+        if (openGroupInvitation != null) return true
         return false
     }
 
@@ -93,6 +100,11 @@ class VisibleMessage : Message()  {
             linkPreviewProto?.let {
                 dataMessage.addAllPreview(listOf(linkPreviewProto))
             }
+        }
+        //Open group invitation
+        openGroupInvitation?.let {
+            val openGroupInvitationProto = it.toProto()
+            if (openGroupInvitationProto != null) dataMessage.openGroupInvitation = openGroupInvitationProto
         }
         //Attachments
         val attachments = attachmentIDs.mapNotNull { MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) }

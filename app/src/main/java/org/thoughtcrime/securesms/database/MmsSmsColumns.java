@@ -47,13 +47,15 @@ public interface MmsSmsColumns {
                                                             BASE_PENDING_INSECURE_SMS_FALLBACK,
                                                             OUTGOING_CALL_TYPE};
 
+
+    //TODO clean unused keys
     // Message attributes
     protected static final long MESSAGE_FORCE_SMS_BIT  = 0x40;
 
     // Key Exchange Information
     protected static final long KEY_EXCHANGE_MASK                  = 0xFF00;
     protected static final long KEY_EXCHANGE_BIT                   = 0x8000;
-    protected static final long KEY_EXCHANGE_IDENTITY_VERIFIED_BIT = 0x4000;
+    protected static final long KEY_EXCHANGE_IDENTITY_VERIFIED_BIT = 0x40000;
     protected static final long KEY_EXCHANGE_IDENTITY_DEFAULT_BIT  = 0x2000;
     protected static final long KEY_EXCHANGE_CORRUPTED_BIT         = 0x1000;
     protected static final long KEY_EXCHANGE_INVALID_VERSION_BIT   = 0x800;
@@ -75,6 +77,8 @@ public interface MmsSmsColumns {
     // Data Extraction Information
     protected static final long MEDIA_SAVED_EXTRACTION_BIT = 0x01000;
     protected static final long SCREENSHOT_EXTRACTION_BIT  = 0x02000;
+    // Open Group Invitation
+    protected static final long OPEN_GROUP_INVITATION_BIT  = 0x04000;
 
     // Encrypted Storage Information XXX
     public    static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -208,6 +212,10 @@ public interface MmsSmsColumns {
 
     public static boolean isScreenshotExtraction(long type) {
       return (type & SCREENSHOT_EXTRACTION_BIT) != 0;
+    }
+
+    public static boolean isOpenGroupInvitation(long type) {
+      return (type & OPEN_GROUP_INVITATION_BIT) != 0;
     }
 
     public static boolean isIncomingCall(long type) {

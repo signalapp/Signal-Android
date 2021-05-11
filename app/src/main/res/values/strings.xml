@@ -948,6 +948,10 @@
     <string name="audio_view__pause_accessibility_description">Pause</string>
     <string name="audio_view__download_accessibility_description">Download</string>
 
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
