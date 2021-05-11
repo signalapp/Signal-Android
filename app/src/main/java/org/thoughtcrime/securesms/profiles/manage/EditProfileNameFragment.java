@@ -104,7 +104,11 @@ public class EditProfileNameFragment extends Fragment {
   }
 
   public static void trimFieldToMaxByteLength(Editable s) {
-    int trimmedLength = StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
+    trimFieldToMaxByteLength(s, ProfileName.MAX_PART_LENGTH);
+  }
+
+  public static void trimFieldToMaxByteLength(Editable s, int length) {
+    int trimmedLength = StringUtil.trimToFit(s.toString(), length).length();
 
     if (s.length() > trimmedLength) {
       s.delete(trimmedLength, s.length());

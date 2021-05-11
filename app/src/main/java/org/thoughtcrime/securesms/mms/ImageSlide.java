@@ -28,6 +28,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class ImageSlide extends Slide {
@@ -47,7 +49,11 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, String contentType, long size, int width, int height, boolean borderless, @Nullable String caption, @Nullable BlurHash blurHash) {
-    super(context, constructAttachmentFromUri(context, uri, contentType, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false, false));
+    this(context, uri, contentType, size, width, height, borderless, caption, blurHash, null);
+  }
+
+  public ImageSlide(Context context, Uri uri, String contentType, long size, int width, int height, boolean borderless, @Nullable String caption, @Nullable BlurHash blurHash, @Nullable TransformProperties transformProperties) {
+    super(context, constructAttachmentFromUri(context, uri, contentType, size, width, height, true, null, caption, null, blurHash, null, false, borderless, false, false, transformProperties));
     this.borderless = borderless;
   }
 

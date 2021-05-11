@@ -54,6 +54,20 @@
                     android:textColor="@color/signal_text_secondary"
                     tools:text="12 members (4 invited)" />
 
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/manage_group_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    android:textColor="@color/signal_text_secondary"
+                    android:visibility="gone"
+                    tools:text="Group to plot the capture of Doc Oct"
+                    tools:visibility="visible" />
+
                 <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                     android:id="@+id/manage_group_info_text"
                     android:layout_width="wrap_content"

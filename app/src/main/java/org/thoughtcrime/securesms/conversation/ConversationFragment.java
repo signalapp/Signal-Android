@@ -107,7 +107,9 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -492,7 +494,7 @@ public class ConversationFragment extends LoggingFragment {
     });
   }
 
-  private static void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
+  private void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
     if (conversationBanner == null) {
       return;
     }
@@ -536,7 +538,20 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     if (groups.isEmpty() || isSelf) {
-      conversationBanner.hideDescription();
+      if (TextUtils.isEmpty(recipientInfo.getGroupDescription())) {
+        conversationBanner.setLinkifyDescription(false);
+        conversationBanner.hideDescription();
+      } else {
+        conversationBanner.setLinkifyDescription(true);
+        boolean linkifyWebLinks = recipientInfo.getMessageRequestState() == MessageRequestState.NONE;
+        conversationBanner.setDescription(GroupDescriptionUtil.style(context,
+                                                                     recipientInfo.getGroupDescription(),
+                                                                     linkifyWebLinks,
+                                                                     () -> GroupDescriptionDialog.show(getChildFragmentManager(),
+                                                                                                       recipient.getDisplayName(context),
+                                                                                                       recipientInfo.getGroupDescription(),
+                                                                                                       linkifyWebLinks)));
+      }
     } else {
       final String description;
 
@@ -1628,6 +1643,13 @@ public class ConversationFragment extends LoggingFragment {
             .setNeutralButton(R.string.GroupsInCommonMessageRequest__about_message_requests, (d, w) -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.GroupsInCommonMessageRequest__support_article)))
             .setPositiveButton(R.string.GroupsInCommonMessageRequest__okay, null)
             .show();
+      }
+    }
+
+    @Override
+    public void onViewGroupDescriptionChange(@Nullable GroupId groupId, @NonNull String description, boolean isMessageRequestAccepted) {
+      if (groupId != null) {
+        GroupDescriptionDialog.show(getChildFragmentManager(), groupId, description, isMessageRequestAccepted);
       }
     }
   }

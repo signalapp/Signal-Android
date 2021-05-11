@@ -605,35 +605,6 @@ public class ThreadDatabase extends Database {
     return false;
   }
 
-  public void setArchived(@NonNull RecipientId recipientId, boolean status) {
-    setArchived(Collections.singletonMap(recipientId, status));
-  }
-
-  public void setArchived(@NonNull Map<RecipientId, Boolean> status) {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-
-    db.beginTransaction();
-    try {
-      String query = RECIPIENT_ID + " = ?";
-
-      for (Map.Entry<RecipientId, Boolean> entry : status.entrySet()) {
-        ContentValues values   = new ContentValues(2);
-
-        if (entry.getValue()) {
-          values.put(PINNED, "0");
-        }
-
-        values.put(ARCHIVED, entry.getValue() ? "1" : "0");
-        db.update(TABLE_NAME, values, query, new String[] { entry.getKey().serialize() });
-      }
-
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
-      notifyConversationListListeners();
-    }
-  }
-
   public void setArchived(Set<Long> threadIds, boolean archive) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
@@ -650,10 +621,14 @@ public class ThreadDatabase extends Database {
         db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(threadId));
       }
 
+      List<RecipientId> recipientIds = getRecipientIdsForThreadIds(threadIds);
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientIds);
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
       notifyConversationListListeners();
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
   }
 
@@ -874,34 +849,11 @@ public class ThreadDatabase extends Database {
   }
 
   public void archiveConversation(long threadId) {
-    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
-    ContentValues  contentValues = new ContentValues(1);
-    contentValues.put(PINNED, 0);
-    contentValues.put(ARCHIVED, 1);
-
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
-    notifyConversationListListeners();
-
-    Recipient recipient = getRecipientForThreadId(threadId);
-    if (recipient != null) {
-      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipient.getId());
-      StorageSyncHelper.scheduleSyncForDataChange();
-    }
+    setArchived(Collections.singleton(threadId), true);
   }
 
   public void unarchiveConversation(long threadId) {
-    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
-    ContentValues  contentValues = new ContentValues(1);
-    contentValues.put(ARCHIVED, 0);
-
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
-    notifyConversationListListeners();
-
-    Recipient recipient = getRecipientForThreadId(threadId);
-    if (recipient != null) {
-      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipient.getId());
-      StorageSyncHelper.scheduleSyncForDataChange();
-    }
+    setArchived(Collections.singleton(threadId), false);
   }
 
   public void setLastSeen(long threadId) {

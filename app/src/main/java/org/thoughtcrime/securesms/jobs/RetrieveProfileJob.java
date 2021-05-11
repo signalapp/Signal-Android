@@ -237,6 +237,11 @@ public class RetrieveProfileJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, RetryLaterException {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Log.w(TAG, "Unregistered. Skipping.");
+      return;
+    }
+
     Stopwatch         stopwatch         = new Stopwatch("RetrieveProfile");
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     Set<RecipientId>  retries           = new HashSet<>();

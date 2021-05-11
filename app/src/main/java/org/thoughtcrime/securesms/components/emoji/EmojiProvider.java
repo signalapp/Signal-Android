@@ -28,45 +28,31 @@ import java.util.concurrent.ExecutionException;
 
 class EmojiProvider {
 
-  private static final    String        TAG      = Log.tag(EmojiProvider.class);
-  private static volatile EmojiProvider instance = null;
-  private static final    Paint         paint    = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
+  private static final    String TAG   = Log.tag(EmojiProvider.class);
+  private static final    Paint  PAINT = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 
-  private final Context context;
-
-  public static EmojiProvider getInstance(Context context) {
-    if (instance == null) {
-      synchronized (EmojiProvider.class) {
-        if (instance == null) {
-          instance = new EmojiProvider(context);
-        }
-      }
-    }
-    return instance;
-  }
-
-  private EmojiProvider(Context context) {
-    this.context = context.getApplicationContext();
-  }
-
-  @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
+  static @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
     if (text == null) return null;
     return new EmojiParser(EmojiSource.getLatest().getEmojiTree()).findCandidates(text);
   }
 
-  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
-    return emojify(getCandidates(text), text, tv);
+  static  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
+    if (tv.isInEditMode()) {
+      return null;
+    } else {
+      return emojify(getCandidates(text), text, tv);
+    }
   }
 
-  @Nullable Spannable emojify(@Nullable EmojiParser.CandidateList matches,
-                              @Nullable CharSequence text,
-                              @NonNull TextView tv)
+  static @Nullable Spannable emojify(@Nullable EmojiParser.CandidateList matches,
+                                     @Nullable CharSequence text,
+                                     @NonNull TextView tv)
   {
-    if (matches == null || text == null) return null;
+    if (matches == null || text == null || tv.isInEditMode()) return null;
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
     for (EmojiParser.Candidate candidate : matches) {
-      Drawable drawable = getEmojiDrawable(candidate.getDrawInfo());
+      Drawable drawable = getEmojiDrawable(tv.getContext(), candidate.getDrawInfo());
 
       if (drawable != null) {
         builder.setSpan(new EmojiSpan(drawable, tv), candidate.getStartIndex(), candidate.getEndIndex(),
@@ -77,12 +63,12 @@ class EmojiProvider {
     return builder;
   }
 
-  @Nullable Drawable getEmojiDrawable(CharSequence emoji) {
+  static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji) {
     EmojiDrawInfo drawInfo = EmojiSource.getLatest().getEmojiTree().getEmoji(emoji, 0, emoji.length());
-    return getEmojiDrawable(drawInfo);
+    return getEmojiDrawable(context, drawInfo);
   }
 
-  private @Nullable Drawable getEmojiDrawable(@Nullable EmojiDrawInfo drawInfo) {
+  private static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo) {
     if (drawInfo == null) {
       return null;
     }
@@ -151,7 +137,7 @@ class EmojiProvider {
       canvas.drawBitmap(bmp,
                         emojiBounds,
                         getBounds(),
-                        paint);
+                        PAINT);
     }
 
     public void setBitmap(Bitmap bitmap) {

@@ -40,7 +40,8 @@ public final class GroupChangeUtil {
            change.getAddRequestingMembersCount()     == 0 && // field 16
            change.getDeleteRequestingMembersCount()  == 0 && // field 17
            change.getPromoteRequestingMembersCount() == 0 && // field 18
-           !change.hasModifyInviteLinkPassword();            // field 19
+           !change.hasModifyInviteLinkPassword()          && // field 19
+           !change.hasModifyDescription();                   // field 20
   }
 
   /**
@@ -133,6 +134,7 @@ public final class GroupChangeUtil {
     resolveField16AddRequestingMembers           (conflictingChange, changeSetModifier, fullMembersByUuid, pendingMembersByUuid);
     resolveField17DeleteMembers                  (conflictingChange, changeSetModifier, requestingMembersByUuid);
     resolveField18PromoteRequestingMembers       (conflictingChange, changeSetModifier, requestingMembersByUuid);
+    resolveField20ModifyDescription              (groupState, conflictingChange, changeSetModifier);
   }
 
   private static void resolveField3AddMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByUuid) {
@@ -300,6 +302,12 @@ public final class GroupChangeUtil {
       if (!requestingMembersByUuid.containsKey(member.getUuid())) {
         result.removePromoteRequestingMembers(i);
       }
+    }
+  }
+
+  private static void resolveField20ModifyDescription(DecryptedGroup groupState, DecryptedGroupChange conflictingChange, ChangeSetModifier result) {
+    if (conflictingChange.hasNewDescription() && conflictingChange.getNewDescription().getValue().equals(groupState.getDescription())) {
+      result.clearModifyDescription();
     }
   }
 }

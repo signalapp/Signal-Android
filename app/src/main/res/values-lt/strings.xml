@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">Išsiuntimas nepavyko</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
   <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
+  <string name="ConversationItem_send_paused">Siuntimas pristabdytas</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sugrįžti prie nešifruotų SMS naudojimo?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sugrįžti prie nešifruotų MMS naudojimo?</string>
@@ -1345,6 +1346,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Naudoti įgaliotąjį serverį</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sėkmingai prisijungta prie įgaliotojo serverio.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Nepavyko pateikti</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pasirinkite savo šalį</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Jūs privalote nurodyti savo
@@ -1580,6 +1582,7 @@
   <string name="MessageNotifier_message_delivery_failed">Žinutės pristatymas nepavyko.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nepavyko pristatyti žinutės.</string>
   <string name="MessageNotifier_error_delivering_message">Klaida, pristatant žinutę.</string>
+  <string name="MessageNotifier_message_delivery_paused">Žinučių pristatymas pristabdytas.</string>
   <string name="MessageNotifier_mark_all_as_read">Žymėti visas kaip skaitytas</string>
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_turn_off_these_notifications">Išjungti šiuos pranešimus</string>

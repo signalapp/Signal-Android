@@ -123,6 +123,11 @@ final class DecryptedGroupChangeActionsBuilderChangeSetModifier implements Chang
     result.removePromoteRequestingMembers(i);
   }
 
+  @Override
+  public void clearModifyDescription() {
+    result.clearNewDescription();
+  }
+
   private static List<ByteString> removeIndexFromByteStringList(List<ByteString> byteStrings, int i) {
     List<ByteString> modifiedList = new ArrayList<>(byteStrings);
 

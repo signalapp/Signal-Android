@@ -23,9 +23,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">مۇلازىمېتىر تىزىمىدىن چىقىپ كەتمەي تۇرۇپمۇ Signal ئۇچۇرى ۋە چاقىرىشلىرىنى چەكلەيدۇ بۇ ئىقتىدارنى. كەلگۈسىدە قايتا ئىشلىتىش ئۈچۈن تېلېفون نومۇرىڭىزنى قايتا تىزىملىتىشىڭىز كېرەك.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">مۇلازىمېتىرغا باغلىنىش خاتالىقى!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">قىسقا ئۇچۇر ئوچۇق</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">چېكىلسە سۈكۈتتىكى قىسقا ئۇچۇر ئەپنى ئۆزگەرتىدۇ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">چېكىلسە كۆڭۈلدىكى قىسقا ئۇچۇر ئەپنى ئۆزگەرتىدۇ</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">قىسقا ئۇچۇر تاقالغان</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">چېكىلسە Signal سۈكۈتتىكى قىسقا ئۇچۇر ئەپىگە تەڭشىلىدۇ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">چېكىلسە Signal كۆڭۈلدىكى قىسقا ئۇچۇر ئەپىگە تەڭشىلىدۇ</string>
   <string name="ApplicationPreferencesActivity_on">ئاچ</string>
   <string name="ApplicationPreferencesActivity_On">ئاچ</string>
   <string name="ApplicationPreferencesActivity_off">تاقاق</string>
@@ -693,7 +693,7 @@
   <string name="CustomNotificationsDialogFragment__ringtone">قوڭغۇراق ئاۋازى</string>
   <string name="CustomNotificationsDialogFragment__enabled">ئوچۇق</string>
   <string name="CustomNotificationsDialogFragment__disabled">تاقالغان</string>
-  <string name="CustomNotificationsDialogFragment__default">سۈكۈتتە</string>
+  <string name="CustomNotificationsDialogFragment__default">كۆڭۈلدىكى</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ھەمبەھىرچان گۇرۇپپا ئۇلانمىسى</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">باشقۇرۇش ۋە ھەمبەھىر</string>
@@ -1871,7 +1871,7 @@
   <string name="arrays__normal">نورمال</string>
   <string name="arrays__large">چوڭ</string>
   <string name="arrays__extra_large">تېخىمۇ چوڭ</string>
-  <string name="arrays__default">سۈكۈتتە</string>
+  <string name="arrays__default">كۆڭۈلدىكى</string>
   <string name="arrays__high">يۇقىرى</string>
   <string name="arrays__max">ئەڭ يۇقىرى</string>
   <!--plurals.xml-->
@@ -1909,7 +1909,7 @@
   <string name="preferences__pref_led_blink_title">LED چاقناش شەكلى</string>
   <string name="preferences__sound">ئاۋاز</string>
   <string name="preferences__silent">تىنچ</string>
-  <string name="preferences__default">سۈكۈتتە</string>
+  <string name="preferences__default">كۆڭۈلدىكى</string>
   <string name="preferences__repeat_alerts">تەكرار ئاگاھلاندۇرۇش</string>
   <string name="preferences__never">ھەرگىز</string>
   <string name="preferences__one_time">بىر قېتىم</string>

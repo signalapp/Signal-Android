@@ -74,7 +74,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(Group.class);
 
     assertEquals("GroupOperations and its tests need updating to account for new fields on " + Group.class.getName(),
-                 10, maxFieldFound);
+                 11, maxFieldFound);
   }
   
   @Test
@@ -270,6 +270,17 @@ public final class GroupsV2Operations_decrypt_group_Test {
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
 
     assertEquals(password, decryptedGroup.getInviteLinkPassword());
+  }
+
+  @Test
+  public void decrypt_description_field_11() throws VerificationFailedException, InvalidGroupStateException {
+    Group group = Group.newBuilder()
+                       .setDescription(groupOperations.encryptDescription("Description!"))
+                       .build();
+
+    DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
+
+    assertEquals("Description!", decryptedGroup.getDescription());
   }
 
   private ByteString encryptProfileKey(UUID uuid, ProfileKey profileKey) {

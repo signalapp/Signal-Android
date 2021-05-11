@@ -69,6 +69,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Signal.Title2.MaterialDialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <style name="TextAppearance.Signal.Headline.Insights" parent="">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
@@ -144,6 +149,10 @@
 
     <style name="TextAppearance.Signal.Subtitle" parent="TextAppearance.Signal.Caption">
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Subtitle.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">

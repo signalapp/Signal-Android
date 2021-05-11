@@ -169,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Sending mistókst</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tók við skilaboðum vegna lyklaskipta, ýttu til að meðhöndla.</string>
   <string name="ConversationItem_group_action_left">%1$s hefur yfirgefið hópinn.</string>
+  <string name="ConversationItem_send_paused">Sending í bið</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Sending mistókst, ýttu fyrir óörugga varaleið</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nota ódulritað SMS til vara?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nota ódulritað MMS til vara?</string>
@@ -1166,6 +1167,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Þú</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Sannreyna til að halda áfram samskiptum</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Til að koma í veg fyrir ruslsendingar í Signal skaltu ljúka sannvottun.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Eftir sannvottun geturðu haldið áfram samskiptum. Öll skilaboð sem bíða verða þá sjálfkrafa send.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Útiloka</string>
   <string name="RecipientPreferenceActivity_unblock">Opna á</string>
@@ -1225,6 +1229,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Nota milliþjón</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Tókst að tengjast við milliþjón.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Mistókst að senda inn</string>
+  <string name="RecaptchaProofActivity_complete_verification">Ljúka sannvottun</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Veldu landið þitt</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Þú verður að tilgreina
@@ -1455,6 +1461,8 @@
   <string name="MessageNotifier_message_delivery_failed">Afhending skilaboða mistókst.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mistókst að afhenda skilaboð.</string>
   <string name="MessageNotifier_error_delivering_message">Villa við að að afhenda skilaboð.</string>
+  <string name="MessageNotifier_message_delivery_paused">Afhending skilaboða í bið.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Sannreyna til að halda áfram samskiptum í Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkja allt sem lesið</string>
   <string name="MessageNotifier_mark_read">Merkja lesið</string>
   <string name="MessageNotifier_turn_off_these_notifications">Slökkva á þessum tilkynningum</string>

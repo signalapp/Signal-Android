@@ -67,6 +67,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private Recipient                 conversationRecipient;
   private Optional<MessageRecord>   nextMessageRecord;
   private MessageRecord             messageRecord;
+  private boolean                   isMessageRequestAccepted;
   private LiveData<SpannableString> displayBody;
   private EventListener             eventListener;
 
@@ -112,7 +113,7 @@ public final class ConversationUpdateItem extends FrameLayout
   {
     this.batchSelected = batchSelected;
 
-    bind(lifecycleOwner, conversationMessage, previousMessageRecord, nextMessageRecord, conversationRecipient, hasWallpaper);
+    bind(lifecycleOwner, conversationMessage, previousMessageRecord, nextMessageRecord, conversationRecipient, hasWallpaper, isMessageRequestAccepted);
   }
 
   @Override
@@ -130,12 +131,14 @@ public final class ConversationUpdateItem extends FrameLayout
                     @NonNull Optional<MessageRecord> previousMessageRecord,
                     @NonNull Optional<MessageRecord> nextMessageRecord,
                     @NonNull Recipient conversationRecipient,
-                    boolean hasWallpaper)
+                    boolean hasWallpaper,
+                    boolean isMessageRequestAccepted)
   {
-    this.conversationMessage   = conversationMessage;
-    this.messageRecord         = conversationMessage.getMessageRecord();
-    this.nextMessageRecord     = nextMessageRecord;
-    this.conversationRecipient = conversationRecipient;
+    this.conversationMessage      = conversationMessage;
+    this.messageRecord            = conversationMessage.getMessageRecord();
+    this.nextMessageRecord        = nextMessageRecord;
+    this.conversationRecipient    = conversationRecipient;
+    this.isMessageRequestAccepted = isMessageRequestAccepted;
 
     senderObserver.observe(lifecycleOwner, messageRecord.getIndividualRecipient());
 
@@ -164,7 +167,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
     observeDisplayBody(lifecycleOwner, spannableMessage);
 
-    present(conversationMessage, nextMessageRecord, conversationRecipient);
+    present(conversationMessage, nextMessageRecord, conversationRecipient, isMessageRequestAccepted);
 
     presentBackground(shouldCollapse(messageRecord, previousMessageRecord),
                       shouldCollapse(messageRecord, nextMessageRecord),
@@ -265,7 +268,8 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private void present(@NonNull ConversationMessage conversationMessage,
                        @NonNull Optional<MessageRecord> nextMessageRecord,
-                       @NonNull Recipient conversationRecipient)
+                       @NonNull Recipient conversationRecipient,
+                       boolean isMessageRequestAccepted)
   {
     if (batchSelected.contains(conversationMessage)) setSelected(true);
     else                                             setSelected(false);
@@ -348,6 +352,14 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onInMemoryMessageClicked(inMemoryMessageRecord);
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isGroupV2DescriptionUpdate()) {
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setText(R.string.ConversationUpdateItem_view);
+      actionButton.setOnClickListener(v -> {
+        if (eventListener != null) {
+          eventListener.onViewGroupDescriptionChange(conversationRecipient.getGroupId().orNull(), conversationMessage.getMessageRecord().getGroupV2DescriptionUpdate(), isMessageRequestAccepted);
         }
       });
     } else {
@@ -439,7 +451,7 @@ public final class ConversationUpdateItem extends FrameLayout
     public void onChanged(Recipient recipient) {
       if (recipient.getId() == conversationRecipient.getId() && (conversationRecipient == null || !conversationRecipient.hasSameContent(recipient))) {
         conversationRecipient = recipient;
-        present(conversationMessage, nextMessageRecord, conversationRecipient);
+        present(conversationMessage, nextMessageRecord, conversationRecipient, isMessageRequestAccepted);
       }
     }
   }

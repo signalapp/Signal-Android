@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
+import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
@@ -135,7 +136,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       throw new AssertionError("No KEY_IMAGE_URI supplied");
     }
 
-    MediaConstraints mediaConstraints = new PushMediaConstraints();
+    MediaConstraints mediaConstraints = new PushMediaConstraints(SentMediaQuality.HIGH);
 
     imageMaxWidth  = mediaConstraints.getImageMaxWidth(requireContext());
     imageMaxHeight = mediaConstraints.getImageMaxHeight(requireContext());

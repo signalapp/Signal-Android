@@ -360,6 +360,22 @@ public abstract class MessageRecord extends DisplayRecord {
     return UpdateDescription.mentioning(joinedMembers, stringFactory, R.drawable.ic_video_16);
   }
 
+  public boolean isGroupV2DescriptionUpdate() {
+    DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
+    if (decryptedGroupV2Context != null) {
+      return decryptedGroupV2Context.hasChange() && getDecryptedGroupV2Context().getChange().hasNewDescription();
+    }
+    return false;
+  }
+
+  public @NonNull String getGroupV2DescriptionUpdate() {
+    DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
+    if (decryptedGroupV2Context != null) {
+      return decryptedGroupV2Context.getChange().hasNewDescription() ? decryptedGroupV2Context.getChange().getNewDescription().getValue() : "";
+    }
+    return "";
+  }
+
   /**
    * Describes a UUID by it's corresponding recipient's {@link Recipient#getDisplayName(Context)}.
    */

@@ -56,18 +56,18 @@ final class MessageRequestRepository {
     });
   }
 
-  void getMemberCount(@NonNull RecipientId recipientId, @NonNull Consumer<GroupMemberCount> onMemberCountLoaded) {
+  void getGroupInfo(@NonNull RecipientId recipientId, @NonNull Consumer<GroupInfo> onGroupInfoLoaded) {
     executor.execute(() -> {
       GroupDatabase                       groupDatabase = DatabaseFactory.getGroupDatabase(context);
       Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
-      onMemberCountLoaded.accept(groupRecord.transform(record -> {
+      onGroupInfoLoaded.accept(groupRecord.transform(record -> {
         if (record.isV2Group()) {
           DecryptedGroup decryptedGroup = record.requireV2GroupProperties().getDecryptedGroup();
-          return new GroupMemberCount(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount());
+          return new GroupInfo(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), decryptedGroup.getDescription());
         } else {
-          return new GroupMemberCount(record.getMembers().size(), 0);
+          return new GroupInfo(record.getMembers().size(), 0, "");
         }
-      }).or(GroupMemberCount.ZERO));
+      }).or(GroupInfo.ZERO));
     });
   }
 

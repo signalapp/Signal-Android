@@ -58,14 +58,14 @@
   <string name="AttachmentKeyboard_file">فایل</string>
   <string name="AttachmentKeyboard_contact">مخاطب</string>
   <string name="AttachmentKeyboard_location">مکان</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">سیگنال به دسترسی برای نشان دادن عکس‌ها و ویدئوهای شما احتیاج دارد.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">سیگنال به مجوز برای نشان دادن عکس‌ها و ویدئوهای شما احتیاج دارد.</string>
   <string name="AttachmentKeyboard_give_access">دسترسی داده شود</string>
   <string name="AttachmentKeyboard_payment">پرداخت</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">برنامه‌ای برای انتخاب رسانه پیدا نشد.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای پیوست کردن فایل‌های صوتی و تصویری نیاز به دسترسی به حافظه دارد، اما این اجازه داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «ذخیره‌سازی» را فعال کنید.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">سیگنال برای پیوست کردن اطلاعات مخاطب نیاز به دسترسی مخاطبین دارد، اما این دسترسی به سیگنال داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">سیگنال برای پیوست کردن موقعیت مکانی نیاز به دسترسی به موقعیت مکانی شما دارد، ولی این دسترسی داده نشده است. لطفاً لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مکان» را فعال کنید. </string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">سیگنال برای پیوست کردن فایل‌های صوتی و تصویری به مجوز ذخیره‌سازی نیاز دارد، اما این مجوز به صورت دائمی رد شده است. لطفاً به منوی تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، و «ذخیره‌سازی» را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">سیگنال برای پیوست کردن اطلاعات مخاطب به مجوز مخاطبین نیاز دارد، اما این مجوز به صورت دائمی رد شده است. لطفاً به منوی تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، و «مخاطبین» را فعال کنید.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">سیگنال برای پیوست کردن موقعیت مکانی به مجوز مکان نیاز دارد، اما این مجوز به صورت دائمی رد شده است. لطفاً به منوی تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، و «مکان» را فعال کنید.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">بارگذاری رسانه…</string>
   <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو…</string>
@@ -574,7 +574,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه موفق نبود.</string>
   <string name="AddGroupDetailsFragment__try_again_later">بعداً دوباره امتحان کنید.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، پس این یک گروه فراپیامی (MMS) خواهد بود.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه‌‌های فراپیامک فقط برای شما قابل دیدن هستند.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل دیدن هستند.</string>
   <string name="AddGroupDetailsFragment__remove">حذف</string>
   <string name="AddGroupDetailsFragment__sms_contact">مخاطب پیامکی</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">حذف %1$s از این گروه؟</string>
@@ -608,7 +608,7 @@
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
   <string name="ManageGroupActivity_mute_notifications">بستن اعلان‌ها</string>
-  <string name="ManageGroupActivity_custom_notifications">اعلان‌‌های سفارشی</string>
+  <string name="ManageGroupActivity_custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
   <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string>
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
@@ -661,7 +661,7 @@
   <string name="ManageRecipientActivity_unblock">رفع مسدودیت</string>
   <string name="ManageRecipientActivity_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
   <string name="ManageRecipientActivity_mute_notifications">بستن اعلان‌ها</string>
-  <string name="ManageRecipientActivity_custom_notifications">اعلان‌‌های سفارشی</string>
+  <string name="ManageRecipientActivity_custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <string name="ManageRecipientActivity_until_s">تا %1$s</string>
   <string name="ManageRecipientActivity_always">همیشه</string>
   <string name="ManageRecipientActivity_off">خاموش</string>
@@ -683,9 +683,9 @@
     <item quantity="other">%1$s %2$d نفر را دعوت کرد</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
-  <string name="CustomNotificationsDialogFragment__custom_notifications">اعلان‌‌های سفارشی</string>
+  <string name="CustomNotificationsDialogFragment__custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <string name="CustomNotificationsDialogFragment__messages">پیام‌ها</string>
-  <string name="CustomNotificationsDialogFragment__use_custom_notifications">استفاده از اعلان‌های سفارشی</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">استفاده از اعلان‌ها‌ی سفارشی</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">صدای اعلان</string>
   <string name="CustomNotificationsDialogFragment__vibrate">لرزش</string>
   <string name="CustomNotificationsDialogFragment__call_settings">تنظیمات تماس</string>
@@ -1569,7 +1569,7 @@
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">به حداکثر اندازهٔ گروه رسیدید</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">گروه‌های سیگنال می‌توانند حداکثر %1$d عضو داشته باشند.</string>
-  <string name="ContactSelectionListFragment_recommended_member_limit_reached">تعداد اعضا به انتها رسیده است</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">به محدودیت توصیه شدهٔ تعداد اعضا رسیدید</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">گروه‌های سیگنال با %1$d عضو یا کمتر به بهترین شکل عمل می‌کنند. افزودن اعضای بیشتر باعث بوجود آمدن تأخیر در ارسال و دریافت پیام‌ها خواهد شد.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d عضو</item>
@@ -1747,7 +1747,7 @@
   <string name="CreateProfileActivity_next">بعدی</string>
   <string name="CreateProfileActivity__username">نام کاربری</string>
   <string name="CreateProfileActivity__create_a_username">ایجاد نام کاربری</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه‌‌های فراپیامک فقط برای شما قابل دیدن هستند.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل دیدن هستند.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">درباره</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید…</string>
@@ -1907,7 +1907,7 @@
   <string name="preferences__led_color_unknown">ناشناخته</string>
   <string name="preferences__pref_led_blink_title">الگوی چشمک زدن LED</string>
   <string name="preferences__sound">زنگ</string>
-  <string name="preferences__silent">خاموش</string>
+  <string name="preferences__silent">بی‌صدا</string>
   <string name="preferences__default">پیش‌فرض</string>
   <string name="preferences__repeat_alerts">تکرار هشدارها</string>
   <string name="preferences__never">هرگز</string>
@@ -1999,7 +1999,7 @@
   <string name="preferences_storage__thirty_days">۳۰ روز</string>
   <string name="preferences_storage__none">هیچ‌کدام</string>
   <string name="preferences_storage__s_messages">%1$s پیام</string>
-  <string name="preferences_storage__custom">دلخواه</string>
+  <string name="preferences_storage__custom">سفارشی</string>
   <string name="preferences_advanced__use_system_emoji">استفاده از ایموجی‌های سیستم</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از ایموجی‌های درون سیگنال</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور سیگنال به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبین‌تان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
@@ -2049,7 +2049,7 @@
   <string name="preferences_success">موفقیت</string>
   <string name="preferences_failed_to_connect">اتصال موفق نبود</string>
   <string name="preferences_enter_proxy_address">نشانی پروکسی را وارد کنید</string>
-  <string name="configurable_single_select__customize_option">سفارشی‌سازی</string>
+  <string name="configurable_single_select__customize_option">گزینهٔ سفارشی‌سازی</string>
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">همهٔ فعالیت‌ها</string>
@@ -2737,9 +2737,9 @@
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">طرح زمینهٔ تاریک کاغذدیواری را تیره می‌کند</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">پاک کردن کاغذدیواری</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">پاک کردن کاغذدیواری برای این گفتگو؟</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای‌تان انتخاب کردید پاک نمی‌کند.</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای خود انتخاب کردید پاک نمی‌کند.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای‌تان انتخاب کردید؟</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای خود انتخاب کردید؟</string>
   <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
   <string name="ChatWallpaperFragment__reset">بازنشانی</string>
   <string name="ChatWallpaperFragment__clear">پاک کردن</string>

@@ -91,7 +91,7 @@ public class MessageSender {
    */
   @WorkerThread
   public static void sendProfileKey(final Context context, final long threadId) {
-    ApplicationDependencies.getJobManager().add(ProfileKeySendJob.create(context, threadId));
+    ApplicationDependencies.getJobManager().add(ProfileKeySendJob.create(context, threadId, false));
   }
 
   public static long send(final Context context,

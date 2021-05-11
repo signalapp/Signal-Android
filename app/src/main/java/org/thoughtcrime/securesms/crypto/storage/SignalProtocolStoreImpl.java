@@ -6,6 +6,7 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.groups.state.SenderKeyRecord;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.PreKeyStore;
@@ -18,6 +19,7 @@ import org.whispersystems.signalservice.api.SignalServiceProtocolStore;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
 
 import java.util.List;
+import java.util.UUID;
 
 public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
 
@@ -136,5 +138,15 @@ public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
   @Override
   public void removeSignedPreKey(int signedPreKeyId) {
     signedPreKeyStore.removeSignedPreKey(signedPreKeyId);
+  }
+
+  @Override
+  public void storeSenderKey(SignalProtocolAddress sender, UUID distributionId, SenderKeyRecord record) {
+
+  }
+
+  @Override
+  public SenderKeyRecord loadSenderKey(SignalProtocolAddress sender, UUID distributionId) {
+    return null;
   }
 }

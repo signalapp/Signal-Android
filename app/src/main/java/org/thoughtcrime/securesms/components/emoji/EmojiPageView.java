@@ -40,8 +40,7 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     layoutManager  = new GridLayoutManager(context, 8);
     scrollDisabler = new ScrollDisabler();
     popup          = new EmojiVariationSelectorPopup(context, emojiSelectionListener);
-    adapter        = new EmojiPageViewGridAdapter(EmojiProvider.getInstance(context),
-                                                  popup,
+    adapter        = new EmojiPageViewGridAdapter(popup,
                                                   emojiSelectionListener,
                                                   this,
                                                   allowVariations);

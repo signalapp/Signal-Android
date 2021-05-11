@@ -59,7 +59,7 @@ public final class GroupsV2Operations {
   public static final UUID UNKNOWN_UUID = UuidUtil.UNKNOWN_UUID;
 
   /** Highest change epoch this class knows now to decrypt */
-  public static final int HIGHEST_KNOWN_EPOCH = 1;
+  public static final int HIGHEST_KNOWN_EPOCH = 2;
 
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
@@ -147,6 +147,10 @@ public final class GroupsV2Operations {
       return GroupChange.Actions.newBuilder().setModifyTitle(GroupChange.Actions.ModifyTitleAction
                                                                                 .newBuilder()
                                                                                 .setTitle(encryptTitle(title)));
+    }
+
+    public GroupChange.Actions.ModifyDescriptionAction.Builder createModifyGroupDescription(final String description) {
+      return GroupChange.Actions.ModifyDescriptionAction.newBuilder().setDescription(encryptDescription(description));
     }
 
     public GroupChange.Actions.Builder createModifyGroupMembershipChange(Set<GroupCandidate> membersToAdd, UUID selfUuid) {
@@ -381,6 +385,7 @@ public final class GroupsV2Operations {
 
       return DecryptedGroup.newBuilder()
                            .setTitle(decryptTitle(group.getTitle()))
+                           .setDescription(decryptDescription(group.getDescription()))
                            .setAvatar(group.getAvatar())
                            .setAccessControl(group.getAccessControl())
                            .setRevision(group.getRevision())
@@ -565,6 +570,11 @@ public final class GroupsV2Operations {
         builder.setNewInviteLinkPassword(actions.getModifyInviteLinkPassword().getInviteLinkPassword());
       }
 
+      // Field 20
+      if (actions.hasModifyDescription()) {
+        builder.setNewDescription(DecryptedString.newBuilder().setValue(decryptDescription(actions.getModifyDescription().getDescription())));
+      }
+
       return builder.build();
     }
 
@@ -576,6 +586,7 @@ public final class GroupsV2Operations {
                                    .setAddFromInviteLink(joinInfo.getAddFromInviteLink())
                                    .setRevision(joinInfo.getRevision())
                                    .setPendingAdminApproval(joinInfo.getPendingAdminApproval())
+                                   .setDescription(decryptDescription(joinInfo.getDescription()))
                                    .build();
     }
 
@@ -706,6 +717,20 @@ public final class GroupsV2Operations {
 
     private String decryptTitle(ByteString cipherText) {
       return decryptBlob(cipherText).getTitle().trim();
+    }
+
+    ByteString encryptDescription(String description) {
+      try {
+        GroupAttributeBlob blob = GroupAttributeBlob.newBuilder().setDescription(description).build();
+
+        return ByteString.copyFrom(clientZkGroupCipher.encryptBlob(blob.toByteArray()));
+      } catch (VerificationFailedException e) {
+        throw new AssertionError(e);
+      }
+    }
+
+    private String decryptDescription(ByteString cipherText) {
+      return decryptBlob(cipherText).getDescription().trim();
     }
 
     private int decryptDisappearingMessagesTimer(ByteString encryptedTimerMessage) {

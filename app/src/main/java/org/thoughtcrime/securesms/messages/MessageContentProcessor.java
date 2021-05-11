@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob;
 import org.thoughtcrime.securesms.jobs.GroupCallPeekJob;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -64,7 +65,9 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.jobs.PaymentTransactionCheckJob;
+import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -88,6 +91,7 @@ import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
@@ -102,7 +106,6 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -150,7 +153,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -263,6 +265,24 @@ public final class MessageContentProcessor {
 
         if (content.isNeedsReceipt()) {
           handleNeedsDeliveryReceipt(content, message);
+        } else {
+          Recipient sender = getMessageDestination(content, message);
+
+          if (RecipientUtil.shouldHaveProfileKey(context, sender)) {
+            Log.w(TAG, "Received an unsealed sender message from " + sender.getId() + ", but they should already have our profile key. Correcting.");
+
+            if (groupId.isPresent() && groupId.get().isV2()) {
+              Log.i(TAG, "Message was to a GV2 group. Ensuring our group profile keys are up to date.");
+              ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
+                                                     .then(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(groupId.get().requireV2()))
+                                                     .enqueue();
+            } else {
+              Log.i(TAG, "Message was to a 1:1 or GV1 chat. Ensuring this user has our profile key.");
+              ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
+                                     .then(ProfileKeySendJob.create(context, DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender), true))
+                                     .enqueue();
+            }
+          }
         }
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
@@ -697,7 +717,7 @@ public final class MessageContentProcessor {
   private void handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
-    if (!EmojiUtil.isEmoji(context, reaction.getEmoji())) {
+    if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
       Log.w(TAG, "Reaction text is not a valid emoji! Ignoring the message.");
       return;
     }
