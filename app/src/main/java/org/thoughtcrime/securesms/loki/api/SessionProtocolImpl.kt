@@ -23,7 +23,6 @@ class SessionProtocolImpl(private val context: Context) : SessionProtocol {
     override fun decrypt(ciphertext: ByteArray, x25519KeyPair: ECKeyPair): Pair<ByteArray, String> {
         val recipientX25519PrivateKey = x25519KeyPair.privateKey.serialize()
         val recipientX25519PublicKey = Hex.fromStringCondensed(x25519KeyPair.hexEncodedPublicKey.removing05PrefixIfNeeded())
-        Log.d("Test", "recipientX25519PublicKey: $recipientX25519PublicKey")
         val signatureSize = Sign.BYTES
         val ed25519PublicKeySize = Sign.PUBLICKEYBYTES
 

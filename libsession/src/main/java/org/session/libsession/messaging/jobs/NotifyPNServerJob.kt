@@ -78,6 +78,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         override fun create(data: Data): NotifyPNServerJob {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
             val message: SnodeMessage = kryo.readObject(input, SnodeMessage::class.java)
             input.close()

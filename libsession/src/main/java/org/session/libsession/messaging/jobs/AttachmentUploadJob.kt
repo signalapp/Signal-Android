@@ -131,6 +131,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         override fun create(data: Data): AttachmentUploadJob {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
             val message: Message = kryo.readObject(input, Message::class.java)
             input.close()
