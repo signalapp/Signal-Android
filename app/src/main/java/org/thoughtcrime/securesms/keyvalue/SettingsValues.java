@@ -359,7 +359,7 @@ public final class SettingsValues extends SignalStoreValues {
   public void setDefaultSms(boolean value) {
     boolean lastKnown = getBoolean(DEFAULT_SMS, false);
 
-    if (value != lastKnown) {
+    if (value != lastKnown && SignalStore.registrationValues().isRegistrationComplete()) {
       Log.i(TAG, "Default SMS state changed! Scheduling a storage sync.");
       putBoolean(DEFAULT_SMS, value);
 
