@@ -16,22 +16,22 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override var id: String? = null
     override var failureCount: Int = 0
 
-    // Settings
     override val maxFailureCount: Int = 10
+
     companion object {
         val TAG = MessageSendJob::class.simpleName
         val KEY: String = "MessageSendJob"
 
         // Keys used for database storage
-        private val KEY_MESSAGE = "message"
-        private val KEY_DESTINATION = "destination"
+        private val MESSAGE_KEY = "message"
+        private val DESTINATION_KEY = "destination"
     }
 
     override fun execute() {
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val message = message as? VisibleMessage
-        message?.let {
-            if(!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
+        if (message != null) {
+            if (!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
             val attachmentIDs = mutableListOf<Long>()
             attachmentIDs.addAll(message.attachmentIDs)
             message.quote?.let { it.attachmentID?.let { attachmentID -> attachmentIDs.add(attachmentID) } }
@@ -52,9 +52,8 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             this.handleSuccess()
         }.fail { exception ->
             Log.e(TAG, "Couldn't send message due to error: $exception.")
-            val e = exception as? MessageSender.Error
-            e?.let {
-                if (!e.isRetryable) this.handlePermanentFailure(e)
+            if (exception is MessageSender.Error) {
+                if (!exception.isRetryable) { this.handlePermanentFailure(exception) }
             }
             this.handleFailure(exception)
         }
@@ -71,8 +70,10 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     private fun handleFailure(error: Exception) {
         Log.w(TAG, "Failed to send $message::class.simpleName.")
         val message = message as? VisibleMessage
-        message?.let {
-            if(!MessagingModuleConfiguration.shared.messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
+        if (message != null) {
+            if (!MessagingModuleConfiguration.shared.messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) {
+                return // The message has been deleted
+            }
         }
         delegate?.handleJobFailed(this, error)
     }
@@ -81,40 +82,54 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
         val output = Output(ByteArray(4096), MAX_BUFFER_SIZE)
+        // Message
         kryo.writeClassAndObject(output, message)
         output.close()
         val serializedMessage = output.toBytes()
         output.clear()
+        // Destination
         kryo.writeClassAndObject(output, destination)
         output.close()
         val serializedDestination = output.toBytes()
-        return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
-            .putByteArray(KEY_DESTINATION, serializedDestination)
-            .build();
+        output.clear()
+        // Serialize
+        return Data.Builder()
+            .putByteArray(MESSAGE_KEY, serializedMessage)
+            .putByteArray(DESTINATION_KEY, serializedDestination)
+            .build()
     }
 
     override fun getFactoryKey(): String {
         return KEY
     }
 
-    class Factory: Job.Factory<MessageSendJob> {
+    class Factory : Job.Factory<MessageSendJob> {
 
-        override fun create(data: Data): MessageSendJob {
-            val serializedMessage = data.getByteArray(KEY_MESSAGE)
-            val serializedDestination = data.getByteArray(KEY_DESTINATION)
+        override fun create(data: Data): MessageSendJob? {
+            val serializedMessage = data.getByteArray(MESSAGE_KEY)
+            val serializedDestination = data.getByteArray(DESTINATION_KEY)
             val kryo = Kryo()
-            kryo.isRegistrationRequired = false
-            var input = Input(serializedMessage)
-            val messageClass = kryo.readClass(input)
-            if (messageClass == null || !Message::class.java.isAssignableFrom(messageClass.type)) {
-                // if the message class doesn't exist or it doesn't implement `Message` parent class
-                throw Exception("deserialized messageClass was ${messageClass.type}")
+            // Message
+            val messageInput = Input(serializedMessage)
+            val message: Message
+            try {
+                message = kryo.readClassAndObject(messageInput) as Message
+            } catch (e: Exception) {
+                Log.e("Loki", "Couldn't deserialize message send job.", e)
+                return null
             }
-            val message = kryo.readClassAndObject(input) as Message
-            input.close()
-            input = Input(serializedDestination)
-            val destination = kryo.readClassAndObject(input) as Destination
-            input.close()
+            messageInput.close()
+            // Destination
+            val destinationInput = Input(serializedDestination)
+            val destination: Destination
+            try {
+                destination = kryo.readClassAndObject(destinationInput) as Destination
+            } catch (e: Exception) {
+                Log.e("Loki", "Couldn't deserialize message send job.", e)
+                return null
+            }
+            destinationInput.close()
+            // Return
             return MessageSendJob(message, destination)
         }
     }

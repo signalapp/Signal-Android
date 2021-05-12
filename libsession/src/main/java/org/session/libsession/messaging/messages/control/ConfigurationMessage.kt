@@ -14,12 +14,15 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
-class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: List<String>, var contacts: List<Contact>, var displayName: String, var profilePicture: String?, var profileKey: ByteArray): ControlMessage() {
+class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: List<String>, var contacts: List<Contact>,
+    var displayName: String, var profilePicture: String?, var profileKey: ByteArray) : ControlMessage() {
+
+    override val isSelfSendValid: Boolean = true
 
     class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
 
-        internal constructor(): this("", "", null, listOf(), listOf())
+        internal constructor() : this("", "", null, listOf(), listOf())
 
         override fun toString(): String {
             return name
@@ -56,7 +59,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
 
     class Contact(var publicKey: String, var name: String, var profilePicture: String?, var profileKey: ByteArray?) {
 
-        internal constructor(): this("", "", null, null)
+        internal constructor() : this("", "", null, null)
 
         companion object {
 
@@ -66,8 +69,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                 val name = proto.name
                 val profilePicture = if (proto.hasProfilePicture()) proto.profilePicture else null
                 val profileKey = if (proto.hasProfileKey()) proto.profileKey.toByteArray() else null
-
-                return Contact(publicKey,name,profilePicture,profileKey)
+                return Contact(publicKey, name, profilePicture, profileKey)
             }
         }
 
@@ -79,17 +81,17 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
             } catch (e: Exception) {
                 return null
             }
-            if (!this.profilePicture.isNullOrEmpty()) {
-                result.profilePicture = this.profilePicture
+            val profilePicture = profilePicture
+            if (!profilePicture.isNullOrEmpty()) {
+                result.profilePicture = profilePicture
             }
-            if (this.profileKey != null) {
-                result.profileKey = ByteString.copyFrom(this.profileKey)
+            val profileKey = profileKey
+            if (profileKey != null) {
+                result.profileKey = ByteString.copyFrom(profileKey)
             }
             return result.build()
         }
     }
-
-    override val isSelfSendValid: Boolean = true
 
     companion object {
 
@@ -103,24 +105,22 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
             val profilePicture = TextSecurePreferences.getProfilePictureURL(context)
             val profileKey = ProfileKeyUtil.getProfileKey(context)
             val groups = storage.getAllGroups()
-            for (groupRecord in groups) {
-                if (groupRecord.isClosedGroup) {
-                    if (!groupRecord.members.contains(Address.fromSerialized(storage.getUserPublicKey()!!))) continue
-                    val groupPublicKey = GroupUtil.doubleDecodeGroupID(groupRecord.encodedId).toHexString()
+            for (group in groups) {
+                if (group.isClosedGroup) {
+                    if (!group.members.contains(Address.fromSerialized(storage.getUserPublicKey()!!))) continue
+                    val groupPublicKey = GroupUtil.doubleDecodeGroupID(group.encodedId).toHexString()
                     val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: continue
-                    val closedGroup = ClosedGroup(groupPublicKey, groupRecord.title, encryptionKeyPair, groupRecord.members.map { it.serialize() }, groupRecord.admins.map { it.serialize() })
+                    val closedGroup = ClosedGroup(groupPublicKey, group.title, encryptionKeyPair, group.members.map { it.serialize() }, group.admins.map { it.serialize() })
                     closedGroups.add(closedGroup)
                 }
-                if (groupRecord.isOpenGroup) {
-                    val threadID = storage.getThreadID(groupRecord.encodedId) ?: continue
+                if (group.isOpenGroup) {
+                    val threadID = storage.getThreadID(group.encodedId) ?: continue
                     val openGroup = storage.getOpenGroup(threadID)
                     val openGroupV2 = storage.getV2OpenGroup(threadID)
-
-                    val shareUrl = openGroup?.server ?: openGroupV2?.toJoinUrl() ?: continue
+                    val shareUrl = openGroup?.server ?: openGroupV2?.joinURL ?: continue
                     openGroups.add(shareUrl)
                 }
             }
-
             return ConfigurationMessage(closedGroups, openGroups, contacts, displayName, profilePicture, profileKey)
         }
 
@@ -145,6 +145,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         configurationProto.addAllOpenGroups(openGroups)
         configurationProto.addAllContacts(this.contacts.mapNotNull { it.toProto() })
         configurationProto.displayName = displayName
+        val profilePicture = profilePicture
         if (!profilePicture.isNullOrEmpty()) {
             configurationProto.profilePicture = profilePicture
         }
@@ -157,10 +158,10 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
     override fun toString(): String {
         return """ 
             ConfigurationMessage(
-                closedGroups: ${(closedGroups)}
-                openGroups: ${(openGroups)}
-                displayName: $displayName
-                profilePicture: $profilePicture
+                closedGroups: ${(closedGroups)},
+                openGroups: ${(openGroups)},
+                displayName: $displayName,
+                profilePicture: $profilePicture,
                 profileKey: $profileKey
             )
         """.trimIndent()
