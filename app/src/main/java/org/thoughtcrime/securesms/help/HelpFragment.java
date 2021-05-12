@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -110,7 +111,13 @@ public class HelpFragment extends LoggingFragment {
     faq.setOnClickListener(v -> launchFaq());
     debugLogInfo.setOnClickListener(v -> launchDebugLogInfo());
     next.setOnClickListener(v -> submitForm());
-    toaster.setOnClickListener(v -> Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show());
+    toaster.setOnClickListener(v -> {
+      if (helpViewModel.getCategoryIndex() == 0) {
+        categorySpinner.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.shake_horizontal));
+      }
+
+      Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show();
+    });
     categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
