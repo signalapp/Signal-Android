@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -57,7 +58,7 @@ class ConversationView : LinearLayout {
         }
         profilePictureView.glide = glide
         profilePictureView.update(thread.recipient, thread.threadId)
-        val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else SSKEnvironment.shared.profileManager.getDisplayName(context, thread.recipient) ?: thread.recipient.address.toString()
+        val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
         btnGroupNameDisplay.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
         muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE
@@ -86,9 +87,11 @@ class ConversationView : LinearLayout {
         profilePictureView.recycle()
     }
 
-    private fun getUserDisplayName(publicKey: String?): String? {
-        if (TextUtils.isEmpty(publicKey)) return null
-        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
+    private fun getUserDisplayName(recipient: Recipient): String? {
+        if (recipient.isLocalNumber)
+            return context.getString(R.string.note_to_self)
+        else
+            return SSKEnvironment.shared.profileManager.getDisplayName(context, recipient)
     }
     // endregion
 }
