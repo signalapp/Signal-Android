@@ -308,6 +308,9 @@ public final class PaymentsValues extends SignalStoreValues {
                              Currency.getInstance(DEFAULT_CURRENCY_CODE));
   }
 
+  /**
+   * Does not trigger a storage sync.
+   */
   public void setEnabledAndEntropy(boolean enabled, @Nullable Entropy entropy) {
     KeyValueStore.Writer writer = getStore().beginWrite();
 
@@ -317,8 +320,6 @@ public final class PaymentsValues extends SignalStoreValues {
 
     writer.putBoolean(MOB_PAYMENTS_ENABLED, enabled)
           .commit();
-
-    StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   @WorkerThread

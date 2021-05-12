@@ -126,7 +126,7 @@ public final class SignalAccountRecord implements SignalRecord {
       }
 
       if (!Objects.equals(this.payments, that.payments)) {
-        diff.add("PreferContactAvatars");
+        diff.add("Payments");
       }
 
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {

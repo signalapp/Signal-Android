@@ -78,6 +78,14 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
       familyName = local.getFamilyName().or("");
     }
 
+    SignalAccountRecord.Payments payments;
+
+    if (remote.getPayments().getEntropy().isPresent()) {
+      payments = remote.getPayments();
+    } else {
+      payments = local.getPayments();
+    }
+
     byte[]                               unknownFields          = remote.serializeUnknownFields();
     String                               avatarUrlPath          = remote.getAvatarUrlPath().or(local.getAvatarUrlPath()).or("");
     byte[]                               profileKey             = remote.getProfileKey().or(local.getProfileKey()).orNull();
@@ -91,8 +99,8 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     List<PinnedConversation>             pinnedConversations    = remote.getPinnedConversations();
     AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode = remote.getPhoneNumberSharingMode();
     boolean                              preferContactAvatars   = remote.isPreferContactAvatars();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars);
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments);
 
     if (matchesRemote) {
       return remote;
@@ -116,6 +124,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setUnlistedPhoneNumber(unlisted)
                                     .setPinnedConversations(pinnedConversations)
                                     .setPreferContactAvatars(preferContactAvatars)
+                                    .setPayments(payments.isEnabled(), payments.getEntropy().orNull())
                                     .build();
     }
   }
@@ -150,12 +159,14 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode,
                                        boolean unlistedPhoneNumber,
                                        @NonNull List<PinnedConversation> pinnedConversations,
-                                       boolean preferContactAvatars)
+                                       boolean preferContactAvatars,
+                                       SignalAccountRecord.Payments payments)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)      &&
            Objects.equals(contact.getGivenName().or(""), givenName)            &&
            Objects.equals(contact.getFamilyName().or(""), familyName)          &&
            Objects.equals(contact.getAvatarUrlPath().or(""), avatarUrlPath)    &&
+           Objects.equals(contact.getPayments(), payments)                     &&
            Arrays.equals(contact.getProfileKey().orNull(), profileKey)         &&
            contact.isNoteToSelfArchived() == noteToSelfArchived                &&
            contact.isNoteToSelfForcedUnread() == noteToSelfForcedUnread        &&
