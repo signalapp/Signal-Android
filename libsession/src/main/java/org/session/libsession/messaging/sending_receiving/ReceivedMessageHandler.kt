@@ -153,7 +153,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
 
     // Get or create thread
     val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
-            ?: message.sender!!, message.groupPublicKey, openGroupID)
+        ?: message.sender!!, message.groupPublicKey, openGroupID)
 
     if (threadID < 0) {
         // thread doesn't exist, should only be reached in a case where we are processing open group messages for no longer existent thread

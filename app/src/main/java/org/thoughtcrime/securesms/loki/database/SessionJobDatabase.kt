@@ -25,18 +25,18 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     fun persistJob(job: Job) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(4)
-        contentValues.put(jobID, job.id)
+        contentValues.put(jobID, job.id!!)
         contentValues.put(jobType, job.getFactoryKey())
         contentValues.put(failureCount, job.failureCount)
         contentValues.put(serializedData, SessionJobHelper.dataSerializer.serialize(job.serialize()))
-        database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf(job.id!!))
+        database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf( job.id!! ))
     }
 
     fun markJobAsSucceeded(jobID: String) {
         databaseHelper.writableDatabase.delete(sessionJobTable, "${Companion.jobID} = ?", arrayOf( jobID ))
     }
 
-    fun markJobAsFailed(jobID: String) {
+    fun markJobAsFailedPermanently(jobID: String) {
         databaseHelper.writableDatabase.delete(sessionJobTable, "${Companion.jobID} = ?", arrayOf( jobID ))
     }
 
@@ -74,7 +74,7 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val database = databaseHelper.readableDatabase
         var cursor: android.database.Cursor? = null
         try {
-            cursor = database.rawQuery("SELECT * FROM $sessionJobTable WHERE $jobID = ?", arrayOf( job.id ))
+            cursor = database.rawQuery("SELECT * FROM $sessionJobTable WHERE $jobID = ?", arrayOf( job.id!! ))
             return cursor == null || !cursor.moveToFirst()
         } catch (e: Exception) {
             // Do nothing

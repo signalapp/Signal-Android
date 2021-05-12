@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsignal.utilities.logging.Log
+import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
@@ -47,16 +48,15 @@ class JobQueue : JobDelegate {
             while (isActive) {
                 for (job in queue) {
                     when (job) {
-                        is NotifyPNServerJob,
-                        is AttachmentUploadJob,
-                        is MessageSendJob -> txQueue.send(job)
+                        is NotifyPNServerJob, is AttachmentUploadJob, is MessageSendJob -> txQueue.send(job)
                         is AttachmentDownloadJob -> attachmentQueue.send(job)
-                        else -> rxQueue.send(job)
+                        is MessageReceiveJob -> rxQueue.send(job)
+                        else -> throw IllegalStateException("Unexpected job type.")
                     }
                 }
             }
 
-            // job has been cancelled
+            // The job has been cancelled
             receiveJob.cancel()
             txJob.cancel()
             attachmentJob.cancel()
@@ -123,11 +123,23 @@ class JobQueue : JobDelegate {
     }
 
     override fun handleJobFailed(job: Job, error: Exception) {
-        job.failureCount += 1
+        // Canceled
         val storage = MessagingModuleConfiguration.shared.storage
         if (storage.isJobCanceled(job)) {
             return Log.i("Loki", "${job::class.simpleName} canceled.")
         }
+        // Message send jobs waiting for the attachment to upload
+        if (job is MessageSendJob && error is MessageSendJob.AwaitingAttachmentUploadException) {
+            val retryInterval: Long = 1000 * 4
+            Log.i("Loki", "Message send job waiting for attachment upload to finish.")
+            timer.schedule(delay = retryInterval) {
+                Log.i("Loki", "Retrying ${job::class.simpleName}.")
+                queue.offer(job)
+            }
+            return
+        }
+        // Regular job failure
+        job.failureCount += 1
         if (job.failureCount >= job.maxFailureCount) {
             handleJobFailedPermanently(job, error)
         } else {
@@ -148,7 +160,7 @@ class JobQueue : JobDelegate {
 
     private fun handleJobFailedPermanently(jobId: String) {
         val storage = MessagingModuleConfiguration.shared.storage
-        storage.markJobAsFailed(jobId)
+        storage.markJobAsFailedPermanently(jobId)
     }
 
     private fun getRetryInterval(job: Job): Long {
