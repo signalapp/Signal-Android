@@ -34,23 +34,13 @@ object OpenGroupAPIV2 {
     private const val DEFAULT_SERVER_PUBLIC_KEY = "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
     const val DEFAULT_SERVER = "http://116.203.70.33"
 
-    sealed class Error : Exception() {
-        object Generic : Error()
-        object ParsingFailed : Error()
-        object DecryptionFailed : Error()
-        object SigningFailed : Error()
-        object InvalidURL : Error()
-        object NoPublicKey : Error()
-
-        fun errorDescription() = when (this) {
-            Error.Generic -> "An error occurred."
-            Error.ParsingFailed -> "Invalid response."
-            Error.DecryptionFailed -> "Couldn't decrypt response."
-            Error.SigningFailed -> "Couldn't sign message."
-            Error.InvalidURL -> "Invalid URL."
-            Error.NoPublicKey -> "Couldn't find server public key."
-        }
-
+    sealed class Error(message: String) : Exception(message) {
+        object Generic : Error("An error occurred.")
+        object ParsingFailed : Error("Invalid response.")
+        object DecryptionFailed : Error("Couldn't decrypt response.")
+        object SigningFailed : Error("Couldn't sign message.")
+        object InvalidURL : Error("Invalid URL.")
+        object NoPublicKey : Error("Couldn't find server public key.")
     }
 
     data class DefaultGroup(val id: String, val name: String, val image: ByteArray?) {
