@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
+import org.session.libsession.utilities.SSKEnvironment
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
@@ -56,7 +57,7 @@ class ConversationView : LinearLayout {
         }
         profilePictureView.glide = glide
         profilePictureView.update(thread.recipient, thread.threadId)
-        val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else if (!thread.recipient.name.isNullOrEmpty()) thread.recipient.name else thread.recipient.address.toString()
+        val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else SSKEnvironment.shared.profileManager.getDisplayName(context, thread.recipient) ?: thread.recipient.address.toString()
         btnGroupNameDisplay.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
         muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE

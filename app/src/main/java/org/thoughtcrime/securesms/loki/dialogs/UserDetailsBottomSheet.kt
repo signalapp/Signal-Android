@@ -49,7 +49,10 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             nameEditText.clearFocus()
             nameTextViewContainer.visibility = View.VISIBLE
             nameEditContainer.visibility = View.INVISIBLE
-            var newNickName = null
+            var newNickName: String? = null
+            if (!nameEditText.text.isEmpty()) {
+                newNickName = nameEditText.text.toString()
+            }
             SSKEnvironment.shared.profileManager.setDisplayName(requireContext(), recipient, newNickName)
             nameTextView.text = SSKEnvironment.shared.profileManager.getDisplayName(requireContext(), recipient) ?: "Anonymous"
         }

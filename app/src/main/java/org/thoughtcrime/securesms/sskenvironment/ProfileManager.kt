@@ -9,10 +9,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 
 class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
-    override fun setDisplayName(context: Context, recipient: Recipient, displayName: String) {
-        val database = DatabaseFactory.getLokiUserDatabase(context)
+    override fun setDisplayName(context: Context, recipient: Recipient, displayName: String?) {
         val sessionID = recipient.address.serialize()
-        database.setDisplayName(sessionID, displayName)
         // New API
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
@@ -21,6 +19,10 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
             contact.nickname = displayName
             contactDatabase.setContact(contact)
         }
+        // Old API
+        if (displayName == null) return
+        val database = DatabaseFactory.getLokiUserDatabase(context)
+        database.setDisplayName(sessionID, displayName)
     }
 
     override fun setProfileName(context: Context, recipient: Recipient, profileName: String) {
