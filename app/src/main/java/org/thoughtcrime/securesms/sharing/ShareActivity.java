@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -213,7 +213,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
       int mode = DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_SELF | DisplayMode.FLAG_HIDE_NEW;
 
-      if (TextSecurePreferences.isSmsEnabled(this))  {
+      if (Util.isDefaultSmsProvider(this))  {
         mode |= DisplayMode.FLAG_SMS;
       }
 
@@ -291,7 +291,7 @@ public class ShareActivity extends PassphraseRequiredActivity
             return;
           }
 
-          if (TextSecurePreferences.isSmsEnabled(this) && (displayMode & DisplayMode.FLAG_SMS) == 0) {
+          if (Util.isDefaultSmsProvider(this) && (displayMode & DisplayMode.FLAG_SMS) == 0) {
             getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode | DisplayMode.FLAG_SMS);
             contactsFragment.setQueryFilter(null);
           }
@@ -436,7 +436,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
       if (mode == -1) return;
 
-      boolean isMmsOrSmsSupported = data != null ? data.isMmsOrSmsSupported() : TextSecurePreferences.isSmsEnabled(this);
+      boolean isMmsOrSmsSupported = data != null ? data.isMmsOrSmsSupported() : Util.isDefaultSmsProvider(this);
 
       mode = isMmsOrSmsSupported ? mode | DisplayMode.FLAG_SMS : mode & ~DisplayMode.FLAG_SMS;
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);

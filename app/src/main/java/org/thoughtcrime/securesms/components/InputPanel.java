@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -124,7 +125,7 @@ public class InputPanel extends LinearLayout
 
     this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction());
 
-    if (TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
+    if (SignalStore.settings().isPreferSystemEmoji()) {
       mediaKeyboard.setVisibility(View.GONE);
       emojiVisible = false;
     } else {

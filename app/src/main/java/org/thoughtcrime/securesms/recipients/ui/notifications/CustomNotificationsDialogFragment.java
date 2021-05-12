@@ -27,6 +27,7 @@ import com.annimon.stream.function.Consumer;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.RingtoneUtil;
@@ -255,8 +256,8 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
   private Uri defaultSound(boolean calls) {
     Uri defaultValue;
 
-    if (calls) defaultValue = TextSecurePreferences.getCallNotificationRingtone(requireContext());
-    else       defaultValue = TextSecurePreferences.getNotificationRingtone(requireContext());
+    if (calls) defaultValue = SignalStore.settings().getCallRingtone();
+    else       defaultValue = SignalStore.settings().getMessageNotificationSound();
     return defaultValue;
   }
 

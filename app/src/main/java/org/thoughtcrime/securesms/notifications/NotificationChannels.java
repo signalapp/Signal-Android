@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -158,7 +159,7 @@ public class NotificationChannels {
     if (recipient.getId().isUnknown()) return null;
 
     VibrateState vibrateState     = recipient.getMessageVibrate();
-    boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
+    boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? SignalStore.settings().isMessageVibrateEnabled() : vibrateState == VibrateState.ENABLED;
     Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone(context);
     String       displayName      = recipient.getDisplayName(context);
 
@@ -180,7 +181,7 @@ public class NotificationChannels {
 
     NotificationChannel channel   = new NotificationChannel(channelId, displayName, NotificationManager.IMPORTANCE_HIGH);
 
-    setLedPreference(channel, TextSecurePreferences.getNotificationLedColor(context));
+    setLedPreference(channel, SignalStore.settings().getMessageLedColor());
     channel.setGroup(CATEGORY_MESSAGES);
     channel.enableVibration(vibrationEnabled);
 
@@ -523,9 +524,9 @@ public class NotificationChannels {
     NotificationChannel joinEvents   = new NotificationChannel(JOIN_EVENTS, context.getString(R.string.NotificationChannel_contact_joined_signal), NotificationManager.IMPORTANCE_DEFAULT);
 
     messages.setGroup(CATEGORY_MESSAGES);
-    messages.enableVibration(TextSecurePreferences.isNotificationVibrateEnabled(context));
-    messages.setSound(TextSecurePreferences.getNotificationRingtone(context), getRingtoneAudioAttributes());
-    setLedPreference(messages, TextSecurePreferences.getNotificationLedColor(context));
+    messages.enableVibration(SignalStore.settings().isMessageVibrateEnabled());
+    messages.setSound(SignalStore.settings().getMessageNotificationSound(), getRingtoneAudioAttributes());
+    setLedPreference(messages, SignalStore.settings().getMessageLedColor());
 
     calls.setShowBadge(false);
     backups.setShowBadge(false);

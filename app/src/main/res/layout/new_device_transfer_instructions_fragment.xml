@@ -63,7 +63,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/transfer_item_spacing"
-                android:text="@string/NewDeviceTransferInstructions__tap_on_chats"
+                android:text="@string/NewDeviceTransferInstructions__tap_on_account"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
                 app:layout_columnWeight="1" />

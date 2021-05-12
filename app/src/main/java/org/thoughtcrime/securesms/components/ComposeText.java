@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.components.mention.MentionDeleter;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.mention.MentionValidatorWatcher;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -201,7 +202,7 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setTransport(TransportOption transport) {
-    final boolean useSystemEmoji = TextSecurePreferences.isSystemEmojiPreferred(getContext());
+    final boolean useSystemEmoji = SignalStore.settings().isPreferSystemEmoji();
 
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
@@ -225,7 +226,7 @@ public class ComposeText extends EmojiEditText {
   public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
     InputConnection inputConnection = super.onCreateInputConnection(editorInfo);
 
-    if(TextSecurePreferences.isEnterSendsEnabled(getContext())) {
+    if(SignalStore.settings().isEnterKeySends()) {
       editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
     }
 

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.CallState;
@@ -165,15 +166,15 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     }
 
     webRtcInteractor.initializeAudioForCall();
-    if (shouldDisturbUserWithCall && TextSecurePreferences.isCallNotificationsEnabled(context)) {
+    if (shouldDisturbUserWithCall && SignalStore.settings().isCallNotificationsEnabled()) {
       Uri                            ringtone     = recipient.resolve().getCallRingtone();
       RecipientDatabase.VibrateState vibrateState = recipient.resolve().getCallVibrate();
 
       if (ringtone == null) {
-        ringtone = TextSecurePreferences.getCallNotificationRingtone(context);
+        ringtone = SignalStore.settings().getCallRingtone();
       }
 
-      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientDatabase.VibrateState.ENABLED || (vibrateState == RecipientDatabase.VibrateState.DEFAULT && TextSecurePreferences.isCallNotificationVibrateEnabled(context)));
+      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientDatabase.VibrateState.ENABLED || (vibrateState == RecipientDatabase.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);

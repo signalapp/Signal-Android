@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.HudState;
 import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.ViewOnceState;
@@ -348,7 +349,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
       return isSend;
     });
 
-    if (TextSecurePreferences.isSystemEmojiPreferred(this)) {
+    if (SignalStore.settings().isPreferSystemEmoji()) {
       emojiToggle.setVisibility(View.GONE);
     } else {
       emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
@@ -1038,7 +1039,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (TextSecurePreferences.isEnterSendsEnabled(getApplicationContext())) {
+          if (SignalStore.settings().isEnterKeySends()) {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;

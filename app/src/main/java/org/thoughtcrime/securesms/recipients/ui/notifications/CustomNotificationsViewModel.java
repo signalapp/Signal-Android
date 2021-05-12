@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -43,7 +44,7 @@ public final class CustomNotificationsViewModel extends ViewModel {
                                                                              switch (vibrateState) {
                                                                                case DISABLED: return false;
                                                                                case ENABLED : return true;
-                                                                               case DEFAULT : return TextSecurePreferences.isNotificationVibrateEnabled(ApplicationDependencies.getApplication());
+                                                                               case DEFAULT : return SignalStore.settings().isMessageVibrateEnabled();
                                                                                default      : throw new AssertionError();
                                                                              }
                                                                            });

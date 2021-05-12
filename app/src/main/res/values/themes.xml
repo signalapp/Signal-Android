@@ -151,6 +151,8 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
 
+        <item name="settingsToolbarStyle">@style/TextSecure.LightActionBar.Settings</item>
+
         <item name="contact_filter_toolbar_icon_tint">@color/signal_icon_tint_primary</item>
 
         <item name="emoji_category_recent">@drawable/ic_recent_20</item>
@@ -170,7 +172,7 @@
 
         <item name="colorControlNormal">@color/core_grey_90</item>
 
-
+        <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -204,6 +206,8 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
 
+        <item name="settingsToolbarStyle">@style/TextSecure.DarkActionBar.Settings</item>
+
         <item name="contact_filter_toolbar_icon_tint">@color/signal_icon_tint_primary</item>
 
         <item name="emoji_category_recent">@drawable/ic_recent_20</item>
@@ -222,6 +226,8 @@
         <item name="chipStyle">@style/Signal.Chip.Action</item>
 
         <item name="colorControlNormal">@color/core_white</item>
+
+        <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">

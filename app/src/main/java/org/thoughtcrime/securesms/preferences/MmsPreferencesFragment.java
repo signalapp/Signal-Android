@@ -23,7 +23,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;
 import org.thoughtcrime.securesms.database.ApnDatabase;
@@ -37,14 +36,6 @@ import java.io.IOException;
 public class MmsPreferencesFragment extends CorrectedPreferenceFragment {
 
   private static final String TAG = Log.tag(MmsPreferencesFragment.class);
-
-  @Override
-  public void onCreate(Bundle paramBundle) {
-    super.onCreate(paramBundle);
-
-    ((PassphraseRequiredActivity) getActivity()).getSupportActionBar()
-                                                .setTitle(R.string.preferences__advanced_mms_access_point_names);
-  }
 
   @Override
   public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {

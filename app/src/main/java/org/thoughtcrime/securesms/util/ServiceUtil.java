@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
+import android.app.KeyguardManager;
 import android.app.NotificationManager;
 import android.app.job.JobScheduler;
 import android.content.ClipboardManager;
@@ -26,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+
+import org.jetbrains.annotations.NotNull;
 
 public class ServiceUtil {
   public static InputMethodManager getInputMethodManager(Context context) {
@@ -105,5 +108,9 @@ public class ServiceUtil {
 
   public static LocationManager getLocationManager(@NonNull Context context) {
     return ContextCompat.getSystemService(context, LocationManager.class);
+  }
+
+  public static KeyguardManager getKeyguardManager(@NotNull Context context) {
+    return ContextCompat.getSystemService(context, KeyguardManager.class);
   }
 }

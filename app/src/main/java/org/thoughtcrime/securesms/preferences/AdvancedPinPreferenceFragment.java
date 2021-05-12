@@ -10,7 +10,6 @@ import androidx.preference.Preference;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
@@ -68,8 +67,6 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
         return true;
       });
     }
-
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__advanced_pin_settings);
   }
 
   private void onPreferenceChanged(boolean enabled) {

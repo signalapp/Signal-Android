@@ -31,7 +31,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -42,13 +41,13 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 public class DeleteAccountFragment extends Fragment {
 
-  private ArrayAdapter<String>   countrySpinnerAdapter;
-  private TextView               bullets;
-  private LabeledEditText        countryCode;
-  private LabeledEditText        number;
-  private AsYouTypeFormatter     countryFormatter;
-  private DeleteAccountViewModel viewModel;
-  private DialogInterface        deletionProgressDialog;
+  private ArrayAdapter<String>         countrySpinnerAdapter;
+  private TextView                     bullets;
+  private LabeledEditText              countryCode;
+  private LabeledEditText              number;
+  private AsYouTypeFormatter           countryFormatter;
+  private DeleteAccountViewModel       viewModel;
+  private DialogInterface              deletionProgressDialog;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,8 +56,8 @@ public class DeleteAccountFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    Spinner         countrySpinner = view.findViewById(R.id.delete_account_fragment_country_spinner);
-    View            confirm        = view.findViewById(R.id.delete_account_fragment_delete);
+    Spinner countrySpinner = view.findViewById(R.id.delete_account_fragment_country_spinner);
+    View    confirm        = view.findViewById(R.id.delete_account_fragment_delete);
 
     bullets     = view.findViewById(R.id.delete_account_fragment_bullets);
     countryCode = view.findViewById(R.id.delete_account_fragment_country_code);
@@ -78,12 +77,6 @@ public class DeleteAccountFragment extends Fragment {
     confirm.setOnClickListener(unused -> viewModel.submit());
 
     initializeSpinner(countrySpinner);
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__delete_account);
   }
 
   private void updateBullets(@NonNull Optional<String> formattedBalance) {

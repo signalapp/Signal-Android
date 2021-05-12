@@ -6,6 +6,8 @@
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
     <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
     <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -2324,7 +2326,9 @@
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
     <string name="preferences__typing_indicators">Typing indicators</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
-    <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning. This setting is not a guarantee, and your keyboard may ignore it.</string>
+    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_app_protection__blocked_users">Blocked users</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
     <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
@@ -2981,7 +2985,7 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tap on your profile photo in the top left to open Settings</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_chats">Tap on "Chats"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">Tap on "Account"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tap "Transfer Account" and then "Continue" on both devices</string>
 
@@ -3382,6 +3386,51 @@
     <string name="QualitySelectorBottomSheetDialog__high">High</string>
     <string name="QualitySelectorBottomSheetDialog__slower_more_data">Slower, more data</string>
     <string name="QualitySelectorBottomSheetDialog__photo_quality">Photo quality</string>
+
+    <!-- AppSettingsFragment -->
+    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+
+    <!-- AccountSettingsFragment -->
+    <string name="AccountSettingsFragment__account">Account</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">You\'ll be asked less frequently over time</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN to register your phone number with Signal again</string>
+
+    <!-- ChatsSettingsFragment -->
+    <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
+    <string name="ChatsSettingsFragment__enter_key_sends">Enter key sends</string>
+
+    <!--SmsSettingsFragment -->
+    <string name="SmsSettingsFragment__use_as_default_sms_app">Use as default SMS app</string>
+
+    <!-- NotificationsSettingsFragment -->
+    <string name="NotificationsSettingsFragment__messages">Messages</string>
+    <string name="NotificationsSettingsFragment__calls">Calls</string>
+    <string name="NotificationsSettingsFragment__notify_when">Notify when…</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+
+    <!-- PrivacySettingsFragment -->
+    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
+    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+
+    <!-- AdvancedPrivacySettingsFragment -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Show an icon in message details when they were delivered using sealed sender.</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="HelpSettingsFragment__support_center">Support center</string>
+    <string name="HelpSettingsFragment__contact_us">Contact us</string>
+    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
+    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
+
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
 
     <!-- EOF -->
 

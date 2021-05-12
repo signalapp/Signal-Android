@@ -14,6 +14,8 @@
     <color name="transparent_black_80">#CC000000</color>
     <color name="transparent_black_90">#e6000000</color>
 
+    <color name="transparent_white_05">#0Dffffff</color>
+    <color name="transparent_white_10">#18ffffff</color>
     <color name="transparent_white_15">#26ffffff</color>
     <color name="transparent_white_20">#33ffffff</color>
     <color name="transparent_white_30">#4Dffffff</color>

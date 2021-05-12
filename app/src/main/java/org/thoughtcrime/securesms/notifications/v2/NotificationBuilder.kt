@@ -21,6 +21,7 @@ import androidx.core.graphics.drawable.IconCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.ReplyMethod
@@ -45,7 +46,7 @@ private const val BIG_PICTURE_DIMEN = 500
  */
 sealed class NotificationBuilder(protected val context: Context) {
 
-  private val privacy: NotificationPrivacyPreference = TextSecurePreferences.getNotificationPrivacy(context)
+  private val privacy: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
   private val isNotLocked: Boolean = !KeyCachingService.isLocked(context)
 
   abstract fun setSmallIcon(@DrawableRes drawable: Int)
@@ -145,10 +146,10 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun setLights() {
-    val ledColor: String = TextSecurePreferences.getNotificationLedColor(context)
+    val ledColor: String = SignalStore.settings().messageLedColor
 
     if (ledColor != "none") {
-      var blinkPattern = TextSecurePreferences.getNotificationLedPattern(context)
+      var blinkPattern = SignalStore.settings().messageLedBlinkPattern
       if (blinkPattern == "custom") {
         blinkPattern = TextSecurePreferences.getNotificationLedPatternCustom(context)
       }
@@ -297,8 +298,8 @@ sealed class NotificationBuilder(protected val context: Context) {
       val ringtone: Uri? = recipient?.messageRingtone
       val vibrate = recipient?.messageVibrate
 
-      val defaultRingtone: Uri = TextSecurePreferences.getNotificationRingtone(context)
-      val defaultVibrate: Boolean = TextSecurePreferences.isNotificationVibrateEnabled(context)
+      val defaultRingtone: Uri = SignalStore.settings().messageNotificationSound
+      val defaultVibrate: Boolean = SignalStore.settings().isMessageVibrateEnabled
 
       if (ringtone == null && !TextUtils.isEmpty(defaultRingtone.toString())) {
         builder.setSound(defaultRingtone)

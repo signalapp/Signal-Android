@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -63,7 +64,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
       return;
     }
 
-    if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) {
+    if (!SignalStore.settings().isNotifyWhenContactJoinsSignal()) {
       Log.w(TAG, "New contact notifications disabled! Skipping.");
       return;
     }
