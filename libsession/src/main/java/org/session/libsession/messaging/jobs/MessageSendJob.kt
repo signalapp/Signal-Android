@@ -104,17 +104,29 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
 
     class Factory : Job.Factory<MessageSendJob> {
 
-        override fun create(data: Data): MessageSendJob {
+        override fun create(data: Data): MessageSendJob? {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val serializedDestination = data.getByteArray(DESTINATION_KEY)
             val kryo = Kryo()
             // Message
             val messageInput = Input(serializedMessage)
-            val message = kryo.readClassAndObject(messageInput) as Message
+            val message: Message
+            try {
+                message = kryo.readClassAndObject(messageInput) as Message
+            } catch (e: Exception) {
+                Log.e("Loki", "Couldn't deserialize message send job.", e)
+                return null
+            }
             messageInput.close()
             // Destination
             val destinationInput = Input(serializedDestination)
-            val destination = kryo.readClassAndObject(destinationInput) as Destination
+            val destination: Destination
+            try {
+                destination = kryo.readClassAndObject(destinationInput) as Destination
+            } catch (e: Exception) {
+                Log.e("Loki", "Couldn't deserialize message send job.", e)
+                return null
+            }
             destinationInput.close()
             // Return
             return MessageSendJob(message, destination)

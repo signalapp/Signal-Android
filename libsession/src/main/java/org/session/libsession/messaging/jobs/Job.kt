@@ -21,7 +21,7 @@ interface Job {
     fun getFactoryKey(): String
 
     interface Factory<T : Job> {
-        
-        fun create(data: Data): T
+
+        fun create(data: Data): T?
     }
 }
