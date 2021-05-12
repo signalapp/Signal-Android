@@ -126,7 +126,7 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair!!, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
-    val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.toJoinUrl() }
+    val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.joinURL }
     for (openGroup in message.openGroups) {
         if (allOpenGroups.contains(openGroup) || allV2OpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)

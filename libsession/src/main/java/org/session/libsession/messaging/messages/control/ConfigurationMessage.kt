@@ -117,7 +117,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                     val threadID = storage.getThreadID(group.encodedId) ?: continue
                     val openGroup = storage.getOpenGroup(threadID)
                     val openGroupV2 = storage.getV2OpenGroup(threadID)
-                    val shareUrl = openGroup?.server ?: openGroupV2?.toJoinUrl() ?: continue
+                    val shareUrl = openGroup?.server ?: openGroupV2?.joinURL ?: continue
                     openGroups.add(shareUrl)
                 }
             }
