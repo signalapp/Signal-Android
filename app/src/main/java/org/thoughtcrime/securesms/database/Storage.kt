@@ -190,7 +190,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun markJobAsFailedPermanently(jobId: String) {
-        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailed(jobId)
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailedPermanently(jobId)
     }
 
     override fun getAllPendingJobs(type: String): Map<String, Job?> {
