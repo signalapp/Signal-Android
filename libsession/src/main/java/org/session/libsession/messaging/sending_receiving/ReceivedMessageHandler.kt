@@ -1,7 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
-import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue

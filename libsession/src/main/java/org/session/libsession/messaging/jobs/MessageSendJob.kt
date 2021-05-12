@@ -4,6 +4,7 @@ import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.jobs.Job.Companion.MAX_BUFFER_SIZE
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.VisibleMessage
@@ -79,7 +80,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override fun serialize(): Data {
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
-        val output = Output(ByteArray(4096), 10_000_000)
+        val output = Output(ByteArray(4096), MAX_BUFFER_SIZE)
         kryo.writeClassAndObject(output, message)
         output.close()
         val serializedMessage = output.toBytes()
@@ -102,7 +103,13 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             val serializedMessage = data.getByteArray(KEY_MESSAGE)
             val serializedDestination = data.getByteArray(KEY_DESTINATION)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             var input = Input(serializedMessage)
+            val messageClass = kryo.readClass(input)
+            if (messageClass == null || !Message::class.java.isAssignableFrom(messageClass.type)) {
+                // if the message class doesn't exist or it doesn't implement `Message` parent class
+                throw Exception("deserialized messageClass was ${messageClass.type}")
+            }
             val message = kryo.readClassAndObject(input) as Message
             input.close()
             input = Input(serializedDestination)

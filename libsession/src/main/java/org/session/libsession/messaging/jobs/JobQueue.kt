@@ -50,6 +50,7 @@ class JobQueue : JobDelegate {
 
     private fun Job.canExecuteParallel(): Boolean {
         return this.javaClass in arrayOf(
+                MessageSendJob::class.java,
                 AttachmentUploadJob::class.java,
                 AttachmentDownloadJob::class.java
         )
