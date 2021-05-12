@@ -26,6 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -53,7 +54,7 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
 
   public static void fixAutomatically(@NonNull Context context) {
     if (areCallNotificationsDisabled(context)) {
-      TextSecurePreferences.setCallNotificationsEnabled(context, true);
+      SignalStore.settings().setCallNotificationsEnabled(true);
       Toast.makeText(context, R.string.EnableCallNotificationSettingsDialog__call_notifications_enabled, Toast.LENGTH_SHORT).show();
     }
   }
@@ -198,7 +199,7 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
   }
 
   private static boolean areCallNotificationsDisabled(Context context) {
-    return !TextSecurePreferences.isCallNotificationsEnabled(context);
+    return !SignalStore.settings().isCallNotificationsEnabled();
   }
 
   private static boolean isCallChannelInvalid(Context context) {

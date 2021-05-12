@@ -704,6 +704,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">zaktualizuj tę grupę.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To niezabezpieczona grupa MMS. Zaproś swoje kontakty do używania z Signal, aby korzystać z prywatnych rozmów.</string>
   <string name="ManageGroupActivity_invite_now">Zaproś teraz</string>
+  <string name="ManageGroupActivity_more">…więcej</string>
+  <string name="ManageGroupActivity_add_group_description">Dodaj opis grupy…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadom mnie o wzmiankach</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Powiadamiać, gdy zostaniesz wspomniany(a) w wyciszonych rozmowach?</string>
@@ -1076,6 +1078,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Zmieniłeś(aś) nazwę grupy na “%1$s“.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s zmienił(a) nazwę grupy na \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Nazwa grupy została zmieniona na \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Zmieniłeś(aś) opis grupy.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s zmienił(a) opis grupy.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Opis grupy został zmieniony.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Zmieniłeś(aś) awatar grupy.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s zmienił(a) awatar grupy.</string>
@@ -1745,6 +1751,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Włącz powiadomienia o połączeniach</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Brak wspólnych grup. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Brak kontaktów w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
+  <string name="ConversationUpdateItem_view">Zobacz</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -1886,6 +1893,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CreateProfileActivity__username">Nazwa użytkownika</string>
   <string name="CreateProfileActivity__create_a_username">Utwórz nazwę użytkownika</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Własne nazwy i zdjęcia dla grup MMS będą widoczne tylko dla Ciebie.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Opisy grupy będą widoczne dla członków tej grupy i zaproszonych osób.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O mnie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napisz kilka słów o sobie…</string>
@@ -1900,6 +1908,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Edytuj nazwę i zdjęcie grupy</string>
   <string name="EditProfileFragment__group_name">Nazwa grupy</string>
+  <string name="EditProfileFragment__group_description">Opis grupy</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Twoje imię</string>
   <string name="EditProfileNameFragment_first_name">Imię</string>
@@ -1967,6 +1976,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
   <string-array name="HelpFragment__categories">
+    <item>-- Wybierz opcję --</item>
     <item>Coś nie działa</item>
     <item>Prośba o dodanie funkcji</item>
     <item>Pytanie</item>
@@ -2112,7 +2122,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>
   <string name="preferences__typing_indicators">Wskaźniki pisania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Gdy wskaźniki pisania są wyłączone, Ty również nie będziesz widzieć wskaźników pisania innych użytkowników.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Poproś klawiaturę o wyłączenie spersonalizowanego uczenia się. Ta opcha niczego nie gwarantuje i Twoja klawiatura może ją zignorować.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Poproś klawiaturę o wyłączenie spersonalizowanego uczenia się. Ta opcha niczego nie gwarantuje i Twoja klawiatura może ją zignorować.</string> -->
   <string name="preferences_app_protection__blocked_users">Zablokowani użytkownicy</string>
   <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
   <string name="preferences_chats__when_using_wifi">Podczas używania Wi-Fi</string>
@@ -2666,7 +2676,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Stuknij swoje zdjęcie profilowe, u góry, po lewej, aby otworzyć Ustawienia</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Stuknij \"Rozmowy\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Stuknij \"Rozmowy\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Stuknij \"Przenieś konto\", a następnie \"Kontynuuj\", na obu urządzeniach</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3003,5 +3013,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Żaden z Twoich kontaktów lub osób, z którymi rozmawiasz, nie znajduje się w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt, przed ich akceptacją, aby uniknąć niechcianych wiadomości</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O prośbach o kontakt</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Opis grupy</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standardowa</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Szybciej, mniejszy plik</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Wysoka</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Wolniej, większy plik</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Jakość zdjęcia</string>
   <!--EOF-->
 </resources>

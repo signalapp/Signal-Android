@@ -968,6 +968,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Cambiaches o nome do grupo a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s cambiou o nome do grupo a \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">O nome do grupo cambiou a \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Cambiaches o avatar do grupo.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s cambiou o avatar do grupo.</string>
@@ -1606,6 +1607,7 @@
   <string name="ConversationUpdateItem_call_is_full">A chamada está completa</string>
   <string name="ConversationUpdateItem_invite_friends">Convidar amizades</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificacións de chamadas</string>
+  <string name="ConversationUpdateItem_view">Ver</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reproducir … Deter</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1940,7 +1942,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se desactivas as confirmacións de lectura, non poderás ver as confirmacións dos demais.</string>
   <string name="preferences__typing_indicators">Indicador de escritura</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escritura están desactivados non verás cando outras persoas está a escribir.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar un teclado para desactivar a aprendizaxe personalizada. Este axuste non é unha garantía porque o seu teclado por ignoralo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar un teclado para desactivar a aprendizaxe personalizada. Este axuste non é unha garantía porque o seu teclado por ignoralo.</string> -->
   <string name="preferences_app_protection__blocked_users">Usuarios bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Usando datos móbiles</string>
   <string name="preferences_chats__when_using_wifi">Usando conexión wifi</string>
@@ -2378,7 +2380,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toca na foto de perfil arriba á esquerda para abrir os Axustes</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Toca en \"Conversas\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Toca en \"Conversas\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">En ambos dispositivos, toca en \"Transferir Conta\" e após en \"Continuar\" </string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2646,5 +2648,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">Enviar unha mensaxe</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">De acordo</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
   <!--EOF-->
 </resources>

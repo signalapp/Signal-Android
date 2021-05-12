@@ -276,6 +276,8 @@ public class StorageSyncJob extends BaseJob {
 
         db.beginTransaction();
         try {
+          self = Recipient.self().fresh();
+
           new ContactRecordProcessor(context, self).process(remoteContacts, StorageSyncHelper.KEY_GENERATOR);
           new GroupV1RecordProcessor(context).process(remoteGv1, StorageSyncHelper.KEY_GENERATOR);
           new GroupV2RecordProcessor(context).process(remoteGv2, StorageSyncHelper.KEY_GENERATOR);

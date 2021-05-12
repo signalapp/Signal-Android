@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -250,7 +251,7 @@ object NotificationFactory {
   }
 
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
-    if (!TextSecurePreferences.isInThreadNotifications(context) ||
+    if (!SignalStore.settings().isMessageNotificationsInChatSoundsEnabled ||
       ServiceUtil.getAudioManager(context).ringerMode != AudioManager.RINGER_MODE_NORMAL ||
       (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS
     ) {
@@ -260,7 +261,7 @@ object NotificationFactory {
     val uri: Uri = if (NotificationChannels.supported()) {
       NotificationChannels.getMessageRingtone(context, recipient) ?: NotificationChannels.getMessageRingtone(context)
     } else {
-      recipient.messageRingtone ?: TextSecurePreferences.getNotificationRingtone(context)
+      recipient.messageRingtone ?: SignalStore.settings().messageNotificationSound
     }
 
     if (uri.toString().isEmpty()) {

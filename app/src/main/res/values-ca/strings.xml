@@ -638,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualitzeu aquest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament, convideu els contactes al Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convida ara</string>
+  <string name="ManageGroupActivity_more">més…</string>
+  <string name="ManageGroupActivity_add_group_description">Afegiu-hi una descripció del grup.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Voleu rebre notificacions quan us mencionin en converses silenciades?</string>
@@ -974,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Heu canviat el nom del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha canviat el nom del grup a \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">S\'ha canviat el nom del grup a \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Heu canviat la descripció del grup.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ha canviat la descripció del grup. </string>
+  <string name="MessageRecord_the_group_description_has_changed">S\'ha canviat la descripció del grup.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Heu canviat l\'avatar del grup.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha canviat l\'avatar del grup.</string>
@@ -1617,6 +1623,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_enable_call_notifications">Activa les notificacions de trucada</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Cap grup en comú. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Cap contacte en aquest grup. Reviseu les sol·licituds amb atenció.</string>
+  <string name="ConversationUpdateItem_view">Vista</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -1744,6 +1751,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CreateProfileActivity__username">Nom d\'usuari</string>
   <string name="CreateProfileActivity__create_a_username">Creeu un nom d\'usuari</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Els noms i les fotos del grup MMS personalitzat només seran visibles per  a vós.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Les descripcions del grup seran visibles per als membres d’aquest grup i per a les persones que hi hagin estat convidades.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Quant a</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriviu alguna cosa sobre vosaltres…</string>
@@ -1758,6 +1766,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editeu el nom i la foto del grup</string>
   <string name="EditProfileFragment__group_name">Nom del grup</string>
+  <string name="EditProfileFragment__group_description">Descripció del grup</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">El nom</string>
   <string name="EditProfileNameFragment_first_name">Nom</string>
@@ -1825,7 +1834,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
   <string-array name="HelpFragment__categories">
-    <item>Alguna cosa no va bé</item>
+    <item>-- Seleccioneu una opció --</item>
+    <item>Alguna cosa no funciona.</item>
     <item>Petició de funció</item>
     <item>Pregunta</item>
     <item>Retroacció</item>
@@ -1968,7 +1978,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
   <string name="preferences__typing_indicators">Indicadors de tecleig</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Sol·liciteu el teclat per desactivar l\'aprenentatge personalitzat. Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Sol·liciteu el teclat per desactivar l\'aprenentatge personalitzat. Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string> -->
   <string name="preferences_app_protection__blocked_users">Usuaris blocats</string>
   <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
   <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
@@ -2508,7 +2518,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toqueu la foto del perfil a la part superior esquerra per obrir-ne la Configuració.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Toqueu Converses</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Toqueu Converses</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toqueu Transfereix el compte i, a continuació, Continua, als dos dispositius.</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2841,5 +2851,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Cap dels vostres contactes o persones amb qui converseu no forma part d\'aquest grup. Reviseu les sol·licituds amb atenció abans d’acceptar-les per evitar missatges no desitjats.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Quant a les sol·licituds de missatges</string>
   <string name="GroupsInCommonMessageRequest__okay">D\'acord</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Descripció del grup</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Estàndard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Més ràpid, menys dades</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Més lent, més dades</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualitat de la fotografia</string>
   <!--EOF-->
 </resources>

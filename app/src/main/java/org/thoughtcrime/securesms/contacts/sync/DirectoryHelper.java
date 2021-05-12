@@ -463,7 +463,7 @@ public class DirectoryHelper {
   private static void notifyNewUsers(@NonNull  Context context,
                                      @NonNull  Collection<RecipientId> newUsers)
   {
-    if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
+    if (!SignalStore.settings().isNotifyWhenContactJoinsSignal()) return;
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);

@@ -958,6 +958,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">आपने ग्रुप का नाम बदल कर \"%1$s\" रख दिया है।</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने ग्रुप का नाम बदल कर \"%2$s\" रख दिया है।</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ग्रुप का नाम बदल कर \"%1$s\" हो गया है।</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">आपने ग्रुप का अवतार बदल दिया है।</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने ग्रुप का अवतार बदल दिया है।</string>
@@ -1580,6 +1581,7 @@
   <string name="ConversationUpdateItem_return_to_call">कॉल पर वापस जाएँ</string>
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण है</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रों को आमंत्रित करें</string>
+  <string name="ConversationUpdateItem_view">देखना</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">चलाएं … रोकें</string>
   <string name="audio_view__download_accessibility_description">डाउनलोड</string>
@@ -2468,5 +2470,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">एक मेसेज भेजें</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ठीक है</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">उच्च</string>
   <!--EOF-->
 </resources>

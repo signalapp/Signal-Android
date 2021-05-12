@@ -638,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">bu grubu yükseltin.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak konuşmak için kişilerinizi Signal\'e davet edin.</string>
   <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
+  <string name="ManageGroupActivity_more">…daha fazlası</string>
+  <string name="ManageGroupActivity_add_group_description">Grup tanımı ekle…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Sessize alınan konuşmalarda sizden bahsedildiğinde bildirim gönderilsin mi?</string>
@@ -974,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Grup adını \"%1$s\" olarak değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s grup adını \"%2$s\" olarak değiştirdi.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Grubun adı \"%1$s\" olarak değiştirildi.</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Grup tanımını değiştirdiniz.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s grup tanımını değiştirdi.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Grup tanımı değişti.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Grup resmini değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s grup resmini değiştirdi.</string>
@@ -1621,6 +1627,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Arama Bildirimlerini Etkinleştir</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ortak bir grup yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu grupta kişilerinizden kimse yok. İstekleri dikkatlice gözden geçirin.</string>
+  <string name="ConversationUpdateItem_view">Görüntüle</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
@@ -1748,6 +1755,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CreateProfileActivity__username">Kullanıcı adı</string>
   <string name="CreateProfileActivity__create_a_username">Bir kullanıcı adı oluşturun</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Özel MMS grup adı ve resimlerini yalnızca siz görebilirsiniz</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Grup tanımları bu grubun üyeleri ve davetli kişiler tarafından görülebilecektir.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Hakkında</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Hakkınızda bir kaç kelime yazın…</string>
@@ -1762,6 +1770,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Grup adını ve resmini düzenleyin</string>
   <string name="EditProfileFragment__group_name">Grup adı</string>
+  <string name="EditProfileFragment__group_description">Grup tanımı</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Adınız</string>
   <string name="EditProfileNameFragment_first_name">Ad</string>
@@ -1829,8 +1838,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string-array name="HelpFragment__categories">
-    <item>Bir Şey Çalışmıyor</item>
-    <item>Özellik İsteği</item>
+    <item>-- Lütfen bir seçenek seçin --</item>
+    <item>Bir şey çalışmıyor</item>
+    <item>Özellik isteği</item>
     <item>Soru</item>
     <item>Geribildirim</item>
     <item>Diğer</item>
@@ -1972,7 +1982,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>
   <string name="preferences__typing_indicators">Yazma göstergeleri</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Yazma göstergeleri etkin değilse, başkalarının yazma göstergelerini göremeyeceksiniz.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Kişiselleştirilmiş öğrenmeyi devre dışı bırakmak için klavyeyi isteyin. Bu ayar garanti değildir ve klavyeniz bunu dikkate almayabilir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Kişiselleştirilmiş öğrenmeyi devre dışı bırakmak için klavyeyi isteyin. Bu ayar garanti değildir ve klavyeniz bunu dikkate almayabilir.</string> -->
   <string name="preferences_app_protection__blocked_users">Engellenen kullanıcılar</string>
   <string name="preferences_chats__when_using_mobile_data">Mobil veri kullanırken</string>
   <string name="preferences_chats__when_using_wifi">Kablosuz ağ kullanırken</string>
@@ -2512,7 +2522,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ayarları açmak için sol üstteki profil fotoğrafınıza dokunun</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">\"Konuşmalar\" seçeneğine dokunun</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">\"Konuşmalar\" seçeneğine dokunun</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Öncelikle \"Hesabı Aktar\" seçeneğine, ardından iki cihazda da \"Devam Et\" seçeneğine dokunun</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2845,5 +2855,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Kişilerinizin veya sohbet ettiğiniz kişilerin hiçbiri bu grupta değil İstenmeyen iletileri önlemek için kabul etmeden önce istekleri dikkatlice gözden geçirin.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">İleti istekleri hakkında</string>
   <string name="GroupsInCommonMessageRequest__okay">Tamam</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Grup tanımı</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standart</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Daha hızlı, az veri</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Yüksek</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Daha yavaş, daha çok veri</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotoğraf kalitesi</string>
   <!--EOF-->
 </resources>

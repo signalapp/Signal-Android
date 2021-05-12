@@ -651,7 +651,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
-    bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
+    bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
     bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
 
     if (messageRecord.isRemoteDelete()) {

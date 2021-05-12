@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.ThreadBodyUtil
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.notifications.AbstractNotificationBuilder
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageRecordUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 
 private val TAG: String = Log.tag(NotificationItemV2::class.java)
@@ -72,7 +72,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   }
 
   fun getStyledPrimaryText(context: Context, trimmed: Boolean = false): CharSequence {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayNothing) {
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayNothing) {
       context.getString(R.string.SingleRecipientNotificationBuilder_new_message)
     } else {
       SpannableStringBuilder().apply {
@@ -87,7 +87,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   }
 
   fun getPersonName(context: Context): CharSequence {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
       individualRecipient.getDisplayName(context)
     } else {
       context.getString(R.string.SingleRecipientNotificationBuilder_signal)
@@ -99,7 +99,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   }
 
   fun getPersonUri(context: Context): String? {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact && individualRecipient.isSystemContact) {
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && individualRecipient.isSystemContact) {
       individualRecipient.contactUri.toString()
     } else {
       null
@@ -107,7 +107,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   }
 
   fun getPersonIcon(context: Context): Bitmap? {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact) {
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
       individualRecipient.getContactDrawable(context).toLargeBitmap(context)
     } else {
       null
@@ -115,7 +115,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
   }
 
   fun getPrimaryText(context: Context): CharSequence {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage) {
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage) {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
         getPrimaryTextActual(context)
       } else {
@@ -128,7 +128,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
 
   fun getInboxLine(context: Context): CharSequence? {
     return when {
-      TextSecurePreferences.getNotificationPrivacy(context).isDisplayNothing -> null
+      SignalStore.settings().messageNotificationsPrivacy.isDisplayNothing -> null
       else -> getStyledPrimaryText(context, true)
     }
   }
@@ -205,7 +205,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   }
 
   override fun getThumbnailInfo(context: Context): ThumbnailInfo {
-    return if (TextSecurePreferences.getNotificationPrivacy(context).isDisplayMessage && !KeyCachingService.isLocked(context)) {
+    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
       val thumbnailSlide: Slide? = slideDeck?.thumbnailSlide
       ThumbnailInfo(thumbnailSlide?.publicUri, thumbnailSlide?.contentType)
     } else {

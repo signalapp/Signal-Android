@@ -249,6 +249,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -643,6 +644,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         (resultCode != RESULT_OK && reqCode != SMS_DEFAULT))
     {
       updateLinkPreviewState();
+      SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(this));
       return;
     }
 
@@ -2184,7 +2186,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     stickerViewModel.getStickersAvailability().observe(this, stickersAvailable -> {
       if (stickersAvailable == null) return;
 
-      boolean           isSystemEmojiPreferred = TextSecurePreferences.isSystemEmojiPreferred(this);
+      boolean           isSystemEmojiPreferred = SignalStore.settings().isPreferSystemEmoji();
       MediaKeyboardMode keyboardMode           = TextSecurePreferences.getMediaKeyboardMode(this);
       boolean           stickerIntro           = !TextSecurePreferences.hasSeenStickerIntroTooltip(this);
 
@@ -2631,7 +2633,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard, boolean stickersAvailable) {
-    boolean isSystemEmojiPreferred   = TextSecurePreferences.isSystemEmojiPreferred(this);
+    boolean isSystemEmojiPreferred = SignalStore.settings().isPreferSystemEmoji();
 
     if (stickersAvailable) {
       if (isSystemEmojiPreferred) {
@@ -3277,7 +3279,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (TextSecurePreferences.isEnterSendsEnabled(ConversationActivity.this)) {
+          if (SignalStore.settings().isEnterKeySends()) {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;

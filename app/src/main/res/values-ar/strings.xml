@@ -1174,6 +1174,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">لقد قمت بتغيير اسم المجموعة إلى \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">قام الغضو %1$s بتغيير اسم المجموعة إلى \"%2$s \".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">تم تغيير اسم المجموعة إلى \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">لقد قمت بتغيير صورة المجموعة.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">قام الغضو %1$s بتغيير صورة للمجموعة.</string>
@@ -1863,6 +1864,7 @@
   <string name="ConversationUpdateItem_return_to_call">العودة للمكالمة</string>
   <string name="ConversationUpdateItem_call_is_full">المكالمة ممتلئة</string>
   <string name="ConversationUpdateItem_invite_friends">دعوة الأصدقاء</string>
+  <string name="ConversationUpdateItem_view">إظهار</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">شغّل … توقف</string>
   <string name="audio_view__download_accessibility_description">تنزيل</string>
@@ -2225,7 +2227,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتِ بإلغاء تفعيل وصل قراءة الرسائل، فلن يمكنك كذلك رؤية وصل بأنّ الآخرين قاموا بقراءة  رسائلك.</string>
   <string name="preferences__typing_indicators">مؤشرات الطباعة</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اذا تم الغاء تفعيل المؤشر على الطباعة، فلن يمكنك كذلك رؤية مؤشر عند قيام الآخرين بالطّباعة.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">الطلب من لوحة المفاتيح تعطيل التعلم المخصص. إن هذا اﻹجراء ليس مضمونا، فقد تتجاهله لوحة مفاتيحك.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">الطلب من لوحة المفاتيح تعطيل التعلم المخصص. إن هذا اﻹجراء ليس مضمونا، فقد تتجاهله لوحة مفاتيحك.</string> -->
   <string name="preferences_app_protection__blocked_users">المستخدمون المحظورون</string>
   <string name="preferences_chats__when_using_mobile_data">عند استخدام بيانات الجوّال</string>
   <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
@@ -2910,5 +2912,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">إرسال رسالة</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">حسنا</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">بالغ الأهميّة </string>
   <!--EOF-->
 </resources>

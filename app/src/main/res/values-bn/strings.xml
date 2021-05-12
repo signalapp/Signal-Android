@@ -1562,7 +1562,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">যদি পাঠের প্রাপ্তিগুলি অক্ষম থাকে তবে আপনি অন্যের কাছ থেকে পঠিত প্রাপ্তিগুলি দেখতে সক্ষম হবেন না।</string>
   <string name="preferences__typing_indicators">টাইপিং সূচক</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">যদি টাইপিং সূচকগুলি অক্ষম থাকে তবে আপনি অন্যের কাছ থেকে টাইপিং সূচকগুলি দেখতে সক্ষম হবেন না।</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ব্যক্তিগতকৃত শিক্ষাকে অক্ষম করতে কীবোর্ডের অনুরোধ করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ব্যক্তিগতকৃত শিক্ষাকে অক্ষম করতে কীবোর্ডের অনুরোধ করুন</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">ব্লককৃত পরিচিতিসমূহ</string> -->
   <string name="preferences_chats__when_using_mobile_data">মোবাইল ডেটা ব্যবহার করার সময়</string>
   <string name="preferences_chats__when_using_wifi">ওয়াইফাই ব্যবহার করার সময়</string>

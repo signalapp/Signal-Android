@@ -159,6 +159,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
                             .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
                             .addPostRender(this::initializeExpiringMessageManager)
+                            .addPostRender(() -> SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(this)))
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");

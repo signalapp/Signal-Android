@@ -31,6 +31,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -228,7 +229,7 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
   private boolean canUserSelectBackup() {
     return BackupUtil.isUserSelectionRequired(requireContext()) &&
            !isReregister()                                      &&
-           !TextSecurePreferences.isBackupEnabled(requireContext());
+           !SignalStore.settings().isBackupEnabled();
   }
 
   @SuppressLint("NewApi")

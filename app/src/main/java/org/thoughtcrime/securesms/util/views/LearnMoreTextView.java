@@ -11,6 +11,7 @@ import android.text.style.ClickableSpan;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -26,6 +27,7 @@ public class LearnMoreTextView extends AppCompatTextView {
   private Spannable       link;
   private boolean         visible;
   private CharSequence    baseText;
+  private int             linkColor;
 
   public LearnMoreTextView(Context context) {
     super(context);
@@ -40,6 +42,7 @@ public class LearnMoreTextView extends AppCompatTextView {
   private void init() {
     setMovementMethod(LinkMovementMethod.getInstance());
     setLinkTextInternal(R.string.LearnMoreTextView_learn_more);
+    setLinkColor(ThemeUtil.getThemedColor(getContext(), R.attr.colorAccent));
     visible = true;
   }
 
@@ -73,13 +76,17 @@ public class LearnMoreTextView extends AppCompatTextView {
     setOnLinkClickListener(new OpenUrlOnClickListener(url));
   }
 
+  public void setLinkColor(@ColorInt int linkColor) {
+    this.linkColor = linkColor;
+  }
+
   private void setLinkTextInternal(@StringRes int linkText) {
     ClickableSpan clickable = new ClickableSpan() {
       @Override
       public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(false);
-        ds.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.colorAccent));
+        ds.setColor(linkColor);
       }
 
       @Override

@@ -966,6 +966,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez changé le nom du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe en « %2$s ».</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été changé en « %1$s ».</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Vous avez changé l’avatar du groupe.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s a changé l’avatar du groupe.</string>
@@ -1594,6 +1595,7 @@
   <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
   <string name="ConversationUpdateItem_call_is_full">L’appel est complet</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter des amis</string>
+  <string name="ConversationUpdateItem_view">Afficher</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
@@ -1920,7 +1922,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture d’autrui.</string>
   <string name="preferences__typing_indicators">Indicateurs de saisie</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé. Ce paramètre n’est pas une garantie et votre clavier pourrait l’ignorer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé. Ce paramètre n’est pas une garantie et votre clavier pourrait l’ignorer.</string> -->
   <string name="preferences_app_protection__blocked_users">Utilisateurs bloqués</string>
   <string name="preferences_chats__when_using_mobile_data">En utilisant les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">En utilisant le WI-FI</string>
@@ -2543,5 +2545,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">Valider</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
   <!--EOF-->
 </resources>

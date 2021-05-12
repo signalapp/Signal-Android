@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -402,7 +403,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
             Uri     messageSoundUri = messageSound != null ? Uri.parse(messageSound) : null;
             int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"));
             String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, null, address);
-            boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
+            boolean vibrateEnabled  = vibrateState == 0 ? SignalStore.settings().isMessageVibrateEnabled() :vibrateState == 1;
 
             if (GroupId.isEncodedGroup(address)) {
               try(Cursor groupCursor = db.rawQuery("SELECT title FROM groups WHERE group_id = ?", new String[] { address })) {

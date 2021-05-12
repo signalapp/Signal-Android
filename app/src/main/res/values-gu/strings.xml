@@ -1316,7 +1316,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">જો રિડ રિસિપ્ટ અક્ષમ કરવામાં આવે છે, તો તમે અન્ય લોકો પાસેથી વાંચેલી રિડ રિસિપ્ટ જોઈ શકશો નહીં.</string>
   <string name="preferences__typing_indicators">ટાઇપિંગ સૂચકો</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">જો ટાઇપિંગ સૂચકો અક્ષમ છે, તો તમે અન્ય લોકો તરફથી ટાઇપિંગ સૂચકો જોશો નહીં.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">વ્યક્તિગત કરેલ શિક્ષણને અક્ષમ કરવા માટે કીબોર્ડની વિનંતી કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">વ્યક્તિગત કરેલ શિક્ષણને અક્ષમ કરવા માટે કીબોર્ડની વિનંતી કરો</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">અવરોધિત સંપર્કો</string> -->
   <string name="preferences_chats__when_using_mobile_data">મોબાઇલ ડેટાનો ઉપયોગ કરતી વખતે</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi નો ઉપયોગ કરતી વખતે</string>

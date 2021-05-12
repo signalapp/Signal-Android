@@ -103,7 +103,7 @@ public class BackupUtil {
 
   public static void disableBackups(@NonNull Context context) {
     BackupPassphrase.set(context, null);
-    TextSecurePreferences.setBackupEnabled(context, false);
+    SignalStore.settings().setBackupEnabled(false);
     BackupUtil.deleteAllBackups();
 
     if (BackupUtil.isUserSelectionRequired(context)) {

@@ -972,6 +972,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Tbeddleḍ isem n ugraw ɣer \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ibeddel isem n ugraw s \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Isem n ugraw yettubeddel ɣer \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Tbeddleḍ avaṭar n ugraw.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ibeddel avaṭar n ugraw.</string>
@@ -1608,6 +1609,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ConversationUpdateItem_call_is_full">Asiwel yeččur</string>
   <string name="ConversationUpdateItem_invite_friends">Snubget-d imdukkal</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Rmed tilɣa n usiwel</string>
+  <string name="ConversationUpdateItem_view">Askan</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Γeṛ … Asteεfu</string>
   <string name="audio_view__download_accessibility_description">Sider</string>
@@ -1809,14 +1811,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpFragment__debug_log">Aɣmis n temseɣtayt:</string>
   <string name="HelpFragment__could_not_upload_logs">Ur yezmir ara ad d-isali iɣmisen</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ttxil-k·m ɛreḍ ayen yellan fell-ak·am amek ara ad d-tgelmeḍ ugur i wakken ad aɣ-talleḍ ad t-negzu.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Yella wayen ur nteddu ara</item>
-    <item>Asuter n tmahilt</item>
-    <item>Asteqsi</item>
-    <item>Tiririt</item>
-    <item>Ayen nniḍen</item>
-    <item>Axelleṣ</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Izen-agi</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yesttwaseqdec melmi kan</string>
@@ -1953,7 +1947,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ma yella iɣerwaḍen n tɣuri nsan, ur tettizmireḍ ara ad twaliḍ iɣerwaḍen n tɣuri sɣur wiyaḍ.</string>
   <string name="preferences__typing_indicators">Inammalen n tira</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ma yella inammalen n tira nsan, ur tettizmireḍ ara ad twaliḍ inammalen n tira sɣur wiyaḍ.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Suter anasiw i wakken ad tsenseḍ taɣuri tudmawant. Aɣewwar-a ur yettwaḍman ara, anasiw-ik·im yezmer ad t-yezgel.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Suter anasiw i wakken ad tsenseḍ taɣuri tudmawant. Aɣewwar-a ur yettwaḍman ara, anasiw-ik·im yezmer ad t-yezgel.</string> -->
   <string name="preferences_app_protection__blocked_users">Iseqdacen yettusweḥlen</string>
   <string name="preferences_chats__when_using_mobile_data">Deg useqdec n yisefka n uziraz</string>
   <string name="preferences_chats__when_using_wifi">Ticki tseqdaceḍ Wi-Fi</string>
@@ -2674,5 +2668,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Azen izen</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">IH</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Meqqer</string>
   <!--EOF-->
 </resources>

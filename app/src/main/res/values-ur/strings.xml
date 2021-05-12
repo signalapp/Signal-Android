@@ -966,6 +966,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">آپ نے گروپ کا نام تبدیل کرکے \"%1$s\" کردیا۔</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s نے گروپ کا نام تبدیل کرکے \"%2$s\" کردیا۔</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">گروپ کا نام تبدیل کر کے \"%1$s\" کر دیا گیا ہے۔</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">آپ نے گروپ کا اوتار بدلا۔</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s نے گروپ کا اوتار بدلا۔</string>
@@ -1593,6 +1594,7 @@
   <string name="ConversationUpdateItem_return_to_call">کال پر واپس جائیں</string>
   <string name="ConversationUpdateItem_call_is_full">کال پوری ہے</string>
   <string name="ConversationUpdateItem_invite_friends">دوستوں کو مدعو کریں</string>
+  <string name="ConversationUpdateItem_view">دیکھیں</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
   <string name="audio_view__download_accessibility_description">ڈاؤن لوڈ کریں</string>
@@ -1919,7 +1921,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر پڑھنے کی رسیدیں غیر فعال کردی گئی ہیں تو ، آپ دوسروں کی پڑھی ہوئی رسیدیں نہیں دیکھ پائیں گے۔</string>
   <string name="preferences__typing_indicators">ٹائپنگ انڈیکیٹرز</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر ٹائپنگ اندیکیٹرز غیر فعال ہیں، آپ دوسروں سے ٹائپنگ انڈیکیٹرز دیکھنے کے قابل نہیں ہیں۔</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ذاتی سیکھنے کو غیر فعال کرنے کے لئے کی بورڈ سے درخواست کریں۔ یہ ترتیب ضمانت نہیں ہے ، اور آپ کا کی بورڈ اسے نظرانداز کرسکتا ہے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ذاتی سیکھنے کو غیر فعال کرنے کے لئے کی بورڈ سے درخواست کریں۔ یہ ترتیب ضمانت نہیں ہے ، اور آپ کا کی بورڈ اسے نظرانداز کرسکتا ہے۔</string> -->
   <string name="preferences_app_protection__blocked_users">مسدود صارفین</string>
   <string name="preferences_chats__when_using_mobile_data">جب موبائل ڈیٹا استعمال کریں</string>
   <string name="preferences_chats__when_using_wifi">جب وائی فائی استعمال کریں</string>
@@ -2530,5 +2532,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">پیغام بھیجیں</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ٹھیک ہے</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">اونچا</string>
   <!--EOF-->
 </resources>

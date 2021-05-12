@@ -49,6 +49,7 @@
     <color name="signal_transparent_80">@color/transparent_white_80</color>
 
     <color name="signal_inverse_transparent">@color/transparent_black</color>
+    <color name="signal_inverse_transparent_05">@color/transparent_black_05</color>
     <color name="signal_inverse_transparent_15">@color/transparent_black_15</color>
     <color name="signal_inverse_transparent_20">@color/transparent_black_20</color>
     <color name="signal_inverse_transparent_40">@color/transparent_black_40</color>
@@ -128,4 +129,6 @@
 
     <color name="payment_info_card_overflow_tint">@color/core_grey_45</color>
     <color name="payment_currency_code_foreground_color">@color/core_grey_45</color>
+
+    <color name="settings_ripple_color">@color/transparent_black_10</color>
 </resources>

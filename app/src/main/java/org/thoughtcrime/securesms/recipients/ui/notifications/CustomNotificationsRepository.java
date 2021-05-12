@@ -10,6 +10,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -67,7 +68,7 @@ class CustomNotificationsRepository {
   void setMessageSound(@Nullable Uri sound) {
     SignalExecutors.SERIAL.execute(() -> {
       Recipient recipient    = getRecipient();
-      Uri       defaultValue = TextSecurePreferences.getNotificationRingtone(context);
+      Uri       defaultValue = SignalStore.settings().getMessageNotificationSound();
       Uri       newValue;
 
       if (defaultValue.equals(sound)) newValue = null;
@@ -81,7 +82,7 @@ class CustomNotificationsRepository {
 
   void setCallSound(@Nullable Uri sound) {
     SignalExecutors.SERIAL.execute(() -> {
-      Uri defaultValue = TextSecurePreferences.getCallNotificationRingtone(context);
+      Uri defaultValue = SignalStore.settings().getCallRingtone();
       Uri newValue;
 
       if (defaultValue.equals(sound)) newValue = null;

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -57,7 +58,7 @@ public class TurnOffContactJoinedNotificationsActivity extends AppCompatActivity
       List<MessageDatabase.MarkedMessageInfo> marked = threadDatabase.setRead(getIntent().getLongExtra(EXTRA_THREAD_ID, -1), false);
       MarkReadReceiver.process(this, marked);
 
-      TextSecurePreferences.setNewContactsNotificationEnabled(this, false);
+      SignalStore.settings().setNotifyWhenContactJoinsSignal(false);
       ApplicationDependencies.getMessageNotifier().updateNotification(this);
 
       return null;

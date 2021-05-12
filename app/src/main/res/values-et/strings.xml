@@ -970,6 +970,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Sa muutsid grupi nimeks “%1$s“.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s muutis grupi nimeks \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Selle grupi nimeks muudeti \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Sa muutsid grupi pilti.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutis grupi pilti.</string>
@@ -1610,6 +1611,7 @@
   <string name="ConversationUpdateItem_call_is_full">Kõne on täis</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu sõpru</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Luba helistamise teavitused</string>
+  <string name="ConversationUpdateItem_view">Näita</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
@@ -1817,14 +1819,6 @@
   <string name="HelpFragment__debug_log">Silumisinfo:</string>
   <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Miski ei tööta</item>
-    <item>Funktsioonisoov</item>
-    <item>Küsimus</item>
-    <item>Tagasiside</item>
-    <item>Muu</item>
-    <item>Maksed</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">See sõnum</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Hiljuti kasutatud</string>
@@ -1961,7 +1955,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kui lugemiskinnitused on keelatud, siis pole sul võimalik teiste saadetud lugemiskinnitusi näha.</string>
   <string name="preferences__typing_indicators">Kirjutamisindikaatorid</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kui kirjutamisindikaatorid on keelatud, ei näe sa neid ka teiste puhul.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Nõua klaviatuurilt isikustatud õppimise keelamist. See säte ei garanteeri midagi ja klaviatuur võib seda eirata.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Nõua klaviatuurilt isikustatud õppimise keelamist. See säte ei garanteeri midagi ja klaviatuur võib seda eirata.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokeeritud kasutajad</string>
   <string name="preferences_chats__when_using_mobile_data">Kui kasutad mobiilandmesidet</string>
   <string name="preferences_chats__when_using_wifi">Kui kasutad Wi-Fit</string>
@@ -2447,7 +2441,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Sätete avamiseks klõpsa enda profiilifotol üleval vasakul</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Klõpsa \"Vestlused\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Klõpsa \"Vestlused\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Klõpsa \"Konto ülekanne\" ja siis mõlemas seadmes \"Jätka\"</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2689,5 +2683,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">Saada sõnum</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">Sobib</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Kõrge</string>
   <!--EOF-->
 </resources>

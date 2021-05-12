@@ -12,8 +12,8 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -293,9 +293,7 @@ public final class Megaphones {
                             intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
                             controller.onMegaphoneNavigationRequested(intent);
                           } else {
-                            Intent intent = new Intent(context, ApplicationPreferencesActivity.class);
-                            intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_NOTIFICATIONS_FRAGMENT, true);
-                            controller.onMegaphoneNavigationRequested(intent);
+                            controller.onMegaphoneNavigationRequested(AppSettingsActivity.notifications(context));
                           }
                         })
                         .setSecondaryButton(R.string.NotificationsMegaphone_not_now, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.NOTIFICATIONS))
@@ -328,8 +326,8 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
-    boolean shouldShow = !TextSecurePreferences.isNotificationsEnabled(context)       ||
-                         !NotificationChannels.isMessageChannelEnabled(context)       ||
+    boolean shouldShow = !SignalStore.settings().isMessageNotificationsEnabled() ||
+                         !NotificationChannels.isMessageChannelEnabled(context) ||
                          !NotificationChannels.isMessagesChannelGroupEnabled(context) ||
                          !NotificationChannels.areNotificationsEnabled(context);
     if (shouldShow) {

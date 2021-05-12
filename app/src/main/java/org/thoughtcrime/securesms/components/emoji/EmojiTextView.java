@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -215,7 +216,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   private boolean useSystemEmoji() {
-   return !forceCustom && TextSecurePreferences.isSystemEmojiPreferred(getContext());
+   return !forceCustom && SignalStore.settings().isPreferSystemEmoji();
   }
 
   @Override

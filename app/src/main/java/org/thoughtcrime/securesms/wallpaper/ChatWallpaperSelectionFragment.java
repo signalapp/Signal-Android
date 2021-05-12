@@ -22,7 +22,6 @@ import com.google.android.flexbox.JustifyContent;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.wallpaper.crop.WallpaperImageSelectionActivity;
 
 public class ChatWallpaperSelectionFragment extends Fragment {
@@ -52,7 +51,6 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     @SuppressWarnings("CodeBlock2Expr")
     ChatWallpaperSelectionAdapter adapter = new ChatWallpaperSelectionAdapter(chatWallpaper -> {
       startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getRecipientId(), viewModel.getDimInDarkTheme().getValue()), CHOOSE_WALLPAPER);
-      ActivityTransitionUtil.setSlideInTransition(requireActivity());
     }, displayMetrics);
 
     flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
@@ -88,7 +86,6 @@ public class ChatWallpaperSelectionFragment extends Fragment {
                .ifNecessary()
                .onAllGranted(() -> {
                  startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
-                 ActivityTransitionUtil.setSlideInTransition(requireActivity());
                })
                .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission, Toast.LENGTH_SHORT)
                                        .show())

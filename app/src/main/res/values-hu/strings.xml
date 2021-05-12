@@ -639,6 +639,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">frissítsd a csoportot!</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ez egy nem biztonságos MMS-csoport. A biztonságos társalgáshoz hívd meg kontaktjaidat Signalra.</string>
   <string name="ManageGroupActivity_invite_now">Meghívás most</string>
+  <string name="ManageGroupActivity_more">…tovább</string>
+  <string name="ManageGroupActivity_add_group_description">Csoportleírás hozzáadása…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Szeretnél értesítéseket kapni, ha egy lenémított beszélgetésben megemlítenek?</string>
@@ -975,6 +977,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Megváltoztattad a csoport nevét erre: \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s megváltoztatta a csoport nevét erre: \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">A csoport neve a következőre változott: \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Megváltoztattad a csoportleírást.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s megváltoztatta a csoportleírást.</string>
+  <string name="MessageRecord_the_group_description_has_changed">A csoport leírása megváltozott.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Megváltoztattad a csoport képét.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s megváltoztatta a csoport képét.</string>
@@ -1625,6 +1631,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_enable_call_notifications">Hívás értesítések engedélyezése</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmeket óvatosan tekintsd át.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs kapcsolatod ebben a csoportban. A kérelmeket óvatosan tekintsd át.</string>
+  <string name="ConversationUpdateItem_view">Megtekintés</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lejátszás … Szünet</string>
   <string name="audio_view__download_accessibility_description">Letöltés</string>
@@ -1752,6 +1759,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="CreateProfileActivity__username">Felhasználónév</string>
   <string name="CreateProfileActivity__create_a_username">Felhasználónév létrehozása</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Az egyéni MMS csoport nevek és fotók csak számodra láthatók.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">A csoport leírása a tagok, illetve a meghívottak részére lesz látható.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Névjegy</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Írj egy pár szót magadról…</string>
@@ -1766,6 +1774,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Csoport nevének és képének szerkesztése</string>
   <string name="EditProfileFragment__group_name">Csoport neve</string>
+  <string name="EditProfileFragment__group_description">Csoportleírás</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Neved</string>
   <string name="EditProfileNameFragment_first_name">Keresztnév</string>
@@ -1833,6 +1842,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
   <string-array name="HelpFragment__categories">
+    <item>-- válassz a lehetőségek közül --</item>
     <item>Valami nem működik</item>
     <item>Funkció kérés</item>
     <item>Kérdés</item>
@@ -1976,7 +1986,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.</string>
   <string name="preferences__typing_indicators">Gépelés-indikátorok</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ha a gépelés-indikátorod ki van kapcsolva, te sem fogsz értesülni róla, ha mások épp gépelnek.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása). Ennek a beállításnak a használata nem garantálja, hogy a billentyűzet figyelembe is veszi ezt a kérést.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása). Ennek a beállításnak a használata nem garantálja, hogy a billentyűzet figyelembe is veszi ezt a kérést.</string> -->
   <string name="preferences_app_protection__blocked_users">Letiltott felhasználók</string>
   <string name="preferences_chats__when_using_mobile_data">Mobilinternet használata során</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi használata során</string>
@@ -2516,7 +2526,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Érintsd meg a profil fotódat baloldalt felül a Beállítások megnyitásához.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Érintsd meg a \"Csevegések\"-et</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Érintsd meg a \"Csevegések\"-et</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Érintsd meg az  \"Átvitel Andorid eszközről\" majd a \"Folytatás\" opciókat mindkét eszközön.</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2849,5 +2859,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nincsennek közös kapcsolataid vagy olyan személyek akivel csevegsz, akik tagjai ennek a csoportnak. Ellenőrizd a kérelmet figyelmesen mielőtt elfogadod, hogy elkerüld a nem kívánt üzeneteket.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Az üzenet kérelmekről</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Csoportleírás</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Normál</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Gyorsabb, kevesebb adat</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Magas</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lassabb, több adat</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotóminőség</string>
   <!--EOF-->
 </resources>

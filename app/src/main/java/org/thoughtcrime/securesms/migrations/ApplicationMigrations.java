@@ -40,7 +40,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 32;
+  public static final int CURRENT_VERSION = 33;
 
   private static final class Version {
     static final int LEGACY                 = 1;
@@ -74,6 +74,7 @@ public class ApplicationMigrations {
     // Versions 29, 30 accidentally skipped
     static final int MUTE_SYNC              = 31;
     static final int PROFILE_SHARING_UPDATE = 32;
+    static final int SMS_STORAGE_SYNC       = 33;
   }
 
   /**
@@ -310,6 +311,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.PROFILE_SHARING_UPDATE) {
       jobs.put(Version.PROFILE_SHARING_UPDATE, new ProfileSharingUpdateMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SMS_STORAGE_SYNC) {
+      jobs.put(Version.SMS_STORAGE_SYNC, new AccountRecordMigrationJob());
     }
 
     return jobs;

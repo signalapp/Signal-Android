@@ -968,6 +968,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">നിങ്ങൾ ഗ്രൂപ്പിന്റെ പേര് \"%1$s\" എന്ന് മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ഗ്രൂപ്പിന്റെ പേര് \"%2$s\" എന്ന് മാറ്റി.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ഗ്രൂപ്പിന്റെ പേര് \"%1$s\" എന്നായി മാറ്റി.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">നിങ്ങൾ ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
@@ -1597,6 +1598,7 @@
   <string name="ConversationUpdateItem_return_to_call">കോളിലേക്ക് മടങ്ങുക</string>
   <string name="ConversationUpdateItem_call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+  <string name="ConversationUpdateItem_view">കാണുക</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>
@@ -1925,7 +1927,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">വായന രസീതുകൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്നുള്ള വായന രസീതുകൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം നിര്‍ത്തിവയ്ക്കാന്‍ കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക.ഈ ക്രമീകരണം ഒരു ഗ്യാരണ്ടി അല്ല, നിങ്ങളുടെ കീബോർഡ് ഇത് അവഗണിച്ചേക്കാം.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം നിര്‍ത്തിവയ്ക്കാന്‍ കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക.ഈ ക്രമീകരണം ഒരു ഗ്യാരണ്ടി അല്ല, നിങ്ങളുടെ കീബോർഡ് ഇത് അവഗണിച്ചേക്കാം.</string> -->
   <string name="preferences_app_protection__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi ഉപയോഗിക്കുമ്പോൾ</string>
@@ -2553,5 +2555,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">ഒരു മെസ്സേജ് അയക്കുക</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ശരി</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്ന</string>
   <!--EOF-->
 </resources>

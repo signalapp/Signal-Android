@@ -974,6 +974,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Muutit ryhmän nimeksi \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s muutti ryhmän nimeksi \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Ryhmän nimeksi asetettiin \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Muutit ryhmän kuvakkeen.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutti ryhmän kuvakkeen.</string>
@@ -1612,6 +1613,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_enable_call_notifications">Näytä ilmoitukset puheluista</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ei yhteisiä ryhmiä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei kontakteja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
+  <string name="ConversationUpdateItem_view">Näytä</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Soita … Keskeytä</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
@@ -1819,14 +1821,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Jokin ei toimi</item>
-    <item>Parannusehdotus</item>
-    <item>Kysymys</item>
-    <item>Palaute</item>
-    <item>Muu</item>
-    <item>Maksut</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
@@ -1963,7 +1957,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jos lukukuittauksia ei ole otettu käyttöön, et tule näkemään lukukuittauksia muilta.</string>
   <string name="preferences__typing_indicators">Kirjoittamisen ilmaisin</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos kirjoittamisen ilmaisin ei ole käytössä, et näe muidenkaan ilmaisinta.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Pyydä näppäimistöä poistamaan henkilökohtainen oppiminen käytöstä. Näppäimistö voi jättää tämän asetuksen huomioimatta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Pyydä näppäimistöä poistamaan henkilökohtainen oppiminen käytöstä. Näppäimistö voi jättää tämän asetuksen huomioimatta.</string> -->
   <string name="preferences_app_protection__blocked_users">Estetyt käyttäjät</string>
   <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
@@ -2484,7 +2478,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Napauta profiilikuvaasi ja ylävasemmalla avataksesi asetukset</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Napauta \'Keskustelut\'</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Napauta \'Keskustelut\'</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Napauta \'Siirrä tili\' ja sitten \'Jatka\' molemmilla laitteilla</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2793,5 +2787,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ryhmässä ei ole ketään kontakteistasi tai ihmisistä joiden kanssa puhut. Käy pyynnöt tarkasti läpi ennen hyväksymistä välttääksesi epätoivotut viestit.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Tietoa viestipyynnöistä</string>
   <string name="GroupsInCommonMessageRequest__okay">Selvä</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Korkea</string>
   <!--EOF-->
 </resources>

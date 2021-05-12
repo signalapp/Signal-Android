@@ -704,6 +704,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">aktualizovat tuto skupinu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nešifrovaná MMS skupina. Pozvěte své kontakty do Signal pro soukromé konverzace.</string>
   <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
+  <string name="ManageGroupActivity_more">… více</string>
+  <string name="ManageGroupActivity_add_group_description">Přidejte popisek skupiny…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Zobrazit upozornění při zmínce ve ztišených konverzacích?</string>
@@ -1076,6 +1078,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Změnili jste název skupiny na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s změnil název skupiny na \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Skupina byla přejmenována na \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Změnili jste popisek skupiny.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s změnil(a) popisek skupiny.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Popisek skupiny se změnil.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Změnili jste skupinový avatar.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s změnil skupinový avatar.</string>
@@ -1752,6 +1758,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationUpdateItem_enable_call_notifications">Povolit oznámení hovorů</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žádné společné skupiny. Požadavky pečlivě prověřte.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Žádné kontakty v této skupině. Požadavky pečlivě prověřte.</string>
+  <string name="ConversationUpdateItem_view">Zobrazit</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spustit … Pozastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
@@ -1893,6 +1900,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreateProfileActivity__username">Uživatelské jméno</string>
   <string name="CreateProfileActivity__create_a_username">Vytvořit uživatelské jméno</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Názvy a fotografie vlastních skupin MMS se zobrazí pouze vám.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Popisky skupiny budou viditelné členům skupiny a lidem, kteří byli pozváni.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O mně</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište pár slov o sobě…</string>
@@ -1907,6 +1915,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upravit název skupiny a fotografii</string>
   <string name="EditProfileFragment__group_name">Název skupiny</string>
+  <string name="EditProfileFragment__group_description">Popisek skupiny</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše jméno</string>
   <string name="EditProfileNameFragment_first_name">Křestní jméno</string>
@@ -1974,11 +1983,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
   <string-array name="HelpFragment__categories">
+    <item>-- Vyberte prosím možnost --</item>
     <item>Něco nefunguje</item>
-    <item>Požadavek na funkcionalitu</item>
+    <item>Požadavek na funkci</item>
     <item>Dotaz</item>
     <item>Zpětná vazba</item>
-    <item>Další</item>
+    <item>Ostatní</item>
     <item>Platby</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -2119,7 +2129,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jestliže zakážete posílání potvrzení o přečtení zpráv, nebudete vidět tato potvrzení ani od ostatních.</string>
   <string name="preferences__typing_indicators">Indikátory psaní</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Pokud máte vypnuté indikátory psaní, nebudete je vidět ani od ostatních.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžadovat, aby klávesnice deaktivovala učení. Toto nastavení nezaručuje, že jej vaše klávesnice bude ignorovat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžadovat, aby klávesnice deaktivovala učení. Toto nastavení nezaručuje, že jej vaše klávesnice bude ignorovat.</string> -->
   <string name="preferences_app_protection__blocked_users">Zablokovaní uživatelé</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
@@ -2673,7 +2683,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Klepněte na vaši profilovou fotografii v levém horním rohu pro otevření Nastavení</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Klepněte na \"Konverzace\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Klepněte na \"Konverzace\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Klepněte na \"Přenést účet\" a poté \"Pokračovat\" na obou zařízeních</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3010,5 +3020,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Žádný z vašich kontaktů nebo lidí, se kterými si píšete, není v této skupině. Požadavky pečlivě ověřte, než žádost schválíte, abyste předešli nevyžádaným zprávám.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O žádostech o zprávy</string>
   <string name="GroupsInCommonMessageRequest__okay">V pořádku</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Popisek skupiny</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Rychlejší, méně dat</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Vysoká</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Pomalejší, více dat</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvalita fotografie</string>
   <!--EOF-->
 </resources>

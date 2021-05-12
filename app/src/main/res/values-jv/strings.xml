@@ -1307,7 +1307,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Menawi tandha pesen ingkang dipunwaos mboten dipunaktifaken, sampeyan mboten saged ningali tandha pesen ingkang dipunwaos saking tiyang benten.</string>
   <string name="preferences__typing_indicators">Indikator ketikan</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Menawi indikator ketikan mboten dipunaktifaken, sampeyan mboten saged ningali indikator ketikan saking tiyang benten.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Sagedaken keyboard ngenonaktifaken panyinaon ingkang dipunpersonalisasi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Sagedaken keyboard ngenonaktifaken panyinaon ingkang dipunpersonalisasi</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kontak ingkang dipunblokir</string> -->
   <string name="preferences_chats__when_using_mobile_data">Kala ngginakaken data seluler</string>
   <string name="preferences_chats__when_using_wifi">Kala ngginakaken Wi-Fi</string>

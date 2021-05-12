@@ -638,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">uppfæra þennan hóp.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Þetta er óöruggur MMS-hópur. Til að spjalla í friði ættirðu að bjóða tengiliðunum þínum á Signal.</string>
   <string name="ManageGroupActivity_invite_now">Bjóða núna</string>
+  <string name="ManageGroupActivity_more">…meira</string>
+  <string name="ManageGroupActivity_add_group_description">Bæta við lýsingu á hóp…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Láta mig vita þegar minnst er á</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Fá tilkynningu þegar nafn þitt er nefnt í þögguðum umræðum?</string>
@@ -974,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Þú breyttir nafninu á hópnum í \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s breytti nafninu á hópnum í \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Nafni hópsins var breytt í \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Þú breyttir lýsingunni á hópnum.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s breytti lýsingunni á hópnum.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Lýsingin á hópnum hefur breyst.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Þú skiptir um auðkennismynd hópsins.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s skipti um auðkennismynd hópsins.</string>
@@ -1622,6 +1628,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Virkja tilkynningar um hringingar</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Engir sameiginlegir hópar. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Engir tengiliðir í þessum hópi. Yfirfarðu beiðnir vandlega.</string>
+  <string name="ConversationUpdateItem_view">Skoða</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spila … Í bið</string>
   <string name="audio_view__download_accessibility_description">Sækja</string>
@@ -1749,6 +1756,7 @@
   <string name="CreateProfileActivity__username">Notandanafn</string>
   <string name="CreateProfileActivity__create_a_username">Útbúa notandanafn</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Hópanöfn og myndir sérsniðinna MMS-hópa verða einungis sýnileg þér.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Lýsingar á hópum verða sýnilegar öllum meðlimum hópsins ásamt því fólki sem hefur verið boðið.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Nánar um</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skrifaðu nokkur orð um sjálfa/n þig…</string>
@@ -1763,6 +1771,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Breyta nafni og mynd hóps</string>
   <string name="EditProfileFragment__group_name">Heiti hóps</string>
+  <string name="EditProfileFragment__group_description">Lýsing á hópnum</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Nafn þitt</string>
   <string name="EditProfileNameFragment_first_name">Kenninafn (skírnarnafn)</string>
@@ -1832,6 +1841,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="HelpFragment__could_not_upload_logs">Gat ekki sent inn atvikaskrár</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lýstu þessu eins nákvæmlega og þú getur til að auðvelda okkur að skilja vandamálið.</string>
   <string-array name="HelpFragment__categories">
+    <item>-- Veldu eitthvað atriði --</item>
     <item>Eitthvað er ekki að virka</item>
     <item>Beiðni um endurbætur</item>
     <item>Spurning</item>
@@ -1975,7 +1985,7 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ef leskvittanir eru óvirkar hjá þér, muntu ekki geta sé leskvittanir frá öðrum.</string>
   <string name="preferences__typing_indicators">Merki um framvindu ritunar</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ef merki um framvindu ritunar eru óvirk hjá þér, muntu ekki geta sé framvindu ritunar frá öðrum.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Biðja lyklaborð um að gera notandamiðaða aðlögun óvirka. Þessi stilling er ekki trygging fyrir að hætt sé söfnun upplýsinga um hegðun notandans, því lyklaborðið gæti hunsað þessa beiðni.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Biðja lyklaborð um að gera notandamiðaða aðlögun óvirka. Þessi stilling er ekki trygging fyrir að hætt sé söfnun upplýsinga um hegðun notandans, því lyklaborðið gæti hunsað þessa beiðni.</string> -->
   <string name="preferences_app_protection__blocked_users">Útilokaðir notendur</string>
   <string name="preferences_chats__when_using_mobile_data">Þegar gagnaáskrift er notuð</string>
   <string name="preferences_chats__when_using_wifi">Þegar Wi-Fi er notað</string>
@@ -2518,7 +2528,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ýttu á auðkennismyndina þína efst til vinstri til að opna stillingar</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Ýttu á \"Spjall\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Ýttu á \"Spjall\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ýttu á \"Yfirfæra aðgang\" og svo á \"Halda áfram\" á báðum tækjunum</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2851,5 +2861,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Enginn tengiliðanna þinna eða neitt af því fólki sem þú spjallar við er í þessum hópi. Yfirfarðu beiðnir vandlega áður en þú samþykkir þær til að forðast að fá óumbeðin skilaboð.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Um beiðnir um skilaboð</string>
   <string name="GroupsInCommonMessageRequest__okay">Í lagi</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Lýsing á hópnum</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Staðlað</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Hraðvirkt, minna gagnamagn</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Mikill</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Hægara, meira gagnamagn</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Gæði ljósmynda</string>
   <!--EOF-->
 </resources>

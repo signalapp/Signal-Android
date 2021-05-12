@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
@@ -22,8 +23,9 @@ public final class DynamicLanguageContextWrapper {
     base.setLocale(newLocale);
   }
 
+  @SuppressWarnings("deprecated")
   public static @NonNull Locale getUsersSelectedLocale(@NonNull Context context) {
-    String language  = TextSecurePreferences.getLanguage(context);
+    String language = TextSecurePreferences.getLanguage(context);
     return LocaleParser.findBestMatchingLocaleForLanguage(language);
   }
 

@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 
@@ -34,7 +35,7 @@ public class EmojiEditText extends AppCompatEditText {
     boolean forceCustom = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     a.recycle();
 
-    if (forceCustom || !TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
+    if (forceCustom || !SignalStore.settings().isPreferSystemEmoji()) {
       if (!isInEditMode()) {
         setFilters(appendEmojiFilter(this.getFilters()));
       }

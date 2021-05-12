@@ -964,6 +964,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">आपण गट नाव \"%1$s\" वर बदलले.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने गट नाव \"%2$s\" वर बदलले.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">गट नाव \"%1$s\" वर बदलले गेले आहे.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">आपण गट अवतार बदलला आहे.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने गट अवतार बदलला आहे.</string>
@@ -1598,6 +1599,7 @@
   <string name="ConversationUpdateItem_return_to_call">कॉलवर परत या </string>
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण आहे</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रांना आमंत्रित करा</string>
+  <string name="ConversationUpdateItem_view">बघा</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">प्ले करा … विराम द्या</string>
   <string name="audio_view__download_accessibility_description">डाऊनलोड करा</string>
@@ -1924,7 +1926,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">जर आपल्या वाचल्याचा पावत्या अक्षम असतील तर आपल्याला इतरांकडूनही त्या मिळणार नाहीत.</string>
   <string name="preferences__typing_indicators">टाईपिंग निर्देशक</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">जर टाईपिंग निर्देशक अक्षम केले आहेत, तर इतरांकडून आपल्याला टाईपिंग निर्देशक बघता येणार नाही.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">वैयक्तिकृत शिकणे अक्षम करण्यासाठी कीबोर्डला विनंती करा. ही सेटिंग गॅरंटी नाही, आणि आपला कीबोर्ड याकडे दुर्लक्ष करू शकतो.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">वैयक्तिकृत शिकणे अक्षम करण्यासाठी कीबोर्डला विनंती करा. ही सेटिंग गॅरंटी नाही, आणि आपला कीबोर्ड याकडे दुर्लक्ष करू शकतो.</string> -->
   <string name="preferences_app_protection__blocked_users">अवरोधित वापरकर्ते</string>
   <string name="preferences_chats__when_using_mobile_data">मोबाईल डेटा वापरताना</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi वापरताना</string>
@@ -2535,5 +2537,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">एक संदेश पाठवा</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ठीक आहे</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">उंच</string>
   <!--EOF-->
 </resources>

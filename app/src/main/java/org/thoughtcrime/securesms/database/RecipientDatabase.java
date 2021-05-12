@@ -928,13 +928,13 @@ public class RecipientDatabase extends Database {
     recipient.live().refresh();
   }
 
-  public void applyStorageSyncAccountUpdate(@NonNull StorageId storageId, SignalAccountRecord update) {
+  public void applyStorageSyncAccountUpdate(@NonNull StorageRecordUpdate<SignalAccountRecord> update) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     ContentValues        values      = new ContentValues();
-    ProfileName          profileName = ProfileName.fromParts(update.getGivenName().orNull(), update.getFamilyName().orNull());
-    Optional<ProfileKey> localKey    = ProfileKeyUtil.profileKeyOptional(Recipient.self().getProfileKey());
-    Optional<ProfileKey> remoteKey   = ProfileKeyUtil.profileKeyOptional(update.getProfileKey().orNull());
+    ProfileName          profileName = ProfileName.fromParts(update.getNew().getGivenName().orNull(), update.getNew().getFamilyName().orNull());
+    Optional<ProfileKey> localKey    = ProfileKeyUtil.profileKeyOptional(update.getOld().getProfileKey().orNull());
+    Optional<ProfileKey> remoteKey   = ProfileKeyUtil.profileKeyOptional(update.getNew().getProfileKey().orNull());
     String               profileKey  = remoteKey.or(localKey).transform(ProfileKey::serialize).transform(Base64::encodeBytes).orNull();
 
     if (!remoteKey.isPresent()) {
@@ -945,15 +945,15 @@ public class RecipientDatabase extends Database {
     values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
     values.put(PROFILE_JOINED_NAME, profileName.toString());
     values.put(PROFILE_KEY, profileKey);
-    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getId().getRaw()));
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getNew().getId().getRaw()));
 
-    if (update.hasUnknownFields()) {
-      values.put(STORAGE_PROTO, Base64.encodeBytes(update.serializeUnknownFields()));
+    if (update.getNew().hasUnknownFields()) {
+      values.put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(update.getNew().serializeUnknownFields())));
     } else {
       values.putNull(STORAGE_PROTO);
     }
 
-    int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(storageId.getRaw())});
+    int updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
     if (updateCount < 1) {
       throw new AssertionError("Account update didn't match any rows!");
     }
@@ -962,7 +962,7 @@ public class RecipientDatabase extends Database {
       ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
 
-    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(Recipient.self().getId(), update);
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(Recipient.self().getId(), update.getNew());
 
     Recipient.self().live().refresh();
   }
@@ -1460,7 +1460,6 @@ public class RecipientDatabase extends Database {
     ContentValues values = new ContentValues(1);
     values.put(UNIDENTIFIED_ACCESS_MODE, unidentifiedAccessMode.getMode());
     if (update(id, values)) {
-      rotateStorageId(id);
       Recipient.live(id).refresh();
     }
   }
@@ -2082,49 +2081,6 @@ public class RecipientDatabase extends Database {
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
-    }
-  }
-
-  @Deprecated
-  public void setRegistered(@NonNull RecipientId id, RegisteredState registeredState) {
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(REGISTERED, registeredState.getId());
-
-    if (registeredState == RegisteredState.NOT_REGISTERED) {
-      contentValues.putNull(STORAGE_SERVICE_ID);
-    }
-
-    if (update(id, contentValues)) {
-      if (registeredState == RegisteredState.REGISTERED) {
-        setStorageIdIfNotSet(id);
-      }
-
-      Recipient.live(id).refresh();
-    }
-  }
-
-  @Deprecated
-  public void setRegistered(@NonNull Collection<RecipientId> activeIds,
-                            @NonNull Collection<RecipientId> inactiveIds)
-  {
-    for (RecipientId activeId : activeIds) {
-      ContentValues registeredValues = new ContentValues(1);
-      registeredValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-
-      if (update(activeId, registeredValues)) {
-        setStorageIdIfNotSet(activeId);
-        Recipient.live(activeId).refresh();
-      }
-    }
-
-    for (RecipientId inactiveId : inactiveIds) {
-      ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
-      contentValues.putNull(STORAGE_SERVICE_ID);
-
-      if (update(inactiveId, contentValues)) {
-        Recipient.live(inactiveId).refresh();
-      }
     }
   }
 

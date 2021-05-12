@@ -1073,6 +1073,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Ime skupine ste spremenili v \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">Uporabnik/ca %1$s je spremenil/a ime skupine v \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Ime skupine je bilo spremenjeno v \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Spremenili ste skupinin avatar.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Uporabnik/ca %1$s je spremenil/a skupinin avatar.</string>
@@ -1739,6 +1740,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationUpdateItem_call_is_full">Klic je polno zaseden</string>
   <string name="ConversationUpdateItem_invite_friends">Vabilo prijateljem/icam</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Vklopi obvestila o klicih</string>
+  <string name="ConversationUpdateItem_view">Preglej</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Predvajanje … pavza</string>
   <string name="audio_view__download_accessibility_description">Prenesi</string>
@@ -1960,14 +1962,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Nekaj ne deluje</item>
-    <item>Predlog za novo funkcijo</item>
-    <item>Vprašanje</item>
-    <item>Odziv</item>
-    <item>Drugo</item>
-    <item>Plačila</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -2106,7 +2100,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik prebral vaše sporočilo.</string>
   <string name="preferences__typing_indicators">Kazalniki tipkanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti kdaj vaš partner tipka svoje sporočilo.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahteva tipkovnici za izklop personificiranega učenja. Ta nastavitev ne zagotavlja, da bo tipkovnica tudi upoštevala zahtevo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahteva tipkovnici za izklop personificiranega učenja. Ta nastavitev ne zagotavlja, da bo tipkovnica tudi upoštevala zahtevo.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokirani/e uporabniki/ce</string>
   <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
   <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
@@ -2584,7 +2578,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Za dostop do Nastavitev tapnite na svojo profilno fotografijo, zgoraj levo</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Tapnite na \"Pogovori\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tapnite na \"Pogovori\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tapnite na \"Prenesi račun\" in nato \"Dalje\" na obeh napravah</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2858,5 +2852,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">S to osebo nimate nobene skupne skupine. Preverite zahtevke, da se izognete nezaželjenim spoločilom.</string>
   <string name="GroupsInCommonMessageRequest__okay">Okej</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Visoka</string>
   <!--EOF-->
 </resources>

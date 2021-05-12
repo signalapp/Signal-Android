@@ -173,4 +173,10 @@
         <item name="android:textColor">@color/signal_text_secondary</item>
     </style>
 
+    <style name="Signal.Text.Title" parent="Base.TextAppearance.AppCompat.Title">
+    </style>
+
+    <style name="Signal.Text.Title.SettingsBio">
+    </style>
+
 </resources>

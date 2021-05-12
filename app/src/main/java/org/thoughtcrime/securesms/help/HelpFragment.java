@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -23,7 +24,6 @@ import com.annimon.stream.Stream;
 import com.dd.CircularProgressButton;
 
 import org.signal.core.util.ResourceUtil;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
@@ -37,19 +37,19 @@ import java.util.List;
 
 public class HelpFragment extends LoggingFragment {
 
-  public static final String START_CATEGORY_INDEX = "start.category.index";
+  public static final String START_CATEGORY_INDEX = "start_category_index";
   public static final int    PAYMENT_INDEX        = 5;
 
-  private EditText                   problem;
-  private CheckBox                   includeDebugLogs;
-  private View                       debugLogInfo;
-  private View                       faq;
-  private CircularProgressButton     next;
-  private View                       toaster;
-  private List<EmojiImageView>       emoji;
-  private HelpViewModel              helpViewModel;
-  private Spinner                    categorySpinner;
-  private ArrayAdapter<CharSequence> categoryAdapter;
+  private EditText                     problem;
+  private CheckBox                     includeDebugLogs;
+  private View                         debugLogInfo;
+  private View                         faq;
+  private CircularProgressButton       next;
+  private View                         toaster;
+  private List<EmojiImageView>         emoji;
+  private HelpViewModel                helpViewModel;
+  private Spinner                      categorySpinner;
+  private ArrayAdapter<CharSequence>   categoryAdapter;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,7 +67,6 @@ public class HelpFragment extends LoggingFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) requireActivity()).requireSupportActionBar().setTitle(R.string.preferences__help);
 
     cancelSpinning(next);
     problem.setEnabled(true);
@@ -110,7 +109,13 @@ public class HelpFragment extends LoggingFragment {
     faq.setOnClickListener(v -> launchFaq());
     debugLogInfo.setOnClickListener(v -> launchDebugLogInfo());
     next.setOnClickListener(v -> submitForm());
-    toaster.setOnClickListener(v -> Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show());
+    toaster.setOnClickListener(v -> {
+      if (helpViewModel.getCategoryIndex() == 0) {
+        categorySpinner.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.shake_horizontal));
+      }
+
+      Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show();
+    });
     categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

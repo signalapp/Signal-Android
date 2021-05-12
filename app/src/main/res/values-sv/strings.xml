@@ -974,6 +974,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Du ändrade gruppnamnet till \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ändrade gruppnamnet till \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Gruppnamnet har ändrats till \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Du ändrade gruppavataren.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ändrade gruppavataren.</string>
@@ -1617,6 +1618,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktivera samtalsaviseringar</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Inga grupper gemensamt. Granska förfrågningar noggrant.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Inga kontakter i denna grupp. Granska förfrågningar noggrant.</string>
+  <string name="ConversationUpdateItem_view">Visa</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -1824,14 +1826,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Något fungerar inte</item>
-    <item>Funktionsbegäran</item>
-    <item>Fråga</item>
-    <item>Återkoppling</item>
-    <item>Annat</item>
-    <item>Betalningar</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senaste använda</string>
@@ -1968,7 +1962,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Om läskvitton är inaktiverade kommer du inte att kunna se läskvitton från andra.</string>
   <string name="preferences__typing_indicators">Skrivindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Om skrivindikatorer är inaktiverade kommer du inte att kunna se skrivindikatorer från andra.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Begär tangentbord för att inaktivera personlig inlärning. Denna inställning är ingen garanti, och ditt tangentbord kanske ignorerar det.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Begär tangentbord för att inaktivera personlig inlärning. Denna inställning är ingen garanti, och ditt tangentbord kanske ignorerar det.</string> -->
   <string name="preferences_app_protection__blocked_users">Blockerade användare</string>
   <string name="preferences_chats__when_using_mobile_data">Vid användning av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
@@ -2508,7 +2502,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tryck på ditt profilfoto längst upp till vänster för att öppna Inställningar</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Tryck på \"Chattar\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tryck på \"Chattar\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tryck på \"Överför konto\" och sedan på \"Fortsätt\" på båda enheterna</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2841,5 +2835,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av dina kontakter eller personer du chattar med finns i denna grupp. Granska förfrågningar noga innan du accepterar för att undvika oönskade meddelanden.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Om meddelandeförfrågningar</string>
   <string name="GroupsInCommonMessageRequest__okay">Okej</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Hög</string>
   <!--EOF-->
 </resources>

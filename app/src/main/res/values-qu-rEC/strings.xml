@@ -1022,7 +1022,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences__incognito_keyboard">Killkana hillay pakallaku</string>
   <string name="preferences__read_receipts">Killkakatinata willachik </string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Willachiykuna mana hapichishka kakpika, mana shuk mashikunapa willachiykunata rikuyta ushankichu.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Killkana antata mañay, paypaklla yachakuyta anchuchinkapak</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Killkana antata mañay, paypaklla yachakuyta anchuchinkapak</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kikinpa mashi yupaykunaka pakashkami.</string> -->
   <string name="preferences_chats__when_using_mobile_data">Datosta hapichiska kashpa</string>
   <string name="preferences_chats__when_using_wifi">WiFita hapichishka kashpa</string>

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
@@ -33,13 +32,13 @@ import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 public class EditProxyFragment extends Fragment {
 
-  private SwitchCompat           proxySwitch;
-  private EditText               proxyText;
-  private TextView               proxyTitle;
-  private TextView               proxyStatus;
-  private View                   shareButton;
-  private CircularProgressButton saveButton;
-  private EditProxyViewModel     viewModel;
+  private SwitchCompat                 proxySwitch;
+  private EditText                     proxyText;
+  private TextView                     proxyTitle;
+  private TextView                     proxyStatus;
+  private View                         shareButton;
+  private CircularProgressButton       saveButton;
+  private EditProxyViewModel           viewModel;
 
   public static EditProxyFragment newInstance() {
     return new EditProxyFragment();
@@ -85,7 +84,7 @@ public class EditProxyFragment extends Fragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.preferences_use_proxy);
+
     SignalProxyUtil.startListeningToWebsocket();
   }
 

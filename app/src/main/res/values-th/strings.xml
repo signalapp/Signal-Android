@@ -921,6 +921,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">คุณได้เปลี่ยนชื่อกลุ่มเป็น \"%1$s\"</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ได้เปลี่ยนชื่อกลุ่มเป็น \"%2$s\"</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ชื่อกลุ่มได้ถูกเปลี่ยนเป็น \"%1$s\"</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">คุณได้เปลี่ยนอวตารของกลุ่ม</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ได้เปลี่ยนภาพประจำตัวของกลุ่ม</string>
@@ -1546,6 +1547,7 @@
   <string name="ConversationUpdateItem_call_is_full">ห้องเต็ม</string>
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
+  <string name="ConversationUpdateItem_view">ดู</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">เล่น … หยุด</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
@@ -1739,14 +1741,6 @@
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
-  <string-array name="HelpFragment__categories">
-    <item>มีบางสิ่งไม่ทำงาน</item>
-    <item>ขอความสามารถใหม่</item>
-    <item>มีคำถาม</item>
-    <item>มีข้อเสนอแนะ</item>
-    <item>อื่นๆ</item>
-    <item>การชำระเงิน</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
@@ -1882,7 +1876,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>
   <string name="preferences__typing_indicators">แสดงว่ากำลังพิมพ์</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ถ้าสัญลักษณ์กำลังพิมพ์อยู่ถูกปิดใช้งาน คุณจะไม่เห็นสัญลักษณ์ว่ากำลังพิมพ์อยู่จากคนอื่น</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ขอแป้นพิมพ์ให้ปิดการเรียนรู้เพื่อแนะนำคำเฉพาะบุคคล การตั้งค่านี้ไม่รับประกันและแป้นพิมพ์ของคุณอาจเพิกเฉยต่อมัน</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ขอแป้นพิมพ์ให้ปิดการเรียนรู้เพื่อแนะนำคำเฉพาะบุคคล การตั้งค่านี้ไม่รับประกันและแป้นพิมพ์ของคุณอาจเพิกเฉยต่อมัน</string> -->
   <string name="preferences_app_protection__blocked_users">ผู้ใช้ที่ปิดกั้นอยู่</string>
   <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
   <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
@@ -2391,7 +2385,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">แตะรูปโปรไฟล์ของคุณบนฝั่งซ้ายบนเพื่อเปิดการตั้งค่า</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">แตะบน \"แชต\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">แตะบน \"แชต\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">แตะ \"ถ่ายโอนบัญชี\" แล้วเลือก \"ดำเนินการต่อ\" บนอุปกรณ์ทั้งสองเครื่อง</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2705,5 +2699,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">ส่งข้อความ</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ตกลง</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">สูง</string>
   <!--EOF-->
 </resources>

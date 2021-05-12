@@ -21,6 +21,7 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
@@ -98,13 +99,35 @@ public final class SpanUtil {
     return imageSpan;
   }
 
-  public static CharSequence clickSubstring(@NonNull Context context, @NonNull CharSequence fullString, @NonNull CharSequence substring, @NonNull View.OnClickListener clickListener) {
+  public static CharSequence learnMore(@NonNull Context context,
+                                       @ColorInt int color,
+                                       @NonNull View.OnClickListener onLearnMoreClicked)
+  {
+    String learnMore = context.getString(R.string.LearnMoreTextView_learn_more);
+    return clickSubstring(learnMore, learnMore, onLearnMoreClicked, color);
+  }
+
+  public static CharSequence clickSubstring(@NonNull Context context,
+                                            @NonNull CharSequence fullString,
+                                            @NonNull CharSequence substring,
+                                            @NonNull View.OnClickListener clickListener) {
+    return clickSubstring(fullString,
+                          substring,
+                          clickListener,
+                          ContextCompat.getColor(context, R.color.signal_accent_primary));
+  }
+
+  public static CharSequence clickSubstring(@NonNull CharSequence fullString,
+                                            @NonNull CharSequence substring,
+                                            @NonNull View.OnClickListener clickListener,
+                                            @ColorInt int linkColor)
+  {
     ClickableSpan clickable = new ClickableSpan() {
       @Override
       public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(false);
-        ds.setColor(ContextCompat.getColor(context, R.color.signal_accent_primary));
+        ds.setColor(linkColor);
       }
 
       @Override

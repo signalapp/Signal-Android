@@ -16,6 +16,8 @@
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
 
+    <attr name="settingsToolbarStyle" format="reference" />
+
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
 
     <declare-styleable name="CustomDefaultPreference">

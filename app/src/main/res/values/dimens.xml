@@ -178,4 +178,6 @@
 
     <dimen name="payment_recovery_phrase_adapter_margin">49dp</dimen>
     <dimen name="payment_recovery_phrase_outline_margin">32dp</dimen>
+
+    <dimen name="dsl_settings_gutter">16dp</dimen>
 </resources>

@@ -975,6 +975,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">మీరు సమూహ పేరును \"%1$s\"కి మార్చారు. </string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s సమూహ పేరును \"%2$s\"కి మార్చారు. </string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">సమూహం పేరు \"%1$s\" గా మార్చబడింది.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">మీరు సమూహ చిత్రాన్ని మార్చారు. </string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s సమూహ చిత్రాన్ని మార్చారు.</string>
@@ -1608,6 +1609,7 @@
   <string name="ConversationUpdateItem_return_to_call">కాల్‌కు తిరిగి వెళ్ళు</string>
   <string name="ConversationUpdateItem_call_is_full">కాల్ నిండింది</string>
   <string name="ConversationUpdateItem_invite_friends">స్నేహితులను ఆహ్వానించండి</string>
+  <string name="ConversationUpdateItem_view">వీక్షణ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">నడుపు … నిలుపు</string>
   <string name="audio_view__download_accessibility_description">దిగుమతి</string>
@@ -1936,7 +1938,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">చదివే రసీదులను నిలిపివేస్తే, మీరు ఇతరుల నుండి చదివే రసీదులను చూడలేరు.</string>
   <string name="preferences__typing_indicators">టైపింగ్ సూచికలు</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">టైపింగ్ సూచికలు నిలిపివేయబడితే, మీరు ఇతరుల నుండి టైపింగ్ సూచికలను చూడలేరు.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">వ్యక్తిగతీకరించిన అభ్యాసాన్ని నిలిపివేయడానికి కీబోర్డ్‌ను అభ్యర్థించండి. ఈ సెట్టింగ్ హామీ కాదు మరియు మీ కీబోర్డ్ దీన్ని విస్మరించవచ్చు.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">వ్యక్తిగతీకరించిన అభ్యాసాన్ని నిలిపివేయడానికి కీబోర్డ్‌ను అభ్యర్థించండి. ఈ సెట్టింగ్ హామీ కాదు మరియు మీ కీబోర్డ్ దీన్ని విస్మరించవచ్చు.</string> -->
   <string name="preferences_app_protection__blocked_users">నిరోధించిన వినియోగదారులు</string>
   <string name="preferences_chats__when_using_mobile_data">మొబైల్ సమాచారం ఉపయోగిస్తున్నప్పుడు</string>
   <string name="preferences_chats__when_using_wifi">వైఫై ఉపయోగించి చేసినప్పుడు</string>
@@ -2551,5 +2553,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">సందేశం పంపండి</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">సరే</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">అధికం</string>
   <!--EOF-->
 </resources>

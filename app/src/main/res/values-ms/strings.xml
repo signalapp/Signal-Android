@@ -1178,7 +1178,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika resit baca dinyahdayakan, anda tidak akan dapat melihat resit baca dari orang lain.</string>
   <string name="preferences__typing_indicators">Penunjuk menaip</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika penunjuk menaip dinyahdayakan, anda tidak akan dapat melihat penunjuk menaip dari orang lain.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Meminta papan kekunci untuk menyahdayakan pembelajaran peribadi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Meminta papan kekunci untuk menyahdayakan pembelajaran peribadi</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kenalan disekat</string> -->
   <string name="preferences_chats__when_using_mobile_data">Semasa mengguna data mudah alih</string>
   <string name="preferences_chats__when_using_wifi">Semasa mengguna WI-Fi</string>

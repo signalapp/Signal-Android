@@ -8,10 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.view.ViewCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.annimon.stream.Stream;
@@ -20,7 +17,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
@@ -65,7 +61,6 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
 
     toolbar.setNavigationOnClickListener(unused -> {
       finish();
-      ActivityTransitionUtil.setSlideOutTransition(this);
     });
 
     viewPager.setAdapter(adapter);
@@ -93,12 +88,6 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     new FullscreenHelper(this).showSystemUI();
     WindowUtil.setLightStatusBarFromTheme(this);
     WindowUtil.setLightNavigationBarFromTheme(this);
-  }
-
-  @Override
-  public void onBackPressed() {
-    super.onBackPressed();
-    ActivityTransitionUtil.setSlideOutTransition(this);
   }
 
   @Override

@@ -101,7 +101,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
       return;
     }
 
-    if (TextSecurePreferences.isBackupEnabled(requireContext())) {
+    if (SignalStore.settings().isBackupEnabled()) {
       Log.i(TAG, "Backups enabled, so a backup must have been previously restored.");
       Navigation.findNavController(view)
                 .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
@@ -329,7 +329,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   private void enableBackups(@NonNull Context context) {
     if (BackupUtil.canUserAccessBackupDirectory(context)) {
       LocalBackupListener.setNextBackupTimeToIntervalFromNow(context);
-      TextSecurePreferences.setBackupEnabled(context, true);
+      SignalStore.settings().setBackupEnabled(true);
       LocalBackupListener.schedule(context);
     }
   }

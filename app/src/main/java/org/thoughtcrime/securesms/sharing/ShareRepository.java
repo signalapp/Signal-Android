@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UriUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -130,7 +129,7 @@ class ShareRepository {
 
   private boolean isMmsSupported(@NonNull Context context, @NonNull Attachment attachment) {
     boolean canReadPhoneState = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
-    if (!TextSecurePreferences.isSmsEnabled(context) || !canReadPhoneState || !Util.isMmsCapable(context)) {
+    if (!Util.isDefaultSmsProvider(context) || !canReadPhoneState || !Util.isMmsCapable(context)) {
       return false;
     }
 

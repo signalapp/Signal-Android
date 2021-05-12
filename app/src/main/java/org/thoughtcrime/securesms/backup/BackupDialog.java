@@ -74,7 +74,7 @@ public class BackupDialog {
 
           BackupPassphrase.set(context, Util.join(password, " "));
           TextSecurePreferences.setNextBackupTime(context, 0);
-          TextSecurePreferences.setBackupEnabled(context, true);
+          SignalStore.settings().setBackupEnabled(true);
           LocalBackupListener.schedule(context);
 
           onBackupsEnabled.run();

@@ -640,6 +640,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal berichtenapp te gebruiken.</string>
   <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
+  <string name="ManageGroupActivity_more">… meer</string>
+  <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je toch meldingen ontvangen wanneer iemand je naam in een gedempt gesprek vermeld?</string>
@@ -976,6 +978,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Je hebt de naam van de groep gewijzigd naar “%1$s”.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s heeft de naam van de groep naar “%2$s” gewijzigd.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">De naam van de groep is naar “%1$s” gewijzigd.</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Je hebt de groepsomschrijving aangepast.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s heeft de groepsomschrijving aangepast.</string>
+  <string name="MessageRecord_the_group_description_has_changed">De groepsomschrijving is aangepast.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Je hebt de groepsafbeelding aangepast.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s heeft de groepsafbeelding aangepast.</string>
@@ -1058,14 +1064,14 @@
   <string name="MessageRequestBottomView_delete">Wissen</string>
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Hij of zij zal totdat je het gespreksverzoek aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Als je leesbevestigingen hebt ingeschakeld kan hij of zij die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je gesprek met de groep voort te kunnen zetten?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals  @vermeldingen en beheerders. Groepsleden die hun profielnaam, -foto en -omschrijving niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor %1$s zichtbaar maken om je gesprek voort te kunnen zetten?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien?</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Lid worden van deze groep? De leden van de groep zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Als je leesbevestigingen hebt ingeschakeld kunnen andere groepsleden die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Je bent door iemand met wie je eerder een gesprek hebt gehad of met wie je in dezelfde groep zat toegevoegd aan deze groep. Wil je lid blijven van deze groep? Als je leesbevestigingen hebt ingeschakeld kunnen andere groepsleden die nog niet zien totdat je de uitnodiging hebt aanvaard.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
   <string name="MessageRequestProfileView_view">Weergeven</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
@@ -1627,6 +1633,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt met deze persoon geen gemeenschappelijke groep: overweeg dit gespreksverzoek zorgvuldig.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Er is in deze groep geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
+  <string name="ConversationUpdateItem_view">Weergeven</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -1754,6 +1761,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreateProfileActivity__username">Gebruikersnaam</string>
   <string name="CreateProfileActivity__create_a_username">Gebruikersnaam aanmaken</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Groepsomschrijvingen zijn zichtbaar voor alle leden van deze groep en voor alle personen die zijn uitgenodigd om lid te worden.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
@@ -1768,6 +1776,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
+  <string name="EditProfileFragment__group_description">Groepsomschrijving</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Je naam</string>
   <string name="EditProfileNameFragment_first_name">Voornaam (verplicht)</string>
@@ -1835,7 +1844,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
   <string-array name="HelpFragment__categories">
-    <item>Er werkt iets niet</item>
+    <item>-- Maak een keuze --</item>
+    <item>Er werkt iets niet zoals het hoort</item>
     <item>Verzoek voor nieuwe functionaliteit</item>
     <item>Vraag</item>
     <item>Terugkoppeling</item>
@@ -1978,7 +1988,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld kunnen anderen niet zien of je hun berichten hebt gelezen, maar je zult ook niet kunnen zien of anderen jouw berichten hebben gelezen.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld kunnen anderen niet zien of je aan het typen bent, maar je zult ook niet kunnen zien wanneer anderen aan het typen zijn.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen. Let op: we kunnen niet garanderen dat dit werkt op ieder apparaat, het kan dus zijn dat jouw toetsenbord toch gepersonaliseerd leert.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen. Let op: we kunnen niet garanderen dat dit werkt op ieder apparaat, het kan dus zijn dat jouw toetsenbord toch gepersonaliseerd leert.</string> -->
   <string name="preferences_app_protection__blocked_users">Geblokkeerde personen</string>
   <string name="preferences_chats__when_using_mobile_data">Bij mobiele-dataoverdracht</string>
   <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
@@ -2518,7 +2528,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Tik op ‘Gesprekken’</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tik op ‘Gesprekken’</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tik op beide apparaten op ‘Signal-gegevens overzetten’ en dan op ‘Doorgaan’</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2851,5 +2861,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een gesprek voert in deze groep. Overweeg zorgvuldig of je deze groepsuitnodiging wilt accepteren om ongewenste berichten te vermijden.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Over gespreksverzoeken</string>
   <string name="GroupsInCommonMessageRequest__okay">Oké</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Groepsomschrijving</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standaard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Sneller, minder gegevensoverdracht</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Hoog</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langzamer, meer gegevensoverdracht</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Afbeeldingskwaliteit</string>
   <!--EOF-->
 </resources>

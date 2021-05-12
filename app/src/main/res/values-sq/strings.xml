@@ -642,6 +642,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_upgrade_this_group">përmirësoni këtë grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht, ftojini kontaktet tuaj te Signal-i.</string>
   <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
+  <string name="ManageGroupActivity_more">…më tepër</string>
+  <string name="ManageGroupActivity_add_group_description">Shtoni përshkrim grupi…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Të merren njoftime, kur jeni përmendur në fjalosje të heshtuara?</string>
@@ -978,6 +980,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_changed_the_group_name_to_s">Ndryshuat emrin e grupit në \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ndryshoi emrin e grupit në \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Emri i grupit u ndryshua në \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Ndryshuat përshkrimin e grupit.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ndryshoi përshkrimin e grupit.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Përshkrimi i grupit ndryshoi.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Ndryshuat avatarin e grupit.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ndryshoi avatarin e grupit.</string>
@@ -1623,6 +1629,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_enable_call_notifications">Aktivizo Njoftime Thirrjesh</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Pa grupe të përbashkët. Shqyrtojini me kujdes kërkesat.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Pa kontakte në këtë grup. Shqyrtojini me kujdes kërkesat.</string>
+  <string name="ConversationUpdateItem_view">Shihni</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1750,6 +1757,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CreateProfileActivity__username">Emër përdoruesi</string>
   <string name="CreateProfileActivity__create_a_username">Krijoni emër përdoruesi</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Emra dhe foto vetjake grupesh MMS do të jenë të dukshme vetëm për ju.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Përshkrimet e grupeve do të jenë të dukshëm për anëtarë të këtij grupi dhe për persona që janë ftuar.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Mbi</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Shkruani dy rreshta rreth vetes…</string>
@@ -1764,6 +1772,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string>
   <string name="EditProfileFragment__group_name">Emër grupi</string>
+  <string name="EditProfileFragment__group_description">Përshkrim grupi</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Emri juaj</string>
   <string name="EditProfileNameFragment_first_name">Emër</string>
@@ -1831,8 +1840,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
   <string-array name="HelpFragment__categories">
-    <item>Diçka S’Funksionon</item>
-    <item>Kërkesë Veçorie</item>
+    <item>-- Ju lutemi, përzgjidhni një mundësi --</item>
+    <item>Diçka S’po Funksionon</item>
+    <item>Kërkesë Për Veçori</item>
     <item>Pyetje</item>
     <item>Përshtypje</item>
     <item>Tjetër</item>
@@ -1976,7 +1986,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi nga të tjerët.</string>
   <string name="preferences__typing_indicators">Tregues shtypjeje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërkoji tastierës të çaktivizojë të nxënit e personalizuar. Ky rregullim s’përbën garanci, dhe tastiera juaj mund ta shpërfillë.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërkoji tastierës të çaktivizojë të nxënit e personalizuar. Ky rregullim s’përbën garanci, dhe tastiera juaj mund ta shpërfillë.</string> -->
   <string name="preferences_app_protection__blocked_users">Përdorues të bllokuar</string>
   <string name="preferences_chats__when_using_mobile_data">Kur përdoret rrjet celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
@@ -2517,7 +2527,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Prekni mbi foton e profilit tuaj në cepin e majtë sipër, që të hapen Rregullimet.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Prekni mbi “Fjalosje”</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Prekni mbi “Fjalosje”</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Prekni “Shpërngulni Llogari” dhe mandej “Vazhdoni” në të dyjat e pajisjeve</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2850,5 +2860,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Asnjë prej kontakteve tuaj, apo persona me të cilët bisedoni, s’gjenden në këtë grup. Për të shmangur mesazhe të padëshiruar, shqyrtojini me kujdes kërkesat, përpara se t’i miratoni.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Mbi kërkesa mesazhesh</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Përshkrim grupi</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Më i shpejtë, më pak të dhëna</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Lartësi</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Më i ngadaltë, më tepër të dhëna</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Cilësi fotografie</string>
   <!--EOF-->
 </resources>

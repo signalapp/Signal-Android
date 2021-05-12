@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -130,7 +131,7 @@ class VoiceNoteNotificationManager {
 
     @Override
     public @Nullable Bitmap getCurrentLargeIcon(Player player, PlayerNotificationManager.BitmapCallback callback) {
-      if (!hasMetadata() || !TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact()) {
+      if (!hasMetadata() || !SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
         cachedBitmap      = null;
         cachedRecipientId = null;
         return null;

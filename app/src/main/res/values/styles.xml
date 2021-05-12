@@ -69,6 +69,14 @@
         <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.Light</item>
     </style>
 
+    <style name="TextSecure.LightActionBar.Settings">
+        <item name="colorControlHighlight">@color/transparent_black_15</item>
+    </style>
+
+    <style name="TextSecure.DarkActionBar.Settings">
+        <item name="colorControlHighlight">@color/transparent_white_15</item>
+    </style>
+
     <style name="TextSecure.LightActionBar.DarkText"
            parent="TextSecure.LightActionBar">
     </style>

@@ -134,25 +134,31 @@ public final class StorageSyncHelper {
                                                          .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
                                                          .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
                                                          .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.fromNullable(SignalStore.paymentsValues().getPaymentsEntropy()).transform(Entropy::getBytes).orNull())
+                                                         .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
   }
 
-  public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull SignalAccountRecord update, boolean fetchProfile) {
-    DatabaseFactory.getRecipientDatabase(context).applyStorageSyncAccountUpdate(StorageId.forAccount(self.getStorageServiceId()), update);
+  public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull SignalAccountRecord updatedRecord, boolean fetchProfile) {
+    SignalAccountRecord localRecord = buildAccountRecord(context, self).getAccount().get();
+    applyAccountStorageSyncUpdates(context, self, new StorageRecordUpdate<>(localRecord, updatedRecord), fetchProfile);
+  }
 
-    TextSecurePreferences.setReadReceiptsEnabled(context, update.isReadReceiptsEnabled());
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
-    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.isSealedSenderIndicatorsEnabled());
-    SignalStore.settings().setLinkPreviewsEnabled(update.isLinkPreviewsEnabled());
-    SignalStore.phoneNumberPrivacy().setPhoneNumberListingMode(update.isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED : PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED);
-    SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getPhoneNumberSharingMode()));
-    SignalStore.settings().setPreferSystemContactPhotos(update.isPreferContactAvatars());
-    SignalStore.paymentsValues().setEnabledAndEntropy(update.getPayments().isEnabled(), Entropy.fromBytes(update.getPayments().getEntropy().orNull()));
+  public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull Recipient self, @NonNull StorageRecordUpdate<SignalAccountRecord> update, boolean fetchProfile) {
+    DatabaseFactory.getRecipientDatabase(context).applyStorageSyncAccountUpdate(update);
 
-    if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
-      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getAvatarUrlPath().get()));
+    TextSecurePreferences.setReadReceiptsEnabled(context, update.getNew().isReadReceiptsEnabled());
+    TextSecurePreferences.setTypingIndicatorsEnabled(context, update.getNew().isTypingIndicatorsEnabled());
+    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.getNew().isSealedSenderIndicatorsEnabled());
+    SignalStore.settings().setLinkPreviewsEnabled(update.getNew().isLinkPreviewsEnabled());
+    SignalStore.phoneNumberPrivacy().setPhoneNumberListingMode(update.getNew().isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED : PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED);
+    SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getNew().getPhoneNumberSharingMode()));
+    SignalStore.settings().setPreferSystemContactPhotos(update.getNew().isPreferContactAvatars());
+    SignalStore.paymentsValues().setEnabledAndEntropy(update.getNew().getPayments().isEnabled(), Entropy.fromBytes(update.getNew().getPayments().getEntropy().orNull()));
+
+    if (fetchProfile && update.getNew().getAvatarUrlPath().isPresent()) {
+      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(self, update.getNew().getAvatarUrlPath().get()));
     }
   }
 

@@ -917,6 +917,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">그룹 이름을 \"%1$s\"로 바꾸었습니다.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s 님이 그룹 이름을 \'%2$s\'(으)로 변경했습니다.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">그룹 이름이 \"%1$s\"로 바뀌었습니다.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">그룹 아바타를 변경하였습니다.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s가 그룹 아바타를 변경하였습니다.</string>
@@ -1541,6 +1542,7 @@
   <string name="ConversationUpdateItem_return_to_call">통화로 돌아가기</string>
   <string name="ConversationUpdateItem_call_is_full">통화 참가자 수 최대</string>
   <string name="ConversationUpdateItem_invite_friends">친구 초대</string>
+  <string name="ConversationUpdateItem_view">보기</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">재생 … 일시 정지</string>
   <string name="audio_view__download_accessibility_description">다운로드</string>
@@ -1869,7 +1871,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">읽은 메시지 기능이 꺼져 있다면, 다른 사람이 메시지를 읽었는지 확인할 수 없습니다.</string>
   <string name="preferences__typing_indicators">입력 안내</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">입력 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 쓰고 있는지 확인할 수 없습니다.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">키보드 개인화 학습 비활성화 요청하기. 이 설정은 결과를 보장하지 않으며, 귀하의 키보드가 이 요청을 무시할 수도 있습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">키보드 개인화 학습 비활성화 요청하기. 이 설정은 결과를 보장하지 않으며, 귀하의 키보드가 이 요청을 무시할 수도 있습니다.</string> -->
   <string name="preferences_app_protection__blocked_users">차단된 사용자</string>
   <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용 시</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi 사용 시</string>
@@ -2482,5 +2484,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">메시지 보내기</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">확인</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">높음</string>
   <!--EOF-->
 </resources>
