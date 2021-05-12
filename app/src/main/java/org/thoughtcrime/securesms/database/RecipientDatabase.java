@@ -2084,49 +2084,6 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  @Deprecated
-  public void setRegistered(@NonNull RecipientId id, RegisteredState registeredState) {
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(REGISTERED, registeredState.getId());
-
-    if (registeredState == RegisteredState.NOT_REGISTERED) {
-      contentValues.putNull(STORAGE_SERVICE_ID);
-    }
-
-    if (update(id, contentValues)) {
-      if (registeredState == RegisteredState.REGISTERED) {
-        setStorageIdIfNotSet(id);
-      }
-
-      Recipient.live(id).refresh();
-    }
-  }
-
-  @Deprecated
-  public void setRegistered(@NonNull Collection<RecipientId> activeIds,
-                            @NonNull Collection<RecipientId> inactiveIds)
-  {
-    for (RecipientId activeId : activeIds) {
-      ContentValues registeredValues = new ContentValues(1);
-      registeredValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-
-      if (update(activeId, registeredValues)) {
-        setStorageIdIfNotSet(activeId);
-        Recipient.live(activeId).refresh();
-      }
-    }
-
-    for (RecipientId inactiveId : inactiveIds) {
-      ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
-      contentValues.putNull(STORAGE_SERVICE_ID);
-
-      if (update(inactiveId, contentValues)) {
-        Recipient.live(inactiveId).refresh();
-      }
-    }
-  }
-
   /**
    * Handles inserts the (e164, UUID) pairs, which could result in merges. Does not mark users as
    * registered.
