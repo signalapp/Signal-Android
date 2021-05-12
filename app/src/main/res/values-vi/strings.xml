@@ -915,6 +915,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Bạn đã đổi tên nhóm thành \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s đã đổi tên nhóm thành \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Tên nhóm đã được đổi thành \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Bạn đã đổi ảnh nhóm.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s đã đổi ảnh nhóm.</string>
@@ -1532,6 +1533,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConversationUpdateItem_return_to_call">Quay trở lại cuộc gọi</string>
   <string name="ConversationUpdateItem_call_is_full">Cuộc gọi đã đầy</string>
   <string name="ConversationUpdateItem_invite_friends">Mời bạn bè</string>
+  <string name="ConversationUpdateItem_view">Xem</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Phát … Tạm dừng</string>
   <string name="audio_view__download_accessibility_description">Tải xuống</string>
@@ -1851,7 +1853,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nếu thông báo đã xem bị tắt, bạn sẽ không thể biết người kia đã xem tin nhắn hay chưa.</string>
   <string name="preferences__typing_indicators">Thông báo đang nhập</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nếu thông báo đang nhập bị tắt, bạn sẽ không thể biết người kia có đang nhập tin nhắn hay không.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Yêu cầu bàn phím tắt học thói quen gõ chữ. Cài đặt này không đảm bảo, và bàn phím của bạn có thể bỏ qua yêu cầu này.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Yêu cầu bàn phím tắt học thói quen gõ chữ. Cài đặt này không đảm bảo, và bàn phím của bạn có thể bỏ qua yêu cầu này.</string> -->
   <string name="preferences_app_protection__blocked_users">Người dùng đã chặn</string>
   <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
   <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
@@ -2279,7 +2281,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Nhấn vào ảnh đại diện của bạn ở góc trên bên trái để mở Cài đặt</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Nhấn vào \"Trò chuyện\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Nhấn vào \"Trò chuyện\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Nhấn \"Chuyển tài khoản\" và \"Tiếp tục\" trên cả hai thiết bị</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2504,5 +2506,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="CanNotSendPaymentDialog__send_a_message">Gửi tin nhắn</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Cao</string>
   <!--EOF-->
 </resources>

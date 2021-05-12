@@ -1104,7 +1104,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Oxunmuşlar haqqında məlumat xidməti deaktiv edilsə, başqa şəxs mesajı oxuduqda məlumat almayacaqsan.</string>
   <string name="preferences__typing_indicators">Yazışma indikatoru</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Yazışma indikatorları deaktiv edilsə, başqa şəxs mesaj yazdığı zaman məlumat almayacaqsan.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Fərdiləşdirilmiş təlimin deaktiv edilməsini klaviaturadan istə</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Fərdiləşdirilmiş təlimin deaktiv edilməsini klaviaturadan istə</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Əlaqələr kilidlidir</string> -->
   <string name="preferences_chats__when_using_mobile_data">Mobil internet istifadə edərkən</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi istifadə edərkən</string>

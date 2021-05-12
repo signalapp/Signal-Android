@@ -922,6 +922,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">သင်သည် အဖွဲ့ အမည်ကို %1$s သို့ ပြောင်းလိုက်သည်။</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$sသည် အဖွဲ့အမည်ကို %2$s သို့ ပြောင်းလိုက်သည်။ </string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">အဖွဲ့အမည်ကို %1$s သို့ ပြောင်းထားသည်။</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">သင်သည် အဖွဲ့ကိုယ်စားပြုရုပ်ပုံကို ပြောင်းလဲခဲ့သည်။</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s သည် အဖွဲ့ကိုယ်စားပြုရုပ်ပုံကို ပြောင်းလဲခဲ့သည်။</string>
@@ -1545,6 +1546,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">ခေါ်ဆိုမှု သတိပေးချက်များ ဖွင့်မယ်</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
+  <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ဖွင့်မယ် … ခေတ္တရပ်မယ်</string>
   <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
@@ -1745,14 +1747,6 @@
   <string name="HelpFragment__debug_log">ပျက်ကွက်မှုဖြေရှင်းသည့် မှတ်တမ်းစာ -</string>
   <string name="HelpFragment__could_not_upload_logs">မှတ်တမ်းများ မတင်သွင်းနိုင်ပါ</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ကျွနှ်ပ်တို့နားလည်နိုင်ရန် ကိစ္စအကြောင်းကို တတ်နိုင်သမျှ ဖေါ်ပြပေးပါ။</string>
-  <string-array name="HelpFragment__categories">
-    <item>အရာတစ်ခု အလုပ်မလုပ်ပါ</item>
-    <item>အင်္ဂါရပ်တောင်းဆိုချက်</item>
-    <item>မေးခွန်း</item>
-    <item>တုံ့ပြန်ချက်</item>
-    <item>အခြား</item>
-    <item>ငွေပေးချေမှုများ</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">၎င်းမက်ဆေ့ချ်</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">နောက်ဆုံးသုံးခဲ့သော</string>
@@ -1888,7 +1882,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>
   <string name="preferences__typing_indicators">စာရိုက်ညွှန်ကိန်းများ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">စာရိုက်ညွှန်ကိန်းများကို ပိတ်ထားပါက အခြားသူများမှ စာရိုက်ညွှန်းကိန်းများကို သင်မမြင်နိုင်ပါ။</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ကိုယ်ပိုင်လေ့လာမှုကို ပိတ်ထားရန် ကီးဘုတ်သို့ တောင်းခံပါ။ ဤချိန်ညှိချက်သည် အာမခံချက်မဟုတ်ပါ၊ သင်၏ ကီးဘုတ်သည် ၎င်းကို လျစ်လျူရှုနိုင်လိမ့်မည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ကိုယ်ပိုင်လေ့လာမှုကို ပိတ်ထားရန် ကီးဘုတ်သို့ တောင်းခံပါ။ ဤချိန်ညှိချက်သည် အာမခံချက်မဟုတ်ပါ၊ သင်၏ ကီးဘုတ်သည် ၎င်းကို လျစ်လျူရှုနိုင်လိမ့်မည်။</string> -->
   <string name="preferences_app_protection__blocked_users">ပိတ်ထားသောအသုံးပြုသူများ</string>
   <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ </string>
   <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ </string>
@@ -2421,7 +2415,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">၁။</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ထိပ်ဘယ်ဘက်၌ရှိသော သင့်ပရိုဖိုင်းပုံပေါ်အား နှိပ်၍ အပြင်အဆင်သို့သွားနိုင်ပါသည်</string>
   <string name="NewDeviceTransferInstructions__second_bullet">၂။</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">\"ချက်တင်များ\" ပေါ်သို့ နှိပ်ပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">\"ချက်တင်များ\" ပေါ်သို့ နှိပ်ပါ</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">၃။</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"အကောင့်လွှဲမယ်\" ပေါ်သို့ နှိပ်၍ စက် ၂ ခုလုံးပေါ်တွင် \"ဆက်လက်ရန်\" ဆက်နှိပ်ပါ</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2752,5 +2746,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">၎င်းအဖွဲ့ထဲတွင် သင်၏ အဆက်အသွယ်များ သို့မဟုတ် သင်နှင့် စကားပြောဆိုထားသူများ တစ်ယောက်မှ မရှိပါ။ အလိုမရှိသော မက်ဆေ့ချ်များကို မလက်ခံမီ တောင်းဆိုမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">မက်ဆေ့ခ်ျတောင်းဆိုမှုများ အကြောင်း</string>
   <string name="GroupsInCommonMessageRequest__okay">အိုကေ</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">မြင့်သော</string>
   <!--EOF-->
 </resources>

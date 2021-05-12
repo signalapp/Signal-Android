@@ -635,6 +635,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">Oppgrader denne gruppen.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikret MMS-gruppe. For å melde privat, inviter kontaktene dine til Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviter nå</string>
+  <string name="ManageGroupActivity_more">…mer</string>
+  <string name="ManageGroupActivity_add_group_description">Legg til gruppebeskrivelse…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsle meg om omtaler</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Motta varsler når du blir nevnt i mutede samtaler?</string>
@@ -971,6 +973,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Du endret gruppens navn til \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s endret gruppens navn til \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Gruppens navn er endret til \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Du endret gruppebeskrivelsen.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s endret gruppebeskrivelsen.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Gruppebeskrivelsen ble endret.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Du endret gruppens avatar.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s endret gruppens avatar.</string>
@@ -1614,6 +1620,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Slå på samtalevarsler</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i denne gruppen. Gjennomgå forespørsler nøye.</string>
+  <string name="ConversationUpdateItem_view">Vis</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spill av … Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -1741,6 +1748,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreateProfileActivity__username">Brukernavn</string>
   <string name="CreateProfileActivity__create_a_username">Opprett et brukernavn</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Selvvalgte MMS-gruppenavn og -gruppebilder er kun synlige for deg.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppebeskrivelser vil være synlige for medlemmer av denne gruppen og personer som har blitt invitert.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv noen ord om deg selv…</string>
@@ -1755,6 +1763,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og bilde</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
+  <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Ditt navn</string>
   <string name="EditProfileNameFragment_first_name">Fornavn</string>
@@ -1822,7 +1831,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
   <string-array name="HelpFragment__categories">
-    <item>Det er noe som ikke virker</item>
+    <item>-- Vennligst velg et alternativ --</item>
+    <item>Det er noe ikke fungerer</item>
     <item>Foreslå nye funksjoner</item>
     <item>Hvordan kan jeg … ?</item>
     <item>Tilbakemeldinger</item>
@@ -1965,7 +1975,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.</string>
   <string name="preferences__typing_indicators">Skriveindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Be om tastaturtilgang for å deaktivere personlig læring. Dette er ikke en garanti, og tastaturet ditt kan ignorere forespørselen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Be om tastaturtilgang for å deaktivere personlig læring. Dette er ikke en garanti, og tastaturet ditt kan ignorere forespørselen.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokkerte brukere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
@@ -2061,6 +2071,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsHomeFragment__help">Hjelp</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
+  <string name="PaymentsHomeFragment__sent_payment">Sendt betaling</string>
   <string name="PaymentsHomeFragment__received_payment">Mottatt betaling</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalinger er ikke tilgjengelige i regionen din.</string>
@@ -2091,7 +2102,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsDetailsFragment__from">Fra</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Myntoppryddingsgebyr\" belastes når myntene i din besittelse ikke kan kombineres for å fullføre en transaksjon. Oppryddingen vil tillate deg å fortsette å sende betalinger.</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Sendt betaling</string>
   <string name="PaymentsDetailsFragment__received_payment">Mottatt betaling</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Betaling fullført %1$s</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Skann QR-kode</string>
   <string name="PaymentsTransferFragment__next">Neste</string>
@@ -2110,10 +2123,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">,</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Legg til notat</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Notat</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Bekreft betaling</string>
   <string name="ConfirmPayment__network_fee">Nettverksgebyr</string>
   <string name="ConfirmPayment__error_getting_fee">Kunne ikke laste inn gebyrinformasjon</string>
   <string name="ConfirmPayment__to">Til</string>
@@ -2122,6 +2139,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmPayment__processing_payment">Behandler betaling …</string>
   <string name="ConfirmPayment__payment_complete">Betaling fullført</string>
   <string name="ConfirmPayment__payment_failed">Betaling mislyktes</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Ugyldig mottaker</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Denne personen har ikke aktivert betalinger</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Kunne ikke laste inn nettverksgebyr. For å fortsette denne betalingen, trykk på OK for å prøve igjen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2457,7 +2475,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Trykk på profilbildet øverst til venstre for å åpne innstillinger</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på \"Samtaler\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på \"Samtaler\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk \"Overfør konto\" og så \"Fortsett\" på begge enheter</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2707,12 +2725,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin er en ny, personvernorientert digital valuta.</string>
   <string name="payment_info_card_hide">Skjul</string>
+  <string name="payment_info_card_update_your_pin">Oppdater PIN-koden din</string>
   <string name="payment_info_card_update_pin">Oppdater PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__your_balance">Din balanse</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktiver</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gjenopprettingsfrase</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Se gjenopprettingsfrasen</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Skriv inn gjenopprettingsfrasen</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Skriv inn manuelt</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Lim inn fra utklippstavlen</string>
@@ -2737,6 +2758,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Ord %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Ferdig</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Skriv inn gjenopprettingsfrasen</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">Skriv inn ord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Ord %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Neste</string>
@@ -2757,5 +2779,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av kontaktene din eller folk du prater med er i denne gruppen. Se nøye gjennom forespørsler før du aksepterer, så du unngår uønskede meldinger.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Om meldingsforespørsler</string>
   <string name="GroupsInCommonMessageRequest__okay">Greit</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Raskere, mindre data</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Høy</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Tregere, mer data</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotokvalitet</string>
   <!--EOF-->
 </resources>

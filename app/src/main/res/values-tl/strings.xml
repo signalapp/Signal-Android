@@ -1401,7 +1401,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kung naka-disable ang read receipts, hindi ka makakakita ng mga read receipt mula sa iba.</string>
   <string name="preferences__typing_indicators">Typing indicators</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kung naka-disable ang typing indicators, hindi ka makakakita ng typing indicators mula sa iba.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Hilingin sa keyboard na i-disable ang personalisadong pagkakatuto</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Hilingin sa keyboard na i-disable ang personalisadong pagkakatuto</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Mga naka-block na kontak</string> -->
   <string name="preferences_chats__when_using_mobile_data">Kapag gumagamit ng mobile data</string>
   <string name="preferences_chats__when_using_wifi">Kapag gumagamit ng WI-FI</string>

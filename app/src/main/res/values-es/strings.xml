@@ -638,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualiza este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado, invita a tus amistades a usar Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitar ahora</string>
+  <string name="ManageGroupActivity_more">… más</string>
+  <string name="ManageGroupActivity_add_group_description">Añade la descripción del grupo …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar cuando alguien me mencione</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">¿Deseas recibir notificationes si te mencionan en un chat silenciado?</string>
@@ -974,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Has modificado el nombre del grupo a «%1$s».</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha modificado el nombre del grupo a «%2$s».</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">El nombre del grupo ha cambiado a «%1$s».</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Has actualizado la descripción del grupo</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ha actualizado la descripción del grupo.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Se ha actualizado la descripción del grupo.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Has modificado la imagen del grupo.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha modificado la imagen del grupo.</string>
@@ -1623,6 +1629,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_enable_call_notifications">Habilitar notificaciones de llamada</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
+  <string name="ConversationUpdateItem_view">Ver</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1750,6 +1757,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CreateProfileActivity__username">Alias (nombre de usuari@)</string>
   <string name="CreateProfileActivity__create_a_username">Crear alias (nombre de usuari@)</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Los nombres e imágenes de grupos MMS sólo son visibles para ti.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La descripción del grupo será visible para participantes en este grupo y gente que ha sido invitada.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Biografía</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
@@ -1764,6 +1772,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
+  <string name="EditProfileFragment__group_description">Descripción del grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tu nombre</string>
   <string name="EditProfileNameFragment_first_name">Nombre</string>
@@ -1831,10 +1840,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
   <string-array name="HelpFragment__categories">
+    <item> -- Selecciona una opción --</item>
     <item>Algo no funciona</item>
     <item>Solicitar una nueva función</item>
     <item>Pregunta</item>
-    <item>Información</item>
+    <item>Crítica/opinión</item>
     <item>Otras</item>
     <item>Pagos</item>
   </string-array>
@@ -1974,7 +1984,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr@s participantes están tecleando. </string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Evitar el aprendizaje predictivo del teclado. Activar esta opción no garantiza que tu teclado no analice tus mensajes. </string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Evitar el aprendizaje predictivo del teclado. Activar esta opción no garantiza que tu teclado no analice tus mensajes. </string> -->
   <string name="preferences_app_protection__blocked_users">Personas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
@@ -2514,7 +2524,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toca sobre tu foto de perfil en la parte superior izquierda para abrir los ajustes</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Toca en «Chats»</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Toca en «Chats»</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toca en «Transferir cuenta» y en «Adelante» en ambos dispositivos</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2847,5 +2857,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nadie en este grupo ha chateado nunca contigo. Revisa siempre cuidadosamente solicitudes de chat antes de aceptarlas para evitar mensajes indeseados.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Más sobre solicitudes de chat</string>
   <string name="GroupsInCommonMessageRequest__okay">De acuerdo</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Descripción del grupo</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Normal</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Rápida, menos datos</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lenta, más datos</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Calidad de la foto</string>
   <!--EOF-->
 </resources>

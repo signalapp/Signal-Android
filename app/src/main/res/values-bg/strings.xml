@@ -965,6 +965,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Вие променихте името на групата на \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s промени името на групата на \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Името на групата бе променено на \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Сменихте аватара на групата.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s смени аватара на групата.</string>
@@ -1598,6 +1599,7 @@
   <string name="ConversationUpdateItem_return_to_call">Върнете се към разговор</string>
   <string name="ConversationUpdateItem_call_is_full">Обаждането е пълно</string>
   <string name="ConversationUpdateItem_invite_friends">Покани приятели</string>
+  <string name="ConversationUpdateItem_view">Преглед</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусни … Пауза</string>
   <string name="audio_view__download_accessibility_description">Изтегляне</string>
@@ -1926,7 +1928,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако Вашите потвърждения за прочитане са деактивирани няма да можете да видите потвържденията за прочитане от други.</string>
   <string name="preferences__typing_indicators">Индикатори за писане</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако индикаторите за писане са декативирани, няма да можете да видите индикаторите на другите хора.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Поискай клавиатурата да изключи персонализирано научване. Тази настройка не е гарантирана, и клавиатурата ти може да я игнорира.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Поискай клавиатурата да изключи персонализирано научване. Тази настройка не е гарантирана, и клавиатурата ти може да я игнорира.</string> -->
   <string name="preferences_app_protection__blocked_users">Блокирани потребители</string>
   <string name="preferences_chats__when_using_mobile_data">Когато се използва мобилен интернет</string>
   <string name="preferences_chats__when_using_wifi">Когато се използва Wi-Fi</string>
@@ -2536,5 +2538,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">Изпрати съобщение</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">Добре</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
   <!--EOF-->
 </resources>

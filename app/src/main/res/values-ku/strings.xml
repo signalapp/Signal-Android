@@ -904,6 +904,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Te navê komê wekî \"%1$s\" guherand.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s navê komê wekî \"%2$s\" guherand.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Navê komê wekî \"%1$s\" hate guhertin.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Te wêneyê komê guherand.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s, wêneyê komê guherand.</string>
@@ -1500,6 +1501,7 @@
   <string name="ConversationUpdateItem_return_to_call">Vegere gerînê</string>
   <string name="ConversationUpdateItem_call_is_full">Gerîn tije ye</string>
   <string name="ConversationUpdateItem_invite_friends">Hevalên xwe vexwîne</string>
+  <string name="ConversationUpdateItem_view">Nîşan bide</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lêde …Bisekinîne</string>
   <string name="audio_view__download_accessibility_description">Daxîne</string>
@@ -2398,5 +2400,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">Peyamekê bişîne</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">Baş e</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Bilind</string>
   <!--EOF-->
 </resources>

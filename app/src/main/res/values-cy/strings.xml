@@ -171,6 +171,7 @@
   <string name="ConversationItem_error_network_not_delivered">Methodd yr anfon</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Wedi derbyn neges cyfnewid allwedd, tapiwch i brosesu.</string>
   <string name="ConversationItem_group_action_left">Mae %1$s wedi gadael y grŵp.</string>
+  <string name="ConversationItem_send_paused">Oedwyd anfon</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Methodd yr anfon, tapiwch am gam nôl anniogel</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nôl i SMS heb ei amgryptio?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nôl i MMS heb ei amgryptio?</string>
@@ -1077,6 +1078,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_changed_the_group_name_to_s">Fe wnaethoch chi newid enw\'r grŵp i \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">Fe wnaeth %1$s newid enw\'r grŵp i \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Mae enw\'r grŵp wedi newid i \"%1$s\".</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Fe wnaethoch chi newid avatar y grŵp.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Newidiodd %1$s avatar y grŵp.</string>
@@ -1347,6 +1349,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Defnyddiwch ddirprwy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Wedi\'i gysylltu\'n llwyddiannus â dirprwy.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_complete_verification">Cwblhau gwirio</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Dewiswch eich gwlad</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Rhaid i chi roi
@@ -1747,6 +1750,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Galluogi Hysbysiadau Galwadau</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Dim grwpiau\'n gyffredin. Ystyriwch y ceisiadau\'n ofalus</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Dim cysylltiadau\'n y grŵp hwn. Ystyriwch y ceisiadau\'n ofalus</string>
+  <string name="ConversationUpdateItem_view">Golwg</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
@@ -1968,14 +1972,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Mae Rhywbeth Wedi Torri</item>
-    <item>Cais Nodwedd</item>
-    <item>Cwestiwn</item>
-    <item>Adborth</item>
-    <item>Arall</item>
-    <item>Taliadau</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
@@ -2114,7 +2110,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Os yw derbynebau darllen wedi eu hanalluogi, fyddwch chi ddim yn gallu gweld derbynebau darllen gan eraill.</string>
   <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofynnwch am fysellfwrdd i analluogi dysgu wedi\'i bersonoli. Nid yw\'r gosodiad hwn yn gwarantu hynny, ac efallai y bydd eich bysellfwrdd yn ei anwybyddu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofynnwch am fysellfwrdd i analluogi dysgu wedi\'i bersonoli. Nid yw\'r gosodiad hwn yn gwarantu hynny, ac efallai y bydd eich bysellfwrdd yn ei anwybyddu.</string> -->
   <string name="preferences_app_protection__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>
   <string name="preferences_chats__when_using_wifi">Wrth ddefnyddio diwifr</string>
@@ -2668,7 +2664,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tapiwch eich llun proffil yn y chwith uchaf i agor y Gosodiadau</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Tapiwch ar \"Sgyrsiau\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tapiwch ar \"Sgyrsiau\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tapiwch \"Trosglwyddo Cyfrif\" ac yna \"Parhau\" ar y ddau ddyfais</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3005,5 +3001,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Does dim o\'ch cysylltiadau na\'r bobl rydych yn sgwrsio gyda nhw yn y grŵp yma. . Ystyriwch y ceisiadau\'n ofalus cyn derbyn negeseuon digroeso.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Ychylch ceisiadau i negesu</string>
   <string name="GroupsInCommonMessageRequest__okay">Iawn</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Uchel</string>
   <!--EOF-->
 </resources>

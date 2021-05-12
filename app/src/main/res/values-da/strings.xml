@@ -639,6 +639,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">opgrader gruppen</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. For at chatte privat skal du invitere dine kontakter til Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitér nu</string>
+  <string name="ManageGroupActivity_more">…mere</string>
+  <string name="ManageGroupActivity_add_group_description">Tilføj gruppebeskrivelse…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Vil du modtage meddelelser, når du er omtalt i udsatte chats?</string>
@@ -975,6 +977,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Du ændrede gruppens navn til \"%1$s\"</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ændrede gruppens navn til \"%2$s\"</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Gruppens navn er ændret til \"%1$s\"</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Du ændrede gruppebeskrivelsen.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ændrede gruppebeskrivelsen.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Gruppebeskrivelsen er blevet ændret.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Du ændrede gruppens avatar</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ændrede gruppens avatar</string>
@@ -1623,6 +1629,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConversationUpdateItem_enable_call_notifications">Aktiver opkaldsmeddelelser</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen grupper til fælles. Gennemgå anmodninger omhyggeligt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i gruppen. Gennemgå anmodninger omhyggeligt. </string>
+  <string name="ConversationUpdateItem_view">Vis</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -1750,6 +1757,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CreateProfileActivity__username">Brugernavn</string>
   <string name="CreateProfileActivity__create_a_username">Opret et brugernavn</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS-gruppenavne og billeder vil kun være synlige for dig.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppebeskrivelser vil være synlige for medlemmer af denne gruppe og personer, der er blevet inviteret.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv…</string>
@@ -1764,6 +1772,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
+  <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Dit navn</string>
   <string name="EditProfileNameFragment_first_name">Fornavn</string>
@@ -1831,6 +1840,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__could_not_upload_logs">Fejl ved afsendelse af logs</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
   <string-array name="HelpFragment__categories">
+    <item>-- Vælg en valgmulighed --</item>
     <item>Noget virker ikke</item>
     <item>Funktionsanmodning</item>
     <item>Spørgsmål</item>
@@ -1974,7 +1984,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiveret, er det ikke muligt at se status for beskeder.</string>
   <string name="preferences__typing_indicators">Skriveindikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikator er deaktiveret, er det ikke muligt at se når andre skriver.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Anmod tastatur om at deaktivere personlig indlæring. Denne indstilling er ikke en garanti, og dit tastatur ignorerer det muligvis.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Anmod tastatur om at deaktivere personlig indlæring. Denne indstilling er ikke en garanti, og dit tastatur ignorerer det muligvis.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokerede brugere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved brug af WiFi</string>
@@ -2514,7 +2524,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tryk på dit profilbillede øverst til venstre for at åbne Indstillinger</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Tryk på \"Chats\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tryk på \"Chats\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tryk på \"Overfør konto\" og derefter \"Fortsæt\" på begge enheder</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2847,5 +2857,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen af dine kontakter eller personer, du chatter med, er i gruppen. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Ang. beskedanmodning</string>
   <string name="GroupsInCommonMessageRequest__okay">Okay</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Hurtigere, færre data</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Høj</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langsommere, mere data</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Billedkvalitet</string>
   <!--EOF-->
 </resources>

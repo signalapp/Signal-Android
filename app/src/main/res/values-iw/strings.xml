@@ -704,6 +704,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">שדרג קבוצה זו.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">זוהי קבוצת MMS בלתי מאובטחת. כדי להתכתב באופן פרטי, הזמן את אנשי הקשר שלך אל Signal.</string>
   <string name="ManageGroupActivity_invite_now">הזמן עכשיו</string>
+  <string name="ManageGroupActivity_more">…עוד</string>
+  <string name="ManageGroupActivity_add_group_description">הוסף תיאור קבוצה…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">יידע אותי לגבי אזכורים</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">לקבל התראות כאשר אתה מוזכר בהתכתבויות מושתקות?</string>
@@ -1076,6 +1078,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">שינית את שם הקבוצה אל \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s שינה את שם הקבוצה אל \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">שם הקבוצה השתנה אל \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">שינית את תיאור הקבוצה.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s שינה/שינתה את תיאור הקבוצה.</string>
+  <string name="MessageRecord_the_group_description_has_changed">תיאור הקבוצה השתנה.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">שינית את יצגן הקבוצה.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s שינה את יצגן הקבוצה.</string>
@@ -1753,6 +1759,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">אפשר התראות שיחה</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">אין קבוצות במשותף. סקור בקשות בזהירות.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">אין אנשי קשר בקבוצה הזאת. סקור בקשות בזהירות.</string>
+  <string name="ConversationUpdateItem_view">הצג</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -1894,6 +1901,7 @@
   <string name="CreateProfileActivity__username">שם משתמש</string>
   <string name="CreateProfileActivity__create_a_username">צור שם משתמש</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">שמות ותמונות של קבוצת MMS מותאמת אישית יהיו גלויים רק לך.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">תיאורי קבוצה יהיו גלויים אל חברי הקבוצה הזאת ואל אנשים שהוזמנו.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">אודות</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">כתוב כמה מילים על עצמך…</string>
@@ -1908,6 +1916,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">ערוך את השם והתמונה של הקבוצה</string>
   <string name="EditProfileFragment__group_name">שם קבוצה</string>
+  <string name="EditProfileFragment__group_description">תיאור קבוצה</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">שמך</string>
   <string name="EditProfileNameFragment_first_name">שם פרטי</string>
@@ -1975,6 +1984,7 @@
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
   <string-array name="HelpFragment__categories">
+    <item>-- אנא בחר אפשרות --</item>
     <item>משהו לא עובד</item>
     <item>בקשת מאפיין</item>
     <item>שאלה</item>
@@ -2120,7 +2130,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
   <string name="preferences__typing_indicators">מחווני הקלדה</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית. הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית. הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string> -->
   <string name="preferences_app_protection__blocked_users">משתמשים חסומים</string>
   <string name="preferences_chats__when_using_mobile_data">בעת שימוש בנתונים ניידים</string>
   <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
@@ -2674,7 +2684,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">הקש על תמונת הפרופיל שלך בקצה העליון השמאלי כדי לפתוח הגדרות</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">הקש על \"התכתבויות\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">הקש על \"התכתבויות\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">הקש על \"העבר חשבון\" ואז \"המשך\" בשני המכשירים</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3011,5 +3021,13 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">אף אחד מחברי הקבוצה שלך או האנשים שאתה מתכתב איתם נמצאים בקבוצה הזאת. סקור בקשות בזהירות טרם אישור שלהן כדי להימנע מהודעות בלתי רצויות.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">על אודות בקשות הודעה</string>
   <string name="GroupsInCommonMessageRequest__okay">בסדר</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">תיאור קבוצה</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">תקנית</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">מהירה יותר, פחות נתונים</string>
+  <string name="QualitySelectorBottomSheetDialog__high">גבוה</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">איטית יותר, יותר נתונים</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">איכות תמונה</string>
   <!--EOF-->
 </resources>

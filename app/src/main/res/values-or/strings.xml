@@ -971,6 +971,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">ଆପଣ ଗୋଷ୍ଠୀ ନାମକୁ \"%1$s\" କୁ ପରିବର୍ତ୍ତନ କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ଗୋଷ୍ଠୀ ନାମକୁ \"%2$s\"  କୁ ପରିବର୍ତ୍ତନ କଲେ</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ଗୋଷ୍ଠୀ ନାମ \"%1$s\" କୁ ପରିବର୍ତ୍ତିତ ହୋଇଛି</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">ଆପଣ ଗୋଷ୍ଠୀ ଅବତାର ପରିବର୍ତ୍ତନ କଲେ।</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ଗୋଷ୍ଠୀ ଅବତାର ପରିବର୍ତ୍ତନ କଲେ</string>
@@ -1604,6 +1605,7 @@
   <string name="ConversationUpdateItem_call_is_full">କଲ୍ ଭର୍ତ୍ତି ଅଛି</string>
   <string name="ConversationUpdateItem_invite_friends">ବନ୍ଧୁମାନଙ୍କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">କଲ ବିଜ୍ଞପ୍ତି ଚାଲୁ କରନ୍ତୁ</string>
+  <string name="ConversationUpdateItem_view">ଦେଖନ୍ତୁ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ଚଲାନ୍ତୁ … ବିରାମ</string>
   <string name="audio_view__download_accessibility_description">ଡାଉନଲୋଡ୍</string>
@@ -1939,7 +1941,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ଯଦି ପଠନ ରସିଦ ଅକ୍ଷମ ହୋଇଛି, ଆପଣ ଅନ୍ୟମାନଙ୍କଠାରୁ ପଠନ ରସିଦ ଦେଖିବାକୁ ସମର୍ଥ ହେବେ ନାହିଁ</string>
   <string name="preferences__typing_indicators">ଟାଇପ୍ ସୂଚକ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ଯଦି ଟାଇପ୍ ସୂଚକ ଅକ୍ଷମ ହୋଇଛି, ଆପଣ ଅନ୍ୟମାନଙ୍କଠାରୁ ଟାଇପ୍ ସୂଚକ ଦେଖିବାକୁ ସମର୍ଥ ହେବେ ନାହିଁ</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ବ୍ୟକ୍ତିଗତ ଶିକ୍ଷଣକୁ ଅକ୍ଷମ କରିବାକୁ କୀବୋର୍ଡ୍ ଅନୁରୋଧ | ଏହି ସେଟିଂ ଏକ ଗ୍ୟାରେଣ୍ଟି ନୁହେଁ, ଏବଂ ଆପଣଙ୍କର କୀବୋର୍ଡ୍ ଏହାକୁ ଅଣଦେଖା କରିପାରେ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ବ୍ୟକ୍ତିଗତ ଶିକ୍ଷଣକୁ ଅକ୍ଷମ କରିବାକୁ କୀବୋର୍ଡ୍ ଅନୁରୋଧ | ଏହି ସେଟିଂ ଏକ ଗ୍ୟାରେଣ୍ଟି ନୁହେଁ, ଏବଂ ଆପଣଙ୍କର କୀବୋର୍ଡ୍ ଏହାକୁ ଅଣଦେଖା କରିପାରେ</string> -->
   <string name="preferences_app_protection__blocked_users">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ</string>
   <string name="preferences_chats__when_using_mobile_data">ମୋବାଇଲ୍ ଡାଟା ବ୍ୟବହାର କରିବାବେଳେ</string>
   <string name="preferences_chats__when_using_wifi">ୱାଇ-ଫାଇ ବ୍ୟବହାର କରିବାବେଳେ</string>
@@ -2581,5 +2583,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">ଗୋଟେ ବାର୍ତ୍ତା ପଠାନ୍ତୁ</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ଠିକ୍ ଅଛି</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">ଉଚ୍ଚ</string>
   <!--EOF-->
 </resources>

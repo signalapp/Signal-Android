@@ -1320,7 +1320,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Idan aka kashe shaidar karatun sakonni, bazaka/ki samu damar ganin shaidar karatun wasu ba idan suma sun karanta sakon da aka aika.</string>
   <string name="preferences__typing_indicators">Manunin rubutu</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idan aka kashe manunin rubutu, bazaka/ki samu damar ganin manunin rubutu daga wasu ba.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Sa allon harrufa nakashewar koyo da kai</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Sa allon harrufa nakashewar koyo da kai</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Tosheshen lambobin sadarwa</string> -->
   <string name="preferences_chats__when_using_mobile_data">Sanda ake amfani da datar waya</string>
   <string name="preferences_chats__when_using_wifi">Sanda ake amfani da WiFi</string>

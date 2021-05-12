@@ -638,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">faça o upgrade deste grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um Grupo MMS inseguro. Para conversar de forma privada, convide os seus contactos para o Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convidar agora</string>
+  <string name="ManageGroupActivity_more">…mais</string>
+  <string name="ManageGroupActivity_add_group_description">Adicionar descrição do grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar-me quando for \'Mencionado\'</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receber notificações quando for mencionado em chats silenciados?</string>
@@ -974,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Você alterou o nome do grupo para \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s alterou o nome do grupo para \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">O nome do grupo foi alterado para \"%1$s\".</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Você alterou a descrição do grupo.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s alterou a descrição do grupo.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Foi alterada a descrição do grupo.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Você alterou o avatar do grupo.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s alterou o avatar do grupo.</string>
@@ -1622,6 +1628,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificações de chamadas</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sem grupos em comum. Reveja os pedidos com cuidado.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sem contactos neste grupo. Reveja os pedidos com cuidado.</string>
+  <string name="ConversationUpdateItem_view">Ver</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pausa</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -1749,6 +1756,7 @@
   <string name="CreateProfileActivity__username">Nome de utilizador</string>
   <string name="CreateProfileActivity__create_a_username">Criar um nome de utilizador</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nome personalizados de grupos MMS e fotografias apenas serão visíveis para si.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">As descrições do grupo serão visíveis para os membros deste grupo e para as pessoas que foram convidadas</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si…</string>
@@ -1763,6 +1771,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e fotografia do grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
+  <string name="EditProfileFragment__group_description">Descrição do grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">O seu nome</string>
   <string name="EditProfileNameFragment_first_name">Primeiro nome</string>
@@ -1830,11 +1839,12 @@
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
   <string-array name="HelpFragment__categories">
-    <item>Algo não está a funcionar</item>
-    <item>Pedido de recurso</item>
-    <item>Questão</item>
+    <item>-- Ppr favor, selecione uma opção --</item>
+    <item>Alguma coisa não está a funcionar</item>
+    <item>Pedido de função</item>
+    <item>Pergunta</item>
     <item>Feedback</item>
-    <item>Outro</item>
+    <item>Outro(s)</item>
     <item>Pagamentos</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1973,7 +1983,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não poderá ver os recibos de leitura relativos às mensagens enviadas.</string>
   <string name="preferences__typing_indicators">Indicadores de escrita</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita relativos a outros utilizadores.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado para desativar a aprendizagem personalizada. Esta configuração não está garantida e o seu teclado poderá ignorá-la.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado para desativar a aprendizagem personalizada. Esta configuração não está garantida e o seu teclado poderá ignorá-la.</string> -->
   <string name="preferences_app_protection__blocked_users">Utilizadores bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Ao utilizar os dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Ao utilizar o Wi-Fi</string>
@@ -2513,7 +2523,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toque na sua fotografia de perfil no canto superior esquerdo para abrir as \'Definições\'</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Toque em \'Conversas\'</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Toque em \'Conversas\'</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toque em \'Transferir conta\' e depois em \'Continuar\' em ambos os dispositivos</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2846,5 +2856,13 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nenhum dos seus contactos ou pessoas com quem conversa estão neste grupo. Reveja os pedidos com cuidado antes de os aceitar para evitar mensagens indesejáveis.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Acerca dos pedidos de mensagem</string>
   <string name="GroupsInCommonMessageRequest__okay">Ok</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Descrição do grupo</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Mais rápido, menos dados</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Elevada</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Mais lento, mais dados</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualidade das fotografias</string>
   <!--EOF-->
 </resources>

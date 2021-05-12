@@ -639,6 +639,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">بۇ گۇرۇپپىنى يۈكسەلتىدۇ.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">بۇ شىفىرلانمىغان كۆپ ۋاسىتە ئۇچۇر گۇرۇپپىسى. شىفىرلىق سۆھبەتلىشىشتە، ئالاقەداشلارنى Signal غا تەكلىپ قىلىڭ.</string>
   <string name="ManageGroupActivity_invite_now">شۇئان تەكلىپ</string>
+  <string name="ManageGroupActivity_more">…تېخىمۇ كۆپ</string>
+  <string name="ManageGroupActivity_add_group_description">گۇرۇپپا تونۇشتۇرۇشى قوش…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">ئاتالسام ئەسكەرتسۇن</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ئۈنسىز سۆھبەتلەردە ئاتالسىڭىز ئۇقتۇرۇش تاپشۇرۇۋالامسىز؟</string>
@@ -975,6 +977,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">گۇرۇپپا ئاتىنى «%1$s» غا ئۆزگەرتتىڭىز.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s  گۇرۇپپىغا ئاتىنى «%2$s» غا ئۆزگەرتتى.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">گۇرۇپپا ئاتى «%1$s» غا ئۆزگەرتىلدى.</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">گۇرۇپپا تونۇشتۇرۇشىنى ئۆزگەرتتىڭىز.</string>
+  <string name="MessageRecord_s_changed_the_group_description">گۇرۇپپا تونۇشتۇرۇشىنى %1$s ئۆزگەرتتى.</string>
+  <string name="MessageRecord_the_group_description_has_changed">گۇرۇپپا تونۇشتۇرۇشى ئۆزگەرتىلدى.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">گۇرۇپپا باش سۈرىتىنى ئۆزگەرتتىڭىز.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s گۇرۇپپا باش سۈرىتىنى ئۆزگەرتتى.</string>
@@ -1622,6 +1628,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">چاقىرىش ئۇقتۇرۇشلىرىنى قوزغات</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ھېچقانداق ئورتاق گۇرۇپپا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">بۇ گۇرۇپپىدا ھېچقانداق ئەزا يوق. تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
+  <string name="ConversationUpdateItem_view">كۆرسەت</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">قوي… تورمۇزلا</string>
   <string name="audio_view__download_accessibility_description">چۈشۈر</string>
@@ -1749,6 +1756,7 @@
   <string name="CreateProfileActivity__username">ئىشلەتكۈچى ئىسمى</string>
   <string name="CreateProfileActivity__create_a_username">ئىشلەتكۈچى ئىسمى قۇرىدۇ</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ئىختىيارى MMS گۇرۇپپا ئىسمى ۋە رەسىملىرى سىزگىلا كۆرۈنىدۇ.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">گۇرۇپپا تونۇشتۇرۇشىنى بۇ گۇرۇپپىنىڭ ئەزالىرى ۋە تەكلىپ قىلىنغان كىشىلەر كۆرەلەيدۇ.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ھەققىدە</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">ئۆزىڭىز ھەققىدە بايان…</string>
@@ -1763,6 +1771,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">گۇرۇپپا ئاتى ۋە باش سۈرەت تەھرىر</string>
   <string name="EditProfileFragment__group_name">گۇرۇپپا ئاتى</string>
+  <string name="EditProfileFragment__group_description">گۇرۇپپا تونۇشتۇرۇشى</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ئىسمىڭىز</string>
   <string name="EditProfileNameFragment_first_name">ئات</string>
@@ -1830,6 +1839,7 @@
   <string name="HelpFragment__could_not_upload_logs">خاتىرىنى يۈكلىيەلمىدى</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ئامالنىڭ بارىچە ئەتراپلىق بايان قىلىپ ۋەقەنى چۈشىنىشىمىزگە ياردەم بېرىڭ.</string>
   <string-array name="HelpFragment__categories">
+    <item>-بىر تاللانما تاللاڭ-</item>
     <item>كاشىلا كۆرۈلدى</item>
     <item>ئىقتىدار ئىلتىماسى</item>
     <item>سوئال</item>
@@ -1973,7 +1983,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ئەگەر ئوقۇلدى ئىشارىتى ئېتىك بولسا، باشقىلارنىڭ ئوقۇلدى ئىشارەتلىرىنىمۇ كۆرەلمەيسىز.</string>
   <string name="preferences__typing_indicators">بېسىۋاتىدۇ كۆرسەتكۈچى</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ئەگەر بېسىۋاتىدۇ كۆرسەتكۈچى ئېتىك بولسا، باشقىلارنىڭ بېسىۋاتىدۇ كۆرسەتكۈچىنىمۇ كۆرەلمەيسىز.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">كۇنۇپكا تاختىسىنىڭ خاسلاشتۇرما ئۆگىنىشىنى ئېتىۋېتىشىنى تەلەپ قىل. بۇ تەڭشەك كاپالەتلىك ئەمەس، كۇنۇپكا تاختىڭىز بۇنىڭغا پەرۋا قىلماسلىقى مۈمكىن.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">كۇنۇپكا تاختىسىنىڭ خاسلاشتۇرما ئۆگىنىشىنى ئېتىۋېتىشىنى تەلەپ قىل. بۇ تەڭشەك كاپالەتلىك ئەمەس، كۇنۇپكا تاختىڭىز بۇنىڭغا پەرۋا قىلماسلىقى مۈمكىن.</string> -->
   <string name="preferences_app_protection__blocked_users">چەكلەنگەن قوللانغۇچىلار</string>
   <string name="preferences_chats__when_using_mobile_data">كۆچمە مەلۇمات ئىشلەتكەندە</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi ئىشلەتكەندە</string>
@@ -2513,7 +2523,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">سول ئۈستىدىكى سەپلىمە ھۆججەت سۈرىتى چېكىلسە تەڭشەكلەر ئېچىلىدۇ</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">«سۆھبەتلەر» نى چېكىڭ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">«سۆھبەتلەر» نى چېكىڭ</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">ئىككى ئۈسكۈنىدە «ھېسابات يۆتكە» ئاندىن «داۋاملاشتۇر» نى چېكىڭ</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2846,5 +2856,13 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">بۇ گۇرۇپپىدا ئالاقەداشلىرىڭىز ياكى سىز پاراڭلاشقان كىشى يوق كېرەكسىز ئۇچۇرلاردىن ساقلىنىش ئۈچۈن قوشۇلۇشتىن ئىلگىرى تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">ئۇچۇر ئىلتىماسى ھەققىدە</string>
   <string name="GroupsInCommonMessageRequest__okay">جەزملە</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">گۇرۇپپا تونۇشتۇرۇشى</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">ئۆلچەملىك</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">تېزرەك، سانلىق مەلۇماتنى ئاز ئىشلىتىدۇ</string>
+  <string name="QualitySelectorBottomSheetDialog__high">يۇقىرى</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">ئاستىراق، سانلىق مەلۇماتنى كۆپ ئىشلىتىدۇ</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">سۈرەت سۈپىتى</string>
   <!--EOF-->
 </resources>

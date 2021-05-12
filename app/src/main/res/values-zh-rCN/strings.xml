@@ -922,6 +922,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">您更改了群组名字为“%1$s”。</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s 更改了群名称为 “%2$s”。</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">群组名称更改为“%1$s”。</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">您更改了群组头像。</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s 更改了群组头像。</string>
@@ -1549,6 +1550,7 @@
   <string name="ConversationUpdateItem_call_is_full">通话人数已满</string>
   <string name="ConversationUpdateItem_invite_friends">邀请好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">启用通话通知</string>
+  <string name="ConversationUpdateItem_view">查看</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
@@ -1749,14 +1751,6 @@
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
-  <string-array name="HelpFragment__categories">
-    <item>出现问题</item>
-    <item>功能请求</item>
-    <item>疑问</item>
-    <item>反馈</item>
-    <item>其他</item>
-    <item>付款</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -1892,7 +1886,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">禁用已读回执之后，将无法查看来其他用户的已读回执。</string>
   <string name="preferences__typing_indicators">“正在输入”提示</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">禁用“正在输入”提示之后，无法查看其他用户的正在输入状态。</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">请求键盘禁用个性化学习。这样并不能保证禁用该功能，你的键盘可能忽略该设置。</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">请求键盘禁用个性化学习。这样并不能保证禁用该功能，你的键盘可能忽略该设置。</string> -->
   <string name="preferences_app_protection__blocked_users">已屏蔽的用户</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
@@ -2425,7 +2419,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">点击左上侧个人资料图片，打开设置。</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">点击“对话”</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">点击“对话”</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">在两个设备，点击“转移帐户”，然后选择“继续”</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2753,5 +2747,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">好的</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">高</string>
   <!--EOF-->
 </resources>

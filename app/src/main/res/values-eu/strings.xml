@@ -967,6 +967,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Taldearen izena aldatu duzu. Orain \"%1$s\" du izena.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s erabiltzaileak taldearen izena aldatu du. Orain \"%2$s\" du izena.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Taldearen izena aldatu da. Orain \"%1$s\" da.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Taldearen abatarra aldatu duzu.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s erabiltzaileak taldearen abatarra aldatu du.</string>
@@ -1604,6 +1605,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConversationUpdateItem_return_to_call">Deira itzuli</string>
   <string name="ConversationUpdateItem_call_is_full">Deia beteta dago</string>
   <string name="ConversationUpdateItem_invite_friends">Gonbidatu lagunak</string>
+  <string name="ConversationUpdateItem_view">Ikusi</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Erreproduzitu … Pausatu</string>
   <string name="audio_view__download_accessibility_description">Deskargatu</string>
@@ -1930,7 +1932,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Irakurketaren hartu-agiriak desaktibatuta badaude, ezingo dituzu besteenak ikusi</string>
   <string name="preferences__typing_indicators">Idazketa jakinarazleak</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idazketa jakinarazleak desaktibatuta badaude, ezin izango duzu besteak idazten ari diren ikusi</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Eskatu teklatuari idazteko ikaskuntza desaktibatzeko. Ezarpen honek ez du ezer ziurtatzen eta zure teklatuak agian ez dio kasurik egingo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Eskatu teklatuari idazteko ikaskuntza desaktibatzeko. Ezarpen honek ez du ezer ziurtatzen eta zure teklatuak agian ez dio kasurik egingo.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokeatutako erabiltzaileak</string>
   <string name="preferences_chats__when_using_mobile_data">Datu mugikorrak erabiltzerakoan</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fia erabiltzerakoan</string>
@@ -2553,5 +2555,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CanNotSendPaymentDialog__send_a_message">Bidali mezua</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">Ados</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Altua</string>
   <!--EOF-->
 </resources>

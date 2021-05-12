@@ -638,6 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">این گروه را ارتقا دهید.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">این یک گروه فراپیامی ناامن است. برای گفتگوی خصوصی، مخاطبین خود را به سیگنال دعوت کنید.</string>
   <string name="ManageGroupActivity_invite_now">همین حالا دعوت کنید</string>
+  <string name="ManageGroupActivity_more">…بیشتر</string>
+  <string name="ManageGroupActivity_add_group_description">افزودن توضیحات گروه…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">به من در مورد اشاره‌ها خبر بده</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">دریافت اعلان وقتی به شما در گفتگو‌ها با اعلان‌های بسته شده اشاره می‌شود؟</string>
@@ -974,6 +976,10 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">شما نام گروه را به «%1$s» تغییر دادید.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s نام گروه را به «%2$s» تغییر داد.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">نام گروه به «%1$s» تغییر یافت.</string>
+  <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">شما توضیحات گروه را تغییر دادید.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s توضیحات گروه را تغییر داد.</string>
+  <string name="MessageRecord_the_group_description_has_changed">توضیحات گروه تغییر کرد.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">شما عکس گروه را عوض کردید.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s عکس گروه را تغییر داد.</string>
@@ -1621,6 +1627,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">فعال‌سازی اعلان‌ها‌ی تماس</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">هیچ گروه مشترکی وجود ندارد. درخواست‌ها را با دقت بازبینی کنید.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">هیچ مخاطبی در این گروه وجود ندارد. درخواست‌ها را با دقت بازبینی کنید.</string>
+  <string name="ConversationUpdateItem_view">نمایش</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … وقفه</string>
   <string name="audio_view__download_accessibility_description">بارگیری</string>
@@ -1748,6 +1755,7 @@
   <string name="CreateProfileActivity__username">نام کاربری</string>
   <string name="CreateProfileActivity__create_a_username">ایجاد نام کاربری</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل دیدن هستند.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">توضیحات گروه برای اعضای این گروه و کسانی که دعوت شده‌اند قابل رؤیت خواهد بود.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">درباره</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید…</string>
@@ -1762,6 +1770,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">نام و عکس گروه را ویرایش کنید</string>
   <string name="EditProfileFragment__group_name">نام گروه</string>
+  <string name="EditProfileFragment__group_description"> توضیحات گروه</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">نام شما</string>
   <string name="EditProfileNameFragment_first_name">نام</string>
@@ -1829,6 +1838,7 @@
   <string name="HelpFragment__could_not_upload_logs">بارگذاری گزارش‌ها موفق نبود</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">توضیح هر چه بهتر شما، به ما در فهم اشکال کمک خواهد کرد.</string>
   <string-array name="HelpFragment__categories">
+    <item>-- لطفاً گزینه‌ای را انتخاب کنید --</item>
     <item>چیزی خراب شده است</item>
     <item>درخواست قابلیت جدید</item>
     <item>سؤال</item>
@@ -1972,7 +1982,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
   <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده. اعمال این تنظیم ضمانت شده نیست و صفحه‌کلید شما ممکن است آن را نادیده بگیرد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده. اعمال این تنظیم ضمانت شده نیست و صفحه‌کلید شما ممکن است آن را نادیده بگیرد.</string> -->
   <string name="preferences_app_protection__blocked_users">کاربران مسدود شده</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
@@ -2512,7 +2522,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">۱.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">روی عکس پروفایل خود در بالا سمت راست برای باز کردن تنظیمات ضربه بزنید</string>
   <string name="NewDeviceTransferInstructions__second_bullet">۲.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">روی «گفتگوها» ضربه بزنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">روی «گفتگوها» ضربه بزنید</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">۳.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">روی «انتقال حساب کاربری» و سپس «ادامه» در هر دو دستگاه ضربه بزنید</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2845,5 +2855,13 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">هیچ‌کدام از مخاطبین یا افرادی که با آنان گفتگو می‌کنید در این گروه حضور ندارند. قبل از پذیرفتن درخواست‌ها را به دقت بازبینی کنید تا از پیام‌های ناخواسته جلوگیری کنید.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">دربارهٔ درخواست‌های تبادل پیام</string>
   <string name="GroupsInCommonMessageRequest__okay">خوب</string>
+  <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description"> توضیحات گروه</string>
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">استاندارد</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">سریع‌تر، دادهٔ کمتر</string>
+  <string name="QualitySelectorBottomSheetDialog__high">بالا</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">آهسته‌تر، دادهٔ بیشتر</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">کیفیت عکس</string>
   <!--EOF-->
 </resources>

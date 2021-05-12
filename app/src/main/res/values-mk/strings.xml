@@ -970,6 +970,7 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Го сменивте името на групата во „%1$s“.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s го смени името на групата во „%2$s“.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Името на групата е променето во „%1$s“.</string>
+  <!--GV2 description change-->
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Вие го сменивте групниот аватар.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s го промени групниот аватар.</string>
@@ -1608,6 +1609,7 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Вклучи известувања за повици</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Прегледувајте ги барањата внимателно.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно разгледајте ги барањата.</string>
+  <string name="ConversationUpdateItem_view">Поглед</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пушти … Пауза</string>
   <string name="audio_view__download_accessibility_description">Преземи</string>
@@ -1810,14 +1812,6 @@
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ве молиме бидете што е можно поописни за да ни помогнете да го разбереме проблемот.</string>
-  <string-array name="HelpFragment__categories">
-    <item>Нешто не работи</item>
-    <item>Барање за опција</item>
-    <item>Прашање</item>
-    <item>Повратни информации</item>
-    <item>Друго</item>
-    <item>Плаќања</item>
-  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Оваа порака</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Скорешни</string>
@@ -1954,7 +1948,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако се исклучени потврдите за примени пораки нема да можете да гледате потврди од други луѓе.</string>
   <string name="preferences__typing_indicators">Индикатори за куцање</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако се исклучени индикаторите за куцање нема да можете да ги гледате од други луѓе.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Бара од тастатурата да го исклучи персонализираното учење. Ова поставување не е гаранција и Вашата тастатура може да го игнорира.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Бара од тастатурата да го исклучи персонализираното учење. Ова поставување не е гаранција и Вашата тастатура може да го игнорира.</string> -->
   <string name="preferences_app_protection__blocked_users">Блокирани корисници</string>
   <string name="preferences_chats__when_using_mobile_data">Кога користам мобилен интернет</string>
   <string name="preferences_chats__when_using_wifi">Кога користам Wi-Fi</string>
@@ -2461,7 +2455,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Допрете ја Вашата профилна слика во левииот горен агол за да ги отворите поставувањата.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_chats">Допрете „Разговори“</string>
+  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Допрете „Разговори“</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Допрете „Префрли сметка“ и потоа „Продолжи“ и на двата уреда</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2746,5 +2740,8 @@
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Прегледувајте ги барањата внимателно за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниту еден од Вашите контакти или луѓе со кои разговарате не се во оваа група. Внимателно прегледајте ги барањата пред да прифатите за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
+  <!--GroupDescriptionDialog-->
+  <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
   <!--EOF-->
 </resources>
