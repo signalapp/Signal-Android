@@ -9,9 +9,9 @@
         android:id="@+id/add_blocked_user"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingTop="7dp"
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:text="@string/BlockedUsersActivity__add_blocked_user"
         android:textAppearance="@style/Signal.Text.Body"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +22,10 @@
         android:id="@+id/add_blocked_user_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingBottom="7dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/signal_text_secondary"
         android:text="@string/BlockedUsersActivity__blocked_users_will"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,25 +43,79 @@
         app:layout_constraintTop_toTopOf="@id/add_blocked_user" />
 
     <TextView
-        android:id="@+id/blocked_users_header"
+        android:id="@+id/block_unknown_switch_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/BlockedUsersActivity__blocked_users"
-        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-        android:textColor="?colorAccent"
-        android:textStyle="bold"
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/preferences__block_unknown"
+        style="@style/Signal.Text.Body"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_blocked_user_touch_target"
+        app:layout_constraintEnd_toStartOf="@id/block_unknown_switch" />
+
+    <TextView
+        android:id="@+id/block_unknown_switch_title_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/signal_text_secondary"
+        android:text="@string/preferences__block_users_youve_never_been_in_contact_with_and_who_are_not_saved_in_your_contacts"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_constraintTop_toBottomOf="@id/block_unknown_switch_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/block_unknown_switch" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/block_unknown_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/block_unknown_switch_title"
+        app:layout_constraintBottom_toBottomOf="@id/block_unknown_switch_title_description" />
+
+    <View
+        android:id="@+id/block_unknown_switch_touch_target"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@id/block_unknown_switch_title_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_blocked_user_touch_target" />
+        app:layout_constraintTop_toTopOf="@id/block_unknown_switch_title" />
+
+    <View
+        android:id="@+id/blocked_users_divider"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:background="@drawable/preference_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/block_unknown_switch_touch_target" />
+
+    <TextView
+        android:id="@+id/blocked_users_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/signal_accent_primary"
+        android:text="@string/BlockedUsersActivity__blocked_users"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_constraintTop_toBottomOf="@id/blocked_users_divider" />
 
     <TextView
         android:id="@+id/no_blocked_users"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="@string/BlockedUsersActivity__no_blocked_users"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +126,7 @@
         android:id="@+id/blocked_users_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="25dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:theme="?attr/actionBarStyle"
             app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold"
             app:title="@string/BlockedUsersActivity__blocked_users" />
 
         <org.thoughtcrime.securesms.components.ContactFilterToolbar

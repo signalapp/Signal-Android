@@ -188,6 +188,8 @@ public class TextSecurePreferences {
 
   public static final String TYPING_INDICATORS = "pref_typing_indicators";
 
+  private static final String BLOCK_UNKNOWN = "pref_block_unknown";
+
   public static final String LINK_PREVIEWS = "pref_link_previews";
 
   private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
@@ -219,6 +221,7 @@ public class TextSecurePreferences {
                                                               ALWAYS_RELAY_CALLS_PREF,
                                                               READ_RECEIPTS_PREF,
                                                               TYPING_INDICATORS,
+                                                              BLOCK_UNKNOWN,
                                                               SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
                                                               UNIVERSAL_UNIDENTIFIED_ACCESS,
                                                               NOTIFICATION_PREF,
@@ -491,6 +494,14 @@ public class TextSecurePreferences {
 
   public static void setTypingIndicatorsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, TYPING_INDICATORS, enabled);
+  }
+
+  public static boolean isBlockUnknownEnabled(@NonNull Context context) {
+    return getBooleanPreference(context, BLOCK_UNKNOWN, false);
+  }
+
+  public static void setBlockUnknownEnabled(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, BLOCK_UNKNOWN, value);
   }
 
   /**
