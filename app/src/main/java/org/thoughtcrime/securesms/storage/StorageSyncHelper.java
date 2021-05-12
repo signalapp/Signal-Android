@@ -134,6 +134,7 @@ public final class StorageSyncHelper {
                                                          .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
                                                          .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
                                                          .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.fromNullable(SignalStore.paymentsValues().getPaymentsEntropy()).transform(Entropy::getBytes).orNull())
+                                                         .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);

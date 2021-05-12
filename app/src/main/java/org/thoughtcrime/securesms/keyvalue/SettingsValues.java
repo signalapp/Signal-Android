@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.content.Context;
 import android.net.Uri;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -9,10 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
@@ -20,6 +25,8 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public final class SettingsValues extends SignalStoreValues {
+
+  private static final String TAG = Log.tag(SettingsValues.class);
 
   public static final String LINK_PREVIEWS          = "settings.link_previews";
   public static final String KEEP_MESSAGES_DURATION = "settings.keep_messages_duration";
@@ -56,6 +63,8 @@ public final class SettingsValues extends SignalStoreValues {
   public static final String NOTIFY_WHEN_CONTACT_JOINS_SIGNAL        = "settings.notify.when.contact.joins.signal";
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
+
+  private static final String DEFAULT_SMS = "settings.default_sms";
 
   SettingsValues(@NonNull KeyValueStore store) {
     super(store);
@@ -341,6 +350,25 @@ public final class SettingsValues extends SignalStoreValues {
     putBoolean(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL, notifyWhenContactJoinsSignal);
   }
 
+  /**
+   * We need to keep track of when the default status changes so we can sync to storage service.
+   * So call this when you think it might have changed, but *don't* rely on it for knowing if we
+   * *are* the default SMS. For that, continue to use
+   * {@link org.thoughtcrime.securesms.util.Util#isDefaultSmsProvider(Context)}.
+   */
+  public void setDefaultSms(boolean value) {
+    boolean lastKnown = getBoolean(DEFAULT_SMS, false);
+
+    if (value != lastKnown) {
+      Log.i(TAG, "Default SMS state changed! Scheduling a storage sync.");
+      putBoolean(DEFAULT_SMS, value);
+
+      SignalExecutors.BOUNDED.execute(() -> {
+        DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).markNeedsSync(Recipient.self().getId());
+        StorageSyncHelper.scheduleSyncForDataChange();
+      });
+    }
+  }
 
   private @Nullable Uri getUri(@NonNull String key) {
     String uri = getString(key, "");

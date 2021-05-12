@@ -12,7 +12,9 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.SmsUtil
+import org.thoughtcrime.securesms.util.Util
 
 private const val SMS_REQUEST_CODE: Short = 1234
 
@@ -31,6 +33,10 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())
     }
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(requireContext()))
   }
 
   private fun getConfiguration(state: SmsSettingsState): DSLConfiguration {
@@ -79,12 +85,12 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
   // Linter isn't smart enough to figure out the else only happens if API >= 24
   @SuppressLint("InlinedApi")
   private fun startDefaultAppSelectionIntent() {
-    startActivity(
-      when {
-        Build.VERSION.SDK_INT < 23 -> Intent(Settings.ACTION_WIRELESS_SETTINGS)
-        Build.VERSION.SDK_INT < 24 -> Intent(Settings.ACTION_SETTINGS)
-        else -> Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS)
-      }
-    )
+    val intent: Intent = when {
+      Build.VERSION.SDK_INT < 23 -> Intent(Settings.ACTION_WIRELESS_SETTINGS)
+      Build.VERSION.SDK_INT < 24 -> Intent(Settings.ACTION_SETTINGS)
+      else -> Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS)
+    }
+
+    startActivityForResult(intent, SMS_REQUEST_CODE.toInt())
   }
 }

@@ -28,20 +28,18 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
   private static final String TAG = Log.tag(AccountRecordProcessor.class);
 
   private final Context             context;
-  private final RecipientDatabase   recipientDatabase;
   private final SignalAccountRecord localAccountRecord;
   private final Recipient           self;
 
   private boolean foundAccountRecord = false;
 
   public AccountRecordProcessor(@NonNull Context context, @NonNull Recipient self) {
-    this(context, self, StorageSyncHelper.buildAccountRecord(context, self).getAccount().get(), DatabaseFactory.getRecipientDatabase(context));
+    this(context, self, StorageSyncHelper.buildAccountRecord(context, self).getAccount().get());
   }
 
-  AccountRecordProcessor(@NonNull Context context, @NonNull Recipient self, @NonNull SignalAccountRecord localAccountRecord, @NonNull RecipientDatabase recipientDatabase) {
+  AccountRecordProcessor(@NonNull Context context, @NonNull Recipient self, @NonNull SignalAccountRecord localAccountRecord) {
     this.context            = context;
     this.self               = self;
-    this.recipientDatabase  = recipientDatabase;
     this.localAccountRecord = localAccountRecord;
   }
 
@@ -99,8 +97,9 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     List<PinnedConversation>             pinnedConversations    = remote.getPinnedConversations();
     AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode = remote.getPhoneNumberSharingMode();
     boolean                              preferContactAvatars   = remote.isPreferContactAvatars();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments);
+    boolean                              primarySendsSms        = local.isPrimarySendsSms();
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, primarySendsSms);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, primarySendsSms);
 
     if (matchesRemote) {
       return remote;
@@ -125,6 +124,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setPinnedConversations(pinnedConversations)
                                     .setPreferContactAvatars(preferContactAvatars)
                                     .setPayments(payments.isEnabled(), payments.getEntropy().orNull())
+                                    .setPrimarySendsSms(primarySendsSms)
                                     .build();
     }
   }
@@ -160,7 +160,8 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean unlistedPhoneNumber,
                                        @NonNull List<PinnedConversation> pinnedConversations,
                                        boolean preferContactAvatars,
-                                       SignalAccountRecord.Payments payments)
+                                       SignalAccountRecord.Payments payments,
+                                       boolean primarySendsSms)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)      &&
            Objects.equals(contact.getGivenName().or(""), givenName)            &&
@@ -177,6 +178,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.getPhoneNumberSharingMode() == phoneNumberSharingMode       &&
            contact.isPhoneNumberUnlisted() == unlistedPhoneNumber              &&
            contact.isPreferContactAvatars() == preferContactAvatars            &&
+           contact.isPrimarySendsSms() == primarySendsSms                      &&
            Objects.equals(contact.getPinnedConversations(), pinnedConversations);
   }
 }
