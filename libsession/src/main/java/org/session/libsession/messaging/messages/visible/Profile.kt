@@ -17,12 +17,11 @@ class Profile() {
             val displayName = profileProto.displayName ?: return null
             val profileKey = proto.profileKey
             val profilePictureURL = profileProto.profilePicture
-            profileKey?.let {
-                profilePictureURL?.let {
-                    return Profile(displayName = displayName, profileKey = profileKey.toByteArray(), profilePictureURL = profilePictureURL)
-                }
+            if (profileKey != null && profilePictureURL != null) {
+                return Profile(displayName, profileKey.toByteArray(), profilePictureURL)
+            } else {
+                return Profile(displayName)
             }
-            return Profile(displayName)
         }
     }
 
@@ -35,16 +34,14 @@ class Profile() {
     fun toProto(): SignalServiceProtos.DataMessage? {
         val displayName = displayName
         if (displayName == null) {
-            Log.w(TAG, "Couldn't construct link preview proto from: $this")
+            Log.w(TAG, "Couldn't construct profile proto from: $this")
             return null
         }
         val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
         val profileProto = SignalServiceProtos.DataMessage.LokiProfile.newBuilder()
         profileProto.displayName = displayName
-        val profileKey = profileKey
-        profileKey?.let { dataMessageProto.profileKey = ByteString.copyFrom(profileKey) }
-        val profilePictureURL = profilePictureURL
-        profilePictureURL?.let { profileProto.profilePicture = profilePictureURL }
+        profileKey?.let { dataMessageProto.profileKey = ByteString.copyFrom(it) }
+        profilePictureURL?.let { profileProto.profilePicture = it }
         // Build
         try {
             dataMessageProto.profile = profileProto.build()

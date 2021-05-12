@@ -195,7 +195,7 @@ class EnterChatURLFragment : Fragment() {
             chip.chipIcon = drawable
             chip.text = defaultGroup.name
             chip.setOnClickListener {
-                (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(defaultGroup.toJoinUrl())
+                (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(defaultGroup.joinURL)
             }
             defaultRoomsGridLayout.addView(chip)
         }

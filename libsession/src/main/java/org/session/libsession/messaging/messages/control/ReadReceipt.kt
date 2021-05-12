@@ -6,6 +6,13 @@ import org.session.libsignal.utilities.logging.Log
 class ReadReceipt() : ControlMessage() {
     var timestamps: List<Long>? = null
 
+    override fun isValid(): Boolean {
+        if (!super.isValid()) return false
+        val timestamps = timestamps ?: return false
+        if (timestamps.isNotEmpty()) { return true }
+        return false
+    }
+
     companion object {
         const val TAG = "ReadReceipt"
 
@@ -20,13 +27,6 @@ class ReadReceipt() : ControlMessage() {
 
     internal constructor(timestamps: List<Long>?) : this() {
         this.timestamps = timestamps
-    }
-
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
-        val timestamps = timestamps ?: return false
-        if (timestamps.isNotEmpty()) { return true }
-        return false
     }
 
     override fun toProto(): SignalServiceProtos.Content? {

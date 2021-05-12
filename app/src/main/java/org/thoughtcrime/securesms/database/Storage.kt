@@ -252,7 +252,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val database = databaseHelper.readableDatabase
         return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadId)) { cursor ->
             val publicChatAsJson = cursor.getString(LokiThreadDatabase.publicChat)
-            OpenGroupV2.fromJson(publicChatAsJson)
+            OpenGroupV2.fromJSON(publicChatAsJson)
         }
     }
 
