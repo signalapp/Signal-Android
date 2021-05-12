@@ -22,6 +22,14 @@ public final class EditProfileNameViewModel extends ViewModel {
     this.events     = new SingleLiveEvent<>();
   }
 
+  void onGivenNameLengthChanged(int length) {
+    if (length <= 0) {
+      saveState.setValue(SaveState.DISABLED);
+    } else {
+      saveState.setValue(SaveState.IDLE);
+    }
+  }
+
   @NonNull LiveData<SaveState> getSaveState() {
     return saveState;
   }
@@ -46,7 +54,7 @@ public final class EditProfileNameViewModel extends ViewModel {
   }
 
   enum SaveState {
-    IDLE, IN_PROGRESS, DONE
+    IDLE, IN_PROGRESS, DONE, DISABLED
   }
 
   enum Event {
