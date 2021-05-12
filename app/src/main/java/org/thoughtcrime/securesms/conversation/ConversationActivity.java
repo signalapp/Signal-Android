@@ -88,6 +88,7 @@ import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.open_groups.OpenGroupV2;
@@ -157,6 +158,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity;
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -249,11 +251,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_GIF            = 10;
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
+  private static final int INVITE_CONTACTS     = 124;
 
   private GlideRequests glideRequests;
   protected ComposeText                 composeText;
   private   AnimatingToggle             buttonToggle;
-  private   ImageButton                  sendButton;
+  private   ImageButton                 sendButton;
   private   ImageButton                 attachButton;
   private   ProfilePictureView          profilePictureView;
   private   TextView                    titleTextView;
@@ -593,6 +596,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       });
 
       break;
+    case INVITE_CONTACTS:
+      if (data.getExtras() == null || !data.hasExtra(SelectContactsActivity.Companion.getSelectedContactsKey())) return;
+        String[] selectedContacts = data.getExtras().getStringArray(SelectContactsActivity.Companion.getSelectedContactsKey());
+        sendOpenGroupInvitations(selectedContacts);
+      break;
     }
   }
 
@@ -655,6 +663,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
+    } else if (isOpenGroupOrRSSFeed) {
+      inflater.inflate(R.menu.conversation_invite_open_group, menu);
     }
 
     inflater.inflate(R.menu.conversation, menu);
@@ -763,6 +773,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 //    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
+    case R.id.menu_invite_to_open_group:      handleInviteToOpenGroup();                         return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
@@ -1029,6 +1040,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String groupID = this.recipient.getAddress().toGroupString();
     intent.putExtra(EditClosedGroupActivity.Companion.getGroupIDKey(), groupID);
     startActivity(intent);
+  }
+
+  private void handleInviteToOpenGroup() {
+    Intent intent = new Intent(this, SelectContactsActivity.class);
+    startActivityForResult(intent, INVITE_CONTACTS);
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
@@ -1836,6 +1852,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MessageSender.send(message, recipient.getAddress());
 
     sendComplete(allocatedThreadId);
+  }
+
+  private void sendOpenGroupInvitations(String[] contactsID) {
+    final Context context = getApplicationContext();
+    OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadId);
+    for (String contactId: contactsID) {
+      Recipient recipient = Recipient.from(context, Address.fromSerialized(contactId), true);
+      VisibleMessage message = new VisibleMessage();
+      message.setSentTimestamp(System.currentTimeMillis());
+      OpenGroupInvitation openGroupInvitationMessage = new OpenGroupInvitation();
+      openGroupInvitationMessage.setGroupName(openGroup.getName());
+      openGroupInvitationMessage.setGroupUrl(openGroup.toJoinUrl());
+      message.setOpenGroupInvitation(openGroupInvitationMessage);
+      OutgoingTextMessage outgoingTextMessage = OutgoingTextMessage.fromOpenGroupInvitation(openGroupInvitationMessage, recipient, message.getSentTimestamp());
+
+      DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(-1, outgoingTextMessage, message.getSentTimestamp());
+      MessageSender.send(message, recipient.getAddress());
+    }
   }
 
   private void updateToggleButtonState() {

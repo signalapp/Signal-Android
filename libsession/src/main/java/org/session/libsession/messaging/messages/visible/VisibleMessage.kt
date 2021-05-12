@@ -70,9 +70,9 @@ class VisibleMessage : Message()  {
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         if (attachmentIDs.isNotEmpty()) return true
+        if (openGroupInvitation != null) return true
         val text = text?.trim() ?: return false
         if (text.isNotEmpty()) return true
-        if (openGroupInvitation != null) return true
         return false
     }
 
