@@ -155,6 +155,11 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
             ?: message.sender!!, message.groupPublicKey, openGroupID)
 
+    if (threadID < 0) {
+        // thread doesn't exist, should only be reached in a case where we are processing open group messages for no longer existent thread
+        throw MessageReceiver.Error.NoThread
+    }
+
     val openGroup = threadID.let {
         storage.getOpenGroup(it.toString())
     }
@@ -233,7 +238,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     val openGroupServerID = message.openGroupServerMessageID
     if (openGroupServerID != null) {
-        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !(message.isMediaMessage() || attachments.isNotEmpty()))
+        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !message.isMediaMessage())
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)

@@ -17,29 +17,50 @@ import kotlin.math.roundToLong
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
-    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val multiDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
+    private val rxDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val txDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val attachmentDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
 
     val timer = Timer()
 
+    private fun CoroutineScope.processWithDispatcher(channel: Channel<Job>, dispatcher: CoroutineDispatcher) = launch(dispatcher) {
+        for (job in channel) {
+            if (!isActive) break
+            job.delegate = this@JobQueue
+            job.execute()
+        }
+    }
+
     init {
         // Process jobs
-        scope.launch(dispatcher) {
+        scope.launch {
+            val rxQueue = Channel<Job>(capacity = 1024)
+            val txQueue = Channel<Job>(capacity = 1024)
+            val attachmentQueue = Channel<Job>(capacity = 1024)
+
+            val receiveJob = processWithDispatcher(rxQueue, rxDispatcher)
+            val txJob = processWithDispatcher(txQueue, txDispatcher)
+            val attachmentJob = processWithDispatcher(attachmentQueue, attachmentDispatcher)
+
             while (isActive) {
-                queue.receive().let { job ->
-                    if (job.canExecuteParallel()) {
-                        launch(multiDispatcher) {
-                            job.delegate = this@JobQueue
-                            job.execute()
-                        }
-                    } else {
-                        job.delegate = this@JobQueue
-                        job.execute()
+                for (job in queue) {
+                    when (job) {
+                        is NotifyPNServerJob,
+                        is AttachmentUploadJob,
+                        is MessageSendJob -> txQueue.send(job)
+                        is AttachmentDownloadJob -> attachmentQueue.send(job)
+                        else -> rxQueue.send(job)
                     }
                 }
             }
+
+            // job has been cancelled
+            receiveJob.cancel()
+            txJob.cancel()
+            attachmentJob.cancel()
+
         }
     }
 
@@ -47,14 +68,6 @@ class JobQueue : JobDelegate {
 
         @JvmStatic
         val shared: JobQueue by lazy { JobQueue() }
-    }
-
-    private fun Job.canExecuteParallel(): Boolean {
-        return this.javaClass in arrayOf(
-            MessageSendJob::class.java,
-                AttachmentUploadJob::class.java,
-                AttachmentDownloadJob::class.java
-        )
     }
 
     fun add(job: Job) {
@@ -112,8 +125,10 @@ class JobQueue : JobDelegate {
     override fun handleJobFailed(job: Job, error: Exception) {
         job.failureCount += 1
         val storage = MessagingModuleConfiguration.shared.storage
-        if (storage.isJobCanceled(job)) { return Log.i("Loki", "${job::class.simpleName} canceled.")}
-        if (job.failureCount == job.maxFailureCount) {
+        if (storage.isJobCanceled(job)) {
+            return Log.i("Loki", "${job::class.simpleName} canceled.")
+        }
+        if (job.failureCount >= job.maxFailureCount) {
             handleJobFailedPermanently(job, error)
         } else {
             storage.persistJob(job)

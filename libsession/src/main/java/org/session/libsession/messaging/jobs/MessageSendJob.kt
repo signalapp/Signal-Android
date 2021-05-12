@@ -12,6 +12,9 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsignal.utilities.logging.Log
 
 class MessageSendJob(val message: Message, val destination: Destination) : Job {
+
+    object AwaitingUploadException: Exception("Awaiting attachment upload")
+
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -46,7 +49,10 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
                     JobQueue.shared.add(job)
                 }
             }
-            if (attachmentsToUpload.isNotEmpty()) return // Wait for all attachments to upload before continuing
+            if (attachmentsToUpload.isNotEmpty()) {
+                this.handleFailure(AwaitingUploadException)
+                return
+            } // Wait for all attachments to upload before continuing
         }
         MessageSender.send(this.message, this.destination).success {
             this.handleSuccess()
