@@ -6,12 +6,19 @@ import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ExpirationTimerUpdate() : ControlMessage() {
-    /// In the case of a sync message, the public key of the person the message was targeted at.
-    /// - Note: `nil` if this isn't a sync message.
+    /** In the case of a sync message, the public key of the person the message was targeted at.
+     *
+     * **Note:** `nil` if this isn't a sync message.
+     */
     var syncTarget: String? = null
     var duration: Int? = 0
 
     override val isSelfSendValid: Boolean = true
+
+    override fun isValid(): Boolean {
+        if (!super.isValid()) return false
+        return duration != null
+    }
 
     companion object {
         const val TAG = "ExpirationTimerUpdate"
@@ -26,19 +33,9 @@ class ExpirationTimerUpdate() : ControlMessage() {
         }
     }
 
-    internal constructor(syncTarget: String?, duration: Int) : this() {
+    internal constructor(syncTarget: String? = null, duration: Int) : this() {
         this.syncTarget = syncTarget
         this.duration = duration
-    }
-
-    internal constructor(duration: Int) : this() {
-        this.syncTarget = null
-        this.duration = duration
-    }
-
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
-        return duration != null
     }
 
     override fun toProto(): SignalServiceProtos.Content? {

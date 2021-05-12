@@ -18,12 +18,10 @@ abstract class Message {
     open val isSelfSendValid: Boolean = false
 
     open fun isValid(): Boolean {
-        sentTimestamp?.let {
-            if (it <= 0) return false
-        }
-        receivedTimestamp?.let {
-            if (it <= 0) return false
-        }
+        val sentTimestamp = sentTimestamp
+        if (sentTimestamp != null && sentTimestamp <= 0) { return false }
+        val receivedTimestamp = receivedTimestamp
+        if (receivedTimestamp != null && receivedTimestamp <= 0) { return false }
         return sender != null && recipient != null
     }
 
