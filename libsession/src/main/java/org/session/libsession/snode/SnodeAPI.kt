@@ -92,7 +92,7 @@ object SnodeAPI {
                     "method" to "get_n_service_nodes",
                     "params" to mapOf(
                         "active_only" to true,
-//                        "limit" to 256,
+                        "limit" to 256,
                         "fields" to mapOf( "public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true )
                     )
             )
