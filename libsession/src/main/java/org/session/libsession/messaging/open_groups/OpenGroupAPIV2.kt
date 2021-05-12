@@ -65,19 +65,19 @@ object OpenGroupAPIV2 {
     }
 
     data class Request(
-            val verb: HTTP.Verb,
-            val room: String?,
-            val server: String,
-            val endpoint: String,
-            val queryParameters: Map<String, String> = mapOf(),
-            val parameters: Any? = null,
-            val headers: Map<String, String> = mapOf(),
-            val isAuthRequired: Boolean = true,
-            /**
-             * Always `true` under normal circumstances. You might want to disable
-             * this when running over Lokinet.
-             */
-            val useOnionRouting: Boolean = true
+        val verb: HTTP.Verb,
+        val room: String?,
+        val server: String,
+        val endpoint: String,
+        val queryParameters: Map<String, String> = mapOf(),
+        val parameters: Any? = null,
+        val headers: Map<String, String> = mapOf(),
+        val isAuthRequired: Boolean = true,
+        /**
+         * Always `true` under normal circumstances. You might want to disable
+         * this when running over Lokinet.
+         */
+        val useOnionRouting: Boolean = true
     )
 
     private fun createBody(parameters: Any?): RequestBody? {
@@ -241,35 +241,41 @@ object OpenGroupAPIV2 {
             queryParameters += "from_server_id" to lastId.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "messages", queryParameters = queryParameters)
-        return send(request).map { jsonList ->
-            @Suppress("UNCHECKED_CAST") val rawMessages = jsonList["messages"] as? List<Map<String, Any>>
+        return send(request).map { json ->
+            @Suppress("UNCHECKED_CAST") val rawMessages = json["messages"] as? List<Map<String, Any>>
                 ?: throw Error.ParsingFailed
-            val lastMessageServerID = storage.getLastMessageServerId(room, server) ?: 0
-            var currentLastMessageServerID = lastMessageServerID
-            val messages = rawMessages.mapNotNull { json ->
-                try {
-                    val message = OpenGroupMessageV2.fromJSON(json) ?: return@mapNotNull null
-                    if (message.serverID == null || message.sender.isNullOrEmpty()) return@mapNotNull null
-                    val sender = message.sender
-                    val data = decode(message.base64EncodedData)
-                    val signature = decode(message.base64EncodedSignature)
-                    val publicKey = Hex.fromStringCondensed(sender.removing05PrefixIfNeeded())
-                    val isValid = curve.verifySignature(publicKey, data, signature)
-                    if (!isValid) {
-                        Log.d("Loki", "Ignoring message with invalid signature")
-                        return@mapNotNull null
-                    }
-                    if (message.serverID > lastMessageServerID) {
-                        currentLastMessageServerID = message.serverID
-                    }
-                    message
-                } catch (e: Exception) {
-                    null
-                }
-            }
-            storage.setLastMessageServerId(room, server, currentLastMessageServerID)
-            messages
+            parseMessages(room, server, rawMessages)
         }
+    }
+
+    private fun parseMessages(room: String, server: String, rawMessages: List<Map<*, *>>): List<OpenGroupMessageV2> {
+        val storage = MessagingModuleConfiguration.shared.storage
+        val lastMessageServerID = storage.getLastMessageServerId(room, server) ?: 0
+        var currentLastMessageServerID = lastMessageServerID
+        val messages = rawMessages.mapNotNull { json ->
+            json as Map<String, Any>
+            try {
+                val message = OpenGroupMessageV2.fromJSON(json) ?: return@mapNotNull null
+                if (message.serverID == null || message.sender.isNullOrEmpty()) return@mapNotNull null
+                val sender = message.sender
+                val data = decode(message.base64EncodedData)
+                val signature = decode(message.base64EncodedSignature)
+                val publicKey = Hex.fromStringCondensed(sender.removing05PrefixIfNeeded())
+                val isValid = curve.verifySignature(publicKey, data, signature)
+                if (!isValid) {
+                    Log.d("Loki", "Ignoring message with invalid signature.")
+                    return@mapNotNull null
+                }
+                if (message.serverID > lastMessageServerID) {
+                    currentLastMessageServerID = message.serverID
+                }
+                message
+            } catch (e: Exception) {
+                null
+            }
+        }
+        storage.setLastMessageServerId(room, server, currentLastMessageServerID)
+        return messages
     }
     // endregion
 
@@ -381,22 +387,13 @@ object OpenGroupAPIV2 {
                 val idsAsString = JsonUtil.toJson(json["deletions"])
                 val deletedServerIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
                 val lastDeletionServerID = storage.getLastDeletionServerId(roomID, server) ?: 0
-                val serverID = deletedServerIDs.maxByOrNull {it.id } ?: MessageDeletion.EMPTY
+                val serverID = deletedServerIDs.maxByOrNull { it.id } ?: MessageDeletion.EMPTY
                 if (serverID.id > lastDeletionServerID) {
                     storage.setLastDeletionServerId(roomID, server, serverID.id)
                 }
                 // Messages
                 val rawMessages = json["messages"] as? List<Map<String, Any>> ?: return@mapNotNull null
-                val lastMessageServerID = storage.getLastMessageServerId(roomID, server) ?: 0
-                var currentLastMessageServerID = lastMessageServerID
-                val messages = rawMessages.mapNotNull { rawMessage ->
-                    val message = OpenGroupMessageV2.fromJSON(rawMessage)?.apply {
-                        currentLastMessageServerID = maxOf(currentLastMessageServerID,this.serverID ?: 0)
-                    }
-                    // TODO: We need to check the signature here...
-                    message
-                }
-                storage.setLastMessageServerId(roomID, server, currentLastMessageServerID)
+                val messages = parseMessages(roomID, server, rawMessages)
                 roomID to CompactPollResult(
                     messages = messages,
                     deletions = deletedServerIDs.map { it.deletedMessageId },
