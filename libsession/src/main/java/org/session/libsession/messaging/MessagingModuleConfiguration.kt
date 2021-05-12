@@ -8,8 +8,8 @@ class MessagingModuleConfiguration(
     val context: Context,
     val storage: StorageProtocol,
     val messageDataProvider: MessageDataProvider,
-    val sessionProtocol: SessionProtocol)
-{
+    val sessionProtocol: SessionProtocol
+) {
 
     companion object {
         lateinit var shared: MessagingModuleConfiguration
