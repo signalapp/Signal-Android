@@ -31,7 +31,7 @@ class PublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
     for ((threadID, _) in chats) {
       val poller = pollers[threadID]
-      areAllCaughtUp = if (poller != null) areAllCaughtUp && poller.isCaughtUp else true
+      areAllCaughtUp = if (poller != null) areAllCaughtUp && poller.isCaughtUp else areAllCaughtUp
     }
     return areAllCaughtUp
   }
@@ -40,6 +40,9 @@ class PublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
       val poller = pollers[threadID] ?: OpenGroupPoller(chat, executorService)
+      poller.isCaughtUp = false
+    }
+    for ((_,poller) in v2Pollers) {
       poller.isCaughtUp = false
     }
   }

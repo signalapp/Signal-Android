@@ -184,8 +184,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getSessionJobDatabase(context).markJobAsSucceeded(jobId)
     }
 
-    override fun markJobAsFailed(jobId: String) {
-        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailed(jobId)
+    override fun markJobAsFailedPermanently(jobId: String) {
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailedPermanently(jobId)
     }
 
     override fun getAllPendingJobs(type: String): Map<String, Job?> {
@@ -576,7 +576,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val database = DatabaseFactory.getThreadDatabase(context)
         if (!openGroupID.isNullOrEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())), false)
-            return database.getOrCreateThreadIdFor(recipient)
+            return database.getThreadIdIfExistsFor(recipient)
         } else if (!groupPublicKey.isNullOrEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(groupPublicKey)), false)
             return database.getOrCreateThreadIdFor(recipient)

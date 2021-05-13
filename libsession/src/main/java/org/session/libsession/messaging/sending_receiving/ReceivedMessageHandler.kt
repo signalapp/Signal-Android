@@ -1,7 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
-import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -156,7 +155,12 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
 
     // Get or create thread
     val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
-            ?: message.sender!!, message.groupPublicKey, openGroupID)
+        ?: message.sender!!, message.groupPublicKey, openGroupID)
+
+    if (threadID < 0) {
+        // thread doesn't exist, should only be reached in a case where we are processing open group messages for no longer existent thread
+        throw MessageReceiver.Error.NoThread
+    }
 
     val openGroup = threadID.let {
         storage.getOpenGroup(it.toString())
@@ -236,7 +240,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     val openGroupServerID = message.openGroupServerMessageID
     if (openGroupServerID != null) {
-        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !(message.isMediaMessage() || attachments.isNotEmpty()))
+        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !message.isMediaMessage())
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)
