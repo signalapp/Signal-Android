@@ -21,7 +21,6 @@ object MessageReceiver {
         object SenderBlocked: Error("Received a message from a blocked user.")
         object NoThread: Error("Couldn't find thread for message.")
         object SelfSend: Error("Message addressed at self.")
-        // Shared sender keys
         object InvalidGroupPublicKey: Error("Invalid group public key.")
         object NoGroupKeyPair: Error("Missing group key pair.")
 

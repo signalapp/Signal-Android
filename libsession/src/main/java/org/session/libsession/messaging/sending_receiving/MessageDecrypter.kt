@@ -15,6 +15,14 @@ object MessageDecrypter {
 
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
 
+    /**
+     * Decrypts `ciphertext` using the Session protocol and `x25519KeyPair`.
+     *
+     * @param ciphertext the data to decrypt.
+     * @param x25519KeyPair the key pair to use for decryption. This could be the current user's key pair, or the key pair of a closed group.
+     *
+     * @return the padded plaintext.
+     */
     public fun decrypt(ciphertext: ByteArray, x25519KeyPair: ECKeyPair): Pair<ByteArray, String> {
         val recipientX25519PrivateKey = x25519KeyPair.privateKey.serialize()
         val recipientX25519PublicKey = Hex.fromStringCondensed(x25519KeyPair.hexEncodedPublicKey.removing05PrefixIfNeeded())
