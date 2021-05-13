@@ -101,7 +101,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         // encrypts as it writes data.
         val inputStream = if (encrypt) PaddingInputStream(attachment.inputStream, rawLength) else attachment.inputStream
         val outputStreamFactory = if (encrypt) AttachmentCipherOutputStreamFactory(key) else PlaintextOutputStreamFactory()
-        // Create a multipart request body but immediately read it out to a buffer. Doing this makes
+        // Create a digesting request body but immediately read it out to a buffer. Doing this makes
         // it easier to deal with inputStream and outputStreamFactory.
         val pad = PushAttachmentData(attachment.contentType, inputStream, length, outputStreamFactory, attachment.listener)
         val contentType = "application/octet-stream"

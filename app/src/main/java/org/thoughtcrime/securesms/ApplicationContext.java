@@ -42,6 +42,7 @@ import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.snode.SnodeModule;
 import org.session.libsession.utilities.IdentityKeyUtil;
+import org.session.libsession.utilities.ProfilePictureUtilities;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
@@ -50,6 +51,7 @@ import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsession.utilities.preferences.ProfileKeyUtil;
 import org.session.libsignal.service.api.util.StreamDetails;
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
+import org.session.libsignal.utilities.ThreadUtils;
 import org.session.libsignal.utilities.logging.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -91,8 +93,10 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Date;
@@ -101,6 +105,7 @@ import java.util.Set;
 
 import dagger.ObjectGraph;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import kotlinx.coroutines.Job;
 import network.loki.messenger.BuildConfig;
 
@@ -481,21 +486,31 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     private void resubmitProfilePictureIfNeeded() {
+        // Files expire on the file server after a while, so we simply re-upload the user's profile picture
+        // at a certain interval to ensure it's always available.
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         if (userPublicKey == null) return;
         long now = new Date().getTime();
         long lastProfilePictureUpload = TextSecurePreferences.getLastProfilePictureUpload(this);
         if (now - lastProfilePictureUpload <= 14 * 24 * 60 * 60 * 1000) return;
-        AsyncTask.execute(() -> {
-            String encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this);
-            byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey);
+        ThreadUtils.queue(() -> {
+            // Don't generate a new profile key here; we do that when the user changes their profile picture
+            String encodedProfileKey = TextSecurePreferences.getProfileKey(ApplicationContext.this);
             try {
-                File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
-                StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
-                FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
-                    TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
-                    TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
-                    ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
+                // Read the file into a byte array
+                InputStream inputStream = AvatarHelper.getInputStreamFor(ApplicationContext.this, Address.fromSerialized(userPublicKey));
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                int count;
+                byte[] buffer = new byte[1024];
+                while ((count = inputStream.read(buffer, 0, buffer.length)) != -1) {
+                    baos.write(buffer, 0, count);
+                }
+                baos.flush();
+                byte[] profilePicture = baos.toByteArray();
+                // Re-upload it
+                ProfilePictureUtilities.INSTANCE.upload(profilePicture, encodedProfileKey, ApplicationContext.this).success(unit -> {
+                    // Update the last profile picture upload date
+                    TextSecurePreferences.setLastProfilePictureUpload(ApplicationContext.this, new Date().getTime());
                     return Unit.INSTANCE;
                 });
             } catch (Exception exception) {
