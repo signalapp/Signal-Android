@@ -1957,7 +1957,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jos lukukuittauksia ei ole otettu käyttöön, et tule näkemään lukukuittauksia muilta.</string>
   <string name="preferences__typing_indicators">Kirjoittamisen ilmaisin</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos kirjoittamisen ilmaisin ei ole käytössä, et näe muidenkaan ilmaisinta.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Pyydä näppäimistöä poistamaan henkilökohtainen oppiminen käytöstä. Näppäimistö voi jättää tämän asetuksen huomioimatta.</string> -->
   <string name="preferences_app_protection__blocked_users">Estetyt käyttäjät</string>
   <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
@@ -2478,7 +2477,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Napauta profiilikuvaasi ja ylävasemmalla avataksesi asetukset</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Napauta \'Keskustelut\'</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Napauta \'Siirrä tili\' ja sitten \'Jatka\' molemmilla laitteilla</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2790,5 +2788,27 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Korkea</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Tili</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Rivinvaihto lähettää</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Käytä oletuksena tekstiviesteille?</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Viestit</string>
+  <string name="NotificationsSettingsFragment__calls">Puhelut</string>
+  <string name="NotificationsSettingsFragment__notify_when">Ilmoita minulle</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Estetty</string>
+  <string name="PrivacySettingsFragment__messaging">Viestintä</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Estä näyttökuvat Viimeksi käytetyt sovellukset -näkymästä sekä sovelluksen sisältä</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Ota yhteyttä</string>
+  <string name="HelpSettingsFragment__version">Versio</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Käyttöehdot ja yksityisyydensuoja</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>
   <!--EOF-->
 </resources>

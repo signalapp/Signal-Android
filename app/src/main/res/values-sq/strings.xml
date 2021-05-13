@@ -1986,7 +1986,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi nga të tjerët.</string>
   <string name="preferences__typing_indicators">Tregues shtypjeje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërkoji tastierës të çaktivizojë të nxënit e personalizuar. Ky rregullim s’përbën garanci, dhe tastiera juaj mund ta shpërfillë.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Kërkoji tastierës të çaktivizojë nxënie të personalizuar.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ky rregullim s’është garanci dhe tastiera juaj mund ta shpërfillë.</string>
   <string name="preferences_app_protection__blocked_users">Përdorues të bllokuar</string>
   <string name="preferences_chats__when_using_mobile_data">Kur përdoret rrjet celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
@@ -2131,6 +2132,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsDetailsFragment__from">Nga</string>
   <string name="PaymentsDetailsFragment__information">Hollësi transaksioni, përfshi llogari pagesash dhe kohë transaksioni, janë pjesë e MobileCoin Ledger.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tarifë Coin Cleanup</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Një “tarifë pastrimi monedhash” aplikohet kur monedhat në pronësinë tuaj s’mund të ndërthuren për të plotësuar një transaksion. Pastrimi do t’ju lejojë të vazhdoni dërgim pagesash.</string>
   <string name="PaymentsDetailsFragment__no_details_available">S’ka hollësi të mëtejshme për këtë transaksion</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagesë e dërguar</string>
   <string name="PaymentsDetailsFragment__received_payment">Pagesë e marrë</string>
@@ -2527,7 +2529,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Prekni mbi foton e profilit tuaj në cepin e majtë sipër, që të hapen Rregullimet.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Prekni mbi “Fjalosje”</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Prekni mbi “Llogari”</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Prekni “Shpërngulni Llogari” dhe mandej “Vazhdoni” në të dyjat e pajisjeve</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2868,5 +2870,41 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="QualitySelectorBottomSheetDialog__high">Lartësi</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Më i ngadaltë, më tepër të dhëna</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Cilësi fotografie</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Ftoni shokët tuaj</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Llogari</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Me kalimin e kohës, do të pyeteni më rrallë</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Kërko që PIN-i i Signal-it tuaj të riregjistrojë numrin e telefonit tuaj me Signal-in</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastierë</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Tasti Enter dërgon</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Mesazhe</string>
+  <string name="NotificationsSettingsFragment__calls">Thirrje</string>
+  <string name="NotificationsSettingsFragment__notify_when">Njoftomë kur…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakti vjen në Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">E bllokuar</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakte</string>
+  <string name="PrivacySettingsFragment__messaging">Shkëmbim Mesazhesh</string>
+  <string name="PrivacySettingsFragment__app_security">Siguri aplikacioni</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blloko foto ekrani te lista e të rejave dhe brenda aplikacionit</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Mesazhe dhe thirrje Signal, thirrjet kaloji përherë përmes relesh, dhe dërgues të vulosur</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Shfaq ikonë gjendjesh</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Shfaq një ikonë te hollësi mesazhesh, kur këta janë dorëzuar duke përdorur dërgues të vulosur.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Qendër asistence</string>
+  <string name="HelpSettingsFragment__contact_us">Lidhuni me ne</string>
+  <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Kushte &amp; Rregulla Privatësie</string>
+  <string name="HelpFragment__copyright_signal_messenger">Të drejta kopjimi Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Licencuar nën GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Thirrje</string>
   <!--EOF-->
 </resources>

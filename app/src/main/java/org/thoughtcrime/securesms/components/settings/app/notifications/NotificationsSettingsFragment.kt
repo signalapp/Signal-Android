@@ -312,7 +312,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
       circleDrawable.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20))
       circleDrawable.colorFilter = model.colorValues[model.radioListPreference.selected].toColorFilter()
 
-      if (titleView.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+      if (ViewUtil.isLtr(itemView)) {
         titleView.setCompoundDrawables(null, null, circleDrawable, null)
       } else {
         titleView.setCompoundDrawables(circleDrawable, null, null, null)

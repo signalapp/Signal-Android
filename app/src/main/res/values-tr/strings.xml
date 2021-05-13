@@ -1982,7 +1982,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>
   <string name="preferences__typing_indicators">Yazma göstergeleri</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Yazma göstergeleri etkin değilse, başkalarının yazma göstergelerini göremeyeceksiniz.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Kişiselleştirilmiş öğrenmeyi devre dışı bırakmak için klavyeyi isteyin. Bu ayar garanti değildir ve klavyeniz bunu dikkate almayabilir.</string> -->
   <string name="preferences_app_protection__blocked_users">Engellenen kullanıcılar</string>
   <string name="preferences_chats__when_using_mobile_data">Mobil veri kullanırken</string>
   <string name="preferences_chats__when_using_wifi">Kablosuz ağ kullanırken</string>
@@ -2522,7 +2521,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ayarları açmak için sol üstteki profil fotoğrafınıza dokunun</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">\"Konuşmalar\" seçeneğine dokunun</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Öncelikle \"Hesabı Aktar\" seçeneğine, ardından iki cihazda da \"Devam Et\" seçeneğine dokunun</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2863,5 +2861,27 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="QualitySelectorBottomSheetDialog__high">Yüksek</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Daha yavaş, daha çok veri</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotoğraf kalitesi</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Hesap</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Enter tuşu ile gönder</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Varsayılan SMS uygulaması olarak ayarla</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">İletiler</string>
+  <string name="NotificationsSettingsFragment__calls">Aramalar</string>
+  <string name="NotificationsSettingsFragment__notify_when">Şu durumlarda bildir…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Engellendi</string>
+  <string name="PrivacySettingsFragment__messaging">Yazışma</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Son uygulamalar görünümünde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Bizimle iletişime geçin</string>
+  <string name="HelpSettingsFragment__version">Sürüm</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Koşullar ve Gizlilik İlkesi</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Aramalar</string>
   <!--EOF-->
 </resources>

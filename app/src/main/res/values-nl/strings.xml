@@ -1988,7 +1988,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld kunnen anderen niet zien of je hun berichten hebt gelezen, maar je zult ook niet kunnen zien of anderen jouw berichten hebben gelezen.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld kunnen anderen niet zien of je aan het typen bent, maar je zult ook niet kunnen zien wanneer anderen aan het typen zijn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen. Let op: we kunnen niet garanderen dat dit werkt op ieder apparaat, het kan dus zijn dat jouw toetsenbord toch gepersonaliseerd leert.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Let op: we kunnen niet garanderen dat gepersonaliseerd leren door het toetsenbord ook daadwerkelijk wordt voorkomen, omdat dit alleen werkt als je toetsenbord app daaraan meewerkt.</string>
   <string name="preferences_app_protection__blocked_users">Geblokkeerde personen</string>
   <string name="preferences_chats__when_using_mobile_data">Bij mobiele-dataoverdracht</string>
   <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
@@ -2528,7 +2529,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik in de linkerbovenhoek op je profielfoto om de instellingen te openen</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tik op ‘Gesprekken’</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Tik op “Jouw registratie”</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tik op beide apparaten op ‘Signal-gegevens overzetten’ en dan op ‘Doorgaan’</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2869,5 +2870,40 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="QualitySelectorBottomSheetDialog__high">Hoog</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langzamer, meer gegevensoverdracht</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Afbeeldingskwaliteit</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Kennissen uitnodigingen</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Jouw registratie</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Enter-toets verzendt</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Als standaard sms-app gebruiken</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Berichten</string>
+  <string name="NotificationsSettingsFragment__calls">Oproepen</string>
+  <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer …</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Nieuw persoon bereikbaar via Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Geblokkeerd</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d personen</string>
+  <string name="PrivacySettingsFragment__messaging">Berichten</string>
+  <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Ondersteuningscentrum</string>
+  <string name="HelpSettingsFragment__contact_us">Neem contact met ons op</string>
+  <string name="HelpSettingsFragment__version">Versie</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Gebruiksvoorwaarden &amp; privacybeleid</string>
+  <string name="HelpFragment__copyright_signal_messenger">Auteursrecht Signal berichtenapp</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
   <!--EOF-->
 </resources>

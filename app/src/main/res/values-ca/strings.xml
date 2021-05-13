@@ -1978,7 +1978,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
   <string name="preferences__typing_indicators">Indicadors de tecleig</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Sol·liciteu el teclat per desactivar l\'aprenentatge personalitzat. Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string> -->
   <string name="preferences_app_protection__blocked_users">Usuaris blocats</string>
   <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
   <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
@@ -2518,7 +2517,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toqueu la foto del perfil a la part superior esquerra per obrir-ne la Configuració.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Toqueu Converses</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toqueu Transfereix el compte i, a continuació, Continua, als dos dispositius.</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2859,5 +2857,27 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Més lent, més dades</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualitat de la fotografia</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Compte</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">S\'envia amb la tecla de Retorn</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Usa-la com a aplicació d\'SMS predeterminada</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Missatges</string>
+  <string name="NotificationsSettingsFragment__calls">Trucades</string>
+  <string name="NotificationsSettingsFragment__notify_when">Notifica quan…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Blocat</string>
+  <string name="PrivacySettingsFragment__messaging">Missatges</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloca les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Contacteu-nos</string>
+  <string name="HelpSettingsFragment__version">Versió</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
   <!--EOF-->
 </resources>

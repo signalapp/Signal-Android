@@ -1928,7 +1928,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако Вашите потвърждения за прочитане са деактивирани няма да можете да видите потвържденията за прочитане от други.</string>
   <string name="preferences__typing_indicators">Индикатори за писане</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако индикаторите за писане са декативирани, няма да можете да видите индикаторите на другите хора.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Поискай клавиатурата да изключи персонализирано научване. Тази настройка не е гарантирана, и клавиатурата ти може да я игнорира.</string> -->
   <string name="preferences_app_protection__blocked_users">Блокирани потребители</string>
   <string name="preferences_chats__when_using_mobile_data">Когато се използва мобилен интернет</string>
   <string name="preferences_chats__when_using_wifi">Когато се използва Wi-Fi</string>
@@ -2541,5 +2540,24 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Клавишът Enter се използва за изпращане</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Използване като SMS програма по подразбиране</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Съобщения</string>
+  <string name="NotificationsSettingsFragment__calls">Обаждания</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Блокиране</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Свържете се с нас</string>
+  <string name="HelpSettingsFragment__version">Версия</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Условия и Политика за поверителност</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Обаждания</string>
   <!--EOF-->
 </resources>

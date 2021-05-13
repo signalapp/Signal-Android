@@ -2123,7 +2123,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если уведомления о прочтении отключены, вы не сможете видеть уведомления о прочтении от других пользователей.</string>
   <string name="preferences__typing_indicators">Индикаторы набора текста</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы набора текста отключены, вы не сможете видеть индикаторы набора текста других пользователей.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры. Эта настройка не является гарантией, и ваша клавиатура может её игнорировать.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Запросить отключение персонализированного обучения клавиатуры.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Эта настройка не является гарантией, и ваша клавиатура может её игнорировать.</string>
   <string name="preferences_app_protection__blocked_users">Заблокированные пользователи</string>
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
   <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
@@ -2677,7 +2678,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Нажмите на своё фото профиля в левом верхнем углу, чтобы открыть настройки</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Нажмите на «Чаты»</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Нажмите на «Учётная запись»</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Нажмите «Перенести учётную запись», а затем «Продолжить» на обоих устройствах</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3022,5 +3023,41 @@
   <string name="QualitySelectorBottomSheetDialog__high">Высокое</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Медленнее, больше данных</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Качество фото</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Пригласить друзей</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Учётная запись</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Напоминания будут появляться реже со временем</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Требовать вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Отправка клавишей «Ввод»</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Использовать для всех SMS</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Сообщения</string>
+  <string name="NotificationsSettingsFragment__calls">Звонки</string>
+  <string name="NotificationsSettingsFragment__notify_when">Уведомлять, когда…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт присоединяется к Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Заблокированные</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d контактов</string>
+  <string name="PrivacySettingsFragment__messaging">Общение</string>
+  <string name="PrivacySettingsFragment__app_security">Безопасность приложения</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокировать снимки экрана в списке недавних приложений и внутри приложения</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Звонки и сообщения Signal, ретрансляция звонков и запечатанный отправитель</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показывать значок статуса</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показывать значок в «Подробностях сообщения», если сообщение было доставлено с использованием запечатанного отправителя.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Центр поддержки</string>
+  <string name="HelpSettingsFragment__contact_us">Связаться с нами</string>
+  <string name="HelpSettingsFragment__version">Версия</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Условия и Политика конфиденциальности</string>
+  <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Звонки</string>
   <!--EOF-->
 </resources>

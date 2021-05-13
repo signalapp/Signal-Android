@@ -2129,7 +2129,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Keď máte vypnuté potvrdenia o prečítaní, nebudete dostávať potvrdenia ani od ostatných.</string>
   <string name="preferences__typing_indicators">Indikátory písania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Keď sú indikátory písania vypnuté, nezobrazia sa Vám ani indikátory iných.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Požiadajte klávesnicu o zakázanie personalizovaného učenia. Nastavenie nie je garanciou a klávesnica ho môže ignorovať.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Požiadať klávesnicu aby sa neprispôsobovala učením.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Toto nastavenie nie je zárukou a vaša klávesnica ho môže ignorovať.</string>
   <string name="preferences_app_protection__blocked_users">Blokovaní používatelia</string>
   <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
@@ -2683,7 +2684,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ťuknite na svoju profilovú fotku v ľavom hornom rohu pre otvorenie Nastavení</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Ťuknite na \"Chaty\"</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Ťuknite na \"Účet\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ťuknite \"Presunúť účet\" a potom \"Pokračovať\" na oboch zariadeniach</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3028,5 +3029,41 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QualitySelectorBottomSheetDialog__high">Vysoká</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Pomalšie, viac dát</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvalita fotografie</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Pozvite vašich priateľov</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Účet</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Postupom času sa vás budeme pýtať menej často</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Na opätovné zaregistrovanie telefónneho čísla v aplikácii Signal vyžadujte svojim Signal PIN</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Klávesnica</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Odoslať stlačením klávesy Enter</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Použiť ako predvolenú SMS aplikáciu</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Správy</string>
+  <string name="NotificationsSettingsFragment__calls">Volania</string>
+  <string name="NotificationsSettingsFragment__notify_when">Upozorniť, keď…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt sa pripojí k Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Blokovaní</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktov</string>
+  <string name="PrivacySettingsFragment__messaging">Odosielanie správ</string>
+  <string name="PrivacySettingsFragment__app_security">Zabezpečenie aplikácie</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zakázať vytváranie snímkov obrazovky v tejto aplikácii a v zozname bežiacich aplikácií</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Správy a hovory Signal, vždy opakované hovory a zapečatený odosielateľ</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobraziť stavovú ikonu</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Keď boli doručené pomocou zapečateného odosielateľa, zobrazí sa ikona v detailoch správy.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
+  <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>
+  <string name="HelpSettingsFragment__version">Verzia</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Podmienky a Zásady ochrany osobných údajov</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Pod licenciou GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Volania</string>
   <!--EOF-->
 </resources>

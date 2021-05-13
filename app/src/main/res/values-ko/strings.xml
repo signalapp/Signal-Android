@@ -1871,7 +1871,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">읽은 메시지 기능이 꺼져 있다면, 다른 사람이 메시지를 읽었는지 확인할 수 없습니다.</string>
   <string name="preferences__typing_indicators">입력 안내</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">입력 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 쓰고 있는지 확인할 수 없습니다.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">키보드 개인화 학습 비활성화 요청하기. 이 설정은 결과를 보장하지 않으며, 귀하의 키보드가 이 요청을 무시할 수도 있습니다.</string> -->
   <string name="preferences_app_protection__blocked_users">차단된 사용자</string>
   <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용 시</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi 사용 시</string>
@@ -2487,5 +2486,25 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">높음</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">엔터 키로 메시지 보내기</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">기본 SMS 앱으로 사용</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">메시지</string>
+  <string name="NotificationsSettingsFragment__calls">전화</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">차단함</string>
+  <string name="PrivacySettingsFragment__messaging">메시징</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">최근 사용 목록/개요 및 앱 내 스크린샷 차단</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">문의하기</string>
+  <string name="HelpSettingsFragment__version">버전</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">이용 약관 &amp; 개인 정보 보호 정책</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">전화</string>
   <!--EOF-->
 </resources>

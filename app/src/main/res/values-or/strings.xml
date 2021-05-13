@@ -1941,7 +1941,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ଯଦି ପଠନ ରସିଦ ଅକ୍ଷମ ହୋଇଛି, ଆପଣ ଅନ୍ୟମାନଙ୍କଠାରୁ ପଠନ ରସିଦ ଦେଖିବାକୁ ସମର୍ଥ ହେବେ ନାହିଁ</string>
   <string name="preferences__typing_indicators">ଟାଇପ୍ ସୂଚକ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ଯଦି ଟାଇପ୍ ସୂଚକ ଅକ୍ଷମ ହୋଇଛି, ଆପଣ ଅନ୍ୟମାନଙ୍କଠାରୁ ଟାଇପ୍ ସୂଚକ ଦେଖିବାକୁ ସମର୍ଥ ହେବେ ନାହିଁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ବ୍ୟକ୍ତିଗତ ଶିକ୍ଷଣକୁ ଅକ୍ଷମ କରିବାକୁ କୀବୋର୍ଡ୍ ଅନୁରୋଧ | ଏହି ସେଟିଂ ଏକ ଗ୍ୟାରେଣ୍ଟି ନୁହେଁ, ଏବଂ ଆପଣଙ୍କର କୀବୋର୍ଡ୍ ଏହାକୁ ଅଣଦେଖା କରିପାରେ</string> -->
   <string name="preferences_app_protection__blocked_users">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ</string>
   <string name="preferences_chats__when_using_mobile_data">ମୋବାଇଲ୍ ଡାଟା ବ୍ୟବହାର କରିବାବେଳେ</string>
   <string name="preferences_chats__when_using_wifi">ୱାଇ-ଫାଇ ବ୍ୟବହାର କରିବାବେଳେ</string>
@@ -2586,5 +2585,21 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">ଉଚ୍ଚ</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">ଏଣ୍ଟର ଦବେଇଲେ ପଠାଯିବ</string>
+  <!--SmsSettingsFragment-->
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">ବାର୍ତ୍ତା</string>
+  <string name="NotificationsSettingsFragment__calls">କଲ୍</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ସାମ୍ପ୍ରତିକ ତାଲିକାରେ ଏବଂ ଆପ୍ ଭିତରେ ସ୍କ୍ରିନସଟ୍କ କୁ ଅବରୋଧ କରନ୍ତୁ</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">ଆମକୁ ଯୋଗଯୋଗ କରନ୍ତୁ</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">ସର୍ତ୍ତାବଳୀ &amp; amp; ଗୋପନୀୟତା ନୀତି</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">କଲ୍</string>
   <!--EOF-->
 </resources>

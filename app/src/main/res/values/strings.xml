@@ -1580,6 +1580,7 @@
     <string name="SubmitDebugLogActivity_success">Success!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Share</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">This log will be posted publicly online for contributors to view. You may examine and edit it before uploading.</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
@@ -3417,7 +3418,7 @@
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string>
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Show an icon in message details when they were delivered using sealed sender.</string>
 
@@ -3425,6 +3426,7 @@
     <string name="HelpSettingsFragment__support_center">Support center</string>
     <string name="HelpSettingsFragment__contact_us">Contact us</string>
     <string name="HelpSettingsFragment__version">Version</string>
+    <string name="HelpSettingsFragment__debug_log">Debug log</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>

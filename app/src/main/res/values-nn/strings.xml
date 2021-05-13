@@ -1988,7 +1988,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
   <string name="preferences__typing_indicators">Tastevisning</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Be tastaturet om å skru av personleg læring. Denne innstillinga gir ingen garantiar, og tastaturet ditt står fritt til å oversjå han.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Be tastaturet om å skru av persontilpassa læring.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Denne innstillinga er ingen garanti, og tastaturet ditt står fritt til å ignorera ho.</string>
   <string name="preferences_app_protection__blocked_users">Blokkerte brukarar</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av trådlausnett</string>
@@ -2530,7 +2531,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Trykk på profilbildet øverst til venstre for å opna Innstillingar</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på «Samtalar»</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Trykk på «Konto»</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk «Overfør konto» og så «Hald fram» på begge einingane</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2871,5 +2872,41 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="QualitySelectorBottomSheetDialog__high">Høg</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Treigare, meir data</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Bildekvalitet</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Inviter vennane dine</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Konto</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du blir spurd sjeldnare over tid</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Be om Signal PIN-en for å registrera telefonnummeret ditt med Signal igjen</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Send med linjeskift</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Bruk som standard SMS-program</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Meldingar</string>
+  <string name="NotificationsSettingsFragment__calls">Samtalar</string>
+  <string name="NotificationsSettingsFragment__notify_when">Varsla når …</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt blir med i Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Blokkert</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktar</string>
+  <string name="PrivacySettingsFragment__messaging">Meldingar</string>
+  <string name="PrivacySettingsFragment__app_security">App-tryggleik</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Ikkje tillat å ta skjermbilde frå sist brukte-lista eller frå programmet</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldingar og samtalar, alltid vidaresend samtalar, og forsegla sendar</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis eit ikon i meldingsdetaljane når dei er leverte med forsegla sendar.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Support-senter</string>
+  <string name="HelpSettingsFragment__contact_us">Ta kontakt</string>
+  <string name="HelpSettingsFragment__version">Versjon</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår &amp; personvernreglar</string>
+  <string name="HelpFragment__copyright_signal_messenger">Opphavsrett Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Samtalar</string>
   <!--EOF-->
 </resources>

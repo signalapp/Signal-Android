@@ -58,7 +58,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     dynamicTheme.onCreate(this);
     setContentView(R.layout.submit_debug_log_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.AndroidManifest__log_submit);
+    getSupportActionBar().setTitle(R.string.HelpSettingsFragment__debug_log);
 
     initView();
     initViewModel();

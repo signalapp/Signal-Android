@@ -275,17 +275,23 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   }
 
   private Optional<SignalServiceAttachmentStream> getAvatar(@NonNull RecipientId recipientId, @Nullable Uri uri) {
-    Optional<SignalServiceAttachmentStream> avatarStream = Optional.absent();
+    Optional<SignalServiceAttachmentStream> stream;
 
     if (SignalStore.settings().isPreferSystemContactPhotos()) {
-      avatarStream = getSystemAvatar(uri);
+      stream = getSystemAvatar(uri);
+
+      if (!stream.isPresent()) {
+        stream = getProfileAvatar(recipientId);
+      }
+    } else {
+      stream = getProfileAvatar(recipientId);
+
+      if (!stream.isPresent()) {
+        stream = getSystemAvatar(uri);
+      }
     }
 
-    if (avatarStream.isPresent()) {
-      return avatarStream;
-    } else {
-      return getProfileAvatar(recipientId);
-    }
+    return stream;
   }
 
   private Optional<SignalServiceAttachmentStream> getProfileAvatar(@NonNull RecipientId recipientId) {

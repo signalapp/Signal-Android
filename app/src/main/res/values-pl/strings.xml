@@ -918,7 +918,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Stuknij i przytrzymaj wiadomość, aby szybko pokazać co czujesz. </string>
   <string name="Megaphones_remind_me_later">Przypomnij później</string>
   <string name="Megaphones_verify_your_signal_pin">Zweryfikuj swój PIN Signal</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PINu, abyś go zapamiętał(a).</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PIN-u, abyś go zapamiętał(a).</string>
   <string name="Megaphones_verify_pin">Zweryfikuj PIN</string>
   <string name="Megaphones_get_started">Rozpocznij</string>
   <string name="Megaphones_new_group">Nowa grupa</string>
@@ -1250,10 +1250,10 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tę aplikację ponownie i spróbuj ponownie.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Nieprawidłowy PIN</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">Pominąć wpisywanie PINu?</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Pominąć wpisywanie PIN-u?</string>
   <string name="PinRestoreEntryFragment_need_help">Potrzebujesz pomocy?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Twój PIN to %1$d+ znakowy, utworzony przez Ciebie kod, który może być liczbowy lub alfanumeryczny. Jeśli nie pamiętasz swojego PINu, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje w Twoim profilu.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jeśli nie pamiętasz swojego PINu, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje o Twoim profilu.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Twój PIN to składający się z %1$dznaków, utworzony przez Ciebie kod, który może być liczbowy lub alfanumeryczny. Jeśli nie pamiętasz swojego PIN-u, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje w Twoim profilu.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jeśli nie pamiętasz swojego PIN-u, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje o Twoim profilu.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Utwórz nowy PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt z pomocą techniczną</string>
   <string name="PinRestoreEntryFragment_cancel">Anuluj</string>
@@ -1269,7 +1269,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Wpisz liczbowy PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Utwórz swój PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Skończyły Ci się próby podania PINu, ale wciąż możesz uzyskać dostęp do swojego konta Signal, tworząc nowy kod PIN. Dla Twojej prywatności i bezpieczeństwa, Twoje konto zostanie przywrócone bez informacji zapisanych w profilu i ustawień.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Skończyły Ci się próby podania PIN-u, ale wciąż możesz uzyskać dostęp do swojego konta Signal, tworząc nowy kod PIN. Dla Twojej prywatności i bezpieczeństwa, Twoje konto zostanie przywrócone bez informacji zapisanych w profilu i ustawień.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Utwórz nowy PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Uwaga</string>
@@ -1399,7 +1399,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Włączyć blokadę rejestracji?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Wyłączyć blokadę rejestracji?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jeśli przy ponownej rejestracji w Signal nie będziesz pamiętać swojego PINu Signal, zostaniesz odcięty(a) od swojego konta na 7 dni.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jeśli przy ponownej rejestracji w Signal nie będziesz pamiętać swojego PIN-u Signal, zostaniesz odcięty(a) od swojego konta na 7 dni.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Włącz</string>
   <string name="RegistrationLockV2Dialog_turn_off">Wyłącz</string>
   <!--RevealableMessageView-->
@@ -2111,7 +2111,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__system_default">Domyślny systemu</string>
   <string name="preferences__language">Język</string>
   <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
-  <string name="preferences__advanced_pin_settings">Zaawansowane ustawienia PIN</string>
+  <string name="preferences__advanced_pin_settings">Zaawansowane ustawienia PIN-u</string>
   <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
   <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
   <string name="preferences__delete_account">Usuń konto</string>
@@ -2122,7 +2122,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Gdy potwierdzenia przeczytania są wyłączone, Ty również nie będziesz otrzymywać potwierdzeń od innych użytkowników.</string>
   <string name="preferences__typing_indicators">Wskaźniki pisania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Gdy wskaźniki pisania są wyłączone, Ty również nie będziesz widzieć wskaźników pisania innych użytkowników.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Poproś klawiaturę o wyłączenie spersonalizowanego uczenia się. Ta opcha niczego nie gwarantuje i Twoja klawiatura może ją zignorować.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Poproś klawiaturę o wyłączenie spersonalizowanego uczenia się słów.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ta opcja niczego nie gwarantuje i Twoja klawiatura może ją zignorować.</string>
   <string name="preferences_app_protection__blocked_users">Zablokowani użytkownicy</string>
   <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
   <string name="preferences_chats__when_using_wifi">Podczas używania Wi-Fi</string>
@@ -2479,11 +2480,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Kody PIN się różnią. Spróbuj ponownie.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potwierdź swój PIN.</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">Utworzenie PINu nie powiodło się</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Twój PIN nie został zapisany. Później poprosimy Cię o utworzenie PINu.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Utworzenie PIN-u nie powiodło się</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Twój PIN nie został zapisany. Później poprosimy Cię o utworzenie PIN-u.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Utworzono PIN.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ponownie wpisz PIN</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Tworzenie PINu…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Tworzenie PIN-u…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Przedstawiamy kody PIN</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal. Nie będziesz potrzebować swojego kodu PIN do otwarcia aplikacji.</string>
@@ -2503,7 +2504,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Nieprawidłowy PIN. Spróbuj ponownie.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto zablokowane.</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Twoje konto zostało zablokowane, aby chronić Twoją prywatność i bezpieczeństwo. Po %1$d dniach nieaktywności będziesz móc ponownie zarejestrować ten numer telefonu bez użycia PINu. Cała zawartość Twojego konta zostanie usunięta.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Twoje konto zostało zablokowane, aby chronić Twoją prywatność i bezpieczeństwo. Po %1$d dniach nieaktywności będziesz móc ponownie zarejestrować ten numer telefonu bez użycia PIN-u. Cała zawartość Twojego konta zostanie usunięta.</string>
   <string name="AccountLockedFragment__next">Dalej</string>
   <string name="AccountLockedFragment__learn_more">Dowiedz się więcej</string>
   <!--KbsLockFragment-->
@@ -2519,10 +2520,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Rejestracja Signal - Potrzebna pomoc z kodem PIN Signal dla systemu Android (PIN v1)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Rejestracja Signal - Potrzebna pomoc z kodem PIN Signal dla systemu Android (PIN v2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniu nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="few">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="many">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="one">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniu nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="few">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="many">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PIN-u, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Nieprawidłowy kod PIN. Pozostała %1$d próba.</item>
@@ -2639,14 +2640,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Utwórz PIN</string>
   <string name="preferences_app_protection__change_your_pin">Zmień swój PIN</string>
-  <string name="preferences_app_protection__pin_reminders">Przypomnienia PINu</string>
+  <string name="preferences_app_protection__pin_reminders">Przypomnienia PIN-u</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zwiększ bezpieczeństwo, wymagając podania Twojego PINu Signal przy ponownej rejestracji numeru telefonu w Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zwiększ bezpieczeństwo, wymagając podania Twojego PIN-u Signal przy ponownej rejestracji numeru telefonu w Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Przypomnienia pomagają Ci zapamiętać Twój kod PIN, gdyż nie da się go odzyskać. Z czasem pytania będą coraz rzadsze.</string>
   <string name="preferences_app_protection__turn_off">Wyłącz</string>
   <string name="preferences_app_protection__confirm_pin">Potwierdź PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Potwierdź swój PIN Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Upewnij się, że zapamiętałeś(aś) lub zapisałeś(aś) swój PIN w bezpiecznym miejscu, gdyż nie da się go odzyskać. Jeśli zapomnisz swojego PINu, możesz stracić dane przy kolejnej rejestracji swojego konta Signal.</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Upewnij się, że zapamiętałeś(aś) lub zapisałeś(aś) swój PIN w bezpiecznym miejscu, gdyż nie da się go odzyskać. Jeśli zapomnisz swojego PIN-u, możesz stracić dane przy kolejnej rejestracji swojego konta Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Nieprawidłowy PIN. Spróbuj ponownie.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nie udało się włączyć blokady rejestracji.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nie udało się wyłączyć blokady rejestracji.</string>
@@ -2676,7 +2677,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Stuknij swoje zdjęcie profilowe, u góry, po lewej, aby otworzyć Ustawienia</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Stuknij \"Rozmowy\"</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Stuknij \"Konto\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Stuknij \"Przenieś konto\", a następnie \"Kontynuuj\", na obu urządzeniach</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3021,5 +3022,41 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QualitySelectorBottomSheetDialog__high">Wysoka</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Wolniej, większy plik</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Jakość zdjęcia</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Zaproś znajomych</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Konto</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Z czasem pytanie będzie pojawiać się coraz rzadziej</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Wymagaj Twojego PIN-u Signal, aby ponownie zarejestrować Twór numer telefonu w Signal</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Klawiatura</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Enter wysyła wiadomość</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Ustaw, jako domyślną aplikację SMS</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Wiadomości</string>
+  <string name="NotificationsSettingsFragment__calls">Połączenia</string>
+  <string name="NotificationsSettingsFragment__notify_when">Powiadamiaj, gdy…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt dołączył do Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Zablokowani</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakty(ów)</string>
+  <string name="PrivacySettingsFragment__messaging">Wiadomości</string>
+  <string name="PrivacySettingsFragment__app_security">Bezpieczeństwo aplikacji</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokuj rzuty ekranu na liście aktywnych oraz w aplikacji</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Wiadomości i połączenia Signal, zawsze przekazuj połączenia i ukryty nadawca</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pokaż ikonę</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Pokaż ikonę w szczegółach wiadomości, dostarczonej z użyciem funkcji ukrytego nadawcy.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centrum pomocy</string>
+  <string name="HelpSettingsFragment__contact_us">Skontaktuj się z nami</string>
+  <string name="HelpSettingsFragment__version">Wersja</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Regulamin i Polityka prywatności</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Oprogramowanie udostępniane na licencji GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Połączenia</string>
   <!--EOF-->
 </resources>

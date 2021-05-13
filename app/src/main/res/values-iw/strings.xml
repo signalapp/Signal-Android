@@ -2130,7 +2130,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
   <string name="preferences__typing_indicators">מחווני הקלדה</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית. הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string> -->
+  <string name="preferences__request_keyboard_to_disable">בקש מהמקלדת להשבית למידה מותאמת אישית.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string>
   <string name="preferences_app_protection__blocked_users">משתמשים חסומים</string>
   <string name="preferences_chats__when_using_mobile_data">בעת שימוש בנתונים ניידים</string>
   <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
@@ -2684,7 +2685,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">הקש על תמונת הפרופיל שלך בקצה העליון השמאלי כדי לפתוח הגדרות</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">הקש על \"התכתבויות\"</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">הקש על \"חשבון\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">הקש על \"העבר חשבון\" ואז \"המשך\" בשני המכשירים</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3029,5 +3030,41 @@
   <string name="QualitySelectorBottomSheetDialog__high">גבוה</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">איטית יותר, יותר נתונים</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">איכות תמונה</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">הזמן את חבריך</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">חשבון</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">תישאל לעיתים פחות תכופות עם הזמן</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">דרוש את ה־PIN של Signal שלך כדי להירשם שוב אל Signal עם מספר הטלפון שלך</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">מקש Enter שולח</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">השתמש כיישום המסרונים ברירת המחדל</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">הודעות</string>
+  <string name="NotificationsSettingsFragment__calls">שיחות</string>
+  <string name="NotificationsSettingsFragment__notify_when">יידע כאשר…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">איש קשר מצטרף אל Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">חסום</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d אנשי קשר</string>
+  <string name="PrivacySettingsFragment__messaging">תכתובת</string>
+  <string name="PrivacySettingsFragment__app_security">אבטחת יישום</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">חסום צילומי מסך ברשימת האחרונים ובתוך היישום</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">הודעות ושיחות של Signal, ממסר שיחות תמיד, ושולח אטום</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">הראה איקון מעמד</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">הראה איקון בפרטי הודעה כאשר היא נשלחה ע״י שימוש בשולח אטום.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">מרכז תמיכה</string>
+  <string name="HelpSettingsFragment__contact_us">צור קשר</string>
+  <string name="HelpSettingsFragment__version">גרסה</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">תנאים ומדיניות פרטיות</string>
+  <string name="HelpFragment__copyright_signal_messenger">זכויות יוצרים Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">ברישיון תחת GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
   <!--EOF-->
 </resources>

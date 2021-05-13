@@ -317,7 +317,9 @@ public class StorageSyncJob extends BaseJob {
 
     db.beginTransaction();
     try {
-      List<StorageId>           localStorageIds = getAllLocalStorageIds(context, Recipient.self().fresh());
+      self = Recipient.self().fresh();
+
+      List<StorageId>           localStorageIds = getAllLocalStorageIds(context, self);
       IdDifferenceResult        idDifference    = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIds);
       List<SignalStorageRecord> remoteInserts   = buildLocalStorageRecords(context, self, idDifference.getLocalOnlyIds());
       List<byte[]>              remoteDeletes   = Stream.of(idDifference.getRemoteOnlyIds()).map(StorageId::getRaw).toList();

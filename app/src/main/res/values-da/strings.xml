@@ -1984,7 +1984,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiveret, er det ikke muligt at se status for beskeder.</string>
   <string name="preferences__typing_indicators">Skriveindikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikator er deaktiveret, er det ikke muligt at se når andre skriver.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Anmod tastatur om at deaktivere personlig indlæring. Denne indstilling er ikke en garanti, og dit tastatur ignorerer det muligvis.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Anmod tastatur om at deaktivere personlig læring.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Denne indstilling er ikke en garanti, og dit tastatur ignorerer det muligvis.</string>
   <string name="preferences_app_protection__blocked_users">Blokerede brugere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved brug af WiFi</string>
@@ -2524,7 +2525,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tryk på dit profilbillede øverst til venstre for at åbne Indstillinger</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Tryk på \"Chats\"</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Tryk på \"Konto\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tryk på \"Overfør konto\" og derefter \"Fortsæt\" på begge enheder</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2865,5 +2866,41 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="QualitySelectorBottomSheetDialog__high">Høj</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Langsommere, mere data</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Billedkvalitet</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Invitér dine venner</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Konto</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du bliver spurgt sjældnere med tiden</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Kræv din Signal-PIN-kode til at registrere dit telefonnummer med Signal igen</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">[Enter] sender besked</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Anvend som standard SMS app</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Beskeder</string>
+  <string name="NotificationsSettingsFragment__calls">Opkald</string>
+  <string name="NotificationsSettingsFragment__notify_when">Underret når…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt anvender nu Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Blokeret</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
+  <string name="PrivacySettingsFragment__messaging">Meddelelse</string>
+  <string name="PrivacySettingsFragment__app_security">Appsikkerhed</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Hjælpecenter</string>
+  <string name="HelpSettingsFragment__contact_us">Kontakt os</string>
+  <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og privatlivspolitik</string>
+  <string name="HelpFragment__copyright_signal_messenger">Ophavsret Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Licenseret under GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Opkald</string>
   <!--EOF-->
 </resources>

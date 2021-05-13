@@ -1984,7 +1984,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
   <string name="preferences__typing_indicators">Indicatori di scrittura</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se gli indicatori di scrittura sono disabilitati, non sarai in grado di vedere quando gli altri utenti stanno digitando.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate. Questa impostazione non è una garanzia, e la vostra tastiera potrebbe ignorarla.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Questa impostazione non è una garanzia e la tua tastiera potrebbe ignorarla.</string>
   <string name="preferences_app_protection__blocked_users">Utenti bloccati</string>
   <string name="preferences_chats__when_using_mobile_data">Via rete cellulare</string>
   <string name="preferences_chats__when_using_wifi">Via Wi-Fi</string>
@@ -2524,7 +2525,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Clicca sull\'immagine del tuo profilo in alto a sinistra per aprire le Impostazioni</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Clicca su \"Conversazioni\"</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Clicca su \"Account\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Clicca \"Trasferisci account\" e poi \"Continua\" su entrambi i dispositivi</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2865,5 +2866,41 @@
   <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Più lento, più dati</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualità foto</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Invita i tuoi amici</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Account</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ti verrà chiesto meno frequentemente nel corso del tempo</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Richiedi il tuo PIN di Signal per registrare nuovamente il tuo numero di telefono con Signal</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastiera</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Spedisci premendo Invio</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Usa come app SMS predefinita</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Messaggi</string>
+  <string name="NotificationsSettingsFragment__calls">Chiamate</string>
+  <string name="NotificationsSettingsFragment__notify_when">Notificami quando…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Un contatto si unisce a Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Bloccati</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d contatti</string>
+  <string name="PrivacySettingsFragment__messaging">Messaggistica</string>
+  <string name="PrivacySettingsFragment__app_security">Sicurezza app</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blocca gli screenshot nell\'elenco delle app recenti e all\'interno dell\'app</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Messaggi e chiamate Signal, ritrasmetti sempre le chiamate e mittente sigillato</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostra icona di stato</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra un\'icona nei dettagli del messaggio quando sono stati consegnati utilizzando il mittente sigillato.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centro assistenza</string>
+  <string name="HelpSettingsFragment__contact_us">Contattaci</string>
+  <string name="HelpSettingsFragment__version">Versione</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termini &amp; Politica sulla privacy</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Distribuito con licenza GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Chiamate</string>
   <!--EOF-->
 </resources>

@@ -1955,7 +1955,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kui lugemiskinnitused on keelatud, siis pole sul võimalik teiste saadetud lugemiskinnitusi näha.</string>
   <string name="preferences__typing_indicators">Kirjutamisindikaatorid</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kui kirjutamisindikaatorid on keelatud, ei näe sa neid ka teiste puhul.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Nõua klaviatuurilt isikustatud õppimise keelamist. See säte ei garanteeri midagi ja klaviatuur võib seda eirata.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokeeritud kasutajad</string>
   <string name="preferences_chats__when_using_mobile_data">Kui kasutad mobiilandmesidet</string>
   <string name="preferences_chats__when_using_wifi">Kui kasutad Wi-Fit</string>
@@ -2441,7 +2440,6 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Sätete avamiseks klõpsa enda profiilifotol üleval vasakul</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Klõpsa \"Vestlused\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Klõpsa \"Konto ülekanne\" ja siis mõlemas seadmes \"Jätka\"</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2686,5 +2684,27 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Kõrge</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Konto</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Sisestusklahv saadab</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Kasuta vaikimisi SMS-rakendusena</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Sõnumid</string>
+  <string name="NotificationsSettingsFragment__calls">Kõned</string>
+  <string name="NotificationsSettingsFragment__notify_when">Teavita kui…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Blokeeritud</string>
+  <string name="PrivacySettingsFragment__messaging">Sõnumside</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Võta meiega ühendust</string>
+  <string name="HelpSettingsFragment__version">Versioon</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tingimused ja privaatsuspoliitika</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Kõned</string>
   <!--EOF-->
 </resources>
