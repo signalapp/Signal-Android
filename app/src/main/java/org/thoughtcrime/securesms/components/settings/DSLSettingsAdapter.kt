@@ -157,7 +157,7 @@ class ExternalLinkPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Ex
     val externalLinkIcon = requireNotNull(ContextCompat.getDrawable(context, R.drawable.ic_open_20))
     externalLinkIcon.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20))
 
-    if (itemView.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+    if (ViewUtil.isLtr(itemView)) {
       titleView.setCompoundDrawables(null, null, externalLinkIcon, null)
     } else {
       titleView.setCompoundDrawables(externalLinkIcon, null, null, null)

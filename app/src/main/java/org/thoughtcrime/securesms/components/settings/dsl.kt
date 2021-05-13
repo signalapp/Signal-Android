@@ -112,7 +112,7 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
     return when {
       title != null -> title == newItem.title
       summary != null -> summary == newItem.summary
-      else -> throw AssertionError("Could not determine equality.")
+      else -> throw AssertionError("Could not determine equality of $newItem. Did you forget to override this method?")
     }
   }
 

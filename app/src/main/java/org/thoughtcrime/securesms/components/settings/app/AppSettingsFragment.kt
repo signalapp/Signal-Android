@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -180,6 +179,10 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
   private class PaymentsPreference(val unreadCount: Int, val onClick: () -> Unit) : PreferenceModel<PaymentsPreference>() {
     override fun areContentsTheSame(newItem: PaymentsPreference): Boolean {
       return super.areContentsTheSame(newItem) && unreadCount == newItem.unreadCount
+    }
+
+    override fun areItemsTheSame(newItem: PaymentsPreference): Boolean {
+      return true
     }
   }
 
