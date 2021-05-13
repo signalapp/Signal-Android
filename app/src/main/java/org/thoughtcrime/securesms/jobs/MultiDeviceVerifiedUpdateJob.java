@@ -23,6 +23,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -125,6 +126,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     return exception instanceof PushNetworkException;
   }
 

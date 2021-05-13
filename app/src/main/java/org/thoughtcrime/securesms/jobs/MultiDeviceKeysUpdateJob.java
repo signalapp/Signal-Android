@@ -17,6 +17,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 
 import java.io.IOException;
@@ -67,6 +68,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
+    if (e instanceof ServerRejectedException) return false;
     return e instanceof PushNetworkException;
   }
 

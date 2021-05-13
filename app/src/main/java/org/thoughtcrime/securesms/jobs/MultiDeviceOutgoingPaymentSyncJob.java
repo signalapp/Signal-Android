@@ -19,6 +19,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -114,6 +115,7 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
+    if (e instanceof ServerRejectedException) return false;
     return e instanceof PushNetworkException;
   }
 

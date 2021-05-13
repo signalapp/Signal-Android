@@ -41,6 +41,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.ByteArrayInputStream;
@@ -244,6 +245,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     return exception instanceof PushNetworkException ||
            exception instanceof NetworkException;
   }
