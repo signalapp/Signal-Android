@@ -8,6 +8,7 @@ import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream

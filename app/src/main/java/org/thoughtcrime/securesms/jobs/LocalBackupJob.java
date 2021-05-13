@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.utilities.Data;
 import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.session.libsignal.utilities.logging.Log;

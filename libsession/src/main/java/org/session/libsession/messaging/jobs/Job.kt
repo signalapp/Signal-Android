@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.jobs
 
+import org.session.libsession.messaging.utilities.Data
+
 interface Job {
     var delegate: JobDelegate?
     var id: String?

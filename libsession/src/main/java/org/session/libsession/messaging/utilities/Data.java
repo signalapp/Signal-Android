@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.jobs;
+package org.session.libsession.messaging.utilities;
 
 import android.os.Parcelable;
 
@@ -12,11 +12,7 @@ import org.session.libsession.utilities.ParcelableUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-// Introduce a dedicated Map<String, byte[]> field specifically for parcelable needs.
 public class Data {
-
-    public static final Data EMPTY = new Data.Builder().build();
-
     @JsonProperty private final Map<String, String>    strings;
     @JsonProperty private final Map<String, String[]>  stringArrays;
     @JsonProperty private final Map<String, Integer>   integers;
@@ -31,20 +27,23 @@ public class Data {
     @JsonProperty private final Map<String, boolean[]> booleanArrays;
     @JsonProperty private final Map<String, byte[]>    byteArrays;
 
-    public Data(@JsonProperty("strings")       @NonNull Map<String, String>    strings,
-                @JsonProperty("stringArrays")  @NonNull Map<String, String[]>  stringArrays,
-                @JsonProperty("integers")      @NonNull Map<String, Integer>   integers,
-                @JsonProperty("integerArrays") @NonNull Map<String, int[]>     integerArrays,
-                @JsonProperty("longs")         @NonNull Map<String, Long>      longs,
-                @JsonProperty("longArrays")    @NonNull Map<String, long[]>    longArrays,
-                @JsonProperty("floats")        @NonNull Map<String, Float>     floats,
-                @JsonProperty("floatArrays")   @NonNull Map<String, float[]>   floatArrays,
-                @JsonProperty("doubles")       @NonNull Map<String, Double>    doubles,
-                @JsonProperty("doubleArrays")  @NonNull Map<String, double[]>  doubleArrays,
-                @JsonProperty("booleans")      @NonNull Map<String, Boolean>   booleans,
-                @JsonProperty("booleanArrays") @NonNull Map<String, boolean[]> booleanArrays,
-                @JsonProperty("byteArrays")    @NonNull Map<String, byte[]>    byteArrays)
-    {
+    public static final Data EMPTY = new Data.Builder().build();
+
+    public Data(
+            @JsonProperty("strings")       @NonNull Map<String, String>    strings,
+            @JsonProperty("stringArrays")  @NonNull Map<String, String[]>  stringArrays,
+            @JsonProperty("integers")      @NonNull Map<String, Integer>   integers,
+            @JsonProperty("integerArrays") @NonNull Map<String, int[]>     integerArrays,
+            @JsonProperty("longs")         @NonNull Map<String, Long>      longs,
+            @JsonProperty("longArrays")    @NonNull Map<String, long[]>    longArrays,
+            @JsonProperty("floats")        @NonNull Map<String, Float>     floats,
+            @JsonProperty("floatArrays")   @NonNull Map<String, float[]>   floatArrays,
+            @JsonProperty("doubles")       @NonNull Map<String, Double>    doubles,
+            @JsonProperty("doubleArrays")  @NonNull Map<String, double[]>  doubleArrays,
+            @JsonProperty("booleans")      @NonNull Map<String, Boolean>   booleans,
+            @JsonProperty("booleanArrays") @NonNull Map<String, boolean[]> booleanArrays,
+            @JsonProperty("byteArrays")    @NonNull Map<String, byte[]>    byteArrays
+    ) {
         this.strings       = strings;
         this.stringArrays  = stringArrays;
         this.integers      = integers;
@@ -75,6 +74,7 @@ public class Data {
     }
 
 
+
     public boolean hasStringArray(@NonNull String key) {
         return stringArrays.containsKey(key);
     }
@@ -100,6 +100,7 @@ public class Data {
     }
 
 
+
     public boolean hasIntegerArray(@NonNull String key) {
         return integerArrays.containsKey(key);
     }
@@ -108,6 +109,7 @@ public class Data {
         throwIfAbsent(integerArrays, key);
         return integerArrays.get(key);
     }
+
 
 
     public boolean hasLong(@NonNull String key) {
@@ -125,6 +127,7 @@ public class Data {
     }
 
 
+
     public boolean hasLongArray(@NonNull String key) {
         return longArrays.containsKey(key);
     }
@@ -133,6 +136,7 @@ public class Data {
         throwIfAbsent(longArrays, key);
         return longArrays.get(key);
     }
+
 
 
     public boolean hasFloat(@NonNull String key) {
@@ -150,6 +154,7 @@ public class Data {
     }
 
 
+
     public boolean hasFloatArray(@NonNull String key) {
         return floatArrays.containsKey(key);
     }
@@ -158,6 +163,7 @@ public class Data {
         throwIfAbsent(floatArrays, key);
         return floatArrays.get(key);
     }
+
 
 
     public boolean hasDouble(@NonNull String key) {
@@ -175,6 +181,7 @@ public class Data {
     }
 
 
+
     public boolean hasDoubleArray(@NonNull String key) {
         return floatArrays.containsKey(key);
     }
@@ -183,6 +190,7 @@ public class Data {
         throwIfAbsent(doubleArrays, key);
         return doubleArrays.get(key);
     }
+
 
 
     public boolean hasBoolean(@NonNull String key) {
@@ -200,6 +208,7 @@ public class Data {
     }
 
 
+
     public boolean hasBooleanArray(@NonNull String key) {
         return booleanArrays.containsKey(key);
     }
@@ -209,6 +218,8 @@ public class Data {
         return booleanArrays.get(key);
     }
 
+
+
     public boolean hasByteArray(@NonNull String key) {
         return byteArrays.containsKey(key);
     }
@@ -217,6 +228,8 @@ public class Data {
         throwIfAbsent(byteArrays, key);
         return byteArrays.get(key);
     }
+
+
 
     public boolean hasParcelable(@NonNull String key) {
         return byteArrays.containsKey(key);
@@ -228,6 +241,8 @@ public class Data {
         return ParcelableUtil.unmarshall(bytes, creator);
     }
 
+
+
     private void throwIfAbsent(@NonNull Map map, @NonNull String key) {
         if (!map.containsKey(key)) {
             throw new IllegalStateException("Tried to retrieve a value with key '" + key + "', but it wasn't present.");
@@ -236,7 +251,6 @@ public class Data {
 
 
     public static class Builder {
-
         private final Map<String, String>    strings       = new HashMap<>();
         private final Map<String, String[]>  stringArrays  = new HashMap<>();
         private final Map<String, Integer>   integers      = new HashMap<>();
@@ -323,19 +337,21 @@ public class Data {
         }
 
         public Data build() {
-            return new Data(strings,
-                    stringArrays,
-                    integers,
-                    integerArrays,
-                    longs,
-                    longArrays,
-                    floats,
-                    floatArrays,
-                    doubles,
-                    doubleArrays,
-                    booleans,
-                    booleanArrays,
-                    byteArrays);
+            return new Data(
+                strings,
+                stringArrays,
+                integers,
+                integerArrays,
+                longs,
+                longArrays,
+                floats,
+                floatArrays,
+                doubles,
+                doubleArrays,
+                booleans,
+                booleanArrays,
+                byteArrays
+            );
         }
     }
 
@@ -344,4 +360,3 @@ public class Data {
         @NonNull Data deserialize(@NonNull String serialized);
     }
 }
-

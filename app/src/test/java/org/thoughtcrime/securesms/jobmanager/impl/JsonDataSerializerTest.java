@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
 import org.junit.Test;
-import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.utilities.Data;
 import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
