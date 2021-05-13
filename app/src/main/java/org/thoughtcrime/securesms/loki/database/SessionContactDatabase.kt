@@ -64,6 +64,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         contentValues.put(threadID, threadID)
         contentValues.put(isTrusted, if (contact.isTrusted) 1 else 0)
         database.insertOrUpdate(sessionContactTable, contentValues, "$sessionID = ?", arrayOf(contact.sessionID))
+        notifyConversationListListeners()
     }
 
     private fun contactFromCursor(cursor: Cursor): Contact {
