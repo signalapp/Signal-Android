@@ -1,14 +1,17 @@
 package org.thoughtcrime.securesms.loki.dialogs
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
+import android.text.InputType
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
 import kotlinx.android.synthetic.main.view_conversation.view.*
@@ -38,15 +41,18 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             nameTextViewContainer.visibility = View.INVISIBLE
             nameEditContainer.visibility = View.VISIBLE
             nameEditText.requestFocus()
+            showSoftKeyboard()
         }
         btnCancelNickNameEdit.setOnClickListener {
             nameEditText.clearFocus()
+            hideSoftKeyboard()
             nameTextViewContainer.visibility = View.VISIBLE
             nameEditContainer.visibility = View.INVISIBLE
             nameEditText.text = null
         }
         btnSaveNickNameEdit.setOnClickListener {
             nameEditText.clearFocus()
+            hideSoftKeyboard()
             nameTextViewContainer.visibility = View.VISIBLE
             nameEditContainer.visibility = View.INVISIBLE
             var newNickName: String? = null
@@ -64,5 +70,16 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             clipboard.setPrimaryClip(clip)
             Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    @SuppressLint("ServiceCast")
+    fun showSoftKeyboard() {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.showSoftInput(nameEditText, 0)
+    }
+
+    fun hideSoftKeyboard() {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(nameEditText.windowToken, 0)
     }
 }
