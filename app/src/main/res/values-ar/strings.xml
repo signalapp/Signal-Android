@@ -2227,7 +2227,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتِ بإلغاء تفعيل وصل قراءة الرسائل، فلن يمكنك كذلك رؤية وصل بأنّ الآخرين قاموا بقراءة  رسائلك.</string>
   <string name="preferences__typing_indicators">مؤشرات الطباعة</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اذا تم الغاء تفعيل المؤشر على الطباعة، فلن يمكنك كذلك رؤية مؤشر عند قيام الآخرين بالطّباعة.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">الطلب من لوحة المفاتيح تعطيل التعلم المخصص. إن هذا اﻹجراء ليس مضمونا، فقد تتجاهله لوحة مفاتيحك.</string> -->
   <string name="preferences_app_protection__blocked_users">المستخدمون المحظورون</string>
   <string name="preferences_chats__when_using_mobile_data">عند استخدام بيانات الجوّال</string>
   <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
@@ -2915,5 +2914,27 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">بالغ الأهميّة </string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">الحِساب</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">مفتاح الدخول يقوم بالإرسال</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">الاستخدام كالتطبيق الافتراضي لرسائل SMS</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">الرسائل</string>
+  <string name="NotificationsSettingsFragment__calls">المكالمات</string>
+  <string name="NotificationsSettingsFragment__notify_when">اخطِرني مَتَى مَا…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">محظورة</string>
+  <string name="PrivacySettingsFragment__messaging">التراسُل</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث  </string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">تواصل معنا</string>
+  <string name="HelpSettingsFragment__version">اﻹصدار</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط  &amp; وسياسة الخصوصية</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">المكالمات</string>
   <!--EOF-->
 </resources>

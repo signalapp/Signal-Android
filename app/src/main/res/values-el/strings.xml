@@ -1951,7 +1951,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Αν τα αποδεικτικά ανάγνωσης είναι απενεργοποιημένα, δε θα μπορείς να δεις αποδεικτικά ανάγνωσης από άλλους/ες.</string>
   <string name="preferences__typing_indicators">Δείκτες πληκτρολόγησης</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Αν οι δείκτες πληκτρολόγησης είναι απενεργοποιημένοι, δε θα μπορείς να δεις δείκτες πληκτρολόγησης από άλλους/ες.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Ζήτα από το πληκτρολόγιο να απενεργοποιήσει την προσωποποιημένη εκμάθηση. Αυτή η επιλογή δεν είναι εγγυημένη, το πληκτρολόγιό σου μπορεί να την αγνοήσει.</string> -->
   <string name="preferences_app_protection__blocked_users">Φραγμένοι χρήστες/τριες</string>
   <string name="preferences_chats__when_using_mobile_data">Όταν χρησιμοποιούνται δεδομένα</string>
   <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται WiFi</string>
@@ -2432,7 +2431,6 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Πάτα στη φωτογραφία προφίλ σου πάνω αριστερά για να ανοίξεις τις Ρυθμίσεις</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Πάτα στις \"Συνομιλίες\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Πάτα \"Μεταφορά λογαριασμού\" και μετά \"Συνέχεια\" και στις δύο συσκευές</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2715,5 +2713,27 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Υψηλή</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Λογαριασμός</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Το Enter στέλνει</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Χρήση ως προκαθορισμένη εφαρμογή για τα SMS</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Μηνύματα</string>
+  <string name="NotificationsSettingsFragment__calls">Κλήσεις</string>
+  <string name="NotificationsSettingsFragment__notify_when">Να ειδοποιούμαι όταν…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Λίστα Φραγής</string>
+  <string name="PrivacySettingsFragment__messaging">Συνομιλίες</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Επικοινώνησε μαζί μας</string>
+  <string name="HelpSettingsFragment__version">Έκδοση</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Όροι &amp; Πολιτική Απορρήτου</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Κλήσεις</string>
   <!--EOF-->
 </resources>

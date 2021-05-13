@@ -2403,5 +2403,24 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Bilind</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Bişkoka \"Enter\"ê dişîne</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Wek bernameya SMSê ya jixweber bi kar bîne.</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Peyam</string>
+  <string name="NotificationsSettingsFragment__calls">Gerîn</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Yên Astengkirî</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Di lîsteya sepanên dawîn de û di nav sepanê de girtina wêneyê ekranê asteng bike</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Bi me re têkeve têkiliyê</string>
+  <string name="HelpSettingsFragment__version">Guherto</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Merc û Polîtîkaya Nihêniyê</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Gerîn</string>
   <!--EOF-->
 </resources>

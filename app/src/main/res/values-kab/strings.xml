@@ -1947,7 +1947,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ma yella iɣerwaḍen n tɣuri nsan, ur tettizmireḍ ara ad twaliḍ iɣerwaḍen n tɣuri sɣur wiyaḍ.</string>
   <string name="preferences__typing_indicators">Inammalen n tira</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ma yella inammalen n tira nsan, ur tettizmireḍ ara ad twaliḍ inammalen n tira sɣur wiyaḍ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Suter anasiw i wakken ad tsenseḍ taɣuri tudmawant. Aɣewwar-a ur yettwaḍman ara, anasiw-ik·im yezmer ad t-yezgel.</string> -->
   <string name="preferences_app_protection__blocked_users">Iseqdacen yettusweḥlen</string>
   <string name="preferences_chats__when_using_mobile_data">Deg useqdec n yisefka n uziraz</string>
   <string name="preferences_chats__when_using_wifi">Ticki tseqdaceḍ Wi-Fi</string>
@@ -2671,5 +2670,25 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Meqqer</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Amiḍan</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Sekcem tasarut yuzen</string>
+  <!--SmsSettingsFragment-->
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Iznan</string>
+  <string name="NotificationsSettingsFragment__calls">Isawalen</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Yewḥel</string>
+  <string name="PrivacySettingsFragment__messaging">Armas</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Sewḥel tuṭṭfiwin n ugdil deg tebdart n melmi kan akked n usnas</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Nermes-aɣ-d</string>
+  <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tiwtilin &amp; Tsertit n Tbaḍnit</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Isawalen</string>
   <!--EOF-->
 </resources>

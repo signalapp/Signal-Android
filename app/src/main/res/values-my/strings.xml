@@ -1882,7 +1882,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>
   <string name="preferences__typing_indicators">စာရိုက်ညွှန်ကိန်းများ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">စာရိုက်ညွှန်ကိန်းများကို ပိတ်ထားပါက အခြားသူများမှ စာရိုက်ညွှန်းကိန်းများကို သင်မမြင်နိုင်ပါ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">ကိုယ်ပိုင်လေ့လာမှုကို ပိတ်ထားရန် ကီးဘုတ်သို့ တောင်းခံပါ။ ဤချိန်ညှိချက်သည် အာမခံချက်မဟုတ်ပါ၊ သင်၏ ကီးဘုတ်သည် ၎င်းကို လျစ်လျူရှုနိုင်လိမ့်မည်။</string> -->
   <string name="preferences_app_protection__blocked_users">ပိတ်ထားသောအသုံးပြုသူများ</string>
   <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ </string>
   <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ </string>
@@ -2415,7 +2414,6 @@
   <string name="NewDeviceTransferInstructions__first_bullet">၁။</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ထိပ်ဘယ်ဘက်၌ရှိသော သင့်ပရိုဖိုင်းပုံပေါ်အား နှိပ်၍ အပြင်အဆင်သို့သွားနိုင်ပါသည်</string>
   <string name="NewDeviceTransferInstructions__second_bullet">၂။</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">\"ချက်တင်များ\" ပေါ်သို့ နှိပ်ပါ</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">၃။</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"အကောင့်လွှဲမယ်\" ပေါ်သို့ နှိပ်၍ စက် ၂ ခုလုံးပေါ်တွင် \"ဆက်လက်ရန်\" ဆက်နှိပ်ပါ</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2749,5 +2747,27 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">မြင့်သော</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">အကောင့်</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">ထည့်ထားတဲ့ ကီးပို့ပါ</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">ပုံသေ SMS app အဖြစ် သုံးပါ။</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">မက်ဆေ့ချ်များ</string>
+  <string name="NotificationsSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
+  <string name="NotificationsSettingsFragment__notify_when">ဖြစ်ခဲ့လျှင် အသိပေးပါ…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">ပိတ်ပယ်ထားသည်</string>
+  <string name="PrivacySettingsFragment__messaging">မက်ဆေ့ချ်ပေးပို့ခြင်း</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">မကြာသေးမီ စာရင်းနှင့် app အတွင်း Screenshot များကို တားမြစ်ပါ</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
+  <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <!--EOF-->
 </resources>

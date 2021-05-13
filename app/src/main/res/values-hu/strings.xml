@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Emlékeztető elrejtése?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Fizetési helyreállítási mondat rögzítése</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Mondat rögzítése</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Mielőtt letiltod a PIN kódod, rögzítened kell egy fizetés helyreállítási mondatot, hogy biztosítsd a fizetési fiókod helyreállítását.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Mielőtt letiltod a PIN kódod, rögzítened kell egy fizetés-helyreállítási mondatot, hogy biztosítsd a fizetési fiókod helyreállíthatóságát.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d perc</item>
@@ -195,7 +195,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">A címzett nem egy érvényes SMS vagy email cím!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Üres az üzenet!</string>
   <string name="ConversationActivity_group_members">Csoporttagok</string>
-  <string name="ConversationActivity__tap_here_to_start_a_group_call">Csoporthívás indítás itt</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Koppints ide csoporthívás indításához</string>
   <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
   <string name="ConversationActivity_added_to_home_screen">Hozzáadva a kezdőképernyőhöz</string>
   <string name="ConversationActivity_calls_not_supported">A hívások nem támogatottak</string>
@@ -1521,7 +1521,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
-  <string name="SingleRecipientNotificationBuilder_message_request">Üzenet kérelem</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Felkérés csevegésre</string>
   <string name="SingleRecipientNotificationBuilder_you">Te</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Videó lejátszása</string>
@@ -1628,9 +1628,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_return_to_call">Vissza a híváshoz</string>
   <string name="ConversationUpdateItem_call_is_full">A hívás betelt</string>
   <string name="ConversationUpdateItem_invite_friends">Barátok meghívása</string>
-  <string name="ConversationUpdateItem_enable_call_notifications">Hívás értesítések engedélyezése</string>
-  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmeket óvatosan tekintsd át.</string>
-  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs kapcsolatod ebben a csoportban. A kérelmeket óvatosan tekintsd át.</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Hívás-értesítések engedélyezése</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nincs közös csoportotok. A kérelmek áttekintése során légy óvatos.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nincs ismerősöd ebben a csoportban. A kérelmek áttekintése során légy óvatos.</string>
   <string name="ConversationUpdateItem_view">Megtekintés</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lejátszás … Szünet</string>
@@ -1656,17 +1656,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="safety_number_change_dialog__view">Megtekintés</string>
   <string name="safety_number_change_dialog__previous_verified">Korábban megerősítve</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
-  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Hívás értesítések engedélyezve</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Hívás értesítések engedélyezése</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Háttér aktívitás engedélyezése</string>
-  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Most minden jónak tűnik!</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">A hívás értesítésekért érintsd meg itt, és kapcsold be az \"Értesítések megjelenítését\".</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">A hívás értesítésekért érintsd meg itt, és kapcsold be az az értesítéseket és ellenőrizd, hogy a Hang és az Előugró ablak engedélyezett-e.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">A hívás értesítésekért érintsd meg itt, és engedélyezd a háttér aktivitást az \"Akkumulátor\" beállításoknál. </string>
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Hívás-értesítések engedélyezve</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Hívás-értesítések engedélyezése</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Háttértevékenységek engedélyezése</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Úgy tűnik, minden rendben van!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">A hívás-értesítések fogadásához koppints ide, és kapcsold be az \"Értesítések megjelenítése\" beállítást.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">A hívás-értesítések fogadásához koppints ide, és kapcsold be az az értesítéseket, és győződj meg róla, hogy a Hang és az Előugró ablak engedélyezve lett.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">A hívás-értesítések engedélyezéséhez koppints ide, és engedélyezd a háttértevékenységeket az \"Akkumulátor\" beállításoknál. </string>
   <string name="EnableCallNotificationSettingsDialog__settings">Beállítások</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">A hívás értesítésekért érintsd meg a Beállításokat, és kapcsold be az \"Értesítések megjelenítését\".</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">A hívás értesítésekért érintsd meg a Beállításokat, és kapcsold be az \"Értesítések megjelenítését\" és ellenőrizd, hogy a Hang és Előugró ablakok engedélyezettek.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">A hívás értesítésekért érintsd meg a Beállításokat, és engedélyezd a háttér aktivitást az \"Akkumulátor\" beállításoknál. </string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">A hívás-értesítések engedélyezéséhez koppints a Beállítások menüpontra, és kapcsold be az \"Értesítések megjelenítése\" beállítást.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">A hívás-értesítések engedélyezéséhez koppints a Beállítások menüpontra, és győződj meg róla, hogy a Hang és Előugró ablakok engedélyezve vannak.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">A hívás-értesítések engedélyezéséhez koppints a Beállítások menüpontra, és engedélyezd a háttértevékenységeket az \"Akkumulátor\" beállításoknál. </string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Országok betöltése…</string>
   <string name="country_selection_fragment__search">Keresés</string>
@@ -1787,7 +1787,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy telefonszámot</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás sértetlenségét %s nevű partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot telefonja kijelzőjéről, illetve te is megkérheted őt, hogy ő szkennelje be a te kódodat. <a href="https://signal.org/redirect/safety-numbers">További információ</a>]]></string>
-  <string name="verify_display_fragment__tap_to_scan">Kopp a szkenneléshez</string>
+  <string name="verify_display_fragment__tap_to_scan">Koppints a szkenneléshez</string>
   <string name="verify_display_fragment__loading">Betöltés…</string>
   <string name="verify_display_fragment__verified">Megerősítve</string>
   <!--verify_identity-->
@@ -1835,7 +1835,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__include_debug_log">Hibakeresési napló csatolása</string>
   <string name="HelpFragment__whats_this">Mi ez?</string>
   <string name="HelpFragment__how_do_you_feel">Hogy érzed magad? (opcionális)</string>
-  <string name="HelpFragment__tell_us_why_youre_reaching_out">Mond el nekünk, miért keresel minket</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Mondd el nekünk, miért keresel minket!</string>
   <string name="HelpFragment__support_info">Támogatás információ</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android támogatási kérés</string>
   <string name="HelpFragment__debug_log">Hibakeresési napló:</string>
@@ -1986,7 +1986,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.</string>
   <string name="preferences__typing_indicators">Gépelés-indikátorok</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ha a gépelés-indikátorod ki van kapcsolva, te sem fogsz értesülni róla, ha mások épp gépelnek.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása). Ennek a beállításnak a használata nem garantálja, hogy a billentyűzet figyelembe is veszi ezt a kérést.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása)</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Nem lehet garantálni, hogy a billentyűzet figyelembe fogja venni ezt a beállítást.</string>
   <string name="preferences_app_protection__blocked_users">Letiltott felhasználók</string>
   <string name="preferences_chats__when_using_mobile_data">Mobilinternet használata során</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi használata során</string>
@@ -2071,50 +2072,50 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentsAllActivityFragment__sent">Elküldve</string>
   <string name="PaymentsAllActivityFragment__received">Beérkezett</string>
   <string name="PaymentsHomeFragment__introducing_payments">Bemutatkozik a Fizetések (Béta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Használd a Signalt, hogy küldj és fogadj MobileCoint, egy új adatvédelmi fókuszú digitális pénznemet. Aktiváld a kezdéshez.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Küldj és fogadj MobileCoint a Signal használatával. A MobileCoin egy új, adatvédelemre fókuszáló digitális pénznem. Aktiváld, hogy kipróbálhasd!</string>
   <string name="PaymentsHomeFragment__activate_payments">Fizetések aktiválása</string>
   <string name="PaymentsHomeFragment__activating_payments">Fizetések aktiválása…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Fizetési fiók helyreállítása</string>
-  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nem volt még aktivitás.</string>
-  <string name="PaymentsHomeFragment__pending_requests">Kérések folyamatban</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nem történt még aktivitás.</string>
+  <string name="PaymentsHomeFragment__pending_requests">Folyamatban lévő kérések</string>
   <string name="PaymentsHomeFragment__recent_activity">Legutóbbi aktivitás</string>
   <string name="PaymentsHomeFragment__see_all">Összes megtekintése</string>
-  <string name="PaymentsHomeFragment__add_funds">Alaptőke hozzáadása</string>
+  <string name="PaymentsHomeFragment__add_funds">Feltöltés</string>
   <string name="PaymentsHomeFragment__send">Küldés</string>
-  <string name="PaymentsHomeFragment__sent_s">Küldött %1$s</string>
+  <string name="PaymentsHomeFragment__sent_s">Küldve %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Beérkezett %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Átutalás a tőzsdére</string>
   <string name="PaymentsHomeFragment__currency_conversion">Pénznem konverzió</string>
-  <string name="PaymentsHomeFragment__deactivate_payments">Fizetések deaktiválása</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Fizetések kikapcsolása</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Helyreállítási mondat</string>
   <string name="PaymentsHomeFragment__help">Súgó</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Coin rendberakás díj</string>
   <string name="PaymentsHomeFragment__sent_payment">Fizetés küldése</string>
-  <string name="PaymentsHomeFragment__received_payment">Érkezett fizetés</string>
+  <string name="PaymentsHomeFragment__received_payment">Beérkezett fizetés</string>
   <string name="PaymentsHomeFragment__processing_payment">Fizetés feldolgozása</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
-  <string name="PaymentsHomeFragment__currency_conversion_not_available">Pénznem konverzió nem elérhető</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Sikertelen a pénznem váltás megjelenítése. Ellenőriz a telefonod kapcsolatát és próbáld újra.</string>
-  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">A Fizetések nem elérhetők a régiódban.</string>
-  <string name="PaymentsHomeFragment__could_not_enable_payments">Sikertelen a fizetések engedélyezése. Próbáld újra később.</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">Fizetések deaktiválása?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Többé nem tudsz küldeni vagy fogadni Mobilecoin fizetéseket, ha deaktiválod a fizetéseket.</string>
-  <string name="PaymentsHomeFragment__deactivate">Deaktiválás</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">A devizaátváltás nem érhető el</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Sikertelen a devizaváltó megjelenítése. Ellenőrizd a telefonod kapcsolatát, majd próbáld újra!</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">A Fizetések nem érhető el a régiódban.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Sikertelen a fizetések engedélyezése. Próbáld újra később!</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Kikapcsolod a Fizetéseket?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Ha kikapcsolod a fizetéseket, akkor nem fogsz tudsz a későbbiekben MobileCoint küldeni vagy fogadni.</string>
+  <string name="PaymentsHomeFragment__deactivate">Kikapcsolás</string>
   <string name="PaymentsHomeFragment__continue">Folytatás</string>
-  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Az egyenleg jelenleg nem elérhető.</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">Fizetések deaktiválva.</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Az egyenleg jelenleg nem érhető el.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Fizetések kikapcsolva.</string>
   <string name="PaymentsHomeFragment__payment_failed">Fizetés sikertelen</string>
   <string name="PaymentsHomeFragment__details">Részletek</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Használhatod a Signalt MobileCoin küldésére és fogadását. Minden fizetést a MobileCoins és a MobileCoin Wallet szolgáltatási feltételek szabályoznak. Ez béta funkció, így előfordulhat, hogy hibákkal találkozol, az elveszett izetések és egyenlegek nem helyreállíthatók.</string>
-  <string name="PaymentsHomeFragment__activate">Aktiválás</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">A Signal használatával lehetőséged van MobileCoint küldeni és fogadni. Minden fizetésre a MobileCoins és a MobileCoin Wallet szolgáltatási feltételei vonatkoznak. Ez egy béta szolgáltatás, így előfordulhat, hogy hibákba futsz. Az elveszett fizetéseket és egyenlegeket nem lehet helyreállítani.</string>
+  <string name="PaymentsHomeFragment__activate">Bekapcsolás</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin feltételek megtekintése</string>
-  <string name="PaymentsHomeFragment__payments_not_available">A Fizetések a Signal-ban a továbbiakban nem elérhető. Átviheted az egyenleged egy tőzsdére, de a továbbiakban már nem tudsz küldeni vagy fogadni fizetéseket vagy feltölteni az egyenleged.</string>
+  <string name="PaymentsHomeFragment__payments_not_available">A továbbiakban nem érhető el a Fizetések a Signal-ban. Az egyenlegedet továbbra is átutalhatod egy tőzsdére, de a továbbiakban már nem fogsz tudni pénzt küldeni vagy fogadni, sem pedig feltölteni az egyenlegedet.</string>
   <!--PaymentsAddMoneyFragment-->
-  <string name="PaymentsAddMoneyFragment__add_funds">Alaptőke hozzáadása</string>
+  <string name="PaymentsAddMoneyFragment__add_funds">Feltöltés</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">A tárcád címe</string>
   <string name="PaymentsAddMoneyFragment__copy">Másolás</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Vágólapra másolva</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Az alaptőke hozzáadásához küldj MobileCoin-t a tárca címedre. A tranzakciót indítsd egy tőzsdei fiókodról, ami támogatja a MobileCoin-t, azután olvass le a a QR kódot vagy másold be a tárca címedet</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">A feltöltéshez küldj MobileCoint a tárcád címére. A tranzakciót egy olyan tőzsdei fiókról indítsd, amely támogatja a MobileCoint. A címzett megadásához olvasd le a QR kódot, vagy másold be a tárcád címét!</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Részletek</string>
   <string name="PaymentsDetailsFragment__status">Státusz</string>
@@ -2124,38 +2125,38 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentsDetailsFragment__payment_failed">Fizetés sikertelen</string>
   <string name="PaymentsDetailsFragment__network_fee">Hálózati díj</string>
   <string name="PaymentsDetailsFragment__sent_by">Küldte</string>
-  <string name="PaymentsDetailsFragment__sent_to_s">Küldted neki: %1$s</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Címzett: %1$s</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">Te %1$s napján %2$s időpontban</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s napján %3$s időpontban</string>
   <string name="PaymentsDetailsFragment__to">Címzett</string>
   <string name="PaymentsDetailsFragment__from">Feladó</string>
   <string name="PaymentsDetailsFragment__information">A tranzakció részletei, beleértve a fizetési összeget és a tranzakció idejét, a MobileCoin Ledger részét képezik.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin rendberakás díj</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin rendbetételi díj ” akkor kerül felszámolásra, ha a birtokodban lévő coinok nem kombinálhatók egy tranzakció teljesítéséhez. A rendbetétel lehetővé teszi, hogy folytasd a fizetések küldését.</string>
-  <string name="PaymentsDetailsFragment__no_details_available">Nincsennek további részletek ehhez a tranzakcióhoz</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin rendberakás díja” akkor kerül felszámolásra, ha a birtokodban lévő coinok nem kombinálhatók egy tranzakció teljesítéséhez. A rendbetétel lehetővé teszi, hogy folytasd a fizetések beküldését.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Nem érhetőek el további részletek ehhez a tranzakcióhoz</string>
   <string name="PaymentsDetailsFragment__sent_payment">Fizetés küldése</string>
-  <string name="PaymentsDetailsFragment__received_payment">Érkezett fizetés</string>
+  <string name="PaymentsDetailsFragment__received_payment">Beérkezett fizetés</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Fizetés teljesült %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">Blokk szám</string>
   <!--PaymentsTransferFragment-->
-  <string name="PaymentsTransferFragment__transfer">Átvitel</string>
+  <string name="PaymentsTransferFragment__transfer">Átutalás</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR kód beolvasása</string>
-  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Címzett: Olvas le, vagy adj meg egy tárca címet</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Átutalhatod MobileCoint a fizetés befejezésével a tárca címre, amit a tőzsde biztosított. A tárca cím egy szöveg számokkal és betűkkel, többnyire a QR kód alatt.</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Címzett: Olvass le, vagy adj meg egy tárca címet</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin átutalásához hajts végre egy tranzakciót a tőzsde által megadott tárca-cím használatával. A tárca címe egy számokat és betűket tartalmazó szöveg, amely többnyire a QR kód alatt helyezkedik el.</string>
   <string name="PaymentsTransferFragment__next">Tovább</string>
   <string name="PaymentsTransferFragment__invalid_address">Érvénytelen cím</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">Ellenőrizd a tárca címet amire küldeni szeretnél és próbáld újra.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Nem utalhatsz a saját Signal tárca címedre. Add meg a tárca címét a fiókodnak a támogatott tőzsdén.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Egy QR kód beolvasásához a Signal-nak szükség van a kamerához hozzáférésre.</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">A Signal-nak szüksége van Kamera hozzáférésre a QR kód beolvasásához. Menj a beállításokba és válasz az \"Engedélyek\"-et és engedélyezd a \"Kamerá\"-t.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Egy QR kód beolvasásához a Signal-nak szükség van a kamerához hozzáférésre.</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Ellenőrizd a címzett tárcájának címét, majd próbáld újra!</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Nem utalhatsz a saját Signal tárcád címére. Add meg egy támogatott tőzsdéhez tartozó tárca címét!</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR kód beolvasásához a Signal-nak szüksége van kamera-hozzáférésre.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">A Signal-nak Kamera hozzáférésre van szüksége QR kódok beolvasásához. Nyisd meg a beállításokokat, válaszd ki az \"Engedélyek\" menüpontot, majd engedélyezd a \"Kamera\" hozzáférést!</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR kód beolvasásához engedélyezned kell, hogy a Signal hozzáférhessen kamerádhoz.</string>
   <string name="PaymentsTransferFragment__settings">Beállítások</string>
   <!--PaymentsTransferQrScanFragment-->
-  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Cím QR kód beolvasása</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Olvasd be a QR kódját a kedvezményezettnek</string>
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Címet tartalmazó QR kód beolvasása</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Olvasd be a kedvezményezett QR kódját</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Kérés</string>
-  <string name="CreatePaymentFragment__pay">Fizet</string>
+  <string name="CreatePaymentFragment__pay">Fizetés</string>
   <string name="CreatePaymentFragment__available_balance_s">Elérhető egyenleg: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">Váltás</string>
   <string name="CreatePaymentFragment__1">1</string>
@@ -2172,13 +2173,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Visszatörlés</string>
   <string name="CreatePaymentFragment__add_note">Megjegyzés hozzáadása</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">A pénznem váltás csak becslés és elképzelhető, hogy nem pontos.</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">A konverzió adatai becslésen alapulnak, ezért előfordulhat, hogy nem pontosak.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Megjegyzés</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Fizetés megerősítése</string>
   <string name="ConfirmPayment__network_fee">Hálózati díj</string>
-  <string name="ConfirmPayment__error_getting_fee">Hiba a díj megkapásakor</string>
+  <string name="ConfirmPayment__error_getting_fee">Hiba a díj betöltésekor</string>
   <string name="ConfirmPayment__estimated_s">Becsült %1$s</string>
   <string name="ConfirmPayment__to">Címzett</string>
   <string name="ConfirmPayment__total_amount">Teljes összeg</string>
@@ -2190,12 +2191,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConfirmPayment__payment_will_continue_processing">A fizetés folytatódik</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Érvénytelen címzett</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ez a személy nem aktiválta a fizetéseket.</string>
-  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Sikertelen a hálózati díj beszerzése. A fizetés folytatásához érintsd meg az okét és próbáld újra.</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Sikertelen a hálózati díj betöltése. A fizetés folytatásához koppints az OK-ra, majd próbáld újra.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s %2$s áron</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">Pénznem beállítása</string>
-  <string name="SetCurrencyFragment__all_currencies">Minden pénznem</string>
+  <string name="SetCurrencyFragment__all_currencies">Összes pénznem</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2510,100 +2511,100 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RegistrationActivity_error_connecting_to_service">Hiba történt a szolgáltatáshoz történő csatlakozás során</string>
   <string name="preferences_chats__backups">Biztonsági mentések</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal zárolva</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">ÉRINTS A FELOLDÁSHOZ</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">KOPPINTS A FELOLDÁSHOZ</string>
   <string name="Recipient_unknown">Ismeretlen</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Fiók átvitele vagy helyreállítása</string>
-  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ha korábban regisztráltál Signal fiókot, átviheted vagy helyreállíthatod a fiókod és az üzeneteid</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ha korábban regisztráltál Signal fiókot, átviheted vagy helyreállíthatod fiókodat és az üzeneteidet</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Átvitel Android eszközről</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">A fiókod és az üzeneteid átvitele  a régi Android eszközödről. Hozzá kell férned a régi eszközödhöz.</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">A fiókod és az üzeneteid átvitele régi Android eszközödről. Ehhez hozzá kell férned a régi eszközödhöz.</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Hozzá kell férned a régi eszközödhöz.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Visszaállítás biztonsági mentésből</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Az üzeneteid helyreállítása egy helyi mentésből. Ha nem állítod helyre őket most, később nem lesz rá lehetőséged.</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Üzeneteid helyreállítása egy helyi mentésből. Ha nem állítod őket helyre most, akkor később már nem lesz rá lehetőséged.</string>
   <!--NewDeviceTransferInstructionsFragment-->
-  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Nyisd meg a Signal-t a régi Android telefonodon</string>
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Nyisd meg a Signalt régi Android készülékeden!</string>
   <string name="NewDeviceTransferInstructions__continue">Folytatás</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Érintsd meg a profil fotódat baloldalt felül a Beállítások megnyitásához.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Koppints a profilképedre bal-felül a Beállítások megnyitásához.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Érintsd meg a \"Csevegések\"-et</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Koppints a \"Fiók\"-ra</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Érintsd meg az  \"Átvitel Andorid eszközről\" majd a \"Folytatás\" opciókat mindkét eszközön.</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Előkészülés a régi Android eszközhöz csatlakozáshoz…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Kis türelmet, hamarosan készen van</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Várakozás a régi Android eszközre a csatlakozáshoz…</string>
-  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">A Signal-nak szüksége van hely engedélyekre, hogy megtalálja és csatlakozzon a régi Android eszközödhöz.</string>
-  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">A Signal-nak szüksége van hely szolgáltatások engedélyezésére, hogy megtalálja és csatlakozzon a régi Android eszközödhöz.</string>
-  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">A Signal-nak szüksége Wi-Fi-re, hogy megtalálja és csatlakozzon a régi Android eszközödhöz. A Wi-Finek be kell kapcsolva lennie, de nem kell csatlakozni bármilyen Wi-Fi hálózathoz.</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sajnáljuk, de úgy tűnik, hogy ez az eszköz nem támogatja a Wi-Fi Direct-et. A Signal Wi-Fi Direct-et használ, hogy megtalálja és csatlakozzon a régi Android eszközödhöz. Még mindig helyreállíthatsz egy fiókot, hogy helyreállítsd a fiókod a régi Android eszközödről.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">A Signal-nak szüksége van hely engedélyekre, hogy felderíthesse és csatlakozhasson régi Android eszközödhöz.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">A Signal-nak szüksége van hely szolgáltatások engedélyezésére, hogy felderíthesse és csatlakozhasson régi Android eszközödhöz.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">A Signal-nak szüksége Wi-Fi-re, hogy felderíthesse és csatlakozhasson régi Android eszközödhöz. A Wi-Finek bekapcsolva kell lennie, de nem muszáj csatlakozva lennie.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sajnáljuk, de úgy tűnik, hogy ez az eszköz nem támogatja a Wi-Fi Directet. A Signal Wi-Fi Directet használ, hogy felderítse és csatlakozzon régi Android eszközödhöz. Továbbra is használhatod a biztonsági mentés által létrehozott fájlokat, hogy a fiókodat áthozd régi Android eszközödről.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Biztonsági mentés visszaállítása</string>
-  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt a csatlakozási próbálkozás során a régi Android eszközödhöz.</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt a régi Android eszközödhöz történő csatlakozás során.</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Az új Android eszközöd keresése…</string>
-  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">A Signal-nak szüksége van hely engedélyekre, hogy megtalálja és csatlakozzon az új Android eszközödhöz.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">A Signal-nak szüksége van hely szolgáltatások engedélyezésére, hogy megtalálja és csatlakozzon az új  Android eszközödhöz.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">A Signal-nak szüksége Wi-Fi-re, hogy megtalálja és csatlakozzon az új Android eszközödhöz. A Wi-Finek be kell kapcsolva lennie, de nem kell csatlakozni bármilyen Wi-Fi hálózathoz.</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sajnáljuk, de úgy tűnik, hogy ez az eszköz nem támogatja a Wi-Fi Direct-et. A Signal Wi-Fi Direct-et használ, hogy megtalálja és csatlakozzon az új Android eszközödhöz. Még mindig készthetsz egy mentést, hogy helyreállítsd a fiókod a az új Android eszközödre.</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Az új Android eszköz keresése…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">A Signal-nak helymeghatározás engedélyre van szüksége, hogy felderíthesse és csatlakozhasson új Android eszközödhöz.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">A Signal-nak helymeghatározás engedélyre van szüksége, hogy felderíthesse és csatlakozhasson új  Android eszközödhöz.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">A Signal-nak Wi-Fi-re van szüksége, hogy felderíthesse és csatlakozhasson új Android eszközödhöz. A Wi-Finek bekapcsolt állapotban kell lennie, de nem muszáj hálózathoz csatlakoznia.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sajnáljuk, de úgy tűnik, hogy ez az eszköz nem támogatja a Wi-Fi Directet. A Signal Wi-Fi Directet használ, hogy felderítse és csatlakozzon új Android eszközödhöz. Továbbra is használhatod a biztonsági mentés által létrehozott fájlokat, hogy a fiókodat áthozd új Android eszközödre.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Biztonsági mentés létrehozása</string>
-  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt a csatlakozási próbálkozás során az új Android eszközödhöz.</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt az új Android eszközödhöz történő csatlakozás során.</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Sikertelen a Wi-Fi beállítások megnyitása. Kérjük kapcsold be a Wi-Fi-t kézzel.</string>
-  <string name="DeviceTransferSetup__grant_location_permission">Hely jogosultságok megadása</string>
-  <string name="DeviceTransferSetup__turn_on_location_services">Hely szolgáltatások bekapcsolása</string>
-  <string name="DeviceTransferSetup__unable_to_open_location_settings">Sikertelen a hely beállítások megnyitása.</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Sikertelen a Wi-Fi beállítások megnyitása. Kérjük kapcsold be a Wi-Fi-t kézzel!</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Helymeghatározás jogosultságok megadása</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Helymeghatározás-szolgáltatások bekapcsolása</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Sikertelen a helymeghatározás-beállítások megnyitása.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi bekapcsolása</string>
-  <string name="DeviceTransferSetup__error_connecting">Hiba a csatlakozáskor</string>
+  <string name="DeviceTransferSetup__error_connecting">Hiba a csatlakozás során</string>
   <string name="DeviceTransferSetup__retry">Újra</string>
-  <string name="DeviceTransferSetup__submit_debug_logs">Debug log elküldése</string>
-  <string name="DeviceTransferSetup__verify_code">Kód ellenőrzés</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">ellenőrizd, hogy a kód alább megegyezik mindkét eszközödön. Utána érints a folytatáshoz.</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Hibakeresési napló elküldése</string>
+  <string name="DeviceTransferSetup__verify_code">Kód ellenőrzése</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Ellenőrizd, hogy a lenti kód megegyezik-e mindkét eszközödön, majd koppints a folytatáshoz!</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">A számok nem egyeznek</string>
   <string name="DeviceTransferSetup__continue">Folytatás</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">A szám nem egyezik</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ha a számok nem egyeznek a két eszközödön, leképzelhető, hogy rossz eszközhöz kapcsolódtál- Ennek javításához állítsd le az átvitelt és próbáld újra, valamint a két eszközöd legyen közel egymáshoz.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ha a számok nem egyeznek a két eszközödön, akkor elképzelhető, hogy rossz eszközhöz kapcsolódtál. Ennek javításához állítsd le az átvitelt, és próbáld újra. A két eszköz legyen közel egymáshoz.</string>
   <string name="DeviceTransferSetup__stop_transfer">Átvitel megszakítása</string>
-  <string name="DeviceTransferSetup__unable_to_discover_old_device">Sikertelen a régi eszköz felfedezése</string>
-  <string name="DeviceTransferSetup__unable_to_discover_new_device">Sikertelen az új eszköz felfedezése</string>
-  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Biztosítsd, hogy a következő jogosultságok és szolgáltatások engedélyezettek:</string>
-  <string name="DeviceTransferSetup__location_permission">Hely jogosultságok</string>
-  <string name="DeviceTransferSetup__location_services">Hely szolgáltatások</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Sikertelen a régi eszköz felderítése</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Sikertelen az új eszköz felderítése</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Győződj meg róla, hogy a következő jogosultságok és szolgáltatások engedélyezve vannak:</string>
+  <string name="DeviceTransferSetup__location_permission">Helymeghatározás jogosultságok</string>
+  <string name="DeviceTransferSetup__location_services">Helymeghatározás szolgáltatások</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A Wi-Fi Direct képernyőn távolíts el minden megjegyzett csoportot és csatlakoztass le minden meghívott vagy csatlakozott eszközt. </string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">A Wi-Fi Direct képernyőn távolítsd el az összes megjegyzett csoportot, és csatlakoztass le minden meghívott vagy csatlakozott eszközt. </string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct képernyő</string>
-  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Próbáljátok a Wi-Fi-t ki és bekapcsolni, mindkét készüléken.</string>
-  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ellenőrizétek, hogy mindkét eszköz átviteli módban van.</string>
-  <string name="DeviceTransferSetup__go_to_support_page">Menj a támogatási oldalra</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Próbáld ki-, majd bekapcsolni a Wi-Fit mindkét készüléken!</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ellenőrizd, hogy mindkét eszköz átviteli módban van.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Támogatás megnyitása</string>
   <string name="DeviceTransferSetup__try_again">Újra</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Várakozás a másik eszközre</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Érintsd meg a Folytatást a másik eszközödön az átvitel megkezdéséhez.</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Érintsd meg a Folytatást a másik eszközödön…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Koppints a Folytatásra másik eszközödön az átvitel megkezdéséhez!</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Koppints a Folytatásra másik eszközödön…</string>
   <!--NewDeviceTransferFragment-->
-  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nem lehetséges az átvitel egy újabb verziós Signal-ból</string>
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nem lehetséges az átvitel újabb verziójú Signal-ból</string>
   <!--DeviceTransferFragment-->
-  <string name="DeviceTransfer__transferring_data">Adatátvitel</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Tartsd a két eszközt egymás közelében. Ne kapcsold ki egyik eszközt sem és tartsd a Signal-t nyitva. Az adatvitel a végpontok között titkosított.</string>
+  <string name="DeviceTransfer__transferring_data">Adat áttöltése</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Tartsd a két eszközt egymás közelében. Ne kapcsold ki egyik eszközt sem, és tartsd a Signal-t nyitva. Az adatvitel végpontok közti titkosítással védett.</string>
   <string name="DeviceTransfer__d_messages_so_far">Eddig %1$d db üzenet…</string>
   <string name="DeviceTransfer__cancel">Mégsem</string>
   <string name="DeviceTransfer__try_again">Újra</string>
   <string name="DeviceTransfer__stop_transfer_question">Átvitel megszakítása?</string>
   <string name="DeviceTransfer__stop_transfer">Átvitel megszakítása</string>
-  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Minden átviteli előrehaladás el fog veszni.</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Az eddig áttöltött adatok el fognak veszni.</string>
   <string name="DeviceTransfer__transfer_failed">Átvitel sikertelen</string>
   <string name="DeviceTransfer__unable_to_transfer">Sikertelen az átvitel</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Fiók átmozgatása</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Átviheted a Signal fiókod, miután telepítetted a Signal-t egy új Android eszközre. Mielőtt folytatod:</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Átviheted a Signal fiókod, miután telepítetted a Signal-t egy új Android eszközre. Mielőtt folytatnád:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Töltsd le a Signal-t az új Android eszközödre</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Érintsd meg a \"Fiók átvitele vagy helyreállítása\" opciót</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Koppints a \"Fiók átvitele vagy helyreállítása\" opcióra!</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Válaszd az  \"Átvitel Andorid eszközről\" majd a \"Folytatás\" opciókat. Tartsd az eszközöket egymáshoz közel.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Válaszd az  \"Átvitel Andorid eszközről\" majd a \"Folytatás\" opciókat! Tartsd az eszközöket egymáshoz közel.</string>
   <string name="OldDeviceTransferInstructions__continue">Folytatás</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Átvitel kész</string>
-  <string name="OldDeviceTransferComplete__go_to_your_new_device">Menj az új eszközödhöz</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Menj az új eszközödhöz!</string>
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">A Signal fiókod átvitelre került az új eszközödre. Az átvitel befejezéséhez folytatnod kell az új eszközön a regisztrációt.</string>
   <string name="OldDeviceTransferComplete__close">Bezárás</string>
   <!--NewDeviceTransferComplete-->
@@ -2612,23 +2613,23 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Az átvitel befejezéséhez folytatnod kell a regisztrációt.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Regisztráció folytatása</string>
   <!--DeviceToDeviceTransferService-->
-  <string name="DeviceToDeviceTransferService_content_title">Fiók átvitel</string>
+  <string name="DeviceToDeviceTransferService_content_title">Fiók átvitele</string>
   <string name="DeviceToDeviceTransferService_status_ready">Előkészülés a másik Android eszközödhöz csatlakozáshoz…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">Előkészülés a másik Android eszközödhöz csatlakozáshoz…</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">A másik Android eszközöd keresése…</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">Csatlakozás a másik Android eszközödhöz…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Másik Android eszköz keresése…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Csatlakozás a másik Android eszközhöz…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Ellenőrzés szükséges</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Fiók átvitele…</string>
   <!--OldDeviceTransferLockedDialog-->
-  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Fejezd be a regisztrációt az új eszközödön</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">A Signal fiókod átvitelre került az új eszközödre, de be kell fejezned azon a regisztrációt a folytatáshoz. A Signal inaktív lesz ezen az eszközön.</string>
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Fejezd be a regisztrációt az új eszközödön!</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Sikerült Signal fiókod átvitelre új eszközödre, de még be kell fejezned a regisztrációt a folytatás előtt. A Signal inaktív lesz ezen az eszközön.</string>
   <string name="OldDeviceTransferLockedDialog__done">Befejezés</string>
-  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Mégsem és aktiváld ezt az eszközt</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Mégsem, és aktiváld ezt az eszközt</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB egyenleg átvitele?</string>
-  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Az egyenleged %1$s. Ha nem utalod át azt egy másik pénztárca címre a fiókod törlése előtt, elveszted örökre.</string>
-  <string name="AdvancedPreferenceFragment__dont_transfer">Ne vigye át</string>
-  <string name="AdvancedPreferenceFragment__transfer">Átvitel</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Áttöltöd MOB egyenlegedet?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Az egyenleged %1$s. Ha nem utalod át egy másik pénztárca címére fiókod törlése előtt, örökre elveszik.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Ne utalja át</string>
+  <string name="AdvancedPreferenceFragment__transfer">Átutalás</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Letiltás</string>
   <string name="RecipientBottomSheet_unblock">Tiltás feloldása</string>
@@ -2778,35 +2779,35 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WallpaperCropActivity__blur_photo">Fotó elhomályosítása</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">A MobileCoin-ról</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">A MobileCoin egy új adatvédelmi fókuszú digitális pénznem.</string>
-  <string name="payment_info_card_adding_funds">Alaptőke hozzáadása</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Alaptőkét úgy adhatsz a Signalban használathoz, hogy MobileCoin-t küldesz a pénztárca címedre.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">A MobileCoin egy új, adatvédelemre fókuszáló digitális pénznem.</string>
+  <string name="payment_info_card_adding_funds">Feltöltés</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">A Signalban történő költekezéshez küldj MobileCoin-t a pénztárcád címére!</string>
   <string name="payment_info_card_cashing_out">Pénzkivét</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">Bármikor kiveheted a MobileCoint egy tőzsdén, ami támogatja a MobileCoint. Csak utalj a fiókodnak azon a tőzsdén.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Bármikor hozzájuthatsz MobileCoin egyenlegedhez egy olyan tőzsde használatával, amely támogatja a MobileCoint. Egyszerűen indíts egy utalást a tőzsdéhez tartozó tárcád címére.</string>
   <string name="payment_info_card_hide_this_card">Elrejtsük ezt a kártyát?</string>
   <string name="payment_info_card_hide">Elrejtés</string>
   <string name="payment_info_card_record_recovery_phrase">Helyreállítási mondat rögzítése</string>
-  <string name="payment_info_card_your_recovery_phrase_gives_you">A helyreállítási mondatod egy másik lehetőséget ad arra, hogy visszaállítsd a fizetési fiókod.</string>
-  <string name="payment_info_card_record_your_phrase">Rögzítsd a mondatodat</string>
-  <string name="payment_info_card_update_your_pin">Frissítsd a PIN-ed</string>
-  <string name="payment_info_card_with_a_high_balance">Nagy egyenleggel lehet, hogy szeretnél egy alfanumerikus PIN-re frissíteni, hogy további védelmet adj a fiókodhoz.</string>
-  <string name="payment_info_card_update_pin">PIN frissítése</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">A helyreállítási mondatod alternatív lehetőséget ad arra, hogy visszaállítsd fizetési fiókod.</string>
+  <string name="payment_info_card_record_your_phrase">Rögzítsd a mondatodat!</string>
+  <string name="payment_info_card_update_your_pin">Frissítsd a PIN-ed!</string>
+  <string name="payment_info_card_with_a_high_balance">Nagy egyenleg birtokában elképzelhető, hogy inkább az erősebb védelmet jelentő, alfanumerikus PIN kódra szeretnél váltani.</string>
+  <string name="payment_info_card_update_pin">PIN módosítása</string>
   <!--DeactivateWalletFragment-->
-  <string name="DeactivateWalletFragment__deactivate_wallet">Tárca deaktiválása</string>
-  <string name="DeactivateWalletFragment__your_balance">Az egyenleged</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">Ajánlott, hogy küld át az alaptőkédet egy másik tárca címre, mielőtt deaktiválod a fizetéseket. Ha azt választod, hogy nem utalod át az alaptőkédet, akkor benne marad a tárcádban, ami a Signal-hoz kapcsolt, ha reaktiválod a fizetéseket.</string>
+  <string name="DeactivateWalletFragment__deactivate_wallet">Tárca kikapcsolása</string>
+  <string name="DeactivateWalletFragment__your_balance">Egyenleged</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">A fizetések kikapcsolása előtt javasolt alaptőkédet egy másik tárca címére átutalni. Ha mégis úgy döntesz, hogy most nem utalod át egyenlegedet, akkor az továbbra is a Signal-hoz kapcsolt tárcádban lesz. A fizetések újraaktiválásakor az egyenleg újra elérhető lesz.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Maradék egyenleg átutalása</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiválás átutalás nélkül</string>
-  <string name="DeactivateWalletFragment__deactivate">Deaktiválás</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deaktiválás átutalás nélkül?</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">Az egyenleged a tárcádban marad, ami a Signal-hoz kapcsolt, ha a fizetések reaktiválását választod.</string>
-  <string name="DeactivateWalletFragment__error_deactivating_wallet">Hiba a tárca deaktiválásakor.</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Kikapcsolás átutalás nélkül</string>
+  <string name="DeactivateWalletFragment__deactivate">Kikapcsolás</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Kikapcsolás átutalás nélkül?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Az egyenleg a Signal-hoz kapcsolt tárcádban marad. A fizetések újraaktiválásakor az egyenleged újra elérhető lesz.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Hiba a tárca kikapcsolásakor.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Helyreállítási mondat</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Helyreállítási mondat megtekintése</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Helyreállítási mondat megadása</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Az egyenleged automatikusan helyreáll, ha újra telepíted a Signalt, ha megadott a Signal PIN-et. Továbbá helyreállíthatod az egyenleged a helyreállítási mondattal, ami egy %1$d szavas számodra egyedi mondat.  Írd le és tárold biztonságos helyen.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">A helyreállítási mondatod egy %1$d szavas mondat ami számodra egyedi. Használd arra, hogy helyreállítsd a fizetési fiókod.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Az egyenleged automatikusan helyreáll, amikor újratelepíted a Signalt, amennyiben megadod a Signal PIN kódodat. Továbbá helyreállíthatod egyenlegedet a helyreállítási mondat használatával is, ami egy %1$d szóból álló, számodra egyedi mondat. Jegyezd fel, és tárold biztonságos helyen!</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">A helyreállítási mondatod egy %1$d szóból álló mondat, amely számodra egyedi. Használd arra, hogy helyreállítsd fizetési fiókodat!</string>
   <string name="PaymentsRecoveryStartFragment__start">Kezdés</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Kézi megadás</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Beillesztés vágólapról</string>
@@ -2815,24 +2816,24 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Helyreállítási mondat</string>
   <string name="PaymentsRecoveryPasteFragment__next">Tovább</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Érvénytelen helyreállítási mondat</string>
-  <string name="PaymentsRecoveryPasteFragment__make_sure">Ellenőrizd, hogy %1$d szót adtál meg és próbáld újra</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Ellenőrizd, hogy %1$d szót adtál meg, majd próbáld újra!</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Tovább</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Szerkesztés</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Előző</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Helyreállítási mondatod</string>
-  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Írd le a következő %1$d szót sorrendben. Tárold ezt a listát egy biztonságos helyen.</string>
-  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Legyél biztos benne, hogy a helyreállítási mondatod jól adtad meg.</string>
-  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne készíts képernyőképet vagy küld el emailben.</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Írd le a következő %1$d szót ebben sorrendben. Tárold ezt a listát biztonságos helyen!</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Győződj meg róla, hogy a helyreállítási mondatot jól adtad meg!</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne készíts képernyőképet, és ne küldd el emailben!</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Fizetési fiók helyreállítva.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Érvénytelen helyreállítási mondat</string>
-  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Legyél biztos benne, hogy a helyreállítási mondatod jól adtad meg és próbáld újra</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Győződj meg róla, hogy a helyreállítási mondatot jól adtad meg, majd próbáld újra!</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Másolás vágólapra?</string>
-  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ha úgy döntesz, hogy a helyreállítási mondatod digitálisan tárolod, biztosítsd, hogy biztonságosan legyen tárolva valami olyan helyen, amiben megbízol.</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ha úgy döntesz, hogy a helyreállítási mondatod digitálisan tárolod, győződj meg róla, hogy biztonságosan van tárolva egy számodra megbízható helyen.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Másolás</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Helyreállítási mondat megerősítése</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Add meg a következő szavakat a helyreállítási mondatodból.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Add meg a következő szavakat a helyreállítási mondatodból!</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Szó %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Mondat megtekintése újra</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Befejezés</string>
@@ -2852,12 +2853,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UnreadPayments__d_new_payment_notifications">%1$d új fizetési értesítés</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Nem lehetséges a fizetés küldése</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Ahhoz, hogy fizethess ennek a felhasználónak, neki el kell fogadni egy üzenet kérelmet tőled. Küldj neki egy üzenetet, hogy létrehozz egy üzenet kérelmet.</string>
-  <string name="CanNotSendPaymentDialog__send_a_message">Küldj egy üzenetet</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Ahhoz, hogy fizethess ennek a felhasználónak, el kell fogadni egy üzenet-felkérést tőled. Küldj részére egy tetszőleges üzenetet, hogy létrejöjjön az üzenet-felkérés!</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">Üzenet küldése</string>
   <!--GroupsInCommonMessageRequest-->
-  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nincsennek közös csoportjai ezzel a személlyel. Ellenőrizd a kérelmet figyelmesen mielőtt elfogadod, hogy elkerüld a nem kívánt üzeneteket.</string>
-  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nincsennek közös kapcsolataid vagy olyan személyek akivel csevegsz, akik tagjai ennek a csoportnak. Ellenőrizd a kérelmet figyelmesen mielőtt elfogadod, hogy elkerüld a nem kívánt üzeneteket.</string>
-  <string name="GroupsInCommonMessageRequest__about_message_requests">Az üzenet kérelmekről</string>
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nincsenek közös csoportjaid ezzel a személlyel. Ellenőrizd a kérelmeket figyelmesen elfogadás előtt, hogy elkerüld a nem kívánt üzeneteket!</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Egy kontaktod, vagy beszélgetőpartnered sem tagja ennek a csoportnak. Ellenőrizd a kérelmet figyelmesen elfogadás előtt, hogy elkerüld a nem kívánt üzeneteket!</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Az csevegési felkérésekről</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Csoportleírás</string>
@@ -2867,5 +2868,40 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QualitySelectorBottomSheetDialog__high">Magas</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lassabb, több adat</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotóminőség</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Hívd meg barátaidat!</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Fiók</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Idővel egyre ritkábban kérünk meg rá</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Telefonszámod újraregisztrációját Signal PIN kódod megadásához kötheted</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Billentyűzet</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Küldés az Enter lenyomásával</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Alapértelmezett SMS alkalmazás</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Üzenetek</string>
+  <string name="NotificationsSettingsFragment__calls">Hívások</string>
+  <string name="NotificationsSettingsFragment__notify_when">Értesítsen mikor…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Ismerős csatlakozott Signalra</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Letiltva</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakt</string>
+  <string name="PrivacySettingsFragment__messaging">Üzenetküldés</string>
+  <string name="PrivacySettingsFragment__app_security">App biztonság</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Státusz ikon megjelenítése</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Jelenítsen meg egy státuszikont, ha az üzenet rejtett feladóval érkezett.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Támogatási központ</string>
+  <string name="HelpSettingsFragment__contact_us">Kapcsolat</string>
+  <string name="HelpSettingsFragment__version">Verzió</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Feltételek &amp; Adatvédelmi irányelvek</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Hívások</string>
   <!--EOF-->
 </resources>

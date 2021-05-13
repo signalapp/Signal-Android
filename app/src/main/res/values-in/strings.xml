@@ -1873,7 +1873,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika bukti pesan terbaca dinonaktifkan, Anda tidak dapat melihat bukti pesan terbaca dari orang lain</string>
   <string name="preferences__typing_indicators">Indikator pengetikan</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika indikator pengetikan dinonaktifkan, Anda tidak akan mampu melihat indikator pengetikan dari orang lainnya.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Minta papan ketik untuk menonaktifkan personalisasi. Pengaturan ini bukan garansi, dan papan ketik Anda mungkin menolaknya.</string> -->
   <string name="preferences_app_protection__blocked_users">Pengguna diblokir</string>
   <string name="preferences_chats__when_using_mobile_data">Ketika menggunakan data seluler</string>
   <string name="preferences_chats__when_using_wifi">Ketika menggunakan Wi-Fi</string>
@@ -2480,5 +2479,25 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Tinggi</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Enter untuk mengirim</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Gunakan sebagai aplikasi SMS utama</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Pesan</string>
+  <string name="NotificationsSettingsFragment__calls">Panggilan</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Terblokir</string>
+  <string name="PrivacySettingsFragment__messaging">Olah pesan</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokir tangkapan layar di daftar terbaru dan di dalam aplikasi</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Hubungi kami</string>
+  <string name="HelpSettingsFragment__version">Versi</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Istilah &amp; Kebijakan Privasi</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Panggilan</string>
   <!--EOF-->
 </resources>

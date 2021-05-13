@@ -70,7 +70,7 @@
   <string name="AttachmentUploadJob_uploading_media">بارگذاری رسانه…</string>
   <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">در حال بررسی پیام‌ها…</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">در حال بررسی موجود بودن پیام‌ها…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">کاربران مسدود شده</string>
   <string name="BlockedUsersActivity__add_blocked_user">افزودن کاربر مسدود شده</string>
@@ -1982,7 +1982,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
   <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده. اعمال این تنظیم ضمانت شده نیست و صفحه‌کلید شما ممکن است آن را نادیده بگیرد.</string> -->
+  <string name="preferences__request_keyboard_to_disable">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">اعمال شدن این تنظیم ضمانت شده نیست و ممکن است صفحه‌کلید شما آن را نادیده بگیرد.</string>
   <string name="preferences_app_protection__blocked_users">کاربران مسدود شده</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
@@ -2033,7 +2034,7 @@
   <string name="preferences_notifications__ringtone">صدای زنگ</string>
   <string name="preferences_chats__show_invitation_prompts">نمایش گزینه‌ٔ دعوت‌نامه</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوت‌نامه برای مخاطبینی که عضو سیگنال نیستند</string>
-  <string name="preferences_chats__message_text_size">ابعاد قلم پیام</string>
+  <string name="preferences_chats__message_text_size">اندازهٔ قلم پیام</string>
   <string name="preferences_events__contact_joined_signal">مخاطب به سیگنال پیوست</string>
   <string name="preferences_notifications__priority">اولویت</string>
   <string name="preferences_communication__category_sealed_sender">فرستندهٔ ناشناس</string>
@@ -2522,7 +2523,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">۱.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">روی عکس پروفایل خود در بالا سمت راست برای باز کردن تنظیمات ضربه بزنید</string>
   <string name="NewDeviceTransferInstructions__second_bullet">۲.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">روی «گفتگوها» ضربه بزنید</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">روی «حساب کاربری» ضربه بزنید</string>
   <string name="NewDeviceTransferInstructions__third_bullet">۳.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">روی «انتقال حساب کاربری» و سپس «ادامه» در هر دو دستگاه ضربه بزنید</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2860,8 +2861,44 @@
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">استاندارد</string>
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">سریع‌تر، دادهٔ کمتر</string>
-  <string name="QualitySelectorBottomSheetDialog__high">بالا</string>
+  <string name="QualitySelectorBottomSheetDialog__high">عالی</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">آهسته‌تر، دادهٔ بیشتر</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">کیفیت عکس</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">دوستان خود را دعوت کنید</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">حساب کاربری</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">به مرور زمان از شما کمتر پرسیده خواهد شد</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">درخواست پین سیگنال شما برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">صفحه‌کلید</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">ارسال با کلید Enter</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">استفاده به صورت برنامهٔ پیامک پیش‌فرض</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">پیام‌ها</string>
+  <string name="NotificationsSettingsFragment__calls">تماس‌ها</string>
+  <string name="NotificationsSettingsFragment__notify_when">خبر بده هنگامی که…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">پیوستن مخاطب به سیگنال</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">مسدود شده</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d مخاطبین</string>
+  <string name="PrivacySettingsFragment__messaging">‌پیام‌رسانی</string>
+  <string name="PrivacySettingsFragment__app_security">امنیت برنامه</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">مسدود کردن عکس از صفحه در فهرست آخرین‌ها و در درون برنامه</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">پیام‌ها و تماس‌های سیگنال، عبور تمامی تماس‌ها از سرور‌های سیگنال، و فرستندهٔ ناشناس</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">نمایش آیکون وضعیت</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">مرکز پشتیبانی</string>
+  <string name="HelpSettingsFragment__contact_us">تماس با ما</string>
+  <string name="HelpSettingsFragment__version">نسخه</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">شرایط و خط مشی حریم خصوصی</string>
+  <string name="HelpFragment__copyright_signal_messenger">حق تکثیر پیام‌رسان سیگنال</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">پروانهٔ GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">تماس‌ها</string>
   <!--EOF-->
 </resources>

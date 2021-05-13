@@ -1853,7 +1853,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nếu thông báo đã xem bị tắt, bạn sẽ không thể biết người kia đã xem tin nhắn hay chưa.</string>
   <string name="preferences__typing_indicators">Thông báo đang nhập</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nếu thông báo đang nhập bị tắt, bạn sẽ không thể biết người kia có đang nhập tin nhắn hay không.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Yêu cầu bàn phím tắt học thói quen gõ chữ. Cài đặt này không đảm bảo, và bàn phím của bạn có thể bỏ qua yêu cầu này.</string> -->
   <string name="preferences_app_protection__blocked_users">Người dùng đã chặn</string>
   <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
   <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
@@ -2281,7 +2280,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Nhấn vào ảnh đại diện của bạn ở góc trên bên trái để mở Cài đặt</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Nhấn vào \"Trò chuyện\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Nhấn \"Chuyển tài khoản\" và \"Tiếp tục\" trên cả hai thiết bị</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2509,5 +2507,25 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Cao</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Phím Enter gửi đi</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Dùng làm ứng dụng SMS mặc định</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Tin nhắn</string>
+  <string name="NotificationsSettingsFragment__calls">Cuộc gọi</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Đã chặn</string>
+  <string name="PrivacySettingsFragment__messaging">Nhắn tin</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Chặn chụp màn hình trong danh sách ứng dụng và bên trong ứng dụng</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Liên hệ với chúng tôi</string>
+  <string name="HelpSettingsFragment__version">Phiên bản</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Điều khoản &amp; Quyền riêng tư</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
   <!--EOF-->
 </resources>

@@ -1907,7 +1907,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果關閉已讀標記，你將無法看到其他人的已讀標記。</string>
   <string name="preferences__typing_indicators">打字狀態</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果打字狀態被關閉，你將無法看見其他人的打字狀態。</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤停用個性化學習。 此設定不能保證，你的鍵盤可能會忽略它。</string> -->
+  <string name="preferences__request_keyboard_to_disable">要求鍵盤以停用個人化學習。</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">此設定不能保證，你的鍵盤可能會忽略它。</string>
   <string name="preferences_app_protection__blocked_users">被封鎖的使用者</string>
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
   <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
@@ -2440,7 +2441,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">點按左上角的個人資料照片以打開“設定”</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">點擊“聊天”</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">點擊“帳號”</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">在兩個裝置上點擊“轉移帳號”，然後點擊“繼續”</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2779,5 +2780,41 @@
   <string name="QualitySelectorBottomSheetDialog__high">高</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">較慢，數據更多</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">照片畫質</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">邀請你的朋友</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">帳號</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">隨著時間的流逝，你的詢問頻率會降低</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">需要你的Signal PIN碼才能再次向Signal註冊你的電話號碼</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">按下輸入鍵發送</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">設定為預設簡訊應用程式</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">訊息</string>
+  <string name="NotificationsSettingsFragment__calls">通話</string>
+  <string name="NotificationsSettingsFragment__notify_when">在…時通知</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人加入Signal</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">已封鎖</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d 個聯絡人</string>
+  <string name="PrivacySettingsFragment__messaging">傳送訊息中</string>
+  <string name="PrivacySettingsFragment__app_security">應用程式安全性</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">在對話清單或應用程式內停用畫面擷取功能</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息和電話，永遠轉發通話和密封發件人</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">使用密封發件人傳送訊息時，在訊息詳細資訊中顯示一個圖示</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">支援中心</string>
+  <string name="HelpSettingsFragment__contact_us">與我們聯繫</string>
+  <string name="HelpSettingsFragment__version">版本</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">條款與條件；隱私權政策</string>
+  <string name="HelpFragment__copyright_signal_messenger">Signal Messenger版權所有</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">根據GPLv3授權</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--EOF-->
 </resources>

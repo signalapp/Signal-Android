@@ -1975,7 +1975,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.</string>
   <string name="preferences__typing_indicators">Skriveindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Be om tastaturtilgang for å deaktivere personlig læring. Dette er ikke en garanti, og tastaturet ditt kan ignorere forespørselen.</string> -->
   <string name="preferences_app_protection__blocked_users">Blokkerte brukere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
@@ -2475,7 +2474,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Trykk på profilbildet øverst til venstre for å åpne innstillinger</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Trykk på \"Samtaler\"</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk \"Overfør konto\" og så \"Fortsett\" på begge enheter</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2787,5 +2785,27 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QualitySelectorBottomSheetDialog__high">Høy</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Tregere, mer data</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotokvalitet</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Konto</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">Send med enter-tast</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Bruk som forvalgt SMS-program</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Meldinger</string>
+  <string name="NotificationsSettingsFragment__calls">Samtaler</string>
+  <string name="NotificationsSettingsFragment__notify_when">Varsle når…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Blokkert</string>
+  <string name="PrivacySettingsFragment__messaging">Meldinger</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-liste og i programmet</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">Kontakt oss</string>
+  <string name="HelpSettingsFragment__version">Versjon</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og personvernerklæring</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
   <!--EOF-->
 </resources>

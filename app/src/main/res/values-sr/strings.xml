@@ -671,6 +671,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">надогради ову групу.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ово је несигурна ММС група. Да бисте приватно ћаскали, позовите своје контакте у Signal.</string>
   <string name="ManageGroupActivity_invite_now">Позови сада</string>
+  <string name="ManageGroupActivity_more">…више</string>
+  <string name="ManageGroupActivity_add_group_description">Додај опис групи…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Обавести ме за помињања</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Желите ли да примате обавештења када сте поменути у утишаним ћаскањима?</string>
@@ -1026,6 +1028,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s је променио/ла име групе у „%2$s”.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Име групе је промењено у „%1$s”.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Променили сте опис групе.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s је променио опис групе.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Опис групе је промењен.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Променили сте слику групе.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s је променио/ла слику групе.</string>
@@ -1823,6 +1828,7 @@
   <string name="CreateProfileActivity__username">Корисничко име</string>
   <string name="CreateProfileActivity__create_a_username">Додајте корисничко име</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Имена и фотографије прилагођене ММС групе биће видљиви само Вама.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Описи групе биће видљиви члановима ове групе и особама које су позване.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">О контакту</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите неколико речи о себи</string>
@@ -1837,6 +1843,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Уреди име и слику групе</string>
   <string name="EditProfileFragment__group_name">Назив групе</string>
+  <string name="EditProfileFragment__group_description">Опис групе</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Ваше име</string>
   <string name="EditProfileNameFragment_first_name">Име</string>
@@ -1903,6 +1910,15 @@
   <string name="HelpFragment__debug_log">Извештај о грешкама:</string>
   <string name="HelpFragment__could_not_upload_logs">Грешка при отпремању извештаја</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Будите што описнији како бисте нам помогли да разумемо проблем.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- Молимо, изаберите опцију --</item>
+    <item>Нешто не ради</item>
+    <item>Захтев за функцију</item>
+    <item>Питање</item>
+    <item>Повратне информације</item>
+    <item>Друго</item>
+    <item>Плаћања</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ова порука</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавно коришћено</string>
@@ -2040,7 +2056,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Уколико су извештаји читања онемогућени, нећете видети када неко прочита ваше поруке.</string>
   <string name="preferences__typing_indicators">Показатељи куцања</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Уколико су показатељи куцања онемогућени, нећете видети када вам неко пише поруку.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Затражите да тастатура онемогући персонализовано учење. Ово подешавање није гаранција и ваша тастатура га може занемарити.</string> -->
+  <string name="preferences__request_keyboard_to_disable">Затражите да тастатура онемогући персонализовано учење.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ово подешавање није гаранција и ваша тастатура га може занемарити.</string>
   <string name="preferences_app_protection__blocked_users">Блокирани корисници</string>
   <string name="preferences_chats__when_using_mobile_data">На мобилном интернету</string>
   <string name="preferences_chats__when_using_wifi">На бежичној</string>
@@ -2587,7 +2604,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Додирните фотографију свог профила у горњем левом углу да бисте отворили подешавања</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">Додирните „Ћаскања“</string> -->
+  <string name="NewDeviceTransferInstructions__tap_on_account">Додирните „налог“</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Додирните „Пренос налога“ и после „Настави“ на оба уређаја</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2924,7 +2941,46 @@
   <string name="GroupsInCommonMessageRequest__about_message_requests">О захтеву за разговор</string>
   <string name="GroupsInCommonMessageRequest__okay">У реду</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Опис групе</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Стандардно</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Брже, мање података</string>
   <string name="QualitySelectorBottomSheetDialog__high">Висок</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Спорије, више података</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Квалитет фотографије</string>
+  <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Позовите ваше пријатеље</string>
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Налог</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Захтева Signal PIN да поново региструјете свој телефонски број Signal-ом</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Ентер тастер шаље</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Користи као подразумевану апл. за СМС</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">Поруке</string>
+  <string name="NotificationsSettingsFragment__calls">Позиви</string>
+  <string name="NotificationsSettingsFragment__notify_when">Обавести када…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт се придружио Signal-у</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">Блокиран/на</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d контаката</string>
+  <string name="PrivacySettingsFragment__messaging">Поруке</string>
+  <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусну икону</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Унутар „Детаљи поруке” ће бити приказан индикатор да је порука послата са запечаћеним пошиљаоцем.</string>
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
+  <string name="HelpSettingsFragment__contact_us">Контактирај нас</string>
+  <string name="HelpSettingsFragment__version">Верзија</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови и политика приватности</string>
+  <string name="HelpFragment__copyright_signal_messenger">Ауторска права Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">Позиви</string>
   <!--EOF-->
 </resources>

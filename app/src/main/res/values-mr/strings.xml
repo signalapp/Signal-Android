@@ -1926,7 +1926,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">जर आपल्या वाचल्याचा पावत्या अक्षम असतील तर आपल्याला इतरांकडूनही त्या मिळणार नाहीत.</string>
   <string name="preferences__typing_indicators">टाईपिंग निर्देशक</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">जर टाईपिंग निर्देशक अक्षम केले आहेत, तर इतरांकडून आपल्याला टाईपिंग निर्देशक बघता येणार नाही.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">वैयक्तिकृत शिकणे अक्षम करण्यासाठी कीबोर्डला विनंती करा. ही सेटिंग गॅरंटी नाही, आणि आपला कीबोर्ड याकडे दुर्लक्ष करू शकतो.</string> -->
   <string name="preferences_app_protection__blocked_users">अवरोधित वापरकर्ते</string>
   <string name="preferences_chats__when_using_mobile_data">मोबाईल डेटा वापरताना</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi वापरताना</string>
@@ -2540,5 +2539,25 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">उंच</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">प्रविष्ट करा की पाठवते</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">पूर्वनिर्धारित SMS अॅप म्हणून वापरा</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">संदेश</string>
+  <string name="NotificationsSettingsFragment__calls">कॉल</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">अवरोधित केले</string>
+  <string name="PrivacySettingsFragment__messaging">संदेशन</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">अलीकडील यादीमध्ये आणि अॅपच्या आत स्क्रीनशॉट अवरोधित करा</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">आमच्याशी संपर्क साधा</string>
+  <string name="HelpSettingsFragment__version">आवृत्ती</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">अटी आणि गोपनीयता धोरण</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
   <!--EOF-->
 </resources>

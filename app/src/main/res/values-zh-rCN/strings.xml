@@ -1886,7 +1886,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">禁用已读回执之后，将无法查看来其他用户的已读回执。</string>
   <string name="preferences__typing_indicators">“正在输入”提示</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">禁用“正在输入”提示之后，无法查看其他用户的正在输入状态。</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">请求键盘禁用个性化学习。这样并不能保证禁用该功能，你的键盘可能忽略该设置。</string> -->
   <string name="preferences_app_protection__blocked_users">已屏蔽的用户</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
@@ -2419,7 +2418,6 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">点击左上侧个人资料图片，打开设置。</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <!-- Removed by excludeNonTranslatables <string name="NewDeviceTransferInstructions__tap_on_chats">点击“对话”</string> -->
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">在两个设备，点击“转移帐户”，然后选择“继续”</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2750,5 +2748,27 @@
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">高</string>
+  <!--AppSettingsFragment-->
+  <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">帐户</string>
+  <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__enter_key_sends">按回车发送</string>
+  <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">设置为默认短信应用</string>
+  <!--NotificationsSettingsFragment-->
+  <string name="NotificationsSettingsFragment__messages">消息</string>
+  <string name="NotificationsSettingsFragment__calls">通话</string>
+  <string name="NotificationsSettingsFragment__notify_when">发送通知，当…</string>
+  <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__blocked">已屏蔽</string>
+  <string name="PrivacySettingsFragment__messaging">消息传输</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">屏蔽最近使用应用和 Signal 截屏</string>
+  <!--AdvancedPrivacySettingsFragment-->
+  <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__contact_us">联系我们</string>
+  <string name="HelpSettingsFragment__version">版本</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">条款和隐私政策</string>
+  <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__calls">通话</string>
   <!--EOF-->
 </resources>
