@@ -105,15 +105,10 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         // it easier to deal with inputStream and outputStreamFactory.
         val pad = PushAttachmentData(attachment.contentType, inputStream, length, outputStreamFactory, attachment.listener)
         val contentType = "application/octet-stream"
-        val drb = DigestingRequestBody(pad.data, pad.outputStreamFactory, contentType, pad.dataSize, attachment.listener)
+        val drb = DigestingRequestBody(pad.data, pad.outputStreamFactory, contentType, pad.dataSize, pad.listener)
         Log.d("Loki", "File size: ${length.toDouble() / 1000} kb.")
-        val mpb = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("Content-Type", contentType)
-            .addFormDataPart("content", UUID.randomUUID().toString(), drb)
-            .build()
         val b = Buffer()
-        mpb.writeTo(b)
+        drb.writeTo(b)
         val data = b.readByteArray()
         // Upload the data
         val id = upload(data).get()
@@ -132,7 +127,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     private fun handlePermanentFailure(e: Exception) {
         Log.w(TAG, "Attachment upload failed permanently due to error: $this.")
         delegate?.handleJobFailedPermanently(this, e)
-        MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadFailed(attachmentID)
+        MessagingModuleConfiguration.shared.messageDataProvider.handleFailedAttachmentUpload(attachmentID)
         failAssociatedMessageSendJob(e)
     }
 

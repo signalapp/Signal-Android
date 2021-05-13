@@ -126,10 +126,10 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         database.updateAttachmentAfterUploadSucceeded(databaseAttachment.attachmentId, attachment)
     }
 
-    override fun updateAttachmentAfterUploadFailed(attachmentId: Long) {
+    override fun handleFailedAttachmentUpload(attachmentId: Long) {
         val database = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = getDatabaseAttachment(attachmentId) ?: return
-        database.updateAttachmentAfterUploadFailed(databaseAttachment.attachmentId)
+        database.handleFailedAttachmentUpload(databaseAttachment.attachmentId)
     }
 
     override fun getMessageID(serverID: Long): Long? {
