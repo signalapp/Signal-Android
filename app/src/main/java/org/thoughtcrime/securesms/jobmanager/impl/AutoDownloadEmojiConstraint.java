@@ -20,7 +20,7 @@ public class AutoDownloadEmojiConstraint implements Constraint {
 
   public static final String KEY = "AutoDownloadEmojiConstraint";
 
-  private static final String IMAGE_TYPE = "images";
+  private static final String IMAGE_TYPE = "image";
 
   private final Context context;
 
