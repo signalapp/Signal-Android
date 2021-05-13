@@ -29,20 +29,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:textSize="@dimen/massive_font_size"
                 android:textStyle="bold"
                 android:textColor="@color/text"
+                android:textAlignment="center"
                 android:text="Spiderman"
                 android:paddingStart="24dp"
                 android:paddingEnd="0dp"
-                android:drawablePadding="@dimen/small_spacing"
-                app:drawableEndCompat="@drawable/ic_baseline_edit_24" />
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:drawablePadding="@dimen/small_spacing" />
 
         </LinearLayout>
 

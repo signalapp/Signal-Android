@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
-import android.text.InputType
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +12,10 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
-import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.mms.GlideApp
 
 public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
