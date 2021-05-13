@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 
-import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.utilities.Data;
 import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
