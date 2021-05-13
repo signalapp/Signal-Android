@@ -12,15 +12,14 @@ import javax.crypto.spec.SecretKeySpec
 
 @WorkerThread
 internal object AESGCM {
-
-    internal data class EncryptionResult(
-            internal val ciphertext: ByteArray,
-            internal val symmetricKey: ByteArray,
-            internal val ephemeralPublicKey: ByteArray
-    )
-
     internal val gcmTagSize = 128
     internal val ivSize = 12
+
+    internal data class EncryptionResult(
+        internal val ciphertext: ByteArray,
+        internal val symmetricKey: ByteArray,
+        internal val ephemeralPublicKey: ByteArray
+    )
 
     /**
      * Sync. Don't call from the main thread.
