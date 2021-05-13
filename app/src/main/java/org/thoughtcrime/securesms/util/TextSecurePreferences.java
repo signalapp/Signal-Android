@@ -501,7 +501,11 @@ public class TextSecurePreferences {
   }
 
   public static int getNotificationPriority(Context context) {
-    return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
+    try {
+      return Integer.parseInt(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
+    } catch (ClassCastException e) {
+      return getIntegerPreference(context, NOTIFICATION_PRIORITY_PREF, NotificationCompat.PRIORITY_HIGH);
+    }
   }
 
   /**

@@ -69,7 +69,7 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   }
 
   fun setMessageNotificationPriority(priority: Int) {
-    sharedPreferences.edit().putInt(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF, priority).apply()
+    sharedPreferences.edit().putString(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF, priority.toString()).apply()
     store.update { getState() }
   }
 
