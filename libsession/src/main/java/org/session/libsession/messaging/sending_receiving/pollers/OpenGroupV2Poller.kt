@@ -70,7 +70,7 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
         isPollOngoing = true
         val server = openGroups.first().server // assume all the same server
         val rooms = openGroups.map { it.room }
-        return OpenGroupAPIV2.getCompactPoll(rooms = rooms, server).successBackground { results ->
+        return OpenGroupAPIV2.compactPoll(rooms = rooms, server).successBackground { results ->
             results.forEach { (room, results) ->
                 val serverRoomId = "$server.$room"
                 handleDeletedMessages(serverRoomId,results.deletions)
