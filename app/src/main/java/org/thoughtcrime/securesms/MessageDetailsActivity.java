@@ -38,11 +38,12 @@ import androidx.loader.content.Loader;
 
 
 import org.session.libsession.messaging.messages.visible.LinkPreview;
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.session.libsession.utilities.color.MaterialColor;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
@@ -448,7 +449,18 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       Recipient recipient = messageRecord.getRecipient();
       VisibleMessage message = new VisibleMessage();
       message.setId(messageRecord.getId());
-      message.setText(messageRecord.getBody());
+      if (messageRecord.isOpenGroupInvitation()) {
+        OpenGroupInvitation openGroupInvitation = new OpenGroupInvitation();
+        UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(messageRecord.getBody());
+        if (updateMessageData.getKind() instanceof UpdateMessageData.Kind.OpenGroupInvitation) {
+          UpdateMessageData.Kind.OpenGroupInvitation data = (UpdateMessageData.Kind.OpenGroupInvitation)updateMessageData.getKind();
+          openGroupInvitation.setGroupName(data.getGroupName());
+          openGroupInvitation.setGroupUrl(data.getGroupUrl());
+        }
+        message.setOpenGroupInvitation(openGroupInvitation);
+      } else {
+        message.setText(messageRecord.getBody());
+      }
       message.setSentTimestamp(messageRecord.getTimestamp());
       if (recipient.isGroupRecipient()) {
         message.setGroupPublicKey(recipient.getAddress().toGroupString());

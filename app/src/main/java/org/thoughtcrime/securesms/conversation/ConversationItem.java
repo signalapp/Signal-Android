@@ -65,7 +65,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.GroupUtil;
-import org.session.libsession.utilities.OpenGroupUrlParser;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
