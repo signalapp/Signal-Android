@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.help
 
-import android.view.MenuItem
 import androidx.navigation.Navigation
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -10,16 +9,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 
-class HelpSettingsFragment : DSLSettingsFragment(R.string.preferences__help, R.menu.help_settings) {
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return if (item.itemId == R.id.action_submit_debug_log) {
-      Navigation.findNavController(requireView()).navigate(R.id.action_helpSettingsFragment_to_submitDebugLogActivity)
-      true
-    } else {
-      false
-    }
-  }
+class HelpSettingsFragment : DSLSettingsFragment(R.string.preferences__help) {
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     adapter.submitList(getConfiguration().toMappingModelList())
@@ -44,6 +34,13 @@ class HelpSettingsFragment : DSLSettingsFragment(R.string.preferences__help, R.m
       textPref(
         title = DSLSettingsText.from(R.string.HelpSettingsFragment__version),
         summary = DSLSettingsText.from(BuildConfig.VERSION_NAME)
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.HelpSettingsFragment__debug_log),
+        onClick = {
+          Navigation.findNavController(requireView()).navigate(R.id.action_helpSettingsFragment_to_submitDebugLogActivity)
+        }
       )
 
       externalLinkPref(
