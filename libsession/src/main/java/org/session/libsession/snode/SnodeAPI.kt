@@ -317,8 +317,20 @@ object SnodeAPI {
             421 -> {
                 // The snode isn't associated with the given public key anymore
                 if (publicKey != null) {
-                    Log.d("Loki", "Invalidating swarm for: $publicKey.")
-                    dropSnodeFromSwarmIfNeeded(snode, publicKey)
+                    fun invalidateSwarm() {
+                        Log.d("Loki", "Invalidating swarm for: $publicKey.")
+                        dropSnodeFromSwarmIfNeeded(snode, publicKey)
+                    }
+                    if (json != null) {
+                        val snodes = parseSnodes(json)
+                        if (snodes.isNotEmpty()) {
+                            database.setSwarm(publicKey, snodes.toSet())
+                        } else {
+                            invalidateSwarm()
+                        }
+                    } else {
+                        invalidateSwarm()
+                    }
                 } else {
                     Log.d("Loki", "Got a 421 without an associated public key.")
                 }
