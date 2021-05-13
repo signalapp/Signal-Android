@@ -10,35 +10,25 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 object MessageReceiver {
 
-    private val lastEncryptionKeyPairRequest = mutableMapOf<String, Long>()
-
-    internal sealed class Error(val description: String) : Exception(description) {
+    internal sealed class Error(message: String) : Exception(message) {
         object DuplicateMessage: Error("Duplicate message.")
         object InvalidMessage: Error("Invalid message.")
         object UnknownMessage: Error("Unknown message type.")
         object UnknownEnvelopeType: Error("Unknown envelope type.")
-        object NoUserX25519KeyPair: Error("Couldn't find user X25519 key pair.")
-        object NoUserED25519KeyPair: Error("Couldn't find user ED25519 key pair.")
+        object DecryptionFailed : Exception("Couldn't decrypt message.")
         object InvalidSignature: Error("Invalid message signature.")
         object NoData: Error("Received an empty envelope.")
         object SenderBlocked: Error("Received a message from a blocked user.")
         object NoThread: Error("Couldn't find thread for message.")
         object SelfSend: Error("Message addressed at self.")
-        object ParsingFailed : Error("Couldn't parse ciphertext message.")
         // Shared sender keys
         object InvalidGroupPublicKey: Error("Invalid group public key.")
         object NoGroupKeyPair: Error("Missing group key pair.")
 
         internal val isRetryable: Boolean = when (this) {
-            is DuplicateMessage -> false
-            is InvalidMessage -> false
-            is UnknownMessage -> false
-            is UnknownEnvelopeType -> false
-            is InvalidSignature -> false
-            is NoData -> false
-            is NoThread -> false
-            is SenderBlocked -> false
-            is SelfSend -> false
+            is DuplicateMessage, is InvalidMessage, is UnknownMessage,
+            is UnknownEnvelopeType, is InvalidSignature, is NoData,
+            is SenderBlocked, is SelfSend -> false
             else -> true
         }
     }
@@ -46,13 +36,15 @@ object MessageReceiver {
     internal fun parse(data: ByteArray, openGroupServerID: Long?, isRetry: Boolean = false): Pair<Message, SignalServiceProtos.Content> {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
-        val isOpenGroupMessage = openGroupServerID != null
+        val isOpenGroupMessage = (openGroupServerID != null)
         // Parse the envelope
         val envelope = SignalServiceProtos.Envelope.parseFrom(data)
         // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
         // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
         // for this issue.
-        if (storage.isMessageDuplicated(envelope.timestamp, GroupUtil.doubleEncodeGroupID(envelope.source)) && !isRetry) throw Error.DuplicateMessage
+        if (storage.isDuplicateMessage(envelope.timestamp, GroupUtil.doubleEncodeGroupID(envelope.source)) && !isRetry) {
+            throw Error.DuplicateMessage
+        }
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
         var plaintext: ByteArray? = null
@@ -65,7 +57,7 @@ object MessageReceiver {
             when (envelope.type) {
                 SignalServiceProtos.Envelope.Type.SESSION_MESSAGE -> {
                     val userX25519KeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
-                    val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), userX25519KeyPair)
+                    val decryptionResult = MessageDecrypter.decrypt(ciphertext.toByteArray(), userX25519KeyPair)
                     plaintext = decryptionResult.first
                     sender = decryptionResult.second
                 }
@@ -81,7 +73,7 @@ object MessageReceiver {
                     var encryptionKeyPair = encryptionKeyPairs.removeLast()
                     fun decrypt() {
                         try {
-                            val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), encryptionKeyPair)
+                            val decryptionResult = MessageDecrypter.decrypt(ciphertext.toByteArray(), encryptionKeyPair)
                             plaintext = decryptionResult.first
                             sender = decryptionResult.second
                         } catch (e: Exception) {
@@ -100,9 +92,9 @@ object MessageReceiver {
             }
         }
         // Don't process the envelope any further if the message has been handled already
-        if (storage.isMessageDuplicated(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
+        if (storage.isDuplicateMessage(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
         // Don't process the envelope any further if the sender is blocked
-        if (isBlock(sender!!)) throw Error.SenderBlocked
+        if (isBlocked(sender!!)) throw Error.SenderBlocked
         // Parse the proto
         val proto = SignalServiceProtos.Content.parseFrom(PushTransportDetails.getStrippedPaddingMessageBody(plaintext))
         // Parse the message
@@ -113,7 +105,7 @@ object MessageReceiver {
             ExpirationTimerUpdate.fromProto(proto) ?:
             ConfigurationMessage.fromProto(proto) ?:
             VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
-        // Ignore self sends if needed
+        // Ignore self send if needed
         if (!message.isSelfSendValid && sender == userPublicKey) throw Error.SelfSend
         // Guard against control messages in open groups
         if (isOpenGroupMessage && message !is VisibleMessage) throw Error.InvalidMessage

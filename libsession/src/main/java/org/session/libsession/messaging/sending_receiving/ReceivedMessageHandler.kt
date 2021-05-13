@@ -34,7 +34,7 @@ import java.security.MessageDigest
 import java.util.*
 import kotlin.collections.ArrayList
 
-internal fun MessageReceiver.isBlock(publicKey: String): Boolean {
+internal fun MessageReceiver.isBlocked(publicKey: String): Boolean {
     val context = MessagingModuleConfiguration.shared.context
     val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
     return recipient.isBlocked
@@ -323,7 +323,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
     // Find our wrapper and decrypt it if possible
     val wrapper = kind.wrappers.firstOrNull { it.publicKey!! == userPublicKey } ?: return
     val encryptedKeyPair = wrapper.encryptedKeyPair!!.toByteArray()
-    val plaintext = MessageReceiverDecryption.decryptWithSessionProtocol(encryptedKeyPair, userKeyPair).first
+    val plaintext = MessageDecrypter.decrypt(encryptedKeyPair, userKeyPair).first
     // Parse it
     val proto = SignalServiceProtos.KeyPair.parseFrom(plaintext)
     val keyPair = ECKeyPair(DjbECPublicKey(proto.publicKey.toByteArray().removing05PrefixIfNeeded()), DjbECPrivateKey(proto.privateKey.toByteArray()))

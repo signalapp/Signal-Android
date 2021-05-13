@@ -70,7 +70,6 @@ import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
-import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -178,8 +177,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         MessagingModuleConfiguration.Companion.configure(this,
                 DatabaseFactory.getStorage(this),
-                DatabaseFactory.getAttachmentProvider(this),
-                new SessionProtocolImpl(this));
+                DatabaseFactory.getAttachmentProvider(this));
         SnodeModule.Companion.configure(apiDB, broadcaster);
         if (userPublicKey != null) {
             MentionsManager.Companion.configureIfNeeded(userPublicKey, userDB);

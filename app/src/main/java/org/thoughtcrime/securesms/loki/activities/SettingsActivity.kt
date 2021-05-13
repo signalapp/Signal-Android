@@ -24,6 +24,7 @@ import network.loki.messenger.R
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.ui.alwaysUi
+import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.avatars.AvatarHelper
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.threads.Address
@@ -189,7 +190,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             promises.add(ProfilePictureUtilities.upload(profilePicture, encodedProfileKey, this))
         }
         val compoundPromise = all(promises)
-        compoundPromise.success {
+        compoundPromise.successUi { // Do this on the UI thread so that it happens before the alwaysUi clause below
             if (isUpdatingProfilePicture && profilePicture != null) {
                 AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!), profilePicture)
                 TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
@@ -206,7 +207,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 btnGroupNameDisplay.text = displayName
             }
             if (isUpdatingProfilePicture && profilePicture != null) {
-                profilePictureView.recycle() // clear cached image before update tje profilePictureView
+                profilePictureView.recycle() // Clear the cached image before updating
                 profilePictureView.update()
             }
             displayNameToBeUploaded = null
