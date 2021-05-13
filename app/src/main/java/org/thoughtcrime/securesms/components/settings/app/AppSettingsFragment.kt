@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.MappingAdapter
@@ -166,9 +167,9 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       itemView.setOnClickListener { model.onClick() }
 
-      titleView.text = model.recipient.getDisplayName(itemView.context)
-      summaryView.text = model.recipient.requireE164()
-      avatarView.setAvatar(GlideApp.with(itemView), model.recipient, false, true)
+      titleView.text = model.recipient.profileName.toString()
+      summaryView.text = PhoneNumberFormatter.prettyPrint(model.recipient.requireE164())
+      avatarView.setRecipient(Recipient.self())
 
       titleView.visibility = View.VISIBLE
       summaryView.visibility = View.VISIBLE
