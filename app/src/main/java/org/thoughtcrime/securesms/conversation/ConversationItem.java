@@ -643,7 +643,7 @@ public class ConversationItem extends LinearLayout
       if (updateMessageData.getKind() instanceof UpdateMessageData.Kind.OpenGroupInvitation) {
         UpdateMessageData.Kind.OpenGroupInvitation data = (UpdateMessageData.Kind.OpenGroupInvitation)updateMessageData.getKind();
         name = data.getGroupName();
-        url = OpenGroupUrlParser.INSTANCE.trimParameter(data.getGroupUrl());
+        url = data.getGroupUrl();
       }
 
       openGroupInvitationViewStub.get().setOpenGroup(name, url, messageRecord.isOutgoing());

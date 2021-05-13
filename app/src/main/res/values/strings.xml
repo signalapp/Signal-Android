@@ -176,6 +176,8 @@
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
     <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session needs microphone access to send audio messages.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session needs microphone access to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>

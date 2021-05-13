@@ -12,6 +12,7 @@ object OpenGroupUrlParser {
         object InvalidPublicKeyProvided : Error("Invalid public key provided.")
     }
 
+    private const val suffix = "/"
     private const val queryPrefix = "public_key"
 
     fun parseUrl(stringUrl: String): OpenGroupRoom {
@@ -20,7 +21,7 @@ object OpenGroupUrlParser {
         // If the URL is malformed, it will throw an exception
         val httpUrl = HttpUrl.parse(url) ?: throw Error.MalformedUrl()
 
-        val host = httpUrl.host()
+        val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).port(httpUrl.port()).build().toString().removeSuffix(suffix)
         // Test if the room is specified in the URL
         val room = httpUrl.pathSegments().firstOrNull { !it.isNullOrEmpty() } ?: throw Error.NoRoomSpecified
         // Test if the query is specified in the URL
@@ -28,7 +29,7 @@ object OpenGroupUrlParser {
         // Public key must be 64 characters
         if (publicKey.length != 64) throw Error.InvalidPublicKeyProvided
 
-        return OpenGroupRoom(host,room,publicKey)
+        return OpenGroupRoom(server,room,publicKey)
     }
 
     fun trimParameter(stringUrl: String): String {
@@ -36,4 +37,4 @@ object OpenGroupUrlParser {
     }
 }
 
-class OpenGroupRoom(val serverHost: String, val room: String, val serverPublicKey: String) { }
+class OpenGroupRoom(val server: String, val room: String, val serverPublicKey: String) {}
