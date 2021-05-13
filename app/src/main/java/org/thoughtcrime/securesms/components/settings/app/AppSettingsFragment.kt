@@ -160,6 +160,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
   private class BioPreferenceViewHolder(itemView: View) : PreferenceViewHolder<BioPreference>(itemView) {
 
     private val avatarView: AvatarImageView = itemView.findViewById(R.id.icon)
+    private val aboutView: TextView = itemView.findViewById(R.id.about)
 
     override fun bind(model: BioPreference) {
       super.bind(model)
@@ -173,6 +174,13 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
       titleView.visibility = View.VISIBLE
       summaryView.visibility = View.VISIBLE
       avatarView.visibility = View.VISIBLE
+
+      if (model.recipient.combinedAboutAndEmoji != null) {
+        aboutView.text = model.recipient.combinedAboutAndEmoji
+        aboutView.visibility = View.VISIBLE
+      } else {
+        aboutView.visibility = View.GONE
+      }
     }
   }
 
