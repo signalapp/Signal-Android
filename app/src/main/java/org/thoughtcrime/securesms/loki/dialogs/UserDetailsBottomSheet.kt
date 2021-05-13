@@ -9,6 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
@@ -36,6 +37,7 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         nameTextViewContainer.setOnClickListener {
             nameTextViewContainer.visibility = View.INVISIBLE
             nameEditContainer.visibility = View.VISIBLE
+            nameEditText.text = null
             nameEditText.requestFocus()
             showSoftKeyboard()
         }
@@ -44,19 +46,18 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             hideSoftKeyboard()
             nameTextViewContainer.visibility = View.VISIBLE
             nameEditContainer.visibility = View.INVISIBLE
-            nameEditText.text = null
         }
         btnSaveNickNameEdit.setOnClickListener {
-            nameEditText.clearFocus()
-            hideSoftKeyboard()
-            nameTextViewContainer.visibility = View.VISIBLE
-            nameEditContainer.visibility = View.INVISIBLE
-            var newNickName: String? = null
-            if (!nameEditText.text.isEmpty()) {
-                newNickName = nameEditText.text.toString()
+            saveNickName(recipient)
+        }
+        nameEditText.setOnEditorActionListener { _, actionId, _ ->
+            when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    saveNickName(recipient)
+                    return@setOnEditorActionListener true
+                }
+                else -> return@setOnEditorActionListener false
             }
-            SSKEnvironment.shared.profileManager.setDisplayName(requireContext(), recipient, newNickName)
-            nameTextView.text = SSKEnvironment.shared.profileManager.getDisplayName(requireContext(), recipient) ?: "Anonymous"
         }
         nameTextView.text = SSKEnvironment.shared.profileManager.getDisplayName(requireContext(), recipient) ?: "Anonymous"
         publicKeyTextView.text = publicKey
@@ -66,6 +67,19 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             clipboard.setPrimaryClip(clip)
             Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun saveNickName(recipient: Recipient) {
+        nameEditText.clearFocus()
+        hideSoftKeyboard()
+        nameTextViewContainer.visibility = View.VISIBLE
+        nameEditContainer.visibility = View.INVISIBLE
+        var newNickName: String? = null
+        if (!nameEditText.text.isEmpty()) {
+            newNickName = nameEditText.text.toString()
+        }
+        SSKEnvironment.shared.profileManager.setDisplayName(requireContext(), recipient, newNickName)
+        nameTextView.text = SSKEnvironment.shared.profileManager.getDisplayName(requireContext(), recipient) ?: "Anonymous"
     }
 
     @SuppressLint("ServiceCast")
