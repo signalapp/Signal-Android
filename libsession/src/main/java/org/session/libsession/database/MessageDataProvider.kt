@@ -29,7 +29,7 @@ interface MessageDataProvider {
 
     fun isOutgoingMessage(timestamp: Long): Boolean
 
-    fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult)
+    fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult)
     fun updateAttachmentAfterUploadFailed(attachmentId: Long)
 
     fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>?

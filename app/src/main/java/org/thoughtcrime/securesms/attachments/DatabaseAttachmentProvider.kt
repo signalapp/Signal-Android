@@ -108,20 +108,20 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return null // TODO: Implement
     }
 
-    override fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
+    override fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
         val database = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = getDatabaseAttachment(attachmentId) ?: return
         val attachmentPointer = SignalServiceAttachmentPointer(uploadResult.id,
-                attachmentStream.contentType,
-                attachmentKey,
-                Optional.of(Util.toIntExact(attachmentStream.length)),
-                attachmentStream.preview,
-                attachmentStream.width, attachmentStream.height,
-                Optional.fromNullable(uploadResult.digest),
-                attachmentStream.fileName,
-                attachmentStream.voiceNote,
-                attachmentStream.caption,
-                uploadResult.url);
+            attachmentStream.contentType,
+            attachmentKey,
+            Optional.of(Util.toIntExact(attachmentStream.length)),
+            attachmentStream.preview,
+            attachmentStream.width, attachmentStream.height,
+            Optional.fromNullable(uploadResult.digest),
+            attachmentStream.fileName,
+            attachmentStream.voiceNote,
+            attachmentStream.caption,
+            uploadResult.url);
         val attachment = PointerAttachment.forPointer(Optional.of(attachmentPointer), databaseAttachment.fastPreflightId).get()
         database.updateAttachmentAfterUploadSucceeded(databaseAttachment.attachmentId, attachment)
     }

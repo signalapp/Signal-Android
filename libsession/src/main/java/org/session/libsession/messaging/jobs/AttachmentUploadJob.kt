@@ -4,6 +4,8 @@ import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import nl.komponents.kovenant.Promise
+import okhttp3.MultipartBody
+import okio.Buffer
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.file_server.FileServerAPIV2
@@ -21,6 +23,7 @@ import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.util.Util
 import org.session.libsignal.service.loki.PlaintextOutputStreamFactory
 import org.session.libsignal.utilities.logging.Log
+import java.util.*
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
     override var delegate: JobDelegate? = null
@@ -60,7 +63,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
                 }
                 handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
             } else if (v1OpenGroup == null) {
-                val keyAndResult = upload(attachment, FileServerAPIV2.DEFAULT_SERVER, true) {
+                val keyAndResult = upload(attachment, FileServerAPIV2.SERVER, true) {
                     FileServerAPIV2.upload(it)
                 }
                 handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
@@ -83,22 +86,46 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     private fun upload(attachment: SignalServiceAttachmentStream, server: String, encrypt: Boolean, upload: (ByteArray) -> Promise<Long, Exception>): Pair<ByteArray, DotNetAPI.UploadResult> {
+        // Key
         val key = if (encrypt) Util.getSecretBytes(64) else ByteArray(0)
+        // Length
         val rawLength = attachment.length
-        val length = if (encrypt) PaddingInputStream.getPaddedSize(rawLength) else rawLength
-        val stream = if (encrypt) PaddingInputStream(attachment.inputStream, rawLength) else attachment.inputStream
-        val ciphertextLength = if (encrypt) AttachmentCipherOutputStream.getCiphertextLength(length) else rawLength
+        val length = if (encrypt) {
+            val paddedLength = PaddingInputStream.getPaddedSize(rawLength)
+            AttachmentCipherOutputStream.getCiphertextLength(paddedLength)
+        } else {
+            attachment.length
+        }
+        // In & out streams
+        // PaddingInputStream adds padding as data is read out from it. AttachmentCipherOutputStream
+        // encrypts as it writes data.
+        val inputStream = if (encrypt) PaddingInputStream(attachment.inputStream, rawLength) else attachment.inputStream
         val outputStreamFactory = if (encrypt) AttachmentCipherOutputStreamFactory(key) else PlaintextOutputStreamFactory()
-        val pushData = PushAttachmentData(attachment.contentType, stream, ciphertextLength, outputStreamFactory, attachment.listener)
-        val file = DigestingRequestBody(pushData.data, outputStreamFactory, attachment.contentType, pushData.dataSize, attachment.listener)
-        val id = upload(pushData.data.readBytes()).get()
-        return Pair(key, DotNetAPI.UploadResult(id, "${server}/files/$id", file.transmittedDigest))
+        // Create a multipart request body but immediately read it out to a buffer. Doing this makes
+        // it easier to deal with inputStream and outputStreamFactory.
+        val pad = PushAttachmentData(attachment.contentType, inputStream, length, outputStreamFactory, attachment.listener)
+        val contentType = "application/octet-stream"
+        val drb = DigestingRequestBody(pad.data, pad.outputStreamFactory, contentType, pad.dataSize, attachment.listener)
+        Log.d("Loki", "File size: ${length.toDouble() / 1000} kb.")
+        val mpb = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("Content-Type", contentType)
+            .addFormDataPart("content", UUID.randomUUID().toString(), drb)
+            .build()
+        val b = Buffer()
+        mpb.writeTo(b)
+        val data = b.readByteArray()
+        // Upload the data
+        val id = upload(data).get()
+        val digest = drb.transmittedDigest
+        // Return
+        return Pair(key, DotNetAPI.UploadResult(id, "${server}/files/$id", digest))
     }
 
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
         Log.d(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
-        MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadSucceeded(attachmentID, attachment, attachmentKey, uploadResult)
+        MessagingModuleConfiguration.shared.messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
         MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
     }
 

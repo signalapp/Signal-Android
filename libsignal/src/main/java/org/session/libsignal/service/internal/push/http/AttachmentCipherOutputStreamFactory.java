@@ -1,6 +1,5 @@
 package org.session.libsignal.service.internal.push.http;
 
-
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream;
 import org.session.libsignal.service.api.crypto.DigestingOutputStream;
 
@@ -19,5 +18,4 @@ public class AttachmentCipherOutputStreamFactory implements OutputStreamFactory 
   public DigestingOutputStream createFor(OutputStream wrap) throws IOException {
     return new AttachmentCipherOutputStream(key, wrap);
   }
-
 }
