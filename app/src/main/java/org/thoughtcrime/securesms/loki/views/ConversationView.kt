@@ -88,10 +88,10 @@ class ConversationView : LinearLayout {
     }
 
     private fun getUserDisplayName(recipient: Recipient): String? {
-        if (recipient.isLocalNumber)
-            return context.getString(R.string.note_to_self)
+        return if (recipient.isLocalNumber)
+            context.getString(R.string.note_to_self)
         else
-            return SSKEnvironment.shared.profileManager.getDisplayName(context, recipient)
+            SSKEnvironment.shared.profileManager.getDisplayName(context, recipient)
     }
     // endregion
 }

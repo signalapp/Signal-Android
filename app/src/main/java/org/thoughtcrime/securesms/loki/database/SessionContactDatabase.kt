@@ -6,6 +6,8 @@ import androidx.core.database.getStringOrNull
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.Job
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsignal.utilities.Base64
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -74,7 +76,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         cursor.getStringOrNull(profilePictureEncryptionKey)?.let {
             contact.profilePictureEncryptionKey = Base64.decode(it)
         }
-        contact.threadID = cursor.getInt(threadID)
+        contact.threadID = cursor.getLong(threadID)
         contact.isTrusted = cursor.getInt(isTrusted) != 0
         return contact
     }
