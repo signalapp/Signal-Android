@@ -481,6 +481,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
         String message      = slideDeck.getBody() + ": " + record.getBody();
         int    italicLength = message.length() - body.length();
         body = SpanUtil.italic(message, italicLength);
+      } else if (record.isOpenGroupInvitation()) {
+        body = SpanUtil.italic(context.getString(R.string.ThreadRecord_open_group_invitation));
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
