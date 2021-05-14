@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.jobs.*
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -18,53 +19,55 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         const val jobType = "job_type"
         const val failureCount = "failure_count"
         const val serializedData = "serialized_data"
-        @JvmStatic val createSessionJobTableCommand = "CREATE TABLE $sessionJobTable ($jobID INTEGER PRIMARY KEY, $jobType STRING, $failureCount INTEGER DEFAULT 0, $serializedData TEXT);"
+        @JvmStatic val createSessionJobTableCommand
+            = "CREATE TABLE $sessionJobTable ($jobID INTEGER PRIMARY KEY, $jobType STRING, $failureCount INTEGER DEFAULT 0, $serializedData TEXT);"
     }
 
     fun persistJob(job: Job) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(4)
-        contentValues.put(jobID, job.id)
+        contentValues.put(jobID, job.id!!)
         contentValues.put(jobType, job.getFactoryKey())
         contentValues.put(failureCount, job.failureCount)
         contentValues.put(serializedData, SessionJobHelper.dataSerializer.serialize(job.serialize()))
-        database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf(jobID))
+        database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf( job.id!! ))
     }
 
-    fun markJobAsSucceeded(jobId: String) {
-        databaseHelper.writableDatabase.delete(sessionJobTable, "$jobID = ?", arrayOf(jobId))
+    fun markJobAsSucceeded(jobID: String) {
+        databaseHelper.writableDatabase.delete(sessionJobTable, "${Companion.jobID} = ?", arrayOf( jobID ))
     }
 
-    fun markJobAsFailed(jobId: String) {
-        databaseHelper.writableDatabase.delete(sessionJobTable, "$jobID = ?", arrayOf(jobId))
+    fun markJobAsFailedPermanently(jobID: String) {
+        databaseHelper.writableDatabase.delete(sessionJobTable, "${Companion.jobID} = ?", arrayOf( jobID ))
     }
 
     fun getAllPendingJobs(type: String): Map<String, Job?> {
         val database = databaseHelper.readableDatabase
-        return database.getAll(sessionJobTable, "$jobType = ?", arrayOf(type)) { cursor ->
-            val jobId = cursor.getString(jobID)
+        return database.getAll(sessionJobTable, "$jobType = ?", arrayOf( type )) { cursor ->
+            val jobID = cursor.getString(jobID)
             try {
-                jobId to jobFromCursor(cursor)
+                jobID to jobFromCursor(cursor)
             } catch (e: Exception) {
-                Log.e("Loki", "Error serializing Job of type $type",e)
-                jobId to null
+                Log.e("Loki", "Error deserializing job of type: $type.", e)
+                jobID to null
             }
         }.toMap()
     }
 
     fun getAttachmentUploadJob(attachmentID: Long): AttachmentUploadJob? {
         val database = databaseHelper.readableDatabase
-        var result = mutableListOf<AttachmentUploadJob>()
-        database.getAll(sessionJobTable, "$jobType = ?", arrayOf(AttachmentUploadJob.KEY)) { cursor ->
-            result.add(jobFromCursor(cursor) as AttachmentUploadJob)
+        val result = mutableListOf<AttachmentUploadJob>()
+        database.getAll(sessionJobTable, "$jobType = ?", arrayOf( AttachmentUploadJob.KEY )) { cursor ->
+            val job = jobFromCursor(cursor) as AttachmentUploadJob?
+            if (job != null) { result.add(job) }
         }
         return result.firstOrNull { job -> job.attachmentID == attachmentID }
     }
 
     fun getMessageSendJob(messageSendJobID: String): MessageSendJob? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf(messageSendJobID, MessageSendJob.KEY)) { cursor ->
-            jobFromCursor(cursor) as MessageSendJob
+        return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf( messageSendJobID, MessageSendJob.KEY )) { cursor ->
+            jobFromCursor(cursor) as MessageSendJob?
         }
     }
 
@@ -72,8 +75,8 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val database = databaseHelper.readableDatabase
         var cursor: android.database.Cursor? = null
         try {
-            cursor = database.rawQuery("SELECT * FROM $sessionJobTable WHERE $jobID = ?", arrayOf(job.id))
-            return cursor != null && cursor.moveToFirst()
+            cursor = database.rawQuery("SELECT * FROM $sessionJobTable WHERE $jobID = ?", arrayOf( job.id!! ))
+            return cursor == null || !cursor.moveToFirst()
         } catch (e: Exception) {
             // Do nothing
         }  finally {
@@ -82,10 +85,10 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         return false
     }
 
-    private fun jobFromCursor(cursor: Cursor): Job {
+    private fun jobFromCursor(cursor: Cursor): Job? {
         val type = cursor.getString(jobType)
         val data = SessionJobHelper.dataSerializer.deserialize(cursor.getString(serializedData))
-        val job = SessionJobHelper.sessionJobInstantiator.instantiate(type, data)
+        val job = SessionJobHelper.sessionJobInstantiator.instantiate(type, data) ?: return null
         job.id = cursor.getString(jobID)
         job.failureCount = cursor.getInt(failureCount)
         return job

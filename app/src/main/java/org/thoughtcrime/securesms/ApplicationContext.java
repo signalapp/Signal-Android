@@ -327,7 +327,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                 .setDependencyInjector(this)
                 .build());
-        JobQueue.getShared().resumePendingJobs();
     }
 
     private void initializeDependencyInjection() {
@@ -455,7 +454,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setUserPublicKey(userPublicKey);
             return;
         }
-        LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         poller = new Poller();
         closedGroupPoller = new ClosedGroupPoller();
     }

@@ -9,6 +9,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.snode.OnionRequestAPI
 
@@ -21,16 +22,14 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     override var id: String? = null
     override var failureCount: Int = 0
 
-    // Settings
     override val maxFailureCount: Int = 20
     companion object {
         val KEY: String = "NotifyPNServerJob"
 
         // Keys used for database storage
-        private val KEY_MESSAGE = "message"
+        private val MESSAGE_KEY = "message"
     }
 
-    // Running
     override fun execute() {
         val server = PushNotificationAPI.server
         val parameters = mapOf( "data" to message.data, "send_to" to message.recipient )
@@ -41,10 +40,10 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
             OnionRequestAPI.sendOnionRequest(request.build(), server, PushNotificationAPI.serverPublicKey, "/loki/v2/lsrpc").map { json ->
                 val code = json["code"] as? Int
                 if (code == null || code == 0) {
-                    Log.d("Loki", "[Loki] Couldn't notify PN server due to error: ${json["message"] as? String ?: "null"}.")
+                    Log.d("Loki", "Couldn't notify PN server due to error: ${json["message"] as? String ?: "null"}.")
                 }
             }.fail { exception ->
-                Log.d("Loki", "[Loki] Couldn't notify PN server due to error: $exception.")
+                Log.d("Loki", "Couldn't notify PN server due to error: $exception.")
             }
         }.success {
             handleSuccess()
@@ -68,18 +67,19 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage).build();
+        return Data.Builder().putByteArray(MESSAGE_KEY, serializedMessage).build();
     }
 
     override fun getFactoryKey(): String {
         return KEY
     }
 
-    class Factory: Job.Factory<NotifyPNServerJob> {
+    class Factory : Job.Factory<NotifyPNServerJob> {
 
         override fun create(data: Data): NotifyPNServerJob {
-            val serializedMessage = data.getByteArray(KEY_MESSAGE)
+            val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
             val message: SnodeMessage = kryo.readObject(input, SnodeMessage::class.java)
             input.close()

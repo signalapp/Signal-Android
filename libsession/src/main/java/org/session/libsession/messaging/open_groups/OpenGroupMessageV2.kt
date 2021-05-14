@@ -9,14 +9,18 @@ import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 
 data class OpenGroupMessageV2(
-        val serverID: Long? = null,
-        val sender: String?,
-        val sentTimestamp: Long,
-        // The serialized protobuf in base64 encoding
-        val base64EncodedData: String,
-        // When sending a message, the sender signs the serialized protobuf with their private key so that
-        // a receiving user can verify that the message wasn't tampered with.
-        val base64EncodedSignature: String? = null
+    val serverID: Long? = null,
+    val sender: String?,
+    val sentTimestamp: Long,
+    /**
+     * The serialized protobuf in base64 encoding.
+     */
+    val base64EncodedData: String,
+    /**
+     * When sending a message, the sender signs the serialized protobuf with their private key so that
+     * a receiving user can verify that the message wasn't tampered with.
+     */
+    val base64EncodedSignature: String? = null
 ) {
 
     companion object {
@@ -28,11 +32,12 @@ data class OpenGroupMessageV2(
             val serverID = json["server_id"] as? Int
             val sender = json["public_key"] as? String
             val base64EncodedSignature = json["signature"] as? String
-            return OpenGroupMessageV2(serverID = serverID?.toLong(),
-                    sender = sender,
-                    sentTimestamp = sentTimestamp,
-                    base64EncodedData = base64EncodedData,
-                    base64EncodedSignature = base64EncodedSignature
+            return OpenGroupMessageV2(
+                serverID = serverID?.toLong(),
+                sender = sender,
+                sentTimestamp = sentTimestamp,
+                base64EncodedData = base64EncodedData,
+                base64EncodedSignature = base64EncodedSignature
             )
         }
 
@@ -41,29 +46,26 @@ data class OpenGroupMessageV2(
     fun sign(): OpenGroupMessageV2? {
         if (base64EncodedData.isEmpty()) return null
         val (publicKey, privateKey) = MessagingModuleConfiguration.shared.storage.getUserKeyPair() ?: return null
-
-        if (sender != publicKey) return null // only sign our own messages?
-
+        if (sender != publicKey) return null
         val signature = try {
             curve.calculateSignature(privateKey, decode(base64EncodedData))
         } catch (e: Exception) {
-            Log.e("Loki", "Couldn't sign OpenGroupV2Message", e)
+            Log.w("Loki", "Couldn't sign open group message.", e)
             return null
         }
-
         return copy(base64EncodedSignature = Base64.encodeBytes(signature))
     }
 
     fun toJSON(): Map<String, Any> {
-        val jsonMap = mutableMapOf("data" to base64EncodedData, "timestamp" to sentTimestamp)
-        serverID?.let { jsonMap["server_id"] = serverID }
-        sender?.let { jsonMap["public_key"] = sender }
-        base64EncodedSignature?.let { jsonMap["signature"] = base64EncodedSignature }
-        return jsonMap
+        val json = mutableMapOf( "data" to base64EncodedData, "timestamp" to sentTimestamp )
+        serverID?.let { json["server_id"] = it }
+        sender?.let { json["public_key"] = it }
+        base64EncodedSignature?.let { json["signature"] = it }
+        return json
     }
 
-    fun toProto(): SignalServiceProtos.Content = decode(base64EncodedData).let(PushTransportDetails::getStrippedPaddingMessageBody).let { bytes ->
-        SignalServiceProtos.Content.parseFrom(bytes)
+    fun toProto(): SignalServiceProtos.Content {
+        val data = decode(base64EncodedData).let(PushTransportDetails::getStrippedPaddingMessageBody)
+        return SignalServiceProtos.Content.parseFrom(data)
     }
-
 }

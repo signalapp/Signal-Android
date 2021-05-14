@@ -3,6 +3,7 @@ package org.session.libsession.messaging.jobs
 class SessionJobManagerFactories {
 
     companion object {
+
         fun getSessionJobFactories(): Map<String, Job.Factory<out Job>> {
             return mapOf(
                 AttachmentDownloadJob.KEY to AttachmentDownloadJob.Factory(),

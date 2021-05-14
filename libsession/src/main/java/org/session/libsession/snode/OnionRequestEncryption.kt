@@ -71,11 +71,11 @@ object OnionRequestEncryption {
                     }
                     is OnionRequestAPI.Destination.Server -> {
                         payload = mutableMapOf(
-                                "host" to rhs.host,
-                                "target" to rhs.target,
-                                "method" to "POST",
-                                "protocol" to rhs.scheme,
-                                "port" to rhs.port
+                            "host" to rhs.host,
+                            "target" to rhs.target,
+                            "method" to "POST",
+                            "protocol" to rhs.scheme,
+                            "port" to rhs.port
                         )
                     }
                 }

@@ -8,6 +8,7 @@ import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
@@ -30,44 +31,39 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
     // Settings
     override val maxFailureCount: Int = 20
+
     companion object {
         val TAG = AttachmentUploadJob::class.simpleName
         val KEY: String = "AttachmentUploadJob"
 
         // Keys used for database storage
-        private val KEY_ATTACHMENT_ID = "attachment_id"
-        private val KEY_THREAD_ID = "thread_id"
-        private val KEY_MESSAGE = "message"
-        private val KEY_MESSAGE_SEND_JOB_ID = "message_send_job_id"
+        private val ATTACHMENT_ID_KEY = "attachment_id"
+        private val THREAD_ID_KEY = "thread_id"
+        private val MESSAGE_KEY = "message"
+        private val MESSAGE_SEND_JOB_ID_KEY = "message_send_job_id"
     }
 
     override fun execute() {
         try {
             val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
                 ?: return handleFailure(Error.NoAttachment)
-
             val usePadding = false
             val openGroupV2 = MessagingModuleConfiguration.shared.storage.getV2OpenGroup(threadID)
             val openGroup = MessagingModuleConfiguration.shared.storage.getOpenGroup(threadID)
-            val server = openGroup?.let {
-                it.server
-            } ?: openGroupV2?.let {
-                it.server
-            } ?: FileServerAPI.shared.server
+            val server = openGroupV2?.server ?: openGroup?.server ?: FileServerAPI.shared.server
             val shouldEncrypt = (openGroup == null && openGroupV2 == null) // Encrypt if this isn't an open group
-
             val attachmentKey = Util.getSecretBytes(64)
             val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
             val dataStream = if (usePadding) PaddingInputStream(attachment.inputStream, attachment.length) else attachment.inputStream
             val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(paddedLength) else attachment.length
-
             val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
             val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
-
-            val uploadResult = if (openGroupV2 == null) FileServerAPI.shared.uploadAttachment(server, attachmentData) else {
+            val uploadResult = if (openGroupV2 != null) {
                 val dataBytes = attachmentData.data.readBytes()
                 val result = OpenGroupAPIV2.upload(dataBytes, openGroupV2.room, openGroupV2.server).get()
                 DotNetAPI.UploadResult(result, "${openGroupV2.server}/files/$result", byteArrayOf())
+            } else {
+                FileServerAPI.shared.uploadAttachment(server, attachmentData)
             }
             handleSuccess(attachment, attachmentKey, uploadResult)
         } catch (e: java.lang.Exception) {
@@ -82,7 +78,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
-        Log.w(TAG, "Attachment uploaded successfully.")
+        Log.d(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
         MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadSucceeded(attachmentID, attachment, attachmentKey, uploadResult)
         MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
@@ -108,7 +104,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val messageSendJob = storage.getMessageSendJob(messageSendJobID)
         MessageSender.handleFailedMessageSend(this.message, e)
         if (messageSendJob != null) {
-            storage.markJobAsFailed(messageSendJobID)
+            storage.markJobAsFailedPermanently(messageSendJobID)
         }
     }
 
@@ -119,10 +115,11 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return Data.Builder().putLong(KEY_ATTACHMENT_ID, attachmentID)
-            .putString(KEY_THREAD_ID, threadID)
-            .putByteArray(KEY_MESSAGE, serializedMessage)
-            .putString(KEY_MESSAGE_SEND_JOB_ID, messageSendJobID)
+        return Data.Builder()
+            .putLong(ATTACHMENT_ID_KEY, attachmentID)
+            .putString(THREAD_ID_KEY, threadID)
+            .putByteArray(MESSAGE_KEY, serializedMessage)
+            .putString(MESSAGE_SEND_JOB_ID_KEY, messageSendJobID)
             .build();
     }
 
@@ -133,12 +130,18 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     class Factory: Job.Factory<AttachmentUploadJob> {
 
         override fun create(data: Data): AttachmentUploadJob {
-            val serializedMessage = data.getByteArray(KEY_MESSAGE)
+            val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
             val message: Message = kryo.readObject(input, Message::class.java)
             input.close()
-            return AttachmentUploadJob(data.getLong(KEY_ATTACHMENT_ID), data.getString(KEY_THREAD_ID)!!, message, data.getString(KEY_MESSAGE_SEND_JOB_ID)!!)
+            return AttachmentUploadJob(
+                data.getLong(ATTACHMENT_ID_KEY),
+                data.getString(THREAD_ID_KEY)!!,
+                message,
+                data.getString(MESSAGE_SEND_JOB_ID_KEY)!!
+            )
         }
     }
 }

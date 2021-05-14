@@ -3,9 +3,9 @@ package org.session.libsession.messaging.jobs
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
-import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.DownloadUtilities
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
@@ -31,8 +31,8 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         val KEY: String = "AttachmentDownloadJob"
 
         // Keys used for database storage
-        private val KEY_ATTACHMENT_ID = "attachment_id"
-        private val KEY_TS_INCOMING_MESSAGE_ID = "tsIncoming_message_id"
+        private val ATTACHMENT_ID_KEY = "attachment_id"
+        private val TS_INCOMING_MESSAGE_ID_KEY = "tsIncoming_message_id"
     }
 
     override fun execute() {
@@ -52,18 +52,19 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         try {
             val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
             val attachment = messageDataProvider.getDatabaseAttachment(attachmentID)
-                    ?: return handleFailure(Error.NoAttachment)
+                ?: return handleFailure(Error.NoAttachment)
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
             val tempFile = createTempFile()
-
             val threadId = MessagingModuleConfiguration.shared.storage.getThreadIdForMms(databaseMessageID)
             val openGroupV2 = MessagingModuleConfiguration.shared.storage.getV2OpenGroup(threadId.toString())
-
             val stream = if (openGroupV2 == null) {
                 DownloadUtilities.downloadFile(tempFile, attachment.url, FileServerAPI.maxFileSize, null)
                 // Assume we're retrieving an attachment for an open group server if the digest is not set
-                if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
-                else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
+                if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) {
+                    FileInputStream(tempFile)
+                } else {
+                    AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
+                }
             } else {
                 val url = HttpUrl.parse(attachment.url)!!
                 val fileId = url.pathSegments().last()
@@ -100,8 +101,9 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     override fun serialize(): Data {
-        return Data.Builder().putLong(KEY_ATTACHMENT_ID, attachmentID)
-            .putLong(KEY_TS_INCOMING_MESSAGE_ID, databaseMessageID)
+        return Data.Builder()
+            .putLong(ATTACHMENT_ID_KEY, attachmentID)
+            .putLong(TS_INCOMING_MESSAGE_ID_KEY, databaseMessageID)
             .build();
     }
 
@@ -110,8 +112,9 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     class Factory : Job.Factory<AttachmentDownloadJob> {
+
         override fun create(data: Data): AttachmentDownloadJob {
-            return AttachmentDownloadJob(data.getLong(KEY_ATTACHMENT_ID), data.getLong(KEY_TS_INCOMING_MESSAGE_ID))
+            return AttachmentDownloadJob(data.getLong(ATTACHMENT_ID_KEY), data.getLong(TS_INCOMING_MESSAGE_ID_KEY))
         }
     }
 }
