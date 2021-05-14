@@ -31,6 +31,7 @@
     <color name="pn_option_background">#1B1B1B</color>
     <color name="pn_option_border">#212121</color>
     <color name="paths_building">#FFCE3A</color>
+    <color name="open_group_chip_color">#0DFFFFFF</color>
 
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>

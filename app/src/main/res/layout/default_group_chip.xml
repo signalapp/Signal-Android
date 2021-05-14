@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:theme="@style/Theme.MaterialComponents.DayNight"
     style="?attr/chipStyle"
-    app:chipStartPadding="6dp"
+    app:chipStartPadding="4dp"
+    app:chipBackgroundColor="@color/open_group_chip_color"
     android:layout_columnWeight="1"
-    android:layout_marginHorizontal="2dp"
     tools:text="Main Group"
     android:ellipsize="end"
     tools:layout_width="wrap_content"
+    app:chipMinTouchTargetSize="0dp"
+    android:layout_margin="4dp"
     android:layout_width="0dp"
-    android:layout_height="52dp" />
+    android:layout_height="wrap_content" />

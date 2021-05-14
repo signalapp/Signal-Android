@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.GridLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
@@ -184,8 +185,9 @@ class EnterChatURLFragment : Fragment() {
 
     private fun populateDefaultGroups(groups: List<DefaultGroup>) {
         defaultRoomsGridLayout.removeAllViews()
+        defaultRoomsGridLayout.useDefaultMargins = false
         groups.forEach { defaultGroup ->
-            val chip = layoutInflater.inflate(R.layout.default_group_chip,defaultRoomsGridLayout, false) as Chip
+            val chip = layoutInflater.inflate(R.layout.default_group_chip, defaultRoomsGridLayout, false) as Chip
             val drawable = defaultGroup.image?.let { bytes ->
                 val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
                 RoundedBitmapDrawableFactory.create(resources,bitmap).apply {
@@ -197,10 +199,10 @@ class EnterChatURLFragment : Fragment() {
             chip.setOnClickListener {
                 (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(defaultGroup.joinURL)
             }
+
             defaultRoomsGridLayout.addView(chip)
         }
-        if (groups.size and 1 != 0) {
-            // add a filler weight 1 view
+        if ((groups.size and 1) != 0) { // This checks that the number of rooms is even
             layoutInflater.inflate(R.layout.grid_layout_filler, defaultRoomsGridLayout)
         }
     }
