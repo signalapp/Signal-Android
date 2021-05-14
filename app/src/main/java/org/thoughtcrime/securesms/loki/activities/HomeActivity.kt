@@ -332,6 +332,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
             lifecycleScope.launch(Dispatchers.Main) {
                 val context = this@HomeActivity as Context
 
+                DatabaseFactory.getSessionJobDatabase(this@HomeActivity).cancelPendingMessageSendJobs(threadID)
+
                 // Send a leave group message if this is an active closed group
                 if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
                     var isClosedGroup: Boolean
