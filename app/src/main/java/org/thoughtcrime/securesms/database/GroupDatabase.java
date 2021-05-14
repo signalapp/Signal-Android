@@ -20,7 +20,9 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
+import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.whispersystems.signalservice.api.push.DistributionId;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -48,6 +50,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -71,6 +74,7 @@ public final class GroupDatabase extends Database {
           static final String MMS                   = "mms";
   private static final String EXPECTED_V2_ID        = "expected_v2_id";
   private static final String UNMIGRATED_V1_MEMBERS = "former_v1_members";
+  private static final String DISTRIBUTION_ID       = "distribution_id";
 
 
   /* V2 Group columns */
@@ -98,15 +102,17 @@ public final class GroupDatabase extends Database {
                                                                                   V2_REVISION           + " BLOB, " +
                                                                                   V2_DECRYPTED_GROUP    + " BLOB, " +
                                                                                   EXPECTED_V2_ID        + " TEXT DEFAULT NULL, " +
-                                                                                  UNMIGRATED_V1_MEMBERS + " TEXT DEFAULT NULL);";
+                                                                                  UNMIGRATED_V1_MEMBERS + " TEXT DEFAULT NULL, " +
+                                                                                  DISTRIBUTION_ID       + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
       "CREATE UNIQUE INDEX IF NOT EXISTS group_recipient_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
-      "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON " + TABLE_NAME + " (" + EXPECTED_V2_ID + ");"
-  };
+      "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON " + TABLE_NAME + " (" + EXPECTED_V2_ID + ");",
+      "CREATE UNIQUE INDEX IF NOT EXISTS group_distribution_id_index ON " + TABLE_NAME + "(" + DISTRIBUTION_ID + ")"
+};
 
-  private static final String[] GROUP_PROJECTION = {
+private static final String[] GROUP_PROJECTION = {
       GROUP_ID, RECIPIENT_ID, TITLE, MEMBERS, UNMIGRATED_V1_MEMBERS, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
       TIMESTAMP, ACTIVE, MMS, V2_MASTER_KEY, V2_REVISION, V2_DECRYPTED_GROUP
   };
@@ -254,6 +260,38 @@ public final class GroupDatabase extends Database {
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
 
     return new Reader(cursor);
+  }
+
+  public @NonNull DistributionId getOrCreateDistributionId(@NonNull GroupId.V2 groupId) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = GROUP_ID + " = ?";
+    String[]       args  = SqlUtil.buildArgs(groupId);
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] { DISTRIBUTION_ID }, query, args, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        Optional<String> serialized = CursorUtil.getString(cursor, DISTRIBUTION_ID);
+
+        if (serialized.isPresent()) {
+          return DistributionId.from(serialized.get());
+        } else {
+          Log.w(TAG, "Missing distributionId! Creating one.");
+
+          DistributionId distributionId = DistributionId.create();
+
+          ContentValues values = new ContentValues(1);
+          values.put(DISTRIBUTION_ID, distributionId.toString());
+
+          int count = db.update(TABLE_NAME, values, query, args);
+          if (count < 1) {
+            throw new IllegalStateException("Tried to create a distributionId for " + groupId + ", but it doesn't exist!");
+          }
+
+          return distributionId;
+        }
+      } else {
+        throw new IllegalStateException("Group " + groupId + " doesn't exist!");
+      }
+    }
   }
 
   public GroupId.Mms getOrCreateMmsGroupForMembers(List<RecipientId> members) {
@@ -436,6 +474,7 @@ public final class GroupDatabase extends Database {
 
     if (groupId.isV2()) {
       contentValues.put(ACTIVE, groupState != null && gv2GroupActive(groupState) ? 1 : 0);
+      contentValues.put(DISTRIBUTION_ID, DistributionId.create().toString());
     } else if (groupId.isV1()) {
       contentValues.put(ACTIVE, 1);
       contentValues.put(EXPECTED_V2_ID, groupId.requireV1().deriveV2MigrationGroupId().toString());
@@ -524,6 +563,7 @@ public final class GroupDatabase extends Database {
       ContentValues contentValues = new ContentValues();
       contentValues.put(GROUP_ID, groupIdV2.toString());
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
+      contentValues.put(DISTRIBUTION_ID, DistributionId.create().toString());
       contentValues.putNull(EXPECTED_V2_ID);
 
       List<RecipientId> newMembers     = uuidsToRecipientIds(DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList()));
@@ -596,6 +636,18 @@ public final class GroupDatabase extends Database {
     contentValues.put(MEMBERS, RecipientId.toSerializedList(groupMembers));
     contentValues.put(ACTIVE, gv2GroupActive(decryptedGroup) ? 1 : 0);
 
+    DistributionId distributionId = Objects.requireNonNull(existingGroup.get().getDistributionId());
+
+    if (existingGroup.isPresent() && existingGroup.get().isV2Group()) {
+      DecryptedGroupChange change  = GroupChangeReconstruct.reconstructGroupChange(existingGroup.get().requireV2GroupProperties().getDecryptedGroup(), decryptedGroup);
+      List<UUID>           removed = DecryptedGroupUtil.removedMembersUuidList(change);
+
+      if (removed.size() > 0) {
+        Log.i(TAG, removed.size() + " members were removed from group " + groupId + ". Rotating the sender key.");
+        SenderKeyUtil.rotateOurKey(context, distributionId);
+      }
+    }
+
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
                                                 new String[]{ groupId.toString() });
@@ -604,7 +656,7 @@ public final class GroupDatabase extends Database {
       recipientDatabase.setExpireMessages(groupRecipientId, decryptedGroup.getDisappearingMessagesTimer().getDuration());
     }
 
-    if (groupMembers != null && (groupId.isMms() || Recipient.resolved(groupRecipientId).isProfileSharing())) {
+    if (groupId.isMms() || Recipient.resolved(groupRecipientId).isProfileSharing()) {
       recipientDatabase.setHasGroupsInCommon(groupMembers);
     }
 
@@ -735,7 +787,7 @@ public final class GroupDatabase extends Database {
   }
 
 
-  private static List<RecipientId> uuidsToRecipientIds(@NonNull List<UUID> uuids) {
+  private static @NonNull List<RecipientId> uuidsToRecipientIds(@NonNull List<UUID> uuids) {
     List<RecipientId> groupMembers  = new ArrayList<>(uuids.size());
 
     for (UUID uuid : uuids) {
@@ -751,11 +803,9 @@ public final class GroupDatabase extends Database {
     return groupMembers;
   }
 
-  private static List<RecipientId> getV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
-    List<UUID>        uuids        = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
-    List<RecipientId> recipientIds = uuidsToRecipientIds(uuids);
-
-    return recipientIds;
+  private static @NonNull List<RecipientId> getV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
+    List<UUID> uuids = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
+    return uuidsToRecipientIds(uuids);
   }
 
   public @NonNull List<GroupId.V2> getAllGroupV2Ids() {
@@ -830,7 +880,8 @@ public final class GroupDatabase extends Database {
                              CursorUtil.requireBoolean(cursor, MMS),
                              CursorUtil.requireBlob(cursor, V2_MASTER_KEY),
                              CursorUtil.requireInt(cursor, V2_REVISION),
-                             CursorUtil.requireBlob(cursor, V2_DECRYPTED_GROUP));
+                             CursorUtil.requireBlob(cursor, V2_DECRYPTED_GROUP),
+                             CursorUtil.getString(cursor, DISTRIBUTION_ID).transform(DistributionId::from).orNull());
     }
 
     @Override
@@ -855,6 +906,7 @@ public final class GroupDatabase extends Database {
               private final boolean           active;
               private final boolean           mms;
     @Nullable private final V2GroupProperties v2GroupProperties;
+              private final DistributionId    distributionId;
 
     public GroupRecord(@NonNull GroupId id,
                        @NonNull RecipientId recipientId,
@@ -870,7 +922,8 @@ public final class GroupDatabase extends Database {
                        boolean mms,
                        @Nullable byte[] groupMasterKeyBytes,
                        int groupRevision,
-                       @Nullable byte[] decryptedGroupBytes)
+                       @Nullable byte[] decryptedGroupBytes,
+                       @Nullable DistributionId distributionId)
     {
       this.id                = id;
       this.recipientId       = recipientId;
@@ -882,6 +935,7 @@ public final class GroupDatabase extends Database {
       this.relay             = relay;
       this.active            = active;
       this.mms               = mms;
+      this.distributionId    = distributionId;
 
       V2GroupProperties v2GroupProperties = null;
       if (groupMasterKeyBytes != null && decryptedGroupBytes != null) {
@@ -967,6 +1021,10 @@ public final class GroupDatabase extends Database {
 
     public boolean isMms() {
       return mms;
+    }
+
+    public @Nullable DistributionId getDistributionId() {
+      return distributionId;
     }
 
     public boolean isV1Group() {

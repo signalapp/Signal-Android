@@ -88,8 +88,8 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
       }
 
       SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
-                                UnidentifiedAccessUtil.getAccessForSync(context));
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
+                                    UnidentifiedAccessUtil.getAccessForSync(context));
     }
   }
 

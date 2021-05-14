@@ -91,7 +91,7 @@ public class IncomingMessageProcessor {
       if (envelope.isReceipt()) {
         processReceipt(envelope);
         return null;
-      } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender()) {
+      } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender() || envelope.isPlaintextContent()) {
         return processMessage(envelope);
       } else {
         Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());

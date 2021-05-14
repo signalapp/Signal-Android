@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.messages;
 
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 public final class SignalServiceMetadata {
@@ -10,6 +11,7 @@ public final class SignalServiceMetadata {
   private final long                 serverDeliveredTimestamp;
   private final boolean              needsReceipt;
   private final String               serverGuid;
+  private final Optional<byte[]>     groupId;
 
   public SignalServiceMetadata(SignalServiceAddress sender,
                                int senderDevice,
@@ -17,7 +19,8 @@ public final class SignalServiceMetadata {
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
                                boolean needsReceipt,
-                               String serverGuid)
+                               String serverGuid,
+                               Optional<byte[]> groupId)
   {
     this.sender                   = sender;
     this.senderDevice             = senderDevice;
@@ -26,6 +29,7 @@ public final class SignalServiceMetadata {
     this.serverDeliveredTimestamp = serverDeliveredTimestamp;
     this.needsReceipt             = needsReceipt;
     this.serverGuid               = serverGuid;
+    this.groupId                  = groupId;
   }
 
   public SignalServiceAddress getSender() {
@@ -54,5 +58,9 @@ public final class SignalServiceMetadata {
 
   public String getServerGuid() {
     return serverGuid;
+  }
+
+  public Optional<byte[]> getGroupId() {
+    return groupId;
   }
 }

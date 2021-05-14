@@ -114,8 +114,8 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
 
 
     ApplicationDependencies.getSignalServiceMessageSender()
-                           .sendMessage(SignalServiceSyncMessage.forOutgoingPayment(outgoingPaymentMessage),
-                                        UnidentifiedAccessUtil.getAccessForSync(context));
+                           .sendSyncMessage(SignalServiceSyncMessage.forOutgoingPayment(outgoingPaymentMessage),
+                                            UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

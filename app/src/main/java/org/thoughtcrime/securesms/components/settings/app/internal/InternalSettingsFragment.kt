@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -212,6 +213,35 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           viewModel.setDisableAutoMigrationNotification(!state.useBuiltInEmojiSet)
         }
       )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.preferences__internal_sender_key)
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_all_state),
+        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_delete_all_sender_key_state),
+        onClick = {
+          clearAllSenderKeyState()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_shared_state),
+        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_delete_all_sharing_state),
+        onClick = {
+          clearAllSenderKeySharedState()
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_remove_two_person_minimum),
+        summary = DSLSettingsText.from(R.string.preferences__internal_remove_the_requirement_that_you_need),
+        isChecked = state.removeSenderKeyMinimium,
+        onClick = {
+          viewModel.setRemoveSenderKeyMinimum(!state.removeSenderKeyMinimium)
+        }
+      )
     }
   }
 
@@ -277,5 +307,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   private fun deleteAllDynamicShortcuts() {
     ConversationUtil.clearAllShortcuts(requireContext())
     Toast.makeText(context, "Deleted all dynamic shortcuts.", Toast.LENGTH_SHORT).show()
+  }
+
+  private fun clearAllSenderKeyState() {
+    DatabaseFactory.getSenderKeyDatabase(requireContext()).deleteAll()
+    DatabaseFactory.getSenderKeySharedDatabase(requireContext()).deleteAll()
+    Toast.makeText(context, "Deleted all sender key state.", Toast.LENGTH_SHORT).show()
+  }
+
+  private fun clearAllSenderKeySharedState() {
+    DatabaseFactory.getSenderKeySharedDatabase(requireContext()).deleteAll()
+    Toast.makeText(context, "Deleted all sender key shared state.", Toast.LENGTH_SHORT).show()
   }
 }

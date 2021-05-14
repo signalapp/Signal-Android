@@ -95,10 +95,10 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
-                                                                                                 Optional.of(unidentifiedDeliveryIndicatorsEnabled),
-                                                                                                 Optional.of(typingIndicatorsEnabled),
-                                                                                                 Optional.of(linkPreviewsEnabled))),
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
+                                                                                                     Optional.of(unidentifiedDeliveryIndicatorsEnabled),
+                                                                                                     Optional.of(typingIndicatorsEnabled),
+                                                                                                     Optional.of(linkPreviewsEnabled))),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

@@ -42,6 +42,10 @@ public class SendMessageResult {
     return success;
   }
 
+  public boolean isSuccess() {
+    return success != null;
+  }
+
   public boolean isNetworkFailure() {
     return networkFailure || proofRequiredFailure != null;
   }

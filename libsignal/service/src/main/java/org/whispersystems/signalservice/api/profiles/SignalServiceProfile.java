@@ -121,6 +121,8 @@ public class SignalServiceProfile {
     @JsonProperty("gv1-migration")
     private boolean gv1Migration;
 
+    private boolean senderKey;
+
     @JsonCreator
     public Capabilities() {}
 
@@ -134,6 +136,10 @@ public class SignalServiceProfile {
 
     public boolean isGv1Migration() {
       return gv1Migration;
+    }
+
+    public boolean isSenderKey() {
+      return senderKey;
     }
   }
 

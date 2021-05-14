@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.SenderKeySharedDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -73,6 +74,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         identityDatabase.saveIdentity(recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipientId);
         SessionUtil.archiveSiblingSessions(context, address);
+        DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
         return true;
       }
 

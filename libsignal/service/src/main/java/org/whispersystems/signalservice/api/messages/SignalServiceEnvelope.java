@@ -246,6 +246,10 @@ public class SignalServiceEnvelope {
     return envelope.getType().getNumber() == Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
   }
 
+  public boolean isPlaintextContent() {
+    return envelope.getType().getNumber() == Envelope.Type.PLAINTEXT_CONTENT_VALUE;
+  }
+
   public byte[] serialize() {
     SignalServiceEnvelopeProto.Builder builder = SignalServiceEnvelopeProto.newBuilder()
                                                                            .setType(getType())

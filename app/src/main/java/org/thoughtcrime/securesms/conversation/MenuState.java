@@ -134,17 +134,17 @@ final class MenuState {
   }
 
   static boolean isActionMessage(@NonNull MessageRecord messageRecord) {
-    return messageRecord.isGroupAction()           ||
-           messageRecord.isCallLog()               ||
-           messageRecord.isJoined()                ||
+    return messageRecord.isGroupAction() ||
+           messageRecord.isCallLog() ||
+           messageRecord.isJoined() ||
            messageRecord.isExpirationTimerUpdate() ||
-           messageRecord.isEndSession()            ||
-           messageRecord.isIdentityUpdate()        ||
-           messageRecord.isIdentityVerified()      ||
-           messageRecord.isIdentityDefault()       ||
-           messageRecord.isProfileChange()         ||
+           messageRecord.isEndSession() ||
+           messageRecord.isIdentityUpdate() ||
+           messageRecord.isIdentityVerified() ||
+           messageRecord.isIdentityDefault() ||
+           messageRecord.isProfileChange() ||
            messageRecord.isGroupV1MigrationEvent() ||
-           messageRecord.isFailedDecryptionType()  ||
+           messageRecord.isChatSessionRefresh() ||
            messageRecord.isInMemoryMessageRecord();
   }
 

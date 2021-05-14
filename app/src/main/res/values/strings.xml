@@ -1212,6 +1212,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">You marked your safety number with %s verified from another device</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">You marked your safety number with %s unverified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
+    <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">A message from %s couldn\'t be delivered</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
@@ -1625,6 +1626,7 @@
     <string name="ThreadRecord_you_marked_verified">You marked verified</string>
     <string name="ThreadRecord_you_marked_unverified">You marked unverified</string>
     <string name="ThreadRecord_message_could_not_be_processed">Message could not be processed</string>
+    <string name="ThreadRecord_delivery_issue">Delivery issue</string>
     <string name="ThreadRecord_message_request">Message Request</string>
     <string name="ThreadRecord_photo">Photo</string>
     <string name="ThreadRecord_gif">GIF</string>
@@ -2071,6 +2073,11 @@
     <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
     <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">To send media and group messages, tap \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
 
+    <!-- BadDecryptLearnMoreDialog -->
+    <string name="BadDecryptLearnMoreDialog_delivery_issue">Delivery Issue</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">A message, sticker, reaction, or read receipt couldn\'t be delivered to you from %s. They may have tried sending it to you directly, or in a group.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">A message, sticker, reaction, or read receipt couldn\'t be delivered to you from %s.</string>
+
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">First name (required)</string>
     <string name="CreateProfileActivity_last_name_optional">Last name (optional)</string>
@@ -2464,6 +2471,13 @@
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
     <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
+    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
+    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
+    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
+    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
+    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
+    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
+    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
 
     <!-- Payments -->
     <string name="PaymentsActivityFragment__all_activity">All activity</string>

@@ -82,6 +82,9 @@ public final class FeatureFlags {
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String GROUPS_V2_DESCRIPTION_VERSION     = "android.groupsv2.descriptionVersion";
   private static final String DEFAULT_MESSAGE_TIMER             = "android.defaultMessageTimer.2";
+  private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
+  private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
+  private static final String SENDER_KEY                        = "android.senderKey";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -117,7 +120,10 @@ public final class FeatureFlags {
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       GROUPS_V2_DESCRIPTION_VERSION,
-      DEFAULT_MESSAGE_TIMER
+      DEFAULT_MESSAGE_TIMER,
+      RETRY_RECEIPT_LIFESPAN,
+      RETRY_RESPOND_MAX_AGE,
+      SENDER_KEY
   );
 
   @VisibleForTesting
@@ -165,7 +171,9 @@ public final class FeatureFlags {
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       GROUPS_V2_DESCRIPTION_VERSION,
-      DEFAULT_MESSAGE_TIMER
+      DEFAULT_MESSAGE_TIMER,
+      RETRY_RECEIPT_LIFESPAN,
+      RETRY_RESPOND_MAX_AGE
   );
 
   /**
@@ -373,6 +381,21 @@ public final class FeatureFlags {
     return getBoolean(DEFAULT_MESSAGE_TIMER, false);
   }
 
+  /** How long to wait before considering a retry to be a failure. */
+  public static long retryReceiptLifespan() {
+    return getLong(RETRY_RECEIPT_LIFESPAN, TimeUnit.HOURS.toMillis(1));
+  }
+
+  /** How old a message is allowed to be while still resending in response to a retry receipt . */
+  public static long retryRespondMaxAge() {
+    return getLong(RETRY_RESPOND_MAX_AGE, TimeUnit.DAYS.toMillis(1));
+  }
+
+  /** Whether or not sending using sender key is enabled. */
+  public static boolean senderKey() {
+    return getBoolean(SENDER_KEY, false);
+  }
+
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Object> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);
@@ -554,6 +577,24 @@ public final class FeatureFlags {
         return Integer.parseInt((String) remote);
       } catch (NumberFormatException e) {
         Log.w(TAG, "Expected an int for key '" + key + "', but got something else! Falling back to the default.");
+      }
+    }
+
+    return defaultValue;
+  }
+
+  private static long getLong(@NonNull String key, long defaultValue) {
+    Long forced = (Long) FORCED_VALUES.get(key);
+    if (forced != null) {
+      return forced;
+    }
+
+    Object remote = REMOTE_VALUES.get(key);
+    if (remote instanceof String) {
+      try {
+        return Long.parseLong((String) remote);
+      } catch (NumberFormatException e) {
+        Log.w(TAG, "Expected a long for key '" + key + "', but got something else! Falling back to the default.");
       }
     }
 

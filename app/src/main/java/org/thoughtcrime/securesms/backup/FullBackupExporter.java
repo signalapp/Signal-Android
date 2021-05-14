@@ -30,7 +30,10 @@ import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
+import org.thoughtcrime.securesms.database.PendingRetryReceiptDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
+import org.thoughtcrime.securesms.database.SenderKeyDatabase;
+import org.thoughtcrime.securesms.database.SenderKeySharedDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -39,6 +42,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -77,7 +81,10 @@ public class FullBackupExporter extends FullBackupBase {
     SessionDatabase.TABLE_NAME,
     SearchDatabase.SMS_FTS_TABLE_NAME,
     SearchDatabase.MMS_FTS_TABLE_NAME,
-    EmojiSearchDatabase.TABLE_NAME
+    EmojiSearchDatabase.TABLE_NAME,
+    SenderKeyDatabase.TABLE_NAME,
+    SenderKeySharedDatabase.TABLE_NAME,
+    PendingRetryReceiptDatabase.TABLE_NAME
   );
 
   public static void export(@NonNull Context context,

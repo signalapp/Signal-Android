@@ -98,7 +98,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
     SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    messageSender.sendMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

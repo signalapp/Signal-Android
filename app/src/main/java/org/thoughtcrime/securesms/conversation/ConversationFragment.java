@@ -1605,7 +1605,7 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
-    public void onDecryptionFailedLearnMoreClicked() {
+    public void onChatSessionRefreshLearnMoreClicked() {
       new AlertDialog.Builder(requireContext())
           .setView(R.layout.decryption_failed_dialog)
           .setPositiveButton(android.R.string.ok, (d, w) -> {
@@ -1616,6 +1616,13 @@ public class ConversationFragment extends LoggingFragment {
             d.dismiss();
           })
           .show();
+    }
+
+    @Override
+    public void onBadDecryptLearnMoreClicked(@NonNull RecipientId author) {
+      SimpleTask.run(getLifecycle(),
+                     () -> Recipient.resolved(author).getDisplayName(requireContext()),
+                     name -> BadDecryptLearnMoreDialog.show(getParentFragmentManager(), name, recipient.get().isGroup()));
     }
 
     @Override

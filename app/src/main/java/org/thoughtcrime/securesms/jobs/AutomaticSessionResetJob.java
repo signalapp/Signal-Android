@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -16,7 +15,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -87,6 +85,7 @@ public class AutomaticSessionResetJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     SessionUtil.archiveSession(context, recipientId, deviceId);
+    DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
     insertLocalMessage();
 
     if (FeatureFlags.automaticSessionReset()) {
@@ -122,7 +121,7 @@ public class AutomaticSessionResetJob extends BaseJob {
   }
 
   private void insertLocalMessage() {
-    MessageDatabase.InsertResult result = DatabaseFactory.getSmsDatabase(context).insertDecryptionFailedMessage(recipientId, deviceId, sentTimestamp);
+    MessageDatabase.InsertResult result = DatabaseFactory.getSmsDatabase(context).insertChatSessionRefreshedMessage(recipientId, deviceId, sentTimestamp);
     ApplicationDependencies.getMessageNotifier().updateNotification(context, result.getThreadId());
   }
 

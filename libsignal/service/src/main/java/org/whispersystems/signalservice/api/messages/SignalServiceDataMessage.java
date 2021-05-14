@@ -6,6 +6,7 @@
 
 package org.whispersystems.signalservice.api.messages;
 
+import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
@@ -232,6 +233,20 @@ public class SignalServiceDataMessage {
 
   public Optional<Payment> getPayment() {
     return payment;
+  }
+
+  public Optional<byte[]> getGroupId() {
+    byte[] groupId = null;
+
+    if (getGroupContext().isPresent() && getGroupContext().get().getGroupV2().isPresent()) {
+      SignalServiceGroupV2 gv2 = getGroupContext().get().getGroupV2().get();
+      groupId = GroupSecretParams.deriveFromMasterKey(gv2.getMasterKey())
+                                 .getPublicParams()
+                                 .getGroupIdentifier()
+                                 .serialize();
+    }
+
+    return Optional.fromNullable(groupId);
   }
 
   public static class Builder {

@@ -736,6 +736,8 @@
 
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
+    <receiver android:name=".service.PendingRetryReceiptManager$PendingRetryReceiptAlarm" />
+
     <receiver android:name=".service.TrimThreadsByDateManager$TrimThreadsByDateAlarm" />
 
     <receiver android:name=".payments.backup.phrase.ClearClipboardAlarmReceiver" />

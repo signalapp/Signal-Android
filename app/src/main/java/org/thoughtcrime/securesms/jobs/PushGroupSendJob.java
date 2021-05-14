@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
@@ -43,6 +44,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -291,6 +293,7 @@ public final class PushGroupSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
+      GroupDatabase                              groupDatabase      = DatabaseFactory.getGroupDatabase(context);
       SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
       Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
@@ -327,7 +330,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpireMessages())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          return messageSender.sendMessage(addresses, unidentifiedAccess, isRecipientUpdate, groupDataMessage);
+          return GroupSendUtil.sendDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, groupDataMessage);
         } else {
           MessageGroupContext.GroupV1Properties properties = groupMessage.requireGroupV1Properties();
 
@@ -345,7 +348,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                                 .build();
 
           Log.i(TAG, JobLogger.format(this, "Beginning update send."));
-          return messageSender.sendMessage(addresses, unidentifiedAccess, isRecipientUpdate, groupDataMessage);
+          return messageSender.sendDataMessage(addresses, unidentifiedAccess, isRecipientUpdate, ContentHint.IMPLICIT, groupDataMessage);
         }
       } else {
         SignalServiceDataMessage.Builder builder = SignalServiceDataMessage.newBuilder()
@@ -367,7 +370,12 @@ public final class PushGroupSendJob extends PushSendJob {
                                                        .build();
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
-        return messageSender.sendMessage(addresses, unidentifiedAccess, isRecipientUpdate, groupMessage);
+
+        if (groupRecipient.isPushV2Group()) {
+          return GroupSendUtil.sendDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.RESENDABLE, groupMessage);
+        } else {
+          return messageSender.sendDataMessage(addresses, unidentifiedAccess, isRecipientUpdate, ContentHint.RESENDABLE, groupMessage);
+        }
       }
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);

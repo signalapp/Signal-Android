@@ -58,8 +58,8 @@ public class MultiDeviceProfileContentUpdateJob extends BaseJob {
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.LOCAL_PROFILE),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.LOCAL_PROFILE),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

@@ -11,13 +11,13 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -70,6 +70,36 @@ public class SessionDatabase extends Database {
     }
 
     return null;
+  }
+
+  public @NonNull List<SessionRecord> load(@NonNull List<RecipientDevice> ids) {
+    SQLiteDatabase      database = databaseHelper.getReadableDatabase();
+    List<SessionRecord> sessions = new ArrayList<>(ids.size());
+
+    database.beginTransaction();
+    try {
+      String[] projection = new String[]{RECORD};
+      String   query      = RECIPIENT_ID + " = ? AND " + DEVICE + " = ?";
+
+      for (RecipientDevice id : ids) {
+        String[] args = SqlUtil.buildArgs(id.getRecipientId(), id.getDevice());
+
+        try (Cursor cursor = database.query(TABLE_NAME, projection, query, args, null, null, null)) {
+          if (cursor.moveToFirst()) {
+            try {
+              sessions.add(new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD))));
+            } catch (IOException e) {
+              Log.w(TAG, e);
+            }
+          }
+        }
+      }
+      database.setTransactionSuccessful();
+    } finally {
+      database.endTransaction();
+    }
+
+    return sessions;
   }
 
   public @NonNull List<SessionRow> getAllFor(@NonNull RecipientId recipientId) {
@@ -178,6 +208,24 @@ public class SessionDatabase extends Database {
 
     public SessionRecord getRecord() {
       return record;
+    }
+  }
+
+  public static final class RecipientDevice {
+    private final RecipientId recipientId;
+    private final int         device;
+
+    public RecipientDevice(@NonNull RecipientId recipientId, int device) {
+      this.recipientId = recipientId;
+      this.device      = device;
+    }
+
+    public @NonNull RecipientId getRecipientId() {
+      return recipientId;
+    }
+
+    public int getDevice() {
+      return device;
     }
   }
 }

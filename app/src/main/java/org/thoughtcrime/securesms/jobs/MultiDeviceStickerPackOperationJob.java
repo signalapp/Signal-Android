@@ -92,8 +92,8 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
     SignalServiceMessageSender  messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
     StickerPackOperationMessage stickerPackOperation = new StickerPackOperationMessage(packIdBytes, packKeyBytes, remoteType);
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

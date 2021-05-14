@@ -18,6 +18,7 @@ public final class InternalValues extends SignalStoreValues {
   public static final String RECIPIENT_DETAILS                    = "internal.recipient_details";
   public static final String FORCE_CENSORSHIP                     = "internal.force_censorship";
   public static final String FORCE_BUILT_IN_EMOJI                 = "internal.force_built_in_emoji";
+  public static final String REMOVE_SENDER_KEY_MINIMUM            = "internal.remove_sender_key_minimum";
 
   InternalValues(KeyValueStore store) {
     super(store);
@@ -82,10 +83,17 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   /**
-   * Force the app to behave as if it is in a country where Signal is censored.
+   * Force the app to use the emoji that ship with the app, as opposed to the ones that were downloaded.
    */
   public synchronized boolean forceBuiltInEmoji() {
     return FeatureFlags.internalUser() && getBoolean(FORCE_BUILT_IN_EMOJI, false);
+  }
+
+  /**
+   * Remove the requirement that there must be two sender-key-capable recipients to use sender key
+   */
+  public synchronized boolean removeSenderKeyMinimum() {
+    return FeatureFlags.internalUser() && getBoolean(REMOVE_SENDER_KEY_MINIMUM, false);
   }
 
   /**

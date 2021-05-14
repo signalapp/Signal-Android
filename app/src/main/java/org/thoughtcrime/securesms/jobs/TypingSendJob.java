@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -22,6 +23,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
+import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
@@ -105,8 +107,8 @@ public class TypingSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient>  recipients = Collections.singletonList(recipient);
-    Optional<byte[]> groupId    = Optional.absent();
+    List<Recipient>  recipients     = Collections.singletonList(recipient);
+    Optional<byte[]> groupId        = Optional.absent();
 
     if (recipient.isGroup()) {
       recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
@@ -118,23 +120,28 @@ public class TypingSendJob extends BaseJob {
                                                            .filter(r -> !r.isBlocked())
                                                            .toList());
 
-    SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, recipients);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipients);
-    SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
-
-    if (addresses.isEmpty()) {
-      Log.w(TAG, "No one to send typing indicators to");
-      return;
-    }
-
-    if (isCanceled()) {
-      Log.w(TAG, "Canceled before send!");
-      return;
-    }
+    SignalServiceTypingMessage typingMessage = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
     try {
-      messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage, this::isCanceled);
+      if (recipient.isPushV2Group()) {
+        GroupSendUtil.sendTypingMessage(context, recipient.requireGroupId().requireV2(), recipients, typingMessage, this::isCanceled);
+      } else {
+        SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
+        List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, recipients);
+        List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipients);
+
+        if (addresses.isEmpty()) {
+          Log.w(TAG, "No one to send typing indicators to");
+          return;
+        }
+
+        if (isCanceled()) {
+          Log.w(TAG, "Canceled before send!");
+          return;
+        }
+
+        messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage, this::isCanceled);
+      }
     } catch (CancelationException e) {
       Log.w(TAG, "Canceled during send!");
     }

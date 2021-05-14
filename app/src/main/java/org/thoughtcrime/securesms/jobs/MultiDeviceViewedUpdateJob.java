@@ -120,7 +120,7 @@ public class MultiDeviceViewedUpdateJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    messageSender.sendMessage(SignalServiceSyncMessage.forViewed(viewedMessages), UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forViewed(viewedMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

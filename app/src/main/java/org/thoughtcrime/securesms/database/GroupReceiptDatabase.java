@@ -9,11 +9,15 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 public class GroupReceiptDatabase extends Database {
 
@@ -107,6 +111,23 @@ public class GroupReceiptDatabase extends Database {
     }
 
     return results;
+  }
+
+  public @Nullable GroupReceiptInfo getGroupReceiptInfo(long mmsId, @NonNull RecipientId recipientId) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = MMS_ID + " = ? AND " + RECIPIENT_ID + " = ?";
+    String[]       args  = SqlUtil.buildArgs(mmsId, recipientId);
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, query, args, null, null, "1")) {
+      if (cursor.moveToFirst()) {
+        return new GroupReceiptInfo(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID))),
+                                    cursor.getInt(cursor.getColumnIndexOrThrow(STATUS)),
+                                    cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
+                                    cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED)) == 1);
+      }
+    }
+
+    return null;
   }
 
   void deleteRowsForMessage(long mmsId) {

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -159,7 +160,7 @@ public class ProfileKeySendJob extends BaseJob {
       dataMessage.asGroupMessage(new SignalServiceGroup(conversationRecipient.requireGroupId().getDecodedId()));
     }
 
-    List<SendMessageResult> results = messageSender.sendMessage(addresses, unidentifiedAccess, false, dataMessage.build());
+    List<SendMessageResult> results = messageSender.sendDataMessage(addresses, unidentifiedAccess, false, ContentHint.IMPLICIT, dataMessage.build());
 
     return GroupSendJobHelper.getCompletedSends(context, results);
   }

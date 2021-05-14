@@ -292,14 +292,14 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onGroupMigrationLearnMoreClicked(conversationMessage.getMessageRecord().getGroupV1MigrationMembershipChanges());
         }
       });
-    } else if (conversationMessage.getMessageRecord().isFailedDecryptionType() &&
-              (!nextMessageRecord.isPresent() || !nextMessageRecord.get().isFailedDecryptionType()))
+    } else if (conversationMessage.getMessageRecord().isChatSessionRefresh() &&
+               (!nextMessageRecord.isPresent() || !nextMessageRecord.get().isChatSessionRefresh()))
     {
       actionButton.setText(R.string.ConversationUpdateItem_learn_more);
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
-          eventListener.onDecryptionFailedLearnMoreClicked();
+          eventListener.onChatSessionRefreshLearnMoreClicked();
         }
       });
     } else if (conversationMessage.getMessageRecord().isIdentityUpdate()) {
@@ -368,6 +368,16 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onViewGroupDescriptionChange(conversationRecipient.getGroupId().orNull(), conversationMessage.getMessageRecord().getGroupV2DescriptionUpdate(), isMessageRequestAccepted);
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isBadDecryptType() &&
+               (!nextMessageRecord.isPresent() || !nextMessageRecord.get().isBadDecryptType()))
+    {
+      actionButton.setText(R.string.ConversationUpdateItem_learn_more);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onBadDecryptLearnMoreClicked(conversationMessage.getMessageRecord().getRecipient().getId());
         }
       });
     } else {

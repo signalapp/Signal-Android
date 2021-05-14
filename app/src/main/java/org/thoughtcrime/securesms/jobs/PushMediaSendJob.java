@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -221,10 +222,10 @@ public class PushMediaSendJob extends PushSendJob {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 
-        messageSender.sendMessage(syncMessage, syncAccess);
+        messageSender.sendSyncMessage(syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
-        return messageSender.sendMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), mediaMessage).getSuccess().isUnidentified();
+        return messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage).getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);

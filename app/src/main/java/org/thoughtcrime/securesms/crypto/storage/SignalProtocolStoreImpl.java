@@ -5,6 +5,7 @@ import android.content.Context;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyIdException;
+import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.groups.state.SenderKeyRecord;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
@@ -17,8 +18,11 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
 import org.whispersystems.signalservice.api.SignalServiceProtocolStore;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
+import org.whispersystems.signalservice.api.push.DistributionId;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
@@ -27,12 +31,14 @@ public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
   private final SignedPreKeyStore         signedPreKeyStore;
   private final IdentityKeyStore          identityKeyStore;
   private final SignalServiceSessionStore sessionStore;
+  private final SignalSenderKeyStore      senderKeyStore;
 
   public SignalProtocolStoreImpl(Context context) {
     this.preKeyStore       = new TextSecurePreKeyStore(context);
     this.signedPreKeyStore = new TextSecurePreKeyStore(context);
     this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
     this.sessionStore      = new TextSecureSessionStore(context);
+    this.senderKeyStore    = new SignalSenderKeyStore(context);
   }
 
   @Override
@@ -83,6 +89,11 @@ public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
   @Override
   public SessionRecord loadSession(SignalProtocolAddress axolotlAddress) {
     return sessionStore.loadSession(axolotlAddress);
+  }
+
+  @Override
+  public List<SessionRecord> loadExistingSessions(List<SignalProtocolAddress> addresses) throws NoSessionException {
+    return sessionStore.loadExistingSessions(addresses);
   }
 
   @Override
@@ -142,11 +153,26 @@ public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
 
   @Override
   public void storeSenderKey(SignalProtocolAddress sender, UUID distributionId, SenderKeyRecord record) {
-
+    senderKeyStore.storeSenderKey(sender, distributionId, record);
   }
 
   @Override
   public SenderKeyRecord loadSenderKey(SignalProtocolAddress sender, UUID distributionId) {
-    return null;
+    return senderKeyStore.loadSenderKey(sender, distributionId);
+  }
+
+  @Override
+  public Set<SignalProtocolAddress> getSenderKeySharedWith(DistributionId distributionId) {
+    return senderKeyStore.getSenderKeySharedWith(distributionId);
+  }
+
+  @Override
+  public void markSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses) {
+    senderKeyStore.markSenderKeySharedWith(distributionId, addresses);
+  }
+
+  @Override
+  public void clearSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses) {
+    senderKeyStore.clearSenderKeySharedWith(distributionId, addresses);
   }
 }

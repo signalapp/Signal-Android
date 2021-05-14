@@ -65,6 +65,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setRemoveSenderKeyMinimum(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.REMOVE_SENDER_KEY_MINIMUM, enabled)
+    refresh()
+  }
+
   private fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }
@@ -79,7 +84,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableAutoMigrationNotification = SignalStore.internalValues().disableGv1AutoMigrateNotification(),
     forceCensorship = SignalStore.internalValues().forcedCensorship(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
-    emojiVersion = null
+    emojiVersion = null,
+    removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum()
   )
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {

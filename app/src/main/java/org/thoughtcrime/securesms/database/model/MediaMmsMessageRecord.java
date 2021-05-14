@@ -103,7 +103,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (MmsDatabase.Types.isFailedDecryptType(type)) {
+    if (MmsDatabase.Types.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
     } else if (MmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));

@@ -156,11 +156,16 @@ public class RecipientDatabase extends Database {
   private static final String IDENTITY_STATUS          = "identity_status";
   private static final String IDENTITY_KEY             = "identity_key";
 
+  /**
+   * Values that represent the index in the capabilities bitmask. Each index can store a 2-bit
+   * value, which in this case is the value of {@link Recipient.Capability}.
+   */
   private static final class Capabilities {
     static final int BIT_LENGTH = 2;
 
     static final int GROUPS_V2           = 0;
     static final int GROUPS_V1_MIGRATION = 1;
+    static final int SENDER_KEY          = 2;
   }
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
@@ -1632,6 +1637,7 @@ public class RecipientDatabase extends Database {
 
     value = Bitmask.update(value, Capabilities.GROUPS_V2,           Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
     value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration()).serialize());
+    value = Bitmask.update(value, Capabilities.SENDER_KEY,          Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isSenderKey()).serialize());
 
     ContentValues values = new ContentValues(1);
     values.put(CAPABILITIES, value);
@@ -3137,6 +3143,7 @@ public class RecipientDatabase extends Database {
     private final long                            capabilities;
     private final Recipient.Capability            groupsV2Capability;
     private final Recipient.Capability            groupsV1MigrationCapability;
+    private final Recipient.Capability            senderKeyCapability;
     private final InsightsBannerTier              insightsBannerTier;
     private final byte[]                          storageId;
     private final MentionSetting                  mentionSetting;
@@ -3145,9 +3152,9 @@ public class RecipientDatabase extends Database {
     private final AvatarColor                     avatarColor;
     private final String                          about;
     private final String                          aboutEmoji;
-    private final SyncExtras       syncExtras;
-    private final Recipient.Extras extras;
-    private final boolean          hasGroupsInCommon;
+    private final SyncExtras                      syncExtras;
+    private final Recipient.Extras                extras;
+    private final boolean                         hasGroupsInCommon;
 
     RecipientSettings(@NonNull RecipientId id,
                       @Nullable UUID uuid,
@@ -3227,6 +3234,7 @@ public class RecipientDatabase extends Database {
       this.capabilities                = capabilities;
       this.groupsV2Capability          = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH));
       this.groupsV1MigrationCapability = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH));
+      this.senderKeyCapability         = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH));
       this.insightsBannerTier          = insightsBannerTier;
       this.storageId                   = storageId;
       this.mentionSetting              = mentionSetting;
@@ -3374,6 +3382,10 @@ public class RecipientDatabase extends Database {
 
     public @NonNull Recipient.Capability getGroupsV1MigrationCapability() {
       return groupsV1MigrationCapability;
+    }
+
+    public @NonNull Recipient.Capability getSenderKeyCapability() {
+      return senderKeyCapability;
     }
 
     public @Nullable byte[] getStorageId() {

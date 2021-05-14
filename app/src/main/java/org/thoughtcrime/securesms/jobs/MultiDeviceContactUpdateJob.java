@@ -271,8 +271,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                                                                         .withLength(length)
                                                                                         .withResumableUploadSpec(messageSender.getResumableUploadSpec());
 
-        messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream.build(), complete)),
-                                  UnidentifiedAccessUtil.getAccessForSync(context));
+        messageSender.sendSyncMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream.build(), complete)),
+                                      UnidentifiedAccessUtil.getAccessForSync(context));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }

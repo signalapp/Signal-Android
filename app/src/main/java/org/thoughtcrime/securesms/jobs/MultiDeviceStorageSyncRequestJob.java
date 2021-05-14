@@ -58,8 +58,8 @@ public class MultiDeviceStorageSyncRequestJob extends BaseJob {
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.STORAGE_MANIFEST),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.STORAGE_MANIFEST),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

@@ -114,8 +114,8 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
       response = MessageRequestResponseMessage.forIndividual(RecipientUtil.toSignalServiceAddress(context, recipient), localToRemoteType(type));
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   private static MessageRequestResponseMessage.Type localToRemoteType(@NonNull Type type) {

@@ -137,8 +137,10 @@ public final class JobManagerFactories {
       put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());
       put(RotateProfileKeyJob.KEY,                   new RotateProfileKeyJob.Factory());
       put(RotateSignedPreKeyJob.KEY,                 new RotateSignedPreKeyJob.Factory());
+      put(SenderKeyDistributionSendJob.KEY,          new SenderKeyDistributionSendJob.Factory());
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
       put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory(application));
+      put(SendRetryReceiptJob.KEY,                   new SendRetryReceiptJob.Factory());
       put(SendViewedReceiptJob.KEY,                  new SendViewedReceiptJob.Factory(application));
       put(ServiceOutageDetectionJob.KEY,             new ServiceOutageDetectionJob.Factory());
       put(SmsReceiveJob.KEY,                         new SmsReceiveJob.Factory());

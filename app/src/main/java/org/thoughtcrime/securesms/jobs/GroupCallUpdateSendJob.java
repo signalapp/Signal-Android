@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -161,7 +162,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
       GroupUtil.setDataMessageGroupContext(context, dataMessage, conversationRecipient.requireGroupId().requirePush());
     }
 
-    List<SendMessageResult> results = messageSender.sendMessage(addresses, unidentifiedAccess, false, dataMessage.build());
+    List<SendMessageResult> results = messageSender.sendDataMessage(addresses, unidentifiedAccess, false, ContentHint.DEFAULT, dataMessage.build());
 
     return GroupSendJobHelper.getCompletedSends(context, results);
   }

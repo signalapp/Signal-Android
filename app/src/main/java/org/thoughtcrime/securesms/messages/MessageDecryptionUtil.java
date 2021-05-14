@@ -21,25 +21,30 @@ import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
+import org.thoughtcrime.securesms.jobs.SendRetryReceiptJob;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.ExceptionMetadata;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -77,9 +82,16 @@ public final class MessageDecryptionUtil {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forError(MessageState.INVALID_VERSION, toExceptionMetadata(e), jobs);
 
-      } catch (ProtocolInvalidMessageException | ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException | ProtocolNoSessionException e) {
+      } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException | ProtocolNoSessionException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
-        jobs.add(new AutomaticSessionResetJob(Recipient.external(context, e.getSender()).getId(), e.getSenderDevice(), envelope.getTimestamp()));
+        Recipient sender = Recipient.external(context, e.getSender());
+
+        if (sender.supportsMessageRetries() && Recipient.self().supportsMessageRetries() && FeatureFlags.senderKey()) {
+          jobs.add(handleRetry(context, sender, envelope, e));
+        } else {
+          jobs.add(new AutomaticSessionResetJob(sender.getId(), e.getSenderDevice(), envelope.getTimestamp()));
+        }
+
         return DecryptionResult.forNoop(jobs);
       } catch (ProtocolLegacyMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
@@ -87,7 +99,7 @@ public final class MessageDecryptionUtil {
       } catch (ProtocolDuplicateMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forError(MessageState.DUPLICATE_MESSAGE, toExceptionMetadata(e), jobs);
-      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
+      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException | ProtocolInvalidMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forNoop(jobs);
       } catch (SelfSendException e) {
@@ -102,6 +114,62 @@ public final class MessageDecryptionUtil {
       return DecryptionResult.forNoop(jobs);
     }
   }
+
+  private static @NonNull Job handleRetry(@NonNull Context context, @NonNull Recipient sender, @NonNull SignalServiceEnvelope envelope, @NonNull ProtocolException protocolException) {
+    ContentHint       contentHint       = ContentHint.fromType(protocolException.getContentHint());
+    int               senderDevice      = protocolException.getSenderDevice();
+    long              receivedTimestamp = System.currentTimeMillis();
+    Optional<GroupId> groupId           = Optional.absent();
+
+    if (protocolException.getGroupId().isPresent()) {
+      try {
+        groupId = Optional.of(GroupId.push(protocolException.getGroupId().get()));
+      } catch (BadGroupIdException e) {
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Bad groupId!");
+      }
+    }
+
+    Log.w(TAG, "[" + envelope.getTimestamp() + "] Could not decrypt a message with a type of " + contentHint);
+
+    long threadId;
+
+    if (groupId.isPresent()) {
+      Recipient groupRecipient = Recipient.externalPossiblyMigratedGroup(context, groupId.get());
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    } else {
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender);
+    }
+
+    switch (contentHint) {
+      case DEFAULT:
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting an error right away because it's " + contentHint);
+        DatabaseFactory.getSmsDatabase(context).insertBadDecryptMessage(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
+        break;
+      case RESENDABLE:
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting into pending retries store because it's " + contentHint);
+        DatabaseFactory.getPendingRetryReceiptDatabase(context).insert(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
+        ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
+        break;
+      case IMPLICIT:
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Not inserting any error because it's " + contentHint);
+        break;
+    }
+
+    byte[] originalContent;
+    int    envelopeType;
+    if (protocolException.getUnidentifiedSenderMessageContent().isPresent()) {
+      originalContent = protocolException.getUnidentifiedSenderMessageContent().get().getContent();
+      envelopeType    = protocolException.getUnidentifiedSenderMessageContent().get().getType();
+    } else {
+      originalContent = envelope.getContent();
+      envelopeType    = envelope.getType();
+    }
+
+    DecryptionErrorMessage decryptionErrorMessage = DecryptionErrorMessage.forOriginalMessage(originalContent, envelopeType, envelope.getTimestamp(), senderDevice);
+
+    return new SendRetryReceiptJob(sender.getId(), groupId, decryptionErrorMessage);
+  }
+
 
   private static ExceptionMetadata toExceptionMetadata(@NonNull UnsupportedDataMessageException e)
       throws NoSenderException

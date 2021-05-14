@@ -57,7 +57,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -191,8 +190,10 @@ public abstract class MessageRecord extends DisplayRecord {
       else              return fromRecipient(getIndividualRecipient(), r-> context.getString(R.string.SmsMessageRecord_secure_session_reset_s, r.getDisplayName(context)), R.drawable.ic_update_info_16);
     } else if (isGroupV1MigrationEvent()) {
       return getGroupMigrationEventDescription(context);
-    } else if (isFailedDecryptionType()) {
+    } else if (isChatSessionRefresh()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_chat_session_refreshed), R.drawable.ic_refresh_16);
+    } else if (isBadDecryptType()) {
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_a_message_from_s_couldnt_be_delivered, r.getDisplayName(context)), R.drawable.ic_error_outline_14);
     }
 
     return null;
@@ -458,6 +459,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isCorruptedKeyExchange(type);
   }
 
+  public boolean isBadDecryptType() {
+    return MmsSmsColumns.Types.isBadDecryptType(type);
+  }
+
   public boolean isInvalidVersionKeyExchange() {
     return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
   }
@@ -476,8 +481,8 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isUpdate() {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
-           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
-           isProfileChange() || isGroupV1MigrationEvent() || isFailedDecryptionType();
+           isEndSession() || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
+           isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType();
   }
 
   public boolean isMediaPending() {
@@ -512,8 +517,8 @@ public abstract class MessageRecord extends DisplayRecord {
     return isFailed() && ((getRecipient().isPushGroup() && hasNetworkFailures()) || !isIdentityMismatchFailure());
   }
 
-  public boolean isFailedDecryptionType() {
-    return MmsSmsColumns.Types.isFailedDecryptType(type);
+  public boolean isChatSessionRefresh() {
+    return MmsSmsColumns.Types.isChatSessionRefresh(type);
   }
 
   public boolean isInMemoryMessageRecord() {

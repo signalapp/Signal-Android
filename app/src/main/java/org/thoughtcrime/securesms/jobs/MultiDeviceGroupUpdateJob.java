@@ -33,7 +33,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -174,8 +173,8 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
       attachmentStream = SignalServiceAttachment.emptyStream("application/octet-stream");
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
 

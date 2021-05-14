@@ -80,8 +80,8 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(operations),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forStickerPackOperations(operations),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

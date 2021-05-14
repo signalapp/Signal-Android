@@ -354,10 +354,13 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   private void setStatusIcons(ThreadRecord thread) {
-    if (!thread.isOutgoing()         ||
-        thread.isOutgoingAudioCall() ||
-        thread.isOutgoingVideoCall() ||
-        thread.isVerificationStatusChange())
+    if (MmsSmsColumns.Types.isBadDecryptType(thread.getType())) {
+      deliveryStatusIndicator.setNone();
+      alertView.setFailed();
+    } else if (!thread.isOutgoing()         ||
+               thread.isOutgoingAudioCall() ||
+               thread.isOutgoingVideoCall() ||
+               thread.isVerificationStatusChange())
     {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
@@ -435,7 +438,7 @@ public final class ConversationListItem extends ConstraintLayout
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_left_the_group), defaultTint);
     } else if (SmsDatabase.Types.isKeyExchangeType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ConversationListItem_key_exchange_message), defaultTint);
-    } else if (SmsDatabase.Types.isFailedDecryptType(thread.getType())) {
+    } else if (SmsDatabase.Types.isChatSessionRefresh(thread.getType())) {
       UpdateDescription description = UpdateDescription.staticDescription(context.getString(R.string.ThreadRecord_chat_session_refreshed), R.drawable.ic_refresh_16);
       return emphasisAdded(context, description, defaultTint);
     } else if (SmsDatabase.Types.isNoRemoteSessionType(thread.getType())) {
@@ -482,6 +485,8 @@ public final class ConversationListItem extends ConstraintLayout
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_could_not_be_processed), defaultTint);
     } else if (SmsDatabase.Types.isProfileChange(thread.getType())) {
       return emphasisAdded(context, "", defaultTint);
+    } else if (MmsSmsColumns.Types.isBadDecryptType(thread.getType())) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_delivery_issue), defaultTint);
     } else {
       ThreadDatabase.Extra extra = thread.getExtra();
       if (extra != null && extra.isViewOnce()) {

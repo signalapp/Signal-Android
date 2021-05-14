@@ -146,6 +146,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("blob-provider", this::initializeBlobProvider)
                             .addBlocking("feature-flags", FeatureFlags::init)
                             .addNonBlocking(this::initializeRevealableMessageManager)
+                            .addNonBlocking(this::initializePendingRetryReceiptManager)
                             .addNonBlocking(this::initializeGcmCheck)
                             .addNonBlocking(this::initializeSignedPreKeyCheck)
                             .addNonBlocking(this::initializePeriodicTasks)
@@ -298,6 +299,10 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private void initializeRevealableMessageManager() {
     ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
+  }
+
+  private void initializePendingRetryReceiptManager() {
+    ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
   }
 
   private void initializePeriodicTasks() {

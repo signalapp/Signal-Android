@@ -3,6 +3,9 @@
 dependencyVerification {
     verify = [
 
+        ['androidx.activity:activity-ktx:1.1.0',
+         '1996c36d3d2d62db5020b8ec634b5f854b1a698960c3552e1a00c69221baeabe'],
+
         ['androidx.activity:activity:1.1.0',
          '4f2b35916768032f7d0c20e250e28b29037ed4ce9ebf3da4fcd51bcb0c6067ef'],
 
@@ -48,6 +51,9 @@ dependencyVerification {
         ['androidx.cardview:cardview:1.0.0',
          '1193c04c22a3d6b5946dae9f4e8c59d6adde6a71b6bd5d87fb99d82dda1afec7'],
 
+        ['androidx.collection:collection-ktx:1.1.0',
+         '2bfc54475c047131913361f56d0f7f019c6e5bee53eeb0eb7d94a7c499a05227'],
+
         ['androidx.collection:collection:1.1.0',
          '632a0e5407461de774409352940e292a291037724207a787820c77daf7d33b72'],
 
@@ -62,6 +68,9 @@ dependencyVerification {
 
         ['androidx.coordinatorlayout:coordinatorlayout:1.1.0',
          '44a9e30abf56af1025c52a0af506fee9c4131aa55efda52f9fd9451211c5e8cb'],
+
+        ['androidx.core:core-ktx:1.1.0',
+         '070cc5f8864f449128a2f4b25ca5b67aa3adca3ee1bd611e2eaf1a18fad83178'],
 
         ['androidx.core:core:1.3.2',
          '94de196cd67950cff6ef3e1ac59015f8eaaf61840bdc238f2cf54ddef8dd0be9'],
@@ -83,6 +92,9 @@ dependencyVerification {
 
         ['androidx.exifinterface:exifinterface:1.0.0',
          'ee48be10aab8f54efff4c14b77d11e10b9eeee4379d5ef6bf297a2923c55cc11'],
+
+        ['androidx.fragment:fragment-ktx:1.2.5',
+         '50f0f3b734f93829eeac7456b7cb13e5430741e555c535911a958ee4a8242bca'],
 
         ['androidx.fragment:fragment:1.2.5',
          'd19e82d142def6c4e136da70bf92f194c0ecc61d14ab4e84567b2ced0920fa93'],
@@ -117,6 +129,9 @@ dependencyVerification {
         ['androidx.lifecycle:lifecycle-extensions:2.1.0',
          'bd53c64b038585215b4959c1a388437a3ad525608a31c58e4283c3e371727d4d'],
 
+        ['androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0',
+         '5951f882e95b7e05ceb9adfca0fa2ebd511d63ea5a00da4eae6c6d0c1903da18'],
+
         ['androidx.lifecycle:lifecycle-livedata-core:2.2.0',
          '556c1f3af90aa9d7d0d330565adbf6da71b2429148bac91e07c485f4f9abf614'],
 
@@ -126,11 +141,17 @@ dependencyVerification {
         ['androidx.lifecycle:lifecycle-process:2.1.0',
          '8cddd0c7f4927bbf71fb71fca000786df82cc597c99463d6916ccbe4a205a9ac'],
 
+        ['androidx.lifecycle:lifecycle-runtime-ktx:2.2.0',
+         'c29fc87694e6ce116b61207221e53ed285862a6628055790b0bcf9ce45d8cc68'],
+
         ['androidx.lifecycle:lifecycle-runtime:2.2.0',
          '2f866c07a1f33a8c9bb69a9545d4f20b4f0628cd0a155432386d7cb081e1e0bc'],
 
         ['androidx.lifecycle:lifecycle-service:2.1.0',
          '23516745f34f16ff7850bb1eadd55cf193dd789cba428de4bca120433e3bfd69'],
+
+        ['androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0',
+         'f791001f2211947e56ad3d96d12c9ae93fc5589b88f08603f69a2265c9a7d702'],
 
         ['androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0',
          '3ce866fb822b20fe2f188f974992869a0a6233fe40acbefcff090d6def5e7f33'],
@@ -474,6 +495,12 @@ dependencyVerification {
         ['org.jetbrains.kotlin:kotlin-stdlib:1.4.32',
          '13e9fd3e69dc7230ce0fc873a92a4e5d521d179bcf1bef75a6705baac3bfecba'],
 
+        ['org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0',
+         'c80aaadf041f044d324a19a73f88879dfd1e4d026b14e3230075ff9081942ae3'],
+
+        ['org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0',
+         '6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d'],
+
         ['org.jetbrains:annotations:13.0',
          'ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478'],
 
@@ -510,11 +537,11 @@ dependencyVerification {
         ['org.threeten:threetenbp:1.3.6',
          'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
 
-        ['org.whispersystems:signal-client-android:0.5.1',
-         'c5b523163612fedcf71a5fb51a85cb5a4f545329ec6cf7d4fc885e830466c2e3'],
+        ['org.whispersystems:signal-client-android:0.8.0',
+         'f18e705717d463ecbaae3dedf0747b1fabfcfc98b708cc309200960678f230cc'],
 
-        ['org.whispersystems:signal-client-java:0.5.1',
-         '682a8094d38a91c8759071b77177ed8196a7137314fdfbb17e819c9ca57a0397'],
+        ['org.whispersystems:signal-client-java:0.8.1',
+         '6bcf9ab3a77be20b43086fd802d9ade3940f36ed7b99bac2a79b9bcaf0a7808b'],
 
         ['pl.tajchert:waitingdots:0.1.0',
          '2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c'],

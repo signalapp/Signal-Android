@@ -109,8 +109,8 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
       SignalServiceAddress          verifiedAddress      = RecipientUtil.toSignalServiceAddress(context, recipient);
       VerifiedMessage               verifiedMessage      = new VerifiedMessage(verifiedAddress, new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
-      messageSender.sendMessage(SignalServiceSyncMessage.forVerified(verifiedMessage),
-                                UnidentifiedAccessUtil.getAccessFor(context, recipient));
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forVerified(verifiedMessage),
+                                    UnidentifiedAccessUtil.getAccessFor(context, recipient));
     } catch (InvalidKeyException e) {
       throw new IOException(e);
     }
