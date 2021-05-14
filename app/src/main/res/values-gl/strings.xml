@@ -2665,6 +2665,7 @@
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Contacto</string>
   <string name="HelpSettingsFragment__version">Versión</string>
+  <string name="HelpSettingsFragment__debug_log">Rexistro de depuración</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e política de privacidade</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>

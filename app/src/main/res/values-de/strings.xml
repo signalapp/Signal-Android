@@ -1345,6 +1345,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, damit Mitwirkende es einsehen können. Bevor du das Protokoll übermittelst, kannst du es noch einmal überprüfen und bearbeiten.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
@@ -2859,7 +2860,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AppSettingsFragment__invite_your_friends">Freunde einladen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Sie wird mit der Zeit seltener abgefragt.</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen werden seltener angezeigt, wenn du die PIN richtig eingibst.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst.</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
@@ -2879,13 +2880,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, »Anrufe immer indirekt« und »Vertraulicher Absender«</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Statussymbol anzeigen</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Anzeigen eines Statussymbols unter »Nachrichtendetails« bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Support-Center</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktiere uns</string>
   <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__debug_log">Diagnoseprotokoll</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Nutzungsbedingungen und Datenschutzerklärung</string>
   <string name="HelpFragment__copyright_signal_messenger">Urheberrecht Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lizenziert unter GPLv3</string>

@@ -1360,6 +1360,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het upload.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
@@ -1988,7 +1989,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld kunnen anderen niet zien of je hun berichten hebt gelezen, maar je zult ook niet kunnen zien of anderen jouw berichten hebben gelezen.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld kunnen anderen niet zien of je aan het typen bent, maar je zult ook niet kunnen zien wanneer anderen aan het typen zijn.</string>
-  <string name="preferences__request_keyboard_to_disable">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen.</string>
+  <string name="preferences__request_keyboard_to_disable">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Let op: we kunnen niet garanderen dat gepersonaliseerd leren door het toetsenbord ook daadwerkelijk wordt voorkomen, omdat dit alleen werkt als je toetsenbord app daaraan meewerkt.</string>
   <string name="preferences_app_protection__blocked_users">Geblokkeerde personen</string>
   <string name="preferences_chats__when_using_mobile_data">Bij mobiele-dataoverdracht</string>
@@ -2499,7 +2500,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig je pincode</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Je Signal-pincode bevestigen</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt de pincode niet langer veranderen of teruglezen als in de toekomst je telefoonnummer gederegistreerd raakt. Als je je pincode toch vergeten bent wanneer je in de toekomst je telefoonnummer opnieuw wilt registreren, dan verlies je mogelijk je Signal-instellingen en contacten.</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt je pincode niet langer veranderen of teruglezen als je telefoonnummer gederegistreerd raakt. Als je je pincode toch bent vergeten wanneer je je telefoonnummer opnieuw moet registreren, dan verlies je mogelijk je instellingen en contactpersonen.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt on registratievergrendeling in te schakelen.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
@@ -2874,9 +2875,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AppSettingsFragment__invite_your_friends">Kennissen uitnodigingen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Jouw registratie</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Toetsenbord</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-toets verzendt</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Als standaard sms-app gebruiken</string>
@@ -2884,7 +2886,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NotificationsSettingsFragment__messages">Berichten</string>
   <string name="NotificationsSettingsFragment__calls">Oproepen</string>
   <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer …</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">Nieuw persoon bereikbaar via Signal</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Een contactpersoon uit mijn systeemcontactenlijst sinds kort via Signal bereikbaar is</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Geblokkeerd</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d personen</string>
@@ -2893,13 +2895,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Ondersteuningscentrum</string>
   <string name="HelpSettingsFragment__contact_us">Neem contact met ons op</string>
   <string name="HelpSettingsFragment__version">Versie</string>
+  <string name="HelpSettingsFragment__debug_log">Foutopsporingslog</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Gebruiksvoorwaarden &amp; privacybeleid</string>
   <string name="HelpFragment__copyright_signal_messenger">Auteursrecht Signal berichtenapp</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string>

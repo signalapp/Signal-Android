@@ -2880,6 +2880,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Bizimle iletişime geçin</string>
   <string name="HelpSettingsFragment__version">Sürüm</string>
+  <string name="HelpSettingsFragment__debug_log">Hata ayıklama günlüğü</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Koşullar ve Gizlilik İlkesi</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Aramalar</string>

@@ -1291,6 +1291,7 @@
   <string name="SubmitDebugLogActivity_success">成功！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">複製網址及將之加入你的錯誤報告或支援email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">分享</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">該日誌將在網上公開發佈，供貢獻者查看。你可以在上傳之前檢查和編輯它。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">過濾:</string>
   <string name="SupportEmailUtil_device_info">裝置資訊:</string>
@@ -2804,13 +2805,13 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">在對話清單或應用程式內停用畫面擷取功能</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息和電話，永遠轉發通話和密封發件人</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">使用密封發件人傳送訊息時，在訊息詳細資訊中顯示一個圖示</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">支援中心</string>
   <string name="HelpSettingsFragment__contact_us">與我們聯繫</string>
   <string name="HelpSettingsFragment__version">版本</string>
+  <string name="HelpSettingsFragment__debug_log">除錯紀錄</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">條款與條件；隱私權政策</string>
   <string name="HelpFragment__copyright_signal_messenger">Signal Messenger版權所有</string>
   <string name="HelpFragment__licenced_under_the_gplv3">根據GPLv3授權</string>

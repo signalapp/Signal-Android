@@ -1477,6 +1477,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubmitDebugLogActivity_success">Úspěšně dokončeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Zkopírujte tento URL a přidejte jej do chybového hlášení nebo e-mailu podpoře:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Sdílet</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tento protokol bude zveřejněn online, aby si jej mohli prohlédnout přispěvatelé. Před odesláním jej můžete zkontrolovat a upravit.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtr:</string>
   <string name="SupportEmailUtil_device_info">Informace o zařízení:</string>
@@ -3053,13 +3054,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zablokovat náhled v seznamu aplikací</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal zprávy a hovory, vždy předávat hovory, a utajený odesílatel.</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobrazit stavovou ikonu</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Zobrazení ikony v podrobnostech zprávy, pokud byla doručena pomocí utajeného odesílatele.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>
   <string name="HelpSettingsFragment__version">Verze</string>
+  <string name="HelpSettingsFragment__debug_log">Ladící log</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Podmínky a zásady ochrany osobních údajů</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencováno pod GPLv3</string>

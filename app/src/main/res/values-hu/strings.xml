@@ -1358,6 +1358,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubmitDebugLogActivity_success">Sikerült!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Másold ki ezt a URL-t és illeszd be a hibajegybe vagy a támogatásnak küldött e-mailbe:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Megosztás</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ez a naplófájl nyilvánosan elérhető lesz az interneten annak érdekében, hogy a fejlesztők megtekinthessék. A tartalmát feltöltés előtt ellenőrizheted, és szabadon szerkesztheted.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Szűrő:</string>
   <string name="SupportEmailUtil_device_info">Eszköz információ:</string>
@@ -2891,13 +2892,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PrivacySettingsFragment__app_security">App biztonság</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Státusz ikon megjelenítése</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Jelenítsen meg egy státuszikont, ha az üzenet rejtett feladóval érkezett.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Támogatási központ</string>
   <string name="HelpSettingsFragment__contact_us">Kapcsolat</string>
   <string name="HelpSettingsFragment__version">Verzió</string>
+  <string name="HelpSettingsFragment__debug_log">Fejlesztői naplófájl</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Feltételek &amp; Adatvédelmi irányelvek</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Szoftverlicenc: GPLv3 </string>

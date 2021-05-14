@@ -1415,6 +1415,7 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Копирајте овај УРЛ и додајте га и вашу пријаву или имејл:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Дели</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Овај извештај ће бити објављен и видљив пројектантима. Можете га прегледати и изменити пре преноса.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Филтер:</string>
   <string name="SupportEmailUtil_device_info">Инфо о уређају:</string>
@@ -2952,6 +2953,7 @@
   <string name="AppSettingsFragment__invite_your_friends">Позовите ваше пријатеље</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Налог</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Временом ће бити тражено све ређе</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Захтева Signal PIN да поново региструјете свој телефонски број Signal-ом</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
@@ -2970,13 +2972,13 @@
   <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусну икону</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Унутар „Детаљи поруке” ће бити приказан индикатор да је порука послата са запечаћеним пошиљаоцем.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
   <string name="HelpSettingsFragment__contact_us">Контактирај нас</string>
   <string name="HelpSettingsFragment__version">Верзија</string>
+  <string name="HelpSettingsFragment__debug_log">Извештај о грешкама</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови и политика приватности</string>
   <string name="HelpFragment__copyright_signal_messenger">Ауторска права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>

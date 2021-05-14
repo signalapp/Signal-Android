@@ -1477,6 +1477,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tento záznam bude verejne zverejnený online, aby si ho mohli prispievatelia pozrieť. Pred nahraním ho môžete skontrolovať a upraviť.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Info o zariadení:</string>
@@ -3053,13 +3054,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zakázať vytváranie snímkov obrazovky v tejto aplikácii a v zozname bežiacich aplikácií</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Správy a hovory Signal, vždy opakované hovory a zapečatený odosielateľ</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobraziť stavovú ikonu</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Keď boli doručené pomocou zapečateného odosielateľa, zobrazí sa ikona v detailoch správy.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>
   <string name="HelpSettingsFragment__version">Verzia</string>
+  <string name="HelpSettingsFragment__debug_log">Ladiaci log</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Podmienky a Zásady ochrany osobných údajov</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Pod licenciou GPLv3</string>

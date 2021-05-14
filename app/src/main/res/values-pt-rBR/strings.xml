@@ -1172,7 +1172,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifique para continuar a enviar mensagens</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para ajudar a evitar spam no Signal, conclua a verificação, por favor.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Depois de verificar, você pode continuar a enviar mensagens. Todas as mensagens pendentes serão enviadas automaticamente.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Depois de verificar, você pode continuar a enviar mensagens. Quaisquer mensagens pendentes serão enviadas automaticamente.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
@@ -1353,6 +1353,7 @@
   <string name="SubmitDebugLogActivity_success">Sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie esse URL e adicione-o ao seu relatório de problemas ou e-mail de suporte: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartilhar</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registro será postado publicamente on-line para que os contribuidores possam vê-lo. Você pode analisá-lo e editá-lo antes de enviar.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Info do aparelho:</string>
@@ -2095,6 +2096,7 @@
   <string name="PaymentsHomeFragment__payment_failed">Falha ao pagar</string>
   <string name="PaymentsHomeFragment__details">Detalhes</string>
   <string name="PaymentsHomeFragment__activate">Ativar</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver os termos da MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
@@ -2108,6 +2110,8 @@
   <string name="PaymentsDetailsFragment__network_fee">Taxa de transação</string>
   <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Enviado para %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Você em %1$s às %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s em %2$s às %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagamento enviado</string>
@@ -2119,11 +2123,15 @@
   <string name="PaymentsTransferFragment__scan_qr_code">Escanear o código QR</string>
   <string name="PaymentsTransferFragment__next">Próximo</string>
   <string name="PaymentsTransferFragment__invalid_address">Endereço inválido</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para escanear um código QR, o Signal precisa de acesso à sua câmera.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para escanear um código QR, o Signal precisa de acesso à sua câmera.</string>
   <string name="PaymentsTransferFragment__settings">Configurações</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Escanear o código QR do endereço</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pedido</string>
   <string name="CreatePaymentFragment__pay">Pagar</string>
+  <string name="CreatePaymentFragment__available_balance_s">Saldo disponível: %1$s</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2133,11 +2141,18 @@
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">,</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Adicionar nota</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversões são apenas estimativas e podem ser imprecisas.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Nota</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Confirmar pagamento</string>
   <string name="ConfirmPayment__network_fee">Taxa de transação</string>
   <string name="ConfirmPayment__to">Para</string>
+  <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Enviando o pagamento…</string>
   <string name="ConfirmPayment__processing_payment">Processando o pagamento…</string>
   <string name="ConfirmPayment__payment_complete">Pagamento concluído</string>
@@ -2474,6 +2489,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toque na sua foto de perfil, no canto superior esquerdo, para abrir as Configurações</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Toque em \"Conta\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toque em \"Transferir conta\" e depois em \"Continuar\", em ambos os aparelhos</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2666,6 +2682,7 @@
   <string name="DeleteAccountFragment__delete_account">Excluir conta</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Excluir suas informações da conta e foto de perfil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Apagar todas as suas mensagens</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Remover %1$s da sua conta de pagamentos</string>
   <string name="DeleteAccountFragment__no_country_code">Nenhum código do país informado</string>
   <string name="DeleteAccountFragment__no_number">Nenhum número informado</string>
   <string name="DeleteAccountFragment__the_phone_number">O número de telefone que você inseriu não corresponde ao da sua conta.</string>
@@ -2732,6 +2749,8 @@
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Desativar sem transferir</string>
   <string name="DeactivateWalletFragment__deactivate">Desativar</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Começar</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Inserir manualmente</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Colar da área de transferência</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Próximo</string>
@@ -2740,6 +2759,7 @@
   <string name="PaymentsRecoveryPhraseFragment__next">Próximo</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Anterior</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Não faça captura de tela nem envie por e-mail.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copiar para a área de transferência?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
@@ -2791,14 +2811,15 @@
   <string name="PrivacySettingsFragment__messaging">Mensagens</string>
   <string name="PrivacySettingsFragment__app_security">Segurança do app</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquear capturas de tela na lista de recentes e dentro do aplicativo</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Mensagens e chamadas no Signal, redirecionar chamadas e remetente oculto</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir indicadores</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostrar ícone de status em mensagens que foram entregues usando remetente oculto.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Central de suporte</string>
   <string name="HelpSettingsFragment__contact_us">Entre em contato</string>
   <string name="HelpSettingsFragment__version">Versão</string>
+  <string name="HelpSettingsFragment__debug_log">Registro de depuração </string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos &amp; Política de Privacidade</string>
   <string name="HelpFragment__copyright_signal_messenger">Direitos autorais Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenciado nos termos da GPLv3</string>

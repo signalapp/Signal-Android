@@ -633,6 +633,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ഇതൊരു സുരക്ഷിതമല്ലാത്ത MMS ഗ്രൂപ്പാണ്. സ്വകാര്യമായി ചാറ്റുചെയ്യാൻ, നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
   <string name="ManageGroupActivity_invite_now">ഇപ്പോൾ ക്ഷണിക്കുക</string>
+  <string name="ManageGroupActivity_more">…കൂടുതൽ</string>
+  <string name="ManageGroupActivity_add_group_description">ഗ്രൂപ്പ് വിവരണം ചേർക്കുക…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">നിശബ്ദമാക്കിയ ചാറ്റുകളിൽ നിങ്ങളെ സൂചിക്കുമ്പോൾ അറിയിപ്പുകൾ ലഭിക്കണോ?</string>
@@ -835,6 +837,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal കോൾ പുരോഗതിയിലാണ്</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
   <string name="NotificationBarManager__incoming_signal_call">ഇൻകമിംഗ് സിഗ്നൽ കോൾ</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal കോൾ സേവനം നിർത്തുന്നു</string>
   <string name="NotificationBarManager__deny_call">കോൾ നിരസിക്കുക</string>
   <string name="NotificationBarManager__answer_call">കോൾ സ്വീകരിക്കുക</string>
   <string name="NotificationBarManager__end_call">കോൾ അവസാനിപ്പിക്കുക</string>
@@ -969,6 +972,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ഗ്രൂപ്പിന്റെ പേര് \"%2$s\" എന്ന് മാറ്റി.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ഗ്രൂപ്പിന്റെ പേര് \"%1$s\" എന്നായി മാറ്റി.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">നിങ്ങൾ ഗ്രൂപ്പ് വിവരണം മാറ്റി.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ഗ്രൂപ്പ് വിവരണം മാറ്റി.</string>
+  <string name="MessageRecord_the_group_description_has_changed">ഗ്രൂപ്പ് വിവരണം മാറി.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">നിങ്ങൾ ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
@@ -1161,6 +1167,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">നിങ്ങൾ</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">സന്ദേശ വിനിമയം തുടരാൻ പരിശോധിക്കുക</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal-ലെ സ്പാം തടയാൻ സഹായിക്കുന്നതിന്, ദയവായി പരിശോധന പൂർത്തിയാക്കുക.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">പരിശോധിച്ചുറപ്പിച്ച ശേഷം, നിങ്ങൾക്ക് സന്ദേശ വിനിമയം തുടരാം. താൽ‌ക്കാലികമായി നിർത്തിയ ഏതെങ്കിലും സന്ദേശങ്ങള്‍ സ്വപ്രേരിതമായി അയയ്‌ക്കും.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">തടയുക</string>
   <string name="RecipientPreferenceActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -1220,6 +1229,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">പ്രോക്സി ഉപയോഗിക്കുക</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">പ്രോക്‌സിയിലേക്ക് ബന്ധിപ്പിച്ചു</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">സമർപ്പിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
+  <string name="RecaptchaProofActivity_complete_verification">പരിശോധന പൂർത്തിയാക്കുക</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">നിങ്ങളുടെ രാജ്യം തിരഞ്ഞെടുക്കുക</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">നിങ്ങളുടെ രാജ്യ കോഡ് വ്യക്തമാക്കണം</string>
@@ -1444,6 +1455,8 @@
   <string name="MessageNotifier_message_delivery_failed">സന്ദേശ വിതരണം പരാജയപ്പെട്ടു.</string>
   <string name="MessageNotifier_failed_to_deliver_message">സന്ദേശം കൈമാറുന്നതിൽ പരാജയപ്പെട്ടു.</string>
   <string name="MessageNotifier_error_delivering_message">സന്ദേശം കൈമാറുന്നതിൽ പിശക്.</string>
+  <string name="MessageNotifier_message_delivery_paused">സന്ദേശ ഡെലിവറി താൽക്കാലികമായി നിർത്തി.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal-ൽ സന്ദേശ വിനിമയം തുടരാൻ പരിശോധിക്കുക.</string>
   <string name="MessageNotifier_mark_all_as_read">എല്ലാം വായിച്ചതായി കാണിക്കുക</string>
   <string name="MessageNotifier_mark_read">വായിച്ചതായി കാണിക്കുക</string>
   <string name="MessageNotifier_turn_off_these_notifications">ഈ അറിയിപ്പുകൾ ഓഫ് ആക്കുക</string>
@@ -1598,6 +1611,8 @@
   <string name="ConversationUpdateItem_return_to_call">കോളിലേക്ക് മടങ്ങുക</string>
   <string name="ConversationUpdateItem_call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ഈ ഗ്രൂപ്പിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_view">കാണുക</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
@@ -1729,6 +1744,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ചിത്രവും തിരുത്തുക</string>
   <string name="EditProfileFragment__group_name">ഗ്രൂപ്പിന്റെ പേര്</string>
+  <string name="EditProfileFragment__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">നിങ്ങളുടെ പേര്</string>
   <string name="EditProfileNameFragment_first_name">പേരിന്റെ ആദ്യഭാഗം</string>
@@ -2029,6 +2045,20 @@
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">അഭ്യർത്ഥിക്കുക</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
+  <string name="CreatePaymentFragment__add_note">കുറിപ്പ് ചേര്ക്കുക</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">സ്വീകർത്താവ്:</string>
@@ -2364,22 +2394,31 @@
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__retry">വീണ്ടും ശ്രമിക്കുക</string>
   <string name="DeviceTransferSetup__continue">തുടരുക</string>
+  <string name="DeviceTransferSetup__stop_transfer">കൈമാറ്റം നിർത്തുക</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransfer__stop_transfer_question">കൈമാറ്റം നിർത്തണോ?</string>
+  <string name="DeviceTransfer__stop_transfer">കൈമാറ്റം നിർത്തുക</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">എല്ലാ കൈമാറ്റ പുരോഗതിയും നഷ്‌ടപ്പെടും.</string>
   <string name="DeviceTransfer__transfer_failed">കൈമാറ്റം പരാജയപ്പെട്ടു</string>
+  <string name="DeviceTransfer__unable_to_transfer">കൈമാറാൻ കഴിഞ്ഞില്ല</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">അക്കൗണ്ട് കൈമാറ്റം ചെയ്യുക</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">ഒരു പുതിയ Android ഉപകരണത്തിൽ Signal സജ്ജീകരിക്കുമ്പോൾ നിങ്ങളുടെ Signal അക്കൗണ്ട് കൈമാറാൻ കഴിയും. തുടരുന്നതിന് മുമ്പ്:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">നിങ്ങളുടെ പുതിയ Android ഉപകരണത്തിൽ Signal ഡൗൺലോഡുചെയ്യുക</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
   <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_status_verification_required">പരിശോധന ആവശ്യമാണ്</string>
   <!--OldDeviceTransferLockedDialog-->
@@ -2541,6 +2580,7 @@
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">അടുത്തത്</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">തിരുത്തുക</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">പകർത്തുക</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ചെയ്‌തു</string>
@@ -2555,10 +2595,12 @@
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ശരി</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്ന</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">അക്കൗണ്ട്</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">എന്റർ കീ അയയ്ക്കും</string>
   <!--SmsSettingsFragment-->
@@ -2573,6 +2615,7 @@
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
   <string name="HelpSettingsFragment__version">പതിപ്പ്</string>
+  <string name="HelpSettingsFragment__debug_log">ഡീബഗ് ലോഗ്</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>

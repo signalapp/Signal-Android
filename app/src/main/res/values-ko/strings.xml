@@ -2503,6 +2503,7 @@
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">문의하기</string>
   <string name="HelpSettingsFragment__version">버전</string>
+  <string name="HelpSettingsFragment__debug_log">디버그 로그</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">이용 약관 &amp; 개인 정보 보호 정책</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">전화</string>
