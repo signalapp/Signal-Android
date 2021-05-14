@@ -28,11 +28,11 @@
 
         <ImageView
             android:id="@+id/open_group_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:clickable="false"
             android:visibility="gone"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:contentDescription="@string/open_group_invitation_view__join_accessibility_description"
             android:src="@drawable/ic_globe" />
 

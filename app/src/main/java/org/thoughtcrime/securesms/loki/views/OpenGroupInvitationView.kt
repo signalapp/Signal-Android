@@ -8,6 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import network.loki.messenger.R
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.OpenGroupUrlParser
@@ -69,15 +72,27 @@ class OpenGroupInvitationView : FrameLayout {
 
         builder.setMessage(message)
         builder.setPositiveButton(R.string.yes) { dialog, which ->
-            try {
-                val group = OpenGroupUtilities.addGroup(context, openGroup.server, openGroup.room, openGroup.serverPublicKey)
-                val threadID = GroupManager.getOpenGroupThreadID(group.id, context)
-                val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    dialog.dismiss()
+                    val group = OpenGroupUtilities.addGroup(
+                        context,
+                        openGroup.server,
+                        openGroup.room,
+                        openGroup.serverPublicKey
+                    )
+                    val threadID = GroupManager.getOpenGroupThreadID(group.id, context)
+                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
 
-                MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(context)
-            } catch (e: Exception) {
-                Log.e("JoinPublicChatActivity", "Failed to join open group.", e)
-                Toast.makeText(context, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
+                    MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(context)
+                } catch (e: Exception) {
+                    Log.e("JoinPublicChatActivity", "Failed to join open group.", e)
+                    Toast.makeText(
+                        context,
+                        R.string.activity_join_public_chat_error,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 
