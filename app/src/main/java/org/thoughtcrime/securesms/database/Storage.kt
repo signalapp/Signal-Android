@@ -185,15 +185,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getSessionJobDatabase(context).persistJob(job)
     }
 
-    override fun markJobAsSucceeded(job: Job) {
-        DatabaseFactory.getSessionJobDatabase(context).markJobAsSucceeded(job)
+    override fun markJobAsSucceeded(jobId: String) {
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsSucceeded(jobId)
     }
 
-    override fun markJobAsFailed(job: Job) {
-        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailed(job)
+    override fun markJobAsFailedPermanently(jobId: String) {
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailedPermanently(jobId)
     }
 
-    override fun getAllPendingJobs(type: String): List<Job> {
+    override fun getAllPendingJobs(type: String): Map<String, Job?> {
         return DatabaseFactory.getSessionJobDatabase(context).getAllPendingJobs(type)
     }
 
@@ -257,7 +257,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val database = databaseHelper.readableDatabase
         return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadId)) { cursor ->
             val publicChatAsJson = cursor.getString(LokiThreadDatabase.publicChat)
-            OpenGroupV2.fromJson(publicChatAsJson)
+            OpenGroupV2.fromJSON(publicChatAsJson)
         }
     }
 
@@ -581,7 +581,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val database = DatabaseFactory.getThreadDatabase(context)
         if (!openGroupID.isNullOrEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())), false)
-            return database.getOrCreateThreadIdFor(recipient)
+            return database.getThreadIdIfExistsFor(recipient)
         } else if (!groupPublicKey.isNullOrEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(groupPublicKey)), false)
             return database.getOrCreateThreadIdFor(recipient)

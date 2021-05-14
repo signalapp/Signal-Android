@@ -33,8 +33,8 @@ object SnodeAPI {
 
     // Settings
     private val maxRetryCount = 6
-    private val minimumSnodePoolCount = 24
-    private val minimumSwarmSnodeCount = 2
+    private val minimumSnodePoolCount = 12
+    private val minimumSwarmSnodeCount = 3
     // Use port 4433 if the API level can handle the network security configuration and enforce pinned certificates
     private val seedNodePort = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) 443 else 4433
     private val seedNodePool by lazy {
@@ -44,7 +44,7 @@ object SnodeAPI {
             setOf( "https://storage.seed1.loki.network:$seedNodePort ", "https://storage.seed3.loki.network:$seedNodePort ", "https://public.loki.foundation:$seedNodePort" )
         }
     }
-    private val snodeFailureThreshold = 4
+    private val snodeFailureThreshold = 3
     private val targetSwarmSnodeCount = 2
     private val useOnionRequests = true
 
@@ -92,6 +92,7 @@ object SnodeAPI {
                     "method" to "get_n_service_nodes",
                     "params" to mapOf(
                         "active_only" to true,
+                        "limit" to 256,
                         "fields" to mapOf( "public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true )
                     )
             )
@@ -251,19 +252,20 @@ object SnodeAPI {
 
     private fun removeDuplicates(publicKey: String, rawMessages: List<*>): List<*> {
         val receivedMessageHashValues = database.getReceivedMessageHashValues(publicKey)?.toMutableSet() ?: mutableSetOf()
-        return rawMessages.filter { rawMessage ->
+        val result = rawMessages.filter { rawMessage ->
             val rawMessageAsJSON = rawMessage as? Map<*, *>
             val hashValue = rawMessageAsJSON?.get("hash") as? String
             if (hashValue != null) {
                 val isDuplicate = receivedMessageHashValues.contains(hashValue)
                 receivedMessageHashValues.add(hashValue)
-                database.setReceivedMessageHashValues(publicKey, receivedMessageHashValues)
                 !isDuplicate
             } else {
                 Log.d("Loki", "Missing hash value for message: ${rawMessage?.prettifiedDescription()}.")
                 false
             }
         }
+        database.setReceivedMessageHashValues(publicKey, receivedMessageHashValues)
+        return result
     }
 
     private fun parseEnvelopes(rawMessages: List<*>): List<SignalServiceProtos.Envelope> {
@@ -304,7 +306,7 @@ object SnodeAPI {
             }
         }
         when (statusCode) {
-            400, 500, 503 -> { // Usually indicates that the snode isn't up to date
+            400, 500, 502, 503 -> { // Usually indicates that the snode isn't up to date
                 handleBadSnode()
             }
             406 -> {
@@ -315,8 +317,20 @@ object SnodeAPI {
             421 -> {
                 // The snode isn't associated with the given public key anymore
                 if (publicKey != null) {
-                    Log.d("Loki", "Invalidating swarm for: $publicKey.")
-                    dropSnodeFromSwarmIfNeeded(snode, publicKey)
+                    fun invalidateSwarm() {
+                        Log.d("Loki", "Invalidating swarm for: $publicKey.")
+                        dropSnodeFromSwarmIfNeeded(snode, publicKey)
+                    }
+                    if (json != null) {
+                        val snodes = parseSnodes(json)
+                        if (snodes.isNotEmpty()) {
+                            database.setSwarm(publicKey, snodes.toSet())
+                        } else {
+                            invalidateSwarm()
+                        }
+                    } else {
+                        invalidateSwarm()
+                    }
                 } else {
                     Log.d("Loki", "Got a 421 without an associated public key.")
                 }

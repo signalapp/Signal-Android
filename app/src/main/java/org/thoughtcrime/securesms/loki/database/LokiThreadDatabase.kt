@@ -68,7 +68,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
             while (cursor != null && cursor.moveToNext()) {
                 val threadID = cursor.getLong(threadID)
                 val string = cursor.getString(publicChat)
-                val openGroup = OpenGroupV2.fromJson(string)
+                val openGroup = OpenGroupV2.fromJSON(string)
                 if (openGroup != null) result[threadID] = openGroup
             }
         } catch (e: Exception) {
@@ -100,7 +100,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val database = databaseHelper.readableDatabase
         return database.get(publicChatTable, "${Companion.threadID} = ?", arrayOf(threadID.toString())) { cursor ->
             val json = cursor.getString(publicChat)
-            OpenGroupV2.fromJson(json)
+            OpenGroupV2.fromJSON(json)
         }
     }
 

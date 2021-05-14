@@ -103,7 +103,6 @@ import dagger.ObjectGraph;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
 import network.loki.messenger.BuildConfig;
-import nl.komponents.kovenant.Kovenant;
 
 import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
 import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
@@ -328,7 +327,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                 .setDependencyInjector(this)
                 .build());
-        JobQueue.getShared().resumePendingJobs();
     }
 
     private void initializeDependencyInjection() {
@@ -456,7 +454,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setUserPublicKey(userPublicKey);
             return;
         }
-        LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         poller = new Poller();
         closedGroupPoller = new ClosedGroupPoller();
     }

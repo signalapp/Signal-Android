@@ -3,6 +3,7 @@ package org.session.libsignal.service.loki
 import okhttp3.*
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.JsonUtil
+import java.lang.IllegalStateException
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
@@ -25,9 +26,7 @@ object HTTP {
 
             override fun checkClientTrusted(chain: Array<out X509Certificate>?, authorizationType: String?) { }
             override fun checkServerTrusted(chain: Array<out X509Certificate>?, authorizationType: String?) { }
-            override fun getAcceptedIssuers(): Array<X509Certificate> {
-                return arrayOf()
-            }
+            override fun getAcceptedIssuers(): Array<X509Certificate> { return arrayOf() }
         }
         val sslContext = SSLContext.getInstance("SSL")
         sslContext.init(null, arrayOf( trustManager ), SecureRandom())
@@ -40,7 +39,26 @@ object HTTP {
             .build()
     }
 
-    private const val timeout: Long = 20
+    private fun getDefaultConnection(timeout: Long): OkHttpClient {
+        // Snode to snode communication uses self-signed certificates but clients can safely ignore this
+        val trustManager = object : X509TrustManager {
+
+            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authorizationType: String?) { }
+            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authorizationType: String?) { }
+            override fun getAcceptedIssuers(): Array<X509Certificate> { return arrayOf() }
+        }
+        val sslContext = SSLContext.getInstance("SSL")
+        sslContext.init(null, arrayOf( trustManager ), SecureRandom())
+        return OkHttpClient().newBuilder()
+            .sslSocketFactory(sslContext.socketFactory, trustManager)
+            .hostnameVerifier { _, _ -> true }
+            .connectTimeout(timeout, TimeUnit.SECONDS)
+            .readTimeout(timeout, TimeUnit.SECONDS)
+            .writeTimeout(timeout, TimeUnit.SECONDS)
+            .build()
+    }
+
+    private const val timeout: Long = 10
 
     class HTTPRequestFailedException(val statusCode: Int, val json: Map<*, *>?)
         : kotlin.Exception("HTTP request failed with status code $statusCode.")
@@ -52,26 +70,26 @@ object HTTP {
     /**
      * Sync. Don't call from the main thread.
      */
-    fun execute(verb: Verb, url: String, useSeedNodeConnection: Boolean = false): Map<*, *> {
-        return execute(verb = verb, url = url, body = null, useSeedNodeConnection = useSeedNodeConnection)
+    fun execute(verb: Verb, url: String, timeout: Long = HTTP.timeout, useSeedNodeConnection: Boolean = false): Map<*, *> {
+        return execute(verb = verb, url = url, body = null, timeout = timeout, useSeedNodeConnection = useSeedNodeConnection)
     }
 
     /**
      * Sync. Don't call from the main thread.
      */
-    fun execute(verb: Verb, url: String, parameters: Map<String, Any>?, useSeedNodeConnection: Boolean = false): Map<*, *> {
+    fun execute(verb: Verb, url: String, parameters: Map<String, Any>?, timeout: Long = HTTP.timeout, useSeedNodeConnection: Boolean = false): Map<*, *> {
         if (parameters != null) {
             val body = JsonUtil.toJson(parameters).toByteArray()
-            return execute(verb = verb, url = url, body = body, useSeedNodeConnection = useSeedNodeConnection)
+            return execute(verb = verb, url = url, body = body, timeout = timeout, useSeedNodeConnection = useSeedNodeConnection)
         } else {
-            return execute(verb = verb, url = url, body = null, useSeedNodeConnection = useSeedNodeConnection)
+            return execute(verb = verb, url = url, body = null, timeout = timeout, useSeedNodeConnection = useSeedNodeConnection)
         }
     }
 
     /**
      * Sync. Don't call from the main thread.
      */
-    fun execute(verb: Verb, url: String, body: ByteArray?, useSeedNodeConnection: Boolean = false): Map<*, *> {
+    fun execute(verb: Verb, url: String, body: ByteArray?, timeout: Long = HTTP.timeout, useSeedNodeConnection: Boolean = false): Map<*, *> {
         val request = Request.Builder().url(url)
         when (verb) {
             Verb.GET -> request.get()
@@ -85,7 +103,15 @@ object HTTP {
         }
         lateinit var response: Response
         try {
-            val connection = if (useSeedNodeConnection) seedNodeConnection else defaultConnection
+            val connection: OkHttpClient
+            if (timeout != HTTP.timeout) { // Custom timeout
+                if (useSeedNodeConnection) {
+                    throw IllegalStateException("Setting a custom timeout is only allowed for requests to snodes.")
+                }
+                connection = getDefaultConnection(timeout)
+            } else {
+                connection = if (useSeedNodeConnection) seedNodeConnection else defaultConnection
+            }
             response = connection.newCall(request.build()).execute()
         } catch (exception: Exception) {
             Log.d("Loki", "${verb.rawValue} request to $url failed due to error: ${exception.localizedMessage}.")

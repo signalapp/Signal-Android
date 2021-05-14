@@ -53,11 +53,11 @@ object OnionRequestAPI {
     /**
      * The number of times a path can fail before it's replaced.
      */
-    private const val pathFailureThreshold = 1
+    private const val pathFailureThreshold = 3
     /**
      * The number of times a snode can fail before it's replaced.
      */
-    private const val snodeFailureThreshold = 1
+    private const val snodeFailureThreshold = 3
     /**
      * The number of guard snodes required to maintain `targetPathCount` paths.
      */
@@ -93,7 +93,7 @@ object OnionRequestAPI {
         ThreadUtils.queue { // No need to block the shared context for this
             val url = "${snode.address}:${snode.port}/get_stats/v1"
             try {
-                val json = HTTP.execute(HTTP.Verb.GET, url)
+                val json = HTTP.execute(HTTP.Verb.GET, url, 3)
                 val version = json["version"] as? String
                 if (version == null) { deferred.reject(Exception("Missing snode version.")); return@queue }
                 if (version >= "2.0.7") {
@@ -463,7 +463,6 @@ object OnionRequestAPI {
             "method" to request.method(),
             "headers" to headers
         )
-        url.isHttps
         val destination = Destination.Server(host, target, x25519PublicKey, url.scheme(), url.port())
         return sendOnionRequest(destination, payload, isJSONRequired).recover { exception ->
             Log.d("Loki", "Couldn't reach server: $urlAsString due to error: $exception.")

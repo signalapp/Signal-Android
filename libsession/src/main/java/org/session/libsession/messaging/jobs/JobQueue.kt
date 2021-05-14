@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsignal.utilities.logging.Log
+import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
@@ -17,42 +18,56 @@ import kotlin.math.roundToLong
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
-    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val multiDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
+    private val rxDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val txDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val attachmentDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
 
     val timer = Timer()
 
+    private fun CoroutineScope.processWithDispatcher(channel: Channel<Job>, dispatcher: CoroutineDispatcher) = launch(dispatcher) {
+        for (job in channel) {
+            if (!isActive) break
+            job.delegate = this@JobQueue
+            job.execute()
+        }
+    }
+
     init {
         // Process jobs
-        scope.launch(dispatcher) {
+        scope.launch {
+            val rxQueue = Channel<Job>(capacity = 1024)
+            val txQueue = Channel<Job>(capacity = 1024)
+            val attachmentQueue = Channel<Job>(capacity = 1024)
+
+            val receiveJob = processWithDispatcher(rxQueue, rxDispatcher)
+            val txJob = processWithDispatcher(txQueue, txDispatcher)
+            val attachmentJob = processWithDispatcher(attachmentQueue, attachmentDispatcher)
+
             while (isActive) {
-                queue.receive().let { job ->
-                    if (job.canExecuteParallel()) {
-                        launch(multiDispatcher) {
-                            job.delegate = this@JobQueue
-                            job.execute()
-                        }
-                    } else {
-                        job.delegate = this@JobQueue
-                        job.execute()
+                for (job in queue) {
+                    when (job) {
+                        is NotifyPNServerJob, is AttachmentUploadJob, is MessageSendJob -> txQueue.send(job)
+                        is AttachmentDownloadJob -> attachmentQueue.send(job)
+                        is MessageReceiveJob -> rxQueue.send(job)
+                        else -> throw IllegalStateException("Unexpected job type.")
                     }
                 }
             }
+
+            // The job has been cancelled
+            receiveJob.cancel()
+            txJob.cancel()
+            attachmentJob.cancel()
+
         }
     }
 
     companion object {
+
         @JvmStatic
         val shared: JobQueue by lazy { JobQueue() }
-    }
-
-    private fun Job.canExecuteParallel(): Boolean {
-        return this.javaClass in arrayOf(
-                AttachmentUploadJob::class.java,
-                AttachmentDownloadJob::class.java
-        )
     }
 
     fun add(job: Job) {
@@ -68,7 +83,6 @@ class JobQueue : JobDelegate {
         val currentTime = System.currentTimeMillis()
         jobTimestampMap.putIfAbsent(currentTime, AtomicInteger())
         job.id = currentTime.toString() + jobTimestampMap[currentTime]!!.getAndIncrement().toString()
-
         MessagingModuleConfiguration.shared.storage.persistJob(job)
     }
 
@@ -78,42 +92,75 @@ class JobQueue : JobDelegate {
             return
         }
         hasResumedPendingJobs = true
-        val allJobTypes = listOf(AttachmentDownloadJob.KEY, AttachmentDownloadJob.KEY, MessageReceiveJob.KEY, MessageSendJob.KEY, NotifyPNServerJob.KEY)
+        val allJobTypes = listOf(
+            AttachmentUploadJob.KEY,
+            AttachmentDownloadJob.KEY,
+            MessageReceiveJob.KEY,
+            MessageSendJob.KEY,
+            NotifyPNServerJob.KEY
+        )
         allJobTypes.forEach { type ->
             val allPendingJobs = MessagingModuleConfiguration.shared.storage.getAllPendingJobs(type)
-            allPendingJobs.sortedBy { it.id }.forEach { job ->
-                Log.i("Jobs", "Resuming pending job of type: ${job::class.simpleName}.")
+            val pendingJobs = mutableListOf<Job>()
+            for ((id, job) in allPendingJobs) {
+                if (job == null) {
+                    // Job failed to deserialize, remove it from the DB
+                    handleJobFailedPermanently(id)
+                } else {
+                    pendingJobs.add(job)
+                }
+            }
+            pendingJobs.sortedBy { it.id }.forEach { job ->
+                Log.i("Loki", "Resuming pending job of type: ${job::class.simpleName}.")
                 queue.offer(job) // Offer always called on unlimited capacity
             }
         }
     }
 
     override fun handleJobSucceeded(job: Job) {
-        MessagingModuleConfiguration.shared.storage.markJobAsSucceeded(job)
+        val jobId = job.id ?: return
+        MessagingModuleConfiguration.shared.storage.markJobAsSucceeded(jobId)
     }
 
     override fun handleJobFailed(job: Job, error: Exception) {
-        job.failureCount += 1
+        // Canceled
         val storage = MessagingModuleConfiguration.shared.storage
-        if (storage.isJobCanceled(job)) { return Log.i("Jobs", "${job::class.simpleName} canceled.")}
-        storage.persistJob(job)
-        if (job.failureCount == job.maxFailureCount) {
-            storage.markJobAsFailed(job)
-        } else {
-            val retryInterval = getRetryInterval(job)
-            Log.i("Jobs", "${job::class.simpleName} failed; scheduling retry (failure count is ${job.failureCount}).")
+        if (storage.isJobCanceled(job)) {
+            return Log.i("Loki", "${job::class.simpleName} canceled.")
+        }
+        // Message send jobs waiting for the attachment to upload
+        if (job is MessageSendJob && error is MessageSendJob.AwaitingAttachmentUploadException) {
+            val retryInterval: Long = 1000 * 4
+            Log.i("Loki", "Message send job waiting for attachment upload to finish.")
             timer.schedule(delay = retryInterval) {
-                Log.i("Jobs", "Retrying ${job::class.simpleName}.")
+                Log.i("Loki", "Retrying ${job::class.simpleName}.")
+                queue.offer(job)
+            }
+            return
+        }
+        // Regular job failure
+        job.failureCount += 1
+        if (job.failureCount >= job.maxFailureCount) {
+            handleJobFailedPermanently(job, error)
+        } else {
+            storage.persistJob(job)
+            val retryInterval = getRetryInterval(job)
+            Log.i("Loki", "${job::class.simpleName} failed; scheduling retry (failure count is ${job.failureCount}).")
+            timer.schedule(delay = retryInterval) {
+                Log.i("Loki", "Retrying ${job::class.simpleName}.")
                 queue.offer(job)
             }
         }
     }
 
     override fun handleJobFailedPermanently(job: Job, error: Exception) {
-        job.failureCount += 1
+        val jobId = job.id ?: return
+        handleJobFailedPermanently(jobId)
+    }
+
+    private fun handleJobFailedPermanently(jobId: String) {
         val storage = MessagingModuleConfiguration.shared.storage
-        storage.persistJob(job)
-        storage.markJobAsFailed(job)
+        storage.markJobAsFailedPermanently(jobId)
     }
 
     private fun getRetryInterval(job: Job): Long {
