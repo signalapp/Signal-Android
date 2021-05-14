@@ -35,11 +35,10 @@ object OpenGroupUtilities {
         val groupInfo = OpenGroupAPIV2.getInfo(room,server).get()
         val application = ApplicationContext.getInstance(context)
 
-        val group = application.publicChatManager.addChat(server, room, groupInfo, publicKey)
-
         val storage = MessagingModuleConfiguration.shared.storage
         storage.removeLastDeletionServerId(room, server)
         storage.removeLastMessageServerId(room, server)
+        val group = application.publicChatManager.addChat(server, room, groupInfo, publicKey)
 
         return group
     }
