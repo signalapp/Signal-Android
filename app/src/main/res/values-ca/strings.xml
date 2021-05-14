@@ -2876,6 +2876,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Contacteu-nos</string>
   <string name="HelpSettingsFragment__version">Versió</string>
+  <string name="HelpSettingsFragment__debug_log">Registre de depuració</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>

@@ -2807,6 +2807,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Ota yhteyttä</string>
   <string name="HelpSettingsFragment__version">Versio</string>
+  <string name="HelpSettingsFragment__debug_log">Virheenkorjausloki</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Käyttöehdot ja yksityisyydensuoja</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>

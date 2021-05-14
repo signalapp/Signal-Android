@@ -93,7 +93,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
     }
 
     @JvmStatic
-    fun proxy(context: Context): Intent = getIntentForStartLocation(context, StartLocation.HELP)
+    fun proxy(context: Context): Intent = getIntentForStartLocation(context, StartLocation.PROXY)
 
     @JvmStatic
     fun notifications(context: Context): Intent = getIntentForStartLocation(context, StartLocation.NOTIFICATIONS)

@@ -1355,6 +1355,7 @@
   <string name="SubmitDebugLogActivity_success">Efetuado com sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partilhar</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registo será publicado online para ser consultado pelos contribuintes. Poderás analisá-lo e editá-lo antes do seu carregamento.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informação do dispositivo:</string>
@@ -2889,13 +2890,13 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquear a captura de ecrã na lista de aplicações recentes abertas e dentro da aplicação</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">As mensagens e chamadas do Signal, retransmitem sempre as chamadas e emissor selado</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir ícone de estado</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Exibe um ícone nos detalhes das mensagens quando elas foram entregues utilizando o emissor selado.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centro de suporte</string>
   <string name="HelpSettingsFragment__contact_us">Contacte-nos</string>
   <string name="HelpSettingsFragment__version">Versão</string>
+  <string name="HelpSettingsFragment__debug_log">Relatório de depuração</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e Política de privacidade</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Distribuição guiada pela licença GPLv3</string>

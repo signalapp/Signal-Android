@@ -6,6 +6,7 @@ import android.content.Intent
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.TextAppearanceSpan
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -218,7 +219,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         clickPref(
           title = DSLSettingsText.from(R.string.preferences_app_protection__screen_lock_inactivity_timeout),
           summary = DSLSettingsText.from(getScreenLockInactivityTimeoutSummary(state.screenLockActivityTimeout)),
-          isEnabled = isKeyguardSecure,
+          isEnabled = isKeyguardSecure && state.screenLock,
           onClick = {
             TimeDurationPickerDialog(
               context,
@@ -238,6 +239,12 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         isChecked = state.screenSecurity,
         onClick = {
           viewModel.setScreenSecurityEnabled(!state.screenSecurity)
+
+          if (TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
+            requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+          } else {
+            requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+          }
         }
       )
 

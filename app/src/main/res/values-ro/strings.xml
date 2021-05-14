@@ -167,6 +167,7 @@
   <string name="ConversationItem_error_network_not_delivered">Trimitere eșuată</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, atingeți pentru a-l procesa.</string>
   <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
+  <string name="ConversationItem_send_paused">Trimiterea a fost întreruptă</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, atingeți pentru varianta nesecurizată</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS necriptat ca soluţie de rezervă?</string>
@@ -667,6 +668,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
+  <string name="ManageGroupActivity_more">…mai multe</string>
+  <string name="ManageGroupActivity_add_group_description">Adăugați descrierea grupului…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Doriți să primiți notificări atunci când sunteți menționat în convorbiri fără sunet?</string>
@@ -1021,6 +1024,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a schimbat numele grupului în \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Numele grupului a fost schimbat în \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Ați schimbat descrierea grupului.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s a schimbat descrierea grupului.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Descrierea grupului s-a schimbat.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Ai schimbat avatarul grupului.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s a schimbat avatarul grupului.</string>
@@ -1221,6 +1227,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Tu</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificați pentru a continua conversația</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Pentru a ajuta la prevenirea spam-ului pe Signal, vă rugăm să completați verificarea.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">După verificare, puteți continua să trimiteți mesaje. Toate mesajele aflate în pauză vor fi trimise automat.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blochează</string>
   <string name="RecipientPreferenceActivity_unblock">Deblochează</string>
@@ -1282,6 +1291,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Utilizează proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Conectat cu succes la proxy.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Eroare la trimitere</string>
   <string name="RecaptchaProofActivity_complete_verification">Finalizați verificarea</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Alegeți ţara dvs.</string>
@@ -1512,6 +1522,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_message_delivery_failed">Livrarea mesajului a eșuat.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mesajul nu a putut fi trimis.</string>
   <string name="MessageNotifier_error_delivering_message">A apărut o eroare la trimiterea mesajului.</string>
+  <string name="MessageNotifier_message_delivery_paused">Livrarea mesajelor a fost întreruptă.</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verificați pentru a continua conversația pe Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Marchează tot ca citit</string>
   <string name="MessageNotifier_mark_read">Marchează ca citit</string>
@@ -1809,6 +1820,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreateProfileActivity__username">Nume utilizator</string>
   <string name="CreateProfileActivity__create_a_username">Creați un nume de utilizator</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Numele și fotografiile personalizate ale grupurilor MMS vor fi vizibile numai pentru dvs.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Descrierile grupului vor fi vizibile pentru membrii acestui grup și pentru persoanele care au fost invitate.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Despre</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Scrie câteva cuvinte despre tine…</string>
@@ -2128,12 +2140,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__recent_activity">Activități recente</string>
   <string name="PaymentsHomeFragment__see_all">Vezi tot</string>
   <string name="PaymentsHomeFragment__send">Trimiteți</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__continue">Continuă</string>
   <string name="PaymentsHomeFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsHomeFragment__details">Detalii</string>
+  <string name="PaymentsHomeFragment__activate">activare</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Adresa portofelului dvs.</string>
   <string name="PaymentsAddMoneyFragment__copy">Copy</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">S-a copiat în clipboard</string>
   <!--PaymentsDetailsFragment-->
@@ -2141,6 +2156,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsDetailsFragment__status">Stare</string>
   <string name="PaymentsDetailsFragment__payment_complete">Plată finalizată</string>
   <string name="PaymentsDetailsFragment__payment_failed">Plata a eșuat</string>
+  <string name="PaymentsDetailsFragment__sent_by">Trimis de</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Trimis la %1$s</string>
   <string name="PaymentsDetailsFragment__to">Către</string>
   <string name="PaymentsDetailsFragment__from">De la</string>
   <string name="PaymentsDetailsFragment__block_number">Blocare număr</string>
@@ -2170,6 +2187,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Către</string>
   <string name="ConfirmPayment__total_amount">Suma totală</string>
+  <string name="ConfirmPayment__balance_s">Sold: %1$s</string>
   <string name="ConfirmPayment__payment_complete">Plată finalizată</string>
   <string name="ConfirmPayment__payment_failed">Plata a eșuat</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2511,12 +2529,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu vechiul dispozitiv Android.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Restaurare backup</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se caută un dispozitiv nou Android …</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Creează backup</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__turn_on_location_services">Activare servicii de localizare</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Nu se pot deschide setările de locație.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Activare Wi-Fi</string>
   <string name="DeviceTransferSetup__retry">Încearcă din nou</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Trimiteți jurnalul de depanare</string>
@@ -2718,10 +2738,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="payment_info_card_update_your_pin">Actualizați-vă PIN-ul</string>
   <string name="payment_info_card_update_pin">Actualizați PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__your_balance">Soldul dvs.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Introduceți manual</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsRecoveryPasteFragment__next">Următorul</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Următorul</string>
@@ -2778,11 +2801,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blocați screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mesaje și apeluri Signal, redirecționare apeluri și expeditor ascuns</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centru de asistență</string>
   <string name="HelpSettingsFragment__contact_us">Contactați-ne</string>
   <string name="HelpSettingsFragment__version">Versiunea</string>
+  <string name="HelpSettingsFragment__debug_log">Jurnal depanare</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termeni &amp; Politica de confidențialitate</string>
   <string name="HelpFragment__copyright_signal_messenger">Drepturi de autor Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Sub licenţa GPLv3</string>

@@ -231,7 +231,7 @@ public class StorageSyncJob extends BaseJob {
     if (remoteManifest.getVersion() > localManifest.getVersion()) {
       Log.i(TAG, "[Remote Sync] Newer manifest version found!");
 
-      List<StorageId>    localStorageIdsBeforeMerge = getAllLocalStorageIds(context, Recipient.self().fresh());
+      List<StorageId>    localStorageIdsBeforeMerge = getAllLocalStorageIds(context, self);
       IdDifferenceResult idDifference               = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIdsBeforeMerge);
 
       if (idDifference.hasTypeMismatches()) {

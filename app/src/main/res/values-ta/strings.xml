@@ -1681,6 +1681,7 @@
     <item quantity="other">%d மற்றவர்கள்</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">நகரும் படங்களைத் GIF தேடுங்கள்</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">எதுவும் கிடைக்கவில்லை</string>
   <!--log_submit_activity-->
@@ -2274,9 +2275,13 @@
   <string name="backup_enable_dialog__folder">கோப்புறை</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">இந்த கடவுச்சொற்றொடரை நான் எழுதியுள்ளேன். இது இல்லாமல், என்னால் ஒரு காப்புப்பதிவு பயனர் தரவு மீட்டெடுக்க முடியாது.</string>
   <string name="registration_activity__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
+  <string name="registration_activity__transfer_or_restore_account">கணக்கை நகர்த்தவும் அல்லது மீட்டெடுக்கவும்</string>
+  <string name="registration_activity__transfer_account">Signal கணக்கை நகர்த்தவும் </string>
   <string name="registration_activity__skip">தவிர்</string>
   <string name="preferences_chats__chat_backups">அரட்டை காப்புப்பிரதிகள்</string>
   <string name="preferences_chats__backup_chats_to_external_storage">வெளிப்புற சேமிப்பகத்திற்கான காப்புப்பதிவு பயனர் தரவு அரட்டைகள்</string>
+  <string name="preferences_chats__transfer_account">Signal கணக்கை நகர்த்தவும்</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">கணக்கை புதிய சாதனத்திற்கு நகர்த்தவும்</string>
   <string name="RegistrationActivity_enter_backup_passphrase">காப்புப்பதிவு பயனர் தரவு கடவுச்சொற்றொடரை உள்ளிடவும்</string>
   <string name="RegistrationActivity_restore">மீட்க</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal லின் புதிய பதிப்புகளிலிருந்து காப்புப்பிரதிகளை இறக்குமதி செய்ய முடியாது</string>
@@ -2351,6 +2356,7 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">திறக்க தட்டவும் </string>
   <string name="Recipient_unknown">தெரியாத</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">கணக்கை நகர்த்தவும் அல்லது மீட்டெடுக்கவும்</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">தொடர்ந்து செல் </string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2371,6 +2377,8 @@
   <string name="OldDeviceTransferComplete__close">நெருக்கமான</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">கணக்கு பரிமாற்றம்</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">கணக்கை நகர்த்துகிறது…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">முடிந்தது</string>
   <!--AdvancedPreferenceFragment-->
@@ -2543,10 +2551,17 @@
   <string name="GroupsInCommonMessageRequest__okay">சரி</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">தரநிலை</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">வேகமான, குறைந்த இணைய தரவு</string>
   <string name="QualitySelectorBottomSheetDialog__high">உயர்</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">மெதுவான, அதிகமான இணைய தரவு</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">புகைப்பட தரம்</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">நண்பர்களை அழைக்கவும்</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">பயனர் கணக்கு</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
   <string name="ChatsSettingsFragment__enter_key_sends">பதிவு விசை அனுப்பும்</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">இயல்புநிலை SMS பயன்பாடாக பயன்படுத்தவும்</string>
@@ -2561,6 +2576,7 @@
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">எங்களை தொடர்பு கொள்ள</string>
   <string name="HelpSettingsFragment__version">பதிப்பு</string>
+  <string name="HelpSettingsFragment__debug_log">பிழைத்திருத்த பதிவு</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">அழைப்புகள்</string>

@@ -1348,8 +1348,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubmitDebugLogActivity_submit">Skicka</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Det gick inte att skicka loggar</string>
   <string name="SubmitDebugLogActivity_success">Klart!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din problemrapport eller support-e-post:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din felanmälan eller support-e-post:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dela</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denna logg kommer att publiceras offentligt på nätet för bidragsgivare att se. Du kan granska och redigera den innan uppladdning.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformation:</string>
@@ -2884,13 +2885,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blockera skärmdumpar i senaste-listan och appen</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meddelanden och -samtal, vidarebefordra samtal och dold avsändare</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Visa statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Visa en ikon i meddelandedetaljer när de levererades med dold avsändare.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Supportcenter</string>
   <string name="HelpSettingsFragment__contact_us">Kontakta oss</string>
   <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__debug_log">Felsökningslogg</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; sekretesspolicy</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>

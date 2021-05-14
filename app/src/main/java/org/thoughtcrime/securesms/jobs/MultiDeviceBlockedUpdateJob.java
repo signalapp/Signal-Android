@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMess
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -89,6 +90,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     if (exception instanceof PushNetworkException) return true;
     return false;
   }

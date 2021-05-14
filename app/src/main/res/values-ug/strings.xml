@@ -1963,7 +1963,7 @@
   <string name="preferences__light_theme">يورۇق</string>
   <string name="preferences__dark_theme">قاراڭغۇ</string>
   <string name="preferences__appearance">كۆرۈنۈش</string>
-  <string name="preferences__theme">ئۇسلۇب</string>
+  <string name="preferences__theme">تېما</string>
   <string name="preferences__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <string name="preferences__disable_pin">PIN چەكلە</string>
   <string name="preferences__enable_pin">PIN نى قوزغات</string>
@@ -2743,7 +2743,7 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">تام قەغىزىنى بېكىتىش</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">قاراڭغۇ ئۇسلۇب تام قەغىزىنى گىرىمسەنلەشتۈرىدۇ</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">قاراڭغۇ تېما تام قەغىزىنى گىرىمسەنلەشتۈرىدۇ</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">تام قەغىزىنى تازىلىۋەت</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">بۇ سۆھبەتنىڭ تام قەغىزىنى تازىلىۋېتەمسىز؟</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">تام قەغىزىنى تازىلاشمۇ؟ بۇ سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىڭىزنى تازىلىۋەتمەيدۇ. </string>
@@ -2880,6 +2880,7 @@
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">بىز بىلەن ئالاقىلىشىڭ</string>
   <string name="HelpSettingsFragment__version">نەشر</string>
+  <string name="HelpSettingsFragment__debug_log">سازلاش خاتىرىسى</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">شەرتلەر &amp;  مەخپىيەتلىك تۈزۈمى</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>

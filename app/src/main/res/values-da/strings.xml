@@ -1356,6 +1356,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SubmitDebugLogActivity_success">Fuldført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til support email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denne log vil blive offentliggjort online og vises for bidragsydere. Du kan undersøge og redigere den, inden den udsendes.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enheds info:</string>
@@ -2890,13 +2891,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Hjælpecenter</string>
   <string name="HelpSettingsFragment__contact_us">Kontakt os</string>
   <string name="HelpSettingsFragment__version">Version</string>
+  <string name="HelpSettingsFragment__debug_log">Fejlsøgningslog</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og privatlivspolitik</string>
   <string name="HelpFragment__copyright_signal_messenger">Ophavsret Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenseret under GPLv3</string>

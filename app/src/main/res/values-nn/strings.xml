@@ -1360,6 +1360,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg han til feilrapporten eller e-posten til support:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Loggen vil vera tilgjengeleg på nett slik at deltakarar i prosjektet kan sjå han. Du kan sjå gjennom og redigera før opplasting.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Einingsinfo:</string>
@@ -2896,13 +2897,13 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Ikkje tillat å ta skjermbilde frå sist brukte-lista eller frå programmet</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldingar og samtalar, alltid vidaresend samtalar, og forsegla sendar</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis eit ikon i meldingsdetaljane når dei er leverte med forsegla sendar.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Support-senter</string>
   <string name="HelpSettingsFragment__contact_us">Ta kontakt</string>
   <string name="HelpSettingsFragment__version">Versjon</string>
+  <string name="HelpSettingsFragment__debug_log">Feilsøkingslogg</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår &amp; personvernreglar</string>
   <string name="HelpFragment__copyright_signal_messenger">Opphavsrett Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>

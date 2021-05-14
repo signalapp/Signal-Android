@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -127,7 +126,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       val context: Context = requireContext()
       val metrics: DisplayMetrics = resources.displayMetrics
 
-      val dialog: AlertDialog = MaterialAlertDialogBuilder(context, if (ThemeUtil.isDarkTheme(context)) R.style.Theme_Signal_AlertDialog_Dark_Cornered_ColoredAccent else R.style.Theme_Signal_AlertDialog_Light_Cornered_ColoredAccent)
+      val dialog: AlertDialog = AlertDialog.Builder(context, if (ThemeUtil.isDarkTheme(context)) R.style.Theme_Signal_AlertDialog_Dark_Cornered_ColoredAccent else R.style.Theme_Signal_AlertDialog_Light_Cornered_ColoredAccent)
         .setView(R.layout.pin_disable_reminders_dialog)
         .create()
 

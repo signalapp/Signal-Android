@@ -1252,7 +1252,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Nieprawidłowy PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pominąć wpisywanie PIN-u?</string>
   <string name="PinRestoreEntryFragment_need_help">Potrzebujesz pomocy?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Twój PIN to składający się z %1$dznaków, utworzony przez Ciebie kod, który może być liczbowy lub alfanumeryczny. Jeśli nie pamiętasz swojego PIN-u, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje w Twoim profilu.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Twój PIN to składający się z %1$d znaków, utworzony przez Ciebie kod, który może być liczbowy lub alfanumeryczny. Jeśli nie pamiętasz swojego PIN-u, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje w Twoim profilu.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jeśli nie pamiętasz swojego PIN-u, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje o Twoim profilu.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Utwórz nowy PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt z pomocą techniczną</string>
@@ -1470,6 +1470,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubmitDebugLogActivity_success">Sukces!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopiuj ten URL i dodaj go do Twojego raportu o błędzie lub wiadomości e-mail:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Udostępnij</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ten log zostanie upubliczniony online, aby umożliwić twórcom aplikacji jego sprawdzenie. Możesz go przejrzeć i edytować przed przesłaniem.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtr:</string>
   <string name="SupportEmailUtil_device_info">Dane urządzenia:</string>
@@ -3046,13 +3047,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokuj rzuty ekranu na liście aktywnych oraz w aplikacji</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Wiadomości i połączenia Signal, zawsze przekazuj połączenia i ukryty nadawca</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link">https://signal.org/blog/sealed-sender</string> -->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pokaż ikonę</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Pokaż ikonę w szczegółach wiadomości, dostarczonej z użyciem funkcji ukrytego nadawcy.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum pomocy</string>
   <string name="HelpSettingsFragment__contact_us">Skontaktuj się z nami</string>
   <string name="HelpSettingsFragment__version">Wersja</string>
+  <string name="HelpSettingsFragment__debug_log">Dziennik debugowania</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Regulamin i Polityka prywatności</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Oprogramowanie udostępniane na licencji GPLv3</string>

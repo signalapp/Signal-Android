@@ -2732,6 +2732,7 @@
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Επικοινώνησε μαζί μας</string>
   <string name="HelpSettingsFragment__version">Έκδοση</string>
+  <string name="HelpSettingsFragment__debug_log">Αρχείο καταγραφής αποσφαλμάτωσης</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Όροι &amp; Πολιτική Απορρήτου</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Κλήσεις</string>
