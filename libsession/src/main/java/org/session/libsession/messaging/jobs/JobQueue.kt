@@ -130,12 +130,7 @@ class JobQueue : JobDelegate {
         }
         // Message send jobs waiting for the attachment to upload
         if (job is MessageSendJob && error is MessageSendJob.AwaitingAttachmentUploadException) {
-            val retryInterval: Long = 1000 * 4
             Log.i("Loki", "Message send job waiting for attachment upload to finish.")
-            timer.schedule(delay = retryInterval) {
-                Log.i("Loki", "Retrying ${job::class.simpleName}.")
-                queue.offer(job)
-            }
             return
         }
         // Regular job failure
