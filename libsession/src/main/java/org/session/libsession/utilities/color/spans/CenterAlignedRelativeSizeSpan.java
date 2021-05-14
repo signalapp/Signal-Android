@@ -1,12 +1,10 @@
 package org.session.libsession.utilities.color.spans;
 
-
 import androidx.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 
 public class CenterAlignedRelativeSizeSpan extends MetricAffectingSpan {
-
   private final float relativeSize;
 
   public CenterAlignedRelativeSizeSpan(float relativeSize) {
