@@ -1438,5 +1438,24 @@
   <string name="fragment_contact_selection_contacts_title">連絡先</string>
   <string name="fragment_contact_selection_closed_groups_title">非公開グループ</string>
   <string name="fragment_contact_selection_open_groups_title">公開グループ</string>
+  <string name="activity_conversation_copy_public_key_button_title">公開鍵をコピーする</string>
+  <string name="activity_conversation_menu_copy_session_id">Session ID をコピーする</string>
+  <string name="activity_edit_closed_group_add_members">メンバーを追加</string>
+  <string name="activity_edit_closed_group_confirm_removal">ユーザーを削除します。よろしいですか？</string>
+  <string name="activity_edit_closed_group_edit_members">メンバー一覧</string>
+  <string name="activity_edit_closed_group_group_name_missing_error">グループ名を空白に変更できません</string>
+  <string name="activity_edit_closed_group_group_name_too_long_error">短いグループ名を入力してください</string>
+  <string name="activity_edit_closed_group_invalid_session_id_error">グループのメンバーの 1 人の Session ID が正しくありません</string>
+  <string name="activity_edit_closed_group_member_removed">ユーザーがグループから削除されました</string>
+  <string name="activity_edit_closed_group_not_enough_group_members_error">グループには1人以上のメンバーがいなければなりません</string>
+  <string name="activity_edit_closed_group_title">グループを編集</string>
+  <string name="activity_settings_invite_button_title">招待</string>
+  <string name="activity_select_contacts_title">連絡先を選択</string>
+  <string name="details">詳細</string>
+  <string name="dialog_ui_mode_option_day">ライト</string>
+  <string name="dialog_ui_mode_option_night">ダーク</string>
+  <string name="dialog_ui_mode_option_system_default">システムデフォルト</string>
+  <string name="dialog_ui_mode_title">テーマ</string>
+  <string name="fragment_edit_group_bottom_sheet_remove">ユーザーをグループから削除する</string>
 
 </resources>
