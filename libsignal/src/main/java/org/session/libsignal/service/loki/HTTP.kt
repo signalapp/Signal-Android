@@ -39,6 +39,25 @@ object HTTP {
             .build()
     }
 
+    private fun getDefaultConnection(timeout: Long): OkHttpClient {
+        // Snode to snode communication uses self-signed certificates but clients can safely ignore this
+        val trustManager = object : X509TrustManager {
+
+            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authorizationType: String?) { }
+            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authorizationType: String?) { }
+            override fun getAcceptedIssuers(): Array<X509Certificate> { return arrayOf() }
+        }
+        val sslContext = SSLContext.getInstance("SSL")
+        sslContext.init(null, arrayOf( trustManager ), SecureRandom())
+        return OkHttpClient().newBuilder()
+            .sslSocketFactory(sslContext.socketFactory, trustManager)
+            .hostnameVerifier { _, _ -> true }
+            .connectTimeout(timeout, TimeUnit.SECONDS)
+            .readTimeout(timeout, TimeUnit.SECONDS)
+            .writeTimeout(timeout, TimeUnit.SECONDS)
+            .build()
+    }
+
     private const val timeout: Long = 10
 
     class HTTPRequestFailedException(val statusCode: Int, val json: Map<*, *>?)
@@ -89,12 +108,7 @@ object HTTP {
                 if (useSeedNodeConnection) {
                     throw IllegalStateException("Setting a custom timeout is only allowed for requests to snodes.")
                 }
-                connection = OkHttpClient()
-                    .newBuilder()
-                    .connectTimeout(timeout, TimeUnit.SECONDS)
-                    .readTimeout(timeout, TimeUnit.SECONDS)
-                    .writeTimeout(timeout, TimeUnit.SECONDS)
-                    .build()
+                connection = getDefaultConnection(timeout)
             } else {
                 connection = if (useSeedNodeConnection) seedNodeConnection else defaultConnection
             }
