@@ -238,7 +238,8 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     val openGroupServerID = message.openGroupServerMessageID
     if (openGroupServerID != null) {
-        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, !message.isMediaMessage())
+        val isSms = !(message.isMediaMessage() || attachments.isNotEmpty())
+        storage.setOpenGroupServerMessageID(messageID, openGroupServerID, threadID, isSms)
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)
