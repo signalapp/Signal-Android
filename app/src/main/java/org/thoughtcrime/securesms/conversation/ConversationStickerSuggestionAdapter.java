@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -56,9 +57,11 @@ public class ConversationStickerSuggestionAdapter extends RecyclerView.Adapter<C
     notifyDataSetChanged();
   }
 
-  static class StickerSuggestionViewHolder extends RecyclerView.ViewHolder {
+  public static class StickerSuggestionViewHolder extends RecyclerView.ViewHolder {
 
     private final ImageView image;
+
+    private StickerRecord currentSticker;
 
     StickerSuggestionViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -66,6 +69,7 @@ public class ConversationStickerSuggestionAdapter extends RecyclerView.Adapter<C
     }
 
     void bind(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, @NonNull StickerRecord sticker) {
+      currentSticker = sticker;
       glideRequests.load(new DecryptableUri(sticker.getUri()))
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .into(image);
@@ -73,14 +77,24 @@ public class ConversationStickerSuggestionAdapter extends RecyclerView.Adapter<C
       itemView.setOnClickListener(v -> {
         eventListener.onStickerSuggestionClicked(sticker);
       });
+      itemView.setOnLongClickListener(v -> {
+        eventListener.onStickerLongPress(v);
+        return true;
+      });
     }
 
     void recycle() {
       itemView.setOnClickListener(null);
     }
+
+    @Nullable
+    public StickerRecord getCurrentSticker() {
+      return currentSticker;
+    }
   }
 
   public interface EventListener {
     void onStickerSuggestionClicked(@NonNull StickerRecord sticker);
+    void onStickerLongPress(@NonNull View view);
   }
 }

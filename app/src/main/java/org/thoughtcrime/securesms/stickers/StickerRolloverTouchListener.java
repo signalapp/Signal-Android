@@ -24,7 +24,7 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
   private WeakReference<View> currentView;
   private boolean             hoverMode;
 
-  StickerRolloverTouchListener(@NonNull Context context,
+  public StickerRolloverTouchListener(@NonNull Context context,
                                @NonNull GlideRequests glideRequests,
                                @NonNull RolloverEventListener eventListener,
                                @NonNull RolloverStickerRetriever stickerRetriever)
@@ -72,7 +72,7 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
   public void onRequestDisallowInterceptTouchEvent(boolean b) {
   }
 
-  void enterHoverMode(@NonNull RecyclerView recyclerView, View targetView) {
+  public void enterHoverMode(@NonNull RecyclerView recyclerView, View targetView) {
     this.hoverMode = true;
     showStickerForView(recyclerView, targetView);
   }
