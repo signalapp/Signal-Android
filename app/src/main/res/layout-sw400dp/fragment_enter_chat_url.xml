@@ -33,12 +33,7 @@
 
     <LinearLayout
         android:visibility="gone"
-<<<<<<< HEAD
-        android:paddingHorizontal="24dp"
-        android:id="@+id/defaultRoomsParent"
-=======
         android:id="@+id/defaultRoomsContainer"
->>>>>>> 133bcac17 (Make chips look better)
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

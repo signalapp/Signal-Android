@@ -212,7 +212,7 @@ class EnterChatURLFragment : Fragment() {
         chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
         joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
         viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
-            defaultRoomsParent.isVisible = state is State.Success
+            defaultRoomsContainer.isVisible = state is State.Success
             defaultRoomsLoader.isVisible = state is State.Loading
             when (state) {
                 State.Loading -> {
