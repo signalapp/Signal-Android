@@ -232,15 +232,16 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean) {
-      val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)
-      if (bigPictureUri != null) {
-        builder.setStyle(
-          NotificationCompat.BigPictureStyle()
-            .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
-            .setSummaryText(conversation.getContentText(context))
-            .bigLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
-        )
-        return
+      if (Build.VERSION.SDK_INT <= 23) when (val bigPictureUri: Uri? = conversation.getSlideBigPictureUri(context)) {
+        is Uri -> {
+          builder.setStyle(
+            NotificationCompat.BigPictureStyle()
+              .bigPicture(bigPictureUri.toBitmap(context, BIG_PICTURE_DIMEN))
+              .setSummaryText(conversation.getContentText(context))
+              .bigLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
+          )
+          return
+        }
       }
 
       val self: PersonCompat = PersonCompat.Builder()
