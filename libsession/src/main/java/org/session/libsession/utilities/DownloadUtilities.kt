@@ -5,7 +5,6 @@ import okhttp3.Request
 import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.snode.OnionRequestAPI
-import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -42,7 +41,7 @@ object DownloadUtilities {
     @JvmStatic
     fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
 
-        if (url.contains(FileServerAPIV2.DEFAULT_SERVER)) {
+        if (url.contains(FileServerAPIV2.SERVER)) {
             val httpUrl = HttpUrl.parse(url)!!
             val fileId = httpUrl.pathSegments().last()
             try {

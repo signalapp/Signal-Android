@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.protocol
 import android.content.Context
 import android.util.Log
 import com.google.protobuf.ByteString
+import org.session.libsession.messaging.sending_receiving.*
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
@@ -15,12 +16,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGroupOperation
-import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
-import org.session.libsession.messaging.sending_receiving.MessageSender
-import org.session.libsession.messaging.sending_receiving.generateAndSendNewEncryptionKeyPair
-import org.session.libsession.messaging.sending_receiving.pendingKeyPair
-import org.session.libsession.messaging.sending_receiving.sendEncryptionKeyPair
 
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
@@ -195,7 +191,7 @@ object ClosedGroupsProtocolV2 {
         }
         if (userPublicKey in admins) {
             // send current encryption key to the latest added members
-            val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+            val encryptionKeyPair = pendingKeyPairs[groupPublicKey]?.orNull()
                 ?: apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
             if (encryptionKeyPair == null) {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
@@ -330,7 +326,7 @@ object ClosedGroupsProtocolV2 {
         // Find our wrapper and decrypt it if possible
         val wrapper = closedGroupUpdate.wrappersList.firstOrNull { it.publicKey.toByteArray().toHexString() == userPublicKey } ?: return
         val encryptedKeyPair = wrapper.encryptedKeyPair.toByteArray()
-        val plaintext = SessionProtocolImpl(context).decrypt(encryptedKeyPair, userKeyPair).first
+        val plaintext = MessageDecrypter.decrypt(encryptedKeyPair, userKeyPair).first
         // Parse it
         val proto = SignalServiceProtos.KeyPair.parseFrom(plaintext)
         val keyPair = ECKeyPair(DjbECPublicKey(proto.publicKey.toByteArray().removing05PrefixIfNeeded()), DjbECPrivateKey(proto.privateKey.toByteArray()))

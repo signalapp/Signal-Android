@@ -13,7 +13,7 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
 
-object MessageSenderEncryption {
+object MessageEncrypter {
 
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
 
@@ -25,7 +25,7 @@ object MessageSenderEncryption {
      *
      * @return the encrypted message.
      */
-    internal fun encryptWithSessionProtocol(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray{
+    internal fun encrypt(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray{
         val context = MessagingModuleConfiguration.shared.context
         val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: throw Error.NoUserED25519KeyPair
         val recipientX25519PublicKey = Hex.fromStringCondensed(recipientHexEncodedX25519PublicKey.removing05PrefixIfNeeded())

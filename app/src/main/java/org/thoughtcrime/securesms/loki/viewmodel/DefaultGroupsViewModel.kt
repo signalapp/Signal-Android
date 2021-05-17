@@ -20,5 +20,4 @@ class DefaultGroupsViewModel : ViewModel() {
     }.onStart {
         emit(State.Loading)
     }.asLiveData()
-
 }
