@@ -28,7 +28,7 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.database.documents.IdentityKeyMismatch;
 import org.session.libsession.database.documents.IdentityKeyMismatchList;

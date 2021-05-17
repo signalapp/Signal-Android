@@ -28,7 +28,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.session.libsession.messaging.avatars.ContactColors;
 import org.session.libsession.messaging.avatars.ContactPhoto;
 import org.session.libsession.messaging.avatars.GeneratedContactPhoto;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;

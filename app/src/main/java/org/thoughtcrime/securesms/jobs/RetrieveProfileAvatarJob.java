@@ -15,7 +15,7 @@ import org.session.libsession.utilities.Util;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.crypto.ProfileCipherInputStream;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;

@@ -5,7 +5,7 @@ import okhttp3.Request
 import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.snode.OnionRequestAPI
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException

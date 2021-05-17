@@ -17,7 +17,7 @@ import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.security.SecureRandom
 
 object SnodeAPI {

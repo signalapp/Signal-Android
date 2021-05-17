@@ -4,7 +4,7 @@ import android.content.Context
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId
 

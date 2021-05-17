@@ -1,4 +1,4 @@
-package org.session.libsignal.utilities.concurrent;
+package org.session.libsignal.utilities;
 
 import java.util.LinkedList;
 import java.util.List;

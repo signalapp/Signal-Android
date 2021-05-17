@@ -10,7 +10,7 @@ import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 @SuppressLint("StaticFieldLeak")
 object PushNotificationAPI {

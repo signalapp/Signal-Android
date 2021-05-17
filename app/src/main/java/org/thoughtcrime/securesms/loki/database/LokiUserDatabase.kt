@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper

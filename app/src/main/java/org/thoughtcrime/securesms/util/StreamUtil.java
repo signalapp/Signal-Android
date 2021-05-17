@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.Nullable;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;

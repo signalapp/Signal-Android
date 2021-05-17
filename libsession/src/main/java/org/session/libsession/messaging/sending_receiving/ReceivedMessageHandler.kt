@@ -7,7 +7,6 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.Attachment
-import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
@@ -30,7 +29,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.security.MessageDigest
 import java.util.*
 import kotlin.collections.ArrayList

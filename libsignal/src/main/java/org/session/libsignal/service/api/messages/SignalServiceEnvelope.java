@@ -8,26 +8,8 @@ package org.session.libsignal.service.api.messages;
 
 import com.google.protobuf.ByteString;
 
-import org.session.libsignal.libsignal.InvalidVersionException;
-import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope;
-import org.session.libsignal.utilities.Base64;
-import org.session.libsignal.utilities.Hex;
-
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.Mac;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 /**
  * This class represents an encrypted Signal Service envelope.

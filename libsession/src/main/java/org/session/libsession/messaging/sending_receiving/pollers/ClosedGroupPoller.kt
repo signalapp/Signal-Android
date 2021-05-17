@@ -9,7 +9,7 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsignal.service.loki.utilities.getRandomElementOrNull
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.successBackground
 
 class ClosedGroupPoller {

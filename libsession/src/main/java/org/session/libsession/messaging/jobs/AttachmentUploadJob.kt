@@ -4,7 +4,6 @@ import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
 import nl.komponents.kovenant.Promise
-import okhttp3.MultipartBody
 import okio.Buffer
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
@@ -22,8 +21,7 @@ import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputSt
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.util.Util
 import org.session.libsignal.service.loki.PlaintextOutputStreamFactory
-import org.session.libsignal.utilities.logging.Log
-import java.util.*
+import org.session.libsignal.utilities.Log
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
     override var delegate: JobDelegate? = null

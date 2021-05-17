@@ -12,7 +12,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import network.loki.messenger.BuildConfig;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import java.util.List;
 import java.util.UUID;

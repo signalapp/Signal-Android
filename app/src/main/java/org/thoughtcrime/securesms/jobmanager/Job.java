@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.session.libsession.messaging.utilities.Data;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import java.util.LinkedList;
 import java.util.List;

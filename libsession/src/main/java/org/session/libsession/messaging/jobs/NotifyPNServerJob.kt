@@ -13,7 +13,7 @@ import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.snode.OnionRequestAPI
 
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 

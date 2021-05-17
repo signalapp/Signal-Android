@@ -1,4 +1,4 @@
-package org.session.libsignal.utilities.externalstorage
+package org.session.libsignal.utilities
 
 import android.content.Context
 import android.net.Uri

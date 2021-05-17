@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.backup.BackupProtos.*
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.*
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.util.BackupUtil
 
 import org.session.libsession.messaging.avatars.AvatarHelper

@@ -1,6 +1,6 @@
 package org.session.libsession.utilities.concurrent;
 
-import org.session.libsignal.utilities.concurrent.ListenableFuture.Listener;
+import org.session.libsignal.utilities.ListenableFuture.Listener;
 
 import java.util.concurrent.ExecutionException;
 

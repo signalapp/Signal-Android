@@ -7,7 +7,7 @@
 package org.session.libsignal.service.internal.push;
 
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 public class PushTransportDetails {
 

@@ -15,8 +15,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import network.loki.messenger.R
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask
-import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.ExternalStorageUtil
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
 import java.io.FileOutputStream

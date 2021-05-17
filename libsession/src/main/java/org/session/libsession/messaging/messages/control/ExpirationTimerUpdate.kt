@@ -2,7 +2,7 @@ package org.session.libsession.messaging.messages.control
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ExpirationTimerUpdate() : ControlMessage() {

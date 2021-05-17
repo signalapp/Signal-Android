@@ -78,7 +78,7 @@ import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.SimpleTask;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;

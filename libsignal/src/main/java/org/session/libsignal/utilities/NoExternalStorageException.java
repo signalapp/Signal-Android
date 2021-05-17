@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.session.libsignal.utilities.externalstorage;
+package org.session.libsignal.utilities;
 
 public class NoExternalStorageException extends Exception {
 

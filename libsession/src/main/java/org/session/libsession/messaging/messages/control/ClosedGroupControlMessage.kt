@@ -13,7 +13,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessa
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 class ClosedGroupControlMessage() : ControlMessage() {
     var kind: Kind? = null

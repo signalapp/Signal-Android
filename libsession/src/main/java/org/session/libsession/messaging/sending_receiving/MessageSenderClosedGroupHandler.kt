@@ -21,7 +21,7 @@ import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.ThreadUtils
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 

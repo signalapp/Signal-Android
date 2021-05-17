@@ -1,6 +1,5 @@
 package org.session.libsession.messaging.open_groups
 
-import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.map
@@ -12,9 +11,8 @@ import org.session.libsession.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.io.ByteArrayOutputStream
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 

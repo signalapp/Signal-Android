@@ -32,7 +32,7 @@ import android.os.Build.VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.AttributeSet;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import android.view.OrientationEventListener;
 import android.view.ViewGroup;
 

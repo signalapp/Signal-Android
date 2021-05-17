@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.*
@@ -11,10 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import network.loki.messenger.R
-import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.OpenGroupUrlParser
-import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.groups.GroupManager
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 

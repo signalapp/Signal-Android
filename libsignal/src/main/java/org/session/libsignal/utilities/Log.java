@@ -1,4 +1,4 @@
-package org.session.libsignal.utilities.logging;
+package org.session.libsignal.utilities;
 
 import androidx.annotation.MainThread;
 

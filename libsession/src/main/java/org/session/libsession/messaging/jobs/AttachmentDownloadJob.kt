@@ -10,7 +10,7 @@ import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.DownloadUtilities
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.io.File
 import java.io.FileInputStream
 

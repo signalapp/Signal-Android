@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 class OpenGroupInvitation() {
     var url: String? = null

@@ -11,7 +11,7 @@ import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.service.loki.HTTP
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 object FileServerAPIV2 {
 

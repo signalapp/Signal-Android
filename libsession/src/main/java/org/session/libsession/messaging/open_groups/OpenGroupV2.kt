@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.open_groups
 
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.util.*
 
 data class OpenGroupV2(

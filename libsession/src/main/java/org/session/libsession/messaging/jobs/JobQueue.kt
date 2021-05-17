@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
