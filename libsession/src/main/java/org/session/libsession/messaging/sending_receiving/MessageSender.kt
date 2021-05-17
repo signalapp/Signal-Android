@@ -45,7 +45,6 @@ object MessageSender {
         object NoThread : Error("Couldn't find a thread associated with the given group public key.")
         object NoKeyPair: Error("Couldn't find a private key associated with the given group public key.")
         object InvalidClosedGroupUpdate : Error("Invalid group update.")
-        object ClosedGroupCreationFailure : Error("Couldn't create closed group.")
 
         internal val isRetryable: Boolean = when (this) {
             is InvalidMessage, ProtoConversionFailed, InvalidClosedGroupUpdate -> false
