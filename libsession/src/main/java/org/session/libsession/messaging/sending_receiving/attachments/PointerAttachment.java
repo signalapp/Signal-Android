@@ -9,7 +9,7 @@ import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.utilities.Base64;
-import org.session.libsignal.service.internal.push.SignalServiceProtos;
+import org.session.libsignal.protos.SignalServiceProtos;
 
 import java.util.LinkedList;
 import java.util.List;

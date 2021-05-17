@@ -17,12 +17,11 @@ import org.session.libsignal.service.api.push.exceptions.PushNetworkException
 import org.session.libsignal.service.api.util.StreamDetails
 import org.session.libsignal.service.internal.push.ProfileAvatarData
 import org.session.libsignal.service.internal.push.PushAttachmentData
-import org.session.libsignal.service.internal.push.http.DigestingRequestBody
-import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
+import org.session.libsignal.streams.DigestingRequestBody
+import org.session.libsignal.streams.ProfileCipherOutputStreamFactory
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.HTTP
-import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
@@ -210,7 +209,7 @@ open class DotNetAPI {
     fun uploadProfilePicture(server: String, key: ByteArray, profilePicture: StreamDetails, setLastProfilePictureUpload: () -> Unit): UploadResult {
         val profilePictureUploadData = ProfileAvatarData(profilePicture.stream, ProfileCipherOutputStream.getCiphertextLength(profilePicture.length), profilePicture.contentType, ProfileCipherOutputStreamFactory(key))
         val file = DigestingRequestBody(profilePictureUploadData.data, profilePictureUploadData.outputStreamFactory,
-            profilePictureUploadData.contentType, profilePictureUploadData.dataLength, null)
+                profilePictureUploadData.contentType, profilePictureUploadData.dataLength, null)
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("type", "network.loki")

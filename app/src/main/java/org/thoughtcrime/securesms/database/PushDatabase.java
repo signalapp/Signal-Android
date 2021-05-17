@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
-import org.session.libsignal.service.internal.util.Util;
+import org.session.libsignal.utilities.Util;
 
 import java.io.IOException;
 

@@ -1,7 +1,7 @@
 package org.session.libsignal.crypto
 
 import org.whispersystems.curve25519.Curve25519
-import org.session.libsignal.service.internal.util.Util
+import org.session.libsignal.utilities.Util
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec

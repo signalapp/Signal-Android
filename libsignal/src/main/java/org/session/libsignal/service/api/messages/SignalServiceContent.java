@@ -7,7 +7,7 @@
 package org.session.libsignal.service.api.messages;
 
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.internal.push.SignalServiceProtos;
+import org.session.libsignal.protos.SignalServiceProtos;
 
 public class SignalServiceContent {
   private final String  sender;

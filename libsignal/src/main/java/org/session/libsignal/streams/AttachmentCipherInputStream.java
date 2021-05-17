@@ -8,7 +8,7 @@ package org.session.libsignal.streams;
 
 import org.session.libsignal.exceptions.InvalidMacException;
 import org.session.libsignal.exceptions.InvalidMessageException;
-import org.session.libsignal.service.internal.util.Util;
+import org.session.libsignal.utilities.Util;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Log
 
 class DataExtractionNotification() : ControlMessage() {

@@ -1,7 +1,7 @@
 package org.session.libsignal.service.internal.push;
 
 
-import org.session.libsignal.service.internal.push.http.OutputStreamFactory;
+import org.session.libsignal.streams.OutputStreamFactory;
 
 import java.io.InputStream;
 

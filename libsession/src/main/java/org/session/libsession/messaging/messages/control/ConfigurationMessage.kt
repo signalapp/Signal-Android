@@ -9,7 +9,7 @@ import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex

@@ -9,7 +9,7 @@ package org.session.libsignal.service.api.messages;
 import com.google.protobuf.ByteString;
 
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope;
+import org.session.libsignal.protos.SignalServiceProtos.Envelope;
 
 /**
  * This class represents an encrypted Signal Service envelope.

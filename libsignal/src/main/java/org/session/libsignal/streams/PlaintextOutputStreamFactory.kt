@@ -1,6 +1,5 @@
 package org.session.libsignal.streams
 
-import org.session.libsignal.service.internal.push.http.OutputStreamFactory
 import java.io.OutputStream
 
 /**

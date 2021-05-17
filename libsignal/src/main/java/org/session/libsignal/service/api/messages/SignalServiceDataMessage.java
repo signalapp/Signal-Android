@@ -9,7 +9,7 @@ package org.session.libsignal.service.api.messages;
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ClosedGroupControlMessage;
+import org.session.libsignal.protos.SignalServiceProtos.DataMessage.ClosedGroupControlMessage;
 
 import java.util.LinkedList;
 import java.util.List;

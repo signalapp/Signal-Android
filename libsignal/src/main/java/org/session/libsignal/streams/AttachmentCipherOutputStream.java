@@ -6,7 +6,7 @@
 
 package org.session.libsignal.streams;
 
-import org.session.libsignal.service.internal.util.Util;
+import org.session.libsignal.utilities.Util;
 
 import java.io.IOException;
 import java.io.OutputStream;

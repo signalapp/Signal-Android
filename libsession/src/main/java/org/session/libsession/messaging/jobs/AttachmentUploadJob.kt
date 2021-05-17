@@ -17,9 +17,9 @@ import org.session.libsignal.streams.AttachmentCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
 import org.session.libsignal.streams.PaddingInputStream
 import org.session.libsignal.service.internal.push.PushAttachmentData
-import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
-import org.session.libsignal.service.internal.push.http.DigestingRequestBody
-import org.session.libsignal.service.internal.util.Util
+import org.session.libsignal.streams.AttachmentCipherOutputStreamFactory
+import org.session.libsignal.streams.DigestingRequestBody
+import org.session.libsignal.utilities.Util
 import org.session.libsignal.streams.PlaintextOutputStreamFactory
 import org.session.libsignal.utilities.Log
 
