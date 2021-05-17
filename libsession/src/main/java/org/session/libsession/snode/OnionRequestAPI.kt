@@ -18,7 +18,7 @@ import org.session.libsession.utilities.getBodyForOnionRequest
 import org.session.libsession.utilities.getHeadersForOnionRequest
 import org.session.libsignal.crypto.getRandomElement
 import org.session.libsignal.crypto.getRandomElementOrNull
-import org.session.libsignal.service.loki.Broadcaster
+import org.session.libsignal.utilities.Broadcaster
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
 

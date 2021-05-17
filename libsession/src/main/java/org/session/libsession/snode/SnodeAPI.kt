@@ -12,7 +12,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.Broadcaster
+import org.session.libsignal.utilities.Broadcaster
 import org.session.libsignal.utilities.prettifiedDescription
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.retryIfNeeded
