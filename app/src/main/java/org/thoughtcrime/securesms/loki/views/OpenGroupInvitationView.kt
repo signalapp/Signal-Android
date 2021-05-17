@@ -48,7 +48,7 @@ class OpenGroupInvitationView : FrameLayout {
 
     fun setOpenGroup(name: String, url: String, isOutgoing: Boolean = false) {
         groupName.text = name
-        displayedUrl.text = OpenGroupUrlParser.trimParameter(url)
+        displayedUrl.text = OpenGroupUrlParser.trimQueryParameter(url)
         groupUrl = url
 
         if(isOutgoing) {

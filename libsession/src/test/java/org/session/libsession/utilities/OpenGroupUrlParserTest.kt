@@ -61,25 +61,25 @@ class OpenGroupUrlParserTest {
         assertEquals(expectedPublicKey, result.serverPublicKey)
     }
 
-    @Test(expected = OpenGroupUrlParser.Error.MalformedUrl::class)
+    @Test(expected = OpenGroupUrlParser.Error.MalformedURL::class)
     fun parseUrlMalformedUrlTest() {
         val inputUrl = "file:sessionopengroup.co/main?public_key=658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adffb231c"
         OpenGroupUrlParser.parseUrl(inputUrl)
     }
 
-    @Test(expected = OpenGroupUrlParser.Error.NoRoomSpecified::class)
+    @Test(expected = OpenGroupUrlParser.Error.NoRoom::class)
     fun parseUrlNoRoomSpecifiedTest() {
         val inputUrl = "https://sessionopengroup.comain?public_key=658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adffb231c"
         OpenGroupUrlParser.parseUrl(inputUrl)
     }
 
-    @Test(expected = OpenGroupUrlParser.Error.NoPublicKeySpecified::class)
+    @Test(expected = OpenGroupUrlParser.Error.NoPublicKey::class)
     fun parseUrlNoPublicKeySpecifiedTest() {
         val inputUrl = "https://sessionopengroup.co/main"
         OpenGroupUrlParser.parseUrl(inputUrl)
     }
 
-    @Test(expected = OpenGroupUrlParser.Error.InvalidPublicKeyProvided::class)
+    @Test(expected = OpenGroupUrlParser.Error.InvalidPublicKey::class)
     fun parseUrlInvalidPublicKeyProviedTest() {
         val inputUrl = "https://sessionopengroup.co/main?public_key=658d29b91892a2389505596b135e76a53db6e11d613a51dbd3d0816adff"
         OpenGroupUrlParser.parseUrl(inputUrl)
