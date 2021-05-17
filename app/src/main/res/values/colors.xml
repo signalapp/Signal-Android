@@ -13,14 +13,10 @@
     <color name="cell_background">#1B1B1B</color>
     <color name="cell_selected">#0C0C0C</color>
     <color name="action_bar_background">#171717</color>
-    <color name="navigation_bar_background">#121212</color>
     <color name="separator">#36383C</color>
     <color name="unimportant_button_background">#323232</color>
     <color name="dialog_background">#101011</color>
-    <color name="dialog_border">#212121</color>
     <color name="unimportant_dialog_button_background">@color/unimportant_button_background</color>
-    <color name="fake_chat_bubble_background">#3F4146</color>
-    <color name="fake_chat_bubble_text">#000000</color>
     <color name="app_icon_background">#333132</color>
     <color name="progress_bar_background">#0AFFFFFF</color>
     <color name="compose_view_background">#1B1B1B</color>
@@ -42,8 +38,6 @@
     <!-- Session -->
 
     <!-- Loki -->
-    <color name="loki_green">#78be20</color>
-    <color name="loki_dark_green">#419B41</color>
     <color name="loki_darkest_gray">#0a0a0a</color>
     <!-- Loki -->
 
@@ -56,8 +50,6 @@
 
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
-    <color name="gray5">#ffeeeeee</color>
-    <color name="gray10">#ffdddddd</color>
     <color name="gray12">#ffe0e0e0</color>
     <color name="gray13">#ffababab</color>
     <color name="gray20">#ffcccccc</color>
@@ -66,26 +58,15 @@
     <color name="gray65">#ff595959</color>
     <color name="gray70">#ff4d4d4d</color>
     <color name="gray78">#ff383838</color>
-    <color name="gray95">#ff111111</color>
 
-    <color name="transparent_black_05">#05000000</color>
-    <color name="transparent_black_10">#10000000</color>
-    <color name="transparent_black_20">#20000000</color>
     <color name="transparent_black_30">#30000000</color>
     <color name="transparent_black_40">#40000000</color>
     <color name="transparent_black_70">#70000000</color>
     <color name="transparent_black_90">#90000000</color>
 
-    <color name="transparent_white_05">#05ffffff</color>
-    <color name="transparent_white_10">#10ffffff</color>
-    <color name="transparent_white_20">#20ffffff</color>
     <color name="transparent_white_30">#30ffffff</color>
     <color name="transparent_white_40">#40ffffff</color>
-    <color name="transparent_white_60">#60ffffff</color>
-    <color name="transparent_white_70">#70ffffff</color>
     <color name="transparent_white_aa">#aaffffff</color>
-    <color name="transparent_white_bb">#bbffffff</color>
-    <color name="transparent_white_dd">#ddffffff</color>
 
     <color name="conversation_compose_divider">#32000000</color>
 
@@ -95,23 +76,10 @@
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>
 
-    <color name="import_export_item_background_light">#ffeeeeee</color>
-    <color name="import_export_item_background_dark">#ff333333</color>
-    <color name="import_export_item_background_shadow_light">#ffd5d5d5</color>
-    <color name="import_export_item_background_shadow_dark">#ff222222</color>
-    <color name="import_export_touch_highlight_light">#400099cc</color>
-    <color name="import_export_touch_highlight_dark">#40ffffff</color>
-
-    <color name="StickerPreviewActivity_remove_button_color">@color/conversation_crimson</color>
-    <color name="StickerPreviewActivity_install_button_color">@color/core_blue</color>
-
-    <color name="sticker_selected_color">#99ffffff</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="transparent_black">#00000000</color>
 
     <color name="MediaOverview_Media_selected_overlay">#88000000</color>
-
-    <color name="logsubmit_confirmation_background">#44ff2d00</color>
 
     <color name="avatar_background">@color/transparent_black_90</color>
 
