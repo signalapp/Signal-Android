@@ -1868,7 +1868,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       message.setSentTimestamp(System.currentTimeMillis());
       OpenGroupInvitation openGroupInvitationMessage = new OpenGroupInvitation();
       openGroupInvitationMessage.setGroupName(openGroup.getName());
-      openGroupInvitationMessage.setGroupUrl(openGroup.toJoinUrl());
+      openGroupInvitationMessage.setGroupUrl(openGroup.getJoinURL());
       message.setOpenGroupInvitation(openGroupInvitationMessage);
       OutgoingTextMessage outgoingTextMessage = OutgoingTextMessage.fromOpenGroupInvitation(openGroupInvitationMessage, recipient, message.getSentTimestamp());
 
