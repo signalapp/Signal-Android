@@ -1859,19 +1859,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendComplete(allocatedThreadId);
   }
 
-  private void sendOpenGroupInvitations(String[] contactsID) {
+  private void sendOpenGroupInvitations(String[] contactIDs) {
     final Context context = getApplicationContext();
     OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadId);
-    for (String contactId: contactsID) {
-      Recipient recipient = Recipient.from(context, Address.fromSerialized(contactId), true);
+    for (String contactID : contactIDs) {
+      Recipient recipient = Recipient.from(context, Address.fromSerialized(contactID), true);
       VisibleMessage message = new VisibleMessage();
       message.setSentTimestamp(System.currentTimeMillis());
       OpenGroupInvitation openGroupInvitationMessage = new OpenGroupInvitation();
-      openGroupInvitationMessage.setGroupName(openGroup.getName());
-      openGroupInvitationMessage.setGroupUrl(openGroup.getJoinURL());
+      openGroupInvitationMessage.setName(openGroup.getName());
+      openGroupInvitationMessage.setUrl(openGroup.getJoinURL());
       message.setOpenGroupInvitation(openGroupInvitationMessage);
       OutgoingTextMessage outgoingTextMessage = OutgoingTextMessage.fromOpenGroupInvitation(openGroupInvitationMessage, recipient, message.getSentTimestamp());
-
       DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(-1, outgoingTextMessage, message.getSentTimestamp());
       MessageSender.send(message, recipient.getAddress());
     }

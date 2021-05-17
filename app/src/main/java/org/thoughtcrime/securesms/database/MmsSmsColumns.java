@@ -48,7 +48,8 @@ public interface MmsSmsColumns {
                                                             OUTGOING_CALL_TYPE};
 
 
-    //TODO clean unused keys
+    // TODO: Clean unused keys
+
     // Message attributes
     protected static final long MESSAGE_FORCE_SMS_BIT  = 0x40;
 
@@ -74,9 +75,10 @@ public interface MmsSmsColumns {
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
     protected static final long GROUP_UPDATE_MESSAGE_BIT    = 0x80000;
 
-    // Data Extraction Information
+    // Data Extraction Notification
     protected static final long MEDIA_SAVED_EXTRACTION_BIT = 0x01000;
     protected static final long SCREENSHOT_EXTRACTION_BIT  = 0x02000;
+
     // Open Group Invitation
     protected static final long OPEN_GROUP_INVITATION_BIT  = 0x04000;
 

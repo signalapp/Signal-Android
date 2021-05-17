@@ -165,7 +165,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             mmsDatabase.endTransaction()
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-            val isOpenGroupInvitation = message.openGroupInvitation != null
+            val isOpenGroupInvitation = (message.openGroupInvitation != null)
 
             val insertResult = if (message.sender == getUserPublicKey()) {
                 val textMessage = if (isOpenGroupInvitation) OutgoingTextMessage.fromOpenGroupInvitation(message.openGroupInvitation, targetRecipient, message.sentTimestamp)

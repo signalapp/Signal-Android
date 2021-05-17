@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="org.thoughtcrime.securesms.loki.views.OpenGroupInvitationView">
 
-
     <LinearLayout
-        android:id="@+id/audio_widget_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        tools:ignore="MissingConstraints" >
+        android:paddingHorizontal="@dimen/medium_spacing"
+        android:orientation="horizontal">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/join_open_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_margin="4dp"
+        <ImageButton
+            android:id="@+id/join_open_group_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="#00E076"
             android:contentDescription="@string/open_group_invitation_view__join_accessibility_description"
             app:srcCompat="@drawable/ic_add_white_original_24dp" />
 
-        <ImageView
-            android:id="@+id/open_group_icon"
+        <RelativeLayout
+            android:id="@+id/open_group_icon_image_view_container"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:clickable="false"
-            android:visibility="gone"
-            android:layout_margin="4dp"
-            android:contentDescription="@string/open_group_invitation_view__join_accessibility_description"
-            android:src="@drawable/ic_globe" />
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="#00E076">
+
+            <ImageView
+                android:id="@+id/open_group_icon_image_view"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/open_group_invitation_view__join_accessibility_description"
+                android:src="@drawable/ic_globe" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="@dimen/small_spacing"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/group_name"
+                android:id="@+id/name_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Signal.Text.Caption"
-                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
                 android:textSize="@dimen/large_font_size"
                 android:maxLines="1"
                 tools:text="Open group" />
 
             <TextView
-                android:id="@+id/open_group_invitation_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Signal.Text.Body"
+                android:textSize="@dimen/small_font_size"
                 android:maxLines="1"
                 android:text="@string/open_group_invitation_view__open_group_invitation" />
 
             <TextView
-                android:id="@+id/group_url"
+                android:id="@+id/url_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Signal.Text.Caption"
+                android:textSize="@dimen/small_font_size"
                 android:maxLines="1"
                 tools:text="http://1.1.1.1" />
         </LinearLayout>
 
     </LinearLayout>
+
 </merge>

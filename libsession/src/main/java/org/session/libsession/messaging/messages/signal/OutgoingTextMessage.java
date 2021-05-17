@@ -6,14 +6,12 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 
 public class OutgoingTextMessage {
-
   private final Recipient recipient;
   private final String    message;
   private final int       subscriptionId;
   private final long      expiresIn;
   private final long      sentTimestampMillis;
-
-  private boolean isOpenGroupInvitation = false;
+  private boolean         isOpenGroupInvitation = false;
 
   public OutgoingTextMessage(Recipient recipient, String message, long expiresIn, int subscriptionId, long sentTimestampMillis) {
     this.recipient      = recipient;
@@ -28,7 +26,11 @@ public class OutgoingTextMessage {
   }
 
   public static OutgoingTextMessage fromOpenGroupInvitation(OpenGroupInvitation openGroupInvitation, Recipient recipient, Long sentTimestamp) {
-    String body = UpdateMessageData.Companion.buildOpenGroupInvitation(openGroupInvitation.getGroupUrl(), openGroupInvitation.getGroupName()).toJSON();
+    String url = openGroupInvitation.getUrl();
+    String name = openGroupInvitation.getName();
+    if (url == null || name == null) { return null; }
+    // FIXME: Doing toJSON() to get the body here is weird
+    String body = UpdateMessageData.Companion.buildOpenGroupInvitation(url, name).toJSON();
     OutgoingTextMessage outgoingTextMessage = new OutgoingTextMessage(recipient, body, 0, -1, sentTimestamp);
     outgoingTextMessage.isOpenGroupInvitation = true;
     return outgoingTextMessage;

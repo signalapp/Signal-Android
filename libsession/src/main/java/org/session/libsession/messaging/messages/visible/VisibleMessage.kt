@@ -58,9 +58,9 @@ class VisibleMessage : Message()  {
                 result.linkPreview = linkPreview
             }
             val openGroupInvitationProto = if (dataMessage.hasOpenGroupInvitation()) dataMessage.openGroupInvitation else null
-            openGroupInvitationProto?.let {
+            if (openGroupInvitationProto != null) {
                 val openGroupInvitation = OpenGroupInvitation.fromProto(openGroupInvitationProto)
-                openGroupInvitation?.let { result.openGroupInvitation = openGroupInvitation}
+                result.openGroupInvitation = openGroupInvitation
             }
             // TODO Contact
             val profile = Profile.fromProto(dataMessage)
@@ -73,7 +73,7 @@ class VisibleMessage : Message()  {
         val proto = SignalServiceProtos.Content.newBuilder()
         val dataMessage: SignalServiceProtos.DataMessage.Builder
         // Profile
-        val profileProto = profile?.let { it.toProto() }
+        val profileProto = profile?.toProto()
         if (profileProto != null) {
             dataMessage = profileProto.toBuilder()
         } else {
@@ -82,19 +82,19 @@ class VisibleMessage : Message()  {
         // Text
         if (text != null) { dataMessage.body = text }
         // Quote
-        val quoteProto = quote?.let { it.toProto() }
+        val quoteProto = quote?.toProto()
         if (quoteProto != null) {
             dataMessage.quote = quoteProto
         }
         // Link preview
-        val linkPreviewProto = linkPreview?.let { it.toProto() }
+        val linkPreviewProto = linkPreview?.toProto()
         if (linkPreviewProto != null) {
             dataMessage.addAllPreview(listOf(linkPreviewProto))
         }
-        //Open group invitation
-        openGroupInvitation?.let {
-            val openGroupInvitationProto = it.toProto()
-            if (openGroupInvitationProto != null) dataMessage.openGroupInvitation = openGroupInvitationProto
+        // Open group invitation
+        val openGroupInvitationProto = openGroupInvitation?.toProto()
+        if (openGroupInvitationProto != null) {
+            dataMessage.openGroupInvitation = openGroupInvitationProto
         }
         // Attachments
         val database = MessagingModuleConfiguration.shared.messageDataProvider

@@ -454,8 +454,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(messageRecord.getBody());
         if (updateMessageData.getKind() instanceof UpdateMessageData.Kind.OpenGroupInvitation) {
           UpdateMessageData.Kind.OpenGroupInvitation data = (UpdateMessageData.Kind.OpenGroupInvitation)updateMessageData.getKind();
-          openGroupInvitation.setGroupName(data.getGroupName());
-          openGroupInvitation.setGroupUrl(data.getGroupUrl());
+          openGroupInvitation.setName(data.getGroupName());
+          openGroupInvitation.setUrl(data.getGroupUrl());
         }
         message.setOpenGroupInvitation(openGroupInvitation);
       } else {

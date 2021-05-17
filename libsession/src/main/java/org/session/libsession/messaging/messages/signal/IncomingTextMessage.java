@@ -12,7 +12,6 @@ import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
-import org.session.libsignal.utilities.logging.Log;
 
 public class IncomingTextMessage implements Parcelable {
 
@@ -112,7 +111,11 @@ public class IncomingTextMessage implements Parcelable {
 
   public static IncomingTextMessage fromOpenGroupInvitation(OpenGroupInvitation openGroupInvitation, Address sender, Long sentTimestamp)
   {
-    String body = UpdateMessageData.Companion.buildOpenGroupInvitation(openGroupInvitation.getGroupUrl(), openGroupInvitation.getGroupName()).toJSON();
+    String url = openGroupInvitation.getUrl();
+    String name = openGroupInvitation.getName();
+    if (url == null || name == null) { return null; }
+    // FIXME: Doing toJSON() to get the body here is weird
+    String body = UpdateMessageData.Companion.buildOpenGroupInvitation(url, name).toJSON();
     IncomingTextMessage incomingTextMessage = new IncomingTextMessage(sender, 1, sentTimestamp, body, Optional.absent(), 0, false);
     incomingTextMessage.isOpenGroupInvitation = true;
     return incomingTextMessage;
