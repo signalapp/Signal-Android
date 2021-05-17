@@ -466,9 +466,23 @@
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
     <string name="arrays__mute_for_one_year">Mute for 1 year</string>
 
+    <string name="arrays__settings_default">Settings default</string>
+    <string name="arrays__enabled">Enabled</string>
+    <string name="arrays__disabled">Disabled</string>
+
     <string name="arrays__name_and_message">Name and message</string>
     <string name="arrays__name_only">Name only</string>
     <string name="arrays__no_name_or_message">No name or message</string>
+
+    <string name="arrays__images">Images</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Documents</string>
+
+    <string name="arrays__small">Small</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Large</string>
+    <string name="arrays__extra_large">Extra large</string>
 
     <string name="arrays__default">Default</string>
     <string name="arrays__high">High</string>
@@ -524,6 +538,8 @@
     <string name="preferences__typing_indicators">Typing indicators</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
+    <string name="preferences__light_theme">Light</string>
+    <string name="preferences__dark_theme">Dark</string>
     <string name="preferences_chats__message_trimming">Message Trimming</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Session\'s built-in emoji support</string>
