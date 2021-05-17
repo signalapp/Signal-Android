@@ -122,5 +122,6 @@
         <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNeutralButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="textColorAlertDialogListItem">@color/signal_text_secondary</item>
     </style>
 </resources>

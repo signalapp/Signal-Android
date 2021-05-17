@@ -131,7 +131,7 @@ class TextPreference(
 ) : PreferenceModel<TextPreference>(title = title, summary = summary)
 
 class DividerPreference : PreferenceModel<DividerPreference>() {
-  override fun areItemsTheSame(newItem: DividerPreference) = false
+  override fun areItemsTheSame(newItem: DividerPreference) = true
 }
 
 class RadioListPreference(

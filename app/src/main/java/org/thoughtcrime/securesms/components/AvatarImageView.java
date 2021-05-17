@@ -212,7 +212,7 @@ public final class AvatarImageView extends AppCompatImageView {
         setImageDrawable(unknownRecipientDrawable);
       }
 
-      super.setOnClickListener(listener);
+      disableQuickContact();
     }
   }
 

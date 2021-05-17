@@ -31,8 +31,9 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   }
 
   fun setMessageNotificationsSound(sound: Uri?) {
-    SignalStore.settings().messageNotificationSound = sound ?: Uri.EMPTY
-    NotificationChannels.updateMessageRingtone(ApplicationDependencies.getApplication(), sound)
+    val messageSound = sound ?: Uri.EMPTY
+    SignalStore.settings().messageNotificationSound = messageSound
+    NotificationChannels.updateMessageRingtone(ApplicationDependencies.getApplication(), messageSound)
     store.update { getState() }
   }
 
