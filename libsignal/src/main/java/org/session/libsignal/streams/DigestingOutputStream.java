@@ -1,6 +1,5 @@
 package org.session.libsignal.streams;
 
-
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;

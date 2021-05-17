@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.utilities
+package org.session.libsignal.utilities
 
 fun Any.prettifiedDescription(): String {
     if (this is List<*>) { return prettifiedDescription() }

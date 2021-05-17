@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.utilities
+package org.session.libsignal.utilities
 
 import org.session.libsignal.utilities.Hex
 

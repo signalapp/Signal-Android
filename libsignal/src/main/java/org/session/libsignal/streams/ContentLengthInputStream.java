@@ -1,6 +1,5 @@
 package org.session.libsignal.streams;
 
-
 import org.session.libsignal.service.internal.util.Util;
 
 import java.io.FilterInputStream;
