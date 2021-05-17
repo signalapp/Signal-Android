@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 import network.loki.messenger.R
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.KeyHelper
-import org.session.libsignal.service.loki.MnemonicCodec
+import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.Log

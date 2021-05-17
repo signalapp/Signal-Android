@@ -8,7 +8,7 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.snode.OnionRequestAPI
-import org.session.libsignal.service.loki.HTTP
+import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.Log
@@ -24,12 +24,12 @@ object FileServerAPIV2 {
     }
 
     data class Request(
-        val verb: HTTP.Verb,
-        val endpoint: String,
-        val queryParameters: Map<String, String> = mapOf(),
-        val parameters: Any? = null,
-        val headers: Map<String, String> = mapOf(),
-        /**
+            val verb: HTTP.Verb,
+            val endpoint: String,
+            val queryParameters: Map<String, String> = mapOf(),
+            val parameters: Any? = null,
+            val headers: Map<String, String> = mapOf(),
+            /**
          * Always `true` under normal circumstances. You might want to disable
          * this when running over Lokinet.
          */

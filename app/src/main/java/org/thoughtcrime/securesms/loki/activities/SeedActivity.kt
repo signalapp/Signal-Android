@@ -16,7 +16,7 @@ import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.MnemonicCodec
+import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.service.loki.utilities.hexEncodedPrivateKey
 
 class SeedActivity : BaseActionBarActivity() {

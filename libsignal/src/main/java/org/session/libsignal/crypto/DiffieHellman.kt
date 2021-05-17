@@ -1,4 +1,4 @@
-package org.session.libsignal.utilities
+package org.session.libsignal.crypto
 
 import org.whispersystems.curve25519.Curve25519
 import org.session.libsignal.service.internal.util.Util

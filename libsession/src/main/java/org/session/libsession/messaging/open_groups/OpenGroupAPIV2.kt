@@ -15,8 +15,8 @@ import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.service.loki.HTTP
-import org.session.libsignal.service.loki.HTTP.Verb.*
+import org.session.libsignal.utilities.HTTP
+import org.session.libsignal.utilities.HTTP.Verb.*
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Base64.*
@@ -65,15 +65,15 @@ object OpenGroupAPIV2 {
     }
 
     data class Request(
-        val verb: HTTP.Verb,
-        val room: String?,
-        val server: String,
-        val endpoint: String,
-        val queryParameters: Map<String, String> = mapOf(),
-        val parameters: Any? = null,
-        val headers: Map<String, String> = mapOf(),
-        val isAuthRequired: Boolean = true,
-        /**
+            val verb: HTTP.Verb,
+            val room: String?,
+            val server: String,
+            val endpoint: String,
+            val queryParameters: Map<String, String> = mapOf(),
+            val parameters: Any? = null,
+            val headers: Map<String, String> = mapOf(),
+            val isAuthRequired: Boolean = true,
+            /**
          * Always `true` under normal circumstances. You might want to disable
          * this when running over Lokinet.
          */

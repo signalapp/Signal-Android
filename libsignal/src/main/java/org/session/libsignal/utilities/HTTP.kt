@@ -1,8 +1,6 @@
-package org.session.libsignal.service.loki
+package org.session.libsignal.utilities
 
 import okhttp3.*
-import org.session.libsignal.utilities.Log
-import org.session.libsignal.utilities.JsonUtil
 import java.lang.IllegalStateException
 import java.security.SecureRandom
 import java.security.cert.X509Certificate

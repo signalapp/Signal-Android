@@ -10,7 +10,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.messaging.file_server.FileServerAPI
 
-import org.session.libsignal.utilities.DiffieHellman
+import org.session.libsignal.crypto.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException
@@ -21,7 +21,7 @@ import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.HTTP
+import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.service.loki.utilities.*
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64

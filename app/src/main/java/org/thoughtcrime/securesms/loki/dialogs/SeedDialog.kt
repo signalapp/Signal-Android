@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.dialog_seed.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
-import org.session.libsignal.service.loki.MnemonicCodec
+import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.service.loki.utilities.hexEncodedPrivateKey
 
 
