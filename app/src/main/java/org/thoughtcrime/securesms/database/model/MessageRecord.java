@@ -26,8 +26,8 @@ import android.text.style.StyleSpan;
 import network.loki.messenger.R;
 
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
-import org.session.libsession.messaging.utilities.ClosedGroupUpdateMessageBuilder;
-import org.session.libsession.messaging.utilities.ClosedGroupUpdateMessageData;
+import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
+import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.database.documents.IdentityKeyMismatch;
@@ -93,14 +93,14 @@ public abstract class MessageRecord extends DisplayRecord {
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
     if(isGroupUpdateMessage()) {
-      ClosedGroupUpdateMessageData updateMessageData = ClosedGroupUpdateMessageData.Companion.fromJSON(getBody());
-      return new SpannableString(ClosedGroupUpdateMessageBuilder.INSTANCE.buildGroupUpdateMessage(context, updateMessageData, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
+      UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(getBody());
+      return new SpannableString(UpdateMessageBuilder.INSTANCE.buildGroupUpdateMessage(context, updateMessageData, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
     } else if (isExpirationTimerUpdate()) {
       int seconds = (int) (getExpiresIn() / 1000);
-      return new SpannableString(ClosedGroupUpdateMessageBuilder.INSTANCE.buildExpirationTimerMessage(context, seconds, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
+      return new SpannableString(UpdateMessageBuilder.INSTANCE.buildExpirationTimerMessage(context, seconds, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
     } else if (isDataExtraction()) {
-      if (isScreenshotExtraction()) return new SpannableString((ClosedGroupUpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT, getIndividualRecipient().getAddress().serialize())));
-      else if (isMediaSavedExtraction()) return new SpannableString((ClosedGroupUpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED, getIndividualRecipient().getAddress().serialize())));
+      if (isScreenshotExtraction()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT, getIndividualRecipient().getAddress().serialize())));
+      else if (isMediaSavedExtraction()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED, getIndividualRecipient().getAddress().serialize())));
     }
     // TODO below lines are left here for compatibility with older group update messages, it can be deleted later on
     else if (isGroupUpdate() && isOutgoing()) {

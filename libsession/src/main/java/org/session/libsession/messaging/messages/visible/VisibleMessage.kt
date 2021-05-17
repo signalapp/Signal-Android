@@ -22,6 +22,7 @@ class VisibleMessage : Message()  {
     var quote: Quote? = null
     var linkPreview: LinkPreview? = null
     var profile: Profile? = null
+    var openGroupInvitation: OpenGroupInvitation? = null
 
     override val isSelfSendValid: Boolean = true
 
@@ -29,6 +30,7 @@ class VisibleMessage : Message()  {
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         if (attachmentIDs.isNotEmpty()) return true
+        if (openGroupInvitation != null) return true
         val text = text?.trim() ?: return false
         if (text.isNotEmpty()) return true
         return false
@@ -55,7 +57,12 @@ class VisibleMessage : Message()  {
                 val linkPreview = LinkPreview.fromProto(linkPreviewProto)
                 result.linkPreview = linkPreview
             }
-            // TODO: Contact
+            val openGroupInvitationProto = if (dataMessage.hasOpenGroupInvitation()) dataMessage.openGroupInvitation else null
+            if (openGroupInvitationProto != null) {
+                val openGroupInvitation = OpenGroupInvitation.fromProto(openGroupInvitationProto)
+                result.openGroupInvitation = openGroupInvitation
+            }
+            // TODO Contact
             val profile = Profile.fromProto(dataMessage)
             if (profile != null) { result.profile = profile }
             return  result
@@ -66,7 +73,7 @@ class VisibleMessage : Message()  {
         val proto = SignalServiceProtos.Content.newBuilder()
         val dataMessage: SignalServiceProtos.DataMessage.Builder
         // Profile
-        val profileProto = profile?.let { it.toProto() }
+        val profileProto = profile?.toProto()
         if (profileProto != null) {
             dataMessage = profileProto.toBuilder()
         } else {
@@ -75,14 +82,19 @@ class VisibleMessage : Message()  {
         // Text
         if (text != null) { dataMessage.body = text }
         // Quote
-        val quoteProto = quote?.let { it.toProto() }
+        val quoteProto = quote?.toProto()
         if (quoteProto != null) {
             dataMessage.quote = quoteProto
         }
         // Link preview
-        val linkPreviewProto = linkPreview?.let { it.toProto() }
+        val linkPreviewProto = linkPreview?.toProto()
         if (linkPreviewProto != null) {
             dataMessage.addAllPreview(listOf(linkPreviewProto))
+        }
+        // Open group invitation
+        val openGroupInvitationProto = openGroupInvitation?.toProto()
+        if (openGroupInvitationProto != null) {
+            dataMessage.openGroupInvitation = openGroupInvitationProto
         }
         // Attachments
         val database = MessagingModuleConfiguration.shared.messageDataProvider

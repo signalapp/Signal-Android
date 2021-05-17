@@ -7,6 +7,7 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.Attachment
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
@@ -52,6 +53,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
     }
 }
 
+// region Control Messages
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
     val context = MessagingModuleConfiguration.shared.context
     SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!, message.receivedTimestamp!!)
@@ -140,7 +142,9 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
     }
     storage.addContacts(message.contacts)
 }
+//endregion
 
+// region Visible Messages
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
     val storage = MessagingModuleConfiguration.shared.storage
     val context = MessagingModuleConfiguration.shared.context
@@ -233,7 +237,9 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     //Notify the user if needed
     SSKEnvironment.shared.notificationManager.updateNotification(context, threadID)
 }
+//endregion
 
+// region Closed Groups
 private fun MessageReceiver.handleClosedGroupControlMessage(message: ClosedGroupControlMessage) {
     when (message.kind!!) {
         is ClosedGroupControlMessage.Kind.New -> handleNewClosedGroup(message)
@@ -558,3 +564,4 @@ fun MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey: String, grou
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
 }
+// endregion
