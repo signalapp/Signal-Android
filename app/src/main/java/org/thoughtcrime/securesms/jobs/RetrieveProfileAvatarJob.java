@@ -14,7 +14,7 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.streams.ProfileCipherInputStream;
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.exceptions.PushNetworkException;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;

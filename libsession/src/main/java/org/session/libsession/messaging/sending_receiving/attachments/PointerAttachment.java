@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.messages.SignalServiceAttachment;
-import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
+import org.session.libsignal.messages.SignalServiceAttachment;
+import org.session.libsignal.messages.SignalServiceDataMessage;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.protos.SignalServiceProtos;
 

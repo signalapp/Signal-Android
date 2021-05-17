@@ -4,8 +4,7 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.session.libsignal.service.internal.push;
-
+package org.session.libsignal.crypto;
 
 import org.session.libsignal.utilities.Log;
 

@@ -4,7 +4,7 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.session.libsignal.service.api.push;
+package org.session.libsignal.utilities;
 
 import org.session.libsignal.utilities.guava.Optional;
 

@@ -7,7 +7,7 @@ import org.session.libsession.messaging.sending_receiving.*
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.protos.SignalServiceProtos.DataMessage
 import org.session.libsignal.utilities.removing05PrefixIfNeeded

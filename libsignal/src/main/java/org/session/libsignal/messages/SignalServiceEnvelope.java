@@ -4,11 +4,11 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.session.libsignal.service.api.messages;
+package org.session.libsignal.messages;
 
 import com.google.protobuf.ByteString;
 
-import org.session.libsignal.service.api.push.SignalServiceAddress;
+import org.session.libsignal.utilities.SignalServiceAddress;
 import org.session.libsignal.protos.SignalServiceProtos.Envelope;
 
 /**

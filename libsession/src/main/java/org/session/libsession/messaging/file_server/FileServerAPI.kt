@@ -8,7 +8,7 @@ import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.utilities.*
 import java.net.URL
 

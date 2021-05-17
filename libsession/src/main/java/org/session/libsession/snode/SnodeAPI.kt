@@ -9,9 +9,9 @@ import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.utilities.getRandomElement
 import org.session.libsignal.protos.SignalServiceProtos
-import org.session.libsignal.service.loki.Snode
+import org.session.libsignal.utilities.Snode
 import org.session.libsignal.utilities.HTTP
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.utilities.Broadcaster
 import org.session.libsignal.utilities.prettifiedDescription
 import org.session.libsignal.utilities.removing05PrefixIfNeeded

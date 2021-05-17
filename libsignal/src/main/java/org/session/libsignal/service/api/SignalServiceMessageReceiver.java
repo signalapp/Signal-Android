@@ -7,9 +7,9 @@
 package org.session.libsignal.service.api;
 
 import org.session.libsignal.exceptions.InvalidMessageException;
-import org.session.libsignal.service.api.messages.SignalServiceAttachment.ProgressListener;
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
+import org.session.libsignal.messages.SignalServiceAttachment.ProgressListener;
+import org.session.libsignal.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.messages.SignalServiceDataMessage;
 
 import java.io.File;
 import java.io.IOException;

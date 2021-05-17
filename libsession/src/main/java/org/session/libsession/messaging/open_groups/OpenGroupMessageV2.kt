@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.open_groups
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsignal.service.internal.push.PushTransportDetails
+import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Base64.decode

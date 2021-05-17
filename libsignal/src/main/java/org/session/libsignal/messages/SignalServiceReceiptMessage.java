@@ -1,5 +1,4 @@
-package org.session.libsignal.service.api.messages;
-
+package org.session.libsignal.messages;
 
 import java.util.List;
 

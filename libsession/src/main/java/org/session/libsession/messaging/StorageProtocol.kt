@@ -20,8 +20,8 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.messages.SignalServiceAttachmentPointer
+import org.session.libsignal.messages.SignalServiceGroup
 
 interface StorageProtocol {
 

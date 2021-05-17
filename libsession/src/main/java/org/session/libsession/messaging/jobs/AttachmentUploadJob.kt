@@ -14,9 +14,9 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.streams.AttachmentCipherOutputStream
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
+import org.session.libsignal.messages.SignalServiceAttachmentStream
 import org.session.libsignal.streams.PaddingInputStream
-import org.session.libsignal.service.internal.push.PushAttachmentData
+import org.session.libsignal.utilities.PushAttachmentData
 import org.session.libsignal.streams.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.streams.DigestingRequestBody
 import org.session.libsignal.utilities.Util
@@ -68,7 +68,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             } else { // V1 open group
                 val server = v1OpenGroup.server
                 val pushData = PushAttachmentData(attachment.contentType, attachment.inputStream,
-                    attachment.length, PlaintextOutputStreamFactory(), attachment.listener)
+                        attachment.length, PlaintextOutputStreamFactory(), attachment.listener)
                 val result = FileServerAPI.shared.uploadAttachment(server, pushData)
                 handleSuccess(attachment, ByteArray(0), result)
             }

@@ -20,8 +20,8 @@ import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.exceptions.InvalidMessageException;
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.session.libsignal.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.File;
 import java.io.FileInputStream;

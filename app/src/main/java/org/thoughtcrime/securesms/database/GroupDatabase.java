@@ -24,8 +24,8 @@ import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.Util;
 
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.service.loki.LokiOpenGroupDatabaseProtocol;
+import org.session.libsignal.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.database.LokiOpenGroupDatabaseProtocol;
 
 import java.io.Closeable;
 import java.security.SecureRandom;

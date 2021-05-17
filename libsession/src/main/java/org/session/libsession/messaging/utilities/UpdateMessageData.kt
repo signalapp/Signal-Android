@@ -3,7 +3,7 @@ package org.session.libsession.messaging.utilities
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.core.JsonParseException
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.Log
 import java.util.*

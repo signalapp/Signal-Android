@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki
+package org.session.libsignal.database
 
 interface LokiOpenGroupDatabaseProtocol {
 

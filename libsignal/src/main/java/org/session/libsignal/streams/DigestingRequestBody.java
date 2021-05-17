@@ -1,6 +1,6 @@
 package org.session.libsignal.streams;
 
-import org.session.libsignal.service.api.messages.SignalServiceAttachment.ProgressListener;
+import org.session.libsignal.messages.SignalServiceAttachment.ProgressListener;
 
 import java.io.IOException;
 import java.io.InputStream;

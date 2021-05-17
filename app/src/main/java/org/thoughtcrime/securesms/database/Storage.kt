@@ -32,8 +32,8 @@ import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.messages.SignalServiceAttachmentPointer
+import org.session.libsignal.messages.SignalServiceGroup
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob

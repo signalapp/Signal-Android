@@ -15,7 +15,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.Curve
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.guava.Optional
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.removing05PrefixIfNeeded

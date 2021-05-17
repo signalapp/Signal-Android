@@ -114,7 +114,7 @@ import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
 import org.session.libsession.utilities.views.Stub;
 import org.session.libsignal.exceptions.InvalidMessageException;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.loki.Mention;
+import org.session.libsession.messaging.mentions.Mention;
 import org.session.libsignal.utilities.HexEncodingKt;
 import org.session.libsignal.utilities.PublicKeyValidation;
 import org.session.libsignal.utilities.ListenableFuture;

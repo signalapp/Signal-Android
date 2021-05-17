@@ -11,8 +11,7 @@ import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.*
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.service.loki.*
+import org.session.libsignal.utilities.Snode
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.getBodyForOnionRequest
 import org.session.libsession.utilities.getHeadersForOnionRequest
@@ -20,7 +19,7 @@ import org.session.libsignal.crypto.getRandomElement
 import org.session.libsignal.crypto.getRandomElementOrNull
 import org.session.libsignal.utilities.Broadcaster
 import org.session.libsignal.utilities.HTTP
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
 
 private typealias Path = List<Snode>
 
@@ -75,13 +74,13 @@ object OnionRequestAPI {
     class InsufficientSnodesException : Exception("Couldn't find enough snodes to build a path.")
 
     private data class OnionBuildingResult(
-        val guardSnode: Snode,
-        val finalEncryptionResult: EncryptionResult,
-        val destinationSymmetricKey: ByteArray
+            val guardSnode: Snode,
+            val finalEncryptionResult: EncryptionResult,
+            val destinationSymmetricKey: ByteArray
     )
 
     internal sealed class Destination {
-        class Snode(val snode: org.session.libsignal.service.loki.Snode) : Destination()
+        class Snode(val snode: org.session.libsignal.utilities.Snode) : Destination()
         class Server(val host: String, val target: String, val x25519PublicKey: String, val scheme: String, val port: Int) : Destination()
     }
 

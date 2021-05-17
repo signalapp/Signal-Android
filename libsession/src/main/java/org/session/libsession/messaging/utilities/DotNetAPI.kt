@@ -12,11 +12,11 @@ import org.session.libsession.messaging.file_server.FileServerAPI
 
 import org.session.libsignal.crypto.DiffieHellman
 import org.session.libsignal.streams.ProfileCipherOutputStream
-import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException
-import org.session.libsignal.service.api.util.StreamDetails
-import org.session.libsignal.service.internal.push.ProfileAvatarData
-import org.session.libsignal.service.internal.push.PushAttachmentData
+import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException
+import org.session.libsignal.exceptions.PushNetworkException
+import org.session.libsignal.streams.StreamDetails
+import org.session.libsignal.utilities.ProfileAvatarData
+import org.session.libsignal.utilities.PushAttachmentData
 import org.session.libsignal.streams.DigestingRequestBody
 import org.session.libsignal.streams.ProfileCipherOutputStreamFactory
 import org.session.libsignal.utilities.Hex

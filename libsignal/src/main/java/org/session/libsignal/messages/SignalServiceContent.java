@@ -4,7 +4,7 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.session.libsignal.service.api.messages;
+package org.session.libsignal.messages;
 
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.protos.SignalServiceProtos;

@@ -1,5 +1,4 @@
-package org.session.libsignal.service.internal.push;
-
+package org.session.libsignal.utilities;
 
 import org.session.libsignal.streams.OutputStreamFactory;
 

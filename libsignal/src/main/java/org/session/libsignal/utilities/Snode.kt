@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki
+package org.session.libsignal.utilities
 
 class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
     val ip: String get() = address.removePrefix("https://")

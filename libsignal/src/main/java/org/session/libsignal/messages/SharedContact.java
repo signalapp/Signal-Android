@@ -1,7 +1,6 @@
-package org.session.libsignal.service.api.messages.shared;
+package org.session.libsignal.messages;
 
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 
 import java.util.LinkedList;
 import java.util.List;

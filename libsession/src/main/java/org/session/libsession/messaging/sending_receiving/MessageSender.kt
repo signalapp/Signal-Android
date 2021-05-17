@@ -21,7 +21,7 @@ import org.session.libsession.snode.SnodeModule
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsignal.service.internal.push.PushTransportDetails
+import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64

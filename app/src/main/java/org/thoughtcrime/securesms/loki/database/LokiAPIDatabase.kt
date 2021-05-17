@@ -7,8 +7,8 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.utilities.PublicKeyValidation
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.toHexString

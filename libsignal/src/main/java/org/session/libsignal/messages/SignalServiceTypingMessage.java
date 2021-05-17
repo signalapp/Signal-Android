@@ -1,4 +1,4 @@
-package org.session.libsignal.service.api.messages;
+package org.session.libsignal.messages;
 
 public class SignalServiceTypingMessage {
 

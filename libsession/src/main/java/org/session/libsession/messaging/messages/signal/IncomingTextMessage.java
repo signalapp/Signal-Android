@@ -11,7 +11,7 @@ import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.messages.SignalServiceGroup;
 
 public class IncomingTextMessage implements Parcelable {
 

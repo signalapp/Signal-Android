@@ -12,7 +12,7 @@ import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.messages.SignalServiceGroup;
 import org.session.libsignal.utilities.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;

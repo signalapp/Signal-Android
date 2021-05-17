@@ -1,5 +1,4 @@
-package org.session.libsignal.service.api.util;
-
+package org.session.libsignal.streams;
 
 import java.io.InputStream;
 

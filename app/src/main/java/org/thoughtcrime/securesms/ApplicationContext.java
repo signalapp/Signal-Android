@@ -48,7 +48,7 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsession.utilities.preferences.ProfileKeyUtil;
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
+import org.session.libsignal.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.session.libsignal.utilities.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;

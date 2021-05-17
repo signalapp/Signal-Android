@@ -1,6 +1,6 @@
 package org.session.libsession.utilities
 
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.Hex
 import java.io.IOException
 import kotlin.jvm.Throws
