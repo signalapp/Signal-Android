@@ -30,8 +30,8 @@ import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.libsignal.util.KeyHelper
-import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.KeyHelper
+import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.thoughtcrime.securesms.ApplicationContext

@@ -7,7 +7,7 @@ package org.session.libsignal.crypto.ecc;
 
 import org.whispersystems.curve25519.Curve25519;
 import org.whispersystems.curve25519.Curve25519KeyPair;
-import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.exceptions.InvalidKeyException;
 import static org.whispersystems.curve25519.Curve25519.BEST;
 
 public class Curve {

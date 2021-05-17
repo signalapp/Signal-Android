@@ -26,7 +26,7 @@ import org.session.libsignal.utilities.Log;
 
 import org.session.libsession.utilities.FutureTaskListener;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.utilities.Pair;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;

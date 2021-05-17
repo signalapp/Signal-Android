@@ -6,7 +6,7 @@
 
 package org.session.libsignal.service.api.push;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 /**
  * A class representing a message destination or origin.

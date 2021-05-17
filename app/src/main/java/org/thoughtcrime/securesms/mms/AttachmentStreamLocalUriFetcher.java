@@ -7,8 +7,8 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 import org.session.libsignal.utilities.Log;
-import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.exceptions.InvalidMessageException;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.streams.AttachmentCipherInputStream;
 
 import java.io.File;

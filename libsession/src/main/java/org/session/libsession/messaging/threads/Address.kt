@@ -7,7 +7,7 @@ import android.util.Pair
 import androidx.annotation.VisibleForTesting
 import org.session.libsession.utilities.DelimiterUtil
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.internal.util.Util
 import java.util.*
 import java.util.concurrent.atomic.AtomicReference

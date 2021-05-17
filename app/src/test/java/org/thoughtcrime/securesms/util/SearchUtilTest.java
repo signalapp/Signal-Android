@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
-import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.utilities.Pair;
 
 import java.util.Arrays;
 import java.util.List;

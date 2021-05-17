@@ -38,7 +38,7 @@ import android.view.ViewGroup;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;

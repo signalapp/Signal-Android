@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 

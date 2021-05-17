@@ -19,7 +19,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient.*;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.Util;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.utilities.Log;
 
 import java.io.Closeable;

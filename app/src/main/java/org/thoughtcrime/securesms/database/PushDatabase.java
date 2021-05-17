@@ -10,7 +10,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.session.libsignal.utilities.Base64;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.internal.util.Util;
 

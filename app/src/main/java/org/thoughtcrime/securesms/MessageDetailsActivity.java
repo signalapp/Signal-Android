@@ -65,7 +65,7 @@ import org.session.libsession.messaging.threads.recipients.RecipientModifiedList
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.lang.ref.WeakReference;
 import java.sql.Date;

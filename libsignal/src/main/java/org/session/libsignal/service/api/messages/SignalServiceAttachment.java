@@ -6,9 +6,7 @@
 
 package org.session.libsignal.service.api.messages;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.InputStream;
 

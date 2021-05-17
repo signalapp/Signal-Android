@@ -21,7 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;

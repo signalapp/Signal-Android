@@ -5,7 +5,7 @@ import android.webkit.MimeTypeMap
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
-import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File

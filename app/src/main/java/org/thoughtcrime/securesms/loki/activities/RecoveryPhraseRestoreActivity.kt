@@ -14,7 +14,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recovery_phrase_restore.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Hex

@@ -3,7 +3,7 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal.util;
+package org.session.libsignal.utilities;
 
 public class Pair<T1, T2> {
   private final T1 v1;

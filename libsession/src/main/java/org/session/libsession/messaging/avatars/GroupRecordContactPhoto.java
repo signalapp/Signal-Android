@@ -11,7 +11,7 @@ import org.session.libsession.messaging.StorageProtocol;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.Conversions;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

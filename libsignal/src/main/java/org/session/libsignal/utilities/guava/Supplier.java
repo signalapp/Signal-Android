@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-package org.session.libsignal.libsignal.util.guava;
-
+package org.session.libsignal.utilities.guava;
 
 /**
  * A class that can supply objects of a single type.  Semantically, this could

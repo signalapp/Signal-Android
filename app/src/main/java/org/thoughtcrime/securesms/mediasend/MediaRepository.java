@@ -19,7 +19,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.File;
 import java.io.IOException;

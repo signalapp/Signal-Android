@@ -6,7 +6,7 @@
 
 package org.session.libsignal.crypto.ecc;
 
-import org.session.libsignal.libsignal.util.ByteUtil;
+import org.session.libsignal.utilities.ByteUtil;
 import java.math.BigInteger;
 import java.util.Arrays;
 

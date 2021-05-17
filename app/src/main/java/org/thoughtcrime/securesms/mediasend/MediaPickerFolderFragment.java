@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mediasend;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -21,7 +21,7 @@ import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import network.loki.messenger.R;
 

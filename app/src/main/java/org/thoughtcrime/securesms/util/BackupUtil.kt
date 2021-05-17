@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.util.ByteUtil
+import org.session.libsignal.utilities.ByteUtil
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.backup.BackupPassphrase

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 
 import java.util.ArrayList;

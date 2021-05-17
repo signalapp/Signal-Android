@@ -39,7 +39,7 @@ import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
 import org.session.libsignal.utilities.ListenableFuture;
 import org.session.libsignal.utilities.SettableFuture;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.util.concurrent.TimeUnit;
 

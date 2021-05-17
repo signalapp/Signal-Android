@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.session.libsignal.libsignal.util.guava;
+package org.session.libsignal.utilities.guava;
 
-import static org.session.libsignal.libsignal.util.guava.Preconditions.checkNotNull;
+import static org.session.libsignal.utilities.guava.Preconditions.checkNotNull;
 
 import java.io.Serializable;
 import java.util.Set;
-
 
 /**
  * An immutable object that may contain a non-null reference to another object. Each

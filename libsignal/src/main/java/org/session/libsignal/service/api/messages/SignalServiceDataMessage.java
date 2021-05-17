@@ -6,7 +6,7 @@
 
 package org.session.libsignal.service.api.messages;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ClosedGroupControlMessage;

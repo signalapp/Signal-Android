@@ -3,7 +3,7 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal.util;
+package org.session.libsignal.utilities;
 
 import org.session.libsignal.utilities.Hex;
 

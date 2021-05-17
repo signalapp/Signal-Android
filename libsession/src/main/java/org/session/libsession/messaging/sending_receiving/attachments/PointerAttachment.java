@@ -5,7 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.utilities.Base64;

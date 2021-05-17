@@ -3,7 +3,7 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal;
+package org.session.libsignal.exceptions;
 
 public class InvalidKeyException extends Exception {
 

@@ -51,7 +51,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsignal.utilities.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.threads.recipients.Recipient;

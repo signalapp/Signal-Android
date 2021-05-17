@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.Stopwatch;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;

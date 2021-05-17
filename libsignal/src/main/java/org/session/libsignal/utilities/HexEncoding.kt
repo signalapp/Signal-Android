@@ -1,6 +1,6 @@
 package org.session.libsignal.service.loki.utilities
 
-import org.session.libsignal.libsignal.IdentityKeyPair
+import org.session.libsignal.crypto.IdentityKeyPair
 import org.session.libsignal.crypto.ecc.ECKeyPair
 
 fun ByteArray.toHexString(): String {

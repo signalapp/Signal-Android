@@ -1,4 +1,4 @@
-package org.session.libsignal.metadata;
+package org.session.libsignal.exceptions;
 
 
 public abstract class ProtocolException extends Exception {

@@ -10,7 +10,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.Util
-import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream

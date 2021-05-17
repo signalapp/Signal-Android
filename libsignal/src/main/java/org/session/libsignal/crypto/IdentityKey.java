@@ -3,11 +3,11 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal;
-
+package org.session.libsignal.crypto;
 
 import org.session.libsignal.crypto.ecc.Curve;
 import org.session.libsignal.crypto.ecc.ECPublicKey;
+import org.session.libsignal.exceptions.InvalidKeyException;
 import org.session.libsignal.utilities.Hex;
 
 /**

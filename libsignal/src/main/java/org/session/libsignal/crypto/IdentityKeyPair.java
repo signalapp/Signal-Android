@@ -3,7 +3,7 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal;
+package org.session.libsignal.crypto;
 
 import org.session.libsignal.crypto.ecc.ECPrivateKey;
 

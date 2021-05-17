@@ -23,7 +23,7 @@ import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.Util;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.service.loki.LokiOpenGroupDatabaseProtocol;
 

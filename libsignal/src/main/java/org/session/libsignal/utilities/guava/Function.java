@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package org.session.libsignal.libsignal.util.guava;
-
-
+package org.session.libsignal.utilities.guava;
 
 /**
  * Determines an output value based on an input value.

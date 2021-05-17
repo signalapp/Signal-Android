@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.session.libsignal.libsignal.util.guava;
+package org.session.libsignal.utilities.guava;
 
-import static org.session.libsignal.libsignal.util.guava.Preconditions.checkNotNull;
+import static org.session.libsignal.utilities.guava.Preconditions.checkNotNull;
 
 import java.util.Collections;
 import java.util.Set;
-
 
 /**
  * Implementation of an {@link Optional} not containing a reference.

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import network.loki.messenger.R;
-import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.utilities.Pair;
 
 import java.util.Arrays;
 import java.util.LinkedList;

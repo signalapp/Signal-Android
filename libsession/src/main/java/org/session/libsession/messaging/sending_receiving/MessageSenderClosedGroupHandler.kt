@@ -14,7 +14,7 @@ import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.Curve
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey

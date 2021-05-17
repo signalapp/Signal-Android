@@ -1,7 +1,5 @@
-package org.session.libsignal.metadata;
+package org.session.libsignal.exceptions;
 
-
-import org.session.libsignal.libsignal.InvalidMessageException;
 
 public class ProtocolInvalidMessageException extends ProtocolException {
   public ProtocolInvalidMessageException(InvalidMessageException e, String sender, int senderDevice) {

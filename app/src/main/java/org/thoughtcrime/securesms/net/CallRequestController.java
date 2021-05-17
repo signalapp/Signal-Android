@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.InputStream;
 
