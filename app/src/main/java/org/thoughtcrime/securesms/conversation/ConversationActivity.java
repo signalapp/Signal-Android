@@ -381,6 +381,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       PublicChatInfoUpdateWorker.scheduleInstant(this, publicChat.getServer(), publicChat.getChannel());
     } else if (openGroupV2 != null) {
       PublicChatInfoUpdateWorker.scheduleInstant(this, openGroupV2.getServer(), openGroupV2.getRoom());
+      if (openGroupV2.getRoom().equals("session") || openGroupV2.getRoom().equals("oxen")
+          || openGroupV2.getRoom().equals("lokinet") || openGroupV2.getRoom().equals("crypto")) {
+        View openGroupGuidelinesView = findViewById(R.id.open_group_guidelines_view);
+        openGroupGuidelinesView.setVisibility(View.VISIBLE);
+      }
     }
 
     View rootView = findViewById(R.id.rootView);

@@ -71,6 +71,30 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         }
     }
 
+    fun cancelPendingMessageSendJobs(threadID: Long) {
+        val database = databaseHelper.writableDatabase
+        val attachmentUploadJobKeys = mutableListOf<String>()
+        database.getAll(sessionJobTable, "$jobType = ?", arrayOf( AttachmentUploadJob.KEY )) { cursor ->
+            val job = jobFromCursor(cursor) as AttachmentUploadJob?
+            if (job != null && job.threadID == threadID.toString()) { attachmentUploadJobKeys.add(job.id!!) }
+        }
+        val messageSendJobKeys = mutableListOf<String>()
+        database.getAll(sessionJobTable, "$jobType = ?", arrayOf( MessageSendJob.KEY )) { cursor ->
+            val job = jobFromCursor(cursor) as MessageSendJob?
+            if (job != null && job.message.threadID == threadID) { messageSendJobKeys.add(job.id!!) }
+        }
+        if (attachmentUploadJobKeys.isNotEmpty()) {
+            val attachmentUploadJobKeysAsString = attachmentUploadJobKeys.joinToString(", ")
+            database.delete(sessionJobTable, "${Companion.jobType} = ? AND ${Companion.jobID} IN (?)",
+                arrayOf( AttachmentUploadJob.KEY, attachmentUploadJobKeysAsString ))
+        }
+        if (messageSendJobKeys.isNotEmpty()) {
+            val messageSendJobKeysAsString = messageSendJobKeys.joinToString(", ")
+            database.delete(sessionJobTable, "${Companion.jobType} = ? AND ${Companion.jobID} IN (?)",
+                arrayOf( MessageSendJob.KEY, messageSendJobKeysAsString ))
+        }
+    }
+
     fun isJobCanceled(job: Job): Boolean {
         val database = databaseHelper.readableDatabase
         var cursor: android.database.Cursor? = null

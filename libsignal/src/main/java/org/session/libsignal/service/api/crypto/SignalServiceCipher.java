@@ -31,8 +31,6 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.Content;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage;
-import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
-import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
 
 import java.util.ArrayList;
@@ -51,13 +49,10 @@ public class SignalServiceCipher {
   @SuppressWarnings("unused")
   private static final String TAG = SignalServiceCipher.class.getSimpleName();
 
-  private final SessionProtocol                  sessionProtocolImpl;
   private final LokiAPIDatabaseProtocol          apiDB;
 
-  public SignalServiceCipher(SessionProtocol sessionProtocolImpl,
-                             LokiAPIDatabaseProtocol apiDB)
+  public SignalServiceCipher(LokiAPIDatabaseProtocol apiDB)
   {
-    this.sessionProtocolImpl  = sessionProtocolImpl;
     this.apiDB                = apiDB;
   }
 
@@ -125,27 +120,7 @@ public class SignalServiceCipher {
 
   protected Plaintext decrypt(SignalServiceEnvelope envelope, byte[] ciphertext) throws InvalidMetadataMessageException
   {
-    byte[] paddedMessage;
-    Metadata metadata;
-
-    if (envelope.isClosedGroupCiphertext()) {
-      String groupPublicKey = envelope.getSource();
-      kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = SessionProtocolUtilities.INSTANCE.decryptClosedGroupCiphertext(ciphertext, groupPublicKey, apiDB, sessionProtocolImpl);
-      paddedMessage = plaintextAndSenderPublicKey.getFirst();
-      String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
-      metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
-    } else if (envelope.isUnidentifiedSender()) {
-      ECKeyPair userX25519KeyPair = apiDB.getUserX25519KeyPair();
-      kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = sessionProtocolImpl.decrypt(ciphertext, userX25519KeyPair);
-      paddedMessage = plaintextAndSenderPublicKey.getFirst();
-      String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
-      metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
-    } else {
-      throw new InvalidMetadataMessageException("Unknown type: " + envelope.getType());
-    }
-    byte[] data = PushTransportDetails.getStrippedPaddingMessageBody(paddedMessage);
-
-    return new Plaintext(metadata, data);
+    throw new IllegalStateException("This shouldn't be used anymore");
   }
 
   private SignalServiceDataMessage createSignalServiceMessage(Metadata metadata, DataMessage content) throws ProtocolInvalidMessageException {

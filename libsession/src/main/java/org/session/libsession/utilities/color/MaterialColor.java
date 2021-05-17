@@ -58,7 +58,6 @@ public enum MaterialColor {
 
   private final String serialized;
 
-
   MaterialColor(@ColorRes int mainColor, @ColorRes int tintColor, @ColorRes int shadeColor, String serialized) {
     this.mainColor  = mainColor;
     this.tintColor  = tintColor;
@@ -110,9 +109,9 @@ public enum MaterialColor {
   }
 
   public boolean represents(Context context, int colorValue) {
-    return context.getResources().getColor(mainColor)  == colorValue ||
-           context.getResources().getColor(tintColor)  == colorValue ||
-           context.getResources().getColor(shadeColor) == colorValue;
+    return context.getResources().getColor(mainColor)  == colorValue
+      || context.getResources().getColor(tintColor)  == colorValue
+      || context.getResources().getColor(shadeColor) == colorValue;
   }
 
   public String serialize() {

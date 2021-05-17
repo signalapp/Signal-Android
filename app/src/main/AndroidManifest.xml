@@ -255,6 +255,10 @@
                 android:value="org.thoughtcrime.securesms.loki.activities.HomeActivity" />
         </activity>
         <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.OpenGroupGuidelinesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.TextSecure.DayNight"/>
+        <activity
             android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.TextSecure.DayNight"/>

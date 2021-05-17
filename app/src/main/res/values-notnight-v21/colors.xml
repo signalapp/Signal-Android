@@ -22,6 +22,7 @@
     <color name="new_conversation_button_collapsed_background">#F5F5F5</color>
     <color name="pn_option_background">#FCFCFC</color>
     <color name="fake_chat_bubble_background">#F5F5F5</color>
+    <color name="open_group_chip_color">#0D000000</color>
 
 
     <color name="default_background_start">#ffffff</color>

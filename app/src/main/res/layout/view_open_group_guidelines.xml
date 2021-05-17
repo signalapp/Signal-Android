@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/cell_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingTop="@dimen/small_spacing"
+        android:paddingBottom="@dimen/small_spacing"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/small_spacing"
+            android:background="@color/accent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:textSize="@dimen/small_font_size"
+                android:textStyle="bold"
+                android:text="Pinned message" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:maxWidth="260dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:textSize="@dimen/small_font_size"
+                android:maxLines="2"
+                android:text="Community guidelines" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minWidth="@dimen/small_spacing" />
+
+        <Button
+            style="@style/Widget.Session.Button.Common.ProminentOutline"
+            android:id="@+id/readButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_marginRight="12dp"
+            android:textSize="@dimen/small_font_size"
+            android:textStyle="normal"
+            android:text="Read" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="?android:dividerHorizontal" />
+
+</LinearLayout>

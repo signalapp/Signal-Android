@@ -393,7 +393,7 @@ public class AttachmentDatabase extends Database {
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
   }
 
-  public void updateAttachmentAfterUploadFailed(@NonNull AttachmentId id) {
+  public void handleFailedAttachmentUpload(@NonNull AttachmentId id) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
 
