@@ -17,8 +17,8 @@ import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.utilities.HTTP.Verb.*
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Base64.*
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil

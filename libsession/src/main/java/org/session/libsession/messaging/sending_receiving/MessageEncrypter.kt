@@ -9,7 +9,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.utilities.KeyPairUtilities
 
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.Log
 

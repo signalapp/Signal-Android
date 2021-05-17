@@ -15,7 +15,7 @@ import org.session.libsession.snode.OnionRequestAPI
 
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 
 class NotifyPNServerJob(val message: SnodeMessage) : Job {
     override var delegate: JobDelegate? = null

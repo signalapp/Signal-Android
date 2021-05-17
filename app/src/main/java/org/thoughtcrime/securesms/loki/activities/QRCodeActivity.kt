@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.utilities.PublicKeyValidation
+import org.session.libsignal.utilities.PublicKeyValidation
 import java.io.File
 import java.io.FileOutputStream
 

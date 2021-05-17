@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 
 object LokiPushNotificationManager {
     private val maxRetryCount = 4

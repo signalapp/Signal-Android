@@ -9,7 +9,7 @@ import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.*
 import java.net.URL
 
 class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : DotNetAPI() {

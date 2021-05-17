@@ -26,8 +26,8 @@ import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
 import java.security.MessageDigest

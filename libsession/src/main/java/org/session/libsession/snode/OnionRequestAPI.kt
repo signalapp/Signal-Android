@@ -16,10 +16,11 @@ import org.session.libsignal.service.loki.*
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.getBodyForOnionRequest
 import org.session.libsession.utilities.getHeadersForOnionRequest
+import org.session.libsignal.crypto.getRandomElement
+import org.session.libsignal.crypto.getRandomElementOrNull
 import org.session.libsignal.service.loki.Broadcaster
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.*
 
 private typealias Path = List<Snode>
 

@@ -17,8 +17,8 @@ import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.Log

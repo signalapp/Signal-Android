@@ -10,7 +10,7 @@ import org.session.libsignal.streams.ProfileCipherOutputStream
 import org.session.libsignal.service.internal.push.ProfileAvatarData
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 import org.session.libsignal.utilities.ThreadUtils
 import java.io.ByteArrayInputStream
 import java.util.*

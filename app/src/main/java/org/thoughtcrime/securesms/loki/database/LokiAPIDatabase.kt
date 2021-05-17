@@ -9,9 +9,9 @@ import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.PublicKeyValidation
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.PublicKeyValidation
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.Database

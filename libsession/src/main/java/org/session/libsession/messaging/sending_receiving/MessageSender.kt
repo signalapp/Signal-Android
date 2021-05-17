@@ -23,7 +23,7 @@ import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
 import java.lang.IllegalStateException

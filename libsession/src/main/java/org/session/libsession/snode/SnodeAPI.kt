@@ -13,9 +13,9 @@ import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.Broadcaster
-import org.session.libsignal.service.loki.utilities.prettifiedDescription
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.prettifiedDescription
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Log
 import java.security.SecureRandom

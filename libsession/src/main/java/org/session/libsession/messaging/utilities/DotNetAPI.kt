@@ -22,7 +22,7 @@ import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStrea
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.HTTP
-import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log

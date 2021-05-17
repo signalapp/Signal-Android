@@ -21,7 +21,7 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.KeyHelper
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.session.libsession.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.push

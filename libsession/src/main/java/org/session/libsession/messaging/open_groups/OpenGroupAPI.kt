@@ -8,7 +8,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.DownloadUtilities
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
