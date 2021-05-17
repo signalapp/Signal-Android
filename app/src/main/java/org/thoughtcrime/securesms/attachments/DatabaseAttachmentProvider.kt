@@ -230,23 +230,24 @@ fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttac
 
 fun DatabaseAttachment.toSignalAttachmentPointer(): SignalServiceAttachmentPointer? {
     if (TextUtils.isEmpty(location)) { return null }
-    if (TextUtils.isEmpty(key)) { return null }
-
+    // `key` can be empty in an open group context (no encryption means no encryption key)
     return try {
-        val id: Long = location!!.toLong()
-        val key: ByteArray = Base64.decode(key!!)
-        SignalServiceAttachmentPointer(id,
-                contentType,
-                key,
-                Optional.of(Util.toIntExact(size)),
-                Optional.absent(),
-                width,
-                height,
-                Optional.fromNullable(digest),
-                Optional.fromNullable(fileName),
-                isVoiceNote,
-                Optional.fromNullable(caption),
-                url)
+        val id = location!!.toLong()
+        val key = Base64.decode(key!!)
+        SignalServiceAttachmentPointer(
+            id,
+            contentType,
+            key,
+            Optional.of(Util.toIntExact(size)),
+            Optional.absent(),
+            width,
+            height,
+            Optional.fromNullable(digest),
+            Optional.fromNullable(fileName),
+            isVoiceNote,
+            Optional.fromNullable(caption),
+            url
+        )
     } catch (e: Exception) {
         null
     }
