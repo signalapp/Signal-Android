@@ -3,7 +3,7 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal.kdf;
+package org.session.libsignal.crypto.kdf;
 
 public class HKDFv3 extends HKDF {
   @Override

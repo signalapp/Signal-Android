@@ -4,9 +4,9 @@ import android.content.ContentValues
 import android.content.Context
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
-import org.session.libsignal.libsignal.ecc.DjbECPublicKey
-import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.crypto.ecc.DjbECPrivateKey
+import org.session.libsignal.crypto.ecc.DjbECPublicKey
+import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.service.loki.Snode
 import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation

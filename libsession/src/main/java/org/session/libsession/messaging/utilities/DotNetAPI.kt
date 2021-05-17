@@ -11,7 +11,7 @@ import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.messaging.file_server.FileServerAPI
 
 import org.session.libsignal.crypto.DiffieHellman
-import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
+import org.session.libsignal.streams.ProfileCipherOutputStream
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException
 import org.session.libsignal.service.api.util.StreamDetails

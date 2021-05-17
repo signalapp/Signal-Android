@@ -1,6 +1,5 @@
-package org.session.libsignal.service.loki
+package org.session.libsignal.streams
 
-import org.session.libsignal.service.api.crypto.DigestingOutputStream
 import org.session.libsignal.service.internal.push.http.OutputStreamFactory
 import java.io.OutputStream
 

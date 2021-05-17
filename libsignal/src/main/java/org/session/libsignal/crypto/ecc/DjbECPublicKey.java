@@ -4,10 +4,9 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.session.libsignal.libsignal.ecc;
+package org.session.libsignal.crypto.ecc;
 
 import org.session.libsignal.libsignal.util.ByteUtil;
-
 import java.math.BigInteger;
 import java.util.Arrays;
 

@@ -7,14 +7,11 @@
 package org.session.libsignal.service.api;
 
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
-import org.session.libsignal.service.api.crypto.ProfileCipherInputStream;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment.ProgressListener;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 

@@ -1,5 +1,4 @@
-package org.session.libsignal.service.api.crypto;
-
+package org.session.libsignal.streams;
 
 import org.session.libsignal.service.internal.util.Util;
 

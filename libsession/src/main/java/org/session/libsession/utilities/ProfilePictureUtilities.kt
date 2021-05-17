@@ -6,7 +6,7 @@ import nl.komponents.kovenant.deferred
 import okio.Buffer
 import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
+import org.session.libsignal.streams.ProfileCipherOutputStream
 import org.session.libsignal.service.internal.push.ProfileAvatarData
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory

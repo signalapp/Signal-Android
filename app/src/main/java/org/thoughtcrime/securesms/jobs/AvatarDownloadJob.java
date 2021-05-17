@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.utilities.Data;
 import org.session.libsession.utilities.DownloadUtilities;
-import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
+import org.session.libsignal.streams.AttachmentCipherInputStream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.session.libsession.messaging.threads.GroupRecord;

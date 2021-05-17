@@ -19,7 +19,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.Conversions
 import org.session.libsession.utilities.Util
-import org.session.libsignal.libsignal.kdf.HKDFv3
+import org.session.libsignal.crypto.kdf.HKDFv3
 import org.session.libsignal.libsignal.util.ByteUtil
 
 import java.io.*

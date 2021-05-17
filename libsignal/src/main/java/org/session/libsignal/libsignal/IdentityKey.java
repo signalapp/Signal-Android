@@ -6,8 +6,8 @@
 package org.session.libsignal.libsignal;
 
 
-import org.session.libsignal.libsignal.ecc.Curve;
-import org.session.libsignal.libsignal.ecc.ECPublicKey;
+import org.session.libsignal.crypto.ecc.Curve;
+import org.session.libsignal.crypto.ecc.ECPublicKey;
 import org.session.libsignal.utilities.Hex;
 
 /**

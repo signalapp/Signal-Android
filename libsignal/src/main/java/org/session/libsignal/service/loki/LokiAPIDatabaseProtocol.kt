@@ -1,7 +1,6 @@
 package org.session.libsignal.service.loki
 
-import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.service.loki.Snode
+import org.session.libsignal.crypto.ecc.ECKeyPair
 import java.util.*
 
 interface LokiAPIDatabaseProtocol {

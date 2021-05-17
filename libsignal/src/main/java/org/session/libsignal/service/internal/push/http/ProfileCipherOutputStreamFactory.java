@@ -1,8 +1,8 @@
 package org.session.libsignal.service.internal.push.http;
 
 
-import org.session.libsignal.service.api.crypto.DigestingOutputStream;
-import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream;
+import org.session.libsignal.streams.DigestingOutputStream;
+import org.session.libsignal.streams.ProfileCipherOutputStream;
 
 import java.io.IOException;
 import java.io.OutputStream;

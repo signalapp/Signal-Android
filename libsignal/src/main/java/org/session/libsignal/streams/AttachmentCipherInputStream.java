@@ -4,11 +4,10 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.session.libsignal.service.api.crypto;
+package org.session.libsignal.streams;
 
 import org.session.libsignal.libsignal.InvalidMacException;
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.service.internal.util.ContentLengthInputStream;
 import org.session.libsignal.service.internal.util.Util;
 
 import java.io.File;

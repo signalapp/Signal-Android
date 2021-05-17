@@ -13,14 +13,14 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.DotNetAPI
-import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
+import org.session.libsignal.streams.AttachmentCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
-import org.session.libsignal.service.internal.crypto.PaddingInputStream
+import org.session.libsignal.streams.PaddingInputStream
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.util.Util
-import org.session.libsignal.service.loki.PlaintextOutputStreamFactory
+import org.session.libsignal.streams.PlaintextOutputStreamFactory
 import org.session.libsignal.utilities.Log
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {

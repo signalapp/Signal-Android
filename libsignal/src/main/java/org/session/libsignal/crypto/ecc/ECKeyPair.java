@@ -3,7 +3,7 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-package org.session.libsignal.libsignal.ecc;
+package org.session.libsignal.crypto.ecc;
 
 public class ECKeyPair {
 

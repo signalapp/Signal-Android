@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.session.libsession.utilities.Util
-import org.session.libsignal.libsignal.kdf.HKDFv3
+import org.session.libsignal.crypto.kdf.HKDFv3
 import org.session.libsignal.libsignal.util.ByteUtil
 import java.io.*
 import java.lang.Exception

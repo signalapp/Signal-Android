@@ -5,7 +5,7 @@
  */
 package org.session.libsignal.libsignal;
 
-import org.session.libsignal.libsignal.ecc.ECPrivateKey;
+import org.session.libsignal.crypto.ecc.ECPrivateKey;
 
 /**
  * Holder for public and private identity key pair.

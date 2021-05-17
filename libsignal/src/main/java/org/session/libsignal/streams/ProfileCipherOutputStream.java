@@ -1,4 +1,4 @@
-package org.session.libsignal.service.api.crypto;
+package org.session.libsignal.streams;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,7 +1,7 @@
 package org.session.libsignal.service.internal.push.http;
 
 
-import org.session.libsignal.service.api.crypto.DigestingOutputStream;
+import org.session.libsignal.streams.DigestingOutputStream;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment.ProgressListener;
 
 import java.io.IOException;
