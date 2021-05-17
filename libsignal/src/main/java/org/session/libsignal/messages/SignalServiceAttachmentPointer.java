@@ -7,12 +7,11 @@
 package org.session.libsignal.messages;
 
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 
 /**
  * Represents a received SignalServiceAttachment "handle."  This
  * is a pointer to the actual attachment content, which needs to be
- * retrieved using {@link SignalServiceMessageReceiver#retrieveAttachment(SignalServiceAttachmentPointer, java.io.File, int)}
+ * retrieved using SignalServiceMessageReceiver.retrieveAttachment(SignalServiceAttachmentPointer, java.io.File, int)
  *
  * @author Moxie Marlinspike
  */

@@ -10,7 +10,7 @@ import org.session.libsignal.utilities.guava.Optional
 /**
  * Represents a received SignalServiceAttachment "handle."  This
  * is a pointer to the actual attachment content, which needs to be
- * retrieved using [SignalServiceMessageReceiver.retrieveAttachment]
+ * retrieved using SignalServiceMessageReceiver.retrieveAttachment
  *
  * @author Moxie Marlinspike
  */

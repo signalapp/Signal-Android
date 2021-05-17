@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.exceptions.InvalidMessageException;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException;
 
@@ -39,8 +38,6 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
   private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
 
   private static final String KEY_GROUP_ID = "group_id";
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   private String groupId;
 
