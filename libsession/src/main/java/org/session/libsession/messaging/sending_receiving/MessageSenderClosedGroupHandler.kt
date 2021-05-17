@@ -54,9 +54,12 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         for (member in members) {
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
             closedGroupControlMessage.sentTimestamp = sentTime
-            retryIfNeeded(30) {
-                sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member))
-            }.get()
+            try {
+                sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member)).get()
+            } catch (e: Exception) {
+                deferred.reject(e)
+                return@queue
+            }
         }
 
         // Add the group to the user's set of public keys to poll for
