@@ -23,18 +23,15 @@ import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
-import nl.komponents.kovenant.deferred
-import nl.komponents.kovenant.functional.bind
-import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.alwaysUi
+import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.avatars.AvatarHelper
-import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.ProfilePictureUtilities
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.service.api.util.StreamDetails
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
@@ -51,7 +48,6 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil
-import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom
 import java.util.*
@@ -127,7 +123,9 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             AvatarSelection.REQUEST_CODE_AVATAR -> {
-                if (resultCode != Activity.RESULT_OK) { return }
+                if (resultCode != Activity.RESULT_OK) {
+                    return
+                }
                 val outputFile = Uri.fromFile(File(cacheDir, "cropped"))
                 var inputFile: Uri? = data?.data
                 if (inputFile == null && tempFile != null) {
@@ -136,7 +134,9 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 AvatarSelection.circularCropImage(this, inputFile, outputFile, R.string.CropImageActivity_profile_avatar)
             }
             AvatarSelection.REQUEST_CODE_CROP_IMAGE -> {
-                if (resultCode != Activity.RESULT_OK) { return }
+                if (resultCode != Activity.RESULT_OK) {
+                    return
+                }
                 AsyncTask.execute {
                     try {
                         profilePictureToBeUploaded = BitmapUtil.createScaledBytes(this@SettingsActivity, AvatarSelection.getResultUri(data), ProfileMediaConstraints()).bitmap
@@ -186,42 +186,28 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         }
         val profilePicture = profilePictureToBeUploaded
         val encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this)
-        val profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey)
         if (isUpdatingProfilePicture && profilePicture != null) {
-            val storageAPI = FileServerAPI.shared
-            val deferred = deferred<Unit, Exception>()
-            AsyncTask.execute {
-                val stream = StreamDetails(ByteArrayInputStream(profilePicture), "image/jpeg", profilePicture.size.toLong())
-                val (_, url) = storageAPI.uploadProfilePicture(storageAPI.server, profileKey, stream) {
-                    TextSecurePreferences.setLastProfilePictureUpload(this@SettingsActivity, Date().time)
-                }
-                TextSecurePreferences.setProfilePictureURL(this, url)
-                deferred.resolve(Unit)
-            }
-            promises.add(deferred.promise)
+            promises.add(ProfilePictureUtilities.upload(profilePicture, encodedProfileKey, this))
         }
-
-        all(promises).bind {
-            // updating the profile name or picture
-            if (profilePicture != null || displayName != null) {
-                task {
-                    if (isUpdatingProfilePicture && profilePicture != null) {
-                        AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!), profilePicture)
-                        TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
-                        ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
-                        ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()
-                    }
-                    MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@SettingsActivity)
-                }
-            } else {
-                Promise.of(Unit)
+        val compoundPromise = all(promises)
+        compoundPromise.successUi { // Do this on the UI thread so that it happens before the alwaysUi clause below
+            if (isUpdatingProfilePicture && profilePicture != null) {
+                AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!), profilePicture)
+                TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
+                TextSecurePreferences.setLastProfilePictureUpload(this, Date().time)
+                ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
+                ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()
             }
-        }.alwaysUi {
+            if (profilePicture != null || displayName != null) {
+                MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@SettingsActivity)
+            }
+        }
+        compoundPromise.alwaysUi {
             if (displayName != null) {
                 btnGroupNameDisplay.text = displayName
             }
             if (isUpdatingProfilePicture && profilePicture != null) {
-                profilePictureView.recycle() // clear cached image before update tje profilePictureView
+                profilePictureView.recycle() // Clear the cached image before updating
                 profilePictureView.update()
             }
             displayNameToBeUploaded = null

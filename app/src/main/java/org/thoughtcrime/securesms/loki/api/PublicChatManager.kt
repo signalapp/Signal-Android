@@ -11,6 +11,7 @@ import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPolle
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
+import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -138,9 +139,10 @@ class PublicChatManager(private val context: Context) {
     val groupId = OpenGroup.getId(channel, server)
     val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
     val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
-    GroupManager.deleteGroup(groupAddress, context)
-
-    Util.runOnMain { startPollersIfNeeded() }
+    ThreadUtils.queue {
+      GroupManager.deleteGroup(groupAddress, context) // Must be invoked on a background thread
+      Util.runOnMain { startPollersIfNeeded() }
+    }
   }
 
   fun removeChat(server: String, room: String) {

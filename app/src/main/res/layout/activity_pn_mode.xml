@@ -56,7 +56,7 @@
                 android:layout_marginTop="4dp"
                 android:textSize="@dimen/very_small_font_size"
                 android:textColor="@color/text"
-                android:text="You’ll be notified of new messages reliably and immediately using Google’s notification servers. The contents of your messages, and who you’re messaging, are never exposed to Google." />
+                android:text="You’ll be notified of new messages reliably and immediately using Google’s notification servers." />
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:layout_marginTop="4dp"
                 android:textSize="@dimen/very_small_font_size"
                 android:textColor="@color/text"
-                android:text="Session will occasionally check for new messages in the background. Full metadata protection is guaranteed, but message notifications will be unreliable." />
+                android:text="Session will occasionally check for new messages in the background." />
 
         </org.thoughtcrime.securesms.loki.views.PNModeView>
 

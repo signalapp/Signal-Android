@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-
 import android.app.Application;
 import android.text.TextUtils;
 
@@ -39,7 +38,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
 
   private static final String TAG = RetrieveProfileAvatarJob.class.getSimpleName();
 
-  private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
+  private static final int MAX_PROFILE_SIZE_BYTES = 10 * 1024 * 1024;
 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_ADDRESS        = "address";
@@ -51,18 +50,17 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
 
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
     this(new Job.Parameters.Builder()
-                           .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setLifespan(TimeUnit.HOURS.toMillis(1))
-                           .setMaxAttempts(3)
-                           .build(),
+            .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
+            .addConstraint(NetworkConstraint.KEY)
+            .setLifespan(TimeUnit.HOURS.toMillis(1))
+            .setMaxAttempts(10)
+            .build(),
         recipient,
         profileAvatar);
   }
 
   private RetrieveProfileAvatarJob(@NonNull Job.Parameters parameters, @NonNull Recipient recipient, String profileAvatar) {
     super(parameters);
-
     this.recipient     = recipient;
     this.profileAvatar = profileAvatar;
   }
@@ -70,9 +68,10 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
   @Override
   public @NonNull
   Data serialize() {
-    return new Data.Builder().putString(KEY_PROFILE_AVATAR, profileAvatar)
-                             .putString(KEY_ADDRESS, recipient.getAddress().serialize())
-                             .build();
+    return new Data.Builder()
+        .putString(KEY_PROFILE_AVATAR, profileAvatar)
+        .putString(KEY_ADDRESS, recipient.getAddress().serialize())
+        .build();
   }
 
   @Override

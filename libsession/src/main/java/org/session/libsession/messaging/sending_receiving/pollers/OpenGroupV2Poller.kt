@@ -70,11 +70,11 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
         isPollOngoing = true
         val server = openGroups.first().server // assume all the same server
         val rooms = openGroups.map { it.room }
-        return OpenGroupAPIV2.getCompactPoll(rooms = rooms, server).successBackground { results ->
+        return OpenGroupAPIV2.compactPoll(rooms = rooms, server).successBackground { results ->
             results.forEach { (room, results) ->
                 val serverRoomId = "$server.$room"
-                handleDeletedMessages(serverRoomId,results.deletions)
                 handleNewMessages(serverRoomId, results.messages.sortedBy { it.serverID }, isBackgroundPoll)
+                handleDeletedMessages(serverRoomId,results.deletions)
             }
         }.always {
             isPollOngoing = false
@@ -120,7 +120,11 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
         val threadId = messagingModule.storage.getThreadIdFor(Address.fromSerialized(address)) ?: return
 
         val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { serverId ->
-            messagingModule.messageDataProvider.getMessageID(serverId, threadId)
+            val id = messagingModule.messageDataProvider.getMessageID(serverId, threadId)
+             if (id == null) {
+                 Log.d("Loki", "Couldn't find server ID $serverId")
+             }
+            id
         }
         deletedMessageIDs.forEach { (messageId, isSms) ->
             MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(messageId, isSms)

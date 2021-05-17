@@ -348,7 +348,7 @@ object OpenGroupAPIV2 {
 
     // region General
     @Suppress("UNCHECKED_CAST")
-    fun getCompactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
+    fun compactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
         val authTokenRequests = rooms.associateWith { room -> getAuthToken(room, server) }
         val storage = MessagingModuleConfiguration.shared.storage
         val requests = rooms.mapNotNull { room ->
