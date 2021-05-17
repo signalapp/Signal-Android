@@ -216,14 +216,14 @@ public class StorageSyncJob extends BaseJob {
 
     stopwatch.split("remote-manifest");
 
-    Recipient self                 = Recipient.self().fresh();
+    Recipient self                 = freshSelf();
     boolean   needsMultiDeviceSync = false;
     boolean   needsForcePush       = false;
 
     if (self.getStorageServiceId() == null) {
       Log.w(TAG, "No storageId for self. Generating.");
       DatabaseFactory.getRecipientDatabase(context).updateStorageId(self.getId(), StorageSyncHelper.generateKey());
-      self = Recipient.self().fresh();
+      self = freshSelf();
     }
 
     Log.i(TAG, "Our version: " + localManifest.getVersion() + ", their version: " + remoteManifest.getVersion());
@@ -276,14 +276,13 @@ public class StorageSyncJob extends BaseJob {
 
         db.beginTransaction();
         try {
-          self = Recipient.self().fresh();
+          self = freshSelf();
 
           new ContactRecordProcessor(context, self).process(remoteContacts, StorageSyncHelper.KEY_GENERATOR);
           new GroupV1RecordProcessor(context).process(remoteGv1, StorageSyncHelper.KEY_GENERATOR);
           new GroupV2RecordProcessor(context).process(remoteGv2, StorageSyncHelper.KEY_GENERATOR);
+          self = freshSelf();
           new AccountRecordProcessor(context, self).process(remoteAccount, StorageSyncHelper.KEY_GENERATOR);
-
-          self = Recipient.self().fresh();
 
           List<SignalStorageRecord> unknownInserts = remoteUnknown;
           List<StorageId>           unknownDeletes = Stream.of(idDifference.getLocalOnlyIds()).filter(StorageId::isUnknown).toList();
@@ -317,7 +316,7 @@ public class StorageSyncJob extends BaseJob {
 
     db.beginTransaction();
     try {
-      self = Recipient.self().fresh();
+      self = freshSelf();
 
       List<StorageId>           localStorageIds = getAllLocalStorageIds(context, self);
       IdDifferenceResult        idDifference    = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIds);
@@ -418,6 +417,11 @@ public class StorageSyncJob extends BaseJob {
     }
 
     return records;
+  }
+
+  private static @NonNull Recipient freshSelf() {
+    Recipient.self().live().refresh();
+    return Recipient.self();
   }
 
   private static final class MissingGv2MasterKeyError extends Error {}
