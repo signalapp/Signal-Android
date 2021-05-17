@@ -41,7 +41,6 @@ message Content {
   optional TypingMessage              typingMessage              = 6;
   optional ConfigurationMessage       configurationMessage       = 7;
   optional DataExtractionNotification dataExtractionNotification = 8;
-
 }
 
 message KeyPair {
