@@ -90,7 +90,7 @@
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">মূক্ত করুন</string> -->
   <string name="BlockUnblockDialog_block">অবরূদ্ধ</string>
   <string name="BlockUnblockDialog_block_and_leave">ব্লক করুন ও ছেড়ে যান</string>
-  <string name="BlockUnblockDialog_block_and_delete">অবরুদ্ধ করুন এবং মুছুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">অবরুদ্ধ করুন এবং মুছুন</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">আজ</string>
   <string name="BucketedThreadMedia_Yesterday">গতকাল</string>

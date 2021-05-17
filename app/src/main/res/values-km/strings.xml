@@ -99,7 +99,7 @@
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">បើកវិញ</string> -->
   <string name="BlockUnblockDialog_block">រារាំង</string>
   <string name="BlockUnblockDialog_block_and_leave">ហាមឃាត់ និងចាកចេញ</string>
-  <string name="BlockUnblockDialog_block_and_delete">ហាមឃាត់ និងលុបចោល</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ហាមឃាត់ និងលុបចោល</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ថ្ងៃនេះ</string>
   <string name="BucketedThreadMedia_Yesterday">ម្សិលមិញ</string>

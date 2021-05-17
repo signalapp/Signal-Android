@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
   <string name="BlockUnblockDialog_block">Bllokoje</string>
   <string name="BlockUnblockDialog_block_and_leave">Bllokoje dhe Braktise</string>
-  <string name="BlockUnblockDialog_block_and_delete">Bllokoje dhe Fshije</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bllokoje dhe Fshije</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Sot</string>
   <string name="BucketedThreadMedia_Yesterday">Dje</string>

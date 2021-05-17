@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s کو غیر مسدود کریں؟</string>
   <string name="BlockUnblockDialog_block">بلاک</string>
   <string name="BlockUnblockDialog_block_and_leave">مسدود اور چھوڑو</string>
-  <string name="BlockUnblockDialog_block_and_delete">بلاک کریں اور حذف کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">بلاک کریں اور حذف کریں</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">آج</string>
   <string name="BucketedThreadMedia_Yesterday">کل</string>

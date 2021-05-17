@@ -94,7 +94,7 @@
   <string name="BlockUnblockDialog_unblock_s">Deblokirati %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj i napusti</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blokiraj i izbriši</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokiraj i izbriši</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danas</string>
   <string name="BucketedThreadMedia_Yesterday">Jučer</string>
@@ -671,6 +671,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">nadogradi ovu grupu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nezaštićena MMS grupa. Da biste razgovarali u privatnosti, pozovite svoje kontakte da koriste Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi odmah</string>
+  <string name="ManageGroupActivity_more">…više</string>
+  <string name="ManageGroupActivity_add_group_description">Unesi opis grupe…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me kad me neko spomene</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Primiti obavještenja kad Vas neko spomene u prigušenim konverzacijama?</string>
@@ -1026,6 +1028,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s je promijenio/la naziv grupe u \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Naziv grupe promijenjen je u \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Promijenili ste opis grupe.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s je promijenio/la opis grupe.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Opis grupe je promijenjen.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Promijenili ste sliku grupe.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s je promijenio/la sliku grupe.</string>
@@ -1412,6 +1417,7 @@
   <string name="SubmitDebugLogActivity_success">Uspješno završeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovu adresu i priložite je uz svoj izvještaj o problemu ili email za podršku:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dijeli</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ovaj izvještaj bit će objavljen javno kako bi ga drugi mogli pregledati. Prije slanja možete ga pregledati i urediti.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Podaci o uređaju:</string>
@@ -1824,6 +1830,7 @@
   <string name="CreateProfileActivity__username">Korisničko ime</string>
   <string name="CreateProfileActivity__create_a_username">Kreirajte korisničko ime</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastiti nazivi dodijeljeni MMS grupama i slike bit će vidljivi samo Vama.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Opis grupe bit će prikazan članovima grupe i osobama koje su u grupu pozvane.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O kontaktu</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite nekoliko riječi o sebi…</string>
@@ -1838,6 +1845,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Naziv i slika grupe</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
+  <string name="EditProfileFragment__group_description">Opis grupe</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše ime</string>
   <string name="EditProfileNameFragment_first_name">Ime</string>
@@ -1904,6 +1912,15 @@
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- Izaberite stavku --</item>
+    <item>Nešto ne funkcioniše</item>
+    <item>Zahtjev za novim funkcijama</item>
+    <item>Pitanje</item>
+    <item>Povratna informacija</item>
+    <item>Drugo</item>
+    <item>Plaćanja</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ova poruka</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
@@ -2041,6 +2058,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako je potvrda čitanja isključena, nećete moći vidjeti potvrdu čitanja od drugih.</string>
   <string name="preferences__typing_indicators">Indikatori kucanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja isključen, nećete moći vidjeti indikator kucanja od drugih.</string>
+  <string name="preferences__request_keyboard_to_disable">Zahtijevaj od tastature da onemogući personalizovano učenje.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ovo podešavanje ipak nije garancija i tastatura ga može ignorisati.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani korisnici</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnog interneta</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi konekcije</string>
@@ -2587,6 +2606,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Pritisnite sliku svog profila gore lijevo da otvorite Podešavanja</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Pritisnite \"Račun\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Pritisnite \"Prenesi račun\" a potom \"Nastavi\" na oba uređaja</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2927,25 +2947,47 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O zahtjevima za komunikaciju</string>
   <string name="GroupsInCommonMessageRequest__okay">Uredu</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Opis grupe</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standardni</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Brži, manji protok</string>
   <string name="QualitySelectorBottomSheetDialog__high">Visoki</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Sporiji, veći protok</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Kvalitet fotografije</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Pozovite prijatelje</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Račun</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bit ćete podsjećani sve rjeđe i rjeđe</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Zahtijevajte svoj Signal PIN da bi se Vaš telefonski broj mogao ponovo registrovati na Signal</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastatura</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tipka Enter šalje</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Koristi kao glavnu aplikaciju za SMS</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Poruke</string>
   <string name="NotificationsSettingsFragment__calls">Pozivi</string>
+  <string name="NotificationsSettingsFragment__notify_when">Obavijesti kad…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt je počeo koristiti Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokirani</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakata</string>
+  <string name="PrivacySettingsFragment__messaging">Poruke</string>
+  <string name="PrivacySettingsFragment__app_security">Sigurnost aplikacije</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Onemogući slikanje ekrana u popisu nedavno korištenih aplikacija i unutar Signala</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal poruke i pozivi, preusmjeravanje poziva i zapečaćeni pošiljalac</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži sličicu statusa</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaži sličicu u detaljima o poruci kad je poruka isporučena koristeći opciju zapečaćenog pošiljaoca</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centar za podršku</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>
   <string name="HelpSettingsFragment__version">Verzija</string>
+  <string name="HelpSettingsFragment__debug_log">Zapis za ispravljanje grešaka</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Sporazum o korištenju i privatnosti</string>
+  <string name="HelpFragment__copyright_signal_messenger">Prava: Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Licenca: GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Pozivi</string>
   <!--EOF-->

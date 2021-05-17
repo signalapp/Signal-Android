@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">¿Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear y abandonar</string>
-  <string name="BlockUnblockDialog_block_and_delete">Bloquear y eliminar</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloquear y eliminar</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoy</string>
   <string name="BucketedThreadMedia_Yesterday">Ayer</string>

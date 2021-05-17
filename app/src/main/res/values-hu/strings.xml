@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Feloldod %1$s tiltását?</string>
   <string name="BlockUnblockDialog_block">Letiltás</string>
   <string name="BlockUnblockDialog_block_and_leave">Tiltás és kilépés</string>
-  <string name="BlockUnblockDialog_block_and_delete">Tiltás és törlés</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Tiltás és törlés</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ma</string>
   <string name="BucketedThreadMedia_Yesterday">Tegnap</string>

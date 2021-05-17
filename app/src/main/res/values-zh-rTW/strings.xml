@@ -92,7 +92,7 @@
   <string name="BlockUnblockDialog_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="BlockUnblockDialog_block">封鎖</string>
   <string name="BlockUnblockDialog_block_and_leave">封鎖並離開</string>
-  <string name="BlockUnblockDialog_block_and_delete">封鎖並刪除</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">封鎖並刪除</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>

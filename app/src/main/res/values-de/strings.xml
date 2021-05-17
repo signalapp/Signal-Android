@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s freigeben?</string>
   <string name="BlockUnblockDialog_block">Blockieren</string>
   <string name="BlockUnblockDialog_block_and_leave">Blockieren und verlassen</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blockieren und löschen</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blockieren und löschen</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Heute</string>
   <string name="BucketedThreadMedia_Yesterday">Gestern</string>
@@ -414,7 +414,7 @@
   <string name="ShareActivity_multiple_attachments_are_only_supported">Mehrere Anhänge werden nur für Bilder und Videos unterstützt</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und ‑Anrufe wurden daher deaktiviert. Bitte registriere Signal erneut in Signal → Einstellungen → Weitere Einstellungen.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und ‑Anrufe wurden daher deaktiviert. Bitte registriere Signal erneut in Signal → Einstellungen → Erweiterte Einstellungen.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fehler beim Abruf des GIFs in voller Auflösung</string>
   <!--GiphyFragmentPageAdapter-->
@@ -638,8 +638,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">aktualisiere diese Gruppe.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine unverschlüsselte MMS-Gruppe. Lade deine Kontakte zu Signal ein, um dich vertraulich zu unterhalten.</string>
   <string name="ManageGroupActivity_invite_now">Jetzt einladen</string>
-  <string name="ManageGroupActivity_more">…mehr</string>
-  <string name="ManageGroupActivity_add_group_description">Gruppenbeschreibung hinzufügen…</string>
+  <string name="ManageGroupActivity_more">… mehr</string>
+  <string name="ManageGroupActivity_add_group_description">Gruppenbeschreibung hinzufügen …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich über Erwähnungen benachrichtigen</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Benachrichtigungen erhalten, wenn du in stummgeschalteten Unterhaltungen erwähnt wirst?</string>
@@ -1171,7 +1171,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Du</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren, um weiterhin Nachrichten zu senden</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren, um weiterhin zu kommunizieren</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Hilf dabei, Spam auf Signal zu verhindern, und schließe die Verifikation ab.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nach erfolgter Verifikation kannst du wieder Nachrichten senden. Alle pausierten Nachrichten werden dann automatisch versendet.</string>
   <!--RecipientPreferencesActivity-->
@@ -1345,7 +1345,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, damit Mitwirkende es einsehen können. Bevor du das Protokoll übermittelst, kannst du es noch einmal überprüfen und bearbeiten.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, damit Mitwirkende es einsehen können. Bevor du das Protokoll hochlädtst, kannst du es noch einmal überprüfen und bearbeiten.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
@@ -1891,7 +1891,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Antippen der Eingabetaste versendet Nachrichten sofort</string>
   <string name="preferences__pref_use_address_book_photos">Fotos aus Adressbuch verwenden</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Kontaktfotos aus deinem Adressbuch anzeigen, falls verfügbar</string>
-  <string name="preferences__generate_link_previews">Link-Vorschau erzeugen</string>
+  <string name="preferences__generate_link_previews">Link-Vorschauen erzeugen</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Für zu versendende Nachrichten Link-Vorschauen direkt von den verlinkten Webseiten abrufen</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
@@ -1931,7 +1931,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Langsam</string>
   <string name="preferences__help">Hilfe</string>
-  <string name="preferences__advanced">Weitere Einstellungen</string>
+  <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
@@ -2860,8 +2860,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AppSettingsFragment__invite_your_friends">Freunde einladen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen werden seltener angezeigt, wenn du die PIN richtig eingibst.</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst.</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen werden seltener angezeigt, wenn du die PIN richtig eingibst</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Eingabetaste sendet</string>
@@ -2871,7 +2871,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationsSettingsFragment__messages">Nachrichten</string>
   <string name="NotificationsSettingsFragment__calls">Anrufe</string>
   <string name="NotificationsSettingsFragment__notify_when">Benachrichtigen, wenn …</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">ein Kontakt Signal neu nutzt</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">ein Kontakt Signal beitritt</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blockierte Nutzer</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d Nutzer</string>
@@ -2881,7 +2881,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, »Anrufe immer indirekt« und »Vertraulicher Absender«</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Statussymbol anzeigen</string>
-  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Anzeigen eines Statussymbols unter »Nachrichtendetails« bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden.</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Symbol unter »Nachrichtendetails« anzeigen bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Support-Center</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktiere uns</string>

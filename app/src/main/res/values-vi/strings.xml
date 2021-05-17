@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_unblock_s">Bỏ chặn %1$s?</string>
   <string name="BlockUnblockDialog_block">Chặn</string>
   <string name="BlockUnblockDialog_block_and_leave">Chặn và rời</string>
-  <string name="BlockUnblockDialog_block_and_delete">Chặn và Xoá</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Chặn và Xoá</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hôm nay</string>
   <string name="BucketedThreadMedia_Yesterday">Hôm qua</string>

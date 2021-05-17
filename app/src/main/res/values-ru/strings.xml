@@ -95,7 +95,7 @@
   <string name="BlockUnblockDialog_unblock_s">Разблокировать %1$s?</string>
   <string name="BlockUnblockDialog_block">Заблокировать</string>
   <string name="BlockUnblockDialog_block_and_leave">Заблокировать и покинуть</string>
-  <string name="BlockUnblockDialog_block_and_delete">Заблокировать и удалить</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Заблокировать и удалить</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Сегодня</string>
   <string name="BucketedThreadMedia_Yesterday">Вчера</string>

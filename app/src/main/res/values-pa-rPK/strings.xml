@@ -81,7 +81,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ اراکین تساں نوں ایس گروپ اچ دوبارہ شامل کرن دے اہل ہون گے۔</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string> -->
   <string name="BlockUnblockDialog_block">بلاک کرو</string>
-  <string name="BlockUnblockDialog_block_and_delete">بلاک تے حذف کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">بلاک تے حذف کرو</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اج</string>
   <string name="BucketedThreadMedia_Yesterday">کل</string>

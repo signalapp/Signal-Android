@@ -91,7 +91,7 @@
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Atbloķēt</string> -->
   <string name="BlockUnblockDialog_block">Bloķēt</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloķēt un iziet</string>
-  <string name="BlockUnblockDialog_block_and_delete">Bloķēt un dzēst</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloķēt un dzēst</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Šodien</string>
   <string name="BucketedThreadMedia_Yesterday">Vakar</string>

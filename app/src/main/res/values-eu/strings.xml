@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">Desblokeatu %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokeatu</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokeatu eta Irten</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blokeatu eta ezabatu</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokeatu eta ezabatu</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Gaur</string>
   <string name="BucketedThreadMedia_Yesterday">Atzo</string>

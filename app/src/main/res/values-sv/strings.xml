@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Avblockera %1$s?</string>
   <string name="BlockUnblockDialog_block">Blockera</string>
   <string name="BlockUnblockDialog_block_and_leave">Blockera och lämna</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blockera och ta bort</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blockera och ta bort</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Idag</string>
   <string name="BucketedThreadMedia_Yesterday">Igår</string>
@@ -1235,7 +1235,7 @@
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ansluten till proxy.</string>
   <!--RecaptchaProofActivity-->
   <string name="RecaptchaProofActivity_failed_to_submit">Det gick inte att skicka</string>
-  <string name="RecaptchaProofActivity_complete_verification">Slutför verifiering</string>
+  <string name="RecaptchaProofActivity_complete_verification">Slutför verifieringen</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
@@ -1439,8 +1439,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Import pågår</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importerar SMS</string>
-  <string name="ApplicationMigrationService_import_complete">Import färdig</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Signals import av databasen är klar.</string>
+  <string name="ApplicationMigrationService_import_complete">Importen slutförd</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Systemdatabasimporten är slutförd.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tryck för att öppna.</string>
   <string name="KeyCachingService_passphrase_cached">Signal är olåst</string>
@@ -1724,7 +1724,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabasen kommer inte att modifieras eller ändras på något sätt.</string>
   <string name="database_migration_activity__skip">Hoppa över</string>
   <string name="database_migration_activity__import">Importera</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta ett ögonblick. Vänligen ha tålamod, vi meddelar dig när importen är klar.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta ett ögonblick. Vänligen ha tålamod, vi meddelar dig när importen är slutförd.</string>
   <string name="database_migration_activity__importing">IMPORTERAR</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hela konversationen</string>
@@ -2038,7 +2038,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Visa indikatorer</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Visa en statusikon när du väljer \"Meddelandedetaljer\" på meddelanden som levererades med dold avsändare.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillåt från alla</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer du inte delat din profil med.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer som du inte har delat din profil med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Läs mer</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <string name="preferences_proxy">Proxy</string>
@@ -2175,7 +2175,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConfirmPayment__error_getting_fee">Fel vid mottganing av avgift</string>
   <string name="ConfirmPayment__estimated_s">Beräknad %1$s</string>
   <string name="ConfirmPayment__to">Till</string>
-  <string name="ConfirmPayment__total_amount">Totala summan</string>
+  <string name="ConfirmPayment__total_amount">Totalt belopp</string>
   <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Skickar betalning…</string>
   <string name="ConfirmPayment__processing_payment">Bearbetar betalning…</string>
@@ -2596,13 +2596,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Välj \"Överför från Android-enhet\" när du uppmanas till det och sedan \"Fortsätt\". Håll båda enheterna i närheten.</string>
   <string name="OldDeviceTransferInstructions__continue">Fortsätt</string>
   <!--OldDeviceTransferComplete-->
-  <string name="OldDeviceTransferComplete__transfer_complete">Överföringen är klar</string>
+  <string name="OldDeviceTransferComplete__transfer_complete">Överföringen slutförd</string>
   <string name="OldDeviceTransferComplete__go_to_your_new_device">Gå till din nya enhet</string>
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Dina Signal-data har överförts till din nya enhet. För att slutföra överföringsprocessen måste du fortsätta registrera dig på din nya enhet.</string>
   <string name="OldDeviceTransferComplete__close">Stäng</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Överföringen lyckades</string>
-  <string name="NewDeviceTransferComplete__transfer_complete">Överföringen är klar</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Överföringen slutförd</string>
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">För att slutföra överföringsprocessen måste du fortsätta registrera dig.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Fortsätt registrera dig</string>
   <!--DeviceToDeviceTransferService-->
@@ -2720,7 +2720,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeleteAccountFragment__no_number">Inget nummer specificerat</string>
   <string name="DeleteAccountFragment__the_phone_number">Det angivna telefonnumret matchar inte ditt kontos.</string>
   <string name="DeleteAccountFragment__are_you_sure">Är du säker på att du vill ta bort ditt konto?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Detta tar bort ditt Signal-konto och återställer applikationen. Appen stängs när processen är klar.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Detta tar bort ditt Signal-konto och återställer applikationen. Appen stängs när processen är slutförd.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Det gick inte att ta bort kontot. Har du en nätverksanslutning?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Det gick inte att ta bort lokala data. Du kan rensa det manuellt i systemapplikationsinställningarna.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Starta appinställningar</string>

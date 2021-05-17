@@ -90,7 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blokker og slett</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokker og slett</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">I dag</string>
   <string name="BucketedThreadMedia_Yesterday">I går</string>
@@ -1138,7 +1138,7 @@
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din PIN er en kode med %1$d+ siffer eller alfanumeriske tegn. Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Opprett ny PIN-kode</string>
-  <string name="PinRestoreEntryFragment_contact_support">Kontakt support</string>
+  <string name="PinRestoreEntryFragment_contact_support">Kontakt brukerstøtte</string>
   <string name="PinRestoreEntryFragment_cancel">Avbryt</string>
   <string name="PinRestoreEntryFragment_skip">Hopp over</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
@@ -1347,6 +1347,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg den til i din feilrapport eller support-e-postadressen:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denne logg-meldingen vil bli publisert på nettet for deltakere i prosjektet. Du kan se over og redigere den før du sender den inn.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformasjon:</string>
@@ -1975,10 +1976,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.</string>
   <string name="preferences__typing_indicators">Skriveindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
+  <string name="preferences__request_keyboard_to_disable">Be tastaturet ignorere personlig læring.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Dette er ikke en garanti, og tastaturet ditt kan ignorere forespørselen.</string>
   <string name="preferences_app_protection__blocked_users">Blokkerte brukere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
-  <string name="preferences_chats__when_roaming">I fremmednett</string>
+  <string name="preferences_chats__when_roaming">Ved bruk av dataroaming</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
   <string name="preferences_chats__message_history">Meldingshistorikk</string>
   <string name="preferences_storage__storage_usage">Lagringsbruk</string>
@@ -2005,7 +2008,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
-  <string name="preferences_advanced__always_relay_calls">Omdiriger alle anrop</string>
+  <string name="preferences_advanced__always_relay_calls">Omdiriger alle samtaler</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">Programtilgang</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
@@ -2084,6 +2087,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__payment_failed">Betaling mislyktes</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
   <string name="PaymentsHomeFragment__activate">Aktiver</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke lenger tilgjengelige. Du kan fortsatt overføre midler til en veksler, men du kan ikke lenger sende eller motta betalinger eller legge til midler.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Kopier</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopiert til utklippstavle</string>
@@ -2106,6 +2110,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Betaling fullført %1$s</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Skann QR-kode</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Til: Skann eller skriv inn lommebokadresse</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Du kan overføre MobileCoin ved å fullføre en overføring til lommebokadressen oppgitt av veksleren. Lommebokadressen er rekken av siffer og bokstaver, som regel passert under QR-koden.</string>
   <string name="PaymentsTransferFragment__next">Neste</string>
   <string name="PaymentsTransferFragment__invalid_address">Ugyldig adresse</string>
   <string name="PaymentsTransferFragment__settings">Innstillinger</string>
@@ -2143,6 +2149,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Kunne ikke laste inn nettverksgebyr. For å fortsette denne betalingen, trykk på OK for å prøve igjen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Velg valuta</string>
   <string name="SetCurrencyFragment__all_currencies">Alle valutaer</string>
   <!--****************************************-->
   <!--menus-->
@@ -2420,7 +2427,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meldinger så langt</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Kontakt Signal Kundestøtte</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontakt Signal brukerstøtte</string>
   <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
@@ -2474,6 +2481,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Trykk på profilbildet øverst til venstre for å åpne innstillinger</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Trykk på \"Konto\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Trykk \"Overfør konto\" og så \"Fortsett\" på begge enheter</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2786,9 +2794,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Tregere, mer data</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Fotokvalitet</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Inviter vennene dine</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Krev Signal-PIN for å registrere telefonnummeret på nytt hos Signal</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Send med enter-tast</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Bruk som forvalgt SMS-program</string>
@@ -2796,16 +2808,25 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NotificationsSettingsFragment__messages">Meldinger</string>
   <string name="NotificationsSettingsFragment__calls">Samtaler</string>
   <string name="NotificationsSettingsFragment__notify_when">Varsle når…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt blir med på Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokkert</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
   <string name="PrivacySettingsFragment__messaging">Meldinger</string>
+  <string name="PrivacySettingsFragment__app_security">App-sikkerhet</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-liste og i programmet</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldinger og samtaler, omdiriger alle samtaler, og forseglet avsender</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis status-ikon</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et statusikon i meldingsdetaljer når de ble levert ved bruk av forseglet avsender.</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Supportsenter</string>
   <string name="HelpSettingsFragment__contact_us">Kontakt oss</string>
   <string name="HelpSettingsFragment__version">Versjon</string>
   <string name="HelpSettingsFragment__debug_log">Feilsøkingslogg</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Vilkår og personvernerklæring</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
   <!--EOF-->

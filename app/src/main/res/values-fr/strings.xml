@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
   <string name="BlockUnblockDialog_block">Bloquer</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquer et quitter</string>
-  <string name="BlockUnblockDialog_block_and_delete">Bloquer et supprimer</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloquer et supprimer</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
   <string name="BucketedThreadMedia_Yesterday">Hier</string>
@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mentions">Mentions</string>
   <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de la conversation</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
+  <string name="ManageGroupActivity_always">Toujours</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
   <string name="ManageGroupActivity_view_all_members">Visualiser tous les membres</string>
@@ -657,6 +658,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Mettre les notifications en sourdine</string>
   <string name="ManageRecipientActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageRecipientActivity_until_s">Jusqu’à %1$s</string>
+  <string name="ManageRecipientActivity_always">Toujours</string>
   <string name="ManageRecipientActivity_off">Désactivées</string>
   <string name="ManageRecipientActivity_on">Activées</string>
   <string name="ManageRecipientActivity_add_to_a_group">Ajouter à un groupe</string>
@@ -1807,8 +1809,10 @@
   <string name="arrays__use_default">Valeur par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
   <string name="arrays__mute_for_one_hour">Sourdine pendant 1 heure</string>
+  <string name="arrays__mute_for_eight_hours">Sourdine pendant 8 heures</string>
   <string name="arrays__mute_for_one_day">Sourdine pendant 1 jour</string>
   <string name="arrays__mute_for_seven_days">Sourdine pendant 7 jours</string>
+  <string name="arrays__always">Toujours</string>
   <string name="arrays__settings_default">Paramètre par défaut</string>
   <string name="arrays__enabled">Activé</string>
   <string name="arrays__disabled">Désactivé</string>
@@ -2357,6 +2361,7 @@
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_wifi">Activer le Wi-Fi</string>
   <string name="DeviceTransferSetup__retry">Réessayer</string>
   <string name="DeviceTransferSetup__continue">Poursuivre</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
@@ -2548,6 +2553,7 @@
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
   <!--AccountSettingsFragment-->
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">La touche Entrée envoie</string>

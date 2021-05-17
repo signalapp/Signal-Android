@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sچەكلىمەمدۇ؟</string>
   <string name="BlockUnblockDialog_block">چەكلە</string>
   <string name="BlockUnblockDialog_block_and_leave">چەكلە ۋە ئايرىل</string>
-  <string name="BlockUnblockDialog_block_and_delete">چەكلە ۋە ئۆچۈر</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">چەكلە ۋە ئۆچۈر</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">بۈگۈن</string>
   <string name="BucketedThreadMedia_Yesterday">تۈنۈگۈن</string>
@@ -1354,6 +1354,7 @@
   <string name="SubmitDebugLogActivity_success">مۇۋەپپەقىيەتلىك!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">بۇ URL نى كۆچۈرۈپ ۋە ئۇنى مەسىلە دوكلاتىڭىز ياكى قوللاش ئېلخېتىگە قوشۇڭ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">ئورتاقلاش</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">بۇ خاتىرە تۆھپىكارلارنىڭ كۆرۈشى ئۈچۈن توردا ئاشكارا ئېلان قىلىنىدۇ، يوللاشتىن ئىلگىرى مەزكۇر خاتىرەنى تەكشۈرۈپ ۋە تەھرىرلىيەلەيسىز.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">سۈزگۈچ:</string>
   <string name="SupportEmailUtil_device_info">ئۈسكۈنە ئۇچۇرى:</string>
@@ -1983,6 +1984,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ئەگەر ئوقۇلدى ئىشارىتى ئېتىك بولسا، باشقىلارنىڭ ئوقۇلدى ئىشارەتلىرىنىمۇ كۆرەلمەيسىز.</string>
   <string name="preferences__typing_indicators">بېسىۋاتىدۇ كۆرسەتكۈچى</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ئەگەر بېسىۋاتىدۇ كۆرسەتكۈچى ئېتىك بولسا، باشقىلارنىڭ بېسىۋاتىدۇ كۆرسەتكۈچىنىمۇ كۆرەلمەيسىز.</string>
+  <string name="preferences__request_keyboard_to_disable">ھەرپتاختىنىڭ خاسلاشتۇرۇپ ئۆگىنىش ئىقتىدارىنى چەكلەشنى ئىلتىماس قىلدى.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">بۇ تەڭشەككە كاپالەتلىك قىلغىلى بولمايدۇ، ھەرپتاختىڭىز ئۇنىڭغا پەرۋا قىلماسلىقى مۇمكىن.</string>
   <string name="preferences_app_protection__blocked_users">چەكلەنگەن قوللانغۇچىلار</string>
   <string name="preferences_chats__when_using_mobile_data">كۆچمە مەلۇمات ئىشلەتكەندە</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi ئىشلەتكەندە</string>
@@ -2038,7 +2041,7 @@
   <string name="preferences_notifications__priority">مۇھىملىقى</string>
   <string name="preferences_communication__category_sealed_sender">يوشۇرۇن ئەۋەتكۈچى</string>
   <string name="preferences_communication__sealed_sender_display_indicators">ئېكران كۆرسەتكۈچىلىرى</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">يوشۇرۇن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلاردا «ئۇچۇر تەپسىلاتى» تاللانغاندا، ھالەت سىمبەلگىسىنى كۆرسەت.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">يوشۇرۇن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلاردىكى «ئۇچۇر تەپسىلاتى» تاللانغاندا، ھالەت سىنبەلگىسىنى كۆرسىتىدۇ.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ھەممىسىدن قوبۇل قىل</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ئالاقەداشلىرىڭ ئارىسىدا بولمىغان ياكى ئارخىپىڭنى ھەمبەھىرلىمىگەن كىشىلەردىن، يوشۇرۇن ئەۋەتكۈچى ئۇچۇرلىرىنى قوبۇل قىلىشنى ئاكتىپلا.</string>
   <string name="preferences_communication__sealed_sender_learn_more">كۆپرەك ئۆگىنىش</string>
@@ -2522,6 +2525,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">سول ئۈستىدىكى سەپلىمە ھۆججەت سۈرىتى چېكىلسە تەڭشەكلەر ئېچىلىدۇ</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">«ھېسابات» نى چېكىڭ</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">ئىككى ئۈسكۈنىدە «ھېسابات يۆتكە» ئاندىن «داۋاملاشتۇر» نى چېكىڭ</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2863,25 +2867,39 @@
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">ئاستىراق، سانلىق مەلۇماتنى كۆپ ئىشلىتىدۇ</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">سۈرەت سۈپىتى</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">ھېسابات</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ۋاقىتنىڭ ئۆتۈشىگە ئەگىشىپ سوئالىڭىز ئازىيىدۇ</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">تېلېفون نومۇرىڭىزنى Signal دا قايتا تىزىملىتىش ئۈچۈن Signal PIN نىڭىز لازىم.</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">ھەرپتاختا</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter نى باسسا يوللايدۇ</string>
   <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">چېكىلسە كۆڭۈلدىكى قىسقا ئۇچۇر ئەپى بولۇپ تەڭشىلىدۇ</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">ئۇچۇرلار</string>
   <string name="NotificationsSettingsFragment__calls">چاقىرىشلار</string>
   <string name="NotificationsSettingsFragment__notify_when">ئۇقتۇرۇش ۋاقتى…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">ئالاقەداش Signal غا قوشۇلدى</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">چەكلەندى</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d ئالاقەداش</string>
   <string name="PrivacySettingsFragment__messaging">ئۇچۇرلىشىش</string>
+  <string name="PrivacySettingsFragment__app_security">ئەپ بىخەتەرلىكى</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app"> يېقىندا ئىشلەتكەن ئەپ ۋە ئېكران كەسمىسىنى چەكلەيدۇ</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ئۇچۇر ۋە چاقىرىقنى ھەمىشە چاقىرىق ۋە يوشۇرۇن ئەۋەتكۈچىگە ئۇلاپ يەتكۈزىدۇ</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">ھالەت سىنبەلگىسىنى كۆرسەت</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">يوشۇرۇن ئەۋەتكۈچىدىن كەلگەن ئۇچۇرلارنىڭ ئۇچۇر تەپسىلاتىدا، سىنبەلگىنى كۆرسىتىدۇ.</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">قوللاش مەركىزى</string>
   <string name="HelpSettingsFragment__contact_us">بىز بىلەن ئالاقىلىشىڭ</string>
   <string name="HelpSettingsFragment__version">نەشر</string>
   <string name="HelpSettingsFragment__debug_log">سازلاش خاتىرىسى</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">شەرتلەر &amp;  مەخپىيەتلىك تۈزۈمى</string>
+  <string name="HelpFragment__copyright_signal_messenger">‫Signal Messenger نەشر ھوقۇقىغا ئىگە</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ئىجازىتىدە تارقىتىلدى</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>
   <!--EOF-->

@@ -95,7 +95,7 @@
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
   <string name="BlockUnblockDialog_block">Užblokuoti</string>
   <string name="BlockUnblockDialog_block_and_leave">Užblokuoti ir išeiti</string>
-  <string name="BlockUnblockDialog_block_and_delete">Užblokuoti ir ištrinti</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Užblokuoti ir ištrinti</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Šiandien</string>
   <string name="BucketedThreadMedia_Yesterday">Vakar</string>
@@ -704,6 +704,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">naujinkite šią grupę.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tai yra nesaugi MMS grupė. Norėdami kalbėtis privačiai, pakvieskite savo adresatus į Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pakviesti dabar</string>
+  <string name="ManageGroupActivity_more">…daugiau</string>
   <string name="ManageGroupActivity_add_group_description">Pridėti grupės aprašą…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Pranešti apie paminėjimus</string>
@@ -1288,6 +1289,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Jūs</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Patvirtinkite, norėdami tęsti susirašinėjimą</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Siekdami neleisti brukalo Signal programėlėje, prašome jūsų užbaigti patvirtinimą.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po patvirtinimo galėsite tęsti susirašinėjimą. Visos pristabdytos žinutės bus automatiškai išsiųstos.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Užblokuoti</string>
   <string name="RecipientPreferenceActivity_unblock">Atblokuoti</string>
@@ -1352,6 +1356,7 @@
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sėkmingai prisijungta prie įgaliotojo serverio.</string>
   <!--RecaptchaProofActivity-->
   <string name="RecaptchaProofActivity_failed_to_submit">Nepavyko pateikti</string>
+  <string name="RecaptchaProofActivity_complete_verification">Užbaigti patvirtinimą</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pasirinkite savo šalį</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Jūs privalote nurodyti savo
@@ -1473,6 +1478,7 @@
   <string name="SubmitDebugLogActivity_success">Įvykdyta!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Bendrinti</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti. Jūs galite jį išnagrinėti ir, prieš išsiųsdami, paredaguoti.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtras:</string>
   <string name="SupportEmailUtil_device_info">Įrenginio informacija:</string>
@@ -1588,6 +1594,7 @@
   <string name="MessageNotifier_failed_to_deliver_message">Nepavyko pristatyti žinutės.</string>
   <string name="MessageNotifier_error_delivering_message">Klaida, pristatant žinutę.</string>
   <string name="MessageNotifier_message_delivery_paused">Žinučių pristatymas pristabdytas.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Patvirtinkite, norėdami tęsti susirašinėjimą per Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Žymėti visas kaip skaitytas</string>
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_turn_off_these_notifications">Išjungti šiuos pranešimus</string>
@@ -1895,6 +1902,7 @@
   <string name="CreateProfileActivity__username">Naudotojo vardas</string>
   <string name="CreateProfileActivity__create_a_username">Sukurti naudotojo vardą</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tinkinti MMS grupės vardai ir nuotraukos bus matomi tik jums.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Grupės aprašus matys šios grupės nariai ir į grupę pakviesti žmonės.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Apie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Parašykite kelis žodžius apie save…</string>
@@ -2678,6 +2686,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Viršutiniame kairiajame kampe bakstelėkite ant savo profilio nuotraukos, kad būtų atverti Nustatymai</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Bakstelėkite ant „Paskyra“</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Abiejuose įrenginiuose bakstelėkite „Perkelti paskyrą“, o tuomet „Tęsti“</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3023,8 +3032,11 @@
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lėčiau, daugiau duomenų</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Nuotraukų kokybė</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Pakvieskite savo draugus</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Paskyra</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Bėgant laikui, jūsų bus klausiama vis rečiau</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Norint vėl registruoti jūsų telefono numerį su Signal, reikalauti jūsų Signal PIN kodo</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">„Enter“ (Įvedimo) klavišas išsiunčia</string>
@@ -3037,15 +3049,21 @@
   <string name="NotificationsSettingsFragment__contact_joins_signal">Adresatas prisijungia prie Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Užblokuotas</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d adresatų</string>
   <string name="PrivacySettingsFragment__messaging">Susirašinėjimas</string>
   <string name="PrivacySettingsFragment__app_security">Programėlės saugumas</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokuoti ekrano kopijas paskiausiųjų sąraše ir programėlės viduje</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal žinutės ir skambučiai, visada retransliuoti skambučius ir užantspauduotas siuntėjas</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Rodyti būsenos piktogramą</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Išsamesnėje žinučių informacijoje rodyti piktogramą tais atvejais, kai jos buvo pristatytos naudojant užantspauduotą siuntėją.</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Palaikymo centras</string>
   <string name="HelpSettingsFragment__contact_us">Susisiekite su mumis</string>
   <string name="HelpSettingsFragment__version">Versija</string>
   <string name="HelpSettingsFragment__debug_log">Derinimo žurnalas</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Sąlygos ir Privatumo politika</string>
+  <string name="HelpFragment__copyright_signal_messenger">Autorių teisės Signal pokalbių programėlė</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licencijuota pagal GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Skambučiai</string>

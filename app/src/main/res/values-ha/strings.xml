@@ -78,7 +78,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membobin rukuni suna da damar dawowa da kai/ke rukunin. </string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Bude</string> -->
   <string name="BlockUnblockDialog_block">Toshe</string>
-  <string name="BlockUnblockDialog_block_and_delete">Toshe ka/ki goge</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Toshe ka/ki goge</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Yau</string>
   <string name="BucketedThreadMedia_Yesterday">Jiya</string>

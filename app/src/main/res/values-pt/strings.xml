@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e abandonar</string>
-  <string name="BlockUnblockDialog_block_and_delete">Bloquear e eliminar</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloquear e eliminar</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoje</string>
   <string name="BucketedThreadMedia_Yesterday">Ontem</string>
@@ -1355,7 +1355,7 @@
   <string name="SubmitDebugLogActivity_success">Efetuado com sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partilhar</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registo será publicado online para ser consultado pelos contribuintes. Poderás analisá-lo e editá-lo antes do seu carregamento.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registo será publicado online para ser consultado pelos contribuidores. Poderá analisá-lo e editá-lo antes do seu carregamento.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informação do dispositivo:</string>

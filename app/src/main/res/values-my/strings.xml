@@ -92,7 +92,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s ကို ဘလော့ဖြည်မည်လား?</string>
   <string name="BlockUnblockDialog_block">ဘလော့မည်</string>
   <string name="BlockUnblockDialog_block_and_leave">ဘလော့ပြီး ထွက်မည်</string>
-  <string name="BlockUnblockDialog_block_and_delete">ဘလော့ပြီး ဖျက်မည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ဘလော့ပြီး ဖျက်မည်</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ယနေ့ </string>
   <string name="BucketedThreadMedia_Yesterday">မနေ့က </string>

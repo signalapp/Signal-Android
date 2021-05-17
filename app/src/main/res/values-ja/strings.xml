@@ -91,7 +91,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s のブロックを解除しますか？</string>
   <string name="BlockUnblockDialog_block">ブロックする</string>
   <string name="BlockUnblockDialog_block_and_leave">ブロックして抜ける</string>
-  <string name="BlockUnblockDialog_block_and_delete">ブロックして削除</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ブロックして削除</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今日</string>
   <string name="BucketedThreadMedia_Yesterday">昨日</string>
@@ -604,6 +604,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">このグループをアップグレードしてください。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットするには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
+  <string name="ManageGroupActivity_more">…さらに</string>
+  <string name="ManageGroupActivity_add_group_description">グループの説明を追加…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ミュートしたチャットでメンションがあった際に、通知を受け取りますか？</string>
@@ -923,6 +925,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s がグループ名を「%2$s」に変更しました。</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">グループ名が「%1$s」に変更されました。</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">グループの説明を変更しました。</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s がグループの説明を変更しました。</string>
+  <string name="MessageRecord_the_group_description_has_changed">グループの説明が変更されました。</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">グループアイコンを変更しました。</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s がグループアイコンを変更しました。</string>
@@ -1683,6 +1688,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">グループ名とアイコンの編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
+  <string name="EditProfileFragment__group_description">グループの説明</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">あなたの名前</string>
   <string name="EditProfileNameFragment_first_name">名</string>
@@ -2661,6 +2667,7 @@
   <string name="GroupsInCommonMessageRequest__about_message_requests">メッセージ申請について</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">グループの説明</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">高</string>
   <!--AppSettingsFragment-->

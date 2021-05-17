@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sஐ தடைநீக்கவா?</string>
   <string name="BlockUnblockDialog_block">தடு </string>
   <string name="BlockUnblockDialog_block_and_leave">தடுத்து வெளியேறு</string>
-  <string name="BlockUnblockDialog_block_and_delete">தடுமற்றும் அழி</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">தடுமற்றும் அழி</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">இன்று</string>
   <string name="BucketedThreadMedia_Yesterday">நேற்று</string>

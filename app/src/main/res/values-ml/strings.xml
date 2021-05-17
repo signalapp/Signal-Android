@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
-  <string name="BlockUnblockDialog_block_and_delete">തടഞ്ഞ് ഇല്ലാതാക്കൂ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">തടഞ്ഞ് ഇല്ലാതാക്കൂ</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
   <string name="BucketedThreadMedia_Yesterday">ഇന്നലെ</string>

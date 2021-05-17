@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਉਣੀ ਹੈ?</string>
   <string name="BlockUnblockDialog_block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="BlockUnblockDialog_block_and_leave">ਪਾਬੰਦੀ ਲਾਓ ਤੇ ਛੱਡੋ</string>
-  <string name="BlockUnblockDialog_block_and_delete">ਪਾਬੰਦੀ ਲਾਓ ਤੇ ਹਟਾਓ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ਪਾਬੰਦੀ ਲਾਓ ਤੇ ਹਟਾਓ</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ਅੱਜ </string>
   <string name="BucketedThreadMedia_Yesterday">ਕੱਲ੍ਹ</string>

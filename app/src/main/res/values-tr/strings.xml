@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s engeli kaldırılsın mı?</string>
   <string name="BlockUnblockDialog_block">Engelle</string>
   <string name="BlockUnblockDialog_block_and_leave">Engelle ve Ayrıl</string>
-  <string name="BlockUnblockDialog_block_and_delete">Engelle ve Sil</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Engelle ve Sil</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Bugün</string>
   <string name="BucketedThreadMedia_Yesterday">Dün</string>

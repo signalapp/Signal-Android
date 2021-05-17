@@ -95,7 +95,7 @@
   <string name="BlockUnblockDialog_unblock_s">Odblokovat %1$s?</string>
   <string name="BlockUnblockDialog_block">Zablokovat</string>
   <string name="BlockUnblockDialog_block_and_leave">Zablokovat a odejít</string>
-  <string name="BlockUnblockDialog_block_and_delete">Zablokovat a smazat</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Zablokovat a smazat</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Dnes</string>
   <string name="BucketedThreadMedia_Yesterday">Včera</string>

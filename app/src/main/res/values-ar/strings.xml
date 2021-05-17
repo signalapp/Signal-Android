@@ -94,7 +94,7 @@
   <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s ؟</string>
   <string name="BlockUnblockDialog_block">حظر</string>
   <string name="BlockUnblockDialog_block_and_leave">حظر ثم المغادرة</string>
-  <string name="BlockUnblockDialog_block_and_delete">حظر ثم الحذف</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">حظر ثم الحذف</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اليوم</string>
   <string name="BucketedThreadMedia_Yesterday">البارحة</string>
@@ -1463,6 +1463,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">استخدم الوكيل</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">نجح في الاتصال بالوكيل.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_complete_verification">إتمام التَحَقُق</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">يجب عليك اختيار بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
@@ -2350,6 +2351,7 @@
   <string name="ConfirmPayment__to">إلى</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">تَعيين العُملَة</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

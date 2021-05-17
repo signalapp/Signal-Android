@@ -75,7 +75,7 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat menghantar mesej dan membuat panggilan satu sama lain.</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Nyahsekat</string> -->
   <string name="BlockUnblockDialog_block">Sekat</string>
-  <string name="BlockUnblockDialog_block_and_delete">Sekat dan Padam</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Sekat dan Padam</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hari ini</string>
   <string name="BucketedThreadMedia_Yesterday">Semalam</string>

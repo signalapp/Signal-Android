@@ -87,7 +87,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="BlockUnblockDialog_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="BlockUnblockDialog_block_and_leave">ನಿರ್ಬಂಧಿಸಿ ಹಾಗು ಹೊರಹೋಗಿ</string>
-  <string name="BlockUnblockDialog_block_and_delete">ನಿರ್ಬಂಧಿಸಿ ಮತ್ತು ಅಳಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ನಿರ್ಬಂಧಿಸಿ ಮತ್ತು ಅಳಿಸಿ</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ಇಂದು</string>
   <string name="BucketedThreadMedia_Yesterday">ನಿನ್ನೆ</string>

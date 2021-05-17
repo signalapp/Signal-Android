@@ -81,7 +81,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Washiriki wa kikundi wataweza kukuongeza kwenye kundi hili tena.</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Fungua</string> -->
   <string name="BlockUnblockDialog_block">Zuia</string>
-  <string name="BlockUnblockDialog_block_and_delete">Zuia na Futa</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Zuia na Futa</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Leo</string>
   <string name="BucketedThreadMedia_Yesterday">Jana</string>

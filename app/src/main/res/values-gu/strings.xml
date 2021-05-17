@@ -78,7 +78,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ ગ્રુપમાં ફરીથી ઉમેરવામાં સમર્થ હશે.</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">અનાવરોધિત કરો</string> -->
   <string name="BlockUnblockDialog_block">અવરોધિત કરો</string>
-  <string name="BlockUnblockDialog_block_and_delete">બ્લોક કરો અને કાઢી નાખો</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">બ્લોક કરો અને કાઢી નાખો</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">આજે</string>
   <string name="BucketedThreadMedia_Yesterday">ગઇકાલે</string>

@@ -90,7 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">Да го/ја одблокирам %1$s?</string>
   <string name="BlockUnblockDialog_block">Блокирај</string>
   <string name="BlockUnblockDialog_block_and_leave">Блокирај и напушти</string>
-  <string name="BlockUnblockDialog_block_and_delete">Блокирај и избриши</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Блокирај и избриши</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Денес</string>
   <string name="BucketedThreadMedia_Yesterday">Вчера</string>
@@ -2034,6 +2034,7 @@
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користете го Signal за испраќање и примање на MobileCoin, нова дигитална валута фокусирана на приватност. Активирајте за да започнете.</string>
   <string name="PaymentsHomeFragment__activate_payments">Активирај Плаќања</string>
   <string name="PaymentsHomeFragment__activating_payments">Активирање на плаќања…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Врати ја сметката за плаќања</string>
   <string name="PaymentsHomeFragment__recent_activity">Скорешна активност</string>
   <string name="PaymentsHomeFragment__see_all">Види сѐ</string>
   <string name="PaymentsHomeFragment__add_funds">Додај средства</string>
@@ -2454,6 +2455,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Допрете ја Вашата профилна слика во левииот горен агол за да ги отворите поставувањата.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Допрете на „Сметка“</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Допрете „Префрли сметка“ и потоа „Продолжи“ и на двата уреда</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2717,6 +2719,7 @@
   <string name="PaymentsRecoveryPhraseFragment__next">Следно</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
@@ -2743,6 +2746,7 @@
   <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Сметка</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
   <!--SmsSettingsFragment-->

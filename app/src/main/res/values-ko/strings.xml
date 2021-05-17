@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s를 차단 해제할까요?</string>
   <string name="BlockUnblockDialog_block">차단</string>
   <string name="BlockUnblockDialog_block_and_leave">그룹 나가고 차단하기</string>
-  <string name="BlockUnblockDialog_block_and_delete">차단하고 삭제하기</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">차단하고 삭제하기</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">오늘</string>
   <string name="BucketedThreadMedia_Yesterday">어제</string>

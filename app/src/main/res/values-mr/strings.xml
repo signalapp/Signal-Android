@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sअनब्लॉक करायचे?</string>
   <string name="BlockUnblockDialog_block">अवरोधित करा</string>
   <string name="BlockUnblockDialog_block_and_leave">अवरोधित करा आणि पडा</string>
-  <string name="BlockUnblockDialog_block_and_delete">अवरोधित करा आणि हटवा</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">अवरोधित करा आणि हटवा</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">आज</string>
   <string name="BucketedThreadMedia_Yesterday">काल</string>

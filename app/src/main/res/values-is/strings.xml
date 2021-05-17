@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Opna á %1$s?</string>
   <string name="BlockUnblockDialog_block">Útiloka</string>
   <string name="BlockUnblockDialog_block_and_leave">Útiloka og yfirgefa</string>
-  <string name="BlockUnblockDialog_block_and_delete">Útiloka og eyða</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Útiloka og eyða</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Í dag</string>
   <string name="BucketedThreadMedia_Yesterday">Í gær</string>

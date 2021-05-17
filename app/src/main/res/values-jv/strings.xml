@@ -75,7 +75,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup bakal saged minggahaken sampeyan datheng grup niki malih.</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Uculaken blokiranipun</string> -->
   <string name="BlockUnblockDialog_block">Blokir</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blokir lan Brusak</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokir lan Brusak</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Dinten niki</string>
   <string name="BucketedThreadMedia_Yesterday">Wingi</string>

@@ -84,7 +84,7 @@
   <string name="BlockUnblockDialog_unblock_s">I-unblock ang %1$s?</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">I-unblock</string> -->
   <string name="BlockUnblockDialog_block">I-block</string>
-  <string name="BlockUnblockDialog_block_and_delete">I-block at Burahin</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">I-block at Burahin</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ngayong araw</string>
   <string name="BucketedThreadMedia_Yesterday">Kahapon</string>
