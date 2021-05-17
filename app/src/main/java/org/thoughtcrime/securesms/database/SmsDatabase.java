@@ -123,7 +123,8 @@ public class SmsDatabase extends MessageDatabase {
                                                                                   REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
-                                                                                  NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0);";
+                                                                                  NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0," +
+                                                                                  SERVER_GUID            + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -1105,6 +1106,7 @@ public class SmsDatabase extends MessageDatabase {
     values.put(BODY, message.getMessageBody());
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
+    values.put(SERVER_GUID, message.getServerGuid());
 
     if (message.isPush() && isDuplicate(message, threadId)) {
       Log.w(TAG, "Duplicate message (" + message.getSentTimestampMillis() + "), ignoring...");

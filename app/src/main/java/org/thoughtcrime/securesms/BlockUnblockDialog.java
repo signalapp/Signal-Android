@@ -9,6 +9,8 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Lifecycle;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -30,15 +32,15 @@ public final class BlockUnblockDialog {
                    AlertDialog.Builder::show);
   }
 
-  public static void showBlockAndDeleteFor(@NonNull Context context,
-                                           @NonNull Lifecycle lifecycle,
-                                           @NonNull Recipient recipient,
-                                           @NonNull Runnable onBlock,
-                                           @NonNull Runnable onBlockAndDelete)
+  public static void showBlockAndReportSpamFor(@NonNull Context context,
+                                               @NonNull Lifecycle lifecycle,
+                                               @NonNull Recipient recipient,
+                                               @NonNull Runnable onBlock,
+                                               @NonNull Runnable onBlockAndReportSpam)
   {
     SimpleTask.run(lifecycle,
-        () -> buildBlockFor(context, recipient, onBlock, onBlockAndDelete),
-        AlertDialog.Builder::show);
+                   () -> buildBlockFor(context, recipient, onBlock, onBlockAndReportSpam),
+                   AlertDialog.Builder::show);
   }
 
   public static void showUnblockFor(@NonNull Context context,
@@ -55,11 +57,11 @@ public final class BlockUnblockDialog {
   private static AlertDialog.Builder buildBlockFor(@NonNull Context context,
                                                    @NonNull Recipient recipient,
                                                    @NonNull Runnable onBlock,
-                                                   @Nullable Runnable onBlockAndDelete)
+                                                   @Nullable Runnable onBlockAndReportSpam)
   {
     recipient = recipient.resolve();
 
-    AlertDialog.Builder builder   = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder   = new MaterialAlertDialogBuilder(context);
     Resources           resources = context.getResources();
 
     if (recipient.isGroup()) {
@@ -78,10 +80,10 @@ public final class BlockUnblockDialog {
       builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_s, recipient.getDisplayName(context)));
       builder.setMessage(R.string.BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages);
 
-      if (onBlockAndDelete != null) {
+      if (onBlockAndReportSpam != null) {
         builder.setNeutralButton(android.R.string.cancel, null);
-        builder.setPositiveButton(R.string.BlockUnblockDialog_block_and_delete, (d, w) -> onBlockAndDelete.run());
-        builder.setNegativeButton(R.string.BlockUnblockDialog_block, (d, w) -> onBlock.run());
+        builder.setNegativeButton(R.string.BlockUnblockDialog_report_spam_and_block, (d, w) -> onBlockAndReportSpam.run());
+        builder.setPositiveButton(R.string.BlockUnblockDialog_block, (d, w) -> onBlock.run());
       } else {
         builder.setPositiveButton(R.string.BlockUnblockDialog_block, ((dialog, which) -> onBlock.run()));
         builder.setNegativeButton(android.R.string.cancel, null);
@@ -98,7 +100,7 @@ public final class BlockUnblockDialog {
   {
     recipient = recipient.resolve();
 
-    AlertDialog.Builder builder   = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder   = new MaterialAlertDialogBuilder(context);
     Resources           resources = context.getResources();
 
     if (recipient.isGroup()) {

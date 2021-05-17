@@ -27,6 +27,7 @@ public interface MmsSmsColumns {
   public static final String REACTIONS_UNREAD         = "reactions_unread";
   public static final String REACTIONS_LAST_SEEN      = "reactions_last_seen";
   public static final String REMOTE_DELETED           = "remote_deleted";
+  public static final String SERVER_GUID              = "server_guid";
 
   /**
    * For storage efficiency, all types are stored within a single 64-bit integer column in the

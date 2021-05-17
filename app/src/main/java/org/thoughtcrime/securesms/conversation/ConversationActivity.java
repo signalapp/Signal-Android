@@ -249,7 +249,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -3369,6 +3368,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
         case ACCEPTED:
           hideMessageRequestBusy();
           break;
+        case BLOCKED_AND_REPORTED:
+          hideMessageRequestBusy();
+          Toast.makeText(this, R.string.ConversationActivity__reported_as_spam_and_blocked, Toast.LENGTH_SHORT).show();
+          break;
         case DELETED:
         case BLOCKED:
           hideMessageRequestBusy();
@@ -3625,7 +3628,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    BlockUnblockDialog.showBlockAndDeleteFor(this, getLifecycle(), recipient, requestModel::onBlock, requestModel::onBlockAndDelete);
+    BlockUnblockDialog.showBlockAndReportSpamFor(this, getLifecycle(), recipient, requestModel::onBlock, requestModel::onBlockAndReportSpam);
   }
 
   private void onMessageRequestUnblockClicked(@NonNull MessageRequestViewModel requestModel) {

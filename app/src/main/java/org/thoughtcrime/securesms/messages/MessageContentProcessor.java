@@ -576,11 +576,14 @@ public final class MessageContentProcessor {
   {
     MessageDatabase     smsDatabase         = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(),
-        content.getSenderDevice(),
-        content.getTimestamp(),
-        content.getServerReceivedTimestamp(),
-        "", Optional.absent(), 0,
-        content.isNeedsReceipt());
+                                                                      content.getSenderDevice(),
+                                                                      content.getTimestamp(),
+                                                                      content.getServerReceivedTimestamp(),
+                                                                      "",
+                                                                      Optional.absent(),
+                                                                      0,
+                                                                      content.isNeedsReceipt(),
+                                                                      content.getServerUuid());
 
     Long threadId;
 
@@ -686,21 +689,22 @@ public final class MessageContentProcessor {
       MessageDatabase      database     = DatabaseFactory.getMmsDatabase(context);
       Recipient            sender       = Recipient.externalHighTrustPush(context, content.getSender());
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender.getId(),
-          content.getTimestamp(),
-          content.getServerReceivedTimestamp(),
-          -1,
-          expiresInSeconds * 1000L,
-          true,
-          false,
-          content.isNeedsReceipt(),
-          Optional.absent(),
-          groupContext,
-          Optional.absent(),
-          Optional.absent(),
-          Optional.absent(),
-          Optional.absent(),
-          Optional.absent(),
-          Optional.absent());
+                                                                   content.getTimestamp(),
+                                                                   content.getServerReceivedTimestamp(),
+                                                                   -1,
+                                                                   expiresInSeconds * 1000L,
+                                                                   true,
+                                                                   false,
+                                                                   content.isNeedsReceipt(),
+                                                                   Optional.absent(),
+                                                                   groupContext,
+                                                                   Optional.absent(),
+                                                                   Optional.absent(),
+                                                                   Optional.absent(),
+                                                                   Optional.absent(),
+                                                                   Optional.absent(),
+                                                                   Optional.absent(),
+                                                                   content.getServerUuid());
 
       database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1104,22 +1108,24 @@ public final class MessageContentProcessor {
       Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
       Optional<List<Mention>>     mentions       = getMentions(message.getMentions());
       Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
-      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(RecipientId.fromHighTrust(content.getSender()),
-          message.getTimestamp(),
-          content.getServerReceivedTimestamp(),
-          -1,
-          message.getExpiresInSeconds() * 1000L,
-          false,
-          message.isViewOnce(),
-          content.isNeedsReceipt(),
-          message.getBody(),
-          message.getGroupContext(),
-          message.getAttachments(),
-          quote,
-          sharedContacts,
-          linkPreviews,
-          mentions,
-          sticker);
+
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(RecipientId.fromHighTrust(content.getSender()),
+                                                                   message.getTimestamp(),
+                                                                   content.getServerReceivedTimestamp(),
+                                                                   -1,
+                                                                   message.getExpiresInSeconds() * 1000L,
+                                                                   false,
+                                                                   message.isViewOnce(),
+                                                                   content.isNeedsReceipt(),
+                                                                   message.getBody(),
+                                                                   message.getGroupContext(),
+                                                                   message.getAttachments(),
+                                                                   quote,
+                                                                   sharedContacts,
+                                                                   linkPreviews,
+                                                                   mentions,
+                                                                   sticker,
+                                                                   content.getServerUuid());
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1328,13 +1334,14 @@ public final class MessageContentProcessor {
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
       IncomingTextMessage textMessage = new IncomingTextMessage(RecipientId.fromHighTrust(content.getSender()),
-          content.getSenderDevice(),
-          message.getTimestamp(),
-          content.getServerReceivedTimestamp(),
-          body,
-          groupId,
-          message.getExpiresInSeconds() * 1000L,
-          content.isNeedsReceipt());
+                                                                content.getSenderDevice(),
+                                                                message.getTimestamp(),
+                                                                content.getServerReceivedTimestamp(),
+                                                                body,
+                                                                groupId,
+                                                                message.getExpiresInSeconds() * 1000L,
+                                                                content.isNeedsReceipt(),
+                                                                content.getServerUuid());
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
       Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
@@ -1803,8 +1810,8 @@ public final class MessageContentProcessor {
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp, Optional<GroupId> groupId) {
     MessageDatabase     database    = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage textMessage = new IncomingTextMessage(Recipient.external(context, sender).getId(),
-        senderDevice, timestamp, -1, "",
-        groupId, 0, false);
+                                                              senderDevice, timestamp, -1, "",
+                                                              groupId, 0, false, null);
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
     return database.insertMessageInbox(textMessage);

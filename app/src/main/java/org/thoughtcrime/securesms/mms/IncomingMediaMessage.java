@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mms;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -32,6 +33,7 @@ public class IncomingMediaMessage {
   private final QuoteModel  quote;
   private final boolean     unidentified;
   private final boolean     viewOnce;
+  private final String      serverGuid;
 
   private final List<Attachment>  attachments    = new LinkedList<>();
   private final List<Contact>     sharedContacts = new LinkedList<>();
@@ -63,6 +65,7 @@ public class IncomingMediaMessage {
     this.viewOnce         = viewOnce;
     this.quote            = null;
     this.unidentified     = unidentified;
+    this.serverGuid       = null;
 
     this.attachments.addAll(attachments);
     this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
@@ -84,7 +87,8 @@ public class IncomingMediaMessage {
                               Optional<List<Contact>> sharedContacts,
                               Optional<List<LinkPreview>> linkPreviews,
                               Optional<List<Mention>> mentions,
-                              Optional<Attachment> sticker)
+                              Optional<Attachment> sticker,
+                              @Nullable String serverGuid)
   {
     this.push             = true;
     this.from             = from;
@@ -109,6 +113,8 @@ public class IncomingMediaMessage {
     if (sticker.isPresent()) {
       this.attachments.add(sticker.get());
     }
+
+    this.serverGuid       = serverGuid;
   }
 
   public int getSubscriptionId() {
@@ -177,5 +183,9 @@ public class IncomingMediaMessage {
 
   public boolean isUnidentified() {
     return unidentified;
+  }
+
+  public @Nullable String getServerGuid() {
+    return serverGuid;
   }
 }

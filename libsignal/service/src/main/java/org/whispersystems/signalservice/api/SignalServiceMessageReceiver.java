@@ -6,7 +6,6 @@
 
 package org.whispersystems.signalservice.api;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -23,8 +22,6 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -300,8 +297,11 @@ public class SignalServiceMessageReceiver {
       callback.onMessage(envelope);
       results.add(envelope);
 
-      if (envelope.hasUuid()) socket.acknowledgeMessage(envelope.getUuid());
-      else                    socket.acknowledgeMessage(entity.getSourceE164(), entity.getTimestamp());
+      if (envelope.hasServerGuid()) {
+        socket.acknowledgeMessage(envelope.getServerGuid());
+      } else {
+        socket.acknowledgeMessage(entity.getSourceE164(), entity.getTimestamp());
+      }
     }
 
     return results;

@@ -156,6 +156,7 @@ public final class JobManagerFactories {
       put(PaymentSendJob.KEY,                        new PaymentSendJob.Factory());
       put(PaymentTransactionCheckJob.KEY,            new PaymentTransactionCheckJob.Factory());
       put(ProfileUploadJob.KEY,                      new ProfileUploadJob.Factory());
+      put(ReportSpamJob.KEY,                         new ReportSpamJob.Factory());
 
       // Migrations
       put(AccountRecordMigrationJob.KEY,             new AccountRecordMigrationJob.Factory());

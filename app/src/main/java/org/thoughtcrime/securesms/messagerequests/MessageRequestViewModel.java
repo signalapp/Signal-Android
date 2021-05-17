@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,7 +19,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.livedata.LiveDataTriple;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
 
@@ -29,16 +27,16 @@ import java.util.List;
 
 public class MessageRequestViewModel extends ViewModel {
 
-  private final SingleLiveEvent<Status>                   status        = new SingleLiveEvent<>();
-  private final SingleLiveEvent<GroupChangeFailureReason> failures      = new SingleLiveEvent<>();
-  private final MutableLiveData<Recipient>                recipient     = new MutableLiveData<>();
-  private final LiveData<MessageData>                     messageData;
-  private final MutableLiveData<List<String>>             groups        = new MutableLiveData<>(Collections.emptyList());
-  private final MutableLiveData<GroupInfo>                groupInfo     = new MutableLiveData<>(GroupInfo.ZERO);
-  private final LiveData<RequestReviewDisplayState>       requestReviewDisplayState;
+  private final SingleLiveEvent<Status>                   status             = new SingleLiveEvent<>();
+  private final SingleLiveEvent<GroupChangeFailureReason> failures           = new SingleLiveEvent<>();
+  private final MutableLiveData<Recipient>                recipient          = new MutableLiveData<>();
+  private final MutableLiveData<List<String>>             groups             = new MutableLiveData<>(Collections.emptyList());
+  private final MutableLiveData<GroupInfo>                groupInfo          = new MutableLiveData<>(GroupInfo.ZERO);
   private final Store<RecipientInfo>                      recipientInfoStore = new Store<>(new RecipientInfo(null, null, null, null));
 
-  private final MessageRequestRepository repository;
+  private final LiveData<MessageData>               messageData;
+  private final LiveData<RequestReviewDisplayState> requestReviewDisplayState;
+  private final MessageRequestRepository            repository;
 
   private LiveRecipient liveRecipient;
   private long          threadId;
@@ -142,11 +140,11 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   @MainThread
-  public void onBlockAndDelete() {
-    repository.blockAndDeleteMessageRequest(liveRecipient,
-                                            threadId,
-                                            () -> status.postValue(Status.BLOCKED),
-                                            this::onGroupChangeError);
+  public void onBlockAndReportSpam() {
+    repository.blockAndReportSpamMessageRequest(liveRecipient,
+                                                threadId,
+                                                () -> status.postValue(Status.BLOCKED_AND_REPORTED),
+                                                this::onGroupChangeError);
   }
 
   private void onGroupChangeError(@NonNull GroupChangeFailureReason error) {
@@ -187,8 +185,8 @@ public class MessageRequestViewModel extends ViewModel {
 
   public static class RecipientInfo {
     @Nullable private final Recipient           recipient;
-    @NonNull  private final GroupInfo           groupInfo;
-    @NonNull  private final List<String>        sharedGroups;
+    @NonNull private final  GroupInfo           groupInfo;
+    @NonNull private final  List<String>        sharedGroups;
     @Nullable private final MessageRequestState messageRequestState;
 
     private RecipientInfo(@Nullable Recipient recipient, @Nullable GroupInfo groupInfo, @Nullable List<String> sharedGroups, @Nullable MessageRequestState messageRequestState) {
@@ -230,6 +228,7 @@ public class MessageRequestViewModel extends ViewModel {
     IDLE,
     BLOCKING,
     BLOCKED,
+    BLOCKED_AND_REPORTED,
     DELETING,
     DELETED,
     ACCEPTING,
@@ -243,7 +242,7 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   public static final class MessageData {
-    private final Recipient    recipient;
+    private final Recipient           recipient;
     private final MessageRequestState messageState;
 
     public MessageData(@NonNull Recipient recipient, @NonNull MessageRequestState messageState) {

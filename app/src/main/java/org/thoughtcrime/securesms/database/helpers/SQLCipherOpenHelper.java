@@ -181,8 +181,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int CLEAN_REACTION_NOTIFICATIONS     = 96;
   private static final int STORAGE_SERVICE_REFACTOR         = 97;
   private static final int CLEAR_MMS_STORAGE_IDS            = 98;
+  private static final int SERVER_GUID                      = 99;
 
-  private static final int    DATABASE_VERSION = 98;
+  private static final int    DATABASE_VERSION = 99;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1455,6 +1456,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         int deleteCount = db.update("recipient", deleteValues, "storage_service_key NOT NULL AND (group_type = 1 OR (group_type = 0 AND phone IS NULL AND uuid IS NULL))", null);
 
         Log.d(TAG, "Cleared storageIds from " + deleteCount + " rows. They were either MMS groups or empty contacts.");
+      }
+
+      if (oldVersion < SERVER_GUID) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN server_guid TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE mms ADD COLUMN server_guid TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

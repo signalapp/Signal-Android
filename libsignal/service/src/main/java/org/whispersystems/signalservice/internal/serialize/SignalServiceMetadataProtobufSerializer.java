@@ -16,15 +16,17 @@ public final class SignalServiceMetadataProtobufSerializer {
                         .setTimestamp(metadata.getTimestamp())
                         .setServerReceivedTimestamp(metadata.getServerReceivedTimestamp())
                         .setServerDeliveredTimestamp(metadata.getServerDeliveredTimestamp())
+                        .setServerGuid(metadata.getServerGuid())
                         .build();
   }
 
   public static SignalServiceMetadata fromProtobuf(MetadataProto metadata) {
     return new SignalServiceMetadata(SignalServiceAddressProtobufSerializer.fromProtobuf(metadata.getAddress()),
-                                                                                         metadata.getSenderDevice(),
-                                                                                         metadata.getTimestamp(),
-                                                                                         metadata.getServerReceivedTimestamp(),
-                                                                                         metadata.getServerDeliveredTimestamp(),
-                                                                                         metadata.getNeedsReceipt());
+                                     metadata.getSenderDevice(),
+                                     metadata.getTimestamp(),
+                                     metadata.getServerReceivedTimestamp(),
+                                     metadata.getServerDeliveredTimestamp(),
+                                     metadata.getNeedsReceipt(),
+                                     metadata.getServerGuid());
   }
 }

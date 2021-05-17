@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -68,7 +67,7 @@ public class PushDatabase extends Database {
       values.put(TIMESTAMP, envelope.getTimestamp());
       values.put(SERVER_RECEIVED_TIMESTAMP, envelope.getServerReceivedTimestamp());
       values.put(SERVER_DELIVERED_TIMESTAMP, envelope.getServerDeliveredTimestamp());
-      values.put(SERVER_GUID, envelope.getUuid());
+      values.put(SERVER_GUID, envelope.getServerGuid());
 
       return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
     }

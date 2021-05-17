@@ -51,14 +51,18 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
     return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.BLOCK_AND_DELETE);
   }
 
-  private MultiDeviceMessageRequestResponseJob(@NonNull RecipientId threadRecipient, @NonNull Type type) {
-    this(new Parameters.Builder()
-                           .setQueue("MultiDeviceMessageRequestResponseJob")
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(Parameters.UNLIMITED)
-                           .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .build(), threadRecipient, type);
+  public static @NonNull MultiDeviceMessageRequestResponseJob forBlockAndReportSpam(@NonNull RecipientId threadRecipient) {
+    return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.BLOCK);
+  }
 
+  private MultiDeviceMessageRequestResponseJob(@NonNull RecipientId threadRecipient, @NonNull Type type) {
+    this(new Parameters.Builder().setQueue("MultiDeviceMessageRequestResponseJob")
+                                 .addConstraint(NetworkConstraint.KEY)
+                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                 .build(),
+         threadRecipient,
+         type);
   }
 
   private MultiDeviceMessageRequestResponseJob(@NonNull Parameters parameters,
@@ -111,11 +115,16 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
 
   private static MessageRequestResponseMessage.Type localToRemoteType(@NonNull Type type) {
     switch (type) {
-      case ACCEPT:           return MessageRequestResponseMessage.Type.ACCEPT;
-      case DELETE:           return MessageRequestResponseMessage.Type.DELETE;
-      case BLOCK:            return MessageRequestResponseMessage.Type.BLOCK;
-      case BLOCK_AND_DELETE: return MessageRequestResponseMessage.Type.BLOCK_AND_DELETE;
-      default:               return MessageRequestResponseMessage.Type.UNKNOWN;
+      case ACCEPT:
+        return MessageRequestResponseMessage.Type.ACCEPT;
+      case DELETE:
+        return MessageRequestResponseMessage.Type.DELETE;
+      case BLOCK:
+        return MessageRequestResponseMessage.Type.BLOCK;
+      case BLOCK_AND_DELETE:
+        return MessageRequestResponseMessage.Type.BLOCK_AND_DELETE;
+      default:
+        return MessageRequestResponseMessage.Type.UNKNOWN;
     }
   }
 

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
+import org.thoughtcrime.securesms.jobs.ReportSpamJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -226,10 +227,10 @@ final class MessageRequestRepository {
     });
   }
 
-  void blockAndDeleteMessageRequest(@NonNull LiveRecipient liveRecipient,
-                                    long threadId,
-                                    @NonNull Runnable onMessageRequestBlocked,
-                                    @NonNull GroupChangeErrorCallback error)
+  void blockAndReportSpamMessageRequest(@NonNull LiveRecipient liveRecipient,
+                                        long threadId,
+                                        @NonNull Runnable onMessageRequestBlocked,
+                                        @NonNull GroupChangeErrorCallback error)
   {
     executor.execute(() -> {
       Recipient recipient = liveRecipient.resolve();
@@ -242,10 +243,10 @@ final class MessageRequestRepository {
       }
       liveRecipient.refresh();
 
-      DatabaseFactory.getThreadDatabase(context).deleteConversation(threadId);
+      ApplicationDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
       if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlockAndDelete(liveRecipient.getId()));
+        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlockAndReportSpam(liveRecipient.getId()));
       }
 
       onMessageRequestBlocked.run();

@@ -38,11 +38,13 @@ import org.thoughtcrime.securesms.util.CursorUtil;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.io.Closeable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MmsSmsDatabase extends Database {
 
@@ -562,6 +564,16 @@ public class MmsSmsDatabase extends Database {
     Log.d(TAG, "deleteAbandonedMessages()");
     DatabaseFactory.getSmsDatabase(context).deleteAbandonedMessages();
     DatabaseFactory.getMmsDatabase(context).deleteAbandonedMessages();
+  }
+
+  public @NonNull List<MessageDatabase.ReportSpamData> getReportSpamMessageServerData(long threadId, long timestamp, int limit) {
+    List<MessageDatabase.ReportSpamData> data = new ArrayList<>();
+    data.addAll(DatabaseFactory.getSmsDatabase(context).getReportSpamMessageServerGuids(threadId, timestamp));
+    data.addAll(DatabaseFactory.getMmsDatabase(context).getReportSpamMessageServerGuids(threadId, timestamp));
+    return data.stream()
+               .sorted((l, r) -> -Long.compare(l.getDateReceived(), r.getDateReceived()))
+               .limit(limit)
+               .collect(Collectors.toList());
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {

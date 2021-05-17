@@ -41,6 +41,7 @@ message MetadataProto {
   optional int64        serverReceivedTimestamp  = 5;
   optional int64        serverDeliveredTimestamp = 6;
   optional bool         needsReceipt             = 4;
+  optional string       serverGuid               = 7;
 }
 
 message AddressProto {

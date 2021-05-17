@@ -180,14 +180,14 @@ public class SignalServiceCipher {
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
         paddedMessage  = sessionCipher.decrypt(new PreKeySignalMessage(ciphertext));
-        metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false);
+        metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid());
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isSignalMessage()) {
         SignalProtocolAddress sourceAddress = getPreferredProtocolAddress(signalProtocolStore, envelope.getSourceAddress(), envelope.getSourceDevice());
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
         paddedMessage  = sessionCipher.decrypt(new SignalMessage(ciphertext));
-        metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false);
+        metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid());
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isUnidentifiedSender()) {
         SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1));
@@ -196,7 +196,7 @@ public class SignalServiceCipher {
         SignalProtocolAddress     protocolAddress     = getPreferredProtocolAddress(signalProtocolStore, resultAddress, result.getDeviceId());
 
         paddedMessage  = result.getPaddedMessage();
-        metadata       = new SignalServiceMetadata(resultAddress, result.getDeviceId(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), true);
+        metadata       = new SignalServiceMetadata(resultAddress, result.getDeviceId(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), true, envelope.getServerGuid());
         sessionVersion = sealedSessionCipher.getSessionVersion(protocolAddress);
       } else {
         throw new InvalidMetadataMessageException("Unknown type: " + envelope.getType());

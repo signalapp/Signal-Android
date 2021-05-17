@@ -185,7 +185,8 @@ public class MmsDatabase extends MessageDatabase {
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
                                                                                   MENTIONS_SELF          + " INTEGER DEFAULT 0, " +
                                                                                   NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0, " +
-                                                                                  VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0);";
+                                                                                  VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0, " +
+                                                                                  SERVER_GUID            + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -1317,6 +1318,7 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(VIEW_ONCE, retrieved.isViewOnce() ? 1 : 0);
     contentValues.put(READ, retrieved.isExpirationUpdate() ? 1 : 0);
     contentValues.put(UNIDENTIFIED, retrieved.isUnidentified());
+    contentValues.put(SERVER_GUID, retrieved.getServerGuid());
 
     if (!contentValues.containsKey(DATE_SENT)) {
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
