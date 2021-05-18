@@ -148,10 +148,6 @@ class RecipientProvider {
         members.add(getRecipient(context, memberAddress, Optional.absent(), Optional.absent(), asynchronous));
       }
 
-      if (!groupId.isMmsGroup() && title == null) {
-        title = context.getString(R.string.RecipientProvider_unnamed_group);
-      }
-
       if (groupRecord.get().getAvatar() != null && groupRecord.get().getAvatar().length > 0) {
         avatarId = groupRecord.get().getAvatarId();
       }

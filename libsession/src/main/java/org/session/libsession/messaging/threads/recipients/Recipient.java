@@ -289,7 +289,7 @@ public class Recipient implements RecipientModifiedListener {
     String displayName = MessagingModuleConfiguration.shared.getStorage().getDisplayName(this.address.toString());
     if (displayName != null) { return displayName; }
 
-    if (this.name == null && isMmsGroupRecipient()) {
+    if (this.name == null && isGroupRecipient()) {
       List<String> names = new LinkedList<>();
 
       for (Recipient recipient : participants) {
@@ -408,12 +408,8 @@ public class Recipient implements RecipientModifiedListener {
     return address.isOpenGroup();
   }
 
-  public boolean isMmsGroupRecipient() {
-    return address.isMmsGroup();
-  }
-
   public boolean isPushGroupRecipient() {
-    return address.isGroup() && !address.isMmsGroup();
+    return address.isGroup();
   }
 
   public @NonNull synchronized List<Recipient> getParticipants() {
@@ -593,7 +589,6 @@ public class Recipient implements RecipientModifiedListener {
 
   public synchronized RegisteredState getRegistered() {
     if      (isPushGroupRecipient()) return RegisteredState.REGISTERED;
-    else if (isMmsGroupRecipient())  return RegisteredState.NOT_REGISTERED;
 
     return registered;
   }

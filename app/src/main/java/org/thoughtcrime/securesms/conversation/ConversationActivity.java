@@ -1106,8 +1106,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (recipient == null || attachmentManager == null) { return; }
 
-    boolean isMediaMessage = recipient.isMmsGroupRecipient() || attachmentManager.isAttachmentPresent();
-
     /* Loki - We don't support SMS
     if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);
     if (recipient.isPushGroupRecipient())            sendButton.disableTransport(Type.SMS);

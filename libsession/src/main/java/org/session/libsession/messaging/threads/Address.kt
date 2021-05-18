@@ -25,8 +25,6 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
         get() = GroupUtil.isClosedGroup(address)
     val isOpenGroup: Boolean
         get() = GroupUtil.isOpenGroup(address)
-    val isMmsGroup: Boolean
-        get() = GroupUtil.isMmsGroup(address)
     val isContact: Boolean
         get() = !isGroup
 

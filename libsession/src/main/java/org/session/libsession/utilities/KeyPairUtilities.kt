@@ -53,8 +53,8 @@ object KeyPairUtilities {
     }
 
     data class KeyPairGenerationResult(
-            val seed: ByteArray,
-            val ed25519KeyPair: KeyPair,
-            val x25519KeyPair: ECKeyPair
+        val seed: ByteArray,
+        val ed25519KeyPair: KeyPair,
+        val x25519KeyPair: ECKeyPair
     )
 }

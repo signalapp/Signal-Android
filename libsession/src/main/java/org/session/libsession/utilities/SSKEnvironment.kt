@@ -7,11 +7,11 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 
 class SSKEnvironment(
-        val typingIndicators: TypingIndicatorsProtocol,
-        val readReceiptManager: ReadReceiptManagerProtocol,
-        val profileManager: ProfileManagerProtocol,
-        val notificationManager: MessageNotifier,
-        val messageExpirationManager: MessageExpirationManagerProtocol
+    val typingIndicators: TypingIndicatorsProtocol,
+    val readReceiptManager: ReadReceiptManagerProtocol,
+    val profileManager: ProfileManagerProtocol,
+    val notificationManager: MessageNotifier,
+    val messageExpirationManager: MessageExpirationManagerProtocol
 ) {
 
     interface TypingIndicatorsProtocol {
