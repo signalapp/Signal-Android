@@ -14,5 +14,6 @@ data class PrivacySettingsState(
   val incognitoKeyboard: Boolean,
   val isObsoletePasswordEnabled: Boolean,
   val isObsoletePasswordTimeoutEnabled: Boolean,
-  val obsoletePasswordTimeout: Int
+  val obsoletePasswordTimeout: Int,
+  val universalExpireTimer: Int
 )

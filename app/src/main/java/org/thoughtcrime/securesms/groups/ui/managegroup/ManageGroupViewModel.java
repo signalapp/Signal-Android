@@ -257,14 +257,6 @@ public class ManageGroupViewModel extends ViewModel {
     return groupInfoMessage;
   }
 
-  void handleExpirationSelection() {
-    manageGroupRepository.getRecipient(getGroupId(),
-                                       groupRecipient ->
-                                         ExpirationDialog.show(context,
-                                                               groupRecipient.getExpireMessages(),
-                                                               expirationTime -> manageGroupRepository.setExpiration(getGroupId(), expirationTime, this::showErrorToast)));
-  }
-
   void applyMembershipRightsChange(@NonNull GroupAccessControl newRights) {
     manageGroupRepository.applyMembershipRightsChange(getGroupId(), newRights, this::showErrorToast);
   }

@@ -56,6 +56,17 @@ class DSLConfiguration {
     children.add(preference)
   }
 
+  fun radioPref(
+    title: DSLSettingsText,
+    summary: DSLSettingsText? = null,
+    isEnabled: Boolean = true,
+    isChecked: Boolean,
+    onClick: () -> Unit
+  ) {
+    val preference = RadioPreference(title, summary, isEnabled, isChecked, onClick)
+    children.add(preference)
+  }
+
   fun clickPref(
     title: DSLSettingsText,
     summary: DSLSettingsText? = null,
@@ -175,11 +186,23 @@ class SwitchPreference(
   }
 }
 
+class RadioPreference(
+  title: DSLSettingsText,
+  summary: DSLSettingsText? = null,
+  isEnabled: Boolean,
+  val isChecked: Boolean,
+  val onClick: () -> Unit
+) : PreferenceModel<RadioPreference>(title = title, summary = summary, isEnabled = isEnabled) {
+  override fun areContentsTheSame(newItem: RadioPreference): Boolean {
+    return super.areContentsTheSame(newItem) && isChecked == newItem.isChecked
+  }
+}
+
 class ClickPreference(
   override val title: DSLSettingsText,
-  override val summary: DSLSettingsText?,
-  @DrawableRes override val iconId: Int,
-  isEnabled: Boolean,
+  override val summary: DSLSettingsText? = null,
+  @DrawableRes override val iconId: Int = UNSET,
+  isEnabled: Boolean = true,
   val onClick: () -> Unit
 ) : PreferenceModel<ClickPreference>(title = title, summary = summary, iconId = iconId, isEnabled = isEnabled)
 

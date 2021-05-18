@@ -360,4 +360,34 @@
         <item>@string/MediaOverviewActivity_Storage_used</item>
     </string-array>
 
+    <string-array name="ExpireTimerSettingsFragment__labels">
+        <item>@string/ExpireTimerSettingsFragment__off</item>
+        <item>@string/ExpireTimerSettingsFragment__4_weeks</item>
+        <item>@string/ExpireTimerSettingsFragment__1_week</item>
+        <item>@string/ExpireTimerSettingsFragment__1_day</item>
+        <item>@string/ExpireTimerSettingsFragment__8_hours</item>
+        <item>@string/ExpireTimerSettingsFragment__1_hour</item>
+        <item>@string/ExpireTimerSettingsFragment__5_minutes</item>
+        <item>@string/ExpireTimerSettingsFragment__30_seconds</item>
+    </string-array>
+
+    <integer-array name="ExpireTimerSettingsFragment__values">
+        <item>0</item>
+        <item>2419200</item>
+        <item>604800</item>
+        <item>86400</item>
+        <item>28800</item>
+        <item>3600</item>
+        <item>300</item>
+        <item>30</item>
+    </integer-array>
+
+    <string-array name="CustomExpireTimerSelectorView__unit_labels">
+        <item>@string/CustomExpireTimerSelectorView__second</item>
+        <item>@string/CustomExpireTimerSelectorView__minute</item>
+        <item>@string/CustomExpireTimerSelectorView__hour</item>
+        <item>@string/CustomExpireTimerSelectorView__day</item>
+        <item>@string/CustomExpireTimerSelectorView__week</item>
+    </string-array>
+
 </resources>

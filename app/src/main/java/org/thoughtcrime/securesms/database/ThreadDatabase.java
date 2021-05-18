@@ -176,8 +176,12 @@ public class ThreadDatabase extends Database {
 
     contentValues.put(MESSAGE_COUNT, 0);
 
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    return db.insert(TABLE_NAME, null, contentValues);
+    SQLiteDatabase db     = databaseHelper.getWritableDatabase();
+    long           result = db.insert(TABLE_NAME, null, contentValues);
+
+    Recipient.live(recipientId).refresh();
+
+    return result;
   }
 
   private void updateThread(long threadId, long count, String body, @Nullable Uri attachment,

@@ -25,7 +25,7 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
         throw IllegalStateException("No navgraph id was passed to activity")
       }
 
-      val fragment: NavHostFragment = NavHostFragment.create(navGraphId)
+      val fragment: NavHostFragment = NavHostFragment.create(navGraphId, intent.getBundleExtra(ARG_START_BUNDLE))
 
       supportFragmentManager.beginTransaction()
         .replace(R.id.nav_host_fragment, fragment)
@@ -61,6 +61,7 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
 
   companion object {
     const val ARG_NAV_GRAPH = "nav_graph"
+    const val ARG_START_BUNDLE = "start_bundle"
   }
 
   private inner class OnBackPressed : OnBackPressedCallback(true) {

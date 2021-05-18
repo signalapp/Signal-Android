@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
@@ -76,6 +78,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer);
     webRtcInteractor.setWantsBluetoothConnection(true);
 
+    RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(remotePeer.getId()));
     DatabaseFactory.getSmsDatabase(context).insertOutgoingCall(remotePeer.getId(), currentState.getCallSetupState().isEnableVideoOnCreate());
 
     webRtcInteractor.retrieveTurnServers(remotePeer);
@@ -97,6 +100,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
     SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forOffer(offerMessage, true, destinationDeviceId);
 
+    Recipient callRecipient = currentState.getCallInfoState().getCallRecipient();
+    RecipientUtil.shareProfileIfFirstSecureMessage(context, callRecipient);
     webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
 
     return currentState;

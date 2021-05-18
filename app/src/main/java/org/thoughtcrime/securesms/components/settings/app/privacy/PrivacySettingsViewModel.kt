@@ -24,6 +24,7 @@ class PrivacySettingsViewModel(
   fun refreshBlockedCount() {
     repository.getBlockedCount { count ->
       store.update { it.copy(blockedCount = count) }
+      refresh()
     }
   }
 
@@ -99,7 +100,8 @@ class PrivacySettingsViewModel(
       findMeByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode,
       isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(ApplicationDependencies.getApplication()),
       isObsoletePasswordTimeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(ApplicationDependencies.getApplication()),
-      obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(ApplicationDependencies.getApplication())
+      obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(ApplicationDependencies.getApplication()),
+      universalExpireTimer = SignalStore.settings().universalExpireTimer
     )
   }
 

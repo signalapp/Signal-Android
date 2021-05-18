@@ -127,6 +127,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("Payments");
       }
 
+      if (this.getUniversalExpireTimer() != that.getUniversalExpireTimer()) {
+        diff.add("UniversalExpireTimer");
+      }
+
       if (!Objects.equals(this.isPrimarySendsSms(), that.isPrimarySendsSms())) {
         diff.add("PrimarySendsSms");
       }
@@ -207,6 +211,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public Payments getPayments() {
     return payments;
+  }
+
+  public int getUniversalExpireTimer() {
+    return proto.getUniversalExpireTimer();
   }
 
   public boolean isPrimarySendsSms() {
@@ -464,6 +472,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
       builder.setPayments(paymentsBuilder);
 
+      return this;
+    }
+
+    public Builder setUniversalExpireTimer(int timer) {
+      builder.setUniversalExpireTimer(timer);
       return this;
     }
 

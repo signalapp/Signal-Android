@@ -79,17 +79,6 @@ final class ManageGroupRepository {
     return new GroupStateResult(threadId, groupRecipient);
   }
 
-  void setExpiration(@NonNull GroupId groupId, int newExpirationTime, @NonNull GroupChangeErrorCallback error) {
-    SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        GroupManager.updateGroupTimer(context, groupId.requirePush(), newExpirationTime);
-      } catch (GroupChangeException | IOException e) {
-        Log.w(TAG, e);
-        error.onError(GroupChangeFailureReason.fromException(e));
-      }
-    });
-  }
-
   void applyMembershipRightsChange(@NonNull GroupId groupId, @NonNull GroupAccessControl newRights, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {

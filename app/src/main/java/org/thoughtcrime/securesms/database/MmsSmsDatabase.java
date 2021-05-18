@@ -337,6 +337,15 @@ public class MmsSmsDatabase extends Database {
     return count;
   }
 
+  public boolean hasMeaningfulMessage(long threadId) {
+    if (threadId == -1) {
+      return false;
+    }
+
+    return DatabaseFactory.getSmsDatabase(context).hasMeaningfulMessage(threadId) ||
+           DatabaseFactory.getMmsDatabase(context).hasMeaningfulMessage(threadId);
+  }
+
   public long getThreadForMessageId(long messageId) {
     long id = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
 

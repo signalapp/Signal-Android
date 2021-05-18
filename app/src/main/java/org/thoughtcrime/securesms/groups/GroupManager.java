@@ -36,11 +36,12 @@ public final class GroupManager {
   private static final String TAG = Log.tag(GroupManager.class);
 
   @WorkerThread
-  public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
-                                                       @NonNull  Set<Recipient> members,
-                                                       @Nullable byte[]         avatar,
-                                                       @Nullable String         name,
-                                                                 boolean        mms)
+  public static @NonNull GroupActionResult createGroup(@NonNull Context context,
+                                                       @NonNull Set<Recipient> members,
+                                                       @Nullable byte[] avatar,
+                                                       @Nullable String name,
+                                                       boolean mms,
+                                                       int disappearingMessagesTimer)
       throws GroupChangeBusyException, GroupChangeFailedException, IOException
   {
     boolean          shouldAttemptToCreateV2 = !mms && !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
@@ -49,7 +50,7 @@ public final class GroupManager {
     if (shouldAttemptToCreateV2) {
       try {
         try (GroupManagerV2.GroupCreator groupCreator = new GroupManagerV2(context).create()) {
-          return groupCreator.createGroup(memberIds, name, avatar);
+          return groupCreator.createGroup(memberIds, name, avatar, disappearingMessagesTimer);
         }
       } catch (MembershipNotSuitableForV2Exception e) {
         Log.w(TAG, "Attempted to make a GV2, but membership was not suitable, falling back to GV1", e);

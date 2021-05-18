@@ -5,6 +5,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
@@ -26,6 +27,7 @@ class DSLSettingsAdapter : MappingAdapter() {
     registerFactory(DividerPreference::class.java, LayoutFactory(::DividerPreferenceViewHolder, R.layout.dsl_divider_item))
     registerFactory(SectionHeaderPreference::class.java, LayoutFactory(::SectionHeaderPreferenceViewHolder, R.layout.dsl_section_header))
     registerFactory(SwitchPreference::class.java, LayoutFactory(::SwitchPreferenceViewHolder, R.layout.dsl_switch_preference_item))
+    registerFactory(RadioPreference::class.java, LayoutFactory(::RadioPreferenceViewHolder, R.layout.dsl_radio_preference_item))
   }
 }
 
@@ -144,6 +146,19 @@ class SwitchPreferenceViewHolder(itemView: View) : PreferenceViewHolder<SwitchPr
     super.bind(model)
     switchWidget.isEnabled = model.isEnabled
     switchWidget.isChecked = model.isChecked
+    itemView.setOnClickListener {
+      model.onClick()
+    }
+  }
+}
+
+class RadioPreferenceViewHolder(itemView: View) : PreferenceViewHolder<RadioPreference>(itemView) {
+
+  private val radioButton: RadioButton = itemView.findViewById(R.id.radio_widget)
+
+  override fun bind(model: RadioPreference) {
+    super.bind(model)
+    radioButton.isChecked = model.isChecked
     itemView.setOnClickListener {
       model.onClick()
     }

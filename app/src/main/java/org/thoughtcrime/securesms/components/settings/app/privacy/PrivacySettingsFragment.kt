@@ -6,12 +6,15 @@ import android.content.Intent
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.TextAppearanceSpan
+import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import mobi.upod.timedurationpicker.TimeDurationPicker
@@ -19,10 +22,14 @@ import mobi.upod.timedurationpicker.TimeDurationPickerDialog
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseChangeActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.ClickPreference
+import org.thoughtcrime.securesms.components.settings.ClickPreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
@@ -30,15 +37,17 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberL
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.lang.Integer.max
-import java.util.ArrayList
-import java.util.LinkedHashMap
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashMap
 
 private val TAG = Log.tag(PrivacySettingsFragment::class.java)
 
@@ -62,6 +71,8 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
+    adapter.registerFactory(ValueClickPreference::class.java, MappingAdapter.LayoutFactory(::ValueClickPreferenceViewHolder, R.layout.value_click_preference_item))
+
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = PrivacySettingsRepository()
     val factory = PrivacySettingsViewModel.Factory(sharedPreferences, repository)
@@ -129,6 +140,23 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
       dividerPref()
 
+      sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)
+
+      customPref(
+        ValueClickPreference(
+          value = DSLSettingsText.from(ExpirationUtil.getExpirationAbbreviatedDisplayValue(requireContext(), state.universalExpireTimer)),
+          clickPreference = ClickPreference(
+            title = DSLSettingsText.from(R.string.PrivacySettingsFragment__default_timer_for_new_changes),
+            summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you),
+            onClick = {
+              NavHostFragment.findNavController(this@PrivacySettingsFragment).navigate(R.id.action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment)
+            }
+          )
+        )
+      )
+
+      dividerPref()
+
       sectionHeaderPref(R.string.PrivacySettingsFragment__app_security)
 
       if (state.isObsoletePasswordEnabled) {
@@ -141,7 +169,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
               setTitle(R.string.ApplicationPreferencesActivity_disable_passphrase)
               setMessage(R.string.ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications)
               setIcon(R.drawable.ic_warning)
-              setPositiveButton(R.string.ApplicationPreferencesActivity_disable) { dialog, which ->
+              setPositiveButton(R.string.ApplicationPreferencesActivity_disable) { _, _ ->
                 MasterSecretUtil.changeMasterSecretPassphrase(
                   activity,
                   KeyCachingService.getMasterSecret(context),
@@ -393,6 +421,33 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       }
       setNegativeButton(android.R.string.cancel, null)
       show()
+    }
+  }
+
+  private class ValueClickPreference(
+    val value: DSLSettingsText,
+    val clickPreference: ClickPreference
+  ) : PreferenceModel<ValueClickPreference>(
+    title = clickPreference.title,
+    summary = clickPreference.summary,
+    iconId = clickPreference.iconId,
+    isEnabled = clickPreference.isEnabled
+  ) {
+    override fun areContentsTheSame(newItem: ValueClickPreference): Boolean {
+      return super.areContentsTheSame(newItem) &&
+        clickPreference == newItem.clickPreference &&
+        value == newItem.value
+    }
+  }
+
+  private class ValueClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<ValueClickPreference>(itemView) {
+    private val clickPreferenceViewHolder = ClickPreferenceViewHolder(itemView)
+    private val valueText: TextView = findViewById(R.id.value_client_preference_value)
+
+    override fun bind(model: ValueClickPreference) {
+      super.bind(model)
+      clickPreferenceViewHolder.bind(model.clickPreference)
+      valueText.text = model.value.resolve(context)
     }
   }
 }

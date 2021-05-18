@@ -69,8 +69,11 @@ public class ConversationViewModel extends ViewModel {
     this.pagingController       = new ProxyPagingController();
     this.messageObserver        = pagingController::onDataInvalidated;
 
-    LiveData<ConversationData> metadata = Transformations.switchMap(threadId, thread -> {
-      LiveData<ConversationData> conversationData = conversationRepository.getConversationData(thread, jumpToPosition);
+    LiveData<Recipient>          recipientLiveData  = LiveDataUtil.mapAsync(recipientId, Recipient::resolved);
+    LiveData<ThreadAndRecipient> threadAndRecipient = LiveDataUtil.combineLatest(threadId, recipientLiveData, ThreadAndRecipient::new);
+
+    LiveData<ConversationData> metadata = Transformations.switchMap(threadAndRecipient, d -> {
+      LiveData<ConversationData> conversationData = conversationRepository.getConversationData(d.threadId, d.recipient, jumpToPosition);
 
       jumpToPosition = -1;
 
@@ -94,12 +97,11 @@ public class ConversationViewModel extends ViewModel {
       ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver);
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), messageObserver);
 
-      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData);
-      PagingConfig           config     = new PagingConfig.Builder()
-                                                          .setPageSize(25)
-                                                          .setBufferPages(3)
-                                                          .setStartIndex(Math.max(startPosition, 0))
-                                                          .build();
+      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData, data.showUniversalExpireTimerMessage());
+      PagingConfig           config     = new PagingConfig.Builder().setPageSize(25)
+                                                                    .setBufferPages(3)
+                                                                    .setStartIndex(Math.max(startPosition, 0))
+                                                                    .build();
 
       Log.d(TAG, "Starting at position: " + startPosition + " || jumpToPosition: " + data.getJumpToPosition() + ", lastSeenPosition: " + data.getLastSeenPosition() + ", lastScrolledPosition: " + data.getLastScrolledPosition());
       return new Pair<>(data.getThreadId(), PagedData.create(dataSource, config));
@@ -213,9 +215,20 @@ public class ConversationViewModel extends ViewModel {
     SHOW_RECAPTCHA
   }
 
+  private static class ThreadAndRecipient {
+
+    private final long      threadId;
+    private final Recipient recipient;
+
+    public ThreadAndRecipient(long threadId, Recipient recipient) {
+      this.threadId  = threadId;
+      this.recipient = recipient;
+    }
+  }
+
   static class Factory extends ViewModelProvider.NewInstanceFactory {
     @Override
-    public @NonNull<T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+    public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
       return modelClass.cast(new ConversationViewModel());
     }

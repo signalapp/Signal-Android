@@ -233,14 +233,11 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public int getMessageCountForThreadSummary(long threadId) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    SqlUtil.Query  query = buildMeaningfulMessagesQuery(threadId);
+    String[]       cols  = { "COUNT(*)" };
 
-    String[] cols  = { "COUNT(*)" };
-    String   query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND TYPE != ?)";
-    long     type  = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
-    String[] args  = SqlUtil.buildArgs(threadId, type, Types.PROFILE_CHANGE_TYPE);
-
-    try (Cursor cursor = db.query(TABLE_NAME, cols, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME, cols, query.getWhere(), query.getWhereArgs(), null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         int count = cursor.getInt(0);
         if (count > 0) {
@@ -284,6 +281,22 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     return 0;
+  }
+
+  @Override
+  public boolean hasMeaningfulMessage(long threadId) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    SqlUtil.Query  query = buildMeaningfulMessagesQuery(threadId);
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { "1" }, query.getWhere(), query.getWhereArgs(), null, null, null, "1")) {
+      return cursor != null && cursor.moveToFirst();
+    }
+  }
+
+  private @NonNull SqlUtil.Query buildMeaningfulMessagesQuery(long threadId) {
+    String query = THREAD_ID + " = ? AND (NOT " + TYPE + " & ? AND TYPE != ?)";
+    long   type  = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    return SqlUtil.buildQuery(query, threadId, type, Types.PROFILE_CHANGE_TYPE);
   }
 
   @Override

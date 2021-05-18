@@ -240,11 +240,18 @@ public abstract class MessageRecord extends DisplayRecord {
 
       if (decryptedGroupV2Context.hasChange() && (decryptedGroupV2Context.getGroupState().getRevision() != 0 || decryptedGroupV2Context.hasPreviousGroupState())) {
         return UpdateDescription.concatWithNewLines(updateMessageProducer.describeChanges(decryptedGroupV2Context.getPreviousGroupState(), decryptedGroupV2Context.getChange()));
-      } else if (selfCreatedGroup(decryptedGroupV2Context.getChange())) {
-        return UpdateDescription.concatWithNewLines(Arrays.asList(updateMessageProducer.describeNewGroup(decryptedGroupV2Context.getGroupState(), decryptedGroupV2Context.getChange()),
-                                                                  staticUpdateDescription(context.getString(R.string.MessageRecord_invite_friends_to_this_group), 0)));
       } else {
-        return updateMessageProducer.describeNewGroup(decryptedGroupV2Context.getGroupState(), decryptedGroupV2Context.getChange());
+        List<UpdateDescription> newGroupDescriptions = new ArrayList<>();
+        newGroupDescriptions.add(updateMessageProducer.describeNewGroup(decryptedGroupV2Context.getGroupState(), decryptedGroupV2Context.getChange()));
+
+        if (decryptedGroupV2Context.getChange().hasNewTimer()) {
+          updateMessageProducer.describeNewTimer(decryptedGroupV2Context.getChange(), newGroupDescriptions);
+        }
+
+        if (selfCreatedGroup(decryptedGroupV2Context.getChange())) {
+          newGroupDescriptions.add(staticUpdateDescription(context.getString(R.string.MessageRecord_invite_friends_to_this_group), 0));
+        }
+        return UpdateDescription.concatWithNewLines(newGroupDescriptions);
       }
     } catch (IOException e) {
       Log.w(TAG, "GV2 Message update detail could not be read", e);

@@ -151,6 +151,10 @@ public final class SqlUtil {
     return new Query(column + " IN (" + query.toString() + ")", buildArgs(args));
   }
 
+  public static @NonNull Query buildQuery(@NonNull String where, @NonNull Object... args) {
+    return new SqlUtil.Query(where, SqlUtil.buildArgs(args));
+  }
+
   public static String[] appendArg(@NonNull String[] args, String addition) {
     String[] output = new String[args.length + 1];
 

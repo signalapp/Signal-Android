@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,8 +31,10 @@ import com.dd.CircularProgressButton;
 import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsFragment;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.creategroup.dialogs.NonGv2MemberDialog;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -40,7 +43,9 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -54,6 +59,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
   private static final int   AVATAR_PLACEHOLDER_INSET_DP = 18;
   private static final short REQUEST_CODE_AVATAR         = 27621;
+  private static final short REQUEST_DISAPPEARING_TIMER  = 28621;
 
   private CircularProgressButton   create;
   private Callback                 callback;
@@ -61,6 +67,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   private Drawable                 avatarPlaceholder;
   private EditText                 name;
   private Toolbar                  toolbar;
+  private View                     disappearingMessagesRow;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -83,17 +90,19 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    create  = view.findViewById(R.id.create);
-    name    = view.findViewById(R.id.name);
-    toolbar = view.findViewById(R.id.toolbar);
+    create                  = view.findViewById(R.id.create);
+    name                    = view.findViewById(R.id.name);
+    toolbar                 = view.findViewById(R.id.toolbar);
+    disappearingMessagesRow = view.findViewById(R.id.group_disappearing_messages_row);
 
     setCreateEnabled(false, false);
 
-    GroupMemberListView members    = view.findViewById(R.id.member_list);
-    ImageView           avatar     = view.findViewById(R.id.group_avatar);
-    View                mmsWarning = view.findViewById(R.id.mms_warning);
-    LearnMoreTextView   gv2Warning = view.findViewById(R.id.gv2_warning);
-    View                addLater   = view.findViewById(R.id.add_later);
+    GroupMemberListView members                  = view.findViewById(R.id.member_list);
+    ImageView           avatar                   = view.findViewById(R.id.group_avatar);
+    View                mmsWarning               = view.findViewById(R.id.mms_warning);
+    LearnMoreTextView   gv2Warning               = view.findViewById(R.id.gv2_warning);
+    View                addLater                 = view.findViewById(R.id.add_later);
+    TextView            disappearingMessageValue = view.findViewById(R.id.group_disappearing_messages_value);
 
     avatarPlaceholder = VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_32_ultramarine, requireActivity().getTheme());
 
@@ -115,6 +124,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     });
     viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
+      disappearingMessagesRow.setVisibility(isMms ? View.GONE : View.VISIBLE);
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
       name.setHint(isMms ? R.string.AddGroupDetailsFragment__group_name_optional : R.string.AddGroupDetailsFragment__group_name_required);
       toolbar.setTitle(isMms ? R.string.AddGroupDetailsFragment__create_group : R.string.AddGroupDetailsFragment__name_this_group);
@@ -141,6 +151,11 @@ public class AddGroupDetailsFragment extends LoggingFragment {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(avatar);
       }
+    });
+
+    viewModel.getDisappearingMessagesTimer().observe(getViewLifecycleOwner(), timer -> disappearingMessageValue.setText(ExpirationUtil.getExpirationDisplayValue(requireContext(), timer)));
+    disappearingMessagesRow.setOnClickListener(v -> {
+      startActivityForResult(RecipientDisappearingMessagesActivity.forCreateGroup(requireContext(), viewModel.getDisappearingMessagesTimer().getValue()), REQUEST_DISAPPEARING_TIMER);
     });
 
     name.requestFocus();
@@ -175,6 +190,8 @@ public class AddGroupDetailsFragment extends LoggingFragment {
                 public void onLoadCleared(@Nullable Drawable placeholder) {
                 }
               });
+    } else if (requestCode == REQUEST_DISAPPEARING_TIMER && resultCode == Activity.RESULT_OK && data != null) {
+      viewModel.setDisappearingMessageTimer(data.getIntExtra(ExpireTimerSettingsFragment.FOR_RESULT_VALUE, SignalStore.settings().getUniversalExpireTimer()));
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }

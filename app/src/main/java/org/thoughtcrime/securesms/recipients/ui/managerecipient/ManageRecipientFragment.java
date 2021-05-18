@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
@@ -239,7 +240,7 @@ public class ManageRecipientFragment extends LoggingFragment {
       internalDetails.setVisibility(View.GONE);
     }
 
-    disappearingMessagesRow.setOnClickListener(v -> viewModel.handleExpirationSelection(requireContext()));
+    disappearingMessagesRow.setOnClickListener(v -> startActivity(RecipientDisappearingMessagesActivity.forRecipient(requireContext(), recipientId)));
     block.setOnClickListener(v -> viewModel.onBlockClicked(requireActivity()));
     unblock.setOnClickListener(v -> viewModel.onUnblockClicked(requireActivity()));
 

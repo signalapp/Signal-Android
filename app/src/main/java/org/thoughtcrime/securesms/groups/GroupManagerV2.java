@@ -244,23 +244,15 @@ final class GroupManagerV2 {
     @WorkerThread
     @NonNull GroupManager.GroupActionResult createGroup(@NonNull Collection<RecipientId> members,
                                                         @Nullable String name,
-                                                        @Nullable byte[] avatar)
-        throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
-    {
-      return createGroup(name, avatar, members);
-    }
-
-    @WorkerThread
-    private @NonNull GroupManager.GroupActionResult createGroup(@Nullable String name,
-                                                                @Nullable byte[] avatar,
-                                                                @NonNull Collection<RecipientId> members)
+                                                        @Nullable byte[] avatar,
+                                                        int disappearingMessagesTimer)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
     {
       GroupSecretParams groupSecretParams = GroupSecretParams.generate();
       DecryptedGroup    decryptedGroup;
 
       try {
-        decryptedGroup = createGroupOnServer(groupSecretParams, name, avatar, members, Member.Role.DEFAULT, 0);
+        decryptedGroup = createGroupOnServer(groupSecretParams, name, avatar, members, Member.Role.DEFAULT, disappearingMessagesTimer);
       } catch (GroupAlreadyExistsException e) {
         throw new GroupChangeFailedException(e);
       }

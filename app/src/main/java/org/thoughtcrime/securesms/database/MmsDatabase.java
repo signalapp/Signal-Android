@@ -621,6 +621,19 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public boolean hasMeaningfulMessage(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    String[] cols  = new String[] { "1" };
+    String   query = THREAD_ID + " = ?";
+    String[] args  = SqlUtil.buildArgs(threadId);
+
+    try (Cursor cursor = db.query(TABLE_NAME, cols, query, args, null, null, null, "1")) {
+      return cursor != null && cursor.moveToFirst();
+    }
+  }
+
+  @Override
   public void addFailures(long messageId, List<NetworkFailure> failure) {
     try {
       addToDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureList.class);

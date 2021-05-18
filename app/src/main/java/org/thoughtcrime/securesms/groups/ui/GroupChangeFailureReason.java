@@ -17,7 +17,7 @@ public enum GroupChangeFailureReason {
   NETWORK,
   OTHER;
 
-  public static @NonNull GroupChangeFailureReason fromException(@NonNull Exception e) {
+  public static @NonNull GroupChangeFailureReason fromException(@NonNull Throwable e) {
     if (e instanceof MembershipNotSuitableForV2Exception) return GroupChangeFailureReason.NOT_CAPABLE;
     if (e instanceof IOException)                         return GroupChangeFailureReason.NETWORK;
     if (e instanceof GroupNotAMemberException)            return GroupChangeFailureReason.NOT_A_MEMBER;

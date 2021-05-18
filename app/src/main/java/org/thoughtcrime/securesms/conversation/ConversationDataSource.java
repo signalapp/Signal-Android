@@ -35,17 +35,21 @@ class ConversationDataSource implements PagedDataSource<ConversationMessage> {
   private final Context            context;
   private final long               threadId;
   private final MessageRequestData messageRequestData;
+  private final boolean            showUniversalExpireTimerUpdate;
 
-  ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData) {
-    this.context            = context;
-    this.threadId           = threadId;
-    this.messageRequestData = messageRequestData;
+  ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate) {
+    this.context                        = context;
+    this.threadId                       = threadId;
+    this.messageRequestData             = messageRequestData;
+    this.showUniversalExpireTimerUpdate = showUniversalExpireTimerUpdate;
   }
 
   @Override
   public int size() {
     long startTime = System.currentTimeMillis();
-    int  size      = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId) + (messageRequestData.includeWarningUpdateMessage() ? 1 : 0);
+    int  size      = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId) +
+                     (messageRequestData.includeWarningUpdateMessage() ? 1 : 0) +
+                     (showUniversalExpireTimerUpdate ? 1 : 0);
 
     Log.d(TAG, "size() for thread " + threadId + ": " + (System.currentTimeMillis() - startTime) + " ms");
 
@@ -69,6 +73,10 @@ class ConversationDataSource implements PagedDataSource<ConversationMessage> {
 
     if (messageRequestData.includeWarningUpdateMessage() && (start + length >= size())) {
       records.add(new InMemoryMessageRecord.NoGroupsInCommon(threadId, messageRequestData.isGroup()));
+    }
+
+    if (showUniversalExpireTimerUpdate) {
+      records.add(new InMemoryMessageRecord.UniversalExpireTimerUpdate(threadId));
     }
 
     stopwatch.split("messages");

@@ -19,10 +19,8 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.sms.MessageSender;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,14 +58,6 @@ final class ManageRecipientRepository {
     SignalExecutors.BOUNDED.execute(() -> callback.accept(DatabaseFactory.getIdentityDatabase(context)
                                                   .getIdentity(recipientId)
                                                   .orNull()));
-  }
-
-  void setExpiration(int newExpirationTime) {
-    SignalExecutors.BOUNDED.execute(() -> {
-      DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipientId, newExpirationTime);
-      OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L);
-      MessageSender.send(context, outgoingMessage, getThreadId(), false, null);
-    });
   }
 
   void getGroupMembership(@NonNull Consumer<List<RecipientId>> onComplete) {

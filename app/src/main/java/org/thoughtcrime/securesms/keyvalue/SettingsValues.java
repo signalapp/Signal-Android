@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
-import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.concurrent.SignalExecutors;
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
@@ -41,30 +41,30 @@ public final class SettingsValues extends SignalStoreValues {
   public static final String THREAD_TRIM_LENGTH  = "pref_trim_length";
   public static final String THREAD_TRIM_ENABLED = "pref_trim_threads";
 
-  public static final String THEME                                   = "settings.theme";
-  public static final String MESSAGE_FONT_SIZE                       = "settings.message.font.size";
-  public static final String LANGUAGE                                = "settings.language";
-  public static final String PREFER_SYSTEM_EMOJI                     = "settings.use.system.emoji";
-  public static final String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
-  public static final String BACKUPS_ENABLED                         = "settings.backups.enabled";
-  public static final String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
-  public static final String WIFI_CALLING_COMPATIBILITY_MODE_ENABLED = "settings.wifi.calling.compatibility.mode.enabled";
-  public static final String MESSAGE_NOTIFICATIONS_ENABLED           = "settings.message.notifications.enabled";
-  public static final String MESSAGE_NOTIFICATION_SOUND              = "settings.message.notifications.sound";
-  public static final String MESSAGE_VIBRATE_ENABLED                 = "settings.message.vibrate.enabled";
-  public static final String MESSAGE_LED_COLOR                       = "settings.message.led.color";
-  public static final String MESSAGE_LED_BLINK_PATTERN               = "settings.message.led.blink";
-  public static final String MESSAGE_IN_CHAT_SOUNDS_ENABLED          = "settings.message.in.chats.sounds.enabled";
-  public static final String MESSAGE_REPEAT_ALERTS                   = "settings.message.repeat.alerts";
-  public static final String MESSAGE_NOTIFICATION_PRIVACY            = "settings.message.notification.privacy";
-  public static final String CALL_NOTIFICATIONS_ENABLED              = "settings.call.notifications.enabled";
-  public static final String CALL_RINGTONE                           = "settings.call.ringtone";
-  public static final String CALL_VIBRATE_ENABLED                    = "settings.call.vibrate.enabled";
-  public static final String NOTIFY_WHEN_CONTACT_JOINS_SIGNAL        = "settings.notify.when.contact.joins.signal";
+  public static final  String THEME                                   = "settings.theme";
+  public static final  String MESSAGE_FONT_SIZE                       = "settings.message.font.size";
+  public static final  String LANGUAGE                                = "settings.language";
+  public static final  String PREFER_SYSTEM_EMOJI                     = "settings.use.system.emoji";
+  public static final  String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
+  public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
+  public static final  String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
+  public static final  String WIFI_CALLING_COMPATIBILITY_MODE_ENABLED = "settings.wifi.calling.compatibility.mode.enabled";
+  public static final  String MESSAGE_NOTIFICATIONS_ENABLED           = "settings.message.notifications.enabled";
+  public static final  String MESSAGE_NOTIFICATION_SOUND              = "settings.message.notifications.sound";
+  public static final  String MESSAGE_VIBRATE_ENABLED                 = "settings.message.vibrate.enabled";
+  public static final  String MESSAGE_LED_COLOR                       = "settings.message.led.color";
+  public static final  String MESSAGE_LED_BLINK_PATTERN               = "settings.message.led.blink";
+  public static final  String MESSAGE_IN_CHAT_SOUNDS_ENABLED          = "settings.message.in.chats.sounds.enabled";
+  public static final  String MESSAGE_REPEAT_ALERTS                   = "settings.message.repeat.alerts";
+  public static final  String MESSAGE_NOTIFICATION_PRIVACY            = "settings.message.notification.privacy";
+  public static final  String CALL_NOTIFICATIONS_ENABLED              = "settings.call.notifications.enabled";
+  public static final  String CALL_RINGTONE                           = "settings.call.ringtone";
+  public static final  String CALL_VIBRATE_ENABLED                    = "settings.call.vibrate.enabled";
+  public static final  String NOTIFY_WHEN_CONTACT_JOINS_SIGNAL        = "settings.notify.when.contact.joins.signal";
+  private static final String DEFAULT_SMS                             = "settings.default_sms";
+  private static final String UNIVERSAL_EXPIRE_TIMER                  = "settings.universal.expire.timer";
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
-
-  private static final String DEFAULT_SMS = "settings.default_sms";
 
   SettingsValues(@NonNull KeyValueStore store) {
     super(store);
@@ -104,7 +104,8 @@ public final class SettingsValues extends SignalStoreValues {
                          CALL_NOTIFICATIONS_ENABLED,
                          CALL_RINGTONE,
                          CALL_VIBRATE_ENABLED,
-                         NOTIFY_WHEN_CONTACT_JOINS_SIGNAL);
+                         NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
+                         UNIVERSAL_EXPIRE_TIMER);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
@@ -368,6 +369,18 @@ public final class SettingsValues extends SignalStoreValues {
         StorageSyncHelper.scheduleSyncForDataChange();
       });
     }
+  }
+
+  public void setUniversalExpireTimer(int seconds) {
+    putInteger(UNIVERSAL_EXPIRE_TIMER, seconds);
+    SignalExecutors.BOUNDED.execute(() -> {
+      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).markNeedsSync(Recipient.self().getId());
+      StorageSyncHelper.scheduleSyncForDataChange();
+    });
+  }
+
+  public int getUniversalExpireTimer() {
+    return getInteger(UNIVERSAL_EXPIRE_TIMER, 0);
   }
 
   private @Nullable Uri getUri(@NonNull String key) {

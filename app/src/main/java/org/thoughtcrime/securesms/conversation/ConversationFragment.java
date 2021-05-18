@@ -183,38 +183,37 @@ public class ConversationFragment extends LoggingFragment {
 
   private ConversationFragmentListener listener;
 
-  private LiveRecipient               recipient;
-  private long                        threadId;
-  private boolean                     isReacting;
-  private ActionMode                  actionMode;
-  private Locale                      locale;
-  private FrameLayout                 videoContainer;
-  private RecyclerView                list;
-  private RecyclerView.ItemDecoration lastSeenDecoration;
-  private RecyclerView.ItemDecoration inlineDateDecoration;
-  private ViewSwitcher                topLoadMoreView;
-  private ViewSwitcher                bottomLoadMoreView;
-  private ConversationTypingView      typingView;
-  private View                        composeDivider;
-  private ConversationScrollToView    scrollToBottomButton;
-  private ConversationScrollToView    scrollToMentionButton;
-  private TextView                    scrollDateHeader;
-  private ConversationBannerView      conversationBanner;
-  private ConversationBannerView      emptyConversationBanner;
-  private MessageRequestViewModel     messageRequestViewModel;
-  private MessageCountsViewModel      messageCountsViewModel;
-  private ConversationViewModel       conversationViewModel;
-  private SnapToTopDataObserver       snapToTopDataObserver;
-  private MarkReadHelper              markReadHelper;
-  private Animation                   scrollButtonInAnimation;
-  private Animation                   mentionButtonInAnimation;
-  private Animation                   scrollButtonOutAnimation;
-  private Animation                   mentionButtonOutAnimation;
-  private OnScrollListener            conversationScrollListener;
-  private int                         pulsePosition = -1;
-  private VoiceNoteMediaController    voiceNoteMediaController;
-  private View                        toolbarShadow;
-  private Stopwatch                   startupStopwatch;
+  private LiveRecipient                recipient;
+  private long                         threadId;
+  private boolean                      isReacting;
+  private ActionMode                   actionMode;
+  private Locale                       locale;
+  private FrameLayout                  videoContainer;
+  private RecyclerView                 list;
+  private RecyclerView.ItemDecoration  lastSeenDecoration;
+  private RecyclerView.ItemDecoration  inlineDateDecoration;
+  private ViewSwitcher                 topLoadMoreView;
+  private ViewSwitcher                 bottomLoadMoreView;
+  private ConversationTypingView       typingView;
+  private View                         composeDivider;
+  private ConversationScrollToView     scrollToBottomButton;
+  private ConversationScrollToView     scrollToMentionButton;
+  private TextView                     scrollDateHeader;
+  private ConversationBannerView       conversationBanner;
+  private MessageRequestViewModel      messageRequestViewModel;
+  private MessageCountsViewModel       messageCountsViewModel;
+  private ConversationViewModel        conversationViewModel;
+  private SnapToTopDataObserver        snapToTopDataObserver;
+  private MarkReadHelper               markReadHelper;
+  private Animation                    scrollButtonInAnimation;
+  private Animation                    mentionButtonInAnimation;
+  private Animation                    scrollButtonOutAnimation;
+  private Animation                    mentionButtonOutAnimation;
+  private OnScrollListener             conversationScrollListener;
+  private int                          pulsePosition = -1;
+  private VoiceNoteMediaController     voiceNoteMediaController;
+  private View                         toolbarShadow;
+  private Stopwatch                    startupStopwatch;
 
   private GiphyMp4ProjectionRecycler giphyMp4ProjectionRecycler;
 
@@ -240,15 +239,14 @@ public class ConversationFragment extends LoggingFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
-    videoContainer          = view.findViewById(R.id.video_container);
-    list                    = view.findViewById(android.R.id.list);
-    composeDivider          = view.findViewById(R.id.compose_divider);
+    videoContainer = view.findViewById(R.id.video_container);
+    list           = view.findViewById(android.R.id.list);
+    composeDivider = view.findViewById(R.id.compose_divider);
 
-    scrollToBottomButton    = view.findViewById(R.id.scroll_to_bottom);
-    scrollToMentionButton   = view.findViewById(R.id.scroll_to_mention);
-    scrollDateHeader        = view.findViewById(R.id.scroll_date_header);
-    emptyConversationBanner = view.findViewById(R.id.empty_conversation_banner);
-    toolbarShadow           = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
+    scrollToBottomButton  = view.findViewById(R.id.scroll_to_bottom);
+    scrollToMentionButton = view.findViewById(R.id.scroll_to_mention);
+    scrollDateHeader      = view.findViewById(R.id.scroll_date_header);
+    toolbarShadow         = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
 
     final LinearLayoutManager layoutManager = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     list.setHasFixedSize(false);
@@ -483,7 +481,6 @@ public class ConversationFragment extends LoggingFragment {
 
     messageRequestViewModel.getRecipientInfo().observe(getViewLifecycleOwner(), recipientInfo -> {
       presentMessageRequestProfileView(requireContext(), recipientInfo, conversationBanner);
-      presentMessageRequestProfileView(requireContext(), recipientInfo, emptyConversationBanner);
     });
 
     messageRequestViewModel.getMessageData().observe(getViewLifecycleOwner(), data -> {
@@ -606,7 +603,16 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private void initializeListAdapter() {
-    if (this.recipient != null && this.threadId != -1) {
+    if (threadId == -1) {
+      toolbarShadow.setVisibility(View.GONE);
+    }
+
+    if (this.recipient != null) {
+      if (getListAdapter() != null && getListAdapter().isForRecipientId(this.recipient.getId())) {
+        Log.d(TAG, "List adapter already initialized for " + this.recipient.getId());
+        return;
+      }
+
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
       ConversationAdapter adapter = new ConversationAdapter(this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get(), new AttachmentMediaSourceFactory(requireContext()));
       adapter.setPagingController(conversationViewModel.getPagingController());
@@ -617,8 +623,6 @@ public class ConversationFragment extends LoggingFragment {
       adapter.registerAdapterDataObserver(snapToTopDataObserver);
 
       setLastSeen(conversationViewModel.getLastSeen());
-
-      emptyConversationBanner.setVisibility(View.GONE);
 
       adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
         @Override
@@ -631,9 +635,6 @@ public class ConversationFragment extends LoggingFragment {
           });
         }
       });
-    } else if (threadId == -1) {
-      emptyConversationBanner.setVisibility(View.VISIBLE);
-      toolbarShadow.setVisibility(View.GONE);
     }
   }
 
@@ -726,6 +727,7 @@ public class ConversationFragment extends LoggingFragment {
     menu.findItem(R.id.menu_context_save_attachment).setVisible(menuState.shouldShowSaveAttachmentAction());
     menu.findItem(R.id.menu_context_resend).setVisible(menuState.shouldShowResendAction());
     menu.findItem(R.id.menu_context_copy).setVisible(menuState.shouldShowCopyAction());
+    menu.findItem(R.id.menu_context_delete_message).setVisible(menuState.shouldShowDeleteAction());
   }
 
   private @Nullable ConversationAdapter getListAdapter() {
@@ -756,7 +758,9 @@ public class ConversationFragment extends LoggingFragment {
       snapToTopDataObserver.requestScrollPosition(0);
       conversationViewModel.onConversationDataAvailable(recipient.getId(), threadId, -1);
       messageCountsViewModel.setThreadId(threadId);
+      markReadHelper = new MarkReadHelper(threadId, requireContext());
       initializeListAdapter();
+      initializeTypingObserver();
     }
   }
 
@@ -1229,7 +1233,6 @@ public class ConversationFragment extends LoggingFragment {
         toolbar.getGlobalVisibleRect(rect);
         ViewUtil.setTopMargin(scrollDateHeader, rect.bottom + ViewUtil.dpToPx(8));
         ViewUtil.setTopMargin(conversationBanner, rect.bottom + ViewUtil.dpToPx(16));
-        ViewUtil.setTopMargin(emptyConversationBanner, rect.bottom + ViewUtil.dpToPx(16));
         toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
       }
     });

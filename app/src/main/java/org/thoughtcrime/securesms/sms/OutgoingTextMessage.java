@@ -28,6 +28,10 @@ public class OutgoingTextMessage {
     this.message        = body;
   }
 
+  public OutgoingTextMessage(OutgoingTextMessage base, long expiresIn) {
+    this(base.getRecipient(), base.getMessageBody(), expiresIn, base.getSubscriptionId());
+  }
+
   public long getExpiresIn() {
     return expiresIn;
   }

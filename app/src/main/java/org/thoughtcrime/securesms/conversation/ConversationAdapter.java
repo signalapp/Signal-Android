@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Projection;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -372,6 +373,10 @@ public class ConversationAdapter
 
   public void setPagingController(@Nullable PagingController pagingController) {
     this.pagingController = pagingController;
+  }
+
+  public boolean isForRecipientId(@NonNull RecipientId recipientId) {
+    return recipient.getId().equals(recipientId);
   }
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {

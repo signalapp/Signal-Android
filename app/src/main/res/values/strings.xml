@@ -1907,6 +1907,7 @@
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common. Review requests carefully.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
     <string name="ConversationUpdateItem_view">View</string>
+    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">The disappearing message time will be set to %1$s when you message them.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -3415,14 +3416,38 @@
     <string name="PrivacySettingsFragment__blocked">Blocked</string>
     <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
     <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="PrivacySettingsFragment__app_security">App security</string>
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
     <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Show an icon in message details when they were delivered using sealed sender.</string>
+
+    <!-- ExpireTimerSettingsFragment -->
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in new chats started by you will disappear after they have been seen.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in this chat will disappear after they have been seen.</string>
+    <string name="ExpireTimerSettingsFragment__off">Off</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
+    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
+    <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
+    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
+    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
+    <string name="ExpireTimerSettingsFragment__set">Set</string>
+    <string name="ExpireTimerSettingsFragment__save">Save</string>
+
+    <string name="CustomExpireTimerSelectorView__second">Second</string>
+    <string name="CustomExpireTimerSelectorView__minute">Minute</string>
+    <string name="CustomExpireTimerSelectorView__hour">Hour</string>
+    <string name="CustomExpireTimerSelectorView__day">Day</string>
+    <string name="CustomExpireTimerSelectorView__week">Week</string>
 
     <!-- HelpSettingsFragment -->
     <string name="HelpSettingsFragment__support_center">Support center</string>

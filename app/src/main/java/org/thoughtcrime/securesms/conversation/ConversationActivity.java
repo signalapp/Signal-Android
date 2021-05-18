@@ -2412,6 +2412,17 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (groupCallViewModel != null) {
       groupCallViewModel.onRecipientChange(recipient);
     }
+
+    if (this.threadId == -1) {
+      SimpleTask.run(() -> DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient.getId()), threadId -> {
+        if (this.threadId != threadId) {
+          Log.d(TAG, "Thread id changed via recipient change");
+          this.threadId = threadId;
+          fragment.reload(recipient, this.threadId);
+          setVisibleThread(this.threadId);
+        }
+      });
+    }
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)

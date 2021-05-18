@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.ShareableGroupLinkDialogFragment;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
@@ -280,7 +281,12 @@ public class ManageGroupFragment extends LoggingFragment {
 
     viewModel.getDisappearingMessageTimer().observe(getViewLifecycleOwner(), string -> disappearingMessages.setText(string));
 
-    disappearingMessagesRow.setOnClickListener(v -> viewModel.handleExpirationSelection());
+    disappearingMessagesRow.setOnClickListener(v -> {
+      Recipient recipient = viewModel.getGroupRecipient().getValue();
+      if (recipient != null) {
+        startActivity(RecipientDisappearingMessagesActivity.forRecipient(requireContext(), recipient.getId()));
+      }
+    });
     blockGroup.setOnClickListener(v -> viewModel.blockAndLeave(requireActivity()));
     unblockGroup.setOnClickListener(v -> viewModel.unblock(requireActivity()));
 

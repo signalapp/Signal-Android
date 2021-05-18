@@ -260,6 +260,14 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment"
+            app:destination="@id/app_settings_expire_timer"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
     </fragment>
 
     <activity
@@ -271,6 +279,8 @@
         android:id="@+id/advancedPrivacySettingsFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
         android:label="advanced_privacy_settings_fragment" />
+
+    <include app:graph="@navigation/app_settings_expire_timer" />
     <!-- endregion -->
 
     <!-- region Data and Storage -->

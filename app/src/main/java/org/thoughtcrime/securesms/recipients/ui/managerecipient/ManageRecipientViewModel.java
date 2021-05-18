@@ -187,13 +187,6 @@ public final class ManageRecipientViewModel extends ViewModel {
     return canUnblock;
   }
 
-  void handleExpirationSelection(@NonNull Context context) {
-    withRecipient(recipient ->
-                  ExpirationDialog.show(context,
-                                        recipient.getExpireMessages(),
-                                        manageRecipientRepository::setExpiration));
-  }
-
   void setMuteUntil(long muteUntil) {
     manageRecipientRepository.setMuteUntil(muteUntil);
   }

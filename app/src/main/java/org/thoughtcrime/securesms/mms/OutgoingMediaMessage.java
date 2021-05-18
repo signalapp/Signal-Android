@@ -78,6 +78,23 @@ public class OutgoingMediaMessage {
          contacts, linkPreviews, mentions, new LinkedList<>(), new LinkedList<>());
   }
 
+  public OutgoingMediaMessage(OutgoingMediaMessage that, long expiresIn) {
+    this(that.getRecipient(),
+         that.body,
+         that.attachments,
+         that.sentTimeMillis,
+         that.subscriptionId,
+         expiresIn,
+         that.viewOnce,
+         that.distributionType,
+         that.outgoingQuote,
+         that.contacts,
+         that.linkPreviews,
+         that.mentions,
+         that.networkFailures,
+         that.identityKeyMismatches);
+  }
+
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
     this.recipient           = that.getRecipient();
     this.body                = that.body;

@@ -17,6 +17,7 @@ final class MenuState {
   private final boolean saveAttachment;
   private final boolean resend;
   private final boolean copy;
+  private final boolean delete;
 
   private MenuState(@NonNull Builder builder) {
     forward        = builder.forward;
@@ -25,6 +26,7 @@ final class MenuState {
     saveAttachment = builder.saveAttachment;
     resend         = builder.resend;
     copy           = builder.copy;
+    delete         = builder.delete;
   }
 
   boolean shouldShowForwardAction() {
@@ -51,6 +53,10 @@ final class MenuState {
     return copy;
   }
 
+  boolean shouldShowDeleteAction() {
+    return delete;
+  }
+
   static MenuState getMenuState(@NonNull Recipient conversationRecipient,
                                 @NonNull Set<MessageRecord> messageRecords,
                                 boolean shouldShowMessageRequest)
@@ -62,11 +68,14 @@ final class MenuState {
     boolean sharedContact = false;
     boolean viewOnce      = false;
     boolean remoteDelete  = false;
+    boolean hasInMemory   = false;
 
     for (MessageRecord messageRecord : messageRecords) {
-      if (isActionMessage(messageRecord))
-      {
+      if (isActionMessage(messageRecord)) {
         actionMessage = true;
+        if (messageRecord.isInMemoryMessageRecord()) {
+          hasInMemory = true;
+        }
       }
 
       if (messageRecord.getBody().length() > 0) {
@@ -109,6 +118,7 @@ final class MenuState {
     }
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
+                  .shouldShowDeleteAction(!hasInMemory)
                   .build();
   }
 
@@ -134,7 +144,8 @@ final class MenuState {
            messageRecord.isIdentityDefault()       ||
            messageRecord.isProfileChange()         ||
            messageRecord.isGroupV1MigrationEvent() ||
-           messageRecord.isFailedDecryptionType();
+           messageRecord.isFailedDecryptionType()  ||
+           messageRecord.isInMemoryMessageRecord();
   }
 
   private final static class Builder {
@@ -145,6 +156,7 @@ final class MenuState {
     private boolean saveAttachment;
     private boolean resend;
     private boolean copy;
+    private boolean delete;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -173,6 +185,11 @@ final class MenuState {
 
     @NonNull Builder shouldShowCopyAction(boolean copy) {
       this.copy = copy;
+      return this;
+    }
+
+    @NonNull Builder shouldShowDeleteAction(boolean delete) {
+      this.delete = delete;
       return this;
     }
 

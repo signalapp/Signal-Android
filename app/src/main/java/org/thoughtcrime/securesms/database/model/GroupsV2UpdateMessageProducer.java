@@ -475,7 +475,7 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
-  private void describeNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+  void describeNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
 
     if (change.hasNewTimer()) {

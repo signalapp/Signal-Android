@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BubbleUtil;
@@ -32,11 +33,11 @@ class ConversationRepository {
     this.executor = SignalExecutors.BOUNDED;
   }
 
-  LiveData<ConversationData> getConversationData(long threadId, int jumpToPosition) {
+  LiveData<ConversationData> getConversationData(long threadId, @NonNull Recipient recipient, int jumpToPosition) {
     MutableLiveData<ConversationData> liveData = new MutableLiveData<>();
 
     executor.execute(() -> {
-      liveData.postValue(getConversationDataInternal(threadId, jumpToPosition));
+      liveData.postValue(getConversationDataInternal(threadId, recipient, jumpToPosition));
     });
 
     return liveData;
@@ -53,16 +54,17 @@ class ConversationRepository {
     }
   }
 
-  private @NonNull ConversationData getConversationDataInternal(long threadId, int jumpToPosition) {
-    ThreadDatabase.ConversationMetadata metadata                 = DatabaseFactory.getThreadDatabase(context).getConversationMetadata(threadId);
-    int                                 threadSize               = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId);
-    long                                lastSeen                 = metadata.getLastSeen();
-    boolean                             hasSent                  = metadata.hasSent();
-    int                                 lastSeenPosition         = 0;
-    long                                lastScrolled             = metadata.getLastScrolled();
-    int                                 lastScrolledPosition     = 0;
-    boolean                             isMessageRequestAccepted = RecipientUtil.isMessageRequestAccepted(context, threadId);
-    ConversationData.MessageRequestData messageRequestData       = new ConversationData.MessageRequestData(isMessageRequestAccepted);
+  private @NonNull ConversationData getConversationDataInternal(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
+    ThreadDatabase.ConversationMetadata metadata                       = DatabaseFactory.getThreadDatabase(context).getConversationMetadata(threadId);
+    int                                 threadSize                     = DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId);
+    long                                lastSeen                       = metadata.getLastSeen();
+    boolean                             hasSent                        = metadata.hasSent();
+    int                                 lastSeenPosition               = 0;
+    long                                lastScrolled                   = metadata.getLastScrolled();
+    int                                 lastScrolledPosition           = 0;
+    boolean                             isMessageRequestAccepted       = RecipientUtil.isMessageRequestAccepted(context, threadId);
+    ConversationData.MessageRequestData messageRequestData             = new ConversationData.MessageRequestData(isMessageRequestAccepted);
+    boolean                             showUniversalExpireTimerUpdate = false;
 
     if (lastSeen > 0) {
       lastSeenPosition = DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
@@ -79,9 +81,8 @@ class ConversationRepository {
     if (!isMessageRequestAccepted) {
       boolean isGroup                             = false;
       boolean recipientIsKnownOrHasGroupsInCommon = false;
-      Recipient threadRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
-      if (threadRecipient.isGroup()) {
-        Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(threadRecipient.getId());
+      if (conversationRecipient.isGroup()) {
+        Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(conversationRecipient.getId());
         if (group.isPresent()) {
           List<Recipient> recipients = Recipient.resolvedList(group.get().getMembers());
           for (Recipient recipient : recipients) {
@@ -92,12 +93,20 @@ class ConversationRepository {
           }
         }
         isGroup = true;
-      } else if (threadRecipient.hasGroupsInCommon()) {
+      } else if (conversationRecipient.hasGroupsInCommon()) {
         recipientIsKnownOrHasGroupsInCommon = true;
       }
       messageRequestData = new ConversationData.MessageRequestData(isMessageRequestAccepted, recipientIsKnownOrHasGroupsInCommon, isGroup);
     }
 
-    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, hasSent, jumpToPosition, threadSize, messageRequestData);
+    if (SignalStore.settings().getUniversalExpireTimer() != 0 &&
+        conversationRecipient.getExpireMessages() == 0 &&
+        !conversationRecipient.isGroup() &&
+        (threadId == -1 || !DatabaseFactory.getMmsSmsDatabase(context).hasMeaningfulMessage(threadId)))
+    {
+      showUniversalExpireTimerUpdate = true;
+    }
+
+    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, hasSent, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
   }
 }

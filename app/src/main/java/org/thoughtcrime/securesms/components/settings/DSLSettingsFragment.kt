@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.EdgeEffect
+import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
@@ -14,8 +15,9 @@ import org.thoughtcrime.securesms.R
 
 abstract class DSLSettingsFragment(
   @StringRes private val titleId: Int,
-  @MenuRes private val menuId: Int = -1
-) : Fragment(R.layout.dsl_settings_fragment) {
+  @MenuRes private val menuId: Int = -1,
+  @LayoutRes layoutId: Int = R.layout.dsl_settings_fragment
+) : Fragment(layoutId) {
 
   private lateinit var recyclerView: RecyclerView
   private lateinit var toolbarShadowHelper: ToolbarShadowHelper

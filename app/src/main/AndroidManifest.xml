@@ -305,6 +305,11 @@
               android:windowSoftInputMode="stateAlwaysHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:theme="@style/Signal.DayNight.NoActionBar"
+              android:windowSoftInputMode="adjustResize"/>
+
     <activity android:name=".DatabaseMigrationActivity"
               android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
               android:launchMode="singleTask"

@@ -14,6 +14,7 @@ final class ConversationData {
   private final int                jumpToPosition;
   private final int                threadSize;
   private final MessageRequestData messageRequestData;
+  private final boolean            showUniversalExpireTimerMessage;
 
   ConversationData(long threadId,
                    long lastSeen,
@@ -22,16 +23,18 @@ final class ConversationData {
                    boolean hasSent,
                    int jumpToPosition,
                    int threadSize,
-                   @NonNull MessageRequestData messageRequestData)
+                   @NonNull MessageRequestData messageRequestData,
+                   boolean showUniversalExpireTimerMessage)
   {
-    this.threadId             = threadId;
-    this.lastSeen             = lastSeen;
-    this.lastSeenPosition     = lastSeenPosition;
-    this.lastScrolledPosition = lastScrolledPosition;
-    this.hasSent              = hasSent;
-    this.jumpToPosition       = jumpToPosition;
-    this.threadSize           = threadSize;
-    this.messageRequestData   = messageRequestData;
+    this.threadId                        = threadId;
+    this.lastSeen                        = lastSeen;
+    this.lastSeenPosition                = lastSeenPosition;
+    this.lastScrolledPosition            = lastScrolledPosition;
+    this.hasSent                         = hasSent;
+    this.jumpToPosition                  = jumpToPosition;
+    this.threadSize                      = threadSize;
+    this.messageRequestData              = messageRequestData;
+    this.showUniversalExpireTimerMessage = showUniversalExpireTimerMessage;
   }
 
   public long getThreadId() {
@@ -72,6 +75,10 @@ final class ConversationData {
 
   @NonNull MessageRequestData getMessageRequestData() {
     return messageRequestData;
+  }
+
+  public boolean showUniversalExpireTimerMessage() {
+    return showUniversalExpireTimerMessage;
   }
 
   static final class MessageRequestData {

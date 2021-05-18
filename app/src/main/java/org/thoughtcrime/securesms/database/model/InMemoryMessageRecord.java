@@ -7,7 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 
 import java.util.Collections;
 
@@ -15,6 +17,9 @@ import java.util.Collections;
  * In memory message record for use in temporary conversation messages.
  */
 public class InMemoryMessageRecord extends MessageRecord {
+
+  private static final int NO_GROUPS_IN_COMMON_ID    = -1;
+  private static final int UNIVERSAL_EXPIRE_TIMER_ID = -2;
 
   private InMemoryMessageRecord(long id,
                                 String body,
@@ -78,7 +83,7 @@ public class InMemoryMessageRecord extends MessageRecord {
     private final boolean isGroup;
 
     public NoGroupsInCommon(long threadId, boolean isGroup) {
-      super(-1, "", Recipient.UNKNOWN, threadId, 0);
+      super(NO_GROUPS_IN_COMMON_ID, "", Recipient.UNKNOWN, threadId, 0);
       this.isGroup = isGroup;
     }
 
@@ -106,6 +111,30 @@ public class InMemoryMessageRecord extends MessageRecord {
     @Override
     public @StringRes int getActionButtonText() {
       return R.string.ConversationUpdateItem_learn_more;
+    }
+  }
+
+  /**
+   * Show temporary update message about setting the disappearing messages timer upon first message
+   * send.
+   */
+  public static final class UniversalExpireTimerUpdate extends InMemoryMessageRecord {
+
+    public UniversalExpireTimerUpdate(long threadId) {
+      super(UNIVERSAL_EXPIRE_TIMER_ID, "", Recipient.UNKNOWN, threadId, 0);
+    }
+
+    @Override
+    public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context) {
+      String update = context.getString(R.string.ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them,
+                                        ExpirationUtil.getExpirationDisplayValue(context, SignalStore.settings().getUniversalExpireTimer()));
+
+      return UpdateDescription.staticDescription(update, R.drawable.ic_update_timer_16);
+    }
+
+    @Override
+    public boolean isUpdate() {
+      return true;
     }
   }
 }
