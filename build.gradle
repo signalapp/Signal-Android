@@ -3,7 +3,6 @@ buildscript {
         mavenLocal()
         google()
         mavenCentral()
-        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.3'
@@ -15,7 +14,6 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenLocal()
         maven {
             url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
             content {
@@ -40,7 +38,7 @@ allprojects {
                 includeGroupByRegex "org\\.signal.*"
             }
         }
-        maven { // textdrawable
+        maven {
             url 'https://dl.bintray.com/amulyakhare/maven'
             content {
                 includeGroupByRegex "com\\.amulyakhare.*"
@@ -53,14 +51,5 @@ allprojects {
             }
         }
         google()
-        jcenter()
-        maven { url "https://jitpack.io" }
-    }
-
-    project.ext {
-        kotlin_version = "1.4.31"
-        androidBuildToolsVersion = '29.0.3'
-        androidCompileSdkVersion = 29   // This is also our target SDK.
-        androidMinSdkVersion = 21
     }
 }
