@@ -351,7 +351,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(group, server)
     }
 
-    override fun isDuplicateMessage(timestamp: Long, sender: String): Boolean {
+    override fun isDuplicateMessage(timestamp: Long): Boolean {
         return getReceivedMessageTimestamps().contains(timestamp)
     }
 

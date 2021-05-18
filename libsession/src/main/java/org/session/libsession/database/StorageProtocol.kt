@@ -92,7 +92,7 @@ interface StorageProtocol {
     fun removeLastDeletionServerId(room: String, server: String)
 
     // Message Handling
-    fun isDuplicateMessage(timestamp: Long, sender: String): Boolean
+    fun isDuplicateMessage(timestamp: Long): Boolean
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
     fun removeReceivedMessageTimestamps(timestamps: Set<Long>)
