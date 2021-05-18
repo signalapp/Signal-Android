@@ -22,7 +22,6 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlinx-serialization'
 
 configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     exclude module: "commons-logging"
 }
 

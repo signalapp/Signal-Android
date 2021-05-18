@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        mavenLocal()
         google()
         mavenCentral()
     }
@@ -14,6 +13,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         maven {
             url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
             content {
@@ -51,5 +51,9 @@ allprojects {
             }
         }
         google()
+    }
+
+    project.ext {
+        androidCompileSdkVersion = 30
     }
 }
