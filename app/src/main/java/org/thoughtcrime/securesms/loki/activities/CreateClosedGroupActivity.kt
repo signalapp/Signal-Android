@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.groupSizeLimit
@@ -123,7 +124,10 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
                 openConversationActivity(this, threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
                 finish()
             }
-
+        }.failUi {
+            loaderContainer.fadeOut()
+            isLoading = false
+            Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
         }
     }
     // endregion
