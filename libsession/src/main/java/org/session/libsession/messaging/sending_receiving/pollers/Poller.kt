@@ -7,8 +7,8 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.utilities.Log
 import java.security.SecureRandom
 import java.util.*
 

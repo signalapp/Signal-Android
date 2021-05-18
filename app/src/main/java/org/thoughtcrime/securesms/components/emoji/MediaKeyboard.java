@@ -16,7 +16,7 @@ import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.components.RepeatableImageKey;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 
 import java.util.Arrays;

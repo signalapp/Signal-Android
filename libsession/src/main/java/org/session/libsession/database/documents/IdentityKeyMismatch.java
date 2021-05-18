@@ -1,6 +1,6 @@
 package org.session.libsession.database.documents;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsignal.utilities.Base64;
-import org.session.libsignal.libsignal.IdentityKey;
-import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.crypto.IdentityKey;
+import org.session.libsignal.exceptions.InvalidKeyException;
 
 import java.io.IOException;
 

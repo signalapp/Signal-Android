@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.backup.BackupProtos.*
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.*
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.util.BackupUtil
 
 import org.session.libsession.messaging.avatars.AvatarHelper
@@ -19,8 +19,8 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.Conversions
 import org.session.libsession.utilities.Util
-import org.session.libsignal.libsignal.kdf.HKDFv3
-import org.session.libsignal.libsignal.util.ByteUtil
+import org.session.libsignal.crypto.kdf.HKDFv3
+import org.session.libsignal.utilities.ByteUtil
 
 import java.io.*
 import java.security.InvalidAlgorithmParameterException

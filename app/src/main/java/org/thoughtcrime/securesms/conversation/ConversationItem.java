@@ -63,14 +63,15 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
+import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.views.Stub;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -92,6 +93,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
+import org.thoughtcrime.securesms.loki.views.OpenGroupInvitationView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -156,6 +158,7 @@ public class ConversationItem extends LinearLayout
   private           Stub<DocumentView>              documentViewStub;
   private           Stub<LinkPreviewView>           linkPreviewStub;
   private           Stub<StickerView>               stickerStub;
+  private           Stub<OpenGroupInvitationView>   openGroupInvitationViewStub;
   private @Nullable EventListener                   eventListener;
 
   private int defaultBubbleColor;
@@ -203,6 +206,7 @@ public class ConversationItem extends LinearLayout
     this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
     this.linkPreviewStub         = new Stub<>(findViewById(R.id.link_preview_stub));
     this.stickerStub             = new Stub<>(findViewById(R.id.sticker_view_stub));
+    this.openGroupInvitationViewStub = new Stub<>(findViewById(R.id.open_group_invitation_stub));
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
@@ -467,7 +471,9 @@ public class ConversationItem extends LinearLayout
         bodyText.setOverflowText(null);
       }
 
-      bodyText.setText(text);
+      if (!messageRecord.isOpenGroupInvitation())
+        bodyText.setText(text);
+
       bodyText.setVisibility(View.VISIBLE);
     }
   }
@@ -528,6 +534,7 @@ public class ConversationItem extends LinearLayout
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
+      if (openGroupInvitationViewStub.resolved())  openGroupInvitationViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -564,6 +571,7 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
+      if (openGroupInvitationViewStub.resolved())  openGroupInvitationViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       audioViewStub.get().setAudio(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
@@ -580,6 +588,7 @@ public class ConversationItem extends LinearLayout
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
+      if (openGroupInvitationViewStub.resolved())  openGroupInvitationViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       documentViewStub.get().setDocument(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(), showControls);
@@ -597,6 +606,7 @@ public class ConversationItem extends LinearLayout
       if (documentViewStub.resolved())  documentViewStub.get().setVisibility(View.GONE);
       if (linkPreviewStub.resolved())   linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
+      if (openGroupInvitationViewStub.resolved())  openGroupInvitationViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       List<Slide> thumbnailSlides = ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlides();
@@ -619,6 +629,29 @@ public class ConversationItem extends LinearLayout
       ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setVisibility(VISIBLE);
+    } else if (messageRecord.isOpenGroupInvitation()) {
+      openGroupInvitationViewStub.get().setVisibility(View.VISIBLE);
+      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
+      if (audioViewStub.resolved())     audioViewStub.get().setVisibility(View.GONE);
+      if (documentViewStub.resolved())  documentViewStub.get().setVisibility(View.GONE);
+      if (linkPreviewStub.resolved())   linkPreviewStub.get().setVisibility(GONE);
+      if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
+
+      UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(messageRecord.getBody());
+      String name = null, url = null;
+      if (updateMessageData.getKind() instanceof UpdateMessageData.Kind.OpenGroupInvitation) {
+        UpdateMessageData.Kind.OpenGroupInvitation data = (UpdateMessageData.Kind.OpenGroupInvitation)updateMessageData.getKind();
+        name = data.getGroupName();
+        url = data.getGroupUrl();
+      }
+
+      openGroupInvitationViewStub.get().setOpenGroup(name, url, messageRecord.isOutgoing());
+      openGroupInvitationViewStub.get().setOnLongClickListener(passthroughClickListener);
+
+      bodyText.setVisibility(View.GONE);
+
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     } else {
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);

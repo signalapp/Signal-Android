@@ -5,8 +5,8 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.service.internal.push.PushTransportDetails
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.crypto.PushTransportDetails
+import org.session.libsignal.protos.SignalServiceProtos
 
 object MessageReceiver {
 

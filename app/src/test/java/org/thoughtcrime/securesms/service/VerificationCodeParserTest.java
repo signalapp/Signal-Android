@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -10,7 +10,7 @@ import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.Trimmer;
 

@@ -28,7 +28,7 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.database.documents.IdentityKeyMismatch;
 import org.session.libsession.database.documents.IdentityKeyMismatchList;
@@ -45,7 +45,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -350,7 +350,9 @@ public class SmsDatabase extends MessagingDatabase {
       if (((IncomingGroupMessage)message).isUpdateMessage()) type |= Types.GROUP_UPDATE_MESSAGE_BIT;
     }
 
-    if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;
+    if (message.isPush()) type |= Types.PUSH_MESSAGE_BIT;
+
+    if (message.isOpenGroupInvitation()) type |= Types.OPEN_GROUP_INVITATION_BIT;
 
     Recipient recipient = Recipient.from(context, message.getSender(), true);
 
@@ -443,8 +445,9 @@ public class SmsDatabase extends MessagingDatabase {
   {
     long type = Types.BASE_SENDING_TYPE;
 
-    if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
-    if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
+    if (message.isSecureMessage())       type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
+    if (forceSms)                        type |= Types.MESSAGE_FORCE_SMS_BIT;
+    if (message.isOpenGroupInvitation()) type |= Types.OPEN_GROUP_INVITATION_BIT;
 
     Address            address               = message.getRecipient().getAddress();
     Map<Address, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);

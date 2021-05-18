@@ -14,7 +14,7 @@ import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPolle
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import java.util.concurrent.TimeUnit
 

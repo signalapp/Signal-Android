@@ -10,10 +10,8 @@ import network.loki.messenger.R;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsignal.utilities.logging.Log;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsignal.utilities.Log;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;

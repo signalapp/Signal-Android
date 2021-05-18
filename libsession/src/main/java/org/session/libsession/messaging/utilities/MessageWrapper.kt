@@ -1,11 +1,10 @@
 package org.session.libsession.messaging.utilities
 
 import com.google.protobuf.ByteString
-import org.session.libsignal.metadata.SignalProtos
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
-import org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketMessage
-import org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessage
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.protos.SignalServiceProtos.Envelope
+import org.session.libsignal.protos.WebSocketProtos.WebSocketMessage
+import org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage
 import java.security.SecureRandom
 
 object MessageWrapper {

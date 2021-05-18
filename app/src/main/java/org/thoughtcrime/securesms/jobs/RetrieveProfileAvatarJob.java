@@ -12,10 +12,9 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.crypto.ProfileCipherInputStream;
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.streams.ProfileCipherInputStream;
+import org.session.libsignal.exceptions.PushNetworkException;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -43,7 +42,6 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_ADDRESS        = "address";
 
-  @Inject SignalServiceMessageReceiver receiver;
 
   private String    profileAvatar;
   private Recipient recipient;

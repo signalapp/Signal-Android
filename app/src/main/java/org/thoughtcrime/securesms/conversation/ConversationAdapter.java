@@ -40,14 +40,14 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.utilities.Conversions;
@@ -87,15 +87,17 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       Collections.synchronizedMap(new LRUCache<String, SoftReference<MessageRecord>>(MAX_CACHE_SIZE));
   private final SparseArray<String> positionToCacheRef = new SparseArray<>();
 
-  private static final int MESSAGE_TYPE_OUTGOING           = 0;
-  private static final int MESSAGE_TYPE_INCOMING           = 1;
-  private static final int MESSAGE_TYPE_UPDATE             = 2;
-  private static final int MESSAGE_TYPE_AUDIO_OUTGOING     = 3;
-  private static final int MESSAGE_TYPE_AUDIO_INCOMING     = 4;
-  private static final int MESSAGE_TYPE_THUMBNAIL_OUTGOING = 5;
-  private static final int MESSAGE_TYPE_THUMBNAIL_INCOMING = 6;
-  private static final int MESSAGE_TYPE_DOCUMENT_OUTGOING  = 7;
-  private static final int MESSAGE_TYPE_DOCUMENT_INCOMING  = 8;
+  private static final int MESSAGE_TYPE_OUTGOING            = 0;
+  private static final int MESSAGE_TYPE_INCOMING            = 1;
+  private static final int MESSAGE_TYPE_UPDATE              = 2;
+  private static final int MESSAGE_TYPE_AUDIO_OUTGOING      = 3;
+  private static final int MESSAGE_TYPE_AUDIO_INCOMING      = 4;
+  private static final int MESSAGE_TYPE_THUMBNAIL_OUTGOING  = 5;
+  private static final int MESSAGE_TYPE_THUMBNAIL_INCOMING  = 6;
+  private static final int MESSAGE_TYPE_DOCUMENT_OUTGOING   = 7;
+  private static final int MESSAGE_TYPE_DOCUMENT_INCOMING   = 8;
+  private static final int MESSAGE_TYPE_INVITATION_OUTGOING = 9;
+  private static final int MESSAGE_TYPE_INVITATION_INCOMING = 10;
 
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
@@ -281,10 +283,12 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       case MESSAGE_TYPE_AUDIO_OUTGOING:
       case MESSAGE_TYPE_THUMBNAIL_OUTGOING:
       case MESSAGE_TYPE_DOCUMENT_OUTGOING:
+      case MESSAGE_TYPE_INVITATION_OUTGOING:
       case MESSAGE_TYPE_OUTGOING:        return R.layout.conversation_item_sent;
       case MESSAGE_TYPE_AUDIO_INCOMING:
       case MESSAGE_TYPE_THUMBNAIL_INCOMING:
       case MESSAGE_TYPE_DOCUMENT_INCOMING:
+      case MESSAGE_TYPE_INVITATION_INCOMING:
       case MESSAGE_TYPE_INCOMING:        return R.layout.conversation_item_received;
       case MESSAGE_TYPE_UPDATE:          return R.layout.conversation_item_update;
       default: throw new IllegalArgumentException("unsupported item view type given to ConversationAdapter");
@@ -295,6 +299,9 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   public int getItemViewType(@NonNull MessageRecord messageRecord) {
     if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
+    } else if (messageRecord.isOpenGroupInvitation()) {
+      if (messageRecord.isOutgoing()) return MESSAGE_TYPE_INVITATION_OUTGOING;
+      else                            return MESSAGE_TYPE_INVITATION_INCOMING;
     } else if (hasAudio(messageRecord)) {
       if (messageRecord.isOutgoing()) return MESSAGE_TYPE_AUDIO_OUTGOING;
       else                            return MESSAGE_TYPE_AUDIO_INCOMING;

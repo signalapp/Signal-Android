@@ -11,8 +11,8 @@ import org.session.libsession.database.documents.Document;
 import org.session.libsession.database.documents.IdentityKeyMismatch;
 import org.session.libsession.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.crypto.IdentityKey;
 
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsignal.utilities.JsonUtil;

@@ -5,10 +5,10 @@ import com.goterl.lazycode.lazysodium.LazySodiumAndroid
 import com.goterl.lazycode.lazysodium.SodiumAndroid
 import com.goterl.lazycode.lazysodium.interfaces.Box
 import com.goterl.lazycode.lazysodium.interfaces.Sign
-import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
 object MessageDecrypter {

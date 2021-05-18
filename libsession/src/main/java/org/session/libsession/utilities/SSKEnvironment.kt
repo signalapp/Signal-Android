@@ -5,7 +5,6 @@ import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class SSKEnvironment(
         val typingIndicators: TypingIndicatorsProtocol,

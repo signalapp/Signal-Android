@@ -21,11 +21,11 @@ import org.session.libsession.snode.SnodeModule
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsignal.service.internal.push.PushTransportDetails
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.crypto.PushTransportDetails
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.lang.IllegalStateException
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreview

@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.utilities.Data;
-import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
+import org.session.libsignal.utilities.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.GenericForegroundService;

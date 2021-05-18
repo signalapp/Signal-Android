@@ -5,7 +5,7 @@ import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.sending_receiving.MessageReceiver
 import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsession.messaging.utilities.Data
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
     override var delegate: JobDelegate? = null

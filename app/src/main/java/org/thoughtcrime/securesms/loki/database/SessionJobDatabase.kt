@@ -5,7 +5,7 @@ import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.utilities.Data
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer

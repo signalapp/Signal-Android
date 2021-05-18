@@ -2,7 +2,7 @@ package org.session.libsession.messaging.messages
 
 import com.google.protobuf.ByteString
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.protos.SignalServiceProtos
 
 abstract class Message {
     var id: Long? = null

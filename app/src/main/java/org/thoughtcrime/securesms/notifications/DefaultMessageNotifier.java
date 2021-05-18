@@ -44,8 +44,8 @@ import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.service.internal.util.Util;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Util;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
@@ -481,6 +481,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
         String message      = slideDeck.getBody() + ": " + record.getBody();
         int    italicLength = message.length() - body.length();
         body = SpanUtil.italic(message, italicLength);
+      } else if (record.isOpenGroupInvitation()) {
+        body = SpanUtil.italic(context.getString(R.string.ThreadRecord_open_group_invitation));
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {

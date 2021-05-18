@@ -32,7 +32,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.ThemeUtil
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.toHexString
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {

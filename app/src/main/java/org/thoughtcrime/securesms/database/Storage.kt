@@ -24,16 +24,16 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.Address.Companion.fromSerialized
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.session.libsession.messaging.utilities.ClosedGroupUpdateMessageData
+import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.libsignal.util.KeyHelper
-import org.session.libsignal.libsignal.util.guava.Optional
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
-import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.utilities.KeyHelper
+import org.session.libsignal.utilities.guava.Optional
+import org.session.libsignal.messages.SignalServiceAttachmentPointer
+import org.session.libsignal.messages.SignalServiceGroup
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
@@ -165,11 +165,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             mmsDatabase.endTransaction()
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            val isOpenGroupInvitation = (message.openGroupInvitation != null)
+
             val insertResult = if (message.sender == getUserPublicKey()) {
-                val textMessage = OutgoingTextMessage.from(message, targetRecipient)
+                val textMessage = if (isOpenGroupInvitation) OutgoingTextMessage.fromOpenGroupInvitation(message.openGroupInvitation, targetRecipient, message.sentTimestamp)
+                else OutgoingTextMessage.from(message, targetRecipient)
                 smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
             } else {
-                val textMessage = IncomingTextMessage.from(message, senderAddress, group, targetRecipient.expireMessages * 1000L)
+                val textMessage = if (isOpenGroupInvitation) IncomingTextMessage.fromOpenGroupInvitation(message.openGroupInvitation, senderAddress, message.sentTimestamp)
+                else IncomingTextMessage.from(message, senderAddress, group, targetRecipient.expireMessages * 1000L)
                 val encrypted = IncomingEncryptedMessage(textMessage, textMessage.messageBody)
                 smsDatabase.insertMessageInbox(encrypted, message.receivedTimestamp ?: 0)
             }
@@ -475,7 +479,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
         val group = SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
-        val updateData = ClosedGroupUpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON()
+        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON()
         val infoMessage = IncomingGroupMessage(m, groupID, updateData, true)
         val smsDB = DatabaseFactory.getSmsDatabase(context)
         smsDB.insertMessageInbox(infoMessage)
@@ -485,7 +489,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val userPublicKey = getUserPublicKey()
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
 
-        val updateData = ClosedGroupUpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON() ?: ""
+        val updateData = UpdateMessageData.buildGroupUpdate(type, name, members)?.toJSON() ?: ""
         val infoMessage = OutgoingGroupMediaMessage(recipient, updateData, groupID, null, sentTimestamp, 0, true, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)

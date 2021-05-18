@@ -5,7 +5,7 @@ import android.hardware.Camera;
 import androidx.annotation.NonNull;
 import android.view.Surface;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import java.util.Collections;
 import java.util.Comparator;

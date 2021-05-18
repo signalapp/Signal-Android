@@ -12,8 +12,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
-import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 

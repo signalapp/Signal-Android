@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.logging;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import androidx.annotation.NonNull;
 

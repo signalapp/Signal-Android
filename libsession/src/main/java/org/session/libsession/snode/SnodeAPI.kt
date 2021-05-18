@@ -8,16 +8,16 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.utilities.getRandomElement
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.service.loki.HTTP
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.Broadcaster
-import org.session.libsignal.service.loki.utilities.prettifiedDescription
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.utilities.HTTP
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.utilities.Broadcaster
+import org.session.libsignal.utilities.prettifiedDescription
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.security.SecureRandom
 
 object SnodeAPI {

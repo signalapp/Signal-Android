@@ -7,9 +7,9 @@ package org.session.libsession.messaging.sending_receiving.attachments
 
 import android.util.Size
 import com.google.protobuf.ByteString
-import org.session.libsignal.libsignal.util.guava.Optional
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.api.messages.SignalServiceAttachment as SAttachment
+import org.session.libsignal.utilities.guava.Optional
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.messages.SignalServiceAttachment as SAttachment
 import java.io.InputStream
 import kotlin.math.round
 

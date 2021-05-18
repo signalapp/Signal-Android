@@ -4,11 +4,11 @@ import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 
-import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
+import org.session.libsignal.utilities.NoExternalStorageException;
 
-import org.session.libsignal.utilities.concurrent.ListenableFuture;
-import org.session.libsignal.utilities.concurrent.SettableFuture;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.ListenableFuture;
+import org.session.libsignal.utilities.SettableFuture;
+import org.session.libsignal.utilities.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

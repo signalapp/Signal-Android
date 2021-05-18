@@ -2,8 +2,6 @@ package org.session.libsession.messaging.sending_receiving.notifications
 
 import android.content.Context
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.session.libsignal.service.api.messages.SignalServiceGroup
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 interface MessageNotifier {
     fun setVisibleThread(threadId: Long)

@@ -68,8 +68,8 @@ import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 
-import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;

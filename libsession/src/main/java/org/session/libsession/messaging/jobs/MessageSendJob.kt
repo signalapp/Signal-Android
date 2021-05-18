@@ -10,7 +10,7 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 class MessageSendJob(val message: Message, val destination: Destination) : Job {
 

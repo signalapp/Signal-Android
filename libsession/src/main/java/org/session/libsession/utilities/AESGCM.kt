@@ -1,8 +1,8 @@
 package org.session.libsession.utilities
 
 import androidx.annotation.WorkerThread
-import org.session.libsignal.libsignal.util.ByteUtil
-import org.session.libsignal.service.internal.util.Util
+import org.session.libsignal.utilities.ByteUtil
+import org.session.libsignal.utilities.Util
 import org.session.libsignal.utilities.Hex
 import org.whispersystems.curve25519.Curve25519
 import javax.crypto.Cipher

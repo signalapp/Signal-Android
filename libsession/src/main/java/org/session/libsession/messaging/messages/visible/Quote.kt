@@ -4,8 +4,8 @@ import com.goterl.lazycode.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.protos.SignalServiceProtos
 
 class Quote() {
     var timestamp: Long? = 0
