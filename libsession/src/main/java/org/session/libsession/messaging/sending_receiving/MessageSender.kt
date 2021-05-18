@@ -13,7 +13,7 @@ import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.open_groups.*
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI

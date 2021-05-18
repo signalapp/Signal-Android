@@ -8,7 +8,7 @@ import org.session.libsession.utilities.DistributionTypes;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.NetworkFailure;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.utilities.Contact;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.utilities.recipients.Recipient;

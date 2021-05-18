@@ -1,4 +1,4 @@
-package org.session.libsession.utilities.preferences;
+package org.session.libsession.utilities;
 
 import android.content.Context;
 import androidx.annotation.NonNull;

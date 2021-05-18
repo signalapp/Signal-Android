@@ -22,7 +22,7 @@ import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.utilities.fadeIn

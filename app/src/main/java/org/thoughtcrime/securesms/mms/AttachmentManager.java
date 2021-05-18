@@ -57,7 +57,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.Stub;
 import org.session.libsignal.utilities.ListenableFuture;
 import org.session.libsignal.utilities.ListenableFuture.Listener;
 import org.session.libsignal.utilities.SettableFuture;

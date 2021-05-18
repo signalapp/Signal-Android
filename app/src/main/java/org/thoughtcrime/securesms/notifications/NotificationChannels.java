@@ -22,7 +22,7 @@ import com.annimon.stream.Stream;
 
 import network.loki.messenger.BuildConfig;
 import network.loki.messenger.R;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.session.libsession.utilities.recipients.Recipient;

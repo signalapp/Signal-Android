@@ -18,7 +18,7 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.fadeIn

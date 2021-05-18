@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.Conversions;
 
 import java.io.FileNotFoundException;

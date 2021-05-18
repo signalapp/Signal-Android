@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.Util;
 

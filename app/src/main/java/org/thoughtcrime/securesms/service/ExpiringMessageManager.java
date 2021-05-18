@@ -6,7 +6,7 @@ import android.content.Context;
 import org.jetbrains.annotations.NotNull;
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
 import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.SSKEnvironment;

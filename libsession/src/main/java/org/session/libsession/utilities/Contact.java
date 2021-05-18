@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.sending_receiving.sharecontacts;
+package org.session.libsession.utilities;
 
 import android.net.Uri;
 import android.os.Parcel;
@@ -17,7 +17,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
 import org.session.libsignal.utilities.JsonUtil;
-import org.session.libsession.utilities.MediaTypes;
 
 import java.io.IOException;
 import java.util.Collections;

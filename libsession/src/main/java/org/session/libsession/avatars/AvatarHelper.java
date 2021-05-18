@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 
 import java.io.File;
 import java.io.FileInputStream;

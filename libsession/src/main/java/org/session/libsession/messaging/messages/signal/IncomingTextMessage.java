@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.utilities.guava.Optional;

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.crypto.IdentityKey;
 import org.session.libsignal.exceptions.InvalidKeyException;

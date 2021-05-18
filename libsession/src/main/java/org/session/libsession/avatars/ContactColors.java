@@ -2,7 +2,7 @@ package org.session.libsession.avatars;
 
 import androidx.annotation.NonNull;
 
-import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.utilities.MaterialColor;
 
 import java.util.ArrayList;
 import java.util.Arrays;

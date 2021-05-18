@@ -3,7 +3,7 @@ package org.session.libsession.utilities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 
 public class NetworkFailure {
 

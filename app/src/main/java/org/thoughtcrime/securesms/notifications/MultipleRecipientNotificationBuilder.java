@@ -11,7 +11,7 @@ import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
-import org.session.libsession.utilities.preferences.NotificationPrivacyPreference;
+import org.session.libsession.utilities.NotificationPrivacyPreference;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;

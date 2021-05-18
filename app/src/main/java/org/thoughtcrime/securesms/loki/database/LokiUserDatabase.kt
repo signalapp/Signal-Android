@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.session.libsignal.utilities.Log
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.get

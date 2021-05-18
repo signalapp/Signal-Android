@@ -1,4 +1,4 @@
-package org.session.libsession.utilities.color;
+package org.session.libsession.utilities;
 
 import android.content.Context;
 import android.graphics.Color;

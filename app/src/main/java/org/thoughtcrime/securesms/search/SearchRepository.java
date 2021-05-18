@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SearchDatabase;

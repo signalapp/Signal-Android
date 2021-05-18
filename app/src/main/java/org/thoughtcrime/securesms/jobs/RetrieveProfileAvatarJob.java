@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.utilities.Data;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsession.utilities.TextSecurePreferences;

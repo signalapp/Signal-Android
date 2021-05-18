@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.crypto.IdentityKey;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;

@@ -38,7 +38,7 @@ import androidx.appcompat.widget.Toolbar;
 import org.session.libsession.utilities.DistributionTypes;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;

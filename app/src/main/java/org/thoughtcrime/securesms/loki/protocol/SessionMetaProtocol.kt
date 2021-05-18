@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.session.libsession.utilities.recipients.Recipient

@@ -1,4 +1,4 @@
-package org.session.libsession.utilities.preferences;
+package org.session.libsession.utilities;
 
 public class NotificationPrivacyPreference {
 

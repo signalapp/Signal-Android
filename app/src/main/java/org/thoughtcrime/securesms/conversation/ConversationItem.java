@@ -69,7 +69,7 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.Stub;
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;

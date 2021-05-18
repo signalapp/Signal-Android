@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
 import org.session.libsignal.utilities.Log;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.HashMap;

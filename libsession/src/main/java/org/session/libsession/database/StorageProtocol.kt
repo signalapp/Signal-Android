@@ -16,7 +16,7 @@ import org.session.libsession.messaging.sending_receiving.data_extraction.DataEx
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupRecord
 import org.session.libsession.utilities.recipients.Recipient.RecipientSettings
 import org.session.libsignal.crypto.ecc.ECKeyPair

@@ -45,7 +45,7 @@ import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
-import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.utilities.MaterialColor;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;

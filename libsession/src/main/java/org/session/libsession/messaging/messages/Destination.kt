@@ -3,7 +3,7 @@ package org.session.libsession.messaging.messages
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.open_groups.OpenGroup
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.utilities.toHexString
 

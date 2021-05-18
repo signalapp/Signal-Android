@@ -10,7 +10,7 @@ import androidx.core.app.TaskStackBuilder;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;

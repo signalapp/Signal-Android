@@ -40,7 +40,7 @@ import org.session.libsession.messaging.messages.signal.IncomingGroupMessage;
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;

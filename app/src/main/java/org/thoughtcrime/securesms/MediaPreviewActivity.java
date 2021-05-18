@@ -54,7 +54,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.Util;

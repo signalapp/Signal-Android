@@ -1,4 +1,4 @@
-package org.session.libsession.utilities.views;
+package org.session.libsession.utilities;
 
 import android.view.ViewStub;
 

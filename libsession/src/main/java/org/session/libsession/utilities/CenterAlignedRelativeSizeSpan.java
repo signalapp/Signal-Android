@@ -1,4 +1,4 @@
-package org.session.libsession.utilities.color.spans;
+package org.session.libsession.utilities;
 
 import androidx.annotation.NonNull;
 import android.text.TextPaint;

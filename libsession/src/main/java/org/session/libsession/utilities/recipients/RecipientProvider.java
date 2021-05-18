@@ -25,8 +25,8 @@ import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsession.utilities.color.MaterialColor;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.MaterialColor;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
 import org.session.libsession.utilities.recipients.Recipient.RegisteredState;

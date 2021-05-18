@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.util.BackupUtil
 
 import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Conversions
 import org.session.libsession.utilities.Util
 import org.session.libsignal.crypto.kdf.HKDFv3

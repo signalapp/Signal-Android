@@ -6,7 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 
 import java.io.IOException;
 import java.io.InputStream;

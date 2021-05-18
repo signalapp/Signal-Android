@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.session.libsession.utilities.preferences.NotificationPrivacyPreference;
+import org.session.libsession.utilities.NotificationPrivacyPreference;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.session.libsession.utilities.TextSecurePreferences;

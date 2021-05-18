@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsession.avatars.ContactColors;
 import org.session.libsession.avatars.ContactPhoto;
 import org.session.libsession.avatars.ResourceContactPhoto;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.RecipientExporter;
 import org.session.libsession.utilities.ThemeUtil;

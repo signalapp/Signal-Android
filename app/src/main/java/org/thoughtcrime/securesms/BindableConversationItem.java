@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.Locale;
