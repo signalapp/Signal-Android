@@ -51,6 +51,8 @@ allprojects {
                 includeGroupByRegex "com\\.goterl\\.lazycode.*"
             }
         }
+        jcenter()
+        maven { url "https://jitpack.io" }
     }
 
     project.ext {

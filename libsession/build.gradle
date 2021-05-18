@@ -5,6 +5,11 @@ plugins {
 
 android {
     compileSdkVersion androidCompileSdkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -19,6 +24,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'com.annimon:stream:1.1.8'
     implementation 'com.makeramen:roundedimageview:2.1.0'
     implementation 'com.esotericsoftware:kryo:4.0.1'
     implementation "com.google.protobuf:protobuf-java:$protobufVersion"
@@ -32,5 +39,5 @@ dependencies {
     testImplementation "junit:junit:3.8.2"
     testImplementation "org.assertj:assertj-core:1.7.1"
     testImplementation "org.conscrypt:conscrypt-openjdk-uber:2.0.0"
-
+    implementation 'org.greenrobot:eventbus:3.0.0'
 }
