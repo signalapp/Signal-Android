@@ -697,8 +697,6 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
       if (state.getRailState() == MediaSendViewModel.RailState.VIEWABLE) {
         captionBackground = R.color.core_grey_90;
-      } else if (state.getViewOnceState() == ViewOnceState.ENABLED) {
-        captionBackground = 0;
       } else if (isMentionPickerShowing){
         captionBackground = R.color.signal_background_dialog;
       }
