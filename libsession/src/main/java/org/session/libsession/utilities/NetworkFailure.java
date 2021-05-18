@@ -1,4 +1,4 @@
-package org.session.libsession.database.documents;
+package org.session.libsession.utilities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

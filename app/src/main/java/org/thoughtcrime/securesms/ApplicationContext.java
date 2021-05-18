@@ -31,7 +31,7 @@ import androidx.multidex.MultiDexApplication;
 
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.file_server.FileServerAPI;
 import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;

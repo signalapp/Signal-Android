@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.session.libsession.messaging.threads.recipients;
+package org.session.libsession.utilities.recipients;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -29,20 +29,20 @@ import com.annimon.stream.function.Consumer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.avatars.TransparentContactPhoto;
+import org.session.libsession.avatars.TransparentContactPhoto;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.messaging.threads.recipients.RecipientProvider.RecipientDetails;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.recipients.RecipientProvider.RecipientDetails;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsession.messaging.avatars.ContactColors;
-import org.session.libsession.messaging.avatars.ContactPhoto;
-import org.session.libsession.messaging.avatars.GroupRecordContactPhoto;
-import org.session.libsession.messaging.avatars.ProfileContactPhoto;
-import org.session.libsession.messaging.avatars.SystemContactPhoto;
+import org.session.libsession.avatars.ContactColors;
+import org.session.libsession.avatars.ContactPhoto;
+import org.session.libsession.avatars.GroupRecordContactPhoto;
+import org.session.libsession.avatars.ProfileContactPhoto;
+import org.session.libsession.avatars.SystemContactPhoto;
 import org.session.libsession.utilities.ProfilePictureModifiedEvent;
 import org.session.libsession.utilities.FutureTaskListener;
 import org.session.libsession.utilities.ListenableFutureTask;

@@ -1,4 +1,4 @@
-package org.session.libsession.database.documents;
+package org.session.libsession.utilities;
 
 import java.util.List;
 

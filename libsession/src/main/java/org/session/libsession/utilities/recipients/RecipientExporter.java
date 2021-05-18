@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.threads.recipients;
+package org.session.libsession.utilities.recipients;
 
 import android.content.Intent;
 import android.provider.ContactsContract;

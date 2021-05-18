@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.avatars;
+package org.session.libsession.avatars;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.StorageProtocol;
+import org.session.libsession.database.StorageProtocol;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.Conversions;
 import org.session.libsignal.utilities.guava.Optional;
 

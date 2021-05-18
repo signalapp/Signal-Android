@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.contact_selection_list_divider.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 class ContactSelectionListAdapter(private val context: Context, private val multiSelect: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     lateinit var glide: GlideRequests

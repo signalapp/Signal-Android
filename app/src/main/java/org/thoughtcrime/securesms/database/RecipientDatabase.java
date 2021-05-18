@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.Recipient.*;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.*;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.Util;
 

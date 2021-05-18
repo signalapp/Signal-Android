@@ -1,4 +1,4 @@
-package org.session.libsession.messaging
+package org.session.libsession.database
 
 
 import android.content.Context
@@ -17,8 +17,8 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.GroupRecord
-import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings
+import org.session.libsession.utilities.GroupRecord
+import org.session.libsession.utilities.recipients.Recipient.RecipientSettings
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceGroup

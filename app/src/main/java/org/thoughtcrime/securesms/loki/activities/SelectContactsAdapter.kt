@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 class SelectContactsAdapter(private val context: Context, private val glide: GlideRequests) : RecyclerView.Adapter<SelectContactsAdapter.ViewHolder>() {
     val selectedMembers = mutableSetOf<String>()

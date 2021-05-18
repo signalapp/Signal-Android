@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGro
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.GroupRecord
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupRecord
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 

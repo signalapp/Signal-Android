@@ -1,8 +1,8 @@
 package org.session.libsession.messaging.messages.signal;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.Collections;
 import java.util.LinkedList;

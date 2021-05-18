@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.guava.Optional;
 
 import network.loki.messenger.R;

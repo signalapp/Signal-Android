@@ -1,7 +1,7 @@
-package org.session.libsession.messaging.threads
+package org.session.libsession.utilities
 
 import android.text.TextUtils
-import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.messaging.threads.Address
 import java.io.IOException
 import java.util.*
 

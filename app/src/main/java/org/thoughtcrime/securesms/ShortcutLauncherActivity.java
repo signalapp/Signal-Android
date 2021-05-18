@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
 import network.loki.messenger.R;

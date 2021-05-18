@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.avatars;
+package org.session.libsession.avatars;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

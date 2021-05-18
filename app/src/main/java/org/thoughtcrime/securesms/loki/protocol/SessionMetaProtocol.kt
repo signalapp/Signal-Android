@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.messages.SignalServiceContent
 import org.session.libsignal.messages.SignalServiceDataMessage

@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.threads
+package org.session.libsession.utilities
 
 object DistributionTypes {
     const val DEFAULT = 2

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.loki.utilities.*
 
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 import org.session.libsignal.utilities.JsonUtil
 

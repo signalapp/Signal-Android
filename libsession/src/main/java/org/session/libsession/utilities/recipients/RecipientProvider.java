@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.session.libsession.messaging.threads.recipients;
+package org.session.libsession.utilities.recipients;
 
 import android.content.Context;
 import android.net.Uri;
@@ -27,11 +27,11 @@ import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings;
-import org.session.libsession.messaging.threads.recipients.Recipient.RegisteredState;
-import org.session.libsession.messaging.threads.recipients.Recipient.UnidentifiedAccessMode;
-import org.session.libsession.messaging.threads.recipients.Recipient.VibrateState;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.recipients.Recipient.RegisteredState;
+import org.session.libsession.utilities.recipients.Recipient.UnidentifiedAccessMode;
+import org.session.libsession.utilities.recipients.Recipient.VibrateState;
 import org.session.libsession.utilities.ListenableFutureTask;
 import org.session.libsession.utilities.SoftHashMap;
 import org.session.libsession.utilities.TextSecurePreferences;

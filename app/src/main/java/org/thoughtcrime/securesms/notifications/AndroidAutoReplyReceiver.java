@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsignal.utilities.Log;
 

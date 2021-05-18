@@ -2,7 +2,7 @@ package org.session.libsession.messaging.messages.signal;
 
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 
 public class OutgoingTextMessage {

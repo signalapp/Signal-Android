@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.session.libsession.messaging.threads.recipients;
+package org.session.libsession.utilities.recipients;
 
 public class RecipientFormattingException extends Exception {
   public RecipientFormattingException(String message) {
