@@ -3,6 +3,10 @@ plugins {
     id 'kotlin-android'
 }
 
+android {
+    compileSdkVersion androidCompileSdkVersion
+}
+
 dependencies {
     implementation project(":libsignal")
     implementation "com.goterl.lazycode:lazysodium-android:4.2.0@aar"

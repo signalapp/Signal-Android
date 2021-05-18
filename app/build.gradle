@@ -157,7 +157,7 @@ def abiPostFix = ['armeabi-v7a' : 1,
                   'universal'   : 5]
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion androidCompileSdkVersion
     buildToolsVersion '29.0.3'
     useLibrary 'org.apache.http.legacy'
 

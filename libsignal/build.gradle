@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'kotlin-android'
 
+android {
+    compileSdkVersion androidCompileSdkVersion
+}
+
 repositories {
     mavenCentral()
 }
