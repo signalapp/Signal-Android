@@ -305,6 +305,7 @@ public class ManageRecipientFragment extends LoggingFragment {
       contactRow.setOnClickListener(v -> {
         startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
       });
+      contactRow.setVisibility(!recipient.isBlocked() ? View.VISIBLE : View.GONE);
     }
 
     String aboutText = recipient.getCombinedAboutAndEmoji();
@@ -338,9 +339,10 @@ public class ManageRecipientFragment extends LoggingFragment {
     colorChip.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
     colorRow.setOnClickListener(v -> handleColorSelection(color));
 
-    secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-    insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-    secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+    messageButton.setVisibility(!recipient.isBlocked() ? View.VISIBLE : View.GONE);
+    secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() && !recipient.isBlocked() ? View.VISIBLE : View.GONE);
+    insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() && !recipient.isBlocked() ? View.VISIBLE : View.GONE);
+    secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() && !recipient.isBlocked() ? View.VISIBLE : View.GONE);
   }
 
   private void presentMediaCursor(ManageRecipientViewModel.MediaCursor mediaCursor) {
