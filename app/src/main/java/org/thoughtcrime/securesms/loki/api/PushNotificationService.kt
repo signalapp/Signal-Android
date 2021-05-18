@@ -28,7 +28,7 @@ class PushNotificationService : FirebaseMessagingService() {
         if (data != null) {
             try {
                 val envelopeAsData = MessageWrapper.unwrap(data).toByteArray()
-                val job = MessageReceiveJob(envelopeAsData,true)
+                val job = MessageReceiveJob(envelopeAsData)
                 JobQueue.shared.add(job)
             } catch (e: Exception) {
                 Log.d("Loki", "Failed to unwrap data for message due to error: $e.")

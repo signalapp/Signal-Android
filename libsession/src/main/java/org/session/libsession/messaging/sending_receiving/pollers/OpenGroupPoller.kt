@@ -172,7 +172,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                     builder.timestamp = message.timestamp
                     builder.serverTimestamp = message.serverTimestamp
                     val envelope = builder.build()
-                    val job = MessageReceiveJob(envelope.toByteArray(), isBackgroundPoll, messageServerID, openGroup.id)
+                    val job = MessageReceiveJob(envelope.toByteArray(), messageServerID, openGroup.id)
                     Log.d("Loki", "Scheduling Job $job")
                     if (isBackgroundPoll) {
                         job.executeAsync().always { deferred.resolve(Unit) }
