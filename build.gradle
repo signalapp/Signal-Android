@@ -13,6 +13,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         mavenCentral()
         maven {
             url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
@@ -45,12 +46,11 @@ allprojects {
             }
         }
         maven {
-            url  "https://dl.bintray.com/terl/lazysodium-maven"
+            url "https://dl.bintray.com/terl/lazysodium-maven"
             content {
                 includeGroupByRegex "com\\.goterl\\.lazycode.*"
             }
         }
-        google()
     }
 
     project.ext {
