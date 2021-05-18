@@ -90,7 +90,6 @@
   <string name="BlockUnblockDialog_unblock_s">Kas eemaldada %1$sblokeering?</string>
   <string name="BlockUnblockDialog_block">Blokeeri</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokeeri ja lahku</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokeeri ja kustuta</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Täna</string>
   <string name="BucketedThreadMedia_Yesterday">Eile</string>

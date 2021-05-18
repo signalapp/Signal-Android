@@ -95,7 +95,7 @@
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
   <string name="BlockUnblockDialog_block">Užblokuoti</string>
   <string name="BlockUnblockDialog_block_and_leave">Užblokuoti ir išeiti</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Užblokuoti ir ištrinti</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Pranešti apie brukalą ir užblokuoti</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Šiandien</string>
   <string name="BucketedThreadMedia_Yesterday">Vakar</string>
@@ -242,6 +242,7 @@
   <string name="ConversationActivity_join">Prisijungti</string>
   <string name="ConversationActivity_full">Pilnas</string>
   <string name="ConversationActivity_error_sending_media">Klaida siunčiant mediją</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Pranešta apie brukalą ir užblokuota.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>

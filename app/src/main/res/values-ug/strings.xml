@@ -93,7 +93,6 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sچەكلىمەمدۇ؟</string>
   <string name="BlockUnblockDialog_block">چەكلە</string>
   <string name="BlockUnblockDialog_block_and_leave">چەكلە ۋە ئايرىل</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">چەكلە ۋە ئۆچۈر</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">بۈگۈن</string>
   <string name="BucketedThreadMedia_Yesterday">تۈنۈگۈن</string>

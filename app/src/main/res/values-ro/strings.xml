@@ -91,7 +91,6 @@
   <string name="BlockUnblockDialog_unblock_s">Deblocați %1$s?</string>
   <string name="BlockUnblockDialog_block">Blochează</string>
   <string name="BlockUnblockDialog_block_and_leave">Blocați și Părăsiți</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blocați și ștergeți</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Azi</string>
   <string name="BucketedThreadMedia_Yesterday">Ieri</string>
@@ -2784,6 +2783,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsRecoveryEntryFragment__next">Următorul</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Cuvânt invalid</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Clipboard-ul a fost curățat</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Vizualizare</string>
   <!--UnreadPayments-->

@@ -92,7 +92,6 @@
   <string name="BlockUnblockDialog_unblock_s">解除屏蔽%1$s?</string>
   <string name="BlockUnblockDialog_block">屏蔽</string>
   <string name="BlockUnblockDialog_block_and_leave">屏蔽并离开</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">屏蔽并删除</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>

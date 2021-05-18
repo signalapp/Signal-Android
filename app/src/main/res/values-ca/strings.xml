@@ -93,7 +93,6 @@
   <string name="BlockUnblockDialog_unblock_s">Voleu desblocar %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloca</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloca i abandona</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloca\'l i suprimeix-lo</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Avui</string>
   <string name="BucketedThreadMedia_Yesterday">Ahir</string>

@@ -88,7 +88,6 @@
   <string name="BlockUnblockDialog_unblock_s">Astenga %1$s rake?</string>
   <string name="BlockUnblockDialog_block">Asteng bike</string>
   <string name="BlockUnblockDialog_block_and_leave">Asteng bike û Derkeve</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Asteng bike û Jê bibe</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Îro</string>
   <string name="BucketedThreadMedia_Yesterday">Doh</string>

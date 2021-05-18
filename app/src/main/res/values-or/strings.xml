@@ -92,7 +92,6 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sଙ୍କୁ ଅଣବ୍ଲକ୍ କରିବେ କି?</string>
   <string name="BlockUnblockDialog_block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="BlockUnblockDialog_block_and_leave">ବ୍ଲକ୍ କରନ୍ତୁ ଓ ଛାଡ଼ନ୍ତୁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ବ୍ଲକ୍ କରନ୍ତୁ ଓ ବିଲୋପ କରନ୍ତୁ</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ଆଜି</string>
   <string name="BucketedThreadMedia_Yesterday">ଗତକାଲି</string>

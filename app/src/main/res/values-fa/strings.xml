@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">رفع مسدودیت %1$s؟</string>
   <string name="BlockUnblockDialog_block">مسدود کردن</string>
   <string name="BlockUnblockDialog_block_and_leave">مسدود کردن و ترک گروه</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">مسدود کردن و حذف</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">گزارش اسپم و مسدود کردن</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">امروز</string>
   <string name="BucketedThreadMedia_Yesterday">دیروز</string>
@@ -240,6 +240,7 @@
   <string name="ConversationActivity_join">پیوستن</string>
   <string name="ConversationActivity_full">پر شده</string>
   <string name="ConversationActivity_error_sending_media">خطا در ارسال رسانه</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">اسپم گزارش داده و مسدود شد.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام خوانده نشده</item>
@@ -1529,7 +1530,7 @@
     <item quantity="other">%d مورد</item>
   </plurals>
   <!--UnauthorizedReminder-->
-  <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت شده نیست</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت‌نام شده نیست</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">این احتمالاً به این خاطر است که شما ثبت‌نام شماره‌تلفن خود را با دستگاهی دیگر در سیگنال انجام داده‌اید. برای ثبت‌نام دوباره ضربه بزنید.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">برای پاسخ به تماس %s، به سیگنال اجازهٔ دسترسی به میکروفون خود را بدهید.</string>

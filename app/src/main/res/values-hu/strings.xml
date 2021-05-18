@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Feloldod %1$s tiltását?</string>
   <string name="BlockUnblockDialog_block">Letiltás</string>
   <string name="BlockUnblockDialog_block_and_leave">Tiltás és kilépés</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Tiltás és törlés</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Kéretlen üzenet bejelentése és tiltás</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ma</string>
   <string name="BucketedThreadMedia_Yesterday">Tegnap</string>
@@ -241,6 +241,7 @@
   <string name="ConversationActivity_join">Csatlakozás</string>
   <string name="ConversationActivity_full">Tele</string>
   <string name="ConversationActivity_error_sending_media">Hiba történt a médiafájl küldése során</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Kéretlen üzenetnek jelölve és tiltva.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>

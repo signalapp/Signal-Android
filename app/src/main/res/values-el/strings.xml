@@ -90,7 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">Κατάργηση αποκλεισμού του/της %1$s;</string>
   <string name="BlockUnblockDialog_block">Αποκλεισμός</string>
   <string name="BlockUnblockDialog_block_and_leave">Αποκλεισμός και αποχώρηση</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Αποκλεισμός και διαγραφή</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Αναφορά ως ανεπιθύμητο και φραγή</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Σήμερα</string>
   <string name="BucketedThreadMedia_Yesterday">Χθες</string>
@@ -237,6 +237,7 @@
   <string name="ConversationActivity_join">Γίνε μέλος</string>
   <string name="ConversationActivity_full">Γεμάτο</string>
   <string name="ConversationActivity_error_sending_media">Σφάλμα στην αποστολή πολυμέσων</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Αναφέρθηκε ως ανεπιθύμητο και είναι σε φραγή</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -972,6 +973,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">Ο/Η %1$s άλλαξε το όνομα της ομάδας σε \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Το όνομα της ομάδας άλλαξε σε \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Άλλαξες την περιγραφή της ομάδας.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Άλλαξες το εικονίδιο της ομάδας.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Ο/Η %1$s άλλαξε το εικονίδιο της ομάδας.</string>
@@ -1740,6 +1742,7 @@
   <string name="CreateProfileActivity__username">Όνομα χρήστη</string>
   <string name="CreateProfileActivity__create_a_username">Δημιουργία ονόματος χρήστη</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Τα προσαρμοσμένα ονόματα και φωτογραφίες των ομαδών MMS θα είναι ορατά μόνο από εσένα.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Οι περιγραφές ομάδας θα είναι ορατές στα μέλη της ομάδας και στα άτομα που έχουν προσκληθεί.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Πληροφορίες</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Γράψε δυο πράγματα για σένα…</string>

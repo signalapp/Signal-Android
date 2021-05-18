@@ -89,7 +89,6 @@
   <string name="BlockUnblockDialog_unblock_s">Отблокирай %1$s?</string>
   <string name="BlockUnblockDialog_block">Блокиране</string>
   <string name="BlockUnblockDialog_block_and_leave">Блокиране и напускане</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Блокиране и изтриване</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Днес</string>
   <string name="BucketedThreadMedia_Yesterday">Вчера</string>

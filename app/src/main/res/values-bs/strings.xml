@@ -94,7 +94,7 @@
   <string name="BlockUnblockDialog_unblock_s">Deblokirati %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj i napusti</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokiraj i izbriši</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Prijavi neželjenu poruku i blokiraj</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danas</string>
   <string name="BucketedThreadMedia_Yesterday">Jučer</string>
@@ -241,6 +241,7 @@
   <string name="ConversationActivity_join">Pristupi</string>
   <string name="ConversationActivity_full">Popunjeno</string>
   <string name="ConversationActivity_error_sending_media">Greška prilikom slanja priloga</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Prijavljeno kao neželjena poruka i blokirano.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>

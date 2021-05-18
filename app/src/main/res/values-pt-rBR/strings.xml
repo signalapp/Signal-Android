@@ -90,7 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s ?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e sair</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloquear e apagar</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Denunciar spam e bloquear</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoje</string>
   <string name="BucketedThreadMedia_Yesterday">Ontem</string>
@@ -237,6 +237,7 @@
   <string name="ConversationActivity_join">Entrar</string>
   <string name="ConversationActivity_full">Lotada</string>
   <string name="ConversationActivity_error_sending_media">Erro ao enviar a mídia</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como spam e bloqueado.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -388,7 +389,7 @@
   <string name="DocumentView_unnamed_file">Arquivo sem nome</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Doar para o Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é criado por pessoas como você. Mostre o seu apoio hoje!</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é mantido por pessoas como você. Mostre o seu apoio hoje!</string>
   <string name="DonateMegaphone_donate">Doar</string>
   <string name="DonateMegaphone_no_thanks">Não. Agradeço.</string>
   <!--GroupCallingMegaphone-->
@@ -2114,6 +2115,7 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s em %2$s às %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Não há detalhes adicionais sobre esta transação</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagamento enviado</string>
   <string name="PaymentsDetailsFragment__received_payment">Pagamento recebido</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Pagamento concluído %1$s</string>
@@ -2151,14 +2153,19 @@
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Confirmar pagamento</string>
   <string name="ConfirmPayment__network_fee">Taxa de transação</string>
+  <string name="ConfirmPayment__error_getting_fee">Erro ao obter a taxa</string>
   <string name="ConfirmPayment__to">Para</string>
+  <string name="ConfirmPayment__total_amount">Valor total</string>
   <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Enviando o pagamento…</string>
   <string name="ConfirmPayment__processing_payment">Processando o pagamento…</string>
   <string name="ConfirmPayment__payment_complete">Pagamento concluído</string>
   <string name="ConfirmPayment__payment_failed">Falha ao pagar</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Não foi possível obter a taxa de transação. Para este pagamento prosseguir, toque em ok para tentar novamente.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Definir a moeda</string>
+  <string name="SetCurrencyFragment__all_currencies">Todas as moedas</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2588,6 +2595,7 @@
   <string name="OldDeviceTransferLockedDialog__done">Pronto</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este aparelho</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Você tem um saldo de %1$s. Se você não transferir essa quantia para o endereço de outra carteira antes de excluir a sua conta, você perderá o saldo para sempre.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Não transferir</string>
   <string name="AdvancedPreferenceFragment__transfer">Transferir</string>
   <!--RecipientBottomSheet-->

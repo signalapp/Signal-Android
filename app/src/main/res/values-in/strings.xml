@@ -92,7 +92,6 @@
   <string name="BlockUnblockDialog_unblock_s">Berhenti blok %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokir</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokir dan Tinggalkan</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blok dan Hapus</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hari ini</string>
   <string name="BucketedThreadMedia_Yesterday">Kemarin</string>

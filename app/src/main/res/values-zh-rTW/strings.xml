@@ -92,7 +92,7 @@
   <string name="BlockUnblockDialog_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="BlockUnblockDialog_block">封鎖</string>
   <string name="BlockUnblockDialog_block_and_leave">封鎖並離開</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">封鎖並刪除</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">回報垃圾訊息並封鎖</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
@@ -239,6 +239,7 @@
   <string name="ConversationActivity_join">加入</string>
   <string name="ConversationActivity_full">已滿</string>
   <string name="ConversationActivity_error_sending_media">傳送媒體檔時出錯</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">回報為垃圾訊息並被封鎖。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>

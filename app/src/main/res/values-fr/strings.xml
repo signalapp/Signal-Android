@@ -89,7 +89,6 @@
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
   <string name="BlockUnblockDialog_block">Bloquer</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquer et quitter</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Bloquer et supprimer</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
   <string name="BucketedThreadMedia_Yesterday">Hier</string>
@@ -235,6 +234,7 @@
   <string name="ConversationActivity_join">Me joindre</string>
   <string name="ConversationActivity_full">Complet</string>
   <string name="ConversationActivity_error_sending_media">Erreur d’envoi du média</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Signalé comme spam et bloqué.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -969,6 +969,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe en « %2$s ».</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été changé en « %1$s ».</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_s_changed_the_group_description">%1$s a changé la description du groupe.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Vous avez changé l’avatar du groupe.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s a changé l’avatar du groupe.</string>
@@ -1728,6 +1729,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Modifier le nom et la photo du groupe</string>
   <string name="EditProfileFragment__group_name">Nom du groupe</string>
+  <string name="EditProfileFragment__group_description">Description du groupe</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Votre nom</string>
   <string name="EditProfileNameFragment_first_name">Prénom</string>
@@ -1788,11 +1790,21 @@
   <string name="HelpFragment__include_debug_log">Inclure le journal de débogage.</string>
   <string name="HelpFragment__whats_this">Qu’est-ce donc ?</string>
   <string name="HelpFragment__how_do_you_feel">Comment vous sentez-vous ? (facultatif)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">Dites-nous pourquoi vous nous contactez.</string>
   <string name="HelpFragment__support_info">Renseignements d’assistance</string>
   <string name="HelpFragment__signal_android_support_request">Demande d’assistance – Signal pour Android</string>
   <string name="HelpFragment__debug_log">Journal de débogage :</string>
   <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- Veuillez sélectionner une option --</item>
+    <item>Quelque chose ne fonctionne pas</item>
+    <item>Proposition de fonction</item>
+    <item>Question</item>
+    <item>Rétroaction</item>
+    <item>Autre</item>
+    <item>Paiments</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilisés récemment</string>
@@ -2282,6 +2294,7 @@
   <string name="registration_activity__skip">Ignorer</string>
   <string name="preferences_chats__chat_backups">Sauvegardes des conversations</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sauvegarder les conversations dans la mémoire externe</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transférer le compte vers un nouvel appareil Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Saisissez la phrase de passe de la sauvegarde</string>
   <string name="RegistrationActivity_restore">Restaurer</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Impossible d’importer des sauvegardes de versions de Signal plus récentes.</string>
@@ -2358,24 +2371,41 @@
   <!--TransferOrRestoreFragment-->
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Poursuivre</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__create_a_backup">Créer une sauvegarde</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__grant_location_permission">Accorder l’autorisation pour la localisation</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Activer les services de localisation</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Impossible d’ouvrir les paramètres de localisation.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Activer le Wi-Fi</string>
   <string name="DeviceTransferSetup__retry">Réessayer</string>
   <string name="DeviceTransferSetup__continue">Poursuivre</string>
+  <string name="DeviceTransferSetup__stop_transfer">Arrêter le transfert</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">Réessayer</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">Annuler</string>
   <string name="DeviceTransfer__try_again">Réessayer</string>
+  <string name="DeviceTransfer__stop_transfer">Arrêter le transfert</string>
+  <string name="DeviceTransfer__unable_to_transfer">Impossible de transférer</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transférer le compte</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Téléchargez Signal sur votre nouvel appareil Android</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Poursuivre</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transfert terminé</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Allez sur votre nouvel appareil</string>
   <string name="OldDeviceTransferComplete__close">Fermer</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_complete">Transfert terminé</string>
   <!--DeviceToDeviceTransferService-->
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Terminé</string>
@@ -2527,6 +2557,7 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">Erreur de définition du fond d’écran.</string>
   <string name="WallpaperCropActivity__blur_photo">Rendre la photo floue</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">À propos de MobileCoin</string>
   <string name="payment_info_card_hide">Cacher</string>
   <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
   <!--DeactivateWalletFragment-->
@@ -2550,28 +2581,40 @@
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">Valider</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Description du groupe</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
   <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Compte</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">On vous le demandera moins souvent au fil du temps</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Clavier</string>
   <string name="ChatsSettingsFragment__enter_key_sends">La touche Entrée envoie</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Utiliser comme appli de textos par défaut</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Messages</string>
   <string name="NotificationsSettingsFragment__calls">Appels</string>
+  <string name="NotificationsSettingsFragment__notify_when">Me prévenir quand…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Un contact se joint à Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Bloquée</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
   <string name="PrivacySettingsFragment__messaging">Messagerie</string>
+  <string name="PrivacySettingsFragment__app_security">Sécurité de l’appli</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centre d’assistance</string>
   <string name="HelpSettingsFragment__contact_us">Nous contacter</string>
   <string name="HelpSettingsFragment__version">Version</string>
   <string name="HelpSettingsFragment__debug_log">Journal de débogage</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Conditions générales et politique de confidentialité</string>
+  <string name="HelpFragment__copyright_signal_messenger">Tous droits réservés Messagerie Signal</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Sous licence GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Appels</string>
   <!--EOF-->

@@ -90,7 +90,6 @@
   <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokker og slett</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">I dag</string>
   <string name="BucketedThreadMedia_Yesterday">I går</string>

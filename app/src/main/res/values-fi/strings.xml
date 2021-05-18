@@ -93,7 +93,6 @@
   <string name="BlockUnblockDialog_unblock_s">Poistetaanko käyttäjän %1$s esto?</string>
   <string name="BlockUnblockDialog_block">Estä</string>
   <string name="BlockUnblockDialog_block_and_leave">Estä ja poistu</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Estä ja poista</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">tänään</string>
   <string name="BucketedThreadMedia_Yesterday">eilen</string>

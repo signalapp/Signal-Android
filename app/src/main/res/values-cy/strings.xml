@@ -95,7 +95,6 @@
   <string name="BlockUnblockDialog_unblock_s">Dadrwystro %1$s?</string>
   <string name="BlockUnblockDialog_block">Rhwystro</string>
   <string name="BlockUnblockDialog_block_and_leave">Rhwystro a Gadael</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Rhwystro a Dileu</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Heddiw</string>
   <string name="BucketedThreadMedia_Yesterday">Ddoe</string>

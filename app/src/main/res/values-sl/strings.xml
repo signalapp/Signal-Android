@@ -92,7 +92,6 @@
   <string name="BlockUnblockDialog_unblock_s">Odblokiram uporabnika/co %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj in zapusti</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokiraj in izbriši</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danes</string>
   <string name="BucketedThreadMedia_Yesterday">Včeraj</string>

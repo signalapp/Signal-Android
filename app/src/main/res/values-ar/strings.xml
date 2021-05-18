@@ -94,7 +94,6 @@
   <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s ؟</string>
   <string name="BlockUnblockDialog_block">حظر</string>
   <string name="BlockUnblockDialog_block_and_leave">حظر ثم المغادرة</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">حظر ثم الحذف</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اليوم</string>
   <string name="BucketedThreadMedia_Yesterday">البارحة</string>

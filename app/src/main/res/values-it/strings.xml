@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Sbloccare %1$s?</string>
   <string name="BlockUnblockDialog_block">Blocca</string>
   <string name="BlockUnblockDialog_block_and_leave">Blocca e abbandona</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blocca ed elimina</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Segnala spam e blocca</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Oggi</string>
   <string name="BucketedThreadMedia_Yesterday">Ieri</string>
@@ -240,6 +240,7 @@
   <string name="ConversationActivity_join">Unisciti</string>
   <string name="ConversationActivity_full">Piena</string>
   <string name="ConversationActivity_error_sending_media">Errore durante l\'invio del media</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Segnalato come spam e bloccato.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>

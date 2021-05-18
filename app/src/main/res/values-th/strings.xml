@@ -91,7 +91,6 @@
   <string name="BlockUnblockDialog_unblock_s">เลิกปิดกั้น %1$sหรือไม่?</string>
   <string name="BlockUnblockDialog_block">ปิดกั้น</string>
   <string name="BlockUnblockDialog_block_and_leave">ปิดกั้นและออก</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ปิดกั้นและลบ</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">วันนี้</string>
   <string name="BucketedThreadMedia_Yesterday">เมื่อวาน</string>

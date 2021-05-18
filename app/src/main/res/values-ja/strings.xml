@@ -91,7 +91,6 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s のブロックを解除しますか？</string>
   <string name="BlockUnblockDialog_block">ブロックする</string>
   <string name="BlockUnblockDialog_block_and_leave">ブロックして抜ける</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">ブロックして削除</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今日</string>
   <string name="BucketedThreadMedia_Yesterday">昨日</string>

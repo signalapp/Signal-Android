@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Ikkje blokker %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokker og slett</string> -->
+  <string name="BlockUnblockDialog_report_spam_and_block">Rapporter som søppel og blokker</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">I dag</string>
   <string name="BucketedThreadMedia_Yesterday">I går</string>
@@ -240,6 +240,7 @@
   <string name="ConversationActivity_join">Bli med</string>
   <string name="ConversationActivity_full">Fullt</string>
   <string name="ConversationActivity_error_sending_media">Klarte ikkje senda media</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Rapportert som søppel og blokkert</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulesen melding</item>
@@ -1180,7 +1181,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="ReactionsRecipientAdapter_you">Du</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Stadfest for å halda fram med meldingar</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Fullfør stadfestinga for å hjelpa oss å unngå spam på Signal</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Fullfør stadfestinga for å hjelpa oss å unngå søppelmeldingar på Signal</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Etter stadfesting kan du halda fram med meldingar. Meldingar som er på vent vil bli sende automatisk.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokker</string>
