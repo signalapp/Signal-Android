@@ -138,22 +138,24 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         }
       )
 
-      dividerPref()
+      if (FeatureFlags.defaultMessageTimer()) {
+        dividerPref()
 
-      sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)
+        sectionHeaderPref(R.string.PrivacySettingsFragment__disappearing_messages)
 
-      customPref(
-        ValueClickPreference(
-          value = DSLSettingsText.from(ExpirationUtil.getExpirationAbbreviatedDisplayValue(requireContext(), state.universalExpireTimer)),
-          clickPreference = ClickPreference(
-            title = DSLSettingsText.from(R.string.PrivacySettingsFragment__default_timer_for_new_changes),
-            summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you),
-            onClick = {
-              NavHostFragment.findNavController(this@PrivacySettingsFragment).navigate(R.id.action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment)
-            }
+        customPref(
+          ValueClickPreference(
+            value = DSLSettingsText.from(ExpirationUtil.getExpirationAbbreviatedDisplayValue(requireContext(), state.universalExpireTimer)),
+            clickPreference = ClickPreference(
+              title = DSLSettingsText.from(R.string.PrivacySettingsFragment__default_timer_for_new_changes),
+              summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you),
+              onClick = {
+                NavHostFragment.findNavController(this@PrivacySettingsFragment).navigate(R.id.action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment)
+              }
+            )
           )
         )
-      )
+      }
 
       dividerPref()
 

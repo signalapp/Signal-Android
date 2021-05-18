@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.logging.Log;
@@ -380,7 +381,11 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public int getUniversalExpireTimer() {
-    return getInteger(UNIVERSAL_EXPIRE_TIMER, 0);
+    if (FeatureFlags.defaultMessageTimer()) {
+      return getInteger(UNIVERSAL_EXPIRE_TIMER, 0);
+    } else {
+      return 0;
+    }
   }
 
   private @Nullable Uri getUri(@NonNull String key) {
