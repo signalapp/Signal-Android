@@ -69,16 +69,6 @@ public class SignalServiceAddress {
     }
   }
 
-  public String getLegacyIdentifier() {
-    if (e164.isPresent()) {
-      return e164.get();
-    } else if (uuid.isPresent()) {
-      return uuid.get().toString();
-    } else {
-      throw new AssertionError("Given the checks in the constructor, this should not be possible.");
-    }
-  }
-
   public Optional<String> getRelay() {
     return relay;
   }

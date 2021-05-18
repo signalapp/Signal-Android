@@ -234,7 +234,7 @@ public class SignalServiceCipher {
     } else if (e164Address != null && store.containsSession(e164Address)) {
       return e164Address;
     } else {
-      return new SignalProtocolAddress(address.getLegacyIdentifier(), sourceDevice);
+      return new SignalProtocolAddress(address.getIdentifier(), sourceDevice);
     }
   }
 
