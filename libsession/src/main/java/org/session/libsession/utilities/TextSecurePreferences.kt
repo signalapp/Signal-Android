@@ -763,5 +763,13 @@ object TextSecurePreferences {
     @JvmStatic
     fun shouldUpdateProfile(context: Context, profileUpdateTime: Long) =
             profileUpdateTime > getLongPreference(context, LAST_PROFILE_UPDATE_TIME, 0)
+
+    fun hasSeenFileServerInstabilityNotification(context: Context): Boolean {
+        return getBooleanPreference(context, "has_seen_file_server_instability_notification", false)
+    }
+
+    fun setHasSeenFileServerInstabilityNotification(context: Context) {
+        setBooleanPreference(context, "has_seen_file_server_instability_notification", true)
+    }
     // endregion
 }

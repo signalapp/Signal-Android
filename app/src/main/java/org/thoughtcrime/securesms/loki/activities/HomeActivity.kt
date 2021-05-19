@@ -173,8 +173,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
-        showKeyPairMigrationSheetIfNeeded()
-        showKeyPairMigrationSuccessSheetIfNeeded()
+        showFileServerInstabilityNotificationIfNeeded()
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {
                 MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
@@ -182,21 +181,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         }
     }
 
-    private fun showKeyPairMigrationSheetIfNeeded() {
-        if (KeyPairUtilities.hasV2KeyPair(this)) {
-            return
-        }
-        val keyPairMigrationSheet = KeyPairMigrationBottomSheet()
-        keyPairMigrationSheet.show(supportFragmentManager, keyPairMigrationSheet.tag)
-    }
-
-    private fun showKeyPairMigrationSuccessSheetIfNeeded() {
-        if (!KeyPairUtilities.hasV2KeyPair(this) || !TextSecurePreferences.getIsMigratingKeyPair(this)) {
-            return
-        }
-        val keyPairMigrationSuccessSheet = KeyPairMigrationSuccessBottomSheet()
-        keyPairMigrationSuccessSheet.show(supportFragmentManager, keyPairMigrationSuccessSheet.tag)
-        TextSecurePreferences.setIsMigratingKeyPair(this, false)
+    private fun showFileServerInstabilityNotificationIfNeeded() {
+        val hasSeenNotification = TextSecurePreferences.hasSeenFileServerInstabilityNotification(this)
+        if (hasSeenNotification) { return }
+        FileServerDialog().show(supportFragmentManager, "File Server Dialog")
+        TextSecurePreferences.setHasSeenFileServerInstabilityNotification(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

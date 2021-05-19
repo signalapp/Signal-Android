@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_dialog_background_inset"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingTop="@dimen/medium_spacing"
+    android:paddingRight="32dp"
+    android:paddingBottom="@dimen/medium_spacing">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Session"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="@dimen/medium_font_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:text="We're upgrading the way files are stored. File transfer may be unstable for the next 24-48 hours."
+        android:textColor="@color/text"
+        android:textSize="@dimen/small_font_size"
+        android:textAlignment="center"
+        android:alpha="0.6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/Widget.Session.Button.Dialog.Unimportant"
+            android:id="@+id/okButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:text="@string/ok" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
 
-
 class SeedDialog : DialogFragment() {
 
     private val seed by lazy {
