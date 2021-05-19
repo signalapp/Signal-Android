@@ -748,7 +748,7 @@
     <string name="ManageGroupActivity_upgrade_this_group">upgrade this group.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately, invite your contacts to Signal.</string>
     <string name="ManageGroupActivity_invite_now">Invite now</string>
-    <string name="ManageGroupActivity_more">…more</string>
+    <string name="ManageGroupActivity_more">more</string>
     <string name="ManageGroupActivity_add_group_description">Add group description…</string>
 
     <!-- GroupMentionSettingDialog -->

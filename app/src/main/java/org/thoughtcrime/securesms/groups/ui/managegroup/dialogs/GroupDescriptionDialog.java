@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
@@ -34,7 +35,7 @@ public final class GroupDescriptionDialog extends DialogFragment {
   private static final String ARGUMENT_LINKIFY     = "linkify";
   private static final String DIALOG_TAG           = "GroupDescriptionDialog";
 
-  private TextView descriptionText;
+  private EmojiTextView descriptionText;
 
   public static void show(@NonNull FragmentManager fragmentManager, @NonNull String title, @Nullable String description, boolean linkify) {
     show(fragmentManager, null, title, description, linkify);
@@ -76,9 +77,9 @@ public final class GroupDescriptionDialog extends DialogFragment {
                            .create();
 
     if (argumentDescription != null) {
-      descriptionText.setText(GroupDescriptionUtil.style(requireContext(), argumentDescription, linkify, null));
+      GroupDescriptionUtil.setText(requireContext(), descriptionText, argumentDescription, linkify, null);
     } else if (liveGroup != null) {
-      liveGroup.getDescription().observe(this, d -> descriptionText.setText(GroupDescriptionUtil.style(requireContext(), d, linkify, null)));
+      liveGroup.getDescription().observe(this, d -> GroupDescriptionUtil.setText(requireContext(), descriptionText, d, linkify, null));
     }
 
     if (TextUtils.isEmpty(argumentTitle) && liveGroup != null) {

@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -91,7 +90,8 @@ public class EmojiTextView extends AppCompatTextView {
     super.onDraw(canvas);
   }
 
-  @Override public void setText(@Nullable CharSequence text, BufferType type) {
+  @Override
+  public void setText(@Nullable CharSequence text, BufferType type) {
     EmojiParser.CandidateList candidates = isInEditMode() ? null : EmojiProvider.getCandidates(text);
 
     if (scaleEmojis && candidates != null && candidates.allEmojis) {
@@ -118,23 +118,19 @@ public class EmojiTextView extends AppCompatTextView {
     useSystemEmoji       = useSystemEmoji();
 
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
-      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")).append(Optional.fromNullable(overflowText).or("")), BufferType.NORMAL);
-
-      if (getEllipsize() == TextUtils.TruncateAt.END && maxLength > 0) {
-        ellipsizeAnyTextForMaxLength();
-      }
+      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.NORMAL);
     } else {
       CharSequence emojified = EmojiProvider.emojify(candidates, text, this);
-      super.setText(new SpannableStringBuilder(emojified).append(Optional.fromNullable(overflowText).or("")), BufferType.SPANNABLE);
+      super.setText(new SpannableStringBuilder(emojified), BufferType.SPANNABLE);
+    }
 
-      // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
-      // We ellipsize them ourselves by manually truncating the appropriate section.
-      if (getEllipsize() == TextUtils.TruncateAt.END) {
-        if (maxLength > 0) {
-          ellipsizeAnyTextForMaxLength();
-        } else {
-          ellipsizeEmojiTextForMaxLines();
-        }
+    // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
+    // We ellipsize them ourselves by manually truncating the appropriate section.
+    if (getText() != null && getText().length() > 0 && getEllipsize() == TextUtils.TruncateAt.END) {
+      if (maxLength > 0) {
+        ellipsizeAnyTextForMaxLength();
+      } else if (getMaxLines() > 0) {
+        ellipsizeEmojiTextForMaxLines();
       }
     }
 
@@ -192,7 +188,8 @@ public class EmojiTextView extends AppCompatTextView {
       if (lineCount > maxLines) {
         int overflowStart = getLayout().getLineStart(maxLines - 1);
         CharSequence overflow = getText().subSequence(overflowStart, getText().length());
-        CharSequence ellipsized = TextUtils.ellipsize(overflow, getPaint(), getWidth(), TextUtils.TruncateAt.END);
+        float adjust = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
+        CharSequence ellipsized = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
         newContent.append(getText().subSequence(0, overflowStart))

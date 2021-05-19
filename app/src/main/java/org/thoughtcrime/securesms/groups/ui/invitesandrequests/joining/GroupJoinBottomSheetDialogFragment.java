@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
@@ -46,7 +47,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
   private AvatarImageView avatar;
   private TextView        groupName;
   private TextView        groupDetails;
-  private TextView        groupDescription;
+  private EmojiTextView   groupDescription;
   private TextView        groupJoinExplain;
   private Button          groupJoinButton;
   private Button          groupCancelButton;
@@ -158,10 +159,11 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
   private void updateGroupDescription(@NonNull String name, @NonNull String description) {
     groupDescription.setVisibility(View.VISIBLE);
     groupDescription.setMovementMethod(LinkMovementMethod.getInstance());
-    groupDescription.setText(GroupDescriptionUtil.style(requireContext(),
-                                                        description,
-                                                        true,
-                                                        () -> GroupDescriptionDialog.show(getChildFragmentManager(), name, description, true)));
+    GroupDescriptionUtil.setText(requireContext(),
+                                 groupDescription,
+                                 description,
+                                 true,
+                                 () -> GroupDescriptionDialog.show(getChildFragmentManager(), name, description, true));
   }
 
   private static ExtendedGroupJoinStatus getGroupJoinStatus() {

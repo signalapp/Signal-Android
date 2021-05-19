@@ -541,13 +541,15 @@ public class ConversationFragment extends LoggingFragment {
       } else {
         conversationBanner.setLinkifyDescription(true);
         boolean linkifyWebLinks = recipientInfo.getMessageRequestState() == MessageRequestState.NONE;
-        conversationBanner.setDescription(GroupDescriptionUtil.style(context,
-                                                                     recipientInfo.getGroupDescription(),
-                                                                     linkifyWebLinks,
-                                                                     () -> GroupDescriptionDialog.show(getChildFragmentManager(),
-                                                                                                       recipient.getDisplayName(context),
-                                                                                                       recipientInfo.getGroupDescription(),
-                                                                                                       linkifyWebLinks)));
+        conversationBanner.showDescription();
+        GroupDescriptionUtil.setText(context,
+                                     conversationBanner.getDescription(),
+                                     recipientInfo.getGroupDescription(),
+                                     linkifyWebLinks,
+                                     () -> GroupDescriptionDialog.show(getChildFragmentManager(),
+                                                                       recipient.getDisplayName(context),
+                                                                       recipientInfo.getGroupDescription(),
+                                                                       linkifyWebLinks));
       }
     } else {
       final String description;
