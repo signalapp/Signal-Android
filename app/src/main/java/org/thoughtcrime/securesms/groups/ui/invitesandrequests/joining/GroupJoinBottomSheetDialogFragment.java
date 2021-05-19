@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +34,7 @@ import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogFragment {
@@ -158,7 +158,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
 
   private void updateGroupDescription(@NonNull String name, @NonNull String description) {
     groupDescription.setVisibility(View.VISIBLE);
-    groupDescription.setMovementMethod(LinkMovementMethod.getInstance());
+    groupDescription.setMovementMethod(LongClickMovementMethod.getInstance(requireContext()));
     GroupDescriptionUtil.setText(requireContext(),
                                  groupDescription,
                                  description,

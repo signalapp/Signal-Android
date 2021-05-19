@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.groups.ui.managegroup.dialogs;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +19,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 
 /**
  * Dialog to show a full group description. Information regarding the description can be provided
@@ -68,7 +67,7 @@ public final class GroupDescriptionDialog extends DialogFragment {
     LiveGroup liveGroup           = argumentGroupId != null ? new LiveGroup(argumentGroupId) : null;
 
     descriptionText = dialogView.findViewById(R.id.group_description_dialog_text);
-    descriptionText.setMovementMethod(LinkMovementMethod.getInstance());
+    descriptionText.setMovementMethod(LongClickMovementMethod.getInstance(requireContext()));
 
     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext(), R.style.Signal_ThemeOverlay_Dialog_Rounded);
     Dialog dialog = builder.setTitle(TextUtils.isEmpty(argumentTitle) ? getString(R.string.GroupDescriptionDialog__group_description) : argumentTitle)

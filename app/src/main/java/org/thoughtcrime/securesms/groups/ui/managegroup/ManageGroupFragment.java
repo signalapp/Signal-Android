@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,6 +64,7 @@ import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -448,7 +448,7 @@ public class ManageGroupFragment extends LoggingFragment {
   private void updateGroupDescription(@NonNull ManageGroupViewModel.Description description) {
     if (!TextUtils.isEmpty(description.getDescription()) || (FeatureFlags.groupsV2Description() && description.canEditDescription())) {
       groupDescription.setVisibility(View.VISIBLE);
-      groupDescription.setMovementMethod(LinkMovementMethod.getInstance());
+      groupDescription.setMovementMethod(LongClickMovementMethod.getInstance(requireContext()));
       memberCountUnderAvatar.setVisibility(View.GONE);
     } else {
       groupDescription.setVisibility(View.GONE);

@@ -2,9 +2,7 @@ package org.thoughtcrime.securesms.groups.v2;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -21,6 +19,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
+import org.thoughtcrime.securesms.util.LongClickCopySpan;
 
 public final class GroupDescriptionUtil {
 
@@ -45,6 +44,15 @@ public final class GroupDescriptionUtil {
         Stream.of(descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class))
               .filterNot(url -> LinkPreviewUtil.isLegalUrl(url.getURL()))
               .forEach(descriptionSpannable::removeSpan);
+
+        URLSpan[] urlSpans = descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class);
+
+        for (URLSpan urlSpan : urlSpans) {
+          int     start = descriptionSpannable.getSpanStart(urlSpan);
+          int     end   = descriptionSpannable.getSpanEnd(urlSpan);
+          URLSpan span  = new LongClickCopySpan(urlSpan.getURL());
+          descriptionSpannable.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
       }
     }
 

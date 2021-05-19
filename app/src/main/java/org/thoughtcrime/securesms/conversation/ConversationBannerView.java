@@ -1,11 +1,7 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -13,8 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.ImageViewCompat;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
@@ -25,6 +19,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 
 public class ConversationBannerView extends ConstraintLayout {
 
@@ -117,7 +112,7 @@ public class ConversationBannerView extends ConstraintLayout {
   }
 
   public void setLinkifyDescription(boolean enable) {
-    contactDescription.setMovementMethod(enable ? LinkMovementMethod.getInstance() : null);
+    contactDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
   }
 
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
