@@ -86,12 +86,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
-        linkedDevicesButtonTopSeparator.visibility = View.GONE
-        linkedDevicesButton.visibility = View.GONE
         privacyButton.setOnClickListener { showPrivacySettings() }
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
         sendInvitationButton.setOnClickListener { sendInvitation() }
+        helpTranslateButton.setOnClickListener { helpTranslate() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
         versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
@@ -290,6 +289,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         intent.putExtra(Intent.EXTRA_TEXT, invitation)
         intent.type = "text/plain"
         startActivity(intent)
+    }
+
+    private fun helpTranslate() {
+        try {
+            val url = "https://crowdin.com/project/session-android"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showSeed() {
