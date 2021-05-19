@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class OpenGroupPollerV2(private val server: String, private val executorService: ScheduledExecutorService?) {
     var hasStarted = false
+    var isCaughtUp = false
     private var future: ScheduledFuture<*>? = null
 
     companion object {
@@ -44,6 +45,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 handleNewMessages(openGroupID, response.messages, isBackgroundPoll)
                 handleDeletedMessages(openGroupID, response.deletions)
             }
+            isCaughtUp = true
         }.always {
             executorService?.schedule(this@OpenGroupPollerV2::poll, OpenGroupPollerV2.pollInterval, TimeUnit.MILLISECONDS)
         }.map { }

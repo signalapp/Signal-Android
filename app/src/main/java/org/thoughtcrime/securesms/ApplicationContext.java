@@ -206,10 +206,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setCaughtUp(false);
         }
         startPollingIfNeeded();
-        // FIXME: Open group handling
-        /*
-        publicChatManager.markAllAsNotCaughtUp();
-         */
+
+        OpenGroupManager.INSTANCE.markAllAsNotCaughtUp();
         OpenGroupManager.INSTANCE.startPolling();
     }
 
