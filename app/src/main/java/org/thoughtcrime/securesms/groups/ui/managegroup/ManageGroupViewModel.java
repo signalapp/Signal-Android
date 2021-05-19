@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
-import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.MediaDatabase;

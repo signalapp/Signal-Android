@@ -92,7 +92,6 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
-import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MuteDialog;
@@ -169,11 +168,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
-import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity;
@@ -211,7 +207,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
@@ -237,6 +232,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -1137,42 +1133,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
 //////// Event Handlers
 
   private void handleSelectMessageExpiration() {
-    boolean activeGroup = isActiveGroup();
-
-    if (isPushGroupConversation() && !activeGroup) {
+    if (isPushGroupConversation() && !isActiveGroup()) {
       return;
     }
 
-    final long thread = this.threadId;
-
-    ExpirationDialog.show(this, recipient.get().getExpireMessages(),
-      expirationTime ->
-        SimpleTask.run(
-          getLifecycle(),
-          () -> {
-            if (activeGroup) {
-              try {
-                GroupManager.updateGroupTimer(ConversationActivity.this, getRecipient().requireGroupId().requirePush(), expirationTime);
-                } catch (GroupChangeException | IOException e) {
-                Log.w(TAG, e);
-                return GroupChangeResult.failure(GroupChangeFailureReason.fromException(e));
-              }
-            } else {
-              DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient.getId(), expirationTime);
-              OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
-              MessageSender.send(ConversationActivity.this, outgoingMessage, thread, false, null);
-            }
-            return GroupChangeResult.SUCCESS;
-          },
-          (changeResult) -> {
-            if (!changeResult.isSuccess()) {
-              Toast.makeText(ConversationActivity.this, GroupErrors.getUserDisplayMessage(changeResult.getFailureReason()), Toast.LENGTH_SHORT).show();
-            } else {
-              invalidateOptionsMenu();
-              if (fragment != null) fragment.setLastSeen(0);
-            }
-          })
-    );
+    startActivity(RecipientDisappearingMessagesActivity.forRecipient(this, recipient.getId()));
   }
 
   private void handleMuteNotifications() {

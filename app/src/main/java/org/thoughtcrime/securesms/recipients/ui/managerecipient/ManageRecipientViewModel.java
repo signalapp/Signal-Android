@@ -18,7 +18,6 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
-import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;

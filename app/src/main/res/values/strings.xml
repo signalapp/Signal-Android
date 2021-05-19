@@ -1291,11 +1291,6 @@
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal needs the Camera permission in order to scan a QR code, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Unable to scan a QR code without the Camera permission</string>
 
-    <!-- ExpirationDialog -->
-    <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
-    <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
-    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
-
     <!-- OutdatedBuildReminder -->
     <string name="OutdatedBuildReminder_update_now">Update now</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">This version of Signal will expire today. Update to the most recent version.</string>
