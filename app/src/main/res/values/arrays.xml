@@ -383,11 +383,11 @@
     </integer-array>
 
     <string-array name="CustomExpireTimerSelectorView__unit_labels">
-        <item>@string/CustomExpireTimerSelectorView__second</item>
-        <item>@string/CustomExpireTimerSelectorView__minute</item>
-        <item>@string/CustomExpireTimerSelectorView__hour</item>
-        <item>@string/CustomExpireTimerSelectorView__day</item>
-        <item>@string/CustomExpireTimerSelectorView__week</item>
+        <item>@string/CustomExpireTimerSelectorView__seconds</item>
+        <item>@string/CustomExpireTimerSelectorView__minutes</item>
+        <item>@string/CustomExpireTimerSelectorView__hours</item>
+        <item>@string/CustomExpireTimerSelectorView__days</item>
+        <item>@string/CustomExpireTimerSelectorView__weeks</item>
     </string-array>
 
 </resources>

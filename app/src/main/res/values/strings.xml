@@ -3438,11 +3438,11 @@
     <string name="ExpireTimerSettingsFragment__set">Set</string>
     <string name="ExpireTimerSettingsFragment__save">Save</string>
 
-    <string name="CustomExpireTimerSelectorView__second">Second</string>
-    <string name="CustomExpireTimerSelectorView__minute">Minute</string>
-    <string name="CustomExpireTimerSelectorView__hour">Hour</string>
-    <string name="CustomExpireTimerSelectorView__day">Day</string>
-    <string name="CustomExpireTimerSelectorView__week">Week</string>
+    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
+    <string name="CustomExpireTimerSelectorView__hours">hours</string>
+    <string name="CustomExpireTimerSelectorView__days">days</string>
+    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
 
     <!-- HelpSettingsFragment -->
     <string name="HelpSettingsFragment__support_center">Support center</string>
