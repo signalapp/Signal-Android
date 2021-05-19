@@ -55,18 +55,10 @@
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
-    <dimen name="min_custom_keyboard_top_margin_landscape">50dp</dimen>
-    <dimen name="emoji_drawer_item_padding">5dp</dimen>
-    <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
-    <dimen name="emoji_drawer_left_right_padding">5dp</dimen>
     <dimen name="emoji_drawer_item_width">48dp</dimen>
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
-    <dimen name="transport_selection_popup_width">200sp</dimen>
-    <dimen name="transport_selection_popup_xoff">2dp</dimen>
-    <dimen name="transport_selection_popup_yoff">2dp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
-    <dimen name="contact_selection_photo_size">50dp</dimen>
 
     <dimen name="album_total_width">210dp</dimen>
     <dimen name="album_2_total_height">105dp</dimen>
@@ -87,7 +79,6 @@
     <dimen name="message_bubble_horizontal_padding">@dimen/medium_spacing</dimen>
     <dimen name="message_bubble_top_padding">@dimen/medium_spacing</dimen>
     <dimen name="message_bubble_collapsed_footer_padding">@dimen/small_spacing</dimen>
-    <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">@dimen/medium_spacing</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
@@ -109,7 +100,6 @@
     <dimen name="thumbnail_default_radius">4dp</dimen>
 
     <dimen name="conversation_compose_height">40dp</dimen>
-    <dimen name="conversation_individual_right_gutter">@dimen/large_spacing</dimen>
     <dimen name="conversation_individual_left_gutter">@dimen/large_spacing</dimen>
     <dimen name="conversation_group_left_gutter">60dp</dimen>
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
@@ -117,31 +107,15 @@
 
     <dimen name="conversation_item_avatar_size">36dp</dimen>
 
-    <dimen name="quote_corner_radius_large">10dp</dimen>
     <dimen name="quote_corner_radius_bottom">2dp</dimen>
     <dimen name="quote_corner_radius_preview">16dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
 
-    <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
-
-    <dimen name="sticker_page_item_padding">8dp</dimen>
-    <dimen name="sticker_page_item_divisor">88dp</dimen>
-    <dimen name="sticker_page_item_multiplier">8dp</dimen>
-    <dimen name="sticker_preview_sticker_size">96dp</dimen>
-
-    <dimen name="sticker_management_horizontal_margin">16dp</dimen>
-
-    <dimen name="tooltip_popup_margin">8dp</dimen>
-
-    <dimen name="transfer_controls_expanded_width">150dp</dimen>
-    <dimen name="transfer_controls_contracted_width">70dp</dimen>
-    <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <dimen name="unread_count_bubble_radius">13sp</dimen>
-    <dimen name="unread_count_bubble_diameter">26sp</dimen>
 
     <!-- RedPhone -->
 
@@ -154,20 +128,11 @@
          holding the phone, *before* moving it up to your face and having
          the prox sensor kick in.) -->
 
-    <dimen name="onboarding_title_size">34sp</dimen>
-    <dimen name="onboarding_subtitle_size">20sp</dimen>
-
-    <dimen name="scribble_stroke_size">2dp</dimen>
-
-    <dimen name="floating_action_button_margin">16dp</dimen>
-
     <dimen name="alertview_small_icon_size">14dp</dimen>
 
     <dimen name="recording_voice_lock_target">-96dp</dimen>
 
-    <dimen name="default_margin">16dp</dimen>
     <dimen name="drawable_padding">24dp</dimen>
-    <dimen name="text_size">16sp</dimen>
     <dimen name="normal_padding">16dp</dimen>
     <dimen name="action_item_height">56dp</dimen>
 

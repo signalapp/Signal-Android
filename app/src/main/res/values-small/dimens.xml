@@ -13,6 +13,4 @@
 
     <!-- Session -->
 
-    <dimen name="onboarding_title_size">32sp</dimen>
-    <dimen name="onboarding_subtitle_size">18sp</dimen>
 </resources>
