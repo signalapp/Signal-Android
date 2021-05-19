@@ -37,6 +37,7 @@ import org.session.libsignal.messages.SignalServiceGroup
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
@@ -561,9 +562,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val room = httpUrl.pathSegments().firstOrNull() ?: return
             val publicKey = httpUrl.queryParameter("public_key") ?: return
 
-            OpenGroupUtilities.addGroup(context, server.toString().removeSuffix("/"), room, publicKey)
+            OpenGroupManager.add(server.toString().removeSuffix("/"), room, publicKey, context)
         } else {
-            OpenGroupUtilities.addGroup(context, serverUrl, channel)
+            // TODO: No longer supported so let's remove this code
         }
     }
 

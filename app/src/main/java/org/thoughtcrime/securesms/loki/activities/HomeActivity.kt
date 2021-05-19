@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -139,7 +140,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, userDB)
-            application.publicChatManager.startPollersIfNeeded()
+            OpenGroupManager.startPolling()
             JobQueue.shared.resumePendingJobs()
         }
         IP2Country.configureIfNeeded(this)
@@ -359,14 +360,12 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                     apiDB.removeLastDeletionServerID(v1OpenGroup.channel, v1OpenGroup.server)
                     apiDB.clearOpenGroupProfilePictureURL(v1OpenGroup.channel, v1OpenGroup.server)
                     OpenGroupAPI.leave(v1OpenGroup.channel, v1OpenGroup.server)
-                    ApplicationContext.getInstance(context).publicChatManager
-                        .removeChat(v1OpenGroup.server, v1OpenGroup.channel)
+                    // FIXME: No longer supported so let's remove this code
                 } else if (v2OpenGroup != null) {
                     val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
                     apiDB.removeLastMessageServerID(v2OpenGroup.room, v2OpenGroup.server)
                     apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
-                    ApplicationContext.getInstance(context).publicChatManager
-                        .removeChat(v2OpenGroup.server, v2OpenGroup.room)
+                    OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
                     threadDB.deleteConversation(threadID)
                 }
