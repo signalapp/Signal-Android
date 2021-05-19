@@ -36,7 +36,8 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
     }
 
     fun poll(isBackgroundPoll: Boolean = false): Promise<Unit, Exception> {
-        val rooms: List<String> = listOf()
+        val storage = MessagingModuleConfiguration.shared.storage
+        val rooms = storage.getAllV2OpenGroups().values.filter { it.server == server }.map { it.room }
         return OpenGroupAPIV2.compactPoll(rooms, server).successBackground { responses ->
             responses.forEach { (room, response) ->
                 val openGroupID = "$server.$room"
