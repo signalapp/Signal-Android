@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
-import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.Stub;
 
 import java.io.IOException;
 

@@ -25,13 +25,13 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.ui.alwaysUi
 import nl.komponents.kovenant.ui.successUi
-import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.ProfilePictureUtilities
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
+import org.session.libsession.utilities.ProfileKeyUtil
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection

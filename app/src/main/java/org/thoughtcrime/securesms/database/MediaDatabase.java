@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 

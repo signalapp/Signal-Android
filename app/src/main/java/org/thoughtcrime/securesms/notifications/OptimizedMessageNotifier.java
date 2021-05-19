@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Debouncer;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.thoughtcrime.securesms.ApplicationContext;

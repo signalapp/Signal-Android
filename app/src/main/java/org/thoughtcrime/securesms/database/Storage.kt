@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.net.Uri
 import okhttp3.HttpUrl
-import org.session.libsession.messaging.StorageProtocol
+import org.session.libsession.database.StorageProtocol
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
@@ -20,15 +20,15 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.Address.Companion.fromSerialized
-import org.session.libsession.messaging.threads.GroupRecord
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.Address.Companion.fromSerialized
+import org.session.libsession.utilities.GroupRecord
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
+import org.session.libsession.utilities.ProfileKeyUtil
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
@@ -351,7 +351,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(group, server)
     }
 
-    override fun isDuplicateMessage(timestamp: Long, sender: String): Boolean {
+    override fun isDuplicateMessage(timestamp: Long): Boolean {
         return getReceivedMessageTimestamps().contains(timestamp)
     }
 

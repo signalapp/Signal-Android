@@ -6,9 +6,9 @@ import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 

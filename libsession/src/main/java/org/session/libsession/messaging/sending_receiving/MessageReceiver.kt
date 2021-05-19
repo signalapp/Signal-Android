@@ -38,12 +38,6 @@ object MessageReceiver {
         val isOpenGroupMessage = (openGroupServerID != null)
         // Parse the envelope
         val envelope = SignalServiceProtos.Envelope.parseFrom(data)
-        // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
-        // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
-        // for this issue.
-        if (storage.isDuplicateMessage(envelope.timestamp, GroupUtil.doubleEncodeGroupID(envelope.source)) && !isRetry) {
-            throw Error.DuplicateMessage
-        }
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
         var plaintext: ByteArray? = null
@@ -90,8 +84,6 @@ object MessageReceiver {
                 else -> throw Error.UnknownEnvelopeType
             }
         }
-        // Don't process the envelope any further if the message has been handled already
-        if (storage.isDuplicateMessage(envelope.timestamp, sender!!) && !isRetry) throw Error.DuplicateMessage
         // Don't process the envelope any further if the sender is blocked
         if (isBlocked(sender!!)) throw Error.SenderBlocked
         // Parse the proto
@@ -119,6 +111,19 @@ object MessageReceiver {
         var isValid = message.isValid()
         if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount != 0) { isValid = true }
         if (!isValid) { throw Error.InvalidMessage }
+        // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
+        // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
+        // for this issue.
+        if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
+            // Allow duplicates in this case to avoid the following situation:
+            // • The app performed a background poll or received a push notification
+            // • This method was invoked and the received message timestamps table was updated
+            // • Processing wasn't finished
+            // • The user doesn't see the new closed group
+        } else {
+            if (storage.isDuplicateMessage(envelope.timestamp)) { throw Error.DuplicateMessage }
+            storage.addReceivedMessageTimestamp(envelope.timestamp)
+        }
         // Return
         return Pair(message, proto)
     }

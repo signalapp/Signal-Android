@@ -38,7 +38,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import org.session.libsignal.utilities.ListenableFuture;
 import org.session.libsignal.utilities.SettableFuture;
-import org.session.libsession.utilities.views.Stub;
 
 public class ViewUtil {
   @SuppressWarnings("deprecation")

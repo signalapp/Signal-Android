@@ -30,10 +30,10 @@ import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.session.libsession.database.documents.IdentityKeyMismatch;
-import org.session.libsession.database.documents.NetworkFailure;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.NetworkFailure;
 
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.List;
 

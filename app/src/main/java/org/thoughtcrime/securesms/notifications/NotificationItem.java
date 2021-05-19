@@ -10,7 +10,7 @@ import androidx.core.app.TaskStackBuilder;
 
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 public class NotificationItem {
 

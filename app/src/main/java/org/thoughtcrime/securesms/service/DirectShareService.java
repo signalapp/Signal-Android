@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.LinkedList;

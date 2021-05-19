@@ -7,14 +7,14 @@ import android.text.TextUtils;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.session.libsession.database.documents.Document;
-import org.session.libsession.database.documents.IdentityKeyMismatch;
-import org.session.libsession.database.documents.IdentityKeyMismatchList;
+import org.session.libsession.utilities.Document;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.crypto.IdentityKey;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;

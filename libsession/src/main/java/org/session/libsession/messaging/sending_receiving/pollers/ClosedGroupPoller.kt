@@ -70,7 +70,7 @@ class ClosedGroupPoller {
                     return@successBackground
                 }
                 messages.forEach { envelope ->
-                    val job = MessageReceiveJob(envelope.toByteArray(), false)
+                    val job = MessageReceiveJob(envelope.toByteArray())
                     JobQueue.shared.add(job)
                 }
             }

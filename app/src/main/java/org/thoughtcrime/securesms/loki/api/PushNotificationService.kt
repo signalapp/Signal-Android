@@ -27,19 +27,21 @@ class PushNotificationService : FirebaseMessagingService() {
         val data = base64EncodedData?.let { Base64.decode(it) }
         if (data != null) {
             try {
-                JobQueue.shared.add(MessageReceiveJob(MessageWrapper.unwrap(data).toByteArray(),true))
+                val envelopeAsData = MessageWrapper.unwrap(data).toByteArray()
+                val job = MessageReceiveJob(envelopeAsData)
+                JobQueue.shared.add(job)
             } catch (e: Exception) {
                 Log.d("Loki", "Failed to unwrap data for message due to error: $e.")
             }
         } else {
             Log.d("Loki", "Failed to decode data for message.")
             val builder = NotificationCompat.Builder(this, NotificationChannels.OTHER)
-                    .setSmallIcon(network.loki.messenger.R.drawable.ic_notification)
-                    .setColor(this.getResources().getColor(network.loki.messenger.R.color.textsecure_primary))
-                    .setContentTitle("Session")
-                    .setContentText("You've got a new message.")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setAutoCancel(true)
+                .setSmallIcon(network.loki.messenger.R.drawable.ic_notification)
+                .setColor(this.getResources().getColor(network.loki.messenger.R.color.textsecure_primary))
+                .setContentTitle("Session")
+                .setContentText("You've got a new message.")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true)
             with(NotificationManagerCompat.from(this)) {
                 notify(11111, builder.build())
             }

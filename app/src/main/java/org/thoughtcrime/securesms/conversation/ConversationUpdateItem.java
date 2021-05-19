@@ -22,8 +22,8 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsignal.utilities.guava.Optional;
 
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.Util;
 

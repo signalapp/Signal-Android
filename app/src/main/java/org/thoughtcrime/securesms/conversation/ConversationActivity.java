@@ -96,13 +96,13 @@ import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
-import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
+import org.session.libsession.utilities.Contact;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientFormattingException;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
@@ -111,7 +111,7 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
-import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.Stub;
 import org.session.libsignal.exceptions.InvalidMessageException;
 import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsession.messaging.mentions.Mention;
@@ -1105,8 +1105,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.isSecurityInitialized = true;
 
     if (recipient == null || attachmentManager == null) { return; }
-
-    boolean isMediaMessage = recipient.isMmsGroupRecipient() || attachmentManager.isAttachmentPresent();
 
     /* Loki - We don't support SMS
     if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);

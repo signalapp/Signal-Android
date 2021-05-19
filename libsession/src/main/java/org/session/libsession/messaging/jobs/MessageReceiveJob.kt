@@ -7,7 +7,7 @@ import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsignal.utilities.Log
 
-class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
+class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -69,7 +69,6 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
 
     override fun serialize(): Data {
         val builder = Data.Builder().putByteArray(DATA_KEY, data)
-            .putBoolean(IS_BACKGROUND_POLL_KEY, isBackgroundPoll)
         openGroupMessageServerID?.let { builder.putLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY, it) }
         openGroupID?.let { builder.putString(OPEN_GROUP_ID_KEY, it) }
         return builder.build();
@@ -84,7 +83,6 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         override fun create(data: Data): MessageReceiveJob {
             return MessageReceiveJob(
                 data.getByteArray(DATA_KEY),
-                data.getBoolean(IS_BACKGROUND_POLL_KEY),
                 data.getLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY),
                 data.getString(OPEN_GROUP_ID_KEY)
             )

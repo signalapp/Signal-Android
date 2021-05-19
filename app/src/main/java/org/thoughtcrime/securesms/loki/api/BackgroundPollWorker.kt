@@ -52,7 +52,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             val dmsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
                 envelopes.map { envelope ->
                     // FIXME: Using a job here seems like a bad idea...
-                    MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
+                    MessageReceiveJob(envelope.toByteArray()).executeAsync()
                 }
             }
             promises.addAll(dmsPromise.get())
@@ -61,12 +61,6 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             promises.addAll(ClosedGroupPoller().pollOnce())
 
             // Open Groups
-            val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().values
-            for (openGroup in openGroups) {
-                val poller = OpenGroupPoller(openGroup)
-                promises.add(poller.pollForNewMessages())
-            }
-
             val v2OpenGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups().values.groupBy(OpenGroupV2::server)
 
             v2OpenGroups.values.map { groups ->

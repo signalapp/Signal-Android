@@ -12,7 +12,7 @@ import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.utilities.Conversions
 
 import org.thoughtcrime.securesms.backup.BackupProtos.*

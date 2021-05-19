@@ -30,8 +30,8 @@ import net.sqlcipher.database.SQLiteStatement;
 
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.database.documents.IdentityKeyMismatch;
-import org.session.libsession.database.documents.IdentityKeyMismatchList;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -40,8 +40,8 @@ import org.session.libsession.messaging.messages.signal.IncomingGroupMessage;
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;

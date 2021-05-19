@@ -3,15 +3,15 @@ package org.session.libsession.utilities
 import android.content.Context
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.recipients.Recipient
 
 class SSKEnvironment(
-        val typingIndicators: TypingIndicatorsProtocol,
-        val readReceiptManager: ReadReceiptManagerProtocol,
-        val profileManager: ProfileManagerProtocol,
-        val notificationManager: MessageNotifier,
-        val messageExpirationManager: MessageExpirationManagerProtocol
+    val typingIndicators: TypingIndicatorsProtocol,
+    val readReceiptManager: ReadReceiptManagerProtocol,
+    val profileManager: ProfileManagerProtocol,
+    val notificationManager: MessageNotifier,
+    val messageExpirationManager: MessageExpirationManagerProtocol
 ) {
 
     interface TypingIndicatorsProtocol {

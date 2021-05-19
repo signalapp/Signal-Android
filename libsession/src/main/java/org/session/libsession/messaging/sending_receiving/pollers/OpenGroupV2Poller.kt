@@ -7,7 +7,7 @@ import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupMessageV2
 import org.session.libsession.messaging.open_groups.OpenGroupV2
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Log
@@ -99,7 +99,7 @@ class OpenGroupV2Poller(private val openGroups: List<OpenGroupV2>, private val e
                 builder.content = message.toProto().toByteString()
                 builder.timestamp = message.sentTimestamp
                 val envelope = builder.build()
-                val job = MessageReceiveJob(envelope.toByteArray(), isBackgroundPoll, message.serverID, serverRoomId)
+                val job = MessageReceiveJob(envelope.toByteArray(), message.serverID, serverRoomId)
                 Log.d("Loki", "Scheduling Job $job")
                 if (isBackgroundPoll) {
                     job.executeAsync()

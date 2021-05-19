@@ -15,7 +15,7 @@ import org.session.libsession.messaging.messages.control.ReadReceipt;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;

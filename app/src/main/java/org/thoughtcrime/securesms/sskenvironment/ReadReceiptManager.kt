@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.sskenvironment
 
 import android.content.Context
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Log

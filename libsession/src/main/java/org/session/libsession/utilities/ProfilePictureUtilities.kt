@@ -5,7 +5,6 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import okio.Buffer
 import org.session.libsession.messaging.file_server.FileServerAPIV2
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.streams.ProfileCipherOutputStream
 import org.session.libsignal.utilities.ProfileAvatarData
 import org.session.libsignal.streams.DigestingRequestBody

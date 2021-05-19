@@ -92,7 +92,7 @@ class Poller {
             } else {
                 val messages = SnodeAPI.parseRawMessagesResponse(rawResponse, snode, userPublicKey)
                 messages.forEach { envelope ->
-                    val job = MessageReceiveJob(envelope.toByteArray(), false)
+                    val job = MessageReceiveJob(envelope.toByteArray())
                     JobQueue.shared.add(job)
                 }
                 poll(snode, deferred)

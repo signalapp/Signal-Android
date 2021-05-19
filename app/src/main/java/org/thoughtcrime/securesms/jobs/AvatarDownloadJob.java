@@ -8,7 +8,7 @@ import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsignal.streams.AttachmentCipherInputStream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -26,8 +26,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.inject.Inject;
 
 public class AvatarDownloadJob extends BaseJob implements InjectableType {
 
