@@ -18,7 +18,7 @@ class Poller {
     var userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: ""
     private var hasStarted: Boolean = false
     private val usedSnodes: MutableSet<Snode> = mutableSetOf()
-    public var isCaughtUp = false
+    var isCaughtUp = false
 
     // region Settings
     companion object {
