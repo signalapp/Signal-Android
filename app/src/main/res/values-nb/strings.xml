@@ -4,6 +4,7 @@
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
     <string name="delete">Slett</string>
+    <string name="ban">Ban</string>
     <string name="please_wait">Vent litt …</string>
     <string name="save">Lagre</string>
     <string name="note_to_self">Notat til meg selv</string>
@@ -25,7 +26,6 @@
     <string name="ApplicationPreferencesActivity_delete">Slett</string>
     <string name="ApplicationPreferencesActivity_On">På</string>
     <string name="ApplicationPreferencesActivity_Off">Av</string>
-    <!-- AppProtectionPreferenceFragment -->
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(bilde)</string>
     <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
@@ -38,23 +38,15 @@
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session krever tillatelse fra systemet for å kunne ta bilder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Det oppstod en feil under lydavspilling.</string>
-    <!-- BlockedContactsActivity -->
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">I dag</string>
     <string name="BucketedThreadMedia_Yesterday">I går</string>
     <string name="BucketedThreadMedia_This_week">Denne uken</string>
     <string name="BucketedThreadMedia_This_month">Denne måneden</string>
-    <!-- CallScreen -->
-    <!-- CameraActivity -->
-    <!-- ClearProfileActivity -->
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>
-    <!-- ConfirmIdentityDialog -->
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_groups">Grupper</string>
-    <!-- ContactsDatabase -->
-    <!-- ContactNameEditActivity -->
-    <!-- ContactShareEditActivity -->
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Sending mislyktes, trykk for detaljer</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling mottatt. Trykk for å behandle.</string>
@@ -69,6 +61,7 @@
     <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
     <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Det oppstod en feil under forsøk på å vedlegge filen.</string>
+    <string name="ConversationActivity_message">Message</string>
     <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker.</string>
     <string name="ConversationActivity_added_to_home_screen">Lagt til startskjermen</string>
     <string name="ConversationActivity_leave_group">Vil du forlate gruppa?</string>
@@ -80,6 +73,9 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrider maksimal størrelsesgrense for gjeldende meldingstype.</string>
     <string name="ConversationActivity_unable_to_record_audio">Klarte ikke ta opp lyd.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Du må gi Session tilgang til mikrofonen for å kunne sende lydmeldinger.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Session «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
@@ -102,6 +98,7 @@
         <item quantity="one">Denne handlinga sletter valgt melding for godt.</item>
         <item quantity="other">Denne handlinga sletter alle %1$d valgte meldinger for godt.</item>
     </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
     <string name="ConversationFragment_save_to_sd_card">Vil du lagre på enheten?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="one">Hvis du lagrer dette mediet på enheten som vanlig fil, kan andre programmer få tilgang til det.\n\nEr du sikker på at du vil fortsette?</item>
@@ -125,13 +122,12 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Sletter</string>
     <string name="ConversationFragment_deleting_messages">Sletter meldinger …</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
     <string name="ConversationFragment_quoted_message_not_found">Opprinnelig melding ikke funnet</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Opprinnelig melding er ikke lenger tilgjengelig</string>
-    <!-- ConversationListActivity -->
-    <!-- ConversationListFragment -->
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
-    <!-- ConversationListItemAction -->
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
     <!-- CustomDefaultPreference -->
@@ -143,38 +139,23 @@
     <string name="DateUtils_minutes_ago">%d min</string>
     <string name="DateUtils_today">I dag</string>
     <string name="DateUtils_yesterday">I går</string>
-    <!-- DeliveryStatus -->
-    <!-- DeviceListActivity -->
     <!-- DeviceListItem -->
     <string name="DeviceListItem_today">I dag</string>
     <!-- DocumentView -->
     <string name="DocumentView_unknown_file">Ukjent fil</string>
-    <!-- DozeReminder -->
-    <!-- ShareActivity -->
-    <!-- ExperienceUpgradeActivity -->
-    <!-- GcmBroadcastReceiver -->
-    <!-- GcmRefreshJob -->
     <!-- GiphyActivity -->
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil under henting av GIF</string>
     <!-- GiphyFragmentPageAdapter -->
     <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
     <string name="GiphyFragmentPagerAdapter_stickers">Klistremerker</string>
-    <!-- GroupCreateActivity -->
-    <!-- GroupShareProfileView -->
-    <!-- GroupMembersDialog -->
     <!-- CropImageActivity -->
     <string name="CropImageActivity_profile_avatar">Profilbilde</string>
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hold for å spille inn talemelding , slipp for å sende</string>
-    <!-- InviteActivity -->
-    <!-- Job -->
-    <!-- MessageDetailsRecipient -->
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finne meldingen</string>
     <string name="LongMessageActivity_message_from_s">Melding fra %1$s</string>
     <string name="LongMessageActivity_your_message">Din melding</string>
-    <!-- MessageRetrievalService -->
-    <!-- MmsDownloader -->
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Medier</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
@@ -190,14 +171,12 @@
     <string name="MediaOverviewActivity_Documents">Dokumenter</string>
     <string name="MediaOverviewActivity_Select_all">Velg alle</string>
     <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
-    <!--- NotificationBarManager -->
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimediemelding</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">Laster ned MMS-melding</string>
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Feil under nedlasting av MMS-melding. Trykk for å prøve igjen</string>
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity_send_to">Send til %s</string>
-    <!-- MediaPickerItemFragment -->
     <!-- MediaSendActivity -->
     <string name="MediaSendActivity_add_a_caption">Legg til bildetekst…</string>
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">En gjenstand ble fjernet fordi den overskride størrelsesgrensen</string>
@@ -214,16 +193,12 @@
     <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
     <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
     <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
-    <!-- PassphraseChangeActivity -->
-    <!-- DeviceProvisioningActivity -->
     <!-- ExpirationDialog -->
     <string name="ExpirationDialog_disappearing_messages">Utløpstid for meldinger</string>
     <string name="ExpirationDialog_your_messages_will_not_expire">Meldinger går ikke ut på tid.</string>
     <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger du sender og mottar i denne samtalen forsvinner %s etter at de er blitt sett.</string>
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Skriv inn passord</string>
-    <!-- PlayServicesProblemFragment -->
-    <!-- RatingManager -->
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Vil du blokkere denne kontakten?</string>
     <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du kan i så fall ikke lenger motta meldinger og anrop fra vedkommende.</string>
@@ -231,13 +206,6 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du åpner i så fall for mottak av meldinger og anrop fra denne kontakten.</string>
     <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
-    <!-- RecipientProvider -->
-    <!-- RedPhone -->
-    <!-- RegistrationActivity -->
-    <!-- ScribbleActivity -->
-    <!-- Search -->
-    <!-- SharedContactDetailsActivity -->
-    <!-- SharedContactView -->
     <!-- Slide -->
     <string name="Slide_image">Bilde</string>
     <string name="Slide_audio">Lyd</string>
@@ -250,9 +218,6 @@ nøkkelutvekslingsmelding.</string>
     <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
     <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
-    <!-- StickerManagementActivity -->
-    <!-- StickerManagementAdapter -->
-    <!-- StickerPackPreviewActivity -->
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Gruppe oppdatert</string>
     <string name="ThreadRecord_left_the_group">Forlot gruppa</string>
@@ -265,17 +230,17 @@ nøkkelutvekslingsmelding.</string>
     <string name="ThreadRecord_s_is_on_signal"> %s er på Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Forsvinner meldinger deaktivert</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
     <string name="ThreadRecord_safety_number_changed">Sikkerhetsnummer endret </string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt for %s er endret.</string>
     <string name="ThreadRecord_you_marked_verified">Markert som bekreftet</string>
     <string name="ThreadRecord_you_marked_unverified">Markert som ikke bekreftet</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Session oppdatering</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Session er tilgjengelig, trykk for å oppdatere</string>
-    <!-- UnknownSenderView -->
-    <!-- UntrustedSendDialog -->
-    <!-- UnverifiedSendDialog -->
-    <!-- VerifyIdentityActivity -->
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ikke-eksisterende økt</string>
@@ -284,8 +249,6 @@ nøkkelutvekslingsmelding.</string>
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ikke-eksisterende økt</string>
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
-    <!-- OutdatedBuildReminder -->
-    <!-- ApplicationMigrationService -->
     <!-- KeyCachingService -->
     <string name="KeyCachingService_signal_passphrase_cached">Trykk for å åpne.</string>
     <string name="KeyCachingService_passphrase_cached">Session er låst opp</string>
@@ -340,12 +303,8 @@ nøkkelutvekslingsmelding.</string>
         <item quantity="one">%d Del</item>
         <item quantity="other">%d Deler</item>
     </plurals>
-    <!-- UnauthorizedReminder -->
     <!-- VideoPlayer -->
     <string name="VideoPlayer_error_playing_video">Feil ved avspilling av video</string>
-    <!-- WebRtcCallActivity -->
-    <!-- WebRtcCallScreen -->
-    <!-- WebRtcCallControls -->
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__audio">Lyd</string>
     <string name="attachment_type_selector__audio_description">Lyd</string>
@@ -362,14 +321,8 @@ nøkkelutvekslingsmelding.</string>
     <string name="attachment_type_selector__gallery">Galleri</string>
     <string name="attachment_type_selector__file">Fil</string>
     <string name="attachment_type_selector__drawer_description">Slå av/på vedleggsfunksjon</string>
-    <!-- change_passphrase_activity -->
-    <!-- contact_selection_activity -->
     <!-- contact_selection_group_activity -->
     <string name="contact_selection_group_activity__finding_contacts">Laster inn kontakter …</string>
-    <!-- single_contact_selection_activity -->
-    <!-- ContactSelectionListFragment-->
-    <!-- blocked_contacts_fragment -->
-    <!-- contact_selection_list_fragment -->
     <!-- conversation_activity -->
     <string name="conversation_activity__send">Send</string>
     <string name="conversation_activity__compose_description">Meldingsskriving</string>
@@ -396,6 +349,9 @@ nøkkelutvekslingsmelding.</string>
     <string name="audio_view__play_accessibility_description">Spill</string>
     <string name="audio_view__pause_accessibility_description">Pause</string>
     <string name="audio_view__download_accessibility_description">Last ned</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
     <!-- QuoteView -->
     <string name="QuoteView_audio">Lyd</string>
     <string name="QuoteView_video">Video</string>
@@ -404,20 +360,10 @@ nøkkelutvekslingsmelding.</string>
     <string name="QuoteView_original_missing">Opprinnelig melding ikke funnet</string>
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
-    <!-- country_selection_fragment -->
-    <!-- device_add_fragment -->
-    <!-- device_link_fragment -->
-    <!-- device_list_fragment -->
-    <!-- experience_upgrade_activity -->
-    <!-- expiration -->
-    <!-- unverified safety numbers -->
     <!-- giphy_activity -->
     <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk GIFs og klistremerker</string>
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Ingenting funnet</string>
-    <!-- log_submit_activity -->
-    <!-- database_migration_activity -->
-    <!-- database_upgrade_activity -->
     <!-- load_more_header -->
     <string name="load_more_header__see_full_conversation">Vis hele samtalen</string>
     <string name="load_more_header__loading">Laster inn</string>
@@ -425,21 +371,8 @@ nøkkelutvekslingsmelding.</string>
     <string name="media_overview_activity__no_media">Ingen medier</string>
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
-    <!-- GroupUtil -->
-    <!-- profile_group_share_view -->
-    <!-- prompt_passphrase_activity -->
-    <!-- prompt_mms_activity -->
-    <!-- profile_create_activity -->
-    <!-- recipient_preferences_activity -->
     <!-- recipient_preferences -->
     <string name="recipient_preferences__block">Blokker</string>
-    <!--- redphone_call_controls -->
-    <!-- registration_activity -->
-    <!-- recipients_panel -->
-    <!-- unknown_sender_view -->
-    <!-- verify_display_fragment -->
-    <!-- verify_identity -->
-    <!-- webrtc_answer_decline_button -->
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
     <string name="message_details_header__sent">Sendt</string>
@@ -461,9 +394,20 @@ nøkkelutvekslingsmelding.</string>
     <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
     <string name="arrays__mute_for_seven_days">Demp i 7 dager</string>
     <string name="arrays__mute_for_one_year">Demp i 1 år</string>
+    <string name="arrays__settings_default">Standardoppsett</string>
+    <string name="arrays__enabled">Slått på</string>
+    <string name="arrays__disabled">Slått av</string>
     <string name="arrays__name_and_message">Navn og melding</string>
     <string name="arrays__name_only">Bare navn</string>
     <string name="arrays__no_name_or_message">Ingen navn eller melding</string>
+    <string name="arrays__images">Bilder</string>
+    <string name="arrays__audio">Lyd</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokumenter</string>
+    <string name="arrays__small">Liten</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Stor</string>
+    <string name="arrays__extra_large">Ekstra stor</string>
     <string name="arrays__default">Forvalgt</string>
     <string name="arrays__high">Høy</string>
     <string name="arrays__max">Maks</string>
@@ -516,6 +460,8 @@ nøkkelutvekslingsmelding.</string>
     <string name="preferences__typing_indicators">Skriverindikatorer</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Be tastatur om å slå av lærefunksjon</string>
+    <string name="preferences__light_theme">Lys</string>
+    <string name="preferences__dark_theme">Mørk</string>
     <string name="preferences_chats__message_trimming">Automatisk sletting</string>
     <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Session</string>
@@ -531,12 +477,11 @@ nøkkelutvekslingsmelding.</string>
     <!-- **************************************** -->
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">Ny melding til …</string>
-    <!-- conversation_callable_insecure -->
-    <!-- conversation_callable_secure -->
     <!-- conversation_context -->
     <string name="conversation_context__menu_message_details">Meldingsdetaljer</string>
     <string name="conversation_context__menu_copy_text">Kopier tekst</string>
     <string name="conversation_context__menu_delete_message">Slett melding</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
     <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
     <string name="conversation_context__menu_reply_to_message">Svar på melding</string>
     <!-- conversation_context_image -->
@@ -545,12 +490,6 @@ nøkkelutvekslingsmelding.</string>
     <string name="conversation_expiring_off__disappearing_messages">Utløpstid for meldinger</string>
     <!-- conversation_expiring_on -->
     <string name="menu_conversation_expiring_on__messages_expiring">Utløpende meldinger</string>
-    <!-- conversation_insecure -->
-    <!-- conversation_list_batch -->
-    <!-- conversation_list -->
-    <!-- conversation_list_item_view -->
-    <!-- conversation_list_fragment -->
-    <!-- conversation_secure_verified -->
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Vis</string>
     <!-- conversation_unmuted -->
@@ -562,14 +501,10 @@ nøkkelutvekslingsmelding.</string>
     <string name="conversation__menu_add_shortcut">Legg til på startskjermen</string>
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Utvid sprettoppvindu</string>
-    <!-- conversation_callable_insecure -->
     <!-- conversation_group_options -->
     <string name="conversation_group_options__delivery">Levering</string>
     <string name="conversation_group_options__conversation">Samtale</string>
     <string name="conversation_group_options__broadcast">Kringkast</string>
-    <!-- text_secure_normal -->
-    <!-- verify_display_fragment -->
-    <!-- reminder_header -->
     <!-- media_preview -->
     <string name="media_preview__save_title">Lagre</string>
     <string name="media_preview__forward_title">Videresend</string>
@@ -578,8 +513,6 @@ nøkkelutvekslingsmelding.</string>
     <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string>
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Forhåndsvisning av medier</string>
-    <!-- new_conversation_activity -->
-    <!-- redphone_audio_popup_menu -->
     <!-- Trimmer -->
     <string name="trimmer__deleting">Sletter</string>
     <string name="trimmer__deleting_old_messages">Sletter gamle meldinger …</string>
@@ -607,26 +540,8 @@ nøkkelutvekslingsmelding.</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Session med skjermlås eller fingeravtrykk</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
     <string name="AppProtectionPreferenceFragment_none">Ingen</string>
-    <!-- Old Loki Messenger Copy -->
-    <!-- Landing activity -->
-    <!-- Display name activity -->
-    <!-- Key pair activity -->
-    <!-- Conversation list activity -->
-    <!-- Settings activity -->
-    <!-- Profile activity -->
-    <!-- Contact selection activity -->
-    <!-- New conversation activity -->
-    <!-- Add public chat activity -->
-    <!-- Conversation activity -->
-    <!-- QR code view -->
-    <!-- Device linking view -->
-    <!-- Scan QR code fragment -->
     <!-- Conversation activity -->
     <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
-    <!-- Conversation list activity -->
-    <!-- Device list bottom sheet fragment -->
-    <!-- Device unlink dialog -->
-    <!-- Session restore banner -->
     <!-- Session -->
     <string name="continue_2">Continue</string>
     <string name="copy">Copy</string>
@@ -692,7 +607,7 @@ nøkkelutvekslingsmelding.</string>
     <string name="activity_create_closed_group_group_name_missing_error">Please enter a group name</string>
     <string name="activity_create_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
     <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
-    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 20 members</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
     <string name="activity_join_public_chat_title">Join Open Group</string>
     <string name="activity_join_public_chat_error">Couldn\'t join group</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
@@ -707,6 +622,7 @@ nøkkelutvekslingsmelding.</string>
     <string name="activity_settings_notifications_button_title">Notifications</string>
     <string name="activity_settings_chats_button_title">Chats</string>
     <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
     <string name="activity_notification_settings_title">Notifications</string>
@@ -752,4 +668,11 @@ nøkkelutvekslingsmelding.</string>
     <string name="attachment_type_voice_message">Voice Message</string>
     <string name="details">Details</string>
     <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
 </resources>
