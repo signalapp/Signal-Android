@@ -8,7 +8,7 @@ import androidx.annotation.WorkerThread
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.*
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
-import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.ThreadUtils
@@ -22,7 +22,7 @@ class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, OpenGroup>()
   private var v2Chats = mutableMapOf<Long, OpenGroupV2>()
   private val pollers = mutableMapOf<Long, OpenGroupPoller>()
-  private val v2Pollers = mutableMapOf<String, OpenGroupV2Poller>()
+  private val v2Pollers = mutableMapOf<String, OpenGroupPollerV2>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
   private val executorService = Executors.newScheduledThreadPool(4)
@@ -43,9 +43,12 @@ class PublicChatManager(private val context: Context) {
       val poller = pollers[threadID] ?: OpenGroupPoller(chat, executorService)
       poller.isCaughtUp = false
     }
+    /*
+    // FIXME: This wasn't even being used actually...
     for ((_,poller) in v2Pollers) {
       poller.isCaughtUp = false
     }
+     */
   }
 
   public fun startPollersIfNeeded() {
@@ -60,7 +63,7 @@ class PublicChatManager(private val context: Context) {
     v2Pollers.values.forEach { it.stop() }
     v2Pollers.clear()
     v2Chats.entries.groupBy { (_, group) -> group.server }.forEach { (server, threadedRooms) ->
-      val poller = OpenGroupV2Poller(threadedRooms.map { it.value }, executorService)
+      val poller = OpenGroupPollerV2(server, executorService)
       poller.startIfNeeded()
       threadedRooms.forEach { (thread, _) ->
         listenToThreadDeletion(thread)
