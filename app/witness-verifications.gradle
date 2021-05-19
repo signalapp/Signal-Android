@@ -378,18 +378,6 @@ dependencyVerification {
         ['com.klinkerapps:logger:1.0.3',
          '177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541'],
 
-        ['com.madgag.spongycastle:core:1.58.0.0',
-         '199617dd5698c5a9312b898c0a4cec7ce9dd8649d07f65d91629f58229d72728'],
-
-        ['com.madgag.spongycastle:pg:1.54.0.0',
-         '3f1011ec280c51434dd94396ec25c8d7876d861c0fb1fa9ae70824eddcda2f8f'],
-
-        ['com.madgag.spongycastle:pkix:1.54.0.0',
-         '721a302f5ce18bf6fff89d514ef224c37b5dd9ca67a16b56fafaea4b24a51482'],
-
-        ['com.madgag.spongycastle:prov:1.58.0.0',
-         '092fd09e7006b0814980513b013d4c2b3ffd24a49a635ab4b2d204bb51af1727'],
-
         ['com.makeramen:roundedimageview:2.1.0',
          '1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1'],
 

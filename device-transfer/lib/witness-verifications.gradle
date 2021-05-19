@@ -78,19 +78,10 @@ dependencyVerification {
         ['com.google.protobuf:protobuf-javalite:3.10.0',
          '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
 
-        ['com.madgag.spongycastle:core:1.58.0.0',
-         '199617dd5698c5a9312b898c0a4cec7ce9dd8649d07f65d91629f58229d72728'],
-
-        ['com.madgag.spongycastle:pg:1.54.0.0',
-         '3f1011ec280c51434dd94396ec25c8d7876d861c0fb1fa9ae70824eddcda2f8f'],
-
-        ['com.madgag.spongycastle:pkix:1.54.0.0',
-         '721a302f5ce18bf6fff89d514ef224c37b5dd9ca67a16b56fafaea4b24a51482'],
-
-        ['com.madgag.spongycastle:prov:1.58.0.0',
-         '092fd09e7006b0814980513b013d4c2b3ffd24a49a635ab4b2d204bb51af1727'],
-
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
+
+        ['org.whispersystems:signal-client-java:0.5.1',
+         '682a8094d38a91c8759071b77177ed8196a7137314fdfbb17e819c9ca57a0397'],
     ]
 }
