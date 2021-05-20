@@ -1,15 +1,15 @@
 package org.session.libsession.utilities
 
 import android.content.Context
-import com.goterl.lazycode.lazysodium.LazySodiumAndroid
-import com.goterl.lazycode.lazysodium.SodiumAndroid
-import com.goterl.lazycode.lazysodium.utils.Key
-import com.goterl.lazycode.lazysodium.utils.KeyPair
-import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.Hex
+import com.goterl.lazysodium.LazySodiumAndroid
+import com.goterl.lazysodium.SodiumAndroid
+import com.goterl.lazysodium.utils.Key
+import com.goterl.lazysodium.utils.KeyPair
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.Hex
 
 object KeyPairUtilities {
 
