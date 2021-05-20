@@ -503,9 +503,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal memerlukan kebenaran Kamera untuk mengimbas kod QR, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Tidak dapat mengimbas kod QR tanpa kebenaran Kamera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Mesej hilang</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Mesej anda tidak akan tamat tempoh.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesej yang diterima dan dihantar dalam perbualan ini akan hilang pada %s selepas dibaca.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mesej hilang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Mesej anda tidak akan tamat tempoh.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesej yang diterima dan dihantar dalam perbualan ini akan hilang pada %s selepas dibaca.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa laluan</string>
   <string name="PassphrasePromptActivity_watermark_content_description">ikon Signal</string>

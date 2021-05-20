@@ -1169,9 +1169,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal захтева приступ камери да би скенирао QR кôд, али су му дозволе трајно забрањене. Молимо вас да у апликацији за подешавање телефона Signal-у дозволите пруиступ камери.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Није могуће скенирати QR кôд без дозволе камере</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Нестајуће поруке</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Ваше поруке неће истећи.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Примљене и послате поруке ове преписке ће нестати %s након што су погледане.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Нестајуће поруке</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ваше поруке неће истећи.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Примљене и послате поруке ове преписке ће нестати %s након што су погледане.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај сада</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ваша верзија Signal-а истиче данас. Ажурирате на најновију верзију.</string>
@@ -1696,6 +1696,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нема заједничких група. Пажљиво прегледајте захтеве.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контаката у овој групи. Пажљиво прегледајте захтеве.</string>
   <string name="ConversationUpdateItem_view">Приказ</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Време нестајања поруке биће постављено на %1$s када их шаљете.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусти … Заустави</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
@@ -2970,11 +2971,33 @@
   <string name="PrivacySettingsFragment__blocked">Блокиран/на</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контаката</string>
   <string name="PrivacySettingsFragment__messaging">Поруке</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Самонестајуће поруке</string>
   <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нове преписке</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусну икону</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Унутар „Детаљи поруке” ће бити приказан индикатор да је порука послата са запечаћеним пошиљаоцем.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Када је омогућено, послате и примљене поруке у нова ћаскања што сте ви започели ће нестати након што буду приказане.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Када је омогућено, послате и примљене поруке у овој преписци ће нестати након што буду приказане.</string>
+  <string name="ExpireTimerSettingsFragment__off">Искључено</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 недеље</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 недеља</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 дан</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 сати</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 минута</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Прилагодити време</string>
+  <string name="ExpireTimerSettingsFragment__set">Поставити</string>
+  <string name="ExpireTimerSettingsFragment__save">Сачувај</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Секунд</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Минут</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Сат</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Дан</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Недеља</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
   <string name="HelpSettingsFragment__contact_us">Контактирај нас</string>

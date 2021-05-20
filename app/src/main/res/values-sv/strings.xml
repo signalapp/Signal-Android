@@ -1112,9 +1112,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna QR-koder men det har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Försvinnande meddelanden</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden försvinner inte.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i denna konversation försvinner %s efter att de har setts.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Försvinnande meddelanden</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden försvinner inte.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i denna konversation försvinner %s efter att de har setts.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal går ut idag. Uppdatera till den senaste versionen.</string>
@@ -1626,6 +1626,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Inga grupper gemensamt. Granska förfrågningar noggrant.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Inga kontakter i denna grupp. Granska förfrågningar noggrant.</string>
   <string name="ConversationUpdateItem_view">Visa</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Den försvinnande meddelandetiden ställs in till %1$s när du meddelar dem.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -1780,7 +1781,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Fyll i ett namn eller nummer</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten för din kryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt kan du skanna koden på deras telefon eller be dem skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten för din kryptering med %s, jämför siffrorna ovan med siffrorna på hens enhet. Alternativt kan du skanna koden på hens telefon eller be hen skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <string name="verify_display_fragment__loading">Hämtar in…</string>
   <string name="verify_display_fragment__verified">Verifierat</string>
@@ -2882,12 +2883,34 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PrivacySettingsFragment__blocked">Blockerade</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
   <string name="PrivacySettingsFragment__messaging">Meddelanden</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Försvinnande meddelanden</string>
   <string name="PrivacySettingsFragment__app_security">Appsäkerhet</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blockera skärmdumpar i senaste-listan och appen</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meddelanden och -samtal, vidarebefordra samtal och dold avsändare</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard tidtagare för nya chattar</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidtagare för försvinnande meddelanden för alla nya chattar som du startar.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Visa statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Visa en ikon i meddelandedetaljer när de levererades med dold avsändare.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i nya chattat som du startat efter att de har setts.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">När det är aktiverat försvinner nya meddelanden som skickas och tas emot i denna chatt när de har setts.</string>
+  <string name="ExpireTimerSettingsFragment__off">Av</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 veckor</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 vecka</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dag</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 timmar</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 timme</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minuter</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekunder</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Anpassad tid</string>
+  <string name="ExpireTimerSettingsFragment__set">Ställ in</string>
+  <string name="ExpireTimerSettingsFragment__save">Spara</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekund</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minut</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Timme</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dag</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Vecka</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Supportcenter</string>
   <string name="HelpSettingsFragment__contact_us">Kontakta oss</string>

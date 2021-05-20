@@ -1224,9 +1224,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal wymaga pozwolenia na dostęp do aparatu w celu zeskanowania kodu QR, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nie można zeskanować kodu QR bez zezwolenia na dostęp do aparatu</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Znikające wiadomości</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Twoje wiadomości nie wygasną.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Wiadomości wysłane i odebrane w tej rozmowie znikną %s po odczytaniu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Znikające wiadomości</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Twoje wiadomości nie wygasną.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Wiadomości wysłane i odebrane w tej rozmowie znikną %s po odczytaniu.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aktualizuj teraz</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Twoja wersja Signal wygaśnie dzisiaj. Zaktualizuj do najnowszej wersji.</string>
@@ -1754,6 +1754,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Brak wspólnych grup. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Brak kontaktów w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt.</string>
   <string name="ConversationUpdateItem_view">Zobacz</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Czas znikania wiadomości zostanie ustawiony na %1$s, gdy wyślesz wiadomość.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -3044,12 +3045,34 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PrivacySettingsFragment__blocked">Zablokowani</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakty(ów)</string>
   <string name="PrivacySettingsFragment__messaging">Wiadomości</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Znikające wiadomości</string>
   <string name="PrivacySettingsFragment__app_security">Bezpieczeństwo aplikacji</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokuj rzuty ekranu na liście aktywnych oraz w aplikacji</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Wiadomości i połączenia Signal, zawsze przekazuj połączenia i ukryty nadawca</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Domyślny czas dla nowych rozmów</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ustaw domyślny czas znikania wiadomości dla wszystkich, nowych, rozpoczętych przez Ciebie rozmów.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pokaż ikonę</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Pokaż ikonę w szczegółach wiadomości, dostarczonej z użyciem funkcji ukrytego nadawcy.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Włączenie funkcji spowoduje, że nowe wiadomości, wysyłane i otrzymywane w nowych, rozpoczętych przez Ciebie rozmowach, znikną, gdy zostaną odczytane.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Gdy ta opcja jest włączona, nowe wiadomości, wysłane i otrzymane w tej rozmowie, znikną po odczytaniu.</string>
+  <string name="ExpireTimerSettingsFragment__off">Wyłączone</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 tygodnie</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 tydzień</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dzień</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 godzin</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 godzina</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minut</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekund</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Własny</string>
+  <string name="ExpireTimerSettingsFragment__set">Ustaw</string>
+  <string name="ExpireTimerSettingsFragment__save">Zapisz</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekunda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minuta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Godzina</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dzień</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Tydzień</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum pomocy</string>
   <string name="HelpSettingsFragment__contact_us">Skontaktuj się z nami</string>

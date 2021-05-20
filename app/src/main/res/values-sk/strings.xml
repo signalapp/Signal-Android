@@ -1224,9 +1224,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nedá sa naskenovať QR kód bez povolenia prístupu k fotoaparátu</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Miznúce správy</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Vaše správy nevypršia.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Správy odoslané a prijaté v tejto konverzácii zmiznú %s po prečítaní.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Miznúce správy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vaše správy nevypršia.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Správy odoslané a prijaté v tejto konverzácii zmiznú %s po prečítaní.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aktualizujte teraz</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Táto verzia Signalu dnes vyprší. Aktualizujte ju na najnovšiu verziu.</string>
@@ -1761,6 +1761,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žiadne spoločné skupiny. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tejto skupine nie sú žiadne kontakty. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_view">Zobraziť</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Keď odošlete správu, čas zmiznutia správy bude nastavený na %1$s.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
@@ -3051,12 +3052,34 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="PrivacySettingsFragment__blocked">Blokovaní</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktov</string>
   <string name="PrivacySettingsFragment__messaging">Odosielanie správ</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Miznúce správy</string>
   <string name="PrivacySettingsFragment__app_security">Zabezpečenie aplikácie</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Zakázať vytváranie snímkov obrazovky v tejto aplikácii a v zozname bežiacich aplikácií</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Správy a hovory Signal, vždy opakované hovory a zapečatený odosielateľ</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Predvolený časovač pre nové konverzácie</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavte predvolený časovač miznutia správ pre všetky nové správy ktoré ste poslali.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobraziť stavovú ikonu</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Keď boli doručené pomocou zapečateného odosielateľa, zobrazí sa ikona v detailoch správy.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Ak je povolené, nové správy odoslané a prijaté v nových vami začatých konverzáciách zmiznú, keď sa zobrazia.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Ak je táto možnosť povolená, nové správy odoslané a prijaté v tomto rozhovore zmiznú, keď sa zobrazia.</string>
+  <string name="ExpireTimerSettingsFragment__off">Vypnuté</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 týždne</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 týždeň</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 deň</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 hodín</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 hodina</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minút</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekúnd</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Vlastný čas</string>
+  <string name="ExpireTimerSettingsFragment__set">Nastaviť</string>
+  <string name="ExpireTimerSettingsFragment__save">Uložiť</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekunda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minúta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Hodina</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Deň</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Týždeň</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>

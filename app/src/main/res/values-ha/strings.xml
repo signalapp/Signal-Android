@@ -587,9 +587,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal na bukatar izinin Kyamara domin yin sikanin QR code, amma an hana wannan damar dindindin. Ci gaba da shigar saitin Signal, Zabi \"Permissions\" sannan ka/ki kunna \"Kyamara\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Baza\'a iya sikanin din QR code ba idan ba izinin Kyamara</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Sakwanni masu bacewa</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Sakonka/ki ba zai kare ba.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Sakwanni da aka tura ko karba zasu bace  %s bayan an gansu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Sakwanni masu bacewa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Sakonka/ki ba zai kare ba.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Sakwanni da aka tura ko karba zasu bace  %s bayan an gansu.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Shigar da kalaman sirri</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Alamar Signal</string>

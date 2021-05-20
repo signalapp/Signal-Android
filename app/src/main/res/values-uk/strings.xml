@@ -482,9 +482,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal потребує дозволу \"Камера\", щоб сканувати QR коди,  але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Для сканування QR коду необхідний доступ до Камери</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Зникнення повідомлень</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Ваші повідомлення не зникатимуть.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Усі повідомлення у цій розмові зникнуть через %s після прочитання.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Зникнення повідомлень</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ваші повідомлення не зникатимуть.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Усі повідомлення у цій розмові зникнуть через %s після прочитання.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Введіть фразу-пароль</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Значок Signal</string>

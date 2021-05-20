@@ -1104,9 +1104,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal yesra tisirag n Tkamiṛat i usmiḍen n tengalt QR, maca yezga yettwagi. Ttxil-k·m kemmel ɣer wumuɣ n yiɣewwaren n usnas, fren \"Tisirag\" syen rmed \"Takamiṛat\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Asmiḍen n tengalt QR s war tisirag n tkamiṛat d awezɣi</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Iznan yettṛuḥun</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Iznan-inek·inem ur ttmettaten ara.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Iznan yettwaznen akked wid i d-yetturemsen deg udiwenni-a ad ṛuḥen %s seld timeẓriwt-nsen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Iznan yettṛuḥun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Iznan-inek·inem ur ttmettaten ara.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Iznan yettwaznen akked wid i d-yetturemsen deg udiwenni-a ad ṛuḥen %s seld timeẓriwt-nsen.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Leqqem tura</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Lqem-a n Signal ad yemmet ass-a. Leqqem-it ɣer lqem akk amaynut.</string>
@@ -2681,8 +2681,13 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Yewḥel</string>
   <string name="PrivacySettingsFragment__messaging">Armas</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Iznan yettṛuḥun</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Sewḥel tuṭṭfiwin n ugdil deg tebdart n melmi kan akked n usnas</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Yensa</string>
+  <string name="ExpireTimerSettingsFragment__set">Sbadu</string>
+  <string name="ExpireTimerSettingsFragment__save">Sekles</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Nermes-aɣ-d</string>
   <string name="HelpSettingsFragment__version">Lqem</string>

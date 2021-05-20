@@ -1056,9 +1056,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機的權限以掃描 QR 碼，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有相機的使用權限，所以無法掃描 QR 碼。</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">自動銷毀訊息</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中所傳送與接收的訊息將會在閱讀 %s 後被銷毀。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">自動銷毀訊息</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中所傳送與接收的訊息將會在閱讀 %s 後被銷毀。</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">立即更新</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">此版本的Signal將於今天到期。請更新到最新版本。</string>
@@ -1563,6 +1563,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">沒有共同的群組。 請仔細檢查請求。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">這個群組中沒有聯絡人。請仔細檢查請求。</string>
   <string name="ConversationUpdateItem_view">檢視</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">銷毀的訊息時間將設定為%1$s 當你要傳送訊息給他人。</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -2802,12 +2803,34 @@
   <string name="PrivacySettingsFragment__blocked">已封鎖</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d 個聯絡人</string>
   <string name="PrivacySettingsFragment__messaging">傳送訊息中</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">自動銷毀訊息</string>
   <string name="PrivacySettingsFragment__app_security">應用程式安全性</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">在對話清單或應用程式內停用畫面擷取功能</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息和電話，永遠轉發通話和密封發件人</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的預設計時器</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為你發起的所有新聊天設定預設的訊息銷毀計時器。</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">使用密封發件人傳送訊息時，在訊息詳細資訊中顯示一個圖示</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">啟用後，在你發起的新聊天中傳送和接收的新訊息將在看到後消失。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">啟用後，在此聊天中傳送和接收的新訊息將在看完後消失。</string>
+  <string name="ExpireTimerSettingsFragment__off">關</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 週</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 週</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 天</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8小時</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 小時</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 分鐘</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 秒</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">自定義時間</string>
+  <string name="ExpireTimerSettingsFragment__set">設定</string>
+  <string name="ExpireTimerSettingsFragment__save">儲存</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">秒</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">分鐘</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">小時</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">天</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">週</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">支援中心</string>
   <string name="HelpSettingsFragment__contact_us">與我們聯繫</string>

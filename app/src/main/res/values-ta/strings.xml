@@ -965,6 +965,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s அவர்கள் குழு பெயரை \"%2$s\" என மாற்றினர்.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">குழுவின் பெயர் \"%1$s\" என்று மாற்றப்பட்டுள்ளது.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_s_changed_the_group_description">%1$s குழு விளக்கத்தை மாற்றினார்.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">குழு சின்னத்தை மாற்றியுள்ளீர்கள்.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s குழு அவதாரத்தை மாற்றினார்.</string>
@@ -1097,9 +1098,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR குறியீட்டை ஸ்கேன் செய்ய Signal கேமரா அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\" ஐ இயக்கவும்.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">கேமரா அனுமதியின்றி QR குறியீட்டை ஸ்கேன் செய்ய முடியவில்லை</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">உங்கள் செய்திகள் காலாவதியாகாது.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">இந்த உரையாடலில் அனுப்பப்பட்ட மற்றும் பெறப்பட்ட செய்திகள் காணப்பட்ட பிறகு %s மறைந்துவிடும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">காணாமல் போகும் செய்திகள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">உங்கள் செய்திகள் காலாவதியாகாது.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">இந்த உரையாடலில் அனுப்பப்பட்ட மற்றும் பெறப்பட்ட செய்திகள் காணப்பட்ட பிறகு %s மறைந்துவிடும்.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">சிக்னலின் இந்த பதிப்பு இன்று காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
@@ -2570,8 +2571,18 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">தடுக்கப்பட்ட</string>
   <string name="PrivacySettingsFragment__messaging">செய்தி அனுப்புதல்</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">அணை</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 வாரம்</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 நாள்</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 மணி நேரம்</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 நிமிடம்</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 வினாடிகள்</string>
+  <string name="ExpireTimerSettingsFragment__set">அமைக்கவும்</string>
+  <string name="ExpireTimerSettingsFragment__save">சேமி</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">எங்களை தொடர்பு கொள்ள</string>
   <string name="HelpSettingsFragment__version">பதிப்பு</string>

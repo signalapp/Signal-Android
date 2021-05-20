@@ -1048,9 +1048,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ไม่สามารถสแกนรหัส QR ได้หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">ข้อความที่ลบตัวเอง</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">ข้อความของคุณจะไม่หมดอายุ</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">ข้อความที่ลบตัวเอง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ข้อความของคุณจะไม่หมดอายุ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ปรับปรุงเดี๋ยวนี้</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal รุ่นนี้จะหมดอายุวันนี้ โปรดปรับรุ่นเป็นรุ่นล่าสุด</string>
@@ -2713,8 +2713,19 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ถูกปิดกั้น</string>
   <string name="PrivacySettingsFragment__messaging">การส่งข้อความ</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้จับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">ปิด</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 สัปดาห์</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 วัน</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 ชั่วโมง</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 ชั่วโมง</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 นาที</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 วินาที</string>
+  <string name="ExpireTimerSettingsFragment__set">ตั้งเป็น</string>
+  <string name="ExpireTimerSettingsFragment__save">บันทึก</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ติดต่อเรา</string>
   <string name="HelpSettingsFragment__version">รุ่น</string>

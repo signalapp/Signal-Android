@@ -1097,9 +1097,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal کو QR کوڈ سکین کرنے کیلئے کیمرہ کی اجازت کی ضرورت ہے، لیکن اس کو مستقل طور پر رد کر دیا گیا۔ براہ کرم ایپ کی ترتیبات میں جا کر\"اجازت نامہ\"کا انتخاب کریں اور \"کیمرہ\" کو فعال کریں۔</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">کیمرہ کی اجازت کے بغیر QR کوڈ سکین کرنا ممکن نہیں</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">آپ کے پیغامات کی میعاد ختم نہیں ہوگی۔</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">اس گفتگو میں بھیجے اور وصول کیے گیں پیغامات دیکھنے کے بعد %s ختم ہوجائیں گے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">پیغامات غائب ہو رہے ہیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">آپ کے پیغامات کی میعاد ختم نہیں ہوگی۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">اس گفتگو میں بھیجے اور وصول کیے گیں پیغامات دیکھنے کے بعد %s ختم ہوجائیں گے۔</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">تازہ ترین کریں. </string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal کا یہ ورژن آج ختم ہوجائے گا۔ تازہ ترین ورژن میں تازہ کاری کریں۔</string>
@@ -2545,8 +2545,18 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">بلاک ہوگیا</string>
   <string name="PrivacySettingsFragment__messaging">پیغام رسانی</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">حالیہ فہرست میں سکرین شاٹ بلاک کریں اور ایپ کے اندر</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">بند کریں</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 ہفتہ</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 دن </string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 گھنٹا</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 منٹس</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 سیکنڈز</string>
+  <string name="ExpireTimerSettingsFragment__set">سیٹ کریں</string>
+  <string name="ExpireTimerSettingsFragment__save">محفوظ کریں</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ہم سے رابطہ کریں</string>
   <string name="HelpSettingsFragment__version">ورژن</string>

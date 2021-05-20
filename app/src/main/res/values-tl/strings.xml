@@ -629,9 +629,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Kailangan ng Signal ang pahintulot sa Camera upang makapag-scan ng QR code, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Hindi makapag-scan ng QR code nang walang pahintulot sa Camera.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Mga naglalahong mensahe</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Hindi mag-e-expire ang iyong mga mensahe.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ang mga mensaheng ipinadala at natanggap sa pag-uusap na ito ay maglalaho %s kapag nakita na ang mga ito. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mga naglalahong mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Hindi mag-e-expire ang iyong mga mensahe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ang mga mensaheng ipinadala at natanggap sa pag-uusap na ito ay maglalaho %s kapag nakita na ang mga ito. </string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ilagay ang passphrase</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icon ng Signal</string>

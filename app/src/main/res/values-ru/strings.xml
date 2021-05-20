@@ -1224,9 +1224,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal требуется разрешение на доступ к камере для сканирования QR-кода, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Камера».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не удалось отсканировать QR-код из-за отсутствия доступа к камере</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Исчезающие сообщения</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Сообщения не будут исчезать.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Сообщения, отправленные и полученные в этом разговоре, исчезнут, когда пройдет %s после их прочтения.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Исчезающие сообщения</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Сообщения не будут исчезать.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Сообщения, отправленные и полученные в этом разговоре, исчезнут, когда пройдет %s после их прочтения.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Обновить сейчас</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Эта версия Signal перестанет работать сегодня. Обновитесь до новейшей версии.</string>
@@ -1755,6 +1755,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нет общих групп. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">В этой группе нет ваших контактов. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_view">Просмотреть</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Время исчезновения сообщений будет установлено на %1$s, когда вы отправите сообщение этому человеку.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -3045,12 +3046,34 @@
   <string name="PrivacySettingsFragment__blocked">Заблокированные</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контактов</string>
   <string name="PrivacySettingsFragment__messaging">Общение</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Исчезающие сообщения</string>
   <string name="PrivacySettingsFragment__app_security">Безопасность приложения</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокировать снимки экрана в списке недавних приложений и внутри приложения</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Звонки и сообщения Signal, ретрансляция звонков и запечатанный отправитель</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер по умолчанию для новых чатов</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Установите таймер исчезающих сообщений по умолчанию для всех новых чатов, создаваемых вами.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показывать значок статуса</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показывать значок в «Подробностях сообщения», если сообщение было доставлено с использованием запечатанного отправителя.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">При включении этой настройки новые сообщения, отправленные и полученные в новых чатах, начатых вами, будут исчезать после прочтения.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">При включении этой настройки новые сообщения, отправленные и полученные в этом чате, будут исчезать после прочтения.</string>
+  <string name="ExpireTimerSettingsFragment__off">Отключено</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 недели</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 неделю</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 день</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 часов</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 минут</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 секунд</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Пользовательское время</string>
+  <string name="ExpireTimerSettingsFragment__set">Установить</string>
+  <string name="ExpireTimerSettingsFragment__save">Сохранить</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">секунд</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">минут</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">часов</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">дней</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">недель</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центр поддержки</string>
   <string name="HelpSettingsFragment__contact_us">Связаться с нами</string>

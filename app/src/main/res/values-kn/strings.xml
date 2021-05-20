@@ -825,9 +825,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR ಕೋಡ್‌‌ ಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಇಲ್ಲದೆ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ    </string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">ನಿಮ್ಮ ಸಂದೇಶಗಳ ಅವಧಿ ಮುಗಿಯುವುದಿಲ್ಲ.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">%s ಅವರು ನೋಡಿದ ನಂತರ ಈ ಸಂಭಾಷಣೆಯಲ್ಲಲಿ ಕಳುಹಿಸಿದ ಮತ್ತು ಸ್ವೀಕರಿಸಿದ ಸಂದೇಶಗಳು ಕಣ್ಮರೆಯಾಗುತ್ತದೆ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ನಿಮ್ಮ ಸಂದೇಶಗಳ ಅವಧಿ ಮುಗಿಯುವುದಿಲ್ಲ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">%s ಅವರು ನೋಡಿದ ನಂತರ ಈ ಸಂಭಾಷಣೆಯಲ್ಲಲಿ ಕಳುಹಿಸಿದ ಮತ್ತು ಸ್ವೀಕರಿಸಿದ ಸಂದೇಶಗಳು ಕಣ್ಮರೆಯಾಗುತ್ತದೆ.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ಈಗ ನವೀಕರಿಸಿ</string>
   <!--PassphrasePromptActivity-->

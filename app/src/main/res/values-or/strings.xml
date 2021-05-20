@@ -1103,9 +1103,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ଏକ କ୍ୟୁ.ଆର କୋଡ୍ ସ୍କାନ୍ କରିବା ପାଇଁ Signal କ୍ୟାମେରା ଅନୁମତି ଆବଶ୍ୟକ କରେ, କିନ୍ତୁ ଏହାକୁ ସ୍ଥାୟୀ ଭାବରେ ପ୍ରତ୍ୟାଖ୍ୟାନ କରାଯାଇଛି | ଦୟାକରି ଆପ୍ ସେଟିଂସମୂହକୁ ଯାଇଁ, \"ଅନୁମତି\" ଚୟନ କରନ୍ତୁ ଏବଂ \"କ୍ୟାମେରା\" ସକ୍ଷମ କରନ୍ତୁ</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">କ୍ୟାମେରା ଅନୁମତି ବିନା ଏକ କ୍ୟୁ.ଆର କୋଡ୍ ସ୍କାନ୍ କରିବାରେ ଅସମର୍ଥ</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">ଆପଣଙ୍କର ବାର୍ତ୍ତାର ସମୟ ସମାପ୍ତ ହେବ ନାହିଁ</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ଏହି ବାର୍ତ୍ତାଳାପରେ ପଠାଯାଇଥିବା ଏବଂ ଗ୍ରହଣ କରାଯାଇଥିବା ସନ୍ଦେଶଗୁଡ଼ିକ ଦେଖିବାର %s ପରେ  ଅଦୃଶ୍ୟ ହୋଇଯିବ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ଆପଣଙ୍କର ବାର୍ତ୍ତାର ସମୟ ସମାପ୍ତ ହେବ ନାହିଁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ଏହି ବାର୍ତ୍ତାଳାପରେ ପଠାଯାଇଥିବା ଏବଂ ଗ୍ରହଣ କରାଯାଇଥିବା ସନ୍ଦେଶଗୁଡ଼ିକ ଦେଖିବାର %s ପରେ  ଅଦୃଶ୍ୟ ହୋଇଯିବ</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ଏବେ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal ର ଏହି ସଂସ୍କରଣର ସମୟ ସମାପ୍ତ ହୋଇଛି | ବାର୍ତ୍ତା ପଠାଇବା ଏବଂ ଗ୍ରହଣ କରିବା ପାଇଁ ବର୍ତ୍ତମାନ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
@@ -2593,8 +2593,12 @@
   <string name="NotificationsSettingsFragment__messages">ବାର୍ତ୍ତା</string>
   <string name="NotificationsSettingsFragment__calls">କଲ୍</string>
   <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ସାମ୍ପ୍ରତିକ ତାଲିକାରେ ଏବଂ ଆପ୍ ଭିତରେ ସ୍କ୍ରିନସଟ୍କ କୁ ଅବରୋଧ କରନ୍ତୁ</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">ବନ୍ଦ</string>
+  <string name="ExpireTimerSettingsFragment__save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ଆମକୁ ଯୋଗଯୋଗ କରନ୍ତୁ</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">ସର୍ତ୍ତାବଳୀ &amp; amp; ଗୋପନୀୟତା ନୀତି</string>

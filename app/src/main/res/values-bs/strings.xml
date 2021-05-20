@@ -1169,9 +1169,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalu je potrebno dopuštenje da pristupi kameri kako bi mogao skenirati QR kōd, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nije moguće skenirati QR kōd bez dopuštenja za pristup kameri.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Poslane i primljene poruke u ovoj konverzaciji nestat će %s nakon što su viđene.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Poslane i primljene poruke u ovoj konverzaciji nestat će %s nakon što su viđene.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ažuriraj sada</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ova verzija Signala ističe danas. Ažurirajte aplikaciju na posljednju verziju.</string>
@@ -2975,12 +2975,16 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="PrivacySettingsFragment__blocked">Blokirani</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakata</string>
   <string name="PrivacySettingsFragment__messaging">Poruke</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Nestajuće poruke</string>
   <string name="PrivacySettingsFragment__app_security">Sigurnost aplikacije</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Onemogući slikanje ekrana u popisu nedavno korištenih aplikacija i unutar Signala</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal poruke i pozivi, preusmjeravanje poziva i zapečaćeni pošiljalac</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži sličicu statusa</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaži sličicu u detaljima o poruci kad je poruka isporučena koristeći opciju zapečaćenog pošiljaoca</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Isključeno</string>
+  <string name="ExpireTimerSettingsFragment__save">Pohrani</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centar za podršku</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>

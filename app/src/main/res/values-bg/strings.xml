@@ -1097,9 +1097,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal се нуждае от достъп до камерата Ви, за да може да сканирва QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Неуспешно сканирване на QR код без разрешение за достъп до камерата</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Изчезващи съобщения</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Съобщенията няма да изчезват.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Изпратени и получени съобщения в този разговор ще изчезнат %s след изпращането им.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Изчезващи съобщения</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Съобщенията няма да изчезват.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Изпратени и получени съобщения в този разговор ще изчезнат %s след изпращането им.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Обнови сега</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Тази версия на Signal ще изтече днес. Актуализирайте до най-новата версия.</string>
@@ -2550,8 +2550,18 @@
   <string name="NotificationsSettingsFragment__calls">Обаждания</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Блокиране</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Изчезващи съобщения</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Деактивирани</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 седмица</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 ден</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 часа</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 минути</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
+  <string name="ExpireTimerSettingsFragment__save">Запази</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Свържете се с нас</string>
   <string name="HelpSettingsFragment__version">Версия</string>

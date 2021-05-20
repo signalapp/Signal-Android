@@ -1048,9 +1048,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">စာများအား ပျောက်သွားစေခြင်း</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">သင့်စာသည် အချိန်သတ်မှတ်ချက်မရှိပါ။</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ယခုစာတွဲတွင် ပေးပို့၊ရယူသော စာများသည် တွေ့ရှိပြီး %s အတွင်းပျက်သွားပါမည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">စာများအား ပျောက်သွားစေခြင်း</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">သင့်စာသည် အချိန်သတ်မှတ်ချက်မရှိပါ။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ယခုစာတွဲတွင် ပေးပို့၊ရယူသော စာများသည် တွေ့ရှိပြီး %s အတွင်းပျက်သွားပါမည်။</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ယခု အပ်ဒိတ် လုပ်ပါ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">၎င်း Signal ဗားရှင်းသည် ဒီနေ့ သက်တမ်းကုန်ပါလိမ့်မယ်။ နောက်ဆုံးဗားရှင်းသို့ အပ်ဒိတ်ပြုလုပ်ပါ။</string>
@@ -2760,8 +2760,17 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ပိတ်ပယ်ထားသည်</string>
   <string name="PrivacySettingsFragment__messaging">မက်ဆေ့ချ်ပေးပို့ခြင်း</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">မကြာသေးမီ စာရင်းနှင့် app အတွင်း Screenshot များကို တားမြစ်ပါ</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">ပိတ်ထားမယ်</string>
+  <string name="ExpireTimerSettingsFragment__1_week">၁ ပတ်</string>
+  <string name="ExpireTimerSettingsFragment__1_day">၁ ရက်</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">၈ နာရီ</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">၁ နာရီ</string>
+  <string name="ExpireTimerSettingsFragment__set">တပ်ဆင်မယ်</string>
+  <string name="ExpireTimerSettingsFragment__save">သိမ်းမယ်</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
   <string name="HelpSettingsFragment__version">ဗားရှင်း</string>

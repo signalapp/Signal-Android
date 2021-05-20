@@ -594,9 +594,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code"> QR کوڈ اسکین کرن لئی Signal نوں کیمرا دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\"چنو، تے \"کیمرہ\" فعال کرو۔</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">کیمرے دی اجازت دے بغیر QR کوڈ اسکین نئیں کر سکدا</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">غائب ہون آلے سنیہے</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">تہاڈے سنیہے ختم نئیں ہون گے۔</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ایس گل بات اچ گھلے تے موصول کیتے سنیہے ویکھے جان توں بعد %s غائب ہوجان گے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">غائب ہون آلے سنیہے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">تہاڈے سنیہے ختم نئیں ہون گے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ایس گل بات اچ گھلے تے موصول کیتے سنیہے ویکھے جان توں بعد %s غائب ہوجان گے۔</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">پاس فریز درج کرو</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal آئکن</string>

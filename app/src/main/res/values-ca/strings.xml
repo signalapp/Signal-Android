@@ -93,6 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Voleu desblocar %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloca</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloca i abandona</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Informa\'n com a brossa i bloca-ho</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Avui</string>
   <string name="BucketedThreadMedia_Yesterday">Ahir</string>
@@ -239,6 +240,7 @@
   <string name="ConversationActivity_join">Afegeix-m\'hi</string>
   <string name="ConversationActivity_full">Ple</string>
   <string name="ConversationActivity_error_sending_media">Error en enviar contingut</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Se n\'ha informat com a brossa i s\'ha blocat.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -1110,9 +1112,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">El Signal necessita el permís de la càmera per tal d\'escanejar un codi QR, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi la càmera.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No es pot escanejar un codi QR sense permís de la càmera.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Missatges efímers</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no venceran.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Els missatges enviats i rebuts a aquesta conversa desapareixeran %s després que s\'hagin llegit.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Missatges efímers</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no venceran.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Els missatges enviats i rebuts a aquesta conversa desapareixeran %s després que s\'hagin llegit.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Actualitza-la ara</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">La vostra versió del Signal vencerà avui. Actualitzeu-la a la versió més recent.</string>
@@ -1349,6 +1351,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Aquest registre es publicarà públicament en línia perquè els col·laboradors el vegin. Podeu examinar-lo i editar-lo abans de penjar-lo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Informació del dispositiu:</string>
@@ -1623,6 +1626,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Cap grup en comú. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Cap contacte en aquest grup. Reviseu les sol·licituds amb atenció.</string>
   <string name="ConversationUpdateItem_view">Vista</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El temps de desaparició del missatge s\'establirà a %1$s quan els n\'envieu un.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -1977,6 +1981,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
   <string name="preferences__typing_indicators">Indicadors de tecleig</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
+  <string name="preferences__request_keyboard_to_disable">Sol·licita un teclat per desactivar l\'aprenentatge personalitzat.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string>
   <string name="preferences_app_protection__blocked_users">Usuaris blocats</string>
   <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
   <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
@@ -2516,6 +2522,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toqueu la foto del perfil a la part superior esquerra per obrir-ne la Configuració.</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Toqueu Compte</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Toqueu Transfereix el compte i, a continuació, Continua, als dos dispositius.</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2857,9 +2864,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Més lent, més dades</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualitat de la fotografia</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Convideu-hi amistats</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Compte</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Amb el temps se us demanarà amb menys freqüència</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Sol·licita el PIN del Signal per tornar-hi a registrar el número de telèfon</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Teclat</string>
   <string name="ChatsSettingsFragment__enter_key_sends">S\'envia amb la tecla de Retorn</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Usa-la com a aplicació d\'SMS predeterminada</string>
@@ -2867,16 +2878,47 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NotificationsSettingsFragment__messages">Missatges</string>
   <string name="NotificationsSettingsFragment__calls">Trucades</string>
   <string name="NotificationsSettingsFragment__notify_when">Notifica quan…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">El contacte s\'afegeix al Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blocat</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d contactes</string>
   <string name="PrivacySettingsFragment__messaging">Missatges</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Missatges efímers</string>
+  <string name="PrivacySettingsFragment__app_security">Seguretat de l\'aplicació</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloca les captures de pantalla a les llistes de recents i dins de l\'aplicació</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Missatges i trucades del Signal: sempre retransmissió de trucades i remitent segellat</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporitzador per defecte per a les converses noves</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establiu un temporitzador per defecte de desaparició de missatges per a totes les converses noves que hàgiu iniciat.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostra la icona d\'estat</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra una icona als detalls del missatge quan es lliuri mitjançant un remitent segellat.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quan s\'activa, els missatges enviats i rebuts nous en converses noves que hàgiu iniciat desapareixeran després de ser vistos.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quan s\'activa, els missatges nous enviats i rebuts en aquesta conversa desapareixeran després de ser vistos.</string>
+  <string name="ExpireTimerSettingsFragment__off">Inactiu</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 setmanes</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 setmana</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dia</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 hores</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 hora</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minuts</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 segons</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Temps personalitzat</string>
+  <string name="ExpireTimerSettingsFragment__set">Estableix</string>
+  <string name="ExpireTimerSettingsFragment__save">Desa</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Segon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minut</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Hora</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Setmana</string> -->
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Centre d\'assistència</string>
   <string name="HelpSettingsFragment__contact_us">Contacteu-nos</string>
   <string name="HelpSettingsFragment__version">Versió</string>
   <string name="HelpSettingsFragment__debug_log">Registre de depuració</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termes i política de privadesa</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Amb llicència de GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
   <!--EOF-->

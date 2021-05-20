@@ -1225,9 +1225,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal צריך את הרשאת המצלמה על מנת לסרוק קוד QR, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">לא היה ניתן לסרוק קוד QR ללא הרשאת המצלמה</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">הודעות נעלמות</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">ההודעות שלך לא יפוגו.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">הודעות שנשלחות ומתקבלות בשיחה זו ייעלמו %s אחרי שייראו.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">הודעות נעלמות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ההודעות שלך לא יפוגו.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">הודעות שנשלחות ומתקבלות בשיחה זו ייעלמו %s אחרי שייראו.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">עדכן עכשיו</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">גרסה זו של Signal תפוג היום. עדכן אל הגרסה האחרונה.</string>
@@ -3052,12 +3052,25 @@
   <string name="PrivacySettingsFragment__blocked">חסום</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d אנשי קשר</string>
   <string name="PrivacySettingsFragment__messaging">תכתובת</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">הודעות נעלמות</string>
   <string name="PrivacySettingsFragment__app_security">אבטחת יישום</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">חסום צילומי מסך ברשימת האחרונים ובתוך היישום</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">הודעות ושיחות של Signal, ממסר שיחות תמיד, ושולח אטום</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">הגדר קוצב זמן ברירת מחדל של הודעות נעלמות עבור כל ההתכתבויות החדשות שהותחלו על ידך.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">הראה איקון מעמד</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">הראה איקון בפרטי הודעה כאשר היא נשלחה ע״י שימוש בשולח אטום.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">כאשר מאופשר, הודעות חדשות אשר נשלחות ומתקבלות בהתכתבות זו ייעלמו לאחר שייראו.</string>
+  <string name="ExpireTimerSettingsFragment__off">כבוי</string>
+  <string name="ExpireTimerSettingsFragment__1_week">שבוע</string>
+  <string name="ExpireTimerSettingsFragment__1_day">יום</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 שעות</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">שעה</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 דקות</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 שניות</string>
+  <string name="ExpireTimerSettingsFragment__set">הגדר</string>
+  <string name="ExpireTimerSettingsFragment__save">שמור</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">מרכז תמיכה</string>
   <string name="HelpSettingsFragment__contact_us">צור קשר</string>

@@ -127,7 +127,7 @@
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">این نسخهٔ برنامه دیگر پشتیبانی نمی‌شود. برای ادامهٔ ارسال و دریافت پیام‌ها، به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="ClientDeprecatedActivity_update">به‌روزرسانی</string>
   <string name="ClientDeprecatedActivity_dont_update">به‌روزرسانی نکن</string>
-  <string name="ClientDeprecatedActivity_warning">اخطار</string>
+  <string name="ClientDeprecatedActivity_warning">هشدار</string>
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">نسخهٔ سیگنال شما منقضی شده است. شما می‌توانید تاریخچهٔ پیام خود را مشاهده کنید اما نمی‌توانید پیام‌ها را ارسال و دریافت کنید تا زمانی که به‌روزرسانی کنید.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found"> مرورگر اینترنت یافت نشد.</string>
@@ -214,7 +214,7 @@
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌های صوتی، به سیگنال اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">سیگنال برای ارسال پیام های صوتی نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">سیگنال نیاز به مجوزها‌ی دوربین و میکروفون دارد تا بتواند با %s تماس بگیرد، اما دسترسی به آن‌ها به صورت دائم رد شده است. لطفاً به قسمت تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» و «میکروفون» را فعال کنید.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای گرفتن عکس و ویدئو، به سیگنال اجازه دهید به دوربین شما دسترسی داشته باشد. </string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای ضبط عکس و ویدئو، به سیگنال اجازه دهید به دوربین شما دسترسی داشته باشد.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">برای گرفتن عکس یا ضبط ویدئو سیگنال نیاز به مجوز دوربین دارد، اما دسترسی به آن رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» را فعال کنید. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">برای گرفتن عکس یا ویدئو سیگنال نیاز به مجوزها‌ی دوربین دارد</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">مجوز میکروفون را برای ضبط فیلم با صدا فعال کنید.</string>
@@ -253,12 +253,12 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">در حافظه ذخیره شود؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">ذخیره‌ کردن این رسانه در حافظه دستگاه به هر برنامه دیگری اجازه دسترسی به آن را می دهد.\n\n آیا مایل به ادامه هستید؟</item>
-    <item quantity="other">ذخیره‌ کردن تمام %1$d رسانه در حافظهٔ دستگاه به هر برنامهٔ دیگری اجازه دسترسی به آن ها را می دهد.\n\n آیا مایل به ادامه هستید؟</item>
+    <item quantity="one">ذخیره‌سازی این رسانه در حافظهٔ دستگاه به هر یک از برنامه‌ها‌‌ی دیگر اجازهٔ دسترسی به آن را می‌دهد.\n\n آیا مایل به ادامه هستید؟ </item>
+    <item quantity="other">ذخیره‌سازی هر %1$d رسانه در حافظهٔ دستگاه به هر یک از برنامه‌ها‌ی دیگر اجازه دسترسی به آن‌ها را می‌دهد.\n\n آیا مایل به ادامه هستید؟</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">خطا در هنگام ذخیره‌ پیوست در حافظه!</item>
-    <item quantity="other">خطا در هنگام ذخیرهٔ پیوست‌ها در حافظه!</item>
+    <item quantity="one">خطا هنگام ذخیره‌سازی پیوست در حافظه!</item>
+    <item quantity="other">خطا هنگام ذخیره‌سازی پیوست‌ها در حافظه!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">نوشتن در حافظه ممکن نیست!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -283,9 +283,9 @@
   <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت راست بکشید</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ‌دهی سریع روی هر پیام به سمت چپ بکشید</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ای یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ٔ یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
   <string name="ConversationFragment_you_already_viewed_this_message">شما قبلاً این پیام را مشاهده کردید</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">در این مکالمه می‌توانید برای خودتان یادداشت اضافه کنید. اگر حساب کاربری‌تان به دستگاه‌‌های دیگری پیوند داده شده باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">در این مکالمه می‌توانید برای خودتان یادداشت اضافه کنید. اگر حساب کاربری شما به دستگاه‌‌های دیگری پیوند داده شده باشد، یادداشت‌های جدید همگام‌سازی خواهند شد.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d نفر از اعضای گروه نام یکسان دارند.</string>
   <string name="ConversationFragment__tap_to_review">برای بازنگری ضربه بزنید</string>
   <string name="ConversationFragment__review_requests_carefully">درخواست‌ها را با دقت بازنگری کنید</string>
@@ -522,7 +522,7 @@
   <string name="LinkPreviewsMegaphone_preview_any_link">پیش‌نمایش هر پیوند</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">شما حالا می‌توانید پیش‌نمایش‌ پیوندها را به صورت مستقیم از هر وب‌سایتی برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">هیچ پیش‌نمایش پیوندی در دسترس نیست</string>
+  <string name="LinkPreviewView_no_link_preview_available">هیچ پیش‌نمایش پیوند‌ی در دسترس نیست</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
@@ -1113,9 +1113,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">سیگنال جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">اسکن کردن کد QR بدون مجوز دوربین ممکن نیست</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">پیام‌های ناپدید شونده</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">پیام‌های شما ناپدید نخواهند شد.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">پیام‌های ارسال شده و دریافت شده در این مکالمه %s بعد از دیده شدن ناپدید خواهند شد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">پیام‌های ناپدید شونده</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">پیام‌های شما ناپدید نخواهند شد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">پیام‌های ارسال شده و دریافت شده در این مکالمه %s بعد از دیده شدن ناپدید خواهند شد.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">همین حالا به‌روزرسانی کنید</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تاریخ انقضای این نسخهٔ سیگنال امروز به پایان می‌رسد. به آخرین نسخه به‌روزرسانی کنید.</string>
@@ -1158,7 +1158,7 @@
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس زدن پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب کاربری سیگنال خود دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب کاربری‌تان بدون هیچ اطلاعات و تنظیمات از پیش ذخیره‌شده‌ای بازگردانی خواهد شد.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
   <!--PinOptOutDialog-->
-  <string name="PinOptOutDialog_warning">اخطار</string>
+  <string name="PinOptOutDialog_warning">هشدار</string>
   <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
   <string name="PinOptOutDialog_disable_pin">غیرفعال کردن پین</string>
   <!--RatingManager-->
@@ -1630,6 +1630,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">هیچ گروه مشترکی وجود ندارد. درخواست‌ها را با دقت بازبینی کنید.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">هیچ مخاطبی در این گروه وجود ندارد. درخواست‌ها را با دقت بازبینی کنید.</string>
   <string name="ConversationUpdateItem_view">نمایش</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">زمان پیام ناپدید شونده هنگامی که به آن‌ها پیام دهید روی %1$s تنظیم خواهد شد.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … توقف</string>
   <string name="audio_view__download_accessibility_description">بارگیری</string>
@@ -2351,7 +2352,7 @@
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
   <string name="KbsSplashFragment__update_pin">به‌روزرسانی پین</string>
   <string name="KbsSplashFragment__create_your_pin">پین خود را ایجاد کنید</string>
-  <string name="KbsSplashFragment__learn_more_about_pins">درباره پین ​​اطلاعات بیشتری کسب کنید</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">دربارهٔ پین ​​بیشتر یاد بگیرید</string>
   <string name="KbsSplashFragment__disable_pin">غیرفعال کردن پین</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">پین سیگنال خود را وارد کنید</string>
@@ -2491,7 +2492,7 @@
   <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در سیگنال را رمزگذاری شده نگه می‌دارند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">افزودن لایهٔ امنیتی اضافه با پرسیدن پین سیگنال برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به خاطر سپاری کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به خاطرسپاری پین شما کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
   <string name="preferences_app_protection__turn_off">خاموش</string>
   <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">پین سیگنال خود را تأیید کنید</string>
@@ -2886,12 +2887,34 @@
   <string name="PrivacySettingsFragment__blocked">مسدود شده</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d مخاطبین</string>
   <string name="PrivacySettingsFragment__messaging">‌پیام‌رسانی</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="PrivacySettingsFragment__app_security">امنیت برنامه</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">مسدود کردن عکس از صفحه در فهرست آخرین‌ها و در درون برنامه</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">پیام‌ها و تماس‌های سیگنال، عبور همیشگی تماس‌ها از سرور‌های سیگنال، و فرستندهٔ ناشناس</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">زمان‌سنج پیش‌فرض برای گفتگوهای جدید</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">نمایش آیکون وضعیت</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">وقتی فعال شد، پیام‌های جدید ارسال و دریافت شده در گفتگوهایی که شما آغاز می‌کنید پس از دیده شدن ناپدید خواهند شد.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">وقتی فعال شود، پیام‌های جدید ارسال و دریافت شده در این گفتگو پس از دیده شدن ناپدید خواهند شد.</string>
+  <string name="ExpireTimerSettingsFragment__off">خاموش</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">۴ هفته</string>
+  <string name="ExpireTimerSettingsFragment__1_week">۱ هفته</string>
+  <string name="ExpireTimerSettingsFragment__1_day">۱ روز</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">۸ ساعت</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">۱ ساعت</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">۵ دقیقه</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">۳۰ ثانیه</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">زمان سفارشی</string>
+  <string name="ExpireTimerSettingsFragment__set">تنظیم</string>
+  <string name="ExpireTimerSettingsFragment__save">ذخیره</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">ثانیه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">دقیقه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">ساعت</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">روز</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">هفته</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">مرکز پشتیبانی</string>
   <string name="HelpSettingsFragment__contact_us">تماس با ما</string>

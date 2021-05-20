@@ -1102,9 +1102,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Kaduvad sõnumid</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Sinu sõnumid ei aegu.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Selles vestluses saadetud ja vastuvõetud sõnumid haihtuvad %s pärast nägemist.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Kaduvad sõnumid</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Sinu sõnumid ei aegu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Selles vestluses saadetud ja vastuvõetud sõnumid haihtuvad %s pärast nägemist.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uuenda kohe</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">See Signali versioon aegub täna. Uuenda kõige uuemale versioonile.</string>
@@ -2697,8 +2697,19 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokeeritud</string>
   <string name="PrivacySettingsFragment__messaging">Sõnumside</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Kaduvad sõnumid</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Väljas</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 nädal</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 päev</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 tundi</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 tund</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutit</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundit</string>
+  <string name="ExpireTimerSettingsFragment__set">Määra</string>
+  <string name="ExpireTimerSettingsFragment__save">Salvesta</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Võta meiega ühendust</string>
   <string name="HelpSettingsFragment__version">Versioon</string>

@@ -432,9 +432,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Tá gá ag Signal cead cheamara chun QR code a scanadh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ní féidir QR code a scanadh gan cead Cheamara.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Ní éagfaidh do chuid teachtaireachtaí.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Imeoidh teachtaireachtaí seolta agus faighte sa chomhrá seo as amharc, %s tar éis iad a léamh.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Teachtaireachtaí a imíonn as amharc</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ní éagfaidh do chuid teachtaireachtaí.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Imeoidh teachtaireachtaí seolta agus faighte sa chomhrá seo as amharc, %s tar éis iad a léamh.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Cuir isteach nath faire</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Deilbhín Signal</string>

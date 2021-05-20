@@ -1049,9 +1049,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需“相机”权限，来扫描二维码，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">没有“相机”权限，无法扫描二维码</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">阅后即焚</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">消息不会消失。</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">该对话接收和发送的消息将于 %s 后消失。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">阅后即焚</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">消息不会消失。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">该对话接收和发送的消息将于 %s 后消失。</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">现在升级</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">此 Signal 版本将在今天过期，请升级到最新版本。</string>
@@ -2761,8 +2761,19 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">已屏蔽</string>
   <string name="PrivacySettingsFragment__messaging">消息传输</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">限时消息</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">屏蔽最近使用应用和 Signal 截屏</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">关</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 周</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 天</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 小时</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 小时</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5分钟</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30秒</string>
+  <string name="ExpireTimerSettingsFragment__set">设置</string>
+  <string name="ExpireTimerSettingsFragment__save">保存</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">联系我们</string>
   <string name="HelpSettingsFragment__version">版本</string>

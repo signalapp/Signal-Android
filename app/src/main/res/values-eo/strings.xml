@@ -1105,9 +1105,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Memviŝontaj mesaĝoj</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Viaj mesaĝoj ne senvalidiĝos.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesaĝoj senditaj kaj ricevitaj en tiu ĉi interparolo malaperos %s post sia legiĝo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Memviŝontaj mesaĝoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Viaj mesaĝoj ne senvalidiĝos.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesaĝoj senditaj kaj ricevitaj en tiu ĉi interparolo malaperos %s post sia legiĝo.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ĝisdatigi nun</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tiu versio de Signal senvalidiĝos hodiaŭ. Ĝisdatigu al plej nova versio.</string>
@@ -2765,8 +2765,17 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationsSettingsFragment__messages">Mesaĝoj</string>
   <string name="NotificationsSettingsFragment__calls">Alvokoj</string>
   <!--PrivacySettingsFragment-->
+  <string name="PrivacySettingsFragment__disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Neebligi ekrankopiojn en la listo de ĵus uzitaj aplikaĵoj kaj ene de la aplikaĵo mem</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Malŝaltita</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 semajnon</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 tagon</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 horon</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutojn</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundojn</string>
+  <string name="ExpireTimerSettingsFragment__save">Konservi</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Kontaktu nin</string>
   <string name="HelpSettingsFragment__debug_log">Sencimiga protokolo</string>

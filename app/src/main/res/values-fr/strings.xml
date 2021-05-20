@@ -1102,9 +1102,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de balayer un code QR sans l’autorisation Appareil photo</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Messages éphémères</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages n’expireront pas.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus de cette conversation disparaîtront %s après avoir été lus.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Messages éphémères</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages n’expireront pas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus de cette conversation disparaîtront %s après avoir été lus.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Mettre Signal à jour maintenant</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal expirera aujourd’hui. Passez à la version la plus récente.</string>
@@ -1598,6 +1598,7 @@
   <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
   <string name="ConversationUpdateItem_call_is_full">L’appel est complet</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter des amis</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Aucun groupe en commun. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_view">Afficher</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
@@ -1678,6 +1679,7 @@
     <item quantity="other">%d autres</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">Chercher des GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Aucun résultat</string>
   <!--log_submit_activity-->
@@ -1848,6 +1850,7 @@
     <item quantity="other">%d h</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">Bêta</string>
   <string name="preferences__sms_mms">Textos et messages multimédias</string>
   <string name="preferences__pref_all_sms_title">Recevoir tous les textos</string>
   <string name="preferences__pref_all_mms_title">Recevoir tous les messages multimédias</string>
@@ -1911,6 +1914,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de remise pour chaque texto envoyé</string>
   <string name="preferences__data_and_storage">Données et mémoire</string>
   <string name="preferences__storage">Mémoire</string>
+  <string name="preferences__payments">Paiements</string>
+  <string name="preferences__payments_beta">Paiements (bêta)</string>
   <string name="preferences__conversation_length_limit">Taille maximale des conversations</string>
   <string name="preferences__keep_messages">Conserver les messages</string>
   <string name="preferences__clear_message_history">Effacer l’historique des messages</string>
@@ -1938,6 +1943,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture d’autrui.</string>
   <string name="preferences__typing_indicators">Indicateurs de saisie</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
+  <string name="preferences__request_keyboard_to_disable">Demander au clavier de désactiver l’apprentissage personnalisé.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Ce paramètre n’est pas une garantie et votre clavier peut l’ignorer.</string>
   <string name="preferences_app_protection__blocked_users">Utilisateurs bloqués</string>
   <string name="preferences_chats__when_using_mobile_data">En utilisant les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">En utilisant le WI-FI</string>
@@ -2020,22 +2027,44 @@
   <string name="PaymentsAllActivityFragment__all">Tous</string>
   <string name="PaymentsAllActivityFragment__sent">Envoyé</string>
   <string name="PaymentsAllActivityFragment__received">Reçu</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Nous présentons les paiements (bêta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilisez Signal pour envoyer et recevoir des MobileCoin, une nouvelle monnaie numérique centrée sur la protection des renseignements personnels. Activez pour commencer.</string>
+  <string name="PaymentsHomeFragment__pending_requests">Demandes en attente</string>
+  <string name="PaymentsHomeFragment__recent_activity">Activité récente</string>
   <string name="PaymentsHomeFragment__see_all">Tout afficher</string>
+  <string name="PaymentsHomeFragment__add_funds">Ajouter des fonds</string>
   <string name="PaymentsHomeFragment__send">Envoyer</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Conversion des devises</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Désactiver les paiements</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsHomeFragment__help">Aide </string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversion des devises non disponible</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Impossible d’afficher la conversion des devises. Vérifiez la connexion de votre téléphone et réessayez.</string>
+  <string name="PaymentsHomeFragment__deactivate">Désactiver</string>
   <string name="PaymentsHomeFragment__continue">Poursuivre</string>
+  <string name="PaymentsHomeFragment__payment_failed">Échec du paiement</string>
   <string name="PaymentsHomeFragment__details">Détails</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Ajouter des fonds</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">L’adresse de votre portefeuille</string>
   <string name="PaymentsAddMoneyFragment__copy">Copier</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">A été copié dans le presse-papiers</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Détails</string>
   <string name="PaymentsDetailsFragment__status">État</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Soumission du paiement…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Traitement du paiement…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Paiement effectué</string>
+  <string name="PaymentsDetailsFragment__payment_failed">Échec du paiement</string>
+  <string name="PaymentsDetailsFragment__network_fee">Frais de réseau</string>
   <string name="PaymentsDetailsFragment__to">À</string>
   <string name="PaymentsDetailsFragment__from">De</string>
+  <string name="PaymentsDetailsFragment__block_number">Bloquer le numéro</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__scan_qr_code">Balayer le code QR</string>
   <string name="PaymentsTransferFragment__next">Suivant</string>
+  <string name="PaymentsTransferFragment__invalid_address">Adresse invalide</string>
   <string name="PaymentsTransferFragment__settings">Paramètres</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
@@ -2049,12 +2078,28 @@
   <string name="CreatePaymentFragment__7">7</string>
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__add_note">Ajouter une note</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Les conversions ne sont que des estimations et peuvent être imprécises.</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Note</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Confirmer le paiement</string>
+  <string name="ConfirmPayment__network_fee">Frais de réseau</string>
   <string name="ConfirmPayment__to">À</string>
+  <string name="ConfirmPayment__total_amount">Montant total</string>
+  <string name="ConfirmPayment__submitting_payment">Soumission du paiement…</string>
+  <string name="ConfirmPayment__processing_payment">Traitement du paiement…</string>
+  <string name="ConfirmPayment__payment_complete">Paiement effectué</string>
+  <string name="ConfirmPayment__payment_failed">Échec du paiement</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Destinataire invalide</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Cette personne n’a pas activé les paiements</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Définir la devise</string>
+  <string name="SetCurrencyFragment__all_currencies">Toutes les devise</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2291,6 +2336,7 @@
   <string name="backup_enable_dialog__folder">Dossier</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
   <string name="registration_activity__restore_backup">Restaurer une sauvegarde</string>
+  <string name="registration_activity__transfer_or_restore_account">Transférer ou restaurer le compte</string>
   <string name="registration_activity__skip">Ignorer</string>
   <string name="preferences_chats__chat_backups">Sauvegardes des conversations</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sauvegarder les conversations dans la mémoire externe</string>
@@ -2369,6 +2415,8 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">TOUCHEZ POUR DÉVERROUILLER</string>
   <string name="Recipient_unknown">Inconnu</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transférer ou restaurer le compte</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Transférer d’un appareil Android</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Poursuivre</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
@@ -2561,15 +2609,23 @@
   <string name="payment_info_card_hide">Cacher</string>
   <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate">Désactiver</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Phrase de récupération</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsRecoveryPasteFragment__next">Suivant</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Suivant</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Modifier</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Votre phrase de récupération</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copier</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Revoir la phrase</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Terminé</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Phrase de récupération confirmée</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__next">Suivant</string>
   <!--ClearClipboardAlarmReceiver-->
@@ -2604,9 +2660,26 @@
   <string name="PrivacySettingsFragment__blocked">Bloquée</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
   <string name="PrivacySettingsFragment__messaging">Messagerie</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Messages éphémères</string>
   <string name="PrivacySettingsFragment__app_security">Sécurité de l’appli</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Désactivé</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 semaines</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 semaine</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 jour</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 heures</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 heure</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 secondes</string>
+  <string name="ExpireTimerSettingsFragment__set">Définir</string>
+  <string name="ExpireTimerSettingsFragment__save">Enregistrer</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Seconde</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minute</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Heure</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Jour</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Semaine</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centre d’assistance</string>
   <string name="HelpSettingsFragment__contact_us">Nous contacter</string>

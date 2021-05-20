@@ -864,9 +864,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ਕਯੂ.ਆਰ ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਦੀ ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਚ ਜਾਓ , \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਕੈਮਰਾ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ਕੈਮਰਾ ਦੀ ਇਜਾਜ਼ਤ ਦੇ ਬਿਨਾਂ QR ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਦੀ ਮਿਆਦ ਨਹੀਂ ਪੁੱਗੇਗੀ।</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ਇਸ ਗੱਲਬਾਤ ਵਿਚ ਭੇਜੇ ਗਏ ਅਤੇ ਪ੍ਰਾਪਤ ਕੀਤੇ ਗਏ ਸੁਨੇਹੇ ਦੇਖਣ ਤੋਂ ਬਾਅਦ ਅਲੋਪ ਹੋ ਜਾਣਗੇ %s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਦੀ ਮਿਆਦ ਨਹੀਂ ਪੁੱਗੇਗੀ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ਇਸ ਗੱਲਬਾਤ ਵਿਚ ਭੇਜੇ ਗਏ ਅਤੇ ਪ੍ਰਾਪਤ ਕੀਤੇ ਗਏ ਸੁਨੇਹੇ ਦੇਖਣ ਤੋਂ ਬਾਅਦ ਅਲੋਪ ਹੋ ਜਾਣਗੇ %s.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ਹੁਣ ਅਪਡੇਟ ਕਰੋ</string>
   <!--PassphrasePromptActivity-->

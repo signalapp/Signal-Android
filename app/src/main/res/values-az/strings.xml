@@ -467,9 +467,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR şifrəni skan edə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kameraya giriş icazəsi olmadan QR şifrə skan olunmur</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Yox olan mesajlar</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Sənin mesajlarının vaxtı ötməyəcək.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu söhbətləşmədəki göndərilən və qəbul edilən mesajlara baxıldıqdan %s sonra silinəcəkdir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Yox olan mesajlar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Sənin mesajlarının vaxtı ötməyəcək.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu söhbətləşmədəki göndərilən və qəbul edilən mesajlara baxıldıqdan %s sonra silinəcəkdir.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Şifrə ifadəsini daxil et</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonası</string>

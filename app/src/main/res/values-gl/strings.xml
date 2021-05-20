@@ -1100,9 +1100,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita permiso para acceder á cámara e poder escanear un código QR, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Non é posible escanear o código QR sen permiso para acceder á cámara</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Desaparición das mensaxes</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">As mensaxes non desaparecerán.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">As mensaxes que se envíen e reciban nesta conversa desaparecerán %s despois de seren vistas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Desaparición das mensaxes</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">As mensaxes non desaparecerán.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">As mensaxes que se envíen e reciban nesta conversa desaparecerán %s despois de seren vistas.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Actualiza</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versión de Signal caduca hoxe. Actualízate á versión máis recente.</string>
@@ -2659,8 +2659,17 @@
   <string name="NotificationsSettingsFragment__calls">Chamadas</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Bloqueado</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Desaparición das mensaxes</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea as capturas na listaxe de recentes e no interior da aplicación.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Off</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 día</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 hora</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutos</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 segundos</string>
+  <string name="ExpireTimerSettingsFragment__save">Gardar</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Contacto</string>
   <string name="HelpSettingsFragment__version">Versión</string>

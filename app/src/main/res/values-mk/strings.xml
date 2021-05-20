@@ -1103,9 +1103,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не успеав да го скенирам QR кодот без дозвола за камерата.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Пораки што исчезнуваат</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Вашите пораки нема да истекуваат.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Пораките испратени и примени во овој разговор ке исчезнат %s откако ќе бидат видени.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Пораки што исчезнуваат</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Вашите пораки нема да истекуваат.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Пораките испратени и примени во овој разговор ке исчезнат %s откако ќе бидат видени.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај веднаш</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Оваа верзија на Signal ќе истече денес. Ажурирајте до најновата верзија.</string>
@@ -2755,8 +2755,20 @@
   <string name="NotificationsSettingsFragment__calls">Повици</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Блокирани</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирај слики од екранот во листата на последни апликации и во самата апликација</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во овој разговор ќе исчезнат откако ќе бидат видени.</string>
+  <string name="ExpireTimerSettingsFragment__off">Исклучи</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 недела</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 ден</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 часа</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 минути</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
+  <string name="ExpireTimerSettingsFragment__set">Постави</string>
+  <string name="ExpireTimerSettingsFragment__save">Зачувај</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Контактирајте нѐ</string>
   <string name="HelpSettingsFragment__version">Верзија</string>

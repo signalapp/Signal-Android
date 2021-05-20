@@ -746,9 +746,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal ir nepieciešama piekļuve kamerai, lai skenētu QR kodu, bet tai nav dotas šādas atļaujas. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\". </string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nav iespējams skenēt QR kodu bez kameras lietošanas atļaujas</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Gaistošās ziņas</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Jūsu ziņas neizgaisīs.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ziņas, kuras nosūtītas un saņemtas šajā sarunā,  pazudīs %s pēc to apskatīšanas. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Gaistošās ziņas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Jūsu ziņas neizgaisīs.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ziņas, kuras nosūtītas un saņemtas šajā sarunā,  pazudīs %s pēc to apskatīšanas. </string> -->
   <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ievadiet paroli</string>

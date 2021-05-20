@@ -1325,9 +1325,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل مسح الرمز المربع ضوئيا ولكن رُفض الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق، ثم اختيار « الصلاحيات »، ثم تفعيل « الكاميرا ».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح رمز الاستجابة السريع بدون منح إذن الوصول إلى الكاميرا</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">الرسائل المختفية</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">لن تختفي رسائلك.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">من الآن فصاعدا سوف تختفي الرسائل الصادرة والواردة في هذه المحادثة بعد %s من رؤيتها.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">الرسائل المختفية</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">لن تختفي رسائلك.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">من الآن فصاعدا سوف تختفي الرسائل الصادرة والواردة في هذه المحادثة بعد %s من رؤيتها.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">حدِّث الآن</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تنتهي اليوم صلاحية إصدار Signal. يُرجى اللمس لتثبيت آخر نسخة من التطبيق.</string>
@@ -2929,8 +2929,19 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">محظورة</string>
   <string name="PrivacySettingsFragment__messaging">التراسُل</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">الرسائل المختفية</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث  </string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">مُعطَّل</string>
+  <string name="ExpireTimerSettingsFragment__1_week">أسبوع واحد</string>
+  <string name="ExpireTimerSettingsFragment__1_day">يوم واحد</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">ثمانِ ساعات</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">ساعة واحدة</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">بعد 5 دقائق</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">بعد 30 ثانية</string>
+  <string name="ExpireTimerSettingsFragment__set">تعيِّين</string>
+  <string name="ExpireTimerSettingsFragment__save">حفظ</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">تواصل معنا</string>
   <string name="HelpSettingsFragment__version">اﻹصدار</string>

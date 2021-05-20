@@ -1049,9 +1049,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal memerlukan izin Kamera untuk memindai kode QR, tetapi saat ini izin ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Tidak bisa memindai kode QR tanpa izin Kamera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Penghilangan pesan</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Pesan Anda tidak akan kedaluwarsa.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesan yang terkirim dan diterima pada percakapan ini akan hilang dalam waktu %s setelah dibaca.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Penghilangan pesan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Pesan Anda tidak akan kedaluwarsa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesan yang terkirim dan diterima pada percakapan ini akan hilang dalam waktu %s setelah dibaca.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Perbarui sekarang</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Versi applikasi Signal ini akan kedaluarsa hari ini. Segera perbarui ke versi yang terbaru.</string>
@@ -2490,8 +2490,18 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Terblokir</string>
   <string name="PrivacySettingsFragment__messaging">Olah pesan</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Penghilangan pesan</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokir tangkapan layar di daftar terbaru dan di dalam aplikasi</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Mati</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 minggu</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 hari</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 jam</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 menit</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 detik</string>
+  <string name="ExpireTimerSettingsFragment__set">Atur</string>
+  <string name="ExpireTimerSettingsFragment__save">Simpan</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Hubungi kami</string>
   <string name="HelpSettingsFragment__version">Versi</string>

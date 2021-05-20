@@ -1111,9 +1111,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Kaybolan iletiler</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">İletileriniz kaybolmayacak.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu konuşmada gönderilen ve alınan iletiler görüldükten %s sonra yok olur.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Kaybolan iletiler</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">İletileriniz kaybolmayacak.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu konuşmada gönderilen ve alınan iletiler görüldükten %s sonra yok olur.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Şimdi güncelle</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal\'in bu sürümü bugün kullanım dışı kalacak. En yeni sürüme güncelleyin.</string>
@@ -2874,8 +2874,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Engellendi</string>
   <string name="PrivacySettingsFragment__messaging">Yazışma</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Kaybolan iletiler</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Son uygulamalar görünümünde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Kapalı</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 hafta</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 gün</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 saat</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 saat</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 dakika</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 saniye</string>
+  <string name="ExpireTimerSettingsFragment__set">Ayarla</string>
+  <string name="ExpireTimerSettingsFragment__save">Kaydet</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Bizimle iletişime geçin</string>
   <string name="HelpSettingsFragment__version">Sürüm</string>

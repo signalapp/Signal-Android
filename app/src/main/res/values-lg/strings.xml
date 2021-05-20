@@ -274,9 +274,9 @@ a</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Bambi  QR koodi eno sintufu</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Yungako divayisi ya Signal?</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Obubaka bwo bubuzibwaawo</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Obubaka bwo tebujja kugwako.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Obubaka bwowereza ne bwofunye mu mbozi eno %s bujakubula bwomaliriza obulaba</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Obubaka bwo bubuzibwaawo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Obubaka bwo tebujja kugwako.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Obubaka bwowereza ne bwofunye mu mbozi eno %s bujakubula bwomaliriza obulaba</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Yingiza passiwaddi nga yabigaambo ne namba</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Akabonero ka Signal</string>

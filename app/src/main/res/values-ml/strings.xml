@@ -1105,9 +1105,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ഒരു QR കോഡ് സ്കാൻ ചെയ്യുന്നതിന് Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ക്യാമറ അനുമതിയില്ലാതെ ഒരു QR കോഡ് സ്കാൻ ചെയ്യാൻ കഴിയില്ല</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">നിങ്ങളുടെ സന്ദേശങ്ങൾ‌ കാലഹരണപ്പെടില്ല.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ഈ സംഭാഷണത്തിൽ അയച്ചതും സ്വീകരിച്ചതുമായ സന്ദേശങ്ങൾ കണ്ടുകഴിഞ്ഞാൽ അവ %s കഴിഞ്ഞാൽ അപ്രത്യക്ഷമാകും.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">നിങ്ങളുടെ സന്ദേശങ്ങൾ‌ കാലഹരണപ്പെടില്ല.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ഈ സംഭാഷണത്തിൽ അയച്ചതും സ്വീകരിച്ചതുമായ സന്ദേശങ്ങൾ കണ്ടുകഴിഞ്ഞാൽ അവ %s കഴിഞ്ഞാൽ അപ്രത്യക്ഷമാകും.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal - ന്റെ ഈ പതിപ്പ് ഇന്ന് കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യുക.</string>
@@ -2609,8 +2609,17 @@
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">തടഞ്ഞു</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">ഓഫ്</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 ആഴ്ച</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 ദിവസം</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 മണിക്കൂർ</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 മിനിറ്റ്</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 സെക്കൻഡ്</string>
+  <string name="ExpireTimerSettingsFragment__save">സംരക്ഷിക്കൂ</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
   <string name="HelpSettingsFragment__version">പതിപ്പ്</string>

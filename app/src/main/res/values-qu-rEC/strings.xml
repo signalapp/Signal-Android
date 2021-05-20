@@ -418,9 +418,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal ari nichun munanmi kikinpa shuyullukchikman yaykushpa pakalla QR  unanchata hapinkapak,  shinapash mana arinirishkachu. Menú de configuración ukuman katishpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR unanchata mana shuyurikchayta ushanchikchu, manara shuyurikcha ari nikpika.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Chaski anchurichun</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Kikinpa chaskikuna mana chinkarinkachu.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Kay rimaripi chaski kachashka, chayamushkakunapash, %s kachashka hipaka chinkarinkami.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Chaski anchurichun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Kikinpa chaskikuna mana chinkarinkachu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Kay rimaripi chaski kachashka, chayamushkakunapash, %s kachashka hipaka chinkarinkami.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pakalla paskachikta killkapay</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signalpa uchilla unancha</string>

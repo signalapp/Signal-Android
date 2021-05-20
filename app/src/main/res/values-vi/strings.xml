@@ -1042,9 +1042,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal cần quyền truy cập Máy ảnh để quét mã QR, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Không thể quét mã QR khi không có quyền truy cập Máy ảnh</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Tin nhắn tự hủy</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Tin nhắn sẽ không tự hủy.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Tin nhắn gửi và nhận trong cuộc trò chuyện này sẽ tự hủy sau %s sau khi đã được xem.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Tin nhắn tự hủy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Tin nhắn sẽ không tự hủy.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Tin nhắn gửi và nhận trong cuộc trò chuyện này sẽ tự hủy sau %s sau khi đã được xem.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Cập nhật ngay</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Phiên bản này của Signal sẽ hết hạn hôm nay. Hãy cập nhật lên phiên bản mới nhất.</string>
@@ -2518,8 +2518,18 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Đã chặn</string>
   <string name="PrivacySettingsFragment__messaging">Nhắn tin</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Tin nhắn tự hủy</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Chặn chụp màn hình trong danh sách ứng dụng và bên trong ứng dụng</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Tắt</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 tuần</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 ngày</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 giờ</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 phút</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 giây</string>
+  <string name="ExpireTimerSettingsFragment__set">Cài</string>
+  <string name="ExpireTimerSettingsFragment__save">Lưu</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Liên hệ với chúng tôi</string>
   <string name="HelpSettingsFragment__version">Phiên bản</string>

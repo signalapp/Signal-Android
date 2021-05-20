@@ -90,6 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Rapporter søppelpost og blokkér.</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">I dag</string>
   <string name="BucketedThreadMedia_Yesterday">I går</string>
@@ -236,6 +237,7 @@
   <string name="ConversationActivity_join">Bli med</string>
   <string name="ConversationActivity_full">Full</string>
   <string name="ConversationActivity_error_sending_media">Kunne ikke sende media</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Rapportert som søppelpost og blokkért.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulest melding</item>
@@ -1107,9 +1109,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Forsvinnende meldinger</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Dine meldinger vil ikke utløpe.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger som sendes og mottas i denne samtalen vil forsvinne %s etter de har blitt sett.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Forsvinnende meldinger</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Dine meldinger vil ikke utløpe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger som sendes og mottas i denne samtalen vil forsvinne %s etter de har blitt sett.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Oppdater nå</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne versjonen av Signal går ut på dato i dag. Oppgrader til nyeste versjon.</string>
@@ -1621,6 +1623,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i denne gruppen. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Utløpstiden for meldinger blir satt til %1$s når du melder dem.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spill av … Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -2812,12 +2815,34 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PrivacySettingsFragment__blocked">Blokkert</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
   <string name="PrivacySettingsFragment__messaging">Meldinger</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Forsvinnende meldinger</string>
   <string name="PrivacySettingsFragment__app_security">App-sikkerhet</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-liste og i programmet</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldinger og samtaler, omdiriger alle samtaler, og forseglet avsender</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard nedtelling for nye samtaler</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsbegrensede meldinger for nye  samtaler startet av deg.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis status-ikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et statusikon i meldingsdetaljer når de ble levert ved bruk av forseglet avsender.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Når aktivert vil sendte og mottatte meldinger, i nye samtaler du starter, forsvinne etter at de har blitt sett.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Når aktivert vil meldinger sendt og mottatt i denne samtalen forsvinne etter at de har blitt sett.</string>
+  <string name="ExpireTimerSettingsFragment__off">Av</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 uker</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 uke</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dag</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 timer</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 time</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutter</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekunder</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Selvvalgt tid</string>
+  <string name="ExpireTimerSettingsFragment__set">Sett</string>
+  <string name="ExpireTimerSettingsFragment__save">Lagre</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekund</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minutt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Time</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dag</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Uke</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Supportsenter</string>
   <string name="HelpSettingsFragment__contact_us">Kontakt oss</string>

@@ -576,9 +576,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal betah izin Kamera kangge ngescan kode QR, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Mboten saged ngescan tanpa izin Kamera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Pesen ngical</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Pesen sampeyan mboten bakal kedaluwarsa.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesen ingkang dipunkirimaken lan dipuntampi ing obrolan niki bakal ngical %s saksampune dipunwaos.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Pesen ngical</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Pesen sampeyan mboten bakal kedaluwarsa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesen ingkang dipunkirimaken lan dipuntampi ing obrolan niki bakal ngical %s saksampune dipunwaos.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Lebetaken tembung sandi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>

@@ -1099,9 +1099,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ezin da QR koderik eskaneatu Kamera baimen gabe</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetako mezu guztiak, bai jasoak zein bidaliak, irakurri eta %s igaro ondoren desagertu egingo dira.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetako mezu guztiak, bai jasoak zein bidaliak, irakurri eta %s igaro ondoren desagertu egingo dira.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Eguneratu orain</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Singalen bertsio hau gaur iraungiko da. Eguneratu azken bertsiora.</string>
@@ -2568,8 +2568,18 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokeatuta</string>
   <string name="PrivacySettingsFragment__messaging">Mezularitza</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Mezuen desagerpena</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeatu pantaila-argazkiak arestikoen zerrendan eta aplikazioaren barruan</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Desaktibatuta</string>
+  <string name="ExpireTimerSettingsFragment__1_week">astebete</string>
+  <string name="ExpireTimerSettingsFragment__1_day">egun 1</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">ordubete</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutu</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 segundo</string>
+  <string name="ExpireTimerSettingsFragment__set">Ezarri</string>
+  <string name="ExpireTimerSettingsFragment__save">Gorde</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Harremanetan jarri gurekin</string>
   <string name="HelpSettingsFragment__version">Bertsioa</string>

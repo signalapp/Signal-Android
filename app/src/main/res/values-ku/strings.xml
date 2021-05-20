@@ -1027,9 +1027,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, ji bo venêrîna QR kodê destûra kamerayê hewce dike, lê ew destûr bi awayekî mayinde hatiye redkirin. Ji kerema xwe re, biçe sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Bêyî destûra Kamerayê QR kod nayê venêrîn</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Peyamên wenda dibin</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Ew ê peyamên te wenda nebin.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Peyamên ku di vê axiftinê de hatine şandin û wergirtin, piştî hatin dîtin %s ew ê wenda bibin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Peyamên wenda dibin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ew ê peyamên te wenda nebin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Peyamên ku di vê axiftinê de hatine şandin û wergirtin, piştî hatin dîtin %s ew ê wenda bibin.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aniha nû bike</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ev guhertoya Signalê ew ê îro dema wê biqede. Guhertoya herî dawî saz bike.</string>
@@ -2413,8 +2413,17 @@
   <string name="NotificationsSettingsFragment__calls">Gerîn</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Yên Astengkirî</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Peyamên wenda dibin</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Di lîsteya sepanên dawîn de û di nav sepanê de girtina wêneyê ekranê asteng bike</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">Girtî</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 hefte</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 roj</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 saet</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 deqe</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 saniye</string>
+  <string name="ExpireTimerSettingsFragment__save">Tomar bike</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Bi me re têkeve têkiliyê</string>
   <string name="HelpSettingsFragment__version">Guherto</string>

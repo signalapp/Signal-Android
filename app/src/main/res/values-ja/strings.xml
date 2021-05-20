@@ -1053,9 +1053,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">カメラへのアクセス許可がないとQRコードをスキャンできません</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">消えるメッセージ</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">あなたのメッセージは自動で消去されません。</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">このチャット内で送受信されるメッセージは、閲覧後%sで消えます。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">消えるメッセージ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">あなたのメッセージは自動で消去されません。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">このチャット内で送受信されるメッセージは、閲覧後%sで消えます。</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">アップデートする</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">このバージョンのSignalは、本日期限が切れます。最新バージョンにアップデートしてください。</string>
@@ -2683,8 +2683,21 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ブロックリスト</string>
   <string name="PrivacySettingsFragment__messaging">メッセージ</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">消えるメッセージ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">あなたが開始した会話でメッセージが消えるまでの時間を設定します</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャット内で送受信されたメッセージは閲覧後に消えます。</string>
+  <string name="ExpireTimerSettingsFragment__off">オフ</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1週間</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1日</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8時間</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1時間</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5分</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30秒</string>
+  <string name="ExpireTimerSettingsFragment__set">設定する</string>
+  <string name="ExpireTimerSettingsFragment__save">保存</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">お問い合わせ</string>
   <string name="HelpSettingsFragment__version">バージョン</string>

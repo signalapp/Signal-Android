@@ -1112,9 +1112,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione o Signal e nas \"Permissões\" ative a \"Câmara\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível ler um código QR sem ter a permissão de acesso à câmara.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Destruição de mensagens</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">As suas mensagens não serão destruídas.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">As mensagens enviadas e recebidas nesta conversa irão ser destruídas %s após serem vistas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Destruição de mensagens</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">As suas mensagens não serão destruídas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">As mensagens enviadas e recebidas nesta conversa irão ser destruídas %s após serem vistas.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Atualizar agora</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versão do Signal expira hoje. Atualize para a versão mais recente.</string>
@@ -1631,6 +1631,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sem grupos em comum. Reveja os pedidos com cuidado.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sem contactos neste grupo. Reveja os pedidos com cuidado.</string>
   <string name="ConversationUpdateItem_view">Ver</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">O tempo para a destruição de mensagens será definido para %1$s quando você enviar mensagens.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pausa</string>
   <string name="audio_view__download_accessibility_description">Download</string>
@@ -2887,12 +2888,34 @@
   <string name="PrivacySettingsFragment__blocked">Utilizadores bloqueados</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d contactos</string>
   <string name="PrivacySettingsFragment__messaging">Mensagens</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Destruição de mensagens</string>
   <string name="PrivacySettingsFragment__app_security">Segurança da aplicação</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquear a captura de ecrã na lista de aplicações recentes abertas e dentro da aplicação</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">As mensagens e chamadas do Signal, retransmitem sempre as chamadas e emissor selado</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporizador padrão para conversas novas</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Defina um tempo padrão para a destruição de mensagens de todas as conversas novas iniciadas por si.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir ícone de estado</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Exibe um ícone nos detalhes das mensagens quando elas foram entregues utilizando o emissor selado.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quando ativado, as novas mensagens enviadas e recebidas em conversas novas que tenham sido iniciadas por si irão ser destruídas após terem sido lidas.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quando ativado, as novas mensagens enviadas e recebidas nesta conversa irão ser destruídas após terem sido lidas.</string>
+  <string name="ExpireTimerSettingsFragment__off">Off</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 semanas</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dia</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 horas</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 hora</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutos</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 segundos</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Temporizador personalizado</string>
+  <string name="ExpireTimerSettingsFragment__set">Definir</string>
+  <string name="ExpireTimerSettingsFragment__save">Guardar</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Segundo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minuto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Hora</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Semana</string> -->
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centro de suporte</string>
   <string name="HelpSettingsFragment__contact_us">Contacte-nos</string>

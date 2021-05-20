@@ -586,9 +586,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR કોડને સ્કેન કરવા માટે Signal ને કેમેરાની પરવાનગીની જરૂર હોય છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"કેમેરો\" સક્ષમ કરો.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">કેમેરાની પરવાનગી વિના QR કોડ સ્કેન કરવામાં અસમર્થ</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">તમારા મેસેજ સમાપ્ત થશે નહીં.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">આ સંવાદમાં મોકલેલા અને પ્રાપ્ત મેસેજ જોયા પછી અદૃશ્ય %s થઈ જશે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">તમારા મેસેજ સમાપ્ત થશે નહીં.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">આ સંવાદમાં મોકલેલા અને પ્રાપ્ત મેસેજ જોયા પછી અદૃશ્ય %s થઈ જશે.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">પાસફ્રેઝ દાખલ કરો</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ચિહ્ન</string>

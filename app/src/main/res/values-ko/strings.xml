@@ -1044,9 +1044,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal에서 QR 코드를 읽으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">카메라 권한이 없어 QR 코드를 스캔할 수 없음</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">사라지는 메시지</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">내 메시지들은 만료되지 않습니다.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">대화에서 주고 받은 메시지들은 보고나서 %s 후에 사라집니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">사라지는 메시지</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">내 메시지들은 만료되지 않습니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">대화에서 주고 받은 메시지들은 보고나서 %s 후에 사라집니다.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">지금 업데이트하세요.</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">이 Signal 버전은 오늘 만료됩니다. 최신 버전으로 업데이트하세요.</string>
@@ -2497,8 +2497,19 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">차단함</string>
   <string name="PrivacySettingsFragment__messaging">메시징</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">사라지는 메시지</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">최근 사용 목록/개요 및 앱 내 스크린샷 차단</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">꺼짐</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1주</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1일</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8시간</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1시간</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5분</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30초</string>
+  <string name="ExpireTimerSettingsFragment__set">설정</string>
+  <string name="ExpireTimerSettingsFragment__save">저장</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">문의하기</string>
   <string name="HelpSettingsFragment__version">버전</string>

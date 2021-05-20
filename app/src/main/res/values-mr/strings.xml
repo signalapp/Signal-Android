@@ -1096,9 +1096,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR कोड स्कॅन करण्यासाठी Signal ला कॅमेरा परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"कॅमेरा\" सक्षम करा.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कॅमेरा परवानगी विनाQR कोड स्कॅन करण्यास अक्षम</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">हरवणारे संदेश</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">आपले संदेश कालबाह्य होणार नाहीत.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">या संभाषणामध्ये पाठविलेले आणि प्राप्त झालेले संदेश बघितल्यावर %s नंतर हरवतील.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">हरवणारे संदेश</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">आपले संदेश कालबाह्य होणार नाहीत.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">या संभाषणामध्ये पाठविलेले आणि प्राप्त झालेले संदेश बघितल्यावर %s नंतर हरवतील.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">आता अद्ययावत करा</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal ची ही आवृत्ती आज कालबाह्य होईल. सर्वात अलीकडील आवृत्तीवर अद्यतनित करा.</string>
@@ -2550,8 +2550,18 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">अवरोधित केले</string>
   <string name="PrivacySettingsFragment__messaging">संदेशन</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">हरवणारे संदेश</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">अलीकडील यादीमध्ये आणि अॅपच्या आत स्क्रीनशॉट अवरोधित करा</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">बंद</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 आठवडा</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 दिवस</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 तास</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 मिनिटे</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 सेकंद</string>
+  <string name="ExpireTimerSettingsFragment__set">सेट करा</string>
+  <string name="ExpireTimerSettingsFragment__save">जतन करा</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">आमच्याशी संपर्क साधा</string>
   <string name="HelpSettingsFragment__version">आवृत्ती</string>

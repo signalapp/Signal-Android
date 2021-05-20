@@ -93,6 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">Opna á %1$s?</string>
   <string name="BlockUnblockDialog_block">Útiloka</string>
   <string name="BlockUnblockDialog_block_and_leave">Útiloka og yfirgefa</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Tilkynna ruslpóst og útiloka</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Í dag</string>
   <string name="BucketedThreadMedia_Yesterday">Í gær</string>
@@ -239,6 +240,7 @@
   <string name="ConversationActivity_join">Taka þátt</string>
   <string name="ConversationActivity_full">Fullt</string>
   <string name="ConversationActivity_error_sending_media">Villa við að senda myndefni</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Tilkynnt sem ruslpóstur og útilokað.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ólesin skilaboð</item>
@@ -1111,9 +1113,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal þarf heimild til að nota myndavélina til að geta skannað QR-kóða, en því hefur verið varanlega neitað. Farðu í kjörstillingar forritsins, veldu \"Heimildir\" og ýttu á \"Myndavél\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Get ekki skannað QR-kóða án heimildar til að nota myndavélina</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Sjálfeyðandi skilaboð</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Skilaboðin þín munu ekki renna út.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Send og móttekin skilaboð í þessu samtali hverfa %s eftir að þau hafa verið skoðuð.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Sjálfeyðandi skilaboð</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Skilaboðin þín munu ekki renna út.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Send og móttekin skilaboð í þessu samtali hverfa %s eftir að þau hafa verið skoðuð.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppfæra núna</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Þessi útgáfa Signal rennur út í dag. Uppfærðu í nýjustu útgáfuna.</string>
@@ -1354,6 +1356,7 @@
   <string name="SubmitDebugLogActivity_success">Tókst!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Afritaðu þessa slóð og bættu henni í verkbeiðnina þína eða tölvupóst með beiðni um aðstoð:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Deila</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Þessi villumeldingaskrá verður birt opinberlega á netinu svoforritarar og fleiri geti skoðað hana. Þú ættir að yfirfara hana og breyta ef þörf þykir áður en hún er send inn.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Sía:</string>
   <string name="SupportEmailUtil_device_info">Upplýsingar um tæki:</string>
@@ -1628,6 +1631,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Engir sameiginlegir hópar. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Engir tengiliðir í þessum hópi. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_view">Skoða</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Niðurtalning sjálfeyðandi skilaboða er tímastillt á %1$s þegar þú sendir viðkomandi aðila skilaboð.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spila … Í bið</string>
   <string name="audio_view__download_accessibility_description">Sækja</string>
@@ -1984,6 +1988,8 @@ Eins geturðu skannað kóðann á símanum hins aðilans, eða beðið hann um 
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ef leskvittanir eru óvirkar hjá þér, muntu ekki geta sé leskvittanir frá öðrum.</string>
   <string name="preferences__typing_indicators">Merki um framvindu ritunar</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ef merki um framvindu ritunar eru óvirk hjá þér, muntu ekki geta sé framvindu ritunar frá öðrum.</string>
+  <string name="preferences__request_keyboard_to_disable">Biðja lyklaborð um að gera einstaklingsaðlagaða vinnslu óvirka.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Þessi stilling er ekki trygging fyrir að hætt sé söfnun upplýsinga um hegðun notandans, því lyklaborðið gæti hunsað þessa beiðni.</string>
   <string name="preferences_app_protection__blocked_users">Útilokaðir notendur</string>
   <string name="preferences_chats__when_using_mobile_data">Þegar gagnaáskrift er notuð</string>
   <string name="preferences_chats__when_using_wifi">Þegar Wi-Fi er notað</string>
@@ -2526,6 +2532,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ýttu á auðkennismyndina þína efst til vinstri til að opna stillingar</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Ýttu á \"Notandaaðgangur\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ýttu á \"Yfirfæra aðgang\" og svo á \"Halda áfram\" á báðum tækjunum</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2867,25 +2874,61 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Hægara, meira gagnamagn</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Gæði ljósmynda</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Bjóddu vinum þínum</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Notandaaðgangur</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Spurt verður sjaldnar eftir því sem tímar líða</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Bættu öryggið með því að krefjast PIN-númers til að geta skráð þetta símanúmer aftur hjá Signal</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Lyklaborð</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-lykill sendir</string>
   <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Nota sem sjálfgefið SMS-forrit</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Skilaboð</string>
   <string name="NotificationsSettingsFragment__calls">Köll: </string>
   <string name="NotificationsSettingsFragment__notify_when">Láta vita þegar…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Tengiliður gengur til liðs við Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Bannaður</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d tengiliðir</string>
   <string name="PrivacySettingsFragment__messaging">Skilaboð</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Sjálfeyðandi skilaboð</string>
+  <string name="PrivacySettingsFragment__app_security">Öryggi forrits</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Koma í veg fyrir að skjámyndir séu teknar innan forrits og í lista yfir nýleg atriði</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal skilaboð og símtöl, alltaf endurbeina símtölum og innsiglaðir sendendur (sealed sender)</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Sjálfgefin tímastilling fyrir nýtt spjall</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stilltu sjálfgefna niðurtalningu sjálfeyðandi skilaboða í öllum nýjum samtölum sem þú byrjar. </string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Birta stöðutákn</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Birta stöðutákn þegar þú velur \"Nánar um skilaboð\" á skilaboðum sem borist hafa frá innsigluðum notanda (sealed sender).</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Þegar þetta er virkt, munu ný send og móttekin skilaboð í nýjum samtölum sem þú byrjar hverfa eftir að þau hafa verið skoðuð.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Þegar þetta er virkt, munu ný send og móttekin skilaboð í þessum hópi hverfa eftir að þau hafa verið skoðuð.</string>
+  <string name="ExpireTimerSettingsFragment__off">Slökkt</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 vikur</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 vika</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dagur</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 klukkustundir</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 klukkustund</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 mínútur</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekúndur</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Sérsniðinn tími</string>
+  <string name="ExpireTimerSettingsFragment__set">Stilla</string>
+  <string name="ExpireTimerSettingsFragment__save">Vista</string>
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekúnda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Mínúta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Klukkustund</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dagur</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Vika</string> -->
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Hjálparmiðstöð</string>
   <string name="HelpSettingsFragment__contact_us">Hafðu samband við okkur</string>
   <string name="HelpSettingsFragment__version">Útgáfa</string>
   <string name="HelpSettingsFragment__debug_log">Villumeldingaskrá</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Skilmálar og meðferð persónuupplýsinga</string>
+  <string name="HelpFragment__copyright_signal_messenger">Höfundarréttur Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Gefið út með GPLv3-notkunarleyfi</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Köll: </string>
   <!--EOF-->

@@ -770,9 +770,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">কোনও কিউআর কোড স্ক্যান করার জন্য Signal এর ক্যামেরা অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"ক্যামেরা\" সক্ষম করুন।</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ক্যামেরা অনুমতি ব্যতীত কোনও কিউআর কোড স্ক্যান করতে অক্ষম</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">অদৃশ্য বার্তা</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">আপনার বার্তাগুলির মেয়াদ শেষ হবে না।</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">এই কথোপকথনে প্রেরিত এবং প্রাপ্ত কথোপকথন সমূহ তাদের দেখার %s পরে অদৃশ্য হয়ে যাবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">অদৃশ্য বার্তা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">আপনার বার্তাগুলির মেয়াদ শেষ হবে না।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">এই কথোপকথনে প্রেরিত এবং প্রাপ্ত কথোপকথন সমূহ তাদের দেখার %s পরে অদৃশ্য হয়ে যাবে।</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">আপডেট করুন</string>
   <!--PassphrasePromptActivity-->

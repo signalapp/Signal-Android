@@ -1105,9 +1105,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tämä Signal-versio vanhenee tänään. Päivitä viimeisimpään versioon.</string>
@@ -2801,8 +2801,21 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Estetty</string>
   <string name="PrivacySettingsFragment__messaging">Viestintä</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Katoavat viestit</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Estä näyttökuvat Viimeksi käytetyt sovellukset -näkymästä sekä sovelluksen sisältä</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Valitse oletusajastin katoaville viesteille kaikissa uusissa aloittamissasi keskusteluissa.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta, kun ne on nähty.</string>
+  <string name="ExpireTimerSettingsFragment__off">Ei käytössä</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 viikoksi</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 päiväksi</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 tunniksi</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 tunniksi</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minuuttia</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekuntia</string>
+  <string name="ExpireTimerSettingsFragment__set">Aseta</string>
+  <string name="ExpireTimerSettingsFragment__save">Tallenna</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Ota yhteyttä</string>
   <string name="HelpSettingsFragment__version">Versio</string>

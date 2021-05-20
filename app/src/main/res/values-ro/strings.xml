@@ -1163,9 +1163,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Dispariție mesaje</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele dvs. nu vor expira.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Dispariție mesaje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele dvs. nu vor expira.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Actualizează acum</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Această versiune de Signal va expira astăzi. Actualizați la cea mai recentă versiune.</string>
@@ -2822,12 +2822,25 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PrivacySettingsFragment__blocked">Blocat</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d contacte</string>
   <string name="PrivacySettingsFragment__messaging">Mesagerie</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Dispariție mesaje</string>
   <string name="PrivacySettingsFragment__app_security">Securitate aplicație</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blocați screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mesaje și apeluri Signal, redirecționare apeluri și expeditor ascuns</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Setați un temporizator implicit de dispariție a mesajelor pentru toate conversațiile noi inițiate de dvs.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afișare icon de status</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afișează un icon de status în detaliile mesajului când a fost trimis folosind funcția expeditor ascuns.</string>
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Cu opțiunea activă, mesajele trimise și primite în conversație vor dispărea după ce sunt văzute.</string>
+  <string name="ExpireTimerSettingsFragment__off">Dezactivate</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 săptămână</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 zi</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 ore</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">o oră</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minute</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 secunde</string>
+  <string name="ExpireTimerSettingsFragment__set">Aplicare</string>
+  <string name="ExpireTimerSettingsFragment__save">Salvează</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centru de asistență</string>
   <string name="HelpSettingsFragment__contact_us">Contactați-ne</string>

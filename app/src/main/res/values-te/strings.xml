@@ -1106,9 +1106,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ఒక QR కోడ్ను స్కాన్ చేయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">మీ సందేశాలకు గడువు ఉండదు.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">వారు చూసిన తరువాత ఈ సంభాషణ లో పంపిన మరియు అందుకున్న సందేశాలు %s కనిపించదు.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">మీ సందేశాలకు గడువు ఉండదు.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">వారు చూసిన తరువాత ఈ సంభాషణ లో పంపిన మరియు అందుకున్న సందేశాలు %s కనిపించదు.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">నవీకరణ చేయండి ఇప్పుడు</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal యొక్క ఈ వెర్షన్ ఈ రోజుతో ముగుస్తుంది. ఇటీవలి సంస్కరణకు నవీకరించండి.</string>
@@ -2567,8 +2567,18 @@
   <string name="PrivacySettingsFragment__blocked">నిరోధించిన
  </string>
   <string name="PrivacySettingsFragment__messaging">సందేశం</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">  నిరోధించు స్క్రీన్షాట్లు లో ది ఇటీవలి జాబితా మరియు లోపల ది అనువర్తనం</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__off">ఆఫ్</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 వారం</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 రోజు</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 గంట</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 నిముషాలు </string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30సెకన్లు</string>
+  <string name="ExpireTimerSettingsFragment__set">జత</string>
+  <string name="ExpireTimerSettingsFragment__save">భద్రపరుచు</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">మమ్మల్ని సంప్రదించండి</string>
   <string name="HelpSettingsFragment__version">వివరణము</string>
