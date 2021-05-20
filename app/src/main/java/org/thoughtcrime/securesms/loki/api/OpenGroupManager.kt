@@ -19,21 +19,7 @@ object OpenGroupManager {
     private var pollers = mutableMapOf<String, OpenGroupPollerV2>() // One for each server
     private var isPolling = false
 
-    val isAllCaughtUp: Boolean
-        get() {
-            pollers.values.forEach { poller ->
-                if (!poller.isCaughtUp) {
-                    return false
-                }
-            }
-            return true
-        }
-
-    fun markAllAsNotCaughtUp() {
-        pollers.values.forEach { poller ->
-            poller.isCaughtUp = false
-        }
-    }
+    var isAllCaughtUp = false
 
     fun startPolling() {
         if (isPolling) { return }

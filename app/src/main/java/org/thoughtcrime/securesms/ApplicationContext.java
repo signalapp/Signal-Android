@@ -207,7 +207,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         startPollingIfNeeded();
 
-        OpenGroupManager.INSTANCE.markAllAsNotCaughtUp();
+        OpenGroupManager.INSTANCE.setAllCaughtUp(false);
         OpenGroupManager.INSTANCE.startPolling();
     }
 
