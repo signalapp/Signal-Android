@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversation.ConversationPopupActivity;
 import org.session.libsignal.utilities.Log;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.Recipient.*;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.*;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;

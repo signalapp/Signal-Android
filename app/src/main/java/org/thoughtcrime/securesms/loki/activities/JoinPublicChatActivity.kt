@@ -24,15 +24,16 @@ import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.DefaultGroup
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.DistributionTypes
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.DistributionTypes
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
@@ -92,16 +93,15 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
                     val server = HttpUrl.Builder().scheme(url.scheme()).host(url.host()).apply {
                         if (url.port() != 80 || url.port() != 443) { this.port(url.port()) } // Non-standard port; add to server
                     }.build()
-                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server.toString().removeSuffix("/"), room!!, publicKey!!)
-                    val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
-                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
+
+                    val sanitizedServer = server.toString().removeSuffix("/")
+                    val openGroupID = "$sanitizedServer.${room!!}"
+                    OpenGroupManager.add(sanitizedServer, room, publicKey!!, this@JoinPublicChatActivity)
+                    val threadID = GroupManager.getOpenGroupThreadID(openGroupID, this@JoinPublicChatActivity)
+                    val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
                     threadID to groupID
                 } else {
-                    val channel: Long = 1
-                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, stringWithExplicitScheme, channel)
-                    val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
-                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
-                    threadID to groupID
+                    throw Exception("No longer supported.")
                 }
                 MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
                 withContext(Dispatchers.Main) {

@@ -111,11 +111,6 @@
                 android:layout_marginTop="@dimen/large_spacing"
                 android:background="?android:dividerHorizontal" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
-
             <TextView
                 android:id="@+id/privacyButton"
                 android:layout_width="match_parent"
@@ -160,40 +155,6 @@
                 android:text="@string/activity_settings_chats_button_title" />
 
             <View
-                android:id="@+id/linkedDevicesButtonTopSeparator"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
-
-            <TextView
-                android:id="@+id/linkedDevicesButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_devices_button_title" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
-
-            <TextView
-                android:id="@+id/sendInvitationButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_invite_button_title" />
-
-            <View
-                android:id="@+id/seedButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="?android:dividerHorizontal" />
@@ -232,19 +193,37 @@
                 android:background="?android:dividerHorizontal" />
 
             <TextView
+                android:id="@+id/sendInvitationButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/activity_settings_invite_button_title" />
+
+            <TextView
+                android:id="@+id/helpTranslateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Help us Translate Session" />
+
+            <TextView
                 android:id="@+id/versionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:layout_marginBottom="@dimen/medium_spacing"
                 android:gravity="center"
                 android:text="@string/version_s"
                 android:textColor="@color/text"
                 android:alpha="0.6"
                 android:textSize="@dimen/very_small_font_size" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginBottom="@dimen/medium_spacing" />
 
         </LinearLayout>
 
@@ -254,6 +233,7 @@
         android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:id="@+id/loader"
             android:layout_width="match_parent"
@@ -272,4 +252,5 @@
         </RelativeLayout>
 
     </FrameLayout>
+
 </RelativeLayout>

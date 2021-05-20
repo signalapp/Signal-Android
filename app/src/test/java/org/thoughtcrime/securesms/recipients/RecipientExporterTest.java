@@ -9,7 +9,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 
 import static android.provider.ContactsContract.Intents.Insert.EMAIL;
 import static android.provider.ContactsContract.Intents.Insert.NAME;

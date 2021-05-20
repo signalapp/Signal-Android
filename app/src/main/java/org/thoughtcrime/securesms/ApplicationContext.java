@@ -30,27 +30,27 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 
 import org.conscrypt.Conscrypt;
+import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.file_server.FileServerAPI;
 import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
-import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.snode.SnodeModule;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.IdentityKeyUtil;
+import org.session.libsession.utilities.ProfileKeyUtil;
 import org.session.libsession.utilities.ProfilePictureUtilities;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
-import org.session.libsession.utilities.preferences.ProfileKeyUtil;
 import org.session.libsignal.database.LokiAPIDatabaseProtocol;
-import org.session.libsignal.utilities.ThreadUtils;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -67,7 +67,7 @@ import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
-import org.thoughtcrime.securesms.loki.api.PublicChatManager;
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -132,7 +132,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
     public ClosedGroupPoller closedGroupPoller = null;
-    public PublicChatManager publicChatManager = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
@@ -178,7 +177,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         setUpStorageAPIIfNeeded();
         resubmitProfilePictureIfNeeded();
-        publicChatManager = new PublicChatManager(this);
         updateOpenGroupProfilePicturesIfNeeded();
         if (userPublicKey != null) {
             registerForFCMIfNeeded(false);
@@ -208,8 +206,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setCaughtUp(false);
         }
         startPollingIfNeeded();
+        // FIXME: Open group handling
+        /*
         publicChatManager.markAllAsNotCaughtUp();
-        publicChatManager.startPollersIfNeeded();
+         */
+        OpenGroupManager.INSTANCE.startPolling();
     }
 
     @Override
@@ -230,9 +231,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     @Override
     public void onTerminate() {
         stopKovenant(); // Loki
-        if (publicChatManager != null) {
-            publicChatManager.stopPollers();
-        }
+        OpenGroupManager.INSTANCE.stopPolling();
         super.onTerminate();
     }
 
@@ -462,18 +461,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         if (closedGroupPoller != null) {
             closedGroupPoller.startIfNeeded();
-        }
-    }
-
-    public void stopPolling() {
-        if (poller != null) {
-            poller.stopIfNeeded();
-        }
-        if (closedGroupPoller != null) {
-            closedGroupPoller.stopIfNeeded();
-        }
-        if (publicChatManager != null) {
-            publicChatManager.stopPollers();
         }
     }
 

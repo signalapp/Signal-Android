@@ -10,7 +10,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 
 import java.util.LinkedList;
 import java.util.List;

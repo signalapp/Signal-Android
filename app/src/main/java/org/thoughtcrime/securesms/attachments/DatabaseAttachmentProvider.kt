@@ -7,7 +7,7 @@ import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
 import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.*
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.guava.Optional

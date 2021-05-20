@@ -5,10 +5,10 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.utilities.Data;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
@@ -28,8 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
 
 public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType {
 

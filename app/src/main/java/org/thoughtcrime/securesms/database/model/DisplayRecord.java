@@ -22,7 +22,7 @@ import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 /**
  * The base class for all message record models.  Encapsulates basic data

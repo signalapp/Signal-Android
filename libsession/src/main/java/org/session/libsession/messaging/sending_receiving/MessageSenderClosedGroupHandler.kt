@@ -9,7 +9,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.Curve
@@ -54,8 +54,14 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         for (member in members) {
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
             closedGroupControlMessage.sentTimestamp = sentTime
-            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member)).get()
+            try {
+                sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member)).get()
+            } catch (e: Exception) {
+                deferred.reject(e)
+                return@queue
+            }
         }
+
         // Add the group to the user's set of public keys to poll for
         storage.addClosedGroupPublicKey(groupPublicKey)
         // Store the encryption key pair

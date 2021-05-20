@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import network.loki.messenger.R
 import org.session.libsession.utilities.OpenGroupUrlParser
 import org.session.libsignal.utilities.Log
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 
@@ -56,12 +57,7 @@ class OpenGroupInvitationView : FrameLayout {
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     dialog.dismiss()
-                    val group = OpenGroupUtilities.addGroup(
-                        context,
-                        openGroup.server,
-                        openGroup.room,
-                        openGroup.serverPublicKey
-                    )
+                    OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, context)
                     MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(context)
                 } catch (e: Exception) {
                     Log.e("Loki", "Failed to join open group.", e)

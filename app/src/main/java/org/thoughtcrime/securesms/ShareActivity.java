@@ -35,10 +35,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
-import org.session.libsession.messaging.threads.DistributionTypes;
+import org.session.libsession.utilities.DistributionTypes;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListLoader.Disp
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsession.utilities.ViewUtil;
 

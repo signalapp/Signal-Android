@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
+    <string name="delete">Slett</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">Vent litt </string>
+    <string name="save">Lagra</string>
+    <string name="note_to_self">Notat til meg sjølv</string>
+    <string name="version_s">Version %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">%d melding per samtale</item>
+        <item quantity="other">%d meldingar per samtale</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Vil du sletta alle gamle meldingar no?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Dette vil omgåande trimma alle samtalar til dei siste meldingane.</item>
+        <item quantity="other">Dette forkortar alle samtalar til dei %d siste meldingane.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Slett</string>
+    <string name="ApplicationPreferencesActivity_On">På</string>
+    <string name="ApplicationPreferencesActivity_Off">Av</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(bilete)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session treng tilgang til lagring for å legga ved bilete, film eller lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session treng tilgang til kontaktar for å legga til kontaktinformasjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session treng tilgang til kameraet for å ta bilete, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Det oppstod ein feil under lydavspeling.</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">I dag</string>
+    <string name="BucketedThreadMedia_Yesterday">I går</string>
+    <string name="BucketedThreadMedia_This_week">Denne veka</string>
+    <string name="BucketedThreadMedia_This_month">Denne månaden</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Fann ingen nettlesar.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grupper</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Feil ved sending, trykk for detaljar</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Melding for nøkkelutveksling motteken. Trykk for å handsama.</string>
+    <string name="ConversationItem_group_action_left">%1$s har forlate gruppa.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Feil ved sending, trykk for å senda med utrygg alternativ metode</string>
+    <string name="ConversationItem_unable_to_open_media">Fann inga program som kan opna dette innhaldet.</string>
+    <string name="ConversationItem_copied_text">Kopierte %s</string>
+    <string name="ConversationItem_read_more">  Les meir</string>
+    <string name="ConversationItem_download_more">  Last ned meir</string>
+    <string name="ConversationItem_pending">  Ventar</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
+    <string name="ConversationActivity_select_contact_info">Vel kontaktinformasjon</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Det oppstod ein feil under vedlegg av fil.</string>
+    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_invalid_recipient">Ugyldig mottakar.</string>
+    <string name="ConversationActivity_added_to_home_screen">Lagt til heimeskjermen</string>
+    <string name="ConversationActivity_leave_group">Vil du forlata gruppa?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du vil forlata gruppa?</string>
+    <string name="ConversationActivity_error_leaving_group">Klarte ikkje forlata gruppa</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du opnar i så fall for mottak av meldingar og anrop frå denne kontakten.</string>
+    <string name="ConversationActivity_unblock">Fjern blokkering</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrid maksimal storleiksgrense for gjeldande meldingstype.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenkja.</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">La Session få tilgang til mikrofonen for å senda lydmeldingar.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session treng tilgang til mikrofonen for å senda lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon».</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Gi Session tilgang til kameraet for å ta bilete eller videoopptak.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session treng tilgang til kameraet for å ta bilete eller videoar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session treng tilgang til kameraet for å ta bilete eller videoopptak</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+    <string name="ConversationActivity_search_position">%1$d av %2$d</string>
+    <string name="ConversationActivity_no_results">Ingen resultat</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d ulesen melding</item>
+        <item quantity="other">%d ulesne meldingar</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Vil du sletta vald melding?</item>
+        <item quantity="other">Vil du sletta valde meldingar?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Denne handlinga slettar vald melding for godt.</item>
+        <item quantity="other">Denne handlinga slettar alle %1$d valde meldingar for godt.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_save_to_sd_card">Vil du lagra på eininga?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Viss du lagrar dette mediet på eininga som ei vanleg fil, kan andre program få tilgang til det.\n\nEr du sikker på at du vil halda fram?</item>
+        <item quantity="other">Viss du lagrar desse %1$d media på eininga som vanlege filer, kan andre program få tilgang til dei.\n\nEr du sikker på at du vil halda fram?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Det oppstod ein feil under lagring av vedlegg som vanleg fil.</item>
+        <item quantity="other">Det oppstod ein feil under lagring av vedlegg som vanlege filer.</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Lagrar vedlegg</item>
+        <item quantity="other">Lagrar %1$d vedlegg</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Lagrar vedlegg på einingslager …</item>
+        <item quantity="other">Lagrar %1$d vedlegg på einingslager …</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Ventar </string>
+    <string name="ConversationFragment_push">Data (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Sletter</string>
+    <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Fann ikkje den opphavlege meldinga</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Den opphavlege meldinga er ikkje lenger tilgjengeleg</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Profilbilete</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Brukar sjølvvald: %s</string>
+    <string name="CustomDefaultPreference_using_default">Brukar forvald: %s</string>
+    <string name="CustomDefaultPreference_none">Ingen</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">No</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_today">I dag</string>
+    <string name="DateUtils_yesterday">I går</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">I dag</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Ukjend fil</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Klarte ikkje henta GIF i full storleik</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF-ar</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Klistremerke</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Photo</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Trykk og hald for å spela inn talemelding , slepp for å senda</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Klarte ikkje finna meldinga</string>
+    <string name="LongMessageActivity_message_from_s">Melding frå %1$s</string>
+    <string name="LongMessageActivity_your_message">Di melding</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Media</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Slett den valde meldinga?</item>
+        <item quantity="other">Slett dei valde meldingane?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Dette vil sletta den valde meldinga for godt.</item>
+        <item quantity="other">Dette vil sletta alle dei %1$d valde meldingane for godt.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Slettar</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Slettar meldingar …</string>
+    <string name="MediaOverviewActivity_Documents">Dokument</string>
+    <string name="MediaOverviewActivity_Select_all">Vel alle</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Hentar vedlegg …</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Multimediemelding</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Lastar ned MMS-melding</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klarte ikkje lasta ned MMS-melding, trykk for å prøva igjen</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Send til %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Legg til bildetekst …</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Eit element vart fjerna fordi det gjekk over storleiksgrensa</string>
+    <string name="MediaSendActivity_camera_unavailable">Kamera utilgjengeleg.</string>
+    <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">You can\'t share more than %d item.</item>
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">All media</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Session som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
+    <string name="MessageRecord_left_group">Du har forlate gruppa.</string>
+    <string name="MessageRecord_you_updated_group">Du oppdaterte gruppa.</string>
+    <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Utløpstid for meldingar</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Meldingar går ikkje ut på tid.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldingar du sender og mottek i denne samtalen forsvinn %s etter at dei er lesne.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Skriv inn passordfrase</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Vil du blokkera denne kontakten?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du kan i så fall ikkje lenger motta meldingar og anrop frå vedkomande.</string>
+    <string name="RecipientPreferenceActivity_block">Blokker</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Vil du fjerna blokkering av denne kontakten?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du opnar i så fall for mottak av meldingar og anrop frå denne kontakten.</string>
+    <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>
+    <!-- Slide -->
+    <string name="Slide_image">Bilete</string>
+    <string name="Slide_audio">Lyd</string>
+    <string name="Slide_video">Video</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Mottok øydelagt
+nøkkelutvekslingsmelding.</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mottok melding med nytt tryggleiksnummer. Trykk for å handsama og visa.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
+    <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Grupper oppdatert</string>
+    <string name="ThreadRecord_left_the_group">Forlét gruppa</string>
+    <string name="ThreadRecord_secure_session_reset">Sikker økt tilbakestilt.</string>
+    <string name="ThreadRecord_draft">Utkast:</string>
+    <string name="ThreadRecord_called">Du ringte</string>
+    <string name="ThreadRecord_called_you">Ringte deg</string>
+    <string name="ThreadRecord_missed_call">Usvart anrop</string>
+    <string name="ThreadRecord_media_message">Mediemelding</string>
+    <string name="ThreadRecord_s_is_on_signal">%s er på Session!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnande meldingar skrudd av</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_safety_number_changed">Endra tryggleiksnummer</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
+    <string name="ThreadRecord_you_marked_verified">Du markerte som stadfesta</string>
+    <string name="ThreadRecord_you_marked_unverified">Du markerte som ikkje stadfesta</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Session-oppdatering</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Det finst ei ny utgåve av Session; trykk for å oppdatera</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Dårleg kryptert melding</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ei økt som ikkje finst</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Dårleg kryptert MMS-melding</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ei økt som ikkje finst</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Ikkje vis varsel</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Trykk for å opna.</string>
+    <string name="KeyCachingService_passphrase_cached">Session er låst opp</string>
+    <string name="KeyCachingService_lock">Lås Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Deg</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Ustøtta medietype</string>
+    <string name="MediaPreviewActivity_draft">Kladd</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session treng tilgang til lagring for å lagra til eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan ikkje lagra til eksterne minnekort utan tilgang</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Slett melding?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette vil sletta denne meldinga for godt.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldingar i %2$d samtalar</string>
+    <string name="MessageNotifier_most_recent_from_s">Nyaste frå: %1$s</string>
+    <string name="MessageNotifier_locked_message">Låst melding</string>
+    <string name="MessageNotifier_message_delivery_failed">Feil ved meldingslevering.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Klarte ikkje å levera melding.</string>
+    <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
+    <string name="MessageNotifier_mark_all_as_read">Merk alle som lesne</string>
+    <string name="MessageNotifier_mark_read">Merk lesen</string>
+    <string name="MessageNotifier_reply">Svar</string>
+    <string name="MessageNotifier_pending_signal_messages">Uhenta Session-meldingar</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Du har uhenta Session-meldingar, klikk for å opna og henta</string>
+    <string name="MessageNotifier_contact_message">%1$s%2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Forvald</string>
+    <string name="NotificationChannel_calls">Samtalar</string>
+    <string name="NotificationChannel_failures">Feil</string>
+    <string name="NotificationChannel_backups">Reservekopiar</string>
+    <string name="NotificationChannel_locked_status">Låsestatus</string>
+    <string name="NotificationChannel_app_updates">Programoppdateringar</string>
+    <string name="NotificationChannel_other">Anna</string>
+    <string name="NotificationChannel_group_messages">Meldingar</string>
+    <string name="NotificationChannel_missing_display_name">Ukjend</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengeleg når Session er låst.</string>
+    <string name="QuickResponseService_problem_sending_message">Det oppstod eit problem under sending av melding.</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Lagra til %s</string>
+    <string name="SaveAttachmentTask_saved">Lagra</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Søk</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Ugyldig snarveg</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%delement</item>
+        <item quantity="other">%d element</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Klarte ikkje spela videoen</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Lyd</string>
+    <string name="attachment_type_selector__audio_description">Lyd</string>
+    <string name="attachment_type_selector__contact">Kontakt</string>
+    <string name="attachment_type_selector__contact_description">Kontakt</string>
+    <string name="attachment_type_selector__camera">Kamera</string>
+    <string name="attachment_type_selector__camera_description">Kamera</string>
+    <string name="attachment_type_selector__location">Plassering</string>
+    <string name="attachment_type_selector__location_description">Plassering</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Bilete eller video</string>
+    <string name="attachment_type_selector__file_description">Fil</string>
+    <string name="attachment_type_selector__gallery">Galleri</string>
+    <string name="attachment_type_selector__file">Fil</string>
+    <string name="attachment_type_selector__drawer_description">Vis/skjul vedleggspanel</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Lastar inn kontaktar …</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Send</string>
+    <string name="conversation_activity__compose_description">Meldingsskriving</string>
+    <string name="conversation_activity__emoji_toggle_description">Vis/skjul emoji-tastatur</string>
+    <string name="conversation_activity__attachment_thumbnail">Miniatyrbilete av vedlegg</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Vis/skjul vedleggspanel for snøggkamera</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og senda lydvedlegg</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
+    <string name="conversation_activity__enable_signal_for_sms">Aktiver Session for SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Slide to cancel</string>
+    <string name="conversation_input_panel__cancel">Avbryt</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Mediemelding</string>
+    <string name="conversation_item__secure_message_description">Sikker melding</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Feil ved sending</string>
+    <string name="conversation_item_sent__pending_approval_description">Ventar på godkjenning</string>
+    <string name="conversation_item_sent__delivered_description">Levert</string>
+    <string name="conversation_item_sent__message_read">Melding lesen</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Spel</string>
+    <string name="audio_view__pause_accessibility_description">Pause</string>
+    <string name="audio_view__download_accessibility_description">Last ned</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Lyd</string>
+    <string name="QuoteView_video">Video</string>
+    <string name="QuoteView_photo">Foto</string>
+    <string name="QuoteView_you">Deg</string>
+    <string name="QuoteView_original_missing">Fann ikkje den opphavlege meldinga</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til botnen</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Søk Gif-ar og klistremerke</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Ikkje noko funne</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Vis heile samtalen</string>
+    <string name="load_more_header__loading">Lastar</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Inga media</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Blokker</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Visse problem treng di merksemd.</string>
+    <string name="message_details_header__sent">Sendt</string>
+    <string name="message_details_header__received">Motteke</string>
+    <string name="message_details_header__disappears">Forsvinn</string>
+    <string name="message_details_header__via">Via</string>
+    <string name="message_details_header__to">Til:</string>
+    <string name="message_details_header__from">Frå:</string>
+    <string name="message_details_header__with">Med:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Lag passordfrase</string>
+    <string name="AndroidManifest__select_contacts">Vel kontaktar</string>
+    <string name="AndroidManifest__media_preview">Førehandsvising av media</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Bruk forvald</string>
+    <string name="arrays__use_custom">Bruk sjølvvald</string>
+    <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
+    <string name="arrays__mute_for_two_hours">Demp i 2 timar</string>
+    <string name="arrays__mute_for_one_day">Demp i 1 dag</string>
+    <string name="arrays__mute_for_seven_days">Demp i 7 dagar</string>
+    <string name="arrays__mute_for_one_year">Demp i 1 år</string>
+    <string name="arrays__settings_default">Standardoppsett</string>
+    <string name="arrays__enabled">Slått på</string>
+    <string name="arrays__disabled">Slått av</string>
+    <string name="arrays__name_and_message">Namn og melding</string>
+    <string name="arrays__name_only">Berre namn</string>
+    <string name="arrays__no_name_or_message">Inga namn eller melding</string>
+    <string name="arrays__images">Bilete</string>
+    <string name="arrays__audio">Lyd</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokument</string>
+    <string name="arrays__small">Liten</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Stor</string>
+    <string name="arrays__extra_large">Veldig stor</string>
+    <string name="arrays__default">Forvald</string>
+    <string name="arrays__high">Høg</string>
+    <string name="arrays__max">Maks</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d time</item>
+        <item quantity="other">%d timar</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Send med linjeskift</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk linjeskift for å senda tekstmeldingar</string>
+    <string name="preferences__send_link_previews">Send lenkjesniktitt</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
+    <string name="preferences__screen_security">Skjermtryggleik</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilete i sist brukte-liste og i programmetb</string>
+    <string name="preferences__notifications">Varsel</string>
+    <string name="preferences__led_color">LED-farge</string>
+    <string name="preferences__led_color_unknown">Ukjend</string>
+    <string name="preferences__pref_led_blink_title">LED-blinkemønster</string>
+    <string name="preferences__sound">Lyd</string>
+    <string name="preferences__silent">Stille</string>
+    <string name="preferences__repeat_alerts">Gjenta varsel</string>
+    <string name="preferences__never">Aldri</string>
+    <string name="preferences__one_time">Éin gong</string>
+    <string name="preferences__two_times">To gongar</string>
+    <string name="preferences__three_times">Tre gongar</string>
+    <string name="preferences__five_times">Fem gongar</string>
+    <string name="preferences__ten_times">Ti gongar</string>
+    <string name="preferences__vibrate">Vibrer</string>
+    <string name="preferences__green">Grøn</string>
+    <string name="preferences__red">Raud</string>
+    <string name="preferences__blue">Blå</string>
+    <string name="preferences__orange">Oransje</string>
+    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__white">Kvit</string>
+    <string name="preferences__none">Inga</string>
+    <string name="preferences__fast">Snøgg</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__slow">Langsam</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Slett gamle meldingar automatisk når ein samtale overskrid vald lengd</string>
+    <string name="preferences__delete_old_messages">Slett gamle meldingar</string>
+    <string name="preferences__conversation_length_limit">Lengdgrense for samtalar</string>
+    <string name="preferences__trim_all_conversations_now">Rydd opp i alle samtalar no</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Søk gjennom alle samtalar og tving lengdgrenser for samtalar</string>
+    <string name="preferences__default">Forvald</string>
+    <string name="preferences__incognito_keyboard">Inkognitotastatur</string>
+    <string name="preferences__read_receipts">Lesekvitteringar</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
+    <string name="preferences__typing_indicators">Tastevisning</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Spør om tastatur for å skru av persontilpassa læring</string>
+    <string name="preferences__light_theme">Lys</string>
+    <string name="preferences__dark_theme">Mørk</string>
+    <string name="preferences_chats__message_trimming">Meldingsforkorting</string>
+    <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Session</string>
+    <string name="preferences_app_protection__app_access">App-tilgang</string>
+    <string name="preferences_app_protection__communication">Kommunikasjon</string>
+    <string name="preferences_chats__chats">Samtalar</string>
+    <string name="preferences_notifications__messages">Meldingar</string>
+    <string name="preferences_notifications__in_chat_sounds">Lydar i samtalar</string>
+    <string name="preferences_notifications__show">Vis</string>
+    <string name="preferences_notifications__priority">Prioritet</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Ny melding til …</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Meldingsdetaljar</string>
+    <string name="conversation_context__menu_copy_text">Kopier tekst</string>
+    <string name="conversation_context__menu_delete_message">Slett melding</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
+    <string name="conversation_context__menu_reply_to_message">Svar på meldinga</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Lagra vedlegg</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Forsvinnande meldingar</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Utgåande meldingar</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Vis varsel</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Ikkje vis varsel</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Rediger gruppa</string>
+    <string name="conversation__menu_leave_group">Forlat gruppe</string>
+    <string name="conversation__menu_view_all_media">All media</string>
+    <string name="conversation__menu_add_shortcut">Legg til heimeskjermen</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Utvid sprettoppvindauge</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Levering</string>
+    <string name="conversation_group_options__conversation">Samtale</string>
+    <string name="conversation_group_options__broadcast">Kringkast</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Lagra</string>
+    <string name="media_preview__forward_title">Vidaresend</string>
+    <string name="media_preview__all_media_title">All media</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Ingen dokument</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Førehandsvising av media</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Slettar</string>
+    <string name="trimmer__deleting_old_messages">Slettar gamle meldingar …</string>
+    <string name="trimmer__old_messages_successfully_deleted">Gamle meldingar vart sletta</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Tilgang krevst</string>
+    <string name="Permissions_continue">Hald fram</string>
+    <string name="Permissions_not_now">Ikkje no</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Reservekopiar blir lagra til ekstern lagring og krypterte med passordfrasen nedanfor. Du må ha denne passordfrasen for å gjenoppretta frå kopien.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eg har skrive ned denne passordfrasen. Utan den vil eg ikkje få gjenoppretta frå reservekopien.</string>
+    <string name="registration_activity__skip">Hopp over</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Kan ikkje importera reservekopiar frå nyare utgåver av Session</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase til reservekopi</string>
+    <string name="BackupDialog_enable_local_backups">Skru på lokale reservekopiar?</string>
+    <string name="BackupDialog_enable_backups">Skru på reservekopiar</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Stadfest at du forstår ved å huka av avkryssingsboksen.</string>
+    <string name="BackupDialog_delete_backups">Slett reservekopiar?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Skru av og slett alle lokale reservekopiar?</string>
+    <string name="BackupDialog_delete_backups_statement">Slett reservekopiar</string>
+    <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavla</string>
+    <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
+    <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
+    <string name="BackupUtil_never">Aldri</string>
+    <string name="preferences_app_protection__screen_lock">Skjermlås</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås tilgangen til Session med Androids skjermlås eller fingeravtrykk</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsgrense for inaktivitet før skjermlås</string>
+    <string name="AppProtectionPreferenceFragment_none">Inga</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <!-- Session -->
+    <string name="continue_2">Continue</string>
+    <string name="copy">Copy</string>
+    <string name="invalid_url">Invalid URL</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="next">Next</string>
+    <string name="share">Share</string>
+    <string name="invalid_session_id">Invalid Session ID</string>
+    <string name="cancel">Cancel</string>
+    <string name="your_session_id">Your Session ID</string>
+    <string name="activity_landing_title_2">Your Session begins here...</string>
+    <string name="activity_landing_register_button_title">Create Session ID</string>
+    <string name="activity_landing_restore_button_title">Continue Your Session</string>
+    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
+    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
+    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
+    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
+    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
+    <string name="activity_register_title">Say hello to your Session ID</string>
+    <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
+    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
+    <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
+    <string name="activity_display_name_title_2">Pick your display name</string>
+    <string name="activity_display_name_explanation">This will be your name when you use Session. It can be your real name, an alias, or anything else you like.</string>
+    <string name="activity_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+    <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_home_empty_state_button_title">Start a Session</string>
+    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_leaving_group_failed_message">"Couldn't leave group"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
+    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
+    <string name="activity_seed_title">Your Recovery Phrase</string>
+    <string name="activity_seed_title_2">Meet your recovery phrase</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
+    <string name="activity_seed_reveal_button_title">Hold to reveal</string>
+    <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
+    <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
+    <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+    <string name="activity_path_title">Path</string>
+    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the countries your connection is currently being bounced through:</string>
+    <string name="activity_path_device_row_title">You</string>
+    <string name="activity_path_guard_node_row_title">Entry Node</string>
+    <string name="activity_path_service_node_row_title">Service Node</string>
+    <string name="activity_path_destination_row_title">Destination</string>
+    <string name="activity_path_learn_more_button_title">Learn More</string>
+    <string name="activity_create_private_chat_title">New Session</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping \"Share Session ID\", or by sharing their QR code.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
+    <string name="activity_create_closed_group_title">New Closed Group</string>
+    <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
+    <string name="activity_create_closed_group_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Start a Session</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Please enter a group name</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_join_public_chat_title">Join Open Group</string>
+    <string name="activity_join_public_chat_error">Couldn\'t join group</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
+    <string name="activity_settings_title">Settings</string>
+    <string name="activity_settings_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_settings_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_settings_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_settings_privacy_button_title">Privacy</string>
+    <string name="activity_settings_notifications_button_title">Notifications</string>
+    <string name="activity_settings_chats_button_title">Chats</string>
+    <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
+    <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_notification_settings_title">Notifications</string>
+    <string name="activity_notification_settings_style_section_title">Notification Style</string>
+    <string name="activity_notification_settings_content_section_title">Notification Content</string>
+    <string name="activity_privacy_settings_title">Privacy</string>
+    <string name="activity_chat_settings_title">Chats</string>
+    <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
+    <string name="dialog_seed_title">Your Recovery Phrase</string>
+    <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
+    <string name="dialog_clear_all_data_title">Clear All Data</string>
+    <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
+    <string name="activity_qr_code_title">QR Code</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Scan someone\'s QR code to start a conversation with them</string>
+    <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
+    <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="activity_select_contacts_title">Select Contacts</string>
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+</resources>

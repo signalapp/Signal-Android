@@ -23,12 +23,12 @@ import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
-import org.session.libsession.messaging.avatars.ContactColors;
-import org.session.libsession.messaging.avatars.ContactPhoto;
-import org.session.libsession.messaging.avatars.ResourceContactPhoto;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.RecipientExporter;
+import org.session.libsession.avatars.ContactColors;
+import org.session.libsession.avatars.ContactPhoto;
+import org.session.libsession.avatars.ResourceContactPhoto;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientExporter;
 import org.session.libsession.utilities.ThemeUtil;
 
 import java.util.Objects;

@@ -7,7 +7,6 @@ import kotlin.jvm.Throws
 
 object GroupUtil {
     const val CLOSED_GROUP_PREFIX = "__textsecure_group__!"
-    const val MMS_GROUP_PREFIX = "__signal_mms_group__!"
     const val OPEN_GROUP_PREFIX = "__loki_public_chat_group__!"
 
     @JvmStatic
@@ -18,11 +17,6 @@ object GroupUtil {
     @JvmStatic
     fun getEncodedClosedGroupID(groupID: ByteArray): String {
         return CLOSED_GROUP_PREFIX + Hex.toStringCondensed(groupID)
-    }
-
-    @JvmStatic
-    fun getEncodedMMSGroupID(groupID: ByteArray): String {
-        return MMS_GROUP_PREFIX + Hex.toStringCondensed(groupID)
     }
 
     @JvmStatic
@@ -52,12 +46,7 @@ object GroupUtil {
     }
 
     fun isEncodedGroup(groupId: String): Boolean {
-        return groupId.startsWith(CLOSED_GROUP_PREFIX) || groupId.startsWith(MMS_GROUP_PREFIX) || groupId.startsWith(OPEN_GROUP_PREFIX)
-    }
-
-    @JvmStatic
-    fun isMmsGroup(groupId: String): Boolean {
-        return groupId.startsWith(MMS_GROUP_PREFIX)
+        return groupId.startsWith(CLOSED_GROUP_PREFIX) || groupId.startsWith(OPEN_GROUP_PREFIX)
     }
 
     @JvmStatic

@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.sending_receiving.notifications
 
 import android.content.Context
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 interface MessageNotifier {
     fun setVisibleThread(threadId: Long)

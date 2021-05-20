@@ -14,7 +14,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListItem>>, ContactClickListener {
     private var cursorFilter: String? = null

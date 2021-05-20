@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -51,10 +52,9 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity(),
-        ConversationClickListener,
-        SeedReminderViewDelegate,
-        NewConversationButtonSetViewDelegate {
-
+    ConversationClickListener,
+    SeedReminderViewDelegate,
+    NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
@@ -139,7 +139,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, userDB)
-            application.publicChatManager.startPollersIfNeeded()
+            OpenGroupManager.startPolling()
             JobQueue.shared.resumePendingJobs()
         }
         IP2Country.configureIfNeeded(this)
@@ -172,19 +172,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
-        showFileServerInstabilityNotificationIfNeeded()
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {
                 MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
             }
         }
-    }
-
-    private fun showFileServerInstabilityNotificationIfNeeded() {
-        val hasSeenNotification = TextSecurePreferences.hasSeenFileServerInstabilityNotification(this)
-        if (hasSeenNotification) { return }
-        FileServerDialog().show(supportFragmentManager, "File Server Dialog")
-        TextSecurePreferences.setHasSeenFileServerInstabilityNotification(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -348,16 +340,16 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                     apiDB.removeLastDeletionServerID(v1OpenGroup.channel, v1OpenGroup.server)
                     apiDB.clearOpenGroupProfilePictureURL(v1OpenGroup.channel, v1OpenGroup.server)
                     OpenGroupAPI.leave(v1OpenGroup.channel, v1OpenGroup.server)
-                    ApplicationContext.getInstance(context).publicChatManager
-                        .removeChat(v1OpenGroup.server, v1OpenGroup.channel)
+                    // FIXME: No longer supported so let's remove this code
                 } else if (v2OpenGroup != null) {
                     val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
                     apiDB.removeLastMessageServerID(v2OpenGroup.room, v2OpenGroup.server)
                     apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
-                    ApplicationContext.getInstance(context).publicChatManager
-                        .removeChat(v2OpenGroup.server, v2OpenGroup.room)
+                    OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
-                    threadDB.deleteConversation(threadID)
+                    ThreadUtils.queue {
+                        threadDB.deleteConversation(threadID)
+                    }
                 }
                 // Update the badge count
                 ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)

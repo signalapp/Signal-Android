@@ -17,10 +17,9 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.Util;
 
 import org.session.libsignal.utilities.guava.Optional;
@@ -123,28 +122,6 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     return new Reader(cursor);
   }
 
-  // This function always creates a mms group
-  public String getOrCreateGroupForMembers(List<Address> members, List<Address> admins) {
-    Collections.sort(members);
-    Collections.sort(admins);
-
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
-                                                               MEMBERS + " = ? AND " + MMS + " = ?",
-                                                               new String[] {Address.toSerializedList(members, ','), "1"},
-                                                               null, null, null);
-    try {
-      if (cursor != null && cursor.moveToNext()) {
-        return cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
-      } else {
-        String groupId = GroupUtil.getEncodedMMSGroupID(allocateGroupId());
-        create(groupId, null, members, null, null, admins, System.currentTimeMillis());
-        return groupId;
-      }
-    } finally {
-      if (cursor != null) cursor.close();
-    }
-  }
-
   public Reader getGroups() {
     @SuppressLint("Recycle")
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null);
@@ -210,7 +187,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, formationTimestamp);
     contentValues.put(ACTIVE, 1);
-    contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
+    contentValues.put(MMS, false);
 
     if (admins != null) {
       contentValues.put(ADMINS, Address.toSerializedList(admins, ','));

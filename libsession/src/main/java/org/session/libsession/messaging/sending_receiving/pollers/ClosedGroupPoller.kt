@@ -26,7 +26,7 @@ class ClosedGroupPoller {
 
     // region Settings
     companion object {
-        private val pollInterval: Long = 2 * 1000
+        private val pollInterval: Long = 6 * 1000
     }
     // endregion
 
@@ -57,7 +57,8 @@ class ClosedGroupPoller {
     // region Private API
     private fun poll(): List<Promise<Unit, Exception>> {
         if (!isPolling) { return listOf() }
-        val publicKeys = MessagingModuleConfiguration.shared.storage.getAllActiveClosedGroupPublicKeys()
+        val storage = MessagingModuleConfiguration.shared.storage
+        val publicKeys = storage.getAllActiveClosedGroupPublicKeys()
         return publicKeys.map { publicKey ->
             val promise = SnodeAPI.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
@@ -65,19 +66,16 @@ class ClosedGroupPoller {
                 SnodeAPI.getRawMessages(snode, publicKey).map {SnodeAPI.parseRawMessagesResponse(it, snode, publicKey) }
             }
             promise.successBackground { messages ->
-                if (!MessagingModuleConfiguration.shared.storage.isGroupActive(publicKey)) {
-                    // ignore inactive group's messages
-                    return@successBackground
-                }
+                if (!storage.isGroupActive(publicKey)) { return@successBackground }
                 messages.forEach { envelope ->
-                    val job = MessageReceiveJob(envelope.toByteArray(), false)
+                    val job = MessageReceiveJob(envelope.toByteArray())
                     JobQueue.shared.add(job)
                 }
             }
             promise.fail {
                 Log.d("Loki", "Polling failed for closed group with public key: $publicKey due to error: $it.")
             }
-            promise.map { Unit }
+            promise.map { }
         }
     }
     // endregion

@@ -138,11 +138,6 @@
     <style name="Theme.Session.ForceDark" parent="Base.Theme.Session.ForceDark">
         <!-- leave empty to allow overriding -->
     </style>
-    <style name="Theme.Session.ForceDark.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionModeOverlay">true</item>
-    </style>
 
     <style name="Theme.Session.BottomSheet" parent="@style/Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>

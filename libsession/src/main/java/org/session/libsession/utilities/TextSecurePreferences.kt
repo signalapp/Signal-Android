@@ -11,7 +11,6 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import org.session.libsession.R
-import org.session.libsession.utilities.preferences.NotificationPrivacyPreference
 import org.session.libsignal.utilities.Log
 import java.io.IOException
 import java.util.*

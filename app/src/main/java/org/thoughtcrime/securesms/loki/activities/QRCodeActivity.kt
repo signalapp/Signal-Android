@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
@@ -16,15 +15,14 @@ import kotlinx.android.synthetic.main.fragment_view_my_qr_code.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.DistributionTypes
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.PublicKeyValidation

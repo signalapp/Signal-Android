@@ -42,7 +42,7 @@ import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
@@ -51,7 +51,7 @@ import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.Stub;
 import org.session.libsignal.utilities.ListenableFuture;
 import org.session.libsignal.utilities.SettableFuture;
 

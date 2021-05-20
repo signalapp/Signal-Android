@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.List;
 

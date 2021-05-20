@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 object ContactUtilities {
 
