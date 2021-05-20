@@ -14,8 +14,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
 import org.thoughtcrime.securesms.mms.GlideApp
 

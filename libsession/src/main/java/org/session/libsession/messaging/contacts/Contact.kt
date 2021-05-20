@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.contacts
 
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 class Contact(val sessionID: String) {
     // The URL from which to fetch the contact's profile picture.

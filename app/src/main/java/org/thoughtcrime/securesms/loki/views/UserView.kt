@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.contacts.Contact
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -52,6 +53,11 @@ class UserView : LinearLayout {
             if (publicKey == null || publicKey.isBlank()) {
                 return null
             } else {
+                val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+                contact?.let {
+                    val contactContext = Contact.contextForRecipient(user)
+                    return it.displayName(contactContext)
+                }
                 var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(openGroupThreadID)
                 if (result == null && publicChat != null) {

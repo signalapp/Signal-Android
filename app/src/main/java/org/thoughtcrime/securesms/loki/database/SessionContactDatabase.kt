@@ -2,12 +2,8 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
-import androidx.core.database.getStringOrNull
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.contacts.Contact
-import org.session.libsession.messaging.jobs.Job
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsignal.utilities.Base64
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper

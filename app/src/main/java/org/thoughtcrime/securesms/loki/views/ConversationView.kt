@@ -2,16 +2,14 @@ package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
 import android.graphics.Typeface
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
