@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -286,6 +287,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
+      if (!OpenGroupManager.INSTANCE.isAllCaughtUp()) {
+        OpenGroupManager.INSTANCE.setAllCaughtUp(true);
+      }
     }
   }
 
