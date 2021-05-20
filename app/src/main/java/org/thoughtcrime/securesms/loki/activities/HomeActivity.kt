@@ -347,7 +347,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                     apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
                     OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
-                    threadDB.deleteConversation(threadID)
+                    ThreadUtils.queue {
+                        threadDB.deleteConversation(threadID)
+                    }
                 }
                 // Update the badge count
                 ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)
