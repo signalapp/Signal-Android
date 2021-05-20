@@ -19,6 +19,8 @@ object OpenGroupManager {
     private var pollers = mutableMapOf<String, OpenGroupPollerV2>() // One for each server
     private var isPolling = false
 
+    var isAllCaughtUp = false
+
     fun startPolling() {
         if (isPolling) { return }
         isPolling = true
