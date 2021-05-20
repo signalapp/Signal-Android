@@ -70,15 +70,15 @@ import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.SimpleTask;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -546,7 +546,7 @@ public class ConversationFragment extends Fragment
                 .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
                 .success(l -> {
                   for (MessageRecord messageRecord : messageRecords) {
-                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
+                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id,  !messageRecord.isMms());
                     if (l.contains(serverID)) {
                       if (messageRecord.isMms()) {
                         DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
@@ -569,7 +569,7 @@ public class ConversationFragment extends Fragment
                           .deleteMessage(serverId, openGroupChat.getRoom(), openGroupChat.getServer())
                           .success(l -> {
                             for (MessageRecord messageRecord : messageRecords) {
-                              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id, !messageRecord.isMms());
+                              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id,  !messageRecord.isMms());
                               if (serverID != null && serverID.equals(serverId)) {
                                 MessagingModuleConfiguration.shared.getMessageDataProvider().deleteMessage(messageRecord.id, !messageRecord.isMms());
                                 break;

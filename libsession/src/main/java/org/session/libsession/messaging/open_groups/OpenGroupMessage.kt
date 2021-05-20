@@ -2,9 +2,9 @@ package org.session.libsession.messaging.open_groups
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.whispersystems.curve25519.Curve25519
 
 data class OpenGroupMessage(

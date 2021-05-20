@@ -2,6 +2,7 @@ apply plugin: 'java-gradle-plugin'
 
 repositories {
     google()
+    mavenCentral()
 }
 
 dependencies {

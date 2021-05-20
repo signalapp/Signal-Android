@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.logging;
 
 import org.junit.Test;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import static org.junit.Assert.assertEquals;
 

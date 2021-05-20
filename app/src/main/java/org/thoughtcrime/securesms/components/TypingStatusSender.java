@@ -9,7 +9,7 @@ import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Util;
 
 import java.util.HashMap;

@@ -2,8 +2,8 @@ package org.session.libsession.messaging.messages.visible
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreiview
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.protos.SignalServiceProtos
 
 class LinkPreview() {
     var title: String? = null

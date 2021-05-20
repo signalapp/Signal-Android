@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.sskenvironment
 
 import android.content.Context
 import org.session.libsession.messaging.contacts.Contact
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory

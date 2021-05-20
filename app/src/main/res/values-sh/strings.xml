@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="delete">Obriši</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">Sačekajte...</string>
+    <string name="save">Spremi</string>
+    <string name="note_to_self">Osobna bilješka</string>
+    <string name="version_s">Version %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">%d poruka po razgovoru</item>
+        <item quantity="few">%d poruke po razgovoru</item>
+        <item quantity="many">%d poruka po razgovoru</item>
+        <item quantity="other">%d poruka po razgovoru</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obriši sve stare poruke?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Ovo će automatski skratiti sve razgovore na odabrani broj poruka.</item>
+        <item quantity="few">Ovo će automatski skratiti sve razgovore na %d najnovije poruke.</item>
+        <item quantity="many">Ovo će automatski skratiti sve razgovore na %d najnovijih poruka.</item>
+        <item quantity="other">Ovo će automatski skratiti sve razgovore na %d najnovijih poruka.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Obriši</string>
+    <string name="ApplicationPreferencesActivity_On">Uključeno</string>
+    <string name="ApplicationPreferencesActivity_Off">Isključeno</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(slika)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(zvuk)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session zahtijeva dozvolu pristupa Pohrani podataka za umetanje slikovnih i audio-vizualnih priloga ali zahtjev biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Pohrana\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session zahtijeva dozvolu pristupa Kontaktima za prilaganje informacije o kontaktima ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kontakti\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session zahtijeva dozvolu pristupa Kameri za omogućavanje slikanja ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Greška prilikom reprodukcije zvuka!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Danas</string>
+    <string name="BucketedThreadMedia_Yesterday">Jučer</string>
+    <string name="BucketedThreadMedia_This_week">Ovaj tjedan</string>
+    <string name="BucketedThreadMedia_This_month">Ovaj mjesec</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Web pretraživać nije pronađen.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grupe</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Slanje nije uspjelo, dodirnite za detalje</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Poruka za razmjenu ključeva je primljena, pritisnite da biste nastavili.</string>
+    <string name="ConversationItem_group_action_left">%1$s je napustio grupu.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Slanje neuspješno, pritisnite za nesigurnu rezervu</string>
+    <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
+    <string name="ConversationItem_copied_text">Kopirano %s</string>
+    <string name="ConversationItem_read_more">Pročitaj više</string>
+    <string name="ConversationItem_download_more">Preuzmi više</string>
+    <string name="ConversationItem_pending">Na čekanju</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
+    <string name="ConversationActivity_select_contact_info">Odaberite informacije kontakta</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Došlo je do greške prilikom postavljanja privitka.</string>
+    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_invalid_recipient">Naispravan primatelj!</string>
+    <string name="ConversationActivity_added_to_home_screen">Dodano na početni ekran</string>
+    <string name="ConversationActivity_leave_group">Napusti grupu?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jeste li sigurni da želite napustiti ovu grupu?</string>
+    <string name="ConversationActivity_error_leaving_group">Greška pri napuštanju grupe</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ponovno ćete moći primati poruke ili pozive ovog korisnika.</string>
+    <string name="ConversationActivity_unblock">Ukloni blokadu</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Privitak prelazi ograničenje veličine za tip poruke koju šaljete.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimati svuk!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na vašem uređaju ne postoji aplikacija koja bi rukovala ovom poveznicom.</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kako biste poslali audio poruku, dozvolite Sessionu pristup vašem mikrofonu.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session zahtijeva dozvolu pristupa Mikrofonu za slanje zvučnih poruka ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kako biste snimili slike i video, dozvolite Sessionu pristup kameri.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session zahtijeva dozvolu Kameri za fotografiranje ili snimanje videa, ali pristup biva odbijen. Molim nastavite s postavkama aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\". </string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session treba pristup kameri kako bi snimio slike ili video.</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+    <string name="ConversationActivity_search_position">%1$d od %2$d</string>
+    <string name="ConversationActivity_no_results">Nema rezultata</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d nepročitana poruka</item>
+        <item quantity="few">%d nepročitane poruke</item>
+        <item quantity="many">%d nepročitanih poruka</item>
+        <item quantity="other">%d nepročitanih poruka</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Obriši odabrane poruke?</item>
+        <item quantity="few">Obriši odabrane poruke?</item>
+        <item quantity="many">Obriši odabrane poruke?</item>
+        <item quantity="other">Obriši odabrane poruke?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Ovo će trajno obrisati odabrane poruke.</item>
+        <item quantity="few">Ovo će trajno obrisati sve %1$d odabrane poruke.</item>
+        <item quantity="many">Ovo će trajno obrisati svih %1$d odabranih poruka.</item>
+        <item quantity="other">Ovo će trajno obrisati svih %1$d odabranih poruka.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_save_to_sd_card">Spremi na disk?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Spremanje svih medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem uređaju.\n\nNastavi?</item>
+        <item quantity="few">Spremanje sva %1$d medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem uređaju.\n\nNastavi?</item>
+        <item quantity="many">Spremanje svih %1$d medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem uređaju.\n\nNastavi?</item>
+        <item quantity="other">Spremanje svih %1$d medija na disk će omogućiti pristup mediju iz drugih aplikacija na vašem uređaju.\n\nNastavi?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Greška prilikom spremanja privitaka na disk!</item>
+        <item quantity="few">Greška prilikom spremanja privitaka na disk!</item>
+        <item quantity="many">Greška prilikom spremanja privitaka na disk!</item>
+        <item quantity="other">Greška prilikom spremanja privitaka na disk!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Spremanje privitaka</item>
+        <item quantity="few">Spremanje %1$d privitka</item>
+        <item quantity="many">Spremanje %1$d privitaka</item>
+        <item quantity="other">Spremanje %1$d privitaka</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Spremanje privitaka na disk...</item>
+        <item quantity="few">Spremanje %1$d privitka na disk...</item>
+        <item quantity="many">Spremanje %1$d privitaka na disk...</item>
+        <item quantity="other">Spremanje %1$d privitaka na disk...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">U toku...</string>
+    <string name="ConversationFragment_push">Podaci (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Brisanje</string>
+    <string name="ConversationFragment_deleting_messages">Brisanje poruka...</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Originalna poruka nije pronađena</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Originalna poruka više nije dostupna</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Profilna slika</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
+    <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
+    <string name="CustomDefaultPreference_none">Niti jedna</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Sada</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_today">Danas</string>
+    <string name="DateUtils_yesterday">Jučer</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Danas</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Nepoznata datoteka</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Greška pri dohvaćanju GIFa pune rezolucije</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIFovi</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Naljepnice</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Slika profila</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pritisnite i držite kako biste snimili glasovnu poruku, pustite za slanje</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Nije moguće naći poruku</string>
+    <string name="LongMessageActivity_message_from_s">Poruka od %1$s</string>
+    <string name="LongMessageActivity_your_message">Vaša poruka</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Medij</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Izbriši označenu poruku?</item>
+        <item quantity="few">Izbriši označene poruke?</item>
+        <item quantity="many">Izbriši označene poruke?</item>
+        <item quantity="other">Izbriši označene poruke?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Ovo će trajno obrisati označenu poruku.</item>
+        <item quantity="few">Broj poruka koji će biti trajno izbrisan: %1$d</item>
+        <item quantity="many">Broj poruka koji će biti trajno izbrisan: %1$d</item>
+        <item quantity="other">Broj poruka koji će biti trajno izbrisan: %1$d</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Brisanje poruka...</string>
+    <string name="MediaOverviewActivity_Documents">Dokumenti</string>
+    <string name="MediaOverviewActivity_Select_all">Odaberi sve</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Prikupljanje privitaka...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijalna poruka</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Preuzimanje MMS poruke</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Greška pri preuzimanju MMS poruke, pritisnite za ponovni pokušaj</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Send to %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Stavka je uklonjena jer je prešla limit veličine</string>
+    <string name="MediaSendActivity_camera_unavailable">Kamera nije dostupna</string>
+    <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">Ne možete dijeliti više od %dstavke.</item>
+        <item quantity="few">Ne možete dijeliti više od %d stavki.</item>
+        <item quantity="many">Ne možete dijeliti više od %dstavki.</item>
+        <item quantity="other">Ne možete dijeliti više od %dstavki.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Svi mediji</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom inačicom Session aplikacije koja više nije podržana. Molimo zapitajte pošiljatelja da ažurira na najnoviju inačicu aplikacije i ponovno pošalje poruku.</string>
+    <string name="MessageRecord_left_group">Napustili ste grupu.</string>
+    <string name="MessageRecord_you_updated_group">Ažurirali ste grupu.</string>
+    <string name="MessageRecord_s_updated_group">%s je ažurirao grupu.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Primljene i poslane poruke u ovom razgovoru će nestati %s nakon što su viđene.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiraj kontakt?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nećete više primati poruke i pozive ovog korisnika.</string>
+    <string name="RecipientPreferenceActivity_block">Blokiraj</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Ukloni blokadu ovog kontakta?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ponovno ćete moći primati poruke ili pozive ovog korisnika.</string>
+    <string name="RecipientPreferenceActivity_unblock">Ukloni blokadu</string>
+    <!-- Slide -->
+    <string name="Slide_image">Slika</string>
+    <string name="Slide_audio">Audio</string>
+    <string name="Slide_video">Video</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Primljena iskvarena poruka
+razmjene ključeva!</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Primljena je poruka s novim sigurnosnim brojem. Pritisnite za obradu i prikaz.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s resetiranje sigurne sesije.</string>
+    <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Grupa je ažurirana</string>
+    <string name="ThreadRecord_left_the_group">Napustio/la grupu</string>
+    <string name="ThreadRecord_secure_session_reset">Resetiranje sigurne sesije.</string>
+    <string name="ThreadRecord_draft">Skica:</string>
+    <string name="ThreadRecord_called">Zvali ste</string>
+    <string name="ThreadRecord_called_you">Zvali su vas</string>
+    <string name="ThreadRecord_missed_call">Propušteni poziv</string>
+    <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
+    <string name="ThreadRecord_s_is_on_signal">%s je dostupan na Sessionu!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_safety_number_changed">Sigurnosni broj je izmijenjen</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
+    <string name="ThreadRecord_you_marked_verified">Označili ste provjerenim</string>
+    <string name="ThreadRecord_you_marked_unverified">Označili ste nepotvrđenim</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Session ažuriranje</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova inačica Sessiona je dostupna, pritisnite za ažuriranje</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Loše kriptirana MMS poruka</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS poruka kriptirana za nepostojeću sesiju</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Utišaj obavijesti</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Pritisnite za otvaranje.</string>
+    <string name="KeyCachingService_passphrase_cached">Session je otključan</string>
+    <string name="KeyCachingService_lock">Zaključaj Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Vi</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
+    <string name="MediaPreviewActivity_draft">Skica</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session zahtjeva pristup pohrani kako bi se omogućilo zapisivanje podataka na vanjski medij, ali je trajno odbijeno. Molimo nastavite do opcija aplikacije, odaberite \"Dozvole\", i uključite \"Pohrana\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nije moguće spremanje na vanjski medij bez dozvola</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Obriši poruku?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Radnja će trajno izbrisati ovu poruku.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novih poruka u %2$d razgovora</string>
+    <string name="MessageNotifier_most_recent_from_s">Najnovije od: %1$s</string>
+    <string name="MessageNotifier_locked_message">Zaključana poruka</string>
+    <string name="MessageNotifier_message_delivery_failed">Neuspješna isporuka poruke.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Isporuka poruke nije uspjela.</string>
+    <string name="MessageNotifier_error_delivering_message">Greška prilikom isporuke poruke.</string>
+    <string name="MessageNotifier_mark_all_as_read">Označi sve kao pročitano</string>
+    <string name="MessageNotifier_mark_read">Označi pročitano</string>
+    <string name="MessageNotifier_reply">Odgovori</string>
+    <string name="MessageNotifier_pending_signal_messages">Session poruke na čekanju</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Imate Session poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
+    <string name="MessageNotifier_contact_message">%1$s%2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Zadano</string>
+    <string name="NotificationChannel_calls">Pozivi</string>
+    <string name="NotificationChannel_failures">Neuspjesi</string>
+    <string name="NotificationChannel_backups">Sigurnosne kopije</string>
+    <string name="NotificationChannel_locked_status">Status zaključavanja</string>
+    <string name="NotificationChannel_app_updates">Ažuriranja aplikacije</string>
+    <string name="NotificationChannel_other">Ostalo</string>
+    <string name="NotificationChannel_group_messages">Poruke</string>
+    <string name="NotificationChannel_missing_display_name">Nepoznato</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Session zaključan!</string>
+    <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Spremljeno u %s</string>
+    <string name="SaveAttachmentTask_saved">Spremljeno</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Traži</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Nevažeći prečac</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%d Item</item>
+        <item quantity="few">%d Items</item>
+        <item quantity="many">%d Items</item>
+        <item quantity="other">%d Items</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Greška pri video reprodukciji</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Zvuk</string>
+    <string name="attachment_type_selector__audio_description">Zvuk</string>
+    <string name="attachment_type_selector__contact">Kontakt</string>
+    <string name="attachment_type_selector__contact_description">Kontakt</string>
+    <string name="attachment_type_selector__camera">Kamera</string>
+    <string name="attachment_type_selector__camera_description">Kamera</string>
+    <string name="attachment_type_selector__location">Položaj</string>
+    <string name="attachment_type_selector__location_description">Položaj</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Slika ili video</string>
+    <string name="attachment_type_selector__file_description">Datoteka</string>
+    <string name="attachment_type_selector__gallery">Galerija</string>
+    <string name="attachment_type_selector__file">Datoteka</string>
+    <string name="attachment_type_selector__drawer_description">Uključi/isključi ladicu dodataka</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Učitavanje kontakata...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Pošalji</string>
+    <string name="conversation_activity__compose_description">Sastavljanje poruke</string>
+    <string name="conversation_activity__emoji_toggle_description">Uključi/isključi emoji tipkovnicu</string>
+    <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Uključi/isključi ladicu brze kamere</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Snimi i pošalji audio privitak</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
+    <string name="conversation_activity__enable_signal_for_sms">Omogući Session za SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Kliznite za otkazivanje</string>
+    <string name="conversation_input_panel__cancel">Odustani</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Multimedijalna poruka</string>
+    <string name="conversation_item__secure_message_description">Sigurna poruka</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Neuspješno slanje</string>
+    <string name="conversation_item_sent__pending_approval_description">Odobrenje u tijeku</string>
+    <string name="conversation_item_sent__delivered_description">Isporučeno</string>
+    <string name="conversation_item_sent__message_read">Poruka pročitana</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Reprodukcija</string>
+    <string name="audio_view__pause_accessibility_description">Zaustavi</string>
+    <string name="audio_view__download_accessibility_description">Preuzmi</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Zvuk</string>
+    <string name="QuoteView_video">Video</string>
+    <string name="QuoteView_photo">Fotografija</string>
+    <string name="QuoteView_you">Vi</string>
+    <string name="QuoteView_original_missing">Originalna poruka nije pronađena</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Kliži do dna</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Pretraži GIFove i naljepnice</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Ništa nije pronađeno.</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Prikaži cijeli razgovor</string>
+    <string name="load_more_header__loading">Učitavanje</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Bez medija</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">PONOVNO POŠALJI</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Blokiraj</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Neki problemi zahtjevaju vašu pozornost.</string>
+    <string name="message_details_header__sent">Poslano</string>
+    <string name="message_details_header__received">Primljeno</string>
+    <string name="message_details_header__disappears">Nestaje</string>
+    <string name="message_details_header__via">Putem</string>
+    <string name="message_details_header__to">Prima:</string>
+    <string name="message_details_header__from">Šalje:</string>
+    <string name="message_details_header__with">Sa:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Stvorite lozinku</string>
+    <string name="AndroidManifest__select_contacts">Odaberite kontakte</string>
+    <string name="AndroidManifest__media_preview">Prikaz medija</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Koristi zadano</string>
+    <string name="arrays__use_custom">Koristi prilagođeno</string>
+    <string name="arrays__mute_for_one_hour">Utišaj na 1 sat</string>
+    <string name="arrays__mute_for_two_hours">Utišaj na 2 sata</string>
+    <string name="arrays__mute_for_one_day">Utišaj na 1 dan</string>
+    <string name="arrays__mute_for_seven_days">Utišaj na 7 dana</string>
+    <string name="arrays__mute_for_one_year">Utišaj na 1 godinu</string>
+    <string name="arrays__settings_default">Zadane postavke</string>
+    <string name="arrays__enabled">Omogućeno</string>
+    <string name="arrays__disabled">Onemogućeno</string>
+    <string name="arrays__name_and_message">Ime i poruka</string>
+    <string name="arrays__name_only">Samo ime</string>
+    <string name="arrays__no_name_or_message">Nema imena ili poruke</string>
+    <string name="arrays__images">Slike</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokumenti</string>
+    <string name="arrays__small">Mala</string>
+    <string name="arrays__normal">Normalna</string>
+    <string name="arrays__large">Velika</string>
+    <string name="arrays__extra_large">Ekstra velika</string>
+    <string name="arrays__default">Zadano</string>
+    <string name="arrays__high">Visoko</string>
+    <string name="arrays__max">Maks</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d sat</item>
+        <item quantity="few">%d sata</item>
+        <item quantity="many">%d sati</item>
+        <item quantity="other">%d sati</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Enter šalje poruku</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisak na Enter će poslati tekst poruku</string>
+    <string name="preferences__send_link_previews">Send link previews</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
+    <string name="preferences__screen_security">Sigurnost ekrana</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije</string>
+    <string name="preferences__notifications">Obavijesti</string>
+    <string name="preferences__led_color">LED boja</string>
+    <string name="preferences__led_color_unknown">Nepoznato</string>
+    <string name="preferences__pref_led_blink_title">LED uzorak treptanja</string>
+    <string name="preferences__sound">Zvuk</string>
+    <string name="preferences__silent">Bezvučno</string>
+    <string name="preferences__repeat_alerts">Ponovi upozorenja</string>
+    <string name="preferences__never">Nikada</string>
+    <string name="preferences__one_time">Jednom</string>
+    <string name="preferences__two_times">Dva puta</string>
+    <string name="preferences__three_times">Tri puta</string>
+    <string name="preferences__five_times">Pet puta</string>
+    <string name="preferences__ten_times">Deset puta</string>
+    <string name="preferences__vibrate">Vibracija</string>
+    <string name="preferences__green">Zelena</string>
+    <string name="preferences__red">Crvena</string>
+    <string name="preferences__blue">Plava</string>
+    <string name="preferences__orange">Narančasta</string>
+    <string name="preferences__cyan">Cijan</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__white">Bijela</string>
+    <string name="preferences__none">Niti jedna</string>
+    <string name="preferences__fast">Brzo</string>
+    <string name="preferences__normal">Normalno</string>
+    <string name="preferences__slow">Sporo</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatski obriši starije poruke nakon što razgovor pređe određenu duljinu</string>
+    <string name="preferences__delete_old_messages">Obriši stare poruke</string>
+    <string name="preferences__conversation_length_limit">Maksimalna duljina razgovora</string>
+    <string name="preferences__trim_all_conversations_now">Skrati sve razgovore odmah</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skeniraj sve razgovore i primijeni ograničenje duljine razgovora</string>
+    <string name="preferences__default">Zadano</string>
+    <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
+    <string name="preferences__read_receipts">Potvrde čitanja</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ukoliko ste onemogućili potvrdu čitanja kod sebe, nećete moći vidjeti potvrde čitanja od drugih.</string>
+    <string name="preferences__typing_indicators">Pokazatelji tipkanja</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahtijevaj od tipkovnice da onemogući personalizirano učenje</string>
+    <string name="preferences__light_theme">Svijetla</string>
+    <string name="preferences__dark_theme">Tamna</string>
+    <string name="preferences_chats__message_trimming">Skraćivanje poruke</string>
+    <string name="preferences_advanced__use_system_emoji">Koristi emotikone sustava</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući ugrađenu Session podršku za emotikone</string>
+    <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
+    <string name="preferences_app_protection__communication">Komunikacija</string>
+    <string name="preferences_chats__chats">Razgovori</string>
+    <string name="preferences_notifications__messages">Poruke</string>
+    <string name="preferences_notifications__in_chat_sounds">Zvuk unutar razgovora</string>
+    <string name="preferences_notifications__show">Prikaži</string>
+    <string name="preferences_notifications__priority">Prioritet</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Nova poruka za...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Detalji poruke</string>
+    <string name="conversation_context__menu_copy_text">Kopiraj tekst</string>
+    <string name="conversation_context__menu_delete_message">Obriši poruku</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_resend_message">Ponovno pošalji poruku</string>
+    <string name="conversation_context__menu_reply_to_message">Reply to message</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Spremi privitak</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Nestajuće poruke</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Poruke ističu</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Ukloni utišanje</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Utišaj obavijesti</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Uredi grupu</string>
+    <string name="conversation__menu_leave_group">Napusti grupu</string>
+    <string name="conversation__menu_view_all_media">Svi mediji</string>
+    <string name="conversation__menu_add_shortcut">Add to home screen</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Proširi skočni prozor</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Isporuka</string>
+    <string name="conversation_group_options__conversation">Razgovor</string>
+    <string name="conversation_group_options__broadcast">Emitiranje</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Spremi</string>
+    <string name="media_preview__forward_title">Naprijed</string>
+    <string name="media_preview__all_media_title">Svi mediji</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Nema dokumenata</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Prikaz medija</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Brisanje</string>
+    <string name="trimmer__deleting_old_messages">Brisanje starih poruka...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Stare poruke su uspješno obrisane</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Permission required</string>
+    <string name="Permissions_continue">Nastavi</string>
+    <string name="Permissions_not_now">Not now</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
+    <string name="registration_activity__skip">Preskoči</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Session</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
+    <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
+    <string name="BackupDialog_enable_backups">Enable backups</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
+    <string name="BackupDialog_delete_backups">Delete backups?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+    <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+    <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
+    <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije...</string>
+    <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
+    <string name="BackupUtil_never">Nikada</string>
+    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Session access with Android screen lock or fingerprint</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
+    <string name="AppProtectionPreferenceFragment_none">Niti jedna</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <!-- Session -->
+    <string name="continue_2">Continue</string>
+    <string name="copy">Copy</string>
+    <string name="invalid_url">Invalid URL</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="next">Next</string>
+    <string name="share">Share</string>
+    <string name="invalid_session_id">Invalid Session ID</string>
+    <string name="cancel">Cancel</string>
+    <string name="your_session_id">Your Session ID</string>
+    <string name="activity_landing_title_2">Your Session begins here...</string>
+    <string name="activity_landing_register_button_title">Create Session ID</string>
+    <string name="activity_landing_restore_button_title">Continue Your Session</string>
+    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
+    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
+    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
+    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
+    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
+    <string name="activity_register_title">Say hello to your Session ID</string>
+    <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
+    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
+    <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
+    <string name="activity_display_name_title_2">Pick your display name</string>
+    <string name="activity_display_name_explanation">This will be your name when you use Session. It can be your real name, an alias, or anything else you like.</string>
+    <string name="activity_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+    <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_home_empty_state_button_title">Start a Session</string>
+    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_leaving_group_failed_message">"Couldn't leave group"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
+    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
+    <string name="activity_seed_title">Your Recovery Phrase</string>
+    <string name="activity_seed_title_2">Meet your recovery phrase</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
+    <string name="activity_seed_reveal_button_title">Hold to reveal</string>
+    <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
+    <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
+    <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+    <string name="activity_path_title">Path</string>
+    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the countries your connection is currently being bounced through:</string>
+    <string name="activity_path_device_row_title">You</string>
+    <string name="activity_path_guard_node_row_title">Entry Node</string>
+    <string name="activity_path_service_node_row_title">Service Node</string>
+    <string name="activity_path_destination_row_title">Destination</string>
+    <string name="activity_path_learn_more_button_title">Learn More</string>
+    <string name="activity_create_private_chat_title">New Session</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping \"Share Session ID\", or by sharing their QR code.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
+    <string name="activity_create_closed_group_title">New Closed Group</string>
+    <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
+    <string name="activity_create_closed_group_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Start a Session</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Please enter a group name</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_join_public_chat_title">Join Open Group</string>
+    <string name="activity_join_public_chat_error">Couldn\'t join group</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
+    <string name="activity_settings_title">Settings</string>
+    <string name="activity_settings_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_settings_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_settings_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_settings_privacy_button_title">Privacy</string>
+    <string name="activity_settings_notifications_button_title">Notifications</string>
+    <string name="activity_settings_chats_button_title">Chats</string>
+    <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
+    <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_notification_settings_title">Notifications</string>
+    <string name="activity_notification_settings_style_section_title">Notification Style</string>
+    <string name="activity_notification_settings_content_section_title">Notification Content</string>
+    <string name="activity_privacy_settings_title">Privacy</string>
+    <string name="activity_chat_settings_title">Chats</string>
+    <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
+    <string name="dialog_seed_title">Your Recovery Phrase</string>
+    <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
+    <string name="dialog_clear_all_data_title">Clear All Data</string>
+    <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
+    <string name="activity_qr_code_title">QR Code</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Scan someone\'s QR code to start a conversation with them</string>
+    <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
+    <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="activity_select_contacts_title">Select Contacts</string>
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+</resources>

@@ -9,10 +9,10 @@ import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.open_groups.OpenGroupMessage
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.service.internal.push.SignalServiceProtos.*
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.protos.SignalServiceProtos.*
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.successBackground
 import java.util.*
 import java.util.concurrent.ScheduledExecutorService
@@ -172,7 +172,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup, private val executorServ
                     builder.timestamp = message.timestamp
                     builder.serverTimestamp = message.serverTimestamp
                     val envelope = builder.build()
-                    val job = MessageReceiveJob(envelope.toByteArray(), isBackgroundPoll, messageServerID, openGroup.id)
+                    val job = MessageReceiveJob(envelope.toByteArray(), messageServerID, openGroup.id)
                     Log.d("Loki", "Scheduling Job $job")
                     if (isBackgroundPoll) {
                         job.executeAsync().always { deferred.resolve(Unit) }

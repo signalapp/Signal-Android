@@ -2,16 +2,16 @@ package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
-import org.session.libsignal.libsignal.ecc.DjbECPublicKey
-import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsession.utilities.ProfileKeyUtil
+import org.session.libsignal.crypto.ecc.DjbECPrivateKey
+import org.session.libsignal.crypto.ecc.DjbECPublicKey
+import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
 class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: List<String>, var contacts: List<Contact>,

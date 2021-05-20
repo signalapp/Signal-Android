@@ -15,14 +15,14 @@ import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.service.loki.HTTP
-import org.session.libsignal.service.loki.HTTP.Verb.*
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.HTTP
+import org.session.libsignal.utilities.HTTP.Verb.*
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Base64.*
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.whispersystems.curve25519.Curve25519
 import java.util.*
 
@@ -65,15 +65,15 @@ object OpenGroupAPIV2 {
     }
 
     data class Request(
-        val verb: HTTP.Verb,
-        val room: String?,
-        val server: String,
-        val endpoint: String,
-        val queryParameters: Map<String, String> = mapOf(),
-        val parameters: Any? = null,
-        val headers: Map<String, String> = mapOf(),
-        val isAuthRequired: Boolean = true,
-        /**
+            val verb: HTTP.Verb,
+            val room: String?,
+            val server: String,
+            val endpoint: String,
+            val queryParameters: Map<String, String> = mapOf(),
+            val parameters: Any? = null,
+            val headers: Map<String, String> = mapOf(),
+            val isAuthRequired: Boolean = true,
+            /**
          * Always `true` under normal circumstances. You might want to disable
          * this when running over Lokinet.
          */
@@ -348,7 +348,7 @@ object OpenGroupAPIV2 {
 
     // region General
     @Suppress("UNCHECKED_CAST")
-    fun getCompactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
+    fun compactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
         val authTokenRequests = rooms.associateWith { room -> getAuthToken(room, server) }
         val storage = MessagingModuleConfiguration.shared.storage
         val requests = rooms.mapNotNull { room ->

@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="delete">מחק</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">אנא המתן...</string>
+    <string name="save">שמור</string>
+    <string name="note_to_self">הערה לעצמי</string>
+    <string name="version_s">Version %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">הודעה חדשה</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">הודעה %d לשיחה</item>
+        <item quantity="two">%d הודעות לשיחה</item>
+        <item quantity="many">%d הודעות לשיחה</item>
+        <item quantity="other">%d הודעות לשיחה</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">למחוק את כל ההודעות הישנות עכשיו?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">זה יקצץ מיד את כל השיחות אל ההודעה החדשה ביותר.</item>
+        <item quantity="two">זה יקצץ מיד את כל השיחות אל %d ההודעות החדשות ביותר.</item>
+        <item quantity="many">זה יקצץ מיד את כל השיחות אל %d ההודעות החדשות ביותר.</item>
+        <item quantity="other">זה יקצץ מיד את כל השיחות אל %d ההודעות החדשות ביותר.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">מחק</string>
+    <string name="ApplicationPreferencesActivity_On">מופעל</string>
+    <string name="ApplicationPreferencesActivity_Off">כבוי</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(תמונה)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(שמע)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(וידיאו)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(תגובה)</string>
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">לא ניתן למצוא יישום לבחירת מדיה.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session דורש את הרשאת האחסון על מנת לצרף תצלומים, וידיאוים, או שמע, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\", אפשר את \"אחסון\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session דורש הרשאת אנשי קשר על מנת לצרף מידע איש קשר, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session דורש את הרשאת המצלמה על מנת לצלם תצלומים, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">שגיאה בניגון שמע!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">היום</string>
+    <string name="BucketedThreadMedia_Yesterday">אתמול</string>
+    <string name="BucketedThreadMedia_This_week">השבוע</string>
+    <string name="BucketedThreadMedia_This_month">החודש</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">לא נמצא דפדפן.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">קבוצות</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">שליחה נכשלה, הקש לפרטים</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">התקבלה הודעת החלפת מפתח, הקש כדי להמשיך.</string>
+    <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
+    <string name="ConversationItem_unable_to_open_media">לא ניתן למצוא יישום המסוגל לפתוח מדיה זו.</string>
+    <string name="ConversationItem_copied_text">הועתק %s</string>
+    <string name="ConversationItem_read_more">  קרא עוד</string>
+    <string name="ConversationItem_download_more">  הורד עוד</string>
+    <string name="ConversationItem_pending">  ממתין</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">הוסף צרופה</string>
+    <string name="ConversationActivity_select_contact_info">בחר מידע של איש קשר</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">סליחה, אירעה שגיאה בהוספת הצרופה שלך.</string>
+    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_invalid_recipient">מקבל לא תקף!</string>
+    <string name="ConversationActivity_added_to_home_screen">התווסף אל מסך הבית</string>
+    <string name="ConversationActivity_leave_group">לעזוב קבוצה?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">האם אתה בטוח שאתה רוצה לעזוב קבוצה זו?</string>
+    <string name="ConversationActivity_error_leaving_group">שגיאה בעזיבת קבוצה</string>
+    <string name="ConversationActivity_unblock_this_contact_question">לבטל חסימת איש קשר זה?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">תוכל שוב לקבל הודעות ושיחות מאיש קשר זה.</string>
+    <string name="ConversationActivity_unblock">בטל חסימה</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה חורגת ממגבלות הגודל עבור הסוג של ההודעה שאתה שולח.</string>
+    <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">כדי לשלוח הודעות שמע, אפשר ל-Session לקבל גישה אל המיקרופון שלך.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session דורש את הרשאת המיקרופון על מנת לשלוח הודעות שמע, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">כדי ללכוד תצלומים ווידיאו, אפשר ל-Session גישה אל המצלמה.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session צריך את הרשאת המצלמה כדי לצלם תצלומים או וידיאו, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידיאו</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+    <string name="ConversationActivity_search_position">%1$d מתוך %2$d</string>
+    <string name="ConversationActivity_no_results">אין תוצאות</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">הודעה %d לא נקראה</item>
+        <item quantity="two">%d הודעות לא נקראו</item>
+        <item quantity="many">%d הודעות לא נקראו</item>
+        <item quantity="other">%d הודעות לא נקראו</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">למחוק ההודעה שנבחרה?</item>
+        <item quantity="two">למחוק את ההודעות שנבחרו?</item>
+        <item quantity="many">למחוק את ההודעות שנבחרו?</item>
+        <item quantity="other">למחוק את ההודעות שנבחרו?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">זה ימחק לצמיתות את ההודעה שנבחרה.</item>
+        <item quantity="two">זה ימחק לצמיתות את כל %1$d ההודעות שנבחרו.</item>
+        <item quantity="many">זה ימחק לצמיתות את כל %1$d ההודעות שנבחרו.</item>
+        <item quantity="other">זה ימחק לצמיתות את כל %1$d ההודעות שנבחרו.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_save_to_sd_card">לשמור באחסון?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">שמירת המדיה הזאת לאחסון תאפשר לכל אפליקציה אחרת לגשת אליהם.\n\nלהמשיך?</item>
+        <item quantity="two">שמירת כל %1$d פריטי המדיה באחסון תתיר לכל יישומים כלשהם להשיג גישה לפריטי המדיה.\n\nלהמשיך?</item>
+        <item quantity="many">שמירת כל %1$d פריטי המדיה באחסון תתיר לכל יישומים כלשהם להשיג גישה לפריטי המדיה.\n\nלהמשיך?</item>
+        <item quantity="other">שמירת כל %1$d פריטי המדיה באחסון תתיר לכל יישומים כלשהם להשיג גישה לפריטי המדיה.\n\nלהמשיך?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">שגיאה בעת שמירת צרופה באחסון!</item>
+        <item quantity="two">שגיאה בעת שמירת צרופות באחסון!</item>
+        <item quantity="many">שגיאה בעת שמירת צרופות באחסון!</item>
+        <item quantity="other">שגיאה בעת שמירת צרופות באחסון!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">שומר צרופה</item>
+        <item quantity="two">שומר %1$d צרופות</item>
+        <item quantity="many">שומר %1$d צרופות</item>
+        <item quantity="other">שומר %1$d צרופות</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">שומר צרופה באחסון...</item>
+        <item quantity="two">שומר %1$d צרופות באחסון...</item>
+        <item quantity="many">שומר %1$d צרופות באחסון...</item>
+        <item quantity="other">שומר %1$d צרופות באחסון...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">ממתין...</string>
+    <string name="ConversationFragment_push">נתונים (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">מסרון</string>
+    <string name="ConversationFragment_deleting">מוחק</string>
+    <string name="ConversationFragment_deleting_messages">מוחק הודעות...</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">הודעה מקורית כבר אינה זמינה</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">תצלום פרופיל</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">משתמש בהגדרה מותאמת אישית: %s</string>
+    <string name="CustomDefaultPreference_using_default">משתמש בברירת מחדל: %s</string>
+    <string name="CustomDefaultPreference_none">אין</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">עכשיו</string>
+    <string name="DateUtils_minutes_ago">%d דק׳</string>
+    <string name="DateUtils_today">היום</string>
+    <string name="DateUtils_yesterday">אתמול</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">היום</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">קובץ לא ידוע</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">שגיאה בעת אחזור קובץ GIF ברזולוציה מלאה</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">קבצי GIF</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">מדבקות</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">יצגן</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">הקש והחזק כדי להקליט הודעה קולית, שחרר כדי לשלוח</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">לא היה ניתן למצוא הודעה</string>
+    <string name="LongMessageActivity_message_from_s">הודעה מאת %1$s</string>
+    <string name="LongMessageActivity_your_message">ההודעה שלך</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">מדיה</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">למחוק הודעה נבחרת?</item>
+        <item quantity="two">למחוק הודעות נבחרות?</item>
+        <item quantity="many">למחוק הודעות נבחרות?</item>
+        <item quantity="other">למחוק הודעות נבחרות?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">זה ימחק לצמיתות את ההודעה הנבחרת.</item>
+        <item quantity="two">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
+        <item quantity="many">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
+        <item quantity="other">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות...</string>
+    <string name="MediaOverviewActivity_Documents">מסמכים</string>
+    <string name="MediaOverviewActivity_Select_all">בחר הכל</string>
+    <string name="MediaOverviewActivity_collecting_attachments">אוסף צרופות...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">הודעת מולטימדיה</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">מוריד הודעת MMS</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">שגיאה בהורדת הודעת MMS, הקש כדי לנסות שוב</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">שלח אל %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">הוסף כיתוב...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">פריט נמחק מאחר שהוא חרג ממגבלת הגודל</string>
+    <string name="MediaSendActivity_camera_unavailable">מצלמה אינה זמינה.</string>
+    <string name="MediaSendActivity_message_to_s">שלח הודעה אל %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">אינך יכול לשתף יותר מפריט %d.</item>
+        <item quantity="two">אינך יכול לשתף יותר מ־%d פריטים.</item>
+        <item quantity="many">אינך יכול לשתף יותר מ־%d פריטים.</item>
+        <item quantity="other">אינך יכול לשתף יותר מ־%d פריטים.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">כל המדיה</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">התקבלה הודעה מוצפנת ע\"י שימוש בגרסה ישנה של Session שאינה נתמכת יותר. אנא בקש מהשולח לעדכן אל הגרסה העדכנית ביותר ולשלוח מחדש את ההודעה.</string>
+    <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
+    <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
+    <string name="MessageRecord_s_updated_group">%s עדכן את הקבוצה</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">הודעות נעלמות</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">ההודעות שלך לא יפוגו.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">הודעות שנשלחות ומתקבלות בשיחה זו ייעלמו %s אחרי שייראו.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">הכנס משפט־סיסמה</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">לחסום איש קשר זה?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">לא תקבל יותר הודעות ושיחות מאיש קשר זה.</string>
+    <string name="RecipientPreferenceActivity_block">חסום</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">לבטל חסימה של איש קשר זה?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">תוכל שוב לקבל הודעות ושיחות מאיש קשר זה.</string>
+    <string name="RecipientPreferenceActivity_unblock">בטל חסימה</string>
+    <!-- Slide -->
+    <string name="Slide_image">תמונה</string>
+    <string name="Slide_audio">שמע</string>
+    <string name="Slide_video">וידיאו</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">התקבל מפתח פגום
+החלף הודעה!</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">התקבלה הודעת החלפת מפתח עבור גרסת פרוטוקול בלתי־תקפה.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">התקבלה הודעה עם מספר ביטחון חדש. הקש כדי לעבד ולהציג.</string>
+    <string name="SmsMessageRecord_secure_session_reset">איפסת את השיח המאובטח.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">ההתחברות המאובטחת אותחלה על־ידי %s.</string>
+    <string name="SmsMessageRecord_duplicate_message">הודעה כפולה.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">הקבוצה עודכנה</string>
+    <string name="ThreadRecord_left_the_group">עזב את הקבוצה</string>
+    <string name="ThreadRecord_secure_session_reset">שיח מאובטח אופס.</string>
+    <string name="ThreadRecord_draft">טיוטה:</string>
+    <string name="ThreadRecord_called">התקשרת</string>
+    <string name="ThreadRecord_called_you">התקשר אליך</string>
+    <string name="ThreadRecord_missed_call">שיחה שלא נענתה</string>
+    <string name="ThreadRecord_media_message">הודעת מדיה</string>
+    <string name="ThreadRecord_s_is_on_signal">%s משתמש ב-Session!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_safety_number_changed">מספר ביטחון השתנה</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %s השתנה.</string>
+    <string name="ThreadRecord_you_marked_verified">סימנת כמוודא</string>
+    <string name="ThreadRecord_you_marked_unverified">סימנת כבלתי מוודא</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">עדכון Session</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Session זמינה, הקש כדי לעדכן</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת באופן גרוע</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">הודעה הוצפנה עבור שיח בלתי־קיים</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת באופן גרוע</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">הודעת MMS הוצפנה עבור שיח בלתי־קיים</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">השתק התראות</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">גע כדי לפתוח.</string>
+    <string name="KeyCachingService_passphrase_cached">Session אינו נעול</string>
+    <string name="KeyCachingService_lock">נעל את Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">אתה</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה בלתי נתמך</string>
+    <string name="MediaPreviewActivity_draft">טיוטה</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session צריך את הרשאת האחסון על מנת לשמור באחסון חיצוני, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">לא היה ניתן לשמור באחסון חיצוני ללא הרשאות</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">למחוק הודעה?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">זה ימחק לצמיתות הודעה זו.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d הודעות חדשות ב־%2$d שיחות</string>
+    <string name="MessageNotifier_most_recent_from_s">האחרון מאת: %1$s</string>
+    <string name="MessageNotifier_locked_message">הודעה נעולה</string>
+    <string name="MessageNotifier_message_delivery_failed">מסירת ההודעה נכשלה.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">נכשל למסור הודעה.</string>
+    <string name="MessageNotifier_error_delivering_message">שגיאה במסירת הודעה.</string>
+    <string name="MessageNotifier_mark_all_as_read">סמן שהכל נקרא</string>
+    <string name="MessageNotifier_mark_read">סמן כנקרא</string>
+    <string name="MessageNotifier_reply">השב</string>
+    <string name="MessageNotifier_pending_signal_messages">הודעות Session ממתינות</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">יש לך הודעות Session ממתינות, הקש כדי לפתוח ולאחזר אותן</string>
+    <string name="MessageNotifier_contact_message">%1$s%2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">ברירת מחדל</string>
+    <string name="NotificationChannel_calls">שיחות</string>
+    <string name="NotificationChannel_failures">כישלונות</string>
+    <string name="NotificationChannel_backups">גיבויים</string>
+    <string name="NotificationChannel_locked_status">מעמד נעילה</string>
+    <string name="NotificationChannel_app_updates">עדכוני יישום</string>
+    <string name="NotificationChannel_other">אחר</string>
+    <string name="NotificationChannel_group_messages">הודעות</string>
+    <string name="NotificationChannel_missing_display_name">לא ידוע</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Session נעול!</string>
+    <string name="QuickResponseService_problem_sending_message">בעיה בשליחת הודעה!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">נשמר ב־%s</string>
+    <string name="SaveAttachmentTask_saved">נשמר</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">חפש</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">קיצור דרך בלתי תקף</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">פריט %d</item>
+        <item quantity="two">%d פריטים</item>
+        <item quantity="many">%d פריטים</item>
+        <item quantity="other">%d פריטים</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">שגיאה בניגון וידיאו</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">שמע</string>
+    <string name="attachment_type_selector__audio_description">שמע</string>
+    <string name="attachment_type_selector__contact">איש קשר</string>
+    <string name="attachment_type_selector__contact_description">איש קשר</string>
+    <string name="attachment_type_selector__camera">מצלמה</string>
+    <string name="attachment_type_selector__camera_description">מצלמה</string>
+    <string name="attachment_type_selector__location">מיקום</string>
+    <string name="attachment_type_selector__location_description">מיקום</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">תמונה או וידיאו</string>
+    <string name="attachment_type_selector__file_description">קובץ</string>
+    <string name="attachment_type_selector__gallery">גלריה</string>
+    <string name="attachment_type_selector__file">קובץ</string>
+    <string name="attachment_type_selector__drawer_description">עורר מגירת צרופות</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">טוען אנשי קשר...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">שלח</string>
+    <string name="conversation_activity__compose_description">חיבור הודעה</string>
+    <string name="conversation_activity__emoji_toggle_description">עורר מקלדת אימוג\'י</string>
+    <string name="conversation_activity__attachment_thumbnail">תמונה ממוזערת של צרופה</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">עורר מגירת צרופות מהירות של מצלמה</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">הקלט ושלח צרופת שמע</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">נעל הקלטת שמע</string>
+    <string name="conversation_activity__enable_signal_for_sms">אפשר את Session עבור מסרונים</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">החלק כדי לבטל</string>
+    <string name="conversation_input_panel__cancel">בטל</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">הודעת מדיה</string>
+    <string name="conversation_item__secure_message_description">הודעה מאובטחת</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">השליחה נכשלה</string>
+    <string name="conversation_item_sent__pending_approval_description">ממתין לאישור</string>
+    <string name="conversation_item_sent__delivered_description">נמסר</string>
+    <string name="conversation_item_sent__message_read">הודעה נקראה</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">תצלום איש קשר</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">נגן</string>
+    <string name="audio_view__pause_accessibility_description">השהה</string>
+    <string name="audio_view__download_accessibility_description">הורד</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">שמע</string>
+    <string name="QuoteView_video">וידיאו</string>
+    <string name="QuoteView_photo">תצלום</string>
+    <string name="QuoteView_you">אתה</string>
+    <string name="QuoteView_original_missing">הודעה מקורית לא נמצאה</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">חיפוש קבצי GIF ומדבקות</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">לא נמצא דבר</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">ראה שיחה מלאה</string>
+    <string name="load_more_header__loading">טוען</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">אין מדיה</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">שלח מחדש</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">חסום</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">מספר סוגיות דורשות את תשומת לבך.</string>
+    <string name="message_details_header__sent">נשלח</string>
+    <string name="message_details_header__received">התקבל</string>
+    <string name="message_details_header__disappears">נעלם</string>
+    <string name="message_details_header__via">דרך</string>
+    <string name="message_details_header__to">אל:</string>
+    <string name="message_details_header__from">מאת:</string>
+    <string name="message_details_header__with">עם:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">צור משפט סיסמה</string>
+    <string name="AndroidManifest__select_contacts">בחר אנשי קשר</string>
+    <string name="AndroidManifest__media_preview">קדם־תצוגה של מדיה</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">השתמש בברירת מחדל</string>
+    <string name="arrays__use_custom">השתמש במותאם אישית</string>
+    <string name="arrays__mute_for_one_hour">השתק למשך שעה</string>
+    <string name="arrays__mute_for_two_hours">השתק למשך שעתיים</string>
+    <string name="arrays__mute_for_one_day">השתק למשך יום 1</string>
+    <string name="arrays__mute_for_seven_days">השתק למשך 7 ימים</string>
+    <string name="arrays__mute_for_one_year">השתק למשך שנה</string>
+    <string name="arrays__settings_default">הגדרות ברירת מחדל</string>
+    <string name="arrays__enabled">מאופשר</string>
+    <string name="arrays__disabled">מושבת</string>
+    <string name="arrays__name_and_message">שם והודעה</string>
+    <string name="arrays__name_only">שם בלבד</string>
+    <string name="arrays__no_name_or_message">ללא שם או הודעה</string>
+    <string name="arrays__images">תמונות</string>
+    <string name="arrays__audio">שמע</string>
+    <string name="arrays__video">וידיאו</string>
+    <string name="arrays__documents">מסמכים</string>
+    <string name="arrays__small">קטן</string>
+    <string name="arrays__normal">רגיל</string>
+    <string name="arrays__large">גדול</string>
+    <string name="arrays__extra_large">גדול מאוד</string>
+    <string name="arrays__default">ברירת מחדל</string>
+    <string name="arrays__high">גבוה</string>
+    <string name="arrays__max">מרבי</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">שעה %d</item>
+        <item quantity="two">%d שעות</item>
+        <item quantity="many">%d שעות</item>
+        <item quantity="other">%d שעות</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
+    <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string>
+    <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Pinterest, Reddit ו־YouTube</string>
+    <string name="preferences__screen_security">אבטחת מסך</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">חסום צילומי מסך ברשימות האחרונים ובתוך היישום</string>
+    <string name="preferences__notifications">התראות</string>
+    <string name="preferences__led_color">צבע LED</string>
+    <string name="preferences__led_color_unknown">לא ידוע</string>
+    <string name="preferences__pref_led_blink_title">תבנית הבהוב LED</string>
+    <string name="preferences__sound">קול</string>
+    <string name="preferences__silent">שקט</string>
+    <string name="preferences__repeat_alerts">התראות חוזרות</string>
+    <string name="preferences__never">לעולם לא</string>
+    <string name="preferences__one_time">פעם אחת</string>
+    <string name="preferences__two_times">פעמיים</string>
+    <string name="preferences__three_times">שלוש פעמים</string>
+    <string name="preferences__five_times">חמש פעמים</string>
+    <string name="preferences__ten_times">עשר פעמים</string>
+    <string name="preferences__vibrate">רטט</string>
+    <string name="preferences__green">ירוק</string>
+    <string name="preferences__red">אדום</string>
+    <string name="preferences__blue">כחול</string>
+    <string name="preferences__orange">כתום</string>
+    <string name="preferences__cyan">כחול־ירקרק</string>
+    <string name="preferences__magenta">אדום מגנטה</string>
+    <string name="preferences__white">לבן</string>
+    <string name="preferences__none">ללא</string>
+    <string name="preferences__fast">מהיר</string>
+    <string name="preferences__normal">רגיל</string>
+    <string name="preferences__slow">איטי</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">מחק באופן אוטומטי הודעות ישנות יותר ברגע ששיחה חורגת מאורך שצוין</string>
+    <string name="preferences__delete_old_messages">מחק הודעות ישנות</string>
+    <string name="preferences__conversation_length_limit">הגבלת אורך שיחה</string>
+    <string name="preferences__trim_all_conversations_now">קצץ את כל השיחות כעת</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">סרוק את כל השיחות ואכוף מגבלות אורך שיחה</string>
+    <string name="preferences__default">ברירת מחדל</string>
+    <string name="preferences__incognito_keyboard">מקלדת סמויה</string>
+    <string name="preferences__read_receipts">אישורי קריאה</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
+    <string name="preferences__typing_indicators">מחווני הקלדה</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית</string>
+    <string name="preferences__light_theme">בהירה</string>
+    <string name="preferences__dark_theme">חשוכה</string>
+    <string name="preferences_chats__message_trimming">קיצוץ הודעה</string>
+    <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Session</string>
+    <string name="preferences_app_protection__app_access">גישת יישום</string>
+    <string name="preferences_app_protection__communication">תקשורת</string>
+    <string name="preferences_chats__chats">התכתבויות</string>
+    <string name="preferences_notifications__messages">הודעות</string>
+    <string name="preferences_notifications__in_chat_sounds">צלילים בתוך התכתבויות</string>
+    <string name="preferences_notifications__show">הראה</string>
+    <string name="preferences_notifications__priority">עדיפות</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">הודעה חדשה אל...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">פרטי הודעה</string>
+    <string name="conversation_context__menu_copy_text">העתק טקסט</string>
+    <string name="conversation_context__menu_delete_message">מחק הודעה</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
+    <string name="conversation_context__menu_reply_to_message">הגב אל הודעה</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">שמור צרופה</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">הודעות נעלמות</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">תפוגת הודעות</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">בטל השתקה</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">השתק התראות</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">ערוך קבוצה</string>
+    <string name="conversation__menu_leave_group">עזוב קבוצה</string>
+    <string name="conversation__menu_view_all_media">כל המדיה</string>
+    <string name="conversation__menu_add_shortcut">הוסף אל מסך הבית</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">הרחב חלון קופץ</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">מסירה</string>
+    <string name="conversation_group_options__conversation">שיחה</string>
+    <string name="conversation_group_options__broadcast">שידור</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">שמור</string>
+    <string name="media_preview__forward_title">העבר הלאה</string>
+    <string name="media_preview__all_media_title">כל המדיה</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">אין מסמכים</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">קדם־תצוגה של מדיה</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">מוחק</string>
+    <string name="trimmer__deleting_old_messages">מוחק הודעות ישנות...</string>
+    <string name="trimmer__old_messages_successfully_deleted">הודעות ישנות נמחקו בהצלחה</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">דרושה הרשאה</string>
+    <string name="Permissions_continue">המשך</string>
+    <string name="Permissions_not_now">לא עכשיו</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">גיבויים יישמרו בהתקן חיצוני ויוצפנו עם משפט־הסיסמה למטה. חייב להיות לך משפט־סיסמה זה על מנת לשחזר גיבוי.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
+    <string name="registration_activity__skip">דלג</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">לא ניתן לייבא גיבויים מגרסאות חדשות יותר של Session</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">משפט־סיסמה שגוי של גיבוי</string>
+    <string name="BackupDialog_enable_local_backups">לאפשר גיבויים מקומיים?</string>
+    <string name="BackupDialog_enable_backups">אפשר גיבויים</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">אנא הכר בהבנתך ע\"י סימון תיבת האישור.</string>
+    <string name="BackupDialog_delete_backups">למחוק גיבויים?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">להשבית ולמחוק את כל הגיבויים המקומיים?</string>
+    <string name="BackupDialog_delete_backups_statement">מחק גיבויים</string>
+    <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
+    <string name="LocalBackupJob_creating_backup">יוצר גיבוי...</string>
+    <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
+    <string name="BackupUtil_never">לעולם לא</string>
+    <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">נעל גישה אל Session עם נעילת מסך אנדרואיד או טביעת אצבע</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">אי־פעילות נעילת מסך</string>
+    <string name="AppProtectionPreferenceFragment_none">ללא</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <!-- Session -->
+    <string name="continue_2">Continue</string>
+    <string name="copy">Copy</string>
+    <string name="invalid_url">Invalid URL</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="next">Next</string>
+    <string name="share">Share</string>
+    <string name="invalid_session_id">Invalid Session ID</string>
+    <string name="cancel">Cancel</string>
+    <string name="your_session_id">Your Session ID</string>
+    <string name="activity_landing_title_2">Your Session begins here...</string>
+    <string name="activity_landing_register_button_title">Create Session ID</string>
+    <string name="activity_landing_restore_button_title">Continue Your Session</string>
+    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
+    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
+    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
+    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
+    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
+    <string name="activity_register_title">Say hello to your Session ID</string>
+    <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
+    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
+    <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
+    <string name="activity_display_name_title_2">Pick your display name</string>
+    <string name="activity_display_name_explanation">This will be your name when you use Session. It can be your real name, an alias, or anything else you like.</string>
+    <string name="activity_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+    <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_home_empty_state_button_title">Start a Session</string>
+    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_leaving_group_failed_message">"Couldn't leave group"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
+    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
+    <string name="activity_seed_title">Your Recovery Phrase</string>
+    <string name="activity_seed_title_2">Meet your recovery phrase</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
+    <string name="activity_seed_reveal_button_title">Hold to reveal</string>
+    <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
+    <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
+    <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+    <string name="activity_path_title">Path</string>
+    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the countries your connection is currently being bounced through:</string>
+    <string name="activity_path_device_row_title">You</string>
+    <string name="activity_path_guard_node_row_title">Entry Node</string>
+    <string name="activity_path_service_node_row_title">Service Node</string>
+    <string name="activity_path_destination_row_title">Destination</string>
+    <string name="activity_path_learn_more_button_title">Learn More</string>
+    <string name="activity_create_private_chat_title">New Session</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping \"Share Session ID\", or by sharing their QR code.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
+    <string name="activity_create_closed_group_title">New Closed Group</string>
+    <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
+    <string name="activity_create_closed_group_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Start a Session</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Please enter a group name</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_join_public_chat_title">Join Open Group</string>
+    <string name="activity_join_public_chat_error">Couldn\'t join group</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
+    <string name="activity_settings_title">Settings</string>
+    <string name="activity_settings_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_settings_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_settings_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_settings_privacy_button_title">Privacy</string>
+    <string name="activity_settings_notifications_button_title">Notifications</string>
+    <string name="activity_settings_chats_button_title">Chats</string>
+    <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
+    <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_notification_settings_title">Notifications</string>
+    <string name="activity_notification_settings_style_section_title">Notification Style</string>
+    <string name="activity_notification_settings_content_section_title">Notification Content</string>
+    <string name="activity_privacy_settings_title">Privacy</string>
+    <string name="activity_chat_settings_title">Chats</string>
+    <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
+    <string name="dialog_seed_title">Your Recovery Phrase</string>
+    <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
+    <string name="dialog_clear_all_data_title">Clear All Data</string>
+    <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
+    <string name="activity_qr_code_title">QR Code</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Scan someone\'s QR code to start a conversation with them</string>
+    <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
+    <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="activity_select_contacts_title">Select Contacts</string>
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+</resources>

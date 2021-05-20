@@ -6,7 +6,7 @@ import android.os.Build
 import android.preference.PreferenceManager
 import android.preference.PreferenceManager.getDefaultSharedPreferencesName
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_BOOLEAN
 import org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_INT
 import java.util.*

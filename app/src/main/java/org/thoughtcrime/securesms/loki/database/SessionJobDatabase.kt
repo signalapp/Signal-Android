@@ -5,7 +5,7 @@ import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.utilities.Data
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer
@@ -68,6 +68,30 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val database = databaseHelper.readableDatabase
         return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf( messageSendJobID, MessageSendJob.KEY )) { cursor ->
             jobFromCursor(cursor) as MessageSendJob?
+        }
+    }
+
+    fun cancelPendingMessageSendJobs(threadID: Long) {
+        val database = databaseHelper.writableDatabase
+        val attachmentUploadJobKeys = mutableListOf<String>()
+        database.getAll(sessionJobTable, "$jobType = ?", arrayOf( AttachmentUploadJob.KEY )) { cursor ->
+            val job = jobFromCursor(cursor) as AttachmentUploadJob?
+            if (job != null && job.threadID == threadID.toString()) { attachmentUploadJobKeys.add(job.id!!) }
+        }
+        val messageSendJobKeys = mutableListOf<String>()
+        database.getAll(sessionJobTable, "$jobType = ?", arrayOf( MessageSendJob.KEY )) { cursor ->
+            val job = jobFromCursor(cursor) as MessageSendJob?
+            if (job != null && job.message.threadID == threadID) { messageSendJobKeys.add(job.id!!) }
+        }
+        if (attachmentUploadJobKeys.isNotEmpty()) {
+            val attachmentUploadJobKeysAsString = attachmentUploadJobKeys.joinToString(", ")
+            database.delete(sessionJobTable, "${Companion.jobType} = ? AND ${Companion.jobID} IN (?)",
+                arrayOf( AttachmentUploadJob.KEY, attachmentUploadJobKeysAsString ))
+        }
+        if (messageSendJobKeys.isNotEmpty()) {
+            val messageSendJobKeysAsString = messageSendJobKeys.joinToString(", ")
+            database.delete(sessionJobTable, "${Companion.jobType} = ? AND ${Companion.jobID} IN (?)",
+                arrayOf( MessageSendJob.KEY, messageSendJobKeysAsString ))
         }
     }
 

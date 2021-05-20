@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;

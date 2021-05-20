@@ -1,6 +1,6 @@
 package org.session.libsession.snode
 
-import org.session.libsignal.service.loki.Snode
+import org.session.libsignal.utilities.Snode
 
 interface SnodeStorageProtocol {
 

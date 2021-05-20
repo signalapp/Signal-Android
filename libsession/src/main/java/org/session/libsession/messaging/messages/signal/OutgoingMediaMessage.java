@@ -4,14 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.database.documents.IdentityKeyMismatch;
-import org.session.libsession.database.documents.NetworkFailure;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.NetworkFailure;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.utilities.Contact;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.Collections;
 import java.util.LinkedList;

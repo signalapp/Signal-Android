@@ -4,12 +4,12 @@ package org.thoughtcrime.securesms.database.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.utilities.Contact;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
-import org.session.libsession.database.documents.IdentityKeyMismatch;
-import org.session.libsession.database.documents.NetworkFailure;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.NetworkFailure;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 

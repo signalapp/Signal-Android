@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">Erê</string>
+    <string name="no">Na</string>
+    <string name="delete">Jê bibe</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">Ji kerema xwe bisekine...</string>
+    <string name="save">Tomar bike</string>
+    <string name="note_to_self">Bo min Nîşe</string>
+    <string name="version_s">Version %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Peyama nû</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">%d+\</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">Serê gotûbêjê %d peyam</item>
+        <item quantity="other">Serê gotûbêjê %d peyam </item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Bila hemû peyamên kevn niha jê biçe?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Ev ê niha hemû gotûbêjan biqusîne û wê tenê peyama herî nû bimîne.</item>
+        <item quantity="other">Ev ê niha hemû gotûbêjan biqusîne û wê tenê %d peyamên herî nû bimînin.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Jê bibe</string>
+    <string name="ApplicationPreferencesActivity_On">Vekirî</string>
+    <string name="ApplicationPreferencesActivity_Off">Girtî</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(wêne)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(deng)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(vîdyo)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(bersiv)</string>
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Sepana ji bo bijartina medyayê nehate dîtin.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Ji bo zêdekirina wêne, vidyo yan deng, Session destûra Bîrbarê pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrbar\"ê çalak bike.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Ji bo tevllîkirina agahiyên berdenga Session destûra Navnivîskê pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Navnivîsk\"ê çalak bike.</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Ji bo kişandina wêneyan Session destûra Kamera pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Di lêdana deng de çewtî rû da!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Îro</string>
+    <string name="BucketedThreadMedia_Yesterday">Doh</string>
+    <string name="BucketedThreadMedia_This_week">Ev hefte</string>
+    <string name="BucketedThreadMedia_This_month">Ev meh</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Web gerok nehate dîtin.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Kom</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Şandin têk çû, ji bo hûrgiliyên bêhtir, bitepîne</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Peyama veguhastina kilîdê hate stendin, ji bo pêvajoyê bitepîne.</string>
+    <string name="ConversationItem_group_action_left">%1$s ji komê veqetiya.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
+    <string name="ConversationItem_unable_to_open_media">Sepena vê medyayê veke nehat dîtin.</string>
+    <string name="ConversationItem_copied_text">%s ji ber girtî</string>
+    <string name="ConversationItem_read_more">Bêhtir Bixwîne  </string>
+    <string name="ConversationItem_download_more">Bêhtir Daxîne  </string>
+    <string name="ConversationItem_pending">  Hilawîstiye</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Servehî lê zede bike</string>
+    <string name="ConversationActivity_select_contact_info">Agahiya têkiliyê bibijêre</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Bibore, di sazkirina servehiyê de çewtiyek rû da.</string>
+    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_invalid_recipient">Stînerê nederbasdar!</string>
+    <string name="ConversationActivity_added_to_home_screen">Tevlî ekrana destpêkê bû</string>
+    <string name="ConversationActivity_leave_group">Ji komê derkeve?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bi rastî jî tu dixwaze ji vê komê derkeve?</string>
+    <string name="ConversationActivity_error_leaving_group">Ji komê derketin pêk nehat</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Bila astengkirina vî berdengî rabe?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu careke din dîsa dikare ji vî berdengî bang û peyam bistîne.</string>
+    <string name="ConversationActivity_unblock">Astengê rake</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Servehî li gor şandina cûreya peyamê sînorên mezinahiyê derbas dike.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Deng nayê tomarkirin!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ti sepana ku karibe vê girêdanê di amûra we de veke nîn e.</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Ji bo şandina peyamên dengî, destûra gihana Sessionê bide mîkrofona xwe.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session ji bo şandina peyamên dengî destûra Mîkrofonê pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe sazkariyên sepanê \"Destûr\"ê bibijêre û \"Mîkrofon\"ê çalak bike.</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ji bo kişandina vîdyo û wêneyan destura gihana Sessionê bide kamera.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Ji bo kişandina vîdyo an jî wêneyan Session destûra kamera pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Ji bo kişandina vîdyo an jî wêneyan pêdiviya Sessionê bi destûra kamera heye</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+    <string name="ConversationActivity_search_position">%1$d ji %2$d</string>
+    <string name="ConversationActivity_no_results">Encam nîn e</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d peyama nexwendî</item>
+        <item quantity="other">%d peyamên nexwendî</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Bila peyama bijartî were rakirin?</item>
+        <item quantity="other">Bila peyamên bijartî were jêbirin?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Ev, wê peyama bijartî bi awayekî mayinde jê bibe.</item>
+        <item quantity="other">Ev, wê %1$d peyamên bijartî teva bi awayekî mayinde jê bibe.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_save_to_sd_card">Bila li bîrbarê were tomarkirin?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Tu medyayê li bîrbarê tomar bike wê sepanên din yê di amûra we de jî destûra gihînê bide vê.\n\n Tê bidomîne?</item>
+        <item quantity="other">Tu %1$d medyayan teva li bîrbarê tomar bike wê sepanên din yê di amûra we de jî destûra gihînê bidin vê.\n\n Tê bidomîne?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Dema servehî li bîrbarê dihat tomarkirin çewtî rû da!</item>
+        <item quantity="other">Di tomarkirina servehiyan bo bîrbarê çewtî pêk hat!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Servehî tê tomarkirin</item>
+        <item quantity="other">%1$d servehî tên tomarkirin</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Servehî li bîrbarê tê tomarkirin...</item>
+        <item quantity="other">%1$d servehî li bîrbarê tê tomarkirin...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Hilawîstiye...</string>
+    <string name="ConversationFragment_push">Dane (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Tê jêbirin</string>
+    <string name="ConversationFragment_deleting_messages">Peyam tên jêbirin...</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Peyama resen nehate dîtin</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Peyama resen êdî ne li berdest e</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Peyama guherandina kilîdê</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Wêneyê profîlê</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Bikaranîna kesanekirî: %s</string>
+    <string name="CustomDefaultPreference_using_default">Bikaranîna jixweberî: %s</string>
+    <string name="CustomDefaultPreference_none">Hîç</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Niha</string>
+    <string name="DateUtils_minutes_ago">%d xulek</string>
+    <string name="DateUtils_today">Îro</string>
+    <string name="DateUtils_yesterday">Doh</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Îro</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Pelgeya nenas</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Dema GIF a bi averûtiya bilind dihat wergirtin çewtî pêk hat.</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Photo</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ji bo peyamek dengî tomar bikî bitepîne û tiliya xwe li ser bihêle, paşê ji bo şandinê berde</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Peyam nehate dîtin</string>
+    <string name="LongMessageActivity_message_from_s">Ji %1$s peyam</string>
+    <string name="LongMessageActivity_your_message">Peyama te</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Medya</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Peyama bijartî rakin?</item>
+        <item quantity="other">Peyamên bijartî jê bibin?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Dê vê peyama bijartî were jêbirin.</item>
+        <item quantity="other">Dê bi vê rêyê hemû %1$d peyamên bijartî ji binî bên jêbirin.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Jêbirin</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Peyam tên jêbirin...</string>
+    <string name="MediaOverviewActivity_Documents">Pelge</string>
+    <string name="MediaOverviewActivity_Select_all">Gişan bibijêre</string>
+    <string name="MediaOverviewActivity_collecting_attachments">...Servehî tên berhevkirin</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Peyama multîmedyayê</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Peyama MMS tê daxistin</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Peyama MMSê nehate daxistin, ji bo dîsa hewldanê bitepîne</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Ji %s re bişîne</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Binnivîs zêdebikin</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Tiştek hat rakirin ji ber ku zêde mezin bû</string>
+    <string name="MediaSendActivity_camera_unavailable">Kamera nayê bikar anîn.</string>
+    <string name="MediaSendActivity_message_to_s">Peyam ji bo %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">You can\'t share more than %d item.</item>
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Hemû medya</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Peyamek ku bi guhertoyek bêkêr ya Signalê hatiye şifrekirin hate wergirtin. Ji şandiyarî re bêje bila Sessionê hildemîne û peyamê dîsa bişîne.</string>
+    <string name="MessageRecord_left_group">Tu ji komê terketî</string>
+    <string name="MessageRecord_you_updated_group">Te komê hildemand.</string>
+    <string name="MessageRecord_s_updated_group">%s komê hildemand.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Peyam tên nexuya kirin</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Dê peyamên te wenda nebin.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Peyamên ku di vê gotûbêjê de hatine şandin û wergiritn dê %s piştî hatin dîtin tune bibin.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Borînbiwêjê têkeve</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Vî berdengî asteng bikin?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ji vî berdengî dê êdî peyam û bang neyên wergirtin.</string>
+    <string name="RecipientPreferenceActivity_block">Astengkirin</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Astenga vî berdengî rake?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Tu yê dîsa bikaribî ji vî berdengî peyam û bangan wer bigrî.</string>
+    <string name="RecipientPreferenceActivity_unblock">Astengê rakirin</string>
+    <!-- Slide -->
+    <string name="Slide_image">Wêne</string>
+    <string name="Slide_audio">Deng</string>
+    <string name="Slide_video">Vîdyo</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Peyama veguhastina
+        mifteyê xirabe hat!
+    </string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        Peyama veguhastina kilît ji bo versiyona protokola netêw hat.
+    </string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Bii hejmara ewlehiyê ya nû peyam hat. Ji bo vekirin û nîşandanê bitepîne.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Te danişîna parastî nûsazand.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s danişîna parastî nûsazand.</string>
+    <string name="SmsMessageRecord_duplicate_message">Peyamê dubare bike.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Kom hat hildemandin</string>
+    <string name="ThreadRecord_left_the_group">Ji komê derket</string>
+    <string name="ThreadRecord_secure_session_reset">Danişîna parastî nûsazîne.</string>
+    <string name="ThreadRecord_draft">Reşnivîs:</string>
+    <string name="ThreadRecord_called">Te bang kir</string>
+    <string name="ThreadRecord_called_you">Bang li te kir</string>
+    <string name="ThreadRecord_missed_call">Banga bêbersiv</string>
+    <string name="ThreadRecord_media_message">Peyama medyayê</string>
+    <string name="ThreadRecord_s_is_on_signal">%s beşdarî Sessionê bûye!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Peyamên wenda dibin ne çalak e</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Dema wendabûna peyaman %s e</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_safety_number_changed">Hejmara ewlehiyê hat guhertin</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Hejmara te ya ewlehiyê bi %s re hate guhertin.</string>
+    <string name="ThreadRecord_you_marked_verified">Te wekî rastandî nîşan kir</string>
+    <string name="ThreadRecord_you_marked_unverified">Te wekî nerastandî nîşan kir</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Hildema Sessionê</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Guhertoyeke nû ya Sessionê amade ye, ji bo hildemandinê bitepîne. </string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Peyama xirab şîfrekirî</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Peyam ji bo danişîna tuneyî hat şîfrekirin</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Peyama MMSê ya xirab şîfrekirî</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Peyama MMSê ji bo danişîna tuneyî hat şîfrekirin</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Agahdariyan bêdeng bike</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Ji bo vekirinê bitepîne.</string>
+    <string name="KeyCachingService_passphrase_cached">Session vekirî ye</string>
+    <string name="KeyCachingService_lock">Sessionê kilîd bike</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Tu</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Cureyê medyayê ya nepesartî</string>
+    <string name="MediaPreviewActivity_draft">Reşnivîs</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session pêdivî destûrê ye ku li bîrbara derveyî tomar bike. Lê ev mayinde hatiye redkirî. Ji kerema xwe ji \'Sazkarî\' &gt; \'Destûr\' &gt; \'Bîrbar\' destûr bide.</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Bê destûr nabe ku li bîrbara derveyî tomar bibe</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Peyamê jê bibe?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Ev dê bi temamî vê peyamê jê bibe.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d peyamên nû di %2$d axaftin de hene</string>
+    <string name="MessageNotifier_most_recent_from_s">Peyama nûtirîn ji: %1$s</string>
+    <string name="MessageNotifier_locked_message">Peyam kilîdkîrî ye</string>
+    <string name="MessageNotifier_message_delivery_failed">Peyam nagihişt.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Gihandina peyamê pêk nehat.</string>
+    <string name="MessageNotifier_error_delivering_message">Çewtiya gihandina peyamê.</string>
+    <string name="MessageNotifier_mark_all_as_read">Hemûyan xwendî nîşan bike</string>
+    <string name="MessageNotifier_mark_read">Xwendî nîşan bike</string>
+    <string name="MessageNotifier_reply">Bersiv bide</string>
+    <string name="MessageNotifier_pending_signal_messages">Peyamên hilawistî yên Sessionê </string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Peyamên hilawistî yên Sessionê hene, ji bo vekî û werbigirî bitepîne</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Berdeng</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Jixweber</string>
+    <string name="NotificationChannel_calls">Gazî</string>
+    <string name="NotificationChannel_failures">Çewtî</string>
+    <string name="NotificationChannel_backups">Paşkeft</string>
+    <string name="NotificationChannel_locked_status">Rewşa kilîdê</string>
+    <string name="NotificationChannel_app_updates">Hildemên sepanê</string>
+    <string name="NotificationChannel_other">Din</string>
+    <string name="NotificationChannel_group_messages">Peyam</string>
+    <string name="NotificationChannel_missing_display_name">Nenas</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Dema Session kilîdkirî be zû bersiv nabe!</string>
+    <string name="QuickResponseService_problem_sending_message">Pirsgirêka şandina peyamê!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Li %s hat tomarkirin</string>
+    <string name="SaveAttachmentTask_saved">Hate tomarkirin</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Lê bigere</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Kurterêya nederbasdar</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Peyama nû</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%dhêman</item>
+        <item quantity="other">%dhêman</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Çewtiya lêdana vîdyoyê</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Deng</string>
+    <string name="attachment_type_selector__audio_description">Deng</string>
+    <string name="attachment_type_selector__contact">Berdeng</string>
+    <string name="attachment_type_selector__contact_description">Berdeng</string>
+    <string name="attachment_type_selector__camera">Kamera</string>
+    <string name="attachment_type_selector__camera_description">Kamera</string>
+    <string name="attachment_type_selector__location">Cih</string>
+    <string name="attachment_type_selector__location_description">Cih</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Wêne yan vidyo</string>
+    <string name="attachment_type_selector__file_description">Pelge</string>
+    <string name="attachment_type_selector__gallery">Pêşangeh</string>
+    <string name="attachment_type_selector__file">Pelge</string>
+    <string name="attachment_type_selector__drawer_description">Çaviya servehiya din bijerînin</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Berdeng tên barkirin...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Bişîne</string>
+    <string name="conversation_activity__compose_description">Peyam binivîse</string>
+    <string name="conversation_activity__emoji_toggle_description">Textekilîlê emojî yê din bijerînin</string>
+    <string name="conversation_activity__attachment_thumbnail">Wênoka Servehiyê</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Bijertina attachment drawer a kamera ya din</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Servehîya deng tomar bike û bişîne</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
+    <string name="conversation_activity__enable_signal_for_sms">Ji bo SMS Sessionê çalak bike</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Slide to cancel</string>
+    <string name="conversation_input_panel__cancel">Betal</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Peyama medya</string>
+    <string name="conversation_item__secure_message_description">Peyama parastî</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Şandin serneket</string>
+    <string name="conversation_item_sent__pending_approval_description">Pejirandina hilawistî </string>
+    <string name="conversation_item_sent__delivered_description">Hat gihandin</string>
+    <string name="conversation_item_sent__message_read">Peyam hat xwendin</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Wêneyê berdengî</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Lêxe</string>
+    <string name="audio_view__pause_accessibility_description">Rawestîne</string>
+    <string name="audio_view__download_accessibility_description">Daxîne</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Deng</string>
+    <string name="QuoteView_video">Vidyo</string>
+    <string name="QuoteView_photo">Wêne</string>
+    <string name="QuoteView_you">Tu</string>
+    <string name="QuoteView_original_missing">Peyama orjînal nehate dîtin</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Bikişîne jêr</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Li GIF û sticker bigerre</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Tiştek nehat dîtin</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Temamiya gotûbêjê bibîne</string>
+    <string name="load_more_header__loading">Tê barkirin</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Medya nîne</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">DÎSA ŞANDIN</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Asteng bike</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Ji bo hin pirsgirêkan eleqeya te hewce ye.</string>
+    <string name="message_details_header__sent">Hat şandin</string>
+    <string name="message_details_header__received">Hat</string>
+    <string name="message_details_header__disappears">Winda dibe</string>
+    <string name="message_details_header__via">Bi riya</string>
+    <string name="message_details_header__to">Ji bo:</string>
+    <string name="message_details_header__from">Ji:</string>
+    <string name="message_details_header__with">Bi:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Pêderbasokê çêbike</string>
+    <string name="AndroidManifest__select_contacts">Tekiliyan bibijêrin</string>
+    <string name="AndroidManifest__media_preview">Pêşdîtina medyayê</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Ya jixweber bi kar bîne</string>
+    <string name="arrays__use_custom">Ya taybet bi kar bîne</string>
+    <string name="arrays__mute_for_one_hour">Heta 1 demjimêrê bêdeng bike</string>
+    <string name="arrays__mute_for_two_hours">Heta 2 demjimêran bêdeng bike</string>
+    <string name="arrays__mute_for_one_day">Heta 1 rojê bêdeng bike</string>
+    <string name="arrays__mute_for_seven_days">Heta 7 rojan bêdeng bike</string>
+    <string name="arrays__mute_for_one_year">Heta 1 salê bêdeng bike</string>
+    <string name="arrays__settings_default">Sazkariyên jixweber</string>
+    <string name="arrays__enabled">Rêdayî</string>
+    <string name="arrays__disabled">Neçalakkirî</string>
+    <string name="arrays__name_and_message">Nav û peyam</string>
+    <string name="arrays__name_only">Tenê nav</string>
+    <string name="arrays__no_name_or_message">Nav an peyam nîn e</string>
+    <string name="arrays__images">Wêne</string>
+    <string name="arrays__audio">Deng</string>
+    <string name="arrays__video">Vîdyo</string>
+    <string name="arrays__documents">Pelge</string>
+    <string name="arrays__small">Biçûk</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Mezin</string>
+    <string name="arrays__extra_large">Gelek mezin</string>
+    <string name="arrays__default">Jixweber</string>
+    <string name="arrays__high">Bilind</string>
+    <string name="arrays__max">Herî bilind</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d seet</item>
+        <item quantity="other">%d demjimêr</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Tîpa Enter dişîne</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ji bo peyamên nivîsî bişîne pêl bike \"Enter\"ê</string>
+    <string name="preferences__send_link_previews">Pêşdîtinên girêdanê bişîne</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
+    <string name="preferences__screen_security">Ewlehiya ekranê</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Di lîsta yên dawiyê de û di sepanê de wêneyên ekranê asteng bike</string>
+    <string name="preferences__notifications">Danezan</string>
+    <string name="preferences__led_color">Rengê LED</string>
+    <string name="preferences__led_color_unknown">Nenas</string>
+    <string name="preferences__pref_led_blink_title">Qalibê pêketin û tefandina LEDê</string>
+    <string name="preferences__sound">Deng</string>
+    <string name="preferences__silent">Bêdeng</string>
+    <string name="preferences__repeat_alerts">Hişyariyan dubare bike</string>
+    <string name="preferences__never">Tu car</string>
+    <string name="preferences__one_time">Carek</string>
+    <string name="preferences__two_times">Du caran</string>
+    <string name="preferences__three_times">Sê caran</string>
+    <string name="preferences__five_times">Pênc caran</string>
+    <string name="preferences__ten_times">Deh caran</string>
+    <string name="preferences__vibrate">Lerizîn</string>
+    <string name="preferences__green">Kesk</string>
+    <string name="preferences__red">Sor</string>
+    <string name="preferences__blue">Şîn</string>
+    <string name="preferences__orange">Pirteqalî</string>
+    <string name="preferences__cyan">Şînê vekirî</string>
+    <string name="preferences__magenta">Sorê binevşî</string>
+    <string name="preferences__white">Spî</string>
+    <string name="preferences__none">Tune</string>
+    <string name="preferences__fast">Zû</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__slow">Hêdî</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Peyamên kevin xwe-bi-xwe jê dibe piştî ku axaftin ji mezinahiya diyarkirî dirêjtir bibe</string>
+    <string name="preferences__delete_old_messages">Peyamên kevin jê bibe</string>
+    <string name="preferences__conversation_length_limit">Sînora direjiya axaftinê</string>
+    <string name="preferences__trim_all_conversations_now">Hemû axaftinan qut bike</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Hemû gotûbêjan sken bike û zorê bide ku sînorên dirêjiya axaftinê</string>
+    <string name="preferences__default">Jixweber</string>
+    <string name="preferences__incognito_keyboard">Textenivîsa veşartî</string>
+    <string name="preferences__read_receipts">Girtekan bixwîne</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Heger xwendina reçete qedexe be tu nikarî reçete ji kesên din bixwînî.</string>
+    <string name="preferences__typing_indicators">Nîşandêrên nivîsandinê</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Eger nîşanderên nivîsandinê girtî bin, tu yê nikaribî nîşanderên nivîsandinê bibînî ji ên din.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Textenivîsê bixwaze, da ku hînbûna kesanekirî neçalak bike</string>
+    <string name="preferences__light_theme">Sivik</string>
+    <string name="preferences__dark_theme">Tarî</string>
+    <string name="preferences_chats__message_trimming">Qusandina peyamê</string>
+    <string name="preferences_advanced__use_system_emoji">Emojiya pergalê bi kar bîne</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Piştgiriya emojiyê a daxilî ya Sessionê neçalak bike </string>
+    <string name="preferences_app_protection__app_access">Gihîna sepanê</string>
+    <string name="preferences_app_protection__communication">Têkilî</string>
+    <string name="preferences_chats__chats">Gotûbêj</string>
+    <string name="preferences_notifications__messages">Peyam</string>
+    <string name="preferences_notifications__in_chat_sounds">Dengên di gotûbêjê de</string>
+    <string name="preferences_notifications__show">Nîşan bide</string>
+    <string name="preferences_notifications__priority">Pêşkî</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Peyama nû ji bo...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Hûrgiliyên peyamê</string>
+    <string name="conversation_context__menu_copy_text">Nivîsê ji ber bigire</string>
+    <string name="conversation_context__menu_delete_message">Peyamê rake</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_resend_message">Peyam dîsa bişîne</string>
+    <string name="conversation_context__menu_reply_to_message">Bersiv bide peyamê</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Servehiyê tomar bike</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Peyamên ku tune dibin</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Peyam kevin dibin</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Bideng bike</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Danezanan bêdeng bike</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Komê sererast bike</string>
+    <string name="conversation__menu_leave_group">Ji komê veqete</string>
+    <string name="conversation__menu_view_all_media">Hemû medya</string>
+    <string name="conversation__menu_add_shortcut">Tevlî dîmendera destpêkê bike</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Hilpekokê berfireh bike</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Gihiştin</string>
+    <string name="conversation_group_options__conversation">Gotûbêj</string>
+    <string name="conversation_group_options__broadcast">Belav bike</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Tomarkirin</string>
+    <string name="media_preview__forward_title">Pêşveşandin</string>
+    <string name="media_preview__all_media_title">Hemû medya</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Pelge nîn in</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Pêşdîtina medyayê</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Tê jêbirin</string>
+    <string name="trimmer__deleting_old_messages">Peyamên kevin tên jêbirin...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Peyamên kevin hatin jêbirin</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Destûr pêwîst e</string>
+    <string name="Permissions_continue">Bidomîne</string>
+    <string name="Permissions_not_now">Ne niha</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dê paşekeft li ser bîrbara derveyî werin tomarkirin û bi pêborîna li jêr werin şîfrekirin. Ji bo paşkeftekê paşê vegerînî divê ev pêborîn bi te re hebe.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Min vê pêborînê li cihekî nivîsî. Bê wê ezê nikaribim paşekeftê vegerînim.</string>
+    <string name="registration_activity__skip">Dev jê berde</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Nikarî paşekeftên yên guhertoyên nûtir yên Sessionê bihundirînî</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Pêborîna paşekeftê şaş e</string>
+    <string name="BackupDialog_enable_local_backups">Paşekeftên xwecihî çalak bike?</string>
+    <string name="BackupDialog_enable_backups">Paşekeftan çalak bike</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ji bo diyar bikî ku te fêm kiriye, kodika pejirandinê nîşan bike.</string>
+    <string name="BackupDialog_delete_backups">Paşekeftan jê bibe?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Hemû paşekeftên xwecihî neçalak bike û jê bibe?</string>
+    <string name="BackupDialog_delete_backups_statement">Paşekeftan jê bibe</string>
+    <string name="BackupDialog_copied_to_clipboard">Hat kopîkirin</string>
+    <string name="LocalBackupJob_creating_backup">Paşekeft tê avakirin...</string>
+    <string name="ProgressPreference_d_messages_so_far">Heta niha %d peyam</string>
+    <string name="BackupUtil_never">Qet</string>
+    <string name="preferences_app_protection__screen_lock">Qufleya ekranê</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bi şoptilî an jî qufleya ekranê ya Androidê gihîna Sessionê qufle bike</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Demboriya neçalakbûnê ya qufleya ekranê</string>
+    <string name="AppProtectionPreferenceFragment_none">Tune</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <!-- Session -->
+    <string name="continue_2">Continue</string>
+    <string name="copy">Copy</string>
+    <string name="invalid_url">Invalid URL</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="next">Next</string>
+    <string name="share">Share</string>
+    <string name="invalid_session_id">Invalid Session ID</string>
+    <string name="cancel">Cancel</string>
+    <string name="your_session_id">Your Session ID</string>
+    <string name="activity_landing_title_2">Your Session begins here...</string>
+    <string name="activity_landing_register_button_title">Create Session ID</string>
+    <string name="activity_landing_restore_button_title">Continue Your Session</string>
+    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
+    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
+    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
+    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
+    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
+    <string name="activity_register_title">Say hello to your Session ID</string>
+    <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
+    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
+    <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
+    <string name="activity_display_name_title_2">Pick your display name</string>
+    <string name="activity_display_name_explanation">This will be your name when you use Session. It can be your real name, an alias, or anything else you like.</string>
+    <string name="activity_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+    <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_home_empty_state_button_title">Start a Session</string>
+    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_leaving_group_failed_message">"Couldn't leave group"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
+    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
+    <string name="activity_seed_title">Your Recovery Phrase</string>
+    <string name="activity_seed_title_2">Meet your recovery phrase</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
+    <string name="activity_seed_reveal_button_title">Hold to reveal</string>
+    <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
+    <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
+    <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+    <string name="activity_path_title">Path</string>
+    <string name="activity_path_explanation">Session hides your IP by bouncing your messages through several Service Nodes in Session\'s decentralized network. These are the countries your connection is currently being bounced through:</string>
+    <string name="activity_path_device_row_title">You</string>
+    <string name="activity_path_guard_node_row_title">Entry Node</string>
+    <string name="activity_path_service_node_row_title">Service Node</string>
+    <string name="activity_path_destination_row_title">Destination</string>
+    <string name="activity_path_learn_more_button_title">Learn More</string>
+    <string name="activity_create_private_chat_title">New Session</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping \"Share Session ID\", or by sharing their QR code.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
+    <string name="activity_create_closed_group_title">New Closed Group</string>
+    <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
+    <string name="activity_create_closed_group_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Start a Session</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Please enter a group name</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_join_public_chat_title">Join Open Group</string>
+    <string name="activity_join_public_chat_error">Couldn\'t join group</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
+    <string name="activity_settings_title">Settings</string>
+    <string name="activity_settings_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_settings_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_settings_display_name_too_long_error">Please pick a shorter display name</string>
+    <string name="activity_settings_privacy_button_title">Privacy</string>
+    <string name="activity_settings_notifications_button_title">Notifications</string>
+    <string name="activity_settings_chats_button_title">Chats</string>
+    <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
+    <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_notification_settings_title">Notifications</string>
+    <string name="activity_notification_settings_style_section_title">Notification Style</string>
+    <string name="activity_notification_settings_content_section_title">Notification Content</string>
+    <string name="activity_privacy_settings_title">Privacy</string>
+    <string name="activity_chat_settings_title">Chats</string>
+    <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
+    <string name="dialog_seed_title">Your Recovery Phrase</string>
+    <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
+    <string name="dialog_clear_all_data_title">Clear All Data</string>
+    <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
+    <string name="activity_qr_code_title">QR Code</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Scan someone\'s QR code to start a conversation with them</string>
+    <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
+    <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="activity_select_contacts_title">Select Contacts</string>
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+</resources>

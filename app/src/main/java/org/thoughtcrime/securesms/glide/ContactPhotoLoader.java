@@ -9,7 +9,7 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
-import org.session.libsession.messaging.avatars.ContactPhoto;
+import org.session.libsession.avatars.ContactPhoto;
 
 import java.io.InputStream;
 

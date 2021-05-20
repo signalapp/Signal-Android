@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import android.util.Pair;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;

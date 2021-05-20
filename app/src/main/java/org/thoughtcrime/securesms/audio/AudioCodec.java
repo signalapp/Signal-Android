@@ -8,7 +8,7 @@ import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.media.MediaRecorder;
 import android.os.Build;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import org.session.libsession.utilities.Util;
 

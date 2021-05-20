@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.view.isVisible
 import androidx.fragment.app.*
@@ -25,15 +24,16 @@ import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.DefaultGroup
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.DistributionTypes
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.DistributionTypes
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
@@ -42,9 +42,6 @@ import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.loki.viewmodel.State
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
-
-    private val viewModel by viewModels<DefaultGroupsViewModel>()
-
     private val adapter = JoinPublicChatActivityAdapter(this)
 
     // region Lifecycle
@@ -83,45 +80,37 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
     }
 
     fun joinPublicChatIfPossible(url: String) {
-        // add http if just an IP style / host style URL is entered but leave it if scheme is included
-        val properString = if (!url.startsWith("http")) "http://$url" else url
-        val httpUrl = HttpUrl.parse(properString) ?: return Toast.makeText(this,R.string.invalid_url, Toast.LENGTH_SHORT).show()
-
-        val room = httpUrl.pathSegments().firstOrNull()
-        val publicKey = httpUrl.queryParameter("public_key")
+        // Add "http" if not entered explicitly
+        val stringWithExplicitScheme = if (!url.startsWith("http")) "http://$url" else url
+        val url = HttpUrl.parse(stringWithExplicitScheme) ?: return Toast.makeText(this,R.string.invalid_url, Toast.LENGTH_SHORT).show()
+        val room = url.pathSegments().firstOrNull()
+        val publicKey = url.queryParameter("public_key")
         val isV2OpenGroup = !room.isNullOrEmpty()
         showLoader()
-
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val (threadID, groupID) = if (isV2OpenGroup) {
-                    val server = HttpUrl.Builder().scheme(httpUrl.scheme()).host(httpUrl.host()).apply {
-                        if (httpUrl.port() != 80 || httpUrl.port() != 443) {
-                            // non-standard port, add to server
-                            this.port(httpUrl.port())
-                        }
+                    val server = HttpUrl.Builder().scheme(url.scheme()).host(url.host()).apply {
+                        if (url.port() != 80 || url.port() != 443) { this.port(url.port()) } // Non-standard port; add to server
                     }.build()
-                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, server.toString().removeSuffix("/"), room!!, publicKey!!)
-                    val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
-                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
+
+                    val sanitizedServer = server.toString().removeSuffix("/")
+                    val openGroupID = "$sanitizedServer.${room!!}"
+                    OpenGroupManager.add(sanitizedServer, room, publicKey!!, this@JoinPublicChatActivity)
+                    val threadID = GroupManager.getOpenGroupThreadID(openGroupID, this@JoinPublicChatActivity)
+                    val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
                     threadID to groupID
                 } else {
-                    val channel: Long = 1
-                    val group = OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, properString, channel)
-                    val threadID = GroupManager.getOpenGroupThreadID(group.id, this@JoinPublicChatActivity)
-                    val groupID = GroupUtil.getEncodedOpenGroupID(group.id.toByteArray())
-                    threadID to groupID
+                    throw Exception("No longer supported.")
                 }
                 MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
-
                 withContext(Dispatchers.Main) {
-                    // go to the new conversation and finish this one
-                    openConversationActivity(this@JoinPublicChatActivity, threadID, Recipient.from(this@JoinPublicChatActivity, Address.fromSerialized(groupID), false))
+                    val recipient = Recipient.from(this@JoinPublicChatActivity, Address.fromSerialized(groupID), false)
+                    openConversationActivity(this@JoinPublicChatActivity, threadID, recipient)
                     finish()
                 }
-
             } catch (e: Exception) {
-                Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
+                Log.e("Loki", "Couldn't join open group.", e)
                 withContext(Dispatchers.Main) {
                     hideLoader()
                     Toast.makeText(this@JoinPublicChatActivity, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
@@ -175,19 +164,40 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 
 // region Enter Chat URL Fragment
 class EnterChatURLFragment : Fragment() {
-
     private val viewModel by activityViewModels<DefaultGroupsViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_enter_chat_url, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
+        joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
+        viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
+            defaultRoomsContainer.isVisible = state is State.Success
+            defaultRoomsLoader.isVisible = state is State.Loading
+            when (state) {
+                State.Loading -> {
+                    // TODO: Show a loader
+                }
+                is State.Error -> {
+                    // TODO: Hide the loader
+                }
+                is State.Success -> {
+                    populateDefaultGroups(state.value)
+                }
+            }
+        }
+    }
+
     private fun populateDefaultGroups(groups: List<DefaultGroup>) {
         defaultRoomsGridLayout.removeAllViews()
+        defaultRoomsGridLayout.useDefaultMargins = false
         groups.forEach { defaultGroup ->
-            val chip = layoutInflater.inflate(R.layout.default_group_chip,defaultRoomsGridLayout, false) as Chip
+            val chip = layoutInflater.inflate(R.layout.default_group_chip, defaultRoomsGridLayout, false) as Chip
             val drawable = defaultGroup.image?.let { bytes ->
-                val bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.size)
+                val bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.size)
                 RoundedBitmapDrawableFactory.create(resources,bitmap).apply {
                     isCircular = true
                 }
@@ -197,32 +207,11 @@ class EnterChatURLFragment : Fragment() {
             chip.setOnClickListener {
                 (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(defaultGroup.joinURL)
             }
+
             defaultRoomsGridLayout.addView(chip)
         }
-        if (groups.size and 1 != 0) {
-            // add a filler weight 1 view
+        if ((groups.size and 1) != 0) { // This checks that the number of rooms is even
             layoutInflater.inflate(R.layout.grid_layout_filler, defaultRoomsGridLayout)
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
-        joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
-        viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
-            defaultRoomsParent.isVisible = state is State.Success
-            defaultRoomsLoader.isVisible = state is State.Loading
-            when (state) {
-                State.Loading -> {
-                    // show a loader here probs
-                }
-                is State.Error -> {
-                    // hide the loader and the
-                }
-                is State.Success -> {
-                    populateDefaultGroups(state.value)
-                }
-            }
         }
     }
 

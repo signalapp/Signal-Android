@@ -30,18 +30,18 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.Contact;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
 import org.session.libsession.utilities.DelimiterUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.Pair;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Pair;
+import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;

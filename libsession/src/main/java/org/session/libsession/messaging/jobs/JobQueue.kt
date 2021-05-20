@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -130,12 +130,7 @@ class JobQueue : JobDelegate {
         }
         // Message send jobs waiting for the attachment to upload
         if (job is MessageSendJob && error is MessageSendJob.AwaitingAttachmentUploadException) {
-            val retryInterval: Long = 1000 * 4
             Log.i("Loki", "Message send job waiting for attachment upload to finish.")
-            timer.schedule(delay = retryInterval) {
-                Log.i("Loki", "Retrying ${job::class.simpleName}.")
-                queue.offer(job)
-            }
             return
         }
         // Regular job failure

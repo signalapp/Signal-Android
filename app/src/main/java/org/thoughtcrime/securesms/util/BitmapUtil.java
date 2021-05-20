@@ -19,7 +19,7 @@ import android.util.Pair;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 

@@ -32,8 +32,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.utilities.NumberUtil;
+import org.session.libsession.utilities.GroupRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,10 +128,6 @@ public class ContactsCursorLoader extends CursorLoader {
       }
     } else {
       cursorList.addAll(getContactsCursors());
-    }
-
-    if (NumberUtil.isValidSmsOrEmail(filter)) {
-      cursorList.add(getNewNumberCursor());
     }
 
     return cursorList;

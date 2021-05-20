@@ -7,9 +7,9 @@ import com.goterl.lazycode.lazysodium.utils.Key
 import com.goterl.lazycode.lazysodium.utils.KeyPair
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
-import org.session.libsignal.libsignal.ecc.DjbECPublicKey
-import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.crypto.ecc.DjbECPrivateKey
+import org.session.libsignal.crypto.ecc.DjbECPublicKey
+import org.session.libsignal.crypto.ecc.ECKeyPair
 
 object KeyPairUtilities {
 
@@ -53,8 +53,8 @@ object KeyPairUtilities {
     }
 
     data class KeyPairGenerationResult(
-            val seed: ByteArray,
-            val ed25519KeyPair: KeyPair,
-            val x25519KeyPair: ECKeyPair
+        val seed: ByteArray,
+        val ed25519KeyPair: KeyPair,
+        val x25519KeyPair: ECKeyPair
     )
 }

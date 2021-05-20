@@ -12,7 +12,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 
 public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {

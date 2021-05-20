@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
-import org.session.libsignal.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.SettableFuture;
 
 public class GlideBitmapListeningTarget extends BitmapImageViewTarget {
 

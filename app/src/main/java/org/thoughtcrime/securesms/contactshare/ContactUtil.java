@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.utilities.Contact;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.util.SpanUtil;

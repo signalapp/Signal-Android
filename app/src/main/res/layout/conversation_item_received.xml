@@ -141,6 +141,12 @@
                     android:layout="@layout/conversation_item_received_link_preview" />
 
                 <ViewStub
+                    android:id="@+id/open_group_invitation_stub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/conversation_item_received_open_group_invitation" />
+
+                <ViewStub
                     android:id="@+id/audio_view_stub"
                     android:layout="@layout/conversation_item_received_audio"
                     android:layout_width="210dp"

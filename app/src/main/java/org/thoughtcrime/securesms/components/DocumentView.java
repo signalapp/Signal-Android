@@ -22,12 +22,11 @@ import org.greenrobot.eventbus.ThreadMode;
 import network.loki.messenger.R;
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 public class DocumentView extends FrameLayout {
 

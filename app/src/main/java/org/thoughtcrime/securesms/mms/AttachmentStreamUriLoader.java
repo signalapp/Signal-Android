@@ -10,7 +10,7 @@ import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.File;
 import java.io.InputStream;

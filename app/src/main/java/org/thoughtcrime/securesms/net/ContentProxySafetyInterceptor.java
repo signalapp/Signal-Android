@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import java.io.IOException;
 

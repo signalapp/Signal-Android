@@ -9,7 +9,7 @@ import org.session.libsession.messaging.utilities.Data;
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.session.libsession.utilities.Debouncer;
 
 import java.util.ArrayList;

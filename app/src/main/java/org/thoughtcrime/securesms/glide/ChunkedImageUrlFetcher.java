@@ -8,7 +8,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.net.ChunkedDataFetcher;
 import org.thoughtcrime.securesms.net.RequestController;
 

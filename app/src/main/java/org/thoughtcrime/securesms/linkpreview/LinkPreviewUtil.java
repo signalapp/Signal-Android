@@ -13,7 +13,7 @@ import android.text.util.Linkify;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.utilities.Util;
 

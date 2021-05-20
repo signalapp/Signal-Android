@@ -1,8 +1,8 @@
 package org.session.libsession.utilities
 
 import androidx.annotation.WorkerThread
-import org.session.libsignal.libsignal.util.ByteUtil
-import org.session.libsignal.service.internal.util.Util
+import org.session.libsignal.utilities.ByteUtil
+import org.session.libsignal.utilities.Util
 import org.session.libsignal.utilities.Hex
 import org.whispersystems.curve25519.Curve25519
 import javax.crypto.Cipher
@@ -12,15 +12,14 @@ import javax.crypto.spec.SecretKeySpec
 
 @WorkerThread
 internal object AESGCM {
-
-    internal data class EncryptionResult(
-            internal val ciphertext: ByteArray,
-            internal val symmetricKey: ByteArray,
-            internal val ephemeralPublicKey: ByteArray
-    )
-
     internal val gcmTagSize = 128
     internal val ivSize = 12
+
+    internal data class EncryptionResult(
+        internal val ciphertext: ByteArray,
+        internal val symmetricKey: ByteArray,
+        internal val ephemeralPublicKey: ByteArray
+    )
 
     /**
      * Sync. Don't call from the main thread.

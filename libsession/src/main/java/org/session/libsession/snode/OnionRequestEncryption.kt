@@ -4,7 +4,7 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.utilities.AESGCM
 import org.session.libsession.utilities.AESGCM.EncryptionResult
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.utilities.ThreadUtils
 import java.nio.Buffer

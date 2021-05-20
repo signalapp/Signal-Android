@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.concurrent.SignalExecutors;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.IOException;
 import java.io.InputStream;

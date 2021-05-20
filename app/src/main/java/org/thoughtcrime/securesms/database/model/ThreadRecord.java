@@ -27,7 +27,7 @@ import android.text.style.StyleSpan;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -77,6 +77,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
     } else if (isGroupQuit()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
+    } else if (isOpenGroupInvitation()) {
+      return emphasisAdded(context.getString(R.string.ThreadRecord_open_group_invitation));
     } else if (isKeyExchange()) {
       return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {

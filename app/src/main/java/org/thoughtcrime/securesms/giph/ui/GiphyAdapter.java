@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
-import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.utilities.MaterialColor;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
 

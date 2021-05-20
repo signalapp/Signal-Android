@@ -10,7 +10,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsignal.utilities.JsonUtil;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.IOException;
 

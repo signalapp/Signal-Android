@@ -1,6 +1,6 @@
 package org.session.libsession.snode
 
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
 
 data class SnodeMessage(
     /**

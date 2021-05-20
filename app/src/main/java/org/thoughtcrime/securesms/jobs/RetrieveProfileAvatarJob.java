@@ -1,22 +1,20 @@
 package org.thoughtcrime.securesms.jobs;
 
-
 import android.app.Application;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.utilities.Data;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.DownloadUtilities;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.crypto.ProfileCipherInputStream;
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.streams.ProfileCipherInputStream;
+import org.session.libsignal.exceptions.PushNetworkException;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -31,38 +29,34 @@ import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
   private static final String TAG = RetrieveProfileAvatarJob.class.getSimpleName();
 
-  private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
+  private static final int MAX_PROFILE_SIZE_BYTES = 10 * 1024 * 1024;
 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_ADDRESS        = "address";
 
-  @Inject SignalServiceMessageReceiver receiver;
 
   private String    profileAvatar;
   private Recipient recipient;
 
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
     this(new Job.Parameters.Builder()
-                           .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setLifespan(TimeUnit.HOURS.toMillis(1))
-                           .setMaxAttempts(3)
-                           .build(),
+            .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
+            .addConstraint(NetworkConstraint.KEY)
+            .setLifespan(TimeUnit.HOURS.toMillis(1))
+            .setMaxAttempts(10)
+            .build(),
         recipient,
         profileAvatar);
   }
 
   private RetrieveProfileAvatarJob(@NonNull Job.Parameters parameters, @NonNull Recipient recipient, String profileAvatar) {
     super(parameters);
-
     this.recipient     = recipient;
     this.profileAvatar = profileAvatar;
   }
@@ -70,9 +64,10 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
   @Override
   public @NonNull
   Data serialize() {
-    return new Data.Builder().putString(KEY_PROFILE_AVATAR, profileAvatar)
-                             .putString(KEY_ADDRESS, recipient.getAddress().serialize())
-                             .build();
+    return new Data.Builder()
+        .putString(KEY_PROFILE_AVATAR, profileAvatar)
+        .putString(KEY_ADDRESS, recipient.getAddress().serialize())
+        .build();
   }
 
   @Override
