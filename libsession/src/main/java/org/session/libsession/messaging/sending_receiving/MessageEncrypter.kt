@@ -1,17 +1,15 @@
 package org.session.libsession.messaging.sending_receiving
 
-import com.goterl.lazycode.lazysodium.LazySodiumAndroid
-import com.goterl.lazycode.lazysodium.SodiumAndroid
-import com.goterl.lazycode.lazysodium.interfaces.Box
-import com.goterl.lazycode.lazysodium.interfaces.Sign
-
+import com.goterl.lazysodium.LazySodiumAndroid
+import com.goterl.lazysodium.SodiumAndroid
+import com.goterl.lazysodium.interfaces.Box
+import com.goterl.lazysodium.interfaces.Sign
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.utilities.KeyPairUtilities
-
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
 
 object MessageEncrypter {
 
