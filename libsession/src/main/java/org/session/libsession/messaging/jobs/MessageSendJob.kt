@@ -115,6 +115,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val serializedDestination = data.getByteArray(DESTINATION_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             // Message
             val messageInput = Input(serializedMessage)
             val message: Message
