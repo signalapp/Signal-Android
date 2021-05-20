@@ -13,7 +13,7 @@ object UpdateMessageBuilder {
         val updateData = updateMessageData.kind ?: return message
         if (!isOutgoing && sender == null) return message
         val senderName: String = if (!isOutgoing) {
-            MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+            MessagingModuleConfiguration.shared.storage.getDisplayName(sender!!) ?: sender
         } else { context.getString(R.string.MessageRecord_you) }
 
         when (updateData) {
@@ -33,7 +33,7 @@ object UpdateMessageBuilder {
             }
             is UpdateMessageData.Kind.GroupMemberAdded -> {
                 val members = updateData.updatedMembers.joinToString(", ") {
-                    MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(it) ?: it
+                    MessagingModuleConfiguration.shared.storage.getDisplayName(it) ?: it
                 }
                 message = if (isOutgoing) {
                     context.getString(R.string.MessageRecord_you_added_s_to_the_group, members)
@@ -54,7 +54,7 @@ object UpdateMessageBuilder {
                 } else {
                     // 2nd case: you are not part of the removed members
                     val members = updateData.updatedMembers.joinToString(", ") {
-                        storage.getDisplayNameForRecipient(it) ?: it
+                        storage.getDisplayName(it) ?: it
                     }
                     if (isOutgoing) {
                         context.getString(R.string.MessageRecord_you_removed_s_from_the_group, members)
@@ -77,7 +77,7 @@ object UpdateMessageBuilder {
     fun buildExpirationTimerMessage(context: Context, duration: Long, sender: String? = null, isOutgoing: Boolean = false): String {
         if (!isOutgoing && sender == null) return ""
         val senderName: String? = if (!isOutgoing) {
-            MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+            MessagingModuleConfiguration.shared.storage.getDisplayName(sender!!) ?: sender
         } else { context.getString(R.string.MessageRecord_you) }
         return if (duration <= 0) {
             if (isOutgoing) context.getString(R.string.MessageRecord_you_disabled_disappearing_messages)
@@ -90,7 +90,7 @@ object UpdateMessageBuilder {
     }
 
     fun buildDataExtractionMessage(context: Context, kind: DataExtractionNotificationInfoMessage.Kind, sender: String? = null): String {
-        val senderName = MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+        val senderName = MessagingModuleConfiguration.shared.storage.getDisplayName(sender!!) ?: sender
         return when (kind) {
             DataExtractionNotificationInfoMessage.Kind.SCREENSHOT ->
                 context.getString(R.string.MessageRecord_s_took_a_screenshot, senderName)

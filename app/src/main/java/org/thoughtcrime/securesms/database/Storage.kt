@@ -82,17 +82,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, newProfilePicture))
     }
 
-    override fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray? {
-        val address = Address.fromSerialized(recipientPublicKey)
-        val recipient = Recipient.from(context, address, false)
-        return recipient.profileKey
-    }
-
-    override fun getDisplayNameForRecipient(recipientPublicKey: String): String? {
-        val database = DatabaseFactory.getLokiUserDatabase(context)
-        return database.getDisplayName(recipientPublicKey)
-    }
-
     override fun getOrGenerateRegistrationID(): Int {
         var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationID == 0) {
@@ -623,6 +612,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getDisplayName(publicKey: String): String? {
+        val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+        contact?.let {
+            val contactContext = Contact.contextForRecipient(Recipient.from(context, fromSerialized(publicKey), false))
+            return it.displayName(contactContext)
+        }
         return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
     }
 
