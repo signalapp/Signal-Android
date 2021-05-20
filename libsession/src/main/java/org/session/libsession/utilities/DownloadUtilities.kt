@@ -5,11 +5,10 @@ import okhttp3.Request
 import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.snode.OnionRequestAPI
-import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
-import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.messages.SignalServiceAttachment
+import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException
+import org.session.libsignal.exceptions.PushNetworkException
 import org.session.libsignal.utilities.Base64
 import java.io.*
 
@@ -42,11 +41,12 @@ object DownloadUtilities {
     @JvmStatic
     fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
 
-        if (url.contains(FileServerAPIV2.DEFAULT_SERVER)) {
+        if (url.contains(FileServerAPIV2.SERVER) || url.contains(FileServerAPIV2.OLD_SERVER)) {
             val httpUrl = HttpUrl.parse(url)!!
             val fileId = httpUrl.pathSegments().last()
+            val useOldServer = url.contains(FileServerAPIV2.OLD_SERVER)
             try {
-                FileServerAPIV2.download(fileId.toLong()).get().let {
+                FileServerAPIV2.download(fileId.toLong(), useOldServer).get().let {
                     outputStream.write(it)
                 }
             } catch (e: Exception) {

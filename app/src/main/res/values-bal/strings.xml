@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="delete">Hapus</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">Mohon tunggu...</string>
+    <string name="save">Simpan</string>
+    <string name="note_to_self">Catatan Pribadi</string>
+    <string name="version_s">Version %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Pesan baru</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">%d pesan dalam setiap percakapan</item>
+        <item quantity="other">%d messages per conversation</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Hapus seluruh pesan lama?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Ini akan segera memangkas seluruh percakapan menjadi %d pesan terbaru.</item>
+        <item quantity="other">This will immediately trim all conversations to the %d most recent messages.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Hapus</string>
+    <string name="ApplicationPreferencesActivity_On">Nyala</string>
+    <string name="ApplicationPreferencesActivity_Off">Padam</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(gambar)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(balas)</string>
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk memilih media.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session memerlukan akses ke Penyimpanan untuk mengirimkan foto, video, atau suara, tetapi saat ini telah ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session memerlukan akses ke Kontak untuk mengirimkan informasi kontak, tetapi saat ini ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kontak\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session memerlukan akses ke Kamera untuk mengambil foto, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kamera\".</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Gagal memutar audio!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Hari ini</string>
+    <string name="BucketedThreadMedia_Yesterday">Kemarin</string>
+    <string name="BucketedThreadMedia_This_week">Minggu Ini</string>
+    <string name="BucketedThreadMedia_This_month">Bulan ini</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Tidak ada peramban web ditemukan.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grup</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Gagal mengirim, ketuk untuk detil</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima pesan pertukaran kunci, ketuk untuk memproses.</string>
+    <string name="ConversationItem_group_action_left">%1$s telah meninggalkan grup.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk mengirim kembali</string>
+    <string name="ConversationItem_unable_to_open_media">Tidak bisa menemukan aplikasi untuk membuka media ini.</string>
+    <string name="ConversationItem_copied_text">Disalin %s</string>
+    <string name="ConversationItem_read_more">Lanjut Baca</string>
+    <string name="ConversationItem_download_more">Unduh Lebih Banyak</string>
+    <string name="ConversationItem_pending">Tertunda</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
+    <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Maaf, terjadi kesalahan pada pengaturan lampiran anda.</string>
+    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_invalid_recipient">Penerima tidak lengkap!</string>
+    <string name="ConversationActivity_added_to_home_screen">Tambahkan ke layar utama</string>
+    <string name="ConversationActivity_leave_group">Tinggalkan grup?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Apakah Anda yakin ingin meninggalkan grup ini?</string>
+    <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Anda kembali dapat menerima pesan dan panggilan dari kontak ini.</string>
+    <string name="ConversationActivity_unblock">Buka blokir</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran melebihi batas ukuran untuk tipe pesan yang Anda kirimkan.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Untuk mengirim pesan suara, izinkan Session mengakses mikrofon Anda.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session memerlukan akses ke Mikrofon untuk mengirim pesan audio, namun ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Mikrofon\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Untuk merekam foto dan video, izinkan Session mengakses kamera.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session memerlukan izin Kamera untuk mengambil foto dan video, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Perizinan\" dan aktifkan \"Kamera\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session memerlukan izin Kamera untuk mengambil foto atau video.</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+    <string name="ConversationActivity_search_position">%1$d of %2$d</string>
+    <string name="ConversationActivity_no_results">Tidak ada hasil</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d pesan belum dibaca</item>
+        <item quantity="other">%d unread messages</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Hapus pesan terpilih?</item>
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Ini akan secara permanen menghapus semua %1$d pesan terpilih.</item>
+        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_save_to_sd_card">Simpan ke penyimpanan?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Menyimpan semua %1$d media ke penyimpanan memungkinkan aplikasi lain pada perangkat Anda mengakses mereka.\n\nLanjutkan?</item>
+        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Terjadi kesalahan saat menyimpan lampiran ke penyimpanan!</item>
+        <item quantity="other">Error while saving attachments to storage!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Menyimpan %1$d lampiran</item>
+        <item quantity="other">Saving %1$d attachments</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Menyimpan %1$d lampiran ke penyimpanan...</item>
+        <item quantity="other">Saving %1$d attachments to storage...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Tertunda...</string>
+    <string name="ConversationFragment_push">Data (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Menghapus</string>
+    <string name="ConversationFragment_deleting_messages">Menghapus pesan...</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Pesan asli tidak ditemukan.</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Kunci pertukaran pesan</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Foto profil</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Gunakan ubahsuai: %s</string>
+    <string name="CustomDefaultPreference_using_default">Gunakan bawaan: %s</string>
+    <string name="CustomDefaultPreference_none">Kosong</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Sekarang</string>
+    <string name="DateUtils_minutes_ago">%d mnt</string>
+    <string name="DateUtils_today">Hari ini</string>
+    <string name="DateUtils_yesterday">Kemarin</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Hari ini</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Berkas tidak dikenal</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kesalahan saat mengambil berkas GIF dengan resolusi penuh</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Stiker</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Avatar</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ketuk dan tahan untuk merekam pesan suara, lepas untuk mengirim</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">pesan tidak ditemukan</string>
+    <string name="LongMessageActivity_message_from_s">pesan dari %1$s</string>
+    <string name="LongMessageActivity_your_message">pesanmu</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Media</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Hapus pesan yang dipilih?</item>
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Ini akan menghapus semua %1$d pesan yang dipilih.</item>
+        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan...</string>
+    <string name="MediaOverviewActivity_Documents">Dokumen</string>
+    <string name="MediaOverviewActivity_Select_all">Pilih semua</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Pesan multimedia</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Mengunduh pesan MMS.</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gagal saat mengunduh pesan MMS, ketuk untuk mencoba lagi</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Kirim ke %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Tambah keterangan...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">sebuah item dihapus karena melebihi batas ukuran</string>
+    <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
+    <string name="MediaSendActivity_message_to_s">kirim pesan ke %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">Anda tidak bisa membagikan lebih dari %d item</item>
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Semua media</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi menggunakan Session versi lama tidak lagi didukung, Harap beri tahu pengirim untuk memutakhirkan ke versi terbaru dan kirim ulang pesannya.</string>
+    <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
+    <string name="MessageRecord_you_updated_group">Anda memperbarui grup.</string>
+    <string name="MessageRecord_s_updated_group">%s memperbarui grup.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Pesan hilang</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Pesan Anda tidak akan kedaluwarsa.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesan terkirim dan diterima pada percakapan ini akan lenyap %s setelah dibaca.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak ini?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Anda tidak akan lagi menerima pesan dan panggilan dari kontak ini.</string>
+    <string name="RecipientPreferenceActivity_block">Blokir</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Buka blokir kontak ini?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Anda kembali dapat menerima pesan dan panggilan dari kontak ini.</string>
+    <string name="RecipientPreferenceActivity_unblock">Buka blokir</string>
+    <!-- Slide -->
+    <string name="Slide_image">Gambar</string>
+    <string name="Slide_audio">Audio</string>
+    <string name="Slide_video">Video</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Pesan menerima dan 
+memproses pertukaran kunci korupsi.</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Menerima pesan dengan nomor keamanan baru. Ketuk untuk memproses dan menampilkan.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Anda mengatur ulang sesi aman.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s mengatur ulang sesi aman.</string>
+    <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Grup diperbarui</string>
+    <string name="ThreadRecord_left_the_group">Meninggalkan grup</string>
+    <string name="ThreadRecord_secure_session_reset">Sesi aman disetel ulang.</string>
+    <string name="ThreadRecord_draft">Draf:</string>
+    <string name="ThreadRecord_called">Anda memanggil</string>
+    <string name="ThreadRecord_called_you">Memanggil Anda</string>
+    <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
+    <string name="ThreadRecord_media_message">Pesan media</string>
+    <string name="ThreadRecord_s_is_on_signal">%s ada di Session!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu pesan hilang diatur ke %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_safety_number_changed">Nomor keamanan berubah</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Angka keamanan anda dengan %s telah berubah.</string>
+    <string name="ThreadRecord_you_marked_verified">Anda ditandai terverifikasi</string>
+    <string name="ThreadRecord_you_marked_unverified">Anda ditandai tidak terverifikasi</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Perbarui Session</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Session tersedia, ketuk untuk memperbarui</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Pesan terenkripsi buruk</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesan dienkripsi untuk sesi yang tidak ada</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Pesan MMS terenkripsi buruk</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Pesan MMS dienkripsi untuk sesi yang tidak ada</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Bisukan pemberitahuan</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Sentuh untuk membuka.</string>
+    <string name="KeyCachingService_passphrase_cached">Session tidak terkunci</string>
+    <string name="KeyCachingService_lock">Kunci Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Anda</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
+    <string name="MediaPreviewActivity_draft">Draf</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session memerlukan izin akses Penyimpanan agar bisa menyimpan di penyimpanan luar, tetapi ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tidak bisa menyimpan ke penyimpanan luar tanpa izin</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Hapus pesan?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Pesan ini akan dihapus secara permanen.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
+    <string name="MessageNotifier_most_recent_from_s">Paling baru dari: %1$s</string>
+    <string name="MessageNotifier_locked_message">Pesan terkunci</string>
+    <string name="MessageNotifier_message_delivery_failed">Pengiriman pesan gagal.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Gagal mengirimkan pesan.</string>
+    <string name="MessageNotifier_error_delivering_message">Kesalahan dalam mengirimkan pesan.</string>
+    <string name="MessageNotifier_mark_all_as_read">Tandai telah dibaca semuanya</string>
+    <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
+    <string name="MessageNotifier_reply">Balas</string>
+    <string name="MessageNotifier_pending_signal_messages">Pesan Session tertunda</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Session yang tertunda, ketuk untuk membuka dan menerima</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Kontak</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Bawaan</string>
+    <string name="NotificationChannel_calls">Panggilan</string>
+    <string name="NotificationChannel_failures">Gagal</string>
+    <string name="NotificationChannel_backups">Cadangan</string>
+    <string name="NotificationChannel_locked_status">Status penguncian</string>
+    <string name="NotificationChannel_app_updates">pembaruan aplikasi</string>
+    <string name="NotificationChannel_other">Yang lain</string>
+    <string name="NotificationChannel_group_messages">Pesan</string>
+    <string name="NotificationChannel_missing_display_name">Tidak dikenal</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Session sedang dikunci!</string>
+    <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Disimpan ke %s</string>
+    <string name="SaveAttachmentTask_saved">Tersimpan</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Cari</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Pintasan tidak sah</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%d pesan</item>
+        <item quantity="other">%d Items</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Gagal saat memutar video</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Audio</string>
+    <string name="attachment_type_selector__audio_description">Audio</string>
+    <string name="attachment_type_selector__contact">Kontak</string>
+    <string name="attachment_type_selector__contact_description">Kontak</string>
+    <string name="attachment_type_selector__camera">Kamera</string>
+    <string name="attachment_type_selector__camera_description">Kamera</string>
+    <string name="attachment_type_selector__location">Lokasi</string>
+    <string name="attachment_type_selector__location_description">Lokasi</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Gambar atau video</string>
+    <string name="attachment_type_selector__file_description">Berkas</string>
+    <string name="attachment_type_selector__gallery">Galeri</string>
+    <string name="attachment_type_selector__file">Berkas</string>
+    <string name="attachment_type_selector__drawer_description">Jungkitkan laci lampiran</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Memuat kontak...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Kirim</string>
+    <string name="conversation_activity__compose_description">Penulisan pesan</string>
+    <string name="conversation_activity__emoji_toggle_description">Jungkitkan papan ketik emoji</string>
+    <string name="conversation_activity__attachment_thumbnail">Gambar Mini Lampiran</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Jungkitkan laci lampiran kamera cepat</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Rekam dan kirim lampiran audio</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
+    <string name="conversation_activity__enable_signal_for_sms">Aktifkan Session untuk SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Slide to cancel</string>
+    <string name="conversation_input_panel__cancel">Batal</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Pesan media</string>
+    <string name="conversation_item__secure_message_description">Pesan aman</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Gagal Mengirim</string>
+    <string name="conversation_item_sent__pending_approval_description">Persetujuan Tertunda</string>
+    <string name="conversation_item_sent__delivered_description">Terkirim</string>
+    <string name="conversation_item_sent__message_read">Pesan terbaca</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Foto kontak</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Putar</string>
+    <string name="audio_view__pause_accessibility_description">Jeda</string>
+    <string name="audio_view__download_accessibility_description">Unduh</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Audio</string>
+    <string name="QuoteView_video">Video</string>
+    <string name="QuoteView_photo">Foto</string>
+    <string name="QuoteView_you">Anda</string>
+    <string name="QuoteView_original_missing">Pesan asli tidak lagi tersedia</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Cari GIF dan stiker</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Tidak ada yang ditemukan</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Lihat seluruh percakapan</string>
+    <string name="load_more_header__loading">Memuat</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Tidak ada media</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">KIRIM ULANG</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Blokir</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Beberapa masalah memerlukan perhatian Anda.</string>
+    <string name="message_details_header__sent">Terkirim</string>
+    <string name="message_details_header__received">Diterima</string>
+    <string name="message_details_header__disappears">Hilang</string>
+    <string name="message_details_header__via">Via</string>
+    <string name="message_details_header__to">Kepada:</string>
+    <string name="message_details_header__from">Dari:</string>
+    <string name="message_details_header__with">Dengan:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Buat frasa sandi</string>
+    <string name="AndroidManifest__select_contacts">Pilih kontak</string>
+    <string name="AndroidManifest__media_preview">Pratinjau media</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Gunakan bawaan</string>
+    <string name="arrays__use_custom">Gunakan ubahsuai</string>
+    <string name="arrays__mute_for_one_hour">Bisukan selama 1 jam</string>
+    <string name="arrays__mute_for_two_hours">Bisukan selama 2 jam</string>
+    <string name="arrays__mute_for_one_day">Bisukan selama 1 hari</string>
+    <string name="arrays__mute_for_seven_days">Bisukan selama 7 hari</string>
+    <string name="arrays__mute_for_one_year">Bisukan selama 1 tahun</string>
+    <string name="arrays__settings_default">Pengaturan bawaan</string>
+    <string name="arrays__enabled">Aktif</string>
+    <string name="arrays__disabled">Nonaktif</string>
+    <string name="arrays__name_and_message">Nama dan pesan</string>
+    <string name="arrays__name_only">Nama saja</string>
+    <string name="arrays__no_name_or_message">Tidak ada nama atau pesan</string>
+    <string name="arrays__images">Gambar</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokumen</string>
+    <string name="arrays__small">Kecil</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Besar</string>
+    <string name="arrays__extra_large">Ekstra besar</string>
+    <string name="arrays__default">Bawaan</string>
+    <string name="arrays__high">Tinggi</string>
+    <string name="arrays__max">Maks</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d jam</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
+    <string name="preferences__send_link_previews">Kirim pratinjau tautan</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
+    <string name="preferences__screen_security">Keamanan Layar</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokir tangkapan layar di daftar baru-baru saja dan di dalam aplikasi</string>
+    <string name="preferences__notifications">Pemberitahuan</string>
+    <string name="preferences__led_color">Warna LED</string>
+    <string name="preferences__led_color_unknown">Tidak dikenal</string>
+    <string name="preferences__pref_led_blink_title">Pola kedip LED</string>
+    <string name="preferences__sound">Bunyi</string>
+    <string name="preferences__silent">Diam</string>
+    <string name="preferences__repeat_alerts">Ulangi peringatan</string>
+    <string name="preferences__never">Tidak pernah</string>
+    <string name="preferences__one_time">Sekali saja</string>
+    <string name="preferences__two_times">Dua kali</string>
+    <string name="preferences__three_times">Tiga kali</string>
+    <string name="preferences__five_times">Lima kali</string>
+    <string name="preferences__ten_times">Sepuluh kali</string>
+    <string name="preferences__vibrate">Getar</string>
+    <string name="preferences__green">Hijau</string>
+    <string name="preferences__red">Merah</string>
+    <string name="preferences__blue">Biru</string>
+    <string name="preferences__orange">Oranye</string>
+    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__white">Putih</string>
+    <string name="preferences__none">Kosong</string>
+    <string name="preferences__fast">Cepat</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__slow">Lambat</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Otomatis menghapus pesan lama saat melebihi batas percakapan tertentu</string>
+    <string name="preferences__delete_old_messages">Hapus pesan lama</string>
+    <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
+    <string name="preferences__trim_all_conversations_now">Pangkas seluruh percakapan</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Pindai seluruh rangkaian percakapan dan terapkan batas panjang percakapan</string>
+    <string name="preferences__default">Bawaan</string>
+    <string name="preferences__incognito_keyboard">Papan ketik tersembunyi</string>
+    <string name="preferences__read_receipts">Pesan terbaca</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika tanda telah diterima di non aktifkan . anda tidak dapat melihat jika pesan sudah dibaca oleh orang lain</string>
+    <string name="preferences__typing_indicators">Indikator penulisan</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika indikator penulisan di non-aktifkan, kamu tidak akan mampu melihat indikator penulisan dari anggota lainnya.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Permintaan papan ketik untuk non-aktif personalisasi</string>
+    <string name="preferences__light_theme">Terang</string>
+    <string name="preferences__dark_theme">Gelap</string>
+    <string name="preferences_chats__message_trimming">Penyingkatan pesan</string>
+    <string name="preferences_advanced__use_system_emoji">Gunakan emoji sistem</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Session bawaan</string>
+    <string name="preferences_app_protection__app_access">Akses aplikasi</string>
+    <string name="preferences_app_protection__communication">Komunikasi</string>
+    <string name="preferences_chats__chats">Obrolan</string>
+    <string name="preferences_notifications__messages">Pesan</string>
+    <string name="preferences_notifications__in_chat_sounds">Suara dalam-obrolan</string>
+    <string name="preferences_notifications__show">Tampilkan</string>
+    <string name="preferences_notifications__priority">Prioritas</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Pesan baru ke...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Rincian pesan</string>
+    <string name="conversation_context__menu_copy_text">Salin teks</string>
+    <string name="conversation_context__menu_delete_message">Hapus pesan</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_resend_message">Kirim ulang </string>
+    <string name="conversation_context__menu_reply_to_message">Balas pesan</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Simpan lampiran</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Pesan hilang</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Pesan berakhir</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Bunyikan</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Bisukan pemberitahuan</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Ubah grup</string>
+    <string name="conversation__menu_leave_group">Keluar grup</string>
+    <string name="conversation__menu_view_all_media">Semua media</string>
+    <string name="conversation__menu_add_shortcut">tambahkan ke layar utama</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Lebarkan munculan</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Pengiriman</string>
+    <string name="conversation_group_options__conversation">Percakapan</string>
+    <string name="conversation_group_options__broadcast">Siaran</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Simpan</string>
+    <string name="media_preview__forward_title">Teruskan</string>
+    <string name="media_preview__all_media_title">Semua media</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Pratinjau media</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Menghapus</string>
+    <string name="trimmer__deleting_old_messages">Menghapus pesan lama...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Pesan lama berhasil dihapus</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Memerlukan izin akses</string>
+    <string name="Permissions_continue">Lanjutkan</string>
+    <string name="Permissions_not_now">Nanti saja</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Cadangan akan disimpan ke penyimpanan luar dan mengenkripsi dengan frase di bawah. Anda mesti memiliki frase ini untuk mengembalikan cadangan.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Saya telah mencatat frase ini. Tanpa ini, saya tidak dapat mengembalikan cadangan.</string>
+    <string name="registration_activity__skip">Lewati</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Session yang lebih baru</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Cadangan frase tidak benar</string>
+    <string name="BackupDialog_enable_local_backups">Aktifkan cadangan lokal?</string>
+    <string name="BackupDialog_enable_backups">Aktifkan cadangan</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Mohon informasikan jika Anda memahami dengan mencentang kotak konfirmasi.</string>
+    <string name="BackupDialog_delete_backups">Hapus cadangan?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Nonaktifkan dan hapus semua cadangan lokal?</string>
+    <string name="BackupDialog_delete_backups_statement">Hapus cadangan</string>
+    <string name="BackupDialog_copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="LocalBackupJob_creating_backup">Buat cadangan</string>
+    <string name="ProgressPreference_d_messages_so_far">%d pesan sejauh ini...</string>
+    <string name="BackupUtil_never">Tidak pernah</string>
+    <string name="preferences_app_protection__screen_lock">Layar terkunci</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci akses Session Anda dengan kunci layar Android atau sidik jari</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Layar terkunci karena tidak beraktivitas habis</string>
+    <string name="AppProtectionPreferenceFragment_none">Kosong</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <!-- Session -->
+    <string name="continue_2">Lanjut</string>
+    <string name="copy">Salin</string>
+    <string name="invalid_url">URL salah</string>
+    <string name="copied_to_clipboard">Salin ke clipboard</string>
+    <string name="next">Selanjutnya</string>
+    <string name="share">Bagikan</string>
+    <string name="invalid_session_id">Session salah</string>
+    <string name="cancel">Batal</string>
+    <string name="your_session_id">Session ID anda</string>
+    <string name="activity_landing_title_2">Session anda dimulai di sini</string>
+    <string name="activity_landing_register_button_title">Buat Session ID</string>
+    <string name="activity_landing_restore_button_title">Lanjutkan Session</string>
+    <string name="view_fake_chat_bubble_1">Apa itu Session?</string>
+    <string name="view_fake_chat_bubble_2">Session adalah aplikasi pesan terenkripsi yang terdesentralisasi</string>
+    <string name="view_fake_chat_bubble_3">Bagaimana dengan pengumpulan informasi personal atau metadata percakapan? Bagaimana cara kerjanya?</string>
+    <string name="view_fake_chat_bubble_4">Menggunakan kombinasi routing yang anonim canggih dan teknologi enkripsi ujung-ke-ujung (end-to-end encryption)</string>
+    <string name="view_fake_chat_bubble_5">Rekan yang baik tak membiarkan rekannya menggunakan aplikasi bertukar pesan yang tak aman. Terima kasih kembali.</string>
+    <string name="activity_register_title">Ucapkan halo pada Session ID anda</string>
+    <string name="activity_register_explanation">Session ID adalah alamat unik yang bisa digunakan untuk mengontak anda. Tanpa koneksi dengan identitas asli, Session ID anda didesain bersifat anonim dan rahasia.</string>
+    <string name="activity_restore_title">Kembalikan akun</string>
+    <string name="activity_restore_explanation">Masukkan kata pemulihan yang diberikan saat anda mencoba masuk ke akun</string>
+    <string name="activity_restore_seed_edit_text_hint">masukan kata pemulihan</string>
+    <string name="activity_display_name_title_2">Pilih nama yang ditampilkan</string>
+    <string name="activity_display_name_explanation">Ini akan menjadi nama anda ketika menggunakan Session. Bisa merupakan nama asli, alias, atau apapun yang anda suka</string>
+    <string name="activity_display_name_edit_text_hint">Masukkan nama</string>
+    <string name="activity_display_name_display_name_missing_error">Pilih nama yang ditampilkan</string>
+    <string name="activity_display_name_display_name_too_long_error">Nama yang dibuat terlalu panjang</string>
+    <string name="activity_pn_mode_recommended_option_tag">Direkomendasikan</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Pilih salah satu opsi</string>
+    <string name="activity_home_empty_state_message">Anda belum memiliki kontak</string>
+    <string name="activity_home_empty_state_button_title">Mulai sebuah Session</string>
+    <string name="activity_home_leave_group_dialog_message">Apakah anda yakin ingin meninggalkan grup ini?</string>
+    <string name="activity_home_leaving_group_failed_message">"Tak bisa meninggalkan grup"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Apakah anda yakin ingin menghapus percakapan ini?</string>
+    <string name="activity_home_conversation_deleted_message">Percakapan terhapus</string>
+    <string name="activity_seed_title">Kata pemulihan anda</string>
+    <string name="activity_seed_title_2">Inilah kata pemulihan anda</string>
+    <string name="activity_seed_explanation">Kata pemulihan adalah kunci Session ID -- bisa digunakan untuk mengembalikan Session ID ketika anda kehilangan perangkat. Simpan kata pemulihan di tempat yang aman dan jangan berikan kepada siapapun</string>
+    <string name="activity_seed_reveal_button_title">Tekan untuk melihat</string>
+    <string name="view_seed_reminder_subtitle_1">Amankan akun anda dengan menyimpan kata pemulihan</string>
+    <string name="view_seed_reminder_subtitle_2">Ketuk dan tekan kata yang disensor untuk mengetahui kata pemulihan anda, lalu simpan baik-baik untuk mengamnkan Session ID anda</string>
+    <string name="view_seed_reminder_subtitle_3">Pastikan untuk menyimpan kata pemulihan di tempat yang aman</string>
+    <string name="activity_path_title">Path</string>
+    <string name="activity_path_explanation">Session menyembunyikan IP dengan memantulkan pesan melalui berbagai simpul layanan di jaringan Session yang terdesentralisasi. Ini adalah negara yang menjadi lokasi pesan anda dipantulkan</string>
+    <string name="activity_path_device_row_title">Anda</string>
+    <string name="activity_path_guard_node_row_title">Simpul masuk</string>
+    <string name="activity_path_service_node_row_title">Simpul layanan</string>
+    <string name="activity_path_destination_row_title">Tujuan</string>
+    <string name="activity_path_learn_more_button_title">Pelajari lebih lanjut</string>
+    <string name="activity_create_private_chat_title">Session baru</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Masukkan Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Pindai kode QR</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Pindai kode QR pengguna lain untuk memulai Session. Kode QR bisa ditemukan dengan mengetukan gambar kode QR di pengaturan akun</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Masukkan Session ID penerima</string>
+    <string name="fragment_enter_public_key_explanation">Pengguna bisa membagikan Session ID miliknya dengan masuk ke pengaturan akun dan mengetuk \"Bagikan Session ID\" atau dengan membagikan kode QR mereka</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session membutuhkan akses kamera untuk memindai kode QR</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Berikan akses kamera</string>
+    <string name="activity_create_closed_group_title">Grup tertutup baru</string>
+    <string name="activity_create_closed_group_edit_text_hint">Masukkan nama grup</string>
+    <string name="activity_create_closed_group_empty_state_message">anda belum memiliki kontak</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Mulai sebuah Session</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Masukkan nama grup</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Masukkan nama grup yang lebih pendek</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Pilih setidaknya 2 anggota grup</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_join_public_chat_title">Gabung ke grup terbuka</string>
+    <string name="activity_join_public_chat_error">Tak bisa bergabung dengan grup</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Buka URL grup</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Pindai kode QR</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Pindai kode QR grup terbuka yang ingin anda masuki</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Masukkan sebuah URL grup terbuka</string>
+    <string name="activity_settings_title">Pengaturan</string>
+    <string name="activity_settings_display_name_edit_text_hint">Masukkan nama</string>
+    <string name="activity_settings_display_name_missing_error">Pilih sebuah nama</string>
+    <string name="activity_settings_display_name_too_long_error">Nama yang dibuat terlalu panjang</string>
+    <string name="activity_settings_privacy_button_title">Privasi</string>
+    <string name="activity_settings_notifications_button_title">Notifikasi</string>
+    <string name="activity_settings_chats_button_title">Percakapan</string>
+    <string name="activity_settings_devices_button_title">Perangkat</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_recovery_phrase_button_title">Kata pemulihan</string>
+    <string name="activity_settings_clear_all_data_button_title">Hapus data</string>
+    <string name="activity_notification_settings_title">Notifikasi</string>
+    <string name="activity_notification_settings_style_section_title">Gaya notifikasi</string>
+    <string name="activity_notification_settings_content_section_title">Isi notifikasi</string>
+    <string name="activity_privacy_settings_title">Privasi</string>
+    <string name="activity_chat_settings_title">Percakapan</string>
+    <string name="preferences_notifications_strategy_category_title">Strategi notofikasi</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ubah nama</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Putuskan koneksi dengan perangkat</string>
+    <string name="dialog_seed_title">Kata pemulihan anda</string>
+    <string name="dialog_seed_explanation">Ini adalah kata pemulihan anda. Gunakan untuk mengembalikan atau memindahkan Session ID anda ke perangkat lain</string>
+    <string name="dialog_clear_all_data_title">Hapus semua data</string>
+    <string name="dialog_clear_all_data_explanation">Pesan, Session, dan kontak anda akan dihapus secara permanen</string>
+    <string name="activity_qr_code_title">Kode QR</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">Lihat kode QR saya</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Pindai kode QR</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Pindai kode QR pengguna lain untuk memulai percakapan</string>
+    <string name="fragment_view_my_qr_code_explanation">Ini adalah kode QR anda. Pengguna lain bisa memindainya untuk memulai percakapan dengan anda</string>
+    <string name="fragment_view_my_qr_code_share_title">Bagikan kode QR</string>
+    <string name="fragment_contact_selection_contacts_title">Kontak</string>
+    <string name="fragment_contact_selection_closed_groups_title">Grup tertutup</string>
+    <string name="fragment_contact_selection_open_groups_title">Grup terbuka</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="activity_select_contacts_title">Select Contacts</string>
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+</resources>

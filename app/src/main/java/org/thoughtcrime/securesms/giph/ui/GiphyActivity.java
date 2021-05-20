@@ -20,7 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.utilities.ViewUtil;
 

@@ -27,7 +27,7 @@
             android:dependency="pref_key_enable_notifications"
             android:key="pref_key_use_fcm"
             android:title="Use Fast Mode"
-            android:summary="You’ll be notified of new messages reliably and immediately using Google’s notification servers. The contents of your messages, and who you’re messaging, are never exposed to Google."
+            android:summary="You’ll be notified of new messages reliably and immediately using Google’s notification servers."
             android:defaultValue="false" />
 
     </PreferenceCategory>

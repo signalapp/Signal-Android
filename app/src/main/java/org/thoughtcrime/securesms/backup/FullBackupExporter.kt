@@ -12,7 +12,7 @@ import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.utilities.Conversions
 
 import org.thoughtcrime.securesms.backup.BackupProtos.*
@@ -20,13 +20,13 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.database.*
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.session.libsession.utilities.Util
-import org.session.libsignal.libsignal.kdf.HKDFv3
-import org.session.libsignal.libsignal.util.ByteUtil
+import org.session.libsignal.crypto.kdf.HKDFv3
+import org.session.libsignal.utilities.ByteUtil
 import java.io.*
 import java.lang.Exception
 import java.security.InvalidAlgorithmParameterException

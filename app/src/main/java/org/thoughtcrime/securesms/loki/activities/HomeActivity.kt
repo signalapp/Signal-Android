@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -34,13 +33,14 @@ import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.utilities.*
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -52,10 +52,9 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity(),
-        ConversationClickListener,
-        SeedReminderViewDelegate,
-        NewConversationButtonSetViewDelegate {
-
+    ConversationClickListener,
+    SeedReminderViewDelegate,
+    NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
@@ -140,7 +139,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, userDB)
-            application.publicChatManager.startPollersIfNeeded()
+            OpenGroupManager.startPolling()
             JobQueue.shared.resumePendingJobs()
         }
         IP2Country.configureIfNeeded(this)
@@ -173,30 +172,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
-        showKeyPairMigrationSheetIfNeeded()
-        showKeyPairMigrationSuccessSheetIfNeeded()
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {
                 MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
             }
         }
-    }
-
-    private fun showKeyPairMigrationSheetIfNeeded() {
-        if (KeyPairUtilities.hasV2KeyPair(this)) {
-            return
-        }
-        val keyPairMigrationSheet = KeyPairMigrationBottomSheet()
-        keyPairMigrationSheet.show(supportFragmentManager, keyPairMigrationSheet.tag)
-    }
-
-    private fun showKeyPairMigrationSuccessSheetIfNeeded() {
-        if (!KeyPairUtilities.hasV2KeyPair(this) || !TextSecurePreferences.getIsMigratingKeyPair(this)) {
-            return
-        }
-        val keyPairMigrationSuccessSheet = KeyPairMigrationSuccessBottomSheet()
-        keyPairMigrationSuccessSheet.show(supportFragmentManager, keyPairMigrationSuccessSheet.tag)
-        TextSecurePreferences.setIsMigratingKeyPair(this, false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -315,23 +295,24 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         val threadID = thread.threadId
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
-        val dialogMessage: String
+        val message: String
         if (recipient.isGroupRecipient) {
             val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
             if (group != null && group.admins.map { it.toString() }.contains(TextSecurePreferences.getLocalNumber(this))) {
-                dialogMessage = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone."
+                message = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone."
             } else {
-                dialogMessage = resources.getString(R.string.activity_home_leave_group_dialog_message)
+                message = resources.getString(R.string.activity_home_leave_group_dialog_message)
             }
         } else {
-            dialogMessage = resources.getString(R.string.activity_home_delete_conversation_dialog_message)
+            message = resources.getString(R.string.activity_home_delete_conversation_dialog_message)
         }
         val dialog = AlertDialog.Builder(this)
-        dialog.setMessage(dialogMessage)
+        dialog.setMessage(message)
         dialog.setPositiveButton(R.string.yes) { _, _ ->
             lifecycleScope.launch(Dispatchers.Main) {
                 val context = this@HomeActivity as Context
-
+                // Cancel any outstanding jobs
+                DatabaseFactory.getSessionJobDatabase(context).cancelPendingMessageSendJobs(threadID)
                 // Send a leave group message if this is an active closed group
                 if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
                     var isClosedGroup: Boolean
@@ -350,34 +331,28 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                         return@launch
                     }
                 }
-
-                withContext(Dispatchers.IO) {
-                    val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-                    val openGroupV2 = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
-                    //TODO Move open group related logic to OpenGroupUtilities / PublicChatManager / GroupManager
-                    if (publicChat != null) {
-                        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
-                        apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
-                        apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
-                        apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
-
-                        OpenGroupAPI.leave(publicChat.channel, publicChat.server)
-
-                        ApplicationContext.getInstance(context).publicChatManager
-                                .removeChat(publicChat.server, publicChat.channel)
-                    } else if (openGroupV2 != null) {
-                        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
-                        apiDB.removeLastMessageServerID(openGroupV2.room, openGroupV2.server)
-                        apiDB.removeLastDeletionServerID(openGroupV2.room, openGroupV2.server)
-
-                        ApplicationContext.getInstance(context).publicChatManager
-                                .removeChat(openGroupV2.server, openGroupV2.room)
-                    } else {
+                // Delete the conversation
+                val v1OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+                val v2OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+                if (v1OpenGroup != null) {
+                    val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+                    apiDB.removeLastMessageServerID(v1OpenGroup.channel, v1OpenGroup.server)
+                    apiDB.removeLastDeletionServerID(v1OpenGroup.channel, v1OpenGroup.server)
+                    apiDB.clearOpenGroupProfilePictureURL(v1OpenGroup.channel, v1OpenGroup.server)
+                    OpenGroupAPI.leave(v1OpenGroup.channel, v1OpenGroup.server)
+                    // FIXME: No longer supported so let's remove this code
+                } else if (v2OpenGroup != null) {
+                    val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+                    apiDB.removeLastMessageServerID(v2OpenGroup.room, v2OpenGroup.server)
+                    apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
+                    OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
+                } else {
+                    ThreadUtils.queue {
                         threadDB.deleteConversation(threadID)
                     }
-                    ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)
                 }
-
+                // Update the badge count
+                ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)
                 // Notify the user
                 val toastMessage = if (recipient.isGroupRecipient) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
                 Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()

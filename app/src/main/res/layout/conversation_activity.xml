@@ -134,6 +134,12 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
+            <org.thoughtcrime.securesms.loki.views.OpenGroupGuidelinesView
+                android:id="@+id/open_group_guidelines_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
             <FrameLayout
                 android:id="@+id/fragment_content"
                 android:layout_width="match_parent"

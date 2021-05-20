@@ -7,8 +7,8 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.utilities.Log
 import java.security.SecureRandom
 import java.util.*
 
@@ -18,7 +18,7 @@ class Poller {
     var userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: ""
     private var hasStarted: Boolean = false
     private val usedSnodes: MutableSet<Snode> = mutableSetOf()
-    public var isCaughtUp = false
+    var isCaughtUp = false
 
     // region Settings
     companion object {
@@ -92,7 +92,7 @@ class Poller {
             } else {
                 val messages = SnodeAPI.parseRawMessagesResponse(rawResponse, snode, userPublicKey)
                 messages.forEach { envelope ->
-                    val job = MessageReceiveJob(envelope.toByteArray(), false)
+                    val job = MessageReceiveJob(envelope.toByteArray())
                     JobQueue.shared.add(job)
                 }
                 poll(snode, deferred)

@@ -8,7 +8,7 @@ import android.hardware.Camera.Size;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.DisplayMetrics;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import android.view.Surface;
 
 import java.util.Collections;

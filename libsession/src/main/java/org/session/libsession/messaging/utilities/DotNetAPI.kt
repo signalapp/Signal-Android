@@ -10,26 +10,21 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.messaging.file_server.FileServerAPI
 
-import org.session.libsignal.utilities.DiffieHellman
-import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
-import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException
-import org.session.libsignal.service.api.util.StreamDetails
-import org.session.libsignal.service.internal.push.ProfileAvatarData
-import org.session.libsignal.service.internal.push.PushAttachmentData
-import org.session.libsignal.service.internal.push.http.DigestingRequestBody
-import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
+import org.session.libsignal.crypto.DiffieHellman
+import org.session.libsignal.streams.ProfileCipherOutputStream
+import org.session.libsignal.exceptions.NonSuccessfulResponseCodeException
+import org.session.libsignal.exceptions.PushNetworkException
+import org.session.libsignal.streams.StreamDetails
+import org.session.libsignal.utilities.ProfileAvatarData
+import org.session.libsignal.utilities.PushAttachmentData
+import org.session.libsignal.streams.DigestingRequestBody
+import org.session.libsignal.streams.ProfileCipherOutputStreamFactory
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.HTTP
-import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
-import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
+import org.session.libsignal.utilities.Log
 import java.util.*
 
 /**
@@ -214,7 +209,7 @@ open class DotNetAPI {
     fun uploadProfilePicture(server: String, key: ByteArray, profilePicture: StreamDetails, setLastProfilePictureUpload: () -> Unit): UploadResult {
         val profilePictureUploadData = ProfileAvatarData(profilePicture.stream, ProfileCipherOutputStream.getCiphertextLength(profilePicture.length), profilePicture.contentType, ProfileCipherOutputStreamFactory(key))
         val file = DigestingRequestBody(profilePictureUploadData.data, profilePictureUploadData.outputStreamFactory,
-            profilePictureUploadData.contentType, profilePictureUploadData.dataLength, null)
+                profilePictureUploadData.contentType, profilePictureUploadData.dataLength, null)
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("type", "network.loki")

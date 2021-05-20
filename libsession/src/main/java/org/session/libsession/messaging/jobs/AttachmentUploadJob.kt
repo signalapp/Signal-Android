@@ -3,20 +3,25 @@ package org.session.libsession.messaging.jobs
 import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
+import nl.komponents.kovenant.Promise
+import okio.Buffer
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.DotNetAPI
-import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
-import org.session.libsignal.service.internal.crypto.PaddingInputStream
-import org.session.libsignal.service.internal.push.PushAttachmentData
-import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
-import org.session.libsignal.service.internal.util.Util
-import org.session.libsignal.service.loki.PlaintextOutputStreamFactory
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.streams.AttachmentCipherOutputStream
+import org.session.libsignal.messages.SignalServiceAttachmentStream
+import org.session.libsignal.streams.PaddingInputStream
+import org.session.libsignal.utilities.PushAttachmentData
+import org.session.libsignal.streams.AttachmentCipherOutputStreamFactory
+import org.session.libsignal.streams.DigestingRequestBody
+import org.session.libsignal.utilities.Util
+import org.session.libsignal.streams.PlaintextOutputStreamFactory
+import org.session.libsignal.utilities.Log
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
     override var delegate: JobDelegate? = null
@@ -30,46 +35,43 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
     // Settings
     override val maxFailureCount: Int = 20
+
     companion object {
         val TAG = AttachmentUploadJob::class.simpleName
         val KEY: String = "AttachmentUploadJob"
 
         // Keys used for database storage
-        private val KEY_ATTACHMENT_ID = "attachment_id"
-        private val KEY_THREAD_ID = "thread_id"
-        private val KEY_MESSAGE = "message"
-        private val KEY_MESSAGE_SEND_JOB_ID = "message_send_job_id"
+        private val ATTACHMENT_ID_KEY = "attachment_id"
+        private val THREAD_ID_KEY = "thread_id"
+        private val MESSAGE_KEY = "message"
+        private val MESSAGE_SEND_JOB_ID_KEY = "message_send_job_id"
     }
 
     override fun execute() {
         try {
-            val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
+            val storage = MessagingModuleConfiguration.shared.storage
+            val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+            val attachment = messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
                 ?: return handleFailure(Error.NoAttachment)
-
-            val usePadding = false
-            val openGroupV2 = MessagingModuleConfiguration.shared.storage.getV2OpenGroup(threadID)
-            val openGroup = MessagingModuleConfiguration.shared.storage.getOpenGroup(threadID)
-            val server = openGroup?.let {
-                it.server
-            } ?: openGroupV2?.let {
-                it.server
-            } ?: FileServerAPI.shared.server
-            val shouldEncrypt = (openGroup == null && openGroupV2 == null) // Encrypt if this isn't an open group
-
-            val attachmentKey = Util.getSecretBytes(64)
-            val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
-            val dataStream = if (usePadding) PaddingInputStream(attachment.inputStream, attachment.length) else attachment.inputStream
-            val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(paddedLength) else attachment.length
-
-            val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
-            val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
-
-            val uploadResult = if (openGroupV2 == null) FileServerAPI.shared.uploadAttachment(server, attachmentData) else {
-                val dataBytes = attachmentData.data.readBytes()
-                val result = OpenGroupAPIV2.upload(dataBytes, openGroupV2.room, openGroupV2.server).get()
-                DotNetAPI.UploadResult(result, "${openGroupV2.server}/files/$result", byteArrayOf())
+            val v2OpenGroup = storage.getV2OpenGroup(threadID)
+            val v1OpenGroup = storage.getOpenGroup(threadID)
+            if (v2OpenGroup != null) {
+                val keyAndResult = upload(attachment, v2OpenGroup.server, false) {
+                    OpenGroupAPIV2.upload(it, v2OpenGroup.room, v2OpenGroup.server)
+                }
+                handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
+            } else if (v1OpenGroup == null) {
+                val keyAndResult = upload(attachment, FileServerAPIV2.SERVER, true) {
+                    FileServerAPIV2.upload(it)
+                }
+                handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
+            } else { // V1 open group
+                val server = v1OpenGroup.server
+                val pushData = PushAttachmentData(attachment.contentType, attachment.inputStream,
+                        attachment.length, PlaintextOutputStreamFactory(), attachment.listener)
+                val result = FileServerAPI.shared.uploadAttachment(server, pushData)
+                handleSuccess(attachment, ByteArray(0), result)
             }
-            handleSuccess(attachment, attachmentKey, uploadResult)
         } catch (e: java.lang.Exception) {
             if (e == Error.NoAttachment) {
                 this.handlePermanentFailure(e)
@@ -81,17 +83,49 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         }
     }
 
+    private fun upload(attachment: SignalServiceAttachmentStream, server: String, encrypt: Boolean, upload: (ByteArray) -> Promise<Long, Exception>): Pair<ByteArray, DotNetAPI.UploadResult> {
+        // Key
+        val key = if (encrypt) Util.getSecretBytes(64) else ByteArray(0)
+        // Length
+        val rawLength = attachment.length
+        val length = if (encrypt) {
+            val paddedLength = PaddingInputStream.getPaddedSize(rawLength)
+            AttachmentCipherOutputStream.getCiphertextLength(paddedLength)
+        } else {
+            attachment.length
+        }
+        // In & out streams
+        // PaddingInputStream adds padding as data is read out from it. AttachmentCipherOutputStream
+        // encrypts as it writes data.
+        val inputStream = if (encrypt) PaddingInputStream(attachment.inputStream, rawLength) else attachment.inputStream
+        val outputStreamFactory = if (encrypt) AttachmentCipherOutputStreamFactory(key) else PlaintextOutputStreamFactory()
+        // Create a digesting request body but immediately read it out to a buffer. Doing this makes
+        // it easier to deal with inputStream and outputStreamFactory.
+        val pad = PushAttachmentData(attachment.contentType, inputStream, length, outputStreamFactory, attachment.listener)
+        val contentType = "application/octet-stream"
+        val drb = DigestingRequestBody(pad.data, pad.outputStreamFactory, contentType, pad.dataSize, pad.listener)
+        Log.d("Loki", "File size: ${length.toDouble() / 1000} kb.")
+        val b = Buffer()
+        drb.writeTo(b)
+        val data = b.readByteArray()
+        // Upload the data
+        val id = upload(data).get()
+        val digest = drb.transmittedDigest
+        // Return
+        return Pair(key, DotNetAPI.UploadResult(id, "${server}/files/$id", digest))
+    }
+
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
-        Log.w(TAG, "Attachment uploaded successfully.")
+        Log.d(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
-        MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadSucceeded(attachmentID, attachment, attachmentKey, uploadResult)
+        MessagingModuleConfiguration.shared.messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
         MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
     }
 
     private fun handlePermanentFailure(e: Exception) {
         Log.w(TAG, "Attachment upload failed permanently due to error: $this.")
         delegate?.handleJobFailedPermanently(this, e)
-        MessagingModuleConfiguration.shared.messageDataProvider.updateAttachmentAfterUploadFailed(attachmentID)
+        MessagingModuleConfiguration.shared.messageDataProvider.handleFailedAttachmentUpload(attachmentID)
         failAssociatedMessageSendJob(e)
     }
 
@@ -108,7 +142,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val messageSendJob = storage.getMessageSendJob(messageSendJobID)
         MessageSender.handleFailedMessageSend(this.message, e)
         if (messageSendJob != null) {
-            storage.markJobAsFailed(messageSendJob)
+            storage.markJobAsFailedPermanently(messageSendJobID)
         }
     }
 
@@ -119,10 +153,11 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return Data.Builder().putLong(KEY_ATTACHMENT_ID, attachmentID)
-            .putString(KEY_THREAD_ID, threadID)
-            .putByteArray(KEY_MESSAGE, serializedMessage)
-            .putString(KEY_MESSAGE_SEND_JOB_ID, messageSendJobID)
+        return Data.Builder()
+            .putLong(ATTACHMENT_ID_KEY, attachmentID)
+            .putString(THREAD_ID_KEY, threadID)
+            .putByteArray(MESSAGE_KEY, serializedMessage)
+            .putString(MESSAGE_SEND_JOB_ID_KEY, messageSendJobID)
             .build();
     }
 
@@ -133,12 +168,18 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     class Factory: Job.Factory<AttachmentUploadJob> {
 
         override fun create(data: Data): AttachmentUploadJob {
-            val serializedMessage = data.getByteArray(KEY_MESSAGE)
+            val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
             val message: Message = kryo.readObject(input, Message::class.java)
             input.close()
-            return AttachmentUploadJob(data.getLong(KEY_ATTACHMENT_ID), data.getString(KEY_THREAD_ID)!!, message, data.getString(KEY_MESSAGE_SEND_JOB_ID)!!)
+            return AttachmentUploadJob(
+                data.getLong(ATTACHMENT_ID_KEY),
+                data.getString(THREAD_ID_KEY)!!,
+                message,
+                data.getString(MESSAGE_SEND_JOB_ID_KEY)!!
+            )
         }
     }
 }

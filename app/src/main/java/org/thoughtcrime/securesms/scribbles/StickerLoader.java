@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.scribbles;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 
 import org.thoughtcrime.securesms.util.AsyncLoader;
 

@@ -40,12 +40,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Contact;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.service.internal.util.Util;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Util;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -286,6 +287,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
+      if (!OpenGroupManager.INSTANCE.isAllCaughtUp()) {
+        OpenGroupManager.INSTANCE.setAllCaughtUp(true);
+      }
     }
   }
 
@@ -481,6 +485,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
         String message      = slideDeck.getBody() + ": " + record.getBody();
         int    italicLength = message.length() - body.length();
         body = SpanUtil.italic(message, italicLength);
+      } else if (record.isOpenGroupInvitation()) {
+        body = SpanUtil.italic(context.getString(R.string.ThreadRecord_open_group_invitation));
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {

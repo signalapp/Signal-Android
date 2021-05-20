@@ -11,7 +11,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 class UserView : LinearLayout {
     var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly

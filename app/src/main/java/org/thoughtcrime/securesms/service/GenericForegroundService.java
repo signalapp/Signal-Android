@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.session.libsignal.libsignal.util.guava.Preconditions;
+import org.session.libsignal.utilities.guava.Preconditions;
 
 import network.loki.messenger.R;
 

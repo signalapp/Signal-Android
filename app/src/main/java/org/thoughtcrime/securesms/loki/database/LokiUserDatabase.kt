@@ -3,15 +3,15 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsession.messaging.threads.Address
+import org.session.libsignal.utilities.Log
+import org.session.libsession.utilities.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.LokiUserDatabaseProtocol
+import org.session.libsignal.database.LokiUserDatabaseProtocol
 
 class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiUserDatabaseProtocol {
 

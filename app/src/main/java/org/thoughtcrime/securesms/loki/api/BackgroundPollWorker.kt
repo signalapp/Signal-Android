@@ -8,16 +8,13 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller
-import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
-import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupV2Poller
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -25,45 +22,23 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
     companion object {
         const val TAG = "BackgroundPollWorker"
 
-        private const val RETRY_ATTEMPTS = 3
-
-        @JvmStatic
-        fun scheduleInstant(context: Context) {
-            val workRequest = OneTimeWorkRequestBuilder<BackgroundPollWorker>()
-                    .setConstraints(Constraints.Builder()
-                            .setRequiredNetworkType(NetworkType.CONNECTED)
-                            .build()
-                    )
-                    .build()
-
-            WorkManager
-                    .getInstance(context)
-                    .enqueue(workRequest)
-        }
-
         @JvmStatic
         fun schedulePeriodic(context: Context) {
             Log.v(TAG, "Scheduling periodic work.")
-            val workRequest = PeriodicWorkRequestBuilder<BackgroundPollWorker>(15, TimeUnit.MINUTES)
-                    .setConstraints(Constraints.Builder()
-                            .setRequiredNetworkType(NetworkType.CONNECTED)
-                            .build()
-                    )
-                    .build()
-
-            WorkManager
-                    .getInstance(context)
-                    .enqueueUniquePeriodicWork(
-                            TAG,
-                            ExistingPeriodicWorkPolicy.KEEP,
-                            workRequest
-                    )
+            val builder = PeriodicWorkRequestBuilder<BackgroundPollWorker>(5, TimeUnit.MINUTES)
+            builder.setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
+            val workRequest = builder.build()
+            WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+                TAG,
+                ExistingPeriodicWorkPolicy.REPLACE,
+                workRequest
+            )
         }
     }
 
     override fun doWork(): Result {
         if (TextSecurePreferences.getLocalNumber(context) == null) {
-            Log.v(TAG, "Background poll is canceled due to the Session user is not set up yet.")
+            Log.v(TAG, "User not registered yet.")
             return Result.failure()
         }
 
@@ -71,43 +46,37 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             Log.v(TAG, "Performing background poll.")
             val promises = mutableListOf<Promise<Unit, Exception>>()
 
-            // Private chats
+            // DMs
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
-            val privateChatsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
+            val dmsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
                 envelopes.map { envelope ->
-                    MessageReceiveJob(envelope.toByteArray(), false).executeAsync()
+                    // FIXME: Using a job here seems like a bad idea...
+                    MessageReceiveJob(envelope.toByteArray()).executeAsync()
                 }
             }
-            promises.addAll(privateChatsPromise.get())
+            promises.addAll(dmsPromise.get())
 
             // Closed groups
             promises.addAll(ClosedGroupPoller().pollOnce())
 
             // Open Groups
-            val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { (_,chat)->
-                OpenGroup(chat.channel, chat.server, chat.displayName, chat.isDeletable)
-            }
-            for (openGroup in openGroups) {
-                val poller = OpenGroupPoller(openGroup)
-                promises.add(poller.pollForNewMessages())
-            }
+            val threadDB = DatabaseFactory.getLokiThreadDatabase(context)
+            val v2OpenGroups = threadDB.getAllV2OpenGroups()
+            val v2OpenGroupServers = v2OpenGroups.map { it.value.server }.toSet()
 
-            val openGroupsV2 = DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups().values.groupBy(OpenGroupV2::server)
-
-            openGroupsV2.values.map { groups ->
-                OpenGroupV2Poller(groups)
-            }.forEach { poller ->
-                promises.add(poller.compactPoll(true).map{ /*Unit*/ })
+            for (server in v2OpenGroupServers) {
+                val poller = OpenGroupPollerV2(server, null)
+                poller.hasStarted = true
+                promises.add(poller.poll(true))
             }
 
-            // Wait till all the promises get resolved
+            // Wait until all the promises are resolved
             all(promises).get()
 
             return Result.success()
         } catch (exception: Exception) {
-            Log.v(TAG, "Background poll failed due to error: ${exception.message}.", exception)
-
-            return if (runAttemptCount < RETRY_ATTEMPTS) Result.retry() else Result.failure()
+            Log.e(TAG, "Background poll failed due to error: ${exception.message}.", exception)
+            return Result.retry()
         }
     }
 
@@ -116,8 +85,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action == Intent.ACTION_BOOT_COMPLETED) {
                 Log.v(TAG, "Boot broadcast caught.")
-                BackgroundPollWorker.scheduleInstant(context)
-                BackgroundPollWorker.schedulePeriodic(context)
+                schedulePeriodic(context)
             }
         }
     }

@@ -11,7 +11,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.StyleSpan
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Base64
 import java.io.*
 import java.nio.charset.StandardCharsets

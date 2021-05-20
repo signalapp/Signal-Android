@@ -10,10 +10,10 @@ import androidx.annotation.DimenRes
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.avatars.ProfileContactPhoto
+import org.session.libsession.avatars.ProfileContactPhoto
 import org.session.libsession.messaging.mentions.MentionsManager
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator

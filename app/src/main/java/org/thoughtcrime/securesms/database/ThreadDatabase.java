@@ -30,18 +30,18 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.Contact;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
 import org.session.libsession.utilities.DelimiterUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.Pair;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Pair;
+import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -513,9 +513,9 @@ public class ThreadDatabase extends Database {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
+    boolean shouldDeleteEmptyThread = deleteThreadOnEmpty(threadId);
 
-
-    if (count == 0) {
+    if (count == 0 && shouldDeleteEmptyThread) {
       deleteThread(threadId);
       notifyConversationListListeners();
       return true;
@@ -534,14 +534,22 @@ public class ThreadDatabase extends Database {
         notifyConversationListListeners();
         return false;
       } else {
-        deleteThread(threadId);
-        notifyConversationListListeners();
-        return true;
+        if (shouldDeleteEmptyThread) {
+          deleteThread(threadId);
+          notifyConversationListListeners();
+          return true;
+        }
+        return false;
       }
     } finally {
       if (reader != null)
         reader.close();
     }
+  }
+
+  private boolean deleteThreadOnEmpty(long threadId) {
+    Recipient threadRecipient = getRecipientForThreadId(threadId);
+    return threadRecipient != null && !threadRecipient.isOpenGroupRecipient();
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {

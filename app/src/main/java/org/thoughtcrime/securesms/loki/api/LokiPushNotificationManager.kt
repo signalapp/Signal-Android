@@ -7,9 +7,9 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.snode.OnionRequestAPI
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.retryIfNeeded
 
 object LokiPushNotificationManager {
     private val maxRetryCount = 4

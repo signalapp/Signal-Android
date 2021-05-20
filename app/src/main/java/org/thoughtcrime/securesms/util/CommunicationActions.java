@@ -14,9 +14,8 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import network.loki.messenger.R;
 
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 public class CommunicationActions {
 

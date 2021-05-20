@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.media.MediaDataSource
 import android.os.Build
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import androidx.annotation.RequiresApi
 import org.greenrobot.eventbus.EventBus
-import org.session.libsession.messaging.jobs.Data
+import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras

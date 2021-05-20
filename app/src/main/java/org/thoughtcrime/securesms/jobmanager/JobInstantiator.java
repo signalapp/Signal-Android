@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager;
 
 import androidx.annotation.NonNull;
 
-import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.utilities.Data;
 
 import java.util.HashMap;
 import java.util.Map;

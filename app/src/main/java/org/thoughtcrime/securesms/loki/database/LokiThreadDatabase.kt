@@ -11,8 +11,8 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 
 import org.session.libsession.messaging.open_groups.OpenGroupV2
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.recipients.Recipient
 
 import org.session.libsignal.utilities.JsonUtil
 
@@ -68,7 +68,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
             while (cursor != null && cursor.moveToNext()) {
                 val threadID = cursor.getLong(threadID)
                 val string = cursor.getString(publicChat)
-                val openGroup = OpenGroupV2.fromJson(string)
+                val openGroup = OpenGroupV2.fromJSON(string)
                 if (openGroup != null) result[threadID] = openGroup
             }
         } catch (e: Exception) {
@@ -100,7 +100,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val database = databaseHelper.readableDatabase
         return database.get(publicChatTable, "${Companion.threadID} = ?", arrayOf(threadID.toString())) { cursor ->
             val json = cursor.getString(publicChat)
-            OpenGroupV2.fromJson(json)
+            OpenGroupV2.fromJSON(json)
         }
     }
 

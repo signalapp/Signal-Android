@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.loki.activities
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Address
 import org.thoughtcrime.securesms.loki.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 
 class EditClosedGroupMembersAdapter(

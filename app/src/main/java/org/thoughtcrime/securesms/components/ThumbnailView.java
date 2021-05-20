@@ -8,7 +8,7 @@ import androidx.annotation.UiThread;
 import android.util.AttributeSet;
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -23,19 +23,19 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
-import org.session.libsignal.utilities.concurrent.ListenableFuture;
-import org.session.libsignal.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.ListenableFuture;
+import org.session.libsignal.utilities.SettableFuture;
 
 import java.util.Collections;
 import java.util.Locale;

@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;

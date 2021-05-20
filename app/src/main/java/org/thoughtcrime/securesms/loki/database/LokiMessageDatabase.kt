@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
+import net.sqlcipher.database.SQLiteDatabase.CONFLICT_REPLACE
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.session.libsignal.service.loki.LokiMessageDatabaseProtocol
+import org.session.libsignal.database.LokiMessageDatabaseProtocol
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 
@@ -98,11 +99,11 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
 
     override fun setServerID(messageID: Long, serverID: Long, isSms: Boolean) {
         val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(2)
+        val contentValues = ContentValues(3)
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.serverID, serverID)
         contentValues.put(messageType, if (isSms) SMS_TYPE else MMS_TYPE)
-        database.insertOrUpdate(messageIDTable, contentValues, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageID.toString(), serverID.toString()))
+        database.insertWithOnConflict(messageIDTable, null, contentValues, CONFLICT_REPLACE)
     }
 
     fun getOriginalThreadID(messageID: Long): Long {
@@ -114,11 +115,11 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
 
     fun setOriginalThreadID(messageID: Long, serverID: Long, threadID: Long) {
         val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(2)
+        val contentValues = ContentValues(3)
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.serverID, serverID)
         contentValues.put(Companion.threadID, threadID)
-        database.insertOrUpdate(messageThreadMappingTable, contentValues, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageID.toString(), serverID.toString()))
+        database.insertWithOnConflict(messageThreadMappingTable, null, contentValues, CONFLICT_REPLACE)
     }
 
     fun getErrorMessage(messageID: Long): String? {

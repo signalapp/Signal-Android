@@ -23,10 +23,10 @@ import android.text.SpannableString;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
-import org.session.libsession.database.documents.IdentityKeyMismatch;
-import org.session.libsession.database.documents.NetworkFailure;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.NetworkFailure;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient;
 
 import java.util.Collections;
 import java.util.LinkedList;

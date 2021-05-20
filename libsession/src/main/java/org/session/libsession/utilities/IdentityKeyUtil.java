@@ -22,13 +22,13 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import androidx.annotation.NonNull;
 
-import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.IdentityKey;
-import org.session.libsignal.libsignal.IdentityKeyPair;
-import org.session.libsignal.libsignal.InvalidKeyException;
-import org.session.libsignal.libsignal.ecc.Curve;
-import org.session.libsignal.libsignal.ecc.ECKeyPair;
-import org.session.libsignal.libsignal.ecc.ECPrivateKey;
+import org.session.libsignal.crypto.ecc.ECPublicKey;
+import org.session.libsignal.crypto.IdentityKey;
+import org.session.libsignal.crypto.IdentityKeyPair;
+import org.session.libsignal.exceptions.InvalidKeyException;
+import org.session.libsignal.crypto.ecc.Curve;
+import org.session.libsignal.crypto.ecc.ECKeyPair;
+import org.session.libsignal.crypto.ecc.ECPrivateKey;
 
 import org.session.libsignal.utilities.Base64;
 

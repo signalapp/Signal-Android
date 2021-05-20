@@ -1,930 +1,664 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Session</string>
-  <string name="yes">Có</string>
-  <string name="no">Không</string>
-  <string name="delete">Xóa</string>
-  <string name="please_wait">Xin chờ</string>
-  <string name="save">Lưu</string>
-  <!--AbstractNotificationBuilder-->
-  <string name="AbstractNotificationBuilder_new_message">Tin nhắn mới</string>
-  <!--AlbumThumbnailView-->
-  <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập cụm từ mật khẩu!</string>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="other">Thao tác này sẽ thu ngắn tức thì tất cả các cuộc hội thoại đến %d tin nhắn gần nhất.</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Xóa</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt cụm từ mật khẩu?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Thao tác này sẽ vĩnh viễn mở khóa Session và thông báo tin nhắn.</string>
-  <string name="ApplicationPreferencesActivity_disable">Tắt</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Session...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Tắt tin nhắn và cuộc gọi Session?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tắt tin nhắn và cuộc gọi Signal bằng cách huỷ đăng ký từ máy chủ.
-Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal trong tương lai.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Đã mở SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Đã tắt SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Chạm để chọn Session làm ứng dụng SMS mặc định</string>
-  <string name="ApplicationPreferencesActivity_on">mở</string>
-  <string name="ApplicationPreferencesActivity_On">Mở</string>
-  <string name="ApplicationPreferencesActivity_off">tắt</string>
-  <string name="ApplicationPreferencesActivity_Off">Tắt</string>
-  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
-  <!--AppProtectionPreferenceFragment-->
-  <!--DraftDatabase-->
-  <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
-  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
-  <string name="DraftDatabase_Draft_location_snippet">(vị trí)</string>
-  <!--AttchmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Không tìm thấy ứng dụng để chọn dữ liệu truyền thông.</string>
-  <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Lỗi khi chạy tập tin âm thanh!</string>
-  <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Chặn các liên lạc</string>
-  <!--BucketedThreadMedia-->
-  <string name="BucketedThreadMedia_Today">Hôm nay</string>
-  <string name="BucketedThreadMedia_Yesterday">Ngày hôm qua</string>
-  <string name="BucketedThreadMedia_This_week">Tuần này</string>
-  <string name="BucketedThreadMedia_This_month">Tháng này</string>
-  <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Cuộc gọi đến</string>
-  <!--CameraActivity-->
-  <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">Bỏ</string>
-  <!--CommunicationActions-->
-  <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mã số an toàn với %1$s đã thay đổi. Điều này có thể là do ai đó đang tìm cách đánh chặn thông tin của bạn, hoặc %2$s đã chỉ vừa mới cài lại Session.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bạn có thể sẽ cần xác minh mã số an toàn với liên hệ này.</string>
-  <string name="ConfirmIdentityDialog_accept">Chấp nhận</string>
-  <!--ContactsCursorLoader-->
-  <!--ContactsDatabase-->
-  <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
-  <string name="ContactsDatabase_signal_call_s">Cuộc gọi Session %s</string>
-  <!--ContactNameEditActivity-->
-  <!--ContactShareEditActivity-->
-  <!--ConversationItem-->
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Đã nhận được yêu cầu trao đổi khoá, chạm để xử lý.</string>
-  <string name="ConversationItem_group_action_left">%1$s đã rời khỏi nhóm.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Trở lại MMS không mã hóa?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Session.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
-  <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
-  <string name="ConversationItem_from_s">từ %s</string>
-  <string name="ConversationItem_to_s">tới %s</string>
-  <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Tái thiết lập phiên bảo mật?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Thao tác này có thể giúp bạn khi đang có vấn đề về mã khoá cuộc hội thoại. Các tin nhắn sẽ được giữ lại.</string>
-  <string name="ConversationActivity_reset">Tái thiết lập</string>
-  <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
-  <string name="ConversationActivity_select_contact_info">Chọn thông tin liên lạc</string>
-  <string name="ConversationActivity_compose_message">Soạn nội dung</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Nơi nhận không phải là SMS hay địa chỉ email có hiệu lực!</string>
-  <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống không!</string>
-  <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
-  <string name="ConversationActivity_invalid_recipient">Người nhận không đúng!</string>
-  <string name="ConversationActivity_calls_not_supported">Không hỗ trợ tính năng gọi điện</string>
-  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác gọi.</string>
-  <string name="ConversationActivity_leave_group">Rời nhóm?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
-  <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
-  <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
-  <string name="ConversationActivity_transport_signal">Session</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Session %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
-  <string name="ConversationActivity_specify_recipient">Xin chọn một liên lạc</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bạn sẽ lại có thể nhận tin nhắn và cuộc gọi từ liên hệ này.</string>
-  <string name="ConversationActivity_unblock">Không chặn</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Văn bản đính kèm vượt quá giới hạn kích cỡ cho loại tin nhắn mà bạn đang gửi.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Máy ảnh không khả dụng</string>
-  <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
-  <string name="ConversationActivity_yes">Có</string>
-  <string name="ConversationActivity_no">Không</string>
-  <!--ConversationAdapter-->
-  <!--ConversationFragment-->
-  <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="other">Xóa các tin nhắn đã chọn?</item>
-  </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn?</item>
-  </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
-  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="other">Có lỗi trong khi đang lưu đính kèm vào thẻ nhớ!</item>
-  </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể viết vào thẻ nhớ!</string>
-  <plurals name="ConversationFragment_saving_n_attachments">
-    <item quantity="other">Đang lưu %1$d đính kèm</item>
-  </plurals>
-  <string name="ConversationFragment_pending">Chờ giải quyết...</string>
-  <string name="ConversationFragment_push">Dữ liệu (Session)</string>
-  <string name="ConversationFragment_mms">MMS</string>
-  <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Đang xóa</string>
-  <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn...</string>
-  <!--ConversationListActivity-->
-  <!--ConversationListFragment-->
-  <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="other">Xoá các cuộc hội thoại đã chọn?</item>
-  </plurals>
-  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d cuộc hội thoại đã chọn?</item>
-  </plurals>
-  <string name="ConversationListFragment_deleting">Đang xóa</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Đang xoá các cuộc hội thoại đã chọn...</string>
-  <plurals name="ConversationListFragment_conversations_archived">
-    <item quantity="other">Đã lưu %d cuộc hội thoại</item>
-  </plurals>
-  <string name="ConversationListFragment_undo">HOÀN TÁC</string>
-  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-    <item quantity="other">Đã chuyển %d cuộc hội thoại vào hộp thư đến</item>
-  </plurals>
-  <!--ConversationListItem-->
-  <!--ConversationListItemAction-->
-  <string name="ConversationListItemAction_archived_conversations_d">Các cuộc hội thoại đã bảo lưu (%d)</string>
-  <!--CreateProfileActivity-->
-  <!--CustomDefaultPreference-->
-  <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
-  <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
-  <string name="CustomDefaultPreference_none">Không</string>
-  <!--DateUtils-->
-  <string name="DateUtils_just_now">Bây giờ</string>
-  <string name="DateUtils_minutes_ago">%d phút</string>
-  <string name="DateUtils_today">Hôm nay</string>
-  <string name="DateUtils_yesterday">Ngày hôm qua</string>
-  <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sent">Đã gửi</string>
-  <string name="DeliveryStatus_delivered">Đã giao</string>
-  <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%s\'?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Khi gỡ liên kết thiết bị này, nó sẽ không thể gửi hoặc nhận tin nhắn được nữa.</string>
-  <string name="DeviceListActivity_try_again">Thử lại</string>
-  <string name="DeviceListActivity_unlinking_device">Gỡ iên kết thiết bị...</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Gỡ liên kết thiết bị</string>
-  <string name="DeviceListActivity_network_failed">Mạng hỏng!</string>
-  <!--DeviceListItem-->
-  <string name="DeviceListItem_unnamed_device">Thiết bị chưa có tên</string>
-  <string name="DeviceListItem_linked_s">Liênt kết %s</string>
-  <string name="DeviceListItem_last_active_s">Lần chót hoạt động %s</string>
-  <string name="DeviceListItem_today">Hôm nay</string>
-  <!--DocumentView-->
-  <!--DozeReminder-->
-  <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Chia sẻ với</string>
-  <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Session.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã được nhập chung thành ứng dụng nhắn tin riêng tư: Session.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Session!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure bây giờ là Session.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Session. Chạm để khám phá.</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Xin miễn</string>
-  <string name="ExperienceUpgradeActivity_got_it">Đã nhận được</string>
-  <!--GcmBroadcastReceiver-->
-  <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Session!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Session đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
-  <!--GiphyActivity-->
-  <!--GiphyFragmentPageAdapter-->
-  <!--GroupCreateActivity-->
-  <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
-  <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Session, vậy nên nhóm này sẽ dùng MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Session không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
-  <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
-  <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
-  <string name="GroupCreateActivity_updating_group">Cập nhật %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Session.</string>
-  <string name="GroupCreateActivity_loading_group_details">Nạp chi tiết nhóm...</string>
-  <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
-  <!--GroupShareProfileView-->
-  <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Tôi</string>
-  <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nhấn và giữ để ghi âm tin nhắn thoại, thả ra để gửi</string>
-  <!--InviteActivity-->
-  <string name="InviteActivity_share">Chia sẻ</string>
-  <string name="InviteActivity_cancel">Hủy bỏ</string>
-  <string name="InviteActivity_sending">Đang gửi..</string>
-  <string name="InviteActivity_heart_content_description">Thích</string>
-  <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
-  <string name="InviteActivity_invite_to_signal">Mời dùng Session</string>
-  <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Session: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
-  <!--Job-->
-  <!--MessageDetailsRecipient-->
-  <string name="MessageDetailsRecipient_failed_to_send">Gửi đi không được</string>
-  <!--LongMessageActivity-->
-  <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Session</string>
-  <!--MmsDownloader-->
-  <!--MediaOverviewActivity-->
-  <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn...</string>
-  <string name="MediaOverviewActivity_Documents">Tài liệu</string>
-  <string name="MediaOverviewActivity_Select_all">Chọn tất cả</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Đang thu thập đính kèm...</string>
-  <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Session đang tiến hành</string>
-  <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Session</string>
-  <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến từ Session</string>
-  <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string>
-  <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
-  <string name="NotificationBarManager__end_call">Ngưng cuộc gọi</string>
-  <string name="NotificationBarManager__cancel_call">Huỷ cuộc gọi</string>
-  <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Đang tải xuống tin nhắn MMS</string>
-  <!--MediaPickerActivity-->
-  <!--MediaPickerItemFragment-->
-  <!--MediaSendActivity-->
-  <!--MediaRepository-->
-  <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Session cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
-  <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
-  <string name="MessageRecord_you_called">Bạn đã gọi</string>
-  <string name="MessageRecord_missed_call">Cuộc gọi nhỡ</string>
-  <string name="MessageRecord_s_called_you">%s đã gọi cho bạn</string>
-  <string name="MessageRecord_called_s">Đã gọi cho %s</string>
-  <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
-  <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Cụm từ mật khẩu không khớp nhau!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Cụm từ mật khẩu cũ không đúng!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Điền vào cụm từ mật khẩu mới!</string>
-  <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Liên kết thiết bị này?</string>
-  <string name="DeviceProvisioningActivity_cancel">HỦY</string>
-  <string name="DeviceProvisioningActivity_continue">TIẾP TỤC</string>
-  <string name="DeviceProvisioningActivity_content_intro">Nó sẽ có thể </string>
-  <string name="DeviceProvisioningActivity_content_bullets">
-• Đọc tất cả tin nhắn
-\n• Gửi tin nhắn dưới tên của bạn
-</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">Liên kết thiết bị</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Liên kết thiết bị mới...</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Thiết bị đã được chấp nhận!</string>
-  <string name="DeviceProvisioningActivity_content_progress_no_device">Không tìm thấy thiết bị nào.</string>
-  <string name="DeviceProvisioningActivity_content_progress_network_error">Lỗi mạng.</string>
-  <string name="DeviceProvisioningActivity_content_progress_key_error">Mã QR không đúng.</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Xin lỗi, đây không phải là mã QR liên kết thiết bị chính xác.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Session?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Session.</string>
-  <!--ExpirationDialog-->
-  <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mật khẩu</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Session</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">Nộp cụm từ mật khẩu</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mật khẩu không đúng!</string>
-  <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Phiên bản của Dịch vụ Google Play bạn sử dụng không hoạt động đúng. Xin vui lòng cài đặt lại Google Play và thử lại.</string>
-  <!--PushNotificationReceiveJob-->
-  <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Cho điểm ứng dụng này</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Nếu bạn thích dùng ứng dụng này, xin vui lòng nhín chút thì giờ để cho điểm nó.</string>
-  <string name="RatingManager_rate_now">Cho điểm bây giờ!</string>
-  <string name="RatingManager_no_thanks">Xin miễn</string>
-  <string name="RatingManager_later">Sau này</string>
-  <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
-  <string name="RecipientPreferenceActivity_block">Chặn</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bạn sẽ lại có thể nhận tin nhắn và cuộc gọi từ liên hệ này.</string>
-  <string name="RecipientPreferenceActivity_unblock">Không chặn</string>
-  <string name="RecipientPreferenceActivity_enabled">Mở</string>
-  <string name="RecipientPreferenceActivity_disabled">Tắt</string>
-  <!--RecipientProvider-->
-  <string name="RecipientProvider_unnamed_group">Nhóm chưa đặt tên</string>
-  <!--RedPhone-->
-  <string name="RedPhone_answering">Đang trả lời</string>
-  <string name="RedPhone_ending_call">Đang kết thúc cuộc gọi</string>
-  <string name="RedPhone_dialing">Đang quay số</string>
-  <string name="RedPhone_ringing">Đang reo</string>
-  <string name="RedPhone_busy">Bận</string>
-  <string name="RedPhone_connected">Đã kết nối</string>
-  <string name="RedPhone_recipient_unavailable">Người nhận hiện không thể kết nối</string>
-  <string name="RedPhone_network_failed">Lỗi mạng!</string>
-  <string name="RedPhone_number_not_registered">Số điện thoại chưa đăng ký!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Số điện thoại vừa rồi không hỗ trợ cuộc gọi bảo mật!</string>
-  <string name="RedPhone_got_it">Đã nhận được</string>
-  <!--RegistrationActivity-->
-  <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
-mã số quốc gia bạn</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Bạn phải cho biết số
-điện thoại của bạn</string>
-  <string name="RegistrationActivity_invalid_number">Số không đúng</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%s) không đúng.</string>
-  <string name="RegistrationActivity_continue">Tiếp tục</string>
-  <string name="RegistrationActivity_call">Gọi</string>
-  <!--ScribbleActivity-->
-  <!--Search-->
-  <!--SendJob-->
-  <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_invite_to_signal">Mời dùng Session</string>
-  <string name="SharedContactDetailsActivity_signal_call">Cuộc gọi Session</string>
-  <!--SharedContactView-->
-  <string name="SharedContactView_invite_to_signal">Mời dùng Session</string>
-  <!--Slide-->
-  <string name="Slide_image">Ảnh</string>
-  <string name="Slide_audio">Đoạn nhạc</string>
-  <string name="Slide_video">Đoạn phim</string>
-  <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
+    <string name="app_name">Session</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="delete">Xóa</string>
+    <string name="ban">Ban</string>
+    <string name="please_wait">Xin chờ</string>
+    <string name="save">Lưu</string>
+    <string name="note_to_self">Gửi lời nhắc cho chính mình</string>
+    <string name="version_s">Phiên bản %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Tin nhắn mới</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="other">%d tin nhắn trong mỗi cuộc trò chuyện</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Xóa tất cả tin nhắn cũ bây giờ?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">Thao tác này sẽ thu ngắn tức thì tất cả các cuộc hội thoại đến %d tin nhắn gần nhất.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Xóa</string>
+    <string name="ApplicationPreferencesActivity_On">Mở</string>
+    <string name="ApplicationPreferencesActivity_Off">Tắt</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(hình)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(âm thanh)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(trả lời)</string>
+    <!-- AttchmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Không tìm thấy ứng dụng để chọn dữ liệu truyền thông.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session requires the Storage permission in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session requires Contacts permission in order to attach contact information, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session requires the Camera permission in order to take photos, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Lỗi khi chạy tập tin âm thanh!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Hôm nay</string>
+    <string name="BucketedThreadMedia_Yesterday">Ngày hôm qua</string>
+    <string name="BucketedThreadMedia_This_week">Tuần này</string>
+    <string name="BucketedThreadMedia_This_month">Tháng này</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Không tìm thấy trình duyệt.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Nhóm</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Send failed, tap for details</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Đã nhận được yêu cầu trao đổi khoá, chạm để xử lý.</string>
+    <string name="ConversationItem_group_action_left">%1$s đã rời khỏi nhóm.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
+    <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
+    <string name="ConversationItem_copied_text">Đã sao chép %s</string>
+    <string name="ConversationItem_read_more">&#160; Read More</string>
+    <string name="ConversationItem_download_more">&#160; Tải thêm</string>
+    <string name="ConversationItem_pending">&#160; Đang chờ</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Thêm tập tin đính kèm</string>
+    <string name="ConversationActivity_select_contact_info">Chọn thông tin liên lạc</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
+    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_invalid_recipient">Người nhận không đúng!</string>
+    <string name="ConversationActivity_added_to_home_screen">Thêm vào màn hình chính</string>
+    <string name="ConversationActivity_leave_group">Rời nhóm?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
+    <string name="ConversationActivity_error_leaving_group">Lỗi khi rời nhóm</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bạn sẽ lại có thể nhận tin nhắn và cuộc gọi từ liên hệ này.</string>
+    <string name="ConversationActivity_unblock">Không chặn</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Văn bản đính kèm vượt quá giới hạn kích cỡ cho loại tin nhắn mà bạn đang gửi.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Không thể ghi âm!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Thiết bị của bạn không có ứng dụng nào tương ứng để mở đường dẫn này.</string>
+    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session cần được truy cập microphone để gửi tin nhắn thoại.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session cần truy cập microphone để gửi tin nhắn thoại, nhưng quyền này đã bị chặn. Hãy đến phần cài đặt, chọn \"Quyền truy cập\" và kích hoạt \"Microphone\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Session needs camera access to take photos and videos.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session needs camera access to take photos and videos, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session needs camera access to take photos or videos.</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+    <string name="ConversationActivity_search_position">%1$d of %2$d</string>
+    <string name="ConversationActivity_no_results">No results</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="other">%d unread messages</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="other">Xóa các tin nhắn đã chọn?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn?</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="other">Có lỗi trong khi đang lưu đính kèm vào thẻ nhớ!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="other">Đang lưu %1$d đính kèm</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="other">Saving %1$d attachments to storage...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Chờ giải quyết...</string>
+    <string name="ConversationFragment_push">Dữ liệu (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Đang xóa</string>
+    <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn...</string>
+    <string name="ConversationFragment_banning">Banning</string>
+    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Key exchange message</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Profile photo</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
+    <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
+    <string name="CustomDefaultPreference_none">Không</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Bây giờ</string>
+    <string name="DateUtils_minutes_ago">%d phút</string>
+    <string name="DateUtils_today">Hôm nay</string>
+    <string name="DateUtils_yesterday">Ngày hôm qua</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Hôm nay</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Unknown file</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Error while retrieving full resolution GIF</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Photo</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nhấn và giữ để ghi âm tin nhắn thoại, thả ra để gửi</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Unable to find message</string>
+    <string name="LongMessageActivity_message_from_s">Message from %1$s</string>
+    <string name="LongMessageActivity_your_message">Your message</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Media</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="other">Delete selected messages?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn...</string>
+    <string name="MediaOverviewActivity_Documents">Tài liệu</string>
+    <string name="MediaOverviewActivity_Select_all">Chọn tất cả</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Đang thu thập đính kèm...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Đang tải xuống tin nhắn MMS</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Error downloading MMS message, tap to retry</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Send to %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
+    <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
+    <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="other">You can\'t share more than %d items.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">All media</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Session cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
+    <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
+    <string name="MessageRecord_you_updated_group">You updated the group.</string>
+    <string name="MessageRecord_s_updated_group">%s updated the group.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mật khẩu</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">You will no longer receive messages and calls from this contact.</string>
+    <string name="RecipientPreferenceActivity_block">Chặn</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bạn sẽ lại có thể nhận tin nhắn và cuộc gọi từ liên hệ này.</string>
+    <string name="RecipientPreferenceActivity_unblock">Không chặn</string>
+    <!-- Slide -->
+    <string name="Slide_image">Ảnh</string>
+    <string name="Slide_audio">Đoạn nhạc</string>
+    <string name="Slide_video">Đoạn phim</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
 trao đổi chìa khóa bị hỏng!</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
-  <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
-  <!--ThreadRecord-->
-  <string name="ThreadRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>
-  <string name="ThreadRecord_draft">Nháp:</string>
-  <string name="ThreadRecord_called">Bạn đã gọi</string>
-  <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
-  <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
-  <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
-  <!--UpdateApkReadyListener-->
-  <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block">Chặn</string>
-  <!--UntrustedSendDialog-->
-  <!--UnverifiedSendDialog-->
-  <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
-  <!--MessageDisplayHelper-->
-  <!--MmsMessageRecord-->
-  <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">Tạm im thông báo</string>
-  <!--OutdatedBuildReminder-->
-  <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_import_in_progress">Đang tiến hành việc nhập vào</string>
-  <string name="ApplicationMigrationService_importing_text_messages">Đang nhập vào tin nhắn</string>
-  <string name="ApplicationMigrationService_import_complete">Nhập thành công</string>
-  <string name="ApplicationMigrationService_system_database_import_is_complete">Hoàn tất nhập cơ sở dữ liệu hệ thống.</string>
-  <!--KeyCachingService-->
-  <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
-  <string name="KeyCachingService_passphrase_cached">Session đã mở khóa</string>
-  <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Bạn</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
-  <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc chuyện trò</string>
-  <string name="MessageNotifier_most_recent_from_s">Gần đây nhất từ: %1$s</string>
-  <string name="MessageNotifier_media_message_with_text">Tin nhắn đa phương tiện: %s</string>
-  <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>
-  <string name="MessageNotifier_error_delivering_message">Có lỗi khi phân phối tin.</string>
-  <string name="MessageNotifier_mark_all_as_read">Đánh dấu tất cả đã đọc</string>
-  <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
-  <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
-  <string name="MessageNotifier_reply">Hồi âm</string>
-  <string name="MessageNotifier_unknown_contact_message">Liên lạc</string>
-  <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Mặc định</string>
-  <string name="NotificationChannel_missing_display_name">Không rõ</string>
-  <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Session bị khoá!</string>
-  <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
-  <!--SaveAttachmentTask-->
-  <!--SearchToolbar-->
-  <string name="SearchToolbar_search">Tìm kiếm</string>
-  <!--ShortcutLauncherActivity-->
-  <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
-  <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
-  <!--TransferControlView-->
-  <!--UnauthorizedReminder-->
-  <!--VideoPlayer-->
-  <!--WebRtcCallActivity-->
-  <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bạn có thể sẽ cần xác minh mã số an toàn với liên hệ này.</string>
-  <string name="WebRtcCallScreen_accept">Chấp nhận</string>
-  <string name="WebRtcCallScreen_end_call">Ngưng cuộc gọi</string>
-  <!--WebRtcCallControls-->
-  <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">Âm thanh</string>
-  <string name="attachment_type_selector__contact">Liên lạc</string>
-  <string name="attachment_type_selector__camera">Máy ảnh</string>
-  <string name="attachment_type_selector__location">Vị trí</string>
-  <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Cụm từ mật khẩu cũ</string>
-  <string name="change_passphrase_activity__new_passphrase">Cụm từ mật khẩu mới</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Lặp lại cụm từ mật khẩu mới</string>
-  <!--contact_selection_activity-->
-  <string name="contact_selection_activity__enter_name_or_number">Điền vào tên hoặc số</string>
-  <!--contact_selection_group_activity-->
-  <string name="contact_selection_group_activity__no_contacts">Không có địa chỉ liên lạc.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Nạp danh sách liên lạc..</string>
-  <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_contact_photo">Hình của Liên Lạc</string>
-  <!--ContactSelectionListFragment-->
-  <!--blocked_contacts_fragment-->
-  <!--contact_selection_list_fragment-->
-  <!--conversation_activity-->
-  <string name="conversation_activity__from_sim_name">Từ %1$s</string>
-  <string name="conversation_activity__send">Gửi</string>
-  <string name="conversation_activity__compose_description">Soạn tin nhắn</string>
-  <string name="conversation_activity__emoji_toggle_description">Chuyển bàn phím biểu tượng cảm xúc</string>
-  <string name="conversation_activity__attachment_thumbnail">Ảnh nhỏ tập tin đính kèm</string>
-  <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">TRƯỢT ĐỂ HUỶ</string>
-  <!--conversation_item-->
-  <string name="conversation_item__mms_image_description">Tin nhắn đa phương tiện</string>
-  <string name="conversation_item__secure_message_description">Tin nhắn có mã hóa</string>
-  <!--conversation_item_sent-->
-  <string name="conversation_item_sent__send_failed_indicator_description">Gửi thất bại</string>
-  <string name="conversation_item_sent__pending_approval_description">Chờ Chấp Thuận</string>
-  <string name="conversation_item_sent__delivered_description">Đã giao</string>
-  <!--conversation_item_received-->
-  <string name="conversation_item_received__contact_photo_description">Hình liên lạc</string>
-  <!--audio_view-->
-  <!--QuoteView-->
-  <string name="QuoteView_audio">Âm thanh</string>
-  <string name="QuoteView_video">Đoạn phim</string>
-  <string name="QuoteView_you">Bạn</string>
-  <!--conversation_fragment-->
-  <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Nạp tên quốc gia...</string>
-  <string name="country_selection_fragment__search">Tìm kiếm</string>
-  <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Quét mã QR hiển thị trên thiết bị để liên kết</string>
-  <!--device_link_fragment-->
-  <string name="device_link_fragment__link_device">Liên kết thiết bị</string>
-  <!--device_list_fragment-->
-  <string name="device_list_fragment__link_new_device">Liên kết thiết bị mới</string>
-  <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">tiếp tục</string>
-  <!--expiration-->
-  <string name="expiration_off">Tắt</string>
-  <!--unverified safety numbers-->
-  <!--giphy_activity-->
-  <!--giphy_fragment-->
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__thanks">Cám ơn sự trợ giúp của bạn!</string>
-  <string name="log_submit_activity__submitting">Đang nộp</string>
-  <string name="log_submit_activity__button_dont_submit">Không nộp</string>
-  <string name="log_submit_activity__button_submit">Nộp</string>
-  <string name="log_submit_activity__button_got_it">Đã nhận được</string>
-  <string name="log_submit_activity__success">Thành công!</string>
-  <string name="log_submit_activity__copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
-  <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn hiện hữu vào cơ sở dữ liệu đã mã khoá của Session?</string>
-  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cơ sở dữ liệu mặc định của hệ thống sẽ không bị sửa hay bị thay đổi gì cả.</string>
-  <string name="database_migration_activity__skip">Bỏ qua</string>
-  <string name="database_migration_activity__import">Nhập</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Việc này có thể mất chút ít thời gian. Xin kiên nhẫn chờ, chúng tôi sẽ thông báo khi việc nhập hoàn tất.</string>
-  <string name="database_migration_activity__importing">ĐANG NHẬP VÀO</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Cập nhật cơ sở dữ liệu...</string>
-  <string name="import_fragment__import_system_sms_database">Nhập cơ sở dữ liệu SMS của hệ thống</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu từ ứng dụng tin nhắn mặc định của hệ thống</string>
-  <string name="import_fragment__import_plaintext_backup">Nhập sao lưu văn bản thường</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Nhập tập tin sao lưu văn bản không mã khoá. Tương thích với \'Sao lưu &amp; Phục hồi SMS.\'</string>
-  <!--load_more_header-->
-  <string name="load_more_header__see_full_conversation">Xem cuộc hội thoại đầy đủ</string>
-  <!--media_overview_activity-->
-  <!--message_recipients_list_item-->
-  <string name="message_recipients_list_item__resend">GỬI LẠI</string>
-  <!--GroupUtil-->
-  <plurals name="GroupUtil_joined_the_group">
-    <item quantity="other">%1$s đã tham gia nhóm.</item>
-  </plurals>
-  <string name="GroupUtil_group_name_is_now">Tên nhóm hiện giờ là \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
-  <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Session cần cài đặt MMS để chuyển dữ liệu truyền thông và các tin nhắn nhóm thông qua nhà mạng không dây. Thiết bị của bạn không cung cấp đầy đủ các thông tin này, đôi khi là do thiết bị đã bị khoá và các quy định nghiêm ngặt khác.</string>
-  <!--profile_create_activity-->
-  <!--recipient_preferences_activity-->
-  <!--recipient_preferences-->
-  <string name="recipient_preferences__mute_conversation">Tạm im chuyện trò</string>
-  <string name="recipient_preferences__notification_sound">Âm báo</string>
-  <string name="recipient_preferences__vibrate">Rung</string>
-  <string name="recipient_preferences__block">Chặn</string>
-  <string name="recipient_preferences__color">Màu</string>
-  <string name="recipient_preferences__privacy">Riêng tư</string>
-  <string name="recipient_preferences__ringtone">Nhạc chuông</string>
-  <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Cuộc gọi Session</string>
-  <string name="redphone_call_controls__mute">Im lặng</string>
-  <!--registration_activity-->
-  <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
-  <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>Điền vào tên hoặc số</small></string>
-  <!--unknown_sender_view-->
-  <!--verify_display_fragment-->
-  <!--verify_identity-->
-  <!--webrtc_answer_decline_button-->
-  <!--message_details_header-->
-  <string name="message_details_header__issues_need_your_attention">Một số việc cần bạn lưu ý.</string>
-  <string name="message_details_header__sent">Đã gửi</string>
-  <string name="message_details_header__received">Đã nhận</string>
-  <string name="message_details_header__via">Qua</string>
-  <string name="message_details_header__to">Đến:</string>
-  <string name="message_details_header__from">Từ:</string>
-  <string name="message_details_header__with">Với:</string>
-  <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Tạo cụm từ mật khẩu</string>
-  <string name="AndroidManifest__select_contacts">Chọn liên lạc</string>
-  <string name="AndroidManifest__change_passphrase">Đổi cụm từ mật khẩu</string>
-  <string name="AndroidManifest__media_preview">Xem trước tệp đa phương tiện</string>
-  <string name="AndroidManifest__message_details">Chi tiết tin nhắn</string>
-  <string name="AndroidManifest__linked_devices">Các thiết bị đã liên kết</string>
-  <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
-  <string name="AndroidManifest_archived_conversations">Các cuộc hội thoại đã bảo lưu</string>
-  <!--arrays.xml-->
-  <string name="arrays__import_export">Nhập</string>
-  <string name="arrays__use_default">Dùng mặc định</string>
-  <string name="arrays__use_custom">Dùng tùy chỉnh</string>
-  <string name="arrays__mute_for_one_hour">Tạm im 1 tiếng</string>
-  <string name="arrays__mute_for_two_hours">Tạm im 2 tiếng</string>
-  <string name="arrays__mute_for_one_day">Tạm im 1 ngày</string>
-  <string name="arrays__mute_for_seven_days">Tạm im 7 ngày</string>
-  <string name="arrays__mute_for_one_year">Không báo trong 1 năm</string>
-  <string name="arrays__settings_default">Thiết đặt mặc định</string>
-  <string name="arrays__enabled">Mở</string>
-  <string name="arrays__disabled">Tắt</string>
-  <string name="arrays__name_and_message">Tên và tin nhắn</string>
-  <string name="arrays__name_only">Tên thôi</string>
-  <string name="arrays__no_name_or_message">Không có tên hay tin nhắn</string>
-  <string name="arrays__images">Hình ảnh</string>
-  <string name="arrays__audio">Nhạc</string>
-  <string name="arrays__video">Đoạn phim</string>
-  <string name="arrays__documents">Tài liệu</string>
-  <string name="arrays__normal">Bình thường</string>
-  <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d tiếng</item>
-  </plurals>
-  <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS và MMS</string>
-  <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
-  <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Dùng Session cho tất cả tin nhắn đến</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng Session cho tất cả tin nhắn đa phương tiện</string>
-  <string name="preferences__pref_enter_sends_title">Phím Enter gửi đi</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Nhấn phím Enter sẽ gửi tin nhắn đi</string>
-  <string name="preferences__choose_identity">Chọn danh tính</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
-  <string name="preferences__change_passphrase">Đổi cụm từ mật khẩu</string>
-  <string name="preferences__change_your_passphrase">Đổi cụm từ mật khẩu</string>
-  <string name="preferences__screen_security">An ninh màn hình</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Session sau một khoảng thời gian không hoạt động định trước</string>
-  <string name="preferences__inactivity_timeout_passphrase">Cụm mật khẩu khoá máy khi không hoạt động</string>
-  <string name="preferences__inactivity_timeout_interval">Khoảng thời gian khoá máy khi không hoạt động</string>
-  <string name="preferences__notifications">Thông báo</string>
-  <string name="preferences__led_color">Màu LED</string>
-  <string name="preferences__led_color_unknown">Không rõ</string>
-  <string name="preferences__pref_led_blink_title">Mô hình chớp nháy LED</string>
-  <string name="preferences__sound">Âm thanh</string>
-  <string name="preferences__silent">Yên lặng</string>
-  <string name="preferences__repeat_alerts">Lập lại cảnh báo</string>
-  <string name="preferences__never">Không bao giờ</string>
-  <string name="preferences__one_time">Một lần</string>
-  <string name="preferences__two_times">Hai lần</string>
-  <string name="preferences__three_times">Ba lần</string>
-  <string name="preferences__five_times">Năm lần</string>
-  <string name="preferences__ten_times">Mười lần</string>
-  <string name="preferences__vibrate">Rung</string>
-  <string name="preferences__green">Xanh lá cây</string>
-  <string name="preferences__red">Đỏ</string>
-  <string name="preferences__blue">Xanh dương</string>
-  <string name="preferences__orange">Cam</string>
-  <string name="preferences__cyan">Xanh lam</string>
-  <string name="preferences__magenta">Hồng đậm</string>
-  <string name="preferences__white">Trắng</string>
-  <string name="preferences__none">Không</string>
-  <string name="preferences__fast">Nhanh</string>
-  <string name="preferences__normal">Bình thường</string>
-  <string name="preferences__slow">Chậm</string>
-  <string name="preferences__advanced">Cao cấp</string>
-  <string name="preferences__privacy">Riêng tư</string>
-  <string name="preferences__mms_user_agent">MMS User Agent</string>
-  <string name="preferences__advanced_mms_access_point_names">Thiết đặt MMS bằng tay</string>
-  <string name="preferences__mmsc_url">Đường dẫn MMSC</string>
-  <string name="preferences__mms_proxy_host">Máy chủ Proxy MMS</string>
-  <string name="preferences__mms_proxy_port">Cổng Proxy MMS</string>
-  <string name="preferences__mmsc_username">Tên người dùng MMSC</string>
-  <string name="preferences__mmsc_password">Mật khẩu MMSC</string>
-  <string name="preferences__sms_delivery_reports">Báo cáo phân phối SMS</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Yêu cầu có báo cáo phân phối cho từng tin nhắn SMS gửi đi</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ một khi cuộc hội thoại vượt quá độ dài ấn định</string>
-  <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
-  <string name="preferences__chats">Các cuộc trò chuyện và dữ liệu truyền thông</string>
-  <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc chuyện trò</string>
-  <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc hội thoại</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc hội thoại và áp dụng giới hạn độ dài hội thoại</string>
-  <string name="preferences__linked_devices">Các thiết bị đã liên kết</string>
-  <string name="preferences__light_theme">Lợt</string>
-  <string name="preferences__dark_theme">Đậm</string>
-  <string name="preferences__appearance">Diện mạo</string>
-  <string name="preferences__theme">Hình nền</string>
-  <string name="preferences__default">Mặc định</string>
-  <string name="preferences__language">Ngôn ngữ</string>
-  <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Session</string>
-  <string name="preferences__free_private_messages_and_calls">
-Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal
-</string>
-  <string name="preferences__submit_debug_log">Nộp ký sự dò lỗi</string>
-  <string name="preferences__support_wifi_calling">Dạng tương thích \"Gọi qua WiFi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Mở nếu thiết bị bạn dùng SMS/MMS qua WiFi (chỉ mở lên khi \'Gọi qua WiFi\' được mở lên trong thiết bị) </string>
-  <string name="preferences_app_protection__blocked_contacts">Chặn các liên lạc</string>
-  <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
-  <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
-  <string name="preferences_chats__when_roaming">Khi mượn mạng nước ngoài</string>
-  <string name="preferences_chats__media_auto_download">Tự động tải dữ liệu truyền thông</string>
-  <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
-  <string name="preferences_advanced__use_system_emoji">Sử dụng ký tự biểu cảm hệ thống</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ ký tự biểu cảm mặc định của Session</string>
-  <string name="preferences_notifications__ringtone">Nhạc chuông</string>
-  <!--****************************************-->
-  <!--menus-->
-  <!--****************************************-->
-  <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Tin nhắn mới cho...</string>
-  <!--conversation_callable_insecure-->
-  <string name="conversation_callable_insecure__menu_call">Gọi</string>
-  <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Gọi qua Session</string>
-  <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Chi tiết tin nhắn</string>
-  <string name="conversation_context__menu_copy_text">Sao chép văn bản</string>
-  <string name="conversation_context__menu_delete_message">Xóa tin nhắn</string>
-  <string name="conversation_context__menu_forward_message">Chuyển tiếp tin nhắn</string>
-  <string name="conversation_context__menu_resend_message">Gửi lại tin nhắn</string>
-  <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Lưu đính kèm</string>
-  <!--conversation_expiring_off-->
-  <!--conversation_expiring_on-->
-  <!--conversation_insecure-->
-  <string name="conversation_insecure__invite">Mời</string>
-  <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Xóa cái chọn</string>
-  <string name="conversation_list_batch__menu_select_all">Chọn tất cả</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Đã chọn bản lưu</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Đã chọn bản chưa lưu</string>
-  <!--conversation_list-->
-  <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">Hình Chân Dung Liên Lạc</string>
-  <string name="conversation_list_item_view__archived">Đã bảo lưu</string>
-  <!--conversation_list_fragment-->
-  <string name="conversation_list_fragment__fab_content_description">Chuyện trò mới</string>
-  <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Tái thiết lập phiên bảo mật</string>
-  <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Tắt tạm im</string>
-  <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Tạm im thông báo</string>
-  <!--conversation-->
-  <string name="conversation__menu_add_attachment">Thêm tập tin đính kèm</string>
-  <string name="conversation__menu_leave_group">Rời nhóm</string>
-  <string name="conversation__menu_conversation_settings">Thiết đặt chuyện trò</string>
-  <!--conversation_popup-->
-  <string name="conversation_popup__menu_expand_popup">Nới rộng khung popup</string>
-  <!--conversation_callable_insecure-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">Thêm vào danh sách liên lạc</string>
-  <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Danh sách người nhận</string>
-  <string name="conversation_group_options__delivery">Phân phối</string>
-  <string name="conversation_group_options__conversation">Chuyện trò</string>
-  <string name="conversation_group_options__broadcast">Phát rộng</string>
-  <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_group">Tạo nhóm mới</string>
-  <string name="text_secure_normal__menu_settings">Thiết Đặt</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Khóa</string>
-  <string name="text_secure_normal__mark_all_as_read">Đánh dấu tất cả đã đọc</string>
-  <string name="text_secure_normal__invite_friends">Mời bạn bè</string>
-  <string name="text_secure_normal__help">Trợ giúp</string>
-  <!--verify_display_fragment-->
-  <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Phiên bản Session của bạn đã quá cũ</string>
-  <string name="reminder_header_outdated_build_details_today">Phiên bản Session của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
-  <string name="reminder_header_expired_build">Phiên bản Session của bạn đã hết hạn!</string>
-  <string name="reminder_header_expired_build_details">Tin nhắn sẽ không còn được gửi đi được nữa. Chạm để cập nhật lên phiên bản mới nhất.</string>
-  <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
-  <string name="reminder_header_sms_default_text">Chạm để đặt Session làm ứng dụng SMS mặc định.</string>
-  <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
-  <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Session?</string>
-  <string name="reminder_header_push_text">Nâng tầm trải nghiệm giao tiếp.</string>
-  <string name="reminder_header_invite_title">Mời dùng Session</string>
-  <string name="reminder_header_invite_text"> Hãy nâng cuộc hội thoại của bạn với %1$s lên tầm cao mới.</string>
-  <string name="reminder_header_share_title">Hãy mời bạn bè!</string>
-  <string name="reminder_header_share_text">Càng đông bạn dùng Session càng vui.</string>
-  <!--media_preview-->
-  <string name="media_preview__save_title">Lưu</string>
-  <!--media_overview-->
-  <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
-  <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">Làm mới</string>
-  <!--redphone_audio_popup_menu-->
-  <!--Trimmer-->
-  <string name="trimmer__deleting">Đang xóa</string>
-  <string name="trimmer__deleting_old_messages">Đang xóa tin nhắn cũ...</string>
-  <string name="trimmer__old_messages_successfully_deleted">Xóa thành công các tin nhắn cũ</string>
-  <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
-  <string name="CallNotificationBuilder_connecting">Đang kết nối...</string>
-  <string name="Permissions_continue">Tiếp tục</string>
-  <string name="registration_activity__skip">Bỏ qua</string>
-  <string name="registration_activity__register">Đăng ký</string>
-  <string name="RegistrationActivity_restore">Phục hồi</string>
-  <string name="BackupDialog_copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
-  <string name="BackupUtil_never">Không bao giờ</string>
-  <string name="BackupUtil_unknown">Không rõ</string>
-  <string name="AppProtectionPreferenceFragment_none">Không</string>
-  <string name="RegistrationActivity_too_many_attempts">Thử quá nhiều lần</string>
-  <string name="RegistrationLockDialog_disable">Tắt</string>
-
-
-
-
-
-  <!-- Session -->
-  <string name="continue_2">Tiếp tục</string>
-  <string name="copy">Sao chép</string>
-  <string name="invalid_url">URL không hợp lệ</string>
-  <string name="copied_to_clipboard">Sao chép vào bộ nhớ tạm</string>
-  <string name="device_linking_failed">Không thể liên kết thiết bị.</string>
-  <string name="next">Tiếp</string>
-  <string name="share">Chia sẻ</string>
-  <string name="invalid_session_id">Session ID không hợp lệ</string>
-  <string name="cancel">Huỷ</string>
-  <string name="your_session_id">Session ID của bạn</string>
-
-  <string name="activity_landing_title_2">Session của bạn bắt đầu từ đây...</string>
-  <string name="activity_landing_register_button_title">Tạo Session ID</string>
-  <string name="activity_landing_restore_button_title">Tiếp tục Session của bạn</string>
-  <string name="activity_landing_link_button_title">Liên kết với một tài khoản đã tồn tại</string>
-  <string name="activity_landing_device_unlinked_dialog_title">Thiết bị của bạn đã được ngắt liên kết thành công</string>
-
-  <string name="view_fake_chat_bubble_1">Session là gì?</string>
-  <string name="view_fake_chat_bubble_2">Đây là một ứng dụng nhắn tin phân cấp và mã hoá</string>
-  <string name="view_fake_chat_bubble_3">Vậy ứng dụng có thu thập dữ liệu cá nhân của tôi hoặc siêu dữ liệu về cuộc hội thoại của tôi không? Ứng dụng hoạt động như thế nào?</string>
-  <string name="view_fake_chat_bubble_4">Sử dụng kết hợp công nghệ định tuyến ẩn danh nâng cao và công nghệ mã hoá đầu cuối.</string>
-  <string name="view_fake_chat_bubble_5">Đừng để bạn bè sử dụng những ứng dụng nhắn tin dễ bị tấn công.</string>
-
-  <string name="activity_register_title">Bắt đầu với Session ID của bạn</string>
-  <string name="activity_register_explanation">Session ID của bạn là địa chỉ duy nhất mà mọi người có thể dùng để liên lạc với bạn trên ứng dụng Session. Session ID của bạn được thiết kế đảm bảo tuyệt đối ẩn danh và riêng tư vì nó không liên kết với danh tính thật của bạn.</string>
-  <string name="activity_register_public_key_copied_message">Sao chép vào bộ nhớ tạm</string>
-
-  <string name="activity_restore_title">Khôi phục lại tài khoản của bạn</string>
-  <string name="activity_restore_explanation">Nhập cụm từ khôi phục mà bạn nhận được khi đăng ký khôi phục tài khoản.</string>
-  <string name="activity_restore_seed_edit_text_hint">Nhập cụm từ khôi phục của bạn.</string>
-
-  <string name="activity_link_device_title">Liên kết Thiết bị</string>
-  <string name="activity_link_device_enter_session_id_tab_title">Nhập Session ID</string>
-  <string name="activity_link_device_scan_qr_code_tab_title">Quét mã QR</string>
-  <string name="activity_link_device_scan_qr_code_explanation">Đi đến mục "Cài đặt" > "Thiết bị" > "Liên kết với một Thiết bị" trên thiết bị khác của bạn và quét mã QR hiện lên để bắt đầu quá trình liên kết.</string>
-
-  <string name="fragment_enter_session_id_title">Liên kết thiết bị của bạn</string>
-  <string name="fragment_enter_session_id_explanation"> Đi đến mục "Cài đặt" > "Thiết bị" > "Liên kết với một Thiết bị" trên thiết bị khác của bạn và quét mã QR hiện lên để bắt đầu quá trình liên kết.</string>
-  <string name="fragment_enter_session_id_edit_text_hint">Nhập Session ID của bạn</string>
-
-  <string name="activity_display_name_title_2">Chọn tên hiển thị của bạn</string>
-  <string name="activity_display_name_explanation">Đây là tên của bạn khi sử dụng Session. Nó có thể là tên thật, tên gọi khác của bạn hoặc bất kì tên nào bạn thích.</string>
-  <string name="activity_display_name_edit_text_hint">Nhập một tên hiển thị</string>
-  <string name="activity_display_name_display_name_missing_error">Vui lòng chọn một tên hiển thị</string>
-  <string name="activity_display_name_display_name_invalid_error">Vui lòng chọn tên hiện thị chỉ chứa các kí tự a-z, A-Z, 0-9 and _ </string>
-  <string name="activity_display_name_display_name_too_long_error">Vui lòng chọn tên hiển thị ngắn hơn</string>
-
-  <string name="activity_pn_mode_recommended_option_tag">Khuyến nghị</string>
-  <string name="activity_pn_mode_no_option_picked_dialog_title">Vui lòng lựa chọn </string>
-
-  <string name="activity_home_empty_state_message">Bạn chưa có danh bạ </string>
-  <string name="activity_home_empty_state_button_title">Bắt đầu một Session</string>
-  <string name="activity_home_leave_group_dialog_message">Bạn có chắc chắn rằng bạn muốn rời nhóm này không?</string>
-  <string name="activity_home_leaving_group_failed_message">"Không thể rời nhóm"</string>
-  <string name="activity_home_delete_conversation_dialog_message">Bạn có chắc chắn rằng bạn muốn xoá cuộc hội thoại này không?</string>
-  <string name="activity_home_conversation_deleted_message">Cuộc hội thoại đã được xoá </string>
-
-  <string name="activity_seed_title">Cụm từ khôi phục của bạn</string>
-  <string name="activity_seed_title_2">Làm quen với cụm từ khôi phục của bạn</string>
-  <string name="activity_seed_explanation">Cụm từ khôi phục của bạn là chìa khoá chủ cho Session ID của bạn — bạn có thể sử dụng nó để khôi phục Session ID khi bị mất tiếp cận với thiết bị của bạn. Hãy lưu cụm từ khôi phục của bạn ở một nơi an toàn và không cung cấp cho bất kì ai.</string>
-  <string name="activity_seed_reveal_button_title">Giữ để hiển thị.</string>
-
-  <string name="view_seed_reminder_subtitle_1">Bảo vệ tài khoản của bạn bằng việc bảo vệ cụm từ khôi phục của bạn</string>
-  <string name="view_seed_reminder_subtitle_2">Chạm và giữ cụm từ bị che để hiển thị cụm từ khôi phục của bạn, sau đó lưu nó cẩn thận để bảo vệ Session ID của bạn.</string>
-  <string name="view_seed_reminder_subtitle_3">Hãy lưu cụm từ khôi phục của bạn ở một nơi an toàn</string>
-
-  <string name="activity_path_title">Đường đi</string>
-  <string name="activity_path_explanation">Session ẩn IP của bạn bằng cách luân chuyển tin nhắn của bạn qua một số Nút Dịch vụ trong mạng lưới phân cấp của Session. Đây là các nước mà kết nối của bạn đang được luân chuyển: </string>
-  <string name="activity_path_device_row_title">Bạn</string>
-  <string name="activity_path_guard_node_row_title">Nút khởi đầu</string>
-  <string name="activity_path_service_node_row_title">Nút Dịch vụ</string>
-  <string name="activity_path_destination_row_title">Điểm đến</string>
-  <string name="activity_path_learn_more_button_title">Tìm hiểu thêm</string>
-
-  <string name="activity_create_private_chat_title">Session mới</string>
-  <string name="activity_create_private_chat_enter_session_id_tab_title">Nhập Session ID</string>
-  <string name="activity_create_private_chat_scan_qr_code_tab_title">Quét mã QR</string>
-  <string name="activity_create_private_chat_scan_qr_code_explanation">Quét mã QR của người dùng để bắt đầu session. Tìm mã QR bằng cách chạm vào biểu tượng mã QR trong mục cài đặt tài khoản.</string>
-
-  <string name="fragment_enter_public_key_edit_text_hint">Nhập Session ID của người nhận</string>
-  <string name="fragment_enter_public_key_explanation">Người dùng có thể chia sẻ Session ID của mình bằng cách tới mục cài đặt tài khoản và chạm vào “Chia sẻ Session ID”, hoặc bằng cách chia sẻ mã QR của họ.</string>
-
-  <string name="fragment_scan_qr_code_camera_access_explanation">Session cần truy cập máy ảnh để quét mã QR </string>
-  <string name="fragment_scan_qr_code_grant_camera_access_button_title">Cho phép truy cập máy ảnh</string>
-
-  <string name="activity_create_closed_group_title">Nhóm kín mới </string>
-  <string name="activity_create_closed_group_edit_text_hint">Nhập tên nhóm</string>
-  <string name="activity_create_closed_group_explanation">Nhóm kín hỗ trợ tối đa 10 thành viên và cung cấp dịch vụ bảo mật giống như các session một-một</string>
-  <string name="activity_create_closed_group_empty_state_message">Bạn chưa có danh bạ nào </string>
-  <string name="activity_create_closed_group_empty_state_button_title">Bắt đầu Session</string>
-  <string name="activity_create_closed_group_group_name_missing_error">Vui lòng nhập tên nhóm</string>
-  <string name="activity_create_closed_group_group_name_too_long_error">Vui lòng nhập một tên nhóm ngắn hơn </string>
-  <string name="activity_create_closed_group_not_enough_group_members_error">Vui lòng chọn ít nhất 2 thành viên trong nhóm </string>
-  <string name="activity_create_closed_group_too_many_group_members_error">Một nhóm kín không thể có nhiều hơn 100 thành viên </string>
-  <string name="activity_create_closed_group_invalid_session_id_error">Một trong các thành viên trong nhóm của bạn có Session ID không hợp lệ </string>
-
-  <string name="activity_join_public_chat_title">Tham gia nhóm mở</string>
-  <string name="activity_join_public_chat_error">Không thể tham gia nhóm</string>
-  <string name="activity_join_public_chat_enter_group_url_tab_title">URL của nhóm mở</string>
-  <string name="activity_join_public_chat_scan_qr_code_tab_title">Quét mã QR</string>
-  <string name="activity_join_public_chat_scan_qr_code_explanation"> Quét mã QR của nhóm mở mà bạn muốn tham gia</string>
-
-  <string name="fragment_enter_chat_url_edit_text_hint">Nhập URL của nhóm mở</string>
-
-  <string name="activity_settings_title">Cài đặt</string>
-  <string name="activity_settings_display_name_edit_text_hint">Nhập tên hiển thị</string>
-  <string name="activity_settings_display_name_missing_error">Vui lòng chọn một tên hiển thị </string>
-  <string name="activity_settings_invalid_display_name_error">Vui lòng chọn một tên hiển thị chỉ bao gồm các ký tự a-z, A-Z, 0-9 và _ </string>
-  <string name="activity_settings_display_name_too_long_error">Vui lòng chọn một tên hiển thị ngắn hơn </string>
-  <string name="activity_settings_privacy_button_title">Riêng tư</string>
-  <string name="activity_settings_notifications_button_title">Thông báo</string>
-  <string name="activity_settings_chats_button_title">Trò chuyện</string>
-  <string name="activity_settings_devices_button_title">Thiết bị</string>
-  <string name="activity_settings_recovery_phrase_button_title">Cụm từ khôi phục</string>
-  <string name="activity_settings_clear_all_data_button_title">Xóa dữ liệu</string>
-
-  <string name="activity_notification_settings_title">Thông báo</string>
-  <string name="activity_notification_settings_style_section_title">Kiểu thông báo</string>
-  <string name="activity_notification_settings_content_section_title">Nội dung thông báo</string>
-
-  <string name="activity_privacy_settings_title">Riêng tưy</string>
-
-  <string name="activity_chat_settings_title">Trò chuyện</string>
-
-  <string name="activity_linked_devices_title">Thiết bị</string>
-  <string name="activity_linked_devices_multi_device_limit_reached_dialog_title">Đã đạt tới giới hạn thiết bị</string>
-  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">Hiện tại không cho phép kết nối với nhiều hơn một thiết bị.</string>
-  <string name="activity_linked_devices_unlinking_failed_message">Không thể hủy liên kết thiết bị.</string>
-  <string name="activity_linked_devices_unlinking_successful_message">Thiết bị của bạn đã được hủy liên kết thành công</string>
-  <string name="activity_linked_devices_linking_failed_message">Không thể liên kết thiết bị.</string>
-  <string name="activity_linked_devices_empty_state_message">Bạn chưa liên kết thiết bị nào</string>
-  <string name="activity_linked_devices_empty_state_button_title">Kết nối một thiết bị (Beta)</string>
-
-  <string name="preferences_notifications_strategy_category_title">Chiến lược thông báo</string>
-
-  <string name="dialog_link_device_slave_mode_title_1">Đang chờ được cho phép</string>
-  <string name="dialog_link_device_slave_mode_title_2">Liên kết thiết bị được cho phép </string>
-  <string name="dialog_link_device_slave_mode_explanation_1">Hãy kiểm tra xem các từ bên dưới có khớp với các từ được hiển thị trên thiết bị khác của bạn không.</string>
-  <string name="dialog_link_device_slave_mode_explanation_2">Thiết bị của bạn đã được liên kết thành công </string>
-
-  <string name="dialog_link_device_master_mode_title_1">Đang đợi thiết bị </string>
-  <string name="dialog_link_device_master_mode_title_2">Đã nhận được yêu cầu liên kết</string>
-  <string name="dialog_link_device_master_mode_title_3">Đang cho phép liên kết thiết bị</string>
-  <string name="dialog_link_device_master_mode_explanation_1">Tải Session về thiết bị khác của bạn và chọn "Liên kết với một tài khoản đã tồn tại" ở phía cuối của màn hình đích. Nếu tại khoản hiện tại của bạn đang ở một thiết bị khác, bạn cần phải xóa tài khoản đó trước.</string>
-  <string name="dialog_link_device_master_mode_explanation_2"> Hãy kiểm tra xem các từ bên dưới có khớp với các từ được hiển thị trên thiết bị khác của bạn không.</string>
-  <string name="dialog_link_device_master_mode_explanation_3">Liên kết thiết bị đang được tạo, vui lòng chờ đợi. Quá trình này có thể mất khoảng một phút.</string>
-  <string name="dialog_link_device_master_mode_authorize_button_title">Cho phép</string>
-
-  <string name="fragment_device_list_bottom_sheet_change_name_button_title">Đổi tên</string>
-  <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Hủy liên kết thiết bị</string>
-
-  <string name="dialog_edit_device_name_edit_text_hint">Nhập tên</string>
-
-  <string name="dialog_seed_title">Cụm từ khôi phục của bạn</string>
-  <string name="dialog_seed_explanation">Đây là cụm từ khôi phục của bạn. Bạn có thể dùng nó để khôi phục hoặc chuyển Session ID của mình sang một thiết bị mới.</string>
-
-  <string name="dialog_clear_all_data_title">Xóa tất cả dữ liệu</string>
-  <string name="dialog_clear_all_data_explanation">Thao tác này sẽ xóa vĩnh viễn các tin nhắn, sessions, và danh bạ của bạn.</string>
-
-  <string name="activity_qr_code_title">Mã QR</string>
-  <string name="activity_qr_code_view_my_qr_code_tab_title">Xem mã QR của tôi</string>
-  <string name="activity_qr_code_view_scan_qr_code_tab_title">Quét mã QR</string>
-  <string name="activity_qr_code_view_scan_qr_code_explanation">Quét mã QR của ai đó để bắt đầu trò chuyện với họ</string>
-
-  <string name="fragment_view_my_qr_code_explanation">Đây là mã QR của bạn. Những người dùng khác có thể quét mã này và bắt đầu session với bạn.</string>
-  <string name="fragment_view_my_qr_code_share_title">Chia sẻ mã QR </string>
-
-  <string name="session_reset_banner_message">Bạn có muốn khôi phục lại session của bạn với %s không?</string>
-  <string name="session_reset_banner_dismiss_button_title">Bỏ qua</string>
-  <string name="session_reset_banner_restore_button_title">Khôi phục</string>
-
-  <string name="fragment_contact_selection_contacts_title">Danh bạ</string>
-  <string name="fragment_contact_selection_closed_groups_title">Nhóm kín</string>
-  <string name="fragment_contact_selection_open_groups_title">Nhóm mở</string>
-
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Received message with new safety number. Tap to process and display.</string>
+    <string name="SmsMessageRecord_secure_session_reset">You reset the secure session.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s reset the secure session.</string>
+    <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Group updated</string>
+    <string name="ThreadRecord_left_the_group">Left the group</string>
+    <string name="ThreadRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>
+    <string name="ThreadRecord_draft">Nháp:</string>
+    <string name="ThreadRecord_called">Bạn đã gọi</string>
+    <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
+    <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
+    <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
+    <string name="ThreadRecord_s_is_on_signal">%s is on Session!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_safety_number_changed">Safety number changed</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
+    <string name="ThreadRecord_you_marked_verified">You marked verified</string>
+    <string name="ThreadRecord_you_marked_unverified">You marked unverified</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Session update</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A new version of Session is available, tap to update</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Tạm im thông báo</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
+    <string name="KeyCachingService_passphrase_cached">Session đã mở khóa</string>
+    <string name="KeyCachingService_lock">Lock Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Bạn</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
+    <string name="MediaPreviewActivity_draft">Draft</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc chuyện trò</string>
+    <string name="MessageNotifier_most_recent_from_s">Gần đây nhất từ: %1$s</string>
+    <string name="MessageNotifier_locked_message">Locked message</string>
+    <string name="MessageNotifier_message_delivery_failed">Phân phối tin nhắn bị thất bại.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Thất bại trong việc phân phối tin.</string>
+    <string name="MessageNotifier_error_delivering_message">Có lỗi khi phân phối tin.</string>
+    <string name="MessageNotifier_mark_all_as_read">Đánh dấu tất cả đã đọc</string>
+    <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
+    <string name="MessageNotifier_reply">Hồi âm</string>
+    <string name="MessageNotifier_pending_signal_messages">Pending Session messages</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">You have pending Session messages, tap to open and retrieve</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Liên lạc</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Mặc định</string>
+    <string name="NotificationChannel_calls">Calls</string>
+    <string name="NotificationChannel_failures">Failures</string>
+    <string name="NotificationChannel_backups">Backups</string>
+    <string name="NotificationChannel_locked_status">Lock status</string>
+    <string name="NotificationChannel_app_updates">App updates</string>
+    <string name="NotificationChannel_other">Other</string>
+    <string name="NotificationChannel_group_messages">Messages</string>
+    <string name="NotificationChannel_missing_display_name">Không rõ</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Session bị khoá!</string>
+    <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Saved to %s</string>
+    <string name="SaveAttachmentTask_saved">Saved</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Tìm kiếm</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Invalid shortcut</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="other">%d Items</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Error playing video</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Âm thanh</string>
+    <string name="attachment_type_selector__audio_description">Audio</string>
+    <string name="attachment_type_selector__contact">Liên lạc</string>
+    <string name="attachment_type_selector__contact_description">Contact</string>
+    <string name="attachment_type_selector__camera">Máy ảnh</string>
+    <string name="attachment_type_selector__camera_description">Camera</string>
+    <string name="attachment_type_selector__location">Vị trí</string>
+    <string name="attachment_type_selector__location_description">Location</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Image or video</string>
+    <string name="attachment_type_selector__file_description">File</string>
+    <string name="attachment_type_selector__gallery">Gallery</string>
+    <string name="attachment_type_selector__file">File</string>
+    <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Nạp danh sách liên lạc..</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Gửi</string>
+    <string name="conversation_activity__compose_description">Soạn tin nhắn</string>
+    <string name="conversation_activity__emoji_toggle_description">Chuyển bàn phím biểu tượng cảm xúc</string>
+    <string name="conversation_activity__attachment_thumbnail">Ảnh nhỏ tập tin đính kèm</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Toggle quick camera attachment drawer</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Record and send audio attachment</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lock recording of audio attachment</string>
+    <string name="conversation_activity__enable_signal_for_sms">Enable Session for SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">TRƯỢT ĐỂ HUỶ</string>
+    <string name="conversation_input_panel__cancel">Cancel</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Tin nhắn đa phương tiện</string>
+    <string name="conversation_item__secure_message_description">Tin nhắn có mã hóa</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Gửi thất bại</string>
+    <string name="conversation_item_sent__pending_approval_description">Chờ Chấp Thuận</string>
+    <string name="conversation_item_sent__delivered_description">Đã giao</string>
+    <string name="conversation_item_sent__message_read">Message read</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Hình liên lạc</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Play</string>
+    <string name="audio_view__pause_accessibility_description">Pause</string>
+    <string name="audio_view__download_accessibility_description">Download</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Âm thanh</string>
+    <string name="QuoteView_video">Đoạn phim</string>
+    <string name="QuoteView_photo">Photo</string>
+    <string name="QuoteView_you">Bạn</string>
+    <string name="QuoteView_original_missing">Original message not found</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Search GIFs and stickers</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Nothing found</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Xem cuộc hội thoại đầy đủ</string>
+    <string name="load_more_header__loading">Loading</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">No media</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">GỬI LẠI</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Chặn</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Một số việc cần bạn lưu ý.</string>
+    <string name="message_details_header__sent">Đã gửi</string>
+    <string name="message_details_header__received">Đã nhận</string>
+    <string name="message_details_header__disappears">Disappears</string>
+    <string name="message_details_header__via">Qua</string>
+    <string name="message_details_header__to">Đến:</string>
+    <string name="message_details_header__from">Từ:</string>
+    <string name="message_details_header__with">Với:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Tạo cụm từ mật khẩu</string>
+    <string name="AndroidManifest__select_contacts">Chọn liên lạc</string>
+    <string name="AndroidManifest__media_preview">Xem trước tệp đa phương tiện</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Dùng mặc định</string>
+    <string name="arrays__use_custom">Dùng tùy chỉnh</string>
+    <string name="arrays__mute_for_one_hour">Tạm im 1 tiếng</string>
+    <string name="arrays__mute_for_two_hours">Tạm im 2 tiếng</string>
+    <string name="arrays__mute_for_one_day">Tạm im 1 ngày</string>
+    <string name="arrays__mute_for_seven_days">Tạm im 7 ngày</string>
+    <string name="arrays__mute_for_one_year">Không báo trong 1 năm</string>
+    <string name="arrays__settings_default">Thiết đặt mặc định</string>
+    <string name="arrays__enabled">Mở</string>
+    <string name="arrays__disabled">Tắt</string>
+    <string name="arrays__name_and_message">Tên và tin nhắn</string>
+    <string name="arrays__name_only">Tên thôi</string>
+    <string name="arrays__no_name_or_message">Không có tên hay tin nhắn</string>
+    <string name="arrays__images">Hình ảnh</string>
+    <string name="arrays__audio">Nhạc</string>
+    <string name="arrays__video">Đoạn phim</string>
+    <string name="arrays__documents">Tài liệu</string>
+    <string name="arrays__small">Small</string>
+    <string name="arrays__normal">Bình thường</string>
+    <string name="arrays__large">Large</string>
+    <string name="arrays__extra_large">Extra large</string>
+    <string name="arrays__default">Default</string>
+    <string name="arrays__high">High</string>
+    <string name="arrays__max">Max</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="other">%d tiếng</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Phím Enter gửi đi</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Nhấn phím Enter sẽ gửi tin nhắn đi</string>
+    <string name="preferences__send_link_previews">Send link previews</string>
+    <string name="preferences__previews_are_supported_for">Previews are supported for Imgur, Instagram, Pinterest, Reddit, and YouTube links</string>
+    <string name="preferences__screen_security">An ninh màn hình</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
+    <string name="preferences__notifications">Thông báo</string>
+    <string name="preferences__led_color">Màu LED</string>
+    <string name="preferences__led_color_unknown">Không rõ</string>
+    <string name="preferences__pref_led_blink_title">Mô hình chớp nháy LED</string>
+    <string name="preferences__sound">Âm thanh</string>
+    <string name="preferences__silent">Yên lặng</string>
+    <string name="preferences__repeat_alerts">Lập lại cảnh báo</string>
+    <string name="preferences__never">Không bao giờ</string>
+    <string name="preferences__one_time">Một lần</string>
+    <string name="preferences__two_times">Hai lần</string>
+    <string name="preferences__three_times">Ba lần</string>
+    <string name="preferences__five_times">Năm lần</string>
+    <string name="preferences__ten_times">Mười lần</string>
+    <string name="preferences__vibrate">Rung</string>
+    <string name="preferences__green">Xanh lá cây</string>
+    <string name="preferences__red">Đỏ</string>
+    <string name="preferences__blue">Xanh dương</string>
+    <string name="preferences__orange">Cam</string>
+    <string name="preferences__cyan">Xanh lam</string>
+    <string name="preferences__magenta">Hồng đậm</string>
+    <string name="preferences__white">Trắng</string>
+    <string name="preferences__none">Không</string>
+    <string name="preferences__fast">Nhanh</string>
+    <string name="preferences__normal">Bình thường</string>
+    <string name="preferences__slow">Chậm</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ một khi cuộc hội thoại vượt quá độ dài ấn định</string>
+    <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
+    <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc chuyện trò</string>
+    <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc hội thoại</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc hội thoại và áp dụng giới hạn độ dài hội thoại</string>
+    <string name="preferences__default">Mặc định</string>
+    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__read_receipts">Read receipts</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
+    <string name="preferences__typing_indicators">Typing indicators</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
+    <string name="preferences__light_theme">Lợt</string>
+    <string name="preferences__dark_theme">Đậm</string>
+    <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
+    <string name="preferences_advanced__use_system_emoji">Sử dụng ký tự biểu cảm hệ thống</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ ký tự biểu cảm mặc định của Session</string>
+    <string name="preferences_app_protection__app_access">App Access</string>
+    <string name="preferences_app_protection__communication">Communication</string>
+    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_notifications__messages">Messages</string>
+    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__priority">Priority</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Tin nhắn mới cho...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Chi tiết tin nhắn</string>
+    <string name="conversation_context__menu_copy_text">Sao chép văn bản</string>
+    <string name="conversation_context__menu_delete_message">Xóa tin nhắn</string>
+    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_resend_message">Gửi lại tin nhắn</string>
+    <string name="conversation_context__menu_reply_to_message">Reply to message</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Lưu đính kèm</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Disappearing messages</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Messages expiring</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Tắt tạm im</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Tạm im thông báo</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Edit group</string>
+    <string name="conversation__menu_leave_group">Rời nhóm</string>
+    <string name="conversation__menu_view_all_media">All media</string>
+    <string name="conversation__menu_add_shortcut">Add to home screen</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Nới rộng khung popup</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Phân phối</string>
+    <string name="conversation_group_options__conversation">Chuyện trò</string>
+    <string name="conversation_group_options__broadcast">Phát rộng</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Lưu</string>
+    <string name="media_preview__forward_title">Forward</string>
+    <string name="media_preview__all_media_title">All media</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">No documents</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Đang xóa</string>
+    <string name="trimmer__deleting_old_messages">Đang xóa tin nhắn cũ...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Xóa thành công các tin nhắn cũ</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Permission required</string>
+    <string name="Permissions_continue">Tiếp tục</string>
+    <string name="Permissions_not_now">Not now</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
+    <string name="registration_activity__skip">Bỏ qua</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Session</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
+    <string name="BackupDialog_enable_local_backups">Enable local backups?</string>
+    <string name="BackupDialog_enable_backups">Enable backups</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Please acknowledge your understanding by marking the confirmation check box.</string>
+    <string name="BackupDialog_delete_backups">Delete backups?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
+    <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+    <string name="BackupDialog_copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
+    <string name="LocalBackupJob_creating_backup">Creating backup...</string>
+    <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
+    <string name="BackupUtil_never">Không bao giờ</string>
+    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Session access with Android screen lock or fingerprint</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
+    <string name="AppProtectionPreferenceFragment_none">Không</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <!-- Session -->
+    <string name="continue_2">Tiếp tục</string>
+    <string name="copy">Sao chép</string>
+    <string name="invalid_url">URL không hợp lệ</string>
+    <string name="copied_to_clipboard">Sao chép vào bộ nhớ tạm</string>
+    <string name="next">Tiếp</string>
+    <string name="share">Chia sẻ</string>
+    <string name="invalid_session_id">Session ID không hợp lệ</string>
+    <string name="cancel">Huỷ</string>
+    <string name="your_session_id">Session ID của bạn</string>
+    <string name="activity_landing_title_2">Session của bạn bắt đầu từ đây...</string>
+    <string name="activity_landing_register_button_title">Tạo Session ID</string>
+    <string name="activity_landing_restore_button_title">Tiếp tục Session của bạn</string>
+    <string name="view_fake_chat_bubble_1">Session là gì?</string>
+    <string name="view_fake_chat_bubble_2">Đây là một ứng dụng nhắn tin phân cấp và mã hoá</string>
+    <string name="view_fake_chat_bubble_3">Vậy ứng dụng có thu thập dữ liệu cá nhân của tôi hoặc siêu dữ liệu về cuộc hội thoại của tôi không? Ứng dụng hoạt động như thế nào?</string>
+    <string name="view_fake_chat_bubble_4">Sử dụng kết hợp công nghệ định tuyến ẩn danh nâng cao và công nghệ mã hoá đầu cuối.</string>
+    <string name="view_fake_chat_bubble_5">Đừng để bạn bè sử dụng những ứng dụng nhắn tin dễ bị tấn công.</string>
+    <string name="activity_register_title">Bắt đầu với Session ID của bạn</string>
+    <string name="activity_register_explanation">Session ID của bạn là địa chỉ duy nhất mà mọi người có thể dùng để liên lạc với bạn trên ứng dụng Session. Session ID của bạn được thiết kế đảm bảo tuyệt đối ẩn danh và riêng tư vì nó không liên kết với danh tính thật của bạn.</string>
+    <string name="activity_restore_title">Khôi phục lại tài khoản của bạn</string>
+    <string name="activity_restore_explanation">Nhập cụm từ khôi phục mà bạn nhận được khi đăng ký khôi phục tài khoản.</string>
+    <string name="activity_restore_seed_edit_text_hint">Nhập cụm từ khôi phục của bạn.</string>
+    <string name="activity_display_name_title_2">Chọn tên hiển thị của bạn</string>
+    <string name="activity_display_name_explanation">Đây là tên của bạn khi sử dụng Session. Nó có thể là tên thật, tên gọi khác của bạn hoặc bất kì tên nào bạn thích.</string>
+    <string name="activity_display_name_edit_text_hint">Nhập một tên hiển thị</string>
+    <string name="activity_display_name_display_name_missing_error">Vui lòng chọn một tên hiển thị</string>
+    <string name="activity_display_name_display_name_too_long_error">Vui lòng chọn tên hiển thị ngắn hơn</string>
+    <string name="activity_pn_mode_recommended_option_tag">Khuyến nghị</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Vui lòng lựa chọn </string>
+    <string name="activity_home_empty_state_message">Bạn chưa có danh bạ </string>
+    <string name="activity_home_empty_state_button_title">Bắt đầu một Session</string>
+    <string name="activity_home_leave_group_dialog_message">Bạn có chắc chắn rằng bạn muốn rời nhóm này không?</string>
+    <string name="activity_home_leaving_group_failed_message">"Không thể rời nhóm"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Bạn có chắc chắn rằng bạn muốn xoá cuộc hội thoại này không?</string>
+    <string name="activity_home_conversation_deleted_message">Cuộc hội thoại đã được xoá </string>
+    <string name="activity_seed_title">Cụm từ khôi phục của bạn</string>
+    <string name="activity_seed_title_2">Làm quen với cụm từ khôi phục của bạn</string>
+    <string name="activity_seed_explanation">Cụm từ khôi phục của bạn là chìa khoá chủ cho Session ID của bạn — bạn có thể sử dụng nó để khôi phục Session ID khi bị mất tiếp cận với thiết bị của bạn. Hãy lưu cụm từ khôi phục của bạn ở một nơi an toàn và không cung cấp cho bất kì ai.</string>
+    <string name="activity_seed_reveal_button_title">Giữ để hiển thị.</string>
+    <string name="view_seed_reminder_subtitle_1">Bảo vệ tài khoản của bạn bằng việc bảo vệ cụm từ khôi phục của bạn</string>
+    <string name="view_seed_reminder_subtitle_2">Chạm và giữ cụm từ bị che để hiển thị cụm từ khôi phục của bạn, sau đó lưu nó cẩn thận để bảo vệ Session ID của bạn.</string>
+    <string name="view_seed_reminder_subtitle_3">Hãy lưu cụm từ khôi phục của bạn ở một nơi an toàn</string>
+    <string name="activity_path_title">Đường đi</string>
+    <string name="activity_path_explanation">Session ẩn IP của bạn bằng cách luân chuyển tin nhắn của bạn qua một số Nút Dịch vụ trong mạng lưới phân cấp của Session. Đây là các nước mà kết nối của bạn đang được luân chuyển: </string>
+    <string name="activity_path_device_row_title">Bạn</string>
+    <string name="activity_path_guard_node_row_title">Nút khởi đầu</string>
+    <string name="activity_path_service_node_row_title">Nút Dịch vụ</string>
+    <string name="activity_path_destination_row_title">Điểm đến</string>
+    <string name="activity_path_learn_more_button_title">Tìm hiểu thêm</string>
+    <string name="activity_create_private_chat_title">Session mới</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Nhập Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Quét mã QR</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Quét mã QR của người dùng để bắt đầu session. Tìm mã QR bằng cách chạm vào biểu tượng mã QR trong mục cài đặt tài khoản.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Nhập Session ID của người nhận</string>
+    <string name="fragment_enter_public_key_explanation">Người dùng có thể chia sẻ Session ID của mình bằng cách tới mục cài đặt tài khoản và chạm vào “Chia sẻ Session ID”, hoặc bằng cách chia sẻ mã QR của họ.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session cần truy cập máy ảnh để quét mã QR </string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Cho phép truy cập máy ảnh</string>
+    <string name="activity_create_closed_group_title">Nhóm kín mới </string>
+    <string name="activity_create_closed_group_edit_text_hint">Nhập tên nhóm</string>
+    <string name="activity_create_closed_group_empty_state_message">Bạn chưa có danh bạ nào </string>
+    <string name="activity_create_closed_group_empty_state_button_title">Bắt đầu Session</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Vui lòng nhập tên nhóm</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Vui lòng nhập một tên nhóm ngắn hơn </string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Vui lòng chọn ít nhất 2 thành viên trong nhóm </string>
+    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_join_public_chat_title">Tham gia nhóm mở</string>
+    <string name="activity_join_public_chat_error">Không thể tham gia nhóm</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">URL của nhóm mở</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Quét mã QR</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation"> Quét mã QR của nhóm mở mà bạn muốn tham gia</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Nhập URL của nhóm mở</string>
+    <string name="activity_settings_title">Cài đặt</string>
+    <string name="activity_settings_display_name_edit_text_hint">Nhập tên hiển thị</string>
+    <string name="activity_settings_display_name_missing_error">Vui lòng chọn một tên hiển thị </string>
+    <string name="activity_settings_display_name_too_long_error">Vui lòng chọn một tên hiển thị ngắn hơn </string>
+    <string name="activity_settings_privacy_button_title">Riêng tư</string>
+    <string name="activity_settings_notifications_button_title">Thông báo</string>
+    <string name="activity_settings_chats_button_title">Trò chuyện</string>
+    <string name="activity_settings_devices_button_title">Thiết bị</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_recovery_phrase_button_title">Cụm từ khôi phục</string>
+    <string name="activity_settings_clear_all_data_button_title">Xóa dữ liệu</string>
+    <string name="activity_notification_settings_title">Thông báo</string>
+    <string name="activity_notification_settings_style_section_title">Kiểu thông báo</string>
+    <string name="activity_notification_settings_content_section_title">Nội dung thông báo</string>
+    <string name="activity_privacy_settings_title">Riêng tưy</string>
+    <string name="activity_chat_settings_title">Trò chuyện</string>
+    <string name="preferences_notifications_strategy_category_title">Chiến lược thông báo</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Đổi tên</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Hủy liên kết thiết bị</string>
+    <string name="dialog_seed_title">Cụm từ khôi phục của bạn</string>
+    <string name="dialog_seed_explanation">Đây là cụm từ khôi phục của bạn. Bạn có thể dùng nó để khôi phục hoặc chuyển Session ID của mình sang một thiết bị mới.</string>
+    <string name="dialog_clear_all_data_title">Xóa tất cả dữ liệu</string>
+    <string name="dialog_clear_all_data_explanation">Thao tác này sẽ xóa vĩnh viễn các tin nhắn, sessions, và danh bạ của bạn.</string>
+    <string name="activity_qr_code_title">Mã QR</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">Xem mã QR của tôi</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Quét mã QR</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Quét mã QR của ai đó để bắt đầu trò chuyện với họ</string>
+    <string name="fragment_view_my_qr_code_explanation">Đây là mã QR của bạn. Những người dùng khác có thể quét mã này và bắt đầu session với bạn.</string>
+    <string name="fragment_view_my_qr_code_share_title">Chia sẻ mã QR </string>
+    <string name="fragment_contact_selection_contacts_title">Danh bạ</string>
+    <string name="fragment_contact_selection_closed_groups_title">Nhóm kín</string>
+    <string name="fragment_contact_selection_open_groups_title">Nhóm mở</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apply</string>
+    <string name="menu_done_button">Done</string>
+    <string name="activity_edit_closed_group_title">Edit Group</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
+    <string name="activity_edit_closed_group_edit_members">Members</string>
+    <string name="activity_edit_closed_group_add_members">Add members</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
+    <string name="activity_select_contacts_title">Select Contacts</string>
+    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
+    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_option_day">Day</string>
+    <string name="dialog_ui_mode_option_night">Night</string>
+    <string name="dialog_ui_mode_option_system_default">System default</string>
+    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
+    <string name="attachment">Attachment</string>
+    <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
+    <!--  LinkDeviceActivity  -->
+    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
 </resources>

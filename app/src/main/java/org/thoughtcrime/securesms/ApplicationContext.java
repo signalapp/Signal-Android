@@ -30,27 +30,27 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 
 import org.conscrypt.Conscrypt;
+import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.file_server.FileServerAPI;
-import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
-import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.snode.SnodeModule;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.IdentityKeyUtil;
+import org.session.libsession.utilities.ProfileKeyUtil;
+import org.session.libsession.utilities.ProfilePictureUtilities;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
-import org.session.libsession.utilities.preferences.ProfileKeyUtil;
-import org.session.libsignal.service.api.util.StreamDetails;
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.database.LokiAPIDatabaseProtocol;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -67,8 +67,7 @@ import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
-import org.thoughtcrime.securesms.loki.api.PublicChatManager;
-import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -91,9 +90,8 @@ import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.security.SecureRandom;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.security.Security;
 import java.util.Date;
 import java.util.HashSet;
@@ -103,7 +101,6 @@ import dagger.ObjectGraph;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
 import network.loki.messenger.BuildConfig;
-import nl.komponents.kovenant.Kovenant;
 
 import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
 import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
@@ -135,7 +132,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
     public ClosedGroupPoller closedGroupPoller = null;
-    public PublicChatManager publicChatManager = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
@@ -174,15 +170,13 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         MessagingModuleConfiguration.Companion.configure(this,
                 DatabaseFactory.getStorage(this),
-                DatabaseFactory.getAttachmentProvider(this),
-                new SessionProtocolImpl(this));
+                DatabaseFactory.getAttachmentProvider(this));
         SnodeModule.Companion.configure(apiDB, broadcaster);
         if (userPublicKey != null) {
             MentionsManager.Companion.configureIfNeeded(userPublicKey, userDB);
         }
         setUpStorageAPIIfNeeded();
         resubmitProfilePictureIfNeeded();
-        publicChatManager = new PublicChatManager(this);
         updateOpenGroupProfilePicturesIfNeeded();
         if (userPublicKey != null) {
             registerForFCMIfNeeded(false);
@@ -212,8 +206,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setCaughtUp(false);
         }
         startPollingIfNeeded();
-        publicChatManager.markAllAsNotCaughtUp();
-        publicChatManager.startPollersIfNeeded();
+
+        OpenGroupManager.INSTANCE.setAllCaughtUp(false);
+        OpenGroupManager.INSTANCE.startPolling();
     }
 
     @Override
@@ -234,9 +229,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     @Override
     public void onTerminate() {
         stopKovenant(); // Loki
-        if (publicChatManager != null) {
-            publicChatManager.stopPollers();
-        }
+        OpenGroupManager.INSTANCE.stopPolling();
         super.onTerminate();
     }
 
@@ -328,7 +321,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                 .setDependencyInjector(this)
                 .build());
-        JobQueue.getShared().resumePendingJobs();
     }
 
     private void initializeDependencyInjection() {
@@ -456,7 +448,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setUserPublicKey(userPublicKey);
             return;
         }
-        LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         poller = new Poller();
         closedGroupPoller = new ClosedGroupPoller();
     }
@@ -471,34 +462,32 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
     }
 
-    public void stopPolling() {
-        if (poller != null) {
-            poller.stopIfNeeded();
-        }
-        if (closedGroupPoller != null) {
-            closedGroupPoller.stopIfNeeded();
-        }
-        if (publicChatManager != null) {
-            publicChatManager.stopPollers();
-        }
-    }
-
     private void resubmitProfilePictureIfNeeded() {
+        // Files expire on the file server after a while, so we simply re-upload the user's profile picture
+        // at a certain interval to ensure it's always available.
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         if (userPublicKey == null) return;
         long now = new Date().getTime();
         long lastProfilePictureUpload = TextSecurePreferences.getLastProfilePictureUpload(this);
         if (now - lastProfilePictureUpload <= 14 * 24 * 60 * 60 * 1000) return;
-        AsyncTask.execute(() -> {
-            String encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this);
-            byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey);
+        ThreadUtils.queue(() -> {
+            // Don't generate a new profile key here; we do that when the user changes their profile picture
+            String encodedProfileKey = TextSecurePreferences.getProfileKey(ApplicationContext.this);
             try {
-                File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
-                StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
-                FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
-                    TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
-                    TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
-                    ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
+                // Read the file into a byte array
+                InputStream inputStream = AvatarHelper.getInputStreamFor(ApplicationContext.this, Address.fromSerialized(userPublicKey));
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                int count;
+                byte[] buffer = new byte[1024];
+                while ((count = inputStream.read(buffer, 0, buffer.length)) != -1) {
+                    baos.write(buffer, 0, count);
+                }
+                baos.flush();
+                byte[] profilePicture = baos.toByteArray();
+                // Re-upload it
+                ProfilePictureUtilities.INSTANCE.upload(profilePicture, encodedProfileKey, ApplicationContext.this).success(unit -> {
+                    // Update the last profile picture upload date
+                    TextSecurePreferences.setLastProfilePictureUpload(ApplicationContext.this, new Date().getTime());
                     return Unit.INSTANCE;
                 });
             } catch (Exception exception) {

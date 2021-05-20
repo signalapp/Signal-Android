@@ -45,8 +45,8 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.utilities.JsonUtil;
-import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.ExternalStorageUtil;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
@@ -393,7 +393,7 @@ public class AttachmentDatabase extends Database {
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
   }
 
-  public void updateAttachmentAfterUploadFailed(@NonNull AttachmentId id) {
+  public void handleFailedAttachmentUpload(@NonNull AttachmentId id) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
 

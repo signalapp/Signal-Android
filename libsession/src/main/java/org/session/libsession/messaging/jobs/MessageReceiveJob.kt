@@ -4,14 +4,14 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.sending_receiving.MessageReceiver
 import org.session.libsession.messaging.sending_receiving.handle
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.utilities.Data
+import org.session.libsignal.utilities.Log
 
-class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
+class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
 
-    // Settings
     override val maxFailureCount: Int = 10
     companion object {
         val TAG = MessageReceiveJob::class.simpleName
@@ -20,10 +20,11 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         private val RECEIVE_LOCK = Object()
 
         // Keys used for database storage
-        private val KEY_DATA = "data"
-        private val KEY_IS_BACKGROUND_POLL = "is_background_poll"
-        private val KEY_OPEN_GROUP_MESSAGE_SERVER_ID = "openGroupMessageServerID"
-        private val KEY_OPEN_GROUP_ID = "open_group_id"
+        private val DATA_KEY = "data"
+        // FIXME: We probably shouldn't be using this job when background polling
+        private val IS_BACKGROUND_POLL_KEY = "is_background_poll"
+        private val OPEN_GROUP_MESSAGE_SERVER_ID_KEY = "openGroupMessageServerID"
+        private val OPEN_GROUP_ID_KEY = "open_group_id"
     }
 
     override fun execute() {
@@ -35,19 +36,18 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         try {
             val isRetry: Boolean = failureCount != 0
             val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID, isRetry)
-            synchronized(RECEIVE_LOCK) {
+            synchronized(RECEIVE_LOCK) { // FIXME: Do we need this?
                 MessageReceiver.handle(message, proto, this.openGroupID)
             }
             this.handleSuccess()
             deferred.resolve(Unit)
         } catch (e: Exception) {
-            Log.e(TAG, "Couldn't receive message due to error", e)
-            val error = e as? MessageReceiver.Error
-            if (error != null && !error.isRetryable) {
-                Log.e("Loki", "Message receive job permanently failed due to error", e)
-                this.handlePermanentFailure(error)
+            Log.e(TAG, "Couldn't receive message.", e)
+            if (e is MessageReceiver.Error && !e.isRetryable) {
+                Log.e("Loki", "Message receive job permanently failed.", e)
+                this.handlePermanentFailure(e)
             } else {
-                Log.e("Loki", "Couldn't receive message due to error", e)
+                Log.e("Loki", "Couldn't receive message.", e)
                 this.handleFailure(e)
             }
             deferred.resolve(Unit) // The promise is just used to keep track of when we're done
@@ -68,10 +68,9 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     }
 
     override fun serialize(): Data {
-        val builder = Data.Builder().putByteArray(KEY_DATA, data)
-                .putBoolean(KEY_IS_BACKGROUND_POLL, isBackgroundPoll)
-        openGroupMessageServerID?.let { builder.putLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID, openGroupMessageServerID) }
-        openGroupID?.let { builder.putString(KEY_OPEN_GROUP_ID, openGroupID) }
+        val builder = Data.Builder().putByteArray(DATA_KEY, data)
+        openGroupMessageServerID?.let { builder.putLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY, it) }
+        openGroupID?.let { builder.putString(OPEN_GROUP_ID_KEY, it) }
         return builder.build();
     }
 
@@ -82,7 +81,11 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     class Factory: Job.Factory<MessageReceiveJob> {
 
         override fun create(data: Data): MessageReceiveJob {
-            return MessageReceiveJob(data.getByteArray(KEY_DATA), data.getBoolean(KEY_IS_BACKGROUND_POLL), data.getLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID), data.getString(KEY_OPEN_GROUP_ID))
+            return MessageReceiveJob(
+                data.getByteArray(DATA_KEY),
+                data.getLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY),
+                data.getString(OPEN_GROUP_ID_KEY)
+            )
         }
     }
 }

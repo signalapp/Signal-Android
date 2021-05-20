@@ -1,9 +1,0 @@
-<vector android:height="24dp" android:viewportHeight="512"
-    android:viewportWidth="512" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <group
-        android:scaleX="0.88"
-        android:scaleY="0.88"
-        android:translateX="64">
-        <path android:fillColor="?attr/pref_icon_tint" android:pathData="M64,96L0,96c0,123.7 100.3,224 224,224v144c0,8.8 7.2,16 16,16h32c8.8,0 16,-7.2 16,-16L288,320C288,196.3 187.7,96 64,96zM448,32c-84.2,0 -157.4,46.5 -195.7,115.2 27.7,30.2 48.2,66.9 59,107.6C424,243.1 512,147.9 512,32h-64z"/>
-    </group>
-</vector>

@@ -4,16 +4,16 @@ import android.content.ContentValues
 import android.content.Context
 import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
-import org.session.libsignal.libsignal.ecc.DjbECPublicKey
-import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.PublicKeyValidation
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.crypto.ecc.DjbECPrivateKey
+import org.session.libsignal.crypto.ecc.DjbECPublicKey
+import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.utilities.Snode
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.utilities.PublicKeyValidation
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -27,7 +27,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val timestamp = "timestamp"
         private val snode = "snode"
         // Snode pool
-        private val snodePoolTable = "loki_snode_pool_cache"
+        public val snodePoolTable = "loki_snode_pool_cache"
         private val dummyKey = "dummy_key"
         private val snodePool = "snode_pool_key"
         @JvmStatic val createSnodePoolTableCommand = "CREATE TABLE $snodePoolTable ($dummyKey TEXT PRIMARY KEY, $snodePool TEXT);"
@@ -36,7 +36,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val indexPath = "index_path"
         @JvmStatic val createOnionRequestPathTableCommand = "CREATE TABLE $onionRequestPathTable ($indexPath TEXT PRIMARY KEY, $snode TEXT);"
         // Swarms
-        private val swarmTable = "loki_api_swarm_cache"
+        public val swarmTable = "loki_api_swarm_cache"
         private val swarmPublicKey = "hex_encoded_public_key"
         private val swarm = "swarm"
         @JvmStatic val createSwarmTableCommand = "CREATE TABLE $swarmTable ($swarmPublicKey TEXT PRIMARY KEY, $swarm TEXT);"
