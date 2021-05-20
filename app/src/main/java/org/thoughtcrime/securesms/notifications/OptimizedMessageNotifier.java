@@ -23,7 +23,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   @MainThread
   public OptimizedMessageNotifier(@NonNull MessageNotifier wrapped) {
     this.wrapped   = wrapped;
-    this.debouncer = new Debouncer(TimeUnit.SECONDS.toMillis(1));
+    this.debouncer = new Debouncer(TimeUnit.SECONDS.toMillis(2));
   }
 
   @Override
