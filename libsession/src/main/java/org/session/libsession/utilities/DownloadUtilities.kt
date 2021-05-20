@@ -41,11 +41,12 @@ object DownloadUtilities {
     @JvmStatic
     fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
 
-        if (url.contains(FileServerAPIV2.SERVER)) {
+        if (url.contains(FileServerAPIV2.SERVER) || url.contains(FileServerAPIV2.OLD_SERVER)) {
             val httpUrl = HttpUrl.parse(url)!!
             val fileId = httpUrl.pathSegments().last()
+            val useOldServer = url.contains(FileServerAPIV2.OLD_SERVER)
             try {
-                FileServerAPIV2.download(fileId.toLong()).get().let {
+                FileServerAPIV2.download(fileId.toLong(), useOldServer).get().let {
                     outputStream.write(it)
                 }
             } catch (e: Exception) {
