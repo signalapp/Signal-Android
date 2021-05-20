@@ -52,10 +52,9 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity(),
-        ConversationClickListener,
-        SeedReminderViewDelegate,
-        NewConversationButtonSetViewDelegate {
-
+    ConversationClickListener,
+    SeedReminderViewDelegate,
+    NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
@@ -173,19 +172,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
-        showFileServerInstabilityNotificationIfNeeded()
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {
                 MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
             }
         }
-    }
-
-    private fun showFileServerInstabilityNotificationIfNeeded() {
-        val hasSeenNotification = TextSecurePreferences.hasSeenFileServerInstabilityNotification(this)
-        if (hasSeenNotification) { return }
-        FileServerDialog().show(supportFragmentManager, "File Server Dialog")
-        TextSecurePreferences.setHasSeenFileServerInstabilityNotification(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -356,7 +347,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                     apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
                     OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
-                    threadDB.deleteConversation(threadID)
+                    ThreadUtils.queue {
+                        threadDB.deleteConversation(threadID)
+                    }
                 }
                 // Update the badge count
                 ApplicationContext.getInstance(context).messageNotifier.updateNotification(context)

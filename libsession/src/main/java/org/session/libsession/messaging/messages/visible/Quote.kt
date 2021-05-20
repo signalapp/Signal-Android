@@ -1,11 +1,11 @@
 package org.session.libsession.messaging.messages.visible
 
-import com.goterl.lazycode.lazysodium.BuildConfig
+import com.goterl.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
-import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
-import org.session.libsignal.utilities.Log
 import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.Log
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 
 class Quote() {
     var timestamp: Long? = 0

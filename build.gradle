@@ -40,15 +40,9 @@ allprojects {
             }
         }
         maven {
-            url 'https://dl.bintray.com/amulyakhare/maven'
+            url "https://repo1.maven.org/maven2/com/goterl/lazysodium-android"
             content {
-                includeGroupByRegex "com\\.amulyakhare.*"
-            }
-        }
-        maven {
-            url "https://dl.bintray.com/terl/lazysodium-maven"
-            content {
-                includeGroupByRegex "com\\.goterl\\.lazycode.*"
+                includeGroupByRegex "com\\.goterl.*"
             }
         }
         jcenter()
