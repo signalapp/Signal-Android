@@ -1,12 +1,12 @@
 package org.session.libsession.messaging.messages.visible
 
-import com.goterl.lazycode.lazysodium.BuildConfig
+import com.goterl.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Log
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
