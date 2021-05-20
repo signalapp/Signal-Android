@@ -513,9 +513,9 @@ public class ThreadDatabase extends Database {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
+    boolean shouldDeleteEmptyThread = deleteThreadOnEmpty(threadId);
 
-
-    if (count == 0) {
+    if (count == 0 && shouldDeleteEmptyThread) {
       deleteThread(threadId);
       notifyConversationListListeners();
       return true;
@@ -534,14 +534,22 @@ public class ThreadDatabase extends Database {
         notifyConversationListListeners();
         return false;
       } else {
-        deleteThread(threadId);
-        notifyConversationListListeners();
-        return true;
+        if (shouldDeleteEmptyThread) {
+          deleteThread(threadId);
+          notifyConversationListListeners();
+          return true;
+        }
+        return false;
       }
     } finally {
       if (reader != null)
         reader.close();
     }
+  }
+
+  private boolean deleteThreadOnEmpty(long threadId) {
+    Recipient threadRecipient = getRecipientForThreadId(threadId);
+    return threadRecipient != null && !threadRecipient.isOpenGroupRecipient();
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {
