@@ -52,10 +52,9 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity(),
-        ConversationClickListener,
-        SeedReminderViewDelegate,
-        NewConversationButtonSetViewDelegate {
-
+    ConversationClickListener,
+    SeedReminderViewDelegate,
+    NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
@@ -173,19 +172,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
-        showFileServerInstabilityNotificationIfNeeded()
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {
                 MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
             }
         }
-    }
-
-    private fun showFileServerInstabilityNotificationIfNeeded() {
-        val hasSeenNotification = TextSecurePreferences.hasSeenFileServerInstabilityNotification(this)
-        if (hasSeenNotification) { return }
-        FileServerDialog().show(supportFragmentManager, "File Server Dialog")
-        TextSecurePreferences.setHasSeenFileServerInstabilityNotification(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
