@@ -31,7 +31,7 @@ def autoResConfig() {
 task pullTranslations(type: Exec) {
     group 'Translate'
     description 'Pull translations, requires transifex client and api key.'
-    commandLine 'tx', 'pull', '-a', '--minimum-perc=80', '--force'
+    commandLine 'tx', 'pull', '-a', '--minimum-perc=80', '--force', '--parallel'
 }
 
 task replaceEllipsis {
