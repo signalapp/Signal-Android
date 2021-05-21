@@ -34,7 +34,6 @@ class SSKEnvironment(
         fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String)
         fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray)
         fun setUnidentifiedAccessMode(context: Context, recipient: Recipient, unidentifiedAccessMode: Recipient.UnidentifiedAccessMode)
-        fun updateOpenGroupProfilePicturesIfNeeded(context: Context)
         fun getDisplayName(context: Context, recipient: Recipient): String?
     }
 

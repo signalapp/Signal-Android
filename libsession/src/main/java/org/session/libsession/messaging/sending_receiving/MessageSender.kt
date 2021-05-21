@@ -54,10 +54,11 @@ object MessageSender {
 
     // Convenience
     fun send(message: Message, destination: Destination): Promise<Unit, Exception> {
-        if (destination is Destination.OpenGroup || destination is Destination.OpenGroupV2) {
+        if (destination is Destination.OpenGroupV2) {
             return sendToOpenGroupDestination(destination, message)
+        } else {
+            return sendToSnodeDestination(destination, message)
         }
-        return sendToSnodeDestination(destination, message)
     }
 
     // One-on-One Chats & Closed Groups
@@ -84,7 +85,7 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
-                is Destination.OpenGroup, is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be an open group.")
+                is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be an open group.")
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -122,7 +123,7 @@ object MessageSender {
                     val encryptionKeyPair = MessagingModuleConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
                     ciphertext = MessageEncrypter.encrypt(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
-                is Destination.OpenGroup, is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be open group.")
+                is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be open group.")
             }
             // Wrap the result
             val kind: SignalServiceProtos.Envelope.Type
@@ -136,7 +137,7 @@ object MessageSender {
                     kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_MESSAGE
                     senderPublicKey = destination.groupPublicKey
                 }
-                is Destination.OpenGroup, is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be open group.")
+                is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be open group.")
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Send the result
@@ -203,27 +204,6 @@ object MessageSender {
         try {
             when (destination) {
                 is Destination.Contact, is Destination.ClosedGroup -> throw IllegalStateException("Invalid destination.")
-                is Destination.OpenGroup -> {
-                    message.recipient = "${destination.server}.${destination.channel}"
-                    val server = destination.server
-                    val channel = destination.channel
-                    // Validate the message
-                    if (message !is VisibleMessage || !message.isValid()) {
-                        throw Error.InvalidMessage
-                    }
-                    // Convert the message to an open group message
-                    val openGroupMessage = OpenGroupMessage.from(message, server) ?: run {
-                        throw Error.InvalidMessage
-                    }
-                    // Send the result
-                    OpenGroupAPI.sendMessage(openGroupMessage, channel, server).success {
-                        message.openGroupServerMessageID = it.serverID
-                        handleSuccessfulMessageSend(message, destination)
-                        deferred.resolve(Unit)
-                    }.fail {
-                        handleFailure(it)
-                    }
-                }
                 is Destination.OpenGroupV2 -> {
                     message.recipient = "${destination.server}.${destination.room}"
                     val server = destination.server
@@ -275,7 +255,7 @@ object MessageSender {
         // Track the open group server message ID
         if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
             val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())
-            val threadID = storage.getThreadIdFor(Address.fromSerialized(encoded))
+            val threadID = storage.getThreadId(Address.fromSerialized(encoded))
             if (threadID != null && threadID >= 0) {
                 storage.setOpenGroupServerMessageID(messageID, message.openGroupServerMessageID!!, threadID, !(message as VisibleMessage).isMediaMessage())
             }

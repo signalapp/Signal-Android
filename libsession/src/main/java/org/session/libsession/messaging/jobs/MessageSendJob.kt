@@ -88,17 +88,16 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override fun serialize(): Data {
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
-        val output = Output(ByteArray(4096), MAX_BUFFER_SIZE)
         // Message
-        kryo.writeClassAndObject(output, message)
-        output.close()
-        val serializedMessage = output.toBytes()
-        output.clear()
+        val messageOutput = Output(ByteArray(4096), MAX_BUFFER_SIZE)
+        kryo.writeClassAndObject(messageOutput, message)
+        messageOutput.close()
+        val serializedMessage = messageOutput.toBytes()
         // Destination
-        kryo.writeClassAndObject(output, destination)
-        output.close()
-        val serializedDestination = output.toBytes()
-        output.clear()
+        val destinationOutput = Output(ByteArray(4096), MAX_BUFFER_SIZE)
+        kryo.writeClassAndObject(destinationOutput, destination)
+        destinationOutput.close()
+        val serializedDestination = destinationOutput.toBytes()
         // Serialize
         return Data.Builder()
             .putByteArray(MESSAGE_KEY, serializedMessage)
@@ -116,6 +115,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val serializedDestination = data.getByteArray(DESTINATION_KEY)
             val kryo = Kryo()
+            kryo.isRegistrationRequired = false
             // Message
             val messageInput = Input(serializedMessage)
             val message: Message

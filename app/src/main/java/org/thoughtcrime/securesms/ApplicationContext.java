@@ -22,21 +22,17 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
-
 import org.conscrypt.Conscrypt;
 import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.file_server.FileServerAPI;
 import org.session.libsession.messaging.mentions.MentionsManager;
-import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
-import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.snode.SnodeModule;
 import org.session.libsession.utilities.Address;
@@ -131,7 +127,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
-    public ClosedGroupPoller closedGroupPoller = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
@@ -175,9 +170,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (userPublicKey != null) {
             MentionsManager.Companion.configureIfNeeded(userPublicKey, userDB);
         }
-        setUpStorageAPIIfNeeded();
         resubmitProfilePictureIfNeeded();
-        updateOpenGroupProfilePicturesIfNeeded();
         if (userPublicKey != null) {
             registerForFCMIfNeeded(false);
         }
@@ -206,10 +199,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             poller.setCaughtUp(false);
         }
         startPollingIfNeeded();
-        // FIXME: Open group handling
-        /*
-        publicChatManager.markAllAsNotCaughtUp();
-         */
+
+        OpenGroupManager.INSTANCE.setAllCaughtUp(false);
         OpenGroupManager.INSTANCE.startPolling();
     }
 
@@ -223,9 +214,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (poller != null) {
             poller.stopIfNeeded();
         }
-        if (closedGroupPoller != null) {
-            closedGroupPoller.stopIfNeeded();
-        }
+        ClosedGroupPollerV2.getShared().stop();
     }
 
     @Override
@@ -406,20 +395,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
     }
 
-    private static class ProviderInitializationException extends RuntimeException {
-    }
-
-    // region Loki
-    public boolean setUpStorageAPIIfNeeded() {
-        String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-        if (userPublicKey == null || !IdentityKeyUtil.hasIdentityKey(this)) {
-            return false;
-        }
-        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
-        LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
-        return true;
-    }
+    private static class ProviderInitializationException extends RuntimeException { }
 
     public void registerForFCMIfNeeded(final Boolean force) {
         if (firebaseInstanceIdJob != null && firebaseInstanceIdJob.isActive() && !force) return;
@@ -451,7 +427,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             return;
         }
         poller = new Poller();
-        closedGroupPoller = new ClosedGroupPoller();
     }
 
     public void startPollingIfNeeded() {
@@ -459,9 +434,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (poller != null) {
             poller.startIfNeeded();
         }
-        if (closedGroupPoller != null) {
-            closedGroupPoller.startIfNeeded();
-        }
+        ClosedGroupPollerV2.getShared().start();
     }
 
     private void resubmitProfilePictureIfNeeded() {
@@ -494,19 +467,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 });
             } catch (Exception exception) {
                 // Do nothing
-            }
-        });
-    }
-
-    public void updateOpenGroupProfilePicturesIfNeeded() {
-        AsyncTask.execute(() -> {
-            byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
-            String url = TextSecurePreferences.getProfilePictureURL(this);
-            Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
-            for (String server : servers) {
-                if (profileKey != null) {
-                    OpenGroupAPI.setProfilePicture(server, profileKey, url);
-                }
             }
         });
     }

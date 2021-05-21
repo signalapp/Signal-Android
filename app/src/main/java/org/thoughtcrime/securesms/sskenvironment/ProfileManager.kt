@@ -9,13 +9,14 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 
 class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
+
     override fun setDisplayName(context: Context, recipient: Recipient, displayName: String?) {
         val sessionID = recipient.address.serialize()
         // New API
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
         if (contact == null) contact = Contact(sessionID)
-        contact.threadID = DatabaseFactory.getStorage(context).getThreadIdFor(recipient.address)
+        contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
         if (contact.nickname != displayName) {
             contact.nickname = displayName
             contactDatabase.setContact(contact)
@@ -35,7 +36,7 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
         if (contact == null) contact = Contact(sessionID)
-        contact.threadID = DatabaseFactory.getStorage(context).getThreadIdFor(recipient.address)
+        contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
         if (contact.name != profileName) {
             contact.name = profileName
             contactDatabase.setContact(contact)
@@ -49,7 +50,7 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
         if (contact == null) contact = Contact(sessionID)
-        contact.threadID = DatabaseFactory.getStorage(context).getThreadIdFor(recipient.address)
+        contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
         if (contact.profilePictureURL != profilePictureURL) {
             contact.profilePictureURL = profilePictureURL
             contactDatabase.setContact(contact)
@@ -64,7 +65,7 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
         if (contact == null) contact = Contact(sessionID)
-        contact.threadID = DatabaseFactory.getStorage(context).getThreadIdFor(recipient.address)
+        contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
         if (!contact.profilePictureEncryptionKey.contentEquals(profileKey)) {
             contact.profilePictureEncryptionKey = profileKey
             contactDatabase.setContact(contact)
@@ -76,17 +77,13 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
         database.setUnidentifiedAccessMode(recipient, unidentifiedAccessMode)
     }
 
-    override fun updateOpenGroupProfilePicturesIfNeeded(context: Context) {
-        ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
-    }
-
     override fun getDisplayName(context: Context, recipient: Recipient): String? {
         val sessionID = recipient.address.serialize()
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
         if (contact == null) {
             contact = Contact(sessionID)
-            contact.threadID = DatabaseFactory.getStorage(context).getThreadIdFor(recipient.address)
+            contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
             contact.name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(sessionID) ?: recipient.profileName ?: recipient.name
             contactDatabase.setContact(contact)
         }

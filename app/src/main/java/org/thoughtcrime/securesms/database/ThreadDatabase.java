@@ -64,7 +64,7 @@ public class ThreadDatabase extends Database {
 
   private static final String TAG = ThreadDatabase.class.getSimpleName();
 
-  private Map<Long, Address> addressCache = new HashMap<>();
+  private final Map<Long, Address> addressCache = new HashMap<>();
 
   public  static final String TABLE_NAME             = "thread";
   public  static final String ID                     = "_id";
@@ -404,6 +404,21 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public Long getLastUpdated(long threadId) {
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = db.query(TABLE_NAME, new String[]{DATE}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+
+    try {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(0);
+      }
+
+      return -1L;
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
   public void deleteConversation(long threadId) {
     DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
     DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
@@ -471,7 +486,6 @@ public class ThreadDatabase extends Database {
   }
 
   public @Nullable Recipient getRecipientForThreadId(long threadId) {
-    // Loki - Cache the address
     if (addressCache.containsKey(threadId) && addressCache.get(threadId) != null) {
       return Recipient.from(context, addressCache.get(threadId), false);
     }
@@ -505,17 +519,13 @@ public class ThreadDatabase extends Database {
     notifyConversationListeners(threadId);
   }
 
-  public void notifyUpdatedFromConfig() {
-    notifyConversationListListeners();
-  }
-
   public boolean update(long threadId, boolean unarchive) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
+    boolean shouldDeleteEmptyThread = deleteThreadOnEmpty(threadId);
 
-
-    if (count == 0) {
+    if (count == 0 && shouldDeleteEmptyThread) {
       deleteThread(threadId);
       notifyConversationListListeners();
       return true;
@@ -534,14 +544,22 @@ public class ThreadDatabase extends Database {
         notifyConversationListListeners();
         return false;
       } else {
-        deleteThread(threadId);
-        notifyConversationListListeners();
-        return true;
+        if (shouldDeleteEmptyThread) {
+          deleteThread(threadId);
+          notifyConversationListListeners();
+          return true;
+        }
+        return false;
       }
     } finally {
       if (reader != null)
         reader.close();
     }
+  }
+
+  private boolean deleteThreadOnEmpty(long threadId) {
+    Recipient threadRecipient = getRecipientForThreadId(threadId);
+    return threadRecipient != null && !threadRecipient.isOpenGroupRecipient();
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {

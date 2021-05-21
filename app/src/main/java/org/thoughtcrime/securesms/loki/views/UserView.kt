@@ -58,11 +58,7 @@ class UserView : LinearLayout {
                     val contactContext = Contact.contextForRecipient(user)
                     return it.displayName(contactContext)
                 }
-                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(openGroupThreadID)
-                if (result == null && publicChat != null) {
-                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
-                }
+                val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 return result ?: publicKey
             }
         }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.api
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.annotation.WorkerThread
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupV2
@@ -18,6 +19,8 @@ object OpenGroupManager {
     private val executorService = Executors.newScheduledThreadPool(4)
     private var pollers = mutableMapOf<String, OpenGroupPollerV2>() // One for each server
     private var isPolling = false
+
+    var isAllCaughtUp = false
 
     fun startPolling() {
         if (isPolling) { return }
@@ -47,8 +50,8 @@ object OpenGroupManager {
         val existingOpenGroup = threadDB.getOpenGroupChat(threadID)
         if (existingOpenGroup != null) { return }
         // Clear any existing data if needed
-        storage.removeLastDeletionServerId(room, server)
-        storage.removeLastMessageServerId(room, server)
+        storage.removeLastDeletionServerID(room, server)
+        storage.removeLastMessageServerID(room, server)
         // Store the public key
         storage.setOpenGroupPublicKey(server,publicKey)
         // Get an auth token
@@ -93,9 +96,22 @@ object OpenGroupManager {
         }
         // Delete
         ThreadUtils.queue {
-            storage.removeLastDeletionServerId(room, server)
-            storage.removeLastMessageServerId(room, server)
+            storage.removeLastDeletionServerID(room, server)
+            storage.removeLastMessageServerID(room, server)
             GroupManager.deleteGroup(groupID, context) // Must be invoked on a background thread
         }
+    }
+
+    fun addOpenGroup(urlAsString: String, context: Context) {
+        val url = HttpUrl.parse(urlAsString) ?: return
+        val builder = HttpUrl.Builder().scheme(url.scheme()).host(url.host())
+        if (url.port() != 80 || url.port() != 443) {
+            // Non-standard port; add to server
+            builder.port(url.port())
+        }
+        val server = builder.build()
+        val room = url.pathSegments().firstOrNull() ?: return
+        val publicKey = url.queryParameter("public_key") ?: return
+        add(server.toString().removeSuffix("/"), room, publicKey, context)
     }
 }

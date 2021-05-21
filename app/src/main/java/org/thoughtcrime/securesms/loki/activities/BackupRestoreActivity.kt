@@ -28,7 +28,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
-import network.loki.messenger.databinding.ActivityBackupRestoreBinding
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.backup.FullBackupImporter
@@ -61,31 +60,31 @@ class BackupRestoreActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
 
-        val viewBinding = DataBindingUtil.setContentView<ActivityBackupRestoreBinding>(this, R.layout.activity_backup_restore)
-        viewBinding.lifecycleOwner = this
-        viewBinding.viewModel = viewModel
+//        val viewBinding = DataBindingUtil.setContentView<ActivityBackupRestoreBinding>(this, R.layout.activity_backup_restore)
+//        viewBinding.lifecycleOwner = this
+//        viewBinding.viewModel = viewModel
 
-        viewBinding.restoreButton.setOnClickListener { viewModel.tryRestoreBackup() }
+//        viewBinding.restoreButton.setOnClickListener { viewModel.tryRestoreBackup() }
 
-        viewBinding.buttonSelectFile.setOnClickListener {
-            fileSelectionResultLauncher.launch(Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                //FIXME On some old APIs (tested on 21 & 23) the mime type doesn't filter properly
-                // and the backup files are unavailable for selection.
-//                type = BackupUtil.BACKUP_FILE_MIME_TYPE
-                type = "*/*"
-            })
-        }
+//        viewBinding.buttonSelectFile.setOnClickListener {
+//            fileSelectionResultLauncher.launch(Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+//                //FIXME On some old APIs (tested on 21 & 23) the mime type doesn't filter properly
+//                // and the backup files are unavailable for selection.
+////                type = BackupUtil.BACKUP_FILE_MIME_TYPE
+//                type = "*/*"
+//            })
+//        }
 
-        viewBinding.backupCode.addTextChangedListener { text -> viewModel.backupPassphrase.value = text.toString() }
+//        viewBinding.backupCode.addTextChangedListener { text -> viewModel.backupPassphrase.value = text.toString() }
 
         // Focus passphrase text edit when backup file is selected.
-        viewModel.backupFile.observe(this, { backupFile ->
-            if (backupFile != null) viewBinding.backupCode.post {
-                viewBinding.backupCode.requestFocus()
-                (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
-                        .showSoftInput(viewBinding.backupCode, InputMethodManager.SHOW_IMPLICIT)
-            }
-        })
+//        viewModel.backupFile.observe(this, { backupFile ->
+//            if (backupFile != null) viewBinding.backupCode.post {
+//                viewBinding.backupCode.requestFocus()
+//                (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
+//                        .showSoftInput(viewBinding.backupCode, InputMethodManager.SHOW_IMPLICIT)
+//            }
+//        })
 
         // React to backup import result.
         viewModel.backupImportResult.observe(this) { result ->
@@ -116,8 +115,8 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                 openURL("https://getsession.org/privacy-policy/")
             }
         }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        viewBinding.termsTextView.movementMethod = LinkMovementMethod.getInstance()
-        viewBinding.termsTextView.text = termsExplanation
+//        viewBinding.termsTextView.movementMethod = LinkMovementMethod.getInstance()
+//        viewBinding.termsTextView.text = termsExplanation
         //endregion
     }
 
@@ -190,7 +189,6 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
                 TextSecurePreferences.setHasViewedSeed(context, true)
                 TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
                 val application = ApplicationContext.getInstance(context)
-                application.setUpStorageAPIIfNeeded()
 
                 BackupRestoreResult.SUCCESS
             } catch (e: DatabaseDowngradeException) {

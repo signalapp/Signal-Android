@@ -70,10 +70,6 @@ public class GroupManager {
     final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     final Recipient      groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), false);
 
-    if (!groupDatabase.getGroup(groupId).isPresent()) {
-      return false;
-    }
-
     long threadId = threadDatabase.getThreadIdIfExistsFor(groupRecipient);
     if (threadId != -1L) {
       threadDatabase.deleteConversation(threadId);
