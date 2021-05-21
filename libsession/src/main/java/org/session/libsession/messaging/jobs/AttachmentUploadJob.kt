@@ -158,7 +158,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             .putString(THREAD_ID_KEY, threadID)
             .putByteArray(MESSAGE_KEY, serializedMessage)
             .putString(MESSAGE_SEND_JOB_ID_KEY, messageSendJobID)
-            .build();
+            .build()
     }
 
     override fun getFactoryKey(): String {
@@ -172,7 +172,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val kryo = Kryo()
             kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
-            val message: Message = kryo.readObject(input, Message::class.java)
+            val message = kryo.readObject(input, Message::class.java)
             input.close()
             return AttachmentUploadJob(
                 data.getLong(ATTACHMENT_ID_KEY),
