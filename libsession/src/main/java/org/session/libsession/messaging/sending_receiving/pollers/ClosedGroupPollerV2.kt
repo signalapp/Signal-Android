@@ -7,9 +7,11 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.snode.SnodeAPI
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.crypto.getRandomElementOrNull
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.successBackground
+import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -71,9 +73,13 @@ class ClosedGroupPollerV2 {
         if (!isPolling(groupPublicKey)) { return }
         // Get the received date of the last message in the thread. If we don't have any messages yet, pick some
         // reasonable fake time interval to use instead.
-        val timeSinceLastMessage = 5 * 60 * 1000 // TODO: Implement
+        val storage = MessagingModuleConfiguration.shared.storage
+        val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+        val threadID = storage.getThreadID(groupID)?.toLongOrNull() ?: return
+        val lastUpdated = storage.getLastUpdated(threadID)
+        val timeSinceLastMessage = if (lastUpdated != -1L) Date().time - lastUpdated else 5 * 60 * 1000
         val minPollInterval = Companion.minPollInterval
-        val limit = 12 * 60 * 60 * 1000
+        val limit: Long = 12 * 60 * 60 * 1000
         val a = (Companion.maxPollInterval - minPollInterval).toDouble() / limit.toDouble()
         val nextPollInterval = a * min(timeSinceLastMessage, limit) + minPollInterval
         Log.d("Loki", "Next poll interval for closed group with public key: $groupPublicKey is ${nextPollInterval / 1000} s.")
