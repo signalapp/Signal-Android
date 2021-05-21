@@ -12,6 +12,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.PointerAtt
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupRecord
@@ -286,6 +287,8 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     storage.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, storage.getUserPublicKey()!!)
+    // Start polling
+    ClosedGroupPollerV2.shared.startPolling(groupPublicKey)
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGroupControlMessage) {
@@ -562,5 +565,7 @@ fun MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey: String, grou
     storage.removeMember(groupID, Address.fromSerialized(userPublicKey))
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
+    // Stop polling
+    ClosedGroupPollerV2.shared.stopPolling(groupPublicKey)
 }
 // endregion

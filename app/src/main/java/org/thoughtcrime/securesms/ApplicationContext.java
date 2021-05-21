@@ -36,7 +36,7 @@ import org.session.libsession.messaging.file_server.FileServerAPI;
 import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
-import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller;
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.snode.SnodeModule;
 import org.session.libsession.utilities.Address;
@@ -131,7 +131,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
-    public ClosedGroupPoller closedGroupPoller = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
@@ -220,9 +219,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (poller != null) {
             poller.stopIfNeeded();
         }
-        if (closedGroupPoller != null) {
-            closedGroupPoller.stopIfNeeded();
-        }
+        ClosedGroupPollerV2.getShared().stop();
     }
 
     @Override
@@ -448,7 +445,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
             return;
         }
         poller = new Poller();
-        closedGroupPoller = new ClosedGroupPoller();
     }
 
     public void startPollingIfNeeded() {
@@ -456,9 +452,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         if (poller != null) {
             poller.startIfNeeded();
         }
-        if (closedGroupPoller != null) {
-            closedGroupPoller.startIfNeeded();
-        }
+        ClosedGroupPollerV2.getShared().start();
     }
 
     private void resubmitProfilePictureIfNeeded() {

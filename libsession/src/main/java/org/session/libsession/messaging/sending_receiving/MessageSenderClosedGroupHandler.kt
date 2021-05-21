@@ -9,6 +9,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
@@ -71,6 +72,8 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTime)
         // Notify the PN server
         PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
+        // Start polling
+        ClosedGroupPollerV2.shared.startPolling(groupPublicKey)
         // Fulfill the promise
         deferred.resolve(groupID)
     }
