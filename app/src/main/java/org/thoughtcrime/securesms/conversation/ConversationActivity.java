@@ -77,9 +77,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.annimon.stream.Stream;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -90,7 +88,6 @@ import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessa
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.open_groups.OpenGroup;
 import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
@@ -193,7 +190,6 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -204,7 +200,6 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import kotlin.Unit;
 import network.loki.messenger.R;
 
@@ -377,12 +372,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
 
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     OpenGroupV2 openGroupV2 = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
-    if (publicChat != null) {
-      // Request open group info update and handle the successful result in #onOpenGroupInfoUpdated().
-      PublicChatInfoUpdateWorker.scheduleInstant(this, publicChat.getServer(), publicChat.getChannel());
-    } else if (openGroupV2 != null) {
+    if (openGroupV2 != null) {
       PublicChatInfoUpdateWorker.scheduleInstant(this, openGroupV2.getServer(), openGroupV2.getRoom());
       if (openGroupV2.getRoom().equals("session") || openGroupV2.getRoom().equals("oxen")
           || openGroupV2.getRoom().equals("lokinet") || openGroupV2.getRoom().equals("crypto")) {
@@ -1419,13 +1410,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onOpenGroupInfoUpdated(OpenGroupUtilities.GroupInfoUpdatedEvent event) {
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
-    if (publicChat != null &&
-            publicChat.getChannel() == event.getChannel() &&
-            publicChat.getServer().equals(event.getUrl())) {
-      this.updateSubtitleTextView();
-    }
     if (openGroup != null &&
             openGroup.getRoom().equals(event.getRoom()) &&
             openGroup.getServer().equals(event.getUrl())) {
@@ -2380,13 +2365,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
-      OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
       OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
-      if (publicChat != null) {
-        Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
-        if (userCount == null) { userCount = 0; }
-        subtitleTextView.setText(userCount + " members");
-      } else if (openGroup != null) {
+      if (openGroup != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(openGroup.getRoom(),openGroup.getServer());
         if (userCount == null) { userCount = 0; }
         subtitleTextView.setText(userCount + " members");

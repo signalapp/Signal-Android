@@ -77,7 +77,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         val storage = MessagingModuleConfiguration.shared.storage
         val dataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
-        val threadID = storage.getThreadIdFor(Address.fromSerialized(groupID)) ?: return
+        val threadID = storage.getThreadId(Address.fromSerialized(groupID)) ?: return
         val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { serverID ->
             val messageID = dataProvider.getMessageID(serverID, threadID)
             if (messageID == null) {

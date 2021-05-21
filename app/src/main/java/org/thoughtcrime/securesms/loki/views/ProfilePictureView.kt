@@ -61,11 +61,7 @@ class ProfilePictureView : RelativeLayout {
             if (publicKey == null || publicKey.isBlank()) {
                 return null
             } else {
-                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-                if (result == null && publicChat != null) {
-                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
-                }
+                val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 return result ?: publicKey
             }
         }

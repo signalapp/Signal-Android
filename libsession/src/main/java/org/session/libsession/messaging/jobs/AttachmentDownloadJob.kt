@@ -2,11 +2,9 @@ package org.session.libsession.messaging.jobs
 
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.utilities.Data
-import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.DownloadUtilities
 import org.session.libsignal.streams.AttachmentCipherInputStream
 import org.session.libsignal.utilities.Base64
@@ -42,11 +40,6 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             if (exception == Error.NoAttachment) {
                 messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
                 this.handlePermanentFailure(exception)
-            } else if (exception == DotNetAPI.Error.ParsingFailed) {
-                // No need to retry if the response is invalid. Most likely this means we (incorrectly)
-                // got a "Cannot GET ..." error from the file server.
-                messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
-                this.handlePermanentFailure(exception)
             } else {
                 this.handleFailure(exception)
             }
@@ -57,9 +50,9 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
             val tempFile = createTempFile()
             val threadID = storage.getThreadIdForMms(databaseMessageID)
-            val openGroupV2 = storage.getV2OpenGroup(threadID.toString())
+            val openGroupV2 = storage.getV2OpenGroup(threadID)
             val inputStream = if (openGroupV2 == null) {
-                DownloadUtilities.downloadFile(tempFile, attachment.url, FileServerAPI.maxFileSize, null)
+                DownloadUtilities.downloadFile(tempFile, attachment.url)
                 // Assume we're retrieving an attachment for an open group server if the digest is not set
                 if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) {
                     FileInputStream(tempFile)

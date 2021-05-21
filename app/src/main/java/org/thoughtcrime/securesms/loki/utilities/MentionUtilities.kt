@@ -27,15 +27,12 @@ object MentionUtilities {
         var matcher = pattern.matcher(text)
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()
         var startIndex = 0
-        val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         if (matcher.find(startIndex)) {
             while (true) {
                 val publicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
                 val userDisplayName: String? = if (publicKey.toLowerCase() == userPublicKey.toLowerCase()) {
                     TextSecurePreferences.getProfileName(context)
-                } else if (publicChat != null) {
-                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
                 } else {
                     DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 }

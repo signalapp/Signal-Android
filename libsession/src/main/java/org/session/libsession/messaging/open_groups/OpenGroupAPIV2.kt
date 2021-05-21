@@ -31,8 +31,8 @@ object OpenGroupAPIV2 {
     private val curve = Curve25519.getInstance(Curve25519.BEST)
     val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
 
-    private const val DEFAULT_SERVER_PUBLIC_KEY = "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
-    const val DEFAULT_SERVER = "http://116.203.70.33"
+    private const val defaultServerPublicKey = "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
+    const val defaultServer = "http://116.203.70.33"
 
     sealed class Error(message: String) : Exception(message) {
         object Generic : Error("An error occurred.")
@@ -45,7 +45,7 @@ object OpenGroupAPIV2 {
 
     data class DefaultGroup(val id: String, val name: String, val image: ByteArray?) {
 
-        val joinURL: String get() = "$DEFAULT_SERVER/$id?public_key=$DEFAULT_SERVER_PUBLIC_KEY"
+        val joinURL: String get() = "$defaultServer/$id?public_key=$defaultServerPublicKey"
     }
 
     data class Info(val id: String, val name: String, val imageID: String?)
@@ -60,7 +60,7 @@ object OpenGroupAPIV2 {
     ) {
 
         companion object {
-            val EMPTY = MessageDeletion()
+            val empty = MessageDeletion()
         }
     }
 
@@ -125,9 +125,7 @@ object OpenGroupAPIV2 {
                     if (e is OnionRequestAPI.HTTPRequestFailedAtDestinationException && e.statusCode == 401) {
                         val storage = MessagingModuleConfiguration.shared.storage
                         if (request.room != null) {
-                            storage.removeAuthToken("${request.server}.${request.room}")
-                        } else {
-                            storage.removeAuthToken(request.server)
+                            storage.removeAuthToken(request.room, request.server)
                         }
                     }
                 }
@@ -237,7 +235,7 @@ object OpenGroupAPIV2 {
     fun getMessages(room: String, server: String): Promise<List<OpenGroupMessageV2>, Exception> {
         val storage = MessagingModuleConfiguration.shared.storage
         val queryParameters = mutableMapOf<String, String>()
-        storage.getLastMessageServerId(room, server)?.let { lastId ->
+        storage.getLastMessageServerID(room, server)?.let { lastId ->
             queryParameters += "from_server_id" to lastId.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "messages", queryParameters = queryParameters)
@@ -250,7 +248,7 @@ object OpenGroupAPIV2 {
 
     private fun parseMessages(room: String, server: String, rawMessages: List<Map<*, *>>): List<OpenGroupMessageV2> {
         val storage = MessagingModuleConfiguration.shared.storage
-        val lastMessageServerID = storage.getLastMessageServerId(room, server) ?: 0
+        val lastMessageServerID = storage.getLastMessageServerID(room, server) ?: 0
         var currentLastMessageServerID = lastMessageServerID
         val messages = rawMessages.mapNotNull { json ->
             json as Map<String, Any>
@@ -274,7 +272,7 @@ object OpenGroupAPIV2 {
                 null
             }
         }
-        storage.setLastMessageServerId(room, server, currentLastMessageServerID)
+        storage.setLastMessageServerID(room, server, currentLastMessageServerID)
         return messages
     }
     // endregion
@@ -291,7 +289,7 @@ object OpenGroupAPIV2 {
     fun getDeletedMessages(room: String, server: String): Promise<List<MessageDeletion>, Exception> {
         val storage = MessagingModuleConfiguration.shared.storage
         val queryParameters = mutableMapOf<String, String>()
-        storage.getLastDeletionServerId(room, server)?.let { last ->
+        storage.getLastDeletionServerID(room, server)?.let { last ->
             queryParameters["from_server_id"] = last.toString()
         }
         val request = Request(verb = GET, room = room, server = server, endpoint = "deleted_messages", queryParameters = queryParameters)
@@ -299,10 +297,10 @@ object OpenGroupAPIV2 {
             val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
             val idsAsString = JsonUtil.toJson(json["ids"])
             val serverIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
-            val lastMessageServerId = storage.getLastDeletionServerId(room, server) ?: 0
-            val serverID = serverIDs.maxByOrNull {it.id } ?: MessageDeletion.EMPTY
+            val lastMessageServerId = storage.getLastDeletionServerID(room, server) ?: 0
+            val serverID = serverIDs.maxByOrNull {it.id } ?: MessageDeletion.empty
             if (serverID.id > lastMessageServerId) {
-                storage.setLastDeletionServerId(room, server, serverID.id)
+                storage.setLastDeletionServerID(room, server, serverID.id)
             }
             serverIDs
         }
@@ -361,8 +359,8 @@ object OpenGroupAPIV2 {
             CompactPollRequest(
                 roomID = room,
                 authToken = authToken,
-                fromDeletionServerID = storage.getLastDeletionServerId(room, server),
-                fromMessageServerID = storage.getLastMessageServerId(room, server)
+                fromDeletionServerID = storage.getLastDeletionServerID(room, server),
+                fromMessageServerID = storage.getLastMessageServerID(room, server)
             )
         }
         val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false, parameters = mapOf( "requests" to requests ))
@@ -386,10 +384,10 @@ object OpenGroupAPIV2 {
                 val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
                 val idsAsString = JsonUtil.toJson(json["deletions"])
                 val deletedServerIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
-                val lastDeletionServerID = storage.getLastDeletionServerId(roomID, server) ?: 0
-                val serverID = deletedServerIDs.maxByOrNull { it.id } ?: MessageDeletion.EMPTY
+                val lastDeletionServerID = storage.getLastDeletionServerID(roomID, server) ?: 0
+                val serverID = deletedServerIDs.maxByOrNull { it.id } ?: MessageDeletion.empty
                 if (serverID.id > lastDeletionServerID) {
-                    storage.setLastDeletionServerId(roomID, server, serverID.id)
+                    storage.setLastDeletionServerID(roomID, server, serverID.id)
                 }
                 // Messages
                 val rawMessages = json["messages"] as? List<Map<String, Any>> ?: return@mapNotNull null
@@ -405,8 +403,8 @@ object OpenGroupAPIV2 {
 
     fun getDefaultRoomsIfNeeded(): Promise<List<DefaultGroup>, Exception> {
         val storage = MessagingModuleConfiguration.shared.storage
-        storage.setOpenGroupPublicKey(DEFAULT_SERVER, DEFAULT_SERVER_PUBLIC_KEY)
-        return getAllRooms(DEFAULT_SERVER).map { groups ->
+        storage.setOpenGroupPublicKey(defaultServer, defaultServerPublicKey)
+        return getAllRooms(defaultServer).map { groups ->
             val earlyGroups = groups.map { group ->
                 DefaultGroup(group.id, group.name, null)
             }
@@ -417,7 +415,7 @@ object OpenGroupAPIV2 {
                 }
             }
             val images = groups.map { group ->
-                group.id to downloadOpenGroupProfilePicture(group.id, DEFAULT_SERVER)
+                group.id to downloadOpenGroupProfilePicture(group.id, defaultServer)
             }.toMap()
             groups.map { group ->
                 val image = try {

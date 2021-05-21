@@ -100,7 +100,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     File downloadDestination = File.createTempFile("avatar", ".jpg", context.getCacheDir());
 
     try {
-      DownloadUtilities.downloadFile(downloadDestination, profileAvatar, MAX_PROFILE_SIZE_BYTES, null);
+      DownloadUtilities.downloadFile(downloadDestination, profileAvatar);
       InputStream avatarStream       = new ProfileCipherInputStream(new FileInputStream(downloadDestination), profileKey);
       File        decryptDestination = File.createTempFile("avatar", ".jpg", context.getCacheDir());
 

@@ -122,7 +122,6 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
             }
             // start polling and wait for updated message
             ApplicationContext.getInstance(this@LinkDeviceActivity).apply {
-                setUpStorageAPIIfNeeded()
                 startPollingIfNeeded()
             }
             TextSecurePreferences.events.filter { it == TextSecurePreferences.CONFIGURATION_SYNCED }.collect {

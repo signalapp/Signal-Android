@@ -1,9 +1,8 @@
 package org.session.libsession.database
 
-import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.utilities.Address
-import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.utilities.UploadResult
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceAttachmentStream
 import java.io.InputStream
@@ -29,7 +28,7 @@ interface MessageDataProvider {
 
     fun isOutgoingMessage(timestamp: Long): Boolean
 
-    fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult)
+    fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult)
     fun handleFailedAttachmentUpload(attachmentId: Long)
 
     fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>?
@@ -38,6 +37,4 @@ interface MessageDataProvider {
 
     fun getAttachmentIDsFor(messageID: Long): List<Long>
     fun getLinkPreviewAttachmentIDFor(messageID: Long): Long?
-
-    fun getOpenGroup(threadID: Long): OpenGroup?
 }

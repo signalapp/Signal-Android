@@ -30,14 +30,8 @@ class MentionsManager(private val userPublicKey: String, private val userDatabas
         // Prepare
         val cache = userPublicKeyCache[threadID] ?: return listOf()
         // Gather candidates
-        val publicChat = MessagingModuleConfiguration.shared.messageDataProvider.getOpenGroup(threadID)
         var candidates: List<Mention> = cache.mapNotNull { publicKey ->
-            val displayName: String?
-            if (publicChat != null) {
-                displayName = userDatabase.getServerDisplayName(publicChat.id, publicKey)
-            } else {
-                displayName = userDatabase.getDisplayName(publicKey)
-            }
+            val displayName = userDatabase.getDisplayName(publicKey)
             if (displayName == null) { return@mapNotNull null }
             if (displayName.startsWith("Anonymous")) { return@mapNotNull null }
             Mention(publicKey, displayName)
