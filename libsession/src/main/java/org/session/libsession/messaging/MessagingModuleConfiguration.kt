@@ -5,9 +5,9 @@ import org.session.libsession.database.MessageDataProvider
 import org.session.libsession.database.StorageProtocol
 
 class MessagingModuleConfiguration(
-        val context: Context,
-        val storage: StorageProtocol,
-        val messageDataProvider: MessageDataProvider
+    val context: Context,
+    val storage: StorageProtocol,
+    val messageDataProvider: MessageDataProvider
 ) {
 
     companion object {

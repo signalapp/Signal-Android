@@ -602,6 +602,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return if (threadID < 0) null else threadID
     }
 
+    fun foo() {
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+
+    }
+
     override fun getThreadIdForMms(mmsId: Long): Long {
         val mmsDb = DatabaseFactory.getMmsDatabase(context)
         val cursor = mmsDb.getMessage(mmsId)
@@ -669,8 +674,13 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             threadDatabase.getOrCreateThreadIdFor(recipient)
         }
         if (contacts.isNotEmpty()) {
-            threadDatabase.notifyUpdatedFromConfig()
+            threadDatabase.notifyConversationListListeners()
         }
+    }
+
+    override fun getLastUpdated(threadID: Long): Long {
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        return threadDB.getLastUpdated(threadID)
     }
 
     override fun getAttachmentDataUri(attachmentId: AttachmentId): Uri {
