@@ -55,8 +55,7 @@ class UserView : LinearLayout {
             } else {
                 val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
                 contact?.let {
-                    val contactContext = Contact.contextForRecipient(user)
-                    return it.displayName(contactContext)
+                    return it.displayName(Contact.ContactContext.REGULAR)
                 }
                 val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 return result ?: publicKey

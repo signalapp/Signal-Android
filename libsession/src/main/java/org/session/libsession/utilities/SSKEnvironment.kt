@@ -30,7 +30,6 @@ class SSKEnvironment(
         }
 
         fun setDisplayName(context: Context, recipient: Recipient, displayName: String?) // Client-side Nickname
-        fun setProfileName(context: Context, recipient: Recipient, profileName: String)
         fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String)
         fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray)
         fun setUnidentifiedAccessMode(context: Context, recipient: Recipient, unidentifiedAccessMode: Recipient.UnidentifiedAccessMode)

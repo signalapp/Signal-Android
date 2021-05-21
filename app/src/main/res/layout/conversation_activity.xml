@@ -97,26 +97,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <LinearLayout
-                android:id="@+id/cancelButtonContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_baseline_clear_24"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp" />
-
-            </LinearLayout>
-
-
-
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>

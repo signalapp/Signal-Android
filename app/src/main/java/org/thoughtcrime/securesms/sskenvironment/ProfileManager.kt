@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 
-class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
+class ProfileManager : SSKEnvironment.ProfileManagerProtocol {
 
     override fun setDisplayName(context: Context, recipient: Recipient, displayName: String?) {
         val sessionID = recipient.address.serialize()

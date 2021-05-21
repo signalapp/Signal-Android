@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 
 class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+
     companion object {
         private const val sessionContactTable = "session_contact_database"
         const val sessionID = "session_id"
@@ -22,19 +23,19 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         const val isTrusted = "is_trusted"
         @JvmStatic val createSessionContactTableCommand =
             "CREATE TABLE $sessionContactTable " +
-                    "($sessionID STRING PRIMARY KEY, " +
-                    "$name TEXT DEFAULT NULL, " +
-                    "$nickname TEXT DEFAULT NULL, " +
-                    "$profilePictureURL TEXT DEFAULT NULL, " +
-                    "$profilePictureFileName TEXT DEFAULT NULL, " +
-                    "$profilePictureEncryptionKey BLOB DEFAULT NULL, " +
-                    "$threadID INTEGER DEFAULT -1, " +
-                    "$isTrusted INTEGER DEFAULT 0);"
+                "($sessionID STRING PRIMARY KEY, " +
+                "$name TEXT DEFAULT NULL, " +
+                "$nickname TEXT DEFAULT NULL, " +
+                "$profilePictureURL TEXT DEFAULT NULL, " +
+                "$profilePictureFileName TEXT DEFAULT NULL, " +
+                "$profilePictureEncryptionKey BLOB DEFAULT NULL, " +
+                "$threadID INTEGER DEFAULT -1, " +
+                "$isTrusted INTEGER DEFAULT 0);"
     }
 
     fun getContactWithSessionID(sessionID: String): Contact? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionContactTable, "${SessionContactDatabase.sessionID} = ?", arrayOf(sessionID)) { cursor ->
+        return database.get(sessionContactTable, "${SessionContactDatabase.sessionID} = ?", arrayOf( sessionID )) { cursor ->
             contactFromCursor(cursor)
         }
     }
@@ -59,7 +60,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         }
         contentValues.put(threadID, threadID)
         contentValues.put(isTrusted, if (contact.isTrusted) 1 else 0)
-        database.insertOrUpdate(sessionContactTable, contentValues, "$sessionID = ?", arrayOf(contact.sessionID))
+        database.insertOrUpdate(sessionContactTable, contentValues, "$sessionID = ?", arrayOf( contact.sessionID ))
         notifyConversationListListeners()
     }
 

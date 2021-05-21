@@ -19,7 +19,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
 import org.thoughtcrime.securesms.mms.GlideApp
 
-public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
+class UserDetailsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_user_details_bottom_sheet, container, false)
@@ -75,7 +75,7 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         nameTextViewContainer.visibility = View.VISIBLE
         nameEditContainer.visibility = View.INVISIBLE
         var newNickName: String? = null
-        if (!nameEditText.text.isEmpty()) {
+        if (nameEditText.text.isNotEmpty()) {
             newNickName = nameEditText.text.toString()
         }
         SSKEnvironment.shared.profileManager.setDisplayName(requireContext(), recipient, newNickName)
