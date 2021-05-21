@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
+    
     override fun getUserPublicKey(): String? {
         return TextSecurePreferences.getLocalNumber(context)
     }
