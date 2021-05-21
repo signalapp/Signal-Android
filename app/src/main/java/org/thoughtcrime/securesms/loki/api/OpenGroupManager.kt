@@ -19,7 +19,22 @@ object OpenGroupManager {
     private var pollers = mutableMapOf<String, OpenGroupPollerV2>() // One for each server
     private var isPolling = false
 
-    var isAllCaughtUp = false
+    val isAllCaughtUp: Boolean
+        get() {
+            pollers.values.forEach { poller ->
+                val jobID = poller.secondLastJob?.id
+                jobID?.let {
+                    val storage = MessagingModuleConfiguration.shared.storage
+                    if (storage.getMessageReceivedJob(jobID) == null) {
+                        // If the second last job is done, it means we are now handling the last job
+                        poller.isCaughtUp = true
+                        poller.secondLastJob = null
+                    }
+                }
+                if (!poller.isCaughtUp) { return false }
+            }
+            return true
+        }
 
     fun startPolling() {
         if (isPolling) { return }

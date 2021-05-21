@@ -4,10 +4,7 @@ import android.content.Context
 import android.net.Uri
 import okhttp3.HttpUrl
 import org.session.libsession.database.StorageProtocol
-import org.session.libsession.messaging.jobs.AttachmentUploadJob
-import org.session.libsession.messaging.jobs.Job
-import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
@@ -208,6 +205,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getMessageSendJob(messageSendJobID: String): MessageSendJob? {
         return DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID)
+    }
+
+    override fun getMessageReceivedJob(messageReceiveJobID: String): MessageReceiveJob? {
+        return DatabaseFactory.getSessionJobDatabase(context).getMessageReceiveJob(messageReceiveJobID)
     }
 
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {

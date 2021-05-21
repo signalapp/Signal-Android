@@ -287,9 +287,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
     } finally {
       if (telcoCursor != null) telcoCursor.close();
       if (pushCursor != null)  pushCursor.close();
-      if (!OpenGroupManager.INSTANCE.isAllCaughtUp()) {
-        OpenGroupManager.INSTANCE.setAllCaughtUp(true);
-      }
     }
   }
 
