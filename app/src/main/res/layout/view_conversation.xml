@@ -63,7 +63,7 @@
                     android:textSize="@dimen/small_font_size"
                     android:textColor="@color/text"
                     android:alpha="0.4"
-                    android:text="9:41 AM" />
+                    tools:text="9:41 AM" />
 
             </LinearLayout>
 

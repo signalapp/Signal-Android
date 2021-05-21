@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:padding="@dimen/very_large_spacing"
             android:gravity="center"
-            android:text="Scan a user’s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings."
+            android:text="@string/activity_create_private_chat_scan_qr_code_explanation"
             android:background="?android:windowBackground"
             android:textSize="@dimen/small_font_size"
             android:textColor="?android:textColorTertiary" />

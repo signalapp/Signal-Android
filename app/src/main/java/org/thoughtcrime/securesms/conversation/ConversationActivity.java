@@ -2340,9 +2340,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void updateTitleTextView(Recipient recipient) {
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (recipient == null) {
-      titleTextView.setText("Compose");
+      titleTextView.setText(R.string.ConversationActivity_compose);
     } else if (recipient.getAddress().toString().toLowerCase().equals(userPublicKey)) {
-      titleTextView.setText(getResources().getString(R.string.note_to_self));
+      titleTextView.setText(R.string.note_to_self);
     } else {
       boolean hasName = (recipient.getName() != null && !recipient.getName().isEmpty());
       titleTextView.setText(hasName ? recipient.getName() : recipient.getAddress().toString());
@@ -2363,13 +2363,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     subtitleTextView.setVisibility(View.VISIBLE);
     if (recipient.isMuted()) {
       muteIndicatorImageView.setVisibility(View.VISIBLE);
-      subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
+      subtitleTextView.setText(getString(R.string.ConversationActivity_muted_until_date,DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault())));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
       OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
       if (openGroup != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(openGroup.getRoom(),openGroup.getServer());
         if (userCount == null) { userCount = 0; }
-        subtitleTextView.setText(userCount + " members");
+        subtitleTextView.setText(getString(R.string.ConversationActivity_member_count,userCount));
       } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
         subtitleTextView.setText(recipient.getAddress().toString());
       } else {

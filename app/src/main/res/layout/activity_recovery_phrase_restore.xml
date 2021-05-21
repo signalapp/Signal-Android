@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -69,6 +70,7 @@
         android:textColorLink="@color/text"
         android:textSize="@dimen/very_small_font_size"
         android:textColor="@color/text"
-        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" /> <!-- Intentionally not yet translated -->
+        android:text="By using this service, you agree to our Terms of Service and Privacy Policy"
+        tools:ignore="HardcodedText" /> <!-- Intentionally not yet translated -->
 
 </LinearLayout>

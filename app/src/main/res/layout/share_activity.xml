@@ -23,7 +23,7 @@
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:text="Share"
+                      android:text="@string/share"
                       android:fontFamily="sans-serif-medium"
                       android:textSize="@dimen/very_large_font_size"
                       android:layout_alignParentStart="true"

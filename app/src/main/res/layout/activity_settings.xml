@@ -76,7 +76,7 @@
                 android:textColor="@color/text"
                 android:fontFamily="@font/space_mono_regular"
                 android:textAlignment="center"
-                android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+                tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,7 +211,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Help us Translate Session" />
+                android:text="@string/activity_settings_help_translate_session" />
 
             <TextView
                 android:id="@+id/versionTextView"
