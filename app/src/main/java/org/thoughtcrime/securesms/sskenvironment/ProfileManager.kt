@@ -10,42 +10,38 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 
 class ProfileManager : SSKEnvironment.ProfileManagerProtocol {
 
-    override fun setDisplayName(context: Context, recipient: Recipient, displayName: String?) {
+    override fun setNickname(context: Context, recipient: Recipient, nickname: String?) {
         val sessionID = recipient.address.serialize()
-        // New API
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
         if (contact == null) contact = Contact(sessionID)
         contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
-        if (contact.nickname != displayName) {
-            contact.nickname = displayName
+        if (contact.nickname != nickname) {
+            contact.nickname = nickname
+            contactDatabase.setContact(contact)
+        }
+    }
+
+    override fun setName(context: Context, recipient: Recipient, name: String) {
+        // New API
+        val sessionID = recipient.address.serialize()
+        val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
+        var contact = contactDatabase.getContactWithSessionID(sessionID)
+        if (contact == null) contact = Contact(sessionID)
+        contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
+        if (contact.name != name) {
+            contact.name = name
             contactDatabase.setContact(contact)
         }
         // Old API
-        if (displayName == null) return
-        val database = DatabaseFactory.getLokiUserDatabase(context)
-        database.setDisplayName(sessionID, displayName)
-    }
-
-    override fun setProfileName(context: Context, recipient: Recipient, profileName: String) {
         val database = DatabaseFactory.getRecipientDatabase(context)
-        database.setProfileName(recipient, profileName)
+        database.setProfileName(recipient, name)
         recipient.notifyListeners()
-        // New API
-        val sessionID = recipient.address.serialize()
-        val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
-        var contact = contactDatabase.getContactWithSessionID(sessionID)
-        if (contact == null) contact = Contact(sessionID)
-        contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
-        if (contact.name != profileName) {
-            contact.name = profileName
-            contactDatabase.setContact(contact)
-        }
     }
 
     override fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String) {
-        ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, profilePictureURL))
-        // New API
+        val job = RetrieveProfileAvatarJob(recipient, profilePictureURL)
+        ApplicationContext.getInstance(context).jobManager.add(job)
         val sessionID = recipient.address.serialize()
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
         var contact = contactDatabase.getContactWithSessionID(sessionID)
@@ -58,8 +54,6 @@ class ProfileManager : SSKEnvironment.ProfileManagerProtocol {
     }
 
     override fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray) {
-        val database = DatabaseFactory.getRecipientDatabase(context)
-        database.setProfileKey(recipient, profileKey)
         // New API
         val sessionID = recipient.address.serialize()
         val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
@@ -70,23 +64,13 @@ class ProfileManager : SSKEnvironment.ProfileManagerProtocol {
             contact.profilePictureEncryptionKey = profileKey
             contactDatabase.setContact(contact)
         }
+        // Old API
+        val database = DatabaseFactory.getRecipientDatabase(context)
+        database.setProfileKey(recipient, profileKey)
     }
 
     override fun setUnidentifiedAccessMode(context: Context, recipient: Recipient, unidentifiedAccessMode: Recipient.UnidentifiedAccessMode) {
         val database = DatabaseFactory.getRecipientDatabase(context)
         database.setUnidentifiedAccessMode(recipient, unidentifiedAccessMode)
-    }
-
-    override fun getDisplayName(context: Context, recipient: Recipient): String? {
-        val sessionID = recipient.address.serialize()
-        val contactDatabase = DatabaseFactory.getSessionContactDatabase(context)
-        var contact = contactDatabase.getContactWithSessionID(sessionID)
-        if (contact == null) {
-            contact = Contact(sessionID)
-            contact.threadID = DatabaseFactory.getStorage(context).getThreadId(recipient.address)
-            contact.name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(sessionID) ?: recipient.profileName ?: recipient.name
-            contactDatabase.setContact(contact)
-        }
-        return contact.displayName(Contact.contextForRecipient(recipient))
     }
 }

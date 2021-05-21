@@ -132,7 +132,7 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
     val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
     if (message.displayName.isNotEmpty()) {
         TextSecurePreferences.setProfileName(context, message.displayName)
-        profileManager.setProfileName(context, recipient, message.displayName)
+        profileManager.setName(context, recipient, message.displayName)
     }
     if (message.profileKey.isNotEmpty() && !message.profilePicture.isNullOrEmpty()
         && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
@@ -166,9 +166,9 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     if (profile != null && userPublicKey != message.sender) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
-        val displayName = profile.displayName!!
-        if (displayName.isNotEmpty()) {
-            profileManager.setProfileName(context, recipient, displayName)
+        val name = profile.displayName!!
+        if (name.isNotEmpty()) {
+            profileManager.setName(context, recipient, name)
         }
         if (profile.profileKey?.isNotEmpty() == true && profile.profilePictureURL?.isNotEmpty() == true
             && (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, profile.profileKey))) {
