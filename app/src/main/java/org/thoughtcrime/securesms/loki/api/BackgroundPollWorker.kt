@@ -7,9 +7,9 @@ import androidx.work.*
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.MessageReceiveJob
-import org.session.libsession.messaging.open_groups.OpenGroupV2
-import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPoller
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
@@ -57,7 +57,10 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             promises.addAll(dmsPromise.get())
 
             // Closed groups
-            promises.addAll(ClosedGroupPoller().pollOnce())
+            val closedGroupPoller = ClosedGroupPollerV2() // Intentionally don't use shared
+            val storage = MessagingModuleConfiguration.shared.storage
+            val allGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
+            allGroupPublicKeys.forEach { closedGroupPoller.poll(it) }
 
             // Open Groups
             val threadDB = DatabaseFactory.getLokiThreadDatabase(context)

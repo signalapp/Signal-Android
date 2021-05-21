@@ -28,6 +28,7 @@ class ClosedGroupPollerV2 {
         private val minPollInterval = 4 * 1000
         private val maxPollInterval = 2 * 60 * 1000
 
+        @JvmStatic
         val shared = ClosedGroupPollerV2()
     }
 
@@ -86,7 +87,7 @@ class ClosedGroupPollerV2 {
         }, nextPollInterval.toLong(), TimeUnit.MILLISECONDS)
     }
 
-    private fun poll(groupPublicKey: String): Promise<Unit, Exception> {
+    fun poll(groupPublicKey: String): Promise<Unit, Exception> {
         if (!isPolling(groupPublicKey)) { return Promise.of(Unit) }
         val promise = SnodeAPI.getSwarm(groupPublicKey).bind { swarm ->
             val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure
