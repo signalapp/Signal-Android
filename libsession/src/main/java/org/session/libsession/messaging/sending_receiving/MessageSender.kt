@@ -163,9 +163,11 @@ object MessageSender {
                         }
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)
+                        /*
                         if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
                             shouldNotify = true
                         }
+                         */
                         if (shouldNotify) {
                             val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
                             JobQueue.shared.add(notifyPNServerJob)
