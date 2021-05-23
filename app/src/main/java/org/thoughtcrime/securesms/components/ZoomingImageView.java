@@ -41,8 +41,8 @@ public class ZoomingImageView extends FrameLayout {
 
   private static final float ZOOM_LEVEL_MIN = 1.0f;
 
-  private static final float LARGE_IMAGES_ZOOM_LEVEL_MID = 1.5f;
-  private static final float LARGE_IMAGES_ZOOM_LEVEL_MAX = 2.0f;
+  private static final float LARGE_IMAGES_ZOOM_LEVEL_MID = 2.0f;
+  private static final float LARGE_IMAGES_ZOOM_LEVEL_MAX = 5.0f;
 
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
