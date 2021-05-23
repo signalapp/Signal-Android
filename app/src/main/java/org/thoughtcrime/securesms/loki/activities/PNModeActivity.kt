@@ -153,7 +153,6 @@ class PNModeActivity : BaseActionBarActivity() {
         }
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
         val application = ApplicationContext.getInstance(this)
-        application.setUpStorageAPIIfNeeded()
         application.startPollingIfNeeded()
         application.registerForFCMIfNeeded(true)
         val intent = Intent(this, HomeActivity::class.java)

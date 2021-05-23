@@ -26,7 +26,6 @@ import nl.komponents.kovenant.all
 import nl.komponents.kovenant.ui.alwaysUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.avatars.AvatarHelper
-import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.ProfilePictureUtilities
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
@@ -179,8 +178,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val promises = mutableListOf<Promise<*, Exception>>()
         val displayName = displayNameToBeUploaded
         if (displayName != null) {
-            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-            promises.addAll(servers.map { OpenGroupAPI.setDisplayName(displayName, it) })
             TextSecurePreferences.setProfileName(this, displayName)
         }
         val profilePicture = profilePictureToBeUploaded
@@ -195,7 +192,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
                 TextSecurePreferences.setLastProfilePictureUpload(this, Date().time)
                 ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
-                ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()
             }
             if (profilePicture != null || displayName != null) {
                 MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@SettingsActivity)

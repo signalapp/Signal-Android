@@ -28,7 +28,7 @@ class ClosedGroupPollerV2 {
 
     companion object {
         private val minPollInterval = 4 * 1000
-        private val maxPollInterval = 2 * 60 * 1000
+        private val maxPollInterval = 4 * 60 * 1000
 
         @JvmStatic
         val shared = ClosedGroupPollerV2()
@@ -75,7 +75,7 @@ class ClosedGroupPollerV2 {
         // reasonable fake time interval to use instead.
         val storage = MessagingModuleConfiguration.shared.storage
         val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-        val threadID = storage.getThreadID(groupID)?.toLongOrNull() ?: return
+        val threadID = storage.getThreadId(groupID) ?: return
         val lastUpdated = storage.getLastUpdated(threadID)
         val timeSinceLastMessage = if (lastUpdated != -1L) Date().time - lastUpdated else 5 * 60 * 1000
         val minPollInterval = Companion.minPollInterval

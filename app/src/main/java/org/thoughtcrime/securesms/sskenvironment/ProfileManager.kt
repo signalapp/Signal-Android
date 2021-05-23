@@ -25,8 +25,4 @@ class ProfileManager: SSKEnvironment.ProfileManagerProtocol {
         val database = DatabaseFactory.getRecipientDatabase(context)
         database.setUnidentifiedAccessMode(recipient, unidentifiedAccessMode)
     }
-
-    override fun updateOpenGroupProfilePicturesIfNeeded(context: Context) {
-        ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
-    }
 }

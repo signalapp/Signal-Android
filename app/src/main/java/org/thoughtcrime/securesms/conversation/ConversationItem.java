@@ -45,17 +45,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.annimon.stream.Stream;
-
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob;
 import org.session.libsession.messaging.jobs.JobQueue;
-import org.session.libsession.messaging.open_groups.OpenGroup;
-import org.session.libsession.messaging.open_groups.OpenGroupAPI;
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2;
 import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
@@ -760,10 +755,6 @@ public class ConversationItem extends LinearLayout
     String publicKey = recipient.getAddress().toString();
     profilePictureView.setPublicKey(publicKey);
     String displayName = recipient.getName();
-    OpenGroup openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
-    if (displayName == null && openGroup != null) {
-      displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(openGroup.getId(), publicKey);
-    }
     profilePictureView.setDisplayName(displayName);
     profilePictureView.setAdditionalPublicKey(null);
     profilePictureView.setRSSFeed(false);
@@ -898,20 +889,7 @@ public class ConversationItem extends LinearLayout
   @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
-      // Show custom display names for group chats
       String displayName = recipient.toShortString();
-      try {
-        String serverId = GroupUtil.getDecodedGroupID(conversationRecipient.getAddress().serialize());
-        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverId, recipient.getAddress().serialize());
-        if (senderDisplayName != null) {
-          displayName = senderDisplayName;
-        } else {
-          // opengroupv2 format
-          displayName = OpenGroupUtilities.getDisplayName(recipient);
-        }
-      } catch (Exception e) {
-        // Do nothing
-      }
 
       this.groupSender.setText(displayName);
 
@@ -952,12 +930,8 @@ public class ConversationItem extends LinearLayout
         profilePictureView.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
-        OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
         OpenGroupV2 openGroupV2 = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(messageRecord.getThreadId());
-        if (publicChat != null) {
-          boolean isModerator = OpenGroupAPI.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
-          visibility = isModerator ? View.VISIBLE : View.GONE;
-        } else if (openGroupV2 != null) {
+        if (openGroupV2 != null) {
           boolean isModerator = OpenGroupAPIV2.isUserModerator(current.getRecipient().getAddress().toString(), openGroupV2.getRoom(), openGroupV2.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         }

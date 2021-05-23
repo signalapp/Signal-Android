@@ -192,8 +192,8 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
     // Save the new group members
     storage.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
     // Update the zombie list
-    val oldZombies = storage.getZombieMember(groupID)
-    storage.updateZombieMembers(groupID, oldZombies.minus(membersToRemove).map { Address.fromSerialized(it) })
+    val oldZombies = storage.getZombieMembers(groupID)
+    storage.setZombieMembers(groupID, oldZombies.minus(membersToRemove).map { Address.fromSerialized(it) })
     val removeMembersAsData = membersToRemove.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
     val name = group.title
     // Send the update to the group

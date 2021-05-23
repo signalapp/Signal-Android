@@ -92,7 +92,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         SignalServiceAttachmentPointer pointer = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent(), url);
 
         if (pointer.getUrl().isEmpty()) throw new InvalidMessageException("Missing attachment URL.");
-        DownloadUtilities.downloadFile(attachment, pointer.getUrl(), MAX_AVATAR_SIZE, null);
+        DownloadUtilities.downloadFile(attachment, pointer.getUrl());
 
         // Assume we're retrieving an attachment for an open group server if the digest is not set
         InputStream inputStream;
