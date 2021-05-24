@@ -28,7 +28,7 @@ class ClosedGroupPollerV2 {
 
     companion object {
         private val minPollInterval = 4 * 1000
-        private val maxPollInterval = 2 * 60 * 1000
+        private val maxPollInterval = 4 * 60 * 1000
 
         @JvmStatic
         val shared = ClosedGroupPollerV2()

@@ -3,6 +3,7 @@ package org.session.libsession.messaging.utilities
 import android.content.Context
 import org.session.libsession.R
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.utilities.ExpirationUtil
 
@@ -12,8 +13,9 @@ object UpdateMessageBuilder {
         var message = ""
         val updateData = updateMessageData.kind ?: return message
         if (!isOutgoing && sender == null) return message
+        val storage = MessagingModuleConfiguration.shared.storage
         val senderName: String = if (!isOutgoing) {
-            MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+            storage.getContactWithSessionID(sender!!)?.displayName(Contact.ContactContext.REGULAR) ?: sender
         } else { context.getString(R.string.MessageRecord_you) }
 
         when (updateData) {
@@ -33,7 +35,7 @@ object UpdateMessageBuilder {
             }
             is UpdateMessageData.Kind.GroupMemberAdded -> {
                 val members = updateData.updatedMembers.joinToString(", ") {
-                    MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(it) ?: it
+                    storage.getContactWithSessionID(it)?.displayName(Contact.ContactContext.REGULAR) ?: it
                 }
                 message = if (isOutgoing) {
                     context.getString(R.string.MessageRecord_you_added_s_to_the_group, members)
@@ -54,7 +56,7 @@ object UpdateMessageBuilder {
                 } else {
                     // 2nd case: you are not part of the removed members
                     val members = updateData.updatedMembers.joinToString(", ") {
-                        storage.getDisplayNameForRecipient(it) ?: it
+                        storage.getContactWithSessionID(it)?.displayName(Contact.ContactContext.REGULAR) ?: it
                     }
                     if (isOutgoing) {
                         context.getString(R.string.MessageRecord_you_removed_s_from_the_group, members)
@@ -76,8 +78,9 @@ object UpdateMessageBuilder {
 
     fun buildExpirationTimerMessage(context: Context, duration: Long, sender: String? = null, isOutgoing: Boolean = false): String {
         if (!isOutgoing && sender == null) return ""
+        val storage = MessagingModuleConfiguration.shared.storage
         val senderName: String? = if (!isOutgoing) {
-            MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+            storage.getContactWithSessionID(sender!!)?.displayName(Contact.ContactContext.REGULAR) ?: sender
         } else { context.getString(R.string.MessageRecord_you) }
         return if (duration <= 0) {
             if (isOutgoing) context.getString(R.string.MessageRecord_you_disabled_disappearing_messages)
@@ -90,7 +93,8 @@ object UpdateMessageBuilder {
     }
 
     fun buildDataExtractionMessage(context: Context, kind: DataExtractionNotificationInfoMessage.Kind, sender: String? = null): String {
-        val senderName = MessagingModuleConfiguration.shared.storage.getDisplayNameForRecipient(sender!!) ?: sender
+        val storage = MessagingModuleConfiguration.shared.storage
+        val senderName = storage.getContactWithSessionID(sender!!)?.displayName(Contact.ContactContext.REGULAR) ?: sender!!
         return when (kind) {
             DataExtractionNotificationInfoMessage.Kind.SCREENSHOT ->
                 context.getString(R.string.MessageRecord_s_took_a_screenshot, senderName)

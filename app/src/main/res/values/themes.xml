@@ -140,6 +140,8 @@
     </style>
 
     <style name="Theme.Session.BottomSheet" parent="@style/Theme.AppCompat.DayNight.Dialog">
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="android:textColorPrimary">@color/text</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/Animation.MaterialComponents.BottomSheetDialog</item>
         <item name="bottomSheetStyle">@style/Widget.Session.BottomSheetDialog</item>
