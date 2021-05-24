@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.function.Consumer;
+import com.esotericsoftware.kryo.util.Null;
 
 import org.greenrobot.eventbus.EventBus;
 import org.session.libsession.database.StorageProtocol;

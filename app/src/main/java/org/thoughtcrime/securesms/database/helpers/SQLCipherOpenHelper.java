@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
@@ -124,6 +125,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
     db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
+    db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
     db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
     db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
