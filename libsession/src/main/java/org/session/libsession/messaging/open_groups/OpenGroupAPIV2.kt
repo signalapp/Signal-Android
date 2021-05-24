@@ -76,14 +76,14 @@ object OpenGroupAPIV2 {
     }
 
     data class Request(
-            val verb: HTTP.Verb,
-            val room: String?,
-            val server: String,
-            val endpoint: String,
-            val queryParameters: Map<String, String> = mapOf(),
-            val parameters: Any? = null,
-            val headers: Map<String, String> = mapOf(),
-            val isAuthRequired: Boolean = true,
+        val verb: HTTP.Verb,
+        val room: String?,
+        val server: String,
+        val endpoint: String,
+        val queryParameters: Map<String, String> = mapOf(),
+        val parameters: Any? = null,
+        val headers: Map<String, String> = mapOf(),
+        val isAuthRequired: Boolean = true,
             /**
          * Always `true` under normal circumstances. You might want to disable
          * this when running over Lokinet.
@@ -366,6 +366,7 @@ object OpenGroupAPIV2 {
             && timeSinceLastOpen > OpenGroupPollerV2.maxInactivityPeriod)
         hasPerformedInitialPoll[server] = true
         if (!hasUpdatedLastOpenDate) {
+            hasUpdatedLastOpenDate = true
             TextSecurePreferences.setLastOpenDate(context)
         }
         val requests = rooms.mapNotNull { room ->
