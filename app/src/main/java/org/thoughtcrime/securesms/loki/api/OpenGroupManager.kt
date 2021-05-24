@@ -101,7 +101,8 @@ object OpenGroupManager {
         val threadDB = DatabaseFactory.getThreadDatabase(context)
         val openGroupID = "$server.$room"
         val threadID = GroupManager.getOpenGroupThreadID(openGroupID, context)
-        val groupID = threadDB.getRecipientForThreadId(threadID)!!.address.serialize()
+        val recipient = threadDB.getRecipientForThreadId(threadID) ?: return
+        val groupID = recipient.address.serialize()
         // Stop the poller if needed
         val openGroups = storage.getAllV2OpenGroups().filter { it.value.server == server }
         if (openGroups.count() == 1) {
