@@ -8,16 +8,16 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_mention_candidate.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.mentions.Mention
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     var mentionCandidate = Mention("", "")
         set(newValue) { field = newValue; update() }
     var glide: GlideRequests? = null
-    var publicChatServer: String? = null
-    var publicChatChannel: Long? = null
+    var openGroupServer: String? = null
+    var openGroupRoom: String? = null
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
@@ -37,8 +37,8 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
         profilePictureView.isRSSFeed = false
         profilePictureView.glide = glide!!
         profilePictureView.update()
-        if (publicChatServer != null && publicChatChannel != null) {
-            val isUserModerator = OpenGroupAPI.isUserModerator(mentionCandidate.publicKey, publicChatChannel!!, publicChatServer!!)
+        if (openGroupServer != null && openGroupRoom != null) {
+            val isUserModerator = OpenGroupAPIV2.isUserModerator(mentionCandidate.publicKey, openGroupRoom!!, openGroupServer!!)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE
         } else {
             moderatorIconImageView.visibility = View.GONE

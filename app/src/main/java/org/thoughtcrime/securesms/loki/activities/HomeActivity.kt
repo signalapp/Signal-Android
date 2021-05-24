@@ -30,7 +30,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.mentions.MentionsManager
-import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.*
@@ -344,16 +343,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                     }
                 }
                 // Delete the conversation
-                val v1OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
                 val v2OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
-                if (v1OpenGroup != null) {
-                    val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
-                    apiDB.removeLastMessageServerID(v1OpenGroup.channel, v1OpenGroup.server)
-                    apiDB.removeLastDeletionServerID(v1OpenGroup.channel, v1OpenGroup.server)
-                    apiDB.clearOpenGroupProfilePictureURL(v1OpenGroup.channel, v1OpenGroup.server)
-                    OpenGroupAPI.leave(v1OpenGroup.channel, v1OpenGroup.server)
-                    // FIXME: No longer supported so let's remove this code
-                } else if (v2OpenGroup != null) {
+                if (v2OpenGroup != null) {
                     val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
                     apiDB.removeLastMessageServerID(v2OpenGroup.room, v2OpenGroup.server)
                     apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)

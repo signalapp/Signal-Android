@@ -40,12 +40,6 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
-    fun shouldIgnoreDecryptionException(context: Context, timestamp: Long): Boolean {
-        val restorationTimestamp = TextSecurePreferences.getRestorationTime(context)
-        return timestamp <= restorationTimestamp
-    }
-
-    @JvmStatic
     fun handleProfileUpdateIfNeeded(context: Context, content: SignalServiceContent) {
         val displayName = content.senderDisplayName.orNull() ?: return
         if (displayName.isBlank()) { return }
@@ -56,24 +50,6 @@ object SessionMetaProtocol {
             TextSecurePreferences.setProfileName(context, displayName)
         }
         DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, displayName)
-    }
-
-    @JvmStatic
-    fun handleProfileKeyUpdate(context: Context, content: SignalServiceContent) {
-        val message = content.dataMessage.get()
-        if (!message.profileKey.isPresent) { return }
-        val database = DatabaseFactory.getRecipientDatabase(context)
-        val recipient = Recipient.from(context, Address.fromSerialized(content.sender), false)
-        if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, message.profileKey.get())) {
-            database.setProfileKey(recipient, message.profileKey.get())
-            database.setUnidentifiedAccessMode(recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
-            val url = content.senderProfilePictureURL.or("")
-            ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, url))
-            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-            if (userPublicKey == content.sender) {
-                ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
-            }
-        }
     }
 
     @JvmStatic

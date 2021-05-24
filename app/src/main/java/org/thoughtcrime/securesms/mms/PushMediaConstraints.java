@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 
-import org.session.libsession.messaging.file_server.FileServerAPI;
+import org.session.libsession.messaging.file_server.FileServerAPIV2;
 
 public class PushMediaConstraints extends MediaConstraints {
 
@@ -21,26 +21,26 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize(Context context) {
-    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
+    return (int) (((double) FileServerAPIV2.maxFileSize) / FileServerAPIV2.fileSizeORMultiplier);
   }
 
   @Override
   public int getGifMaxSize(Context context) {
-    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
+    return (int) (((double) FileServerAPIV2.maxFileSize) / FileServerAPIV2.fileSizeORMultiplier);
   }
 
   @Override
   public int getVideoMaxSize(Context context) {
-    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
+    return (int) (((double) FileServerAPIV2.maxFileSize) / FileServerAPIV2.fileSizeORMultiplier);
   }
 
   @Override
   public int getAudioMaxSize(Context context) {
-    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
+    return (int) (((double) FileServerAPIV2.maxFileSize) / FileServerAPIV2.fileSizeORMultiplier);
   }
 
   @Override
   public int getDocumentMaxSize(Context context) {
-    return (int) (((double) FileServerAPI.Companion.getMaxFileSize()) / FileServerAPI.Companion.getFileSizeORMultiplier());
+    return (int) (((double) FileServerAPIV2.maxFileSize) / FileServerAPIV2.fileSizeORMultiplier);
   }
 }

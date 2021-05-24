@@ -29,7 +29,7 @@ class ProfilePictureView : RelativeLayout {
     var additionalDisplayName: String? = null
     var isRSSFeed = false
     var isLarge = false
-    private val imagesCached = mutableSetOf<String>()
+    private val profilePicturesCached = mutableMapOf<String,String?>()
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -61,11 +61,7 @@ class ProfilePictureView : RelativeLayout {
             if (publicKey == null || publicKey.isBlank()) {
                 return null
             } else {
-                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-                if (result == null && publicChat != null) {
-                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
-                }
+                val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 return result ?: publicKey
             }
         }
@@ -146,13 +142,13 @@ class ProfilePictureView : RelativeLayout {
     private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
         if (publicKey.isNotEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
-            if (imagesCached.contains(publicKey)) return
+            if (profilePicturesCached.containsKey(publicKey) && profilePicturesCached[publicKey] == recipient.profileAvatar) return
             val signalProfilePicture = recipient.contactPhoto
-            if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
-                    && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
+            val avatar = (signalProfilePicture as? ProfileContactPhoto)?.avatarObject
+            if (signalProfilePicture != null && avatar != "0" && avatar != "") {
                 glide.clear(imageView)
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
-                imagesCached.add(publicKey)
+                profilePicturesCached[publicKey] = recipient.profileAvatar
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 glide.clear(imageView)
@@ -162,7 +158,7 @@ class ProfilePictureView : RelativeLayout {
                         publicKey,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                imagesCached.add(publicKey)
+                profilePicturesCached[publicKey] = recipient.profileAvatar
             }
         } else {
             imageView.setImageDrawable(null)
@@ -170,7 +166,7 @@ class ProfilePictureView : RelativeLayout {
     }
 
     fun recycle() {
-        imagesCached.clear()
+        profilePicturesCached.clear()
     }
     // endregion
 }

@@ -54,27 +54,6 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         Recipient.from(context, Address.fromSerialized(publicKey), false).notifyListeners()
     }
 
-    override fun getServerDisplayName(serverID: String, publicKey: String): String? {
-        val database = databaseHelper.readableDatabase
-        return database.get(serverDisplayNameTable, "${Companion.publicKey} = ? AND ${Companion.serverID} = ?", arrayOf( publicKey, serverID )) { cursor ->
-            cursor.getString(cursor.getColumnIndexOrThrow(displayName))
-        }
-    }
-
-    fun setServerDisplayName(serverID: String, publicKey: String, displayName: String) {
-        val database = databaseHelper.writableDatabase
-        val values = ContentValues(3)
-        values.put(Companion.serverID, serverID)
-        values.put(Companion.publicKey, publicKey)
-        values.put(Companion.displayName, displayName)
-        try {
-            database.insertWithOnConflict(serverDisplayNameTable, null, values, SQLiteDatabase.CONFLICT_REPLACE)
-            Recipient.from(context, Address.fromSerialized(publicKey), false).notifyListeners()
-        } catch (e: Exception) {
-            Log.d("Loki", "Couldn't save server display name due to exception: $e.")
-        }
-    }
-
     override fun getProfilePictureURL(publicKey: String): String? {
         return if (publicKey == TextSecurePreferences.getLocalNumber(context)) {
             TextSecurePreferences.getProfilePictureURL(context)
