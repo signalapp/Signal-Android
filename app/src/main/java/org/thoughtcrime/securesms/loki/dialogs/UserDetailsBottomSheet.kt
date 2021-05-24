@@ -38,21 +38,21 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         nameTextViewContainer.visibility = View.VISIBLE
         nameTextViewContainer.setOnClickListener {
             nameTextViewContainer.visibility = View.INVISIBLE
-            nameEditContainer.visibility = View.VISIBLE
-            nameEditText.text = null
-            nameEditText.requestFocus()
+            nameEditTextContainer.visibility = View.VISIBLE
+            nicknameEditText.text = null
+            nicknameEditText.requestFocus()
             showSoftKeyboard()
         }
-        btnCancelNickNameEdit.setOnClickListener {
-            nameEditText.clearFocus()
+        cancelNicknameEditingButton.setOnClickListener {
+            nicknameEditText.clearFocus()
             hideSoftKeyboard()
             nameTextViewContainer.visibility = View.VISIBLE
-            nameEditContainer.visibility = View.INVISIBLE
+            nameEditTextContainer.visibility = View.INVISIBLE
         }
-        btnSaveNickNameEdit.setOnClickListener {
+        saveNicknameButton.setOnClickListener {
             saveNickName(recipient)
         }
-        nameEditText.setOnEditorActionListener { _, actionId, _ ->
+        nicknameEditText.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
                     saveNickName(recipient)
@@ -72,13 +72,13 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
     }
 
     fun saveNickName(recipient: Recipient) {
-        nameEditText.clearFocus()
+        nicknameEditText.clearFocus()
         hideSoftKeyboard()
         nameTextViewContainer.visibility = View.VISIBLE
-        nameEditContainer.visibility = View.INVISIBLE
+        nameEditTextContainer.visibility = View.INVISIBLE
         var newNickName: String? = null
-        if (nameEditText.text.isNotEmpty()) {
-            newNickName = nameEditText.text.toString()
+        if (nicknameEditText.text.isNotEmpty()) {
+            newNickName = nicknameEditText.text.toString()
         }
         val publicKey = recipient.address.serialize()
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
@@ -91,11 +91,11 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
     @SuppressLint("ServiceCast")
     fun showSoftKeyboard() {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.showSoftInput(nameEditText, 0)
+        imm?.showSoftInput(nicknameEditText, 0)
     }
 
     fun hideSoftKeyboard() {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.hideSoftInputFromWindow(nameEditText.windowToken, 0)
+        imm?.hideSoftInputFromWindow(nicknameEditText.windowToken, 0)
     }
 }
