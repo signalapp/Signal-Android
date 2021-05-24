@@ -233,8 +233,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getLastMessageServerID(room: String, server: String): Long? {
-        // return null if limit is set on open groups polling
-        if (TextSecurePreferences.isOpenGroupPollingLimit(context)) return null
         return DatabaseFactory.getLokiAPIDatabase(context).getLastMessageServerID(room, server)
     }
 
@@ -247,8 +245,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
     
     override fun getLastDeletionServerID(room: String, server: String): Long? {
-        // return null if limit is set on open groups polling
-        if (TextSecurePreferences.isOpenGroupPollingLimit(context)) return null
         return DatabaseFactory.getLokiAPIDatabase(context).getLastDeletionServerID(room, server)
     }
 

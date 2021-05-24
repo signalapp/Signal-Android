@@ -15,6 +15,7 @@ import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.utilities.HTTP.Verb.*
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
@@ -349,6 +350,7 @@ object OpenGroupAPIV2 {
     fun compactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
         val authTokenRequests = rooms.associateWith { room -> getAuthToken(room, server) }
         val storage = MessagingModuleConfiguration.shared.storage
+        val context = MessagingModuleConfiguration.shared.context
         val requests = rooms.mapNotNull { room ->
             val authToken = try {
                 authTokenRequests[room]?.get()
@@ -359,8 +361,8 @@ object OpenGroupAPIV2 {
             CompactPollRequest(
                 roomID = room,
                 authToken = authToken,
-                fromDeletionServerID = storage.getLastDeletionServerID(room, server),
-                fromMessageServerID = storage.getLastMessageServerID(room, server)
+                fromDeletionServerID = if (TextSecurePreferences.isOpenGroupPollingLimit(context)) null else storage.getLastDeletionServerID(room, server),
+                fromMessageServerID = if (TextSecurePreferences.isOpenGroupPollingLimit(context)) null else storage.getLastMessageServerID(room, server)
             )
         }
         val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false, parameters = mapOf( "requests" to requests ))
