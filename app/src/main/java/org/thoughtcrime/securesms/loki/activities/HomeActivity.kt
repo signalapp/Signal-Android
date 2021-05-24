@@ -31,6 +31,7 @@ import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.*
 import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils

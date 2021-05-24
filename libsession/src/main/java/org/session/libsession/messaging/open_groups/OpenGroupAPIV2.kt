@@ -13,8 +13,10 @@ import okhttp3.HttpUrl
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.utilities.HTTP.Verb.*
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
@@ -30,6 +32,15 @@ object OpenGroupAPIV2 {
     private val moderators: HashMap<String, Set<String>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
     private val curve = Curve25519.getInstance(Curve25519.BEST)
     val defaultRooms = MutableSharedFlow<List<DefaultGroup>>(replay = 1)
+    private val hasPerformedInitialPoll = mutableMapOf<String, Boolean>()
+    private var hasUpdatedLastOpenDate = false
+
+    private val timeSinceLastOpen by lazy {
+        val context = MessagingModuleConfiguration.shared.context
+        val lastOpenDate = TextSecurePreferences.getLastOpenTimeDate(context)
+        val now = System.currentTimeMillis()
+        now - lastOpenDate
+    }
 
     private const val defaultServerPublicKey = "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
     const val defaultServer = "http://116.203.70.33"
@@ -349,6 +360,14 @@ object OpenGroupAPIV2 {
     fun compactPoll(rooms: List<String>, server: String): Promise<Map<String, CompactPollResult>, Exception> {
         val authTokenRequests = rooms.associateWith { room -> getAuthToken(room, server) }
         val storage = MessagingModuleConfiguration.shared.storage
+        val context = MessagingModuleConfiguration.shared.context
+        val timeSinceLastOpen = this.timeSinceLastOpen
+        val useMessageLimit = (hasPerformedInitialPoll[server] != true
+            && timeSinceLastOpen > OpenGroupPollerV2.maxInactivityPeriod)
+        hasPerformedInitialPoll[server] = true
+        if (!hasUpdatedLastOpenDate) {
+            TextSecurePreferences.setLastOpenDate(context)
+        }
         val requests = rooms.mapNotNull { room ->
             val authToken = try {
                 authTokenRequests[room]?.get()
@@ -359,8 +378,8 @@ object OpenGroupAPIV2 {
             CompactPollRequest(
                 roomID = room,
                 authToken = authToken,
-                fromDeletionServerID = storage.getLastDeletionServerID(room, server),
-                fromMessageServerID = storage.getLastMessageServerID(room, server)
+                fromDeletionServerID = if (useMessageLimit) null else storage.getLastDeletionServerID(room, server),
+                fromMessageServerID = if (useMessageLimit) null else storage.getLastMessageServerID(room, server)
             )
         }
         val request = Request(verb = POST, room = null, server = server, endpoint = "compact_poll", isAuthRequired = false, parameters = mapOf( "requests" to requests ))
