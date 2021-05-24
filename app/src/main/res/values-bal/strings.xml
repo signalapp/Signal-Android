@@ -62,6 +62,10 @@
     <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Maaf, terjadi kesalahan pada pengaturan lampiran anda.</string>
     <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_compose">Compose</string>
+    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d members</string>
+    <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
     <string name="ConversationActivity_invalid_recipient">Penerima tidak lengkap!</string>
     <string name="ConversationActivity_added_to_home_screen">Tambahkan ke layar utama</string>
     <string name="ConversationActivity_leave_group">Tinggalkan grup?</string>
@@ -352,6 +356,9 @@ memproses pertukaran kunci korupsi.</string>
     <!-- open_group_invitation_view -->
     <string name="open_group_invitation_view__join_accessibility_description">Join</string>
     <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <string name="open_group_guidelines_pinned_message">Pinned message</string>
+    <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
+    <string name="open_group_guidelines_read">Read</string>
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
@@ -582,6 +589,7 @@ memproses pertukaran kunci korupsi.</string>
     <string name="activity_seed_title_2">Inilah kata pemulihan anda</string>
     <string name="activity_seed_explanation">Kata pemulihan adalah kunci Session ID -- bisa digunakan untuk mengembalikan Session ID ketika anda kehilangan perangkat. Simpan kata pemulihan di tempat yang aman dan jangan berikan kepada siapapun</string>
     <string name="activity_seed_reveal_button_title">Tekan untuk melihat</string>
+    <string name="view_seed_reminder_title">You\'re almost finished! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Amankan akun anda dengan menyimpan kata pemulihan</string>
     <string name="view_seed_reminder_subtitle_2">Ketuk dan tekan kata yang disensor untuk mengetahui kata pemulihan anda, lalu simpan baik-baik untuk mengamnkan Session ID anda</string>
     <string name="view_seed_reminder_subtitle_3">Pastikan untuk menyimpan kata pemulihan di tempat yang aman</string>
@@ -625,6 +633,7 @@ memproses pertukaran kunci korupsi.</string>
     <string name="activity_settings_invite_button_title">Invite</string>
     <string name="activity_settings_recovery_phrase_button_title">Kata pemulihan</string>
     <string name="activity_settings_clear_all_data_button_title">Hapus data</string>
+    <string name="activity_settings_help_translate_session">Help us Translate Session</string>
     <string name="activity_notification_settings_title">Notifikasi</string>
     <string name="activity_notification_settings_style_section_title">Gaya notifikasi</string>
     <string name="activity_notification_settings_content_section_title">Isi notifikasi</string>
@@ -641,11 +650,13 @@ memproses pertukaran kunci korupsi.</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">Lihat kode QR saya</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Pindai kode QR</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">Pindai kode QR pengguna lain untuk memulai percakapan</string>
+    <string name="fragment_view_my_qr_code_title">Scan Me</string>
     <string name="fragment_view_my_qr_code_explanation">Ini adalah kode QR anda. Pengguna lain bisa memindainya untuk memulai percakapan dengan anda</string>
     <string name="fragment_view_my_qr_code_share_title">Bagikan kode QR</string>
     <string name="fragment_contact_selection_contacts_title">Kontak</string>
     <string name="fragment_contact_selection_closed_groups_title">Grup tertutup</string>
     <string name="fragment_contact_selection_open_groups_title">Grup terbuka</string>
+    <string name="fragment_contact_selection_empty_contacts">You don\'t have any contacts yet</string>
     <!-- Next round of translation -->
     <string name="menu_apply_button">Apply</string>
     <string name="menu_done_button">Done</string>
@@ -672,7 +683,18 @@ memproses pertukaran kunci korupsi.</string>
     <string name="activity_backup_restore_select_file">Select a file</string>
     <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
-    <!--  LinkDeviceActivity  -->
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_link_device_link_device">Link a Device</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+    <string name="activity_pn_mode_message_notifications">Message Notifications</string>
+    <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
+    <string name="activity_pn_mode_fast_mode">Fast Mode</string>
+    <string name="activity_pn_mode_slow_mode">Slow Mode</string>
+    <string name="activity_pn_mode_fast_mode_explanation">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Session will occasionally check for new messages in the background.</string>
+    <string name="fragment_recovery_phrase_title">Recovery Phrase</string>
+    <string name="activity_prompt_passphrase_session_locked">Session is Locked</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Tap to Unlock</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
+    <string name="invalid_public_key">Invalid public key</string>
 </resources>
