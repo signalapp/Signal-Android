@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -726,26 +727,49 @@ public final class MessageContentProcessor {
       return;
     }
 
-    Recipient     targetAuthor  = Recipient.externalPush(context, reaction.getTargetAuthor());
-    MessageRecord targetMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
+    Recipient     reactionAuthor = Recipient.externalHighTrustPush(context, content.getSender());
+    Recipient     targetAuthor   = Recipient.externalPush(context, reaction.getTargetAuthor());
+    MessageRecord targetMessage  = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
 
-    if (targetMessage != null && !targetMessage.isRemoteDelete()) {
-      Recipient       reactionAuthor = Recipient.externalHighTrustPush(context, content.getSender());
-      MessageDatabase db             = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
-
-      if (reaction.isRemove()) {
-        db.deleteReaction(targetMessage.getId(), reactionAuthor.getId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context);
-      } else {
-        ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), reactionAuthor.getId(), message.getTimestamp(), System.currentTimeMillis());
-        db.addReaction(targetMessage.getId(), reactionRecord);
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
-      }
-    } else if (targetMessage != null) {
-      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Found a matching message, but it's flagged as remotely deleted. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
-    } else {
-      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find matching message! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+    if (targetMessage == null) {
+      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find matching message! Putting it in the early message cache. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
       ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.getId(), reaction.getTargetSentTimestamp(), content);
+      return;
+    }
+
+    if (targetMessage.isRemoteDelete()) {
+      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Found a matching message, but it's flagged as remotely deleted. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+      return;
+    }
+
+    ThreadRecord targetThread = DatabaseFactory.getThreadDatabase(context).getThreadRecord(targetMessage.getThreadId());
+
+    if (targetThread == null) {
+      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find a thread for the message! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+      return;
+    }
+
+    Recipient threadRecipient = targetThread.getRecipient().resolve();
+
+    if (threadRecipient.isGroup() && !threadRecipient.getParticipants().contains(reactionAuthor)) {
+      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Reaction author is not in the group! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+      return;
+    }
+
+    if (!threadRecipient.isGroup() && !reactionAuthor.equals(threadRecipient) && !reactionAuthor.isSelf()) {
+      warn(String.valueOf(content.getTimestamp()), "[handleReaction] Reaction author is not a part of the 1:1 thread! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+      return;
+    }
+
+    MessageDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+
+    if (reaction.isRemove()) {
+      db.deleteReaction(targetMessage.getId(), reactionAuthor.getId());
+      ApplicationDependencies.getMessageNotifier().updateNotification(context);
+    } else {
+      ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), reactionAuthor.getId(), message.getTimestamp(), System.currentTimeMillis());
+      db.addReaction(targetMessage.getId(), reactionRecord);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
     }
   }
 

@@ -1318,7 +1318,7 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  private @Nullable ThreadRecord getThreadRecord(@Nullable Long threadId) {
+  public @Nullable ThreadRecord getThreadRecord(@Nullable Long threadId) {
     if (threadId == null) {
       return null;
     }

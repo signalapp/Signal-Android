@@ -150,17 +150,17 @@ public class MmsSmsDatabase extends Database {
     return 0;
   }
 
-  public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId author) {
-    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
+  public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId authorId) {
+    Recipient author = Recipient.resolved(authorId);
 
     try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
-      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+      MmsSmsDatabase.Reader reader = readerFor(cursor);
 
       MessageRecord messageRecord;
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Recipient.resolved(author).isSelf() && messageRecord.isOutgoing()) ||
-            (!Recipient.resolved(author).isSelf() && messageRecord.getIndividualRecipient().getId().equals(author)))
+        if ((author.isSelf() && messageRecord.isOutgoing()) ||
+            (!author.isSelf() && messageRecord.getIndividualRecipient().getId().equals(authorId)))
         {
           return messageRecord;
         }
