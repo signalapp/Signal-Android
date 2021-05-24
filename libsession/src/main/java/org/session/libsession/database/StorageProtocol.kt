@@ -5,6 +5,7 @@ import android.net.Uri
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
+import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
@@ -43,6 +44,7 @@ interface StorageProtocol {
     fun getAllPendingJobs(type: String): Map<String,Job?>
     fun getAttachmentUploadJob(attachmentID: Long): AttachmentUploadJob?
     fun getMessageSendJob(messageSendJobID: String): MessageSendJob?
+    fun getMessageReceivedJob(messageReceiveJobID: String): MessageReceiveJob?
     fun resumeMessageSendJobIfNeeded(messageSendJobID: String)
     fun isJobCanceled(job: Job): Boolean
 

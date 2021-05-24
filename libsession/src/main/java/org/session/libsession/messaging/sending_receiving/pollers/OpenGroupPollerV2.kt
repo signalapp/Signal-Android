@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit
 
 class OpenGroupPollerV2(private val server: String, private val executorService: ScheduledExecutorService?) {
     var hasStarted = false
+    var isCaughtUp = false
+    var secondLastJob: MessageReceiveJob? = null
     private var future: ScheduledFuture<*>? = null
 
     companion object {
@@ -44,6 +46,9 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 val openGroupID = "$server.$room"
                 handleNewMessages(openGroupID, response.messages, isBackgroundPoll)
                 handleDeletedMessages(openGroupID, response.deletions)
+                if (secondLastJob == null && !isCaughtUp) {
+                    isCaughtUp = true
+                }
             }
         }.always {
             executorService?.schedule(this@OpenGroupPollerV2::poll, OpenGroupPollerV2.pollInterval, TimeUnit.MILLISECONDS)
@@ -52,6 +57,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
 
     private fun handleNewMessages(openGroupID: String, messages: List<OpenGroupMessageV2>, isBackgroundPoll: Boolean) {
         if (!hasStarted) { return }
+        var latestJob: MessageReceiveJob? = null
         messages.sortedBy { it.serverID!! }.forEach { message ->
             try {
                 val senderPublicKey = message.sender!!
@@ -67,11 +73,16 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                     job.executeAsync()
                 } else {
                     JobQueue.shared.add(job)
+                    if (!isCaughtUp) {
+                        secondLastJob = latestJob
+                    }
+                    latestJob = job
                 }
             } catch (e: Exception) {
                 Log.e("Loki", "Exception parsing message", e)
             }
         }
+        Log.d("Ryan", "Finish a round of polling in thread $openGroupID")
     }
 
     private fun handleDeletedMessages(openGroupID: String, deletedMessageServerIDs: List<Long>) {

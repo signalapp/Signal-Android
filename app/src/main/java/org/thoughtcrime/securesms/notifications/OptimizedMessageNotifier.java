@@ -10,6 +10,7 @@ import org.session.libsession.messaging.sending_receiving.notifications.MessageN
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Debouncer;
+import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
@@ -23,7 +24,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   @MainThread
   public OptimizedMessageNotifier(@NonNull MessageNotifier wrapped) {
     this.wrapped   = wrapped;
-    this.debouncer = new Debouncer(TimeUnit.SECONDS.toMillis(1));
+    this.debouncer = new Debouncer(TimeUnit.SECONDS.toMillis(2));
   }
 
   @Override
@@ -66,6 +67,8 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     }
 
     isCaughtUp = isCaughtUp && OpenGroupManager.INSTANCE.isAllCaughtUp();
+
+    Log.d("Ryan", "Is caught up? " + isCaughtUp);
     
     if (isCaughtUp) {
       performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, threadId));
