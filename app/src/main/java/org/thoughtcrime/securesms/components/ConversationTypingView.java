@@ -40,7 +40,7 @@ public class ConversationTypingView extends LinearLayout {
       return;
     }
 
-    Recipient typist = typists.get(0);
+    Recipient typist = typists.get(0).fresh();
     bubble.getBackground().setColorFilter(typist.getColor().toConversationColor(getContext()), PorterDuff.Mode.MULTIPLY);
 
     if (isGroupThread) {
