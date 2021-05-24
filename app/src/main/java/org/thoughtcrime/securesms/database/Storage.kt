@@ -243,7 +243,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun removeLastMessageServerID(room: String, server: String) {
         DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(room, server)
     }
-    
+
     override fun getLastDeletionServerID(room: String, server: String): Long? {
         return DatabaseFactory.getLokiAPIDatabase(context).getLastDeletionServerID(room, server)
     }
