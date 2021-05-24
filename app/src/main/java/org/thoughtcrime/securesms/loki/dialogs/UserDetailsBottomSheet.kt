@@ -14,9 +14,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.mms.GlideApp
 
 class UserDetailsBottomSheet : BottomSheetDialogFragment() {
@@ -59,7 +61,7 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
                 else -> return@setOnEditorActionListener false
             }
         }
-        nameTextView.text = SSKEnvironment.shared.profileManager.getDisplayName(requireContext(), recipient) ?: "Anonymous"
+        nameTextView.text = recipient.name ?: publicKey // Uses the Contact API internally
         publicKeyTextView.text = publicKey
         copyButton.setOnClickListener {
             val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -78,8 +80,12 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         if (nameEditText.text.isNotEmpty()) {
             newNickName = nameEditText.text.toString()
         }
-        SSKEnvironment.shared.profileManager.setDisplayName(requireContext(), recipient, newNickName)
-        nameTextView.text = SSKEnvironment.shared.profileManager.getDisplayName(requireContext(), recipient) ?: "Anonymous"
+        val publicKey = recipient.address.serialize()
+        val contactDB = DatabaseFactory.getSessionContactDatabase(context)
+        val contact = contactDB.getContactWithSessionID(publicKey) ?: Contact(publicKey)
+        contact.nickname = newNickName
+        contactDB.setContact(contact)
+        nameTextView.text = recipient.name ?: publicKey // Uses the Contact API internally
     }
 
     @SuppressLint("ServiceCast")

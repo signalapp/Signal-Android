@@ -62,7 +62,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -158,8 +157,6 @@ import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity;
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
@@ -2179,11 +2176,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (lastCharacterIndex > 0) {
           secondToLastCharacter = text.charAt(lastCharacterIndex - 1);
         }
-        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(ConversationActivity.this);
-        LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this);
-        LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
         if (lastCharacter == '@' && Character.isWhitespace(secondToLastCharacter)) {
-          List<Mention> mentionCandidates = MentionsManager.shared.getMentionCandidates("", threadId);
+          List<Mention> mentionCandidates = MentionsManager.INSTANCE.getMentionCandidates("", threadId, recipient.isOpenGroupRecipient());
           currentMentionStartIndex = lastCharacterIndex;
           mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
           mentionCandidateSelectionView.show(mentionCandidates, threadId);
@@ -2194,7 +2188,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           if (currentMentionStartIndex != -1) {
             String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
-            List<Mention> mentionCandidates = MentionsManager.shared.getMentionCandidates(query, threadId);
+            List<Mention> mentionCandidates = MentionsManager.INSTANCE.getMentionCandidates(query, threadId, recipient.isOpenGroupRecipient());
             mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
             mentionCandidateSelectionView.show(mentionCandidates, threadId);
           }
@@ -2339,8 +2333,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (recipient.getAddress().toString().toLowerCase().equals(userPublicKey)) {
       titleTextView.setText(getResources().getString(R.string.note_to_self));
     } else {
-      String displayName = SSKEnvironment.shared.getProfileManager().getDisplayName(getApplicationContext(), recipient);
-      boolean hasName =  displayName != null;
+      String displayName = recipient.getName(); // Uses the Contact API internally
+      boolean hasName = (displayName != null);
       titleTextView.setText(hasName ? displayName : recipient.getAddress().toString());
     }
   }

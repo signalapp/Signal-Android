@@ -17,11 +17,8 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
-
 import androidx.annotation.NonNull;
-
 import net.sqlcipher.database.SQLiteDatabase;
-
 import org.thoughtcrime.securesms.attachments.DatabaseAttachmentProvider;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
@@ -32,7 +29,6 @@ import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 
@@ -61,7 +57,6 @@ public class DatabaseFactory {
   private final LokiAPIDatabase lokiAPIDatabase;
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
-  private final LokiUserDatabase lokiUserDatabase;
   private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
   private final SessionJobDatabase sessionJobDatabase;
   private final SessionContactDatabase sessionContactDatabase;
@@ -148,10 +143,6 @@ public class DatabaseFactory {
     return getInstance(context).lokiThreadDatabase;
   }
 
-  public static LokiUserDatabase getLokiUserDatabase(Context context) {
-    return getInstance(context).lokiUserDatabase;
-  }
-
   public static LokiBackupFilesDatabase getLokiBackupFilesDatabase(Context context) {
     return getInstance(context).lokiBackupFilesDatabase;
   }
@@ -203,7 +194,6 @@ public class DatabaseFactory {
     this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
-    this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
     this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
     this.storage                   = new Storage(context, databaseHelper);
     this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);

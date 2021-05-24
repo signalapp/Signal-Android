@@ -49,17 +49,9 @@ class UserView : LinearLayout {
 
     // region Updating
     fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
-        fun getUserDisplayName(publicKey: String?): String? {
-            if (publicKey == null || publicKey.isBlank()) {
-                return null
-            } else {
-                val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
-                contact?.let {
-                    return it.displayName(Contact.ContactContext.REGULAR)
-                }
-                val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                return result ?: publicKey
-            }
+        fun getUserDisplayName(publicKey: String): String {
+            val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+            return contact?.displayName(Contact.ContactContext.REGULAR) ?: publicKey
         }
         val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(user)
         MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this

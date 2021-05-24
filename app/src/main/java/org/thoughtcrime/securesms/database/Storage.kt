@@ -491,10 +491,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return threadId
     }
 
-    override fun getProfilePictureURL(publicKey: String): String? {
-        return DatabaseFactory.getLokiUserDatabase(context).getProfilePictureURL(publicKey)
-    }
-
     override fun getContactWithSessionID(sessionID: String): Contact? {
         return DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(sessionID)
     }

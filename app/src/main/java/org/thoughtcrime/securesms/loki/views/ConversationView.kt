@@ -8,8 +8,10 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.SSKEnvironment
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
@@ -86,10 +88,11 @@ class ConversationView : LinearLayout {
     }
 
     private fun getUserDisplayName(recipient: Recipient): String? {
-        return if (recipient.isLocalNumber)
-            context.getString(R.string.note_to_self)
-        else
-            SSKEnvironment.shared.profileManager.getDisplayName(context, recipient)
+        if (recipient.isLocalNumber) {
+            return context.getString(R.string.note_to_self)
+        } else {
+            return recipient.name // Internally uses the Contact API
+        }
     }
     // endregion
 }

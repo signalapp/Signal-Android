@@ -130,7 +130,6 @@ interface StorageProtocol {
     fun getLastUpdated(threadID: Long): Long
 
     // Contacts
-    fun getProfilePictureURL(publicKey: String): String?
     fun getContactWithSessionID(sessionID: String): Contact?
     fun getAllContacts(): Set<Contact>
     fun setContact(contact: Contact)

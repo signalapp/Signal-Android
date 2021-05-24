@@ -66,7 +66,6 @@ import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.FcmUtils;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
@@ -160,16 +159,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         broadcaster = new Broadcaster(this);
         threadNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
-        LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         MessagingModuleConfiguration.Companion.configure(this,
                 DatabaseFactory.getStorage(this),
                 DatabaseFactory.getAttachmentProvider(this));
         SnodeModule.Companion.configure(apiDB, broadcaster);
-        if (userPublicKey != null) {
-            MentionsManager.Companion.configureIfNeeded(userPublicKey, userDB);
-        }
         resubmitProfilePictureIfNeeded();
         if (userPublicKey != null) {
             registerForFCMIfNeeded(false);
