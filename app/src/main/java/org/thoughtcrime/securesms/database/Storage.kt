@@ -188,7 +188,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID)
     }
 
-    override fun getMessageReceivedJob(messageReceiveJobID: String): MessageReceiveJob? {
+    override fun getMessageReceiveJob(messageReceiveJobID: String): MessageReceiveJob? {
         return DatabaseFactory.getSessionJobDatabase(context).getMessageReceiveJob(messageReceiveJobID)
     }
 

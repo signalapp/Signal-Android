@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 class OpenGroupPollerV2(private val server: String, private val executorService: ScheduledExecutorService?) {
     var hasStarted = false
     var isCaughtUp = false
-    var secondLastJob: MessageReceiveJob? = null
+    var secondToLastJob: MessageReceiveJob? = null
     private var future: ScheduledFuture<*>? = null
 
     companion object {
@@ -46,7 +46,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 val openGroupID = "$server.$room"
                 handleNewMessages(openGroupID, response.messages, isBackgroundPoll)
                 handleDeletedMessages(openGroupID, response.deletions)
-                if (secondLastJob == null && !isCaughtUp) {
+                if (secondToLastJob == null && !isCaughtUp) {
                     isCaughtUp = true
                 }
             }
@@ -74,7 +74,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 } else {
                     JobQueue.shared.add(job)
                     if (!isCaughtUp) {
-                        secondLastJob = latestJob
+                        secondToLastJob = latestJob
                     }
                     latestJob = job
                 }
@@ -82,7 +82,6 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 Log.e("Loki", "Exception parsing message", e)
             }
         }
-        Log.d("Ryan", "Finish a round of polling in thread $openGroupID")
     }
 
     private fun handleDeletedMessages(openGroupID: String, deletedMessageServerIDs: List<Long>) {

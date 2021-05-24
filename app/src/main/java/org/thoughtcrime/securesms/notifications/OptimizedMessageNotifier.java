@@ -67,8 +67,6 @@ public class OptimizedMessageNotifier implements MessageNotifier {
     }
 
     isCaughtUp = isCaughtUp && OpenGroupManager.INSTANCE.isAllCaughtUp();
-
-    Log.d("Ryan", "Is caught up? " + isCaughtUp);
     
     if (isCaughtUp) {
       performOnBackgroundThreadIfNeeded(() -> wrapped.updateNotification(context, threadId));

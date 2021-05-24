@@ -23,13 +23,13 @@ object OpenGroupManager {
     val isAllCaughtUp: Boolean
         get() {
             pollers.values.forEach { poller ->
-                val jobID = poller.secondLastJob?.id
+                val jobID = poller.secondToLastJob?.id
                 jobID?.let {
                     val storage = MessagingModuleConfiguration.shared.storage
-                    if (storage.getMessageReceivedJob(jobID) == null) {
-                        // If the second last job is done, it means we are now handling the last job
+                    if (storage.getMessageReceiveJob(jobID) == null) {
+                        // If the second to last job is done, it means we are now handling the last job
                         poller.isCaughtUp = true
-                        poller.secondLastJob = null
+                        poller.secondToLastJob = null
                     }
                 }
                 if (!poller.isCaughtUp) { return false }
