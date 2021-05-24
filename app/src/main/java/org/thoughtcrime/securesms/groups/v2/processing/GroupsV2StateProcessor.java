@@ -408,7 +408,7 @@ public final class GroupsV2StateProcessor {
           Log.d(TAG, "Skipping profile key changes only update message");
         } else {
           boolean insert = true;
-          if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmpty(entry.getChange())) {
+          if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmpty(entry.getChange()) && previousGroupState != null) {
             if (FeatureFlags.internalUser()) {
               Log.w(TAG, "Empty group update message seen. Inserting anyway.");
             } else {
