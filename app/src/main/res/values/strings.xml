@@ -813,8 +813,10 @@
     <string name="activity_backup_restore_select_file">Select a file</string>
     <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
-    <!--  LinkDeviceActivity  -->
+
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
 
 </resources>

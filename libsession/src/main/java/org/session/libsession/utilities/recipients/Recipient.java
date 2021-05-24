@@ -26,10 +26,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.function.Consumer;
+import com.esotericsoftware.kryo.util.Null;
 
 import org.greenrobot.eventbus.EventBus;
+import org.session.libsession.database.StorageProtocol;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.avatars.TransparentContactPhoto;
+import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.recipients.RecipientProvider.RecipientDetails;
@@ -286,20 +289,23 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable String getName() {
-    String displayName = MessagingModuleConfiguration.shared.getStorage().getDisplayName(this.address.toString());
-    if (displayName != null) { return displayName; }
-
-    if (this.name == null && isGroupRecipient()) {
-      List<String> names = new LinkedList<>();
-
-      for (Recipient recipient : participants) {
-        names.add(recipient.toShortString());
+    StorageProtocol storage = MessagingModuleConfiguration.shared.getStorage();
+    String sessionID = this.address.toString();
+    if (isGroupRecipient()) {
+      if (this.name == null) {
+        List<String> names = new LinkedList<>();
+        for (Recipient recipient : participants) {
+          names.add(recipient.toShortString());
+        }
+        return Util.join(names, ", ");
+      } else {
+        return this.name;
       }
-
-      return Util.join(names, ", ");
+    } else {
+      Contact contact = storage.getContactWithSessionID(sessionID);
+      if (contact == null) { return sessionID; }
+      return contact.displayName(Contact.ContactContext.REGULAR);
     }
-
-    return this.name;
   }
 
   public void setName(@Nullable String name) {

@@ -11,6 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.session.libsession.avatars.ProfileContactPhoto
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
@@ -57,19 +58,15 @@ class ProfilePictureView : RelativeLayout {
 
     // region Updating
     fun update(recipient: Recipient, threadID: Long) {
-        fun getUserDisplayName(publicKey: String?): String? {
-            if (publicKey == null || publicKey.isBlank()) {
-                return null
-            } else {
-                val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                return result ?: publicKey
-            }
+        fun getUserDisplayName(publicKey: String): String {
+            val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+            return contact?.displayName(Contact.ContactContext.REGULAR) ?: publicKey
         }
         fun isOpenGroupWithProfilePicture(recipient: Recipient): Boolean {
             return recipient.isOpenGroupRecipient && recipient.groupAvatarId != null
         }
         if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
-            val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
+            val users = MentionsManager.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
             users.remove(TextSecurePreferences.getLocalNumber(context))
             val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
             if (users.count() == 1) {
@@ -86,7 +83,8 @@ class ProfilePictureView : RelativeLayout {
                     recipient.name == "Session Updates" ||
                     recipient.name == "Session Public Chat"
         } else {
-            publicKey = recipient.address.toString()
+            val publicKey = recipient.address.toString()
+            this.publicKey = publicKey
             displayName = getUserDisplayName(publicKey)
             additionalPublicKey = null
             isRSSFeed = false
