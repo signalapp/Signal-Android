@@ -64,6 +64,10 @@
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error setting your attachment.</string>
     <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_compose">Compose</string>
+    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d members</string>
+    <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
     <string name="ConversationActivity_invalid_recipient">Nederīgs adresāts!</string>
     <string name="ConversationActivity_added_to_home_screen">Pievienots sākuma ekrānam</string>
     <string name="ConversationActivity_leave_group">Pamest grupu?</string>
@@ -367,6 +371,9 @@
     <!-- open_group_invitation_view -->
     <string name="open_group_invitation_view__join_accessibility_description">Join</string>
     <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <string name="open_group_guidelines_pinned_message">Pinned message</string>
+    <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
+    <string name="open_group_guidelines_read">Read</string>
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
@@ -598,6 +605,7 @@
     <string name="activity_seed_title_2">Meet your recovery phrase</string>
     <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
     <string name="activity_seed_reveal_button_title">Hold to reveal</string>
+    <string name="view_seed_reminder_title">You\'re almost finished! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
     <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
     <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
@@ -641,6 +649,7 @@
     <string name="activity_settings_invite_button_title">Invite</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_settings_help_translate_session">Help us Translate Session</string>
     <string name="activity_notification_settings_title">Notifications</string>
     <string name="activity_notification_settings_style_section_title">Notification Style</string>
     <string name="activity_notification_settings_content_section_title">Notification Content</string>
@@ -657,11 +666,13 @@
     <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR Code</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">Scan someone\'s QR code to start a conversation with them</string>
+    <string name="fragment_view_my_qr_code_title">Scan Me</string>
     <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
     <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
     <string name="fragment_contact_selection_contacts_title">Contacts</string>
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
     <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+    <string name="fragment_contact_selection_empty_contacts">You don\'t have any contacts yet</string>
     <!-- Next round of translation -->
     <string name="menu_apply_button">Apply</string>
     <string name="menu_done_button">Done</string>
@@ -688,7 +699,18 @@
     <string name="activity_backup_restore_select_file">Select a file</string>
     <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
-    <!--  LinkDeviceActivity  -->
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_link_device_link_device">Link a Device</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+    <string name="activity_pn_mode_message_notifications">Message Notifications</string>
+    <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
+    <string name="activity_pn_mode_fast_mode">Fast Mode</string>
+    <string name="activity_pn_mode_slow_mode">Slow Mode</string>
+    <string name="activity_pn_mode_fast_mode_explanation">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Session will occasionally check for new messages in the background.</string>
+    <string name="fragment_recovery_phrase_title">Recovery Phrase</string>
+    <string name="activity_prompt_passphrase_session_locked">Session is Locked</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Tap to Unlock</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
+    <string name="invalid_public_key">Invalid public key</string>
 </resources>

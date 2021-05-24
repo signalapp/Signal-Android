@@ -4,7 +4,7 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="delete">Удалить</string>
-    <string name="ban">Ban</string>
+    <string name="ban">Запретить доступ</string>
     <string name="please_wait">Пожалуйста, подождите...</string>
     <string name="save">Сохранить</string>
     <string name="note_to_self">Заметка для себя</string>
@@ -65,7 +65,11 @@
     <string name="ConversationActivity_add_attachment">Добавить вложение</string>
     <string name="ConversationActivity_select_contact_info">Выбрать контакт</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извините, произошла ошибка при обработке вложения.</string>
-    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_message">Сообщение</string>
+    <string name="ConversationActivity_compose">Создать</string>
+    <string name="ConversationActivity_muted_until_date">Отключено до %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d участников</string>
+    <string name="ConversationActivity_open_group_guidelines">Правила сообщества</string>
     <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
     <string name="ConversationActivity_added_to_home_screen">Добавлено на главный экран</string>
     <string name="ConversationActivity_leave_group">Покинуть группу?</string>
@@ -77,9 +81,9 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает допустимый размер для данного типа сообщения.</string>
     <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве не найдено приложение для открытия этой ссылки.</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_invite_to_open_group">Добавить участников</string>
+    <string name="ConversationActivity_join_open_group">Присоединиться к %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Вы уверены, что хотите присоединиться к <b>%s</b> открытой группе?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Для отправки аудиосообщений разрешите Session доступ к микрофону.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Для отправки аудиосообщений требуется разрешение на доступ к микрофону, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Session, затем выберите Разрешения и включите Микрофон.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для создания фото и видео разрешите Session доступ к камере.</string>
@@ -108,7 +112,7 @@
         <item quantity="many">%1$d выбранных сообщений будут навсегда удалены.</item>
         <item quantity="other">%1$d выбранных сообщений будут навсегда удалены.</item>
     </plurals>
-    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_ban_selected_user">Заблокировать этого пользователя?</string>
     <string name="ConversationFragment_save_to_sd_card">Сохранить в память?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="one">Сохранение этого медиа-файла в память устройства позволит любому приложению иметь к нему доступ.\n\nПродолжить?</item>
@@ -140,8 +144,8 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Удаление</string>
     <string name="ConversationFragment_deleting_messages">Удаляем сообщения...</string>
-    <string name="ConversationFragment_banning">Banning</string>
-    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_banning">Блокировка</string>
+    <string name="ConversationFragment_banning_user">Блокировка пользователя…</string>
     <string name="ConversationFragment_quoted_message_not_found">Исходное сообщение не найдено</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Исходное сообщение больше не доступно</string>
     <!-- ConversationListItem -->
@@ -254,14 +258,14 @@
     <string name="ThreadRecord_s_is_on_signal">%s теперь в Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Исчезающие сообщения отключены</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
-    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s сделал снимок экрана.</string>
+    <string name="ThreadRecord_media_saved_by_s">%s сохранил медиафайл.</string>
     <string name="ThreadRecord_safety_number_changed">Код безопасности изменился</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ваш код безопасности с %s изменился.</string>
     <string name="ThreadRecord_you_marked_verified">Вы отметили как подтверждённый</string>
     <string name="ThreadRecord_you_marked_unverified">Вы отметили как неподтверждённый</string>
-    <string name="ThreadRecord_empty_message">This conversation is empty</string>
-    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <string name="ThreadRecord_empty_message">Этот диалог пуст</string>
+    <string name="ThreadRecord_open_group_invitation">Открыть приглашение в группу</string>
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Обновление Session</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Session. Нажмите, чтобы обновиться</string>
@@ -376,8 +380,11 @@
     <string name="audio_view__pause_accessibility_description">Пауза</string>
     <string name="audio_view__download_accessibility_description">Скачать</string>
     <!-- open_group_invitation_view -->
-    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
-    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <string name="open_group_invitation_view__join_accessibility_description">Войти</string>
+    <string name="open_group_invitation_view__open_group_invitation">Открыть приглашение группы</string>
+    <string name="open_group_guidelines_pinned_message">Закреплённое сообщение</string>
+    <string name="open_group_guidelines_community_guidelines">Правила сообщества</string>
+    <string name="open_group_guidelines_read">Прочитано</string>
     <!-- QuoteView -->
     <string name="QuoteView_audio">Аудио</string>
     <string name="QuoteView_video">Видео</string>
@@ -509,7 +516,7 @@
     <string name="conversation_context__menu_message_details">Подробности</string>
     <string name="conversation_context__menu_copy_text">Копировать текст</string>
     <string name="conversation_context__menu_delete_message">Удалить сообщение</string>
-    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_ban_user">Заблокировать пользователя</string>
     <string name="conversation_context__menu_resend_message">Отправить заново</string>
     <string name="conversation_context__menu_reply_to_message">Ответ на сообщение</string>
     <!-- conversation_context_image -->
@@ -610,6 +617,7 @@
     <string name="activity_seed_title_2">А вот и ваша секретная фраза для восстановления</string>
     <string name="activity_seed_explanation">Ваша секретная фраза является главным ключом к вашему Session ID. Вы можете использовать ее для восстановления Session ID, если потеряете доступ к своему устройству. Сохраните свою секретную фразу в безопасном месте, и никому её не передавайте.</string>
     <string name="activity_seed_reveal_button_title">Удерживайте, чтобы показать</string>
+    <string name="view_seed_reminder_title">Вы почти закончили! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Защитите свой аккаунт, сохранив секретную фразу</string>
     <string name="view_seed_reminder_subtitle_2">Нажмите и удерживайте сокращенные слова, чтобы открыть секретную фразу, а затем сохраните ее в надежном месте, чтобы защитить свой Session ID.</string>
     <string name="view_seed_reminder_subtitle_3">Обязательно сохраните секретную фразу в надежном месте.</string>
@@ -635,7 +643,7 @@
     <string name="activity_create_closed_group_group_name_missing_error">Пожалуйста, введите название группы</string>
     <string name="activity_create_closed_group_group_name_too_long_error">Пожалуйста, введите более короткое имя группы</string>
     <string name="activity_create_closed_group_not_enough_group_members_error">Пожалуйста, выберите хотя бы одного участника группы</string>
-    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">В закрытой группе не может быть больше 100 участников</string>
     <string name="activity_join_public_chat_title">Присоединиться к открытой группе</string>
     <string name="activity_join_public_chat_error">Не удалось присоединиться к группе</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">URL открытой группы</string>
@@ -650,9 +658,10 @@
     <string name="activity_settings_notifications_button_title">Уведомления</string>
     <string name="activity_settings_chats_button_title">Чаты</string>
     <string name="activity_settings_devices_button_title">Устройства</string>
-    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_invite_button_title">Пригласить</string>
     <string name="activity_settings_recovery_phrase_button_title">Секретная фраза</string>
     <string name="activity_settings_clear_all_data_button_title">Очистить данные</string>
+    <string name="activity_settings_help_translate_session">Помогите нам перевести Session</string>
     <string name="activity_notification_settings_title">Уведомления</string>
     <string name="activity_notification_settings_style_section_title">Стиль уведомлений</string>
     <string name="activity_notification_settings_content_section_title">Содержание уведомления</string>
@@ -669,11 +678,13 @@
     <string name="activity_qr_code_view_my_qr_code_tab_title">Посмотреть мой QR-код</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Сканировать QR-код</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">Отсканируйте QR-код другого человека, чтобы начать с ним разговор</string>
+    <string name="fragment_view_my_qr_code_title">Сканировать меня</string>
     <string name="fragment_view_my_qr_code_explanation">Это ваш QR-код. Другие пользователи могут сканировать его, чтобы начать диалог с вами.</string>
     <string name="fragment_view_my_qr_code_share_title">Поделиться QR-кодом</string>
     <string name="fragment_contact_selection_contacts_title">Контакты</string>
     <string name="fragment_contact_selection_closed_groups_title">Закрытые группы</string>
     <string name="fragment_contact_selection_open_groups_title">Открытые группы</string>
+    <string name="fragment_contact_selection_empty_contacts">У вас еще нет контактов</string>
     <!-- Next round of translation -->
     <string name="menu_apply_button">Применить</string>
     <string name="menu_done_button">Готово</string>
@@ -696,11 +707,22 @@
     <string name="attachment_type_voice_message">Голосовое сообщение</string>
     <string name="details">Подробности</string>
     <string name="dialog_backup_activation_failed">Не удалось активировать резервные копии. Пожалуйста, попробуйте еще раз или обратитесь в службу поддержки.</string>
-    <string name="activity_backup_restore_title">Restore backup</string>
-    <string name="activity_backup_restore_select_file">Select a file</string>
-    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
-    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
-    <!--  LinkDeviceActivity  -->
-    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
-    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+    <string name="activity_backup_restore_title">Восстановление резервной копии</string>
+    <string name="activity_backup_restore_select_file">Выбрать файл</string>
+    <string name="activity_backup_restore_explanation_1">Выберите файл резервной копии и введите парольную фразу, с которой он был создан.</string>
+    <string name="activity_backup_restore_passphrase">Фраза из 30 цифр</string>
+    <string name="activity_link_device_skip_prompt">Это занимает некоторое время, хотите пропустить?</string>
+    <string name="activity_link_device_link_device">Привязать устройство</string>
+    <string name="activity_join_public_chat_join_rooms">Или присоединитесь к одной из этих...</string>
+    <string name="activity_pn_mode_message_notifications">Уведомления о Сообщениях</string>
+    <string name="activity_pn_mode_explanation">Существует два способа оповещения о новых сообщениях.</string>
+    <string name="activity_pn_mode_fast_mode">Ускоренный режим</string>
+    <string name="activity_pn_mode_slow_mode">Медленный режим</string>
+    <string name="activity_pn_mode_fast_mode_explanation">Вы будете получать уведомления о новых сообщениях надежно и сразу же с помощью серверов уведомлений Google.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Время от времени (в фоновом режиме) будут проверяться новые сообщения.</string>
+    <string name="fragment_recovery_phrase_title">Секретная фраза</string>
+    <string name="activity_prompt_passphrase_session_locked">Session заблокирован</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Разблокировать</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
+    <string name="invalid_public_key">Invalid public key</string>
 </resources>
