@@ -10,7 +10,7 @@ Add the [F-Droid repo](https://fdroid.getsession.org/)
 
 Session integrates directly with [Oxen Service Nodes](https://docs.oxen.io/about-the-oxen-blockchain/oxen-service-nodes), which are a set of distributed, decentralized and Sybil resistant nodes. Service Nodes act as servers which store messages offline, and a set of nodes which allow for onion routing functionality obfuscating users' IP addresses. For a full understanding of how Session works, read the [Session Whitepaper](https://getsession.org/whitepaper).
 
-![AndroidSession](https://i.imgur.com/0YC9TyI.png)
+<img src="https://i.imgur.com/RSMrR1F.png" width="320" />
 
 ## Want to contribute? Found a bug or have a feature request?
 
