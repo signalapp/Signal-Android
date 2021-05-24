@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import okhttp3.HttpUrl
 import org.session.libsession.database.StorageProtocol
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
@@ -301,6 +302,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getLastMessageServerId(room: String, server: String): Long? {
+        // return null if limit is set on open groups polling
+        if (TextSecurePreferences.isOpenGroupPollingLimit(context)) return null
         return DatabaseFactory.getLokiAPIDatabase(context).getLastMessageServerID(room, server)
     }
 
@@ -325,6 +328,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getLastDeletionServerId(room: String, server: String): Long? {
+        // return null if limit is set on open groups polling
+        if (TextSecurePreferences.isOpenGroupPollingLimit(context)) return null
         return DatabaseFactory.getLokiAPIDatabase(context).getLastDeletionServerID(room, server)
     }
 

@@ -32,6 +32,7 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.*
 import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils
@@ -66,6 +67,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        // Check when Session was last opened
+        setPollingLimit();
         // Double check that the long poller is up
         (applicationContext as ApplicationContext).startPollingIfNeeded()
         // Set content view
@@ -193,6 +196,15 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         }
         super.onDestroy()
         EventBus.getDefault().unregister(this)
+    }
+
+    fun setPollingLimit() {
+        val lastTimeSessionOpened = TextSecurePreferences.getLastTimeSessionOpened(this)
+        val timeSinceLastTimeOpen = System.currentTimeMillis() - lastTimeSessionOpened
+
+        // activate polling limit on open groups if the app hasn't been opened for more than the duration set in MAX_INACTIVITY_PERIOD
+        TextSecurePreferences.setOpenGroupPollingLimit(this, timeSinceLastTimeOpen > OpenGroupPollerV2.maxInactivityPeriod)
+        TextSecurePreferences.setLastTimeSessionOpened(this)
     }
     // endregion
 
