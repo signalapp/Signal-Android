@@ -15,22 +15,21 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Action;
 import androidx.core.app.RemoteInput;
-
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import org.session.libsession.avatars.ContactColors;
 import org.session.libsession.avatars.ContactPhoto;
 import org.session.libsession.avatars.GeneratedContactPhoto;
+import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
-import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -40,11 +39,9 @@ import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
 import network.loki.messenger.R;
 
 public class SingleRecipientNotificationBuilder extends AbstractNotificationBuilder {
@@ -121,8 +118,16 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   {
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-    if (privacy.isDisplayContact() && threadRecipients.isGroupRecipient()) {
-      String displayName = NotificationUtilities.getOpenGroupDisplayName(individualRecipient, threadRecipients, context);
+    if (privacy.isDisplayContact() && threadRecipients.isOpenGroupRecipient()) {
+      String displayName;
+      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(context);
+      String sessionID = individualRecipient.getAddress().serialize();
+      Contact contact = contactDB.getContactWithSessionID(sessionID);
+      if (contact != null) {
+        displayName = contact.displayName(Contact.ContactContext.OPEN_GROUP);
+      } else {
+        displayName = sessionID;
+      }
       if (displayName != null) {
         stringBuilder.append(Util.getBoldedString(displayName + ": "));
       }
@@ -209,8 +214,16 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   {
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-    if (privacy.isDisplayContact() && threadRecipient.isGroupRecipient()) {
-      String displayName = NotificationUtilities.getOpenGroupDisplayName(individualRecipient, threadRecipient, context);
+    if (privacy.isDisplayContact() && threadRecipient.isOpenGroupRecipient()) {
+      String displayName;
+      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(context);
+      String sessionID = individualRecipient.getAddress().serialize();
+      Contact contact = contactDB.getContactWithSessionID(sessionID);
+      if (contact != null) {
+        displayName = contact.displayName(Contact.ContactContext.OPEN_GROUP);
+      } else {
+        displayName = sessionID;
+      }
       if (displayName != null) {
         stringBuilder.append(Util.getBoldedString(displayName + ": "));
       }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -60,7 +60,7 @@
         android:textColor="@color/text"
         android:fontFamily="@font/space_mono_regular"
         android:textAlignment="center"
-        android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+        tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
 
     <LinearLayout
         android:layout_width="match_parent"

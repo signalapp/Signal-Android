@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -47,7 +47,7 @@
         android:gravity="center"
         android:textSize="16sp"
         android:textAlignment="center"
-        android:text="nautical novelty populate onion awkward bent etiquette plant submarine itches vipers september axis maximum populate" />
+        tools:text="nautical novelty populate onion awkward bent etiquette plant submarine itches vipers september axis maximum populate" />
 
     <TextView
         android:id="@+id/revealButton"

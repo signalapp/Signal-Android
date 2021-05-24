@@ -18,8 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -197,7 +200,14 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
       quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
     } else {
-      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getDisplayName(senderHexEncodedPublicKey);
+      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(getContext());
+      Contact contact = contactDB.getContactWithSessionID(senderHexEncodedPublicKey);
+      if (contact != null) {
+        Contact.ContactContext context = (this.conversationRecipient.isOpenGroupRecipient()) ? Contact.ContactContext.OPEN_GROUP : Contact.ContactContext.REGULAR;
+        quoteeDisplayName = contact.displayName(context);
+      } else {
+        quoteeDisplayName = senderHexEncodedPublicKey;
+      }
     }
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);

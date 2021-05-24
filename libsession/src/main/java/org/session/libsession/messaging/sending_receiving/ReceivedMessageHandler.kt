@@ -128,16 +128,20 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         if (allV2OpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup)
     }
+    val profileManager = SSKEnvironment.shared.profileManager
+    val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
     if (message.displayName.isNotEmpty()) {
         TextSecurePreferences.setProfileName(context, message.displayName)
-        storage.setDisplayName(userPublicKey, message.displayName)
+        profileManager.setName(context, recipient, message.displayName)
     }
     if (message.profileKey.isNotEmpty() && !message.profilePicture.isNullOrEmpty()
         && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
         val profileKey = Base64.encodeBytes(message.profileKey)
         ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
-        storage.setProfileKeyForRecipient(userPublicKey, message.profileKey)
-        storage.setUserProfilePictureURL(message.profilePicture!!)
+        profileManager.setProfileKey(context, recipient, message.profileKey)
+        if (!message.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
+            storage.setUserProfilePictureURL(message.profilePicture!!)
+        }
     }
     storage.addContacts(message.contacts)
 }
@@ -162,9 +166,9 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     if (profile != null && userPublicKey != message.sender) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
-        val displayName = profile.displayName!!
-        if (displayName.isNotEmpty()) {
-            profileManager.setDisplayName(context, recipient, displayName)
+        val name = profile.displayName!!
+        if (name.isNotEmpty()) {
+            profileManager.setName(context, recipient, name)
         }
         if (profile.profileKey?.isNotEmpty() == true && profile.profilePictureURL?.isNotEmpty() == true
             && (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, profile.profileKey))) {

@@ -135,12 +135,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         })
         // Set up remaining components if needed
         val application = ApplicationContext.getInstance(this)
-        val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
-        val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
-        val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         if (userPublicKey != null) {
-            MentionsManager.configureIfNeeded(userPublicKey, userDB)
             OpenGroupManager.startPolling()
             JobQueue.shared.resumePendingJobs()
         }
