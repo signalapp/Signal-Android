@@ -842,5 +842,6 @@
     <string name="activity_prompt_passphrase_tap_to_unlock">Tap to Unlock</string>
 
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
+    <string name="invalid_public_key">Invalid Public Key</string>
 
 </resources>
