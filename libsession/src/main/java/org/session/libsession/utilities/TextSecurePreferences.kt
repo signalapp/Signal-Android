@@ -99,15 +99,15 @@ object TextSecurePreferences {
 
     private const val GIF_GRID_LAYOUT = "pref_gif_grid_layout"
 
-    // region FCM
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
 
-    // region Multi Device
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
     const val CONFIGURATION_SYNCED = "pref_configuration_synced"
     private const val LAST_PROFILE_UPDATE_TIME = "pref_last_profile_update_time"
+
+    private const val LAST_OPEN_DATE = "pref_last_open_date"
 
     @JvmStatic
     fun getLastConfigurationSyncTime(context: Context): Long {
@@ -764,12 +764,19 @@ object TextSecurePreferences {
     fun shouldUpdateProfile(context: Context, profileUpdateTime: Long) =
             profileUpdateTime > getLongPreference(context, LAST_PROFILE_UPDATE_TIME, 0)
 
-    fun hasSeenFileServerInstabilityNotification(context: Context): Boolean {
-        return getBooleanPreference(context, "has_seen_file_server_instability_notification", false)
+    fun hasPerformedContactMigration(context: Context): Boolean {
+        return getBooleanPreference(context, "has_performed_contact_migration", false)
     }
 
-    fun setHasSeenFileServerInstabilityNotification(context: Context) {
-        setBooleanPreference(context, "has_seen_file_server_instability_notification", true)
+    fun setPerformedContactMigration(context: Context) {
+        setBooleanPreference(context, "has_performed_contact_migration", true)
     }
-    // endregion
+
+    fun getLastOpenTimeDate(context: Context): Long {
+        return getLongPreference(context, LAST_OPEN_DATE, 0)
+    }
+
+    fun setLastOpenDate(context: Context) {
+        setLongPreference(context, LAST_OPEN_DATE, System.currentTimeMillis())
+    }
 }

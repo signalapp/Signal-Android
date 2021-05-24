@@ -72,7 +72,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_settings)
-        val displayName = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        val displayName = TextSecurePreferences.getProfileName(this) ?: hexEncodedPublicKey
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
         profilePictureView.publicKey = hexEncodedPublicKey

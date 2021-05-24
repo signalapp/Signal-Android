@@ -24,6 +24,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
 
     companion object {
         private val pollInterval: Long = 4 * 1000
+        const val maxInactivityPeriod = 14 * 24 * 60 * 60 * 1000
     }
 
     fun startIfNeeded() {

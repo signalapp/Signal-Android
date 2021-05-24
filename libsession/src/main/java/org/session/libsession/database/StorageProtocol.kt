@@ -2,6 +2,7 @@ package org.session.libsession.database
 
 import android.content.Context
 import android.net.Uri
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageReceiveJob
@@ -32,11 +33,7 @@ interface StorageProtocol {
     fun getUserDisplayName(): String?
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
-    fun setUserProfilePictureURL(newValue: String)
-    fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
-    fun getDisplayNameForRecipient(recipientPublicKey: String): String?
-    fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray)
-
+    fun setUserProfilePictureURL(newProfilePicture: String)
     // Signal
     fun getOrGenerateRegistrationID(): Int
 
@@ -135,9 +132,9 @@ interface StorageProtocol {
     fun getLastUpdated(threadID: Long): Long
 
     // Contacts
-    fun getDisplayName(publicKey: String): String?
-    fun setDisplayName(publicKey: String, newName: String)
-    fun getProfilePictureURL(publicKey: String): String?
+    fun getContactWithSessionID(sessionID: String): Contact?
+    fun getAllContacts(): Set<Contact>
+    fun setContact(contact: Contact)
     fun getRecipientSettings(address: Address): RecipientSettings?
     fun addContacts(contacts: List<ConfigurationMessage.Contact>)
 

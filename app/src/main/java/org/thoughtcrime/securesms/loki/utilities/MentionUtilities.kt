@@ -9,6 +9,7 @@ import android.text.style.StyleSpan
 import android.util.Range
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
+import org.session.libsession.messaging.contacts.Contact
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
 import java.util.regex.Pattern
@@ -23,6 +24,8 @@ object MentionUtilities {
     @JvmStatic
     fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
         var text = text
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
         var matcher = pattern.matcher(text)
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()
@@ -31,10 +34,12 @@ object MentionUtilities {
         if (matcher.find(startIndex)) {
             while (true) {
                 val publicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
-                val userDisplayName: String? = if (publicKey.toLowerCase() == userPublicKey.toLowerCase()) {
+                val userDisplayName: String? = if (publicKey.equals(userPublicKey, ignoreCase = true)) {
                     TextSecurePreferences.getProfileName(context)
                 } else {
-                    DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
+                    val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+                    val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
+                    contact?.displayName(context)
                 }
                 if (userDisplayName != null) {
                     text = text.subSequence(0, matcher.start()).toString() + "@" + userDisplayName + text.subSequence(matcher.end(), text.length)

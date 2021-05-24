@@ -33,7 +33,7 @@
                 android:textColor="@color/text"
                 android:textSize="@dimen/small_font_size"
                 android:textStyle="bold"
-                android:text="Pinned message" />
+                android:text="@string/open_group_guidelines_pinned_message" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                 android:textColor="@color/text"
                 android:textSize="@dimen/small_font_size"
                 android:maxLines="2"
-                android:text="Community guidelines" />
+                android:text="@string/open_group_guidelines_community_guidelines" />
 
         </LinearLayout>
 
@@ -60,7 +60,7 @@
             android:layout_marginRight="12dp"
             android:textSize="@dimen/small_font_size"
             android:textStyle="normal"
-            android:text="Read" />
+            android:text="@string/open_group_guidelines_read" />
 
     </LinearLayout>
 

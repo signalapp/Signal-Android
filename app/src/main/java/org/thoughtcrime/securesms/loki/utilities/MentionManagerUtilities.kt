@@ -15,7 +15,7 @@ object MentionManagerUtilities {
             val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.address.toGroupString(), false).map { it.address.serialize() }
             result.addAll(members)
         } else {
-            if (MentionsManager.shared.userPublicKeyCache[threadID] != null) { return }
+            if (MentionsManager.userPublicKeyCache[threadID] != null) { return }
             val messageDatabase = DatabaseFactory.getMmsSmsDatabase(context)
             val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID))
             var record: MessageRecord? = reader.next
@@ -30,6 +30,6 @@ object MentionManagerUtilities {
             reader.close()
             result.add(TextSecurePreferences.getLocalNumber(context)!!)
         }
-        MentionsManager.shared.userPublicKeyCache[threadID] = result
+        MentionsManager.userPublicKeyCache[threadID] = result
     }
 }

@@ -137,7 +137,7 @@
     <style name="SessionIDTextView">
         <item name="android:background">@drawable/session_id_text_view_background</item>
         <item name="android:padding">@dimen/medium_spacing</item>
-        <item name="android:textSize">@dimen/large_font_size</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:fontFamily">@font/space_mono_regular</item>
         <item name="android:textAlignment">viewStart</item>
