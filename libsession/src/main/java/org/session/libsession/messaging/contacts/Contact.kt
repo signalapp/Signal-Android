@@ -37,14 +37,14 @@ class Contact(val sessionID: String) {
      * The name to display in the UI. For local use only.
      */
     fun displayName(context: ContactContext): String? {
-        this.nickname?.let { return it }
+        nickname?.let { return it }
         return when (context) {
-            ContactContext.REGULAR -> this.name
+            ContactContext.REGULAR -> name
             ContactContext.OPEN_GROUP -> {
                 // In open groups, where it's more likely that multiple users have the same name,
                 // we display a bit of the Session ID after a user's display name for added context.
-                this.name?.let {
-                    return "${this.name} (...${this.sessionID.takeLast(8)})"
+                name?.let {
+                    return "$name (...${sessionID.takeLast(8)})"
                 }
                 return null
             }

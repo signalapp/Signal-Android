@@ -10,7 +10,7 @@ Add the [F-Droid repo](https://fdroid.getsession.org/)
 
 Session integrates directly with [Oxen Service Nodes](https://docs.oxen.io/about-the-oxen-blockchain/oxen-service-nodes), which are a set of distributed, decentralized and Sybil resistant nodes. Service Nodes act as servers which store messages offline, and a set of nodes which allow for onion routing functionality obfuscating users' IP addresses. For a full understanding of how Session works, read the [Session Whitepaper](https://getsession.org/whitepaper).
 
-![AndroidSession](https://i.imgur.com/0YC9TyI.png)
+<img src="https://i.imgur.com/RSMrR1F.png" width="320" />
 
 ## Want to contribute? Found a bug or have a feature request?
 
@@ -20,33 +20,41 @@ Please search for any [existing issues](https://github.com/oxen-io/session-andro
 
 Build instructions can be found in [BUILDING.md](BUILDING.md).
 
-## Verifing signatures
+## Translations
 
-Get Kee's key and import it:
+Want to help us translate Session into your language? You can do so at https://crowdin.com/project/session-android!
+
+## Verifying signatures
+
+**Step 1:**
 
 ```
 wget https://raw.githubusercontent.com/oxen-io/oxen-core/master/utils/gpg_keys/KeeJef.asc
 gpg --import KeeJef.asc
 ```
 
-Get the signed hash for this release, the SESSION_VERSION needs to be updated for the release you want to verify
+**Step 2:**
+
+Get the signed hash for this release. `SESSION_VERSION` needs to be updated for the release you want to verify.
 
 ```
 export SESSION_VERSION=1.10.4
 wget https://github.com/oxen-io/session-android/releases/download/$SESSION_VERSION/signatures.asc
 ```
 
-Verify the signature of the hashes of the files
+**Step 3:**
+
+Verify the signature of the hashes of the files.
 
 ```
 gpg --verify signatures.asc 2>&1 |grep "Good signature from"
 ```
 
-The command above should print "`Good signature from "Kee Jefferys...`"
-If it does, the hashes are valid but we still have to make the sure the signed hashes matches the downloaded files.
+The command above should print "`Good signature from "Kee Jefferys...`". If it does, the hashes are valid but we still have to make the sure the signed hashes matches the downloaded files.
 
-Make sure the two commands below returns the same hash.
-If they do, files are valid.
+**Step 4:**
+
+Make sure the two commands below returns the same hash. If they do, files are valid.
 
 ```
 sha256sum session-$SESSION_VERSION-universal.apk
@@ -59,6 +67,6 @@ Copyright 2011 Whisper Systems
 
 Copyright 2013-2017 Open Whisper Systems
 
-Copyright 2019-2020 The Loki Project
+Copyright 2019-2021 The Loki Project
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
