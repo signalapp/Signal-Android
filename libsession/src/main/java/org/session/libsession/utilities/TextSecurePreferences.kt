@@ -99,20 +99,15 @@ object TextSecurePreferences {
 
     private const val GIF_GRID_LAYOUT = "pref_gif_grid_layout"
 
-    // region Limit open group polling
-
-    private const val LAST_TIME_SESSION_OPENED = "pref_last_time_session_open"
-    private const val OPEN_GROUP_POLLING_LIMIT = "pref_Open_group_polling_limit"
-
-    // region FCM
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
 
-    // region Multi Device
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
     const val CONFIGURATION_SYNCED = "pref_configuration_synced"
     private const val LAST_PROFILE_UPDATE_TIME = "pref_last_profile_update_time"
+
+    private const val LAST_OPEN_DATE = "pref_last_open_date"
 
     @JvmStatic
     fun getLastConfigurationSyncTime(context: Context): Long {
@@ -777,21 +772,11 @@ object TextSecurePreferences {
         setBooleanPreference(context, "has_performed_contact_migration", true)
     }
 
-    fun getLastTimeSessionOpened(context: Context): Long {
-        return getLongPreference(context!!, LAST_TIME_SESSION_OPENED, 0)
+    fun getLastOpenTimeDate(context: Context): Long {
+        return getLongPreference(context, LAST_OPEN_DATE, 0)
     }
 
-    fun setLastTimeSessionOpened(context: Context) {
-        setLongPreference(context, LAST_TIME_SESSION_OPENED, System.currentTimeMillis())
+    fun setLastOpenDate(context: Context) {
+        setLongPreference(context, LAST_OPEN_DATE, System.currentTimeMillis())
     }
-
-    fun isOpenGroupPollingLimit(context: Context): Boolean {
-        return getBooleanPreference(context, OPEN_GROUP_POLLING_LIMIT, false)
-    }
-
-    fun setOpenGroupPollingLimit(context: Context, limit: Boolean) {
-        setBooleanPreference(context, OPEN_GROUP_POLLING_LIMIT, limit)
-    }
-
-    // endregion
 }
