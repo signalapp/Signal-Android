@@ -20,6 +20,39 @@ Please search for any [existing issues](https://github.com/oxen-io/session-andro
 
 Build instructions can be found in [BUILDING.md](BUILDING.md).
 
+## Verifing signatures
+
+Get Kee's key and import it:
+
+```
+wget https://raw.githubusercontent.com/oxen-io/oxen-core/master/utils/gpg_keys/KeeJef.asc
+gpg --import KeeJef.asc
+```
+
+Get the signed hash for this release, the SESSION_VERSION needs to be updated for the release you want to verify
+
+```
+export SESSION_VERSION=1.10.4
+wget https://github.com/oxen-io/session-android/releases/download/$SESSION_VERSION/signatures.asc
+```
+
+Verify the signature of the hashes of the files
+
+```
+gpg --verify signatures.asc 2>&1 |grep "Good signature from"
+```
+
+The command above should print "`Good signature from "Kee Jefferys...`"
+If it does, the hashes are valid but we still have to make the sure the signed hashes matches the downloaded files.
+
+Make sure the two commands below returns the same hash.
+If they do, files are valid.
+
+```
+sha256sum session-$SESSION_VERSION-universal.apk
+grep universal.apk signatures.asc
+```
+
 ## License
 
 Copyright 2011 Whisper Systems
