@@ -44,7 +44,7 @@ class Contact(val sessionID: String) {
                 // In open groups, where it's more likely that multiple users have the same name,
                 // we display a bit of the Session ID after a user's display name for added context.
                 this.name?.let {
-                    return "${this.name}${this.sessionID.takeLast(8)}"
+                    return "${this.name} (...${this.sessionID.takeLast(8)})"
                 }
                 return null
             }

@@ -49,6 +49,8 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
+
+import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob;
 import org.session.libsession.messaging.jobs.JobQueue;
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2;
@@ -889,7 +891,15 @@ public class ConversationItem extends LinearLayout
   @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
-      String displayName = recipient.toShortString();
+      String sessionID = recipient.getAddress().serialize();
+      Contact contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(sessionID);
+      String displayName;
+      if (contact != null) {
+        Contact.ContactContext context = (this.conversationRecipient.isOpenGroupRecipient()) ? Contact.ContactContext.OPEN_GROUP : Contact.ContactContext.REGULAR;
+        displayName = contact.displayName(context);
+      } else {
+        displayName = sessionID;
+      }
 
       this.groupSender.setText(displayName);
 
