@@ -155,12 +155,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         broadcaster = new Broadcaster(this);
         threadNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-        String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         MessagingModuleConfiguration.Companion.configure(this,
             DatabaseFactory.getStorage(this),
             DatabaseFactory.getAttachmentProvider(this));
         SnodeModule.Companion.configure(apiDB, broadcaster);
-        resubmitProfilePictureIfNeeded();
+        String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         if (userPublicKey != null) {
             registerForFCMIfNeeded(false);
         }
@@ -175,6 +174,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         initializeJobManager();
         initializeWebRtc();
         initializeBlobProvider();
+        resubmitProfilePictureIfNeeded();
     }
 
     @Override
@@ -313,20 +313,19 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
     private void initializeJobManager() {
         this.jobManager = new JobManager(this, new JobManager.Configuration.Builder()
-                .setDataSerializer(new JsonDataSerializer())
-                .setJobFactories(JobManagerFactories.getJobFactories(this))
-                .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
-                .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
-                .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
-                .setDependencyInjector(this)
-                .build());
+            .setDataSerializer(new JsonDataSerializer())
+            .setJobFactories(JobManagerFactories.getJobFactories(this))
+            .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
+            .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
+            .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
+            .setDependencyInjector(this)
+            .build());
     }
 
     private void initializeDependencyInjection() {
         communicationModule = new SignalCommunicationModule(this);
         this.objectGraph = ObjectGraph.create(communicationModule);
     }
-
 
     private void initializeExpiringMessageManager() {
         this.expiringMessageManager = new ExpiringMessageManager(this);
@@ -349,7 +348,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     private void initializePeriodicTasks() {
-        BackgroundPollWorker.schedulePeriodic(this); // Loki
+        BackgroundPollWorker.schedulePeriodic(this);
 
         if (BuildConfig.PLAY_STORE_DISABLED) {
             UpdateApkRefreshListener.schedule(this);

@@ -373,8 +373,8 @@ object OnionRequestAPI {
         }
         val promise = deferred.promise
         promise.fail { exception ->
-            val path = paths.firstOrNull { it.contains(guardSnode) }
-            if (exception is HTTP.HTTPRequestFailedException) {
+            if (exception is HTTP.HTTPRequestFailedException && SnodeModule.isInitialized) {
+                val path = paths.firstOrNull { it.contains(guardSnode) }
                 fun handleUnspecificError() {
                     if (path == null) { return }
                     var pathFailureCount = OnionRequestAPI.pathFailureCount[path] ?: 0

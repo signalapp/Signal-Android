@@ -14,8 +14,8 @@ class MessagingModuleConfiguration(
         lateinit var shared: MessagingModuleConfiguration
 
         fun configure(context: Context,
-                      storage: StorageProtocol,
-                      messageDataProvider: MessageDataProvider
+            storage: StorageProtocol,
+            messageDataProvider: MessageDataProvider
         ) {
             if (Companion::shared.isInitialized) { return }
             shared = MessagingModuleConfiguration(context, storage, messageDataProvider)
