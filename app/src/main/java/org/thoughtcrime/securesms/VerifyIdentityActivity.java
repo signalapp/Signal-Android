@@ -420,11 +420,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
         } else {
           Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal, Toast.LENGTH_LONG).show();
         }
-      } catch (FingerprintParsingException e) {
+      } catch (Exception e) {
         Log.w(TAG, e);
         Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show();
-      } catch (UnsupportedEncodingException e) {
-        throw new AssertionError(e);
       }
     }
 
