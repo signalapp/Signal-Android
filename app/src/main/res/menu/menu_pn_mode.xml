@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Learn More"
+        android:title="@string/activity_path_learn_more_button_title"
         android:id="@+id/learnMoreButton"
         android:icon="@drawable/ic_info_outline_white_24dp"
         app:showAsAction="always" />

@@ -50,7 +50,7 @@
             style="@style/Signal.Text.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Session is Locked"
+            android:text="@string/activity_prompt_passphrase_session_locked"
             android:textStyle="bold"
             android:textSize="@dimen/large_font_size"
             android:textAlignment="center"
@@ -73,7 +73,6 @@
             android:id="@+id/lock_screen_auth_container"
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"
-            android:text="Tap to Unlock"/>
-
+            android:text="@string/activity_prompt_passphrase_tap_to_unlock"/>
     </LinearLayout>
 </RelativeLayout>

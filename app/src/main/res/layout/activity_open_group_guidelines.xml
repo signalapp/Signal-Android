@@ -18,7 +18,7 @@
             android:textSize="@dimen/large_font_size"
             android:textStyle="bold"
             android:textColor="@color/text"
-            android:text="Community Guidelines" />
+            android:text="@string/ConversationActivity_open_group_guidelines" />
 
         <TextView
             android:id="@+id/communityGuidelinesTextView"
