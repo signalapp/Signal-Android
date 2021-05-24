@@ -1,17 +1,21 @@
 package org.session.libsession.messaging.messages.visible
 
-import com.goterl.lazycode.lazysodium.BuildConfig
+import com.goterl.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.Log
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class Quote() {
     var timestamp: Long? = 0
     var publicKey: String? = null
     var text: String? = null
     var attachmentID: Long? = null
+
+    fun isValid(): Boolean {
+        return (timestamp != null && publicKey != null)
+    }
 
     companion object {
         const val TAG = "Quote"
@@ -24,12 +28,9 @@ class Quote() {
         }
 
         fun from(signalQuote: SignalQuote?): Quote? {
-            return if (signalQuote == null) {
-                null
-            } else {
-                val attachmentID = (signalQuote.attachments?.firstOrNull() as? DatabaseAttachment)?.attachmentId?.rowId
-                Quote(signalQuote.id, signalQuote.author.serialize(), signalQuote.text, attachmentID)
-            }
+            if (signalQuote == null) { return null }
+            val attachmentID = (signalQuote.attachments?.firstOrNull() as? DatabaseAttachment)?.attachmentId?.rowId
+            return Quote(signalQuote.id, signalQuote.author.serialize(), signalQuote.text, attachmentID)
         }
     }
 
@@ -38,10 +39,6 @@ class Quote() {
         this.publicKey = publicKey
         this.text = text
         this.attachmentID = attachmentID
-    }
-
-    fun isValid(): Boolean {
-        return (timestamp != null && publicKey != null)
     }
 
     fun toProto(): SignalServiceProtos.DataMessage.Quote? {
@@ -54,7 +51,7 @@ class Quote() {
         val quoteProto = SignalServiceProtos.DataMessage.Quote.newBuilder()
         quoteProto.id = timestamp
         quoteProto.author = publicKey
-        text?.let { quoteProto.text = text }
+        text?.let { quoteProto.text = it }
         addAttachmentsIfNeeded(quoteProto)
         // Build
         try {
@@ -66,23 +63,23 @@ class Quote() {
     }
 
     private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
-        if (attachmentID == null) return
-        val attachment = MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID!!)
-        if (attachment == null) {
+        val attachmentID = attachmentID ?: return
+        val database = MessagingModuleConfiguration.shared.messageDataProvider
+        val pointer = database.getSignalAttachmentPointer(attachmentID)
+        if (pointer == null) {
             Log.w(TAG, "Ignoring invalid attachment for quoted message.")
             return
         }
-        if (attachment.url.isNullOrEmpty()) {
+        if (pointer.url.isNullOrEmpty()) {
             if (BuildConfig.DEBUG) {
-                //TODO equivalent to iOS's preconditionFailure
-                Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
+                Log.w(TAG,"Sending a message before all associated attachments have been uploaded.")
                 return
             }
         }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
-        quotedAttachmentProto.contentType = attachment.contentType
-        if (attachment.fileName.isPresent) quotedAttachmentProto.fileName = attachment.fileName.get()
-        quotedAttachmentProto.thumbnail = Attachment.createAttachmentPointer(attachment)
+        quotedAttachmentProto.contentType = pointer.contentType
+        if (pointer.fileName.isPresent) { quotedAttachmentProto.fileName = pointer.fileName.get() }
+        quotedAttachmentProto.thumbnail = Attachment.createAttachmentPointer(pointer)
         try {
             quoteProto.addAttachments(quotedAttachmentProto.build())
         } catch (e: Exception) {

@@ -1,9 +1,10 @@
 package org.session.libsession.messaging.messages
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.open_groups.OpenGroupV2
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.toHexString
 
 sealed class Destination {
 
@@ -13,11 +14,12 @@ sealed class Destination {
     class ClosedGroup(var groupPublicKey: String) : Destination() {
         internal constructor(): this("")
     }
-    class OpenGroup(var channel: Long, var server: String) : Destination() {
-        internal constructor(): this(0, "")
+    class OpenGroupV2(var room: String, var server: String) : Destination() {
+        internal constructor(): this("", "")
     }
 
     companion object {
+
         fun from(address: Address): Destination {
             return when {
                 address.isContact -> {
@@ -29,9 +31,13 @@ sealed class Destination {
                     ClosedGroup(groupPublicKey)
                 }
                 address.isOpenGroup -> {
-                    val threadID = MessagingModuleConfiguration.shared.storage.getThreadID(address.contactIdentifier())!!
-                    val openGroup = MessagingModuleConfiguration.shared.storage.getOpenGroup(threadID)!!
-                    OpenGroup(openGroup.channel, openGroup.server)
+                    val storage = MessagingModuleConfiguration.shared.storage
+                    val threadID = storage.getThreadId(address)!!
+                    when (val openGroup = storage.getV2OpenGroup(threadID)) {
+                        is org.session.libsession.messaging.open_groups.OpenGroupV2
+                            -> Destination.OpenGroupV2(openGroup.room, openGroup.server)
+                        else -> throw Exception("Missing open group for thread with ID: $threadID.")
+                    }
                 }
                 else -> {
                     throw Exception("TODO: Handle legacy closed groups.")

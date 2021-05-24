@@ -6,21 +6,20 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
-import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.*
-import org.session.libsignal.service.loki.Snode
-import org.session.libsignal.service.loki.*
+import org.session.libsignal.utilities.Snode
 import org.session.libsession.utilities.AESGCM.EncryptionResult
-import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsession.utilities.getBodyForOnionRequest
 import org.session.libsession.utilities.getHeadersForOnionRequest
-import org.session.libsignal.service.loki.Broadcaster
-import org.session.libsignal.service.loki.HTTP
-import org.session.libsignal.service.loki.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.crypto.getRandomElement
+import org.session.libsignal.crypto.getRandomElementOrNull
+import org.session.libsignal.utilities.Broadcaster
+import org.session.libsignal.utilities.HTTP
+import org.session.libsignal.database.LokiAPIDatabaseProtocol
 
 private typealias Path = List<Snode>
 
@@ -54,11 +53,11 @@ object OnionRequestAPI {
     /**
      * The number of times a path can fail before it's replaced.
      */
-    private const val pathFailureThreshold = 1
+    private const val pathFailureThreshold = 3
     /**
      * The number of times a snode can fail before it's replaced.
      */
-    private const val snodeFailureThreshold = 1
+    private const val snodeFailureThreshold = 3
     /**
      * The number of guard snodes required to maintain `targetPathCount` paths.
      */
@@ -75,14 +74,14 @@ object OnionRequestAPI {
     class InsufficientSnodesException : Exception("Couldn't find enough snodes to build a path.")
 
     private data class OnionBuildingResult(
-        val guardSnode: Snode,
-        val finalEncryptionResult: EncryptionResult,
-        val destinationSymmetricKey: ByteArray
+            val guardSnode: Snode,
+            val finalEncryptionResult: EncryptionResult,
+            val destinationSymmetricKey: ByteArray
     )
 
     internal sealed class Destination {
-        class Snode(val snode: org.session.libsignal.service.loki.Snode) : Destination()
-        class Server(val host: String, val target: String, val x25519PublicKey: String) : Destination()
+        class Snode(val snode: org.session.libsignal.utilities.Snode) : Destination()
+        class Server(val host: String, val target: String, val x25519PublicKey: String, val scheme: String, val port: Int) : Destination()
     }
 
     // region Private API
@@ -94,7 +93,7 @@ object OnionRequestAPI {
         ThreadUtils.queue { // No need to block the shared context for this
             val url = "${snode.address}:${snode.port}/get_stats/v1"
             try {
-                val json = HTTP.execute(HTTP.Verb.GET, url)
+                val json = HTTP.execute(HTTP.Verb.GET, url, 3)
                 val version = json["version"] as? String
                 if (version == null) { deferred.reject(Exception("Missing snode version.")); return@queue }
                 if (version >= "2.0.7") {
@@ -308,7 +307,7 @@ object OnionRequestAPI {
             val url = "${guardSnode.address}:${guardSnode.port}/onion_req/v2"
             val finalEncryptionResult = result.finalEncryptionResult
             val onion = finalEncryptionResult.ciphertext
-            if (destination is Destination.Server && onion.count().toDouble() > 0.75 * FileServerAPI.maxFileSize.toDouble()) {
+            if (destination is Destination.Server && onion.count().toDouble() > 0.75 * FileServerAPIV2.maxFileSize.toDouble()) {
                 Log.d("Loki", "Approaching request size limit: ~${onion.count()} bytes.")
             }
             @Suppress("NAME_SHADOWING") val parameters = mapOf(
@@ -330,7 +329,7 @@ object OnionRequestAPI {
                         val plaintext = AESGCM.decrypt(ivAndCiphertext, destinationSymmetricKey)
                         try {
                             @Suppress("NAME_SHADOWING") val json = JsonUtil.fromJson(plaintext.toString(Charsets.UTF_8), Map::class.java)
-                            val statusCode = json["status"] as Int
+                            val statusCode = json["status_code"] as? Int ?: json["status"] as Int
                             if (statusCode == 406) {
                                 @Suppress("NAME_SHADOWING") val body = mapOf( "result" to "Your clock is out of sync with the service node network." )
                                 val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
@@ -454,7 +453,7 @@ object OnionRequestAPI {
         val urlAsString = url.toString()
         val host = url.host()
         val endpoint = when {
-            server.count() < urlAsString.count() -> urlAsString.substringAfter("$server/")
+            server.count() < urlAsString.count() -> urlAsString.substringAfter(server).removePrefix("/")
             else -> ""
         }
         val body = request.getBodyForOnionRequest() ?: "null"
@@ -464,7 +463,7 @@ object OnionRequestAPI {
             "method" to request.method(),
             "headers" to headers
         )
-        val destination = Destination.Server(host, target, x25519PublicKey)
+        val destination = Destination.Server(host, target, x25519PublicKey, url.scheme(), url.port())
         return sendOnionRequest(destination, payload, isJSONRequired).recover { exception ->
             Log.d("Loki", "Couldn't reach server: $urlAsString due to error: $exception.")
             throw exception

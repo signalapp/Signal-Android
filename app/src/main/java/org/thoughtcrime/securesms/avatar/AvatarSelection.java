@@ -16,9 +16,9 @@ import androidx.core.content.ContextCompat;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
-import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
+import org.session.libsignal.utilities.NoExternalStorageException;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.IntentUtils;
 

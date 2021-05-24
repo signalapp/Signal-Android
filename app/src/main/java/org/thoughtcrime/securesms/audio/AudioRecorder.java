@@ -8,7 +8,7 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -16,8 +16,8 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 import org.session.libsignal.utilities.ThreadUtils;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.utilities.concurrent.ListenableFuture;
-import org.session.libsignal.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.ListenableFuture;
+import org.session.libsignal.utilities.SettableFuture;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;

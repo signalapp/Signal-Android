@@ -3,7 +3,6 @@ package org.session.libsignal.utilities
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsignal.utilities.logging.Log
 import java.util.concurrent.TimeoutException
 
 fun <V, E : Throwable> Promise<V, E>.get(defaultValue: V): V {

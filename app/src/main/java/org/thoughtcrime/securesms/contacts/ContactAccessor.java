@@ -29,7 +29,7 @@ import java.util.List;
 
 import network.loki.messenger.R;
 
-import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 /**

@@ -1,22 +1,14 @@
 package org.session.libsignal.utilities;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.SerializerProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.session.libsignal.libsignal.IdentityKey;
-import org.session.libsignal.libsignal.InvalidKeyException;
-import org.session.libsignal.utilities.logging.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +31,10 @@ public class JsonUtil {
   }
 
   public static <T> T fromJson(String serialized, Class<T> clazz) throws IOException {
+    return objectMapper.readValue(serialized, clazz);
+  }
+
+  public static<T> T fromJson(String serialized, JavaType clazz) throws IOException {
     return objectMapper.readValue(serialized, clazz);
   }
 

@@ -34,13 +34,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.session.libsession.utilities.ServiceUtil;
 
 import org.session.libsession.utilities.Util;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;

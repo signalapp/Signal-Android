@@ -1,15 +1,25 @@
 package org.session.libsession.snode
 
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
 
 data class SnodeMessage(
-    // The hex encoded public key of the recipient.
+    /**
+     * The hex encoded public key of the recipient.
+     */
     val recipient: String,
-    // The content of the message.
+    /**
+     * The content of the message.
+     */
     val data: String,
-    // The time to live for the message in milliseconds.
+    /**
+     * The time to live for the message in milliseconds.
+     */
     val ttl: Long,
-    // When the proof of work was calculated.
+    /**
+     * When the proof of work was calculated.
+     *
+     * **Note:** Expressed as milliseconds since 00:00:00 UTC on 1 January 1970.
+     */
     val timestamp: Long
 ) {
 

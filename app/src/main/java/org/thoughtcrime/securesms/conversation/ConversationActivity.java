@@ -77,27 +77,46 @@ import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.annimon.stream.Stream;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-
 import org.session.libsession.messaging.mentions.MentionsManager;
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.open_groups.OpenGroup;
+import org.session.libsession.messaging.open_groups.OpenGroupV2;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.threads.DistributionTypes;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.utilities.Contact;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientFormattingException;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
+import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.Mention;
-import org.session.libsignal.service.loki.utilities.HexEncodingKt;
-import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
+import org.session.libsession.utilities.ServiceUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
+import org.session.libsession.utilities.Stub;
+import org.session.libsignal.exceptions.InvalidMessageException;
+import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsession.messaging.mentions.Mention;
+import org.session.libsignal.utilities.HexEncodingKt;
+import org.session.libsignal.utilities.PublicKeyValidation;
+import org.session.libsignal.utilities.ListenableFuture;
+import org.session.libsignal.utilities.SettableFuture;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.MediaOverviewActivity;
@@ -121,7 +140,6 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -135,9 +153,9 @@ import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
-import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity;
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -158,8 +176,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
-import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -168,32 +184,12 @@ import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
-import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
-import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
-import org.session.libsession.utilities.ServiceUtil;
-import org.session.libsession.utilities.Util;
-
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.utilities.ExpirationUtil;
-import org.session.libsession.utilities.views.Stub;
-import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
-import org.session.libsignal.utilities.concurrent.ListenableFuture;
-import org.session.libsignal.utilities.concurrent.SettableFuture;
-import org.session.libsession.utilities.TextSecurePreferences;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -204,7 +200,6 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import kotlin.Unit;
 import network.loki.messenger.R;
 
@@ -251,11 +246,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_GIF            = 10;
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
+  private static final int INVITE_CONTACTS     = 124;
 
   private GlideRequests glideRequests;
   protected ComposeText                 composeText;
   private   AnimatingToggle             buttonToggle;
-  private   ImageButton                  sendButton;
+  private   ImageButton                 sendButton;
   private   ImageButton                 attachButton;
   private   ProfilePictureView          profilePictureView;
   private   TextView                    titleTextView;
@@ -376,10 +372,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
 
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
-    if (publicChat != null) {
-      // Request open group info update and handle the successful result in #onOpenGroupInfoUpdated().
-      PublicChatInfoUpdateWorker.scheduleInstant(this, publicChat.getServer(), publicChat.getChannel());
+    OpenGroupV2 openGroupV2 = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
+    if (openGroupV2 != null) {
+      PublicChatInfoUpdateWorker.scheduleInstant(this, openGroupV2.getServer(), openGroupV2.getRoom());
+      if (openGroupV2.getRoom().equals("session") || openGroupV2.getRoom().equals("oxen")
+          || openGroupV2.getRoom().equals("lokinet") || openGroupV2.getRoom().equals("crypto")) {
+        View openGroupGuidelinesView = findViewById(R.id.open_group_guidelines_view);
+        openGroupGuidelinesView.setVisibility(View.VISIBLE);
+      }
     }
 
     View rootView = findViewById(R.id.rootView);
@@ -592,6 +592,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       });
 
       break;
+    case INVITE_CONTACTS:
+      if (data.getExtras() == null || !data.hasExtra(SelectContactsActivity.Companion.getSelectedContactsKey())) return;
+        String[] selectedContacts = data.getExtras().getStringArray(SelectContactsActivity.Companion.getSelectedContactsKey());
+        sendOpenGroupInvitations(selectedContacts);
+      break;
     }
   }
 
@@ -654,6 +659,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
+    } else if (isOpenGroupOrRSSFeed) {
+      inflater.inflate(R.menu.conversation_invite_open_group, menu);
     }
 
     inflater.inflate(R.menu.conversation, menu);
@@ -762,6 +769,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 //    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
+    case R.id.menu_invite_to_open_group:      handleInviteToOpenGroup();                         return true;
     case android.R.id.home:                   handleReturnToConversationList();                  return true;
     }
 
@@ -1030,6 +1038,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivity(intent);
   }
 
+  private void handleInviteToOpenGroup() {
+    Intent intent = new Intent(this, SelectContactsActivity.class);
+    startActivityForResult(intent, INVITE_CONTACTS);
+  }
+
   private void handleDistributionBroadcastEnabled(MenuItem item) {
     distributionType = DistributionTypes.BROADCAST;
     item.setChecked(true);
@@ -1083,8 +1096,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     this.isSecurityInitialized = true;
 
     if (recipient == null || attachmentManager == null) { return; }
-
-    boolean isMediaMessage = recipient.isMmsGroupRecipient() || attachmentManager.isAttachmentPresent();
 
     /* Loki - We don't support SMS
     if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);
@@ -1399,10 +1410,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onOpenGroupInfoUpdated(OpenGroupUtilities.GroupInfoUpdatedEvent event) {
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
-    if (publicChat != null &&
-            publicChat.getChannel() == event.getChannel() &&
-            publicChat.getServer().equals(event.getUrl())) {
+    OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
+    if (openGroup != null &&
+            openGroup.getRoom().equals(event.getRoom()) &&
+            openGroup.getServer().equals(event.getUrl())) {
       this.updateSubtitleTextView();
     }
   }
@@ -1721,7 +1732,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = message.length() > characterCalculator.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent()        ||
-                                       recipient.isGroupRecipient()                   ||
+//                                       recipient.isGroupRecipient()                   ||
                                        inputPanel.getQuote().isPresent()              ||
                                        linkPreviewViewModel.hasLinkPreview()          ||
                                        LinkPreviewUtil.isValidMediaUrl(message) || // Loki - Send GIFs as media messages
@@ -1829,6 +1840,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MessageSender.send(message, recipient.getAddress());
 
     sendComplete(allocatedThreadId);
+  }
+
+  private void sendOpenGroupInvitations(String[] contactIDs) {
+    final Context context = getApplicationContext();
+    OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadId);
+    for (String contactID : contactIDs) {
+      Recipient recipient = Recipient.from(context, Address.fromSerialized(contactID), true);
+      VisibleMessage message = new VisibleMessage();
+      message.setSentTimestamp(System.currentTimeMillis());
+      OpenGroupInvitation openGroupInvitationMessage = new OpenGroupInvitation();
+      openGroupInvitationMessage.setName(openGroup.getName());
+      openGroupInvitationMessage.setUrl(openGroup.getJoinURL());
+      message.setOpenGroupInvitation(openGroupInvitationMessage);
+      OutgoingTextMessage outgoingTextMessage = OutgoingTextMessage.fromOpenGroupInvitation(openGroupInvitationMessage, recipient, message.getSentTimestamp());
+      DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(-1, outgoingTextMessage, message.getSentTimestamp());
+      MessageSender.send(message, recipient.getAddress());
+    }
   }
 
   private void updateToggleButtonState() {
@@ -2337,9 +2365,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
-      OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
-      if (publicChat != null) {
-        Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
+      OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadId);
+      if (openGroup != null) {
+        Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(openGroup.getRoom(),openGroup.getServer());
         if (userCount == null) { userCount = 0; }
         subtitleTextView.setText(userCount + " members");
       } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {

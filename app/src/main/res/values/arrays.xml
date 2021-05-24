@@ -119,17 +119,7 @@
       <item>vi</item>
   </string-array>
 
-    <string-array name="pref_theme_entries">
-      <item>@string/preferences__light_theme</item>
-      <item>@string/preferences__dark_theme</item>
-  </string-array>
-
-  <string-array name="pref_theme_values" translatable="false">
-      <item>light</item>
-      <item>dark</item>
-  </string-array>
-
-  <string-array name="pref_led_color_entries">
+    <string-array name="pref_led_color_entries">
     <item>@string/preferences__green</item>
     <item>@string/preferences__red</item>
     <item>@string/preferences__blue</item>
@@ -200,19 +190,7 @@
       <item>@string/arrays__mute_for_one_year</item>
   </string-array>
 
-  <string-array name="recipient_vibrate_entries">
-      <item>@string/arrays__settings_default</item>
-      <item>@string/arrays__enabled</item>
-      <item>@string/arrays__disabled</item>
-  </string-array>
-
-  <string-array name="recipient_vibrate_values">
-      <item>0</item>
-      <item>1</item>
-      <item>2</item>
-  </string-array>
-
-  <string-array name="pref_notification_privacy_entries">
+    <string-array name="pref_notification_privacy_entries">
       <item>@string/arrays__name_and_message</item>
       <item>@string/arrays__name_only</item>
       <item>@string/arrays__no_name_or_message</item>
@@ -225,33 +203,6 @@
   </string-array>
 
   <!-- discrete MIME type (the part before the "/") -->
-  <string-array name="pref_media_download_entries">
-      <item>image</item>
-      <item>audio</item>
-      <item>video</item>
-      <item>documents</item>
-  </string-array>
-
-  <string-array name="pref_media_download_values">
-      <item>@string/arrays__images</item>
-      <item>@string/arrays__audio</item>
-      <item>@string/arrays__video</item>
-      <item>@string/arrays__documents</item>
-  </string-array>
-
-  <string-array name="pref_media_download_mobile_data_default">
-      <item>image</item>
-      <item>audio</item>
-  </string-array>
-
-  <string-array name="pref_media_download_wifi_default">
-      <item>image</item>
-      <item>audio</item>
-      <item>video</item>
-      <item>documents</item>
-  </string-array>
-
-  <string-array name="pref_media_download_roaming_default" />
 
     <!-- RedPhone -->
 
@@ -281,20 +232,6 @@
         <item>#ff5500</item>
         <item>#000000</item>
     </array>
-
-    <string-array name="pref_message_font_size_entries">
-        <item>@string/arrays__small</item>
-        <item>@string/arrays__normal</item>
-        <item>@string/arrays__large</item>
-        <item>@string/arrays__extra_large</item>
-    </string-array>
-
-    <string-array name="pref_message_font_size_values">
-        <item>13</item>
-        <item>16</item>
-        <item>20</item>
-        <item>30</item>
-    </string-array>
 
     <string-array name="pref_notification_priority_entries">
         <item>@string/arrays__default</item>

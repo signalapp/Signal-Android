@@ -2,23 +2,24 @@ package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
-import org.session.libsignal.libsignal.ecc.DjbECPublicKey
-import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
-import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.crypto.ecc.DjbECPrivateKey
+import org.session.libsignal.crypto.ecc.DjbECPublicKey
+import org.session.libsignal.crypto.ecc.ECKeyPair
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.protos.SignalServiceProtos.DataMessage
+import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 
 class ClosedGroupControlMessage() : ControlMessage() {
+    var kind: Kind? = null
 
-    override val ttl: Long = run {
-        when (kind) {
+    override val ttl: Long get() {
+        return when (kind) {
             is Kind.EncryptionKeyPair -> 14 * 24 * 60 * 60 * 1000
             else -> 14 * 24 * 60 * 60 * 1000
         }
@@ -26,31 +27,46 @@ class ClosedGroupControlMessage() : ControlMessage() {
 
     override val isSelfSendValid: Boolean = true
 
-    var kind: Kind? = null
+    override fun isValid(): Boolean {
+        val kind = kind
+        if (!super.isValid() || kind == null) return false
+        return when (kind) {
+            is Kind.New -> {
+                !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair?.publicKey != null
+                    && kind.encryptionKeyPair?.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
+            }
+            is Kind.EncryptionKeyPair -> true
+            is Kind.NameChange -> kind.name.isNotEmpty()
+            is Kind.MembersAdded -> kind.members.isNotEmpty()
+            is Kind.MembersRemoved -> kind.members.isNotEmpty()
+            is Kind.MemberLeft -> true
+        }
+    }
 
     sealed class Kind {
         class New(var publicKey: ByteString, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<ByteString>, var admins: List<ByteString>) : Kind() {
-            internal constructor(): this(ByteString.EMPTY, "", null, listOf(), listOf())
+            internal constructor() : this(ByteString.EMPTY, "", null, listOf(), listOf())
         }
-        /// An encryption key pair encrypted for each member individually.
-        ///
-        /// - Note: `publicKey` is only set when an encryption key pair is sent in a one-to-one context (i.e. not in a group).
+        /** An encryption key pair encrypted for each member individually.
+         *
+         * **Note:** `publicKey` is only set when an encryption key pair is sent in a one-to-one context (i.e. not in a group).
+         */
         class EncryptionKeyPair(var publicKey: ByteString?, var wrappers: Collection<KeyPairWrapper>) : Kind() {
-            internal constructor(): this(null, listOf())
+            internal constructor() : this(null, listOf())
         }
         class NameChange(var name: String) : Kind() {
-            internal constructor(): this("")
+            internal constructor() : this("")
         }
         class MembersAdded(var members: List<ByteString>) : Kind() {
-            internal constructor(): this(listOf())
+            internal constructor() : this(listOf())
         }
         class MembersRemoved(var members: List<ByteString>) : Kind() {
-            internal constructor(): this(listOf())
+            internal constructor() : this(listOf())
         }
         class MemberLeft() : Kind()
 
         val description: String =
-            when(this) {
+            when (this) {
                 is New -> "new"
                 is EncryptionKeyPair -> "encryptionKeyPair"
                 is NameChange -> "nameChange"
@@ -65,18 +81,19 @@ class ClosedGroupControlMessage() : ControlMessage() {
 
         fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupControlMessage? {
             if (!proto.hasDataMessage() || !proto.dataMessage.hasClosedGroupControlMessage()) return null
-            val closedGroupControlMessageProto = proto.dataMessage?.closedGroupControlMessage!!
+            val closedGroupControlMessageProto = proto.dataMessage!!.closedGroupControlMessage!!
             val kind: Kind
-            when (closedGroupControlMessageProto.type) {
+            when (closedGroupControlMessageProto.type!!) {
                 DataMessage.ClosedGroupControlMessage.Type.NEW -> {
                     val publicKey = closedGroupControlMessageProto.publicKey ?: return null
                     val name = closedGroupControlMessageProto.name ?: return null
                     val encryptionKeyPairAsProto = closedGroupControlMessageProto.encryptionKeyPair ?: return null
                     try {
-                        val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray()), DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
+                        val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray()),
+                            DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                         kind = Kind.New(publicKey, name, encryptionKeyPair, closedGroupControlMessageProto.membersList, closedGroupControlMessageProto.adminsList)
                     } catch (e: Exception) {
-                        Log.w(TAG, "Couldn't parse key pair")
+                        Log.w(TAG, "Couldn't parse key pair from proto: $encryptionKeyPairAsProto.")
                         return null
                     }
                 }
@@ -107,26 +124,10 @@ class ClosedGroupControlMessage() : ControlMessage() {
         this.kind = kind
     }
 
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
-        val kind = kind ?: return false
-        return when(kind) {
-            is Kind.New -> {
-                !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair!!.publicKey != null
-                    && kind.encryptionKeyPair!!.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
-            }
-            is Kind.EncryptionKeyPair -> true
-            is Kind.NameChange -> kind.name.isNotEmpty()
-            is Kind.MembersAdded -> kind.members.isNotEmpty()
-            is Kind.MembersRemoved -> kind.members.isNotEmpty()
-            is Kind.MemberLeft -> true
-        }
-    }
-
     override fun toProto(): SignalServiceProtos.Content? {
         val kind = kind
         if (kind == null) {
-            Log.w(TAG, "Couldn't construct closed group update proto from: $this")
+            Log.w(TAG, "Couldn't construct closed group control message proto from: $this.")
             return null
         }
         try {
@@ -176,7 +177,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()
         } catch (e: Exception) {
-            Log.w(TAG, "Couldn't construct closed group update proto from: $this")
+            Log.w(TAG, "Couldn't construct closed group control message proto from: $this.")
             return null
         }
     }
@@ -188,6 +189,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
         }
 
         companion object {
+
             fun fromProto(proto: DataMessage.ClosedGroupControlMessage.KeyPairWrapper): KeyPairWrapper {
                 return KeyPairWrapper(proto.publicKey.toByteArray().toHexString(), proto.encryptedKeyPair)
             }
@@ -199,7 +201,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
             val result = DataMessage.ClosedGroupControlMessage.KeyPairWrapper.newBuilder()
             result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.encryptedKeyPair = encryptedKeyPair
-
             return try {
                 result.build()
             } catch (e: Exception) {

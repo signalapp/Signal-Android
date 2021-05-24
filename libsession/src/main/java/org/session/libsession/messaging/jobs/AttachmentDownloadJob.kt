@@ -1,16 +1,18 @@
 package org.session.libsession.messaging.jobs
 
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
-import org.session.libsession.messaging.utilities.DotNetAPI
-import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
+import org.session.libsession.messaging.utilities.Data
+import org.session.libsession.utilities.DownloadUtilities
+import org.session.libsignal.streams.AttachmentCipherInputStream
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import java.io.File
 import java.io.FileInputStream
 
-class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long): Job {
+class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -22,42 +24,50 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
 
     // Settings
     override val maxFailureCount: Int = 20
+
     companion object {
         val KEY: String = "AttachmentDownloadJob"
 
         // Keys used for database storage
-        private val KEY_ATTACHMENT_ID = "attachment_id"
-        private val KEY_TS_INCOMING_MESSAGE_ID = "tsIncoming_message_id"
+        private val ATTACHMENT_ID_KEY = "attachment_id"
+        private val TS_INCOMING_MESSAGE_ID_KEY = "tsIncoming_message_id"
     }
 
     override fun execute() {
+        val storage = MessagingModuleConfiguration.shared.storage
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val handleFailure: (java.lang.Exception) -> Unit = { exception ->
             if (exception == Error.NoAttachment) {
-                MessagingModuleConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
-                this.handlePermanentFailure(exception)
-            } else if (exception == DotNetAPI.Error.ParsingFailed) {
-                // No need to retry if the response is invalid. Most likely this means we (incorrectly)
-                // got a "Cannot GET ..." error from the file server.
-                MessagingModuleConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
                 this.handlePermanentFailure(exception)
             } else {
                 this.handleFailure(exception)
             }
         }
         try {
-            val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
-            val attachment = messageDataProvider.getDatabaseAttachment(attachmentID) ?: return handleFailure(Error.NoAttachment)
+            val attachment = messageDataProvider.getDatabaseAttachment(attachmentID)
+                ?: return handleFailure(Error.NoAttachment)
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
             val tempFile = createTempFile()
-
-            FileServerAPI.shared.downloadFile(tempFile, attachment.url, null)
-
-            // Assume we're retrieving an attachment for an open group server if the digest is not set
-            val stream = if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) FileInputStream(tempFile)
-            else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
-
-            messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)
-
+            val threadID = storage.getThreadIdForMms(databaseMessageID)
+            val openGroupV2 = storage.getV2OpenGroup(threadID)
+            val inputStream = if (openGroupV2 == null) {
+                DownloadUtilities.downloadFile(tempFile, attachment.url)
+                // Assume we're retrieving an attachment for an open group server if the digest is not set
+                if (attachment.digest?.size ?: 0 == 0 || attachment.key.isNullOrEmpty()) {
+                    FileInputStream(tempFile)
+                } else {
+                    AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
+                }
+            } else {
+                val url = HttpUrl.parse(attachment.url)!!
+                val fileID = url.pathSegments().last()
+                OpenGroupAPIV2.download(fileID.toLong(), openGroupV2.room, openGroupV2.server).get().let {
+                    tempFile.writeBytes(it)
+                }
+                FileInputStream(tempFile)
+            }
+            messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, inputStream)
             tempFile.delete()
             handleSuccess()
         } catch (e: Exception) {
@@ -85,8 +95,9 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     override fun serialize(): Data {
-        return Data.Builder().putLong(KEY_ATTACHMENT_ID, attachmentID)
-            .putLong(KEY_TS_INCOMING_MESSAGE_ID, databaseMessageID)
+        return Data.Builder()
+            .putLong(ATTACHMENT_ID_KEY, attachmentID)
+            .putLong(TS_INCOMING_MESSAGE_ID_KEY, databaseMessageID)
             .build();
     }
 
@@ -94,10 +105,10 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         return KEY
     }
 
-    class Factory: Job.Factory<AttachmentDownloadJob> {
+    class Factory : Job.Factory<AttachmentDownloadJob> {
 
         override fun create(data: Data): AttachmentDownloadJob {
-            return AttachmentDownloadJob(data.getLong(KEY_ATTACHMENT_ID), data.getLong(KEY_TS_INCOMING_MESSAGE_ID))
+            return AttachmentDownloadJob(data.getLong(ATTACHMENT_ID_KEY), data.getLong(TS_INCOMING_MESSAGE_ID_KEY))
         }
     }
 }

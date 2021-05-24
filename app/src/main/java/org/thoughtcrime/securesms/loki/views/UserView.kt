@@ -11,7 +11,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.recipients.Recipient
 
 class UserView : LinearLayout {
     var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly
@@ -52,11 +52,7 @@ class UserView : LinearLayout {
             if (publicKey == null || publicKey.isBlank()) {
                 return null
             } else {
-                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(openGroupThreadID)
-                if (result == null && publicChat != null) {
-                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
-                }
+                val result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
                 return result ?: publicKey
             }
         }

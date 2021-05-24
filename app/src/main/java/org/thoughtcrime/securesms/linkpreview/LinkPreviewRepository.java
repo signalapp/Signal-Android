@@ -13,14 +13,13 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
@@ -47,8 +46,6 @@ public class LinkPreviewRepository implements InjectableType {
   private static final CacheControl NO_CACHE = new CacheControl.Builder().noCache().build();
 
   private final OkHttpClient client;
-
-  @Inject SignalServiceMessageReceiver messageReceiver;
 
   public LinkPreviewRepository(@NonNull Context context) {
     this.client = new OkHttpClient.Builder()

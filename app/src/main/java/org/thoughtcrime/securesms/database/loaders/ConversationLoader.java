@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
-import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.utilities.Pair;
 
 public class ConversationLoader extends AbstractCursorLoader {
   private final long    threadId;

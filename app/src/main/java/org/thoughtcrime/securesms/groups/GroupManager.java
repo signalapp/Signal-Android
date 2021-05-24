@@ -6,9 +6,9 @@ import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.DistributionTypes;
-import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 
@@ -69,10 +69,6 @@ public class GroupManager {
     final GroupDatabase  groupDatabase  = DatabaseFactory.getGroupDatabase(context);
     final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     final Recipient      groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), false);
-
-    if (!groupDatabase.getGroup(groupId).isPresent()) {
-      return false;
-    }
 
     long threadId = threadDatabase.getThreadIdIfExistsFor(groupRecipient);
     if (threadId != -1L) {

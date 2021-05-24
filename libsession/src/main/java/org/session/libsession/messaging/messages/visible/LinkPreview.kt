@@ -2,13 +2,17 @@ package org.session.libsession.messaging.messages.visible
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreiview
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.protos.SignalServiceProtos
 
 class LinkPreview() {
     var title: String? = null
     var url: String? = null
     var attachmentID: Long? = 0
+
+    fun isValid(): Boolean {
+        return (title != null && url != null && attachmentID != null)
+    }
 
     companion object {
         const val TAG = "LinkPreview"
@@ -20,11 +24,8 @@ class LinkPreview() {
         }
 
         fun from(signalLinkPreview: SignalLinkPreiview?): LinkPreview? {
-            return if (signalLinkPreview == null) {
-                null
-            } else {
-                LinkPreview(signalLinkPreview.title, signalLinkPreview.url, signalLinkPreview.attachmentId?.rowId)
-            }
+            if (signalLinkPreview == null) { return null }
+            return LinkPreview(signalLinkPreview.title, signalLinkPreview.url, signalLinkPreview.attachmentId?.rowId)
         }
     }
 
@@ -32,10 +33,6 @@ class LinkPreview() {
         this.title = title
         this.url = url
         this.attachmentID = attachmentID
-    }
-
-    fun isValid(): Boolean {
-        return (title != null && url != null && attachmentID != null)
     }
 
     fun toProto(): SignalServiceProtos.DataMessage.Preview? {
@@ -46,10 +43,10 @@ class LinkPreview() {
         }
         val linkPreviewProto = SignalServiceProtos.DataMessage.Preview.newBuilder()
         linkPreviewProto.url = url
-        title?.let { linkPreviewProto.title = title }
-        val attachmentID = attachmentID
+        title?.let { linkPreviewProto.title = it }
+        val database = MessagingModuleConfiguration.shared.messageDataProvider
         attachmentID?.let {
-            MessagingModuleConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(attachmentID)?.let {
+            database.getSignalAttachmentPointer(it)?.let {
                 val attachmentProto = Attachment.createAttachmentPointer(it)
                 linkPreviewProto.image = attachmentProto
             }

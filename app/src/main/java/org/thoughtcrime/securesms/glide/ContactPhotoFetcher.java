@@ -8,7 +8,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
-import org.session.libsession.messaging.avatars.ContactPhoto;
+import org.session.libsession.avatars.ContactPhoto;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,11 +1,17 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.Log
 
 class TypingIndicator() : ControlMessage() {
-    override val ttl: Long = 30 * 1000
     var kind: Kind? = null
+
+    override val ttl: Long = 20 * 1000
+
+    override fun isValid(): Boolean {
+        if (!super.isValid()) return false
+        return kind != null
+    }
 
     companion object {
         const val TAG = "TypingIndicator"
@@ -39,11 +45,6 @@ class TypingIndicator() : ControlMessage() {
 
     internal constructor(kind: Kind) : this() {
         this.kind = kind
-    }
-
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
-        return kind != null
     }
 
     override fun toProto(): SignalServiceProtos.Content? {

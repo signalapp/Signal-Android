@@ -1,26 +1,30 @@
 package org.thoughtcrime.securesms.util
 
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface.OnClickListener
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import network.loki.messenger.R
-import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.mms.PartAuthority
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask
+import org.session.libsignal.utilities.ExternalStorageUtil
+import org.session.libsignal.utilities.Log
+import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
-import kotlin.jvm.Throws
-
-import org.session.libsession.utilities.Util
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Saves attachment files to an external storage using [MediaStore] API.
@@ -95,71 +99,120 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
 
     @Throws(IOException::class)
     private fun saveAttachment(context: Context, attachment: Attachment): String? {
-        val resolver = context.contentResolver
+        val contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType))!!
+        var fileName = attachment.fileName
+        if (fileName == null) fileName = generateOutputFileName(contentType, attachment.date)
+        fileName = sanitizeOutputFileName(fileName)
+        val outputUri: Uri = getMediaStoreContentUriForType(contentType)
+        val mediaUri = createOutputUri(outputUri, contentType, fileName)
+        val updateValues = ContentValues()
+        PartAuthority.getAttachmentStream(context, attachment.uri).use { inputStream ->
+            if (inputStream == null) {
+                return null
+            }
+            if (outputUri.scheme == ContentResolver.SCHEME_FILE) {
+                FileOutputStream(mediaUri!!.path).use { outputStream ->
+                    StreamUtil.copy(inputStream, outputStream)
+                    MediaScannerConnection.scanFile(context, arrayOf(mediaUri.path), arrayOf(contentType), null)
+                }
+            } else {
+                context.contentResolver.openOutputStream(mediaUri!!, "w").use { outputStream ->
+                    val total: Long = StreamUtil.copy(inputStream, outputStream)
+                    if (total > 0) {
+                        updateValues.put(MediaStore.MediaColumns.SIZE, total)
+                    }
+                }
+            }
+        }
+        if (Build.VERSION.SDK_INT > 28) {
+            updateValues.put(MediaStore.MediaColumns.IS_PENDING, 0)
+        }
+        if (updateValues.size() > 0) {
+            getContext().contentResolver.update(mediaUri!!, updateValues, null, null)
+        }
+        return outputUri.lastPathSegment
+    }
 
-        val contentType = MediaUtil.getCorrectedMimeType(attachment.contentType)!!
-        val fileName = attachment.fileName
-                ?: sanitizeOutputFileName(generateOutputFileName(contentType, attachment.date))
+    private fun getMediaStoreContentUriForType(contentType: String): Uri {
+        return when {
+            contentType.startsWith("video/") ->
+                ExternalStorageUtil.getVideoUri()
+            contentType.startsWith("audio/") ->
+                ExternalStorageUtil.getAudioUri()
+            contentType.startsWith("image/") ->
+                ExternalStorageUtil.getImageUri()
+            else ->
+                ExternalStorageUtil.getDownloadUri()
+        }
+    }
 
-        val mediaRecord = ContentValues()
-        val mediaVolume = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-            MediaStore.VOLUME_EXTERNAL
+    @Throws(IOException::class)
+    private fun createOutputUri(outputUri: Uri, contentType: String, fileName: String): Uri? {
+        val fileParts: Array<String> = getFileNameParts(fileName)
+        val base = fileParts[0]
+        val extension = fileParts[1]
+        val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+        val contentValues = ContentValues()
+        contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+        contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
+        contentValues.put(MediaStore.MediaColumns.DATE_ADDED, TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()))
+        contentValues.put(MediaStore.MediaColumns.DATE_MODIFIED, TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()))
+        if (Build.VERSION.SDK_INT > 28) {
+            contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1)
+        } else if (Objects.equals(outputUri.scheme, ContentResolver.SCHEME_FILE)) {
+            val outputDirectory = File(outputUri.path)
+            var outputFile = File(outputDirectory, "$base.$extension")
+            var i = 0
+            while (outputFile.exists()) {
+                outputFile = File(outputDirectory, base + "-" + ++i + "." + extension)
+            }
+            if (outputFile.isHidden) {
+                throw IOException("Specified name would not be visible")
+            }
+            return Uri.fromFile(outputFile)
         } else {
-            MediaStore.VOLUME_EXTERNAL_PRIMARY
+            var outputFileName = fileName
+            var dataPath = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName)
+            var i = 0
+            while (pathTaken(outputUri, dataPath)) {
+                Log.d(TAG, "The content exists. Rename and check again.")
+                outputFileName = base + "-" + ++i + "." + extension
+                dataPath = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName)
+            }
+            contentValues.put(MediaStore.MediaColumns.DATA, dataPath)
         }
-        val collectionUri: Uri
+        return context.contentResolver.insert(outputUri, contentValues)
+    }
 
-        when {
-            contentType.startsWith("video/") -> {
-                collectionUri = MediaStore.Video.Media.getContentUri(mediaVolume)
-                mediaRecord.put(MediaStore.Video.Media.DISPLAY_NAME, fileName)
-                mediaRecord.put(MediaStore.Video.Media.MIME_TYPE, contentType)
-                // Add the date meta data to ensure the image is added at the front of the gallery
-                mediaRecord.put(MediaStore.Video.Media.DATE_ADDED, System.currentTimeMillis())
-                mediaRecord.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis())
+    private fun getFileNameParts(fileName: String): Array<String> {
+        val tokens = fileName.split("\\.(?=[^\\.]+$)".toRegex()).toTypedArray()
+        return arrayOf(tokens[0], if (tokens.size > 1) tokens[1] else "")
+    }
 
-            }
-            contentType.startsWith("audio/") -> {
-                collectionUri = MediaStore.Audio.Media.getContentUri(mediaVolume)
-                mediaRecord.put(MediaStore.Audio.Media.DISPLAY_NAME, fileName)
-                mediaRecord.put(MediaStore.Audio.Media.MIME_TYPE, contentType)
-                mediaRecord.put(MediaStore.Audio.Media.DATE_ADDED, System.currentTimeMillis())
-                mediaRecord.put(MediaStore.Audio.Media.DATE_TAKEN, System.currentTimeMillis())
-
-            }
-            contentType.startsWith("image/") -> {
-                collectionUri = MediaStore.Images.Media.getContentUri(mediaVolume)
-                mediaRecord.put(MediaStore.Images.Media.TITLE, fileName)
-                mediaRecord.put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
-                mediaRecord.put(MediaStore.Images.Media.MIME_TYPE, contentType)
-                mediaRecord.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis())
-                mediaRecord.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
-
-            }
-            else -> {
-                mediaRecord.put(MediaStore.Files.FileColumns.DISPLAY_NAME, fileName)
-                collectionUri = MediaStore.Files.getContentUri(mediaVolume)
-            }
+    private fun getExternalPathToFileForType(contentType: String): String {
+        val storage: File = when {
+            contentType.startsWith("video/") ->
+                context.getExternalFilesDir(Environment.DIRECTORY_MOVIES)!!
+            contentType.startsWith("audio/") ->
+                context.getExternalFilesDir(Environment.DIRECTORY_MUSIC)!!
+            contentType.startsWith("image/") ->
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+            else ->
+                context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)!!
         }
+        return storage.absolutePath
+    }
 
-        var mediaFileUri: Uri?
-        try {
-            mediaFileUri = resolver.insert(collectionUri, mediaRecord)
-        } catch (exception: Exception) {
-            return null
-        }
-        if (mediaFileUri == null) return null
-
-        val inputStream = PartAuthority.getAttachmentStream(context, attachment.uri)
-        if (inputStream == null) return null
-
-        inputStream.use {
-            resolver.openOutputStream(mediaFileUri).use {
-                Util.copy(inputStream, it)
+    @Throws(IOException::class)
+    private fun pathTaken(outputUri: Uri, dataPath: String): Boolean {
+        context.contentResolver.query(outputUri, arrayOf(MediaStore.MediaColumns.DATA),
+                MediaStore.MediaColumns.DATA + " = ?", arrayOf(dataPath),
+                null).use { cursor ->
+            if (cursor == null) {
+                throw IOException("Something is wrong with the filename to save")
             }
+            return cursor.moveToFirst()
         }
-
-        return mediaFileUri.toString()
     }
 
     private fun generateOutputFileName(contentType: String, timestamp: Long): String {
@@ -177,8 +230,7 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
 
     override fun onPostExecute(result: Pair<Int, String?>) {
         super.onPostExecute(result)
-        val context = contextReference.get()
-        if (context == null) return
+        val context = contextReference.get() ?: return
 
         when (result.first) {
             RESULT_FAILURE -> {

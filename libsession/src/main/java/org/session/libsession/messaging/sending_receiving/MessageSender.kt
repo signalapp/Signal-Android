@@ -12,20 +12,21 @@ import org.session.libsession.messaging.messages.control.ClosedGroupControlMessa
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
-import org.session.libsession.messaging.open_groups.OpenGroupAPI
-import org.session.libsession.messaging.open_groups.OpenGroupMessage
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.open_groups.*
+import org.session.libsession.utilities.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeModule
 import org.session.libsession.snode.SnodeMessage
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsignal.service.internal.push.PushTransportDetails
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.crypto.PushTransportDetails
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
+import java.lang.IllegalStateException
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
@@ -36,8 +37,6 @@ object MessageSender {
     sealed class Error(val description: String) : Exception(description) {
         object InvalidMessage : Error("Invalid message.")
         object ProtoConversionFailed : Error("Couldn't convert message to proto.")
-        object ProofOfWorkCalculationFailed : Error("Proof of work calculation failed.")
-        object NoUserX25519KeyPair : Error("Couldn't find user X25519 key pair.")
         object NoUserED25519KeyPair : Error("Couldn't find user ED25519 key pair.")
         object SigningFailed : Error("Couldn't sign message.")
         object EncryptionFailed : Error("Couldn't encrypt message.")
@@ -45,27 +44,21 @@ object MessageSender {
         // Closed groups
         object NoThread : Error("Couldn't find a thread associated with the given group public key.")
         object NoKeyPair: Error("Couldn't find a private key associated with the given group public key.")
-        object NoPrivateKey : Error("Couldn't find a private key associated with the given group public key.")
         object InvalidClosedGroupUpdate : Error("Invalid group update.")
 
-        // Precondition
-        class PreconditionFailure(val reason: String): Error(reason)
-
         internal val isRetryable: Boolean = when (this) {
-            is InvalidMessage -> false
-            is ProtoConversionFailed -> false
-            is ProofOfWorkCalculationFailed -> false
-            is InvalidClosedGroupUpdate -> false
+            is InvalidMessage, ProtoConversionFailed, InvalidClosedGroupUpdate -> false
             else -> true
         }
     }
 
     // Convenience
     fun send(message: Message, destination: Destination): Promise<Unit, Exception> {
-        if (destination is Destination.OpenGroup) {
+        if (destination is Destination.OpenGroupV2) {
             return sendToOpenGroupDestination(destination, message)
+        } else {
+            return sendToSnodeDestination(destination, message)
         }
-        return sendToSnodeDestination(destination, message)
     }
 
     // One-on-One Chats & Closed Groups
@@ -75,7 +68,9 @@ object MessageSender {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         // Set the timestamp, sender and recipient
-        message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
+        if (message.sentTimestamp == null) {
+            message.sentTimestamp = System.currentTimeMillis() // Visible messages will already have their sent timestamp set
+        }
         message.sender = userPublicKey
         val isSelfSend = (message.recipient == userPublicKey)
         // Set the failure handler (need it here already for precondition failure handling)
@@ -90,7 +85,7 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
-                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
+                is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be an open group.")
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -109,9 +104,9 @@ object MessageSender {
             if (message is VisibleMessage) {
                 val displayName = storage.getUserDisplayName()!!
                 val profileKey = storage.getUserProfileKey()
-                val profilePrictureUrl = storage.getUserProfilePictureURL()
-                if (profileKey != null && profilePrictureUrl != null) {
-                    message.profile = Profile(displayName, profileKey, profilePrictureUrl)
+                val profilePictureUrl = storage.getUserProfilePictureURL()
+                if (profileKey != null && profilePictureUrl != null) {
+                    message.profile = Profile(displayName, profileKey, profilePictureUrl)
                 } else {
                     message.profile = Profile(displayName)
                 }
@@ -123,12 +118,12 @@ object MessageSender {
             // Encrypt the serialized protobuf
             val ciphertext: ByteArray
             when (destination) {
-                is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
+                is Destination.Contact -> ciphertext = MessageEncrypter.encrypt(plaintext, destination.publicKey)
                 is Destination.ClosedGroup -> {
                     val encryptionKeyPair = MessagingModuleConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
-                    ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
+                    ciphertext = MessageEncrypter.encrypt(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
-                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
+                is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be open group.")
             }
             // Wrap the result
             val kind: SignalServiceProtos.Envelope.Type
@@ -142,7 +137,7 @@ object MessageSender {
                     kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_MESSAGE
                     senderPublicKey = destination.groupPublicKey
                 }
-                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
+                is Destination.OpenGroupV2 -> throw IllegalStateException("Destination should not be open group.")
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Send the result
@@ -150,6 +145,7 @@ object MessageSender {
                 SnodeModule.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
             }
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
+            // Send the result
             val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, message.sentTimestamp!!)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeModule.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
@@ -167,9 +163,11 @@ object MessageSender {
                         }
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)
+                        /*
                         if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
                             shouldNotify = true
                         }
+                         */
                         if (shouldNotify) {
                             val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
                             JobQueue.shared.add(notifyPNServerJob)
@@ -196,7 +194,9 @@ object MessageSender {
     private fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val storage = MessagingModuleConfiguration.shared.storage
-        message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
+        if (message.sentTimestamp == null) {
+            message.sentTimestamp = System.currentTimeMillis()
+        }
         message.sender = storage.getUserPublicKey()
         // Set the failure handler (need it here already for precondition failure handling)
         fun handleFailure(error: Exception) {
@@ -204,32 +204,42 @@ object MessageSender {
             deferred.reject(error)
         }
         try {
-            val server: String
-            val channel: Long
             when (destination) {
-                is Destination.Contact -> throw Error.PreconditionFailure("Destination should not be contacts!")
-                is Destination.ClosedGroup -> throw Error.PreconditionFailure("Destination should not be closed groups!")
-                is Destination.OpenGroup -> {
-                    message.recipient = "${destination.server}.${destination.channel}"
-                    server = destination.server
-                    channel = destination.channel
+                is Destination.Contact, is Destination.ClosedGroup -> throw IllegalStateException("Invalid destination.")
+                is Destination.OpenGroupV2 -> {
+                    message.recipient = "${destination.server}.${destination.room}"
+                    val server = destination.server
+                    val room = destination.room
+                    // Attach the user's profile if needed
+                    if (message is VisibleMessage) {
+                        val displayName = storage.getUserDisplayName()!!
+                        val profileKey = storage.getUserProfileKey()
+                        val profilePictureUrl = storage.getUserProfilePictureURL()
+                        if (profileKey != null && profilePictureUrl != null) {
+                            message.profile = Profile(displayName, profileKey, profilePictureUrl)
+                        } else {
+                            message.profile = Profile(displayName)
+                        }
+                    }
+                    // Validate the message
+                    if (message !is VisibleMessage || !message.isValid()) {
+                        throw Error.InvalidMessage
+                    }
+                    val proto = message.toProto()!!
+                    val plaintext = PushTransportDetails.getPaddedMessageBody(proto.toByteArray())
+                    val openGroupMessage = OpenGroupMessageV2(
+                        sender = message.sender,
+                        sentTimestamp = message.sentTimestamp!!,
+                        base64EncodedData = Base64.encodeBytes(plaintext),
+                    )
+                    OpenGroupAPIV2.send(openGroupMessage,room,server).success {
+                        message.openGroupServerMessageID = it.serverID
+                        handleSuccessfulMessageSend(message, destination)
+                        deferred.resolve(Unit)
+                    }.fail {
+                        handleFailure(it)
+                    }
                 }
-            }
-            // Validate the message
-            if (message !is VisibleMessage || !message.isValid()) {
-                throw Error.InvalidMessage
-            }
-            // Convert the message to an open group message
-            val openGroupMessage = OpenGroupMessage.from(message, server) ?: kotlin.run {
-                throw Error.InvalidMessage
-            }
-            // Send the result
-            OpenGroupAPI.sendMessage(openGroupMessage, channel, server).success {
-                message.openGroupServerMessageID = it.serverID
-                handleSuccessfulMessageSend(message, destination)
-                deferred.resolve(Unit)
-            }.fail {
-                handleFailure(it)
             }
         } catch (exception: Exception) {
             handleFailure(exception)
@@ -241,12 +251,16 @@ object MessageSender {
     fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false) {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()!!
-        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
+        val messageID = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
         storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
         // Track the open group server message ID
-        if (message.openGroupServerMessageID != null) {
-            storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
+        if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
+            val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())
+            val threadID = storage.getThreadId(Address.fromSerialized(encoded))
+            if (threadID != null && threadID >= 0) {
+                storage.setOpenGroupServerMessageID(messageID, message.openGroupServerMessageID!!, threadID, !(message as VisibleMessage).isMediaMessage())
+            }
         }
         // Mark the message as sent
         storage.markAsSent(message.sentTimestamp!!, message.sender?:userPublicKey)
@@ -275,16 +289,16 @@ object MessageSender {
     // Convenience
     @JvmStatic
     fun send(message: VisibleMessage, address: Address, attachments: List<SignalAttachment>, quote: SignalQuote?, linkPreview: SignalLinkPreview?) {
-        val dataProvider = MessagingModuleConfiguration.shared.messageDataProvider
-        val attachmentIDs = dataProvider.getAttachmentIDsFor(message.id!!)
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        val attachmentIDs = messageDataProvider.getAttachmentIDsFor(message.id!!)
         message.attachmentIDs.addAll(attachmentIDs)
         message.quote = Quote.from(quote)
         message.linkPreview = LinkPreview.from(linkPreview)
-        message.linkPreview?.let {
-            if (it.attachmentID == null) {
-                dataProvider.getLinkPreviewAttachmentIDFor(message.id!!)?.let {
-                    message.linkPreview!!.attachmentID = it
-                    message.attachmentIDs.remove(it)
+        message.linkPreview?.let { linkPreview ->
+            if (linkPreview.attachmentID == null) {
+                messageDataProvider.getLinkPreviewAttachmentIDFor(message.id!!)?.let { attachmentID ->
+                    message.linkPreview!!.attachmentID = attachmentID
+                    message.attachmentIDs.remove(attachmentID)
                 }
             }
         }

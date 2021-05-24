@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Log
 import com.opencsv.CSVReader
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.ThreadUtils

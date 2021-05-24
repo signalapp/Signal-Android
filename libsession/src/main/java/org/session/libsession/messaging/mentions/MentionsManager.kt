@@ -1,9 +1,8 @@
 package org.session.libsession.messaging.mentions
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsignal.service.loki.Mention
 
-import org.session.libsignal.service.loki.LokiUserDatabaseProtocol
+import org.session.libsignal.database.LokiUserDatabaseProtocol
 
 class MentionsManager(private val userPublicKey: String, private val userDatabase: LokiUserDatabaseProtocol) {
     var userPublicKeyCache = mutableMapOf<Long, Set<String>>() // Thread ID to set of user hex encoded public keys
@@ -31,14 +30,8 @@ class MentionsManager(private val userPublicKey: String, private val userDatabas
         // Prepare
         val cache = userPublicKeyCache[threadID] ?: return listOf()
         // Gather candidates
-        val publicChat = MessagingModuleConfiguration.shared.messageDataProvider.getOpenGroup(threadID)
         var candidates: List<Mention> = cache.mapNotNull { publicKey ->
-            val displayName: String?
-            if (publicChat != null) {
-                displayName = userDatabase.getServerDisplayName(publicChat.id, publicKey)
-            } else {
-                displayName = userDatabase.getDisplayName(publicKey)
-            }
+            val displayName = userDatabase.getDisplayName(publicKey)
             if (displayName == null) { return@mapNotNull null }
             if (displayName.startsWith("Anonymous")) { return@mapNotNull null }
             Mention(publicKey, displayName)

@@ -35,7 +35,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import network.loki.messenger.R;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;

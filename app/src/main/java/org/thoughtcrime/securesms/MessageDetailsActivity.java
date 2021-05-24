@@ -30,21 +30,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
-
-
 import org.session.libsession.messaging.messages.visible.LinkPreview;
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation;
 import org.session.libsession.messaging.messages.visible.Quote;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.session.libsession.messaging.open_groups.OpenGroup;
+import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
-import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.utilities.MaterialColor;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -54,17 +52,17 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.lang.ref.WeakReference;
 import java.sql.Date;
@@ -263,7 +261,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
     toFrom.setText(toFromRes);
     long threadID = messageRecord.getThreadId();
-    OpenGroup openGroup = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadID);
+    OpenGroupV2 openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID);
     if (openGroup != null && messageRecord.isOutgoing()) {
       toFrom.setVisibility(View.GONE);
       separator.setVisibility(View.GONE);
@@ -448,7 +446,18 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       Recipient recipient = messageRecord.getRecipient();
       VisibleMessage message = new VisibleMessage();
       message.setId(messageRecord.getId());
-      message.setText(messageRecord.getBody());
+      if (messageRecord.isOpenGroupInvitation()) {
+        OpenGroupInvitation openGroupInvitation = new OpenGroupInvitation();
+        UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(messageRecord.getBody());
+        if (updateMessageData.getKind() instanceof UpdateMessageData.Kind.OpenGroupInvitation) {
+          UpdateMessageData.Kind.OpenGroupInvitation data = (UpdateMessageData.Kind.OpenGroupInvitation)updateMessageData.getKind();
+          openGroupInvitation.setName(data.getGroupName());
+          openGroupInvitation.setUrl(data.getGroupUrl());
+        }
+        message.setOpenGroupInvitation(openGroupInvitation);
+      } else {
+        message.setText(messageRecord.getBody());
+      }
       message.setSentTimestamp(messageRecord.getTimestamp());
       if (recipient.isGroupRecipient()) {
         message.setGroupPublicKey(recipient.getAddress().toGroupString());

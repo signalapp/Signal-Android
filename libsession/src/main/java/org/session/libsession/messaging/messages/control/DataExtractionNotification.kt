@@ -1,9 +1,9 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.Log
 
-class DataExtractionNotification(): ControlMessage() {
+class DataExtractionNotification() : ControlMessage() {
     var kind: Kind? = null
 
     sealed class Kind {
@@ -39,8 +39,8 @@ class DataExtractionNotification(): ControlMessage() {
     }
 
     override fun isValid(): Boolean {
-        if (!super.isValid()) return false
-        val kind = kind ?: return false
+        val kind = kind
+        if (!super.isValid() || kind == null) return false
         return when(kind) {
             is Kind.Screenshot -> true
             is Kind.MediaSaved -> kind.timestamp > 0
