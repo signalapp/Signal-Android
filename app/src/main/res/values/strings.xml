@@ -1407,6 +1407,7 @@
     <string name="WebRtcCallView__no_one_else_is_here">No one else is here</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s is in this call</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s and %2$s are in this call</string>
+    <string name="WebRtcCallView__s_is_presenting">%1$s is presenting</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s, %2$s, and %3$d other are in this call</item>
@@ -1426,6 +1427,9 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Can\'t receive audio &amp; video from %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Can\'t receive audio and video from %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">This may be because they have not verified your safety number change, there\'s a problem with their device, or they have blocked you.</string>
+
+    <!-- CallToastPopupWindow -->
+    <string name="CallToastPopupWindow__swipe_to_view_screen_share">Swipe to view screen share</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>

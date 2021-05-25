@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
+import org.thoughtcrime.securesms.components.webrtc.CallToastPopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
@@ -62,10 +63,14 @@ import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 import java.util.List;
+
+import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
 
 public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
@@ -253,7 +258,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
     viewModel.getCallTime().observe(this, this::handleCallTime);
-    viewModel.getCallParticipantsState().observe(this, callScreen::updateCallParticipants);
+    LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(), viewModel.getOrientation(), (s, o) -> new Pair<>(s, o == PORTRAIT_BOTTOM_EDGE))
+                .observe(this, p -> callScreen.updateCallParticipants(p.first(), p.second()));
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
     viewModel.getGroupMembers().observe(this, unused -> updateGroupMembersForGroupCall());
@@ -290,6 +296,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       return;
     } else if (event instanceof WebRtcCallViewModel.Event.ShowGroupCallSafetyNumberChange) {
       SafetyNumberChangeDialog.showForGroupCall(getSupportFragmentManager(), ((WebRtcCallViewModel.Event.ShowGroupCallSafetyNumberChange) event).getIdentityRecords());
+      return;
+    } else if (event instanceof WebRtcCallViewModel.Event.SwitchToSpeaker) {
+      callScreen.switchToSpeakerView();
+      return;
+    } else if (event instanceof WebRtcCallViewModel.Event.ShowSwipeToSpeakerHint) {
+      CallToastPopupWindow.show(callScreen);
       return;
     }
 

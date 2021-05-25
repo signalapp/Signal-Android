@@ -12,6 +12,7 @@ import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
+import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -276,6 +277,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected  @NonNull WebRtcServiceState handleScreenSharingEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    Log.i(tag, "handleScreenSharingEnable not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleReceivedHangup(@NonNull WebRtcServiceState currentState,
                                                              @NonNull CallMetadata callMetadata,
                                                              @NonNull HangupMetadata hangupMetadata)
@@ -452,6 +458,15 @@ public abstract class WebRtcActionProcessor {
     Camera camera = currentState.getVideoState().getCamera();
     if (camera != null) {
       camera.setOrientation(orientationDegrees);
+    }
+
+    BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
+    if (sink != null) {
+      sink.setDeviceOrientationDegrees(orientationDegrees);
+    }
+
+    for (CallParticipant callParticipant : currentState.getCallInfoState().getRemoteCallParticipants()) {
+      callParticipant.getVideoSink().setDeviceOrientationDegrees(orientationDegrees);
     }
 
     return currentState.builder()

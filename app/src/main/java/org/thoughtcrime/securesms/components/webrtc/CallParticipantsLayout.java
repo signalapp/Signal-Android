@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.webrtc.RendererCommon;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,9 +30,10 @@ public class CallParticipantsLayout extends FlexboxLayout {
   private static final int MULTIPLE_PARTICIPANT_SPACING = ViewUtil.dpToPx(3);
   private static final int CORNER_RADIUS                = ViewUtil.dpToPx(10);
 
-  private List<CallParticipant> callParticipants = Collections.emptyList();
+  private List<CallParticipant> callParticipants   = Collections.emptyList();
   private CallParticipant       focusedParticipant = null;
   private boolean               shouldRenderInPip;
+  private boolean               isPortrait;
 
   public CallParticipantsLayout(@NonNull Context context) {
     super(context);
@@ -45,10 +47,11 @@ public class CallParticipantsLayout extends FlexboxLayout {
     super(context, attrs, defStyleAttr);
   }
 
-  void update(@NonNull List<CallParticipant> callParticipants, @NonNull CallParticipant focusedParticipant, boolean shouldRenderInPip) {
+  void update(@NonNull List<CallParticipant> callParticipants, @NonNull CallParticipant focusedParticipant, boolean shouldRenderInPip, boolean isPortrait) {
     this.callParticipants   = callParticipants;
     this.focusedParticipant = focusedParticipant;
     this.shouldRenderInPip  = shouldRenderInPip;
+    this.isPortrait         = isPortrait;
     updateLayout();
   }
 
@@ -104,6 +107,11 @@ public class CallParticipantsLayout extends FlexboxLayout {
 
     callParticipantView.setCallParticipant(participant);
     callParticipantView.setRenderInPip(shouldRenderInPip);
+    if (participant.isScreenSharing()) {
+      callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
+    } else {
+      callParticipantView.setScalingType(isPortrait || count < 3 ? RendererCommon.ScalingType.SCALE_ASPECT_FILL : RendererCommon.ScalingType.SCALE_ASPECT_BALANCED);
+    }
 
     if (count > 1) {
       view.setPadding(MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING);

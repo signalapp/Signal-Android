@@ -32,16 +32,19 @@
         android:layout_height="match_parent"
         android:layout="@layout/group_call_call_full" />
 
-    <View
-        android:id="@+id/call_screen_header_gradient"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:background="@drawable/webrtc_call_screen_header_gradient" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/call_screen_header_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/webrtc_call_screen_header_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/call_screen_status_bar_guideline"
@@ -93,7 +96,7 @@
             android:id="@+id/call_screen_pip_area"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/call_screen_navigation_bar_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

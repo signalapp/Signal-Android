@@ -39,15 +39,25 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
-        android:id="@+id/call_participant_renderer"
+    <FrameLayout
+        android:id="@+id/call_participant_renderer_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/core_grey_80"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
+            android:id="@+id/call_participant_renderer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/call_participant_mic_muted"

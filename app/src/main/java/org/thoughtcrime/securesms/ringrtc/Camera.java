@@ -22,6 +22,7 @@ import org.webrtc.CameraVideoCapturer;
 import org.webrtc.CapturerObserver;
 import org.webrtc.EglBase;
 import org.webrtc.SurfaceTextureHelper;
+import org.webrtc.VideoFrame;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -81,7 +82,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     if (capturer != null) {
       capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", eglBase.getEglBaseContext()),
                           context,
-                          observer);
+                          new CameraCapturerWrapper(observer));
       capturer.setOrientation(orientation);
       isInitialized = true;
     }
@@ -295,6 +296,32 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
                                                        @Nullable CameraVideoCapturer.CameraEventsHandler eventsHandler)
     {
       return new Camera2Capturer(context, deviceName, eventsHandler, new FilteredCamera2Enumerator(context));
+    }
+  }
+
+  private class CameraCapturerWrapper implements CapturerObserver {
+    private final CapturerObserver observer;
+
+    public CameraCapturerWrapper(@NonNull CapturerObserver observer) {
+      this.observer = observer;
+    }
+
+    @Override
+    public void onCapturerStarted(boolean success) {
+      observer.onCapturerStarted(success);
+      if (success) {
+        cameraEventListener.onFullyInitialized();
+      }
+    }
+
+    @Override
+    public void onCapturerStopped() {
+      observer.onCapturerStopped();
+    }
+
+    @Override
+    public void onFrameCaptured(VideoFrame videoFrame) {
+      observer.onFrameCaptured(videoFrame);
     }
   }
 }

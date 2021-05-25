@@ -119,7 +119,7 @@ public class WebRtcViewModel {
     this.participantLimit          = state.getCallInfoState().getParticipantLimit();
     this.localParticipant          = CallParticipant.createLocal(state.getLocalDeviceState().getCameraState(),
                                                                  state.getVideoState().getLocalSink() != null ? state.getVideoState().getLocalSink()
-                                                                                                              : new BroadcastVideoSink(null),
+                                                                                                              : new BroadcastVideoSink(),
                                                                  state.getLocalDeviceState().isMicrophoneEnabled());
   }
 

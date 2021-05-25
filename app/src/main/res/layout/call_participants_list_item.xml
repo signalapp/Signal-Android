@@ -47,4 +47,12 @@
         app:srcCompat="@drawable/ic_mic_off_solid_18"
         app:tint="@color/core_white"/>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/call_participant_screen_sharing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:srcCompat="@drawable/ic_share_screen_20"
+        app:tint="@color/core_white"/>
+
 </LinearLayout>

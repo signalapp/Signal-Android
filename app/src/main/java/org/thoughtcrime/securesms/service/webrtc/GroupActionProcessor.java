@@ -93,10 +93,13 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       VideoTrack         videoTrack = device.getVideoTrack();
       if (videoTrack != null) {
         videoSink = (callParticipant != null && callParticipant.getVideoSink().getEglBase() != null) ? callParticipant.getVideoSink()
-                                                                                                     : new BroadcastVideoSink(currentState.getVideoState().requireEglBase());
+                                                                                                     : new BroadcastVideoSink(currentState.getVideoState().requireEglBase(),
+                                                                                                                              true,
+                                                                                                                              true,
+                                                                                                                              currentState.getLocalDeviceState().getOrientation().getDegrees());
         videoTrack.addSink(videoSink);
       } else {
-        videoSink = new BroadcastVideoSink(null);
+        videoSink = new BroadcastVideoSink();
       }
 
       builder.putParticipant(callParticipantId,
@@ -109,6 +112,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                                           device.getSpeakerTime(),
                                                           device.getMediaKeysReceived(),
                                                           device.getAddedTime(),
+                                                          Boolean.TRUE.equals(device.getPresenting()),
                                                           seen.contains(recipient) ? CallParticipant.DeviceOrdinal.SECONDARY
                                                                                    : CallParticipant.DeviceOrdinal.PRIMARY));
 
@@ -316,11 +320,6 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     }
 
     return terminateGroupCall(currentState);
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, int orientationDegrees) {
-    return currentState;
   }
 
   public synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState) {

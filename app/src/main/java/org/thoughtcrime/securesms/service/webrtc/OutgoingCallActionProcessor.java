@@ -10,7 +10,6 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
-import org.thoughtcrime.securesms.components.webrtc.OrientationAwareVideoSink;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -120,8 +119,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
                                                 videoState.requireEglBase(),
-                                                new OrientationAwareVideoSink(videoState.requireLocalSink()),
-                                                new OrientationAwareVideoSink(callParticipant.getVideoSink()),
+                                                videoState.requireLocalSink(),
+                                                callParticipant.getVideoSink(),
                                                 videoState.requireCamera(),
                                                 iceServers,
                                                 isAlwaysTurn,
@@ -196,6 +195,11 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   @Override
   protected @NonNull  WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     return activeCallDelegate.handleRemoteVideoEnable(currentState, enable);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleScreenSharingEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    return activeCallDelegate.handleScreenSharingEnable(currentState, enable);
   }
 
   @Override

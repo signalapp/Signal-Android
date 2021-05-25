@@ -40,7 +40,7 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
 
     try {
       webRtcInteractor.getCallManager().setVideoEnable(enable);
-    } catch  (CallException e) {
+    } catch (CallException e) {
       return callFailure(currentState, "setVideoEnable() failed: ", e);
     }
 
@@ -77,8 +77,13 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull  WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+  protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     return activeCallDelegate.handleRemoteVideoEnable(currentState, enable);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleScreenSharingEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    return activeCallDelegate.handleScreenSharingEnable(currentState, enable);
   }
 
   @Override

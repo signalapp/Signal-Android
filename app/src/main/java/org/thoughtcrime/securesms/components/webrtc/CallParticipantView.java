@@ -54,6 +54,7 @@ public class CallParticipantView extends ConstraintLayout {
 
   private AppCompatImageView  backgroundAvatar;
   private AvatarImageView     avatar;
+  private View                rendererFrame;
   private TextureViewRenderer renderer;
   private ImageView           pipAvatar;
   private ContactPhoto        contactPhoto;
@@ -83,6 +84,7 @@ public class CallParticipantView extends ConstraintLayout {
     backgroundAvatar = findViewById(R.id.call_participant_background_avatar);
     avatar           = findViewById(R.id.call_participant_item_avatar);
     pipAvatar        = findViewById(R.id.call_participant_item_pip_avatar);
+    rendererFrame    = findViewById(R.id.call_participant_renderer_frame);
     renderer         = findViewById(R.id.call_participant_renderer);
     audioMuted       = findViewById(R.id.call_participant_mic_muted);
     infoOverlay      = findViewById(R.id.call_participant_info_overlay);
@@ -108,6 +110,7 @@ public class CallParticipantView extends ConstraintLayout {
     infoMode    = participant.getRecipient().isBlocked() || isMissingMediaKeys(participant);
 
     if (infoMode) {
+      rendererFrame.setVisibility(View.GONE);
       renderer.setVisibility(View.GONE);
       renderer.attachBroadcastVideoSink(null);
       audioMuted.setVisibility(View.GONE);
@@ -130,7 +133,10 @@ public class CallParticipantView extends ConstraintLayout {
     } else {
       infoOverlay.setVisibility(View.GONE);
 
-      renderer.setVisibility(participant.isVideoEnabled() ? View.VISIBLE : View.GONE);
+      boolean hasContentToRender = participant.isVideoEnabled() || participant.isScreenSharing();
+
+      rendererFrame.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
+      renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
 
       if (participant.isVideoEnabled()) {
         if (participant.getVideoSink().getEglBase() != null) {

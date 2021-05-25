@@ -51,10 +51,6 @@ public final class WebRtcControls {
     this.participantLimit             = participantLimit;
   }
 
-  boolean canRotateControls() {
-    return !isGroupCall();
-  }
-
   boolean displayErrorControls() {
     return isError();
   }

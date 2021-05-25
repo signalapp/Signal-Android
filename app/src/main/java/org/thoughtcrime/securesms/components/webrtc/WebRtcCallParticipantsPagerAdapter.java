@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.events.CallParticipant;
+import org.webrtc.RendererCommon;
 
 class WebRtcCallParticipantsPagerAdapter extends ListAdapter<WebRtcCallParticipantsPage, WebRtcCallParticipantsPagerAdapter.ViewHolder> {
 
@@ -84,7 +86,7 @@ class WebRtcCallParticipantsPagerAdapter extends ListAdapter<WebRtcCallParticipa
 
     @Override
     void bind(WebRtcCallParticipantsPage page) {
-      callParticipantsLayout.update(page.getCallParticipants(), page.getFocusedParticipant(), page.isRenderInPip());
+      callParticipantsLayout.update(page.getCallParticipants(), page.getFocusedParticipant(), page.isRenderInPip(), page.isPortrait());
     }
   }
 
@@ -107,8 +109,14 @@ class WebRtcCallParticipantsPagerAdapter extends ListAdapter<WebRtcCallParticipa
 
     @Override
     void bind(WebRtcCallParticipantsPage page) {
-      callParticipantView.setCallParticipant(page.getCallParticipants().get(0));
+      CallParticipant participant = page.getCallParticipants().get(0);
+      callParticipantView.setCallParticipant(participant);
       callParticipantView.setRenderInPip(page.isRenderInPip());
+      if (participant.isScreenSharing()) {
+        callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
+      } else {
+        callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
+      }
     }
   }
 

@@ -34,6 +34,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                            @NonNull OfferMessage.Type offerType)
   {
     remotePeer.setCallStartTimestamp(System.currentTimeMillis());
+
     currentState = currentState.builder()
                                .actionProcessor(new OutgoingCallActionProcessor(webRtcInteractor))
                                .changeCallInfoState()
@@ -41,17 +42,20 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                .callState(WebRtcViewModel.State.CALL_OUTGOING)
                                .putRemotePeer(remotePeer)
                                .putParticipant(remotePeer.getRecipient(),
-                                               CallParticipant.createRemote(
-                                                       new CallParticipantId(remotePeer.getRecipient()),
-                                                       remotePeer.getRecipient(),
-                                                       null,
-                                                       new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
-                                                       true,
-                                                       false,
-                                                       0,
-                                                       true,
-                                                       0,
-                                                       CallParticipant.DeviceOrdinal.PRIMARY
+                                               CallParticipant.createRemote(new CallParticipantId(remotePeer.getRecipient()),
+                                                                            remotePeer.getRecipient(),
+                                                                            null,
+                                                                            new BroadcastVideoSink(currentState.getVideoState().getEglBase(),
+                                                                                                   false,
+                                                                                                   true,
+                                                                                                   currentState.getLocalDeviceState().getOrientation().getDegrees()),
+                                                                            true,
+                                                                            false,
+                                                                            0,
+                                                                            true,
+                                                                            0,
+                                                                            false,
+                                                                            CallParticipant.DeviceOrdinal.PRIMARY
                                                ))
                                .build();
 
@@ -85,17 +89,20 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                        .activePeer(remotePeer)
                        .callState(WebRtcViewModel.State.CALL_INCOMING)
                        .putParticipant(remotePeer.getRecipient(),
-                                       CallParticipant.createRemote(
-                                               new CallParticipantId(remotePeer.getRecipient()),
-                                               remotePeer.getRecipient(),
-                                               null,
-                                               new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
-                                               true,
-                                               false,
-                                               0,
-                                               true,
-                                               0,
-                                               CallParticipant.DeviceOrdinal.PRIMARY
+                                       CallParticipant.createRemote(new CallParticipantId(remotePeer.getRecipient()),
+                                                                    remotePeer.getRecipient(),
+                                                                    null,
+                                                                    new BroadcastVideoSink(currentState.getVideoState().getEglBase(),
+                                                                                           false,
+                                                                                           true,
+                                                                                           currentState.getLocalDeviceState().getOrientation().getDegrees()),
+                                                                    true,
+                                                                    false,
+                                                                    0,
+                                                                    true,
+                                                                    0,
+                                                                    false,
+                                                                    CallParticipant.DeviceOrdinal.PRIMARY
                                        ))
                        .build();
   }

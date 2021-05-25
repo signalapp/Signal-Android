@@ -394,6 +394,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           return p.handleRemoteVideoEnable(s, true);
         case REMOTE_VIDEO_DISABLE:
           return p.handleRemoteVideoEnable(s, false);
+        case REMOTE_SHARING_SCREEN_ENABLE:
+          return p.handleScreenSharingEnable(s, true);
+        case REMOTE_SHARING_SCREEN_DISABLE:
+          return p.handleScreenSharingEnable(s, false);
         case ENDED_REMOTE_HANGUP:
         case ENDED_REMOTE_HANGUP_NEED_PERMISSION:
         case ENDED_REMOTE_HANGUP_ACCEPTED:
@@ -639,6 +643,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   @Override
   public void onEnded(@NonNull GroupCall groupCall, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
     process((s, p) -> p.handleGroupCallEnded(s, groupCall.hashCode(), groupCallEndReason));
+  }
+
+  @Override
+  public void onFullyInitialized() {
+    process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().getOrientation().getDegrees()));
   }
 
   @Override

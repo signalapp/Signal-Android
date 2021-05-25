@@ -36,6 +36,10 @@ public final class CallParticipantViewState extends RecipientMappingModel<CallPa
     return callParticipant.isMicrophoneEnabled() ? View.GONE : View.VISIBLE;
   }
 
+  public int getScreenSharingVisibility() {
+    return callParticipant.isScreenSharing() ? View.VISIBLE : View.GONE;
+  }
+
   @Override
   public boolean areItemsTheSame(@NonNull CallParticipantViewState newItem) {
     return callParticipant.getCallParticipantId().equals(newItem.callParticipant.getCallParticipantId());

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
-import org.thoughtcrime.securesms.components.webrtc.OrientationAwareVideoSink;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -33,7 +32,10 @@ public final class WebRtcVideoUtil {
 
     ThreadUtil.runOnMainSync(() -> {
       EglBase            eglBase   = EglBase.create();
-      BroadcastVideoSink localSink = new BroadcastVideoSink(eglBase);
+      BroadcastVideoSink localSink = new BroadcastVideoSink(eglBase,
+                                                            true,
+                                                            false,
+                                                            currentState.getLocalDeviceState().getOrientation().getDegrees());
       Camera             camera    = new Camera(context, cameraEventListener, eglBase, CameraState.Direction.FRONT);
 
       camera.setOrientation(currentState.getLocalDeviceState().getOrientation().getDegrees());
@@ -104,7 +106,7 @@ public final class WebRtcVideoUtil {
 
   public static @NonNull WebRtcServiceState initializeVanityCamera(@NonNull WebRtcServiceState currentState) {
     Camera    camera = currentState.getVideoState().requireCamera();
-    VideoSink sink   = new OrientationAwareVideoSink(currentState.getVideoState().requireLocalSink());
+    VideoSink sink   = currentState.getVideoState().requireLocalSink();
 
     if (camera.hasCapturer()) {
       camera.initCapturer(new CapturerObserver() {

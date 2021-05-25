@@ -1,9 +1,5 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -12,13 +8,7 @@ import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,10 +33,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
+import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -66,6 +56,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
 
 public class WebRtcCallView extends FrameLayout {
 
@@ -313,15 +305,15 @@ public class WebRtcCallView extends FrameLayout {
     micToggle.setChecked(isMicEnabled, false);
   }
 
-  public void updateCallParticipants(@NonNull CallParticipantsState state) {
+  public void updateCallParticipants(@NonNull CallParticipantsState state, boolean isPortrait) {
     List<WebRtcCallParticipantsPage> pages = new ArrayList<>(2);
 
     if (!state.getGridParticipants().isEmpty()) {
-      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode()));
+      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait));
     }
 
-    if (state.getFocusedParticipant() != null && state.getAllRemoteParticipants().size() > 1) {
-      pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode()));
+    if (state.getFocusedParticipant() != CallParticipant.EMPTY && state.getAllRemoteParticipants().size() > 1) {
+      pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode(), isPortrait));
     }
 
     if ((state.getGroupCallState().isNotIdle() && state.getRemoteDevicesCount().orElse(0) > 0) || state.getGroupCallState().isConnected()) {
@@ -837,6 +829,12 @@ public class WebRtcCallView extends FrameLayout {
   private boolean showParticipantsList() {
     controlsListener.onShowParticipantsList();
     return true;
+  }
+
+  public void switchToSpeakerView() {
+    if (pagerAdapter.getItemCount() > 0) {
+      callParticipantsPager.setCurrentItem(pagerAdapter.getItemCount() - 1, false);
+    }
   }
 
   public interface ControlsListener {

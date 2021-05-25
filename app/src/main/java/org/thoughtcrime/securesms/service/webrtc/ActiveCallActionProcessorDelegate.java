@@ -96,6 +96,21 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleScreenSharingEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
+
+    Log.i(tag, "handleScreenSharingEnable(): call_id: " + activePeer.getCallId() + " enable: " + enable);
+
+    CallParticipant oldParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
+    CallParticipant newParticipant = oldParticipant.withScreenSharingEnabled(enable);
+
+    return currentState.builder()
+                       .changeCallInfoState()
+                       .putParticipant(activePeer.getRecipient(), newParticipant)
+                       .build();
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
     RemotePeer remotePeer = currentState.getCallInfoState().getActivePeer();
     if (remotePeer == null) {
