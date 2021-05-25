@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -91,6 +92,10 @@ public class SendViewedReceiptJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isReadReceiptsEnabled(context) || syncTimestamps.isEmpty() || !FeatureFlags.sendViewedReceipts()) return;
 
     if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {

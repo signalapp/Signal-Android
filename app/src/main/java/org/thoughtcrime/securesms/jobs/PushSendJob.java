@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -68,6 +69,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.ProofRequiredResponse;
 
 import java.io.ByteArrayInputStream;
@@ -107,6 +109,10 @@ public abstract class PushSendJob extends SendJob {
     if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
       ApplicationDependencies.getJobManager().add(new RotateSignedPreKeyJob());
       throw new TextSecureExpiredException("Too many signed prekey rotation failures");
+    }
+
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
     }
 
     onPushSend();

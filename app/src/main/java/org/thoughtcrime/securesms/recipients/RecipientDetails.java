@@ -78,6 +78,7 @@ public class RecipientDetails {
                           @NonNull Optional<Long> groupAvatarId,
                           boolean systemContact,
                           boolean isSelf,
+                          @NonNull RegisteredState registeredState,
                           @NonNull RecipientSettings settings,
                           @Nullable List<Recipient> participants)
   {
@@ -101,7 +102,7 @@ public class RecipientDetails {
     this.participants                = participants == null ? new LinkedList<>() : participants;
     this.profileName                 = settings.getProfileName();
     this.defaultSubscriptionId       = settings.getDefaultSubscriptionId();
-    this.registered                  = settings.getRegistered();
+    this.registered                  = registeredState;
     this.profileKey                  = settings.getProfileKey();
     this.profileKeyCredential        = settings.getProfileKeyCredential();
     this.profileAvatar               = settings.getProfileAvatar();
@@ -184,6 +185,16 @@ public class RecipientDetails {
     boolean isSelf        = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
                             (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
 
-    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.absent(), systemContact, isSelf, settings, null);
+    RegisteredState registeredState = settings.getRegistered();
+
+    if (isSelf) {
+      if (TextSecurePreferences.isPushRegistered(context) && !TextSecurePreferences.isUnauthorizedRecieved(context)) {
+        registeredState = RegisteredState.REGISTERED;
+      } else {
+        registeredState = RegisteredState.NOT_REGISTERED;
+      }
+    }
+
+    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.absent(), systemContact, isSelf, registeredState, settings, null);
   }
 }

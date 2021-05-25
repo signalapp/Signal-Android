@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -54,6 +56,10 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;

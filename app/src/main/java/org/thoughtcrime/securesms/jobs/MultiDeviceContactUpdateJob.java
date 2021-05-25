@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -114,6 +115,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   public void onRun()
       throws IOException, UntrustedIdentityException, NetworkException
   {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;

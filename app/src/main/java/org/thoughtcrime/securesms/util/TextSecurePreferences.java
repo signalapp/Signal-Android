@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.Medium;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -464,7 +465,12 @@ public class TextSecurePreferences {
   }
 
   public static void setUnauthorizedReceived(Context context, boolean value) {
+    boolean previous = isUnauthorizedRecieved(context);
     setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
+
+    if (previous != value) {
+      Recipient.self().live().refresh();
+    }
   }
 
   public static boolean isUnauthorizedRecieved(Context context) {
@@ -912,8 +918,14 @@ public class TextSecurePreferences {
 
   public static void setPushRegistered(Context context, boolean registered) {
     Log.i(TAG, "Setting push registered: " + registered);
+    boolean previous = isPushRegistered(context);
+
     setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
     ApplicationDependencies.getIncomingMessageObserver().notifyRegistrationChanged();
+
+    if (previous != registered) {
+      Recipient.self().live().refresh();
+    }
   }
 
   public static boolean isShowInviteReminders(Context context) {

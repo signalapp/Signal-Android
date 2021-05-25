@@ -23,6 +23,8 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -95,6 +97,10 @@ public final class AttachmentUploadJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     Data inputData = getInputData();
 
     ResumableUploadSpec resumableUploadSpec;
@@ -153,7 +159,7 @@ public final class AttachmentUploadJob extends BaseJob {
   protected boolean onShouldRetry(@NonNull Exception exception) {
     if (exception instanceof ResumeLocationInvalidException) return false;
 
-    return exception instanceof IOException;
+    return exception instanceof IOException && !(exception instanceof NotPushRegisteredException);
   }
 
   private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, @Nullable ResumableUploadSpec resumableUploadSpec) throws InvalidAttachmentException {

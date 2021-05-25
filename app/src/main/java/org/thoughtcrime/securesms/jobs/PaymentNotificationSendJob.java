@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.PaymentDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -75,6 +76,10 @@ public final class PaymentNotificationSendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     PaymentDatabase                  paymentDatabase    = DatabaseFactory.getPaymentDatabase(context);
     Recipient                        recipient          = Recipient.resolved(recipientId);
     SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();

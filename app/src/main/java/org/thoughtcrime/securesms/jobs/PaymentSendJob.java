@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.payments.FailureReason;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.payments.PaymentSubmissionResult;
@@ -123,6 +124,10 @@ public final class PaymentSendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
       Log.w(TAG, "Payments are not enabled");
       return;

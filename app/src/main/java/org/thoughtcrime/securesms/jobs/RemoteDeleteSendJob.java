@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -112,8 +113,12 @@ public class RemoteDeleteSendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     MessageDatabase db;
-    MessageRecord     message;
+    MessageRecord   message;
 
     if (isMms) {
       db      = DatabaseFactory.getMmsDatabase(context);

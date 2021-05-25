@@ -212,10 +212,10 @@ public final class LiveRecipient {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(title, null,  avatarId, false, false, settings, members);
+      return new RecipientDetails(title, null,  avatarId, false, false, settings.getRegistered(), settings, members);
     }
 
-    return new RecipientDetails(null, null, Optional.absent(), false, false, settings, null);
+    return new RecipientDetails(null, null, Optional.absent(), false, false, settings.getRegistered(), settings, null);
   }
 
   synchronized void set(@NonNull Recipient recipient) {

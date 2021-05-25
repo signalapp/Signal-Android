@@ -1502,6 +1502,7 @@ public class ThreadDatabase extends Database {
                                                           group.hasAvatar() ? Optional.of(group.getAvatarId()) : Optional.absent(),
                                                           false,
                                                           false,
+                                                          recipientSettings.getRegistered(),
                                                           recipientSettings,
                                                           null);
           recipient = new Recipient(recipientId, details, false);
