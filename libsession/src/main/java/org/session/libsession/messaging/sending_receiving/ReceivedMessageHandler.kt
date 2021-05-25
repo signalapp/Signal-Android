@@ -451,6 +451,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     val members = group.members.map { it.serialize() }
     val admins = group.admins.map { it.toString() }
     val removedMembers = kind.members.map { it.toByteArray().toHexString() }
+    val zombies = storage.getZombieMember(groupID)
     // Check that the admin wasn't removed
     if (removedMembers.contains(admins.first())) {
         Log.d("Loki", "Ignoring invalid closed group update.")
@@ -476,12 +477,12 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
         disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
     } else {
         storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
+        // Update zombie members
+        storage.updateZombieMembers(groupID, zombies.minus(removedMembers).map { Address.fromSerialized(it) })
     }
-    // Update zombie members
-    val zombies = storage.getZombieMember(groupID)
-    storage.updateZombieMembers(groupID, zombies.minus(removedMembers).map { Address.fromSerialized(it) })
-    val type = if (senderLeft) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.MEMBER_REMOVED
+
     // Notify the user
+    val type = if (senderLeft) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.MEMBER_REMOVED
     // We don't display zombie members in the notification as users have already been notified when those members left
     val notificationMembers = removedMembers.minus(zombies)
     if (notificationMembers.isNotEmpty()) {
