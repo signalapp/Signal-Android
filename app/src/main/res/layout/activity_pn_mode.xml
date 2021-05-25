@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/medium_button_height"
             android:layout_marginLeft="@dimen/massive_spacing"
-            android:layout_marginTop="@dimen/very_large_spacing"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="@dimen/massive_spacing"
             android:layout_marginBottom="@dimen/onboarding_button_bottom_offset"
             android:text="@string/continue_2" />
