@@ -1,21 +1,10 @@
 package org.session.libsession.messaging.mentions
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
+import org.session.libsession.messaging.contacts.Contact
 
-import org.session.libsignal.database.LokiUserDatabaseProtocol
-
-class MentionsManager(private val userPublicKey: String, private val userDatabase: LokiUserDatabaseProtocol) {
+object MentionsManager {
     var userPublicKeyCache = mutableMapOf<Long, Set<String>>() // Thread ID to set of user hex encoded public keys
-
-    companion object {
-
-        public lateinit var shared: MentionsManager
-
-        public fun configureIfNeeded(userPublicKey: String, userDatabase: LokiUserDatabaseProtocol) {
-            if (::shared.isInitialized) { return; }
-            shared = MentionsManager(userPublicKey, userDatabase)
-        }
-    }
 
     fun cache(publicKey: String, threadID: Long) {
         val cache = userPublicKeyCache[threadID]
@@ -26,20 +15,16 @@ class MentionsManager(private val userPublicKey: String, private val userDatabas
         }
     }
 
-    fun getMentionCandidates(query: String, threadID: Long): List<Mention> {
-        // Prepare
+    fun getMentionCandidates(query: String, threadID: Long, isOpenGroup: Boolean): List<Mention> {
         val cache = userPublicKeyCache[threadID] ?: return listOf()
+        // Prepare
+        val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
+        val storage = MessagingModuleConfiguration.shared.storage
+        val userPublicKey = storage.getUserPublicKey()
         // Gather candidates
-        val publicChat = MessagingModuleConfiguration.shared.messageDataProvider.getOpenGroup(threadID)
         var candidates: List<Mention> = cache.mapNotNull { publicKey ->
-            val displayName: String?
-            if (publicChat != null) {
-                displayName = userDatabase.getServerDisplayName(publicChat.id, publicKey)
-            } else {
-                displayName = userDatabase.getDisplayName(publicKey)
-            }
-            if (displayName == null) { return@mapNotNull null }
-            if (displayName.startsWith("Anonymous")) { return@mapNotNull null }
+            val contact = storage.getContactWithSessionID(publicKey)
+            val displayName = contact?.displayName(context) ?: return@mapNotNull null
             Mention(publicKey, displayName)
         }
         candidates = candidates.filter { it.publicKey != userPublicKey }

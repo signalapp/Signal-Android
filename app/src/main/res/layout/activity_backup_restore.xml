@@ -99,7 +99,8 @@
                 android:text="By using this service, you agree to our Terms of Service and Privacy Policy"
                 android:textColor="@color/text"
                 android:textColorLink="@color/text"
-                android:textSize="@dimen/very_small_font_size" /> <!-- Intentionally not yet translated -->
+                android:textSize="@dimen/very_small_font_size"
+                tools:ignore="HardcodedText" /> <!-- Intentionally not yet translated -->
 
         </LinearLayout>
 

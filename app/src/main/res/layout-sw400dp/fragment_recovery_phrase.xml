@@ -18,7 +18,7 @@
         android:textSize="@dimen/very_large_font_size"
         android:textStyle="bold"
         android:textColor="@color/text"
-        android:text="Recovery Phrase" />
+        android:text="@string/fragment_recovery_phrase_title" />
 
     <TextView
         android:layout_width="match_parent"
@@ -28,13 +28,13 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="To link your device, enter the recovery phrase that was given to you when you signed up." />
+        android:text="@string/activity_restore_explanation" />
 
     <EditText
         style="@style/SessionEditText"
         android:id="@+id/mnemonicEditText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="64dp"
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginTop="12dp"
         android:layout_marginRight="@dimen/very_large_spacing"
@@ -42,7 +42,7 @@
         android:paddingBottom="0dp"
         android:gravity="center_vertical"
         android:inputType="textMultiLine"
-        android:maxLines="2"
+        android:maxLines="3"
         android:hint="@string/activity_restore_seed_edit_text_hint" />
 
     <View

@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.loki.utilities.*
 class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
-        private const val sessionJobTable = "session_job_database"
+        const val sessionJobTable = "session_job_database"
         const val jobID = "job_id"
         const val jobType = "job_type"
         const val failureCount = "failure_count"
@@ -68,6 +68,13 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val database = databaseHelper.readableDatabase
         return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf( messageSendJobID, MessageSendJob.KEY )) { cursor ->
             jobFromCursor(cursor) as MessageSendJob?
+        }
+    }
+
+    fun getMessageReceiveJob(messageReceiveJobID: String): MessageReceiveJob? {
+        val database = databaseHelper.readableDatabase
+        return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf( messageReceiveJobID, MessageReceiveJob.KEY )) { cursor ->
+            jobFromCursor(cursor) as MessageReceiveJob?
         }
     }
 

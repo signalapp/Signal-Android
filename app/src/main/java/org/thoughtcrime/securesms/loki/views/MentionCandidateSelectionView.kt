@@ -17,10 +17,10 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
         set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.mentionCandidates = newValue }
     var glide: GlideRequests? = null
         set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.glide = newValue }
-    var publicChatServer: String? = null
-        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.publicChatServer = publicChatServer }
-    var publicChatChannel: Long? = null
-        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.publicChatChannel = publicChatChannel }
+    var openGroupServer: String? = null
+        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.openGroupServer = openGroupServer }
+    var openGroupRoom: String? = null
+        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.openGroupRoom = openGroupRoom }
     var onMentionCandidateSelected: ((Mention) -> Unit)? = null
 
     private val mentionCandidateSelectionViewAdapter by lazy { Adapter(context) }
@@ -29,8 +29,8 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
         var mentionCandidates = listOf<Mention>()
             set(newValue) { field = newValue; notifyDataSetChanged() }
         var glide: GlideRequests? = null
-        var publicChatServer: String? = null
-        var publicChatChannel: Long? = null
+        var openGroupServer: String? = null
+        var openGroupRoom: String? = null
 
         override fun getCount(): Int {
             return mentionCandidates.count()
@@ -49,8 +49,8 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
             val mentionCandidate = getItem(position)
             cell.glide = glide
             cell.mentionCandidate = mentionCandidate
-            cell.publicChatServer = publicChatServer
-            cell.publicChatChannel = publicChatChannel
+            cell.openGroupServer = openGroupServer
+            cell.openGroupRoom = openGroupRoom
             return cell
         }
     }
@@ -68,10 +68,10 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
     }
 
     fun show(mentionCandidates: List<Mention>, threadID: Long) {
-        val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        if (publicChat != null) {
-            publicChatServer = publicChat.server
-            publicChatChannel = publicChat.channel
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+        if (openGroup != null) {
+            openGroupServer = openGroup.server
+            openGroupRoom = openGroup.room
         }
         this.mentionCandidates = mentionCandidates
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams

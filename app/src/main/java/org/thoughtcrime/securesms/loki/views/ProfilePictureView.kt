@@ -11,6 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.session.libsession.avatars.ProfileContactPhoto
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
@@ -29,7 +30,7 @@ class ProfilePictureView : RelativeLayout {
     var additionalDisplayName: String? = null
     var isRSSFeed = false
     var isLarge = false
-    private val imagesCached = mutableSetOf<String>()
+    private val profilePicturesCached = mutableMapOf<String,String?>()
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -57,23 +58,15 @@ class ProfilePictureView : RelativeLayout {
 
     // region Updating
     fun update(recipient: Recipient, threadID: Long) {
-        fun getUserDisplayName(publicKey: String?): String? {
-            if (publicKey == null || publicKey.isBlank()) {
-                return null
-            } else {
-                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-                if (result == null && publicChat != null) {
-                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
-                }
-                return result ?: publicKey
-            }
+        fun getUserDisplayName(publicKey: String): String {
+            val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+            return contact?.displayName(Contact.ContactContext.REGULAR) ?: publicKey
         }
         fun isOpenGroupWithProfilePicture(recipient: Recipient): Boolean {
             return recipient.isOpenGroupRecipient && recipient.groupAvatarId != null
         }
         if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
-            val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
+            val users = MentionsManager.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
             users.remove(TextSecurePreferences.getLocalNumber(context))
             val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
             if (users.count() == 1) {
@@ -90,7 +83,8 @@ class ProfilePictureView : RelativeLayout {
                     recipient.name == "Session Updates" ||
                     recipient.name == "Session Public Chat"
         } else {
-            publicKey = recipient.address.toString()
+            val publicKey = recipient.address.toString()
+            this.publicKey = publicKey
             displayName = getUserDisplayName(publicKey)
             additionalPublicKey = null
             isRSSFeed = false
@@ -146,13 +140,13 @@ class ProfilePictureView : RelativeLayout {
     private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
         if (publicKey.isNotEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
-            if (imagesCached.contains(publicKey)) return
+            if (profilePicturesCached.containsKey(publicKey) && profilePicturesCached[publicKey] == recipient.profileAvatar) return
             val signalProfilePicture = recipient.contactPhoto
-            if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
-                    && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
+            val avatar = (signalProfilePicture as? ProfileContactPhoto)?.avatarObject
+            if (signalProfilePicture != null && avatar != "0" && avatar != "") {
                 glide.clear(imageView)
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
-                imagesCached.add(publicKey)
+                profilePicturesCached[publicKey] = recipient.profileAvatar
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 glide.clear(imageView)
@@ -162,7 +156,7 @@ class ProfilePictureView : RelativeLayout {
                         publicKey,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                imagesCached.add(publicKey)
+                profilePicturesCached[publicKey] = recipient.profileAvatar
             }
         } else {
             imageView.setImageDrawable(null)
@@ -170,7 +164,7 @@ class ProfilePictureView : RelativeLayout {
     }
 
     fun recycle() {
-        imagesCached.clear()
+        profilePicturesCached.clear()
     }
     // endregion
 }

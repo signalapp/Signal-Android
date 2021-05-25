@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:paddingLeft="@dimen/large_spacing"
@@ -16,27 +16,97 @@
         android:id="@+id/profilePictureView"
         android:layout_width="@dimen/large_profile_picture_size"
         android:layout_height="@dimen/large_profile_picture_size"
-        android:layout_marginTop="@dimen/large_spacing" />
+        android:layout_marginTop="@dimen/large_spacing"/>
 
-    <TextView
-        android:id="@+id/nameTextView"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:textSize="@dimen/massive_font_size"
-        android:textStyle="bold"
-        android:textColor="@color/text"
-        android:text="Spiderman" />
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/nameTextViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:visibility="visible">
+
+            <View
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/small_spacing"
+                android:layout_marginEnd="@dimen/small_spacing"
+                android:textSize="@dimen/large_font_size"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+                android:textAlignment="center"
+                android:text="Spiderman" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="22dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_baseline_edit_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nameEditTextContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/cancelNicknameEditingButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_clear_24" />
+
+            <EditText
+                android:id="@+id/nicknameEditText"
+                style="@style/SmallSessionEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/small_spacing"
+                android:layout_marginEnd="@dimen/small_spacing"
+                android:textAlignment="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:hint="@string/fragment_user_details_bottom_sheet_edit_text_hint" />
+
+            <ImageView
+                android:id="@+id/saveNicknameButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_done_24" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <TextView
         style="@style/SessionIDTextView"
         android:id="@+id/publicKeyTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/large_font_size"
-        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:textSize="@dimen/medium_font_size"
         android:textIsSelectable="true"
-        android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+        tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
 
     <Button
         style="@style/Widget.Session.Button.Common.ProminentOutline"

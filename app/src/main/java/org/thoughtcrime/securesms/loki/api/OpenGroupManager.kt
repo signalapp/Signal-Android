@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.api
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.annotation.WorkerThread
+import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupV2
@@ -19,7 +20,22 @@ object OpenGroupManager {
     private var pollers = mutableMapOf<String, OpenGroupPollerV2>() // One for each server
     private var isPolling = false
 
-    var isAllCaughtUp = false
+    val isAllCaughtUp: Boolean
+        get() {
+            pollers.values.forEach { poller ->
+                val jobID = poller.secondToLastJob?.id
+                jobID?.let {
+                    val storage = MessagingModuleConfiguration.shared.storage
+                    if (storage.getMessageReceiveJob(jobID) == null) {
+                        // If the second to last job is done, it means we are now handling the last job
+                        poller.isCaughtUp = true
+                        poller.secondToLastJob = null
+                    }
+                }
+                if (!poller.isCaughtUp) { return false }
+            }
+            return true
+        }
 
     fun startPolling() {
         if (isPolling) { return }
@@ -49,8 +65,8 @@ object OpenGroupManager {
         val existingOpenGroup = threadDB.getOpenGroupChat(threadID)
         if (existingOpenGroup != null) { return }
         // Clear any existing data if needed
-        storage.removeLastDeletionServerId(room, server)
-        storage.removeLastMessageServerId(room, server)
+        storage.removeLastDeletionServerID(room, server)
+        storage.removeLastMessageServerID(room, server)
         // Store the public key
         storage.setOpenGroupPublicKey(server,publicKey)
         // Get an auth token
@@ -85,7 +101,8 @@ object OpenGroupManager {
         val threadDB = DatabaseFactory.getThreadDatabase(context)
         val openGroupID = "$server.$room"
         val threadID = GroupManager.getOpenGroupThreadID(openGroupID, context)
-        val groupID = threadDB.getRecipientForThreadId(threadID)!!.address.serialize()
+        val recipient = threadDB.getRecipientForThreadId(threadID) ?: return
+        val groupID = recipient.address.serialize()
         // Stop the poller if needed
         val openGroups = storage.getAllV2OpenGroups().filter { it.value.server == server }
         if (openGroups.count() == 1) {
@@ -95,9 +112,22 @@ object OpenGroupManager {
         }
         // Delete
         ThreadUtils.queue {
-            storage.removeLastDeletionServerId(room, server)
-            storage.removeLastMessageServerId(room, server)
+            storage.removeLastDeletionServerID(room, server)
+            storage.removeLastMessageServerID(room, server)
             GroupManager.deleteGroup(groupID, context) // Must be invoked on a background thread
         }
+    }
+
+    fun addOpenGroup(urlAsString: String, context: Context) {
+        val url = HttpUrl.parse(urlAsString) ?: return
+        val builder = HttpUrl.Builder().scheme(url.scheme()).host(url.host())
+        if (url.port() != 80 || url.port() != 443) {
+            // Non-standard port; add to server
+            builder.port(url.port())
+        }
+        val server = builder.build()
+        val room = url.pathSegments().firstOrNull() ?: return
+        val publicKey = url.queryParameter("public_key") ?: return
+        add(server.toString().removeSuffix("/"), room, publicKey, context)
     }
 }

@@ -37,11 +37,6 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
 
     }
 
-    override fun getQuoteServerID(quoteID: Long, quoteePublicKey: String): Long? {
-        val message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quoteID, quoteePublicKey)
-        return if (message != null) getServerID(message.getId(), !message.isMms) else null
-    }
-
     fun getServerID(messageID: Long): Long? {
         val database = databaseHelper.readableDatabase
         return database.get(messageIDTable, "${Companion.messageID} = ?", arrayOf(messageID.toString())) { cursor ->

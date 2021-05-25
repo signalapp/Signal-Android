@@ -13,24 +13,21 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.session.libsession.messaging.open_groups.OpenGroup;
+import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.TextSecurePreferences;
@@ -197,17 +194,20 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
     boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress().serialize());
 
-    String quoteeDisplayName = author.toShortString();
+    String quoteeDisplayName;
 
-    long threadID = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(conversationRecipient);
     String senderHexEncodedPublicKey = author.getAddress().serialize();
-    OpenGroup publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
     if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
       quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
-    } else if (publicChat != null) {
-      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(publicChat.getId(), senderHexEncodedPublicKey);
     } else {
-      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getDisplayName(senderHexEncodedPublicKey);
+      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(getContext());
+      Contact contact = contactDB.getContactWithSessionID(senderHexEncodedPublicKey);
+      if (contact != null) {
+        Contact.ContactContext context = (this.conversationRecipient.isOpenGroupRecipient()) ? Contact.ContactContext.OPEN_GROUP : Contact.ContactContext.REGULAR;
+        quoteeDisplayName = contact.displayName(context);
+      } else {
+        quoteeDisplayName = senderHexEncodedPublicKey;
+      }
     }
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);

@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.contacts.Contact
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -48,17 +49,9 @@ class UserView : LinearLayout {
 
     // region Updating
     fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
-        fun getUserDisplayName(publicKey: String?): String? {
-            if (publicKey == null || publicKey.isBlank()) {
-                return null
-            } else {
-                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
-                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(openGroupThreadID)
-                if (result == null && publicChat != null) {
-                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
-                }
-                return result ?: publicKey
-            }
+        fun getUserDisplayName(publicKey: String): String {
+            val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
+            return contact?.displayName(Contact.ContactContext.REGULAR) ?: publicKey
         }
         val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(user)
         MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this

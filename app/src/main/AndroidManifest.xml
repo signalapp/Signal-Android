@@ -172,9 +172,6 @@
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.ChatSettingsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.LinkedDevicesActivity"
-            android:screenOrientation="portrait" />
         <!-- Session -->
         <activity
             android:name="org.thoughtcrime.securesms.ShareActivity"
@@ -225,24 +222,6 @@
         </activity-alias>
 
         <activity
-            android:name="org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:noHistory="true"
-            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
-            android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="addstickers"
-                    android:scheme="sgnl" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="org.thoughtcrime.securesms.conversation.ConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
@@ -283,22 +262,10 @@
             android:launchMode="singleTask"
             android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.PassphraseCreateActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="@string/AndroidManifest__create_passphrase"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Session.DayNight.NoActionBar"
-            android:windowSoftInputMode="stateUnchanged" />
-        <activity
             android:name="org.thoughtcrime.securesms.PassphrasePromptActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Session.DayNight.NoActionBar"/>
-        <activity
-            android:name="org.thoughtcrime.securesms.PushContactSelectionActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="@string/AndroidManifest__select_contacts"
-            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.giph.ui.GiphyActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"

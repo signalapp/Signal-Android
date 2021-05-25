@@ -6,7 +6,7 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
-import org.session.libsession.messaging.file_server.FileServerAPI
+import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.Base64
@@ -307,7 +307,7 @@ object OnionRequestAPI {
             val url = "${guardSnode.address}:${guardSnode.port}/onion_req/v2"
             val finalEncryptionResult = result.finalEncryptionResult
             val onion = finalEncryptionResult.ciphertext
-            if (destination is Destination.Server && onion.count().toDouble() > 0.75 * FileServerAPI.maxFileSize.toDouble()) {
+            if (destination is Destination.Server && onion.count().toDouble() > 0.75 * FileServerAPIV2.maxFileSize.toDouble()) {
                 Log.d("Loki", "Approaching request size limit: ~${onion.count()} bytes.")
             }
             @Suppress("NAME_SHADOWING") val parameters = mapOf(
@@ -373,8 +373,8 @@ object OnionRequestAPI {
         }
         val promise = deferred.promise
         promise.fail { exception ->
-            val path = paths.firstOrNull { it.contains(guardSnode) }
-            if (exception is HTTP.HTTPRequestFailedException) {
+            if (exception is HTTP.HTTPRequestFailedException && SnodeModule.isInitialized) {
+                val path = paths.firstOrNull { it.contains(guardSnode) }
                 fun handleUnspecificError() {
                     if (path == null) { return }
                     var pathFailureCount = OnionRequestAPI.pathFailureCount[path] ?: 0

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -34,7 +35,7 @@
         style="@style/SessionEditText"
         android:id="@+id/mnemonicEditText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="64dp"
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginTop="12dp"
         android:layout_marginRight="@dimen/very_large_spacing"
@@ -42,7 +43,7 @@
         android:paddingBottom="0dp"
         android:gravity="center_vertical"
         android:inputType="textMultiLine"
-        android:maxLines="2"
+        android:maxLines="3"
         android:hint="@string/activity_restore_seed_edit_text_hint" />
 
     <View
@@ -69,6 +70,7 @@
         android:textColor="?android:textColorTertiary"
         android:textColorLink="?colorAccent"
         android:textSize="@dimen/very_small_font_size"
-        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" /> <!-- Intentionally not yet translated -->
+        android:text="By using this service, you agree to our Terms of Service and Privacy Policy"
+        tools:ignore="HardcodedText" /> <!-- Intentionally not yet translated -->
 
 </LinearLayout>

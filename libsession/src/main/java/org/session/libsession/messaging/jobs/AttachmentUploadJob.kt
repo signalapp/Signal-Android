@@ -6,13 +6,12 @@ import com.esotericsoftware.kryo.io.Output
 import nl.komponents.kovenant.Promise
 import okio.Buffer
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.file_server.FileServerAPI
 import org.session.libsession.messaging.file_server.FileServerAPIV2
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
-import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.utilities.UploadResult
 import org.session.libsignal.streams.AttachmentCipherOutputStream
 import org.session.libsignal.messages.SignalServiceAttachmentStream
 import org.session.libsignal.streams.PaddingInputStream
@@ -53,29 +52,20 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
             val attachment = messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
                 ?: return handleFailure(Error.NoAttachment)
-            val v2OpenGroup = storage.getV2OpenGroup(threadID)
-            val v1OpenGroup = storage.getOpenGroup(threadID)
+            val v2OpenGroup = storage.getV2OpenGroup(threadID.toLong())
             if (v2OpenGroup != null) {
                 val keyAndResult = upload(attachment, v2OpenGroup.server, false) {
                     OpenGroupAPIV2.upload(it, v2OpenGroup.room, v2OpenGroup.server)
                 }
                 handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
-            } else if (v1OpenGroup == null) {
-                val keyAndResult = upload(attachment, FileServerAPIV2.SERVER, true) {
+            } else {
+                val keyAndResult = upload(attachment, FileServerAPIV2.server, true) {
                     FileServerAPIV2.upload(it)
                 }
                 handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
-            } else { // V1 open group
-                val server = v1OpenGroup.server
-                val pushData = PushAttachmentData(attachment.contentType, attachment.inputStream,
-                        attachment.length, PlaintextOutputStreamFactory(), attachment.listener)
-                val result = FileServerAPI.shared.uploadAttachment(server, pushData)
-                handleSuccess(attachment, ByteArray(0), result)
             }
         } catch (e: java.lang.Exception) {
             if (e == Error.NoAttachment) {
-                this.handlePermanentFailure(e)
-            } else if (e is DotNetAPI.Error && !e.isRetryable) {
                 this.handlePermanentFailure(e)
             } else {
                 this.handleFailure(e)
@@ -83,7 +73,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         }
     }
 
-    private fun upload(attachment: SignalServiceAttachmentStream, server: String, encrypt: Boolean, upload: (ByteArray) -> Promise<Long, Exception>): Pair<ByteArray, DotNetAPI.UploadResult> {
+    private fun upload(attachment: SignalServiceAttachmentStream, server: String, encrypt: Boolean, upload: (ByteArray) -> Promise<Long, Exception>): Pair<ByteArray, UploadResult> {
         // Key
         val key = if (encrypt) Util.getSecretBytes(64) else ByteArray(0)
         // Length
@@ -112,10 +102,10 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val id = upload(data).get()
         val digest = drb.transmittedDigest
         // Return
-        return Pair(key, DotNetAPI.UploadResult(id, "${server}/files/$id", digest))
+        return Pair(key, UploadResult(id, "${server}/files/$id", digest))
     }
 
-    private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
+    private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult) {
         Log.d(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
         MessagingModuleConfiguration.shared.messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
@@ -158,7 +148,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             .putString(THREAD_ID_KEY, threadID)
             .putByteArray(MESSAGE_KEY, serializedMessage)
             .putString(MESSAGE_SEND_JOB_ID_KEY, messageSendJobID)
-            .build();
+            .build()
     }
 
     override fun getFactoryKey(): String {
@@ -172,7 +162,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val kryo = Kryo()
             kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
-            val message: Message = kryo.readObject(input, Message::class.java)
+            val message = kryo.readObject(input, Message::class.java)
             input.close()
             return AttachmentUploadJob(
                 data.getLong(ATTACHMENT_ID_KEY),

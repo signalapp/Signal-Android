@@ -59,6 +59,6 @@
         android:background="@color/transparent"
         android:textAllCaps="false"
         android:textSize="@dimen/medium_font_size"
-        android:text="Link a Device" />
+        android:text="@string/activity_link_device_link_device" />
 
 </LinearLayout>

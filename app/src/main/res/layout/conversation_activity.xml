@@ -55,9 +55,10 @@
                     android:id="@+id/titleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@null"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:text="Conversation"
+                    tools:text="Conversation"
                     android:textColor="@color/text"
                     android:textSize="@dimen/large_font_size"
                     android:fontFamily="sans-serif-medium" />
@@ -83,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="26 members"
+                        tools:text="26 members"
                         android:textColor="@color/text"
                         android:textSize="@dimen/small_font_size" />
 
@@ -217,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:background="?android:attr/windowBackground"
                 android:paddingStart="5dip"
-                android:text="160/160 (1)"
+                tools:text="160/160 (1)"
                 android:visibility="gone" />
 
             <ViewStub

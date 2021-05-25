@@ -67,7 +67,9 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return Data.Builder().putByteArray(MESSAGE_KEY, serializedMessage).build();
+        return Data.Builder()
+            .putByteArray(MESSAGE_KEY, serializedMessage)
+            .build();
     }
 
     override fun getFactoryKey(): String {
@@ -81,7 +83,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
             val kryo = Kryo()
             kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
-            val message: SnodeMessage = kryo.readObject(input, SnodeMessage::class.java)
+            val message = kryo.readObject(input, SnodeMessage::class.java)
             input.close()
             return NotifyPNServerJob(message)
         }

@@ -12,6 +12,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.PointerAtt
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupRecord
@@ -68,21 +69,21 @@ private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {
 fun MessageReceiver.showTypingIndicatorIfNeeded(senderPublicKey: String) {
     val context = MessagingModuleConfiguration.shared.context
     val address = Address.fromSerialized(senderPublicKey)
-    val threadID = MessagingModuleConfiguration.shared.storage.getThreadIdFor(address) ?: return
+    val threadID = MessagingModuleConfiguration.shared.storage.getThreadId(address) ?: return
     SSKEnvironment.shared.typingIndicators.didReceiveTypingStartedMessage(context, threadID, address, 1)
 }
 
 fun MessageReceiver.hideTypingIndicatorIfNeeded(senderPublicKey: String) {
     val context = MessagingModuleConfiguration.shared.context
     val address = Address.fromSerialized(senderPublicKey)
-    val threadID = MessagingModuleConfiguration.shared.storage.getThreadIdFor(address) ?: return
+    val threadID = MessagingModuleConfiguration.shared.storage.getThreadId(address) ?: return
     SSKEnvironment.shared.typingIndicators.didReceiveTypingStoppedMessage(context, threadID, address, 1, false)
 }
 
 fun MessageReceiver.cancelTypingIndicatorsIfNeeded(senderPublicKey: String) {
     val context = MessagingModuleConfiguration.shared.context
     val address = Address.fromSerialized(senderPublicKey)
-    val threadID = MessagingModuleConfiguration.shared.storage.getThreadIdFor(address) ?: return
+    val threadID = MessagingModuleConfiguration.shared.storage.getThreadId(address) ?: return
     SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID, address, 1)
 }
 
@@ -122,22 +123,25 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closedGroup.publicKey, closedGroup.name,
             closedGroup.encryptionKeyPair!!, closedGroup.members, closedGroup.admins, message.sentTimestamp!!)
     }
-    val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
     val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.joinURL }
     for (openGroup in message.openGroups) {
-        if (allOpenGroups.contains(openGroup) || allV2OpenGroups.contains(openGroup)) continue
-        storage.addOpenGroup(openGroup, 1)
+        if (allV2OpenGroups.contains(openGroup)) continue
+        storage.addOpenGroup(openGroup)
     }
+    val profileManager = SSKEnvironment.shared.profileManager
+    val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
     if (message.displayName.isNotEmpty()) {
         TextSecurePreferences.setProfileName(context, message.displayName)
-        storage.setDisplayName(userPublicKey, message.displayName)
+        profileManager.setName(context, recipient, message.displayName)
     }
     if (message.profileKey.isNotEmpty() && !message.profilePicture.isNullOrEmpty()
         && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
         val profileKey = Base64.encodeBytes(message.profileKey)
         ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
-        storage.setProfileKeyForRecipient(userPublicKey, message.profileKey)
-        storage.setUserProfilePictureUrl(message.profilePicture!!)
+        profileManager.setProfileKey(context, recipient, message.profileKey)
+        if (!message.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != message.profilePicture) {
+            storage.setUserProfilePictureURL(message.profilePicture!!)
+        }
     }
     storage.addContacts(message.contacts)
 }
@@ -157,17 +161,14 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         // Thread doesn't exist; should only be reached in a case where we are processing open group messages for a no longer existent thread
         throw MessageReceiver.Error.NoThread
     }
-    val openGroup = threadID.let {
-        storage.getOpenGroup(it.toString())
-    }
     // Update profile if needed
     val profile = message.profile
-    if (profile != null && userPublicKey != message.sender && openGroup == null) { // Don't do this in V1 open groups
+    if (profile != null && userPublicKey != message.sender) {
         val profileManager = SSKEnvironment.shared.profileManager
         val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
-        val displayName = profile.displayName!!
-        if (displayName.isNotEmpty()) {
-            profileManager.setDisplayName(context, recipient, displayName)
+        val name = profile.displayName!!
+        if (name.isNotEmpty()) {
+            profileManager.setName(context, recipient, name)
         }
         if (profile.profileKey?.isNotEmpty() == true && profile.profilePictureURL?.isNotEmpty() == true
             && (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, profile.profileKey))) {
@@ -286,6 +287,8 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     storage.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, storage.getUserPublicKey()!!)
+    // Start polling
+    ClosedGroupPollerV2.shared.startPolling(groupPublicKey)
 }
 
 private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGroupControlMessage) {
@@ -389,9 +392,9 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
 
     // update zombie members in case the added members are zombies
-    val zombies = storage.getZombieMember(groupID)
+    val zombies = storage.getZombieMembers(groupID)
     if (zombies.intersect(updateMembers).isNotEmpty())
-        storage.updateZombieMembers(groupID, zombies.minus(updateMembers).map { Address.fromSerialized(it) })
+        storage.setZombieMembers(groupID, zombies.minus(updateMembers).map { Address.fromSerialized(it) })
 
     // Notify the user
     if (userPublicKey == senderPublicKey) {
@@ -451,7 +454,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     val members = group.members.map { it.serialize() }
     val admins = group.admins.map { it.toString() }
     val removedMembers = kind.members.map { it.toByteArray().toHexString() }
-    val zombies = storage.getZombieMember(groupID)
+    val zombies: Set<String> = storage.getZombieMembers(groupID)
     // Check that the admin wasn't removed
     if (removedMembers.contains(admins.first())) {
         Log.d("Loki", "Ignoring invalid closed group update.")
@@ -478,7 +481,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     } else {
         storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
         // Update zombie members
-        storage.updateZombieMembers(groupID, zombies.minus(removedMembers).map { Address.fromSerialized(it) })
+        storage.setZombieMembers(groupID, zombies.minus(removedMembers).map { Address.fromSerialized(it) })
     }
 
     // Notify the user
@@ -532,8 +535,8 @@ private fun MessageReceiver.handleClosedGroupMemberLeft(message: ClosedGroupCont
     } else {
         storage.updateMembers(groupID, updatedMemberList.map { Address.fromSerialized(it) })
         // Update zombie members
-        val zombies = storage.getZombieMember(groupID)
-        storage.updateZombieMembers(groupID, zombies.plus(senderPublicKey).map { Address.fromSerialized(it) })
+        val zombies = storage.getZombieMembers(groupID)
+        storage.setZombieMembers(groupID, zombies.plus(senderPublicKey).map { Address.fromSerialized(it) })
     }
     // Notify the user
     if (userLeft) {
@@ -569,5 +572,7 @@ fun MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey: String, grou
     storage.removeMember(groupID, Address.fromSerialized(userPublicKey))
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
+    // Stop polling
+    ClosedGroupPollerV2.shared.stopPolling(groupPublicKey)
 }
 // endregion

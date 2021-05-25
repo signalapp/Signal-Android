@@ -5,10 +5,9 @@ import android.text.TextUtils
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.utilities.Address
-import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.utilities.UploadResult
 import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.messages.SignalServiceAttachment
@@ -104,11 +103,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return smsDatabase.isOutgoingMessage(timestamp) || mmsDatabase.isOutgoingMessage(timestamp)
     }
 
-    override fun getOpenGroup(threadID: Long): OpenGroup? {
-        return null // TODO: Implement
-    }
-
-    override fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
+    override fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult) {
         val database = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = getDatabaseAttachment(attachmentId) ?: return
         val attachmentPointer = SignalServiceAttachmentPointer(uploadResult.id,

@@ -7,7 +7,7 @@
     <dimen name="very_small_font_size">12sp</dimen>
     <dimen name="small_font_size">15sp</dimen>
     <dimen name="medium_font_size">17sp</dimen>
-    <dimen name="large_font_size">22sp</dimen>
+    <dimen name="large_font_size">20sp</dimen>
     <dimen name="very_large_font_size">26sp</dimen>
     <dimen name="massive_font_size">50sp</dimen>
 

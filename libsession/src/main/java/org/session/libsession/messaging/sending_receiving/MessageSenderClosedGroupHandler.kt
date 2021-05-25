@@ -9,6 +9,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
@@ -71,6 +72,8 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTime)
         // Notify the PN server
         PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
+        // Start polling
+        ClosedGroupPollerV2.shared.startPolling(groupPublicKey)
         // Fulfill the promise
         deferred.resolve(groupID)
     }
@@ -189,8 +192,8 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
     // Save the new group members
     storage.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
     // Update the zombie list
-    val oldZombies = storage.getZombieMember(groupID)
-    storage.updateZombieMembers(groupID, oldZombies.minus(membersToRemove).map { Address.fromSerialized(it) })
+    val oldZombies = storage.getZombieMembers(groupID)
+    storage.setZombieMembers(groupID, oldZombies.minus(membersToRemove).map { Address.fromSerialized(it) })
     val removeMembersAsData = membersToRemove.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
     val name = group.title
     // Send the update to the group

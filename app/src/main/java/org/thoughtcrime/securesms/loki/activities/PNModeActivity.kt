@@ -43,6 +43,7 @@ class PNModeActivity : BaseActionBarActivity() {
         backgroundPollingOptionView.mainColor = resources.getColorWithID(R.color.pn_option_background, theme)
         backgroundPollingOptionView.strokeColor = resources.getColorWithID(R.color.pn_option_border, theme)
         registerButton.setOnClickListener { register() }
+        toggleFCM()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -153,7 +154,6 @@ class PNModeActivity : BaseActionBarActivity() {
         }
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
         val application = ApplicationContext.getInstance(this)
-        application.setUpStorageAPIIfNeeded()
         application.startPollingIfNeeded()
         application.registerForFCMIfNeeded(true)
         val intent = Intent(this, HomeActivity::class.java)

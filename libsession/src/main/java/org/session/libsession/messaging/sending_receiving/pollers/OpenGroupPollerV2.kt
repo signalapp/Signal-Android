@@ -18,10 +18,13 @@ import java.util.concurrent.TimeUnit
 
 class OpenGroupPollerV2(private val server: String, private val executorService: ScheduledExecutorService?) {
     var hasStarted = false
+    var isCaughtUp = false
+    var secondToLastJob: MessageReceiveJob? = null
     private var future: ScheduledFuture<*>? = null
 
     companion object {
         private val pollInterval: Long = 4 * 1000
+        const val maxInactivityPeriod = 14 * 24 * 60 * 60 * 1000
     }
 
     fun startIfNeeded() {
@@ -43,6 +46,9 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 val openGroupID = "$server.$room"
                 handleNewMessages(openGroupID, response.messages, isBackgroundPoll)
                 handleDeletedMessages(openGroupID, response.deletions)
+                if (secondToLastJob == null && !isCaughtUp) {
+                    isCaughtUp = true
+                }
             }
         }.always {
             executorService?.schedule(this@OpenGroupPollerV2::poll, OpenGroupPollerV2.pollInterval, TimeUnit.MILLISECONDS)
@@ -51,6 +57,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
 
     private fun handleNewMessages(openGroupID: String, messages: List<OpenGroupMessageV2>, isBackgroundPoll: Boolean) {
         if (!hasStarted) { return }
+        var latestJob: MessageReceiveJob? = null
         messages.sortedBy { it.serverID!! }.forEach { message ->
             try {
                 val senderPublicKey = message.sender!!
@@ -66,6 +73,10 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                     job.executeAsync()
                 } else {
                     JobQueue.shared.add(job)
+                    if (!isCaughtUp) {
+                        secondToLastJob = latestJob
+                    }
+                    latestJob = job
                 }
             } catch (e: Exception) {
                 Log.e("Loki", "Exception parsing message", e)
@@ -77,7 +88,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         val storage = MessagingModuleConfiguration.shared.storage
         val dataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
-        val threadID = storage.getThreadIdFor(Address.fromSerialized(groupID)) ?: return
+        val threadID = storage.getThreadId(Address.fromSerialized(groupID)) ?: return
         val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { serverID ->
             val messageID = dataProvider.getMessageID(serverID, threadID)
             if (messageID == null) {
