@@ -45,8 +45,8 @@ class ClosedGroupPollerV2 {
 
     fun startPolling(groupPublicKey: String) {
         if (isPolling(groupPublicKey)) { return }
-        setUpPolling(groupPublicKey)
         isPolling[groupPublicKey] = true
+        setUpPolling(groupPublicKey)
     }
 
     fun stop() {
