@@ -89,7 +89,7 @@ object OpenGroupManager {
         val openGroup = OpenGroupV2(server, room, info.name, publicKey)
         threadDB.setOpenGroupChat(openGroup, threadID)
         // Start the poller if needed
-        if (pollers[server] == null) {
+        pollers[server]?.startIfNeeded() ?: run {
             val poller = OpenGroupPollerV2(server, executorService)
             Util.runOnMain { poller.startIfNeeded() }
             pollers[server] = poller
@@ -111,9 +111,11 @@ object OpenGroupManager {
             pollers.remove(server)
         }
         // Delete
+        storage.removeLastDeletionServerID(room, server)
+        storage.removeLastMessageServerID(room, server)
+        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        lokiThreadDB.removeOpenGroupChat(threadID)
         ThreadUtils.queue {
-            storage.removeLastDeletionServerID(room, server)
-            storage.removeLastMessageServerID(room, server)
             GroupManager.deleteGroup(groupID, context) // Must be invoked on a background thread
         }
     }

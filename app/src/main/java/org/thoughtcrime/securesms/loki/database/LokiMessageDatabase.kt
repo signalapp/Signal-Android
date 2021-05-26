@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.session.libsignal.database.LokiMessageDatabaseProtocol
+import org.session.libsignal.utilities.Log
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 
@@ -130,5 +131,32 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.errorMessage, errorMessage)
         database.insertOrUpdate(errorMessageTable, contentValues, "${Companion.messageID} = ?", arrayOf(messageID.toString()))
+    }
+
+    fun deleteThread(threadId: Long) {
+        val database = databaseHelper.writableDatabase
+        try {
+            val messages = mutableSetOf<Pair<Long,Long>>()
+            database.get(messageThreadMappingTable,  "${Companion.threadID} = ?", arrayOf(threadId.toString())) { cursor ->
+                // for each add
+                while (cursor.moveToNext()) {
+                    messages.add(cursor.getLong(Companion.messageID) to cursor.getLong(Companion.serverID))
+                }
+            }
+            Log.d("Test", "Need to delete ${messages.size} number of messages")
+
+            var deletedCount = 0L
+
+            database.beginTransaction()
+            messages.forEach { (messageId, serverId) ->
+                deletedCount += database.delete(messageIDTable, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageId.toString(), serverId.toString()))
+            }
+            Log.d("Test", "Deleted $deletedCount from messageIDTable")
+            val mappingDeleted = database.delete(messageThreadMappingTable, "${Companion.threadID} = ?", arrayOf(threadId.toString()))
+            Log.d("Test", "Deleted $mappingDeleted from mapping table")
+            database.setTransactionSuccessful()
+        } finally {
+            database.endTransaction()
+        }
     }
 }

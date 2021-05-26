@@ -330,9 +330,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                 // Delete the conversation
                 val v2OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
                 if (v2OpenGroup != null) {
-                    val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
-                    apiDB.removeLastMessageServerID(v2OpenGroup.room, v2OpenGroup.server)
-                    apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
                     OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
                     ThreadUtils.queue {
