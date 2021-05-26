@@ -3,9 +3,12 @@ package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 import android.app.ProgressDialog
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.Drawable
 import android.text.SpannableStringBuilder
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -98,16 +101,28 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
         isChecked = state.isPushEnabled
       ) {
         if (state.isPushEnabled) {
-          MaterialAlertDialogBuilder(requireContext()).apply {
-            setIcon(R.drawable.ic_info_outline)
-            setTitle(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls)
+          val builder = MaterialAlertDialogBuilder(requireContext()).apply {
             setMessage(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering)
             setNegativeButton(android.R.string.cancel, null)
             setPositiveButton(
               android.R.string.ok
             ) { _, _ -> viewModel.disablePushMessages() }
-            show()
           }
+
+          val icon: Drawable = requireNotNull(ContextCompat.getDrawable(builder.context, R.drawable.ic_info_outline))
+          icon.setBounds(0, 0, ViewUtil.dpToPx(32), ViewUtil.dpToPx(32))
+
+          val title = TextView(builder.context)
+          val padding = ViewUtil.dpToPx(16)
+          title.setText(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls)
+          title.setPadding(padding, padding, padding, padding)
+          title.compoundDrawablePadding = padding / 2
+          TextViewCompat.setTextAppearance(title, R.style.TextAppearance_Signal_Title2_MaterialDialog)
+          TextViewCompat.setCompoundDrawablesRelative(title, icon, null, null, null)
+
+          builder
+            .setCustomTitle(title)
+            .show()
         } else {
           startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()))
         }
