@@ -204,12 +204,13 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   private void setQuoteAuthor(@NonNull Recipient author) {
     boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
+    boolean preview  = messageType == MESSAGE_TYPE_PREVIEW;
 
     authorView.setText(author.isSelf() ? getContext().getString(R.string.QuoteView_you)
                                        : author.getDisplayName(getContext()));
 
     quoteBarView.setBackgroundColor(ContextCompat.getColor(getContext(), outgoing ? R.color.core_white : android.R.color.transparent));
-    mainView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.quote_view_background));
+    mainView.setBackgroundColor(ContextCompat.getColor(getContext(), preview ? R.color.quote_preview_background : R.color.quote_view_background));
   }
 
   private void setQuoteText(@Nullable CharSequence body, @NonNull SlideDeck attachments) {
