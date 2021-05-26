@@ -56,8 +56,10 @@ class ChatSelectionContextMenu(val context: Context) : PopupWindow(context) {
     anchor.getDrawingRect(rect)
     root.offsetDescendantRectToMyCoords(anchor, rect)
 
-    if (rect.bottom + contentView.height > root.bottom) {
-      showAsDropDown(anchor, 0, -(contentView.height + anchor.height))
+    contentView.measure(0, 0)
+
+    if (rect.bottom + contentView.measuredHeight > root.bottom) {
+      showAsDropDown(anchor, 0, -(contentView.measuredHeight + anchor.height))
     } else {
       showAsDropDown(anchor, 0, 0)
     }
