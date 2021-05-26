@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -316,7 +317,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setGroupMessageStatus(messageRecord, recipient.get());
     setGroupAuthorColor(messageRecord, hasWallpaper, colorizer);
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper);
-    setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, colorizer);
+    setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, messageRecord.getRecipient().getChatColors());
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setReactions(messageRecord);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread, hasWallpaper);
@@ -1095,14 +1096,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, @NonNull Colorizer colorizer) {
+  private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, @NonNull ChatColors chatColors) {
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       if (quoteView == null) {
         throw new AssertionError();
       }
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getDisplayText(), quote.isOriginalMissing(), quote.getAttachment(), colorizer);
+      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getDisplayText(), quote.isOriginalMissing(), quote.getAttachment(), chatColors);
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
 

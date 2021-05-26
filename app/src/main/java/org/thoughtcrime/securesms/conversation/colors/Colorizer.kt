@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.colors
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -64,6 +65,10 @@ class Colorizer(private val colorizerView: ColorizerView) : RecyclerView.OnScrol
   }
 
   fun applyClipPathsToMaskedGradient(recyclerView: RecyclerView) {
+    if (Build.VERSION.SDK_INT < 21) {
+      return
+    }
+
     val layoutManager = recyclerView.layoutManager as LinearLayoutManager
 
     val firstVisibleItemPosition: Int = layoutManager.findFirstVisibleItemPosition()

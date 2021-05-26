@@ -26,7 +26,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
-import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -69,7 +69,6 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private int           largeCornerRadius;
   private int           smallCornerRadius;
   private CornerMask    cornerMask;
-  private Colorizer     colorizer;
 
 
   public QuoteView(Context context) {
@@ -157,7 +156,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                        @Nullable CharSequence body,
                        boolean originalMissing,
                        @NonNull SlideDeck attachments,
-                       @NonNull Colorizer colorizer)
+                       @Nullable ChatColors chatColors)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -165,13 +164,18 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     this.author      = author.live();
     this.body        = body;
     this.attachments = attachments;
-    this.colorizer   = colorizer;
 
     this.author.observeForever(this);
     setQuoteAuthor(author);
     setQuoteText(body, attachments);
     setQuoteAttachment(glideRequests, attachments);
     setQuoteMissingFooter(originalMissing);
+
+    if (Build.VERSION.SDK_INT < 21 && messageType == MESSAGE_TYPE_INCOMING && chatColors != null) {
+      this.setBackgroundColor(chatColors.asSingleColor());
+    } else {
+      this.setBackground(null);
+    }
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {

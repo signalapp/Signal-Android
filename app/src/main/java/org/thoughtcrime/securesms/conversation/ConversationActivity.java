@@ -3506,8 +3506,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                           messageRecord.getDateSent(),
                           author,
                           body,
-                          slideDeck,
-                          fragment.getColorizer());
+                          slideDeck);
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -3521,8 +3520,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                           messageRecord.getDateSent(),
                           author,
                           conversationMessage.getDisplayBody(this),
-                          slideDeck,
-                          fragment.getColorizer());
+                          slideDeck);
     } else {
       SlideDeck slideDeck = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck();
 
@@ -3536,8 +3534,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                           messageRecord.getDateSent(),
                           author,
                           conversationMessage.getDisplayBody(this),
-                          slideDeck,
-                          fragment.getColorizer());
+                          slideDeck);
     }
 
     inputPanel.clickOnComposeInput();

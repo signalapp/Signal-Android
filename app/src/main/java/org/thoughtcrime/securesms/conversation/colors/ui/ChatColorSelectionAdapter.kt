@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation.colors.ui
 
 import android.content.Context
-import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,7 +8,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
-import org.thoughtcrime.securesms.util.customizeOnDraw
+import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.withFixedSize
 
 class ChatColorSelectionAdapter(
   context: Context,
@@ -81,24 +81,8 @@ class ChatColorSelectionAdapter(
         preview.isLongClickable = false
       }
 
-      val mask = model.chatColors.chatBubbleMask
-      preview.setImageDrawable(
-        mask.customizeOnDraw { wrapped, canvas ->
-          val circlePath = Path()
-          val bounds = canvas.clipBounds
-          circlePath.addCircle(
-            bounds.width() / 2f,
-            bounds.height() / 2f,
-            bounds.width() / 2f,
-            Path.Direction.CW
-          )
-
-          canvas.save()
-          canvas.clipPath(circlePath)
-          wrapped.draw(canvas)
-          canvas.restore()
-        }
-      )
+      val mask = model.chatColors.asCircle()
+      preview.setImageDrawable(mask.withFixedSize(ViewUtil.dpToPx(56)))
     }
   }
 

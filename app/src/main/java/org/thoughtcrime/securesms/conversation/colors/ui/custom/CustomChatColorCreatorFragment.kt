@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.colors.ui.custom
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -33,7 +34,12 @@ class CustomChatColorCreatorFragment : Fragment(R.layout.custom_chat_color_creat
 
     pager.isUserInputEnabled = false
     pager.adapter = adapter
-    tabLayoutMediator.attach()
+
+    if (Build.VERSION.SDK_INT < 21) {
+      tabLayout.visibility = View.GONE
+    } else {
+      tabLayoutMediator.attach()
+    }
 
     val startPage = CustomChatColorCreatorFragmentArgs.fromBundle(requireArguments()).startPage
     pager.setCurrentItem(startPage, false)
