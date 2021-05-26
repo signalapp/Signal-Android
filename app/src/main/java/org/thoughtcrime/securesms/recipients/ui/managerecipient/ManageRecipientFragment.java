@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
-import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -309,16 +309,16 @@ public class ManageRecipientFragment extends LoggingFragment {
     disappearingMessagesCard.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
     addToAGroup.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
 
-    ChatColors recipientColor = recipient.getChatColors();
+    AvatarColor recipientColor = recipient.getAvatarColor();
     avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
       @Override
       public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
-        return new FallbackPhoto80dp(R.drawable.ic_profile_80, recipientColor);
+        return new FallbackPhoto80dp(R.drawable.ic_profile_80, recipientColor.colorInt());
       }
 
       @Override
       public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-        return new FallbackPhoto80dp(R.drawable.ic_note_80, recipientColor);
+        return new FallbackPhoto80dp(R.drawable.ic_note_80, recipientColor.colorInt());
       }
     });
     avatar.setAvatar(recipient);

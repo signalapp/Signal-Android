@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
@@ -67,6 +68,7 @@ public class RecipientDetails {
   final MentionSetting             mentionSetting;
   final ChatWallpaper              wallpaper;
   final ChatColors                 chatColors;
+  final AvatarColor                avatarColor;
   final String                     about;
   final String                     aboutEmoji;
   final ProfileName                systemProfileName;
@@ -120,6 +122,7 @@ public class RecipientDetails {
     this.mentionSetting              = settings.getMentionSetting();
     this.wallpaper                   = settings.getWallpaper();
     this.chatColors                  = settings.getChatColors();
+    this.avatarColor                 = settings.getAvatarColor();
     this.about                       = settings.getAbout();
     this.aboutEmoji                  = settings.getAboutEmoji();
     this.systemProfileName           = settings.getSystemProfileName();
@@ -172,6 +175,7 @@ public class RecipientDetails {
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
     this.chatColors                  = null;
+    this.avatarColor                 = AvatarColor.UNKNOWN;
     this.about                       = null;
     this.aboutEmoji                  = null;
     this.systemProfileName           = ProfileName.EMPTY;

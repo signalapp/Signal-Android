@@ -24,6 +24,7 @@ import net.sqlcipher.database.SQLiteOpenHelper;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
@@ -188,8 +189,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int CLEAR_MMS_STORAGE_IDS            = 98;
   private static final int SERVER_GUID                      = 99;
   private static final int CHAT_COLORS                      = 100;
+  private static final int AVATAR_COLORS                    = 101;
 
-  private static final int    DATABASE_VERSION = 100;
+  private static final int    DATABASE_VERSION = 101;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1488,6 +1490,19 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
           values.put("custom_chat_colors_id", entry.getValue().getId().getLongValue());
 
           db.update("recipient", values, where, whereArgs);
+        }
+      }
+
+      if (oldVersion < AVATAR_COLORS) {
+        try (Cursor cursor  = db.query("recipient", new String[] { "_id" }, "color IS NULL", null, null, null, null)) {
+          while (cursor.moveToNext()) {
+            long id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+
+            ContentValues values = new ContentValues(1);
+            values.put("color", AvatarColor.random().serialize());
+
+            db.update("recipient", values, "_id = ?", new String[] { String.valueOf(id) });
+          }
         }
       }
 

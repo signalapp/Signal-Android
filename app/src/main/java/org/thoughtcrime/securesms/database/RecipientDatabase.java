@@ -24,6 +24,7 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -112,7 +113,7 @@ public class RecipientDatabase extends Database {
   private static final String CALL_VIBRATE              = "call_vibrate";
   private static final String NOTIFICATION_CHANNEL      = "notification_channel";
   private static final String MUTE_UNTIL                = "mute_until";
-  //private static final String COLOR                     = "color";
+  private static final String AVATAR_COLOR              = "color";
   private static final String SEEN_INVITE_REMINDER      = "seen_invite_reminder";
   private static final String DEFAULT_SUBSCRIPTION_ID   = "default_subscription_id";
   private static final String MESSAGE_EXPIRATION_TIME   = "message_expiration_time";
@@ -164,7 +165,7 @@ public class RecipientDatabase extends Database {
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       ID, UUID, USERNAME, PHONE, EMAIL, GROUP_ID, GROUP_TYPE,
-      BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
+      BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, AVATAR_COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
       PROFILE_KEY, PROFILE_KEY_CREDENTIAL,
       SYSTEM_JOINED_NAME, SYSTEM_GIVEN_NAME, SYSTEM_FAMILY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
       PROFILE_GIVEN_NAME, PROFILE_FAMILY_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, LAST_PROFILE_FETCH,
@@ -326,6 +327,7 @@ public class RecipientDatabase extends Database {
                                             CALL_VIBRATE              + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
                                             NOTIFICATION_CHANNEL      + " TEXT DEFAULT NULL, " +
                                             MUTE_UNTIL                + " INTEGER DEFAULT 0, " +
+                                            AVATAR_COLOR              + " TEXT DEFAULT NULL, " +
                                             SEEN_INVITE_REMINDER      + " INTEGER DEFAULT " + InsightsBannerTier.NO_TIER.getId() + ", " +
                                             DEFAULT_SUBSCRIPTION_ID   + " INTEGER DEFAULT -1, " +
                                             MESSAGE_EXPIRATION_TIME   + " INTEGER DEFAULT 0, " +
@@ -559,6 +561,7 @@ public class RecipientDatabase extends Database {
       values.put(UUID, uuid.toString().toLowerCase());
       values.put(REGISTERED, RegisteredState.REGISTERED.getId());
       values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+      values.put(AVATAR_COLOR, AvatarColor.random().serialize());
     }
 
     return values;
@@ -589,6 +592,7 @@ public class RecipientDatabase extends Database {
     } else {
       ContentValues values = new ContentValues();
       values.put(GROUP_ID, groupId.toString());
+      values.put(AVATAR_COLOR, AvatarColor.random().serialize());
 
       long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
 
@@ -866,7 +870,7 @@ public class RecipientDatabase extends Database {
   public void applyStorageSyncGroupV1Insert(@NonNull SignalGroupV1Record insert) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    long        id          = db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
+    long        id          = db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert, true));
     RecipientId recipientId = RecipientId.from(id);
 
     DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(recipientId, insert);
@@ -877,7 +881,7 @@ public class RecipientDatabase extends Database {
   public void applyStorageSyncGroupV1Update(@NonNull StorageRecordUpdate<SignalGroupV1Record> update) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    ContentValues values      = getValuesForStorageGroupV1(update.getNew());
+    ContentValues values      = getValuesForStorageGroupV1(update.getNew(), false);
     int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
     if (updateCount < 1) {
@@ -896,7 +900,7 @@ public class RecipientDatabase extends Database {
 
     GroupMasterKey masterKey = insert.getMasterKeyOrThrow();
     GroupId.V2     groupId   = GroupId.v2(masterKey);
-    ContentValues  values    = getValuesForStorageGroupV2(insert);
+    ContentValues  values    = getValuesForStorageGroupV2(insert, true);
     long           id        = db.insertOrThrow(TABLE_NAME, null, values);
     Recipient      recipient = Recipient.externalGroupExact(context, groupId);
 
@@ -919,7 +923,7 @@ public class RecipientDatabase extends Database {
   public void applyStorageSyncGroupV2Update(@NonNull StorageRecordUpdate<SignalGroupV2Record> update) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    ContentValues values      = getValuesForStorageGroupV2(update.getNew());
+    ContentValues values      = getValuesForStorageGroupV2(update.getNew(), false);
     int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
     if (updateCount < 1) {
@@ -1037,10 +1041,14 @@ public class RecipientDatabase extends Database {
       values.putNull(STORAGE_PROTO);
     }
 
+    if (isInsert) {
+      values.put(AVATAR_COLOR, AvatarColor.random().serialize());
+    }
+
     return values;
   }
 
-  private static @NonNull ContentValues getValuesForStorageGroupV1(@NonNull SignalGroupV1Record groupV1) {
+  private static @NonNull ContentValues getValuesForStorageGroupV1(@NonNull SignalGroupV1Record groupV1, boolean isInsert) {
     ContentValues values = new ContentValues();
     values.put(GROUP_ID, GroupId.v1orThrow(groupV1.getGroupId()).toString());
     values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
@@ -1055,10 +1063,14 @@ public class RecipientDatabase extends Database {
       values.putNull(STORAGE_PROTO);
     }
 
+    if (isInsert) {
+      values.put(AVATAR_COLOR, AvatarColor.random().serialize());
+    }
+
     return values;
   }
   
-  private static @NonNull ContentValues getValuesForStorageGroupV2(@NonNull SignalGroupV2Record groupV2) {
+  private static @NonNull ContentValues getValuesForStorageGroupV2(@NonNull SignalGroupV2Record groupV2, boolean isInsert) {
     ContentValues values = new ContentValues();
     values.put(GROUP_ID, GroupId.v2(groupV2.getMasterKeyOrThrow()).toString());
     values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
@@ -1071,6 +1083,10 @@ public class RecipientDatabase extends Database {
       values.put(STORAGE_PROTO, Base64.encodeBytes(groupV2.serializeUnknownFields()));
     } else {
       values.putNull(STORAGE_PROTO);
+    }
+
+    if (isInsert) {
+      values.put(AVATAR_COLOR, AvatarColor.random().serialize());
     }
 
     return values;
@@ -1198,6 +1214,7 @@ public class RecipientDatabase extends Database {
     byte[]  wallpaper                  = CursorUtil.requireBlob(cursor, WALLPAPER);
     byte[]  serializedChatColors       = CursorUtil.requireBlob(cursor, CHAT_COLORS);
     long    customChatColorsId         = CursorUtil.requireLong(cursor, CUSTOM_CHAT_COLORS_ID);
+    String  serializedAvatarColor      = CursorUtil.requireString(cursor, AVATAR_COLOR);
     String  about                      = CursorUtil.requireString(cursor, ABOUT);
     String  aboutEmoji                 = CursorUtil.requireString(cursor, ABOUT_EMOJI);
     boolean hasGroupsInCommon          = CursorUtil.requireBoolean(cursor, GROUPS_IN_COMMON);
@@ -1288,6 +1305,7 @@ public class RecipientDatabase extends Database {
                                  MentionSetting.fromId(mentionSettingId),
                                  chatWallpaper,
                                  chatColors,
+                                 AvatarColor.deserialize(serializedAvatarColor),
                                  about,
                                  aboutEmoji,
                                  getSyncExtras(cursor),
@@ -2838,6 +2856,7 @@ public class RecipientDatabase extends Database {
     } else {
       ContentValues values = new ContentValues();
       values.put(column, value);
+      values.put(AVATAR_COLOR, AvatarColor.random().serialize());
 
       long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
 
@@ -2883,6 +2902,7 @@ public class RecipientDatabase extends Database {
     uuidValues.put(NOTIFICATION_CHANNEL, uuidSettings.getNotificationChannel() != null ? uuidSettings.getNotificationChannel() : e164Settings.getNotificationChannel());
     uuidValues.put(MUTE_UNTIL, uuidSettings.getMuteUntil() > 0 ? uuidSettings.getMuteUntil() : e164Settings.getMuteUntil());
     uuidValues.put(CHAT_COLORS, Optional.fromNullable(uuidSettings.getChatColors()).or(Optional.fromNullable(e164Settings.getChatColors())).transform(colors -> colors.serialize().toByteArray()).orNull());
+    uuidValues.put(AVATAR_COLOR, uuidSettings.getAvatarColor().serialize());
     uuidValues.put(CUSTOM_CHAT_COLORS_ID, Optional.fromNullable(uuidSettings.getChatColors()).or(Optional.fromNullable(e164Settings.getChatColors())).transform(colors -> colors.getId().getLongValue()).orNull());
     uuidValues.put(SEEN_INVITE_REMINDER, e164Settings.getInsightsBannerTier().getId());
     uuidValues.put(DEFAULT_SUBSCRIPTION_ID, e164Settings.getDefaultSubscriptionId().or(-1));
@@ -3122,6 +3142,7 @@ public class RecipientDatabase extends Database {
     private final MentionSetting                  mentionSetting;
     private final ChatWallpaper                   wallpaper;
     private final ChatColors                      chatColors;
+    private final AvatarColor                     avatarColor;
     private final String                          about;
     private final String                          aboutEmoji;
     private final SyncExtras       syncExtras;
@@ -3165,6 +3186,7 @@ public class RecipientDatabase extends Database {
                       @NonNull MentionSetting mentionSetting,
                       @Nullable ChatWallpaper wallpaper,
                       @Nullable ChatColors chatColors,
+                      @NonNull AvatarColor avatarColor,
                       @Nullable String about,
                       @Nullable String aboutEmoji,
                       @NonNull SyncExtras syncExtras,
@@ -3210,6 +3232,7 @@ public class RecipientDatabase extends Database {
       this.mentionSetting              = mentionSetting;
       this.wallpaper                   = wallpaper;
       this.chatColors                  = chatColors;
+      this.avatarColor                 = avatarColor;
       this.about                       = about;
       this.aboutEmoji                  = aboutEmoji;
       this.syncExtras        = syncExtras;
@@ -3367,6 +3390,10 @@ public class RecipientDatabase extends Database {
 
     public @Nullable ChatColors getChatColors() {
       return chatColors;
+    }
+
+    public @NonNull AvatarColor getAvatarColor() {
+      return avatarColor;
     }
 
     public @Nullable String getAbout() {

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -107,6 +108,7 @@ public class Recipient {
   private final MentionSetting         mentionSetting;
   private final ChatWallpaper          wallpaper;
   private final ChatColors             chatColors;
+  private final AvatarColor            avatarColor;
   private final String                 about;
   private final String                 aboutEmoji;
   private final ProfileName            systemProfileName;
@@ -353,6 +355,7 @@ public class Recipient {
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
     this.chatColors                  = null;
+    this.avatarColor                 = AvatarColor.UNKNOWN;
     this.about                       = null;
     this.aboutEmoji                  = null;
     this.systemProfileName           = ProfileName.EMPTY;
@@ -402,6 +405,7 @@ public class Recipient {
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
     this.chatColors                  = details.chatColors;
+    this.avatarColor                 = details.avatarColor;
     this.about                       = details.about;
     this.aboutEmoji                  = details.aboutEmoji;
     this.systemProfileName           = details.systemProfileName;
@@ -756,11 +760,11 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, getChatColors(), inverted);
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, avatarColor.colorInt(), inverted);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, getChatColors(), inverted);
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, avatarColor.colorInt(), inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {
@@ -925,6 +929,10 @@ public class Recipient {
     } else {
       return ChatColorsPalette.Bubbles.getDefault();
     }
+  }
+
+  public @NonNull AvatarColor getAvatarColor() {
+    return avatarColor;
   }
 
   public boolean isSystemContact() {
@@ -1114,6 +1122,7 @@ public class Recipient {
            mentionSetting == other.mentionSetting &&
            Objects.equals(wallpaper, other.wallpaper) &&
            Objects.equals(chatColors, other.chatColors) &&
+           Objects.equals(avatarColor, other.avatarColor) &&
            Objects.equals(about, other.about) &&
            Objects.equals(aboutEmoji, other.aboutEmoji) &&
            Objects.equals(extras, other.extras);

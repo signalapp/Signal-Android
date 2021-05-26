@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
@@ -88,7 +89,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
 
     groupCancelButton.setOnClickListener(v -> dismiss());
 
-    avatar.setImageBytesForGroup(null, new FallbackPhotoProvider(), ChatColorsPalette.UNKNOWN_CONTACT);
+    avatar.setImageBytesForGroup(null, new FallbackPhotoProvider(), AvatarColor.UNKNOWN);
 
     return view;
   }
@@ -130,7 +131,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
           break;
       }
 
-      avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), ChatColorsPalette.UNKNOWN_CONTACT);
+      avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), AvatarColor.UNKNOWN);
 
       groupCancelButton.setVisibility(View.VISIBLE);
     });

@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -140,7 +139,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
         @Override
         public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getChatColors());
+          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getAvatarColor().colorInt());
         }
       });
       avatar.setAvatar(recipient);

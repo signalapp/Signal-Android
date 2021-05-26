@@ -56,12 +56,12 @@ fun Recipient.getContactDrawable(context: Context): Drawable? {
         )
         .get()
     } catch (e: InterruptedException) {
-      fallbackContactPhoto.asDrawable(context, chatColors)
+      fallbackContactPhoto.asDrawable(context, avatarColor.colorInt())
     } catch (e: ExecutionException) {
-      fallbackContactPhoto.asDrawable(context, chatColors)
+      fallbackContactPhoto.asDrawable(context, avatarColor.colorInt())
     }
   } else {
-    fallbackContactPhoto.asDrawable(context, chatColors)
+    fallbackContactPhoto.asDrawable(context, avatarColor.colorInt())
   }
 }
 

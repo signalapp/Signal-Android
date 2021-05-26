@@ -8,8 +8,8 @@ import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
-import androidx.core.graphics.ColorUtils
 import com.google.common.base.Objects
+import org.signal.core.util.ColorUtil
 import org.thoughtcrime.securesms.components.RotatableGradientDrawable
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.util.customizeOnDraw
@@ -55,7 +55,7 @@ class ChatColors private constructor(
       val start = linearGradient.colors.first()
       val end = linearGradient.colors.last()
 
-      return ColorUtils.blendARGB(start, end, 0.5f)
+      return ColorUtil.blendARGB(start, end, 0.5f)
     }
 
     throw AssertionError()

@@ -65,12 +65,11 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getUserAvatar(@NonNull Consumer<InsightsUserAvatar> avatarConsumer) {
     SimpleTask.run(() -> {
-      Recipient     self          = Recipient.self().resolve();
-      String        name          = Optional.fromNullable(self.getDisplayName(context)).or("");
-      ChatColors    fallbackColor = self.getChatColors();
+      Recipient self = Recipient.self().resolve();
+      String    name = Optional.fromNullable(self.getDisplayName(context)).or("");
 
       return new InsightsUserAvatar(new ProfileContactPhoto(self, self.getProfileAvatar()),
-                                    fallbackColor,
+                                    self.getAvatarColor(),
                                     new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40));
     }, avatarConsumer::accept);
   }

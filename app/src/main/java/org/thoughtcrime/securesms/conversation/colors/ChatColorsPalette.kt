@@ -23,7 +23,7 @@ object ChatColorsPalette {
     // region Solids
 
     @JvmField
-    val CRIMSON = ChatColors.forColor(ChatColors.Id.BuiltIn, 0xFFCF16E3.toInt())
+    val CRIMSON = ChatColors.forColor(ChatColors.Id.BuiltIn, 0xFFCF163E.toInt())
 
     @JvmField
     val VERMILION = ChatColors.forColor(ChatColors.Id.BuiltIn, 0xFFC73F0A.toInt())

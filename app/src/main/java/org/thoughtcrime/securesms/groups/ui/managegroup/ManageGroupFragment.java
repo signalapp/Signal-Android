@@ -39,8 +39,7 @@ import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
-import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
@@ -238,7 +237,7 @@ public class ManageGroupFragment extends LoggingFragment {
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
     viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), groupRecipient -> {
-      avatar.setFallbackPhotoProvider(new FallbackPhotoProvider(groupRecipient.getChatColors()));
+      avatar.setFallbackPhotoProvider(new FallbackPhotoProvider(groupRecipient.getAvatarColor()));
       avatar.setRecipient(groupRecipient);
       avatar.setOnClickListener(v -> {
         FragmentActivity activity = requireActivity();
@@ -508,15 +507,15 @@ public class ManageGroupFragment extends LoggingFragment {
 
   private final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {
 
-    private final ChatColors groupColors;
+    private final AvatarColor groupColors;
 
-    private FallbackPhotoProvider(@NonNull ChatColors groupColors) {
+    private FallbackPhotoProvider(@NonNull AvatarColor groupColors) {
       this.groupColors = groupColors;
     }
 
     @Override
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new FallbackPhoto80dp(R.drawable.ic_group_80, groupColors);
+      return new FallbackPhoto80dp(R.drawable.ic_group_80, groupColors.colorInt());
     }
   };
 }

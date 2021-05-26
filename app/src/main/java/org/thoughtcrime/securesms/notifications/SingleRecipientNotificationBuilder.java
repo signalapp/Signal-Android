@@ -27,12 +27,11 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -98,7 +97,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     } else {
       setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
-      setLargeIcon(new GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, ChatColorsPalette.UNKNOWN_CONTACT));
+      setLargeIcon(new GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN.colorInt()));
     }
 
     setShortcutId(ConversationUtil.getShortcutId(recipient));
@@ -124,10 +123,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                             context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
                                     .get();
       } catch (InterruptedException | ExecutionException e) {
-        return fallbackContactPhoto.asDrawable(context, recipient.getChatColors());
+        return fallbackContactPhoto.asDrawable(context, recipient.getAvatarColor().colorInt());
       }
     } else {
-      return fallbackContactPhoto.asDrawable(context, recipient.getChatColors());
+      return fallbackContactPhoto.asDrawable(context, recipient.getAvatarColor().colorInt());
     }
   }
 
