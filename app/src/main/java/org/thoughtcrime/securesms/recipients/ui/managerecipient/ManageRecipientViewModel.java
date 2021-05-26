@@ -111,7 +111,7 @@ public final class ManageRecipientViewModel extends ViewModel {
 
     this.canAddToAGroup = LiveDataUtil.combineLatest(recipient,
                                                      localGroupCount,
-                                                     (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isSelf());
+                                                     (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isSelf() && !r.isBlocked());
 
     manageRecipientRepository.getActiveGroupCount(localGroupCount::postValue);
   }

@@ -288,26 +288,33 @@ public class ManageRecipientFragment extends LoggingFragment {
     colorCircle.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
     TextViewCompat.setCompoundDrawablesRelative(chatWallpaperButton, null, null, colorCircle, null);
 
+    messageButton        .setVisibility(!recipient.isMmsGroup()   && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+    secureCallButton     .setVisibility( recipient.isRegistered() && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+    insecureCallButton   .setVisibility(!recipient.isRegistered() && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+    secureVideoCallButton.setVisibility( recipient.isRegistered() && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+
     if (recipient.isSystemContact()) {
       contactText.setText(R.string.ManageRecipientActivity_this_person_is_in_your_contacts);
       contactIcon.setVisibility(View.VISIBLE);
       contactRow.setOnClickListener(v -> {
         startActivityForResult(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()), REQUEST_CODE_VIEW_CONTACT);
       });
-    } else {
+    } else if (!recipient.isBlocked()) {
       contactText.setText(R.string.ManageRecipientActivity_add_to_system_contacts);
       contactIcon.setVisibility(View.GONE);
       contactRow.setOnClickListener(v -> {
         startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
       });
+    } else {
+      contactRow.setVisibility(View.GONE);
     }
 
     String aboutText = recipient.getCombinedAboutAndEmoji();
     about.setText(aboutText);
     about.setVisibility(Util.isEmpty(aboutText) ? View.GONE : View.VISIBLE);
 
-    disappearingMessagesCard.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
-    addToAGroup.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
+    disappearingMessagesCard.setVisibility(recipient.isRegistered() && !recipient.isBlocked() ? View.VISIBLE : View.GONE);
+    addToAGroup             .setVisibility(recipient.isRegistered() && !recipient.isBlocked() ? View.VISIBLE : View.GONE);
 
     AvatarColor recipientColor = recipient.getAvatarColor();
     avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
@@ -328,9 +335,6 @@ public class ManageRecipientFragment extends LoggingFragment {
                              AvatarPreviewActivity.createTransitionBundle(activity, avatar));
     });
 
-    secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-    insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-    secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
   }
 
   private void presentMediaCursor(ManageRecipientViewModel.MediaCursor mediaCursor) {
