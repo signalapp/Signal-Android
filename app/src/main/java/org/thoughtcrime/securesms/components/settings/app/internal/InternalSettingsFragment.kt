@@ -174,7 +174,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from(R.string.preferences__internal_force_censorship_description),
         isChecked = state.forceCensorship,
         onClick = {
-          viewModel.setDisableAutoMigrationNotification(!state.forceCensorship)
+          viewModel.setForceCensorship(!state.forceCensorship)
         }
       )
 
