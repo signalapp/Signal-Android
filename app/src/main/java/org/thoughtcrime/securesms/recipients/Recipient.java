@@ -927,7 +927,7 @@ public class Recipient {
     } else if (getWallpaper() != null) {
       return getWallpaper().getAutoChatColors();
     } else {
-      return ChatColorsPalette.Bubbles.getDefault();
+      return ChatColorsPalette.Bubbles.getDefault().withId(ChatColors.Id.Auto.INSTANCE);
     }
   }
 

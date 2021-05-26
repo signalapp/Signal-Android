@@ -51,7 +51,7 @@ sealed class ChatColorSelectionRepository(context: Context) {
           if (wallpaper != null) {
             consumer(wallpaper.autoChatColors)
           } else {
-            consumer(ChatColorsPalette.Bubbles.default)
+            consumer(ChatColorsPalette.Bubbles.default.withId(ChatColors.Id.Auto))
           }
         }
       }

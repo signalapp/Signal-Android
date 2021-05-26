@@ -116,13 +116,13 @@ public class ChatWallpaperFragment extends Fragment {
               viewModel.saveWallpaperSelection();
               dialog.dismiss();
             })
-            .setNeutralButton(R.string.ChatWallpaperFragment__reset_all_wallpapers, (dialog, which) -> {
+            .setNegativeButton(R.string.ChatWallpaperFragment__reset_all_wallpapers, (dialog, which) -> {
               viewModel.setWallpaper(null);
               viewModel.setDimInDarkTheme(true);
               viewModel.resetAllWallpaper();
               dialog.dismiss();
             })
-            .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            .setNeutralButton(android.R.string.cancel, (dialog, which) -> {
               dialog.dismiss();
             })
             .show();
@@ -136,11 +136,11 @@ public class ChatWallpaperFragment extends Fragment {
               viewModel.clearChatColor();
               dialog.dismiss();
             })
-            .setNeutralButton(R.string.ChatWallpaperFragment__reset_all_colors, (dialog, which) -> {
+            .setNegativeButton(R.string.ChatWallpaperFragment__reset_all_colors, (dialog, which) -> {
               viewModel.resetAllChatColors();
               dialog.dismiss();
             })
-            .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            .setNeutralButton(android.R.string.cancel, (dialog, which) -> {
               dialog.dismiss();
             })
             .show();

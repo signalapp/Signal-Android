@@ -1531,8 +1531,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   public @NonNull List<Projection> getColorizerProjections() {
     List<Projection> projections = new LinkedList<>();
 
-    if (messageRecord.isOutgoing()  &&
-        !hasNoBubble(messageRecord) &&
+    if (messageRecord.isOutgoing()      &&
+        !hasNoBubble(messageRecord)     &&
+        !messageRecord.isRemoteDelete() &&
         bodyBubbleCorners != null)
     {
       projections.add(Projection.relativeToViewRoot(bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX()));
