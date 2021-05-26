@@ -23,8 +23,6 @@ import org.thoughtcrime.securesms.util.LongClickCopySpan;
 
 public final class GroupDescriptionUtil {
 
-  public static final int MAX_DESCRIPTION_LENGTH = 80;
-
   /**
    * Set a group description.
    *
@@ -34,7 +32,9 @@ public final class GroupDescriptionUtil {
    * @param moreClick     Callback for when truncating and need to show more via another means. Required to enable truncating.
    */
   public static void setText(@NonNull Context context, @NonNull EmojiTextView emojiTextView, @NonNull String description, boolean linkify, @Nullable Runnable moreClick) {
-    SpannableString descriptionSpannable = new SpannableString(description);
+    boolean         shouldEllipsize      = moreClick != null;
+    String          scrubbedDescription  = shouldEllipsize ? description.replaceAll("\\n", " ") : description;
+    SpannableString descriptionSpannable = new SpannableString(scrubbedDescription);
 
     if (linkify) {
       int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
@@ -56,7 +56,7 @@ public final class GroupDescriptionUtil {
       }
     }
 
-    if (moreClick != null) {
+    if (shouldEllipsize) {
       ClickableSpan style = new ClickableSpan() {
         @Override
         public void onClick(@NonNull View widget) {
