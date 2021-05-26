@@ -203,7 +203,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private void setQuoteAuthor(@NonNull Recipient author) {
-    boolean outgoing = messageType == MESSAGE_TYPE_OUTGOING;
+    boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
 
     authorView.setText(author.isSelf() ? getContext().getString(R.string.QuoteView_you)
                                        : author.getDisplayName(getContext()));

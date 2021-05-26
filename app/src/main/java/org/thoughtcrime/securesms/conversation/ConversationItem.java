@@ -398,7 +398,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public void onRecipientChanged(@NonNull Recipient modified) {
-    setBubbleState(messageRecord, modified, modified.hasWallpaper(), colorizer);
+    if (conversationRecipient.getId().equals(modified.getId())) {
+      setBubbleState(messageRecord, modified, modified.hasWallpaper(), colorizer);
+    }
+
     if (recipient.getId().equals(modified.getId())) {
       setContactPhoto(modified);
       setGroupMessageStatus(messageRecord, modified);
