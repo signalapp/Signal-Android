@@ -60,7 +60,7 @@ class ChatColorSelectionAdapter(
       itemView.isSelected = model.isSelected
 
       auto.visibility = if (model.isAuto) View.VISIBLE else View.GONE
-      edit.visibility = if (model.isCustom) View.VISIBLE else View.GONE
+      edit.visibility = if (model.isCustom && model.isSelected) View.VISIBLE else View.GONE
 
       preview.setOnClickListener {
         if (model.isCustom && model.isSelected) {
