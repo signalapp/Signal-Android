@@ -86,7 +86,7 @@ public class SignalServiceCipher {
   {
     if (unidentifiedAccess.isPresent()) {
       SignalSealedSessionCipher sessionCipher        = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1));
-      PushTransportDetails      transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
+      PushTransportDetails      transportDetails     = new PushTransportDetails();
       byte[]                    ciphertext           = sessionCipher.encrypt(destination, unidentifiedAccess.get().getUnidentifiedCertificate(), transportDetails.getPaddedMessageBody(unpaddedMessage));
       String                    body                 = Base64.encodeBytes(ciphertext);
       int                       remoteRegistrationId = sessionCipher.getRemoteRegistrationId(destination);
@@ -94,7 +94,7 @@ public class SignalServiceCipher {
       return new OutgoingPushMessage(Type.UNIDENTIFIED_SENDER_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
     } else {
       SignalSessionCipher  sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
-      PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion());
+      PushTransportDetails transportDetails     = new PushTransportDetails();
       CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
       int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
       String               body                 = Base64.encodeBytes(message.serialize());
@@ -169,7 +169,6 @@ public class SignalServiceCipher {
 
       byte[]                paddedMessage;
       SignalServiceMetadata metadata;
-      int                   sessionVersion;
 
       if (!envelope.hasSource() && !envelope.isUnidentifiedSender()) {
         throw new ProtocolInvalidMessageException(new InvalidMessageException("Non-UD envelope is missing a source!"), null, 0);
@@ -179,30 +178,26 @@ public class SignalServiceCipher {
         SignalProtocolAddress sourceAddress = getPreferredProtocolAddress(signalProtocolStore, envelope.getSourceAddress(), envelope.getSourceDevice());
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
-        paddedMessage  = sessionCipher.decrypt(new PreKeySignalMessage(ciphertext));
-        metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid());
-        sessionVersion = sessionCipher.getSessionVersion();
+        paddedMessage = sessionCipher.decrypt(new PreKeySignalMessage(ciphertext));
+        metadata      = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid());
       } else if (envelope.isSignalMessage()) {
         SignalProtocolAddress sourceAddress = getPreferredProtocolAddress(signalProtocolStore, envelope.getSourceAddress(), envelope.getSourceDevice());
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
-        paddedMessage  = sessionCipher.decrypt(new SignalMessage(ciphertext));
-        metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid());
-        sessionVersion = sessionCipher.getSessionVersion();
+        paddedMessage = sessionCipher.decrypt(new SignalMessage(ciphertext));
+        metadata      = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid());
       } else if (envelope.isUnidentifiedSender()) {
         SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1));
         DecryptionResult          result              = sealedSessionCipher.decrypt(certificateValidator, ciphertext, envelope.getServerReceivedTimestamp());
         SignalServiceAddress      resultAddress       = new SignalServiceAddress(UuidUtil.parse(result.getSenderUuid()), result.getSenderE164());
-        SignalProtocolAddress     protocolAddress     = getPreferredProtocolAddress(signalProtocolStore, resultAddress, result.getDeviceId());
 
-        paddedMessage  = result.getPaddedMessage();
-        metadata       = new SignalServiceMetadata(resultAddress, result.getDeviceId(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), true, envelope.getServerGuid());
-        sessionVersion = sealedSessionCipher.getSessionVersion(protocolAddress);
+        paddedMessage = result.getPaddedMessage();
+        metadata      = new SignalServiceMetadata(resultAddress, result.getDeviceId(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), true, envelope.getServerGuid());
       } else {
         throw new InvalidMetadataMessageException("Unknown type: " + envelope.getType());
       }
 
-      PushTransportDetails transportDetails = new PushTransportDetails(sessionVersion);
+      PushTransportDetails transportDetails = new PushTransportDetails();
       byte[]               data             = transportDetails.getStrippedPaddingMessageBody(paddedMessage);
 
       return new Plaintext(metadata, data);
@@ -255,5 +250,4 @@ public class SignalServiceCipher {
       return data;
     }
   }
-
 }

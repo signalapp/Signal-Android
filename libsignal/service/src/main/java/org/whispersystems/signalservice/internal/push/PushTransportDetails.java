@@ -13,16 +13,8 @@ public class PushTransportDetails {
 
   private static final String TAG = PushTransportDetails.class.getSimpleName();
 
-  private final int messageVersion;
-
-  public PushTransportDetails(int messageVersion) {
-    this.messageVersion = messageVersion;
-  }
 
   public byte[] getStrippedPaddingMessageBody(byte[] messageWithPadding) {
-    if      (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
-    else if (messageVersion == 2) return messageWithPadding;
-
     int paddingStart = 0;
 
     for (int i=messageWithPadding.length-1;i>=0;i--) {
@@ -42,9 +34,6 @@ public class PushTransportDetails {
   }
 
   public byte[] getPaddedMessageBody(byte[] messageBody) {
-    if       (messageVersion < 2) throw new AssertionError("Unknown version: " + messageVersion);
-    else if (messageVersion == 2) return messageBody;
-
     // NOTE: This is dumb.  We have our own padding scheme, but so does the cipher.
     // The +1 -1 here is to make sure the Cipher has room to add one padding byte,
     // otherwise it'll add a full 16 extra bytes.
