@@ -576,7 +576,7 @@
   <string name="ManageGroupActivity_mute_notifications">通知をミュート</string>
   <string name="ManageGroupActivity_custom_notifications">カスタム通知</string>
   <string name="ManageGroupActivity_mentions">メンション</string>
-  <string name="ManageGroupActivity_chat_wallpaper">チャットの壁紙</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">チャットの壁紙</string> -->
   <string name="ManageGroupActivity_until_s">%1$s まで</string>
   <string name="ManageGroupActivity_always">常時</string>
   <string name="ManageGroupActivity_off">オフ</string>
@@ -2585,12 +2585,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">チャットの壁紙</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">壁紙を設定</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ダークテーマで壁紙を暗くする</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">壁紙を消去</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">このチャットの壁紙を消去しますか？</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">壁紙を消去しますか？チャットに設定したカスタム壁紙は消去されません。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ダークテーマで壁紙を暗くする</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">壁紙を消去</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">このチャットの壁紙を消去しますか？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">壁紙を消去しますか？チャットに設定したカスタム壁紙は消去されません。</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセット</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">チャットに設定したカスタム壁紙を含む、すべての壁紙をリセットしますか？</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">チャットに設定したカスタム壁紙を含む、すべての壁紙をリセットしますか？</string> -->
   <string name="ChatWallpaperFragment__contact_name">連絡先名</string>
   <string name="ChatWallpaperFragment__reset">リセットする</string>
   <string name="ChatWallpaperFragment__clear">消去する</string>

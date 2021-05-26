@@ -672,7 +672,7 @@
   <string name="ManageGroupActivity_mute_notifications">Izklop obvestil</string>
   <string name="ManageGroupActivity_custom_notifications">Obvestila po meri</string>
   <string name="ManageGroupActivity_mentions">Omembe</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Ozadje pogovora</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Ozadje pogovora</string> -->
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Za vedno</string>
   <string name="ManageGroupActivity_off">Izklopljena</string>
@@ -2817,12 +2817,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatWallpaperActivity__chat_wallpaper">Ozadje pogovora</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Določi ozadje</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatemnjeno ozadje pri temni témi</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Ponastavi ozadje</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Želite ponastaviti ozadje za ta klepet?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Želite ponastaviti ozadje? To ne bo ponastavilo ozadij po meri, ki ste jih izbrali za svoje pogovore.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatemnjeno ozadje pri temni témi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Ponastavi ozadje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Želite ponastaviti ozadje za ta klepet?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Želite ponastaviti ozadje? To ne bo ponastavilo ozadij po meri, ki ste jih izbrali za svoje pogovore.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Ponastavi vsa ozadja</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Želite ponastaviti vsa ozadja za vse vaše pogovore, tudi tista, po meri?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Želite ponastaviti vsa ozadja za vse vaše pogovore, tudi tista, po meri?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Ime stika</string>
   <string name="ChatWallpaperFragment__reset">Ponastavi</string>
   <string name="ChatWallpaperFragment__clear">Izbriši</string>

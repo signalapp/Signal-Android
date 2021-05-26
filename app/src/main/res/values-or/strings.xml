@@ -607,7 +607,7 @@
   <string name="ManageGroupActivity_mute_notifications">ବିଜ୍ଞପ୍ତି ମ୍ୟୁଟ୍ କରନ୍ତୁ</string>
   <string name="ManageGroupActivity_custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
   <string name="ManageGroupActivity_mentions">ଉଲ୍ଲେଖ</string>
-  <string name="ManageGroupActivity_chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string> -->
   <string name="ManageGroupActivity_until_s">%1$s ପର୍ଯ୍ୟନ୍ତ</string>
   <string name="ManageGroupActivity_always">ସବୁବେଳେ</string>
   <string name="ManageGroupActivity_off">ବନ୍ଦ</string>
@@ -2516,12 +2516,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ଅନ୍ଧାର ଥିମ୍ କାନ୍ଥଛବିକୁ ଅନ୍ଧାରୁଆ କରିଦିଏ</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">କାନ୍ଥଛବି ହଟାନ୍ତୁ</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ଏହି ବାର୍ତ୍ତାଳାପ ପାଇଁ କାନ୍ଥଛବି ହଟାନ୍ତୁ?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">କାନ୍ଥଛବି ହଟାନ୍ତୁ? ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ କରିଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବିଗୁଡିକୁ ଏହା ସଫା କରିବ ନାହିଁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ଅନ୍ଧାର ଥିମ୍ କାନ୍ଥଛବିକୁ ଅନ୍ଧାରୁଆ କରିଦିଏ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">କାନ୍ଥଛବି ହଟାନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ଏହି ବାର୍ତ୍ତାଳାପ ପାଇଁ କାନ୍ଥଛବି ହଟାନ୍ତୁ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">କାନ୍ଥଛବି ହଟାନ୍ତୁ? ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ କରିଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବିଗୁଡିକୁ ଏହା ସଫା କରିବ ନାହିଁ</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃନିର୍ଦ୍ଧାରିତ କରନ୍ତୁ</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ ହୋଇଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବି ସମେତ ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃସେଟ୍ କରନ୍ତୁ? </string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ ହୋଇଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବି ସମେତ ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃସେଟ୍ କରନ୍ତୁ? </string> -->
   <string name="ChatWallpaperFragment__contact_name">ସମ୍ପର୍କର ନାମ</string>
   <string name="ChatWallpaperFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="ChatWallpaperFragment__clear">ସଫା କରନ୍ତୁ</string>

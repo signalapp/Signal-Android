@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Stlmiť upozornenia</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastné upozornenia</string>
   <string name="ManageGroupActivity_mentions">Spomenutia</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Pozadie chatu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Pozadie chatu</string> -->
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vypnuté</string>
@@ -2909,12 +2909,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChatWallpaperActivity__chat_wallpaper">Pozadie chatu</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Nastaviť pozadie</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motív stlmí pozadie</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Odstrániť pozadie</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Odstrániť pozadie pre tento chat?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Odstrániť pozadie? Neodstránia sa tým vlastné pozadia, čo ste si pre vaše chaty nastavili.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motív stlmí pozadie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Odstrániť pozadie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Odstrániť pozadie pre tento chat?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Odstrániť pozadie? Neodstránia sa tým vlastné pozadia, čo ste si pre vaše chaty nastavili.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetovať všetky pozadia</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetovať všetky pozadia vrátane vlastných pozadí, čo ste si pre vaše chaty nastavili?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetovať všetky pozadia vrátane vlastných pozadí, čo ste si pre vaše chaty nastavili?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Názov kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Resetovať</string>
   <string name="ChatWallpaperFragment__clear">Zmazať</string>

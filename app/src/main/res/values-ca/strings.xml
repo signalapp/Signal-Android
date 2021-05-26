@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silencia les notificacions</string>
   <string name="ManageGroupActivity_custom_notifications">Notificacions personalitzades</string>
   <string name="ManageGroupActivity_mentions">Mencions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fons de la conversa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Fons de la conversa</string> -->
   <string name="ManageGroupActivity_until_s">Fins a %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Inactiu</string>
@@ -2740,12 +2740,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatWallpaperActivity__chat_wallpaper">Fons de la conversa</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Estableix el fons</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">El tema fosc enfosqueix el fons.</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Neteja el fons</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Voleu netejar el fons per a aquesta conversa?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Voleu netejar el fons? Això no netejarà els fons personalitzats que heu establert per a les converses.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">El tema fosc enfosqueix el fons.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Neteja el fons</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Voleu netejar el fons per a aquesta conversa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Voleu netejar el fons? Això no netejarà els fons personalitzats que heu establert per a les converses.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Voleu restablir tots els fons, inclosos els personalitzats que heu establert per a les converses?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Voleu restablir tots els fons, inclosos els personalitzats que heu establert per a les converses?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nom de contacte</string>
   <string name="ChatWallpaperFragment__reset">Restableix</string>
   <string name="ChatWallpaperFragment__clear">Neteja</string>

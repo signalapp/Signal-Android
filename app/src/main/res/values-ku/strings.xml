@@ -571,7 +571,7 @@
   <string name="ManageGroupActivity_mute_notifications">Danezanan bêdeng bike</string>
   <string name="ManageGroupActivity_custom_notifications">Danezanên taybet</string>
   <string name="ManageGroupActivity_mentions">Behskirin</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Paşrûya gotûbêjê</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Paşrûya gotûbêjê</string> -->
   <string name="ManageGroupActivity_until_s">Heta tarîxa: %1$s</string>
   <string name="ManageGroupActivity_off">Girtî</string>
   <string name="ManageGroupActivity_on">Vekirî</string>
@@ -2345,10 +2345,10 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Paşrûya gotûbêjê</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Paşrûyê saz bike</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Rûkara tarî paşrûyê reş dike</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê rake</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ji bo vê gotûbêjê paşrûyê rake?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Paşrûyê rake? Ev dê paşrûyên taybet ên ku te ji bo gotûbêjên xwe saz kirine raneke.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Rûkara tarî paşrûyê reş dike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê rake</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ji bo vê gotûbêjê paşrûyê rake?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Paşrûyê rake? Ev dê paşrûyên taybet ên ku te ji bo gotûbêjên xwe saz kirine raneke.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Hemû paşrûyan rake</string>
   <string name="ChatWallpaperFragment__contact_name">Navê kesî</string>
   <string name="ChatWallpaperFragment__reset">Reset bike</string>

@@ -643,7 +643,7 @@
   <string name="ManageGroupActivity_mute_notifications">Утишај обавештења</string>
   <string name="ManageGroupActivity_custom_notifications">Прилагођена обавештења</string>
   <string name="ManageGroupActivity_mentions">Помињања</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Позадина за ћаскање</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Позадина за ћаскање</string> -->
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Увек</string>
   <string name="ManageGroupActivity_off">Искључено</string>
@@ -2828,12 +2828,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за ћаскање</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Поставити позадину</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тамна тема затамњује позадину</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Уклони позадину</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Уклонити позадину за овај чет?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Уклонити позадину? Ово неће уклонити посебне позадине које сте поставили за ћаскање.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тамна тема затамњује позадину</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Уклони позадину</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Уклонити позадину за овај чет?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Уклонити позадину? Ово неће уклонити посебне позадине које сте поставили за ћаскање.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ресетујте све позадине, укључујући посебне позадине које сте поставили за ћаскање?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ресетујте све позадине, укључујући посебне позадине које сте поставили за ћаскање?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Име контакта</string>
   <string name="ChatWallpaperFragment__reset">Ресетуј</string>
   <string name="ChatWallpaperFragment__clear">Очистити</string>

@@ -607,7 +607,7 @@
   <string name="ManageGroupActivity_mute_notifications">Vaigista teavitused</string>
   <string name="ManageGroupActivity_custom_notifications">Kohandatud teavitused</string>
   <string name="ManageGroupActivity_mentions">Mainimised</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Vestluse taustapilt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Vestluse taustapilt</string> -->
   <string name="ManageGroupActivity_until_s">kuni %1$s</string>
   <string name="ManageGroupActivity_always">Alati</string>
   <string name="ManageGroupActivity_off">Väljas</string>
@@ -2642,12 +2642,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Vestluse taustapilt</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Määra taustapildiks</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tume teema tumendab taustapilti</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Eemalda taustapilt</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kas eemaldada selle vestluse taustapilt?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kas eemaldada taustapilt? See ei eemalda vestluste määratud kohandatud taustapilte.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tume teema tumendab taustapilti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Eemalda taustapilt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kas eemaldada selle vestluse taustapilt?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kas eemaldada taustapilt? See ei eemalda vestluste määratud kohandatud taustapilte.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Lähtesta kõik taustapildid</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Lähtesta kõik taustapildid, kaasaarvatud vestlustele määratud kohandatud taustapildid</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Lähtesta kõik taustapildid, kaasaarvatud vestlustele määratud kohandatud taustapildid</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontakti nimi</string>
   <string name="ChatWallpaperFragment__reset">Lähtesta</string>
   <string name="ChatWallpaperFragment__clear">Eemalda</string>

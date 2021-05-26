@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenzia notifiche</string>
   <string name="ManageGroupActivity_custom_notifications">Notifiche personalizzate</string>
   <string name="ManageGroupActivity_mentions">Menzioni</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Sfondo chat</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Sfondo chat</string> -->
   <string name="ManageGroupActivity_until_s">Fino a %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Off</string>
@@ -2746,12 +2746,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Sfondo chat</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Imposta sfondo</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Attenua lo sfondo nel tema scuro</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Rimuovi sfondo</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rimuovere lo sfondo per questa chat?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rimuovere lo sfondo? Questo non rimuoverà gli sfondi personalizzati che hai scelto per le tue chat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Attenua lo sfondo nel tema scuro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Rimuovi sfondo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rimuovere lo sfondo per questa chat?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rimuovere lo sfondo? Questo non rimuoverà gli sfondi personalizzati che hai scelto per le tue chat.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetta tutti gli sfondi</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resettare tutti gli sfondi, inclusi quelli personalizzati che hai scelto per le tue chat?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resettare tutti gli sfondi, inclusi quelli personalizzati che hai scelto per le tue chat?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nome contatto</string>
   <string name="ChatWallpaperFragment__reset">Resetta</string>
   <string name="ChatWallpaperFragment__clear">Rimuovi</string>

@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">השתק התראות</string>
   <string name="ManageGroupActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageGroupActivity_mentions">אזכורים</string>
-  <string name="ManageGroupActivity_chat_wallpaper">טפט התכתבות</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">טפט התכתבות</string> -->
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
   <string name="ManageGroupActivity_always">תמיד</string>
   <string name="ManageGroupActivity_off">כבוי</string>
@@ -2910,12 +2910,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">טפט התכתבות</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">הגדר טפט</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ערכת נושא כהה מעמעמת טפטים</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">נקה טפט</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">לנקות טפט עבור התכתבות זו?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">לנקות טפט? זה לא ינקה טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ערכת נושא כהה מעמעמת טפטים</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">נקה טפט</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">לנקות טפט עבור התכתבות זו?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">לנקות טפט? זה לא ינקה טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">אפס את כל הטפטים</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">לנקות את כל הטפטים, כולל טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">לנקות את כל הטפטים, כולל טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך?</string> -->
   <string name="ChatWallpaperFragment__contact_name">שם איש קשר</string>
   <string name="ChatWallpaperFragment__reset">אפס</string>
   <string name="ChatWallpaperFragment__clear">נקה</string>

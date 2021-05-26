@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Išjungti pranešimus</string>
   <string name="ManageGroupActivity_custom_notifications">Tinkinti pranešimai</string>
   <string name="ManageGroupActivity_mentions">Paminėjimai</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Pokalbio fonas</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Pokalbio fonas</string> -->
   <string name="ManageGroupActivity_until_s">Iki %1$s</string>
   <string name="ManageGroupActivity_always">Visada</string>
   <string name="ManageGroupActivity_off">Išjungta</string>
@@ -2910,12 +2910,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Pokalbio fonas</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Nustatyti foną</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tamsus apipavidalinimas pritemdo foną</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Išvalyti foną</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Išvalyti šio pokalbio foną?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Išvalyti foną? Tai neišvalys tinkintų fonų, kuriuos nustatėte savo pokalbiams.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tamsus apipavidalinimas pritemdo foną</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Išvalyti foną</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Išvalyti šio pokalbio foną?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Išvalyti foną? Tai neišvalys tinkintų fonų, kuriuos nustatėte savo pokalbiams.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Atstatyti visus fonus</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Atstatyti visus fonus, įskaitant tinkintus fonus, kuriuos nustatėte savo pokalbiams?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Atstatyti visus fonus, įskaitant tinkintus fonus, kuriuos nustatėte savo pokalbiams?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Adresato vardas</string>
   <string name="ChatWallpaperFragment__reset">Atstatyti</string>
   <string name="ChatWallpaperFragment__clear">Išvalyti</string>

@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Þagga tilkynningar</string>
   <string name="ManageGroupActivity_custom_notifications">Sérsniðnar tilkynningar</string>
   <string name="ManageGroupActivity_mentions">Minnst á</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string> -->
   <string name="ManageGroupActivity_until_s">Til %1$s</string>
   <string name="ManageGroupActivity_always">Alltaf</string>
   <string name="ManageGroupActivity_off">Af</string>
@@ -2750,12 +2750,12 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChatWallpaperActivity__chat_wallpaper">Bakgrunnsmynd spjalls</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Setja bakgrunnsmynd</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dökkt þema dekkir bakgrunnsmynd</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Hreinsa bakgrunnsmynd</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hreinsa bakgrunnsmynd í þessu spjalli?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Endurstilla allar bakgrunnsmyndir? Þetta mun ekki hreinsa sérsniðnar bakgrunnsmyndir sem þú hefur sett upp fyrir spjallrásir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dökkt þema dekkir bakgrunnsmynd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Hreinsa bakgrunnsmynd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hreinsa bakgrunnsmynd í þessu spjalli?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Endurstilla allar bakgrunnsmyndir? Þetta mun ekki hreinsa sérsniðnar bakgrunnsmyndir sem þú hefur sett upp fyrir spjallrásir.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Endurstilla allar bakgrunnsmyndir</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Endurstilla allar bakgrunnsmyndir, þar með taldar sérsniðnar bakgrunnsmyndir sem þú hefur sett upp fyrir spjallrásir?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Endurstilla allar bakgrunnsmyndir, þar með taldar sérsniðnar bakgrunnsmyndir sem þú hefur sett upp fyrir spjallrásir?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nafn tengiliðar</string>
   <string name="ChatWallpaperFragment__reset">Endurstilla</string>
   <string name="ChatWallpaperFragment__clear">Hreinsa</string>

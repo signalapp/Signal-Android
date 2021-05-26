@@ -605,7 +605,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de la conversation</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de la conversation</string> -->
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_always">Toujours</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
@@ -2572,12 +2572,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de la conversation</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Définir un fond d’écran</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre atténue le fond d’écran</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Réinitialiser le fond d’écran</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Réinitialiser le fond d’écran de cette conversation ?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Réinitialiser le fond d’écran ? Les fonds d’écran personnalisés que vous avez définis pour vos conversations ne seront pas réinitialisés.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre atténue le fond d’écran</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Réinitialiser le fond d’écran</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Réinitialiser le fond d’écran de cette conversation ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Réinitialiser le fond d’écran ? Les fonds d’écran personnalisés que vous avez définis pour vos conversations ne seront pas réinitialisés.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d’écran</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Réinitialiser tous les fonds d’écran, dont les fonds d’écran personnalisés que vous avez définis pour vos conversations ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Réinitialiser tous les fonds d’écran, dont les fonds d’écran personnalisés que vous avez définis pour vos conversations ?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nom du contact</string>
   <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
   <string name="ChatWallpaperFragment__clear">Réinitialiser</string>

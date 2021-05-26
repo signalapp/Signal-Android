@@ -603,7 +603,7 @@
   <string name="ManageGroupActivity_mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
   <string name="ManageGroupActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="ManageGroupActivity_mentions">பெயர் குறிப்பிடுவது</string>
-  <string name="ManageGroupActivity_chat_wallpaper">உரையாடல் பின்னணிப்படம்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">உரையாடல் பின்னணிப்படம்</string> -->
   <string name="ManageGroupActivity_until_s">%1$s வரை</string>
   <string name="ManageGroupActivity_off">அணை</string>
   <string name="ManageGroupActivity_on">இயக்க</string>
@@ -2494,12 +2494,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">உரையாடல் பின்னணிப்படம்</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">இருண்ட கருப்பொருள் பின்னணிப்படத்தை மங்கச் செய்கிறது</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">பின்னணிப்படம் நீக்கவும்</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">இந்த அரட்டைக்கு பின்னணிப்படத்தை நீக்கவா?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">பின்னணிப்படத்தை நீக்கவா? இது உரையாடல்களுக்காக நீங்கள் அமைத்துள்ள தனி பின்னணிப்படங்களை நீக்காது.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">இருண்ட கருப்பொருள் பின்னணிப்படத்தை மங்கச் செய்கிறது</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">பின்னணிப்படம் நீக்கவும்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">இந்த அரட்டைக்கு பின்னணிப்படத்தை நீக்கவா?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">பின்னணிப்படத்தை நீக்கவா? இது உரையாடல்களுக்காக நீங்கள் அமைத்துள்ள தனி பின்னணிப்படங்களை நீக்காது.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவும்</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">உங்கள் உரையாடல்களுக்காக நீங்கள் அமைத்துள்ள தனிப்பட்ட பின்னணிப்படங்கள் உட்பட அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">உங்கள் உரையாடல்களுக்காக நீங்கள் அமைத்துள்ள தனிப்பட்ட பின்னணிப்படங்கள் உட்பட அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string> -->
   <string name="ChatWallpaperFragment__contact_name">தொடர்பு பெயர்</string>
   <string name="ChatWallpaperFragment__reset">மீட்டமைக்க</string>
   <string name="ChatWallpaperFragment__clear">அழி</string>

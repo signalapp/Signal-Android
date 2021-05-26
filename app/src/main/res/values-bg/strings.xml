@@ -603,7 +603,7 @@
   <string name="ManageGroupActivity_mute_notifications">Тих режим за известия</string>
   <string name="ManageGroupActivity_custom_notifications">Персонализирани известия</string>
   <string name="ManageGroupActivity_mentions">Споменавания</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Тапет на чата</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Тапет на чата</string> -->
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Винаги</string>
   <string name="ManageGroupActivity_off">Деактивирано</string>
@@ -2481,12 +2481,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Тапет на чата</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Задай тапет</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тъмният облик замръчнява тапета</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Премахване на тапета</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Премахване на тапета на този чат?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Премахване на тапета? Това няма да премахне персонализирани тапети, които си задал в своите чатове.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тъмният облик замръчнява тапета</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Премахване на тапета</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Премахване на тапета на този чат?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Премахване на тапета? Това няма да премахне персонализирани тапети, които си задал в своите чатове.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Премахване на всички тапети</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Премахване на всички тапети, включително персонализарни тапети, които си задал в своите чатове?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Премахване на всички тапети, включително персонализарни тапети, които си задал в своите чатове?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Име на контакта</string>
   <string name="ChatWallpaperFragment__reset">Рестартирай</string>
   <string name="ChatWallpaperFragment__clear">Изчистване</string>

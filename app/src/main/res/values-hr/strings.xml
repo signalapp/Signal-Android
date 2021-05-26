@@ -643,7 +643,7 @@
   <string name="ManageGroupActivity_mute_notifications">Utišaj obavijesti</string>
   <string name="ManageGroupActivity_custom_notifications">Prilagođene obavijesti</string>
   <string name="ManageGroupActivity_mentions">Spominjanja</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Pozadina razgovora</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Pozadina razgovora</string> -->
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Uvijek</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
@@ -2727,12 +2727,12 @@ broj telefona</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Pozadina razgovora</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Postavi pozadinu</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatamni pozadinu</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Ukloni pozadinu</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ukloni pozadinu iz ovog razgovora?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Želite li ukloniti pozadinu? Ovo neće ukloniti prilagođene pozadine koje ste postavili za razgovore.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatamni pozadinu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Ukloni pozadinu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ukloni pozadinu iz ovog razgovora?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Želite li ukloniti pozadinu? Ovo neće ukloniti prilagođene pozadine koje ste postavili za razgovore.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Poništi sve pozadine</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Želite li poništiti sve pozadine, uključujući prilagođene pozadine koje ste postavili za razgovore?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Želite li poništiti sve pozadine, uključujući prilagođene pozadine koje ste postavili za razgovore?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
   <string name="ChatWallpaperFragment__reset">Poništi</string>
   <string name="ChatWallpaperFragment__clear">Ukloni</string>

@@ -609,7 +609,7 @@
   <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
   <string name="ManageGroupActivity_mentions">Bahsedilmeler</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Konuşma duvar kağıdı</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Konuşma duvar kağıdı</string> -->
   <string name="ManageGroupActivity_until_s">%1$s tarihine kadar</string>
   <string name="ManageGroupActivity_always">Her zaman</string>
   <string name="ManageGroupActivity_off">Kapalı</string>
@@ -2736,12 +2736,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Konuşma duvar kağıdı</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Duvar kağıdı ayarla</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Koyu tema duvar kağıdını karartsın</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Duvar kağıdını kaldır</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Bu konuşma için duvar kağıdı kaldırılsın mi?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Duvar kağıdı kaldırılsın mi? Bu, konuşmalarınız için ayarladığınız özel duvar kağıtlarını kaldırmayacaktır.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Koyu tema duvar kağıdını karartsın</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Duvar kağıdını kaldır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Bu konuşma için duvar kağıdı kaldırılsın mi?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Duvar kağıdı kaldırılsın mi? Bu, konuşmalarınız için ayarladığınız özel duvar kağıtlarını kaldırmayacaktır.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Konuşmalarınız için belirlediğiniz özel duvar kağıtları dahil tüm duvar kağıtları sıfırlansın mı?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Konuşmalarınız için belirlediğiniz özel duvar kağıtları dahil tüm duvar kağıtları sıfırlansın mı?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kişi adı</string>
   <string name="ChatWallpaperFragment__reset">Sıfırla</string>
   <string name="ChatWallpaperFragment__clear">Kaldır</string>

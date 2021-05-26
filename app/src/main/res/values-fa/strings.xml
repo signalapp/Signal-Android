@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">بستن اعلان‌ها</string>
   <string name="ManageGroupActivity_custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
-  <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string> -->
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
   <string name="ManageGroupActivity_always">همیشه</string>
   <string name="ManageGroupActivity_off">خاموش</string>
@@ -2744,12 +2744,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">کاغذدیواری گفتگو</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">تنظیم کاغذدیواری</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">طرح زمینهٔ تاریک کاغذدیواری را تیره می‌کند</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">پاک کردن کاغذدیواری</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">پاک کردن کاغذدیواری برای این گفتگو؟</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای خود انتخاب کردید پاک نمی‌کند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">طرح زمینهٔ تاریک کاغذدیواری را تیره می‌کند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">پاک کردن کاغذدیواری</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">پاک کردن کاغذدیواری برای این گفتگو؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای خود انتخاب کردید پاک نمی‌کند.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای خود انتخاب کردید؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای خود انتخاب کردید؟</string> -->
   <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
   <string name="ChatWallpaperFragment__reset">بازنشانی</string>
   <string name="ChatWallpaperFragment__clear">پاک کردن</string>

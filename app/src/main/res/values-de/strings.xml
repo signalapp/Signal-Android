@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Benachrichtigungen stummschalten</string>
   <string name="ManageGroupActivity_custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="ManageGroupActivity_mentions">Erwähnungen</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Hintergrund</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Hintergrund</string> -->
   <string name="ManageGroupActivity_until_s">Bis %1$s</string>
   <string name="ManageGroupActivity_always">Immer</string>
   <string name="ManageGroupActivity_off">Aus</string>
@@ -2735,12 +2735,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatWallpaperActivity__chat_wallpaper">Hintergrund</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Hintergrund festlegen</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dunkles Design dunkelt Hintergrund ab</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Hintergrund entfernen</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hintergrund für diese Unterhaltung entfernen?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hintergrund entfernen? Es werden keine personalisierten Hintergründe entfernt, die du für deine Unterhaltungen festgelegt hast.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dunkles Design dunkelt Hintergrund ab</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Hintergrund entfernen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hintergrund für diese Unterhaltung entfernen?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hintergrund entfernen? Es werden keine personalisierten Hintergründe entfernt, die du für deine Unterhaltungen festgelegt hast.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle Hintergründe zurücksetzen</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Alle Hintergründe zurücksetzen, einschließlich personalisierter Hintergründe, die du für deine Unterhaltungen festgelegt hast?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Alle Hintergründe zurücksetzen, einschließlich personalisierter Hintergründe, die du für deine Unterhaltungen festgelegt hast?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktname</string>
   <string name="ChatWallpaperFragment__reset">Zurücksetzen</string>
   <string name="ChatWallpaperFragment__clear">Entfernen</string>

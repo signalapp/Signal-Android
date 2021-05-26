@@ -604,7 +604,7 @@
   <string name="ManageGroupActivity_mute_notifications">خاموش اطلاعات</string>
   <string name="ManageGroupActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="ManageGroupActivity_mentions">ذکر</string>
-  <string name="ManageGroupActivity_chat_wallpaper">چیٹ وال پیپر</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">چیٹ وال پیپر</string> -->
   <string name="ManageGroupActivity_until_s">جب تک %1$s</string>
   <string name="ManageGroupActivity_off">بند کریں</string>
   <string name="ManageGroupActivity_on">چلائیں</string>
@@ -2475,12 +2475,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">چیٹ وال پیپر</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">وال پیپر سیٹ کریں</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">سیاہ تھیم وال پیپر کو مدھم کرتا ہے</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">وال پیپر صاف کریں</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">اس چیٹ کے لئے وال پیپر صاف کریں؟</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">وال پیپر صاف کریں؟ اس سے وہ کسٹم وال پیپر صاف نہیں ہوں گے جو آپ نے اپنی چیٹس کے لیئے رکھے ہیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">سیاہ تھیم وال پیپر کو مدھم کرتا ہے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">وال پیپر صاف کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">اس چیٹ کے لئے وال پیپر صاف کریں؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">وال پیپر صاف کریں؟ اس سے وہ کسٹم وال پیپر صاف نہیں ہوں گے جو آپ نے اپنی چیٹس کے لیئے رکھے ہیں۔</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">تمام وال پیپر کو دوبارہ ترتیب دیں</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">آپ نے اپنی چیٹس کیلئے مرتب کردہ کسٹم وال پیپرز سمیت تمام وال پیپرز کو دوبارہ ترتیب دیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">آپ نے اپنی چیٹس کیلئے مرتب کردہ کسٹم وال پیپرز سمیت تمام وال پیپرز کو دوبارہ ترتیب دیں۔</string> -->
   <string name="ChatWallpaperFragment__contact_name">رابطے کا نام</string>
   <string name="ChatWallpaperFragment__reset">دوبارہ بحال کریں</string>
   <string name="ChatWallpaperFragment__clear">صاف</string>

@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageGroupActivity_custom_notifications">Anpassade aviseringar</string>
   <string name="ManageGroupActivity_mentions">Omnämnanden</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Chattbakgrund</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Chattbakgrund</string> -->
   <string name="ManageGroupActivity_until_s">Fram tills %1$s</string>
   <string name="ManageGroupActivity_always">Alltid</string>
   <string name="ManageGroupActivity_off">Av</string>
@@ -2740,12 +2740,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Chattbakgrund</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Ställ in bakgrund</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mörkt tema dämpar bakgrunden</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Rensa bakgrund</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rensa bakgrunden för denna chatt?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rensa bakgrund? Detta rensar inte anpassade bakgrunder som du har ställt in för dina chattar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mörkt tema dämpar bakgrunden</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Rensa bakgrund</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rensa bakgrunden för denna chatt?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rensa bakgrund? Detta rensar inte anpassade bakgrunder som du har ställt in för dina chattar.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Återställ alla bakgrunder</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Återställ alla bakgrunder, inklusive anpassade bakgrunder som du har ställt in för dina chattar?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Återställ alla bakgrunder, inklusive anpassade bakgrunder som du har ställt in för dina chattar?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
   <string name="ChatWallpaperFragment__reset">Starta om</string>
   <string name="ChatWallpaperFragment__clear">Rensa</string>

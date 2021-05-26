@@ -604,7 +604,7 @@
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageGroupActivity_mentions">സൂചനകൾ</string>
-  <string name="ManageGroupActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string> -->
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
   <string name="ManageGroupActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
@@ -2539,12 +2539,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">വാള്‍പേപ്പര്‍ സജ്ജമാക്കു</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ഡാര്‍ക്ക് തീം വാള്‍പേപ്പര്‍ മങ്ങിക്കും</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">വാള്‍പേപ്പര്‍ മായ്‌ക്കുക</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ഈ ചാറ്റിന്റെ വാള്‍പേപ്പര്‍ മായ്ക്കണോ?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">വാൾപേപ്പർ മായ്‌ക്കണോ? നിങ്ങളുടെ ചാറ്റുകൾക്കായി നിങ്ങൾ സജ്ജമാക്കിയ ഇഷ്‌ടാനുസൃത വാൾപേപ്പറുകൾ ഇത് മായ്‌ക്കില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ഡാര്‍ക്ക് തീം വാള്‍പേപ്പര്‍ മങ്ങിക്കും</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">വാള്‍പേപ്പര്‍ മായ്‌ക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ഈ ചാറ്റിന്റെ വാള്‍പേപ്പര്‍ മായ്ക്കണോ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">വാൾപേപ്പർ മായ്‌ക്കണോ? നിങ്ങളുടെ ചാറ്റുകൾക്കായി നിങ്ങൾ സജ്ജമാക്കിയ ഇഷ്‌ടാനുസൃത വാൾപേപ്പറുകൾ ഇത് മായ്‌ക്കില്ല.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">വാള്‍പേപ്പറുകള്‍ എല്ലാം പുനഃക്രമീകരിക്കുക</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">നിങ്ങളുടെ ചാറ്റുകൾക്കായി നിങ്ങൾ സജ്ജമാക്കിയ ഇഷ്‌ടാനുസൃത വാൾപേപ്പറുകൾ ഉൾപ്പെടെ എല്ലാ വാൾപേപ്പറുകളും പുനഃസജ്ജമാക്കണോ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">നിങ്ങളുടെ ചാറ്റുകൾക്കായി നിങ്ങൾ സജ്ജമാക്കിയ ഇഷ്‌ടാനുസൃത വാൾപേപ്പറുകൾ ഉൾപ്പെടെ എല്ലാ വാൾപേപ്പറുകളും പുനഃസജ്ജമാക്കണോ?</string> -->
   <string name="ChatWallpaperFragment__contact_name">കോണ്ടാക്ടിന്റെ പേര്</string>
   <string name="ChatWallpaperFragment__reset">പുനഃക്രമീകരിക്കുക</string>
   <string name="ChatWallpaperFragment__clear">മായ്‌ക്കുക</string>

@@ -616,7 +616,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_mute_notifications">Ikkje vis varsel</string>
   <string name="ManageGroupActivity_custom_notifications">Eigendefinerte varsel</string>
   <string name="ManageGroupActivity_mentions">Omtalar</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Samtalebakgrunnsbilde</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Samtalebakgrunnsbilde</string> -->
   <string name="ManageGroupActivity_until_s">Fram til %1$s</string>
   <string name="ManageGroupActivity_always">Alltid</string>
   <string name="ManageGroupActivity_off">Av</string>
@@ -2752,12 +2752,12 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Samtalebakgrunnsbilde</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Vel bakgrunnsbilde</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dimmar bakgrunnsbildet</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunnsbildet</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern bakgrunnsbildet for denne samtalen?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Tøm bakgrunnsbildet? Dette vil ikkje fjerna eigne bakgrunnar du har valt for dine samtalar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dimmar bakgrunnsbildet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunnsbildet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern bakgrunnsbildet for denne samtalen?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Tøm bakgrunnsbildet? Dette vil ikkje fjerna eigne bakgrunnar du har valt for dine samtalar.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Nullstill alle bakgrunnsbilde</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Fjern alle bakgrunnar, inkludert eigne bakgrunnar du har valt for dine samtalar?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Fjern alle bakgrunnar, inkludert eigne bakgrunnar du har valt for dine samtalar?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
   <string name="ChatWallpaperFragment__reset">Tilbakestill</string>
   <string name="ChatWallpaperFragment__clear">Fjern</string>

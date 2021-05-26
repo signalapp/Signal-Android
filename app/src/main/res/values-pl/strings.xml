@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Wycisz powiadomienia</string>
   <string name="ManageGroupActivity_custom_notifications">Niestandardowe powiadomienia</string>
   <string name="ManageGroupActivity_mentions">Wzmianki</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Tapeta czatu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Tapeta czatu</string> -->
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Zawsze</string>
   <string name="ManageGroupActivity_off">Wyłączone</string>
@@ -2902,12 +2902,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta czatu</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Ustaw tapetę</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Ciemny motyw przyciemnia tapetę</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Usuń tapetę</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Usunąć tapetę dla tej rozmowy?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Usunąć tapetę? To działanie nie usunie tapet, ustawionych przez Ciebie, dla poszczególnych rozmów.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Ciemny motyw przyciemnia tapetę</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Usuń tapetę</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Usunąć tapetę dla tej rozmowy?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Usunąć tapetę? To działanie nie usunie tapet, ustawionych przez Ciebie, dla poszczególnych rozmów.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetuj wszystkie tapety</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetować wszystkie tapety, łącznie z ustawionymi przez Ciebie, dla poszczególnych rozmów?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetować wszystkie tapety, łącznie z ustawionymi przez Ciebie, dla poszczególnych rozmów?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Imię kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Zresetuj</string>
   <string name="ChatWallpaperFragment__clear">Usuń</string>

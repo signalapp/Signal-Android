@@ -638,7 +638,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notificări fără sunet</string>
   <string name="ManageGroupActivity_custom_notifications">Notificări personalizate</string>
   <string name="ManageGroupActivity_mentions">Mențiuni</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fundal conversații</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Fundal conversații</string> -->
   <string name="ManageGroupActivity_until_s">Până la %1$s</string>
   <string name="ManageGroupActivity_always">Întotdeauna</string>
   <string name="ManageGroupActivity_off">Dezactivate</string>
@@ -2721,12 +2721,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatWallpaperActivity__chat_wallpaper">Fundal conversații</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Setare fundal</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema întunecată estompează fundalul</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Eliminare fundal</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Eliminați fundalul pentru această conversație?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ștergeți imaginea de fundal? Aceasta nu va șterge imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema întunecată estompează fundalul</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Eliminare fundal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Eliminați fundalul pentru această conversație?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ștergeți imaginea de fundal? Aceasta nu va șterge imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetare toate imaginile de fundal</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resetați toate imaginile de fundal, inclusiv imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resetați toate imaginile de fundal, inclusiv imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nume contact</string>
   <string name="ChatWallpaperFragment__reset">Resetare</string>
   <string name="ChatWallpaperFragment__clear">Eliminare</string>

@@ -612,7 +612,7 @@
   <string name="ManageGroupActivity_mute_notifications">ئۈنسىز ئۇقتۇرۇش</string>
   <string name="ManageGroupActivity_custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <string name="ManageGroupActivity_mentions">تىلغا ئالغانلار</string>
-  <string name="ManageGroupActivity_chat_wallpaper">سۆھبەت تام قەغەز</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">سۆھبەت تام قەغەز</string> -->
   <string name="ManageGroupActivity_until_s">%1$s غىچە</string>
   <string name="ManageGroupActivity_always">ھەمىشە</string>
   <string name="ManageGroupActivity_off">تاقاق</string>
@@ -2745,12 +2745,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">تام قەغىزىنى بېكىتىش</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">قاراڭغۇ تېما تام قەغىزىنى گىرىمسەنلەشتۈرىدۇ</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">تام قەغىزىنى تازىلىۋەت</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">بۇ سۆھبەتنىڭ تام قەغىزىنى تازىلىۋېتەمسىز؟</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">تام قەغىزىنى تازىلاشمۇ؟ بۇ سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىڭىزنى تازىلىۋەتمەيدۇ. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">قاراڭغۇ تېما تام قەغىزىنى گىرىمسەنلەشتۈرىدۇ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">تام قەغىزىنى تازىلىۋەت</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">بۇ سۆھبەتنىڭ تام قەغىزىنى تازىلىۋېتەمسىز؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">تام قەغىزىنى تازىلاشمۇ؟ بۇ سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىڭىزنى تازىلىۋەتمەيدۇ. </string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">بارلىق تام قەغەزلىرىنى قايتا تەڭشە</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىنىمۇ ئۆز ئىچىگە ئالغان، بارلىق تام قەغەزلىرىنى قايتىدىن تەڭشەمسىز؟ </string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىنىمۇ ئۆز ئىچىگە ئالغان، بارلىق تام قەغەزلىرىنى قايتىدىن تەڭشەمسىز؟ </string> -->
   <string name="ChatWallpaperFragment__contact_name">ئالاقەداش نامى</string>
   <string name="ChatWallpaperFragment__reset">قايتا بېكىتىش</string>
   <string name="ChatWallpaperFragment__clear">تازىلا</string>

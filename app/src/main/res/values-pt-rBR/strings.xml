@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificações</string>
   <string name="ManageGroupActivity_mentions">Menções</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Papel de parede da conversa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Papel de parede da conversa</string> -->
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Desligado</string>
@@ -2724,12 +2724,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Papel de parede da conversa</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Definir papel de parede</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Escurecer papel de parede no tema escuro</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Remover papel de parede</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Remover papel de parede desta conversa?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Remover papel de parede? Não serão removidos os personalizados que você tiver definido para as suas conversas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Escurecer papel de parede no tema escuro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Remover papel de parede</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Remover papel de parede desta conversa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Remover papel de parede? Não serão removidos os personalizados que você tiver definido para as suas conversas.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Redefinir todos os papéis de parede</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Redefinir todos os papéis de parede, inclusive os personalizados que você tiver definido para as suas conversas?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Redefinir todos os papéis de parede, inclusive os personalizados que você tiver definido para as suas conversas?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nome do contato</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <string name="ChatWallpaperFragment__clear">Limpar</string>

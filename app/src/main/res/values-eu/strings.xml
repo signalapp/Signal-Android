@@ -605,7 +605,7 @@
   <string name="ManageGroupActivity_mute_notifications">Desaktibatu jakinarazpenak</string>
   <string name="ManageGroupActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string>
   <string name="ManageGroupActivity_mentions">Aipamenak</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Elkarrizketaren hormairudia</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Elkarrizketaren hormairudia</string> -->
   <string name="ManageGroupActivity_until_s">%1$s dataraino</string>
   <string name="ManageGroupActivity_off">Desaktibatuta</string>
   <string name="ManageGroupActivity_on">Aktibatuta</string>
@@ -2498,12 +2498,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ChatWallpaperActivity__chat_wallpaper">Elkarrizketaren hormairudia</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Ezarri hormairudia</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Itxura ilunak hormairudia leundu egingo du</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Kendu hormairudia</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kendu elkarrizketa honen hormairudia?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kendu hormairudia? Honek ez ditu zure elkarrizketetarako zuk ezarritako hormairudiak.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Itxura ilunak hormairudia leundu egingo du</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Kendu hormairudia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kendu elkarrizketa honen hormairudia?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kendu hormairudia? Honek ez ditu zure elkarrizketetarako zuk ezarritako hormairudiak.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Berrezarri hormairudi guztiak</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Hormairudi guztiak berrezarri, zure elkarrizketetarako ezarri dituzunak barne?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Hormairudi guztiak berrezarri, zure elkarrizketetarako ezarri dituzunak barne?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktuaren izena</string>
   <string name="ChatWallpaperFragment__reset">Berrabiarazi</string>
   <string name="ChatWallpaperFragment__clear">Garbitu</string>

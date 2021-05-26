@@ -576,7 +576,7 @@
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
   <string name="ManageGroupActivity_mentions">提及我</string>
-  <string name="ManageGroupActivity_chat_wallpaper">聊天墙纸</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">聊天墙纸</string> -->
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">总是</string>
   <string name="ManageGroupActivity_off">关</string>
@@ -2632,12 +2632,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">聊天墙纸</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">设置墙纸</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">深色主题暗淡墙纸</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">清除墙纸</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">对该聊天清除墙纸？</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">是否清除墙纸？这不会清除你的自定义聊天墙纸。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">深色主题暗淡墙纸</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">清除墙纸</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">对该聊天清除墙纸？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">是否清除墙纸？这不会清除你的自定义聊天墙纸。</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">重置全部墙纸</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">是否重置全部墙纸，包括你的自定义聊天墙纸？</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">是否重置全部墙纸，包括你的自定义聊天墙纸？</string> -->
   <string name="ChatWallpaperFragment__contact_name">联系人名字</string>
   <string name="ChatWallpaperFragment__reset">重置</string>
   <string name="ChatWallpaperFragment__clear">清除</string>

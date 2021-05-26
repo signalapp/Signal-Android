@@ -525,7 +525,7 @@
   <string name="ManageGroupActivity_mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
   <string name="ManageGroupActivity_custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <string name="ManageGroupActivity_mentions">ਜ਼ਿਕਰ</string>
-  <string name="ManageGroupActivity_chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string> -->
   <string name="ManageGroupActivity_until_s">%1$s ਤੱਕ</string>
   <string name="ManageGroupActivity_off">ਬੰਦ </string>
   <string name="ManageGroupActivity_on">ਚਲਾਓ </string>

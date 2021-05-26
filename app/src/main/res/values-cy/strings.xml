@@ -677,7 +677,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_mute_notifications">Tewi hysbysiadau</string>
   <string name="ManageGroupActivity_custom_notifications">Hysbysiadau cyfaddas</string>
   <string name="ManageGroupActivity_mentions">Crybwylliadau</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Papur wal sgwrsio</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Papur wal sgwrsio</string> -->
   <string name="ManageGroupActivity_until_s">Tan %1$s</string>
   <string name="ManageGroupActivity_always">Bob tro</string>
   <string name="ManageGroupActivity_off">I ffwrdd</string>
@@ -2912,12 +2912,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Papur wal sgwrsio</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Gosod papur wal</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Papur wal dims thema tywyll</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Papur wal clir</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Clirio papur wal i\'r sgwrs hon?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Clirio papur wal? Ni fydd hyn yn clirio papurau wal wedi\'u gosod ar gyfer eich sgyrsiau.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Papur wal dims thema tywyll</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Papur wal clir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Clirio papur wal i\'r sgwrs hon?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Clirio papur wal? Ni fydd hyn yn clirio papurau wal wedi\'u gosod ar gyfer eich sgyrsiau.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Ailosod pob papur wal</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ail-osod pob papur wal, gan gynnwys papurau wal wedi\'u gosod ar gyfer eich sgyrsiau?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ail-osod pob papur wal, gan gynnwys papurau wal wedi\'u gosod ar gyfer eich sgyrsiau?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Enw cyswllt</string>
   <string name="ChatWallpaperFragment__reset">Ailosod</string>
   <string name="ChatWallpaperFragment__clear">Clirio</string>

@@ -578,7 +578,7 @@
   <string name="ManageGroupActivity_mute_notifications">ปิดการแจ้งเตือน</string>
   <string name="ManageGroupActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
   <string name="ManageGroupActivity_mentions">การกล่าวถึง</string>
-  <string name="ManageGroupActivity_chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string> -->
   <string name="ManageGroupActivity_until_s">จนถึง %1$s</string>
   <string name="ManageGroupActivity_always">ตลอดเวลา</string>
   <string name="ManageGroupActivity_off">ปิด</string>
@@ -2624,12 +2624,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">ตั้งภาพพื้นหลัง</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ภาพพื้นหลังธีมมืดสลัว</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">ล้างภาพพื้นหลัง</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ล้างภาพพื้นหลังสำหรับแชตนี้หรือไม่?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">ล้างภาพพื้นหลังหรือไม่? การกระทำนี้จะไม่ล้างภาพพื้นหลังแบบกำหนดเองที่คุณตั้งไว้ในแชตของคุณ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ภาพพื้นหลังธีมมืดสลัว</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">ล้างภาพพื้นหลัง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ล้างภาพพื้นหลังสำหรับแชตนี้หรือไม่?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">ล้างภาพพื้นหลังหรือไม่? การกระทำนี้จะไม่ล้างภาพพื้นหลังแบบกำหนดเองที่คุณตั้งไว้ในแชตของคุณ</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">รีเซ็ตภาพพื้นหลังทั้งหมด</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">รีเซ็ตภาพพื้นหลังทั้งหมดและรวมถึงภาพพื้นหลังแบบกำหนดเองซึ่งคุณตั้งไว้สำหรับแชตของคุณหรือไม่?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">รีเซ็ตภาพพื้นหลังทั้งหมดและรวมถึงภาพพื้นหลังแบบกำหนดเองซึ่งคุณตั้งไว้สำหรับแชตของคุณหรือไม่?</string> -->
   <string name="ChatWallpaperFragment__contact_name">ชื่อผู้ติดต่อ</string>
   <string name="ChatWallpaperFragment__reset">รีเซ็ต</string>
   <string name="ChatWallpaperFragment__clear">ล้าง</string>

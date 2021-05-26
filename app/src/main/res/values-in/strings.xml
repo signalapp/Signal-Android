@@ -576,7 +576,7 @@
   <string name="ManageGroupActivity_mute_notifications">Senyapkan pemberitahuan</string>
   <string name="ManageGroupActivity_custom_notifications">Notifikasi khusus</string>
   <string name="ManageGroupActivity_mentions">Menyebut</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Gambar latar percakapan</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Gambar latar percakapan</string> -->
   <string name="ManageGroupActivity_until_s">Sampai %1$s</string>
   <string name="ManageGroupActivity_always">Selalu</string>
   <string name="ManageGroupActivity_off">Mati</string>
@@ -2420,12 +2420,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChatWallpaperActivity__chat_wallpaper">Gambar latar percakapan</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Atur gambar latar</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema gelap meredupkan gambar latar</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Hapus gambar latar</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hapus gambar latar percakapan ini?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hapus gambar latar? Anda akan menghapus gambar latar semua percakapan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema gelap meredupkan gambar latar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Hapus gambar latar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hapus gambar latar percakapan ini?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hapus gambar latar? Anda akan menghapus gambar latar semua percakapan.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Kembalikan semua gambar latar.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Kembalikan semua gambar latar, termasuk gambar untuk percakapan?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Kembalikan semua gambar latar, termasuk gambar untuk percakapan?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nama kontak</string>
   <string name="ChatWallpaperFragment__reset">Atur ulang</string>
   <string name="ChatWallpaperFragment__clear">Bersihkan</string>

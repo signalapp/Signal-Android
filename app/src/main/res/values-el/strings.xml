@@ -608,7 +608,7 @@
   <string name="ManageGroupActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageGroupActivity_mentions">Αναφορές</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Ταπετσαρία συνομιλίας</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Ταπετσαρία συνομιλίας</string> -->
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
   <string name="ManageGroupActivity_always">Πάντα</string>
   <string name="ManageGroupActivity_off">Ανενεργό</string>
@@ -2655,12 +2655,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Ταπετσαρία συνομιλίας</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Ορισμός ταπετσαρίας</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Εκκαθάριση ταπετσαρίας</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Εκκαθάριση της ταπετσαρίας αυτής της συνομιλίας;</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Εκκαθάριση ταπετσαρίας; Αυτό δεν θα εκκαθαρίσει τις προσαρμοσμένες ταπετσαρίες που έχεις ορίσει για τις συνομιλίες σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Εκκαθάριση ταπετσαρίας</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Εκκαθάριση της ταπετσαρίας αυτής της συνομιλίας;</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Εκκαθάριση ταπετσαρίας; Αυτό δεν θα εκκαθαρίσει τις προσαρμοσμένες ταπετσαρίες που έχεις ορίσει για τις συνομιλίες σου.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Επαναφορά όλων των ταπετσαριών, συμπεριλαμβανομένων των προσαρμοσμένων ταπετσαριών που έχεις ορίσει στις συνομιλίες σου;</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Επαναφορά όλων των ταπετσαριών, συμπεριλαμβανομένων των προσαρμοσμένων ταπετσαριών που έχεις ορίσει στις συνομιλίες σου;</string> -->
   <string name="ChatWallpaperFragment__contact_name">Όνομα επαφής</string>
   <string name="ChatWallpaperFragment__reset">Επαναφορά</string>
   <string name="ChatWallpaperFragment__clear">Εκκαθάριση</string>

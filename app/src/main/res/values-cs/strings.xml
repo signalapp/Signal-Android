@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastní oznámení</string>
   <string name="ManageGroupActivity_mentions">Zmínky</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Tapeta pro konverzaci</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Tapeta pro konverzaci</string> -->
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vyp.</string>
@@ -2909,12 +2909,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta pro konverzaci</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Nastavit tapetu</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motiv ztlumí tapetu</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Vymazat tapetu</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Vymazat tapetu pro tuto konverzaci?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Vymazat tapetu? Vlastní tapety, které jste si nastavili pro vaše konverzace, tímto nebudou vymazány.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motiv ztlumí tapetu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Vymazat tapetu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Vymazat tapetu pro tuto konverzaci?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Vymazat tapetu? Vlastní tapety, které jste si nastavili pro vaše konverzace, tímto nebudou vymazány.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Obnovit všechny tapety</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Obnovit všechny tapety, včetně vlastních, které jste si nastavili pro vaše konverzace?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Obnovit všechny tapety, včetně vlastních, které jste si nastavili pro vaše konverzace?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Jméno kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Obnovit</string>
   <string name="ChatWallpaperFragment__clear">Vymazat</string>

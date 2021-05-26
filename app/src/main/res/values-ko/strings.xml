@@ -572,7 +572,7 @@
   <string name="ManageGroupActivity_mute_notifications">대화 알림 끄기</string>
   <string name="ManageGroupActivity_custom_notifications">맞춤형 알림</string>
   <string name="ManageGroupActivity_mentions">언급</string>
-  <string name="ManageGroupActivity_chat_wallpaper">채팅방 배경</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">채팅방 배경</string> -->
   <string name="ManageGroupActivity_until_s">%1$s까지</string>
   <string name="ManageGroupActivity_always">항상</string>
   <string name="ManageGroupActivity_off">꺼짐</string>
@@ -2422,12 +2422,12 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">채팅방 배경</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">배경 설정하기</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">어두움 테마는 배경을 흐리게 합니다</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">배경 제거하기</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">이 채팅방의 배경을 제거하시겠습니까?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">배경을 제거하시겠습니까? 귀하의 채팅방에 임의로 설정한 배경들은 제거되지 않습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">어두움 테마는 배경을 흐리게 합니다</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">배경 제거하기</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">이 채팅방의 배경을 제거하시겠습니까?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">배경을 제거하시겠습니까? 귀하의 채팅방에 임의로 설정한 배경들은 제거되지 않습니다.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">귀하의 채팅방에 임의로 설정한 배경들을 포함한 모든 배경들을 초기화하시겠습니까?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">귀하의 채팅방에 임의로 설정한 배경들을 포함한 모든 배경들을 초기화하시겠습니까?</string> -->
   <string name="ChatWallpaperFragment__contact_name">연락처 이름</string>
   <string name="ChatWallpaperFragment__reset">초기화</string>
   <string name="ChatWallpaperFragment__clear">제거</string>

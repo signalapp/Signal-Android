@@ -608,7 +608,7 @@
   <string name="ManageGroupActivity_mute_notifications">Skru av varsler</string>
   <string name="ManageGroupActivity_custom_notifications">Egendefinerte varsler</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Samtale bakgrunn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Samtale bakgrunn</string> -->
   <string name="ManageGroupActivity_until_s">Frem til %1$s</string>
   <string name="ManageGroupActivity_always">Evig tid</string>
   <string name="ManageGroupActivity_off">Av</string>
@@ -2697,12 +2697,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Samtale bakgrunn</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Sett bakgrunn</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørk tema dimmer bakgrunnen</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunn</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern bakgrunn for denne samtalen?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Fjern bakgrunnen? Dette inkluderer ikke tilpassede bakgrunner du har angitt for samtalene dine.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørk tema dimmer bakgrunnen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern bakgrunn for denne samtalen?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Fjern bakgrunnen? Dette inkluderer ikke tilpassede bakgrunner du har angitt for samtalene dine.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Fjern alle bakgrunner</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Tilbakestille alle bakgrunner, inkludert tilpassede bakgrunner du har angitt for alle samtalene dine?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Tilbakestille alle bakgrunner, inkludert tilpassede bakgrunner du har angitt for alle samtalene dine?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontakt navn</string>
   <string name="ChatWallpaperFragment__reset">Tilbakestill</string>
   <string name="ChatWallpaperFragment__clear">Slett</string>

@@ -612,7 +612,7 @@
   <string name="ManageGroupActivity_mute_notifications">Értesítések némítása</string>
   <string name="ManageGroupActivity_custom_notifications">Egyedi értesítések</string>
   <string name="ManageGroupActivity_mentions">Említések</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Beszélgetés háttérkép</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Beszélgetés háttérkép</string> -->
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
   <string name="ManageGroupActivity_always">Végleg</string>
   <string name="ManageGroupActivity_off">Ki</string>
@@ -2748,12 +2748,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChatWallpaperActivity__chat_wallpaper">Beszélgetés háttérkép</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Háttérkép beállítása</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">A sötét téma elsötétíti a háttérképet is</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Háttérkép eltávolítása</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Háttérkép levétele a beszélgetésről?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Általános háttérkép eltávolítása? Ennek nem lesz hatása az egyedi beszélgetésekhez rendelt képekre.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">A sötét téma elsötétíti a háttérképet is</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Háttérkép eltávolítása</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Háttérkép levétele a beszélgetésről?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Általános háttérkép eltávolítása? Ennek nem lesz hatása az egyedi beszélgetésekhez rendelt képekre.</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Az összes háttérképet - egyedi beszélgetés függő képeket is - alaphelyzetbe állítod?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Az összes háttérképet - egyedi beszélgetés függő képeket is - alaphelyzetbe állítod?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontakt neve</string>
   <string name="ChatWallpaperFragment__reset">Alaphelyzetbe állítás</string>
   <string name="ChatWallpaperFragment__clear">Törlés</string>
