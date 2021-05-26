@@ -1751,7 +1751,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         }
 
         Log.i(TAG, "Resolved registered state: " + registeredState);
-        boolean           signalEnabled   = TextSecurePreferences.isPushRegistered(context);
+        boolean signalEnabled = Recipient.self().isRegistered();
 
         if (registeredState == RegisteredState.UNKNOWN) {
           try {

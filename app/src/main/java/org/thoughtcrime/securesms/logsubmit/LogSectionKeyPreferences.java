@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -24,6 +25,9 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Default SMS          : ").append(Util.isDefaultSmsProvider(context)).append("\n")
                               .append("Prefer Contact Photos: ").append(SignalStore.settings().isPreferSystemContactPhotos()).append("\n")
                               .append("Call Bandwidth Mode  : ").append(SignalStore.settings().getCallBandwidthMode()).append("\n")
-                              .append("Client Deprecated    : ").append(SignalStore.misc().isClientDeprecated()).append("\n");
+                              .append("Client Deprecated    : ").append(SignalStore.misc().isClientDeprecated()).append("\n")
+                              .append("Push Registered      : ").append(TextSecurePreferences.isPushRegistered(context)).append("\n")
+                              .append("Unauthorized Received: ").append(TextSecurePreferences.isUnauthorizedRecieved(context)).append("\n")
+                              .append("self.isRegistered()  : ").append(Recipient.self().isRegistered()).append("\n");
   }
 }

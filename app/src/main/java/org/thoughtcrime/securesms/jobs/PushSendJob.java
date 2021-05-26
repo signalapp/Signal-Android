@@ -145,6 +145,10 @@ public abstract class PushSendJob extends SendJob {
       return false;
     }
 
+    if (exception instanceof NotPushRegisteredException) {
+      return false;
+    }
+
     return exception instanceof IOException         ||
            exception instanceof RetryLaterException ||
            exception instanceof ProofRequiredException;
