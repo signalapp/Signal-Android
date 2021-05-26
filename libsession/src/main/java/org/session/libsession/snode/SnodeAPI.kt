@@ -3,6 +3,10 @@
 package org.session.libsession.snode
 
 import android.os.Build
+import com.goterl.lazysodium.LazySodiumAndroid
+import com.goterl.lazysodium.SodiumAndroid
+import com.goterl.lazysodium.interfaces.PwHash
+import com.goterl.lazysodium.interfaces.SecretBox
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -17,10 +21,14 @@ import org.session.libsignal.utilities.prettifiedDescription
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.retryIfNeeded
 import org.session.libsignal.utilities.*
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
 import java.security.SecureRandom
+import java.util.*
 
 object SnodeAPI {
+    private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
+
     private val database: LokiAPIDatabaseProtocol
         get() = SnodeModule.shared.storage
     private val broadcaster: Broadcaster
@@ -54,10 +62,14 @@ object SnodeAPI {
     internal sealed class Error(val description: String) : Exception(description) {
         object Generic : Error("An error occurred.")
         object ClockOutOfSync : Error("Your clock is out of sync with the Service Node network.")
+        // ONS
+        object DecryptionFailed : Error("Couldn't decrypt ONS name.")
+        object HashingFailed : Error("Couldn't compute ONS name hash.")
+        object ValidationFailed : Error("ONS name validation failed.")
     }
 
     // Internal API
-    internal fun invoke(method: Snode.Method, snode: Snode, publicKey: String, parameters: Map<String, String>): RawResponsePromise {
+    internal fun invoke(method: Snode.Method, snode: Snode, publicKey: String? = null, parameters: Map<String, Any>): RawResponsePromise {
         val url = "${snode.address}:${snode.port}/storage_rpc/v1"
         if (useOnionRequests) {
             return OnionRequestAPI.sendOnionRequest(method, parameters, snode, publicKey)
@@ -153,6 +165,50 @@ object SnodeAPI {
     }
 
     // Public API
+    fun getSessionIDFor(onsName: String): Promise<String, Exception> {
+        val validationCount = 3
+        val sessionIDByteCount = 33
+        // Hash the ONS name using BLAKE2b
+        val name = onsName.toLowerCase(Locale.ENGLISH)
+        val nameHash = sodium.cryptoGenericHash(name)
+        val base64EncodedNameHash = nameHash
+        // Ask 3 different snodes for the Session ID associated with the given name hash
+        val parameters = mapOf(
+            "endpoint" to "ons_resolve",
+            "params" to mapOf( "type" to 0, "name_hash" to base64EncodedNameHash )
+        )
+        val promises = (0..validationCount).map {
+            getRandomSnode().bind { snode ->
+                invoke(Snode.Method.OxenDaemonRPCCall, snode, null, parameters)
+            }
+        }
+        val deferred = deferred<String, Exception>()
+        val promise = deferred.promise
+        all(promises).success { results ->
+            val sessionIDs = mutableListOf<String>()
+            for (json in results) {
+                val intermediate = json["result"] as? Map<*, *>
+                val hexEncodedCiphertext = intermediate?.get("encrypted_value") as? String
+                if (hexEncodedCiphertext != null) {
+                    val ciphertext = Hex.fromStringCondensed(hexEncodedCiphertext)
+                    val isArgon2Based = (intermediate["nonce"] == null)
+                    if (isArgon2Based) {
+                        // Handle old Argon2-based encryption used before HF16
+                        val salt = ByteArray(PwHash.SALTBYTES)
+                        val key = sodium.cryptoPwHash(name, SecretBox.KEYBYTES, salt, PwHash.OPSLIMIT_MODERATE, PwHash.MEMLIMIT_MODERATE, PwHash.Alg.PWHASH_ALG_ARGON2ID13)
+                        val nonce = ByteArray(SecretBox.NONCEBYTES)
+                        val sessionID = sodium.cryptoSecretBoxOpenEasy(ciphertext, nonce, key)
+                    } else {
+
+                    }
+                } else {
+                    deferred.reject(Error.Generic)
+                }
+            }
+        }
+        return promise
+    }
+
     fun getTargetSnodes(publicKey: String): Promise<List<Snode>, Exception> {
         // SecureRandom() should be cryptographically secure
         return getSwarm(publicKey).map { it.shuffled(SecureRandom()).take(targetSwarmSnodeCount) }
