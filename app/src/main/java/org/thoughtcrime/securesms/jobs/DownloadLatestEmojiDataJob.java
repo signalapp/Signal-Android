@@ -39,7 +39,6 @@ import java.util.regex.Pattern;
 
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okio.HashingSink;
 import okio.Okio;
 import okio.Sink;
 import okio.Source;
@@ -64,7 +63,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
   private EmojiFiles.Version targetVersion;
 
   public static void scheduleIfNecessary(@NonNull Context context) {
-    long nextScheduledCheck = SignalStore.emojiValues().getNextScheduledCheck();
+    long nextScheduledCheck = SignalStore.emojiValues().getNextScheduledImageCheck();
 
     if (nextScheduledCheck <= System.currentTimeMillis()) {
       Log.i(TAG, "Scheduling DownloadLatestEmojiDataJob.");
@@ -79,7 +78,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
         interval = INTERVAL_WITHOUT_REMOTE_DOWNLOAD;
       }
 
-      SignalStore.emojiValues().setNextScheduledCheck(System.currentTimeMillis() + interval);
+      SignalStore.emojiValues().setNextScheduledImageCheck(System.currentTimeMillis() + interval);
     }
   }
 

@@ -52,6 +52,10 @@ public final class GiphyMp4ViewModel extends ViewModel {
                                                                                                                 .toList()));
   }
 
+  LiveData<PagedData<GiphyImage>> getPagedData() {
+    return pagedData;
+  }
+
   public void updateSearchQuery(@Nullable String query) {
     if (!Objects.equals(query, this.query)) {
       this.query = query;

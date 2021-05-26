@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -17,21 +15,19 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
-import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.WindowUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
-public class GiphyActivity extends PassphraseRequiredActivity implements GiphyActivityToolbar.OnFilterChangedListener {
+public class GiphyActivity extends PassphraseRequiredActivity implements KeyboardPageSearchView.Callbacks {
 
-  public static final String EXTRA_IS_MMS     = "extra_is_mms";
-  public static final String EXTRA_WIDTH      = "extra_width";
-  public static final String EXTRA_HEIGHT     = "extra_height";
-  public static final String EXTRA_COLOR      = "extra_color";
+  public static final String EXTRA_IS_MMS = "extra_is_mms";
+  public static final String EXTRA_WIDTH  = "extra_width";
+  public static final String EXTRA_HEIGHT = "extra_height";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicDarkToolbarTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private GiphyMp4ViewModel giphyMp4ViewModel;
   private AlertDialog       progressDialog;
@@ -39,7 +35,6 @@ public class GiphyActivity extends PassphraseRequiredActivity implements GiphyAc
   @Override
   public void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -60,17 +55,10 @@ public class GiphyActivity extends PassphraseRequiredActivity implements GiphyAc
   }
 
   private void initializeToolbar() {
-    GiphyActivityToolbar toolbar = findViewById(R.id.giphy_toolbar);
-    toolbar.setOnFilterChangedListener(this);
-
-    final int conversationColor = getConversationColor();
-    toolbar.setBackgroundColor(conversationColor);
-    WindowUtil.setStatusBarColor(getWindow(), conversationColor);
-
-    setSupportActionBar(toolbar);
-
-    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    KeyboardPageSearchView searchView = findViewById(R.id.giphy_search_text);
+    searchView.setCallbacks(this);
+    searchView.enableBackNavigation();
+    ViewUtil.focusAndShowKeyboard(searchView);
   }
 
   private void handleGiphyMp4SaveResult(@NonNull GiphyMp4SaveResult result) {
@@ -105,12 +93,23 @@ public class GiphyActivity extends PassphraseRequiredActivity implements GiphyAc
     Toast.makeText(this, R.string.GiphyActivity_error_while_retrieving_full_resolution_gif, Toast.LENGTH_LONG).show();
   }
 
-  private @ColorInt int getConversationColor() {
-    return getIntent().getIntExtra(EXTRA_COLOR, ActivityCompat.getColor(this, R.color.core_ultramarine));
+  @Override
+  public void onQueryChanged(@NonNull String query) {
+    giphyMp4ViewModel.updateSearchQuery(query);
   }
 
   @Override
-  public void onFilterChanged(String filter) {
-    giphyMp4ViewModel.updateSearchQuery(filter);
+  public void onNavigationClicked() {
+    ViewUtil.hideKeyboard(this, findViewById(android.R.id.content));
+    finish();
   }
+
+  @Override
+  public void onFocusLost() {}
+
+  @Override
+  public void onFocusGained() {}
+
+  @Override
+  public void onClicked() {}
 }

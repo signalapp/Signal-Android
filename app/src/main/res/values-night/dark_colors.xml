@@ -26,8 +26,8 @@
     <color name="signal_icon_tint_primary">@color/core_grey_15</color>
     <color name="signal_icon_tint_secondary">@color/core_grey_25</color>
 
-    <color name="signal_icon_tint_tab_selected">@color/core_grey_10</color>
-    <color name="signal_icon_tint_tab_unselected">@color/core_grey_45</color>
+    <color name="signal_icon_tint_tab_selected">@color/core_white</color>
+    <color name="signal_icon_tint_tab_unselected">@color/core_grey_15</color>
 
     <color name="signal_button_primary">@color/core_ultramarine_light</color>
     <color name="signal_button_primary_ripple">@color/transparent_black_15</color>
@@ -141,4 +141,5 @@
     <color name="quote_preview_background">@color/core_grey_80</color>
 
     <color name="keyboard_pager_fragment_selected">@color/core_grey_80</color>
+    <color name="keyboard_pager_fragment_category_selected">@color/transparent_white_10</color>
 </resources>

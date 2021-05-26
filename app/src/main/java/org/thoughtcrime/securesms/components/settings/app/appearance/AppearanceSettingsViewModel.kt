@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.appearance
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -28,6 +29,7 @@ class AppearanceSettingsViewModel : ViewModel() {
   fun setLanguage(language: String) {
     store.update { it.copy(language = language) }
     SignalStore.settings().language = language
+    EmojiSearchIndexDownloadJob.scheduleImmediately()
   }
 
   fun setMessageFontSize(size: Int) {

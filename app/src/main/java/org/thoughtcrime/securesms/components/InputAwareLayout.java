@@ -26,8 +26,8 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
     addOnKeyboardShownListener(this);
   }
 
-  @Override public void onKeyboardShown() {
-    hideAttachedInput(true);
+  @Override
+  public void onKeyboardShown() {
   }
 
   public void show(@NonNull final EditText imeTarget, @NonNull final InputView input) {

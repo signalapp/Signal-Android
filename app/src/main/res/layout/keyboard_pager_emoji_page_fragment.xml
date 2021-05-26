@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/signal_background_secondary">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/emoji_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/subcategories_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginTop="0dp" />
+
+    <View
+        android:id="@+id/subcategories_background"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/signal_background_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/emoji_search"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/KeyboardPagerFragment_open_emoji_search"
+        android:padding="13dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/subcategories_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/subcategories_background"
+        app:srcCompat="@drawable/ic_search_24"
+        app:tint="@color/icon_tab_selector" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/emoji_backspace"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/KeyboardPagerFragment_backspace"
+        android:padding="13dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/subcategories_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/subcategories_background"
+        app:srcCompat="@drawable/ic_backspace_24"
+        app:tint="@color/icon_tab_selector" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/emoji_categories_recycler"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@id/subcategories_background"
+        app:layout_constraintEnd_toStartOf="@id/emoji_backspace"
+        app:layout_constraintStart_toEndOf="@id/emoji_search"
+        app:layout_constraintTop_toTopOf="@id/subcategories_background"
+        tools:itemCount="10"
+        tools:listitem="@layout/keyboard_pager_category_icon" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="top"
+        android:background="@color/signal_inverse_transparent_05"
+        app:layout_constraintBottom_toTopOf="@+id/subcategories_background" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

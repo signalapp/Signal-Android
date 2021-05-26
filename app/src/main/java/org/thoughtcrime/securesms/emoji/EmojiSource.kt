@@ -92,7 +92,12 @@ class EmojiSource(
 
       val context = ApplicationDependencies.getApplication()
       val version = EmojiFiles.Version.readVersion(context) ?: return null
-      val emojiData = EmojiFiles.getLatestEmojiData(context, version)
+      val emojiData = EmojiFiles.getLatestEmojiData(context, version)?.let {
+        it.copy(
+          displayPages = it.displayPages + PAGE_EMOTICONS,
+          dataPages = it.dataPages + PAGE_EMOTICONS
+        )
+      }
       val density = ScreenDensity.xhdpiRelativeDensityScaleFactor(version.density)
 
       return emojiData?.let {

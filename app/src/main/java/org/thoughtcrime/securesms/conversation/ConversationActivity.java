@@ -184,6 +184,11 @@ import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
+import org.thoughtcrime.securesms.keyboard.KeyboardPage;
+import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
+import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -319,7 +324,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
                ConversationReactionOverlay.OnReactionSelectedListener,
                ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
                SafetyNumberChangeDialog.Callback,
-               ReactionsBottomSheetDialogFragment.Callback
+               ReactionsBottomSheetDialogFragment.Callback,
+               MediaKeyboard.MediaKeyboardListener,
+               EmojiKeyboardProvider.EmojiEventListener,
+               GifKeyboardPageFragment.Host,
+               EmojiKeyboardPageFragment.Callback,
+               EmojiSearchFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -337,7 +347,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private static final int TAKE_PHOTO          = 7;
   private static final int ADD_CONTACT         = 8;
   private static final int PICK_LOCATION       = 9;
-  private static final int PICK_GIF            = 10;
+  public static  final int PICK_GIF            = 10;
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
 
@@ -687,12 +697,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
       break;
     case PICK_GIF:
-      setMedia(data.getData(),
-               Objects.requireNonNull(MediaType.from(BlobProvider.getMimeType(data.getData()))),
-               data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
-               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0),
-               false,
-               true);
+      onGifSelectSuccess(data.getData(),
+                         data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
+                         data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
       break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
@@ -1097,7 +1104,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
         break;
       case GIF:
-        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText, recipient.get().getChatColors().asSingleColor());
+        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText);
         break;
       case FILE:
         AttachmentManager.selectDocument(this, PICK_DOCUMENT);
@@ -2156,12 +2163,22 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       if (stickersAvailable) {
         inputPanel.showMediaKeyboardToggle(true);
-        inputPanel.setMediaKeyboardToggleMode(isSystemEmojiPreferred || keyboardMode == MediaKeyboardMode.STICKER);
+        switch (keyboardMode) {
+          case EMOJI:
+            inputPanel.setMediaKeyboardToggleMode(isSystemEmojiPreferred ? KeyboardPage.STICKER : KeyboardPage.EMOJI);
+            break;
+          case STICKER:
+            inputPanel.setMediaKeyboardToggleMode(KeyboardPage.STICKER);
+            break;
+          case GIF:
+            inputPanel.setMediaKeyboardToggleMode(KeyboardPage.GIF);
+            break;
+        }
         if (stickerIntro) showStickerIntroductionTooltip();
       }
 
       if (emojiDrawerStub.resolved()) {
-        initializeMediaKeyboardProviders(emojiDrawerStub.get(), stickersAvailable);
+        initializeMediaKeyboardProviders();
       }
     });
   }
@@ -2258,7 +2275,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private void showStickerIntroductionTooltip() {
     TextSecurePreferences.setMediaKeyboardMode(this, MediaKeyboardMode.STICKER);
-    inputPanel.setMediaKeyboardToggleMode(true);
+    inputPanel.setMediaKeyboardToggleMode(KeyboardPage.STICKER);
 
     TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
                 .setBackgroundTint(getResources().getColor(R.color.core_ultramarine))
@@ -2607,22 +2624,19 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
   }
 
-  private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard, boolean stickersAvailable) {
-    boolean isSystemEmojiPreferred = SignalStore.settings().isPreferSystemEmoji();
+  private void initializeMediaKeyboardProviders() {
+    KeyboardPagerViewModel keyboardPagerViewModel = ViewModelProviders.of(this).get(KeyboardPagerViewModel.class);
 
-    if (stickersAvailable) {
-      if (isSystemEmojiPreferred) {
-        mediaKeyboard.setProviders(0, new StickerKeyboardProvider(this, this));
-      } else {
-        MediaKeyboardMode keyboardMode = TextSecurePreferences.getMediaKeyboardMode(this);
-        int               index        = keyboardMode == MediaKeyboardMode.STICKER ? 1 : 0;
-
-        mediaKeyboard.setProviders(index,
-                                   new EmojiKeyboardProvider(this, inputPanel),
-                                   new StickerKeyboardProvider(this, this));
-      }
-    } else if (!isSystemEmojiPreferred) {
-      mediaKeyboard.setProviders(0, new EmojiKeyboardProvider(this, inputPanel));
+    switch (TextSecurePreferences.getMediaKeyboardMode(this)) {
+      case EMOJI:
+        keyboardPagerViewModel.switchToPage(KeyboardPage.EMOJI);
+        break;
+      case STICKER:
+        keyboardPagerViewModel.switchToPage(KeyboardPage.STICKER);
+        break;
+      case GIF:
+        keyboardPagerViewModel.switchToPage(KeyboardPage.GIF);
+        break;
     }
   }
 
@@ -3105,7 +3119,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (!emojiDrawerStub.resolved()) {
       Boolean stickersAvailable = stickerViewModel.getStickersAvailability().getValue();
 
-      initializeMediaKeyboardProviders(emojiDrawerStub.get(), stickersAvailable == null ? false : stickersAvailable);
+      initializeMediaKeyboardProviders();
 
       inputPanel.setMediaKeyboard(emojiDrawerStub.get());
     }
@@ -3194,6 +3208,69 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onReactionsDialogDismissed() {
     reactionDelegate.hideMask();
+  }
+
+  @Override
+  public void onShown() {
+    if (inputPanel != null) {
+      inputPanel.getMediaKeyboardListener().onShown();
+    }
+  }
+
+  @Override
+  public void onHidden() {
+    if (inputPanel != null) {
+      inputPanel.getMediaKeyboardListener().onHidden();
+    }
+  }
+
+  @Override
+  public void onKeyboardChanged(@NonNull KeyboardPage page) {
+    if (inputPanel != null) {
+      inputPanel.getMediaKeyboardListener().onKeyboardChanged(page);
+    }
+  }
+
+  @Override
+  public void onEmojiSelected(String emoji) {
+    if (inputPanel != null) {
+      inputPanel.onEmojiSelected(emoji);
+    }
+  }
+
+  @Override
+  public void onKeyEvent(KeyEvent keyEvent) {
+    if (keyEvent != null) {
+      inputPanel.onKeyEvent(keyEvent);
+    }
+  }
+
+  @Override
+  public void onGifSelectSuccess(@NonNull Uri blobUri, int width, int height) {
+    setMedia(blobUri,
+             Objects.requireNonNull(MediaType.from(BlobProvider.getMimeType(blobUri))),
+             width,
+             height,
+             false,
+             true);
+  }
+
+  @Override
+  public boolean isMms() {
+    return !isSecureText;
+  }
+
+  @Override
+  public void openEmojiSearch() {
+    if (emojiDrawerStub.resolved()) {
+      emojiDrawerStub.get().onOpenEmojiSearch();
+    }
+  }
+
+  @Override public void closeEmojiSearch() {
+    if (emojiDrawerStub.resolved()) {
+      emojiDrawerStub.get().onCloseEmojiSearch();
+    }
   }
 
   // Listeners
@@ -3289,7 +3366,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {}
+    public void onFocusChange(View v, boolean hasFocus) {
+      if (hasFocus && container.getCurrentInput() == emojiDrawerStub.get()) {
+        container.showSoftkey(composeText);
+      }
+    }
   }
 
   private class TypingStatusTextWatcher extends SimpleTextWatcher {

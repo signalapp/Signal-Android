@@ -53,6 +53,10 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.thoughtcrime.securesms.keyboard.KeyboardPage;
+import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.HudState;
@@ -108,7 +112,10 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
                                                                                       ViewTreeObserver.OnGlobalLayoutListener,
                                                                                       MediaRailAdapter.RailItemListener,
                                                                                       InputAwareLayout.OnKeyboardShownListener,
-                                                                                      InputAwareLayout.OnKeyboardHiddenListener
+                                                                                      InputAwareLayout.OnKeyboardHiddenListener,
+                                                                                      EmojiKeyboardProvider.EmojiEventListener,
+                                                                                      EmojiKeyboardPageFragment.Callback,
+                                                                                      EmojiSearchFragment.Callback
 {
   private static final String TAG = Log.tag(MediaSendActivity.class);
 
@@ -987,17 +994,9 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
   private void onEmojiToggleClicked(View v) {
     if (!emojiDrawer.resolved()) {
-      emojiDrawer.get().setProviders(0, new EmojiKeyboardProvider(this, new EmojiKeyboardProvider.EmojiEventListener() {
-        @Override
-        public void onKeyEvent(KeyEvent keyEvent) {
-          getActiveInputField().dispatchKeyEvent(keyEvent);
-        }
+      KeyboardPagerViewModel keyboardPagerViewModel = ViewModelProviders.of(this).get(KeyboardPagerViewModel.class);
+      keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI);
 
-        @Override
-        public void onEmojiSelected(String emoji) {
-          getActiveInputField().insertEmoji(emoji);
-        }
-      }));
       emojiToggle.attach(emojiDrawer.get());
     }
 
@@ -1006,6 +1005,16 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     } else {
       hud.hideSoftkey(composeText, () -> hud.post(() -> hud.show(composeText, emojiDrawer.get())));
     }
+  }
+
+  @Override
+  public void onKeyEvent(KeyEvent keyEvent) {
+    getActiveInputField().dispatchKeyEvent(keyEvent);
+  }
+
+  @Override
+  public void onEmojiSelected(String emoji) {
+    getActiveInputField().insertEmoji(emoji);
   }
 
   private @Nullable MediaSendFragment getMediaSendFragment() {
@@ -1027,6 +1036,20 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     finish();
     overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
+  }
+
+  @Override
+  public void openEmojiSearch() {
+    if (emojiDrawer.resolved()) {
+      emojiDrawer.get().onOpenEmojiSearch();
+    }
+  }
+
+  @Override
+  public void closeEmojiSearch() {
+    if (emojiDrawer.resolved()) {
+      emojiDrawer.get().onCloseEmojiSearch();
+    }
   }
 
   private class ComposeKeyPressedListener implements View.OnKeyListener, View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
@@ -1067,7 +1090,11 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     public void onTextChanged(CharSequence s, int start, int before,int count) {}
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {}
+    public void onFocusChange(View v, boolean hasFocus) {
+      if (hasFocus && hud.getCurrentInput() == emojiDrawer.get()) {
+        hud.showSoftkey(composeText);
+      }
+    }
   }
 
   private class MentionPickerPlacer implements ViewTreeObserver.OnGlobalLayoutListener {

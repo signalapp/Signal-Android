@@ -33,6 +33,10 @@ public class RecentEmojiPageModel implements EmojiPageModel {
   private final String                preferenceName;
   private final LinkedHashSet<String> recentlyUsed;
 
+  public static boolean hasRecents(Context context, @NonNull String preferenceName) {
+    return PreferenceManager.getDefaultSharedPreferences(context).contains(preferenceName);
+  }
+
   public RecentEmojiPageModel(Context context, @NonNull String preferenceName) {
     this.prefs          = PreferenceManager.getDefaultSharedPreferences(context);
     this.preferenceName = preferenceName;

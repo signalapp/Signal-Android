@@ -1,95 +1,42 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
+import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
+import org.thoughtcrime.securesms.util.MappingAdapter;
+import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.MappingViewHolder;
 
-import java.util.ArrayList;
-import java.util.List;
+public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWindow.OnDismissListener {
 
-public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageViewGridAdapter.EmojiViewHolder> implements PopupWindow.OnDismissListener {
-
-  private final List<Emoji>                 emojiList;
-  private final EmojiVariationSelectorPopup popup;
   private final VariationSelectorListener   variationSelectorListener;
-  private final EmojiEventListener          emojiEventListener;
-  private final boolean                     allowVariations;
 
   public EmojiPageViewGridAdapter(@NonNull EmojiVariationSelectorPopup popup,
                                   @NonNull EmojiEventListener emojiEventListener,
                                   @NonNull VariationSelectorListener variationSelectorListener,
-                                  boolean allowVariations)
+                                  boolean allowVariations,
+                                  @LayoutRes int displayItemLayoutResId,
+                                  @Nullable KeyboardPageSearchView.Callbacks callbacks)
   {
-    this.emojiList                 = new ArrayList<>();
-    this.popup                     = popup;
-    this.emojiEventListener        = emojiEventListener;
     this.variationSelectorListener = variationSelectorListener;
-    this.allowVariations           = allowVariations;
 
     popup.setOnDismissListener(this);
-  }
 
-  @NonNull
-  @Override
-  public EmojiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    return new EmojiViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.emoji_display_item, viewGroup, false));
-  }
-
-  @Override
-  public void onBindViewHolder(@NonNull EmojiViewHolder viewHolder, int i) {
-    Emoji emoji = emojiList.get(i);
-
-    final Drawable drawable = EmojiProvider.getEmojiDrawable(viewHolder.imageView.getContext(), emoji.getValue());
-
-    if (drawable != null) {
-      viewHolder.textView.setVisibility(View.GONE);
-      viewHolder.imageView.setVisibility(View.VISIBLE);
-
-      viewHolder.imageView.setImageDrawable(drawable);
-    } else {
-      viewHolder.textView.setVisibility(View.VISIBLE);
-      viewHolder.imageView.setVisibility(View.GONE);
-
-      viewHolder.textView.setEmoji(emoji.getValue());
-    }
-
-    viewHolder.itemView.setOnClickListener(v -> {
-      emojiEventListener.onEmojiSelected(emoji.getValue());
-    });
-
-    if (allowVariations && emoji.getVariations().size() > 1) {
-      viewHolder.itemView.setOnLongClickListener(v -> {
-        popup.dismiss();
-        popup.setVariations(emoji.getVariations());
-        popup.showAsDropDown(viewHolder.itemView, 0, -(2 * viewHolder.itemView.getHeight()));
-        variationSelectorListener.onVariationSelectorStateChanged(true);
-        return true;
-      });
-      viewHolder.hintCorner.setVisibility(View.VISIBLE);
-    } else {
-      viewHolder.itemView.setOnLongClickListener(null);
-      viewHolder.hintCorner.setVisibility(View.GONE);
-    }
-  }
-
-  @Override
-  public int getItemCount() {
-    return emojiList.size();
-  }
-
-  public void setEmoji(@NonNull List<Emoji> emojiList) {
-    this.emojiList.clear();
-    this.emojiList.addAll(emojiList);
-    notifyDataSetChanged();
+    registerFactory(SearchModel.class, new LayoutFactory<>(v -> {
+      ((KeyboardPageSearchView) v).setCallbacks(callbacks);
+      return new SearchViewHolder(v);
+    }, R.layout.emoji_page_view_search));
+    registerFactory(EmojiModel.class, new LayoutFactory<>(v -> new EmojiViewHolder(v, emojiEventListener, variationSelectorListener, popup, allowVariations), displayItemLayoutResId));
   }
 
   @Override
@@ -97,17 +44,109 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
     variationSelectorListener.onVariationSelectorStateChanged(false);
   }
 
-  static class EmojiViewHolder extends RecyclerView.ViewHolder {
+  static class SearchModel implements MappingModel<SearchModel> {
+    @Override
+    public boolean areItemsTheSame(@NonNull @NotNull SearchModel newItem) {
+      return true;
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull @NotNull SearchModel newItem) {
+      return true;
+    }
+  }
+
+  static class SearchViewHolder extends MappingViewHolder<SearchModel> {
+    public SearchViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    public void bind(@NonNull @NotNull SearchModel model) {
+    }
+  }
+
+  static class EmojiModel implements MappingModel<EmojiModel> {
+
+    private final Emoji emoji;
+
+    EmojiModel(@NonNull Emoji emoji) {
+      this.emoji = emoji;
+    }
+
+    @Override
+    public boolean areItemsTheSame(@NonNull @NotNull EmojiModel newItem) {
+      return newItem.emoji.getValue().equals(emoji.getValue());
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull @NotNull EmojiModel newItem) {
+      return areItemsTheSame(newItem);
+    }
+  }
+
+  static class EmojiViewHolder extends MappingViewHolder<EmojiModel> {
+
+    private final EmojiVariationSelectorPopup popup;
+    private final VariationSelectorListener   variationSelectorListener;
+    private final EmojiEventListener          emojiEventListener;
+    private final boolean                     allowVariations;
 
     private final ImageView      imageView;
     private final AsciiEmojiView textView;
     private final ImageView      hintCorner;
 
-    public EmojiViewHolder(@NonNull View itemView) {
+    public EmojiViewHolder(@NonNull View itemView,
+                           @NonNull EmojiEventListener emojiEventListener,
+                           @NonNull VariationSelectorListener variationSelectorListener,
+                           @NonNull EmojiVariationSelectorPopup popup,
+                           boolean allowVariations)
+    {
       super(itemView);
+
+      this.popup                     = popup;
+      this.variationSelectorListener = variationSelectorListener;
+      this.emojiEventListener        = emojiEventListener;
+      this.allowVariations           = allowVariations;
+
       this.imageView  = itemView.findViewById(R.id.emoji_image);
       this.textView   = itemView.findViewById(R.id.emoji_text);
       this.hintCorner = itemView.findViewById(R.id.emoji_variation_hint);
+    }
+
+    @Override
+    public void bind(@NonNull @NotNull EmojiModel model) {
+      final Drawable drawable = EmojiProvider.getEmojiDrawable(imageView.getContext(), model.emoji.getValue());
+
+      if (drawable != null) {
+        textView.setVisibility(View.GONE);
+        imageView.setVisibility(View.VISIBLE);
+
+        imageView.setImageDrawable(drawable);
+      } else {
+        textView.setVisibility(View.VISIBLE);
+        imageView.setVisibility(View.GONE);
+
+        textView.setEmoji(model.emoji.getValue());
+      }
+
+      itemView.setOnClickListener(v -> {
+        emojiEventListener.onEmojiSelected(model.emoji.getValue());
+      });
+
+      if (allowVariations && model.emoji.getVariations().size() > 1) {
+        itemView.setOnLongClickListener(v -> {
+          popup.dismiss();
+          popup.setVariations(model.emoji.getVariations());
+          popup.showAsDropDown(itemView, 0, -(2 * itemView.getHeight()));
+          variationSelectorListener.onVariationSelectorStateChanged(true);
+          return true;
+        });
+        hintCorner.setVisibility(View.VISIBLE);
+      } else {
+        itemView.setOnLongClickListener(null);
+        hintCorner.setVisibility(View.GONE);
+      }
     }
   }
 

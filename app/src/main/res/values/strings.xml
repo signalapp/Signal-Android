@@ -3517,6 +3517,24 @@
     <string name="ChatColorsMegaphone__appearance">Appearance</string>
     <string name="ChatColorsMegaphone__not_now">Not now</string>
 
+    <!-- KeyboardPagerFragment -->
+    <string name="KeyboardPagerFragment_emoji">Emoji</string>
+    <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
+    <string name="KeyboardPagerFragment_open_sticker_search">Open sticker search</string>
+    <string name="KeyboardPagerFragment_open_gif_search">Open gif search</string>
+    <string name="KeyboardPagerFragment_stickers">Stickers</string>
+    <string name="KeyboardPagerFragment_backspace">Backspace</string>
+    <string name="KeyboardPagerFragment_gifs">Gifs</string>
+    <string name="KeyboardPagerFragment_search_emoji">Search emoji</string>
+    <string name="KeyboardPagerfragment_back_to_emoji">Back to emoji</string>
+    <string name="KeyboardPagerfragment_clear_search_entry">Clear search entry</string>
+    <string name="KeyboardPagerFragment_search_giphy">Search GIPHY</string>
+
+    <!-- StickerSearchDialogFragment -->
+    <string name="StickerSearchDialogFragment_search_stickers">Search stickers</string>
+    <string name="StickerSearchDialogFragment_no_results_found">No results found</string>
+    <string name="EmojiSearchFragment__no_results_found">No results found</string>
+
     <!-- EOF -->
 
 </resources>
