@@ -134,7 +134,6 @@
     <color name="settings_ripple_color">@color/transparent_white_10</color>
 
     <color name="quote_view_background">@color/transparent_black_40</color>
-    <color name="conversation_typing_indicator_bg">@color/core_grey_25</color>
     <color name="conversation_item_outgoing_footer_fg">@color/transparent_white_60</color>
     <color name="quote_preview_background">@color/core_grey_80</color>
 </resources>

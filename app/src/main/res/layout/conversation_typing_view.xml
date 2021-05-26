@@ -33,8 +33,7 @@
         <FrameLayout
             android:id="@+id/typing_bubble"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/conversation_typing_indicator_bg">
+            android:layout_height="match_parent">
 
             <org.thoughtcrime.securesms.components.TypingIndicatorView
                 android:id="@+id/typing_indicator"

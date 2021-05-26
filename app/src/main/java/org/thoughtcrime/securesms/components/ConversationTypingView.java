@@ -36,7 +36,7 @@ public class ConversationTypingView extends LinearLayout {
     indicator = findViewById(R.id.typing_indicator);
   }
 
-  public void setTypists(@NonNull GlideRequests glideRequests, @NonNull List<Recipient> typists, boolean isGroupThread) {
+  public void setTypists(@NonNull GlideRequests glideRequests, @NonNull List<Recipient> typists, boolean isGroupThread, boolean hasWallpaper) {
     if (typists.isEmpty()) {
       indicator.stopAnimation();
       return;
@@ -49,6 +49,12 @@ public class ConversationTypingView extends LinearLayout {
       avatar.setVisibility(VISIBLE);
     } else {
       avatar.setVisibility(GONE);
+    }
+
+    if (hasWallpaper) {
+      bubble.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.conversation_item_wallpaper_bubble_color));
+    } else {
+      bubble.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.signal_background_secondary));
     }
 
     indicator.startAnimation();
