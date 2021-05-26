@@ -3495,7 +3495,7 @@
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Edit color</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
         <item quantity="one">This color is used in %1$d chat. Do you want to save changes for all chats?</item>
-        <item quantity="other">This color is used in %1$d chat. Do you want to save changes for all chats?</item>
+        <item quantity="other">This color is used in %1$d chats. Do you want to save changes for all chats?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
