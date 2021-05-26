@@ -1041,10 +1041,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal cần quyền truy cập Máy ảnh để quét mã QR, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Không thể quét mã QR khi không có quyền truy cập Máy ảnh</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Tin nhắn tự hủy</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Tin nhắn sẽ không tự hủy.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Tin nhắn gửi và nhận trong cuộc trò chuyện này sẽ tự hủy sau %s sau khi đã được xem.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Cập nhật ngay</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Phiên bản này của Signal sẽ hết hạn hôm nay. Hãy cập nhật lên phiên bản mới nhất.</string>
@@ -2530,6 +2526,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ExpireTimerSettingsFragment__30_seconds">30 giây</string>
   <string name="ExpireTimerSettingsFragment__set">Cài</string>
   <string name="ExpireTimerSettingsFragment__save">Lưu</string>
+  <string name="CustomExpireTimerSelectorView__minutes">phút</string>
+  <string name="CustomExpireTimerSelectorView__hours">giờ</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Liên hệ với chúng tôi</string>
   <string name="HelpSettingsFragment__version">Phiên bản</string>

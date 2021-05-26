@@ -90,6 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">Kas eemaldada %1$sblokeering?</string>
   <string name="BlockUnblockDialog_block">Blokeeri</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokeeri ja lahku</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Raporteeri rämpspostitus ja blokeeri</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Täna</string>
   <string name="BucketedThreadMedia_Yesterday">Eile</string>
@@ -165,6 +166,7 @@
   <string name="ConversationItem_error_network_not_delivered">Saatmine ei õnnestunud</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Võtmevahetussõnum vastuvõetud, koputa töötlemiseks.</string>
   <string name="ConversationItem_group_action_left">%1$s lahkus grupist.</string>
+  <string name="ConversationItem_send_paused">Saatmine peatatud</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Saatmine ebaõnnestus, koputa, et saata turvamata sõnum</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Taganed krüptimata SMSile?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Taganed krüptimata MMSile?</string>
@@ -633,6 +635,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">uuenda see grupp</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">See on ebaturvaline MMS grupp. Privaatselt vestlemiseks kutsu enda kontaktid Signalit kasutama.</string>
   <string name="ManageGroupActivity_invite_now">Kutsu kohe</string>
+  <string name="ManageGroupActivity_add_group_description">Lisa grupi kirjeldus…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Teavita mind mainimise korral</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Kas saada teavitusi, kui sind mainitakse vaigistatud vestlustes?</string>
@@ -970,6 +973,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s muutis grupi nimeks \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Selle grupi nimeks muudeti \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Sa muutsid grupi kirjeldust.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s muutis grupi kirjeldust..</string>
+  <string name="MessageRecord_the_group_description_has_changed">Grupi kirjeldus on muutunud.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Sa muutsid grupi pilti.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s muutis grupi pilti.</string>
@@ -1101,10 +1107,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Tundub, et proovid linkida Signali seadet, kasutades 3. osapoole skannerit. Sinu kaitseks, palun skanneeri kood uuesti Signali siseselt.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Kaduvad sõnumid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Sinu sõnumid ei aegu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Selles vestluses saadetud ja vastuvõetud sõnumid haihtuvad %s pärast nägemist.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uuenda kohe</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">See Signali versioon aegub täna. Uuenda kõige uuemale versioonile.</string>
@@ -1163,6 +1165,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Sina</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifitseeri sõnumite saatmise jätmiseks</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Rämpspostituste vältimiseks täida palun verifitseerimine.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Pärast verifitseerimist saad sõnumite saatmist jätkata. Kõik peatatud sõnumid saadetakse automaatselt.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokeeri</string>
   <string name="RecipientPreferenceActivity_unblock">Eemalda blokeering</string>
@@ -1222,6 +1227,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Kasuta puhverserverit</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Puhverserveriga ühendumine õnnestus.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Postitamine ei õnnestunud</string>
+  <string name="RecaptchaProofActivity_complete_verification">Lõpeta verifitseerimine</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vali oma riik</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Sa pead määrama
@@ -1453,6 +1460,7 @@
   <string name="MessageNotifier_message_delivery_failed">Sõnumi kohaletoimetamine ebaõnnestus.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Sõnumi kohale toimetamine ebaõnnestus.</string>
   <string name="MessageNotifier_error_delivering_message">Sõnumi kohale toimetamisel tekkis viga.</string>
+  <string name="MessageNotifier_message_delivery_paused">Sõnumite edastamine on peatatud.</string>
   <string name="MessageNotifier_mark_all_as_read">Märgi kõik loetuks</string>
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_turn_off_these_notifications">Lülita need teavitused välja</string>
@@ -1610,6 +1618,7 @@
   <string name="ConversationUpdateItem_call_is_full">Kõne on täis</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu sõpru</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Luba helistamise teavitused</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ühiseid gruppe pole. Vaata taotlused hoolikalt üle.</string>
   <string name="ConversationUpdateItem_view">Näita</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
@@ -1738,6 +1747,7 @@
   <string name="CreateProfileActivity__username">Kasutajanimi</string>
   <string name="CreateProfileActivity__create_a_username">Loo kasutajanimi</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Kohandatud MMS grupi nimed ja fotod hakkavad ainult sinule näha olema.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Grupi kirjeldused on nähtavad selle grupi liikmetele ja gruppi kutsutud inimestele.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Teave</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kirjuta paar sõna enda kohta…</string>
@@ -1752,6 +1762,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Muuda grupi nime ja pilti</string>
   <string name="EditProfileFragment__group_name">Grupi nimi</string>
+  <string name="EditProfileFragment__group_description">Grupi kirjeldus</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Sinu nimi</string>
   <string name="EditProfileNameFragment_first_name">Eesnimi</string>
@@ -2053,6 +2064,7 @@
   <string name="PaymentsHomeFragment__currency_conversion">Valuuta konverteerimine</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Deaktiveeri maksed</string>
   <string name="PaymentsHomeFragment__help">Abi</string>
+  <string name="PaymentsHomeFragment__processing_payment">Makse töötlemine</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksed pole sinu regioonis veel saadaval.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Maksete lubamine ei õnnestunud. Proovi hiljem uuesti.</string>
@@ -2076,6 +2088,7 @@
   <string name="PaymentsDetailsFragment__details">Üksikasjad</string>
   <string name="PaymentsDetailsFragment__status">Olek</string>
   <string name="PaymentsDetailsFragment__payment_failed">Makse ei õnnestunud</string>
+  <string name="PaymentsDetailsFragment__network_fee">Võrgutasu</string>
   <string name="PaymentsDetailsFragment__to">Saaja</string>
   <string name="PaymentsDetailsFragment__from">Saatja</string>
   <!--PaymentsTransferFragment-->
@@ -2104,10 +2117,13 @@
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Märkus</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__network_fee">Võrgutasu</string>
   <string name="ConfirmPayment__to">Saaja</string>
+  <string name="ConfirmPayment__total_amount">Kogusumma</string>
   <string name="ConfirmPayment__payment_failed">Makse ei õnnestunud</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Määra valuuta</string>
   <string name="SetCurrencyFragment__all_currencies">Kõik valuutad</string>
   <!--****************************************-->
   <!--menus-->
@@ -2439,6 +2455,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Sätete avamiseks klõpsa enda profiilifotol üleval vasakul</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Klõpsa \"Konto\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Klõpsa \"Konto ülekanne\" ja siis mõlemas seadmes \"Jätka\"</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2446,12 +2463,21 @@
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">See võtab hetke aega, peaks varsti valmis olema</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ootan vana Android-seadme ühendumist…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal vajab vana Android-seadme leidmiseks ja ühendamiseks juurdepääsu asukohainfole.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal vajab sinu eelmise Android-seadme leidmiseks ja ühendumiseks ligipääsu asukohateenustele.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal vajab sinu eelmise Android-seadme leidmiseks ja ühendumiseks WiFi-t. WiFi peab olema sees, aga ei pea olema ühtegi WiFi võrku ühendatud.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Taasta varukoopia</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Uue Android-seadme otsimine…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal vajab sinu uue Android-seadme leidmiseks ja ühendumiseks ligipääsu asukohateenustele.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal vajab sinu uue Android-seadme leidmiseks ja ühendumiseks WiFi-t. WiFi peab olema sees, aga ei pea olema ühtegi WiFi võrku ühendatud.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Loo varukoopia</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">WiFi sätete avamine ei õnnestunud. Palun lülita WiFi käsitsi sisse.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Luba juurdepääs asukohale</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Lülita sisse asukohateenused</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Asukoha sätete avamine ei õnnestunud.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Lülita Wi-Fi sisse</string>
+  <string name="DeviceTransferSetup__error_connecting">Ühendumisel tekkis tõrge</string>
   <string name="DeviceTransferSetup__retry">Proovi uuesti</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Postita silumislogid</string>
   <string name="DeviceTransferSetup__verify_code">Kinnita kood</string>
@@ -2649,6 +2675,7 @@
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin on uus privaatsusele keskendunud digitaalne valuuta.</string>
   <string name="payment_info_card_adding_funds">Vahendite lisamine</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Sul on võimalik lisada Signalis kasutamiseks vahendeid, saates MobileCoinid sinu rahakoti aadressile.</string>
+  <string name="payment_info_card_hide_this_card">Kas peita see kaart?</string>
   <string name="payment_info_card_hide">Peida</string>
   <string name="payment_info_card_update_your_pin">Uuenda enda PIN-koodi</string>
   <string name="payment_info_card_update_pin">Uuenda PIN-koodi</string>
@@ -2656,6 +2683,7 @@
   <string name="DeactivateWalletFragment__deactivate">Deaktiveeri</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__start">Alusta</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Sisesta käsitsi</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Aseta lõikepuhvrist</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Edasi</string>
@@ -2666,27 +2694,40 @@
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kas kopeerida lõikepuhvrisse?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopeeri</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Sõna %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Tehtud</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Sisesta sõna %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Sõna %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Edasi</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Vigane sõna</string>
   <!--ClearClipboardAlarmReceiver-->
   <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Lõikepuhver tühjendatud.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Näita</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s saatis sulle %2$s</string>
   <string name="UnreadPayments__d_new_payment_notifications">%1$d uut makseteavitust</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Sellele kasutajale makse saatmiseks peab ta kinnitama sinult saadud sõnumitaotlust. Sõnumitaotluse loomiseks saatke talle sõnum.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Saada sõnum</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Sul ei ole ühiseid gruppe selle isikuga. Vaata taotlused hoolikalt üle enne kinnitamist, et hoiduda tahtmatutest sõnumitest.</string>
   <string name="GroupsInCommonMessageRequest__okay">Sobib</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Grupi kirjeldus</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standardne</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Kiirem, vähem andmeid</string>
   <string name="QualitySelectorBottomSheetDialog__high">Kõrge</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Aeglasem, rohkem andmeid</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Foto kvaliteet</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Kutsu enda sõbrad</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Klaviatuur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Sisestusklahv saadab</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Kasuta vaikimisi SMS-rakendusena</string>
@@ -2694,27 +2735,41 @@
   <string name="NotificationsSettingsFragment__messages">Sõnumid</string>
   <string name="NotificationsSettingsFragment__calls">Kõned</string>
   <string name="NotificationsSettingsFragment__notify_when">Teavita kui…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt liitub Signaliga</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokeeritud</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d kontakti</string>
   <string name="PrivacySettingsFragment__messaging">Sõnumside</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Kaduvad sõnumid</string>
+  <string name="PrivacySettingsFragment__app_security">Rakenduse turvalisus</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näita olekuikooni</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">Väljas</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 nädalat</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 nädal</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 päev</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 tundi</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 tund</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minutit</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundit</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Kohandatud aeg</string>
   <string name="ExpireTimerSettingsFragment__set">Määra</string>
   <string name="ExpireTimerSettingsFragment__save">Salvesta</string>
+  <string name="CustomExpireTimerSelectorView__seconds">sekundit</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutit</string>
+  <string name="CustomExpireTimerSelectorView__hours">tundi</string>
+  <string name="CustomExpireTimerSelectorView__days">päeva</string>
+  <string name="CustomExpireTimerSelectorView__weeks">nädalat</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Kasutajatugi</string>
   <string name="HelpSettingsFragment__contact_us">Võta meiega ühendust</string>
   <string name="HelpSettingsFragment__version">Versioon</string>
   <string name="HelpSettingsFragment__debug_log">Silumisinfo</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tingimused ja privaatsuspoliitika</string>
+  <string name="HelpFragment__copyright_signal_messenger">Autoriõigus Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Litsentsitud GPLv3 litsentsiga</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Kõned</string>
   <!--EOF-->

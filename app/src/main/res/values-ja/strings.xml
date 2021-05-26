@@ -603,7 +603,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">このグループをアップグレードしてください。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットするには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
-  <string name="ManageGroupActivity_more">…さらに</string>
+  <string name="ManageGroupActivity_more">さらに</string>
   <string name="ManageGroupActivity_add_group_description">グループの説明を追加…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
@@ -1052,10 +1052,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">サードパーティのスキャナを使って端末をリンクしようとしていますが、安全のためSignal内からもう一度コードをスキャンしてください。</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">カメラへのアクセス許可がないとQRコードをスキャンできません</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">消えるメッセージ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">あなたのメッセージは自動で消去されません。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">このチャット内で送受信されるメッセージは、閲覧後%sで消えます。</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">アップデートする</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">このバージョンのSignalは、本日期限が切れます。最新バージョンにアップデートしてください。</string>
@@ -1673,6 +1669,7 @@
   <string name="CreateProfileActivity__username">ユーザー名</string>
   <string name="CreateProfileActivity__create_a_username">ユーザー名の作成</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前とアイコンはあなただけに表示されます。</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">グループの説明は、メンバーとグループに招待された人に表示されます。</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">自己紹介</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください…</string>
@@ -2698,6 +2695,11 @@
   <string name="ExpireTimerSettingsFragment__30_seconds">30秒</string>
   <string name="ExpireTimerSettingsFragment__set">設定する</string>
   <string name="ExpireTimerSettingsFragment__save">保存</string>
+  <string name="CustomExpireTimerSelectorView__seconds">秒</string>
+  <string name="CustomExpireTimerSelectorView__minutes">分</string>
+  <string name="CustomExpireTimerSelectorView__hours">時間</string>
+  <string name="CustomExpireTimerSelectorView__days">日</string>
+  <string name="CustomExpireTimerSelectorView__weeks">週</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">お問い合わせ</string>
   <string name="HelpSettingsFragment__version">バージョン</string>

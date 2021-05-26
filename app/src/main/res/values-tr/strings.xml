@@ -637,7 +637,6 @@
   <string name="ManageGroupActivity_upgrade_this_group">bu grubu yükseltin.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak konuşmak için kişilerinizi Signal\'e davet edin.</string>
   <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
-  <string name="ManageGroupActivity_more">…daha fazlası</string>
   <string name="ManageGroupActivity_add_group_description">Grup tanımı ekle…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
@@ -1110,10 +1109,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Üçüncül bir tarafın tarayıcısı ile taramaya çalışıyorsunuz gibi gözüküyor. Güvenliğiniz için, lütfen kodu Signal\'in içerisinden tekrar tarayın.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Kaybolan iletiler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">İletileriniz kaybolmayacak.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu konuşmada gönderilen ve alınan iletiler görüldükten %s sonra yok olur.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Şimdi güncelle</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal\'in bu sürümü bugün kullanım dışı kalacak. En yeni sürüme güncelleyin.</string>

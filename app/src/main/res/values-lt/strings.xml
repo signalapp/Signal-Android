@@ -705,7 +705,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">naujinkite šią grupę.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tai yra nesaugi MMS grupė. Norėdami kalbėtis privačiai, pakvieskite savo adresatus į Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pakviesti dabar</string>
-  <string name="ManageGroupActivity_more">…daugiau</string>
+  <string name="ManageGroupActivity_more">daugiau</string>
   <string name="ManageGroupActivity_add_group_description">Pridėti grupės aprašą…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Pranešti apie paminėjimus</string>
@@ -1224,10 +1224,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Atrodo, kad bandote susieti Signal įrenginį, naudodami trečiųjų šalių skenerį. Jūsų saugumui, dar kartą nuskenuokite kodą, naudodami Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Išnykstančios žinutės</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Jūsų žinučių galiojimas nesibaigs.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Šiame pokalbyje išsiųstos ir gautos žinutės išnyks %s po to, kai jos buvo pamatytos.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Atnaujinti dabar</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Šiandien nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</string>
@@ -3076,11 +3072,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">Tinkintas laikas</string>
   <string name="ExpireTimerSettingsFragment__set">Nustatyti</string>
   <string name="ExpireTimerSettingsFragment__save">Įrašyti</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekundė</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minutė</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Valanda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Diena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Savaitė</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sek.</string>
+  <string name="CustomExpireTimerSelectorView__minutes">min.</string>
+  <string name="CustomExpireTimerSelectorView__hours">val.</string>
+  <string name="CustomExpireTimerSelectorView__days">d.</string>
+  <string name="CustomExpireTimerSelectorView__weeks">sav.</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Palaikymo centras</string>
   <string name="HelpSettingsFragment__contact_us">Susisiekite su mumis</string>

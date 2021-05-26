@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">الرقم التعريفي الشخصي غير مُفعَّل.</string>
   <string name="ApplicationPreferencesActivity_hide">إخفاء</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">إخفاء التذكير؟</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">تسجيل جملة استعادة الدفوعات</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">تسجيل جملة</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل تعطيل رقمك التعريفي الشخصي، يجب عليك تسجيل جملة استعادة الدفوعات للتأكد من إمكانية استعادة حساب دفوعاتك.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d دقيقة</item>
@@ -766,6 +769,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">يُرجى ترقية هذه المجموعة.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">إن مجموعة MMS هذه غير آمنة. للتحدث بخصوصية، يُرجى دعوة جهات اتصالك إلى Signal.</string>
   <string name="ManageGroupActivity_invite_now">الدعوة اﻵن</string>
+  <string name="ManageGroupActivity_more">مَزيد</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقي الإشعارات عندما يُذكَر اسمك في المحادثات الصامتة ؟</string>
@@ -1174,6 +1178,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">قام الغضو %1$s بتغيير اسم المجموعة إلى \"%2$s \".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">تم تغيير اسم المجموعة إلى \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">أنتَ قد غيَّرتَ وصفَ المَجمُوعَة.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">لقد قمت بتغيير صورة المجموعة.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">قام الغضو %1$s بتغيير صورة للمجموعة.</string>
@@ -1324,10 +1329,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط جهاز Signal باستخدام ماسح ضوئي من طرف ثالث. الرجاء مسح الرمز مرّة  أخرى باستخدام Signal من أجل حمايتك.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل مسح الرمز المربع ضوئيا ولكن رُفض الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق، ثم اختيار « الصلاحيات »، ثم تفعيل « الكاميرا ».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح رمز الاستجابة السريع بدون منح إذن الوصول إلى الكاميرا</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">الرسائل المختفية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">لن تختفي رسائلك.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">من الآن فصاعدا سوف تختفي الرسائل الصادرة والواردة في هذه المحادثة بعد %s من رؤيتها.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">حدِّث الآن</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تنتهي اليوم صلاحية إصدار Signal. يُرجى اللمس لتثبيت آخر نسخة من التطبيق.</string>
@@ -1864,6 +1865,7 @@
   <string name="ConversationUpdateItem_return_to_call">العودة للمكالمة</string>
   <string name="ConversationUpdateItem_call_is_full">المكالمة ممتلئة</string>
   <string name="ConversationUpdateItem_invite_friends">دعوة الأصدقاء</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">تفعيل إشعارات المكالمات</string>
   <string name="ConversationUpdateItem_view">إظهار</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">شغّل … توقف</string>
@@ -1889,6 +1891,10 @@
   <string name="safety_number_change_dialog__view">إظهار</string>
   <string name="safety_number_change_dialog__previous_verified">سبق التحقق منه</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">تفعيل إشعارات المكالمات</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">تفعيل نشاط الخلفية</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">يبدو أن كل شيء جيد الآن !</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">لتلقي إشعارات المكالمات، يكفي اللمس هنا وتشغيل « إظهار الإشعارات ».</string>
   <string name="EnableCallNotificationSettingsDialog__settings">الإعدادات</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>
@@ -2351,6 +2357,7 @@
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">تَعيين العُملَة</string>
+  <string name="SetCurrencyFragment__all_currencies">جَميع العُمَلات</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2933,6 +2940,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث  </string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">عِند التَّفعيل، إنَّ الرسائِل الجديدَة المُرسلَة أو المُستلَمة فِي هَذِهِ المُحادثَة سَوف تَختَفي بَعدَ رؤيَتِها.</string>
   <string name="ExpireTimerSettingsFragment__off">مُعطَّل</string>
   <string name="ExpireTimerSettingsFragment__1_week">أسبوع واحد</string>
   <string name="ExpireTimerSettingsFragment__1_day">يوم واحد</string>
@@ -2942,6 +2950,11 @@
   <string name="ExpireTimerSettingsFragment__30_seconds">بعد 30 ثانية</string>
   <string name="ExpireTimerSettingsFragment__set">تعيِّين</string>
   <string name="ExpireTimerSettingsFragment__save">حفظ</string>
+  <string name="CustomExpireTimerSelectorView__seconds">ثوان</string>
+  <string name="CustomExpireTimerSelectorView__minutes">دقائق</string>
+  <string name="CustomExpireTimerSelectorView__hours">ساعات</string>
+  <string name="CustomExpireTimerSelectorView__days">أيام</string>
+  <string name="CustomExpireTimerSelectorView__weeks">أسابيع</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">تواصل معنا</string>
   <string name="HelpSettingsFragment__version">اﻹصدار</string>

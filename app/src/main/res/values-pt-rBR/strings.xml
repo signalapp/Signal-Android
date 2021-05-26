@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Ocultar lembrete?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gravar a senha de recuperação de pagamentos</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">Gravar senha</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desabilitar seu PIN, você deve gravar a sua senha de recuperação de pagamentos para garantir que você possa recuperar a sua conta de pagamentos.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -340,7 +343,7 @@
   <string name="RestoreBackupFragment__not_now">Agora não</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Backup de conversas</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Os backups são criptografados com uma frase-personalizada e armazenados no seu dispositivo.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Os backups são criptografados com uma senha e armazenados no seu dispositivo.</string>
   <string name="BackupsPreferenceFragment__create_backup">Criar backup</string>
   <string name="BackupsPreferenceFragment__last_backup">Último backup: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Pasta do backup</string>
@@ -636,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">atualizar este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um grupo MMS inseguro. Para conversar com privacidade, convide seus contatos para o Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convide agora</string>
-  <string name="ManageGroupActivity_more">…mais</string>
+  <string name="ManageGroupActivity_more">mais</string>
   <string name="ManageGroupActivity_add_group_description">Adicionar descrição do grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifique-me ao ser mencionado</string>
@@ -1109,10 +1112,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando vincular um dispositivo Signal usando um leitor externo. Para sua proteção, favor escanear novamente usando o leitor do Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Signal precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível escanear um código QR sem a permissão Câmera</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mensagens efêmeras</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Suas mensagens não irão expirar.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mensagens enviadas e recebidas nesta conversa irão desaparecer %s após terem sido visualizadas.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Atualize agora</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versão do Signal perderá suporte hoje. Atualize para a versão mais recente.</string>
@@ -1629,6 +1628,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nenhum grupo em comum. Analise o pedido com atenção.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nenhum contato neste grupo. Analise solicitações com atenção.</string>
   <string name="ConversationUpdateItem_view">Exibir</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">O tempo de desaparecimento das mensagens que você enviar será definido como %1$s.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>
@@ -2081,6 +2081,7 @@
   <string name="PaymentsHomeFragment__sent_s">Enviou %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Recebeu %1$s</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Desativar pagamentos</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Senha de recuperação</string>
   <string name="PaymentsHomeFragment__help">Ajuda</string>
   <string name="PaymentsHomeFragment__sent_payment">Pagamento enviado</string>
   <string name="PaymentsHomeFragment__received_payment">Pagamento recebido</string>
@@ -2099,6 +2100,7 @@
   <string name="PaymentsHomeFragment__activate">Ativar</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver os termos da MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">Endereço da sua carteira</string>
   <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
   <!--PaymentsDetailsFragment-->
@@ -2125,7 +2127,9 @@
   <string name="PaymentsTransferFragment__scan_qr_code">Escanear o código QR</string>
   <string name="PaymentsTransferFragment__next">Próximo</string>
   <string name="PaymentsTransferFragment__invalid_address">Endereço inválido</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Verifique o endereço da carteira para o qual você está tentando transferir e tente novamente.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para escanear um código QR, o Signal precisa de acesso à sua câmera.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal precisa da permissão da Câmera para escanear um código QR. Vá para as configurações, selecione \"Permissões\", e habilite \"Câmera\".</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para escanear um código QR, o Signal precisa de acesso à sua câmera.</string>
   <string name="PaymentsTransferFragment__settings">Configurações</string>
   <!--PaymentsTransferQrScanFragment-->
@@ -2134,6 +2138,7 @@
   <string name="CreatePaymentFragment__request">Pedido</string>
   <string name="CreatePaymentFragment__pay">Pagar</string>
   <string name="CreatePaymentFragment__available_balance_s">Saldo disponível: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Alternar</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2161,6 +2166,7 @@
   <string name="ConfirmPayment__processing_payment">Processando o pagamento…</string>
   <string name="ConfirmPayment__payment_complete">Pagamento concluído</string>
   <string name="ConfirmPayment__payment_failed">Falha ao pagar</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Destinatário inválido</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Não foi possível obter a taxa de transação. Para este pagamento prosseguir, toque em ok para tentar novamente.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
@@ -2398,7 +2404,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver as mensagens pendentes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave de backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Os backups serão salvos no armazenamento externo e criptografados com a frase-chave abaixo. Você precisa desta frase-chave para restaurar um backup.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Você deve ter esta frase-senha para restaurar um backup.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Você deve ter esta senha para restaurar um backup.</string>
   <string name="backup_enable_dialog__folder">Pasta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
   <string name="registration_activity__restore_backup">Restaurar backup</string>
@@ -2595,6 +2601,7 @@
   <string name="OldDeviceTransferLockedDialog__done">Pronto</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este aparelho</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transferir saldo de MOB?</string>
   <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Você tem um saldo de %1$s. Se você não transferir essa quantia para o endereço de outra carteira antes de excluir a sua conta, você perderá o saldo para sempre.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Não transferir</string>
   <string name="AdvancedPreferenceFragment__transfer">Transferir</string>
@@ -2750,30 +2757,61 @@
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin é uma nova moeda digital focada em privacidade.</string>
   <string name="payment_info_card_hide_this_card">Esconder este cartão?</string>
   <string name="payment_info_card_hide">Ocultar</string>
+  <string name="payment_info_card_record_recovery_phrase">Gravar senha de recuperação</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Sua senha de recuperação oferece outra maneira de restaurar a sua conta de pagamentos.</string>
+  <string name="payment_info_card_record_your_phrase">Gravar sua senha</string>
+  <string name="payment_info_card_update_your_pin">Atualizar seu PIN</string>
   <string name="payment_info_card_update_pin">Atualizar PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
   <string name="DeactivateWalletFragment__your_balance">Seu saldo</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferir saldo remanescente</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Desativar sem transferir</string>
   <string name="DeactivateWalletFragment__deactivate">Desativar</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Desativar sem transferir?</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Erro ao desativar a carteira.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Senha de recuperação</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Ver senha de recuperação</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Digite a senha de recuperação</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Seu saldo será restaurado automaticamente quando você reinstalar o Signal e confirmar o seu PIN no Signal. Você também pode restaurar o seu saldo usando uma senha de recuperação, que é uma senha de %1$d palavras exclusiva para você. Anote-a e guarde-a em um local seguro.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Sua senha de recuperação é uma senha de %1$d palavras exclusiva para você. Use-a para restaurar o seu saldo.</string>
   <string name="PaymentsRecoveryStartFragment__start">Começar</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Inserir manualmente</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Colar da área de transferência</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Colar senha de recuperação</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Senha de recuperação</string>
   <string name="PaymentsRecoveryPasteFragment__next">Próximo</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Senha de recuperação inválida</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">Certifique-se de inserir %1$d palavras e tente novamente.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Próximo</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Anterior</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Sua senha de recuperação</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anote as %1$d palavras seguintes em ordem. Guarde essa lista em um local seguro.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Verifique se você digitou a sua senha corretamente.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Não faça captura de tela nem envie por e-mail.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Conta de pagamentos restaurada.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Senha de recuperação inválida</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Verifique se você digitou a sua senha corretamente e tente novamente.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copiar para a área de transferência?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Se você optar por guardar a sua senha de recuperação digitalmente, certifique-se de que ela estará armazenada com segurança em um lugar de sua confiança.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copiar</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmar senha de recuperação</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Digite as seguintes palavras da sua senha de recuperação.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Palavra %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Ver a senha novamente</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Pronto</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Senha de recuperação confirmada</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Digite a senha de recuperação</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Digite a palavra %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Palavra %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Próximo</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Palavra inválida</string>
   <!--ClearClipboardAlarmReceiver-->
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Exibir</string>
@@ -2821,21 +2859,30 @@
   <string name="PrivacySettingsFragment__app_security">Segurança do app</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquear capturas de tela na lista de recentes e dentro do aplicativo</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mensagens e chamadas no Signal, redirecionar chamadas e remetente oculto</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Cronômetro padrão para novas conversas</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Defina um cronômetro padrão para o desaparecimento de mensagens em todas as novas conversas iniciadas por você.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir indicadores</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostrar ícone de status em mensagens que foram entregues usando remetente oculto.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Quando habilitadas, novas mensagens enviadas e recebidas em novas conversas desaparecerão após terem sido lidas.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Quando habilitadas, as mensagens enviadas e recebidas nesta conversa desaparecerão após terem sido lidas.</string>
   <string name="ExpireTimerSettingsFragment__off">Desligado</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 semanas</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 dia</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 horas</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 hora</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minutos</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 segundos</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Tempo personalizado</string>
   <string name="ExpireTimerSettingsFragment__set">Definir</string>
   <string name="ExpireTimerSettingsFragment__save">Salvar</string>
+  <string name="CustomExpireTimerSelectorView__seconds">segundos</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutos</string>
+  <string name="CustomExpireTimerSelectorView__hours">horas</string>
+  <string name="CustomExpireTimerSelectorView__days">dias</string>
+  <string name="CustomExpireTimerSelectorView__weeks">semanas</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Central de suporte</string>
   <string name="HelpSettingsFragment__contact_us">Entre em contato</string>

@@ -1102,10 +1102,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа дека сакате да поврзете Signal уред користејќи скенер од 3та страна. За Ваша заштита, Ве молиме скенирајте го кодот преку Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не успеав да го скенирам QR кодот без дозвола за камерата.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Пораки што исчезнуваат</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Вашите пораки нема да истекуваат.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Пораките испратени и примени во овој разговор ке исчезнат %s откако ќе бидат видени.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај веднаш</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Оваа верзија на Signal ќе истече денес. Ажурирајте до најновата верзија.</string>
@@ -2769,6 +2765,11 @@
   <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
   <string name="ExpireTimerSettingsFragment__set">Постави</string>
   <string name="ExpireTimerSettingsFragment__save">Зачувај</string>
+  <string name="CustomExpireTimerSelectorView__seconds">секунди</string>
+  <string name="CustomExpireTimerSelectorView__minutes">минути</string>
+  <string name="CustomExpireTimerSelectorView__hours">часа</string>
+  <string name="CustomExpireTimerSelectorView__days">денови</string>
+  <string name="CustomExpireTimerSelectorView__weeks">недели</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Контактирајте нѐ</string>
   <string name="HelpSettingsFragment__version">Верзија</string>

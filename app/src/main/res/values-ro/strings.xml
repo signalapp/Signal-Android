@@ -667,7 +667,6 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
-  <string name="ManageGroupActivity_more">…mai multe</string>
   <string name="ManageGroupActivity_add_group_description">Adăugați descrierea grupului…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
@@ -1162,10 +1161,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încercați să asociați un dispozitiv Signal folosind un scaner terț. Pentru protecția dvs, vă rugăm să scanați din nou codul din interiorul aplicației Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Dispariție mesaje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele dvs. nu vor expira.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Actualizează acum</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Această versiune de Signal va expira astăzi. Actualizați la cea mai recentă versiune.</string>
@@ -2841,6 +2836,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpireTimerSettingsFragment__30_seconds">30 secunde</string>
   <string name="ExpireTimerSettingsFragment__set">Aplicare</string>
   <string name="ExpireTimerSettingsFragment__save">Salvează</string>
+  <string name="CustomExpireTimerSelectorView__seconds">secunde</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minute</string>
+  <string name="CustomExpireTimerSelectorView__hours">ore</string>
+  <string name="CustomExpireTimerSelectorView__days">zile</string>
+  <string name="CustomExpireTimerSelectorView__weeks">săptămâni</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centru de asistență</string>
   <string name="HelpSettingsFragment__contact_us">Contactați-ne</string>

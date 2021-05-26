@@ -705,7 +705,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">aktualizovat tuto skupinu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nešifrovaná MMS skupina. Pozvěte své kontakty do Signal pro soukromé konverzace.</string>
   <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
-  <string name="ManageGroupActivity_more">… více</string>
+  <string name="ManageGroupActivity_more">více</string>
   <string name="ManageGroupActivity_add_group_description">Přidejte popisek skupiny…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky</string>
@@ -1223,10 +1223,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se, že se snažíte propojit zařízení Signal použitím jiné skenovací aplikace. Pro vaši ochranu, prosím, oskenujete kód ještě jednou z aplikace Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal potřebuje oprávnění pro přístup k fotoaparátu, aby mohl naskenovat QR kód, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nelze naskenovat QR kód bez přístupu k fotoaparátu.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mizející zprávy</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Platnost zprávy neskončí.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Zprávy odeslané a přijaté v této konverzaci zmizí za %s po jejich shlédnutí.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aktualizovat nyní</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tato verze aplikace Signal dnes vyprší. Aktualizujte na nejnovější verzi.</string>
@@ -3075,11 +3071,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpireTimerSettingsFragment__custom_time">Vlastní čas</string>
   <string name="ExpireTimerSettingsFragment__set">Nastavit</string>
   <string name="ExpireTimerSettingsFragment__save">Uložit</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">sekunda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">minuta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">hodina</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">den</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">týden</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">vteřiny</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuty</string>
+  <string name="CustomExpireTimerSelectorView__hours">hodiny</string>
+  <string name="CustomExpireTimerSelectorView__days">dny</string>
+  <string name="CustomExpireTimerSelectorView__weeks">týdny</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centrum podpory</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktujte nás</string>

@@ -1096,10 +1096,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal устройство с външна скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal се нуждае от достъп до камерата Ви, за да може да сканирва QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Неуспешно сканирване на QR код без разрешение за достъп до камерата</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Изчезващи съобщения</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Съобщенията няма да изчезват.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Изпратени и получени съобщения в този разговор ще изчезнат %s след изпращането им.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Обнови сега</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Тази версия на Signal ще изтече днес. Актуализирайте до най-новата версия.</string>

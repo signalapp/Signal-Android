@@ -1048,10 +1048,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi menggunakan Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal memerlukan izin Kamera untuk memindai kode QR, tetapi saat ini izin ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Tidak bisa memindai kode QR tanpa izin Kamera</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Penghilangan pesan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Pesan Anda tidak akan kedaluwarsa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesan yang terkirim dan diterima pada percakapan ini akan hilang dalam waktu %s setelah dibaca.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Perbarui sekarang</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Versi applikasi Signal ini akan kedaluarsa hari ini. Segera perbarui ke versi yang terbaru.</string>
@@ -2502,6 +2498,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ExpireTimerSettingsFragment__30_seconds">30 detik</string>
   <string name="ExpireTimerSettingsFragment__set">Atur</string>
   <string name="ExpireTimerSettingsFragment__save">Simpan</string>
+  <string name="CustomExpireTimerSelectorView__minutes">menit</string>
+  <string name="CustomExpireTimerSelectorView__hours">jam</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Hubungi kami</string>
   <string name="HelpSettingsFragment__version">Versi</string>

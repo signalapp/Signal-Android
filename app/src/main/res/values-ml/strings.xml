@@ -408,7 +408,7 @@
   <string name="ShareActivity_multiple_attachments_are_only_supported">ഒന്നിലധികം അറ്റാച്ചുമെന്റുകൾ ചിത്രങ്ങൾക്കും വീഡിയോകൾക്കും മാത്രമേ പിന്തുണയ്‌ക്കൂ</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">സ്ഥിരമായ Signal ആശയവിനിമയ പരാജയം!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play Services രജിസ്റ്റർ ചെയ്യാൻ Signal ന് കഴിഞ്ഞില്ല. Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കി. Settings &gt; Advanced ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play Services രജിസ്റ്റർ ചെയ്യാൻ Signal ന് കഴിഞ്ഞില്ല. Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കി. ക്രമീകരണം &gt; വിപുലമായ ക്രമീകരണം ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIF പൂർണ്ണ വലിപ്പം വീണ്ടെടുക്കുമ്പോൾ പിശക്</string>
   <!--GiphyFragmentPageAdapter-->
@@ -632,7 +632,6 @@
   <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ഇതൊരു സുരക്ഷിതമല്ലാത്ത MMS ഗ്രൂപ്പാണ്. സ്വകാര്യമായി ചാറ്റുചെയ്യാൻ, നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
   <string name="ManageGroupActivity_invite_now">ഇപ്പോൾ ക്ഷണിക്കുക</string>
-  <string name="ManageGroupActivity_more">…കൂടുതൽ</string>
   <string name="ManageGroupActivity_add_group_description">ഗ്രൂപ്പ് വിവരണം ചേർക്കുക…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
@@ -1104,10 +1103,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ഒരു മൂന്നാം കക്ഷി സ്കാനർ ഉപയോഗിച്ച് നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്കുചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. നിങ്ങളുടെ പരിരക്ഷയ്‌ക്കായി, Signal-നുള്ളിൽ നിന്ന് കോഡ് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ഒരു QR കോഡ് സ്കാൻ ചെയ്യുന്നതിന് Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ക്യാമറ അനുമതിയില്ലാതെ ഒരു QR കോഡ് സ്കാൻ ചെയ്യാൻ കഴിയില്ല</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">നിങ്ങളുടെ സന്ദേശങ്ങൾ‌ കാലഹരണപ്പെടില്ല.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ഈ സംഭാഷണത്തിൽ അയച്ചതും സ്വീകരിച്ചതുമായ സന്ദേശങ്ങൾ കണ്ടുകഴിഞ്ഞാൽ അവ %s കഴിഞ്ഞാൽ അപ്രത്യക്ഷമാകും.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal - ന്റെ ഈ പതിപ്പ് ഇന്ന് കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യുക.</string>
@@ -1729,8 +1724,9 @@
   <string name="CreateProfileActivity__username">ഉപയോക്തൃനാമം</string>
   <string name="CreateProfileActivity__create_a_username">ഒരു  ഉപയോക്തൃനാമം സൃഷ്ടിക്കുക</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ഇഷ്‌ടാനുസൃത/കസ്റ്റം MMS (എംഎംഎസ്) ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ഗ്രൂപ്പ് വിവരണങ്ങൾ ഈ ഗ്രൂപ്പിലെ അംഗങ്ങൾക്കും ക്ഷണിക്കപ്പെട്ട ആളുകൾക്കും ദൃശ്യമാകും.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">കുറിച്ച്</string>
+  <string name="EditAboutFragment_about">ആമുഖം</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">നിങ്ങളെ പറ്റി രണ്ടുവാക്ക് എഴുതൂ…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">സ്വതന്ത്രമായി സംസാരിക്കുക</string>
@@ -1942,6 +1938,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">വായന രസീതുകൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്നുള്ള വായന രസീതുകൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
+  <string name="preferences__request_keyboard_to_disable">വ്യക്തിഗതമാക്കിയ പഠനം പ്രവർത്തനരഹിതമാക്കുന്നതിന് കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">ഈ ക്രമീകരണം ഒരു ഗ്യാരണ്ടി അല്ല, നിങ്ങളുടെ കീബോർഡ് അത് അവഗണിച്ചേക്കാം.</string>
   <string name="preferences_app_protection__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi ഉപയോഗിക്കുമ്പോൾ</string>
@@ -2022,7 +2020,7 @@
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsAllActivityFragment__all">എല്ലാം</string>
-  <string name="PaymentsAllActivityFragment__sent">അയച്ചു</string>
+  <string name="PaymentsAllActivityFragment__sent">അയച്ചത്</string>
   <string name="PaymentsAllActivityFragment__received">ലഭിച്ചു</string>
   <string name="PaymentsHomeFragment__see_all">എല്ലാം കാണുക</string>
   <string name="PaymentsHomeFragment__send">അയയ്‌ക്കുക</string>
@@ -2122,7 +2120,7 @@
   <!--conversation-->
   <string name="conversation__menu_group_settings">ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_leave_group">ഗ്രൂപ്പ് വിടുക</string>
-  <string name="conversation__menu_view_all_media">എല്ലാ മീഡിയ</string>
+  <string name="conversation__menu_view_all_media">എല്ലാ മാധ്യമങ്ങളും</string>
   <string name="conversation__menu_conversation_settings">സംഭാഷണ ക്രമീകരണങ്ങൾ</string>
   <string name="conversation__menu_add_shortcut">ഹോം സ്‌ക്രീനിൽ ചേർക്കൂ</string>
   <string name="conversation__menu_create_bubble">ബബിൾ സൃഷ്ടിക്കുക</string>
@@ -2155,7 +2153,7 @@
   <string name="media_preview__save_title">സംരക്ഷിക്കൂ</string>
   <string name="media_preview__forward_title">ഫോർവേഡ് ചെയ്യുക</string>
   <string name="media_preview__share_title">പങ്കിടുക</string>
-  <string name="media_preview__all_media_title">എല്ലാ മീഡിയ</string>
+  <string name="media_preview__all_media_title">എല്ലാ മാധ്യമങ്ങളും</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">മീഡിയ പ്രിവ്യൂ</string>
   <!--new_conversation_activity-->
@@ -2574,6 +2572,8 @@
   <string name="payment_info_card_update_pin">PIN പുതുക്കുക </string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">ആരംഭിക്കുക</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">സ്വമേധയാ നൽകുക</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">അടുത്തത്</string>
   <!--PaymentsRecoveryPhraseFragment-->
@@ -2592,15 +2592,22 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">ഒരു മെസ്സേജ് അയക്കുക</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ഈ വ്യക്തിയുമായി നിങ്ങൾക്ക് പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കുന്നതിന് സ്വീകരിക്കുന്നതിന് മുമ്പ് അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">സന്ദേശ അഭ്യർത്ഥനകളെക്കുറിച്ച് </string>
   <string name="GroupsInCommonMessageRequest__okay">ശരി</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്ന</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">ഫോട്ടോ നിലവാരം</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">അക്കൗണ്ട്</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">കാലക്രമേണ നിങ്ങളോട് കുറച്ച് തവണ ചോദിക്കും</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും Signal-ൽ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ Signal പിൻ ആവശ്യമാണ്</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">കീബോർഡ്</string>
   <string name="ChatsSettingsFragment__enter_key_sends">എന്റർ കീ അയയ്ക്കും</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
@@ -2609,18 +2616,33 @@
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">തടഞ്ഞു</string>
+  <string name="PrivacySettingsFragment__messaging">സന്ദേശ വിനിമയം</string>
   <string name="PrivacySettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
+  <string name="PrivacySettingsFragment__app_security">ആപ്പ് സുരക്ഷ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">സ്റ്റാറ്റസ് ചിഹ്നം കാണിക്കുക</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">സീൽഡ് സെൻഡർ ഉപയോഗിച്ച് ഡെലിവറി ചെയ്യുമ്പോൾ സന്ദേശ വിശദാംശങ്ങളിൽ ഒരു ചിഹ്നം കാണിക്കുക.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">പ്രാപ്തമാക്കുമ്പോൾ, നിങ്ങൾ ആരംഭിച്ച പുതിയ ചാറ്റുകളിൽ അയയ്ക്കുകയും സ്വീകരിക്കുകയും ചെയ്യുന്ന പുതിയ സന്ദേശങ്ങള്‍ കണ്ടശേഷം അപ്രത്യക്ഷമാകും.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">പ്രാപ്തമാക്കുമ്പോൾ, ഈ ചാറ്റിൽ അയയ്ക്കുകയും സ്വീകരിക്കുകയും ചെയ്യുന്ന പുതിയ സന്ദേശങ്ങള്‍ കണ്ടശേഷം അപ്രത്യക്ഷമാകും.</string>
   <string name="ExpireTimerSettingsFragment__off">ഓഫ്</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 ആഴ്ചകൾ</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 ആഴ്ച</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 ദിവസം</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 മണിക്കൂർ</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 മണിക്കൂർ</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 മിനിറ്റ്</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 സെക്കൻഡ്</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">ഇഷ്‌ടാനുസൃത സമയം</string>
   <string name="ExpireTimerSettingsFragment__save">സംരക്ഷിക്കൂ</string>
+  <string name="CustomExpireTimerSelectorView__seconds">സെക്കൻഡ്</string>
+  <string name="CustomExpireTimerSelectorView__minutes">മിനിറ്റ്</string>
+  <string name="CustomExpireTimerSelectorView__hours">മണിക്കൂർ</string>
+  <string name="CustomExpireTimerSelectorView__days">ദിവസങ്ങൾ</string>
+  <string name="CustomExpireTimerSelectorView__weeks">ആഴ്ചകൾ</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">സഹായ കേന്ദ്രം</string>
   <string name="HelpSettingsFragment__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
   <string name="HelpSettingsFragment__version">പതിപ്പ്</string>
   <string name="HelpSettingsFragment__debug_log">ഡീബഗ് ലോഗ്</string>

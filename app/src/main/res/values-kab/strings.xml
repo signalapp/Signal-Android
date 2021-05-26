@@ -167,6 +167,7 @@
   <string name="ConversationItem_error_network_not_delivered">Tuzzna tecceḍ</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Izen n umyibdal n tsarut i d-yettwaremsen, sit i uktazel.</string>
   <string name="ConversationItem_group_action_left">%1$st.yeffeɣ seg ugraw.</string>
+  <string name="ConversationItem_send_paused">Tuzzna tettraǧǧu</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Tuzna ur teddi ara, sit i tifrat n usellek taraɣellsant</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Tuɣalin ɣer SMS ur nettwawgelhen ara?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tuɣalin ɣer MMS ur nettwawgelhen ara?</string>
@@ -635,6 +636,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">leqqem agraw-a.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Wagi d agraw MMS araɣellsan. I udiwenni n tbaḍnit, nced-d inermisen-inek·inem ɣer Signal.</string>
   <string name="ManageGroupActivity_invite_now">Snubget tura</string>
+  <string name="ManageGroupActivity_more">ugar</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Azen-iyi-d alɣu n tebdarin</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Rmes-d ilɣa mi ara d-tettunebdareḍ deg yidiwenniyen igugamen?</string>
@@ -1103,10 +1105,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Akka d-yettban tettaεraḍeḍ ad teqqneḍ ibenk Signal s useqdec n unafraḍ wis 3. I ummesten-ik·im, ttxil-k·m smiḍen tangalt i tikkelt-nniḍen seg Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal yesra tisirag n Tkamiṛat i usmiḍen n tengalt QR, maca yezga yettwagi. Ttxil-k·m kemmel ɣer wumuɣ n yiɣewwaren n usnas, fren \"Tisirag\" syen rmed \"Takamiṛat\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Asmiḍen n tengalt QR s war tisirag n tkamiṛat d awezɣi</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Iznan yettṛuḥun</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Iznan-inek·inem ur ttmettaten ara.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Iznan yettwaznen akked wid i d-yetturemsen deg udiwenni-a ad ṛuḥen %s seld timeẓriwt-nsen.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Leqqem tura</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Lqem-a n Signal ad yemmet ass-a. Leqqem-it ɣer lqem akk amaynut.</string>
@@ -1224,6 +1222,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Seqdec apṛuksi</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Yeqqen akken iwata ɣer upṛuksi.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Tuzna ur teddi ara</string>
+  <string name="RecaptchaProofActivity_complete_verification">Ffak asenqed</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Fren tamurt-ik.im</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Yessefk ad d-tefkeḍ
@@ -1608,6 +1608,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ConversationUpdateItem_call_is_full">Asiwel yeččur</string>
   <string name="ConversationUpdateItem_invite_friends">Snubget-d imdukkal</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Rmed tilɣa n usiwel</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ulac igrawen i ken-icerken, Senqed isutar s leɛqel kan.</string>
   <string name="ConversationUpdateItem_view">Askan</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Γeṛ … Asteεfu</string>
@@ -2063,8 +2064,10 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="PaymentsDetailsFragment__details">Talqayt</string>
   <string name="PaymentsDetailsFragment__status">Addad</string>
   <string name="PaymentsDetailsFragment__payment_failed">Axelles yecceḍ</string>
+  <string name="PaymentsDetailsFragment__network_fee">Azal n lexlaṣ n uẓeṭṭa</string>
   <string name="PaymentsDetailsFragment__sent_by">Yettwazen-d sɣur</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Yettwazen-d ɣer %1$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s deg %2$s ɣef %3$s</string>
   <string name="PaymentsDetailsFragment__to">Ɣer</string>
   <string name="PaymentsDetailsFragment__from">Sɣur</string>
   <string name="PaymentsDetailsFragment__sent_payment">Lexlaṣ yettwaznen</string>
@@ -2080,6 +2083,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Suter</string>
+  <string name="CreatePaymentFragment__pay">Xelleṣ</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2096,6 +2100,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Tazmilt</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Sentem axelleṣ</string>
+  <string name="ConfirmPayment__network_fee">Azal n lexlaṣ n uẓeṭṭa</string>
   <string name="ConfirmPayment__to">Ɣer</string>
   <string name="ConfirmPayment__payment_failed">Axelles yecceḍ</string>
   <!--CurrencyAmountFormatter_s_at_s-->

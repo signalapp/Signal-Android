@@ -1026,10 +1026,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Xuya ye ku tu hewl didî bi pişkînereke nenas QR kodê venêrînî. Ji bo parastina xwe, ji kerema xwe re kodê di signalê de dîsa venêrîne.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, ji bo venêrîna QR kodê destûra kamerayê hewce dike, lê ew destûr bi awayekî mayinde hatiye redkirin. Ji kerema xwe re, biçe sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Bêyî destûra Kamerayê QR kod nayê venêrîn</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Peyamên wenda dibin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ew ê peyamên te wenda nebin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Peyamên ku di vê axiftinê de hatine şandin û wergirtin, piştî hatin dîtin %s ew ê wenda bibin.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aniha nû bike</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ev guhertoya Signalê ew ê îro dema wê biqede. Guhertoya herî dawî saz bike.</string>

@@ -1104,10 +1104,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Ŝajnas, ke vi provas ligi al Signal-a aparato uzante skanilon el ekstera liveranto. Pro protekta kialo, bv. re-skani la kodon per SIgnal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Memviŝontaj mesaĝoj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Viaj mesaĝoj ne senvalidiĝos.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesaĝoj senditaj kaj ricevitaj en tiu ĉi interparolo malaperos %s post sia legiĝo.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ĝisdatigi nun</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tiu versio de Signal senvalidiĝos hodiaŭ. Ĝisdatigu al plej nova versio.</string>
@@ -2776,6 +2772,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minutojn</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundojn</string>
   <string name="ExpireTimerSettingsFragment__save">Konservi</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutoj</string>
+  <string name="CustomExpireTimerSelectorView__hours">horoj</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Kontaktu nin</string>
   <string name="HelpSettingsFragment__debug_log">Sencimiga protokolo</string>

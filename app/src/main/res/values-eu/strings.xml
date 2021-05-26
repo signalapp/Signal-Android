@@ -1098,10 +1098,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signalez kanpoko eskaner batez parekatzen omen duzu Signal gailu bat.  Zure segurtasunerako, eskaneatu kodea Signaletik mesedez.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ezin da QR koderik eskaneatu Kamera baimen gabe</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetako mezu guztiak, bai jasoak zein bidaliak, irakurri eta %s igaro ondoren desagertu egingo dira.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Eguneratu orain</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Singalen bertsio hau gaur iraungiko da. Eguneratu azken bertsiora.</string>
@@ -2580,6 +2576,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ExpireTimerSettingsFragment__30_seconds">30 segundo</string>
   <string name="ExpireTimerSettingsFragment__set">Ezarri</string>
   <string name="ExpireTimerSettingsFragment__save">Gorde</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutuak</string>
+  <string name="CustomExpireTimerSelectorView__hours">orduak</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Harremanetan jarri gurekin</string>
   <string name="HelpSettingsFragment__version">Bertsioa</string>

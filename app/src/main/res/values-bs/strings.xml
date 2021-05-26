@@ -672,7 +672,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">nadogradi ovu grupu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nezaštićena MMS grupa. Da biste razgovarali u privatnosti, pozovite svoje kontakte da koriste Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi odmah</string>
-  <string name="ManageGroupActivity_more">…više</string>
+  <string name="ManageGroupActivity_more">više</string>
   <string name="ManageGroupActivity_add_group_description">Unesi opis grupe…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me kad me neko spomene</string>
@@ -1168,10 +1168,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da ste pokušali povezati Signal uređaj koristeći neki eksterni skener. Radi vlastite sigurnosti, molimo ponovo skenirajte kōd, ali kroz Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalu je potrebno dopuštenje da pristupi kameri kako bi mogao skenirati QR kōd, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nije moguće skenirati QR kōd bez dopuštenja za pristup kameri.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Poslane i primljene poruke u ovoj konverzaciji nestat će %s nakon što su viđene.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ažuriraj sada</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ova verzija Signala ističe danas. Ažurirajte aplikaciju na posljednju verziju.</string>
@@ -1697,6 +1693,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nema zajedničkih grupa. Pažljivo pregledajte zahtjeve.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nema kontakata u grupi. Pažljivo pregledajte zahtjeve.</string>
   <string name="ConversationUpdateItem_view">Pregled</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Vrijeme za nestajanje poruka bit će podešeno na %1$s kad im pošaljete poruku.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -2979,12 +2976,30 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="PrivacySettingsFragment__app_security">Sigurnost aplikacije</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Onemogući slikanje ekrana u popisu nedavno korištenih aplikacija i unutar Signala</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal poruke i pozivi, preusmjeravanje poziva i zapečaćeni pošiljalac</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Predefinisani rok za nove konverzacije</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Podesite vrijeme za nestajanje poruka koje će se automatski primijeniti na sve nove konverzacije kada ih Vi započnete.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži sličicu statusa</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaži sličicu u detaljima o poruci kad je poruka isporučena koristeći opciju zapečaćenog pošiljaoca</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Kada je aktivirano, poslane i primljene poruke u novim konverzacijama koje Vi započnete nestat će nakon što su viđene.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Kada je aktivirano, nove poslane i primljene poruke u ovoj konverzaciji nestat će nakon što su viđene.</string>
   <string name="ExpireTimerSettingsFragment__off">Isključeno</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 sedmice</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 sedmica</string>
+  <string name="ExpireTimerSettingsFragment__1_day">1 dan</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 sati</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 sat</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minuta</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundi</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Drugo</string>
+  <string name="ExpireTimerSettingsFragment__set">Podesi</string>
   <string name="ExpireTimerSettingsFragment__save">Pohrani</string>
+  <string name="CustomExpireTimerSelectorView__seconds">sekundi</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuta</string>
+  <string name="CustomExpireTimerSelectorView__hours">sati</string>
+  <string name="CustomExpireTimerSelectorView__days">dana</string>
+  <string name="CustomExpireTimerSelectorView__weeks">sedmica</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centar za podršku</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>

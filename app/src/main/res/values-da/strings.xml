@@ -640,7 +640,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">opgrader gruppen</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. For at chatte privat skal du invitere dine kontakter til Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitér nu</string>
-  <string name="ManageGroupActivity_more">…mere</string>
+  <string name="ManageGroupActivity_more">mere</string>
   <string name="ManageGroupActivity_add_group_description">Tilføj gruppebeskrivelse…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
@@ -1113,10 +1113,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at tilføje en Signal enhed via en 3 parts skanner. Af sikkerhedshensyn bør du bruge den integrerede skanner i Signal app\'en</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan ikke scanne en QR kode uden tilladelse til at tilgå kameraet</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Beskeder med tidsudløb</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Din besked udløber ikke </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Beskeder sendt eller modtaget i denne samtale, vil udløbe %s efter de er læst</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Opdatér nu</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne version af Signal udløber i dag. Opdatér til den nyeste version</string>
@@ -2912,11 +2908,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ExpireTimerSettingsFragment__custom_time">Tilpasset tid</string>
   <string name="ExpireTimerSettingsFragment__set">Opsæt</string>
   <string name="ExpireTimerSettingsFragment__save">Gem</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minut</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Time</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dag</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Uge</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sekunder</string>
+  <string name="CustomExpireTimerSelectorView__minutes">Minutter</string>
+  <string name="CustomExpireTimerSelectorView__hours">timer</string>
+  <string name="CustomExpireTimerSelectorView__days">dage</string>
+  <string name="CustomExpireTimerSelectorView__weeks">uger</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Hjælpecenter</string>
   <string name="HelpSettingsFragment__contact_us">Kontakt os</string>

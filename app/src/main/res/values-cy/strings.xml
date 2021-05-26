@@ -707,7 +707,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_upgrade_this_group">uwchraddio\'r grŵp hwn.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Mae hwn yn Grŵp MMS aniogel. I sgwrsio\'n breifat, gwahoddwch eich cysylltiadau i Signal.</string>
   <string name="ManageGroupActivity_invite_now">Gwahodd nawr</string>
-  <string name="ManageGroupActivity_more">…rhagor</string>
+  <string name="ManageGroupActivity_more">rhagor</string>
   <string name="ManageGroupActivity_add_group_description">Ychwanegu disgrifiad grŵp…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Rhowch wybod i mi am Grybwylliadau</string>
@@ -1226,10 +1226,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Mae\'n edrych fel eich bod yn ceisio cysylltu dyfais Signal gan ddefnyddio sganiwr trydydd parti. Er eich diogelwch, sganiwch y cod eto o fewn Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Mae ar Signal angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Methu sganio cod QR heb ganiatâd y Camera</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Negeseuon byrhoedlog</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ni fydd eich negeseuon yn dod i ben.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bydd negeseuon sy\'n cael eu anfon a\'u derbyn yn y sgwrs yn diflannu %s ar ôl iddynt gael eu gweld.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Diweddaru nawr</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Bydd y fersiwn hon o Signal yn dod i ben heddiw. Diweddarwch i\'r fersiwn ddiweddaraf.</string>
@@ -3078,11 +3074,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpireTimerSettingsFragment__custom_time">Amser cyfaddas:</string>
   <string name="ExpireTimerSettingsFragment__set">Gosod</string>
   <string name="ExpireTimerSettingsFragment__save">Cadw</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Eiliad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Munud</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Awr</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Diwrnod</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Wythnos</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">eiliad</string>
+  <string name="CustomExpireTimerSelectorView__minutes">munud</string>
+  <string name="CustomExpireTimerSelectorView__hours">awr</string>
+  <string name="CustomExpireTimerSelectorView__days">diwrnod</string>
+  <string name="CustomExpireTimerSelectorView__weeks">wythnos</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Canolfan gymorth</string>
   <string name="HelpSettingsFragment__contact_us">Cysylltu â ni</string>

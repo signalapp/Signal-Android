@@ -640,7 +640,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">بۇ گۇرۇپپىنى يۈكسەلتىدۇ.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">بۇ شىفىرلانمىغان كۆپ ۋاسىتە ئۇچۇر گۇرۇپپىسى. شىفىرلىق سۆھبەتلىشىشتە، ئالاقەداشلارنى Signal غا تەكلىپ قىلىڭ.</string>
   <string name="ManageGroupActivity_invite_now">شۇئان تەكلىپ</string>
-  <string name="ManageGroupActivity_more">…تېخىمۇ كۆپ</string>
+  <string name="ManageGroupActivity_more">تېخىمۇ كۆپ</string>
   <string name="ManageGroupActivity_add_group_description">گۇرۇپپا تونۇشتۇرۇشى قوش…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">ئاتالسام ئەسكەرتسۇن</string>
@@ -1112,10 +1112,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">قارىماققا 3-تەرەپ سايىلىغۇچى ئارقىلىق Signal ئۈسكۈنىسىنى ئۇلىماقچى بولۇۋاتىسىز. سىزنىڭ بىخەتەرلىكىڭىز ئۈچۈن، كودنى Signal ئىچىدىن قايتا سايىلەڭ.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR كودىنى سايىلەش ئۈچۈن Signal كامېرا ھوقۇقىغا موھتاج ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشەكلىرىدىن، «ھوقۇقلار» نى تاللاپ ۋە «كامېرا» نى قوزغىتىڭ. </string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">كامېرا ھوقۇقى بولمىغاچقا QR كودىنى سايىلىغىلى بولمىدى</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">غايىب ئۇچۇرلار</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ئۇچۇرلىرىڭىزنىڭ ۋاقتى ئۆتمەيدۇ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">بۇ سۆھبەتتە يوللانغان ۋە تاپشۇرۇۋېلىنغان ئۇچۇرلار كۆرۈنۈپ %s دا غايىب بولىدۇ.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ھازىر يېڭىلاڭ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">بۇ Signal نەشرىنىڭ ۋاقتى بۈگۈن توشىدۇ. ئەڭ يېڭى نەشرىگە يېڭىلاڭ.</string>
@@ -2911,11 +2907,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">ئىختىيارىچە ۋاقىت</string>
   <string name="ExpireTimerSettingsFragment__set">بېكىتىڭ</string>
   <string name="ExpireTimerSettingsFragment__save">ساقلا</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">سېكۇنت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">مىنۇت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">سائەت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">كۈن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">ھەپتە</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">سېكۇنت</string>
+  <string name="CustomExpireTimerSelectorView__minutes">مىنۇت</string>
+  <string name="CustomExpireTimerSelectorView__hours">سائەت</string>
+  <string name="CustomExpireTimerSelectorView__days">كۈن</string>
+  <string name="CustomExpireTimerSelectorView__weeks">ھەپتە</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">قوللاش مەركىزى</string>
   <string name="HelpSettingsFragment__contact_us">بىز بىلەن ئالاقىلىشىڭ</string>

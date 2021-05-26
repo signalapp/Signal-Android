@@ -1104,10 +1104,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vaikuttaa siltä, että yrität yhdistää laitetta käyttämällä Signalin ulkopuolista skannaussovellusta. Oman turvallisuutesi vuoksi skannaa QR-koodi uudelleen Signalilla itsellään.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Katoavat viestit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tämä Signal-versio vanhenee tänään. Päivitä viimeisimpään versioon.</string>
@@ -2816,6 +2812,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpireTimerSettingsFragment__30_seconds">30 sekuntia</string>
   <string name="ExpireTimerSettingsFragment__set">Aseta</string>
   <string name="ExpireTimerSettingsFragment__save">Tallenna</string>
+  <string name="CustomExpireTimerSelectorView__seconds">sekuntia</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuuttia</string>
+  <string name="CustomExpireTimerSelectorView__hours">tuntia</string>
+  <string name="CustomExpireTimerSelectorView__days">päivää</string>
+  <string name="CustomExpireTimerSelectorView__weeks">viikkoa</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Ota yhteyttä</string>
   <string name="HelpSettingsFragment__version">Versio</string>

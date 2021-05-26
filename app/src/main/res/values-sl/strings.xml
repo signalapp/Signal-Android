@@ -702,7 +702,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">nadgradite to skupino.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To je nezavarovana skupina MMS. Za bolj zasebno komunikacijo povabite svoje stike na Signal.</string>
   <string name="ManageGroupActivity_invite_now">Povabi zdaj</string>
-  <string name="ManageGroupActivity_more">… več</string>
+  <string name="ManageGroupActivity_more">več</string>
   <string name="ManageGroupActivity_add_group_description">Dodaj opis skupine …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
@@ -1220,10 +1220,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda, da želite za povezavo z napravo Signal uporabiti zunanji optični čitalnik. Prosimo, da storite to znotraj aplikacije Signal, saj je tako najvarneje.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Brez dovoljenja za dostop do kamere ne morem skenirati kode QR.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Izginjajoča sporočila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vaša sporočila ne bodo potekla.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Sporočila, poslana ali prejeta v tem pogovoru, bodo izginila %s po ogledu.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Posodobi zdaj</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ta različica aplikacije Signal poteče danes. Nadgradite je na najnovejšo različico.</string>
@@ -1747,6 +1743,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationUpdateItem_call_is_full">Klic je polno zaseden</string>
   <string name="ConversationUpdateItem_invite_friends">Vabilo prijateljem/icam</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Vklopi obvestila o klicih</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Nimate skupnih skupin. Dobro preverite prošnje.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tej skupini ni nikogar iz vašega imenika. Dobro preverite prošnje.</string>
   <string name="ConversationUpdateItem_view">Preglej</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Čas poteka sporočil bo nastavljen na %1$s.</string>
   <!--audio_view-->
@@ -2871,6 +2869,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CanNotSendPaymentDialog__send_a_message">Pošlji sporočilo</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">S to osebo nimate nobene skupne skupine. Preverite zahtevke, da se izognete nezaželjenim spoločilom.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">V tej skupini ni nikogar iz vašega imenika ali ljudi s katerimi si pošiljate sporočila. Pred potrditvijo dobro preverite prošnje, da se izognete neželeni pošti.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O prošnjah za pogovor</string>
   <string name="GroupsInCommonMessageRequest__okay">Okej</string>
   <!--GroupDescriptionDialog-->
@@ -2924,11 +2923,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpireTimerSettingsFragment__custom_time">Čas po meri</string>
   <string name="ExpireTimerSettingsFragment__set">Nastavi</string>
   <string name="ExpireTimerSettingsFragment__save">Shrani</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekunda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minuta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Ura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Teden</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sekunde</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minut</string>
+  <string name="CustomExpireTimerSelectorView__hours">ur</string>
+  <string name="CustomExpireTimerSelectorView__days">dnevi</string>
+  <string name="CustomExpireTimerSelectorView__weeks">tedni</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Center za podporo</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>

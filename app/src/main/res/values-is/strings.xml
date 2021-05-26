@@ -639,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">uppfæra þennan hóp.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Þetta er óöruggur MMS-hópur. Til að spjalla í friði ættirðu að bjóða tengiliðunum þínum á Signal.</string>
   <string name="ManageGroupActivity_invite_now">Bjóða núna</string>
-  <string name="ManageGroupActivity_more">…meira</string>
+  <string name="ManageGroupActivity_more">meira</string>
   <string name="ManageGroupActivity_add_group_description">Bæta við lýsingu á hóp…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Láta mig vita þegar minnst er á</string>
@@ -1112,10 +1112,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Það lítur út eins og þú sért að reyna að tengja Signal-tæki með skanna frá utanaðkomandi aðila. Til að gæta öryggis þíns ættirðu að skanna kóðann aftur innan úr Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal þarf heimild til að nota myndavélina til að geta skannað QR-kóða, en því hefur verið varanlega neitað. Farðu í kjörstillingar forritsins, veldu \"Heimildir\" og ýttu á \"Myndavél\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Get ekki skannað QR-kóða án heimildar til að nota myndavélina</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Sjálfeyðandi skilaboð</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Skilaboðin þín munu ekki renna út.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Send og móttekin skilaboð í þessu samtali hverfa %s eftir að þau hafa verið skoðuð.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppfæra núna</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Þessi útgáfa Signal rennur út í dag. Uppfærðu í nýjustu útgáfuna.</string>
@@ -2916,11 +2912,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ExpireTimerSettingsFragment__custom_time">Sérsniðinn tími</string>
   <string name="ExpireTimerSettingsFragment__set">Stilla</string>
   <string name="ExpireTimerSettingsFragment__save">Vista</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekúnda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Mínúta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Klukkustund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dagur</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Vika</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sekúndur</string>
+  <string name="CustomExpireTimerSelectorView__minutes">mínútur</string>
+  <string name="CustomExpireTimerSelectorView__hours">klukkustundir</string>
+  <string name="CustomExpireTimerSelectorView__days">daga</string>
+  <string name="CustomExpireTimerSelectorView__weeks">vikur</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Hjálparmiðstöð</string>
   <string name="HelpSettingsFragment__contact_us">Hafðu samband við okkur</string>

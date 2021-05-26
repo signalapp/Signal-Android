@@ -1102,10 +1102,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ଏହା ଦେଖାଯାଉଛି ଯେ ଆପଣ ଏକ 3ତୀୟ ପକ୍ଷ ସ୍କାନର୍ ବ୍ୟବହାର କରି ଏକ Signal ଉପକରଣ ଲିଙ୍କ୍ କରିବାକୁ ଚେଷ୍ଟା କରୁଛନ୍ତି | ଆପଣଙ୍କର ସୁରକ୍ଷା ପାଇଁ, ଦୟାକରି Signal ଭିତରୁ କୋଡ୍ ସ୍କାନ୍ କରନ୍ତୁ</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ଏକ କ୍ୟୁ.ଆର କୋଡ୍ ସ୍କାନ୍ କରିବା ପାଇଁ Signal କ୍ୟାମେରା ଅନୁମତି ଆବଶ୍ୟକ କରେ, କିନ୍ତୁ ଏହାକୁ ସ୍ଥାୟୀ ଭାବରେ ପ୍ରତ୍ୟାଖ୍ୟାନ କରାଯାଇଛି | ଦୟାକରି ଆପ୍ ସେଟିଂସମୂହକୁ ଯାଇଁ, \"ଅନୁମତି\" ଚୟନ କରନ୍ତୁ ଏବଂ \"କ୍ୟାମେରା\" ସକ୍ଷମ କରନ୍ତୁ</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">କ୍ୟାମେରା ଅନୁମତି ବିନା ଏକ କ୍ୟୁ.ଆର କୋଡ୍ ସ୍କାନ୍ କରିବାରେ ଅସମର୍ଥ</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ଆପଣଙ୍କର ବାର୍ତ୍ତାର ସମୟ ସମାପ୍ତ ହେବ ନାହିଁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ଏହି ବାର୍ତ୍ତାଳାପରେ ପଠାଯାଇଥିବା ଏବଂ ଗ୍ରହଣ କରାଯାଇଥିବା ସନ୍ଦେଶଗୁଡ଼ିକ ଦେଖିବାର %s ପରେ  ଅଦୃଶ୍ୟ ହୋଇଯିବ</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ଏବେ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal ର ଏହି ସଂସ୍କରଣର ସମୟ ସମାପ୍ତ ହୋଇଛି | ବାର୍ତ୍ତା ପଠାଇବା ଏବଂ ଗ୍ରହଣ କରିବା ପାଇଁ ବର୍ତ୍ତମାନ ଅଦ୍ୟତନ କରନ୍ତୁ</string>

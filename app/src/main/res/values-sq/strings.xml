@@ -643,7 +643,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_upgrade_this_group">përmirësoni këtë grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht, ftojini kontaktet tuaj te Signal-i.</string>
   <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
-  <string name="ManageGroupActivity_more">…më tepër</string>
+  <string name="ManageGroupActivity_more">më tepër</string>
   <string name="ManageGroupActivity_add_group_description">Shtoni përshkrim grupi…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
@@ -1115,10 +1115,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Duket sikur po provoni të lidhni një pajisje Signal duke përdorur skaner të një pale të tretë. Si masë mbrojtëse, ju lutemi, riskanojeni kodin që nga brenda Signal-it.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Që të mund të skanojë një kod QR, Signal lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">S\’arrihet të skanohet kod QR pa leje mbi Kamerën</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Zhdukje mesazhesh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Mesazhet tuaja nuk do të skadojnë.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesazhet e dërguara dhe të marra në këtë bisedë do të zhduken %s pasi të jenë parë.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Përditësoje tani</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ky version i Signal-it do të skadojë sot. Përditësojeni me versionin më të freskët.</string>
@@ -2916,11 +2912,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpireTimerSettingsFragment__custom_time">Kohë vetjake</string>
   <string name="ExpireTimerSettingsFragment__set">Vëre</string>
   <string name="ExpireTimerSettingsFragment__save">Ruaje</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekondë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minutë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Orë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Ditë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Javë</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">sekonda</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuta</string>
+  <string name="CustomExpireTimerSelectorView__hours">horë</string>
+  <string name="CustomExpireTimerSelectorView__days">ditë</string>
+  <string name="CustomExpireTimerSelectorView__weeks">javë</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Qendër asistence</string>
   <string name="HelpSettingsFragment__contact_us">Lidhuni me ne</string>

@@ -52,7 +52,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(တည်နေရာ) </string>
   <string name="DraftDatabase_Draft_quote_snippet">(ပြန်လည်ပေးပို့လာသောစာတို)</string>
   <!--AttachmentKeyboard-->
-  <string name="AttachmentKeyboard_gallery">ဓာတ်ပုံနှင့်ဗီဒီယိုများသိမ်းဆည်းရာ</string>
+  <string name="AttachmentKeyboard_gallery">ဓါတ်ပုံပြခန်း</string>
   <string name="AttachmentKeyboard_gif">လှုပ်ရှားနေသောရုပ်ပုံ</string>
   <string name="AttachmentKeyboard_file">ဖိုင်</string>
   <string name="AttachmentKeyboard_contact">အဆက်အသွယ်</string>
@@ -1047,10 +1047,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">သင်သည် Signal သုံးသောဖုန်းအား 3rd party scanner ဖြင့်ချိတ်ဆက်အတည်ပြုနေပုံရသည်။ လုံခြုံမှုရှိစေရန် ကုဒ်အား Signal အတွင်းတွင်ပါသော scanner ဖြင့်ပြန်ဖတ်ပါ။</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">စာများအား ပျောက်သွားစေခြင်း</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">သင့်စာသည် အချိန်သတ်မှတ်ချက်မရှိပါ။</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ယခုစာတွဲတွင် ပေးပို့၊ရယူသော စာများသည် တွေ့ရှိပြီး %s အတွင်းပျက်သွားပါမည်။</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ယခု အပ်ဒိတ် လုပ်ပါ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">၎င်း Signal ဗားရှင်းသည် ဒီနေ့ သက်တမ်းကုန်ပါလိမ့်မယ်။ နောက်ဆုံးဗားရှင်းသို့ အပ်ဒိတ်ပြုလုပ်ပါ။</string>
@@ -1223,12 +1219,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">အဆက်အသွယ်များထဲသို့ ထည့်မည်</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal မှ မက်ဆေ့ချ်</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal မက်ဆေ့ချ်</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal ခေါ်ဆိုမှု</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">အဆက်အသွယ်များထဲသို့ ထည့်မည်</string>
   <string name="SharedContactView_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
-  <string name="SharedContactView_message">Signal မှ စာများ</string>
+  <string name="SharedContactView_message">Signal မက်ဆေ့ချ်</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">နောက်မှ သင့်ကို ပြန်သတိပေးမည်။</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">မနက်ဖြန်မှ သင့်ကို ပြန်သတိပေးမည်။</string>
@@ -1508,7 +1504,7 @@
     <item quantity="other">%1$dအဖွဲ့ဝင်များ</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal ဖြင့် စာပေးပို့ခြင်း</string>
+  <string name="conversation_activity__type_message_push">Signal မက်ဆေ့ချ်</string>
   <string name="conversation_activity__type_message_sms_insecure">မလုံခြုံသော SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">မလုံခြုံသော MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s မှ</string>
@@ -2771,6 +2767,8 @@
   <string name="ExpireTimerSettingsFragment__1_hour">၁ နာရီ</string>
   <string name="ExpireTimerSettingsFragment__set">တပ်ဆင်မယ်</string>
   <string name="ExpireTimerSettingsFragment__save">သိမ်းမယ်</string>
+  <string name="CustomExpireTimerSelectorView__minutes">မိနစ်</string>
+  <string name="CustomExpireTimerSelectorView__hours">နာရီ</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
   <string name="HelpSettingsFragment__version">ဗားရှင်း</string>

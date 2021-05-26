@@ -641,7 +641,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal berichtenapp te gebruiken.</string>
   <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
-  <string name="ManageGroupActivity_more">… meer</string>
+  <string name="ManageGroupActivity_more">meer</string>
   <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
@@ -1114,10 +1114,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wilt koppelen met behulp van een externe scanner. Scan voor de veiligheid de code opnieuw vanuit Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Verlopende berichten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Nieuwe berichten die in dit gesprek verzonden of ontvangen worden zullen niet automatisch worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Elk nieuwe bericht dat in dit gesprek verzonden of ontvangen wordt zal voor iedere deelnemer aan het gesprek %s nadat hij of zij het bericht heeft gezien worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Nu bijwerken</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Deze versie van Signal zal vandaag verlopen. Werk bij naar de meest recente versie.</string>
@@ -2903,8 +2899,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Indien ingeschakeld zal elk nieuwe bericht dat je verzend of ontvangt in een nieuw gesprek dat jij hebt geïnitieerd zichzelf wissen nadat de ingestelde tijdspanne is verlopen. Voor iedere deelnemer aan het gesprek begint de tijdspanne pas te lopen als hij het bericht heeft gezien. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Indien ingeschakeld zal elk nieuwe bericht dat in dit gesprek verzonden of ontvangen wordt voor iedere deelnemer aan het gesprek gewist worden nadat de ingestelde tijdspanne verlopen is. De tijdspanne gaat voor iedere deelnemer pas lopen vanaf het moment dat hij of zij het bericht heeft gezien.  – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Door een tijdspanne in te stellen zullen berichten op zowel je eigen apparaat als op de apparaten van andere deelnemers aan het gesprek worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor ieder persoon pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. Deze instelling is van toepassing op alle gesprekken die jij hebt geïnitieerd nadat je de tijdspanne hebt ingesteld. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Door een tijdspanne in te stellen zullen berichten op zowel je eigen apparaat als op de apparaten van andere deelnemers aan het gesprek worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor ieder persoon pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. Deze instelling is alleen van toepassing op dit gesprek en alleen op berichten die zijn verzonden nadat je de tijdspanne hebt ingesteld.– Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
   <string name="ExpireTimerSettingsFragment__off">Uit</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -2916,11 +2912,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ExpireTimerSettingsFragment__custom_time">Zelf gekozen tijdspanne</string>
   <string name="ExpireTimerSettingsFragment__set">Instellen</string>
   <string name="ExpireTimerSettingsFragment__save">Opslaan</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">seconden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">minuten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">uur</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">dagen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">weken</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">seconden</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuten</string>
+  <string name="CustomExpireTimerSelectorView__hours">uur</string>
+  <string name="CustomExpireTimerSelectorView__days">dagen</string>
+  <string name="CustomExpireTimerSelectorView__weeks">weken</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Ondersteuningscentrum</string>
   <string name="HelpSettingsFragment__contact_us">Neem contact met ons op</string>

@@ -705,7 +705,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">обновите эту группу.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Это незащищённая MMS-группа. Чтобы общаться конфиденциально, пригласите своих контактов в Signal.</string>
   <string name="ManageGroupActivity_invite_now">Пригласить сейчас</string>
-  <string name="ManageGroupActivity_more">…далее</string>
+  <string name="ManageGroupActivity_more">далее</string>
   <string name="ManageGroupActivity_add_group_description">Добавить описание группы…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
@@ -1223,10 +1223,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Похоже, вы пытаетесь привязать устройство Signal, используя сторонний сканер. Для вашей защиты, пожалуйста, просканируйте код через Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal требуется разрешение на доступ к камере для сканирования QR-кода, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Камера».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не удалось отсканировать QR-код из-за отсутствия доступа к камере</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Исчезающие сообщения</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Сообщения не будут исчезать.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Сообщения, отправленные и полученные в этом разговоре, исчезнут, когда пройдет %s после их прочтения.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Обновить сейчас</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Эта версия Signal перестанет работать сегодня. Обновитесь до новейшей версии.</string>
@@ -3069,11 +3065,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">Пользовательское время</string>
   <string name="ExpireTimerSettingsFragment__set">Установить</string>
   <string name="ExpireTimerSettingsFragment__save">Сохранить</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">секунд</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">минут</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">часов</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">дней</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">недель</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">секунд</string>
+  <string name="CustomExpireTimerSelectorView__minutes">минут</string>
+  <string name="CustomExpireTimerSelectorView__hours">часов</string>
+  <string name="CustomExpireTimerSelectorView__days">дней</string>
+  <string name="CustomExpireTimerSelectorView__weeks">недели</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центр поддержки</string>
   <string name="HelpSettingsFragment__contact_us">Связаться с нами</string>

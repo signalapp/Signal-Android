@@ -1096,10 +1096,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ایسا لگتا ہے کہ آپ 3rd پارٹی اسکینر کا استعمال کرتے ہوئے Signal ڈیوائس سے منسلک کرنے کی کوشش کر رہے ہیں۔ آپ کے تحفظ کے لئے ، براہ کرم Signal میں سے دوبارہ کوڈ اسکین کریں۔</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal کو QR کوڈ سکین کرنے کیلئے کیمرہ کی اجازت کی ضرورت ہے، لیکن اس کو مستقل طور پر رد کر دیا گیا۔ براہ کرم ایپ کی ترتیبات میں جا کر\"اجازت نامہ\"کا انتخاب کریں اور \"کیمرہ\" کو فعال کریں۔</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">کیمرہ کی اجازت کے بغیر QR کوڈ سکین کرنا ممکن نہیں</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">پیغامات غائب ہو رہے ہیں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">آپ کے پیغامات کی میعاد ختم نہیں ہوگی۔</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">اس گفتگو میں بھیجے اور وصول کیے گیں پیغامات دیکھنے کے بعد %s ختم ہوجائیں گے۔</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">تازہ ترین کریں. </string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal کا یہ ورژن آج ختم ہوجائے گا۔ تازہ ترین ورژن میں تازہ کاری کریں۔</string>

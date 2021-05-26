@@ -639,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">faça o upgrade deste grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um Grupo MMS inseguro. Para conversar de forma privada, convide os seus contactos para o Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convidar agora</string>
-  <string name="ManageGroupActivity_more">…mais</string>
+  <string name="ManageGroupActivity_more">mais</string>
   <string name="ManageGroupActivity_add_group_description">Adicionar descrição do grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar-me quando for \'Mencionado\'</string>
@@ -1111,10 +1111,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece estar a tentar associar um dispositivo Signal através de um digitalizador externo. Para sua segurança, digitalize o código através do Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione o Signal e nas \"Permissões\" ative a \"Câmara\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível ler um código QR sem ter a permissão de acesso à câmara.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Destruição de mensagens</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">As suas mensagens não serão destruídas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">As mensagens enviadas e recebidas nesta conversa irão ser destruídas %s após serem vistas.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Atualizar agora</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versão do Signal expira hoje. Atualize para a versão mais recente.</string>
@@ -2911,11 +2907,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">Temporizador personalizado</string>
   <string name="ExpireTimerSettingsFragment__set">Definir</string>
   <string name="ExpireTimerSettingsFragment__save">Guardar</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Segundo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minuto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Hora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Semana</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">segundos</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutos</string>
+  <string name="CustomExpireTimerSelectorView__hours">horas</string>
+  <string name="CustomExpireTimerSelectorView__days">dias</string>
+  <string name="CustomExpireTimerSelectorView__weeks">semanas</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centro de suporte</string>
   <string name="HelpSettingsFragment__contact_us">Contacte-nos</string>

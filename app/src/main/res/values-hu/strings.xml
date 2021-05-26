@@ -640,7 +640,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">frissítsd a csoportot!</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ez egy nem biztonságos MMS-csoport. A biztonságos társalgáshoz hívd meg kontaktjaidat Signalra.</string>
   <string name="ManageGroupActivity_invite_now">Meghívás most</string>
-  <string name="ManageGroupActivity_more">…tovább</string>
+  <string name="ManageGroupActivity_more">tovább</string>
   <string name="ManageGroupActivity_add_group_description">Csoportleírás hozzáadása…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
@@ -1113,10 +1113,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Úgy tűnik, hogy egy harmadik féltől származó vonalkódolvasóval próbálsz Signal eszközt társítani. A saját védelmed érdekében kérlek szkenneld újra a kódot Signal-on belül!</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">A Signal-nak szüksége van a Kamera engedélyre, hogy QR kódot szkennelhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nem lehet QR kódot szkennelni Kamera hozzáférési engedély nélkül</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Eltűnő üzenetek</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Üzeneteid nem fognak eltűnni.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ebben a beszélgetésben a kimenő és bejövő üzenetek el fognak tűnni a megtekintést követő %s után.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Frissítés most</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">A Signal jelenleg telepített verziója ma lejár. Frissíts a legújabb verzióra!</string>
@@ -2913,11 +2909,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ExpireTimerSettingsFragment__custom_time">Egyedi érték</string>
   <string name="ExpireTimerSettingsFragment__set">Beállítás</string>
   <string name="ExpireTimerSettingsFragment__save">Mentés</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Másodperc</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Perc</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Óra</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Nap</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Hét</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">mp</string>
+  <string name="CustomExpireTimerSelectorView__minutes">perc</string>
+  <string name="CustomExpireTimerSelectorView__hours">óra</string>
+  <string name="CustomExpireTimerSelectorView__days">nap</string>
+  <string name="CustomExpireTimerSelectorView__weeks">hét</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Támogatási központ</string>
   <string name="HelpSettingsFragment__contact_us">Kapcsolat</string>

@@ -91,6 +91,7 @@
   <string name="BlockUnblockDialog_unblock_s">เลิกปิดกั้น %1$sหรือไม่?</string>
   <string name="BlockUnblockDialog_block">ปิดกั้น</string>
   <string name="BlockUnblockDialog_block_and_leave">ปิดกั้นและออก</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">รายงานสแปมและปิดกั้น</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">วันนี้</string>
   <string name="BucketedThreadMedia_Yesterday">เมื่อวาน</string>
@@ -166,6 +167,7 @@
   <string name="ConversationItem_error_network_not_delivered">การส่งล้มเหลว</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนกุญแจ แตะเพื่อประมวลผล</string>
   <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
+  <string name="ConversationItem_send_paused">การส่งถูกหยุดชั่วคราว</string>
   <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">กลับไปใช้ SMS ที่ไม่ได้เข้ารหัสลับหรือไม่?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">กลับไปใช้ MMS ที่ไม่ได้เข้ารหัสลับหรือไม่?</string>
@@ -236,6 +238,7 @@
   <string name="ConversationActivity_join">เข้าร่วม</string>
   <string name="ConversationActivity_full">เต็ม</string>
   <string name="ConversationActivity_error_sending_media">เกิดข้อผิดพลาดในการส่งสื่อ</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">ถูกรายงานว่าเป็นสแปมและถูกปิดกั้นแล้ว</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>
@@ -277,7 +280,7 @@
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกสำหรับตัวคุณเองในบทสนทนานี้\nหากบัญชีของคุณมีอุปกรณ์ใดเชื่อมโยงอยู่ บันทึกใหม่จะถูกปรับประสานถึงกัน</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">สมาชิกกลุ่ม %1$d คนมีชื่อเหมือนกัน</string>
   <string name="ConversationFragment__tap_to_review">แตะเพื่อทบทวน</string>
-  <string name="ConversationFragment__review_requests_carefully">ทบทวนคำขออย่างระวัง</string>
+  <string name="ConversationFragment__review_requests_carefully">พิจารณาคำขออย่างระวัง</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal พบผู้ติดต่ออีกรายการที่มีชื่อเหมือนกัน</string>
   <string name="ConversationFragment_contact_us">ติดต่อเรา</string>
   <string name="ConversationFragment_verify">ตรวจยืนยัน</string>
@@ -300,7 +303,7 @@
     <item quantity="other">ย้าย %d การสนทนาไปยังกล่องขาเข้า</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
+  <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนกุญแจ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">การสนทนาที่ถูกเก็บในที่เก็บถาวร (%d)</string>
   <!--ConversationTitleView-->
@@ -602,6 +605,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">ปรับรุ่นกลุ่มนี้</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">กลุ่ม MMS นี้ไม่ปลอดภัย หากต้องการแชตเป็นการส่วนตัว ท่านจะต้องเชิญผู้ติดต่อของท่านมายัง Signal</string>
   <string name="ManageGroupActivity_invite_now">เชิญเดี๋ยวนี้</string>
+  <string name="ManageGroupActivity_more">มีอีก</string>
+  <string name="ManageGroupActivity_add_group_description">เพิ่มคำอธิบายกลุ่ม…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">แจ้งให้ฉันรู้สำหรับการกล่าวถึง</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">รับการแจ้งเตือนเมื่อคุณถูกกล่าวถึงในการพูดคุยที่ปิดเสียงไว้หรือไม่?</string>
@@ -921,6 +926,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ได้เปลี่ยนชื่อกลุ่มเป็น \"%2$s\"</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ชื่อกลุ่มได้ถูกเปลี่ยนเป็น \"%1$s\"</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">คุณได้เปลี่ยนคำอธิบายกลุ่ม</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ได้เปลี่ยนคำอธิบายกลุ่ม</string>
+  <string name="MessageRecord_the_group_description_has_changed">คำอธิบายกลุ่มถูกเปลี่ยน</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">คุณได้เปลี่ยนอวตารของกลุ่ม</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ได้เปลี่ยนภาพประจำตัวของกลุ่ม</string>
@@ -1047,10 +1055,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ดูเหมือนคุณพยายามเชื่อมโยงอุปกรณ์ Signal โดยใช้แอปสแกนภายนอก กรุณาสแกนรหัสอีกครั้งจากภายในแอป Signal ทั้งนี้เพื่อการคุ้มครองตัวคุณเอง</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ไม่สามารถสแกนรหัส QR ได้หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">ข้อความที่ลบตัวเอง</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">ข้อความของคุณจะไม่หมดอายุ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ปรับปรุงเดี๋ยวนี้</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal รุ่นนี้จะหมดอายุวันนี้ โปรดปรับรุ่นเป็นรุ่นล่าสุด</string>
@@ -1107,6 +1111,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">คุณ</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ตรวจยืนยันเพื่อรับส่งข้อความต่อ</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">เพื่อช่วยป้องกันสแปมบน Signal โปรดตรวจยืนยันให้สำเร็จ</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">หลังตรวจยืนยัน คุณจะรับส่งข้อความได้ต่อ ข้อความใดๆ ที่หยุดอยู่ชั่วคราว จะถูกส่งโดยอัตโนมัติ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ปิดกั้น</string>
   <string name="RecipientPreferenceActivity_unblock">เลิกปิดกั้น</string>
@@ -1164,6 +1171,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">ใช้พร็อกซี</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">เชื่อมต่อพร็อกซีสำเร็จ</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">การส่งล้มเหลว</string>
+  <string name="RecaptchaProofActivity_complete_verification">การตรวจยืนยันสมบูรณ์</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">เลือกประเทศของคุณ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">คุณต้องระบุรหัส
@@ -1393,6 +1402,7 @@
   <string name="MessageNotifier_message_delivery_failed">การส่งข้อความล้มเหลว</string>
   <string name="MessageNotifier_failed_to_deliver_message">ส่งข้อความล้มเหลว</string>
   <string name="MessageNotifier_error_delivering_message">เกิดข้อผิดพลาดระหว่างส่งข้อความ</string>
+  <string name="MessageNotifier_message_delivery_paused">การส่งข้อความถูกหยุดชั่วคราว</string>
   <string name="MessageNotifier_mark_all_as_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
   <string name="MessageNotifier_mark_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
   <string name="MessageNotifier_turn_off_these_notifications">ปิดการแจ้งเตือนเหล่านี้</string>
@@ -1483,7 +1493,7 @@
   <string name="contact_selection_activity__new_group">กลุ่มใหม่</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">ล้างข้อความที่พิมพ์เข้าไป</string>
-  <string name="contact_filter_toolbar__show_keyboard_description">แสดงคีย์บอร์ด</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">แสดงแป้นพิมพ์</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">แสดงแป้นหมายเลข</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ไม่มีผู้ติดต่อ</string>
@@ -1546,9 +1556,10 @@
   <string name="ConversationUpdateItem_call_is_full">ห้องเต็ม</string>
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ไม่มีกลุ่มที่เหมือนกันเลย โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_view">ดู</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">เล่น … หยุด</string>
+  <string name="audio_view__play_pause_accessibility_description">เล่น … หยุดชั่วคราว</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">เสียง</string>
@@ -1624,6 +1635,7 @@
     <item quantity="other">%d อื่นๆ</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">ค้นหาภาพ GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
   <!--log_submit_activity-->
@@ -1674,6 +1686,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">แก้ไขชื่อและรูปของกลุ่ม</string>
   <string name="EditProfileFragment__group_name">ชื่อกลุ่ม</string>
+  <string name="EditProfileFragment__group_description">คำอธิบายกลุ่ม</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ชื่อของคุณ</string>
   <string name="EditProfileNameFragment_first_name">ชื่อตัว</string>
@@ -1740,6 +1753,15 @@
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- กรุณาเลือกตัวเลือก --</item>
+    <item>บางสิ่งไม่ทำงาน</item>
+    <item>ขอความสามารถใหม่</item>
+    <item>มีคำถาม</item>
+    <item>มีข้อเสนอแนะ</item>
+    <item>อื่นๆ</item>
+    <item>การชำระเงิน</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
@@ -1981,6 +2003,7 @@
   <string name="PaymentsHomeFragment__processing_payment">กำลังประมวลผลการชำระเงิน</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">ไม่มีการแปลงสกุลเงินให้ใช้</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">การชำระเงินไม่มีให้ใช้ในภูมิภาคของคุณ</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">หยุดใช้การจ่ายเงินหรือไม่?</string>
   <string name="PaymentsHomeFragment__deactivate">หยุดใช้</string>
   <string name="PaymentsHomeFragment__continue">ทำต่อ</string>
@@ -1988,6 +2011,7 @@
   <string name="PaymentsHomeFragment__payment_failed">การชำระเงินล้มเหลว</string>
   <string name="PaymentsHomeFragment__details">รายละเอียด</string>
   <string name="PaymentsHomeFragment__activate">เปิดใช้</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">ดูเงื่อนไข MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">เพิ่มเงิน</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ที่อยู่กระเป๋าเงินของคุณ</string>
@@ -2695,37 +2719,56 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">เพื่อจะส่งเงินให้กับผู้ใช้รายนี้ เขาจะต้องตอบรับคำขอส่งข้อความจากคุณ ส่งข้อความหาเขาเพื่อสร้างคำขอส่งข้อความ</string>
   <string name="CanNotSendPaymentDialog__send_a_message">ส่งข้อความ</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">คุณไม่ได้อยู่ในกลุ่มใดที่เหมือนกับบุคคลนี้เลย โปรดพิจารณาคำขออย่างถี่ถ้วน ก่อนจะยอมรับ เพื่อเลี่ยงข้อความไม่พึงประสงค์</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">เกี่ยวกับคำขอส่งข้อความ</string>
   <string name="GroupsInCommonMessageRequest__okay">ตกลง</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">คำอธิบายกลุ่ม</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">มาตรฐาน</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">เร็วกว่า ใช้ข้อมูลน้อย</string>
   <string name="QualitySelectorBottomSheetDialog__high">สูง</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">ช้ากว่า ใช้ข้อมูลมาก</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">คุณภาพรูปภาพ</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">บัญชี</string>
   <!--ChatsSettingsFragment-->
-  <string name="ChatsSettingsFragment__enter_key_sends">ใส่คีย์เพื่อส่ง</string>
+  <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">กดปุ่ม Enter เพื่อส่ง</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ใช้เป็นแอป SMS หลัก</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">ข้อความ</string>
   <string name="NotificationsSettingsFragment__calls">การโทร</string>
   <string name="NotificationsSettingsFragment__notify_when">แจ้งเตือนเมื่อ…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">ผู้ติดต่อเริ่มใช้ Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ถูกปิดกั้น</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d ผู้ติดต่อ</string>
   <string name="PrivacySettingsFragment__messaging">การส่งข้อความ</string>
   <string name="PrivacySettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
+  <string name="PrivacySettingsFragment__app_security">ความปลอดภัยของแอป</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้จับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">ปิด</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 สัปดาห์</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 สัปดาห์</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 วัน</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 ชั่วโมง</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 ชั่วโมง</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 นาที</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 วินาที</string>
-  <string name="ExpireTimerSettingsFragment__set">ตั้งเป็น</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">เวลากำหนดเอง</string>
+  <string name="ExpireTimerSettingsFragment__set">ตั้ง</string>
   <string name="ExpireTimerSettingsFragment__save">บันทึก</string>
+  <string name="CustomExpireTimerSelectorView__seconds">วินาที</string>
+  <string name="CustomExpireTimerSelectorView__minutes">นาที</string>
+  <string name="CustomExpireTimerSelectorView__hours">ชั่วโมง</string>
+  <string name="CustomExpireTimerSelectorView__days">วัน</string>
+  <string name="CustomExpireTimerSelectorView__weeks">สัปดาห์</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">ติดต่อเรา</string>
   <string name="HelpSettingsFragment__version">รุ่น</string>

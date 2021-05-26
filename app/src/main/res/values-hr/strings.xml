@@ -672,7 +672,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">nadogradi ovu grupu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nesigurna MMS grupa. Da biste privatno razgovarali, pozovite svoje kontakte u Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi sada</string>
-  <string name="ManageGroupActivity_more">…više</string>
+  <string name="ManageGroupActivity_more">više</string>
   <string name="ManageGroupActivity_add_group_description">Dodaj opis grupe…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me samo za Spominjanja</string>
@@ -1168,10 +1168,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Čini se da pokušavate povezati Signal uređaj pomoću skenera treće strane. Radi vaše zaštite ponovo skenirajte kôd unutar Signal aplikacije.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal zahtijeva dopuštenje za kameru kako bi mogao skenirati QR kôd, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nije moguće skenirati QR kôd bez dozvole pristupa kamere</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Poruke koje nestaju</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće nestati.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Poslane i primljene poruke u ovom razgovoru će nestati za %s nakon što ih se vidi.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ažuriraj sada</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ova verzija Signala istječe danas. Ažurirajte na najnoviju verziju.</string>
@@ -2834,6 +2830,11 @@ broj telefona</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundi</string>
   <string name="ExpireTimerSettingsFragment__set">Postavi</string>
   <string name="ExpireTimerSettingsFragment__save">Spremi</string>
+  <string name="CustomExpireTimerSelectorView__seconds">sekundi</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minute</string>
+  <string name="CustomExpireTimerSelectorView__hours">sati</string>
+  <string name="CustomExpireTimerSelectorView__days">dana</string>
+  <string name="CustomExpireTimerSelectorView__weeks">tjedana</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">Kontaktirajte nas</string>
   <string name="HelpSettingsFragment__version">Verzija</string>

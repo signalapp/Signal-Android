@@ -92,7 +92,7 @@
   <string name="BlockUnblockDialog_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="BlockUnblockDialog_block">封鎖</string>
   <string name="BlockUnblockDialog_block_and_leave">封鎖並離開</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">回報垃圾訊息並封鎖</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">檢舉垃圾訊息並封鎖</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
@@ -223,8 +223,8 @@
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Signal 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
   <string name="ConversationActivity_yes">是</string>
   <string name="ConversationActivity_no">否</string>
-  <string name="ConversationActivity_search_position">%2$d 中之 %1$d</string>
-  <string name="ConversationActivity_no_results">沒有結果</string>
+  <string name="ConversationActivity_search_position">第 %1$d 個，共 %2$d 個</string>
+  <string name="ConversationActivity_no_results">查無結果</string>
   <string name="ConversationActivity_sticker_pack_installed">貼圖包已安裝</string>
   <string name="ConversationActivity_new_say_it_with_stickers">新！ 用貼圖說出來</string>
   <string name="ConversationActivity_cancel">取消</string>
@@ -239,7 +239,7 @@
   <string name="ConversationActivity_join">加入</string>
   <string name="ConversationActivity_full">已滿</string>
   <string name="ConversationActivity_error_sending_media">傳送媒體檔時出錯</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">回報為垃圾訊息並被封鎖。</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">已檢舉垃圾訊息並封鎖。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -369,7 +369,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果取消連結此裝置，它將不能再接受或傳送訊息。</string>
   <string name="DeviceListActivity_network_connection_failed">網路連線失敗</string>
   <string name="DeviceListActivity_try_again">再試一次</string>
-  <string name="DeviceListActivity_unlinking_device">斷開連結裝置中…</string>
+  <string name="DeviceListActivity_unlinking_device">取消連結裝置中…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">取消連結裝置</string>
   <string name="DeviceListActivity_network_failed">網路失敗！</string>
   <!--DeviceListItem-->
@@ -591,7 +591,7 @@
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">只有管理員可以啟用或停用可共享的群組連結。</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有管理員可以啟用或停用批准新成員的選項。</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理員可以重置可共享的群組連結。</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理員可以重設可共享的群組連結。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">你沒有權限來做此事</string>
   <string name="ManageGroupActivity_not_capable">你新增的人不支援新群組，需要更新Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">更新群組失敗</string>
@@ -606,7 +606,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">升級此群組。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">這是一個不安全的MMS群組。 要私下聊天，請邀請你的聯絡人加入Signal。</string>
   <string name="ManageGroupActivity_invite_now">立即邀請</string>
-  <string name="ManageGroupActivity_more">…更多</string>
+  <string name="ManageGroupActivity_more">更多</string>
   <string name="ManageGroupActivity_add_group_description">新增群組說明…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">通知我提及。</string>
@@ -666,7 +666,7 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理與分享</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">群組連結</string>
   <string name="ShareableGroupLinkDialogFragment__share">分享</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">重置連結</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">重設連結</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">成員要求</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">批准新成員</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">需要管理員批准通過群組連結加入新成員。</string>
@@ -694,7 +694,7 @@
     <item quantity="other">群組 · %1$d 個成員</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新Signal 以使用群組連結</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新 Signal 以使用群組連結</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援此群組連結。透過連結更新到最新版本以加入該群組。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">更新 Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">你的一個或多個連結的裝置正在執行不支援群組連結的Signal版本。在你已連結的裝置上更新Signal以加入該群組。</string>
@@ -946,8 +946,8 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已啟用群組連結（毋需管理員批准）。</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用群組連結（需經管理員批准）。</string>
   <string name="MessageRecord_you_turned_off_the_group_link">你關閉了群組連結。</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s 開啟了群組連結，但未獲得管理員批准。</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 開啟了具有管理員批准功能的群組連結。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s 開啟了群組連結（毋需管理員批准）。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 開啟了群組連結（需經管理員批准）。</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s 關閉了群組連結。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">群組連結已開啟，而管理員的批准已關閉。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">群組連結已在管理員批准下開啟。</string>
@@ -959,9 +959,9 @@
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s 開啟了管理員批准的群組連結。</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">管理員批准的群組連結的已開啟。</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">你重置群組連結。</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s 重置了群組連結。</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">群組連結已重置。</string>
+  <string name="MessageRecord_you_reset_the_group_link">你重設了群組連結。</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s 重設了群組連結。</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">群組連結已重設。</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">你透過群組連結加入了群組。</string>
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s 透過群組連結加入了群組。</string>
@@ -1055,10 +1055,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機的權限以掃描 QR 碼，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有相機的使用權限，所以無法掃描 QR 碼。</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">自動銷毀訊息</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中所傳送與接收的訊息將會在閱讀 %s 後被銷毀。</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">立即更新</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">此版本的Signal將於今天到期。請更新到最新版本。</string>
@@ -1082,26 +1078,26 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">錯誤的 PIN 碼</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">略過 PIN 碼輸入嗎？</string>
   <string name="PinRestoreEntryFragment_need_help">需要幫助嗎？</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN碼是你建立的%1$d+字元代碼，可以是數字或字母數字。\n\n如果你忘記了PIN碼，則可以建立一個新的PIN碼。你可以註冊和使用帳號，但會遺失一些已儲存的設定，例如個人訊息資料。</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">如果你忘記了PIN碼，則可以建立一個新的PIN碼。 你可以註冊和使用帳號，但會遺失一些已保存的設定，例如個人訊息資料。</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">你的 PIN 碼是先前由你建立的 %1$d+ 位代碼，不論是數字或字母數字混合。\n\n假如你記不起你的 PIN 碼，可建立一個新的 PIN 碼。註冊和使用帳號將不成問題，惟你會遺失一些已儲存的設定，例如你的個人資料訊息。</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">假如你記不起你的 PIN 碼，可建立一個新的 PIN 碼。註冊和使用帳號將不成問題，惟你會遺失一些已儲存的設定，例如你的個人資料訊息。</string>
   <string name="PinRestoreEntryFragment_create_new_pin">建立新的 PIN 碼</string>
   <string name="PinRestoreEntryFragment_contact_support">聯絡支援</string>
   <string name="PinRestoreEntryFragment_cancel">取消</string>
   <string name="PinRestoreEntryFragment_skip">略過</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="other">你還有%1$d次嘗試的次數。 如果嘗試次數用完，則可以建立一個新的PIN碼。你可以註冊和使用帳號，但會遺失一些已儲存的設定，例如個人訊息資料。</item>
+    <item quantity="other">你還有 %1$d 次嘗試的機會。機會耗盡後，你可建立一個新的 PIN 碼。註冊和使用帳號將不成問題，惟你會遺失一些已儲存的設定，例如你的個人資料訊息。</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 註冊 - 在 Android 上需要 PIN 碼協助</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">輸入數字 PIN 碼</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">建立你的 PIN 碼</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">你的PIN碼猜測用完了，但是你仍然可以通過建立新的PIN碼來連結Signal帳號。 為了你的隱私和安全，你的帳號將被回復，而不會保存任何個人資料訊息或設定。</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">你已耗盡猜測 PIN 碼的嘗試機會了，但你仍可建立一個新的 PIN 碼，以便存取你的 Signal 帳號。為確保你的隱私和安全，將會恢復您的帳號，惟不會還原任何已儲存的個人資料訊息或設定。</string>
   <string name="PinRestoreLockedFragment_create_new_pin">建立新的 PIN 碼</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
-  <string name="PinOptOutDialog_disable_pin">停用PIN碼</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果你停用 PIN 碼，則除非你進行手動備份和還原，否則當你重新註冊 Signal 時，將會遺失所有資料。停用 PIN 碼時無法開啟註冊鎖定。</string>
+  <string name="PinOptOutDialog_disable_pin">停用 PIN 碼</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">評分這個應用程式</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜歡使用此應用程式，請使用片刻時間幫我們對其進行評分。</string>
@@ -1219,7 +1215,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">開啟註冊鎖？</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">關閉註冊鎖？</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">如果你在再次註冊Signal時忘記了Signal PIN碼，則你的帳號將被鎖定7天。</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">如果你再次註冊 Signal 時忘記了你的 Signal PIN 碼，你的帳號將會被暫時鎖定 7 天。</string>
   <string name="RegistrationLockV2Dialog_turn_on">開啟</string>
   <string name="RegistrationLockV2Dialog_turn_off">關閉</string>
   <!--RevealableMessageView-->
@@ -1892,14 +1888,14 @@
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__chat_wallpaper">聊天壁紙</string>
-  <string name="preferences__disable_pin">停用PIN碼</string>
+  <string name="preferences__disable_pin">停用 PIN 碼</string>
   <string name="preferences__enable_pin">啟用 PIN 碼</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果你停用 PIN 碼，則除非你進行手動備份和還原，否則當你重新註冊 Signal 時，將會遺失所有資料。停用 PIN 碼時無法開啟註冊鎖定。</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 碼用於加密在 Signal 中儲存的資訊，以確保只得你可以存取。當你重新安裝應用程式後，你的個人資料、設定和聯絡人將會還原。開啟應用程式不需要你的 PIN 碼。</string>
   <string name="preferences__system_default">系統預設</string>
   <string name="preferences__language">語言選項</string>
   <string name="preferences__signal_messages_and_calls">Signal 訊息與通話</string>
-  <string name="preferences__advanced_pin_settings">進階PIN碼設定</string>
+  <string name="preferences__advanced_pin_settings">進階 PIN 碼設定</string>
   <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
   <string name="preferences__submit_debug_log">送出偵錯日誌</string>
   <string name="preferences__delete_account">刪除帳號</string>
@@ -1972,18 +1968,18 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">啟用密封發件人對來自非聯絡人及其他你未分享過個人資料的人傳來的訊息。</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
   <string name="preferences_setup_a_username">設定使用者名稱</string>
-  <string name="preferences_proxy">代理伺服器。</string>
+  <string name="preferences_proxy">代理伺服器</string>
   <string name="preferences_use_proxy">使用代理伺服器</string>
   <string name="preferences_off">關</string>
   <string name="preferences_on">開</string>
   <string name="preferences_proxy_address">代理伺服器位址</string>
-  <string name="preferences_only_use_a_proxy_if">僅當你無法連接到手機或Wi-Fi上的Signal時，才使用代理伺服器。</string>
+  <string name="preferences_only_use_a_proxy_if">僅當你無法使用行動網路或 Wi-Fi 連接上 Signal 時，才使用代理伺服器。</string>
   <string name="preferences_share">分享</string>
   <string name="preferences_save">儲存</string>
   <string name="preferences_connecting_to_proxy">連接代理伺服器中…</string>
   <string name="preferences_connected_to_proxy">代理伺服器已連接</string>
   <string name="preferences_connection_failed">連接失敗</string>
-  <string name="preferences_couldnt_connect_to_the_proxy">無法連接到代理伺服器。 檢查代理伺服器為址，然後重試。</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">無法連接到代理伺服器。請檢查代理伺服器位址，然後重試。</string>
   <string name="preferences_you_are_connected_to_the_proxy">你已連接到代理伺服器。你可以隨時透過“設定”關閉代理伺服器。</string>
   <string name="preferences_success">成功</string>
   <string name="preferences_failed_to_connect">連接失敗</string>
@@ -2151,11 +2147,11 @@
   <string name="conversation_insecure__invite">邀請</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">刪除已選項目</string>
-  <string name="conversation_list_batch__menu_pin_selected">釘選已選擇</string>
-  <string name="conversation_list_batch__menu_unpin_selected">解除釘選已選擇</string>
+  <string name="conversation_list_batch__menu_pin_selected">釘選已選項目</string>
+  <string name="conversation_list_batch__menu_unpin_selected">解除釘選已選項目</string>
   <string name="conversation_list_batch__menu_select_all">全選</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">已選擇存檔</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存檔已選擇的</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">存檔已選項目</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存檔已選項目</string>
   <string name="conversation_list_batch__menu_mark_as_read">標示已讀</string>
   <string name="conversation_list_batch__menu_mark_as_unread">標註為未讀</string>
   <!--conversation_list-->
@@ -2249,18 +2245,18 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">建立數字 PIN 碼</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
-    <item quantity="other">PIN碼必須至少%1$d個字母</item>
+    <item quantity="other">PIN 碼至少須有 %1$d 個字元</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-    <item quantity="other">PIN碼必需至少%1$d個字元</item>
+    <item quantity="other">PIN 碼至少須有 %1$d 個數字</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新 PIN 碼</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只要此裝置仍保持註冊，你隨時可變更 PIN 碼。</string>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
-  <string name="CreateKbsPinFragment__choose_a_stronger_pin">請選擇強度較強的PIN碼</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 碼用於加密在 Signal 中儲存的資訊，以確保只得你可以存取。當你重新安裝應用程式後，你的個人資料、設定和聯絡人將會還原。開啟應用程式不需要你的 PIN 碼。</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">請選擇一個強度較高的 PIN 碼</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN碼不符合。請重試一次。</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 碼不相符。請再試一次。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">確認你的 PIN 碼。</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 碼建立失敗</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">你的 PIN 碼未儲存。我們稍後會提示你建立 PIN 碼。</string>
@@ -2269,7 +2265,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">建立PIN碼中…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">介紹 PIN 碼</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 碼用於加密在 Signal 中儲存的資訊，以確保只得你可以存取。當你重新安裝應用程式後，你的個人資料、設定和聯絡人將會還原。開啟應用程式不需要你的 PIN 碼。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">註冊鎖 = PIN 碼</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的註冊鎖現在稱為PIN碼，並且功能更多。 請立即更新。</string>
@@ -2319,8 +2315,8 @@
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s將從你這邊收到訊息要求。你的留言請求被接受後，您可以撥電話。</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__create_a_pin">建立一個PIN碼</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN碼可保存使用Signal加密儲存的資訊。</string>
+  <string name="KbsMegaphone__create_a_pin">建立一個 PIN 碼</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN 碼用於加密在 Signal 中儲存的資訊。</string>
   <string name="KbsMegaphone__create_pin">建立 PIN 碼</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">告訴Signal你的想法</string>
@@ -2408,7 +2404,7 @@
   <string name="preferences_app_protection__create_a_pin">建立 PIN 碼</string>
   <string name="preferences_app_protection__change_your_pin">變更你的 PIN 碼</string>
   <string name="preferences_app_protection__pin_reminders">PIN 碼提示器</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存資訊，因此只有你可以讀取。 重新安裝Signal時，你的個人資料，設定和聯絡人將復元。</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 碼用於加密在 Signal 中儲存的資訊，以確保只得你可以存取。當你重新安裝 Signal 後，你的個人資料、設定和聯絡人將會還原。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">透過要求你的Signal PIN碼重新在Signal上註冊你的電話號碼來增加安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">提醒可以幫助你記住你的PIN碼，因為它無法回復。 隨著時間的過去，你的詢問頻率會降低。</string>
   <string name="preferences_app_protection__turn_off">關閉</string>
@@ -2788,7 +2784,7 @@
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">帳號</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">隨著時間的流逝，你的詢問頻率會降低</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">需要你的Signal PIN碼才能再次向Signal註冊你的電話號碼</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">要求你的 Signal PIN 碼才能在 Signal 再次註冊你的電話號碼</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按下輸入鍵發送</string>
@@ -2802,7 +2798,7 @@
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">已封鎖</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d 個聯絡人</string>
-  <string name="PrivacySettingsFragment__messaging">傳送訊息中</string>
+  <string name="PrivacySettingsFragment__messaging">傳訊</string>
   <string name="PrivacySettingsFragment__disappearing_messages">自動銷毀訊息</string>
   <string name="PrivacySettingsFragment__app_security">應用程式安全性</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">在對話清單或應用程式內停用畫面擷取功能</string>
@@ -2826,11 +2822,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">自定義時間</string>
   <string name="ExpireTimerSettingsFragment__set">設定</string>
   <string name="ExpireTimerSettingsFragment__save">儲存</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">秒</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">分鐘</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">小時</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">天</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">週</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">秒</string>
+  <string name="CustomExpireTimerSelectorView__minutes">分</string>
+  <string name="CustomExpireTimerSelectorView__hours">小時</string>
+  <string name="CustomExpireTimerSelectorView__days">日</string>
+  <string name="CustomExpireTimerSelectorView__weeks">週</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">支援中心</string>
   <string name="HelpSettingsFragment__contact_us">與我們聯繫</string>

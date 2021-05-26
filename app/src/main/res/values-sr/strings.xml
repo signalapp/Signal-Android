@@ -672,7 +672,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">надогради ову групу.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ово је несигурна ММС група. Да бисте приватно ћаскали, позовите своје контакте у Signal.</string>
   <string name="ManageGroupActivity_invite_now">Позови сада</string>
-  <string name="ManageGroupActivity_more">…више</string>
+  <string name="ManageGroupActivity_more">више</string>
   <string name="ManageGroupActivity_add_group_description">Додај опис групи…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Обавести ме за помињања</string>
@@ -1168,10 +1168,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа да покушавате повезати Signal уређај користећи спољашњи читач бар-кôда. Због сопствене заштите, очитајте кôд поново помоћу Signal-a.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal захтева приступ камери да би скенирао QR кôд, али су му дозволе трајно забрањене. Молимо вас да у апликацији за подешавање телефона Signal-у дозволите пруиступ камери.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Није могуће скенирати QR кôд без дозволе камере</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Нестајуће поруке</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Ваше поруке неће истећи.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Примљене и послате поруке ове преписке ће нестати %s након што су погледане.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај сада</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ваша верзија Signal-а истиче данас. Ажурирате на најновију верзију.</string>
@@ -2993,11 +2989,11 @@
   <string name="ExpireTimerSettingsFragment__custom_time">Прилагодити време</string>
   <string name="ExpireTimerSettingsFragment__set">Поставити</string>
   <string name="ExpireTimerSettingsFragment__save">Сачувај</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Секунд</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Минут</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Сат</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Дан</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Недеља</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">секунд(и)</string>
+  <string name="CustomExpireTimerSelectorView__minutes">минута</string>
+  <string name="CustomExpireTimerSelectorView__hours">сати</string>
+  <string name="CustomExpireTimerSelectorView__days">дан(а)</string>
+  <string name="CustomExpireTimerSelectorView__weeks">недељ(а)</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центар за подршку</string>
   <string name="HelpSettingsFragment__contact_us">Контактирај нас</string>

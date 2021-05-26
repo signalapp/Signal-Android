@@ -639,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">aktualisiere diese Gruppe.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine unverschlüsselte MMS-Gruppe. Lade deine Kontakte zu Signal ein, um dich vertraulich zu unterhalten.</string>
   <string name="ManageGroupActivity_invite_now">Jetzt einladen</string>
-  <string name="ManageGroupActivity_more">… mehr</string>
+  <string name="ManageGroupActivity_more">mehr</string>
   <string name="ManageGroupActivity_add_group_description">Gruppenbeschreibung hinzufügen …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich über Erwähnungen benachrichtigen</string>
@@ -1110,10 +1110,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Du versuchst offenbar, ein Signal-Gerät mithilfe einer fremden Scanner-App zu koppeln. Bitte scanne den QR-Code zu deinem Schutz direkt aus Signal ein.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-Codes können ohne die Berechtigung »Kamera« nicht eingescannt werden.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Verschwindende Nachrichten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Deine Nachrichten laufen nicht ab.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Gesendete und empfangene Nachrichten dieser Unterhaltung werden %s nach dem Lesen verschwinden.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Jetzt aktualisieren</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere auf die neueste Version.</string>
@@ -1174,7 +1170,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren, um weiterhin zu kommunizieren</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Hilf dabei, Spam auf Signal zu verhindern, und schließe die Verifikation ab.</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nach erfolgter Verifikation kannst du wieder Nachrichten senden. Alle pausierten Nachrichten werden dann automatisch versendet.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nach abgeschlossener Verifikation kannst du wieder Nachrichten senden. Alle pausierten Nachrichten werden dann automatisch versendet.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock">Freigeben</string>
@@ -1596,7 +1592,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Audioanhang aufnehmen und senden</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Audioaufnahme arretieren</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal für SMS aktivieren</string>
-  <string name="conversation_activity__message_could_not_be_sent">Nachricht konnte nicht versendet werden. Überprüfe deine Verbindung und versuche es erneut.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Nachricht konnte nicht versendet werden. Überprüfe deine Internetverbindung und versuche es erneut.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Zum Abbrechen wischen</string>
   <string name="conversation_input_panel__cancel">Abbrechen</string>
@@ -2062,11 +2058,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsAllActivityFragment__sent">Gesendet</string>
   <string name="PaymentsAllActivityFragment__received">Empfangen</string>
   <string name="PaymentsHomeFragment__introducing_payments">Neu: Zahlungen (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Verwende Signal, um MobileCoin zu senden und zu empfangen, eine neue und auf Datenschutz ausgerichtete digitale Währung. Aktivieren, um loszulegen.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Nutze Signal für das Senden und Empfangen von MobileCoin, einer neuen und auf Datenschutz ausgerichteten digitalen Währung. Aktivieren, um loszulegen.</string>
   <string name="PaymentsHomeFragment__activate_payments">Zahlungen aktivieren</string>
   <string name="PaymentsHomeFragment__activating_payments">Zahlungen werden aktiviert …</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Zahlungskonto wiederherstellen </string>
-  <string name="PaymentsHomeFragment__no_recent_activity_yet">Bisher keine Aktivitäten.</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Bisher noch keine Aktivitäten</string>
   <string name="PaymentsHomeFragment__pending_requests">Ausstehende Anfragen</string>
   <string name="PaymentsHomeFragment__recent_activity">Letzte Aktivitäten</string>
   <string name="PaymentsHomeFragment__see_all">Alle anzeigen</string>
@@ -2085,7 +2081,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsHomeFragment__processing_payment">Zahlung wird verarbeitet</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Währungsumrechnung nicht verfügbar</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Währungsumrechnung kann nicht angezeigt werden. Überprüfe deine Telefonverbindung und versuche es erneut.</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Währungsumrechnung kann nicht angezeigt werden. Überprüfe die Internetverbindung deines Telefons und versuche es erneut.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Zahlungen sind in deiner Region nicht verfügbar.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Zahlungen konnten nicht aktiviert werden. Bitte versuche es später erneut.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Zahlungen deaktivieren?</string>
@@ -2901,11 +2897,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpireTimerSettingsFragment__custom_time">Personalisierte Zeit</string>
   <string name="ExpireTimerSettingsFragment__set">Festlegen</string>
   <string name="ExpireTimerSettingsFragment__save">Speichern</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Sekunde(n)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minute(n)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Stunde(n)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Tag(e)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Woche(n)</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">Sekunde(n)</string>
+  <string name="CustomExpireTimerSelectorView__minutes">Minute(n)</string>
+  <string name="CustomExpireTimerSelectorView__hours">Stunde(n)</string>
+  <string name="CustomExpireTimerSelectorView__days">Tag(e)</string>
+  <string name="CustomExpireTimerSelectorView__weeks">Woche(n)</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Support-Center</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktiere uns</string>

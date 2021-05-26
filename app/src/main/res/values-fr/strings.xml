@@ -1101,10 +1101,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous tentiez de relier un appareil Signal en utilisant un lecteur tiers. Pour votre protection, veuillez balayer le code de nouveau à partir Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de balayer un code QR sans l’autorisation Appareil photo</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Messages éphémères</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages n’expireront pas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus de cette conversation disparaîtront %s après avoir été lus.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Mettre Signal à jour maintenant</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal expirera aujourd’hui. Passez à la version la plus récente.</string>
@@ -2665,6 +2661,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si cette option est activée, les nouveaux messages envoyés et reçus dans cette conversation disparaîtront après avoir été lus.</string>
   <string name="ExpireTimerSettingsFragment__off">Désactivé</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 semaines</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 semaine</string>
@@ -2673,13 +2670,14 @@
   <string name="ExpireTimerSettingsFragment__1_hour">1 heure</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 secondes</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Délai personnalisé</string>
   <string name="ExpireTimerSettingsFragment__set">Définir</string>
   <string name="ExpireTimerSettingsFragment__save">Enregistrer</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Seconde</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minute</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Heure</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Jour</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Semaine</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">seconde</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
+  <string name="CustomExpireTimerSelectorView__hours">heures</string>
+  <string name="CustomExpireTimerSelectorView__days">jours</string>
+  <string name="CustomExpireTimerSelectorView__weeks">semaines</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centre d’assistance</string>
   <string name="HelpSettingsFragment__contact_us">Nous contacter</string>

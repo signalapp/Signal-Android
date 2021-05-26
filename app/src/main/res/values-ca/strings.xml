@@ -639,7 +639,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualitzeu aquest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament, convideu els contactes al Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convida ara</string>
-  <string name="ManageGroupActivity_more">més…</string>
+  <string name="ManageGroupActivity_more">més</string>
   <string name="ManageGroupActivity_add_group_description">Afegiu-hi una descripció del grup.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
@@ -1111,10 +1111,6 @@
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembla que esteu provant d\'enllaçar un dispositiu de Signal amb un escàner extern. Per seguretat, torneu a escanejar el codi dins del Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">El Signal necessita el permís de la càmera per tal d\'escanejar un codi QR, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi la càmera.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No es pot escanejar un codi QR sense permís de la càmera.</string>
-  <!--ExpirationDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Missatges efímers</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no venceran.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Els missatges enviats i rebuts a aquesta conversa desapareixeran %s després que s\'hagin llegit.</string> -->
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Actualitza-la ara</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">La vostra versió del Signal vencerà avui. Actualitzeu-la a la versió més recent.</string>
@@ -2906,11 +2902,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpireTimerSettingsFragment__custom_time">Temps personalitzat</string>
   <string name="ExpireTimerSettingsFragment__set">Estableix</string>
   <string name="ExpireTimerSettingsFragment__save">Desa</string>
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__second">Segon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__minute">Minut</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__hour">Hora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__day">Dia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CustomExpireTimerSelectorView__week">Setmana</string> -->
+  <string name="CustomExpireTimerSelectorView__seconds">segons</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minuts</string>
+  <string name="CustomExpireTimerSelectorView__hours">hores</string>
+  <string name="CustomExpireTimerSelectorView__days">dies</string>
+  <string name="CustomExpireTimerSelectorView__weeks">setmanes</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Centre d\'assistència</string>
   <string name="HelpSettingsFragment__contact_us">Contacteu-nos</string>
