@@ -612,7 +612,6 @@
   <string name="ManageGroupActivity_mute_notifications">ئۈنسىز ئۇقتۇرۇش</string>
   <string name="ManageGroupActivity_custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <string name="ManageGroupActivity_mentions">تىلغا ئالغانلار</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">سۆھبەت تام قەغەز</string> -->
   <string name="ManageGroupActivity_until_s">%1$s غىچە</string>
   <string name="ManageGroupActivity_always">ھەمىشە</string>
   <string name="ManageGroupActivity_off">تاقاق</string>
@@ -1225,6 +1224,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s دىن ئۈن ۋە سىن تاپشۇرۇۋالالمايدۇ</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s دىن ئۈن ۋە سىن تاپشۇرۇۋالالمايدۇ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">بۇنداق بولۇشىنىڭ سەۋەبى ئۇلار سىزنىڭ بىخەتەرلىك نومۇرىنى ئۆزگەرتكەنلىكىڭىزنى دەلىللىمىگەن بولۇشى مۇمكىن، ياكى ئۇلارنىڭ ئۈسكۈنىسىدە مەسىلە بار ۋە ياكى ئۇلار سىزنى چەكلىۋەتكەن بولۇشى مۇمكىن.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">ۋاكالەتچى مۇلازىمېتىر</string>
   <string name="ProxyBottomSheetFragment_proxy_address">ۋاكالەتچى ئادرېس</string>
@@ -1768,7 +1768,7 @@
   <string name="EditAboutFragment_taking_a_break">ئارام ئارايلى</string>
   <string name="EditAboutFragment_working_on_something_new">يېڭىلىقنى سىنايلى</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">گۇرۇپپا ئاتى ۋە باش سۈرەت تەھرىر</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">گۇرۇپپا ئاتى ۋە باش سۈرەت تەھرىر</string> -->
   <string name="EditProfileFragment__group_name">گۇرۇپپا ئاتى</string>
   <string name="EditProfileFragment__group_description">گۇرۇپپا تونۇشتۇرۇشى</string>
   <!--EditProfileNameFragment-->
@@ -2744,17 +2744,15 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">سۆھبەت رەڭگى</string>
   <string name="ChatWallpaperFragment__set_wallpaper">تام قەغىزىنى بېكىتىش</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">قاراڭغۇ تېما تام قەغىزىنى گىرىمسەنلەشتۈرىدۇ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">تام قەغىزىنى تازىلىۋەت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">بۇ سۆھبەتنىڭ تام قەغىزىنى تازىلىۋېتەمسىز؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">تام قەغىزىنى تازىلاشمۇ؟ بۇ سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىڭىزنى تازىلىۋەتمەيدۇ. </string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">بارلىق تام قەغەزلىرىنى قايتا تەڭشە</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">سىزنىڭ سۆھبەتلىرىڭىز ئۈچۈن خاسلاشتۇرغان تام قەغەزلىرىنىمۇ ئۆز ئىچىگە ئالغان، بارلىق تام قەغەزلىرىنى قايتىدىن تەڭشەمسىز؟ </string> -->
   <string name="ChatWallpaperFragment__contact_name">ئالاقەداش نامى</string>
   <string name="ChatWallpaperFragment__reset">قايتا بېكىتىش</string>
   <string name="ChatWallpaperFragment__clear">تازىلا</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">تام قەغىزىنى ئالدىن كۆرۈش</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ھەممە سۆھبەت رەڭگىنى قاپلىۋېتەمسىز؟</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">ھەممە تام قەغەزنى قاپلىۋېتەمسىز؟</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">بارلىق تام قەغەزلىرىنى قايتا تەڭشە</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">رەسىملەردىن تاللا</string>
   <string name="ChatWallpaperSelectionFragment__presets">ئالدىن بېكىتىش</string>
@@ -2856,6 +2854,7 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">بۇ گۇرۇپپىدا ئالاقەداشلىرىڭىز ياكى سىز پاراڭلاشقان كىشى يوق كېرەكسىز ئۇچۇرلاردىن ساقلىنىش ئۈچۈن قوشۇلۇشتىن ئىلگىرى تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">ئۇچۇر ئىلتىماسى ھەققىدە</string>
   <string name="GroupsInCommonMessageRequest__okay">جەزملە</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">رەڭ پەقەت سىزگىلا كۆرۈنىدۇ.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">گۇرۇپپا تونۇشتۇرۇشى</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2922,5 +2921,18 @@
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ئىجازىتىدە تارقىتىلدى</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">سۆھبەت رەڭگى</string>
+  <string name="ChatColorSelectionFragment__edit">تەھرىر</string>
+  <string name="ChatColorSelectionFragment__duplicate">كۆچۈر</string>
+  <string name="ChatColorSelectionFragment__delete">ئۆچۈر</string>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">قېنىق</string>
+  <string name="CustomChatColorCreatorFragment__gradient">يانتۇلۇق</string>
+  <string name="CustomChatColorCreatorFragment__hue">سايە</string>
+  <string name="CustomChatColorCreatorFragment__saturation">تويۇنۇش</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">ساقلا</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

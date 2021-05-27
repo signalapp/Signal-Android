@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenzia notifiche</string>
   <string name="ManageGroupActivity_custom_notifications">Notifiche personalizzate</string>
   <string name="ManageGroupActivity_mentions">Menzioni</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Sfondo chat</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Colore chat &amp; sfondo</string>
   <string name="ManageGroupActivity_until_s">Fino a %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Off</string>
@@ -1209,6 +1209,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Nessun altro è qui</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s è in questa chiamata</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s e %2$s sono in questa chiamata</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s sta presentando</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, e %3$d altro sono in questa chiamata</item>
     <item quantity="other">%1$s, %2$s, e altri %3$d sono in questa chiamata</item>
@@ -1225,6 +1226,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Non è possibile ricevere audio &amp; video da %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non è possibile ricevere audio e video da %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ciò potrebbe essere dovuto al fatto che non hanno verificato la modifica del codice di sicurezza, c\'è un problema con il loro dispositivo o ti hanno bloccato.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Scorri per vedere la condivisione dello schermo</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Server proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Indirizzo proxy</string>
@@ -1769,7 +1772,7 @@
   <string name="EditAboutFragment_taking_a_break">Mi sto prendendo una pausa</string>
   <string name="EditAboutFragment_working_on_something_new">Al lavoro su qualcosa di nuovo</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Modifica nome e foto del gruppo</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Modifica nome e foto del gruppo</string> -->
   <string name="EditProfileFragment__group_name">Nome del gruppo</string>
   <string name="EditProfileFragment__group_description">Descrizione gruppo</string>
   <!--EditProfileNameFragment-->
@@ -1965,6 +1968,7 @@
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Sfondo chat</string>
+  <string name="preferences__chat_color_and_wallpaper">Colore chat &amp; sfondo</string>
   <string name="preferences__disable_pin">Disabilita PIN</string>
   <string name="preferences__enable_pin">Abilita PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
@@ -2745,17 +2749,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Sfondo chat</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Colore chat</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Resetta colori chat</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Resetta colore chat</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Resettare colore chat?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Imposta sfondo</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Attenua lo sfondo nel tema scuro</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Rimuovi sfondo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rimuovere lo sfondo per questa chat?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rimuovere lo sfondo? Questo non rimuoverà gli sfondi personalizzati che hai scelto per le tue chat.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetta tutti gli sfondi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resettare tutti gli sfondi, inclusi quelli personalizzati che hai scelto per le tue chat?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Attenua lo sfondo nella modalità scura</string>
   <string name="ChatWallpaperFragment__contact_name">Nome contatto</string>
   <string name="ChatWallpaperFragment__reset">Resetta</string>
   <string name="ChatWallpaperFragment__clear">Rimuovi</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Anteprima sfondo</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vuoi sovrascrivere tutti i colori delle chat?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vuoi sovrascrivere tutti gli sfondi?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Resetta colori predefiniti</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Resetta tutti i colori</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Resetta sfondo predefinito</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetta tutti gli sfondi</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Resetta sfondi</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Resetta sfondo</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Resettare sfondo?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Scegli dalle foto</string>
   <string name="ChatWallpaperSelectionFragment__presets">Predefiniti</string>
@@ -2857,6 +2869,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nessuno dei tuoi contatti o delle persone con cui hai chattato è in questo gruppo. Controlla attentamente le richieste prima di accettarle per evitare messaggi indesiderati.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Informazioni sulle richieste di messaggi</string>
   <string name="GroupsInCommonMessageRequest__okay">Ok</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ecco un\'anteprima del colore della chat.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Il colore è visibile solo a te.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Descrizione gruppo</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2923,5 +2937,32 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Distribuito con licenza GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Chiamate</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automatico</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Usa colori personalizzati</string>
+  <string name="ChatColorSelectionFragment__chat_color">Colore chat</string>
+  <string name="ChatColorSelectionFragment__edit">Modifica</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplica</string>
+  <string name="ChatColorSelectionFragment__delete">Elimina</string>
+  <string name="ChatColorSelectionFragment__delete_color">Elimina colore</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Questo colore personalizzato è usato in %1$d chat. Vuoi eliminarlo per tutte le chat?</item>
+    <item quantity="other">Questo colore personalizzato è usato in %1$d chat. Vuoi eliminarlo per tutte le chat?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Tinta unita</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradiente</string>
+  <string name="CustomChatColorCreatorFragment__hue">Tonalità</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturazione</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Salva</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Modifica colore</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Questo colore è usato in %1$d chat. Vuoi salvare le modifiche per tutte le chat?</item>
+    <item quantity="other">Questo colore è usato in %1$d chat. Vuoi salvare le modifiche per tutte le chat?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Selettore bordo superiore</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Selettore bordo inferiore</string>
   <!--EOF-->
 </resources>

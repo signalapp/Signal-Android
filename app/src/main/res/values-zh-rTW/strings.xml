@@ -579,7 +579,7 @@
   <string name="ManageGroupActivity_mute_notifications">將通知調整為靜音</string>
   <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
   <string name="ManageGroupActivity_mentions">提及</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">聊天壁紙</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天顏色&amp;壁紙</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">永遠</string>
   <string name="ManageGroupActivity_off">關</string>
@@ -1150,6 +1150,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">沒有人在這裡</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s正在此通話中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 及 %2$s 正在此通話中</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s 正在展示</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, 及 %3$d 其他人正在通話中</item>
   </plurals>
@@ -1164,6 +1165,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">無法從 %1$s收到語音 &amp; 影片</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">無法從 %1$s 收到語音或影片</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">這可能是因為他們尚未驗證你的變更的安全號碼，他們的裝置有問題或已封鎖了你。</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">滑動即可查看螢幕畫面共享</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">代理伺服器</string>
   <string name="ProxyBottomSheetFragment_proxy_address">代理伺服器位址</string>
@@ -1693,7 +1696,7 @@
   <string name="EditAboutFragment_taking_a_break">正在休息中</string>
   <string name="EditAboutFragment_working_on_something_new">從事新事物</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">編輯群組名稱及照片</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">編輯群組名稱及照片</string> -->
   <string name="EditProfileFragment__group_name">群組名稱</string>
   <string name="EditProfileFragment__group_description">群組描述</string>
   <!--EditProfileNameFragment-->
@@ -1888,6 +1891,7 @@
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__chat_wallpaper">聊天壁紙</string>
+  <string name="preferences__chat_color_and_wallpaper">聊天顏色&amp;壁紙</string>
   <string name="preferences__disable_pin">停用 PIN 碼</string>
   <string name="preferences__enable_pin">啟用 PIN 碼</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果你停用 PIN 碼，則除非你進行手動備份和還原，否則當你重新註冊 Signal 時，將會遺失所有資料。停用 PIN 碼時無法開啟註冊鎖定。</string>
@@ -2659,17 +2663,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">聊天壁紙</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">聊天的顏色</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">重設聊天顏色</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">重設聊天顏色</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">重設聊天顏色嗎?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">設定壁紙</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">黑暗主題暗淡壁紙</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">清除壁紙</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">清除此聊天的壁紙嗎?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">清除壁紙嗎? 這不會清除你為聊天設定的自定義壁紙。</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">重設所有壁紙</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">重設所有壁紙，包括為聊天設定的自定義壁紙?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">暗黑模式暗淡壁紙</string>
   <string name="ChatWallpaperFragment__contact_name">聯絡人名稱</string>
   <string name="ChatWallpaperFragment__reset">重設</string>
   <string name="ChatWallpaperFragment__clear">清除</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">壁紙預覽</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">你要覆蓋所有聊天顏色嗎？</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">你要覆蓋所有壁紙嗎？</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">重設預設顏色</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">重設所有顏色</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">重設預設壁紙</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">重設所有壁紙</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">重設壁紙</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">重設壁紙</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">要重設壁紙嗎</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">從照片中選擇</string>
   <string name="ChatWallpaperSelectionFragment__presets">預設值</string>
@@ -2771,6 +2783,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">你的聯絡人或與之聊天的人均不在此群組中。 接受之前，請仔細檢查請求，以避免出現不必要的訊息。</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">關於訊息請求</string>
   <string name="GroupsInCommonMessageRequest__okay">好的</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">這是聊天顏色的預覽。</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">該顏色只有你可以看見。</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">群組描述</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2837,5 +2851,30 @@
   <string name="HelpFragment__licenced_under_the_gplv3">根據GPLv3授權</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">自動</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">使用自定義顏色</string>
+  <string name="ChatColorSelectionFragment__chat_color">聊天的顏色</string>
+  <string name="ChatColorSelectionFragment__edit">編輯</string>
+  <string name="ChatColorSelectionFragment__duplicate">重複的</string>
+  <string name="ChatColorSelectionFragment__delete">刪除</string>
+  <string name="ChatColorSelectionFragment__delete_color">刪除顏色</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="other">此自定義顏色用於%1$d的聊天中。 你要刪除所有聊天記錄嗎？</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">立體</string>
+  <string name="CustomChatColorCreatorFragment__gradient">坡度</string>
+  <string name="CustomChatColorCreatorFragment__hue">色調</string>
+  <string name="CustomChatColorCreatorFragment__saturation">飽和度</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">儲存</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">編輯顏色</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="other">此顏色用於%1$d的聊天。 你要保存所有聊天的變更嗎？</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">頂部邊緣選擇器</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">底部邊緣選擇器</string>
   <!--EOF-->
 </resources>

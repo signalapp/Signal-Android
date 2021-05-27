@@ -602,7 +602,6 @@
   <string name="ManageGroupActivity_mute_notifications">सूचना म्यूट करा</string>
   <string name="ManageGroupActivity_custom_notifications">सानुकूल सूचना</string>
   <string name="ManageGroupActivity_mentions">उल्लेख</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">चॅट वॉलपेपर</string> -->
   <string name="ManageGroupActivity_until_s">%1$s पर्यंत</string>
   <string name="ManageGroupActivity_off">बंद</string>
   <string name="ManageGroupActivity_on">चालू</string>
@@ -1205,6 +1204,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s कडून ऑडिओ आणि व्हिडिओ प्राप्त करू शकत नाही</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s कडून ऑडिओ आणि व्हिडिओ प्राप्त करू शकत नाही</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">त्यांनी आपला सुरक्षितता नंबर बदल सत्यापित न केल्यामुळे, त्यांच्या डिव्हाईसमध्ये काहीतरी समस्या असल्यामुळे, किंवा त्यांनी आपल्याला ब्लॉक केल्यामुळे असे असू शकते.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">प्रॉक्सी सर्व्हर</string>
   <string name="ProxyBottomSheetFragment_proxy_address">प्रॉक्सी पत्ता</string>
@@ -1723,7 +1723,7 @@
   <string name="EditAboutFragment_taking_a_break">आराम करत आहे</string>
   <string name="EditAboutFragment_working_on_something_new">काहीतरी नवीन काम करत आहे</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">गट नाव आणि फोटो संपादित करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">गट नाव आणि फोटो संपादित करा</string> -->
   <string name="EditProfileFragment__group_name">गट नाव</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">आपले नाव</string>
@@ -2479,17 +2479,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">चॅट वॉलपेपर</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">चॅट रंग</string>
   <string name="ChatWallpaperFragment__set_wallpaper">वॉलपेपर सेट करा</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">गडद थीम वॉलपेपर अस्पष्ट बनवतो</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">वॉलपेपर साफ करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">या चॅटसाठी वॉलपेपर साफ करायचा?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">वॉलपेपर साफ करायचा? आपण आपल्या चॅटसाठी सेट केलेले सानुकूलित वॉलपेपर हे साफ करणार नाही.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">सर्व वॉलपेपर रीसेट करा</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">सर्व वॉलपेपर रीसेट करा. आपण आपल्या चॅटसाठी सेट केलेले सानुकूलित वॉलपेपर देखील?</string> -->
   <string name="ChatWallpaperFragment__contact_name">संपर्क नाव</string>
   <string name="ChatWallpaperFragment__reset">रीसेट करा</string>
   <string name="ChatWallpaperFragment__clear">साफ करा</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">वॉलपेपर पुनरावलोकन</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">सर्व वॉलपेपर रीसेट करा</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">फोटोमधून निवडा</string>
   <string name="ChatWallpaperSelectionFragment__presets">प्रीसेट</string>
@@ -2565,5 +2561,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">अटी आणि गोपनीयता धोरण</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">चॅट रंग</string>
+  <string name="ChatColorSelectionFragment__edit">संपादन</string>
+  <string name="ChatColorSelectionFragment__delete">हटवा</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">जतन करा</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

@@ -605,7 +605,6 @@
   <string name="ManageGroupActivity_mute_notifications">Desaktibatu jakinarazpenak</string>
   <string name="ManageGroupActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string>
   <string name="ManageGroupActivity_mentions">Aipamenak</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Elkarrizketaren hormairudia</string> -->
   <string name="ManageGroupActivity_until_s">%1$s dataraino</string>
   <string name="ManageGroupActivity_off">Desaktibatuta</string>
   <string name="ManageGroupActivity_on">Aktibatuta</string>
@@ -1208,6 +1207,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Ezin da %1$s erabiltzailearen audio eta bideorik jaso.</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ezin da %1$s erabiltzailearen audio eta bideorik jaso.</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Hau zure segurtasun-zenbakiaren aldaketa egiaztatu ez duzulako, euren gailuan arazoren bat dutelako edo blokeatu egin zaituztelako izan daiteke.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy zerbitzaria</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyaren helbidea</string>
@@ -1729,7 +1729,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="EditAboutFragment_taking_a_break">Atsedena hartzen</string>
   <string name="EditAboutFragment_working_on_something_new">Zerbait berrian lanean</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Editatu taldearen izena eta argazkia</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editatu taldearen izena eta argazkia</string> -->
   <string name="EditProfileFragment__group_name">Taldearen izena</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Zure izena</string>
@@ -2497,17 +2497,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Elkarrizketaren hormairudia</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Txat-aren kolorea</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Ezarri hormairudia</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Itxura ilunak hormairudia leundu egingo du</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Kendu hormairudia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kendu elkarrizketa honen hormairudia?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kendu hormairudia? Honek ez ditu zure elkarrizketetarako zuk ezarritako hormairudiak.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Berrezarri hormairudi guztiak</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Hormairudi guztiak berrezarri, zure elkarrizketetarako ezarri dituzunak barne?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktuaren izena</string>
   <string name="ChatWallpaperFragment__reset">Berrabiarazi</string>
   <string name="ChatWallpaperFragment__clear">Garbitu</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Aurreikusi hormairudia</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Berrezarri hormairudi guztiak</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Aukeratu argazkietatik</string>
   <string name="ChatWallpaperSelectionFragment__presets">Aurre-ezarpenak</string>
@@ -2585,5 +2581,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Baldintzak eta Pribatutasun Arauak</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Deiak</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Txat-aren kolorea</string>
+  <string name="ChatColorSelectionFragment__edit">Editatu</string>
+  <string name="ChatColorSelectionFragment__delete">Ezabatu</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Gorde</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

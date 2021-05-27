@@ -572,7 +572,6 @@
   <string name="ManageGroupActivity_mute_notifications">대화 알림 끄기</string>
   <string name="ManageGroupActivity_custom_notifications">맞춤형 알림</string>
   <string name="ManageGroupActivity_mentions">언급</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">채팅방 배경</string> -->
   <string name="ManageGroupActivity_until_s">%1$s까지</string>
   <string name="ManageGroupActivity_always">항상</string>
   <string name="ManageGroupActivity_off">꺼짐</string>
@@ -1149,6 +1148,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s 님의 음성 &amp; 동영상 수신 불가</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s 님의 음성 및 동영상 수신 불가</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">이는 안전 번호 변경을 확인하지 않았거나, 기기에 문제가 있거나 사용자를 차단했기 때문일 수 있습니다.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">프록시 서버</string>
   <string name="ProxyBottomSheetFragment_proxy_address">프록시 주소</string>
@@ -1664,7 +1664,7 @@
   <string name="EditAboutFragment_taking_a_break">쉬는 중</string>
   <string name="EditAboutFragment_working_on_something_new">새로운 것에 도전하는 중</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">그룹 이름 및 사진 수정</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">그룹 이름 및 사진 수정</string> -->
   <string name="EditProfileFragment__group_name">그룹 이름</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">내 이름</string>
@@ -2421,17 +2421,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">채팅방 배경</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">대화창 색</string>
   <string name="ChatWallpaperFragment__set_wallpaper">배경 설정하기</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">어두움 테마는 배경을 흐리게 합니다</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">배경 제거하기</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">이 채팅방의 배경을 제거하시겠습니까?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">배경을 제거하시겠습니까? 귀하의 채팅방에 임의로 설정한 배경들은 제거되지 않습니다.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">귀하의 채팅방에 임의로 설정한 배경들을 포함한 모든 배경들을 초기화하시겠습니까?</string> -->
   <string name="ChatWallpaperFragment__contact_name">연락처 이름</string>
   <string name="ChatWallpaperFragment__reset">초기화</string>
   <string name="ChatWallpaperFragment__clear">제거</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">배경 미리보기</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">사진에서 선택하기</string>
   <string name="ChatWallpaperSelectionFragment__presets">프리셋</string>
@@ -2515,5 +2511,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">이용 약관 &amp; 개인 정보 보호 정책</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">전화</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">대화창 색</string>
+  <string name="ChatColorSelectionFragment__edit">수정</string>
+  <string name="ChatColorSelectionFragment__delete">삭제</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">저장</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

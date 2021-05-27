@@ -608,7 +608,6 @@
   <string name="ManageGroupActivity_mute_notifications">Silentigi sciigojn</string>
   <string name="ManageGroupActivity_custom_notifications">Propraj sciigoj</string>
   <string name="ManageGroupActivity_mentions">Mencioj</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Interparola ekranfono</string> -->
   <string name="ManageGroupActivity_until_s">Ĝis %1$s</string>
   <string name="ManageGroupActivity_always">Ĉiam</string>
   <string name="ManageGroupActivity_off">Malŝaltita</string>
@@ -1214,6 +1213,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Sono kaj video el %1$s ne riceveblas</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Sono kaj video el %1$s ne riceveblas</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Eble ili ne kontrolis vian ŝanĝon de sekuriga numero, aŭ estas problemo ĉe ilia aparato, aŭ ili blokis vin.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Prokura servilo</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Prokura adreso</string>
@@ -1750,7 +1750,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="EditAboutFragment_taking_a_break">Mi paŭzas</string>
   <string name="EditAboutFragment_working_on_something_new">Mi laboras pri io nova</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string> -->
   <string name="EditProfileFragment__group_name">Nomo de la grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Via nomo</string>
@@ -2690,17 +2690,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Interparola ekranfono</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Koloro de interparolo</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Elekti ekranfonon</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Malhela etoso malheligas la ekranfonon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Forviŝi la ekranfonon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ĉu forviŝi la ekranfonon por tiu interparolo?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ĉu forviŝi la ekranfonon? Tio ne forviŝos la proprajn ekranfonojn, kiujn vi agordis en viaj interparoloj.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Restarigi ĉiujn ekranfonojn</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ĉu forviŝi ĉiujn ekranfonojn, inkuzive de la propraj ekranfonoj, kiujn vi agordis en viaj interparoloj?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktnomo</string>
   <string name="ChatWallpaperFragment__reset">Restarigi</string>
   <string name="ChatWallpaperFragment__clear">Forviŝi</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Antaŭrigardo de la ekranfono</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Restarigi ĉiujn ekranfonojn</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Elekti el la fotoj</string>
   <string name="ChatWallpaperSelectionFragment__presets">Antaŭagordoj</string>
@@ -2780,5 +2776,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Kondiĉoj de uzo kaj regularo pri privateco</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Alvokoj</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Koloro de interparolo</string>
+  <string name="ChatColorSelectionFragment__edit">Modifi</string>
+  <string name="ChatColorSelectionFragment__delete">Forigi</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Konservi</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

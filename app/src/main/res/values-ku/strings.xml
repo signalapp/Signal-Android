@@ -571,7 +571,6 @@
   <string name="ManageGroupActivity_mute_notifications">Danezanan bêdeng bike</string>
   <string name="ManageGroupActivity_custom_notifications">Danezanên taybet</string>
   <string name="ManageGroupActivity_mentions">Behskirin</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Paşrûya gotûbêjê</string> -->
   <string name="ManageGroupActivity_until_s">Heta tarîxa: %1$s</string>
   <string name="ManageGroupActivity_off">Girtî</string>
   <string name="ManageGroupActivity_on">Vekirî</string>
@@ -1121,6 +1120,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Ji %1$s deng û vîdyo nayên stendin</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ji %1$s deng û vîdyo nayên stendin</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dibe ku sedema vê; piştrastnekirina guherîna nimreya te ya ewlehiyê, pirsgirêkeke di cîhaza wan de an jî astengbûna te bin.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Navnîşana proxy</string>
@@ -1623,7 +1623,7 @@
   <string name="EditAboutFragment_taking_a_break">Bêhna xwe vedide</string>
   <string name="EditAboutFragment_working_on_something_new">Li ser tiştên nû dixebite</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Nav û wêneyê komê sererast bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Nav û wêneyê komê sererast bike</string> -->
   <string name="EditProfileFragment__group_name">Navê komê</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Navê te</string>
@@ -2344,16 +2344,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Paşrûya gotûbêjê</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Rengê gotûbêjê</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Paşrûyê saz bike</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Rûkara tarî paşrûyê reş dike</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê rake</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ji bo vê gotûbêjê paşrûyê rake?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Paşrûyê rake? Ev dê paşrûyên taybet ên ku te ji bo gotûbêjên xwe saz kirine raneke.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Hemû paşrûyan rake</string>
   <string name="ChatWallpaperFragment__contact_name">Navê kesî</string>
   <string name="ChatWallpaperFragment__reset">Reset bike</string>
   <string name="ChatWallpaperFragment__clear">Paqij bike</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Pêşdîtina paşrûyê</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Hemû paşrûyan rake</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Ji nav wêneyan hilbijêre</string>
   <string name="ChatWallpaperSelectionFragment__presets">Berê hazir</string>
@@ -2427,5 +2424,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Merc û Polîtîkaya Nihêniyê</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Gerîn</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Rengê gotûbêjê</string>
+  <string name="ChatColorSelectionFragment__edit">Sererast bike</string>
+  <string name="ChatColorSelectionFragment__delete">Jê bibe</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Tomar bike</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

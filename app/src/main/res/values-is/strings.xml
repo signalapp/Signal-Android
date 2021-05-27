@@ -611,7 +611,6 @@
   <string name="ManageGroupActivity_mute_notifications">Þagga tilkynningar</string>
   <string name="ManageGroupActivity_custom_notifications">Sérsniðnar tilkynningar</string>
   <string name="ManageGroupActivity_mentions">Minnst á</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string> -->
   <string name="ManageGroupActivity_until_s">Til %1$s</string>
   <string name="ManageGroupActivity_always">Alltaf</string>
   <string name="ManageGroupActivity_off">Af</string>
@@ -1225,6 +1224,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Gat ekki tekið við hljóði og mynd frá %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Gat ekki tekið við hljóði og mynd frá %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Það gæti verið vegna þess að viðkomandi hefur ekki sannreynt breytingu á öryggisnúmerinu þínu, það sé vandamál með tækið hans eða að viðkomandi hefur lokað á þig.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Milliþjónn (proxy)</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Vistfang milliþjóns</string>
@@ -1768,7 +1768,7 @@
   <string name="EditAboutFragment_taking_a_break">Er í pásu</string>
   <string name="EditAboutFragment_working_on_something_new">Vinn í einhverju nýju</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Breyta nafni og mynd hóps</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Breyta nafni og mynd hóps</string> -->
   <string name="EditProfileFragment__group_name">Heiti hóps</string>
   <string name="EditProfileFragment__group_description">Lýsing á hópnum</string>
   <!--EditProfileNameFragment-->
@@ -2749,17 +2749,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Bakgrunnsmynd spjalls</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Litur spjalls</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Setja bakgrunnsmynd</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dökkt þema dekkir bakgrunnsmynd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Hreinsa bakgrunnsmynd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hreinsa bakgrunnsmynd í þessu spjalli?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Endurstilla allar bakgrunnsmyndir? Þetta mun ekki hreinsa sérsniðnar bakgrunnsmyndir sem þú hefur sett upp fyrir spjallrásir.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Endurstilla allar bakgrunnsmyndir</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Endurstilla allar bakgrunnsmyndir, þar með taldar sérsniðnar bakgrunnsmyndir sem þú hefur sett upp fyrir spjallrásir?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nafn tengiliðar</string>
   <string name="ChatWallpaperFragment__reset">Endurstilla</string>
   <string name="ChatWallpaperFragment__clear">Hreinsa</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Forskoðun bakgrunnsmyndar</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Endurstilla allar bakgrunnsmyndir</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Velja úr myndum</string>
   <string name="ChatWallpaperSelectionFragment__presets">Forstillingar</string>
@@ -2927,5 +2923,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="HelpFragment__licenced_under_the_gplv3">Gefið út með GPLv3-notkunarleyfi</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Köll: </string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Litur spjalls</string>
+  <string name="ChatColorSelectionFragment__edit">Breyta</string>
+  <string name="ChatColorSelectionFragment__delete">Eyða</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Vista</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

@@ -672,7 +672,6 @@
   <string name="ManageGroupActivity_mute_notifications">Izklop obvestil</string>
   <string name="ManageGroupActivity_custom_notifications">Obvestila po meri</string>
   <string name="ManageGroupActivity_mentions">Omembe</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Ozadje pogovora</string> -->
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Za vedno</string>
   <string name="ManageGroupActivity_off">Izklopljena</string>
@@ -1341,6 +1340,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Ne morete prejemati zvoka &amp; videa od uporabnika/ce %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ne morete prejemati zvoka in videa od uporabnika/ce %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To je zato, ker niso overili vašega spremenjenega varnostnega števila, ker je nek problem na njihovi napravi ali pa so vas blokirali.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proksi strežnik</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Naslov proksi</string>
@@ -1901,7 +1901,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="EditAboutFragment_taking_a_break">Možgani na off</string>
   <string name="EditAboutFragment_working_on_something_new">Delam na nečem …</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Uredi ime in fotografijo skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Uredi ime in fotografijo skupine</string> -->
   <string name="EditProfileFragment__group_name">Ime skupine</string>
   <string name="EditProfileFragment__group_description">Opis skupine</string>
   <!--EditProfileNameFragment-->
@@ -2816,17 +2816,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ozadje pogovora</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Barva pogovora</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Določi ozadje</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatemnjeno ozadje pri temni témi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Ponastavi ozadje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Želite ponastaviti ozadje za ta klepet?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Želite ponastaviti ozadje? To ne bo ponastavilo ozadij po meri, ki ste jih izbrali za svoje pogovore.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ponastavi vsa ozadja</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Želite ponastaviti vsa ozadja za vse vaše pogovore, tudi tista, po meri?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Ime stika</string>
   <string name="ChatWallpaperFragment__reset">Ponastavi</string>
   <string name="ChatWallpaperFragment__clear">Izbriši</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Predogled ozadja</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ponastavi vsa ozadja</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Izberi izmed fotografij</string>
   <string name="ChatWallpaperSelectionFragment__presets">Prednastavljeni</string>
@@ -2938,5 +2934,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__licenced_under_the_gplv3">Pod licenco GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Klici</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Barva pogovora</string>
+  <string name="ChatColorSelectionFragment__edit">Uredi</string>
+  <string name="ChatColorSelectionFragment__delete">Izbriši</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Shrani</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

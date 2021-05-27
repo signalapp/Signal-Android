@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Išjungti pranešimus</string>
   <string name="ManageGroupActivity_custom_notifications">Tinkinti pranešimai</string>
   <string name="ManageGroupActivity_mentions">Paminėjimai</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Pokalbio fonas</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Pokalbio spalva ir fonas</string>
   <string name="ManageGroupActivity_until_s">Iki %1$s</string>
   <string name="ManageGroupActivity_always">Visada</string>
   <string name="ManageGroupActivity_off">Išjungta</string>
@@ -1325,6 +1325,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Čia daugiau nieko nėra</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s yra šiame skambutyje</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ir %2$s yra šiame skambutyje</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s pristatinėja</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
     <item quantity="few">%1$s, %2$s ir dar %3$d žmonės yra šiame skambutyje</item>
@@ -1345,6 +1346,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Negalima gauti garso ir vaizdo iš %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Negalima gauti garso ir vaizdo iš %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Taip gali būti dėl to, kad šis naudotojas nepatvirtino jūsų saugumo numerio pasikeitimo, atsirado problemų su naudotojo įrenginiu arba jis jus užblokavo.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Įgaliotasis serveris</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Įgaliotojo serverio adresas</string>
@@ -1913,7 +1915,7 @@
   <string name="EditAboutFragment_taking_a_break">Man pertrauka</string>
   <string name="EditAboutFragment_working_on_something_new">Dirbu ties kažkuo nauju</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Taisyti grupės pavadinimą ir nuotrauką</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Taisyti grupės pavadinimą ir nuotrauką</string> -->
   <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>
   <string name="EditProfileFragment__group_description">Grupės aprašas</string>
   <!--EditProfileNameFragment-->
@@ -2111,6 +2113,7 @@
   <string name="preferences__appearance">Išvaizda</string>
   <string name="preferences__theme">Apipavidalinimas</string>
   <string name="preferences__chat_wallpaper">Pokalbio fonas</string>
+  <string name="preferences__chat_color_and_wallpaper">Pokalbio spalva ir fonas</string>
   <string name="preferences__disable_pin">Išjungti PIN kodą</string>
   <string name="preferences__enable_pin">Įjungti PIN kodą</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
@@ -2909,17 +2912,20 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Pokalbio fonas</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Pokalbio spalva</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Atstatyti pokalbio spalvas</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Atstatyti pokalbio spalvą</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Atstatyti pokalbio spalvą?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Nustatyti foną</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tamsus apipavidalinimas pritemdo foną</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Išvalyti foną</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Išvalyti šio pokalbio foną?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Išvalyti foną? Tai neišvalys tinkintų fonų, kuriuos nustatėte savo pokalbiams.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Atstatyti visus fonus</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Atstatyti visus fonus, įskaitant tinkintus fonus, kuriuos nustatėte savo pokalbiams?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Adresato vardas</string>
   <string name="ChatWallpaperFragment__reset">Atstatyti</string>
   <string name="ChatWallpaperFragment__clear">Išvalyti</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Fono peržiūra</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Ar norėtumėte nustelbti visus fonus?</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Atstatyti visus fonus</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Atstatyti fonus</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Atstatyti foną</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Atstatyti foną?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Pasirinkti iš nuotraukų</string>
   <string name="ChatWallpaperSelectionFragment__presets">Išankstinės parinktys</string>
@@ -3021,6 +3027,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Šioje grupėje nėra nei vieno jūsų adresato ar žmogaus, su kuriuo bendraujate. Prieš priimdami, atidžiai peržiūrėkite prašymus, kad išvengtumėte nepageidaujamų žinučių.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Apie žinučių užklausas</string>
   <string name="GroupsInCommonMessageRequest__okay">Gerai</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Štai pokalbio spalvos peržiūra.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Spalva yra matoma tik jums.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Grupės aprašas</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3087,5 +3095,17 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Licencijuota pagal GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Skambučiai</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__use_custom_colors">Naudoti tinkintas spalvas</string>
+  <string name="ChatColorSelectionFragment__chat_color">Pokalbio spalva</string>
+  <string name="ChatColorSelectionFragment__edit">Taisyti</string>
+  <string name="ChatColorSelectionFragment__duplicate">Dubliuoti</string>
+  <string name="ChatColorSelectionFragment__delete">Ištrinti</string>
+  <string name="ChatColorSelectionFragment__delete_color">Ištrinti spalvą</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Įrašyti</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Taisyti spalvą</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

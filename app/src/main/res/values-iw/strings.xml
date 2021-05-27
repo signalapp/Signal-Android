@@ -675,7 +675,6 @@
   <string name="ManageGroupActivity_mute_notifications">השתק התראות</string>
   <string name="ManageGroupActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageGroupActivity_mentions">אזכורים</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">טפט התכתבות</string> -->
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
   <string name="ManageGroupActivity_always">תמיד</string>
   <string name="ManageGroupActivity_off">כבוי</string>
@@ -1345,6 +1344,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">לא ניתן לקבל שמע ווידאו מן %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">לא ניתן לקבל שמע ווידאו מן %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ייתכן שזה מאחר שהם לא וידאו את שינוי מספר הביטחון שלך, או שיש בעיה עם המכשיר שלהם, או שהם חסמו אותך.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">שרת יפוי כוח</string>
   <string name="ProxyBottomSheetFragment_proxy_address">כתובת יפוי כוח</string>
@@ -1913,7 +1913,7 @@
   <string name="EditAboutFragment_taking_a_break">לוקח הפסקה</string>
   <string name="EditAboutFragment_working_on_something_new">עובד על משהו חדש</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">ערוך את השם והתמונה של הקבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ערוך את השם והתמונה של הקבוצה</string> -->
   <string name="EditProfileFragment__group_name">שם קבוצה</string>
   <string name="EditProfileFragment__group_description">תיאור קבוצה</string>
   <!--EditProfileNameFragment-->
@@ -2909,17 +2909,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">טפט התכתבות</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">צבע התכתבות</string>
   <string name="ChatWallpaperFragment__set_wallpaper">הגדר טפט</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ערכת נושא כהה מעמעמת טפטים</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">נקה טפט</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">לנקות טפט עבור התכתבות זו?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">לנקות טפט? זה לא ינקה טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">אפס את כל הטפטים</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">לנקות את כל הטפטים, כולל טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך?</string> -->
   <string name="ChatWallpaperFragment__contact_name">שם איש קשר</string>
   <string name="ChatWallpaperFragment__reset">אפס</string>
   <string name="ChatWallpaperFragment__clear">נקה</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">תצוגה מקדימה של טפט</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">אפס את כל הטפטים</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">בחר מתוך תמונות</string>
   <string name="ChatWallpaperSelectionFragment__presets">קדם־הגדרות</string>
@@ -3087,5 +3083,13 @@
   <string name="HelpFragment__licenced_under_the_gplv3">ברישיון תחת GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">צבע התכתבות</string>
+  <string name="ChatColorSelectionFragment__edit">ערוך</string>
+  <string name="ChatColorSelectionFragment__delete">מחק</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">שמור</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

@@ -609,7 +609,6 @@
   <string name="ManageGroupActivity_mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
   <string name="ManageGroupActivity_custom_notifications">అనుకూల ప్రకటనలను</string>
   <string name="ManageGroupActivity_mentions">ప్రస్తావనలు</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">సంభాషణ వాల్పేపర్</string> -->
   <string name="ManageGroupActivity_until_s">వరకు %1$s</string>
   <string name="ManageGroupActivity_always">ఎల్లప్పుడూ</string>
   <string name="ManageGroupActivity_off">ఆఫ్</string>
@@ -1217,6 +1216,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">ఆడియోను స్వీకరించలేరు &amp; %1$s నుండి వీడియో</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s నుండి ఆడియో మరియు వీడియోను స్వీకరించలేరు</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">మీ భద్రతా సంఖ్య మార్పును వారు ధృవీకరించకపోవడమే దీనికి కారణం కావచ్చు, వారి పరికరంలో సమస్య ఉంది లేదా వారు మిమ్మల్ని నిరోధించారు.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">ప్రాక్సీ సర్వర్</string>
   <string name="ProxyBottomSheetFragment_proxy_address">ప్రాక్సీ చిరునామా</string>
@@ -1733,7 +1733,7 @@
   <string name="EditAboutFragment_taking_a_break">విశ్రాంతి తీసుకొంటున్నా</string>
   <string name="EditAboutFragment_working_on_something_new">క్రొత్తదానిపై పని చేస్తోంది</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">సమూహం పేరు మరియు ఛాయాచిత్రణంను సవరించండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">సమూహం పేరు మరియు ఛాయాచిత్రణంను సవరించండి</string> -->
   <string name="EditProfileFragment__group_name">సమూహం పేరు</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">మీ పేరు</string>
@@ -2493,17 +2493,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">సంభాషణ వాల్పేపర్</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">మాటామంతీ రంగు </string>
   <string name="ChatWallpaperFragment__set_wallpaper">వాల్‌పేపర్‌ను జత చేయండి</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">మూదురు థీమ్ వాల్పెపర్ను మసకబారుతుంది</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">వాల్‌పేపర్‌ను క్లియర్ చేయండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ఈ మాటామంతీ కోసం వాల్‌పేపర్‌ను క్లియర్ చేయాలా?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">వాల్‌పేపర్‌ను క్లియర్ చేయాలా? ఇది మీ మాటామంతీ‌ల కోసం మీరు సెట్ చేసిన అనుకూల వాల్‌పేపర్‌లను క్లియర్ చేయదు.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">అన్ని వాల్‌పేపర్‌లను రీసెట్ చేయండి</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">మీ చాట్‌ల కోసం మీరు సెట్ చేసిన అనుకూల వాల్‌పేపర్‌లతో సహా అన్ని వాల్‌పేపర్‌లను రీసెట్ చేయాలా?</string> -->
   <string name="ChatWallpaperFragment__contact_name">సంప్రదింపు పేరు</string>
   <string name="ChatWallpaperFragment__reset">పునరుద్ధరించు</string>
   <string name="ChatWallpaperFragment__clear">స్పష్టమైన</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">వాల్పేపర్ పూర్వప్రదర్శన</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">అన్ని వాల్‌పేపర్‌లను రీసెట్ చేయండి</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ఛాయాచిత్రల నుండి ఎంచుకోండి</string>
   <string name="ChatWallpaperSelectionFragment__presets">పూర్వఆకారాలు </string>
@@ -2584,5 +2580,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">నిబంధనలు &amp; గోప్యతా విధానం</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">కాల్స్</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">మాటామంతీ రంగు </string>
+  <string name="ChatColorSelectionFragment__edit">సరిచేయు</string>
+  <string name="ChatColorSelectionFragment__delete">తొలగించండి</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">భద్రపరుచు</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

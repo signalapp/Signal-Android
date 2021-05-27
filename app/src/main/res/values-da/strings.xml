@@ -612,7 +612,7 @@
   <string name="ManageGroupActivity_mute_notifications">Udsæt notifikationer</string>
   <string name="ManageGroupActivity_custom_notifications">Brugerdefinerede notifikationer</string>
   <string name="ManageGroupActivity_mentions">Omtaler</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Chatbaggrund</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Chatfarve &amp; baggrund</string>
   <string name="ManageGroupActivity_until_s">Indtil %1$s</string>
   <string name="ManageGroupActivity_always">Altid</string>
   <string name="ManageGroupActivity_off">Deaktiveret</string>
@@ -1210,6 +1210,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Ingen andre deltager</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s deltager i samtalen</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s deltager i samtalen</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s præsenterer </string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, og %3$d andre deltager i samtalen</item>
     <item quantity="other">%1$s, %2$s, og %3$d andre deltager i samtalen</item>
@@ -1226,6 +1227,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Der modtages ikke lyd &amp; video fra %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Der modtages ikke lyd og video fra %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan skyldes, at de ikke har bekræftet dit sikkerhedsnummerændring, der er et problem med deres enhed, eller de har blokeret dig.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Stryg for at få vist skærmdeling</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy-adresse</string>
@@ -1769,7 +1772,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
   <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string> -->
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!--EditProfileNameFragment-->
@@ -1965,6 +1968,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__appearance">Udseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Chatbaggrund</string>
+  <string name="preferences__chat_color_and_wallpaper">Chatfarve &amp; baggrund</string>
   <string name="preferences__disable_pin">Déaktiver PIN</string>
   <string name="preferences__enable_pin">Aktivér PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN mister du alle data når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere Registreringslås, mens PIN er deaktiveret</string>
@@ -2745,17 +2749,25 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Chatbaggrund</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Chatfarve</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Nulstil chatfarver</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Nulstil chatfarve</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Nulstil chatfarve?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Opsæt baggrund</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dæmper baggrund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Fjern baggrund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern baggrund fra denne chat?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Fjern baggrund? Dette fjerner ikke de tilpassede baggrunde, du opsatte til dine chats.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Nulstil alle baggrunde</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Nulstil alle baggrunde, inklusive de tilpassede baggrunde, du opsatte til dine chats?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mørkt tema dæmper baggrund</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnavn</string>
   <string name="ChatWallpaperFragment__reset">Nulstil</string>
   <string name="ChatWallpaperFragment__clear">Fjern</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Baggrundseksempel</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tilsidesætte alle chatfarver?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vil du tilsidesætte alle baggrunde?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Nulstil standardfarver</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Nulstil alle farver</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Nulstil standardbaggrund</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Nulstil alle baggrunde</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Nulstil baggrunde</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Nulstil baggrund</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Nulstil baggrund?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vælg fra billeder</string>
   <string name="ChatWallpaperSelectionFragment__presets">Forudindstillet</string>
@@ -2857,6 +2869,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen af dine kontakter eller personer, du chatter med, er i gruppen. Gennemgå anmodninger nøje, inden du accepterer for at undgå uønskede beskeder.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Ang. beskedanmodning</string>
   <string name="GroupsInCommonMessageRequest__okay">Okay</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her er et smugkig af chatfarven.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Farven er kun synlig for dig.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2923,5 +2937,32 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="HelpFragment__licenced_under_the_gplv3">Licenseret under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Opkald</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Brug tilpassede farver</string>
+  <string name="ChatColorSelectionFragment__chat_color">Chatfarve</string>
+  <string name="ChatColorSelectionFragment__edit">Redigér</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplikér</string>
+  <string name="ChatColorSelectionFragment__delete">Slet</string>
+  <string name="ChatColorSelectionFragment__delete_color">Slet farve</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Denne tilpassede farve bruges i %1$d chat. Vil du slette det for alle chats?</item>
+    <item quantity="other">Denne tilpassede farve bruges i %1$d chats. Vil du slette det for alle chats?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Farveovergang</string>
+  <string name="CustomChatColorCreatorFragment__hue">Nuance</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Mætning</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Gem</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Rediger farve</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Denne farve bruges i %1$d chats. Vil du gemme ændringer for alle chats?</item>
+    <item quantity="other">Denne farve bruges i %1$d chat. Vil du gemme ændringer for alle chats?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Øverste kantvælger</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Nederste kantvælger</string>
   <!--EOF-->
 </resources>

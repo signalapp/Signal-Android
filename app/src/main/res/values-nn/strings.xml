@@ -616,7 +616,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_mute_notifications">Ikkje vis varsel</string>
   <string name="ManageGroupActivity_custom_notifications">Eigendefinerte varsel</string>
   <string name="ManageGroupActivity_mentions">Omtalar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Samtalebakgrunnsbilde</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Samtalefarge og -bakgrunnsbilde</string>
   <string name="ManageGroupActivity_until_s">Fram til %1$s</string>
   <string name="ManageGroupActivity_always">Alltid</string>
   <string name="ManageGroupActivity_off">Av</string>
@@ -1215,6 +1215,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallView__no_one_else_is_here">Du er åleine her</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s er i denne samtalen</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s er i denne samtalen</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s deler skjerm</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s og %3$d til er i denne samtalen</item>
     <item quantity="other">%1$s, %2$s og %3$d til er i denne samtalen</item>
@@ -1231,6 +1232,8 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikkje motta lyd &amp; video frå %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikkje motta lyd og video frå %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan vera fordi dei ikkje har godkjend det nye tryggleiksnummeret ditt, dei har eit problem med eininga si, eller dei har blokkert deg.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Sveip for å visa skjermdeling</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy-tenar</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy-adresse</string>
@@ -1773,7 +1776,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="EditAboutFragment_taking_a_break">Tar ein pause</string>
   <string name="EditAboutFragment_working_on_something_new">Jobbar med noko nytt</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenamn og bilde</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenamn og bilde</string> -->
   <string name="EditProfileFragment__group_name">Gruppenamn</string>
   <string name="EditProfileFragment__group_description">Gruppeskildring</string>
   <!--EditProfileNameFragment-->
@@ -1969,6 +1972,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__appearance">Utsjåande</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Samtalebakgrunnsbilde</string>
+  <string name="preferences__chat_color_and_wallpaper">Samtalefarge og -bakgrunnsbilde</string>
   <string name="preferences__disable_pin">Skru av PIN</string>
   <string name="preferences__enable_pin">Skru på PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar reservekopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
@@ -2751,17 +2755,25 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Samtalebakgrunnsbilde</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Samtalefarge</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Nullstill samtalefargar</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Nullstill samtalefarge</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Nullstill samtalefarge?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Vel bakgrunnsbilde</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dimmar bakgrunnsbildet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunnsbildet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern bakgrunnsbildet for denne samtalen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Tøm bakgrunnsbildet? Dette vil ikkje fjerna eigne bakgrunnar du har valt for dine samtalar.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Nullstill alle bakgrunnsbilde</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Fjern alle bakgrunnar, inkludert eigne bakgrunnar du har valt for dine samtalar?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mørkt tema dimmar bakgrunnsbildet</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
   <string name="ChatWallpaperFragment__reset">Tilbakestill</string>
   <string name="ChatWallpaperFragment__clear">Fjern</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Førehandsvisning av bakgrunn</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du overstyra alle samtalefargar?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vil du overstyra alle bakgrunnsbilde?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Nullstill standardfargar</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Nullstill alle fargar</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Nullstill standardbakgrunnsbilde</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Nullstill alle bakgrunnsbilde</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Nullstill bakgrunnsbilde</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Nullstill bakgrunnsbilde</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Nullstill bakgrunnsbilde?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vel frå bilde</string>
   <string name="ChatWallpaperSelectionFragment__presets">Forval</string>
@@ -2863,6 +2875,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av kontaktane eller personane du pratar med er i denne gruppa. Sjå nøye gjennom førespurnader før du godkjenner for å unngå uønska meldingar.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Om meldingsspørsmål</string>
   <string name="GroupsInCommonMessageRequest__okay">Greitt</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her kan du sjå korleis samtalefargen blir.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Denne fargen er berre synleg for deg.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Gruppeskildring</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2929,5 +2943,32 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Samtalar</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Bruk eigne fargar</string>
+  <string name="ChatColorSelectionFragment__chat_color">Samtalefarge</string>
+  <string name="ChatColorSelectionFragment__edit">Endra</string>
+  <string name="ChatColorSelectionFragment__duplicate">Kopier</string>
+  <string name="ChatColorSelectionFragment__delete">Slett</string>
+  <string name="ChatColorSelectionFragment__delete_color">Slett farge</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Denne eigenvalde fargen er brukt i %1$d samtale. Vil du sletta han for alle samtalar?</item>
+    <item quantity="other">Denne eigenvalde fargen er brukt i %1$d samtalar. Vil du sletta han for alle samtalar?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Einsfarga</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Overgang</string>
+  <string name="CustomChatColorCreatorFragment__hue">Tone</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Metting</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Lagra</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Endra farge</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Denne fargen er brukt i %1$d samtale. Vil du lagra endringar for alle samtalar?</item>
+    <item quantity="other">Denne fargen er brukt i %1$d samtalar. Vil du lagra endringar for alle samtalar?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Toppkantveljar</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Botnkantveljar</string>
   <!--EOF-->
 </resources>

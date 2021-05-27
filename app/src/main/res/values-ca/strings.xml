@@ -611,7 +611,6 @@
   <string name="ManageGroupActivity_mute_notifications">Silencia les notificacions</string>
   <string name="ManageGroupActivity_custom_notifications">Notificacions personalitzades</string>
   <string name="ManageGroupActivity_mentions">Mencions</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Fons de la conversa</string> -->
   <string name="ManageGroupActivity_until_s">Fins a %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Inactiu</string>
@@ -1224,6 +1223,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del vostre número de seguretat, hi ha un problema al seu dispositiu o us han blocat.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Servidor intermediari</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adreça intermediària</string>
@@ -1763,7 +1763,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EditAboutFragment_taking_a_break">Faig un descans.</string>
   <string name="EditAboutFragment_working_on_something_new">Treballo en una cosa nova.</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Editeu el nom i la foto del grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editeu el nom i la foto del grup</string> -->
   <string name="EditProfileFragment__group_name">Nom del grup</string>
   <string name="EditProfileFragment__group_description">Descripció del grup</string>
   <!--EditProfileNameFragment-->
@@ -2739,17 +2739,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fons de la conversa</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Color de la conversa</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Estableix el fons</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">El tema fosc enfosqueix el fons.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Neteja el fons</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Voleu netejar el fons per a aquesta conversa?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Voleu netejar el fons? Això no netejarà els fons personalitzats que heu establert per a les converses.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Voleu restablir tots els fons, inclosos els personalitzats que heu establert per a les converses?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Nom de contacte</string>
   <string name="ChatWallpaperFragment__reset">Restableix</string>
   <string name="ChatWallpaperFragment__clear">Neteja</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Trieu des de les fotografies</string>
   <string name="ChatWallpaperSelectionFragment__presets">Valors per defecte</string>
@@ -2917,5 +2913,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="HelpFragment__licenced_under_the_gplv3">Amb llicència de GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Color de la conversa</string>
+  <string name="ChatColorSelectionFragment__edit">Edita</string>
+  <string name="ChatColorSelectionFragment__delete">Suprimeix</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Desa</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

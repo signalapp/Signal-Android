@@ -604,7 +604,6 @@
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageGroupActivity_mentions">സൂചനകൾ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string> -->
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
   <string name="ManageGroupActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
@@ -1216,6 +1215,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s നിന്ന് ഓഡിയോയും വീഡിയോയും സ്വീകരിക്കാൻ കഴിയുന്നില്ല </string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s നിന്ന് ഓഡിയോയും വീഡിയോയും സ്വീകരിക്കാൻ കഴിയുന്നില്ല </string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറ്റം അവർ സ്ഥിരീകരിക്കാത്തതിനാലോ അവരുടെ ഉപകരണത്തിൽ ഒരു പ്രശ്നമുണ്ടായതിനാലോ അവർ നിങ്ങളെ തടഞ്ഞതിനാലോ ആയിരിക്കാം ഇത്.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">പ്രോക്സി സെർവർ</string>
   <string name="ProxyBottomSheetFragment_proxy_address">പ്രോക്സി വിലാസം</string>
@@ -1737,7 +1737,7 @@
   <string name="EditAboutFragment_taking_a_break">ഒരു ഇടവേളയിലാണ്</string>
   <string name="EditAboutFragment_working_on_something_new">പുതിയ ഒരു കാര്യം ചെയ്യുന്നു</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ചിത്രവും തിരുത്തുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ചിത്രവും തിരുത്തുക</string> -->
   <string name="EditProfileFragment__group_name">ഗ്രൂപ്പിന്റെ പേര്</string>
   <string name="EditProfileFragment__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--EditProfileNameFragment-->
@@ -2538,17 +2538,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">ചാറ്റ് നിറം</string>
   <string name="ChatWallpaperFragment__set_wallpaper">വാള്‍പേപ്പര്‍ സജ്ജമാക്കു</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ഡാര്‍ക്ക് തീം വാള്‍പേപ്പര്‍ മങ്ങിക്കും</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">വാള്‍പേപ്പര്‍ മായ്‌ക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ഈ ചാറ്റിന്റെ വാള്‍പേപ്പര്‍ മായ്ക്കണോ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">വാൾപേപ്പർ മായ്‌ക്കണോ? നിങ്ങളുടെ ചാറ്റുകൾക്കായി നിങ്ങൾ സജ്ജമാക്കിയ ഇഷ്‌ടാനുസൃത വാൾപേപ്പറുകൾ ഇത് മായ്‌ക്കില്ല.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">വാള്‍പേപ്പറുകള്‍ എല്ലാം പുനഃക്രമീകരിക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">നിങ്ങളുടെ ചാറ്റുകൾക്കായി നിങ്ങൾ സജ്ജമാക്കിയ ഇഷ്‌ടാനുസൃത വാൾപേപ്പറുകൾ ഉൾപ്പെടെ എല്ലാ വാൾപേപ്പറുകളും പുനഃസജ്ജമാക്കണോ?</string> -->
   <string name="ChatWallpaperFragment__contact_name">കോണ്ടാക്ടിന്റെ പേര്</string>
   <string name="ChatWallpaperFragment__reset">പുനഃക്രമീകരിക്കുക</string>
   <string name="ChatWallpaperFragment__clear">മായ്‌ക്കുക</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">വാള്‍പേപ്പറിന്റെ പ്രിവ്യൂ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">വാള്‍പേപ്പറുകള്‍ എല്ലാം പുനഃക്രമീകരിക്കുക</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ചിത്രങ്ങളില്‍ നിന്നു തിരഞ്ഞെടുക്കൂ</string>
   <string name="ChatWallpaperSelectionFragment__presets">മുന്നമേ ഉള്ളവ</string>
@@ -2649,5 +2645,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">ചാറ്റ് നിറം</string>
+  <string name="ChatColorSelectionFragment__edit">തിരുത്തുക</string>
+  <string name="ChatColorSelectionFragment__delete">ഇല്ലാതാക്കൂ</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">സംരക്ഷിക്കൂ</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

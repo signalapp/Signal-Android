@@ -576,7 +576,6 @@
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
   <string name="ManageGroupActivity_mentions">提及我</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">聊天墙纸</string> -->
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">总是</string>
   <string name="ManageGroupActivity_off">关</string>
@@ -1154,6 +1153,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">无法从%1$s接收音频 &amp; 视频</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">无法从%1$s接收音频与视频</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">这可能是因为他们还没验证过你的安全码发生的变更，或是因为他们的设备有问题，又或者是因为他们已经屏蔽了你。</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">代理服务器</string>
   <string name="ProxyBottomSheetFragment_proxy_address">代理地址</string>
@@ -1678,7 +1678,7 @@
   <string name="EditAboutFragment_taking_a_break">休息一下下</string>
   <string name="EditAboutFragment_working_on_something_new">打磨新玩意儿</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">编辑群昵称和头像</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">编辑群昵称和头像</string> -->
   <string name="EditProfileFragment__group_name">群组名称</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">你的名字</string>
@@ -2631,17 +2631,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">聊天墙纸</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">聊天颜色</string>
   <string name="ChatWallpaperFragment__set_wallpaper">设置墙纸</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">深色主题暗淡墙纸</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">清除墙纸</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">对该聊天清除墙纸？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">是否清除墙纸？这不会清除你的自定义聊天墙纸。</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">重置全部墙纸</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">是否重置全部墙纸，包括你的自定义聊天墙纸？</string> -->
   <string name="ChatWallpaperFragment__contact_name">联系人名字</string>
   <string name="ChatWallpaperFragment__reset">重置</string>
   <string name="ChatWallpaperFragment__clear">清除</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">墙纸预览</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">重置全部墙纸</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">从图片中选择</string>
   <string name="ChatWallpaperSelectionFragment__presets">预设</string>
@@ -2779,5 +2775,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">条款和隐私政策</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">通话</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">聊天颜色</string>
+  <string name="ChatColorSelectionFragment__edit">编辑</string>
+  <string name="ChatColorSelectionFragment__delete">删除</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">保存</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

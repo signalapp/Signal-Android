@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Benachrichtigungen stummschalten</string>
   <string name="ManageGroupActivity_custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="ManageGroupActivity_mentions">Erwähnungen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Hintergrund</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Unterhaltungsfarbe &amp; Hintergrund</string>
   <string name="ManageGroupActivity_until_s">Bis %1$s</string>
   <string name="ManageGroupActivity_always">Immer</string>
   <string name="ManageGroupActivity_off">Aus</string>
@@ -1207,6 +1207,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
     <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
@@ -1223,6 +1224,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Audio- &amp; Videodaten von %1$s können nicht empfangen werden</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Audio- und Videodaten von %1$s können nicht empfangen werden</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dies kann daran liegen, dass der Teilnehmer die Änderung deiner Sicherheitsnummer nicht verifiziert hat, ein Problem mit dessen Gerät besteht oder er dich blockiert.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Wische, um die Bildschirmfreigabe anzuzeigen</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyadresse</string>
@@ -1758,7 +1761,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="EditAboutFragment_taking_a_break">Mache eine Pause</string>
   <string name="EditAboutFragment_working_on_something_new">Arbeite an etwas Neuem</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Gruppendetails bearbeiten</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Gruppendetails bearbeiten</string> -->
   <string name="EditProfileFragment__group_name">Gruppenname</string>
   <string name="EditProfileFragment__group_description">Gruppenbeschreibung</string>
   <!--EditProfileNameFragment-->
@@ -1954,6 +1957,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
   <string name="preferences__chat_wallpaper">Hintergrund</string>
+  <string name="preferences__chat_color_and_wallpaper">Unterhaltungsfarbe &amp; Hintergrund</string>
   <string name="preferences__disable_pin">PIN deaktivieren</string>
   <string name="preferences__enable_pin">PIN aktivieren</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
@@ -2734,17 +2738,25 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Hintergrund</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Unterhaltungsfarbe</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Unterhaltungsfarben zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Unterhaltungsfarbe zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Unterhaltungsfarbe zurücksetzen?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Hintergrund festlegen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dunkles Design dunkelt Hintergrund ab</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Hintergrund entfernen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hintergrund für diese Unterhaltung entfernen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hintergrund entfernen? Es werden keine personalisierten Hintergründe entfernt, die du für deine Unterhaltungen festgelegt hast.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle Hintergründe zurücksetzen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Alle Hintergründe zurücksetzen, einschließlich personalisierter Hintergründe, die du für deine Unterhaltungen festgelegt hast?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Dunkles Design dunkelt Hintergrund ab</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktname</string>
   <string name="ChatWallpaperFragment__reset">Zurücksetzen</string>
   <string name="ChatWallpaperFragment__clear">Entfernen</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Hintergrundvorschau</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Möchtest du alle Unterhaltungsfarben überschreiben? </string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Möchtest du alle Hintergründe überschreiben? </string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Standardfarbe zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Alle Farben zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Standardhintergrund zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle Hintergründe zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Hintergründe zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Hintergrund zurücksetzen</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Hintergrund zurücksetzen?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Aus Fotos auswählen</string>
   <string name="ChatWallpaperSelectionFragment__presets">Standardhintergründe</string>
@@ -2846,6 +2858,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Keine deiner Kontakte oder Personen, mit denen du dich unterhältst, sind in dieser Gruppe. Prüfe Anfragen vor dem Annehmen sorgfältig, um ungewollte Nachrichten zu vermeiden.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Mehr zu Unterhaltungsanfragen</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hier ist eine Vorschau der Unterhaltungsfarbe.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Die Farbe ist nur für dich sichtbar.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Gruppenbeschreibung</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2912,5 +2926,32 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__licenced_under_the_gplv3">Lizenziert unter GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Anrufe</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">benutzerdefinierte Farben</string>
+  <string name="ChatColorSelectionFragment__chat_color">Unterhaltungsfarbe</string>
+  <string name="ChatColorSelectionFragment__edit">Bearbeiten</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplizieren</string>
+  <string name="ChatColorSelectionFragment__delete">Löschen</string>
+  <string name="ChatColorSelectionFragment__delete_color">Farbe löschen</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
+    <item quantity="other">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">einfarbig</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Farbverlauf</string>
+  <string name="CustomChatColorCreatorFragment__hue">Farbton</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Sättigung</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Speichern</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Farbe bearbeiten</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen speichern?</item>
+    <item quantity="other">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen speichern?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Oberkantenwähler</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Unterkantenwähler</string>
   <!--EOF-->
 </resources>

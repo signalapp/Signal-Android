@@ -572,7 +572,6 @@
   <string name="ManageGroupActivity_mute_notifications">Tạm im thông báo</string>
   <string name="ManageGroupActivity_custom_notifications">Thông báo tuỳ chỉnh</string>
   <string name="ManageGroupActivity_mentions">Nhắc tên</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Ảnh nền cuộc trò chuyện</string> -->
   <string name="ManageGroupActivity_until_s">Cho đến %1$s</string>
   <string name="ManageGroupActivity_off">Tắt</string>
   <string name="ManageGroupActivity_on">Bật</string>
@@ -1147,6 +1146,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Không thể nhận được âm thanh &amp; video từ %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Không thể nhận được âm thanh và video từ %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Điều này có thể vì họ chưa xác minh việc thay đổi mã số an toàn của bạn, có vấn đề với thiết bị của họ, hoặc họ đã chặn bạn.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Máy chủ proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Địa chỉ proxy</string>
@@ -1650,7 +1650,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditAboutFragment_taking_a_break">Đang nghỉ ngơi</string>
   <string name="EditAboutFragment_working_on_something_new">Đang làm một dự án mới</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Sửa tên và ảnh nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Sửa tên và ảnh nhóm</string> -->
   <string name="EditProfileFragment__group_name">Tên nhóm</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tên của bạn</string>
@@ -2447,17 +2447,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Màu trò chuyện</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Chọn ảnh nền</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Chế độ tối làm tối ảnh nền</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Xoá ảnh nền</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Xoá ảnh nền cuộc trò chuyện này?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Xoá ảnh nền? Thao tác này sẽ không xoá các ảnh nền đã cài cho các cuộc trò chuyện khác của bạn.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả ảnh nền</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Đặt lại tất cả ảnh nền, bao gồm ảnh nền tuỳ chọn mà bạn đã cài cho các cuộc trò chuyện?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Tên liên hệ</string>
   <string name="ChatWallpaperFragment__reset">Đặt lại</string>
   <string name="ChatWallpaperFragment__clear">Xoá</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả ảnh nền</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Chọn từ bộ sưu tập</string>
   <string name="ChatWallpaperSelectionFragment__presets">Bộ cài sẵn</string>
@@ -2535,5 +2531,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Điều khoản &amp; Quyền riêng tư</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Màu trò chuyện</string>
+  <string name="ChatColorSelectionFragment__edit">Sửa</string>
+  <string name="ChatColorSelectionFragment__delete">Xóa</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Lưu</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

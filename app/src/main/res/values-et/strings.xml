@@ -607,7 +607,6 @@
   <string name="ManageGroupActivity_mute_notifications">Vaigista teavitused</string>
   <string name="ManageGroupActivity_custom_notifications">Kohandatud teavitused</string>
   <string name="ManageGroupActivity_mentions">Mainimised</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Vestluse taustapilt</string> -->
   <string name="ManageGroupActivity_until_s">kuni %1$s</string>
   <string name="ManageGroupActivity_always">Alati</string>
   <string name="ManageGroupActivity_off">Väljas</string>
@@ -1220,6 +1219,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kasutajalt %1$s heli &amp; video saamine ei õnnestu</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kasutajalt %1$s heli ja video saamine ei õnnestu</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">See võib juhtuda, sest nad ei ole kinnitanud sinu turvanumbri muutmist, nende seadmetega on probleeme või nad on sinu blokeerinud.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Puhverserver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Puhverserveri aadress</string>
@@ -1760,7 +1760,7 @@
   <string name="EditAboutFragment_taking_a_break">Puhkepaus</string>
   <string name="EditAboutFragment_working_on_something_new">Töötan millegi uue kallal</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Muuda grupi nime ja pilti</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Muuda grupi nime ja pilti</string> -->
   <string name="EditProfileFragment__group_name">Grupi nimi</string>
   <string name="EditProfileFragment__group_description">Grupi kirjeldus</string>
   <!--EditProfileNameFragment-->
@@ -2641,17 +2641,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Vestluse taustapilt</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Vestluse värv</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Määra taustapildiks</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tume teema tumendab taustapilti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Eemalda taustapilt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kas eemaldada selle vestluse taustapilt?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kas eemaldada taustapilt? See ei eemalda vestluste määratud kohandatud taustapilte.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Lähtesta kõik taustapildid</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Lähtesta kõik taustapildid, kaasaarvatud vestlustele määratud kohandatud taustapildid</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontakti nimi</string>
   <string name="ChatWallpaperFragment__reset">Lähtesta</string>
   <string name="ChatWallpaperFragment__clear">Eemalda</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Taustapildi eelvaade</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Lähtesta kõik taustapildid</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vali fotodest</string>
   <string name="ChatWallpaperSelectionFragment__presets">Eelsätted</string>
@@ -2772,5 +2768,13 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Litsentsitud GPLv3 litsentsiga</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Kõned</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Vestluse värv</string>
+  <string name="ChatColorSelectionFragment__edit">Muuda</string>
+  <string name="ChatColorSelectionFragment__delete">Kustuta</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Salvesta</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

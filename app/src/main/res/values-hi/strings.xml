@@ -1197,6 +1197,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <!--RecaptchaProofActivity-->
   <!--RegistrationActivity-->
@@ -1702,7 +1703,7 @@
   <string name="EditAboutFragment_taking_a_break">ब्रेक पर हैं</string>
   <string name="EditAboutFragment_working_on_something_new">किसी नई चीज़ पर काम कर रहे हैं</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">ग्रुप का नाम और तस्वीर संपादित करें</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ग्रुप का नाम और तस्वीर संपादित करें</string> -->
   <string name="EditProfileFragment__group_name">समूह का नाम</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">आपका नाम?</string>
@@ -2436,6 +2437,7 @@
   <string name="ShareInterstitialActivity__forward_message">फॉर्वर्ड मेसेज</string>
   <!--ChatWallpaperActivity-->
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">चैट का रंग</string>
   <string name="ChatWallpaperFragment__reset">फिर से स्थापित करना</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
@@ -2498,5 +2500,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">नियम और गोपनीयता नीति</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">चैट का रंग</string>
+  <string name="ChatColorSelectionFragment__edit">बदलें</string>
+  <string name="ChatColorSelectionFragment__delete">हटाए </string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">सेव</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificações</string>
   <string name="ManageGroupActivity_mentions">Menções</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Papel de parede da conversa</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Cor e papel de parede da conversa</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Desligado</string>
@@ -1209,6 +1209,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Ninguém mais está aqui</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s está nesta chamada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s e %2$s estão nesta chamada</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s está apresentando</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s e %3$d outro estão nesta chamada</item>
     <item quantity="other">%1$s, %2$s e %3$d outros estão nesta chamada</item>
@@ -1225,6 +1226,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Não é possível receber áudio &amp; vídeo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Não é possível receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Isso pode acontecer porque: ou essa pessoa não verificou a alteração do seu número de segurança, ou há um problema com o dispositivo dela, ou ela bloqueou você.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Deslize para ver o compartilhamento de tela</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Endereço de proxy</string>
@@ -1769,7 +1772,7 @@
   <string name="EditAboutFragment_taking_a_break">Relaxando</string>
   <string name="EditAboutFragment_working_on_something_new">Trabalhando em algo novo</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e foto do grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e foto do grupo</string> -->
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <string name="EditProfileFragment__group_description">Descrição do grupo</string>
   <!--EditProfileNameFragment-->
@@ -1965,6 +1968,7 @@
   <string name="preferences__appearance">Aparência</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Papel de parede da conversa</string>
+  <string name="preferences__chat_color_and_wallpaper">Cor e papel de parede da conversa</string>
   <string name="preferences__disable_pin">Desabilitar PIN</string>
   <string name="preferences__enable_pin">Habilitar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, perderá todos os dados ao se registrar de novo com o Signal, a menos que você faça backup manualmente e os restaure. Você não pode ativar o Bloqueio de Registro enquanto o PIN estiver desativado.</string>
@@ -2125,6 +2129,7 @@
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Transferir</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Escanear o código QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Para: escaneie ou insira o endereço da carteira</string>
   <string name="PaymentsTransferFragment__next">Próximo</string>
   <string name="PaymentsTransferFragment__invalid_address">Endereço inválido</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Verifique o endereço da carteira para o qual você está tentando transferir e tente novamente.</string>
@@ -2723,17 +2728,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Papel de parede da conversa</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Cor da conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Redefinir as cores da conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Redefinir a cor da conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Redefinir a cor da conversa?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Definir papel de parede</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Escurecer papel de parede no tema escuro</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Remover papel de parede</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Remover papel de parede desta conversa?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Remover papel de parede? Não serão removidos os personalizados que você tiver definido para as suas conversas.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Redefinir todos os papéis de parede</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Redefinir todos os papéis de parede, inclusive os personalizados que você tiver definido para as suas conversas?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Escurecer o papel de parede no modo escuro</string>
   <string name="ChatWallpaperFragment__contact_name">Nome do contato</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <string name="ChatWallpaperFragment__clear">Limpar</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Visualização do papel de parede</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Deseja substituir as cores de todas as conversas?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Deseja substituir todos os papéis de parede?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Redefinir cores originais</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Redefinir todas as cores</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Redefinir o papel de parede padrão</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Redefinir todos os papéis de parede</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Redefinir os papéis de parede</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Redefinir o papel de parede</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Redefinir o papel de parede?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escolher foto</string>
   <string name="ChatWallpaperSelectionFragment__presets">Pré-definidos</string>
@@ -2761,6 +2774,7 @@
   <string name="payment_info_card_your_recovery_phrase_gives_you">Sua senha de recuperação oferece outra maneira de restaurar a sua conta de pagamentos.</string>
   <string name="payment_info_card_record_your_phrase">Gravar sua senha</string>
   <string name="payment_info_card_update_your_pin">Atualizar seu PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Com um saldo alto, será melhor você escolher um PIN alfanumérico para adicionar mais proteção à sua conta.</string>
   <string name="payment_info_card_update_pin">Atualizar PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
@@ -2827,6 +2841,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nenhum dos seus contatos ou pessoas com quem você conversa estão neste grupo. Analise solicitações com cuidado antes de aceitá-las, para evitar o recebimento de mensagens indesejadas.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Sobre as solicitações de conversas</string>
   <string name="GroupsInCommonMessageRequest__okay">Ok</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aqui está uma prévia da cor da conversa.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Apenas você verá essa cor.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Descrição do grupo</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2893,5 +2909,32 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Licenciado nos termos da GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Usar cores personalizadas</string>
+  <string name="ChatColorSelectionFragment__chat_color">Cor da conversa</string>
+  <string name="ChatColorSelectionFragment__edit">Editar</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplicar</string>
+  <string name="ChatColorSelectionFragment__delete">Excluir</string>
+  <string name="ChatColorSelectionFragment__delete_color">Apagar cor</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Essa cor personalizada é usada em %1$d conversa. Deseja apagá-la da conversa?</item>
+    <item quantity="other">Essa cor personalizada é usada em %1$d conversas. Deseja apagá-la de todas as conversas?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Sólida</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradiente</string>
+  <string name="CustomChatColorCreatorFragment__hue">Matiz</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturação</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Salvar</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Editar cor</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Essa cor é usada em %1$d conversa. Deseja salvar as alterações para todas as conversas?</item>
+    <item quantity="other">Essa cor é usada em %1$d conversas. Deseja salvar as alterações para todas as conversas?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Selecionador da borda superior</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Selecionador da borda inferior</string>
   <!--EOF-->
 </resources>

@@ -576,7 +576,6 @@
   <string name="ManageGroupActivity_mute_notifications">အသိပေးချက်ကို ပိတ်ပါ</string>
   <string name="ManageGroupActivity_custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
   <string name="ManageGroupActivity_mentions">မန်းရှင်းများ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">စကားပြောဆိုမှု၏ နောက်ခံပုံ</string> -->
   <string name="ManageGroupActivity_until_s">အထိ%1$s</string>
   <string name="ManageGroupActivity_always">အမြဲ</string>
   <string name="ManageGroupActivity_off">ပိတ်ပါ</string>
@@ -1153,6 +1152,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s မှ အသံနှင့် ဗီဒီယို မရရှိနိုင်ပါ</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s မှ အသံနှင့် ဗီဒီယို မရရှိနိုင်ပါ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">သင့် လုံခြုံရေးနံပါတ် ပြောင်းလဲမှုကို ၎င်းတို့မှ အတည်မပြုရသေးသောကြောင့် သို့မဟုတ် ၎င်းတို့စက်တွင် ပျက်ကွက်မှုဖြစ်ခဲ့သောကြောင့် သို့မဟုတ် ၎င်းတို့မှ သင့်ကို ပိတ်ပယ်ထားခြင်းကြောင့် တို့ဖြစ်နိုင်ပါသည်။</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">ကြားခံဆာဗာ</string>
   <string name="ProxyBottomSheetFragment_proxy_address">ကြားခံလိပ်စာ</string>
@@ -1674,7 +1674,7 @@
   <string name="EditAboutFragment_taking_a_break">အနားယူခြင်း</string>
   <string name="EditAboutFragment_working_on_something_new">အရာအသစ်တစ်ခု ကိုလုပ်ဆောင်နေသည်</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">အဖွဲ့အမည်နှင့် ဓါတ်ပုံကို ပြောင်းလဲပြုပြင်မယ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">အဖွဲ့အမည်နှင့် ဓါတ်ပုံကို ပြောင်းလဲပြုပြင်မယ်</string> -->
   <string name="EditProfileFragment__group_name">အဖွဲ့နာမည်</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">သင့်အမည်</string>
@@ -2627,17 +2627,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">စကားပြောဆိုမှု၏ နောက်ခံပုံ</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">စကားပြောဆိုမှု၏ အရောင်</string>
   <string name="ChatWallpaperFragment__set_wallpaper">နောက်ခံပုံ တပ်မယ်</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">အနက်ရောင် အပြင်အဆင်သည် နောက်ခံကို မှိန်စေပါသည်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">နောက်ခံပုံ ရှင်းမယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">၎င်းစကားပြောဆိုမှုအတွက် နောက်ခံပုံကို ရှင်းမည်လား?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">နောက်ခံပုံ ရှင်းမည်လား? ၎င်းလုပ်ခြင်းကြောင့် သင့်စကားပြောဆိုမှုများအတွက် စိတ်ကြိုက်တပ်ထားသော နောက်ခံပုံများ မဖယ်ရှင်းပါ။</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">နောက်ခံပုံများအားလုံးကို ပြန်တပ်ဆင်ပြောင်းလဲမယ်</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">နောက်ခံပုံများအားလုံးကို ပြန်တပ်ဆင်ပြောင်းလဲမယ်၊ သင့် စကားပြောဆိုမှုများအတွက် စိတ်ကြိုက်တပ်ဆင်ထားသော နောက်ခံပုံများ အပါဝင်?</string> -->
   <string name="ChatWallpaperFragment__contact_name">ဆက်သွယ်အမည်</string>
   <string name="ChatWallpaperFragment__reset">ရီဆက်ချမည်</string>
   <string name="ChatWallpaperFragment__clear">ဖယ်ရှားမည်</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">နောက်ခံပုံ ကြိုကြည့်ခြင်း</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">နောက်ခံပုံများအားလုံးကို ပြန်တပ်ဆင်ပြောင်းလဲမယ်</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ဓာတ်ပုံများမှရွေးချယ်မည်</string>
   <string name="ChatWallpaperSelectionFragment__presets">ကြိုတင်သတ်မှတ်ထားသောအရာများ</string>
@@ -2775,5 +2771,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">စကားပြောဆိုမှု၏ အရောင်</string>
+  <string name="ChatColorSelectionFragment__edit">ပြင်မယ်</string>
+  <string name="ChatColorSelectionFragment__delete">ဖျက်မယ်</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">သိမ်းမယ်</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

@@ -608,7 +608,7 @@
   <string name="ManageGroupActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageGroupActivity_mentions">Αναφορές</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Ταπετσαρία συνομιλίας</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Χρώμα και Ταπετσαρία συνομιλίας</string>
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
   <string name="ManageGroupActivity_always">Πάντα</string>
   <string name="ManageGroupActivity_off">Ανενεργό</string>
@@ -1202,6 +1202,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Δεν είναι κανένας άλλος εδώ</string>
   <string name="WebRtcCallView__s_is_in_this_call">Ο/Η %1$s είναι στην κλήση</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Οι %1$s και %2$s είναι στην κλήση</string>
+  <string name="WebRtcCallView__s_is_presenting">Ο/Η %1$s παρουσιάζει</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
@@ -1218,6 +1219,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Δεν μπορείς να λάβεις ήχο &amp; βίντεο από τον/την %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Δεν μπορείς να λάβεις ήχο και βίντεο από τον/την %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Αυτό ίσως οφείλεται στο ότι δεν έχει επιβεβαιώσει την αλλαγή του αριθμού ασφαλείας σου, ότι υπάρχει πρόβλημα με τη συσκευή του/της ή ότι σε έχει μπλοκάρει.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Σύρε για να δεις την διαμοιρασμένη οθόνη</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Διακομιστής proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Διεύθυνση proxy</string>
@@ -1753,7 +1756,7 @@
   <string name="EditAboutFragment_taking_a_break">Κάνω διάλειμμα</string>
   <string name="EditAboutFragment_working_on_something_new">Ετοιμάζω κάτι καινούργιο</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string> -->
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <string name="EditProfileFragment__group_description">Περιγραφή ομάδας</string>
   <!--EditProfileNameFragment-->
@@ -1940,6 +1943,7 @@
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__chat_wallpaper">Ταπετσαρία συνομιλίας</string>
+  <string name="preferences__chat_color_and_wallpaper">Χρώμα και Ταπετσαρία συνομιλίας</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
@@ -2654,17 +2658,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ταπετσαρία συνομιλίας</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Χρώμα συνομιλίας</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Επαναφορά χρωμάτων συνομιλιών</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Επαναφορά χρώματος συνομιλίας</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Επαναφορά χρώματος συνομιλίας;</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Ορισμός ταπετσαρίας</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Εκκαθάριση ταπετσαρίας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Εκκαθάριση της ταπετσαρίας αυτής της συνομιλίας;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Εκκαθάριση ταπετσαρίας; Αυτό δεν θα εκκαθαρίσει τις προσαρμοσμένες ταπετσαρίες που έχεις ορίσει για τις συνομιλίες σου.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Επαναφορά όλων των ταπετσαριών, συμπεριλαμβανομένων των προσαρμοσμένων ταπετσαριών που έχεις ορίσει στις συνομιλίες σου;</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.</string>
   <string name="ChatWallpaperFragment__contact_name">Όνομα επαφής</string>
   <string name="ChatWallpaperFragment__reset">Επαναφορά</string>
   <string name="ChatWallpaperFragment__clear">Εκκαθάριση</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Προεπισκόπηση ταπετσαρίας</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Θέλεις να παρακάμψεις όλα τα χρώματα συνομιλιών;</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Θέλεις να παρακάμψεις όλες τις ταπετσαρίες;</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Επαναφορά προκαθορισμένων χρωμάτων</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Επαναφορά όλων των χρωμάτων</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Επαναφορά προκαθορισμένης ταπετσαρίας</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Επαναφορά ταπετσαριών</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Επαναφορά ταπετσαριών</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Επαναφορά ταπετσαρίας;</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Επιλογή από φωτογραφίες</string>
   <string name="ChatWallpaperSelectionFragment__presets">Προεπιλογές</string>
@@ -2717,6 +2729,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Καμία από τις επαφές σου ή τα άτομα με τα οποία συνομιλείς δεν είναι σε αυτή την ομάδα. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Σχετικά με αιτήματα μηνυμάτων</string>
   <string name="GroupsInCommonMessageRequest__okay">Εντάξει</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Να μια προεπισκόπηση του χρώματος της συνομιλίας.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Μόνο εσύ βλέπεις αυτό το χρώμα.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Περιγραφή ομάδας</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2783,5 +2797,30 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Υπό τους όρους της άδειας GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Κλήσεις</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Αυτόματο</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Χρήση προσαρμοσένων χρωμάτων</string>
+  <string name="ChatColorSelectionFragment__chat_color">Χρώμα συνομιλίας</string>
+  <string name="ChatColorSelectionFragment__edit">Eπεξεργασία</string>
+  <string name="ChatColorSelectionFragment__delete">Διαγραφή</string>
+  <string name="ChatColorSelectionFragment__delete_color">Διαγραφή χρώματος</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Αυτό το προσαρμοσμένο χρώμα χρησιμοποιείται σε %1$d συνομιλία. Θέλεις να το διαγράψεις για όλες τις συνομιλίες;</item>
+    <item quantity="other">Αυτό το προσαρμοσμένο χρώμα χρησιμοποιείται σε %1$d συνομιλίες. Θέλεις να το διαγράψεις για όλες τις συνομιλίες;</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__gradient">Διαβάθμιση</string>
+  <string name="CustomChatColorCreatorFragment__hue">Απόχρωση</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturation</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Αποθήκευση</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Επεξεργασία χρώματος</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Αυτό το χρώμα χρησιμοποιείται σε %1$d συνομιλία. Θέλεις να αποθηκεύσεις τις αλλαγές για όλες τις συνομιλίες;</item>
+    <item quantity="other">Αυτό το χρώμα χρησιμοποιείται σε %1$d συνομιλίες. Θέλεις να αποθηκεύσεις τις αλλαγές για όλες τις συνομιλίες;</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Επιλογή πάνω γωνίας</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Επιλογή κάτω γωνίας</string>
   <!--EOF-->
 </resources>

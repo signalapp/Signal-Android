@@ -607,7 +607,6 @@
   <string name="ManageGroupActivity_mute_notifications">ବିଜ୍ଞପ୍ତି ମ୍ୟୁଟ୍ କରନ୍ତୁ</string>
   <string name="ManageGroupActivity_custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
   <string name="ManageGroupActivity_mentions">ଉଲ୍ଲେଖ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string> -->
   <string name="ManageGroupActivity_until_s">%1$s ପର୍ଯ୍ୟନ୍ତ</string>
   <string name="ManageGroupActivity_always">ସବୁବେଳେ</string>
   <string name="ManageGroupActivity_off">ବନ୍ଦ</string>
@@ -1212,6 +1211,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">ଅଡିଓ &amp; amp ଗ୍ରହଣ କରିହଉ ନାହିଁ ; %1$s ରୁ ଭିଡିଓ</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$sଙ୍କ ଠାରୁ ଅଡିଓ ଏବଂ ଭିଡିଓ ଗ୍ରହଣ କରିପାରିବ ନାହିଁ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ଏହା ହୋଇପାରେ କାରଣ ସେମାନେ ଆପଣଙ୍କର \"ସୁରକ୍ଷା ନମ୍ବର ପରିବର୍ତ୍ତନ\" ଯାଞ୍ଚ କରିନାହାଁନ୍ତି, ସେମାନଙ୍କ ଉପକରଣ ରେ ଏକ ସମସ୍ୟା ଅଛି, କିମ୍ବା ସେମାନେ ଆପଣଙ୍କୁ ଅବରୋଧ କରିଛନ୍ତି</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">ପ୍ରକ୍ସି ସର୍ଭର</string>
   <string name="ProxyBottomSheetFragment_proxy_address">ପ୍ରକ୍ସି ଠିକଣା </string>
@@ -1733,7 +1733,7 @@
   <string name="EditAboutFragment_taking_a_break">ଗୋଟେ ବିରତି ନିଆହଉଛି</string>
   <string name="EditAboutFragment_working_on_something_new">କୌଣସି ଗୋଟେ ନୂଆ ଜିନିଷରେ କାମ କରନ୍ତୁ</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି ସଂପାଦନ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି ସଂପାଦନ କରନ୍ତୁ</string> -->
   <string name="EditProfileFragment__group_name">ଗୋଷ୍ଠୀ ନାମ</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ଆପଣଙ୍କ ନାମ</string>
@@ -2515,17 +2515,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">ଚାଟ୍ ରଙ୍ଗ</string>
   <string name="ChatWallpaperFragment__set_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ଅନ୍ଧାର ଥିମ୍ କାନ୍ଥଛବିକୁ ଅନ୍ଧାରୁଆ କରିଦିଏ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">କାନ୍ଥଛବି ହଟାନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ଏହି ବାର୍ତ୍ତାଳାପ ପାଇଁ କାନ୍ଥଛବି ହଟାନ୍ତୁ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">କାନ୍ଥଛବି ହଟାନ୍ତୁ? ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ କରିଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବିଗୁଡିକୁ ଏହା ସଫା କରିବ ନାହିଁ</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃନିର୍ଦ୍ଧାରିତ କରନ୍ତୁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ ହୋଇଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବି ସମେତ ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃସେଟ୍ କରନ୍ତୁ? </string> -->
   <string name="ChatWallpaperFragment__contact_name">ସମ୍ପର୍କର ନାମ</string>
   <string name="ChatWallpaperFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="ChatWallpaperFragment__clear">ସଫା କରନ୍ତୁ</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">କାନ୍ଥଛବି ପୂର୍ବାବଲୋକନ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃନିର୍ଦ୍ଧାରିତ କରନ୍ତୁ</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ଛବି ସଂଗ୍ରହରୁ ବାଛନ୍ତୁ</string>
   <string name="ChatWallpaperSelectionFragment__presets">ପୂର୍ବନିର୍ଦ୍ଧାରିତ</string>
@@ -2600,5 +2596,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">ସର୍ତ୍ତାବଳୀ &amp; amp; ଗୋପନୀୟତା ନୀତି</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">କଲ୍</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">ଚାଟ୍ ରଙ୍ଗ</string>
+  <string name="ChatColorSelectionFragment__edit">ସମ୍ପାଦନ</string>
+  <string name="ChatColorSelectionFragment__delete">ବିଲୋପ କରନ୍ତୁ</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

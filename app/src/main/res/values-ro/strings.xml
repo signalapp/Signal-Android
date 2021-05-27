@@ -638,7 +638,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notificări fără sunet</string>
   <string name="ManageGroupActivity_custom_notifications">Notificări personalizate</string>
   <string name="ManageGroupActivity_mentions">Mențiuni</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Fundal conversații</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Culoare conversație și fundal</string>
   <string name="ManageGroupActivity_until_s">Până la %1$s</string>
   <string name="ManageGroupActivity_always">Întotdeauna</string>
   <string name="ManageGroupActivity_off">Dezactivate</string>
@@ -667,6 +667,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
+  <string name="ManageGroupActivity_more">mai multe</string>
   <string name="ManageGroupActivity_add_group_description">Adăugați descrierea grupului…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
@@ -1278,6 +1279,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nu se poate primi audio &amp; video de la %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nu se poate primi audio și video de la %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Acest lucru se poate datora faptului că nu au verificat modificarea numărului dvs. de siguranță, există o problemă cu dispozitivul lor sau v-au blocat.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Server proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adresă proxy</string>
@@ -1827,7 +1829,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EditAboutFragment_taking_a_break">Într-o pauză</string>
   <string name="EditAboutFragment_working_on_something_new">Lucrez la ceva nou</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Editare nume grup și poză</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editare nume grup și poză</string> -->
   <string name="EditProfileFragment__group_name">Nume grup</string>
   <string name="EditProfileFragment__group_description">Descriere grup</string>
   <!--EditProfileNameFragment-->
@@ -2024,6 +2026,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__appearance">Aspect</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Fundal conversații</string>
+  <string name="preferences__chat_color_and_wallpaper">Culoare conversație și fundal</string>
   <string name="preferences__disable_pin">Dezactivare PIN</string>
   <string name="preferences__enable_pin">Activare PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Dacă dezactivați codul PIN, veți pierde toate datele când vă înregistrați din nou la Signal, cu excepția cazului când faceți backup și restaurați manual. Nu puteți activa Blocarea înregistrării în timp ce codul PIN este dezactivat.</string>
@@ -2720,17 +2723,25 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fundal conversații</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Culoare conversaţie</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Resetare culori conversație</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Resetare culoare conversație</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Resetați culoarea conversației?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Setare fundal</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema întunecată estompează fundalul</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Eliminare fundal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Eliminați fundalul pentru această conversație?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ștergeți imaginea de fundal? Aceasta nu va șterge imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetare toate imaginile de fundal</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resetați toate imaginile de fundal, inclusiv imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Modul întunecat estompează fundalul</string>
   <string name="ChatWallpaperFragment__contact_name">Nume contact</string>
   <string name="ChatWallpaperFragment__reset">Resetare</string>
   <string name="ChatWallpaperFragment__clear">Eliminare</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Previzualizare fundal</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Doriți să suprascrieți culorile pentru toate conversațiile?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Doriți să suprascrieți toate fundalurile?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Resetare culori implicite</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Resetare toate culorile</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Resetare fundal implicit</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetare toate fundalurile</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Resetare imagini de fundal</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Resetare imagine de fundal</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Resetați imaginea de fundal?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Selecție din galerie</string>
   <string name="ChatWallpaperSelectionFragment__presets">Presetări</string>
@@ -2789,6 +2800,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Niciuna dintre persoanele de contact sau persoanele cu care conversați nu fac parte din acest grup. Examinați cu atenție solicitările înainte de a accepta pentru a evita mesajele nedorite.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Despre solicitări mesaj</string>
   <string name="GroupsInCommonMessageRequest__okay">Okay</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Iată o previzualizare a culorii conversației.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Culoarea este vizibilă doar pentru dvs.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Descriere grup</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2821,6 +2834,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PrivacySettingsFragment__app_security">Securitate aplicație</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blocați screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mesaje și apeluri Signal, redirecționare apeluri și expeditor ascuns</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporizator implicit pentru conversații noi</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Setați un temporizator implicit de dispariție a mesajelor pentru toate conversațiile noi inițiate de dvs.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afișare icon de status</string>
@@ -2828,12 +2842,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Cu opțiunea activă, mesajele trimise și primite în conversație vor dispărea după ce sunt văzute.</string>
   <string name="ExpireTimerSettingsFragment__off">Dezactivate</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 săptămâni</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 săptămână</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 zi</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 ore</string>
   <string name="ExpireTimerSettingsFragment__1_hour">o oră</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minute</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 secunde</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Timp personalizat</string>
   <string name="ExpireTimerSettingsFragment__set">Aplicare</string>
   <string name="ExpireTimerSettingsFragment__save">Salvează</string>
   <string name="CustomExpireTimerSelectorView__seconds">secunde</string>
@@ -2851,5 +2867,31 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="HelpFragment__licenced_under_the_gplv3">Sub licenţa GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Apeluri</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__chat_color">Culoare conversaţie</string>
+  <string name="ChatColorSelectionFragment__edit">Editează</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplicare</string>
+  <string name="ChatColorSelectionFragment__delete">Șterge</string>
+  <string name="ChatColorSelectionFragment__delete_color">Șterge culoarea</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Această culoare personalizată este utilizată în %1$d conversație. Doriți să o ștergeți pentru toate conversațiile?</item>
+    <item quantity="few">Această culoare personalizată este utilizată în %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
+    <item quantity="other">Această culoare personalizată este utilizată în %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Culoare</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturație</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Salvează</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Editare culoare</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Această culoare este folosită în %1$d conversație. Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="few">Această culoare este folosită în %1$d conversații. Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="other">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

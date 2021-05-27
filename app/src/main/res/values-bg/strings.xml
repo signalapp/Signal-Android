@@ -603,7 +603,6 @@
   <string name="ManageGroupActivity_mute_notifications">Тих режим за известия</string>
   <string name="ManageGroupActivity_custom_notifications">Персонализирани известия</string>
   <string name="ManageGroupActivity_mentions">Споменавания</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Тапет на чата</string> -->
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Винаги</string>
   <string name="ManageGroupActivity_off">Деактивирано</string>
@@ -1206,6 +1205,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не може да приемате аудио и видео от %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да приемате аудио и видео от %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Това може да се дължи на факта, че те не са проверили промяната на номера ви за безопасност, има проблем с устройството им или са ви блокирали.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Прокси сървър</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Прокси адрес</string>
@@ -1723,7 +1723,7 @@
   <string name="EditAboutFragment_taking_a_break">В почивка</string>
   <string name="EditAboutFragment_working_on_something_new">Работи по нещо ново</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Редактирайте името и снимката на групата</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Редактирайте името и снимката на групата</string> -->
   <string name="EditProfileFragment__group_name">Име на групата</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Вашето име</string>
@@ -2480,17 +2480,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Тапет на чата</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Чат цвят</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Задай тапет</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Тъмният облик замръчнява тапета</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Премахване на тапета</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Премахване на тапета на този чат?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Премахване на тапета? Това няма да премахне персонализирани тапети, които си задал в своите чатове.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Премахване на всички тапети</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Премахване на всички тапети, включително персонализарни тапети, които си задал в своите чатове?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Име на контакта</string>
   <string name="ChatWallpaperFragment__reset">Рестартирай</string>
   <string name="ChatWallpaperFragment__clear">Изчистване</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед на тапета</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Премахване на всички тапети</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Избери от снимки</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предварително зададени</string>
@@ -2565,5 +2561,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Условия и Политика за поверителност</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Обаждания</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Чат цвят</string>
+  <string name="ChatColorSelectionFragment__edit">Редакция</string>
+  <string name="ChatColorSelectionFragment__delete">Изтрий</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Запази</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

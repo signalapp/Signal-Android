@@ -613,7 +613,7 @@
   <string name="ManageGroupActivity_mute_notifications">Meldingen dempen</string>
   <string name="ManageGroupActivity_custom_notifications">Aangepaste meldingen</string>
   <string name="ManageGroupActivity_mentions">Vermeldingen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Gespreksachtergrond</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Gesprekskleur &amp; -achtergrond</string>
   <string name="ManageGroupActivity_until_s">Tot %1$s</string>
   <string name="ManageGroupActivity_always">Voor altijd</string>
   <string name="ManageGroupActivity_off">Uit</string>
@@ -1211,6 +1211,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jou in dit gesprek</string>
   <string name="WebRtcCallView__s_is_in_this_call">Gesprek met %1$s</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig.</item>
     <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig.</item>
@@ -1227,6 +1228,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen beeld &amp; geluid van %1$s ontvangen</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen beeld en geluid van %1$s ontvangen</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan gebeuren als je jullie veiligheidsnummer niet opnieuw hebt geverifieerd nadat die is veranderd, als er een probleem is met je apparaat of als hij of zij jou heeft geblokkeerd.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Veeg om gedeeld scherm weer te geven</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyadres</string>
@@ -1773,7 +1776,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="EditAboutFragment_taking_a_break">Ik heb even pauze</string>
   <string name="EditAboutFragment_working_on_something_new">Ik werk aan iets nieuws</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string> -->
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
   <string name="EditProfileFragment__group_description">Groepsomschrijving</string>
   <!--EditProfileNameFragment-->
@@ -1969,6 +1972,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__appearance">Uiterlijk</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__chat_wallpaper">Gespreksachtergrond</string>
+  <string name="preferences__chat_color_and_wallpaper">Gesprekskleur &amp; achtergrond</string>
   <string name="preferences__disable_pin">Pincode uitschakelen</string>
   <string name="preferences__enable_pin">Pincode inschakelen</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
@@ -2749,17 +2753,25 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Gespreksachtergrond</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Gesprekskleur</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Gesprekskleurinstellingen verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Gesprekskleurinstelling verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Gesprekskleurinstelling verwijderen?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Gespreksachtergrond kiezen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Donker thema dimt achtergrond</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Deze achtergrond verwijderen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Achtergrond voor dit gesprek verwijderen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Deze achtergrond verwijderen? Achtergronden die je apart voor een bepaald gesprek hebt ingesteld worden niet verwijderd.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle achtergronden verwijderen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Alle achtergronden verwijderen, inclusief achtergronden die je apart voor een bepaald gesprek hebt ingesteld?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Achtergrond dimmen bij donkere modus</string>
   <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
   <string name="ChatWallpaperFragment__reset">Alle achtergronden verwijderen</string>
   <string name="ChatWallpaperFragment__clear">Verwijderen</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je dit doen voor alle gesprekskleuren?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je dit doen voor alle achtergronden?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Alleen de standaardkleur verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Alle kleuren verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Alleen de standaardachtergrond verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle achtergronden verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Achtergronden verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Kiezen vanuit galerij</string>
   <string name="ChatWallpaperSelectionFragment__presets">Beschikbare standaard-achtergronden</string>
@@ -2861,6 +2873,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Er zijn geen leden met wie je al een gesprek voert in deze groep. Overweeg zorgvuldig of je deze groepsuitnodiging wilt accepteren om ongewenste berichten te vermijden.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Over gespreksverzoeken</string>
   <string name="GroupsInCommonMessageRequest__okay">Oké</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hier zie je een voorbeeld van de gesprekskleur.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">De kleur is alleen voor jou zichtbaar.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Groepsomschrijving</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2927,5 +2941,32 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automatisch</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Zelfgekozen kleur gebruiken</string>
+  <string name="ChatColorSelectionFragment__chat_color">Gesprekskleur</string>
+  <string name="ChatColorSelectionFragment__edit">Aanpassen</string>
+  <string name="ChatColorSelectionFragment__duplicate">Kopie maken</string>
+  <string name="ChatColorSelectionFragment__delete">Wissen</string>
+  <string name="ChatColorSelectionFragment__delete_color">Kleur verwijderen</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Deze zelfgekozen kleur wordt in %1$d gesprek gebruikt. Wil je het voor dat gesprek verwijderen?</item>
+    <item quantity="other">Deze zelfgekozen kleur wordt in %1$d gesprekken gebruikt. Wil je het voor die gesprekken verwijderen?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Effen</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Verloop</string>
+  <string name="CustomChatColorCreatorFragment__hue">Tint</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Verzadiging</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Opslaan</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Kleur aanpassen</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Deze kleur wordt in %1$d gesprek gebruikt. Wil je de wijziging ook op dat gesprek toepassen?</item>
+    <item quantity="other">Deze kleur wordt in %1$d gesprekken gebruikt. Wil je de wijziging ook op die gesprekken toepassen?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Schuifknop voor de bovenrand</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Schuifknop voor de onderrand</string>
   <!--EOF-->
 </resources>

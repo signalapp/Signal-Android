@@ -1422,7 +1422,7 @@
   <string name="EditAboutFragment_free_to_chat">ਗੱਲਾਂ ਕਰਨ ਲਈ ਵੇਹਲੇ</string>
   <string name="EditAboutFragment_working_on_something_new">ਕੁਝ ਨਵਾਂ ਬਣਾ ਰਹੇ ਹਾਂ</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">ਗਰੁੱਪ ਦਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਨੂੰ ਸੋਧੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ਗਰੁੱਪ ਦਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਨੂੰ ਸੋਧੋ</string> -->
   <string name="EditProfileFragment__group_name">ਸਮੂਹ ਦਾ ਨਾਂ</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ਤੁਹਾਡਾ ਨਾਮ</string>

@@ -608,7 +608,6 @@
   <string name="ManageGroupActivity_mute_notifications">Susem ilɣa</string>
   <string name="ManageGroupActivity_custom_notifications">Sagen ilɣa</string>
   <string name="ManageGroupActivity_mentions">Tibdarin</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Tugna n ugilal n udiwenni</string> -->
   <string name="ManageGroupActivity_until_s">Alamma d %1$s</string>
   <string name="ManageGroupActivity_always">Yal tikkelt</string>
   <string name="ManageGroupActivity_off">Yensa</string>
@@ -1215,6 +1214,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Ur y·tezmir ara ad d-tremseḍ ameslaw &amp; tavidyut sɣur %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ur yezmir ara ad d-yermes ameslaw neɣ tavidyut seg %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Yezmer yella-d waya ssebba n usenqed ur sneqden ara abeddel n wuṭṭun-ik·im n tɣellist, neɣ yella wugur d yibenk-nsen neɣ sweḥlen-k.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Aqeddac n upṛuksi</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Tansa n upṛusi</string>
@@ -1743,7 +1743,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="EditAboutFragment_taking_a_break">Steεfu cwiṭ</string>
   <string name="EditAboutFragment_working_on_something_new">Mahel ɣef kra n umaynut</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Ẓreg isem d tewlaft n ugraw</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Ẓreg isem d tewlaft n ugraw</string> -->
   <string name="EditProfileFragment__group_name">Isem n ugraw</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Isem-ik·im</string>
@@ -2608,17 +2608,13 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Agilal n ugdil n udiwenni</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Ini n udiwenni</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Sbadu agilal n ugdil</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Asentel aberkan iseḍlam agilal n ugdil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Sfeḍ agilal n ugdil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Sfeḍ igilalen n ugdil i udiwenni-a?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Sfeḍ agilal n ugdil? Aya ur itekkes ara igilalen n ugdil udmawanen i tesbaduḍ i yidiwenniyen-ik·im.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Wennez meṛṛa agilal n ugdil</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Wennez meṛṛa igilalen n ugdil, seddu igilalen n ugdil udmawanen i tesbaduḍ i yidiwenniyen-inek·inem?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Isem n unermis</string>
   <string name="ChatWallpaperFragment__reset">Wennez</string>
   <string name="ChatWallpaperFragment__clear">Sfeḍ</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Taskant agilal n ugdil</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Wennez meṛṛa agilal n ugdil</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Fren seg tewlafin</string>
   <string name="ChatWallpaperSelectionFragment__presets">Tawila tuzwirt</string>
@@ -2700,5 +2696,13 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Tiwtilin &amp; Tsertit n Tbaḍnit</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Isawalen</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Ini n udiwenni</string>
+  <string name="ChatColorSelectionFragment__edit">Ẓreg</string>
+  <string name="ChatColorSelectionFragment__delete">Kkes</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Sekles</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

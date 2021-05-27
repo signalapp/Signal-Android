@@ -677,7 +677,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_mute_notifications">Tewi hysbysiadau</string>
   <string name="ManageGroupActivity_custom_notifications">Hysbysiadau cyfaddas</string>
   <string name="ManageGroupActivity_mentions">Crybwylliadau</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Papur wal sgwrsio</string> -->
   <string name="ManageGroupActivity_until_s">Tan %1$s</string>
   <string name="ManageGroupActivity_always">Bob tro</string>
   <string name="ManageGroupActivity_off">I ffwrdd</string>
@@ -1347,6 +1346,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Gall hyn fod oherwydd nad ydyn nhw wedi gwirio\'ch newid rhif diogelwch, mae problem gyda\'u dyfais, neu maen nhw wedi\'ch rhwystro chi.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Gweinydd dirprwyol</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Cyfeiriad dirprwyol</string>
@@ -1915,7 +1915,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="EditAboutFragment_taking_a_break">Cael hoe fach</string>
   <string name="EditAboutFragment_working_on_something_new">Rhywbeth newydd ar y gweill</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Golygu enw a llun grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Golygu enw a llun grŵp</string> -->
   <string name="EditProfileFragment__group_name">Enw\'r grŵp</string>
   <string name="EditProfileFragment__group_description">Disgrifiad o\'r grŵp</string>
   <!--EditProfileNameFragment-->
@@ -2911,17 +2911,15 @@ Send neges heb ei ddiogelu?</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Papur wal sgwrsio</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Lliw\'r sgwrs</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Gosod papur wal</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Papur wal dims thema tywyll</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Papur wal clir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Clirio papur wal i\'r sgwrs hon?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Clirio papur wal? Ni fydd hyn yn clirio papurau wal wedi\'u gosod ar gyfer eich sgyrsiau.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ailosod pob papur wal</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ail-osod pob papur wal, gan gynnwys papurau wal wedi\'u gosod ar gyfer eich sgyrsiau?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Enw cyswllt</string>
   <string name="ChatWallpaperFragment__reset">Ailosod</string>
   <string name="ChatWallpaperFragment__clear">Clirio</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Rhagolwg papur wal</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Hoffech chi ddiystyru pob lliw sgwrsio?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Hoffech chi ddiystyru pob papur wal?</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ailosod pob papur wal</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Dewiswch o luniau</string>
   <string name="ChatWallpaperSelectionFragment__presets">Rhagosodiadau</string>
@@ -3023,6 +3021,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Does dim o\'ch cysylltiadau na\'r bobl rydych yn sgwrsio gyda nhw yn y grŵp yma. . Ystyriwch y ceisiadau\'n ofalus cyn derbyn negeseuon digroeso.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Ychylch ceisiadau i negesu</string>
   <string name="GroupsInCommonMessageRequest__okay">Iawn</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Dim ond chi sydd yn gweld y lliw.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Disgrifiad o\'r grŵp</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3089,5 +3088,18 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Trwyddedig o dan y GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Galwadau</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Lliw\'r sgwrs</string>
+  <string name="ChatColorSelectionFragment__edit">Golygu</string>
+  <string name="ChatColorSelectionFragment__duplicate">Dyblygu</string>
+  <string name="ChatColorSelectionFragment__delete">Dileu</string>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solet</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Graddiant</string>
+  <string name="CustomChatColorCreatorFragment__hue">Arlliw</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Trwythiad</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Cadw</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

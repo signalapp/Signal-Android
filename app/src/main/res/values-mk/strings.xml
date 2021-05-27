@@ -605,7 +605,6 @@
   <string name="ManageGroupActivity_mute_notifications">Исклучи известувања</string>
   <string name="ManageGroupActivity_custom_notifications">Прилагодени известувања</string>
   <string name="ManageGroupActivity_mentions">Спомнувања</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Позадина за разговорот</string> -->
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Секогаш</string>
   <string name="ManageGroupActivity_off">Исклучено</string>
@@ -1212,6 +1211,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не добивам аудио &amp; видео од %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не можам да добијам аудио и видео од %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случува бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или пак Ве имаат блокирано.</string>
+  <!--CallToastPopupWindow-->
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy сервер</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy адреса</string>
@@ -1739,7 +1739,7 @@
   <string name="EditAboutFragment_taking_a_break">На пауза</string>
   <string name="EditAboutFragment_working_on_something_new">Работам на нешто ново</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Уреди име на група и слика</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Уреди име на група и слика</string> -->
   <string name="EditProfileFragment__group_name">Наслов на група</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Вашето име</string>
@@ -2027,7 +2027,7 @@
   <string name="PaymentsAllActivityFragment__sent">Испратено</string>
   <string name="PaymentsAllActivityFragment__received">Примено</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користете го Signal за испраќање и примање на MobileCoin, нова дигитална валута фокусирана на приватност. Активирајте за да започнете.</string>
-  <string name="PaymentsHomeFragment__activate_payments">Активирај Плаќања</string>
+  <string name="PaymentsHomeFragment__activate_payments">Активираj плаќања</string>
   <string name="PaymentsHomeFragment__activating_payments">Активирање на плаќања…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Врати ја сметката за плаќања</string>
   <string name="PaymentsHomeFragment__recent_activity">Скорешна активност</string>
@@ -2039,14 +2039,14 @@
   <string name="PaymentsHomeFragment__currency_conversion">Конверзија на валута</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Деактивирај плаќања</string>
   <string name="PaymentsHomeFragment__help">Помош</string>
-  <string name="PaymentsHomeFragment__sent_payment">Испратени плаќање</string>
+  <string name="PaymentsHomeFragment__sent_payment">Испратени плаќања</string>
   <string name="PaymentsHomeFragment__received_payment">Примени плаќања</string>
   <string name="PaymentsHomeFragment__processing_payment">Обработка на плаќање</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија на валута не е достапна</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Плаќањата не се достапни во Вашиот регион.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Не може да се овозможат плаќања. Обидете се повторно подоцна.</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">Да се деактивираат плаќањата?</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Да деактивирам плаќања?</string>
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Нема да можете да испраќате или примате MobileCoin во Signal ако ги деактивирате плаќањата.</string>
   <string name="PaymentsHomeFragment__deactivate">Деактивирај</string>
   <string name="PaymentsHomeFragment__continue">Продолжи</string>
@@ -2054,7 +2054,7 @@
   <string name="PaymentsHomeFragment__payment_failed">Плаќањето не успеа</string>
   <string name="PaymentsHomeFragment__details">Детали</string>
   <string name="PaymentsHomeFragment__activate">Активирај</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледни ги MobileCoin условите на употреба.</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледни ги условите за употреба на MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Додај средства</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса на Вашиот паричник</string>
@@ -2073,8 +2073,8 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s на %2$s во %3$s</string>
   <string name="PaymentsDetailsFragment__to">До</string>
   <string name="PaymentsDetailsFragment__from">Од</string>
-  <string name="PaymentsDetailsFragment__sent_payment">Испратени плаќање</string>
-  <string name="PaymentsDetailsFragment__received_payment">Примени плаќања</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Испратено плаќање</string>
+  <string name="PaymentsDetailsFragment__received_payment">Примено плаќање</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Плаќањето е завршено %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">Блокирај број</string>
   <!--PaymentsTransferFragment-->
@@ -2663,17 +2663,13 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за разговорот</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Боја на разговор</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Постави позадина</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Темната тема ја затемнува позадината</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Отстрани позадина</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Да ја отстранам позадината за овој разговор?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Да отстранам позадина? Ова нема да ги отстрани сопствените позадини кои ги имате поставено за Вашите разговори.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ресетирај ги сите позадини</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Да ги ресетирам сите позадини, вклучувајќи ги и сопствените позадини кои ги имате поставено за Вашите разговори?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Име на контакт</string>
   <string name="ChatWallpaperFragment__reset">Ресетираj</string>
   <string name="ChatWallpaperFragment__clear">Исчисти</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед на позадина</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ресетирај ги сите позадини</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Избери од слики</string>
   <string name="ChatWallpaperSelectionFragment__presets">Стандардни</string>
@@ -2777,5 +2773,13 @@
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови &amp; Политика на приватност</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Повици</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__chat_color">Боја на разговор</string>
+  <string name="ChatColorSelectionFragment__edit">Измени</string>
+  <string name="ChatColorSelectionFragment__delete">Избриши</string>
+  <!--CustomChatColorCreatorFragment-->
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Зачувај</string>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

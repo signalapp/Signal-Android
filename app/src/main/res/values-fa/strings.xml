@@ -294,7 +294,7 @@
   <string name="ConversationFragment_verify">تأیید</string>
   <string name="ConversationFragment_not_now">حالا نه</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">شمارهٔ امنیتی شما با %s تغییر یافت</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">شمارهٔ امنیتی شما با %s تغییر یافت، احتمالاً به این خاطر که آن‌ها سیگنال را دوباره نصب کردند یا دستگاهشان را تغییر دادند. برای تصدیق شمارهٔ امنیتی ضربه بزنید. این کار انتخابییست.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">شمارهٔ امنیتی شما با %s تغییر یافت، احتمالاً به این خاطر که آن‌ها سیگنال را دوباره نصب کردند یا دستگاه‌شان را تغییر دادند. برای تأیید شمارهٔ امنیتی ضربه بزنید. انجام این کار انتخابی است.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">حذف مکالمهٔ انتخاب شده؟</item>
     <item quantity="other">حذف مکالمه‌ها‌ی انتخاب شده؟</item>
@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">بستن اعلان‌ها</string>
   <string name="ManageGroupActivity_custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">رنگ و کاغذدیواری گفتگو</string>
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
   <string name="ManageGroupActivity_always">همیشه</string>
   <string name="ManageGroupActivity_off">خاموش</string>
@@ -1209,6 +1209,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">هیچ‌کس دیگری اینجا نیست</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s در این تماس حضور دارد</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s و %2$s در این تماس حضور دارند</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s در حال ارائه است</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
     <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
@@ -1225,6 +1226,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این خاطر باشد که آن‌ها تغییر شمارهٔ امنیتی شما را تأیید نکرده‌اند، مشکلی برای دستگاه‌شان پیش آمده یا شما را مسدود کرده‌اند.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">برای مشاهدهٔ اشتراک صفحه به انگشت‌تان را به کناره‌ها بکشید</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">سرور پروکسی</string>
   <string name="ProxyBottomSheetFragment_proxy_address">نشانی پروکسی</string>
@@ -1767,7 +1770,7 @@
   <string name="EditAboutFragment_taking_a_break">در حال استراحت</string>
   <string name="EditAboutFragment_working_on_something_new">در حال کار روی یک چیز جدید</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">نام و عکس گروه را ویرایش کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">نام و عکس گروه را ویرایش کنید</string> -->
   <string name="EditProfileFragment__group_name">نام گروه</string>
   <string name="EditProfileFragment__group_description"> توضیحات گروه</string>
   <!--EditProfileNameFragment-->
@@ -1963,6 +1966,7 @@
   <string name="preferences__appearance">ظاهر برنامه</string>
   <string name="preferences__theme">طرح زمینه</string>
   <string name="preferences__chat_wallpaper">کاغذدیواری گفتگو</string>
+  <string name="preferences__chat_color_and_wallpaper">رنگ و کاغذدیواری گفتگو</string>
   <string name="preferences__disable_pin">غیرفعال کردن پین</string>
   <string name="preferences__enable_pin">فعال کردن پین</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
@@ -2743,17 +2747,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">کاغذدیواری گفتگو</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">رنگ گفتگو</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">بازنشانی رنگ‌های گفتگو</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">بازنشانی رنگ گفتگو</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">بازنشانی رنگ گفتگو؟</string>
   <string name="ChatWallpaperFragment__set_wallpaper">تنظیم کاغذدیواری</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">طرح زمینهٔ تاریک کاغذدیواری را تیره می‌کند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">پاک کردن کاغذدیواری</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">پاک کردن کاغذدیواری برای این گفتگو؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">پاک کردن کاغذ دیواری؟ این کار کاغذدیواری‌های سفارشی دیگر را که جداگانه برای گفتگوهای خود انتخاب کردید پاک نمی‌کند.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">بازنشانی همهٔ کاغذدیواری‌ها، شامل کاغذدیواری‌های سفارشی که جداگانه برای گفتگوهای خود انتخاب کردید؟</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">حالت تاریک کاغذدیواری را تار می‌کند</string>
   <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
   <string name="ChatWallpaperFragment__reset">بازنشانی</string>
   <string name="ChatWallpaperFragment__clear">پاک کردن</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">پیش‌نمایش کاغذدیواری</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">می‌خواهید همهٔ رنگ‌های گفتگو را نادیده بگیرید؟</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">می‌خواهید همهٔ کاغذدیواری‌ها را نادیده بگیرید؟</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">بازنشانی رنگ‌های پیش‌فرض</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">بازنشانی همهٔ رنگ‌ها</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">بازنشانی کاغذدیواری پیش‌فرض</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">بازنشانی کاغذدیواری‌ها</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">بازنشانی کاغذدیواری</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">بازنشانی کاغذدیواری؟</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">انتخاب از عکس‌ها</string>
   <string name="ChatWallpaperSelectionFragment__presets">پیش‌تنظیم‌ها</string>
@@ -2855,6 +2867,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">هیچ‌کدام از مخاطبین یا افرادی که با آنان گفتگو می‌کنید در این گروه حضور ندارند. قبل از پذیرفتن درخواست‌ها را به دقت بازبینی کنید تا از پیام‌های ناخواسته جلوگیری کنید.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">دربارهٔ درخواست‌های تبادل پیام</string>
   <string name="GroupsInCommonMessageRequest__okay">خوب</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">این یک پیش‌نمایش رنگ گفتگو است.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">این رنگ فقط برای شما قابل رؤیت است.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description"> توضیحات گروه</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2921,5 +2935,32 @@
   <string name="HelpFragment__licenced_under_the_gplv3">پروانهٔ GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">تماس‌ها</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">خودکار</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">استفاده از رنگ‌های سفارشی</string>
+  <string name="ChatColorSelectionFragment__chat_color">رنگ گفتگو</string>
+  <string name="ChatColorSelectionFragment__edit">ویرایش</string>
+  <string name="ChatColorSelectionFragment__duplicate">تکثیر</string>
+  <string name="ChatColorSelectionFragment__delete">حذف</string>
+  <string name="ChatColorSelectionFragment__delete_color">حذف رنگ</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها حذف کنید؟</item>
+    <item quantity="other">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها حذف کنید؟</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">یک‌دست</string>
+  <string name="CustomChatColorCreatorFragment__gradient">گرادیان</string>
+  <string name="CustomChatColorCreatorFragment__hue">فام</string>
+  <string name="CustomChatColorCreatorFragment__saturation">اشباع</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">ذخیره</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">ویرایش رنگ</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">این رنگ در %1$d گفتگو استفاده شده است. آیا می‌خواهید تغییرات را برای همهٔ گفتگوها ذخیره کنید؟</item>
+    <item quantity="other">این رنگ در %1$d گفتگو استفاده شده است. آیا می‌خواهید تغییرات را برای همهٔ گفتگوها ذخیره کنید؟</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">لبهٔ گزینش‌گر بالایی</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">لبهٔ گزینش‌گر پایینی</string>
   <!--EOF-->
 </resources>

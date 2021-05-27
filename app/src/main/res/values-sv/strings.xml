@@ -611,7 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageGroupActivity_custom_notifications">Anpassade aviseringar</string>
   <string name="ManageGroupActivity_mentions">Omnämnanden</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Chattbakgrund</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Chattfärg och -bakgrund</string>
   <string name="ManageGroupActivity_until_s">Fram tills %1$s</string>
   <string name="ManageGroupActivity_always">Alltid</string>
   <string name="ManageGroupActivity_off">Av</string>
@@ -1208,6 +1208,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Ingen annan är här</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s är i detta samtal</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s och %2$s är i detta samtal</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s presenterar</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s och %3$d andra är i detta samtal</item>
     <item quantity="other">%1$s, %2$s och %3$d andra är med i detta samtal</item>
@@ -1224,6 +1225,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan inte ta emot ljud &amp; video från %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan inte ta emot ljud och video från %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Det kan bero på att de inte har verifierat ditt säkerhetsnummerbyte, det finns ett problem med deras enhet eller att de har blockerat dig.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Svep för att visa skärmdelning</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyadress</string>
@@ -1763,7 +1766,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditAboutFragment_taking_a_break">Tar en rast</string>
   <string name="EditAboutFragment_working_on_something_new">Arbetar på något nytt</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Redigera gruppnamn och foto</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Redigera gruppnamn och foto</string> -->
   <string name="EditProfileFragment__group_name">Gruppnamn</string>
   <string name="EditProfileFragment__group_description">Gruppbeskrivning</string>
   <!--EditProfileNameFragment-->
@@ -1959,6 +1962,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Chattbakgrund</string>
+  <string name="preferences__chat_color_and_wallpaper">Chattfärg och -bakgrund</string>
   <string name="preferences__disable_pin">Inaktivera PIN-koden</string>
   <string name="preferences__enable_pin">Aktivera PIN-koden</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
@@ -2739,17 +2743,25 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Chattbakgrund</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Chattfärg</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Återställ chattfärger</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Återställ chattfärg</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Återställ chattfärg?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Ställ in bakgrund</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mörkt tema dämpar bakgrunden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Rensa bakgrund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rensa bakgrunden för denna chatt?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rensa bakgrund? Detta rensar inte anpassade bakgrunder som du har ställt in för dina chattar.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Återställ alla bakgrunder</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Återställ alla bakgrunder, inklusive anpassade bakgrunder som du har ställt in för dina chattar?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mörkt läge dämpar bakgrunden</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
   <string name="ChatWallpaperFragment__reset">Starta om</string>
   <string name="ChatWallpaperFragment__clear">Rensa</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Förhandsgranskning av bakgrund</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vill du åsidosätta alla chattfärger?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vill du åsidosätta alla bakgrunder?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Återställ standardfärger</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Återställ alla färger</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Återställ standardbakgrund</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Återställ alla bakgrunder</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Återställ bakgrunder</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Återställ bakgrund</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Återställ bakgrund?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Välj från foton</string>
   <string name="ChatWallpaperSelectionFragment__presets">Förinställningar</string>
@@ -2851,6 +2863,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av dina kontakter eller personer du chattar med finns i denna grupp. Granska förfrågningar noga innan du accepterar för att undvika oönskade meddelanden.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Om meddelandeförfrågningar</string>
   <string name="GroupsInCommonMessageRequest__okay">Okej</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Här är en förhandsvisning av chattfärgen.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Färgen är bara synlig för dig.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Gruppbeskrivning</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2917,5 +2931,28 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Samtal</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__use_custom_colors">Använd anpassade färger</string>
+  <string name="ChatColorSelectionFragment__chat_color">Chattfärg</string>
+  <string name="ChatColorSelectionFragment__edit">Ändra</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplicera</string>
+  <string name="ChatColorSelectionFragment__delete">Ta bort</string>
+  <string name="ChatColorSelectionFragment__delete_color">Ta bort färg</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Denna anpassade färg används %1$d chatt. Vill du ta bort den för alla chattar?</item>
+    <item quantity="other">Denna anpassade färg används %1$d chattar. Vill du ta bort den för alla chattar?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__gradient">Lutning</string>
+  <string name="CustomChatColorCreatorFragment__hue">Nyans</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Mättnad</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Spara</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Redigera färg</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Denna färg används i %1$d chatt. Vill du spara ändringar för alla chattar?</item>
+    <item quantity="other">Denna färg används i %1$d chattar. Vill du spara ändringar för alla chattar?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

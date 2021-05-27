@@ -675,7 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Отключить уведомления</string>
   <string name="ManageGroupActivity_custom_notifications">Пользовательские уведомления</string>
   <string name="ManageGroupActivity_mentions">Упоминания</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_chat_wallpaper">Обои чата</string> -->
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Цвет и обои чата</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Всегда</string>
   <string name="ManageGroupActivity_off">Отключено</string>
@@ -1324,6 +1324,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s в этом звонке</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s показывает</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
     <item quantity="few">%1$s, %2$s и ещё %3$d человека в этом звонке</item>
@@ -1344,6 +1345,8 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
+  <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Проведите, чтобы просмотреть показ экрана</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Прокси-сервер</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Адрес прокси</string>
@@ -1906,7 +1909,7 @@
   <string name="EditAboutFragment_taking_a_break">Делаю перерыв</string>
   <string name="EditAboutFragment_working_on_something_new">Работаю над кое-чем новым</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Редактировать имя и фото группы</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Редактировать имя и фото группы</string> -->
   <string name="EditProfileFragment__group_name">Название группы</string>
   <string name="EditProfileFragment__group_description">Описание группы</string>
   <!--EditProfileNameFragment-->
@@ -2104,6 +2107,7 @@
   <string name="preferences__appearance">Внешний вид</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__chat_wallpaper">Обои чата</string>
+  <string name="preferences__chat_color_and_wallpaper">Цвет и обои чата</string>
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вручную не создадите и не восстановите резервную копию). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
@@ -2902,17 +2906,25 @@
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Обои чата</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Цвет чата</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Сбросить цвета чатов</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Сбросить цвет чата</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Сбросить цвет чата?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Установить обои</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Затемнение обоев при тёмной теме</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper">Удалить обои</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Удалить обои для этого чата?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Удалить обои? Обои, установленные вами для отдельных чатов, не будут удалены.</string> -->
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Сбросить все обои</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Сбросить все обои, включая те, которые были установлены вами для отдельных чатов?</string> -->
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Затемнение обоев при тёмной теме</string>
   <string name="ChatWallpaperFragment__contact_name">Имя контакта</string>
   <string name="ChatWallpaperFragment__reset">Сбросить</string>
   <string name="ChatWallpaperFragment__clear">Удалить</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Предпросмотр обоев</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Вы хотите заменить цвета всех чатов?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Вы хотите заменить обои всех чатов?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Сбросить цвета по умолчанию</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Сбросить все цвета</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Сбросить обои по умолчанию</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Сбросить все обои</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Сбросить обои</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Сбросить обои</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Сбросить обои?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Выбрать из фото</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предустановленные</string>
@@ -3014,6 +3026,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Никого из ваших контактов или людей, с которыми вы общаетесь, нет в этой группе. Внимательно проверяйте запросы перед тем, как принимать их, чтобы избежать нежелательных сообщений.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">О запросах на общение</string>
   <string name="GroupsInCommonMessageRequest__okay">Хорошо</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Это предпросмотр цвета чата.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Этот цвет виден только вам.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Описание группы</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3080,5 +3094,36 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Звонки</string>
+  <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Авто</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Использовать пользовательские цвета</string>
+  <string name="ChatColorSelectionFragment__chat_color">Цвет чата</string>
+  <string name="ChatColorSelectionFragment__edit">Изменить</string>
+  <string name="ChatColorSelectionFragment__duplicate">Дублировать</string>
+  <string name="ChatColorSelectionFragment__delete">Удалить</string>
+  <string name="ChatColorSelectionFragment__delete_color">Удаление цвета</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Этот пользовательский цвет используется в %1$d чате. Вы хотите удалить этот цвет?</item>
+    <item quantity="few">Этот пользовательский цвет используется в %1$d чатах. Вы хотите удалить его для всех чатов?</item>
+    <item quantity="many">Этот пользовательский цвет используется в %1$d чатах. Вы хотите удалить его для всех чатов?</item>
+    <item quantity="other">Этот пользовательский цвет используется в %1$d чатах. Вы хотите удалить его для всех чатов?</item>
+  </plurals>
+  <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Сплошной</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Градиент</string>
+  <string name="CustomChatColorCreatorFragment__hue">Оттенок</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Насыщенность</string>
+  <!--CustomChatColorCreatorFragmentPage-->
+  <string name="CustomChatColorCreatorFragmentPage__save">Сохранить</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Редактирование цвета</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Этот цвет используется в %1$d чате. Вы хотите сохранить изменения?</item>
+    <item quantity="few">Этот цвет используется в %1$d чатах. Вы хотите сохранить изменения для всех чатов?</item>
+    <item quantity="many">Этот цвет используется в %1$d чатах. Вы хотите сохранить изменения для всех чатов?</item>
+    <item quantity="other">Этот цвет используется в %1$d чатах. Вы хотите сохранить изменения для всех чатов?</item>
+  </plurals>
+  <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Выбор верхней грани</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Выбор нижней грани</string>
   <!--EOF-->
 </resources>
