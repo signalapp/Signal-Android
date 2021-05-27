@@ -5,26 +5,24 @@ package org.session.libsession.snode
 import android.os.Build
 import com.goterl.lazysodium.LazySodiumAndroid
 import com.goterl.lazysodium.SodiumAndroid
+import com.goterl.lazysodium.exceptions.SodiumException
+import com.goterl.lazysodium.interfaces.AEAD
+import com.goterl.lazysodium.interfaces.GenericHash
 import com.goterl.lazysodium.interfaces.PwHash
 import com.goterl.lazysodium.interfaces.SecretBox
+import com.goterl.lazysodium.utils.Key
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsignal.crypto.getRandomElement
-import org.session.libsignal.protos.SignalServiceProtos
-import org.session.libsignal.utilities.Snode
-import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.utilities.Broadcaster
-import org.session.libsignal.utilities.prettifiedDescription
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.utilities.retryIfNeeded
+import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-import org.session.libsignal.utilities.Log
 import java.security.SecureRandom
 import java.util.*
+import javax.crypto.AEADBadTagException
 
 object SnodeAPI {
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
@@ -166,12 +164,19 @@ object SnodeAPI {
 
     // Public API
     fun getSessionIDFor(onsName: String): Promise<String, Exception> {
+        val deferred = deferred<String, Exception>()
+        val promise = deferred.promise
         val validationCount = 3
         val sessionIDByteCount = 33
         // Hash the ONS name using BLAKE2b
-        val name = onsName.toLowerCase(Locale.ENGLISH)
-        val nameHash = sodium.cryptoGenericHash(name)
-        val base64EncodedNameHash = nameHash
+        val onsName = onsName.toLowerCase(Locale.ENGLISH)
+        val nameAsData = onsName.toByteArray()
+        val nameHash = ByteArray(GenericHash.BYTES)
+        if (!sodium.cryptoGenericHash(nameHash, nameHash.size, nameAsData, nameAsData.size.toLong())) {
+            deferred.reject(Error.HashingFailed)
+            return promise
+        }
+        val base64EncodedNameHash = Base64.encodeBytes(nameHash)
         // Ask 3 different snodes for the Session ID associated with the given name hash
         val parameters = mapOf(
             "endpoint" to "ons_resolve",
@@ -182,28 +187,62 @@ object SnodeAPI {
                 invoke(Snode.Method.OxenDaemonRPCCall, snode, null, parameters)
             }
         }
-        val deferred = deferred<String, Exception>()
-        val promise = deferred.promise
         all(promises).success { results ->
             val sessionIDs = mutableListOf<String>()
             for (json in results) {
                 val intermediate = json["result"] as? Map<*, *>
                 val hexEncodedCiphertext = intermediate?.get("encrypted_value") as? String
                 if (hexEncodedCiphertext != null) {
-                    val ciphertext = Hex.fromStringCondensed(hexEncodedCiphertext)
                     val isArgon2Based = (intermediate["nonce"] == null)
                     if (isArgon2Based) {
                         // Handle old Argon2-based encryption used before HF16
                         val salt = ByteArray(PwHash.SALTBYTES)
-                        val key = sodium.cryptoPwHash(name, SecretBox.KEYBYTES, salt, PwHash.OPSLIMIT_MODERATE, PwHash.MEMLIMIT_MODERATE, PwHash.Alg.PWHASH_ALG_ARGON2ID13)
+                        val key: String
                         val nonce = ByteArray(SecretBox.NONCEBYTES)
-                        val sessionID = sodium.cryptoSecretBoxOpenEasy(ciphertext, nonce, key)
+                        val sessionID: String
+                        try {
+                            key = sodium.cryptoPwHash(onsName, SecretBox.KEYBYTES, salt, PwHash.OPSLIMIT_MODERATE, PwHash.MEMLIMIT_MODERATE, PwHash.Alg.PWHASH_ALG_ARGON2ID13)
+                        } catch (e: SodiumException) {
+                            deferred.reject(Error.HashingFailed)
+                            return@success
+                        }
+                        try {
+                            sessionID = sodium.cryptoSecretBoxOpenEasy(hexEncodedCiphertext, nonce, Key.fromHexString(key))
+                        } catch (e: SodiumException) {
+                            deferred.reject(Error.DecryptionFailed)
+                            return@success
+                        }
+                        sessionIDs.add(sessionID)
                     } else {
-
+                        val hexEncodedNonce = intermediate["nonce"] as? String
+                        if (hexEncodedNonce == null) {
+                            deferred.reject(Error.Generic)
+                            return@success
+                        }
+                        val nonce = Hex.fromStringCondensed(hexEncodedNonce)
+                        val key = ByteArray(GenericHash.BYTES)
+                        if (!sodium.cryptoGenericHash(key, key.size, nameAsData, nameAsData.size.toLong(), nameHash, nameHash.size)) {
+                            deferred.reject(Error.HashingFailed)
+                            return@success
+                        }
+                        val sessionID: String
+                        try {
+                            sessionID = sodium.decrypt(hexEncodedCiphertext, null, nonce, Key.fromBytes(key), AEAD.Method.CHACHA20_POLY1305_IETF)
+                        } catch (e: Exception) {
+                            deferred.reject(Error.DecryptionFailed)
+                            return@success
+                        }
+                        sessionIDs.add(sessionID)
                     }
                 } else {
                     deferred.reject(Error.Generic)
+                    return@success
                 }
+            }
+            if (sessionIDs.size == validationCount && sessionIDs.toSet().size == 1) {
+                deferred.resolve(sessionIDs.first())
+            } else {
+                deferred.reject(Error.ValidationFailed)
             }
         }
         return promise
