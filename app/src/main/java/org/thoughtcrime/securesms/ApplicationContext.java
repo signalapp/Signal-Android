@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -47,7 +48,6 @@ import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
@@ -120,14 +120,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     private ProfileManager profileManager;
     private ObjectGraph objectGraph;
     private PersistentLogger persistentLogger;
-
-    // Loki
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
     public Broadcaster broadcaster = null;
     public SignalCommunicationModule communicationModule;
     private Job firebaseInstanceIdJob;
-    private Handler threadNotificationHandler;
+    private Handler conversationListNotificationHandler;
 
     private volatile boolean isAppVisible;
 
@@ -135,8 +133,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         return (ApplicationContext) context.getApplicationContext();
     }
 
-    public Handler getThreadNotificationHandler() {
-        return this.threadNotificationHandler;
+    public Handler getConversationListNotificationHandler() {
+        return this.conversationListNotificationHandler;
     }
 
 @Override
@@ -153,7 +151,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         AppContext.INSTANCE.configureKovenant();
         messageNotifier = new OptimizedMessageNotifier(new DefaultMessageNotifier());
         broadcaster = new Broadcaster(this);
-        threadNotificationHandler = new Handler(Looper.getMainLooper());
+        conversationListNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         MessagingModuleConfiguration.Companion.configure(this,
             DatabaseFactory.getStorage(this),

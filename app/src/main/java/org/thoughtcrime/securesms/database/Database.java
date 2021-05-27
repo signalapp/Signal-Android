@@ -35,13 +35,13 @@ public abstract class Database {
 
   protected       SQLCipherOpenHelper databaseHelper;
   protected final Context             context;
-  private final Debouncer threadNotificationDebouncer;
+  private final   Debouncer           conversationListNotificationDebouncer;
 
   @SuppressLint("WrongConstant")
   public Database(Context context, SQLCipherOpenHelper databaseHelper) {
-    this.context        = context;
+    this.context = context;
     this.databaseHelper = databaseHelper;
-    this.threadNotificationDebouncer = new Debouncer(ApplicationContext.getInstance(context).getThreadNotificationHandler(), 250);
+    this.conversationListNotificationDebouncer = new Debouncer(ApplicationContext.getInstance(context).getConversationListNotificationHandler(), 250);
   }
 
   protected void notifyConversationListeners(Set<Long> threadIds) {
@@ -50,11 +50,11 @@ public abstract class Database {
   }
 
   protected void notifyConversationListeners(long threadId) {
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
+    ConversationNotificationDebouncer.Companion.get(context).notify(threadId);
   }
 
   protected void notifyConversationListListeners() {
-    threadNotificationDebouncer.publish(()->context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null));
+    conversationListNotificationDebouncer.publish(()->context.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null));
   }
 
   protected void notifyStickerListeners() {

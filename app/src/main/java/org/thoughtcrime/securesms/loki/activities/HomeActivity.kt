@@ -51,17 +51,12 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import java.io.IOException
 
-class HomeActivity : PassphraseRequiredActionBarActivity(),
-    ConversationClickListener,
-    SeedReminderViewDelegate,
-    NewConversationButtonSetViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
     private val publicKey: String
-        get() {
-            return TextSecurePreferences.getLocalNumber(this)!!
-        }
+        get() = TextSecurePreferences.getLocalNumber(this)!!
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
