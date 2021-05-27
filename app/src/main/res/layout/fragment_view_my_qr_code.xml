@@ -32,7 +32,7 @@
                 android:textColor="@color/text"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:text="Scan Me" />
+                android:text="@string/fragment_view_my_qr_code_title" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
                 android:textAlignment="center"
-                android:text="This is your QR code. Other users can scan it to start a session with you." />
+                android:text="@string/fragment_view_my_qr_code_explanation" />
 
             <Button
                 style="@style/Widget.Session.Button.Common.UnimportantOutline"
@@ -68,7 +68,7 @@
                 android:layout_height="@dimen/medium_button_height"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="@dimen/medium_spacing"
-                android:text="Share" />
+                android:text="@string/share" />
 
         </LinearLayout>
 

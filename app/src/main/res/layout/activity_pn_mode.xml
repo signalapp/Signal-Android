@@ -19,7 +19,7 @@
             android:textSize="@dimen/large_font_size"
             android:textStyle="bold"
             android:textColor="@color/text"
-            android:text="Message Notifications" />
+            android:text="@string/activity_pn_mode_message_notifications" />
 
         <TextView
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_marginRight="@dimen/very_large_spacing"
             android:textSize="@dimen/medium_font_size"
             android:textColor="@color/text"
-            android:text="There are two ways Session can notify you of new messages." />
+            android:text="@string/activity_pn_mode_explanation" />
 
         <org.thoughtcrime.securesms.loki.views.PNModeView
             android:id="@+id/fcmOptionView"
@@ -48,7 +48,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
                 android:textStyle="bold"
-                android:text="Fast Mode" />
+                android:text="@string/activity_pn_mode_fast_mode" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                 android:layout_marginTop="4dp"
                 android:textSize="@dimen/very_small_font_size"
                 android:textColor="@color/text"
-                android:text="You’ll be notified of new messages reliably and immediately using Google’s notification servers." />
+                android:text="@string/activity_pn_mode_fast_mode_explanation" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
                 android:textStyle="bold"
-                android:text="Slow Mode" />
+                android:text="@string/activity_pn_mode_slow_mode" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:layout_marginTop="4dp"
                 android:textSize="@dimen/very_small_font_size"
                 android:textColor="@color/text"
-                android:text="Session will occasionally check for new messages in the background." />
+                android:text="@string/activity_pn_mode_slow_mode_explanation" />
 
         </org.thoughtcrime.securesms.loki.views.PNModeView>
 
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/medium_button_height"
             android:layout_marginLeft="@dimen/massive_spacing"
-            android:layout_marginTop="@dimen/very_large_spacing"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="@dimen/massive_spacing"
             android:layout_marginBottom="@dimen/onboarding_button_bottom_offset"
             android:text="@string/continue_2" />

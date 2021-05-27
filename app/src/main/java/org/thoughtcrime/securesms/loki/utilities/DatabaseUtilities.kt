@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.ContentValues
+import androidx.core.database.getStringOrNull
 import net.sqlcipher.Cursor
 import net.sqlcipher.database.SQLiteDatabase
 import org.session.libsignal.utilities.Base64
@@ -56,4 +57,8 @@ fun Cursor.getLong(columnName: String): Long {
 
 fun Cursor.getBase64EncodedData(columnName: String): ByteArray {
     return Base64.decode(getString(columnName))
+}
+
+fun Cursor.getStringOrNull(columnName: String): String? {
+    return getStringOrNull(getColumnIndexOrThrow(columnName))
 }

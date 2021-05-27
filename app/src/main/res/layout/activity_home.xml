@@ -42,7 +42,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="64dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Session"
+                    android:text="@string/app_name"
                     android:textColor="@color/text"
                     android:textSize="@dimen/very_large_font_size" />
 

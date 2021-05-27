@@ -8,8 +8,10 @@ class SnodeModule(val storage: LokiAPIDatabaseProtocol, val broadcaster: Broadca
     companion object {
         lateinit var shared: SnodeModule
 
+        val isInitialized: Boolean get() = Companion::shared.isInitialized
+
         fun configure(storage: LokiAPIDatabaseProtocol, broadcaster: Broadcaster) {
-            if (Companion::shared.isInitialized) { return }
+            if (isInitialized) { return }
             shared = SnodeModule(storage, broadcaster)
         }
     }

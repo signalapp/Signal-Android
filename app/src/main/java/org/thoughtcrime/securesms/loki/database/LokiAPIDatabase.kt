@@ -278,27 +278,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }
     }
 
-    override fun getLastMessageServerID(group: Long, server: String): Long? {
-        val database = databaseHelper.readableDatabase
-        val index = "$server.$group"
-        return database.get(lastMessageServerIDTable, "$lastMessageServerIDTableIndex = ?", wrap(index)) { cursor ->
-            cursor.getInt(lastMessageServerID)
-        }?.toLong()
-    }
-
     override fun getLastMessageServerID(room: String, server: String): Long? {
         val database = databaseHelper.writableDatabase
         val index = "$server.$room"
         return database.get(lastMessageServerIDTable, "$lastMessageServerIDTableIndex = ?", wrap(index)) { cursor ->
             cursor.getInt(lastMessageServerID)
         }?.toLong()
-    }
-
-    override fun setLastMessageServerID(group: Long, server: String, newValue: Long) {
-        val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        val row = wrap(mapOf( lastMessageServerIDTableIndex to index, lastMessageServerID to newValue.toString() ))
-        database.insertOrUpdate(lastMessageServerIDTable, row, "$lastMessageServerIDTableIndex = ?", wrap(index))
     }
 
     override fun setLastMessageServerID(room: String, server: String, newValue: Long) {
@@ -308,24 +293,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(lastMessageServerIDTable, row, "$lastMessageServerIDTableIndex = ?", wrap(index))
     }
 
-    fun removeLastMessageServerID(group: Long, server: String) {
-        val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        database.delete(lastMessageServerIDTable,"$lastMessageServerIDTableIndex = ?", wrap(index))
-    }
-
     fun removeLastMessageServerID(room: String, server:String) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$room"
         database.delete(lastMessageServerIDTable, "$lastMessageServerIDTableIndex = ?", wrap(index))
-    }
-
-    override fun getLastDeletionServerID(group: Long, server: String): Long? {
-        val database = databaseHelper.readableDatabase
-        val index = "$server.$group"
-        return database.get(lastDeletionServerIDTable, "$lastDeletionServerIDTableIndex = ?", wrap(index)) { cursor ->
-            cursor.getInt(lastDeletionServerID)
-        }?.toLong()
     }
 
     override fun getLastDeletionServerID(room: String, server: String): Long? {
@@ -334,13 +305,6 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         return database.get(lastDeletionServerIDTable, "$lastDeletionServerIDTableIndex = ?", wrap(index)) { cursor ->
             cursor.getInt(lastDeletionServerID)
         }?.toLong()
-    }
-
-    override fun setLastDeletionServerID(group: Long, server: String, newValue: Long) {
-        val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        val row = wrap(mapOf( lastDeletionServerIDTableIndex to index, lastDeletionServerID to newValue.toString() ))
-        database.insertOrUpdate(lastDeletionServerIDTable, row, "$lastDeletionServerIDTableIndex = ?", wrap(index))
     }
 
     override fun setLastDeletionServerID(room: String, server: String, newValue: Long) {
@@ -392,32 +356,6 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(userCountTable, row, "$publicChatID = ?", wrap(index))
     }
 
-    override fun getSessionRequestSentTimestamp(publicKey: String): Long? {
-        val database = databaseHelper.readableDatabase
-        return database.get(sessionRequestSentTimestampTable, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey)) { cursor ->
-            cursor.getLong(LokiAPIDatabase.timestamp)
-        }?.toLong()
-    }
-
-    override fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long) {
-        val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf( LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to newValue.toString() ))
-        database.insertOrUpdate(sessionRequestSentTimestampTable, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
-    }
-
-    override fun getSessionRequestProcessedTimestamp(publicKey: String): Long? {
-        val database = databaseHelper.readableDatabase
-        return database.get(sessionRequestProcessedTimestampTable, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey)) { cursor ->
-            cursor.getInt(LokiAPIDatabase.timestamp)
-        }?.toLong()
-    }
-
-    override fun setSessionRequestProcessedTimestamp(publicKey: String, newValue: Long) {
-        val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to newValue.toString()))
-        database.insertOrUpdate(sessionRequestProcessedTimestampTable, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
-    }
-
     override fun getOpenGroupPublicKey(server: String): String? {
         val database = databaseHelper.readableDatabase
         return database.get(openGroupPublicKeyTable, "${LokiAPIDatabase.server} = ?", wrap(server)) { cursor ->
@@ -429,27 +367,6 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.writableDatabase
         val row = wrap(mapOf( LokiAPIDatabase.server to server, LokiAPIDatabase.publicKey to newValue ))
         database.insertOrUpdate(openGroupPublicKeyTable, row, "${LokiAPIDatabase.server} = ?", wrap(server))
-    }
-
-    override fun getOpenGroupProfilePictureURL(group: Long, server: String): String? {
-        val database = databaseHelper.readableDatabase
-        val index = "$server.$group"
-        return database.get(openGroupProfilePictureTable, "$publicChatID = ?", wrap(index)) { cursor ->
-            cursor.getString(openGroupProfilePicture)
-        }?.toString()
-    }
-
-    override fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String) {
-        val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        val row = wrap(mapOf(publicChatID to index, openGroupProfilePicture to newValue))
-        database.insertOrUpdate(openGroupProfilePictureTable, row, "$publicChatID = ?", wrap(index))
-    }
-
-    fun clearOpenGroupProfilePictureURL(group: Long, server: String): Boolean {
-        val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        return database.delete(openGroupProfilePictureTable, "$publicChatID = ?", arrayOf(index)) > 0
     }
 
     override fun getLastSnodePoolRefreshDate(): Date? {

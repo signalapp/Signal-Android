@@ -71,6 +71,13 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         }
     }
 
+    fun getMessageReceiveJob(messageReceiveJobID: String): MessageReceiveJob? {
+        val database = databaseHelper.readableDatabase
+        return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf( messageReceiveJobID, MessageReceiveJob.KEY )) { cursor ->
+            jobFromCursor(cursor) as MessageReceiveJob?
+        }
+    }
+
     fun cancelPendingMessageSendJobs(threadID: Long) {
         val database = databaseHelper.writableDatabase
         val attachmentUploadJobKeys = mutableListOf<String>()

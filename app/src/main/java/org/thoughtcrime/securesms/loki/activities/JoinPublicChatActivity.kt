@@ -29,6 +29,7 @@ import org.session.libsession.utilities.DistributionTypes
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.loki.viewmodel.State
 
@@ -86,6 +86,9 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         val room = url.pathSegments().firstOrNull()
         val publicKey = url.queryParameter("public_key")
         val isV2OpenGroup = !room.isNullOrEmpty()
+        if (isV2OpenGroup && (publicKey == null || !PublicKeyValidation.isValid(publicKey, 64,false))) {
+            return Toast.makeText(this, R.string.invalid_public_key, Toast.LENGTH_SHORT).show()
+        }
         showLoader()
         lifecycleScope.launch(Dispatchers.IO) {
             try {

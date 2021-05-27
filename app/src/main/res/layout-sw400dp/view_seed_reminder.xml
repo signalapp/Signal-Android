@@ -36,7 +36,7 @@
                 android:textColor="@color/text"
                 android:textSize="@dimen/small_font_size"
                 android:textStyle="bold"
-                android:text="You're almost finished! 80%" />
+                android:text="@string/view_seed_reminder_title" />
 
             <TextView
                 android:id="@+id/subtitleTextView"
@@ -47,7 +47,7 @@
                 android:textSize="@dimen/very_small_font_size"
                 android:lines="2"
                 android:alpha="0.6"
-                android:text="Secure your account by saving your recovery phrase" />
+                android:text="@string/view_seed_reminder_subtitle_1" />
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:layout_height="28dp"
             android:layout_marginLeft="4dp"
             android:textStyle="normal"
-            android:text="Continue" />
+            android:text="@string/continue_2" />
 
     </LinearLayout>
 

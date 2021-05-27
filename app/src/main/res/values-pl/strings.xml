@@ -8,7 +8,7 @@
     <string name="please_wait">Proszę czekać...</string>
     <string name="save">Zapisz</string>
     <string name="note_to_self">Moje notatki</string>
-    <string name="version_s">Version %s</string>
+    <string name="version_s">Wersja %s</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
     <!-- AlbumThumbnailView -->
@@ -66,6 +66,10 @@
     <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Przepraszamy, wystąpił błąd podczas dodawania załącznika.</string>
     <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_compose">Compose</string>
+    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d members</string>
+    <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
     <string name="ConversationActivity_invalid_recipient">Nieprawidłowy adresat!</string>
     <string name="ConversationActivity_added_to_home_screen">Dodano do ekranu głównego</string>
     <string name="ConversationActivity_leave_group">Opuścić grupę?</string>
@@ -154,7 +158,7 @@
     <string name="CustomDefaultPreference_none">Brak</string>
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Teraz</string>
-    <string name="DateUtils_minutes_ago">%d minuta</string>
+    <string name="DateUtils_minutes_ago">%d min. temu</string>
     <string name="DateUtils_today">Dzisiaj</string>
     <string name="DateUtils_yesterday">Wczoraj</string>
     <!-- DeviceListItem -->
@@ -253,13 +257,13 @@
     <string name="ThreadRecord_s_is_on_signal">%s jest w Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s wykonał zrzut ekranu.</string>
     <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
     <string name="ThreadRecord_safety_number_changed">Numer bezpieczeństwa zmienił się</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Twój numer bezpieczeństwa z %s zmienił się.</string>
     <string name="ThreadRecord_you_marked_verified">Oznaczyłeś(aś) jako zweryfikowany</string>
     <string name="ThreadRecord_you_marked_unverified">Oznaczyłeś(aś) jako niezweryfikowany</string>
-    <string name="ThreadRecord_empty_message">This conversation is empty</string>
+    <string name="ThreadRecord_empty_message">Ten wątek jest pusty</string>
     <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Aktualizacja Session</string>
@@ -377,6 +381,9 @@
     <!-- open_group_invitation_view -->
     <string name="open_group_invitation_view__join_accessibility_description">Join</string>
     <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
+    <string name="open_group_guidelines_pinned_message">Pinned message</string>
+    <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
+    <string name="open_group_guidelines_read">Read</string>
     <!-- QuoteView -->
     <string name="QuoteView_audio">Dźwięk</string>
     <string name="QuoteView_video">Wideo</string>
@@ -568,9 +575,9 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Blokada ekranu po czasie nieaktywności</string>
     <string name="AppProtectionPreferenceFragment_none">Brak</string>
     <!-- Conversation activity -->
-    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <string name="activity_conversation_copy_public_key_button_title">Kopiuj klucz publiczny</string>
     <!-- Session -->
-    <string name="continue_2">Kontyntynuj</string>
+    <string name="continue_2">Kontynuuj</string>
     <string name="copy">Kopiuj</string>
     <string name="invalid_url">nieprawidłowy URL</string>
     <string name="copied_to_clipboard">Skopiowano do schowka</string>
@@ -582,7 +589,7 @@
     <string name="activity_landing_title_2">Twoja sesja zaczyna się tutaj...</string>
     <string name="activity_landing_register_button_title">Utwórz identyfikator Session</string>
     <string name="activity_landing_restore_button_title">Kontynuuj swoją sesję</string>
-    <string name="view_fake_chat_bubble_1">Jaki jest Session</string>
+    <string name="view_fake_chat_bubble_1">Czym jest Session?</string>
     <string name="view_fake_chat_bubble_2">To zdecentralizowana, szyfrowana aplikacja do przesyłania wiadomości</string>
     <string name="view_fake_chat_bubble_3">Więc nie zbiera moich danych osobowych ani metadanych z mojej rozmowy? Jak to działa?</string>
     <string name="view_fake_chat_bubble_4">Wykorzystując połączenie zaawansowanych anonimowych tras i technologii szyfrowania end-to-end.</string>
@@ -609,12 +616,13 @@
     <string name="activity_seed_title_2">Poznaj swoją frazę odzyskiwania</string>
     <string name="activity_seed_explanation">Twoja fraza odzyskiwania jest głównym kluczem do identyfikatora Session - możesz jej użyć do przywrócenia identyfikatora Session, jeśli stracisz dostęp do urządzenia. Przechowuj swoją frazę odzyskiwania w bezpiecznym miejscu i nikomu jej nie udostępniaj.</string>
     <string name="activity_seed_reveal_button_title">Przytrzymaj, aby odsłonić</string>
+    <string name="view_seed_reminder_title">You\'re almost finished! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Zabezpiecz swoje konto, zapisując frazę odzyskiwania</string>
     <string name="view_seed_reminder_subtitle_2">Stuknij i przytrzymaj zredagowane słowa, aby odsłonić frazę odzyskiwania, a następnie przechowuj ją w bezpiecznym miejscu, aby zabezpieczyć identyfikator Session.</string>
     <string name="view_seed_reminder_subtitle_3">Pamiętaj, aby przechowywać frazę odzyskiwania w bezpiecznym miejscu</string>
     <string name="activity_path_title">Ścieżka</string>
     <string name="activity_path_explanation">Session ukrywa Twój adres IP, odbijając wiadomości przez kilka węzłów usług w zdecentralizowanej sieci Session. Oto kraje, w których obecnie Twoje połączenie jest odbijane:</string>
-    <string name="activity_path_device_row_title">ty</string>
+    <string name="activity_path_device_row_title">Ty</string>
     <string name="activity_path_guard_node_row_title">Węzeł wejścia</string>
     <string name="activity_path_service_node_row_title">Węzeł serwisowy</string>
     <string name="activity_path_destination_row_title">Miejsce docelowe</string>
@@ -649,9 +657,10 @@
     <string name="activity_settings_notifications_button_title">Powiadomienia</string>
     <string name="activity_settings_chats_button_title">Czaty</string>
     <string name="activity_settings_devices_button_title">Urządzenia</string>
-    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_invite_button_title">Zaproś</string>
     <string name="activity_settings_recovery_phrase_button_title">Fraza odzyskiwania</string>
     <string name="activity_settings_clear_all_data_button_title">Wyczyść dane</string>
+    <string name="activity_settings_help_translate_session">Pomóż nam w tłumaczeniu Session</string>
     <string name="activity_notification_settings_title">Powiadomienia</string>
     <string name="activity_notification_settings_style_section_title">Styl powiadomienia</string>
     <string name="activity_notification_settings_content_section_title">Treść powiadomienia</string>
@@ -668,38 +677,51 @@
     <string name="activity_qr_code_view_my_qr_code_tab_title">Wyświetl mój kod QR</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Skanowania QR code</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">Zeskanuj czyjś kod QR, aby rozpocząć z nim rozmowę</string>
+    <string name="fragment_view_my_qr_code_title">Scan Me</string>
     <string name="fragment_view_my_qr_code_explanation">To jest twój kod QR. Inni użytkownicy mogą go zeskanować, aby rozpocząć z tobą sesję.</string>
     <string name="fragment_view_my_qr_code_share_title">Udostępnij kod QR</string>
     <string name="fragment_contact_selection_contacts_title">Łączność</string>
     <string name="fragment_contact_selection_closed_groups_title">Grupy zamknięte</string>
     <string name="fragment_contact_selection_open_groups_title">Otwórz grupy</string>
+    <string name="fragment_contact_selection_empty_contacts">You don\'t have any contacts yet</string>
     <!-- Next round of translation -->
-    <string name="menu_apply_button">Apply</string>
-    <string name="menu_done_button">Done</string>
-    <string name="activity_edit_closed_group_title">Edit Group</string>
-    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
-    <string name="activity_edit_closed_group_edit_members">Members</string>
-    <string name="activity_edit_closed_group_add_members">Add members</string>
-    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
+    <string name="menu_apply_button">Zastosuj</string>
+    <string name="menu_done_button">Gotowe</string>
+    <string name="activity_edit_closed_group_title">Edytuj grupę</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Wpisz nazwę grupy</string>
+    <string name="activity_edit_closed_group_edit_members">Członkowie</string>
+    <string name="activity_edit_closed_group_add_members">Dodaj członków</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Nazwa grupy nie może być pusta</string>
     <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
     <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
     <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
     <string name="activity_select_contacts_title">Select Contacts</string>
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
-    <string name="dialog_ui_mode_title">Theme</string>
+    <string name="dialog_ui_mode_title">Motyw</string>
     <string name="dialog_ui_mode_option_day">Day</string>
     <string name="dialog_ui_mode_option_night">Night</string>
     <string name="dialog_ui_mode_option_system_default">System default</string>
     <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
-    <string name="attachment">Attachment</string>
-    <string name="attachment_type_voice_message">Voice Message</string>
-    <string name="details">Details</string>
+    <string name="attachment">Załącznik</string>
+    <string name="attachment_type_voice_message">Wiadomość głosowa</string>
+    <string name="details">Szczegóły</string>
     <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
     <string name="activity_backup_restore_title">Restore backup</string>
     <string name="activity_backup_restore_select_file">Select a file</string>
     <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
-    <!--  LinkDeviceActivity  -->
-    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
+    <string name="activity_link_device_skip_prompt">To zajmuje chwilę, czy chcesz pominąć?</string>
+    <string name="activity_link_device_link_device">Link a Device</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
+    <string name="activity_pn_mode_message_notifications">Message Notifications</string>
+    <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
+    <string name="activity_pn_mode_fast_mode">Fast Mode</string>
+    <string name="activity_pn_mode_slow_mode">Slow Mode</string>
+    <string name="activity_pn_mode_fast_mode_explanation">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Session will occasionally check for new messages in the background.</string>
+    <string name="fragment_recovery_phrase_title">Recovery Phrase</string>
+    <string name="activity_prompt_passphrase_session_locked">Session is Locked</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Dotknij by odblokować</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
+    <string name="invalid_public_key">Invalid public key</string>
 </resources>

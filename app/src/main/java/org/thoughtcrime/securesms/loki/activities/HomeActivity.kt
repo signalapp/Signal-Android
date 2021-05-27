@@ -31,6 +31,7 @@ import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.*
 import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils
@@ -132,12 +133,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         })
         // Set up remaining components if needed
         val application = ApplicationContext.getInstance(this)
-        val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
-        val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
-        val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         if (userPublicKey != null) {
-            MentionsManager.configureIfNeeded(userPublicKey, userDB)
             OpenGroupManager.startPolling()
             JobQueue.shared.resumePendingJobs()
         }

@@ -43,6 +43,7 @@ class PNModeActivity : BaseActionBarActivity() {
         backgroundPollingOptionView.mainColor = resources.getColorWithID(R.color.pn_option_background, theme)
         backgroundPollingOptionView.strokeColor = resources.getColorWithID(R.color.pn_option_border, theme)
         registerButton.setOnClickListener { register() }
+        toggleFCM()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

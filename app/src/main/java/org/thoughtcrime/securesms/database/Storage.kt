@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
-import org.session.libsession.messaging.jobs.AttachmentUploadJob
-import org.session.libsession.messaging.jobs.Job
-import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.jobs.*
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
@@ -77,23 +75,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         TextSecurePreferences.setProfilePictureURL(context, newValue)
         RetrieveProfileAvatarJob(ourRecipient, newValue)
         ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, newValue))
-    }
-
-    override fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray? {
-        val address = Address.fromSerialized(recipientPublicKey)
-        val recipient = Recipient.from(context, address, false)
-        return recipient.profileKey
-    }
-
-    override fun getDisplayNameForRecipient(recipientPublicKey: String): String? {
-        val database = DatabaseFactory.getLokiUserDatabase(context)
-        return database.getDisplayName(recipientPublicKey)
-    }
-
-    override fun setProfileKeyForRecipient(recipientPublicKey: String, profileKey: ByteArray) {
-        val address = Address.fromSerialized(recipientPublicKey)
-        val recipient = Recipient.from(context, address, false)
-        DatabaseFactory.getRecipientDatabase(context).setProfileKey(recipient, profileKey)
     }
 
     override fun getOrGenerateRegistrationID(): Int {
@@ -205,6 +186,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getMessageSendJob(messageSendJobID: String): MessageSendJob? {
         return DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID)
+    }
+
+    override fun getMessageReceiveJob(messageReceiveJobID: String): MessageReceiveJob? {
+        return DatabaseFactory.getSessionJobDatabase(context).getMessageReceiveJob(messageReceiveJobID)
     }
 
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {
@@ -507,16 +492,16 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return threadId
     }
 
-    override fun getDisplayName(publicKey: String): String? {
-        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
+    override fun getContactWithSessionID(sessionID: String): Contact? {
+        return DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(sessionID)
     }
 
-    override fun setDisplayName(publicKey: String, newName: String) {
-        DatabaseFactory.getLokiUserDatabase(context).setDisplayName(publicKey, newName)
+    override fun getAllContacts(): Set<Contact> {
+        return DatabaseFactory.getSessionContactDatabase(context).getAllContacts()
     }
 
-    override fun getProfilePictureURL(publicKey: String): String? {
-        return DatabaseFactory.getLokiUserDatabase(context).getProfilePictureURL(publicKey)
+    override fun setContact(contact: Contact) {
+        DatabaseFactory.getSessionContactDatabase(context).setContact(contact)
     }
 
     override fun getRecipientSettings(address: Address): Recipient.RecipientSettings? {

@@ -248,6 +248,7 @@ public class RecipientDatabase extends Database {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(SYSTEM_DISPLAY_NAME, profileName);
     updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.resolve().setName(profileName);
     recipient.resolve().setProfileName(profileName);
   }
 

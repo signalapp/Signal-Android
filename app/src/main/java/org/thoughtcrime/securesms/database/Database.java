@@ -41,7 +41,7 @@ public abstract class Database {
   public Database(Context context, SQLCipherOpenHelper databaseHelper) {
     this.context        = context;
     this.databaseHelper = databaseHelper;
-    this.threadNotificationDebouncer = new Debouncer(ApplicationContext.getInstance(context).getThreadNotificationHandler(), 100);
+    this.threadNotificationDebouncer = new Debouncer(ApplicationContext.getInstance(context).getThreadNotificationHandler(), 250);
   }
 
   protected void notifyConversationListeners(Set<Long> threadIds) {
