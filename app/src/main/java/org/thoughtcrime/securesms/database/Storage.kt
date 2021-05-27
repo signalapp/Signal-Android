@@ -163,9 +163,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             }
         }
         val threadID = message.threadID
+        // open group trim thread job is scheduled after processing in OpenGroupPollerV2
         if (openGroupID.isNullOrEmpty() && threadID != null && threadID >= 0) {
             JobQueue.shared.add(TrimThreadJob(threadID))
-            // open group trim thread job is scheduled after processing
         }
         return messageID
     }
