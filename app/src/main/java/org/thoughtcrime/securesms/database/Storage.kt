@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
-import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.contacts.Contact
+import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
@@ -16,20 +16,15 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
-import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.Address.Companion.fromSerialized
-import org.session.libsession.utilities.GroupRecord
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.messaging.utilities.UpdateMessageData
-import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.IdentityKeyUtil
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.ProfileKeyUtil
+import org.session.libsession.utilities.*
+import org.session.libsession.utilities.Address.Companion.fromSerialized
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.utilities.KeyHelper
-import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceGroup
+import org.session.libsignal.utilities.KeyHelper
+import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
@@ -100,7 +95,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long? {
         var messageID: Long? = null
         val senderAddress = Address.fromSerialized(message.sender!!)
-        val isUserSender = message.sender!! == getUserPublicKey()
+        val isUserSender = (message.sender!! == getUserPublicKey())
         val group: Optional<SignalServiceGroup> = when {
             openGroupID != null -> Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
             groupPublicKey != null -> {
@@ -120,7 +115,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             senderAddress
         }
         val targetRecipient = Recipient.from(context, targetAddress, false)
-
         if (message.isMediaMessage() || attachments.isNotEmpty()) {
             val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
