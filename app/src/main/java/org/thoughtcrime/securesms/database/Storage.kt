@@ -121,7 +121,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val insertResult = if (message.sender == getUserPublicKey()) {
                 val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointerAttachments, quote.orNull(), linkPreviews.orNull()?.firstOrNull())
-                mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
@@ -129,14 +128,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                     it.toSignalPointer()
                 }
                 val mediaMessage = IncomingMediaMessage.from(message, senderAddress, targetRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
-                mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.receivedTimestamp ?: 0)
             }
             if (insertResult.isPresent) {
-                mmsDatabase.setTransactionSuccessful()
                 messageID = insertResult.get().messageId
             }
-            mmsDatabase.endTransaction()
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
             val isOpenGroupInvitation = (message.openGroupInvitation != null)
