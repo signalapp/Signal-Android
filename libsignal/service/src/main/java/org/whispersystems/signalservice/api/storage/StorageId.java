@@ -53,11 +53,23 @@ public class StorageId {
 
   public static boolean isKnownType(int val) {
     for (ManifestRecord.Identifier.Type type : ManifestRecord.Identifier.Type.values()) {
-      if (type.getNumber() == val) {
+      if (type != ManifestRecord.Identifier.Type.UNRECOGNIZED && type.getNumber() == val) {
         return true;
       }
     }
     return false;
+  }
+
+  public static int largestKnownType() {
+    int max = 0;
+
+    for (ManifestRecord.Identifier.Type type : ManifestRecord.Identifier.Type.values()) {
+      if (type != ManifestRecord.Identifier.Type.UNRECOGNIZED) {
+        max = Math.max(type.getNumber(), max);
+      }
+    }
+
+    return max;
   }
 
   @Override

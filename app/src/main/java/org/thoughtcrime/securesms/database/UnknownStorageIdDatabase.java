@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 
 import java.io.IOException;
@@ -46,10 +47,13 @@ public class UnknownStorageIdDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public List<StorageId> getAllIds() {
-    List<StorageId> keys = new ArrayList<>();
+  public List<StorageId> getAllUnknownIds() {
+    List<StorageId> keys  = new ArrayList<>();
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)) {
+    String   query = TYPE + " > ?";
+    String[] args  = SqlUtil.buildArgs(StorageId.largestKnownType());
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         String keyEncoded = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_ID));
         int    type       = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
