@@ -1756,7 +1756,7 @@
   <string name="EditAboutFragment_taking_a_break">Κάνω διάλειμμα</string>
   <string name="EditAboutFragment_working_on_something_new">Ετοιμάζω κάτι καινούργιο</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string> -->
+  <string name="EditProfileFragment__edit_group">Επεξεργασία ομάδας</string>
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <string name="EditProfileFragment__group_description">Περιγραφή ομάδας</string>
   <!--EditProfileNameFragment-->
@@ -2815,10 +2815,6 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Αποθήκευση</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Επεξεργασία χρώματος</string>
-  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Αυτό το χρώμα χρησιμοποιείται σε %1$d συνομιλία. Θέλεις να αποθηκεύσεις τις αλλαγές για όλες τις συνομιλίες;</item>
-    <item quantity="other">Αυτό το χρώμα χρησιμοποιείται σε %1$d συνομιλίες. Θέλεις να αποθηκεύσεις τις αλλαγές για όλες τις συνομιλίες;</item>
-  </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Επιλογή πάνω γωνίας</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Επιλογή κάτω γωνίας</string>

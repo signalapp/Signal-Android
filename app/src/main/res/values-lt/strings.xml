@@ -1915,7 +1915,7 @@
   <string name="EditAboutFragment_taking_a_break">Man pertrauka</string>
   <string name="EditAboutFragment_working_on_something_new">Dirbu ties kažkuo nauju</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Taisyti grupės pavadinimą ir nuotrauką</string> -->
+  <string name="EditProfileFragment__edit_group">Taisyti grupę</string>
   <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>
   <string name="EditProfileFragment__group_description">Grupės aprašas</string>
   <!--EditProfileNameFragment-->

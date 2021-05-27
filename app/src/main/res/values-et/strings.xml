@@ -607,6 +607,7 @@
   <string name="ManageGroupActivity_mute_notifications">Vaigista teavitused</string>
   <string name="ManageGroupActivity_custom_notifications">Kohandatud teavitused</string>
   <string name="ManageGroupActivity_mentions">Mainimised</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Vestluse värv ja taustapilt</string>
   <string name="ManageGroupActivity_until_s">kuni %1$s</string>
   <string name="ManageGroupActivity_always">Alati</string>
   <string name="ManageGroupActivity_off">Väljas</string>
@@ -634,6 +635,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">uuenda see grupp</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">See on ebaturvaline MMS grupp. Privaatselt vestlemiseks kutsu enda kontaktid Signalit kasutama.</string>
   <string name="ManageGroupActivity_invite_now">Kutsu kohe</string>
+  <string name="ManageGroupActivity_more">rohkem</string>
   <string name="ManageGroupActivity_add_group_description">Lisa grupi kirjeldus…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Teavita mind mainimise korral</string>
@@ -1760,7 +1762,7 @@
   <string name="EditAboutFragment_taking_a_break">Puhkepaus</string>
   <string name="EditAboutFragment_working_on_something_new">Töötan millegi uue kallal</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Muuda grupi nime ja pilti</string> -->
+  <string name="EditProfileFragment__edit_group">Muuda gruppi</string>
   <string name="EditProfileFragment__group_name">Grupi nimi</string>
   <string name="EditProfileFragment__group_description">Grupi kirjeldus</string>
   <!--EditProfileNameFragment-->
@@ -1947,6 +1949,7 @@
   <string name="preferences__appearance">Välimus</string>
   <string name="preferences__theme">Teema</string>
   <string name="preferences__chat_wallpaper">Vestluse taustapilt</string>
+  <string name="preferences__chat_color_and_wallpaper">Vestluse värv ja taustapilt</string>
   <string name="preferences__disable_pin">Keela PIN</string>
   <string name="preferences__enable_pin">Luba PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad kõik andmed, kui eemaldad Signal rakenduse ja pole seda käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
@@ -2113,10 +2116,12 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Lisa märkus</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Märkus</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Kinnita makse</string>
   <string name="ConfirmPayment__network_fee">Võrgutasu</string>
   <string name="ConfirmPayment__to">Saaja</string>
   <string name="ConfirmPayment__total_amount">Kogusumma</string>
@@ -2642,12 +2647,22 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Vestluse taustapilt</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Vestluse värv</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Lähtesta vestluse värvid</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Lähtesta vestluse värv</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Kas lähtestada vestluse värv?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Määra taustapildiks</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tume teema tumendab taustapilti</string>
   <string name="ChatWallpaperFragment__contact_name">Kontakti nimi</string>
   <string name="ChatWallpaperFragment__reset">Lähtesta</string>
   <string name="ChatWallpaperFragment__clear">Eemalda</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Taustapildi eelvaade</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Lähtesta vaikimisi värvid</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Lähtesta kõik värvid</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Lähtesta vaikimisi taustapilt</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Lähtesta kõik taustapildid</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Lähtesta taustapildid</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Lähtesta taustapilt</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Kas lähtestada taustapilt?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vali fotodest</string>
   <string name="ChatWallpaperSelectionFragment__presets">Eelsätted</string>
@@ -2769,12 +2784,18 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Kõned</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automaatne</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Kasuta kohandatud värve</string>
   <string name="ChatColorSelectionFragment__chat_color">Vestluse värv</string>
   <string name="ChatColorSelectionFragment__edit">Muuda</string>
   <string name="ChatColorSelectionFragment__delete">Kustuta</string>
+  <string name="ChatColorSelectionFragment__delete_color">Kustuta värv</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Salvesta</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Muuda värvi</string>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Ülemise ääre valija</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Alumise ääre valija</string>
   <!--EOF-->
 </resources>

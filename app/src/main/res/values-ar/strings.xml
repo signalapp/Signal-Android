@@ -2027,7 +2027,7 @@
   <string name="EditAboutFragment_taking_a_break">أنا في استراحة</string>
   <string name="EditAboutFragment_working_on_something_new">أعمل حاليا على شيء جديد</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">عدّل اسم المجموعة وصورتها</string> -->
+  <string name="EditProfileFragment__edit_group">تعديل المجموعة</string>
   <string name="EditProfileFragment__group_name">اسم المجموعة</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">اسمك</string>

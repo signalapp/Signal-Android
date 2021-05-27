@@ -1772,7 +1772,7 @@
   <string name="EditAboutFragment_taking_a_break">Relaxando</string>
   <string name="EditAboutFragment_working_on_something_new">Trabalhando em algo novo</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e foto do grupo</string> -->
+  <string name="EditProfileFragment__edit_group">Editar grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <string name="EditProfileFragment__group_description">Descrição do grupo</string>
   <!--EditProfileNameFragment-->
@@ -2929,10 +2929,6 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Salvar</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Editar cor</string>
-  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Essa cor é usada em %1$d conversa. Deseja salvar as alterações para todas as conversas?</item>
-    <item quantity="other">Essa cor é usada em %1$d conversas. Deseja salvar as alterações para todas as conversas?</item>
-  </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selecionador da borda superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selecionador da borda inferior</string>

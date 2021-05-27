@@ -1718,7 +1718,7 @@
   <string name="EditAboutFragment_taking_a_break">ایک وقفے پر</string>
   <string name="EditAboutFragment_working_on_something_new">کسی نئی چیز پر کام کرنا</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">گروپ کے نام اور تصویر میں ترمیم کریں</string> -->
+  <string name="EditProfileFragment__edit_group">گروپ میں ترمیم کریں</string>
   <string name="EditProfileFragment__group_name">گروپ کا نام</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">آپ کا نام</string>

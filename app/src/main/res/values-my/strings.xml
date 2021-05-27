@@ -3,7 +3,7 @@
   <string name="yes">ဟုတ်ကဲ့</string>
   <string name="no">မလုပ်ပါ</string>
   <string name="delete">ဖျက်ပါ</string>
-  <string name="please_wait">ခဏစောင့်ပါ</string>
+  <string name="please_wait">ခဏစောင့်ပါ…</string>
   <string name="save">သိမ်းထားမည်</string>
   <string name="note_to_self">မိမိမှတ်စု</string>
   <!--AbstractNotificationBuilder-->
@@ -69,7 +69,7 @@
   <string name="AttachmentUploadJob_uploading_media">မီဒီယာဖိုင်တင်နေသည်</string>
   <string name="AttachmentUploadJob_compressing_video_start">ဗီဒီယိုကိုချုံ့နေသည်</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">မက်ဆေ့ချ်များစစ်ဆေးနေသည် …</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">မက်ဆေ့များ စစ်နေပါသည်…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ဘလော့ထားသော သုံးစွဲသူများ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ဘလော့ထားသော သုံးစွဲသူကို ထည့်ပါ</string>
@@ -1674,7 +1674,7 @@
   <string name="EditAboutFragment_taking_a_break">အနားယူခြင်း</string>
   <string name="EditAboutFragment_working_on_something_new">အရာအသစ်တစ်ခု ကိုလုပ်ဆောင်နေသည်</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">အဖွဲ့အမည်နှင့် ဓါတ်ပုံကို ပြောင်းလဲပြုပြင်မယ်</string> -->
+  <string name="EditProfileFragment__edit_group">အဖွဲ့ကို ပြင်မည်</string>
   <string name="EditProfileFragment__group_name">အဖွဲ့နာမည်</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">သင့်အမည်</string>

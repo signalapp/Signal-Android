@@ -1909,7 +1909,7 @@
   <string name="EditAboutFragment_taking_a_break">Делаю перерыв</string>
   <string name="EditAboutFragment_working_on_something_new">Работаю над кое-чем новым</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Редактировать имя и фото группы</string> -->
+  <string name="EditProfileFragment__edit_group">Редактировать группу</string>
   <string name="EditProfileFragment__group_name">Название группы</string>
   <string name="EditProfileFragment__group_description">Описание группы</string>
   <!--EditProfileNameFragment-->

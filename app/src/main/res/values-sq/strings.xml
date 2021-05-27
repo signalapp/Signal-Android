@@ -1772,7 +1772,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="EditAboutFragment_taking_a_break">Pushoni ca</string>
   <string name="EditAboutFragment_working_on_something_new">Po merrem me diçka të re</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string> -->
+  <string name="EditProfileFragment__edit_group">Përpunoni grup</string>
   <string name="EditProfileFragment__group_name">Emër grupi</string>
   <string name="EditProfileFragment__group_description">Përshkrim grupi</string>
   <!--EditProfileNameFragment-->

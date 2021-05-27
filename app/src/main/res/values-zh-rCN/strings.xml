@@ -1678,7 +1678,7 @@
   <string name="EditAboutFragment_taking_a_break">休息一下下</string>
   <string name="EditAboutFragment_working_on_something_new">打磨新玩意儿</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">编辑群昵称和头像</string> -->
+  <string name="EditProfileFragment__edit_group">编辑群组</string>
   <string name="EditProfileFragment__group_name">群组名称</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">你的名字</string>

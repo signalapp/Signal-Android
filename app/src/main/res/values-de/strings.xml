@@ -1207,7 +1207,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
-  <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s überträgt gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
     <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
@@ -1225,7 +1225,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Audio- und Videodaten von %1$s können nicht empfangen werden</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dies kann daran liegen, dass der Teilnehmer die Änderung deiner Sicherheitsnummer nicht verifiziert hat, ein Problem mit dessen Gerät besteht oder er dich blockiert.</string>
   <!--CallToastPopupWindow-->
-  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Wische, um die Bildschirmfreigabe anzuzeigen</string>
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Wische, um Bildschirmfreigabe anzuzeigen</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxyadresse</string>
@@ -1761,7 +1761,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="EditAboutFragment_taking_a_break">Mache eine Pause</string>
   <string name="EditAboutFragment_working_on_something_new">Arbeite an etwas Neuem</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Gruppendetails bearbeiten</string> -->
+  <string name="EditProfileFragment__edit_group">Gruppe bearbeiten</string>
   <string name="EditProfileFragment__group_name">Gruppenname</string>
   <string name="EditProfileFragment__group_description">Gruppenbeschreibung</string>
   <!--EditProfileNameFragment-->
@@ -2911,11 +2911,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpireTimerSettingsFragment__custom_time">Personalisierte Zeit</string>
   <string name="ExpireTimerSettingsFragment__set">Festlegen</string>
   <string name="ExpireTimerSettingsFragment__save">Speichern</string>
-  <string name="CustomExpireTimerSelectorView__seconds">Sekunde(n)</string>
-  <string name="CustomExpireTimerSelectorView__minutes">Minute(n)</string>
-  <string name="CustomExpireTimerSelectorView__hours">Stunde(n)</string>
-  <string name="CustomExpireTimerSelectorView__days">Tag(e)</string>
-  <string name="CustomExpireTimerSelectorView__weeks">Woche(n)</string>
+  <string name="CustomExpireTimerSelectorView__seconds">Sekunden</string>
+  <string name="CustomExpireTimerSelectorView__minutes">Minuten</string>
+  <string name="CustomExpireTimerSelectorView__hours">Stunden</string>
+  <string name="CustomExpireTimerSelectorView__days">Tage</string>
+  <string name="CustomExpireTimerSelectorView__weeks">Wochen</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Support-Center</string>
   <string name="HelpSettingsFragment__contact_us">Kontaktiere uns</string>
@@ -2928,18 +2928,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DataAndStorageSettingsFragment__calls">Anrufe</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
-  <string name="ChatColorSelectionFragment__use_custom_colors">benutzerdefinierte Farben</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Personalisierte Farben</string>
   <string name="ChatColorSelectionFragment__chat_color">Unterhaltungsfarbe</string>
   <string name="ChatColorSelectionFragment__edit">Bearbeiten</string>
   <string name="ChatColorSelectionFragment__duplicate">Duplizieren</string>
   <string name="ChatColorSelectionFragment__delete">Löschen</string>
   <string name="ChatColorSelectionFragment__delete_color">Farbe löschen</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
-    <item quantity="other">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
+    <item quantity="one">Diese personalisierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
+    <item quantity="other">Diese personalisierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
   </plurals>
   <!--CustomChatColorCreatorFragment-->
-  <string name="CustomChatColorCreatorFragment__solid">einfarbig</string>
+  <string name="CustomChatColorCreatorFragment__solid">Einfarbig</string>
   <string name="CustomChatColorCreatorFragment__gradient">Farbverlauf</string>
   <string name="CustomChatColorCreatorFragment__hue">Farbton</string>
   <string name="CustomChatColorCreatorFragment__saturation">Sättigung</string>
@@ -2947,11 +2947,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CustomChatColorCreatorFragmentPage__save">Speichern</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Farbe bearbeiten</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen speichern?</item>
-    <item quantity="other">Diese benutzerdefinierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen speichern?</item>
+    <item quantity="one">Diese personalisierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen speichern?</item>
+    <item quantity="other">Diese personalisierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen speichern?</item>
   </plurals>
   <!--ChatColorGradientTool-->
-  <string name="ChatColorGradientTool_top_edge_selector">Oberkantenwähler</string>
-  <string name="ChatColorGradientTool_bottom_edge_selector">Unterkantenwähler</string>
+  <string name="ChatColorGradientTool_top_edge_selector">Auswahl oberer Rand</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Auswahl unterer Rand</string>
   <!--EOF-->
 </resources>

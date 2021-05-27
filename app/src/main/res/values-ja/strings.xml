@@ -1682,7 +1682,7 @@
   <string name="EditAboutFragment_taking_a_break">休憩中</string>
   <string name="EditAboutFragment_working_on_something_new">新しいことをしています</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">グループ名とアイコンの編集</string> -->
+  <string name="EditProfileFragment__edit_group">グループを編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
   <string name="EditProfileFragment__group_description">グループの説明</string>
   <!--EditProfileNameFragment-->

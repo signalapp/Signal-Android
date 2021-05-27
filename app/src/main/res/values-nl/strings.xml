@@ -842,7 +842,7 @@
   <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
   <string name="Megaphones_use_sms">Sms gebruiken</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Je zit nog in een Signal-oproep</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal-oproep-ondersteuning wordt gestopt</string>
@@ -1776,7 +1776,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="EditAboutFragment_taking_a_break">Ik heb even pauze</string>
   <string name="EditAboutFragment_working_on_something_new">Ik werk aan iets nieuws</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string> -->
+  <string name="EditProfileFragment__edit_group">Groep aanpassen</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
   <string name="EditProfileFragment__group_description">Groepsomschrijving</string>
   <!--EditProfileNameFragment-->
@@ -1972,7 +1972,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__appearance">Uiterlijk</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__chat_wallpaper">Gespreksachtergrond</string>
-  <string name="preferences__chat_color_and_wallpaper">Gesprekskleur &amp; achtergrond</string>
+  <string name="preferences__chat_color_and_wallpaper">Gesprekskleur &amp; -achtergrond</string>
   <string name="preferences__disable_pin">Pincode uitschakelen</string>
   <string name="preferences__enable_pin">Pincode inschakelen</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
@@ -2753,21 +2753,21 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Gespreksachtergrond</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__chat_color">Gesprekskleur</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">Gesprekskleurinstellingen verwijderen</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">Gesprekskleurinstelling verwijderen</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">Gesprekskleurinstelling verwijderen?</string>
+  <string name="ChatWallpaperFragment__chat_color">Gesprekskleur kiezen</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Kleurinstellingen verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Kleurinstelling verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Kleurinstelling verwijderen?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Gespreksachtergrond kiezen</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Achtergrond dimmen bij donkere modus</string>
   <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
-  <string name="ChatWallpaperFragment__reset">Alle achtergronden verwijderen</string>
+  <string name="ChatWallpaperFragment__reset">Voor dit gesprek verwijderen</string>
   <string name="ChatWallpaperFragment__clear">Verwijderen</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je dit doen voor alle gesprekskleuren?</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je dit doen voor alle achtergronden?</string>
-  <string name="ChatWallpaperFragment__reset_default_colors">Alleen de standaardkleur verwijderen</string>
-  <string name="ChatWallpaperFragment__reset_all_colors">Alle kleuren verwijderen</string>
-  <string name="ChatWallpaperFragment__reset_default_wallpaper">Alleen de standaardachtergrond verwijderen</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je de kleur voor alle gesprekken verwijderen?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je de achtergrond voor alle gesprekken verwijderen?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Standaardkleur verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Alle kleurinstellingen verwijderen</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Standaardachtergrond verwijderen</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle achtergronden verwijderen</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">Achtergronden verwijderen</string>
   <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
@@ -2942,7 +2942,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
   <!--ChatColorSelectionFragment-->
-  <string name="ChatColorSelectionFragment__auto">Automatisch</string>
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
   <string name="ChatColorSelectionFragment__use_custom_colors">Zelfgekozen kleur gebruiken</string>
   <string name="ChatColorSelectionFragment__chat_color">Gesprekskleur</string>
   <string name="ChatColorSelectionFragment__edit">Aanpassen</string>
@@ -2950,8 +2950,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatColorSelectionFragment__delete">Wissen</string>
   <string name="ChatColorSelectionFragment__delete_color">Kleur verwijderen</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Deze zelfgekozen kleur wordt in %1$d gesprek gebruikt. Wil je het voor dat gesprek verwijderen?</item>
-    <item quantity="other">Deze zelfgekozen kleur wordt in %1$d gesprekken gebruikt. Wil je het voor die gesprekken verwijderen?</item>
+    <item quantity="one">Deze zelfgekozen kleur wordt in %1$d gesprek gebruikt. Wil je het voor dat gesprek wissen?</item>
+    <item quantity="other">Deze zelfgekozen kleur wordt in %1$d gesprekken gebruikt. Wil je het voor die gesprekken wissen?</item>
   </plurals>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Effen</string>

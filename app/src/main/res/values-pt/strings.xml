@@ -1771,7 +1771,7 @@
   <string name="EditAboutFragment_taking_a_break">A fazer uma pausa</string>
   <string name="EditAboutFragment_working_on_something_new">A trabalhar em algo novo</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e fotografia do grupo</string> -->
+  <string name="EditProfileFragment__edit_group">Editar o grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <string name="EditProfileFragment__group_description">Descrição do grupo</string>
   <!--EditProfileNameFragment-->

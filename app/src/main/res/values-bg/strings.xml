@@ -1723,7 +1723,7 @@
   <string name="EditAboutFragment_taking_a_break">В почивка</string>
   <string name="EditAboutFragment_working_on_something_new">Работи по нещо ново</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Редактирайте името и снимката на групата</string> -->
+  <string name="EditProfileFragment__edit_group">Промяна на групата</string>
   <string name="EditProfileFragment__group_name">Име на групата</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Вашето име</string>

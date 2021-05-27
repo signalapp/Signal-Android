@@ -1733,7 +1733,7 @@
   <string name="EditAboutFragment_taking_a_break">విశ్రాంతి తీసుకొంటున్నా</string>
   <string name="EditAboutFragment_working_on_something_new">క్రొత్తదానిపై పని చేస్తోంది</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">సమూహం పేరు మరియు ఛాయాచిత్రణంను సవరించండి</string> -->
+  <string name="EditProfileFragment__edit_group">సమూహాన్ని మార్చు</string>
   <string name="EditProfileFragment__group_name">సమూహం పేరు</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">మీ పేరు</string>

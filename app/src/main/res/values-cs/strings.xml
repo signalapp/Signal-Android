@@ -675,6 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastní oznámení</string>
   <string name="ManageGroupActivity_mentions">Zmínky</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Barva chatu a tapety</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vyp.</string>
@@ -1323,6 +1324,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Nikdo další tady není</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s se účastní tohoto hovoru</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s se účastní tohoto hovoru</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s prezentuje</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s a %3$d další se účastní tohoto hovoru</item>
     <item quantity="few">%1$s, %2$s a %3$d další se účastní tohoto hovoru</item>
@@ -1344,6 +1346,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nemohu přijmout audio ani video od %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">K tomu může dojít v situaci, kdy jste neprovedli ověření bezpečnostního čísla, jejich zařízení je porouchané nebo vás zablokovali.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Přejetím zobrazíte sdílení obrazovky</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy adresa</string>
@@ -1912,7 +1915,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="EditAboutFragment_taking_a_break">Dávám si pauzu</string>
   <string name="EditAboutFragment_working_on_something_new">Pracuji na něčem novém</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Upravit název skupiny a fotografii</string> -->
+  <string name="EditProfileFragment__edit_group">Editovat skupinu</string>
   <string name="EditProfileFragment__group_name">Název skupiny</string>
   <string name="EditProfileFragment__group_description">Popisek skupiny</string>
   <!--EditProfileNameFragment-->
@@ -2110,6 +2113,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__appearance">Vzhled</string>
   <string name="preferences__theme">Motiv</string>
   <string name="preferences__chat_wallpaper">Tapeta pro konverzaci</string>
+  <string name="preferences__chat_color_and_wallpaper">Barva chatu a tapety</string>
   <string name="preferences__disable_pin">Deaktivovat PIN</string>
   <string name="preferences__enable_pin">Povolit PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
@@ -2909,12 +2913,24 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta pro konverzaci</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Barva konverzace</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Obnovení barev chatu</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Obnovení barvy chatu</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Obnovit barvu chatu?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Nastavit tapetu</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tmavý režim ztmaví tapetu</string>
   <string name="ChatWallpaperFragment__contact_name">Jméno kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Obnovit</string>
   <string name="ChatWallpaperFragment__clear">Vymazat</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhled tapety</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Chcete přepsat všechny barvy chatu?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Chcete přepsat všechny tapety?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Obnovit výchozí barvy</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Obnovit všechny barvy</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Obnovit výchozí tapetu</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Obnovit všechny tapety</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Obnovit tapety</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Obnovit tapetu</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Obnovit tapetu?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vybrat z fotografií</string>
   <string name="ChatWallpaperSelectionFragment__presets">Přednastavená pozadí</string>
@@ -3016,6 +3032,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Žádný z vašich kontaktů nebo lidí, se kterými si píšete, není v této skupině. Požadavky pečlivě ověřte, než žádost schválíte, abyste předešli nevyžádaným zprávám.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O žádostech o zprávy</string>
   <string name="GroupsInCommonMessageRequest__okay">V pořádku</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Zde je náhled barvy chatu.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Barva je viditelná pouze pro vás.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Popisek skupiny</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3083,12 +3101,35 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Volání</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Použít vlastní barvy</string>
   <string name="ChatColorSelectionFragment__chat_color">Barva konverzace</string>
   <string name="ChatColorSelectionFragment__edit">Upravit</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplikovat</string>
   <string name="ChatColorSelectionFragment__delete">Smazat</string>
+  <string name="ChatColorSelectionFragment__delete_color">Odstranit barvu</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Tato vlastní barva je použita v %1$d chatu. Chcete ji odstranit?</item>
+    <item quantity="few">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
+    <item quantity="many">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
+    <item quantity="other">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Pevná</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradientní</string>
+  <string name="CustomChatColorCreatorFragment__hue">Odstín</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturace</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Uložit</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Upravit barvu</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Tato barva je použita v %1$d chatu. Chcete ji odstranit?</item>
+    <item quantity="few">Tato barva je použita v %1$d chatech. Chcete ji odstranit ze všech chatů?</item>
+    <item quantity="many">Tato barva je použita v %1$d chatech. Chcete ji odstranit ze všech chatů?</item>
+    <item quantity="other">Tato barva je použita v %1$d chatech. Chcete ji odstranit ze všech chatů?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Výběr horní hrany</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Výběr spodní hrany</string>
   <!--EOF-->
 </resources>

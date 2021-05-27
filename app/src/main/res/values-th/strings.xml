@@ -1684,7 +1684,7 @@
   <string name="EditAboutFragment_taking_a_break">อยู่ระหว่างพัก</string>
   <string name="EditAboutFragment_working_on_something_new">อยู่ระหว่างการทำอะไรใหม่ๆ</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">แก้ไขชื่อและรูปของกลุ่ม</string> -->
+  <string name="EditProfileFragment__edit_group">แก้ไขกลุ่ม</string>
   <string name="EditProfileFragment__group_name">ชื่อกลุ่ม</string>
   <string name="EditProfileFragment__group_description">คำอธิบายกลุ่ม</string>
   <!--EditProfileNameFragment-->
@@ -2732,7 +2732,7 @@
   <string name="AccountSettingsFragment__account">บัญชี</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
-  <string name="ChatsSettingsFragment__enter_key_sends">กดปุ่ม Enter เพื่อส่ง</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">กด Enter เพื่อส่ง</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ใช้เป็นแอป SMS หลัก</string>
   <!--NotificationsSettingsFragment-->
@@ -2748,6 +2748,7 @@
   <string name="PrivacySettingsFragment__app_security">ความปลอดภัยของแอป</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้จับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">แสดงไอคอนสถานะ</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">ปิด</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 สัปดาห์</string>
@@ -2775,10 +2776,13 @@
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">สีแชต</string>
   <string name="ChatColorSelectionFragment__edit">แก้ไข</string>
+  <string name="ChatColorSelectionFragment__duplicate">ทำซ้ำ</string>
   <string name="ChatColorSelectionFragment__delete">ลบ</string>
+  <string name="ChatColorSelectionFragment__delete_color">ลบสี</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">บันทึก</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">แก้สี</string>
   <!--ChatColorGradientTool-->
   <!--EOF-->
 </resources>

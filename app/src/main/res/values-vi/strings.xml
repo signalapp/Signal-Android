@@ -1650,7 +1650,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditAboutFragment_taking_a_break">Đang nghỉ ngơi</string>
   <string name="EditAboutFragment_working_on_something_new">Đang làm một dự án mới</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Sửa tên và ảnh nhóm</string> -->
+  <string name="EditProfileFragment__edit_group">Sửa nhóm</string>
   <string name="EditProfileFragment__group_name">Tên nhóm</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tên của bạn</string>

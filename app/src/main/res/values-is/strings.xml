@@ -1768,7 +1768,7 @@
   <string name="EditAboutFragment_taking_a_break">Er í pásu</string>
   <string name="EditAboutFragment_working_on_something_new">Vinn í einhverju nýju</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Breyta nafni og mynd hóps</string> -->
+  <string name="EditProfileFragment__edit_group">Breyta hópi</string>
   <string name="EditProfileFragment__group_name">Heiti hóps</string>
   <string name="EditProfileFragment__group_description">Lýsing á hópnum</string>
   <!--EditProfileNameFragment-->

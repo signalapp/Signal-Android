@@ -88,7 +88,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">سىز ئەمدى بۇ گۇرۇپپىدىن كەلگەن ئۇچۇر ياكى يېڭىلانمىلارنى تاپشۇرۇۋالمايسىز، ھەمدە ئەزالارمۇ سىزنى بۇ گۇرۇپپىغا ئەمدى قايتا قوشالمايدۇ.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">گۇرۇپپا ئەزالىرى سىزنى بۇ گۇرۇپپىغا ئەمدى قايتا قوشالمايدۇ.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گۇرۇپپا ئەزالىرى سىزنى بۇ گۇرۇپپىغا قايتا قوشالايدۇ.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">سىز ئۇچۇر يوللىيالايسىز ۋە بىر-بىرىڭلارغا تېلېفون قىلالايسىز، ئىسمىڭىز ۋە سۈرىتىڭىز ئۇلار بىلەن ئورتاقلىشىلىدۇ.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ئۇچۇر يوللىيالايسىز ۋە بىر-بىرىڭلارغا تېلېفون قىلالايسىز، ئىسمىڭىز ۋە سۈرىتىڭىز ئۇلار بىلەن ھەمبەھىرلىنىدۇ.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">چەكلەنگەن كىشىلەر سىزگە تېلېفون قىلالمايدۇ ياكى ئۇچۇر ئەۋەتەلمەيدۇ.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sچەكلىمەمدۇ؟</string>
   <string name="BlockUnblockDialog_block">چەكلە</string>
@@ -111,7 +111,7 @@
   <string name="CameraContacts_recent_contacts">يېقىنقى ئالاقەداشلار</string>
   <string name="CameraContacts_signal_contacts">Signal ئالاقەداشلار</string>
   <string name="CameraContacts_signal_groups">Signal گۇرۇپپىلىرى</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">ئەڭ كۆپ بولغاندا %d سۆھبەت بىلەن ئورتاقلىشالايسىز.</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">ئەڭ كۆپ بولغاندا %d سۆھبەت بىلەن ھەمبەھىرلىيەلەيسىز.</string>
   <string name="CameraContacts_select_signal_recipients">Signal تاپشۇرۇۋالغۇچىلارنى تاللاش</string>
   <string name="CameraContacts_no_signal_contacts">Signal ئالاقەداش يوق</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">سىز پەقەت كامېرا كۇنۇپكىسىنى ئىشلىتىش ئارقىلىق Signal دىكى ئالاقەداشلىرىڭىزغا رەسىم ئەۋەتەلەيسىز.</string>
@@ -411,7 +411,7 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">كۆرۈش</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">بىلەن ئورتاقلىشىڭ</string>
+  <string name="ShareActivity_share_with">ھەمبەھىرلەنگۈچى</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">كۆپلىگەن قوشۇمچە ھۆججەتلەر پەقەت رەسىم ۋە سىنلارنىلا قوللايدۇ</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">مەڭگۈلۈك Signal ئالاقىسى مەغلۇپ بولدى!</string>
@@ -539,7 +539,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">سىزدە كېچىكتۈرۈلگەن تەكلىپنامە يوق</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">باشقا گۇرۇپپا ئەزالىرىنىڭ تەكلىپلىرى</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">باشقا گۇرۇپپا ئەزالىرىنىڭ كۈتۈۋاتقان تەكلىپلىرى يوق.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">باشقا گۇرۇپپا ئەزالىرى تەكلىپ قىلغان كىشىلەرنىڭ تەپسىلاتلىرى كۆرسىتىلمىدى. ئەگەر تەكلىپ قىلىنغانلار قاتنىشىشنى تاللىسا، ئۇلارنىڭ ئۇچۇرلىرى شۇ ۋاقىتتا ئاندىن گۇرۇپپا بىلەن ئورتاقلىشىدۇ. ئۇلار تەكلىپنى قوبۇل قىلمىغۇچە گۇرۇپپىدىكى ھېچقانداق ئۇچۇرنى كۆرمەيدۇ.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">باشقا گۇرۇپپا ئەزالىرى تەكلىپ قىلغان كىشىلەرنىڭ تەپسىلاتلىرى كۆرسىتىلمىدى. ئەگەر تەكلىپ قىلىنغانلار قاتنىشىشنى تاللىسا، ئۇلارنىڭ ئۇچۇرلىرى شۇ ۋاقىتتا ئاندىن گۇرۇپپا بىلەن ھەمبەھىرلىنىدۇ. ئۇلار تەكلىپنى قوبۇل قىلمىغۇچە گۇرۇپپىدىكى ھېچقانداق ئۇچۇرنى كۆرمەيدۇ.</string>
   <string name="PendingMembersActivity_revoke_invite">تەكلىپنى بىكار قىلىڭ</string>
   <string name="PendingMembersActivity_revoke_invites">تەكلىپلەرنى بىكار قىلىڭ</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -612,6 +612,7 @@
   <string name="ManageGroupActivity_mute_notifications">ئۈنسىز ئۇقتۇرۇش</string>
   <string name="ManageGroupActivity_custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <string name="ManageGroupActivity_mentions">تىلغا ئالغانلار</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">سۆھبەت رەڭگى ۋە تام قەغەز</string>
   <string name="ManageGroupActivity_until_s">%1$s غىچە</string>
   <string name="ManageGroupActivity_always">ھەمىشە</string>
   <string name="ManageGroupActivity_off">تاقاق</string>
@@ -700,7 +701,7 @@
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ھەمبەھىرچان گۇرۇپپا ئۇلانمىسى</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">باشقۇرۇش ۋە ھەمبەھىر</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">گۇرۇپپا ئۇلانمىسى</string>
-  <string name="ShareableGroupLinkDialogFragment__share">ئورتاقلاش</string>
+  <string name="ShareableGroupLinkDialogFragment__share">ھەمبەھىرلە</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">ئۇلانمىنى ئەسلىگە قايتۇر</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ئەزا ئىلتىماسى</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">يېڭى ئەزالارنى دەلىللەش</string>
@@ -758,7 +759,7 @@
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">چېكىپ تۇرۇلسا ئۈن ئۇچۇرى خاتىرىلەيدۇ، ئاجرىتىلسا يوللايدۇ</string>
   <!--InviteActivity-->
-  <string name="InviteActivity_share">ئورتاقلاش</string>
+  <string name="InviteActivity_share">ھەمبەھىرلە</string>
   <string name="InviteActivity_share_with_contacts">ئالاقەداشلار بىلەن ھەمبەھىر</string>
   <string name="InviteActivity_choose_how_to_share">قانداق ھەمبەھىرلەشنى تاللاڭ</string>
   <string name="InviteActivity_cancel">بىكار قىل</string>
@@ -1065,10 +1066,10 @@
   <string name="MessageRequestBottomView_unblock">قالدۇرۇش</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s نىڭ سىزگە ئۇچۇر يوللاپ ھەمدە ئات ۋە سۈرەتلىرىڭىزنى ھەمبەھىرلەشكە يول قويامسىز؟ سىز قوشۇلۇشتىن ئىلگىرى ئۇلار سىزنىڭ ئۇچۇرنى كۆرگىنىڭىزنى بىلمەيدۇ.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s نىڭ سىزگە ئۇچۇر يوللاپ ھەمدە ئات ۋە سۈرەتلىرىڭىزنى ھەمبەھىرلەشكە يول قويامسىز؟ سىز ئۇلارنى چەكلىۋېتىشتىن ئىلگىرى ھېچقانداق ئۇچۇر تاپشۇرۇۋالمايسىز.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">بۇ گۇرۇپپا بىلەن بولغان سۆھبىتىڭىزنى داۋاملاشتۇرامسىز ھەمدە ئىسمىڭىز ۋە سۈرىتىڭىزنى گۇرۇپپا ئەزالىرى بىلەن ئورتاقلىشامسىز؟</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">بۇ گۇرۇپپا بىلەن بولغان سۆھبىتىڭىزنى داۋاملاشتۇرامسىز ھەمدە ئىسمىڭىز ۋە سۈرىتىڭىزنى گۇرۇپپا ئەزالىرى بىلەن ھەمبەھىرلەمسىز؟</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">يېڭى ئىقتىدارلاردىن @ئاتاش ۋە باشقۇرۇشنى ئاكتىپلاش ئۈچۈن بۇ گۇرۇپپىنى يۈكسەلتىڭ. بۇ گۇرۇپپىدا ئات ۋە سۈرەتنى ھەمبەھىرلىمىگەن ئەزالارغا گۇرۇپپىغا قوشۇلۇش تەكلىپى يوللىنىدۇ.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">كونا گۇرۇپپىدا ئادەم بەك كۆپ بولغانلىقتىن ئىشلەتكىلى بولمايدۇ. گۇرۇپپىدىكى ئەزا سانىنىڭ چېكى %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s بىلەن بولغان سۆھبىتىڭىزنى داۋاملاشتۇرامسىز ھەمدە ئىسمىڭىز ۋە سۈرىتىڭىزنى ئۇلار بىلەن ئورتاقلىشامسىز؟</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s بىلەن بولغان سۆھبىتىڭىزنى داۋاملاشتۇرامسىز ھەمدە ئىسمىڭىز ۋە سۈرىتىڭىزنى ئۇلار بىلەن ھەمبەھىرلەمسىز؟</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">بۇ گۇرۇپپىغا قوشۇلۇپ ئات ۋە باش سۈرەتنى گۇرۇپپا ئەزالىرىغا ھەمبەھىرلەمسىز؟ سىز تەكلىپنى قوبۇل قىلىشتىن ئىلگىرى گۇرۇپپا ئەزالىرى ئۇلار ئەۋەتكەن ئۇچۇرنى كۆرگەنلىكىڭىزنى بىلمەيدۇ.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">گۇرۇپپىغا قوشۇلامسىز؟ سىز قوشۇلمىغىچە ئۇلارنىڭ ئۇچۇرلىرىنى كۆرگەنلىكىڭىزنى ئۇلار بىلمەيدۇ.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">بۇ گۇرۇپپىنى چەكلەپ ھەمدە ئات ۋە باش سۈرىتىڭىزنى ھەمبەھىرلەشكە يول قويامسىز؟ سىز ئۇلارنى چەكلىۋېتىشتىن ئىلگىرى ھېچقانداق ئۇچۇر تاپشۇرۇۋالمايسىز.</string>
@@ -1208,6 +1209,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">بۇ يەردە ھېچكىم يوق</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s بۇ چاقىرىقتا</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ۋە %2$s بۇ چاقىرىقتا</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s نامايان قىلىۋاتىدۇ</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, ۋە %3$d قاتارلىقلار بۇ چاقىرىقتا</item>
     <item quantity="other">%1$s, %2$s, ۋە %3$d قاتارلىقلار بۇ چاقىرىقتا</item>
@@ -1225,6 +1227,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s دىن ئۈن ۋە سىن تاپشۇرۇۋالالمايدۇ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">بۇنداق بولۇشىنىڭ سەۋەبى ئۇلار سىزنىڭ بىخەتەرلىك نومۇرىنى ئۆزگەرتكەنلىكىڭىزنى دەلىللىمىگەن بولۇشى مۇمكىن، ياكى ئۇلارنىڭ ئۈسكۈنىسىدە مەسىلە بار ۋە ياكى ئۇلار سىزنى چەكلىۋەتكەن بولۇشى مۇمكىن.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">سىيرىلسا ئېكران ھەمبەھىرلەشنى كۆرسىتىدۇ</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">ۋاكالەتچى مۇلازىمېتىر</string>
   <string name="ProxyBottomSheetFragment_proxy_address">ۋاكالەتچى ئادرېس</string>
@@ -1350,7 +1353,7 @@
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">كۈندىلىك خاتىرىنى تاپشۇرالمىدى</string>
   <string name="SubmitDebugLogActivity_success">مۇۋەپپەقىيەتلىك!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">بۇ URL نى كۆچۈرۈپ ۋە ئۇنى مەسىلە دوكلاتىڭىز ياكى قوللاش ئېلخېتىگە قوشۇڭ:\n\n<b>%1$s</b></string>
-  <string name="SubmitDebugLogActivity_share">ئورتاقلاش</string>
+  <string name="SubmitDebugLogActivity_share">ھەمبەھىرلە</string>
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">بۇ خاتىرە تۆھپىكارلارنىڭ كۆرۈشى ئۈچۈن توردا ئاشكارا ئېلان قىلىنىدۇ، يوللاشتىن ئىلگىرى مەزكۇر خاتىرەنى تەكشۈرۈپ ۋە تەھرىرلىيەلەيسىز.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">سۈزگۈچ:</string>
@@ -1421,7 +1424,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ئالاقىلەشكۈچىڭىز كونا نەشردىكى Signal نى ئىشلىتىۋېتىپتۇ. سىزنىڭ بىخەتەرلىك نومۇرىڭىزنى تەستىقلاشتىن بۇرۇن يېڭىلىۋېلىشىنى سوراڭ.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">سىزنىڭ ئالاقىلەشكۈچىڭىز QR كودى سىغىشمايدىغان يېڭىراق نەشردىكى Signal نى ئىشلىتىۋېتىپتۇ. نەشرىڭىزنى يېڭىلاپ سېلىشتۇرۇڭ.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">سايىلەنگەن QR كودى توغرا فورماتتىكى بىخەتەرلىك نومۇرى توغرىلاش كودى ئەمەس. قايتا سايىلەپ سىناڭ.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">بىخەتەرلىك نومۇرىنى شۇ ئارقىلىق ئورتاقلاش…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">بىخەتەرلىك نومۇر ھەمبەھىر…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal بىخەتەرلىك نومۇرىمىز:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">قارىغاندا ھەمبەھىرلەيدىغان ئەپ يوقتەك تۇرىدۇ.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">چاپلاش تاختىسىدا سېلىشتۇرغۇدەك بىر بىخەتەرلىك نومۇرى تېپىلمىدى</string>
@@ -1768,7 +1771,7 @@
   <string name="EditAboutFragment_taking_a_break">ئارام ئارايلى</string>
   <string name="EditAboutFragment_working_on_something_new">يېڭىلىقنى سىنايلى</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">گۇرۇپپا ئاتى ۋە باش سۈرەت تەھرىر</string> -->
+  <string name="EditProfileFragment__edit_group">گۇرۇپپا تەھرىر</string>
   <string name="EditProfileFragment__group_name">گۇرۇپپا ئاتى</string>
   <string name="EditProfileFragment__group_description">گۇرۇپپا تونۇشتۇرۇشى</string>
   <!--EditProfileNameFragment-->
@@ -1964,6 +1967,7 @@
   <string name="preferences__appearance">كۆرۈنۈش</string>
   <string name="preferences__theme">تېما</string>
   <string name="preferences__chat_wallpaper">سۆھبەت تام قەغەز</string>
+  <string name="preferences__chat_color_and_wallpaper">سۆھبەت رەڭگى ۋە تام قەغەز</string>
   <string name="preferences__disable_pin">PIN چەكلە</string>
   <string name="preferences__enable_pin">PIN نى قوزغات</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ئەگەر PIN نى چەكلىسىڭىز، Signal غا قايتا تىزىملاتقاندا ئۆزىڭىز زاپاسلاپ ۋە ئەسلىگە كەلتۈرمىگۈچە ھەممە سانلىق مەلۇماتلىرىڭىز يوقىلىدۇ، PIN چەكلەنسە تىزىملىتىش قۇلۇپىنى ئاچالمايسىز.</string>
@@ -2050,7 +2054,7 @@
   <string name="preferences_on">ئاچ</string>
   <string name="preferences_proxy_address">ۋاكالەتچى ئادرېس</string>
   <string name="preferences_only_use_a_proxy_if">پەقەت Wi-Fi  ياكى يانفون تورى بىلەن Signal غا ئۇلىنىش مۈمكىن بولمىغاندا، ۋاكالەتچى ئىشلىتىڭ.</string>
-  <string name="preferences_share">ئورتاقلاش</string>
+  <string name="preferences_share">ھەمبەھىر</string>
   <string name="preferences_save">ساقلاش</string>
   <string name="preferences_connecting_to_proxy">ۋاكالەتچىگە ئۇلىنىۋاتىدۇ…</string>
   <string name="preferences_connected_to_proxy">ۋاكالەتچىگە باغلاندى</string>
@@ -2284,7 +2288,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">ساقلاش</string>
   <string name="media_preview__forward_title">ئۇلاپ يوللا</string>
-  <string name="media_preview__share_title">ئورتاقلاش</string>
+  <string name="media_preview__share_title">ھەمبەھىر</string>
   <string name="media_preview__all_media_title">بارلىق مېدىيا</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">ۋاسىتە ئالدىن كۆرسەت</string>
@@ -2661,7 +2665,7 @@
   <string name="GroupLinkBottomSheet_share_via_signal">Signal ئارقىلىق ھەمبەھىرلە</string>
   <string name="GroupLinkBottomSheet_copy">كۆچۈر</string>
   <string name="GroupLinkBottomSheet_qr_code">QR كودى</string>
-  <string name="GroupLinkBottomSheet_share">ئورتاقلاش</string>
+  <string name="GroupLinkBottomSheet_share">ھەمبەھىرلە</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">كېسىش تاختىسىغا كۆچۈرۈش</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">بۇ ئۇلانما ئاكتىپ ئەمەس</string>
   <!--VoiceNotePlaybackPreparer-->
@@ -2732,27 +2736,37 @@
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ئاتلاش</string>
   <!--ShareActivity-->
-  <string name="ShareActivity__share">ئورتاقلاش</string>
+  <string name="ShareActivity__share">ھەمبەھىرلە</string>
   <string name="ShareActivity__send">ئەۋەت</string>
   <string name="ShareActivity__s_comma">%1$s،</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">كۆپ سۆھبەتلەرگە ھەمبەھىرلەش پەقەت Signal ئۇچۇرلىرىنىلا قوللايدۇ. </string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">بەزى ئىشلەتكۈچىلەرگە يوللاش مەغلۇپ بولدى</string>
-  <string name="MultiShareDialogs__you_can_only_share_with_up_to">جىق بولغاندا %1$d سۆھبەت بىلەن ئورتاقلىشالايسىز.</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">كۆپ بولغاندا %1$d سۆھبەت بىلەن ھەمبەھىرلىيەلەيسىز.</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">ئۇچۇرنى ئۇلاپ يوللا</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">سۆھبەت تام قەغەز</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">سۆھبەت رەڭگى</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">سۆھبەت رەڭگىنى ئەسلىگە قايتۇر</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">سۆھبەت رەڭگىنى ئەسلىگە قايتۇر</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">سۆھبەت رەڭگىنى ئەسلىگە قايتۇرامدۇ؟</string>
   <string name="ChatWallpaperFragment__set_wallpaper">تام قەغىزىنى بېكىتىش</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">قاراڭغۇ ھالەت تام قەغىزىنى غۇۋالاشتۇرىدۇ</string>
   <string name="ChatWallpaperFragment__contact_name">ئالاقەداش نامى</string>
   <string name="ChatWallpaperFragment__reset">قايتا بېكىتىش</string>
   <string name="ChatWallpaperFragment__clear">تازىلا</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">تام قەغىزىنى ئالدىن كۆرۈش</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ھەممە سۆھبەت رەڭگىنى قاپلىۋېتەمسىز؟</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">ھەممە تام قەغەزنى قاپلىۋېتەمسىز؟</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">كۆڭۈلدىكى رەڭنى ئەسلىگە قايتۇر</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">ھەممە رەڭنى ئەسلىگە قايتۇر</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">كۆڭۈلدىكى تام قەغەزنى ئەسلىگە قايتۇر</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">بارلىق تام قەغەزلىرىنى قايتا تەڭشە</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">تام قەغەزنى ئەسلىگە قايتۇر</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">تام قەغەزنى ئەسلىگە قايتۇر</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">تام قەغەزنى ئەسلىگە قايتۇرامدۇ؟</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">رەسىملەردىن تاللا</string>
   <string name="ChatWallpaperSelectionFragment__presets">ئالدىن بېكىتىش</string>
@@ -2854,6 +2868,7 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">بۇ گۇرۇپپىدا ئالاقەداشلىرىڭىز ياكى سىز پاراڭلاشقان كىشى يوق كېرەكسىز ئۇچۇرلاردىن ساقلىنىش ئۈچۈن قوشۇلۇشتىن ئىلگىرى تەلەپلەرنى ئەستايىدىللىق بىلەن تەكشۈرۈڭ.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">ئۇچۇر ئىلتىماسى ھەققىدە</string>
   <string name="GroupsInCommonMessageRequest__okay">جەزملە</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">سۆھبەت رەڭگىنى بۇ جايدا ئالدىن كۆرگىلى بولىدۇ.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">رەڭ پەقەت سىزگىلا كۆرۈنىدۇ.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">گۇرۇپپا تونۇشتۇرۇشى</string>
@@ -2922,10 +2937,17 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">چاقىرىشلار</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">ئاپتوماتىك</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">ئىختىيارىچە رەڭ ئىشلەت</string>
   <string name="ChatColorSelectionFragment__chat_color">سۆھبەت رەڭگى</string>
   <string name="ChatColorSelectionFragment__edit">تەھرىر</string>
   <string name="ChatColorSelectionFragment__duplicate">كۆچۈر</string>
   <string name="ChatColorSelectionFragment__delete">ئۆچۈر</string>
+  <string name="ChatColorSelectionFragment__delete_color">رەڭنى ئۆچۈر</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">بۇ ئىختىيارىچە رەڭ %1$d سۆھبەتكە ئىشلىتىلىدۇ. ئۇنى ھەممە سۆھبەتتىن ئۆچۈرەمسىز؟</item>
+    <item quantity="other">بۇ ئىختىيارىچە رەڭ %1$d سۆھبەتكە ئىشلىتىلىدۇ. ئۇنى ھەممە سۆھبەتتىن ئۆچۈرەمسىز؟</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">قېنىق</string>
   <string name="CustomChatColorCreatorFragment__gradient">يانتۇلۇق</string>
@@ -2933,6 +2955,13 @@
   <string name="CustomChatColorCreatorFragment__saturation">تويۇنۇش</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">ساقلا</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">رەڭ تەھرىر</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">بۇ رەڭ %1$d سۆھبەتكە ئىشلىتىلىدۇ. ھەممە سۆھبەتكە ئۆزگەرتىشنى ساقلامسىز؟</item>
+    <item quantity="other">بۇ رەڭ %1$d سۆھبەتكە ئىشلىتىلىدۇ. ھەممە سۆھبەتكە ئۆزگەرتىشنى ساقلامسىز؟</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">ئۈستى قىر تاللىغۇچ</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">ئاستى قىر تاللىغۇچ</string>
   <!--EOF-->
 </resources>

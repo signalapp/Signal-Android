@@ -1901,7 +1901,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="EditAboutFragment_taking_a_break">Možgani na off</string>
   <string name="EditAboutFragment_working_on_something_new">Delam na nečem …</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Uredi ime in fotografijo skupine</string> -->
+  <string name="EditProfileFragment__edit_group">Uredi skupino</string>
   <string name="EditProfileFragment__group_name">Ime skupine</string>
   <string name="EditProfileFragment__group_description">Opis skupine</string>
   <!--EditProfileNameFragment-->

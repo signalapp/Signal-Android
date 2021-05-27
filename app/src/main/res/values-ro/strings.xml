@@ -91,6 +91,7 @@
   <string name="BlockUnblockDialog_unblock_s">Deblocați %1$s?</string>
   <string name="BlockUnblockDialog_block">Blochează</string>
   <string name="BlockUnblockDialog_block_and_leave">Blocați și Părăsiți</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Raportați spam-ul și blocați</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Azi</string>
   <string name="BucketedThreadMedia_Yesterday">Ieri</string>
@@ -237,6 +238,7 @@
   <string name="ConversationActivity_join">Alăturați-vă</string>
   <string name="ConversationActivity_full">Plină</string>
   <string name="ConversationActivity_error_sending_media">Eroare la trimiterea conținutului media</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Raportat ca spam și blocat.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -881,6 +883,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apelare Signal</string>
   <string name="NotificationBarManager__deny_call">Respingeți apelul</string>
   <string name="NotificationBarManager__answer_call">Răspundeți apelului</string>
   <string name="NotificationBarManager__end_call">Închideți apelul</string>
@@ -1261,6 +1264,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Nu este nimeni aici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s este în acest apel </string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s și %2$s sunt în acest apel</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s prezintă</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
@@ -1280,6 +1284,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nu se poate primi audio și video de la %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Acest lucru se poate datora faptului că nu au verificat modificarea numărului dvs. de siguranță, există o problemă cu dispozitivul lor sau v-au blocat.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Glisați pentru a vizualiza partajarea ecranului</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Server proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adresă proxy</string>
@@ -1405,6 +1410,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubmitDebugLogActivity_success">Succes!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiați acest URL și adăugați-l la raportul de probleme sau la mail-ul de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Distribuiți</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Acest log va fi publicat online pentru vizualizare de către contributori. Poţi să-l examinezi şi să-l editezi înainte să fie încărcat. </string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtru:</string>
   <string name="SupportEmailUtil_device_info">Informații dispozitiv:</string>
@@ -1553,6 +1559,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NotificationChannel_missing_display_name">Necunoscut</string>
   <string name="NotificationChannel_voice_notes">Notițe vocale</string>
   <string name="NotificationChannel_contact_joined_signal">Un contact s-a alăturat pe Signal</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nu există activitate disponibilă pentru a deschide setările canalului de notificare.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
@@ -1682,6 +1689,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Niciun grup în comun. Examinați solicitările cu atenție.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Nu există contacte în acest grup. Examinați solicitările cu atenție.</string>
   <string name="ConversationUpdateItem_view">Vizualizare</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Timpul de dispariție a mesajului va fi setat la %1$s în momentul în care le trimiteți un mesaj.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
@@ -1829,7 +1837,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EditAboutFragment_taking_a_break">Într-o pauză</string>
   <string name="EditAboutFragment_working_on_something_new">Lucrez la ceva nou</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editare nume grup și poză</string> -->
+  <string name="EditProfileFragment__edit_group">Editați grupul</string>
   <string name="EditProfileFragment__group_name">Nume grup</string>
   <string name="EditProfileFragment__group_description">Descriere grup</string>
   <!--EditProfileNameFragment-->
@@ -2519,6 +2527,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Recipient_unknown">Necunoscut</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer sau restabilire cont</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Dacă v-ați înregistrat anterior la Signal, puteți transfera sau restabili contul și mesajele dvs.</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transfer de pe un dispozitiv Android</string>
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transferați-vă contul și mesajele de pe vechiul dispozitiv Android. Aveți nevoie de acces la vechiul dispozitiv.</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Aveți nevoie de acces la vechiul dispozitiv.</string>
@@ -2540,8 +2549,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la vechiul dispozitiv Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu vechiul dispozitiv Android.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaurare backup</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">A apărut o eroare neașteptată în timpul încercării de a vă conecta la vechiul dispozitiv Android.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se caută un dispozitiv nou Android …</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Creează backup</string>
   <!--DeviceTransferSetupFragment-->
@@ -2594,14 +2605,17 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Transferul a fost făcut cu succes</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Pentru a finaliza procesul de transfer, trebuie să continuați înregistrarea.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Continuați înregistrarea</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Transfer cont</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Este necesară o verificare</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Se transferă contul…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Finalizați înregistrarea pe noul dispozitiv</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Contul dvs. Signal a fost transferat pe noul dispozitiv, dar trebuie să continuați înregistrarea pentru a continua. Signal o să fie dezactivat pe acest dispozitv.</string>
   <string name="OldDeviceTransferLockedDialog__done">Gata</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulați și activați acest dispozitiv</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer">Transfer</string>
   <!--RecipientBottomSheet-->
@@ -2840,6 +2854,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afișare icon de status</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afișează un icon de status în detaliile mesajului când a fost trimis folosind funcția expeditor ascuns.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Când e activată opțiunea, mesajele noi trimise și primite în conversații noi începute de dvs. vor dispărea după ce au fost vizualizate.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Cu opțiunea activă, mesajele trimise și primite în conversație vor dispărea după ce sunt văzute.</string>
   <string name="ExpireTimerSettingsFragment__off">Dezactivate</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 săptămâni</string>
@@ -2869,6 +2884,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DataAndStorageSettingsFragment__calls">Apeluri</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Utilizați culori personalizate</string>
   <string name="ChatColorSelectionFragment__chat_color">Culoare conversaţie</string>
   <string name="ChatColorSelectionFragment__edit">Editează</string>
   <string name="ChatColorSelectionFragment__duplicate">Duplicare</string>
@@ -2888,10 +2904,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CustomChatColorCreatorFragmentPage__save">Salvează</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Editare culoare</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Această culoare este folosită în %1$d conversație. Doriți să salvați modificările pentru toate conversațiile?</item>
-    <item quantity="few">Această culoare este folosită în %1$d conversații. Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="one">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="few">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
     <item quantity="other">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
   </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Selector margine superioară</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Selector margine inferioară</string>
   <!--EOF-->
 </resources>

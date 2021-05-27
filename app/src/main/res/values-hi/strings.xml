@@ -1703,7 +1703,7 @@
   <string name="EditAboutFragment_taking_a_break">ब्रेक पर हैं</string>
   <string name="EditAboutFragment_working_on_something_new">किसी नई चीज़ पर काम कर रहे हैं</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ग्रुप का नाम और तस्वीर संपादित करें</string> -->
+  <string name="EditProfileFragment__edit_group">समूह संपादित करें</string>
   <string name="EditProfileFragment__group_name">समूह का नाम</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">आपका नाम?</string>

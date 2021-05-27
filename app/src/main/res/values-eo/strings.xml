@@ -1750,7 +1750,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="EditAboutFragment_taking_a_break">Mi paŭzas</string>
   <string name="EditAboutFragment_working_on_something_new">Mi laboras pri io nova</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string> -->
+  <string name="EditProfileFragment__edit_group">Modifi grupon</string>
   <string name="EditProfileFragment__group_name">Nomo de la grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Via nomo</string>

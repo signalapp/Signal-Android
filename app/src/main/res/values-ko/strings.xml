@@ -1664,7 +1664,7 @@
   <string name="EditAboutFragment_taking_a_break">쉬는 중</string>
   <string name="EditAboutFragment_working_on_something_new">새로운 것에 도전하는 중</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">그룹 이름 및 사진 수정</string> -->
+  <string name="EditProfileFragment__edit_group">그룹 편집</string>
   <string name="EditProfileFragment__group_name">그룹 이름</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">내 이름</string>

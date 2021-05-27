@@ -1737,7 +1737,7 @@
   <string name="EditAboutFragment_taking_a_break">ഒരു ഇടവേളയിലാണ്</string>
   <string name="EditAboutFragment_working_on_something_new">പുതിയ ഒരു കാര്യം ചെയ്യുന്നു</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ഗ്രൂപ്പിന്റെ പേരും ചിത്രവും തിരുത്തുക</string> -->
+  <string name="EditProfileFragment__edit_group">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string>
   <string name="EditProfileFragment__group_name">ഗ്രൂപ്പിന്റെ പേര്</string>
   <string name="EditProfileFragment__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--EditProfileNameFragment-->

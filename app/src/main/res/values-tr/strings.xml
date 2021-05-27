@@ -1762,7 +1762,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="EditAboutFragment_taking_a_break">Dinleniyor</string>
   <string name="EditAboutFragment_working_on_something_new">Yeni bir şeyler üzerine çalışıyor</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Grup adını ve resmini düzenleyin</string> -->
+  <string name="EditProfileFragment__edit_group">Grubu düzenle</string>
   <string name="EditProfileFragment__group_name">Grup adı</string>
   <string name="EditProfileFragment__group_description">Grup tanımı</string>
   <!--EditProfileNameFragment-->

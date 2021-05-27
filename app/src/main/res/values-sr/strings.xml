@@ -643,6 +643,7 @@
   <string name="ManageGroupActivity_mute_notifications">Утишај обавештења</string>
   <string name="ManageGroupActivity_custom_notifications">Прилагођена обавештења</string>
   <string name="ManageGroupActivity_mentions">Помињања</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Боја ћаскања и позадина</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Увек</string>
   <string name="ManageGroupActivity_off">Искључено</string>
@@ -1266,6 +1267,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Нема никога овде</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s је у овом позиву</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s су у овом позиву</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s презентира</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, и још %3$d су у овом позиву</item>
     <item quantity="few">%1$s, %2$s, и још %3$d су у овом позиву</item>
@@ -1285,6 +1287,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да се прими звук и видео од %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">То је можда зато што нису потврдили промену вашег сигурносног броја, постоји проблем са њиховим уређајем или су вас блокирали.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Превуците да бисте видели дељење екрана</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Прокси сервер</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Адреса проксија</string>
@@ -1840,7 +1843,7 @@
   <string name="EditAboutFragment_taking_a_break">Правим паузу</string>
   <string name="EditAboutFragment_working_on_something_new">Радим на нешто ново</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Уреди име и слику групе</string> -->
+  <string name="EditProfileFragment__edit_group">Уређивање групе</string>
   <string name="EditProfileFragment__group_name">Назив групе</string>
   <string name="EditProfileFragment__group_description">Опис групе</string>
   <!--EditProfileNameFragment-->
@@ -2037,6 +2040,7 @@
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__chat_wallpaper">Позадина за ћаскање</string>
+  <string name="preferences__chat_color_and_wallpaper">Боја ћаскања и позадина</string>
   <string name="preferences__disable_pin">Искључи PIN</string>
   <string name="preferences__enable_pin">Укључи PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако онемогућите PIN, изгубићете све податке када поново региструјете Signal, осим ако ручно направите резервне копије и вратите податке. Не можете укључити закључавање регистрације док је PIN онемогућен.</string>
@@ -2828,12 +2832,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Позадина за ћаскање</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Боја ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Рисетовати боје ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Рисетовати боје ћаскања</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Рисетовати боје ћаскања?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Поставити позадину</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Тамни режим затамњује позадину</string>
   <string name="ChatWallpaperFragment__contact_name">Име контакта</string>
   <string name="ChatWallpaperFragment__reset">Ресетуј</string>
   <string name="ChatWallpaperFragment__clear">Очистити</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед позадине</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Да ли желите да надјачате све боје за ћаскање?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Да ли желите да надјачате све позадине?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Рисетовати подразумеване боје</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Рисетовати све боје</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Рисетовати подразумевану позадину</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Рисетуј све позадине</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Рисетовати позадине</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Рисетовати позадину</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Рисетовати позадину?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Одабери из фотографије</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предефинисано</string>
@@ -2935,6 +2951,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниједан од ваших контаката или људи са којима разговарате су у овој групи. Пажљиво прегледајте захтеве пре него што прихватите тако да бисте избегли нежељене поруке.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">О захтеву за разговор</string>
   <string name="GroupsInCommonMessageRequest__okay">У реду</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ево прегледа боје ћаскања.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Само ви видите боју.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Опис групе</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3001,12 +3019,32 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Позиви</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Ауто</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Користити посебне боје</string>
   <string name="ChatColorSelectionFragment__chat_color">Боја ћаскања</string>
   <string name="ChatColorSelectionFragment__edit">Уреди</string>
+  <string name="ChatColorSelectionFragment__duplicate">Дупликат</string>
   <string name="ChatColorSelectionFragment__delete">Избриши</string>
+  <string name="ChatColorSelectionFragment__delete_color">Обрисати боју</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ова прилагођена боја користи се у %1$d ћаскање. Да ли желите да је избришете из ћаскања?</item>
+    <item quantity="few">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
+    <item quantity="other">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Солидно</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Градијент</string>
+  <string name="CustomChatColorCreatorFragment__hue">Нијанса</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Сачувај</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Променити боју</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ова боја користи се у %1$d ћаскање. Да ли желите да сачувате промене за ово ћаскање?</item>
+    <item quantity="few">Ова боја користи се у %1$d ћаскања. Да ли желите да сачувате промене за свих ћаскања?</item>
+    <item quantity="other">Ова боја користи се у %1$d ћаскања. Да ли желите да сачувате промене за свих ћаскања?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Селектор горње ивице</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Селектор доње ивице</string>
   <!--EOF-->
 </resources>

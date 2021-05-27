@@ -1733,7 +1733,7 @@
   <string name="EditAboutFragment_taking_a_break">ଗୋଟେ ବିରତି ନିଆହଉଛି</string>
   <string name="EditAboutFragment_working_on_something_new">କୌଣସି ଗୋଟେ ନୂଆ ଜିନିଷରେ କାମ କରନ୍ତୁ</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି ସଂପାଦନ କରନ୍ତୁ</string> -->
+  <string name="EditProfileFragment__edit_group">ଗୋଷ୍ଠୀ ସମ୍ପାଦନ କରନ୍ତୁ</string>
   <string name="EditProfileFragment__group_name">ଗୋଷ୍ଠୀ ନାମ</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ଆପଣଙ୍କ ନାମ</string>

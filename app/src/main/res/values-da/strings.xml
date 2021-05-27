@@ -1772,7 +1772,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
   <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string> -->
+  <string name="EditProfileFragment__edit_group">Redigér gruppe</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!--EditProfileNameFragment-->
@@ -2958,8 +2958,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CustomChatColorCreatorFragmentPage__save">Gem</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Rediger farve</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Denne farve bruges i %1$d chats. Vil du gemme ændringer for alle chats?</item>
-    <item quantity="other">Denne farve bruges i %1$d chat. Vil du gemme ændringer for alle chats?</item>
+    <item quantity="one">Denne farve bruges i %1$d chat. Vil du gemme ændringer for alle chats?</item>
+    <item quantity="other">Denne farve bruges i %1$d chats. Vil du gemme ændringer for alle chats?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Øverste kantvælger</string>

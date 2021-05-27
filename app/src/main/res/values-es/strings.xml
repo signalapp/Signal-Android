@@ -1772,7 +1772,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="EditAboutFragment_taking_a_break">Tomando un descanso</string>
   <string name="EditAboutFragment_working_on_something_new">Trabajando en cosas nuevas</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string> -->
+  <string name="EditProfileFragment__edit_group">Modificar grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
   <string name="EditProfileFragment__group_description">Descripción del grupo</string>
   <!--EditProfileNameFragment-->
@@ -2958,8 +2958,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CustomChatColorCreatorFragmentPage__save">Guardar</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Modificar color</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Este color se está usando en %1$d chat. ¿Deseas modificarlo?</item>
-    <item quantity="other">Este color se está usando en %1$d chats. ¿Deseas modificarlo en todos esos chats?</item>
+    <item quantity="one">Este color personalizado se está usando en %1$d chat. ¿Deseas modificarlo?</item>
+    <item quantity="other">Este color personalizado se está usando en %1$d chats. ¿Deseas modificarlo en todos esos chats?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selector límite superior</string>

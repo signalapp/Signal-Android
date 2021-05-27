@@ -1760,7 +1760,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="EditAboutFragment_taking_a_break">Tar en pause</string>
   <string name="EditAboutFragment_working_on_something_new">Jobber med noe nytt</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og bilde</string> -->
+  <string name="EditProfileFragment__edit_group">Rediger gruppe</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!--EditProfileNameFragment-->

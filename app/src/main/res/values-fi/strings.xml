@@ -1748,7 +1748,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="EditAboutFragment_taking_a_break">Tauolla</string>
   <string name="EditAboutFragment_working_on_something_new">Luomassa uutta</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Muokkaa nimeä ja kuvaa</string> -->
+  <string name="EditProfileFragment__edit_group">Muokkaa ryhmää</string>
   <string name="EditProfileFragment__group_name">Ryhmän nimi</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Nimesi</string>

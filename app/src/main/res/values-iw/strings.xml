@@ -675,6 +675,7 @@
   <string name="ManageGroupActivity_mute_notifications">השתק התראות</string>
   <string name="ManageGroupActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageGroupActivity_mentions">אזכורים</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">צבע התכתבות וטפט</string>
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
   <string name="ManageGroupActivity_always">תמיד</string>
   <string name="ManageGroupActivity_off">כבוי</string>
@@ -1324,6 +1325,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">אף אחד אחר לא כאן</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s בשיחה זו</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s וגם %2$s בשיחה זו</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s משתף/ת מסך</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, ועוד %3$d אחר בשיחה זו</item>
     <item quantity="two">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו </item>
@@ -1345,6 +1347,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">לא ניתן לקבל שמע ווידאו מן %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ייתכן שזה מאחר שהם לא וידאו את שינוי מספר הביטחון שלך, או שיש בעיה עם המכשיר שלהם, או שהם חסמו אותך.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">החלק כדי להציג שיתוף מסך</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">שרת יפוי כוח</string>
   <string name="ProxyBottomSheetFragment_proxy_address">כתובת יפוי כוח</string>
@@ -1913,7 +1916,7 @@
   <string name="EditAboutFragment_taking_a_break">לוקח הפסקה</string>
   <string name="EditAboutFragment_working_on_something_new">עובד על משהו חדש</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">ערוך את השם והתמונה של הקבוצה</string> -->
+  <string name="EditProfileFragment__edit_group">ערוך קבוצה</string>
   <string name="EditProfileFragment__group_name">שם קבוצה</string>
   <string name="EditProfileFragment__group_description">תיאור קבוצה</string>
   <!--EditProfileNameFragment-->
@@ -2111,6 +2114,7 @@
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
   <string name="preferences__chat_wallpaper">טפט התכתבות</string>
+  <string name="preferences__chat_color_and_wallpaper">צבע התכתבות וטפט</string>
   <string name="preferences__disable_pin">השבת PIN</string>
   <string name="preferences__enable_pin">אפשר PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">אם תשבית את ה־PIN, תאבד את כל הנתונים כאשר תירשם מחדש אל Signal אלא אם תגבה ותשחזר באופן ידני. אינך יכול להפעיל נעילת הרשמה בזמן שה־PIN מושבת.</string>
@@ -2910,12 +2914,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">טפט התכתבות</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">צבע התכתבות</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">אפס צבעי התכתבות</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">אפס צבע התכתבות</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">לאפס צבע התכתבות?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">הגדר טפט</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">מצב כהה מעמעם טפט</string>
   <string name="ChatWallpaperFragment__contact_name">שם איש קשר</string>
   <string name="ChatWallpaperFragment__reset">אפס</string>
   <string name="ChatWallpaperFragment__clear">נקה</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">תצוגה מקדימה של טפט</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">האם אתה רוצה לדרוס את כל צבעי ההתכתבות?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">האם אתה רוצה לדרוס את כל הטפטים?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">אפס צבעי ברירת מחדל</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">אפס את כל הצבעים</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">אפס טפט ברירת מחדל</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">אפס את כל הטפטים</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">אפס טפטים</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">אפס טפט</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">לאפס טפט?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">בחר מתוך תמונות</string>
   <string name="ChatWallpaperSelectionFragment__presets">קדם־הגדרות</string>
@@ -3017,6 +3033,8 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">אף אחד מחברי הקבוצה שלך או האנשים שאתה מתכתב איתם נמצאים בקבוצה הזאת. סקור בקשות בזהירות טרם אישור שלהן כדי להימנע מהודעות בלתי רצויות.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">על אודות בקשות הודעה</string>
   <string name="GroupsInCommonMessageRequest__okay">בסדר</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">הנה תצוגה מקדימה של צבע ההתכתבות.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">הצבע גלוי רק לך.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">תיאור קבוצה</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3084,12 +3102,35 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">אוטומטי</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">השתמש בצבעים מותאמים אישית</string>
   <string name="ChatColorSelectionFragment__chat_color">צבע התכתבות</string>
   <string name="ChatColorSelectionFragment__edit">ערוך</string>
+  <string name="ChatColorSelectionFragment__duplicate">שכפל</string>
   <string name="ChatColorSelectionFragment__delete">מחק</string>
+  <string name="ChatColorSelectionFragment__delete_color">מחק צבע</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">צבע מותאם אישית זה נמצא בשימוש בהתכתבות %1$d. האם אתה רוצה למחוק אותו עבור כל ההתכתבויות?</item>
+    <item quantity="two">צבע מותאם אישית זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה למחוק אותו עבור כל ההתכתבויות?</item>
+    <item quantity="many">צבע מותאם אישית זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה למחוק אותו עבור כל ההתכתבויות? </item>
+    <item quantity="other">צבע מותאם אישית זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה למחוק אותו עבור כל ההתכתבויות?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">מוצק</string>
+  <string name="CustomChatColorCreatorFragment__gradient">שיפוע</string>
+  <string name="CustomChatColorCreatorFragment__hue">גוון</string>
+  <string name="CustomChatColorCreatorFragment__saturation">רוויה</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">שמור</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">ערוך צבע</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">צבע זה נמצא בשימוש בהתכתבות %1$d. האם אתה רוצה לשמור שינויים עבור כל ההתכתבויות?</item>
+    <item quantity="two">צבע זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה לשמור שינויים עבור כל ההתכתבויות?</item>
+    <item quantity="many">צבע זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה לשמור שינויים עבור כל ההתכתבויות?</item>
+    <item quantity="other">צבע זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה לשמור שינויים עבור כל ההתכתבויות?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">בוחר קצה עליון</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">בוחר קצה תחתון</string>
   <!--EOF-->
 </resources>

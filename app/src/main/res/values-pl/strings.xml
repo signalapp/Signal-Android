@@ -1908,7 +1908,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="EditAboutFragment_taking_a_break">Robię przerwę</string>
   <string name="EditAboutFragment_working_on_something_new">Pracuję nad czymś nowym</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Edytuj nazwę i zdjęcie grupy</string> -->
+  <string name="EditProfileFragment__edit_group">Edytuj grupę</string>
   <string name="EditProfileFragment__group_name">Nazwa grupy</string>
   <string name="EditProfileFragment__group_description">Opis grupy</string>
   <!--EditProfileNameFragment-->

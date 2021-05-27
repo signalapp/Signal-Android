@@ -1771,7 +1771,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="EditAboutFragment_taking_a_break">Lazulok pár percet</string>
   <string name="EditAboutFragment_working_on_something_new">Valami izgalmas újdonságon dolgozom</string>
   <!--EditProfileFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__edit_group_name_and_photo">Csoport nevének és képének szerkesztése</string> -->
+  <string name="EditProfileFragment__edit_group">Csoport szerkesztése</string>
   <string name="EditProfileFragment__group_name">Csoport neve</string>
   <string name="EditProfileFragment__group_description">Csoportleírás</string>
   <!--EditProfileNameFragment-->
@@ -2753,6 +2753,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChatWallpaperFragment__reset">Alaphelyzetbe állítás</string>
   <string name="ChatWallpaperFragment__clear">Törlés</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Háttérkép előnézete</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Felülírod az összes színbeállítást?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Felülírod az összes háttérképet?</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Választás fotók közül</string>
@@ -2855,6 +2857,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Egy kontaktod, vagy beszélgetőpartnered sem tagja ennek a csoportnak. Ellenőrizd a kérelmet figyelmesen elfogadás előtt, hogy elkerüld a nem kívánt üzeneteket!</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Az csevegési felkérésekről</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ezt a színbeállítást csak te látod.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Csoportleírás</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2923,8 +2926,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">Beszélgetés színe</string>
   <string name="ChatColorSelectionFragment__edit">Szerkesztés</string>
+  <string name="ChatColorSelectionFragment__duplicate">Megkettőzés</string>
   <string name="ChatColorSelectionFragment__delete">Törlés</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Alap</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradiens</string>
+  <string name="CustomChatColorCreatorFragment__hue">árnyalat</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Szaturáció</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Mentés</string>
   <!--ChatColorGradientTool-->
