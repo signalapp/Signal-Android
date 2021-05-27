@@ -35,13 +35,8 @@ class ConversationView : LinearLayout {
         setUpViewHierarchy()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
-        setUpViewHierarchy()
-    }
-
     private fun setUpViewHierarchy() {
-        LayoutInflater.from(context)
-                .inflate(R.layout.view_conversation, this)
+        LayoutInflater.from(context).inflate(R.layout.view_conversation, this)
     }
     // endregion
 
@@ -75,7 +70,7 @@ class ConversationView : LinearLayout {
         typingIndicatorView.visibility = if (isTyping) View.VISIBLE else View.GONE
         statusIndicatorImageView.visibility = View.VISIBLE
         when {
-            !thread.isOutgoing || thread.isVerificationStatusChange -> statusIndicatorImageView.visibility = View.GONE
+            !thread.isOutgoing -> statusIndicatorImageView.visibility = View.GONE
             thread.isFailed -> statusIndicatorImageView.setImageResource(R.drawable.ic_error)
             thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
             thread.isRemoteRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)

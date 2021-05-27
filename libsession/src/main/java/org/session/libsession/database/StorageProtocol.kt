@@ -12,8 +12,8 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.utilities.Address
