@@ -35,7 +35,6 @@ import org.session.libsession.utilities.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage;
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
@@ -414,7 +413,6 @@ public class SmsDatabase extends MessagingDatabase {
 
       notifyConversationListeners(threadId);
 
-      ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
       return Optional.of(new InsertResult(messageId, threadId));
     }
@@ -484,7 +482,6 @@ public class SmsDatabase extends MessagingDatabase {
 
     notifyConversationListeners(threadId);
 
-    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     return messageId;
   }

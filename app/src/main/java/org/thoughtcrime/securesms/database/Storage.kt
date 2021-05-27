@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database
 
+import android.app.job.JobScheduler
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
@@ -150,6 +151,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             insertResult.orNull()?.let { result ->
                 messageID = result.messageId
             }
+        }
+        val threadID = message.threadID
+        // open group trim thread job is scheduled after processing in OpenGroupPollerV2
+        if (openGroupID.isNullOrEmpty() && threadID != null && threadID >= 0) {
+            JobQueue.shared.add(TrimThreadJob(threadID))
         }
         return messageID
     }
@@ -527,6 +533,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun getLastUpdated(threadID: Long): Long {
         val threadDB = DatabaseFactory.getThreadDatabase(context)
         return threadDB.getLastUpdated(threadID)
+    }
+
+    override fun trimThread(threadID: Long, threadLimit: Int) {
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        threadDB.trimThread(threadID, threadLimit)
     }
 
     override fun getAttachmentDataUri(attachmentId: AttachmentId): Uri {

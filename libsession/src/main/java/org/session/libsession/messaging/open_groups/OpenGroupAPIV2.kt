@@ -258,9 +258,6 @@ object OpenGroupAPIV2 {
     }
 
     private fun parseMessages(room: String, server: String, rawMessages: List<Map<*, *>>): List<OpenGroupMessageV2> {
-        val storage = MessagingModuleConfiguration.shared.storage
-        val lastMessageServerID = storage.getLastMessageServerID(room, server) ?: 0
-        var currentLastMessageServerID = lastMessageServerID
         val messages = rawMessages.mapNotNull { json ->
             json as Map<String, Any>
             try {
@@ -275,15 +272,11 @@ object OpenGroupAPIV2 {
                     Log.d("Loki", "Ignoring message with invalid signature.")
                     return@mapNotNull null
                 }
-                if (message.serverID > lastMessageServerID) {
-                    currentLastMessageServerID = message.serverID
-                }
                 message
             } catch (e: Exception) {
                 null
             }
         }
-        storage.setLastMessageServerID(room, server, currentLastMessageServerID)
         return messages
     }
     // endregion
@@ -404,11 +397,6 @@ object OpenGroupAPIV2 {
                 val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
                 val idsAsString = JsonUtil.toJson(json["deletions"])
                 val deletedServerIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
-                val lastDeletionServerID = storage.getLastDeletionServerID(roomID, server) ?: 0
-                val serverID = deletedServerIDs.maxByOrNull { it.id } ?: MessageDeletion.empty
-                if (serverID.id > lastDeletionServerID) {
-                    storage.setLastDeletionServerID(roomID, server, serverID.id)
-                }
                 // Messages
                 val rawMessages = json["messages"] as? List<Map<String, Any>> ?: return@mapNotNull null
                 val messages = parseMessages(roomID, server, rawMessages)
