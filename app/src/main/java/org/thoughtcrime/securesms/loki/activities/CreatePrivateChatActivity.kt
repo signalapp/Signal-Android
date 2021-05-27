@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.loki.activities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -13,8 +15,14 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_private_chat.*
+import kotlinx.android.synthetic.main.activity_create_private_chat.loader
+import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
+import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
+import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
+import kotlinx.android.synthetic.main.permissions_rationale_dialog.*
 import network.loki.messenger.R
+import org.session.libsession.snode.SnodeAPI
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.utilities.Address
@@ -48,6 +56,23 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     }
     // endregion
 
+    // region Updating
+    private fun showLoader() {
+        loader.visibility = View.VISIBLE
+        loader.animate().setDuration(150).alpha(1.0f).start()
+    }
+
+    private fun hideLoader() {
+        loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
+
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                loader.visibility = View.GONE
+            }
+        })
+    }
+    // endregion
+
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
@@ -60,8 +85,27 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         createPrivateChatIfPossible(hexEncodedPublicKey)
     }
 
-    fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
-        if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
+    fun createPrivateChatIfPossible(onsNameOrPublicKey: String) {
+        if (!PublicKeyValidation.isValid(onsNameOrPublicKey)) {
+            createPrivateChat(onsNameOrPublicKey)
+        } else {
+            // This could be an ONS name
+            showLoader()
+            SnodeAPI.getSessionIDFor(onsNameOrPublicKey).success { hexEncodedPublicKey ->
+                hideLoader()
+                this.createPrivateChat(hexEncodedPublicKey)
+            }.fail { exception ->
+                hideLoader()
+                var message = "Please check the Session ID or ONS name and try again."
+                exception.localizedMessage?.let {
+                    message = it
+                }
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun createPrivateChat(hexEncodedPublicKey: String) {
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
