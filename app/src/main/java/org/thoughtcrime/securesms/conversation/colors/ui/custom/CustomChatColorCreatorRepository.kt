@@ -39,11 +39,11 @@ class CustomChatColorCreatorRepository(private val context: Context) {
     }
   }
 
-  fun getUsageCount(chatColors: ChatColors, consumer: (Int) -> Unit) {
+  fun getUsageCount(chatColorsId: ChatColors.Id, consumer: (Int) -> Unit) {
     SignalExecutors.BOUNDED.execute {
       val recipientsDatabase = DatabaseFactory.getRecipientDatabase(context)
 
-      consumer(recipientsDatabase.getColorUsageCount(chatColors))
+      consumer(recipientsDatabase.getColorUsageCount(chatColorsId))
     }
   }
 }

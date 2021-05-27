@@ -1411,11 +1411,11 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public int getColorUsageCount(@NotNull ChatColors chatColors) {
+  public int getColorUsageCount(@NotNull ChatColors.Id chatColorsId) {
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
     String[]       projection = SqlUtil.buildArgs("COUNT(*)");
     String         where      = CUSTOM_CHAT_COLORS_ID + " = ?";
-    String[]       args       = SqlUtil.buildArgs(chatColors.getId().getLongValue());
+    String[]       args       = SqlUtil.buildArgs(chatColorsId.getLongValue());
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, where, args, null, null, null)) {
       if (cursor == null) {

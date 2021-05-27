@@ -105,8 +105,8 @@ class CustomChatColorCreatorViewModel(
   }
 
   fun startSave(chatColors: ChatColors) {
-    if (chatColors.id is ChatColors.Id.Custom) {
-      repository.getUsageCount(chatColors) {
+    if (chatColorsId is ChatColors.Id.Custom) {
+      repository.getUsageCount(chatColorsId) {
         if (it > 0) {
           internalEvents.postValue(Event.Warn(it, chatColors))
         } else {

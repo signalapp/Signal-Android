@@ -103,7 +103,8 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
     color = ContextCompat.getColor(context, R.color.signal_inverse_transparent_10)
   }
 
-  val gestureDetectorCompat = GestureDetectorCompat(context, GestureListener())
+  private val gestureListener = GestureListener()
+  private val gestureDetectorCompat = GestureDetectorCompat(context, gestureListener)
 
   fun setTopColor(@ColorInt color: Int) {
     topColorPaint.color = color
@@ -147,7 +148,14 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
     this.listener = listener
   }
 
-  override fun onTouchEvent(event: MotionEvent?): Boolean {
+  override fun onTouchEvent(event: MotionEvent): Boolean {
+
+    if (event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP) {
+      listener?.onGestureFinished()
+    } else if (event.action == MotionEvent.ACTION_DOWN) {
+      listener?.onGestureStarted()
+    }
+
     return gestureDetectorCompat.onTouchEvent(event)
   }
 
@@ -303,6 +311,8 @@ class CustomChatColorGradientToolView @JvmOverloads constructor(
   private fun Float.rotate(degrees: Float): Float = (this + degrees + 360f) % 360f
 
   interface Listener {
+    fun onGestureStarted()
+    fun onGestureFinished()
     fun onDegreesChanged(degrees: Float)
     fun onSelectedEdgeChanged(edge: CustomChatColorEdge)
   }

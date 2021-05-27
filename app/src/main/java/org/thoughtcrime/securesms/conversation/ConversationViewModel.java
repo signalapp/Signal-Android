@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.conversation.colors.NameColor;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -32,11 +33,14 @@ import org.thoughtcrime.securesms.mediasend.MediaRepository;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaRequiredEvent;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -203,9 +207,13 @@ public class ConversationViewModel extends ViewModel {
   }
 
   @NonNull LiveData<Map<RecipientId, NameColor>> getNameColorsMap() {
-    LiveData<Recipient>                         recipient       = Transformations.switchMap(recipientId, r -> Recipient.live(r).getLiveData());
-    LiveData<Recipient>                         groupRecipients = LiveDataUtil.filter(recipient, Recipient::isGroup);
-    LiveData<List<GroupMemberEntry.FullMember>> groupMembers    = Transformations.switchMap(groupRecipients, r -> new LiveGroup(r.getGroupId().get()).getFullMembers());
+    LiveData<Recipient>                         recipient    = Transformations.switchMap(recipientId, r -> Recipient.live(r).getLiveData());
+    LiveData<Optional<GroupId>>                 group        = Transformations.map(recipient, Recipient::getGroupId);
+    LiveData<List<GroupMemberEntry.FullMember>> groupMembers = Transformations.switchMap(group, g -> {
+      //noinspection CodeBlock2Expr
+      return g.transform(id -> new LiveGroup(id).getFullMembers())
+              .or(() -> new DefaultValueLiveData<>(Collections.emptyList()));
+    });
 
     return Transformations.map(groupMembers, members -> {
       List<GroupMemberEntry.FullMember> sorted = Stream.of(members)

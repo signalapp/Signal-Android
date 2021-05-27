@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.ScrollView
 import android.widget.SeekBar
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
@@ -60,11 +61,20 @@ class CustomChatColorCreatorPageFragment :
 
     val gradientTool: CustomChatColorGradientToolView = view.findViewById(R.id.gradient_tool)
     val save: View = view.findViewById(R.id.save)
+    val scrollView: ScrollView = view.findViewById(R.id.scroll_view)
 
     if (page == SINGLE_PAGE) {
       gradientTool.visibility = View.GONE
     } else {
       gradientTool.setListener(object : CustomChatColorGradientToolView.Listener {
+        override fun onGestureStarted() {
+          scrollView.requestDisallowInterceptTouchEvent(true)
+        }
+
+        override fun onGestureFinished() {
+          scrollView.requestDisallowInterceptTouchEvent(false)
+        }
+
         override fun onDegreesChanged(degrees: Float) {
           viewModel.setDegrees(degrees)
         }

@@ -36,6 +36,7 @@
             android:layout_height="match_parent">
 
             <org.thoughtcrime.securesms.components.TypingIndicatorView
+                app:typingIndicator_tint="@color/signal_inverse_primary"
                 android:id="@+id/typing_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

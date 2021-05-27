@@ -25,9 +25,9 @@ sealed class ChatColorSelectionRepository(context: Context) {
     }
   }
 
-  fun getUsageCount(chatColors: ChatColors, consumer: (Int) -> Unit) {
+  fun getUsageCount(chatColorsId: ChatColors.Id, consumer: (Int) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      consumer(DatabaseFactory.getRecipientDatabase(context).getColorUsageCount(chatColors))
+      consumer(DatabaseFactory.getRecipientDatabase(context).getColorUsageCount(chatColorsId))
     }
   }
 
