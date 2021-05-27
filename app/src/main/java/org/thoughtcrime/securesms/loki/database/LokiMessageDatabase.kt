@@ -143,17 +143,12 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
                     messages.add(cursor.getLong(Companion.messageID) to cursor.getLong(Companion.serverID))
                 }
             }
-            Log.d("Test", "Need to delete ${messages.size} number of messages")
-
             var deletedCount = 0L
-
             database.beginTransaction()
             messages.forEach { (messageId, serverId) ->
                 deletedCount += database.delete(messageIDTable, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageId.toString(), serverId.toString()))
             }
-            Log.d("Test", "Deleted $deletedCount from messageIDTable")
             val mappingDeleted = database.delete(messageThreadMappingTable, "${Companion.threadID} = ?", arrayOf(threadId.toString()))
-            Log.d("Test", "Deleted $mappingDeleted from mapping table")
             database.setTransactionSuccessful()
         } finally {
             database.endTransaction()
