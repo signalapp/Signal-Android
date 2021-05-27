@@ -14,13 +14,10 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.activity_create_private_chat.loader
 import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
 import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
-import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
-import kotlinx.android.synthetic.main.permissions_rationale_dialog.*
 import network.loki.messenger.R
 import org.session.libsession.snode.SnodeAPI
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity

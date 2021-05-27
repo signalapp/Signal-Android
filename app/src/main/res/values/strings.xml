@@ -719,7 +719,7 @@
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
 
-    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID or ONS name</string>
     <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping "Share Session ID", or by sharing their QR code.</string>
 
     <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
