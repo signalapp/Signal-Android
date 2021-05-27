@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.reactions.any;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.KeyEvent;
@@ -35,6 +36,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.reactions.ReactionsLoader;
+import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -53,6 +55,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private static final String ARG_START_PAGE = "arg_start_page";
   private static final String ARG_SHADOWS    = "arg_shadows";
   private static final String ARG_RECENT_KEY = "arg_recent_key";
+  private static final String ARG_EDIT       = "arg_edit";
 
   private ReactWithAnyEmojiViewModel                            viewModel;
   private TextSwitcher                                          categoryLabel;
@@ -62,6 +65,8 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private SparseArray<ReactWithAnyEmojiAdapter.ScrollableChild> pageArray = new SparseArray<>();
   private Callback                                              callback;
   private ReactionsLoader                                       reactionsLoader;
+  private View                                                  editReactions;
+  private boolean                                               showEditReactions;
 
   public static DialogFragment createForMessageRecord(@NonNull MessageRecord messageRecord, int startingPage) {
     DialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
@@ -72,6 +77,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     args.putInt(ARG_START_PAGE, startingPage);
     args.putBoolean(ARG_SHADOWS, false);
     args.putString(ARG_RECENT_KEY, REACTION_STORAGE_KEY);
+    args.putBoolean(ARG_EDIT, true);
     fragment.setArguments(args);
 
     return fragment;
@@ -91,11 +97,29 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     return fragment;
   }
 
+  public static DialogFragment createForEditReactions() {
+    DialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
+    Bundle         args     = new Bundle();
+
+    args.putLong(ARG_MESSAGE_ID, -1);
+    args.putBoolean(ARG_IS_MMS, false);
+    args.putInt(ARG_START_PAGE, -1);
+    args.putBoolean(ARG_SHADOWS, false);
+    args.putString(ARG_RECENT_KEY, REACTION_STORAGE_KEY);
+    fragment.setArguments(args);
+
+    return fragment;
+  }
+
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
 
-    callback = (Callback) context;
+    if (getParentFragment() instanceof Callback) {
+      callback = (Callback) getParentFragment();
+    } else {
+      callback = (Callback) context;
+    }
   }
 
   @Override
@@ -159,6 +183,12 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
     categoryLabel = view.findViewById(R.id.category_label);
     categoryPager = view.findViewById(R.id.category_pager);
+    editReactions = view.findViewById(R.id.edit_reactions);
+
+    showEditReactions = requireArguments().getBoolean(ARG_EDIT, false);
+    if (showEditReactions) {
+      editReactions.setOnClickListener(v -> startActivity(new Intent(requireContext(), EditReactionsActivity.class)));
+    }
 
     adapter = new ReactWithAnyEmojiAdapter(this, this, (position, pageView) -> {
       pageArray.put(position, pageView);
@@ -264,6 +294,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     }
 
     categoryLabel.setText(getString(adapter.getItem(position).getLabel()));
+    editReactions.setVisibility(showEditReactions && position == 0 ? View.VISIBLE : View.GONE);
   }
 
   private int getStartingPage(boolean firstPageHasContent) {

@@ -118,11 +118,15 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     toolbar.setOnMenuItemClickListener(this::handleToolbarItemClicked);
     toolbar.setNavigationOnClickListener(view -> hide());
 
-    emojiViews = Stream.of(ReactionEmoji.values())
-                       .map(e -> findViewById(e.viewId))
-                       .toArray(EmojiImageView[]::new);
+    emojiViews = new EmojiImageView[] { findViewById(R.id.reaction_1),
+                                        findViewById(R.id.reaction_2),
+                                        findViewById(R.id.reaction_3),
+                                        findViewById(R.id.reaction_4),
+                                        findViewById(R.id.reaction_5),
+                                        findViewById(R.id.reaction_6),
+                                        findViewById(R.id.reaction_7) };
 
-    customEmojiIndex = ReactionEmoji.values().length - 1;
+    customEmojiIndex = emojiViews.length - 1;
 
     distanceFromTouchDownPointToTopOfScrubberDeadZone    = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_top);
     distanceFromTouchDownPointToBottomOfScrubberDeadZone = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_bottom);
@@ -364,7 +368,8 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private void setupSelectedEmoji() {
-    final String oldEmoji = getOldEmoji(messageRecord);
+    final List<String> emojis   = SignalStore.emojiValues().getReactions();
+    final String       oldEmoji = getOldEmoji(messageRecord);
 
     if (oldEmoji == null) {
       selectedView.setVisibility(View.GONE);
@@ -380,7 +385,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       view.setTranslationY(0);
 
       boolean isAtCustomIndex                      = i == customEmojiIndex;
-      boolean isNotAtCustomIndexAndOldEmojiMatches = !isAtCustomIndex && oldEmoji != null && ReactionEmoji.values()[i].emoji.equals(EmojiUtil.getCanonicalRepresentation(oldEmoji));
+      boolean isNotAtCustomIndexAndOldEmojiMatches = !isAtCustomIndex && oldEmoji != null && emojis.get(i).equals(EmojiUtil.getCanonicalRepresentation(oldEmoji));
       boolean isAtCustomIndexAndOldEmojiExists     = isAtCustomIndex && oldEmoji != null;
 
       if (!foundSelected &&
@@ -401,13 +406,13 @@ public final class ConversationReactionOverlay extends RelativeLayout {
           view.setImageEmoji(oldEmoji);
           view.setTag(oldEmoji);
         } else {
-          view.setImageEmoji(SignalStore.emojiValues().getPreferredVariation(ReactionEmoji.values()[i].emoji));
+          view.setImageEmoji(SignalStore.emojiValues().getPreferredVariation(emojis.get(i)));
         }
       } else if (isAtCustomIndex) {
         view.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_any_emoji_32));
         view.setTag(null);
       } else {
-        view.setImageEmoji(SignalStore.emojiValues().getPreferredVariation(ReactionEmoji.values()[i].emoji));
+        view.setImageEmoji(SignalStore.emojiValues().getPreferredVariation(emojis.get(i)));
       }
     }
   }
@@ -469,7 +474,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       if (selected == customEmojiIndex) {
         onReactionSelectedListener.onCustomReactionSelected(messageRecord, emojiViews[selected].getTag() != null);
       } else {
-        onReactionSelectedListener.onReactionSelected(messageRecord, SignalStore.emojiValues().getPreferredVariation(ReactionEmoji.values()[selected].emoji));
+        onReactionSelectedListener.onReactionSelected(messageRecord, SignalStore.emojiValues().getPreferredVariation(SignalStore.emojiValues().getReactions().get(selected)));
       }
     } else {
       hide();
@@ -639,24 +644,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       } else {
         return this.min > value && this.max < value;
       }
-    }
-  }
-
-  private enum ReactionEmoji {
-    HEART(R.id.reaction_1, "\u2764\ufe0f"),
-    THUMBS_UP(R.id.reaction_2, "\ud83d\udc4d"),
-    THUMBS_DOWN(R.id.reaction_3, "\ud83d\udc4e"),
-    LAUGH(R.id.reaction_4, "\ud83d\ude02"),
-    SURPRISE(R.id.reaction_5, "\ud83d\ude2e"),
-    SAD(R.id.reaction_6, "\ud83d\ude22"),
-    ANGRY(R.id.reaction_7, "\ud83d\ude21");
-
-    final @IdRes int    viewId;
-    final        String emoji;
-
-    ReactionEmoji(int viewId, String emoji) {
-      this.viewId = viewId;
-      this.emoji  = emoji;
     }
   }
 

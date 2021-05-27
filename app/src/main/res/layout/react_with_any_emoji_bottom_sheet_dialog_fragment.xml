@@ -15,7 +15,7 @@
         android:layout_marginEnd="10dp"
         android:inAnimation="@anim/fade_in"
         android:outAnimation="@anim/fade_out"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edit_reactions"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,15 +23,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-            android:textColor="@color/signal_text_secondary"
+            android:textColor="@color/signal_icon_tint_primary"
             tools:text="Smileys &amp; People" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-            android:textColor="@color/signal_text_secondary" />
+            android:textColor="@color/signal_icon_tint_primary" />
     </TextSwitcher>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/edit_reactions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/EditReactionsFragment__edit_reactions"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings_outline_24"
+        app:tint="@color/signal_icon_tint_primary"
+        tools:ignore="UnusedAttribute" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/category_pager"

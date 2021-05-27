@@ -206,6 +206,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatsSettingsFragment_to_editReactionsFragment"
+            app:destination="@id/editReactionsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -232,6 +239,12 @@
         android:id="@+id/mmsPreferencesFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedMmsPreferencesFragment"
         android:label="mms_preferences_fragment" />
+
+    <fragment
+        android:id="@+id/editReactionsFragment"
+        android:name="org.thoughtcrime.securesms.reactions.edit.EditReactionsFragment"
+        android:label="edit_reactions_fragment"
+        tools:layout="@layout/edit_reactions_fragment" />
 
     <!-- endregion -->
 

@@ -3502,6 +3502,12 @@
     <string name="ChatColorGradientTool_top_edge_selector">Top edge selector</string>
     <string name="ChatColorGradientTool_bottom_edge_selector">Bottom edge selector</string>
 
+    <!-- EditReactionsFragment -->
+    <string name="EditReactionsFragment__edit_reactions">Edit Reactions</string>
+    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tap to replace an emoji</string>
+    <string name="EditReactionsFragment__reset_emoji">Reset emoji</string>
+    <string name="EditReactionsFragment_save">Save</string>
+
     <!-- EOF -->
 
 </resources>
