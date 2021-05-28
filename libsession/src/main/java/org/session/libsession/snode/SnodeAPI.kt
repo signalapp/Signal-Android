@@ -22,7 +22,6 @@ import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
 import java.security.SecureRandom
 import java.util.*
-import javax.crypto.AEADBadTagException
 
 object SnodeAPI {
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }

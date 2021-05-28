@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.PublicKeyValidation
 
 
