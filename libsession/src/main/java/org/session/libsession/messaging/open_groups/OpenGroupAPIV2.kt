@@ -67,7 +67,7 @@ object OpenGroupAPIV2 {
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class MessageDeletion
-        @JvmOverloads constructor(val id: Long = 0, val deletedMessageId: Long = 0
+        @JvmOverloads constructor(val id: Long = 0, val deletedMessageServerID: Long = 0
     ) {
 
         companion object {
@@ -396,13 +396,13 @@ object OpenGroupAPIV2 {
                 // Deletions
                 val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
                 val idsAsString = JsonUtil.toJson(json["deletions"])
-                val deletedServerIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
+                val deletions = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
                 // Messages
                 val rawMessages = json["messages"] as? List<Map<String, Any>> ?: return@mapNotNull null
                 val messages = parseMessages(roomID, server, rawMessages)
                 roomID to CompactPollResult(
                     messages = messages,
-                    deletions = deletedServerIDs.map { it.deletedMessageId },
+                    deletions = deletions,
                     moderators = moderators
                 )
             }.toMap()
