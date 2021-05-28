@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
+import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.snode.SnodeAPI
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
@@ -89,12 +90,12 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         } else {
             // This could be an ONS name
             showLoader()
-            SnodeAPI.getSessionIDFor(onsNameOrPublicKey).success { hexEncodedPublicKey ->
+            SnodeAPI.getSessionIDFor(onsNameOrPublicKey).successUi { hexEncodedPublicKey ->
                 hideLoader()
                 this.createPrivateChat(hexEncodedPublicKey)
             }.failUi { exception ->
                 hideLoader()
-                var message = "Please check the Session ID or ONS name and try again."
+                var message = resources.getString(R.string.fragment_enter_public_key_error_message)
                 exception.localizedMessage?.let {
                     message = it
                 }

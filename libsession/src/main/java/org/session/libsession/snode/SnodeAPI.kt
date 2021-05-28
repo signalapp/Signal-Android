@@ -183,7 +183,10 @@ object SnodeAPI {
         )
         val promises = (1..validationCount).map {
             getRandomSnode().bind { snode ->
-                invoke(Snode.Method.OxenDaemonRPCCall, snode, null, parameters)
+                retryIfNeeded(maxRetryCount) {
+                    invoke(Snode.Method.OxenDaemonRPCCall, snode, null, parameters)
+                }
+
             }
         }
         all(promises).success { results ->

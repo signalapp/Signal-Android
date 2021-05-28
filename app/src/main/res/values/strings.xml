@@ -721,6 +721,7 @@
 
     <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID or ONS name</string>
     <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping "Share Session ID", or by sharing their QR code.</string>
+    <string name="fragment_enter_public_key_error_message">Please check the Session ID or ONS name and try again.</string>
 
     <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
