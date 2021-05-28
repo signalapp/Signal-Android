@@ -6,6 +6,4 @@
     <solid  android:color="@color/transparent" />
 
     <corners android:radius="23dp" />
-
-    <stroke android:width="@dimen/profile_picture_border_thickness" android:color="@color/profile_picture_border" />
 </shape>

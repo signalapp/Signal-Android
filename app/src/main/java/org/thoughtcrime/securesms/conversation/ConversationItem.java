@@ -45,9 +45,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.contacts.Contact;
@@ -58,17 +60,16 @@ import org.session.libsession.messaging.open_groups.OpenGroupV2;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
-import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.Stub;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.Stub;
-import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -88,7 +89,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.loki.views.OpenGroupInvitationView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
@@ -759,7 +759,6 @@ public class ConversationItem extends LinearLayout
     String displayName = recipient.getName();
     profilePictureView.setDisplayName(displayName);
     profilePictureView.setAdditionalPublicKey(null);
-    profilePictureView.setRSSFeed(false);
     profilePictureView.setGlide(glideRequests);
     profilePictureView.update();
   }
