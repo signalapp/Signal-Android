@@ -17,14 +17,9 @@ import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPolle
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.HTTP
-import org.session.libsignal.utilities.HTTP.Verb.*
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.utilities.toHexString
+import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64.*
-import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.HTTP.Verb.*
 import org.whispersystems.curve25519.Curve25519
 import java.util.*
 
@@ -63,7 +58,7 @@ object OpenGroupAPIV2 {
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class CompactPollRequest(val roomID: String, val authToken: String, val fromDeletionServerID: Long?, val fromMessageServerID: Long?)
-    data class CompactPollResult(val messages: List<OpenGroupMessageV2>, val deletions: List<Long>, val moderators: List<String>)
+    data class CompactPollResult(val messages: List<OpenGroupMessageV2>, val deletions: List<MessageDeletion>, val moderators: List<String>)
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class MessageDeletion
@@ -402,7 +397,7 @@ object OpenGroupAPIV2 {
                 val messages = parseMessages(roomID, server, rawMessages)
                 roomID to CompactPollResult(
                     messages = messages,
-                    deletions = deletedServerIDs.map { it.deletedMessageId },
+                    deletions = deletedServerIDs,
                     moderators = moderators
                 )
             }.toMap()
