@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_settings_outline_24"
+        app:srcCompat="@drawable/ic_settings_24"
         app:tint="@color/signal_icon_tint_primary" />
 
     <View

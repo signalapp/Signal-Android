@@ -7,6 +7,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/signal_button_primary_text_selector</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.035</item>
         <item name="iconGravity">textEnd</item>
         <item name="backgroundTint">@color/signal_button_primary</item>
         <item name="iconTint">@color/signal_button_primary_text_selector</item>
@@ -66,6 +67,7 @@
         <item name="android:insetBottom">0dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.035</item>
         <item name="iconGravity">textEnd</item>
         <item name="iconTint">@color/signal_button_secondary_text_selector</item>
         <item name="strokeColor">@color/signal_button_secondary_stroke</item>

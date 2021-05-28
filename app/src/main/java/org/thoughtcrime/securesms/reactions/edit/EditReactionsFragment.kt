@@ -40,7 +40,7 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     toolbar = view.findViewById(R.id.toolbar)
-    toolbar.setTitle(R.string.EditReactionsFragment__edit_reactions)
+    toolbar.setTitle(R.string.EditReactionsFragment__customize_reactions)
     toolbar.setNavigationOnClickListener {
       requireActivity().onBackPressed()
     }
