@@ -223,14 +223,12 @@ object SnodeAPI {
                             deferred.reject(Error.HashingFailed)
                             return@success
                         }
-                        val sessionID: String
-                        try {
-                            sessionID = sodium.decrypt(hexEncodedCiphertext, null, nonce, Key.fromBytes(key), AEAD.Method.CHACHA20_POLY1305_IETF)
-                        } catch (e: Exception) {
+                        val sessionIDAsData = ByteArray(sessionIDByteCount)
+                        if (!sodium.cryptoAeadXChaCha20Poly1305IetfDecrypt(sessionIDAsData, null, null, ciphertext, ciphertext.size.toLong(), null, 0, nonce, key)) {
                             deferred.reject(Error.DecryptionFailed)
                             return@success
                         }
-                        sessionIDs.add(sessionID)
+                        sessionIDs.add(Hex.toStringCondensed(sessionIDAsData))
                     }
                 } else {
                     deferred.reject(Error.Generic)
