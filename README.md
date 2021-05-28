@@ -1,6 +1,6 @@
 # Signal Android for India
 
-Signal is a messaging app for simple private communication with friends. This is fork exclusively for India with original author tracing, no forward messages, virality indicator etc. without breaking E2E and privacy. This fork tries to give the power back to the end user to decide on their messages. This fork will be 100% compatible (even at protocol level) with the original Signal Android client.
+Signal is a messaging app for simple private communication with friends. This fork is exclusively for India with original author tracing, no forward messages, virality indicator etc. without breaking E2E and privacy. This fork tries to give the power back to the end user to decide on their messages. This fork will be 100% compatible (even at protocol level) with the original Signal Android client.
 
 Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
 
