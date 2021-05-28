@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
 import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.failUi
 import org.session.libsession.snode.SnodeAPI
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.PublicKeyValidation
 
 
@@ -83,7 +85,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     }
 
     fun createPrivateChatIfPossible(onsNameOrPublicKey: String) {
-        if (!PublicKeyValidation.isValid(onsNameOrPublicKey)) {
+        if (PublicKeyValidation.isValid(onsNameOrPublicKey)) {
             createPrivateChat(onsNameOrPublicKey)
         } else {
             // This could be an ONS name
@@ -91,7 +93,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
             SnodeAPI.getSessionIDFor(onsNameOrPublicKey).success { hexEncodedPublicKey ->
                 hideLoader()
                 this.createPrivateChat(hexEncodedPublicKey)
-            }.fail { exception ->
+            }.failUi { exception ->
                 hideLoader()
                 var message = "Please check the Session ID or ONS name and try again."
                 exception.localizedMessage?.let {

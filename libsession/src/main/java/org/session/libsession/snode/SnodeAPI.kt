@@ -182,7 +182,7 @@ object SnodeAPI {
             "endpoint" to "ons_resolve",
             "params" to mapOf( "type" to 0, "name_hash" to base64EncodedNameHash )
         )
-        val promises = (0..validationCount).map {
+        val promises = (1..validationCount).map {
             getRandomSnode().bind { snode ->
                 invoke(Snode.Method.OxenDaemonRPCCall, snode, null, parameters)
             }
@@ -193,26 +193,25 @@ object SnodeAPI {
                 val intermediate = json["result"] as? Map<*, *>
                 val hexEncodedCiphertext = intermediate?.get("encrypted_value") as? String
                 if (hexEncodedCiphertext != null) {
+                    val ciphertext = Hex.fromStringCondensed(hexEncodedCiphertext)
                     val isArgon2Based = (intermediate["nonce"] == null)
                     if (isArgon2Based) {
                         // Handle old Argon2-based encryption used before HF16
                         val salt = ByteArray(PwHash.SALTBYTES)
-                        val key: String
+                        val key: ByteArray
                         val nonce = ByteArray(SecretBox.NONCEBYTES)
-                        val sessionID: String
+                        val sessionIDAsData = ByteArray(sessionIDByteCount)
                         try {
-                            key = sodium.cryptoPwHash(onsName, SecretBox.KEYBYTES, salt, PwHash.OPSLIMIT_MODERATE, PwHash.MEMLIMIT_MODERATE, PwHash.Alg.PWHASH_ALG_ARGON2ID13)
+                            key = Key.fromHexString(sodium.cryptoPwHash(onsName, SecretBox.KEYBYTES, salt, PwHash.OPSLIMIT_MODERATE, PwHash.MEMLIMIT_MODERATE, PwHash.Alg.PWHASH_ALG_ARGON2ID13)).asBytes
                         } catch (e: SodiumException) {
                             deferred.reject(Error.HashingFailed)
                             return@success
                         }
-                        try {
-                            sessionID = sodium.cryptoSecretBoxOpenEasy(hexEncodedCiphertext, nonce, Key.fromHexString(key))
-                        } catch (e: SodiumException) {
+                        if (!sodium.cryptoSecretBoxOpenEasy(sessionIDAsData, ciphertext, ciphertext.size.toLong(), nonce, key)) {
                             deferred.reject(Error.DecryptionFailed)
                             return@success
                         }
-                        sessionIDs.add(sessionID)
+                        sessionIDs.add(Hex.toStringCondensed(sessionIDAsData))
                     } else {
                         val hexEncodedNonce = intermediate["nonce"] as? String
                         if (hexEncodedNonce == null) {
