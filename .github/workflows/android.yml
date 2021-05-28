@@ -20,10 +20,10 @@ jobs:
       uses: gradle/wrapper-validation-action@v1
 
     - name: Build with Gradle
-      run: ./gradlew qa
+      run: ./gradlew build
 
     - name: Archive apk
       uses: actions/upload-artifact@v2
       with:
         name: artifacts
-        path: '*/build/outputs/apk/*.apk'
+        path: '*/build/outputs/apk/*'
