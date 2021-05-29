@@ -531,8 +531,11 @@ public class ThreadDatabase extends Database {
 
   public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean groupsOnly, boolean hideV1Groups, boolean hideSms) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND (" + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " IS NULL OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1)"
-                                                  : MESSAGE_COUNT + " != 0";
+    String         query = ARCHIVED + " = 0";
+
+    if (!includeInactiveGroups) {
+      query += " AND (" + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " IS NULL OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1)";
+    }
 
     if (groupsOnly) {
       query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_ID + " NOT NULL";
@@ -548,16 +551,13 @@ public class ThreadDatabase extends Database {
       query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.FORCE_SMS_SELECTION + " = 0";
     }
 
-    query += " AND " + ARCHIVED + " = 0";
-
     return db.rawQuery(createQuery(query, 0, limit, true), null);
   }
 
   public Cursor getRecentPushConversationList(int limit, boolean includeInactiveGroups) {
     SQLiteDatabase db               = databaseHelper.getReadableDatabase();
     String         activeGroupQuery = !includeInactiveGroups ? " AND " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1" : "";
-    String         where            = MESSAGE_COUNT + " != 0 AND " +
-                                      "(" +
+    String         where            = "(" +
                                         RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " +
                                         "(" +
                                           GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL AND " +
@@ -572,8 +572,7 @@ public class ThreadDatabase extends Database {
 
   public @NonNull List<ThreadRecord> getRecentV1Groups(int limit) {
     SQLiteDatabase db               = databaseHelper.getReadableDatabase();
-    String         where            = MESSAGE_COUNT + " != 0 AND " +
-                                      "(" +
+    String         where            = "(" +
                                         GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1 AND " +
                                         GroupDatabase.TABLE_NAME + "." + GroupDatabase.V2_MASTER_KEY + " IS NULL AND " +
                                         GroupDatabase.TABLE_NAME + "." + GroupDatabase.MMS + " = 0" +
@@ -651,11 +650,11 @@ public class ThreadDatabase extends Database {
 
   public @NonNull Map<RecipientId, Integer> getInboxPositions() {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(MESSAGE_COUNT + " != ?", 0);
+    String         query  = createQuery("TRUE", 0);
 
     Map<RecipientId, Integer> positions = new HashMap<>();
 
-    try (Cursor cursor = db.rawQuery(query, new String[] { "0" })) {
+    try (Cursor cursor = db.rawQuery(query, new String[] {})) {
       int i = 0;
       while (cursor != null && cursor.moveToNext()) {
         RecipientId recipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_ID)));
@@ -678,7 +677,7 @@ public class ThreadDatabase extends Database {
   public Cursor getUnarchivedConversationList(boolean pinned, long offset, long limit) {
     SQLiteDatabase db          = databaseHelper.getReadableDatabase();
     String         pinnedWhere = PINNED + (pinned ? " != 0" : " = 0");
-    String         where       = ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + pinnedWhere;
+    String         where       = ARCHIVED + " = 0 AND " + pinnedWhere;
 
     final String query;
 
@@ -695,7 +694,7 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(@NonNull String archived, long offset, long limit) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", offset, limit, false);
+    String         query  = createQuery(ARCHIVED + " = ?", offset, limit, false);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     return cursor;
@@ -704,7 +703,7 @@ public class ThreadDatabase extends Database {
   public int getArchivedConversationListCount() {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     String[]       columns = new String[] { "COUNT(*)" };
-    String         query   = ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0";
+    String         query   = ARCHIVED + " = ?";
     String[]       args    = new String[] {"1"};
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null)) {
@@ -719,7 +718,7 @@ public class ThreadDatabase extends Database {
   public int getPinnedConversationListCount() {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     String[]       columns = new String[] { "COUNT(*)" };
-    String         query   = ARCHIVED + " = 0 AND " + PINNED + " != 0 AND " + MESSAGE_COUNT + " != 0";
+    String         query   = ARCHIVED + " = 0 AND " + PINNED + " != 0";
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -733,7 +732,7 @@ public class ThreadDatabase extends Database {
   public int getUnarchivedConversationListCount() {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     String[]       columns = new String[] { "COUNT(*)" };
-    String         query   = ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0";
+    String         query   = ARCHIVED + " = 0";
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -1205,19 +1204,8 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean update(long threadId, boolean unarchive) {
-    return update(threadId, unarchive, true);
-  }
-
-  public boolean update(long threadId, boolean unarchive, boolean allowDeletion) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCountForThreadSummary(threadId);
-
-    if (count == 0) {
-      if (allowDeletion) {
-        deleteConversation(threadId);
-      }
-      return true;
-    }
 
     MmsSmsDatabase.Reader reader = null;
 
@@ -1230,12 +1218,18 @@ public class ThreadDatabase extends Database {
                      getContentTypeFor(record), getExtrasFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
-        notifyConversationListListeners();
-        return false;
       } else {
-        deleteConversation(threadId);
-        return true;
+        final ThreadRecord threadRecord = getThreadRecord(threadId);
+        if (threadRecord == null) {
+          return true;
+        }
+        updateThread(threadId, count, "", null,
+                     null, null,
+                     threadRecord.getDate(), 0, 0,
+                     0, unarchive, 0, 0);
       }
+      notifyConversationListListeners();
+      return false;
     } finally {
       if (reader != null)
         reader.close();

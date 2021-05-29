@@ -1320,7 +1320,7 @@ public class SmsDatabase extends MessageDatabase {
 
       db.delete(TABLE_NAME, ID_WHERE, new String[] { messageId + "" });
 
-      threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false, true);
+      threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
 
       db.setTransactionSuccessful();
     } finally {

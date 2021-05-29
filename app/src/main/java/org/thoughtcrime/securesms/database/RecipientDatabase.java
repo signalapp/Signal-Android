@@ -2973,7 +2973,7 @@ public class RecipientDatabase extends Database {
       db.update(MentionDatabase.TABLE_NAME, mentionThreadValues, MentionDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
     }
 
-    DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false, false);
+    DatabaseFactory.getThreadDatabase(context).update(threadMerge.threadId, false);
 
     return byUuid;
   }
