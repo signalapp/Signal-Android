@@ -125,6 +125,10 @@ public final class IdentityUtil {
 
       while ((groupRecord = reader.getNext()) != null) {
         if (groupRecord.getMembers().contains(recipientId) && groupRecord.isActive()) {
+          Long threadId = SignalDatabase.threads().getThreadIdFor(groupRecord.getRecipientId());
+          if (threadId == null) {
+            continue;
+          }
           IncomingTextMessage           incoming    = new IncomingTextMessage(recipientId, 1, time, time, time, null, Optional.of(groupRecord.getId()), 0, false, null);
           IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 
@@ -133,6 +137,10 @@ public final class IdentityUtil {
       }
     }
 
+    Long threadId = SignalDatabase.threads().getThreadIdFor(recipientId);
+    if (threadId == null) {
+      return;
+    }
     IncomingTextMessage           incoming         = new IncomingTextMessage(recipientId, 1, time, -1, time, null, Optional.absent(), 0, false, null);
     IncomingIdentityUpdateMessage individualUpdate = new IncomingIdentityUpdateMessage(incoming);
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);

@@ -2630,7 +2630,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       db.update(MentionDatabase.TABLE_NAME, mentionThreadValues, MentionDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId))
     }
     threads.setLastScrolled(threadMerge.threadId, 0)
-    threads.update(threadMerge.threadId, false, false)
+    threads.update(threadMerge.threadId, false)
 
     // Reactions
     reactions.remapRecipient(byE164, byAci)

@@ -1355,7 +1355,7 @@ public class SmsDatabase extends MessageDatabase {
       db.delete(TABLE_NAME, ID_WHERE, new String[] { messageId + "" });
 
       SignalDatabase.threads().setLastScrolled(threadId, 0);
-      threadDeleted = SignalDatabase.threads().update(threadId, false, true);
+      threadDeleted = SignalDatabase.threads().update(threadId, false);
 
       db.setTransactionSuccessful();
     } finally {

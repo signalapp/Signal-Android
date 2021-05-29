@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
@@ -61,7 +60,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
@@ -432,7 +430,7 @@ public final class GroupsV2StateProcessor {
         long            threadId       = threadDatabase.getOrCreateThreadIdFor(groupRecipient);
         long            id             = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
         mmsDatabase.markAsSent(id, true);
-        threadDatabase.update(threadId, false, false);
+        threadDatabase.update(threadId, false);
       } catch (MmsException e) {
         Log.w(TAG, "Failed to insert leave message.", e);
       }
@@ -606,7 +604,7 @@ public final class GroupsV2StateProcessor {
           long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
           mmsDatabase.markAsSent(messageId, true);
-          threadDatabase.update(threadId, false, false);
+          threadDatabase.update(threadId, false);
         } catch (MmsException e) {
           Log.w(TAG, e);
         }
@@ -618,7 +616,7 @@ public final class GroupsV2StateProcessor {
         Optional<MessageDatabase.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
         if (insertResult.isPresent()) {
-          SignalDatabase.threads().update(insertResult.get().getThreadId(), false, false);
+          SignalDatabase.threads().update(insertResult.get().getThreadId(), false);
         } else {
           Log.w(TAG, "Could not insert update message");
         }
