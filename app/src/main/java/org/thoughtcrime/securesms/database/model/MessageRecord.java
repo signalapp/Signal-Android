@@ -30,8 +30,6 @@ import org.session.libsession.messaging.utilities.UpdateMessageData;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.NetworkFailure;
 import org.session.libsession.utilities.recipients.Recipient;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 
 import java.util.List;
 
@@ -44,48 +42,62 @@ import java.util.List;
  *
  */
 public abstract class MessageRecord extends DisplayRecord {
-
   private final Recipient                 individualRecipient;
-  private final int                       recipientDeviceId;
-  public final long                       id;
   private final List<IdentityKeyMismatch> mismatches;
   private final List<NetworkFailure>      networkFailures;
-  private final int                       subscriptionId;
   private final long                      expiresIn;
   private final long                      expireStarted;
   private final boolean                   unidentified;
+  public  final long                      id;
+
+  public abstract boolean isMms();
+  public abstract boolean isMmsNotification();
 
   MessageRecord(long id, String body, Recipient conversationRecipient,
-                Recipient individualRecipient, int recipientDeviceId,
-                long dateSent, long dateReceived, long threadId,
-                int deliveryStatus, int deliveryReceiptCount, long type,
-                List<IdentityKeyMismatch> mismatches,
-                List<NetworkFailure> networkFailures,
-                int subscriptionId, long expiresIn, long expireStarted,
-                int readReceiptCount, boolean unidentified)
+    Recipient individualRecipient,
+    long dateSent, long dateReceived, long threadId,
+    int deliveryStatus, int deliveryReceiptCount, long type,
+    List<IdentityKeyMismatch> mismatches,
+    List<NetworkFailure> networkFailures,
+    long expiresIn, long expireStarted,
+    int readReceiptCount, boolean unidentified)
   {
     super(body, conversationRecipient, dateSent, dateReceived,
-          threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
+      threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
-    this.recipientDeviceId   = recipientDeviceId;
     this.mismatches          = mismatches;
     this.networkFailures     = networkFailures;
-    this.subscriptionId      = subscriptionId;
     this.expiresIn           = expiresIn;
     this.expireStarted       = expireStarted;
     this.unidentified        = unidentified;
   }
 
-  public abstract boolean isMms();
-  public abstract boolean isMmsNotification();
-
-  public boolean isSecure() {
-    return MmsSmsColumns.Types.isSecureType(type);
+  public long getId() {
+    return id;
+  }
+  public long getTimestamp() {
+    return getDateSent();
+  }
+  public Recipient getIndividualRecipient() {
+    return individualRecipient;
+  }
+  public long getType() {
+    return type;
+  }
+  public List<NetworkFailure> getNetworkFailures() {
+    return networkFailures;
+  }
+  public long getExpiresIn() {
+    return expiresIn;
+  }
+  public long getExpireStarted() { return expireStarted; }
+  public boolean isMediaPending() {
+    return false;
   }
 
-  public boolean isLegacyMessage() {
-    return MmsSmsColumns.Types.isLegacyType(type);
+  public boolean isUpdate() {
+    return isExpirationTimerUpdate() || isCallLog() || isDataExtractionNotification();
   }
 
   @Override
@@ -104,77 +116,6 @@ public abstract class MessageRecord extends DisplayRecord {
     return new SpannableString(getBody());
   }
 
-  public long getId() {
-    return id;
-  }
-
-  public boolean isPush() {
-    return SmsDatabase.Types.isPushType(type) && !SmsDatabase.Types.isForcedSms(type);
-  }
-
-  public long getTimestamp() {
-    if (getRecipient().getAddress().isOpenGroup()) {
-      return getDateReceived();
-    }
-    if (isPush() && getDateSent() < getDateReceived()) {
-      return getDateSent();
-    }
-    return getDateReceived();
-  }
-
-  public boolean isForcedSms() {
-    return SmsDatabase.Types.isForcedSms(type);
-  }
-
-  public boolean isIdentityVerified() {
-    return SmsDatabase.Types.isIdentityVerified(type);
-  }
-
-  public boolean isIdentityDefault() {
-    return SmsDatabase.Types.isIdentityDefault(type);
-  }
-
-  public boolean isBundleKeyExchange() {
-    return SmsDatabase.Types.isBundleKeyExchange(type);
-  }
-
-  public boolean isIdentityUpdate() {
-    return SmsDatabase.Types.isIdentityUpdate(type);
-  }
-
-  public boolean isCorruptedKeyExchange() {
-    return SmsDatabase.Types.isCorruptedKeyExchange(type);
-  }
-
-  public boolean isInvalidVersionKeyExchange() {
-    return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
-  }
-
-  public boolean isUpdate() {
-    return isExpirationTimerUpdate() || isCallLog() || isDataExtractionNotification() ||
-           isIdentityUpdate() || isIdentityVerified() || isIdentityDefault();
-  }
-
-  public boolean isMediaPending() {
-    return false;
-  }
-
-  public Recipient getIndividualRecipient() {
-    return individualRecipient;
-  }
-
-  public long getType() {
-    return type;
-  }
-
-  public List<IdentityKeyMismatch> getIdentityKeyMismatches() {
-    return mismatches;
-  }
-
-  public List<NetworkFailure> getNetworkFailures() {
-    return networkFailures;
-  }
-
   protected SpannableString emphasisAdded(String sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -184,25 +125,12 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean equals(Object other) {
-    return other != null                              &&
-           other instanceof MessageRecord             &&
-           ((MessageRecord) other).getId() == getId() &&
-           ((MessageRecord) other).isMms() == isMms();
+    return other instanceof MessageRecord
+      && ((MessageRecord) other).getId() == getId()
+      && ((MessageRecord) other).isMms() == isMms();
   }
 
   public int hashCode() {
     return (int)getId();
-  }
-
-  public long getExpiresIn() {
-    return expiresIn;
-  }
-
-  public long getExpireStarted() {
-    return expireStarted;
-  }
-
-  public boolean isUnidentified() {
-    return unidentified;
   }
 }

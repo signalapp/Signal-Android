@@ -17,19 +17,21 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import androidx.annotation.NonNull;
+
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.NetworkFailure;
-import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 
 import java.util.Collections;
 import java.util.LinkedList;
+
+import network.loki.messenger.R;
 
 /**
  * Represents the message record model for MMS messages that are
@@ -54,9 +56,9 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
                                       long expiry, int status, byte[] transactionId, long mailbox,
                                       int subscriptionId, SlideDeck slideDeck, int readReceiptCount)
   {
-    super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
+    super(id, "", conversationRecipient, individualRecipient,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
-          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
+          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(),
           0, 0, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false);
 
     this.contentLocation = contentLocation;
@@ -88,11 +90,6 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
 
   @Override
   public boolean isOutgoing() {
-    return false;
-  }
-
-  @Override
-  public boolean isSecure() {
     return false;
   }
 

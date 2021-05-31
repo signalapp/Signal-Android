@@ -28,23 +28,21 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
-import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.utilities.IdentityKeyMismatch;
-import org.session.libsession.utilities.IdentityKeyMismatchList;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage;
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
-
 import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.IdentityKeyMismatchList;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -641,10 +639,10 @@ public class SmsDatabase extends MessagingDatabase {
     public MessageRecord getCurrent() {
       return new SmsMessageRecord(id, message.getMessageBody(),
                                   message.getRecipient(), message.getRecipient(),
-                                  1, System.currentTimeMillis(), System.currentTimeMillis(),
+                                  System.currentTimeMillis(), System.currentTimeMillis(),
                                   0, message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                   threadId, 0, new LinkedList<IdentityKeyMismatch>(),
-                                  message.getSubscriptionId(), message.getExpiresIn(),
+                                  message.getExpiresIn(),
                                   System.currentTimeMillis(), 0, false);
     }
   }
@@ -696,9 +694,8 @@ public class SmsDatabase extends MessagingDatabase {
 
       return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,
-                                  addressDeviceId,
                                   dateSent, dateReceived, deliveryReceiptCount, type,
-                                  threadId, status, mismatches, subscriptionId,
+                                  threadId, status, mismatches,
                                   expiresIn, expireStarted, readReceiptCount, unidentified);
     }
 

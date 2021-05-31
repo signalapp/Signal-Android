@@ -187,8 +187,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       transportText = "-";
     } else if (messageRecord.isPending()) {
       transportText = getString(R.string.ConversationFragment_pending);
-    } else if (messageRecord.isPush()) {
-      transportText = getString(R.string.ConversationFragment_push);
     } else if (messageRecord.isMms()) {
       transportText = getString(R.string.ConversationFragment_mms);
     } else {
@@ -252,9 +250,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   private void updateRecipients(MessageRecord messageRecord, Recipient recipient, List<RecipientDeliveryStatus> recipients) {
     final int toFromRes;
-    if (messageRecord.isMms() && !messageRecord.isPush() && !messageRecord.isOutgoing()) {
-      toFromRes = R.string.message_details_header__with;
-    } else if (messageRecord.isOutgoing()) {
+    if (messageRecord.isOutgoing()) {
       toFromRes = R.string.message_details_header__to;
     } else {
       toFromRes = R.string.message_details_header__from;
@@ -360,7 +356,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       List<RecipientDeliveryStatus> recipients = new LinkedList<>();
 
       if (!messageRecord.getRecipient().isGroupRecipient()) {
-        recipients.add(new RecipientDeliveryStatus(messageRecord.getRecipient(), getStatusFor(messageRecord.getDeliveryReceiptCount(), messageRecord.getReadReceiptCount(), messageRecord.isPending()), messageRecord.isUnidentified(), -1));
+        recipients.add(new RecipientDeliveryStatus(messageRecord.getRecipient(), getStatusFor(messageRecord.getDeliveryReceiptCount(), messageRecord.getReadReceiptCount(), messageRecord.isPending()), true, -1));
       } else {
         List<GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
 
@@ -394,7 +390,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       updateRecipients(messageRecord, messageRecord.getRecipient(), recipients);
 
       boolean isGroupNetworkFailure      = messageRecord.isFailed() && !messageRecord.getNetworkFailures().isEmpty();
-      boolean isIndividualNetworkFailure = messageRecord.isFailed() && !isPushGroup && messageRecord.getIdentityKeyMismatches().isEmpty();
+      boolean isIndividualNetworkFailure = messageRecord.isFailed() && !isPushGroup;
 
       LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(getContext());
       String errorMessage = lokiMessageDatabase.getErrorMessage(messageRecord.id);

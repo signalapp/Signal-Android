@@ -857,7 +857,7 @@ public class ConversationItem extends LinearLayout
 
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
 
-    if (current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() ||
+    if (current.getExpiresIn() > 0 || current.isPending() ||
         current.isFailed() || differentTimestamps || isEndOfMessageCluster(current, next, isGroupThread))
     {
       ConversationItemFooter activeFooter = getActiveFooter(current);
@@ -879,9 +879,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private boolean shouldInterceptClicks(MessageRecord messageRecord) {
-    return batchSelected.isEmpty() &&
-            ((messageRecord.isFailed() && !messageRecord.isMmsNotification()) ||
-            messageRecord.isBundleKeyExchange());
+    return batchSelected.isEmpty() && (messageRecord.isFailed() && !messageRecord.isMmsNotification());
   }
 
   @SuppressLint("SetTextI18n")
@@ -1196,7 +1194,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MessageDetailsActivity.MESSAGE_ID_EXTRA, messageRecord.getId());
         intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
         intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, messageRecord.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
-        intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, groupThread && messageRecord.isPush());
+        intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, groupThread);
         intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
         context.startActivity(intent);
       }

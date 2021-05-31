@@ -22,10 +22,9 @@ import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,17 +42,16 @@ public class SmsMessageRecord extends MessageRecord {
   public SmsMessageRecord(long id,
                           String body, Recipient recipient,
                           Recipient individualRecipient,
-                          int recipientDeviceId,
                           long dateSent, long dateReceived,
                           int deliveryReceiptCount,
                           long type, long threadId,
                           int status, List<IdentityKeyMismatch> mismatches,
-                          int subscriptionId, long expiresIn, long expireStarted,
+                          long expiresIn, long expireStarted,
                           int readReceiptCount, boolean unidentified)
   {
-    super(id, body, recipient, individualRecipient, recipientDeviceId,
+    super(id, body, recipient, individualRecipient,
           dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
-          mismatches, new LinkedList<>(), subscriptionId,
+          mismatches, new LinkedList<>(),
           expiresIn, expireStarted, readReceiptCount, unidentified);
   }
 
@@ -63,17 +61,8 @@ public class SmsMessageRecord extends MessageRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    Recipient recipient = getRecipient();
     if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
-    } else if (isCorruptedKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_corrupted_key_exchange_message));
-    } else if (isInvalidVersionKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version));
-    } else if (MmsSmsColumns.Types.isLegacyType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
-    } else if (isBundleKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_message_with_new_safety_number_tap_to_process));
     } else if (SmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {

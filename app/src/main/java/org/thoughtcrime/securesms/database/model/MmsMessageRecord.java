@@ -25,15 +25,15 @@ public abstract class MmsMessageRecord extends MessageRecord {
   private final @NonNull  List<LinkPreview> linkPreviews = new LinkedList<>();
 
   MmsMessageRecord(long id, String body, Recipient conversationRecipient,
-                   Recipient individualRecipient, int recipientDeviceId, long dateSent,
+                   Recipient individualRecipient, long dateSent,
                    long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,
-                   List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
+                   List<NetworkFailure> networkFailures, long expiresIn,
                    long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount,
                    @Nullable Quote quote, @NonNull List<Contact> contacts,
                    @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
-    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified);
+    super(id, body, conversationRecipient, individualRecipient, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, expiresIn, expireStarted, readReceiptCount, unidentified);
 
     this.slideDeck = slideDeck;
     this.quote     = quote;

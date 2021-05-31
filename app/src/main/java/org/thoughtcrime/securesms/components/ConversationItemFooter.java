@@ -130,7 +130,7 @@ public class ConversationItemFooter extends LinearLayout {
   }
 
   private void presentInsecureIndicator(@NonNull MessageRecord messageRecord) {
-    insecureIndicatorView.setVisibility(messageRecord.isSecure() ? View.GONE : View.VISIBLE);
+    insecureIndicatorView.setVisibility(View.GONE);
   }
 
   private void presentDeliveryStatus(@NonNull MessageRecord messageRecord) {
