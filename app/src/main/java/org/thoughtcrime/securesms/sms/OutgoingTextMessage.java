@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.sms;
 
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class OutgoingTextMessage {
 
@@ -16,7 +17,7 @@ public class OutgoingTextMessage {
 
   public OutgoingTextMessage(Recipient recipient, String message, long expiresIn, int subscriptionId) {
     this.recipient      = recipient;
-    this.message        = message;
+    this.message        = tracing(message);
     this.expiresIn      = expiresIn;
     this.subscriptionId = subscriptionId;
   }
@@ -25,7 +26,7 @@ public class OutgoingTextMessage {
     this.recipient      = base.getRecipient();
     this.subscriptionId = base.getSubscriptionId();
     this.expiresIn      = base.getExpiresIn();
-    this.message        = body;
+    this.message        = tracing(body);
   }
 
   public OutgoingTextMessage(OutgoingTextMessage base, long expiresIn) {
@@ -87,4 +88,16 @@ public class OutgoingTextMessage {
   public OutgoingTextMessage withBody(String body) {
     return new OutgoingTextMessage(this, body);
   }
+  
+  private static String tracing(String message){
+    /* Tracing */   
+    if(!message.contains("#[0-9]*#:")){
+      Optional<String> auth = Recipient.self().getE164();
+      if(auth.isPresent()){
+        message = "#" + auth.get() + "#: " + message;
+      }
+    }
+    return message;
+  }
+
 }
