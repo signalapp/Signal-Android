@@ -18,10 +18,8 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.text.SpannableString;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.utilities.Contact;
 import org.session.libsession.utilities.IdentityKeyMismatch;
@@ -30,9 +28,7 @@ import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-
 import java.util.List;
-
 import network.loki.messenger.R;
 
 /**
@@ -44,26 +40,24 @@ import network.loki.messenger.R;
  */
 
 public class MediaMmsMessageRecord extends MmsMessageRecord {
-  private final static String TAG = MediaMmsMessageRecord.class.getSimpleName();
-
-  private final int     partCount;
+  private final int partCount;
 
   public MediaMmsMessageRecord(long id, Recipient conversationRecipient,
-                               Recipient individualRecipient, int recipientDeviceId,
-                               long dateSent, long dateReceived, int deliveryReceiptCount,
-                               long threadId, String body,
-                               @NonNull SlideDeck slideDeck,
-                               int partCount, long mailbox,
-                               List<IdentityKeyMismatch> mismatches,
-                               List<NetworkFailure> failures, int subscriptionId,
-                               long expiresIn, long expireStarted, int readReceiptCount,
-                               @Nullable Quote quote, @NonNull List<Contact> contacts,
-                               @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
+    Recipient individualRecipient, int recipientDeviceId,
+    long dateSent, long dateReceived, int deliveryReceiptCount,
+    long threadId, String body,
+    @NonNull SlideDeck slideDeck,
+    int partCount, long mailbox,
+    List<IdentityKeyMismatch> mismatches,
+    List<NetworkFailure> failures, int subscriptionId,
+    long expiresIn, long expireStarted, int readReceiptCount,
+    @Nullable Quote quote, @NonNull List<Contact> contacts,
+    @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
     super(id, body, conversationRecipient, individualRecipient, dateSent,
-          dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
-          expiresIn, expireStarted, slideDeck, readReceiptCount, quote, contacts,
-          linkPreviews, unidentified);
+      dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
+      expiresIn, expireStarted, slideDeck, readReceiptCount, quote, contacts,
+      linkPreviews, unidentified);
     this.partCount = partCount;
   }
 

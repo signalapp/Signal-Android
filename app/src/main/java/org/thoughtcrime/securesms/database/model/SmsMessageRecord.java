@@ -19,16 +19,12 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.text.SpannableString;
-
 import androidx.annotation.NonNull;
-
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-
 import java.util.LinkedList;
 import java.util.List;
-
 import network.loki.messenger.R;
 
 /**
@@ -40,19 +36,19 @@ import network.loki.messenger.R;
 public class SmsMessageRecord extends MessageRecord {
 
   public SmsMessageRecord(long id,
-                          String body, Recipient recipient,
-                          Recipient individualRecipient,
-                          long dateSent, long dateReceived,
-                          int deliveryReceiptCount,
-                          long type, long threadId,
-                          int status, List<IdentityKeyMismatch> mismatches,
-                          long expiresIn, long expireStarted,
-                          int readReceiptCount, boolean unidentified)
+    String body, Recipient recipient,
+    Recipient individualRecipient,
+    long dateSent, long dateReceived,
+    int deliveryReceiptCount,
+    long type, long threadId,
+    int status, List<IdentityKeyMismatch> mismatches,
+    long expiresIn, long expireStarted,
+    int readReceiptCount, boolean unidentified)
   {
     super(id, body, recipient, individualRecipient,
-          dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
-          mismatches, new LinkedList<>(),
-          expiresIn, expireStarted, readReceiptCount, unidentified);
+      dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
+      mismatches, new LinkedList<>(),
+      expiresIn, expireStarted, readReceiptCount, unidentified);
   }
 
   public long getType() {

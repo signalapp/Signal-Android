@@ -92,6 +92,7 @@ public abstract class MessageRecord extends DisplayRecord {
     return expiresIn;
   }
   public long getExpireStarted() { return expireStarted; }
+
   public boolean isMediaPending() {
     return false;
   }
@@ -102,7 +103,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if(isGroupUpdateMessage()) {
+    if (isGroupUpdateMessage()) {
       UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(getBody());
       return new SpannableString(UpdateMessageBuilder.INSTANCE.buildGroupUpdateMessage(context, updateMessageData, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
     } else if (isExpirationTimerUpdate()) {

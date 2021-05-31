@@ -34,41 +34,38 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.Contact;
 import org.session.libsession.utilities.GroupUtil;
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.IdentityKeyMismatchList;
 import org.session.libsession.utilities.NetworkFailure;
 import org.session.libsession.utilities.NetworkFailureList;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientFormattingException;
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
-import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage;
-import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
-import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
-import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.utilities.Contact;
-import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
-import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.RecipientFormattingException;
-import org.session.libsignal.utilities.JsonUtil;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
-
-import org.session.libsignal.utilities.Log;
-import org.session.libsignal.utilities.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -1171,9 +1168,9 @@ public class MmsDatabase extends MessagingDatabase {
 
 
       return new NotificationMmsMessageRecord(id, recipient, recipient,
-                                              addressDeviceId, dateSent, dateReceived, deliveryReceiptCount, threadId,
+                                              dateSent, dateReceived, deliveryReceiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
-                                              transactionIdBytes, mailbox, subscriptionId, slideDeck,
+                                              transactionIdBytes, mailbox, slideDeck,
                                               readReceiptCount);
     }
 
