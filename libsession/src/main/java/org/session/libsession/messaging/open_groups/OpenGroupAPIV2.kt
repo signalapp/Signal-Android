@@ -232,7 +232,10 @@ object OpenGroupAPIV2 {
         return send(request).map { json ->
             @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String, Any>
                     ?: throw Error.ParsingFailed
-            OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.ParsingFailed
+            val result = OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.ParsingFailed
+            val storage = MessagingModuleConfiguration.shared.storage
+            storage.addReceivedMessageTimestamp(result.sentTimestamp)
+            result
         }
     }
     // endregion
