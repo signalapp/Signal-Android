@@ -321,6 +321,7 @@ object Util {
 
     @JvmStatic
     fun getBoldedString(value: String?): CharSequence {
+        if (value.isNullOrEmpty()) { return "" }
         val spanned = SpannableString(value)
         spanned.setSpan(StyleSpan(Typeface.BOLD), 0,
                 spanned.length,
