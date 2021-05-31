@@ -1,5 +1,6 @@
 package org.session.libsession.messaging.open_groups
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 import com.fasterxml.jackson.databind.type.TypeFactory
@@ -60,9 +61,11 @@ object OpenGroupAPIV2 {
     data class CompactPollRequest(val roomID: String, val authToken: String, val fromDeletionServerID: Long?, val fromMessageServerID: Long?)
     data class CompactPollResult(val messages: List<OpenGroupMessageV2>, val deletions: List<MessageDeletion>, val moderators: List<String>)
 
-    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
-    data class MessageDeletion
-        @JvmOverloads constructor(val id: Long = 0, val deletedMessageServerID: Long = 0
+    data class MessageDeletion(
+        @JsonProperty("id")
+        val id: Long = 0,
+        @JsonProperty("deleted_message_id")
+        val deletedMessageServerID: Long = 0
     ) {
 
         companion object {
