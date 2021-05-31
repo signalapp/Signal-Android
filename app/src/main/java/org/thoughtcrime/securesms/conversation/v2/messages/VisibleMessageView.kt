@@ -4,11 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.view_message.view.*
+import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MessageRecord
 
-class MessageView : LinearLayout {
+class VisibleMessageView : LinearLayout {
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -24,13 +24,13 @@ class MessageView : LinearLayout {
     }
 
     private fun setUpViewHierarchy() {
-        LayoutInflater.from(context).inflate(R.layout.view_message, this)
+        LayoutInflater.from(context).inflate(R.layout.view_visible_message, this)
     }
     // endregion
 
     // region Updating
     fun bind(message: MessageRecord) {
-        testTextView.text = message.body
+        testTextView.text = "Visible message: ${message.body}"
     }
 
     fun recycle() {
