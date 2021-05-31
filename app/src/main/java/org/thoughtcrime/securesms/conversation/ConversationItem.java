@@ -784,12 +784,10 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
-    bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
+    bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
     if (messageRecord.isFailed()) {
       alertView.setFailed();
-    } else if (messageRecord.isPendingInsecureSmsFallback()) {
-      alertView.setPendingApproval();
     } else {
       alertView.setNone();
     }
@@ -859,7 +857,7 @@ public class ConversationItem extends LinearLayout
 
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
 
-    if (current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
+    if (current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() ||
         current.isFailed() || differentTimestamps || isEndOfMessageCluster(current, next, isGroupThread))
     {
       ConversationItemFooter activeFooter = getActiveFooter(current);
@@ -883,7 +881,6 @@ public class ConversationItem extends LinearLayout
   private boolean shouldInterceptClicks(MessageRecord messageRecord) {
     return batchSelected.isEmpty() &&
             ((messageRecord.isFailed() && !messageRecord.isMmsNotification()) ||
-            messageRecord.isPendingInsecureSmsFallback() ||
             messageRecord.isBundleKeyExchange());
   }
 

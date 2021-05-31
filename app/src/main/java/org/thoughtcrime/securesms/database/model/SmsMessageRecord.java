@@ -74,22 +74,10 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
     } else if (isBundleKeyExchange()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_message_with_new_safety_number_tap_to_process));
-    } else if (isKeyExchange() && isOutgoing()) {
-      return new SpannableString("");
-    } else if (isKeyExchange() && !isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_tap_to_process));
     } else if (SmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-    } else if (isLokiSessionRestoreSent()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
-    } else if (isLokiSessionRestoreDone()) {
-      return emphasisAdded(context.getString(R.string.view_reset_secure_session_done_message));
-    } else if (isEndSession() && isOutgoing()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
-    } else if (isEndSession()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().toShortString()));
     } else {
       return super.getDisplayBody(context);
     }

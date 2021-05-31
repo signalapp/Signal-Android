@@ -4,13 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -88,8 +89,6 @@ public class ConversationItemFooter extends LinearLayout {
 
     if (messageRecord.isFailed()) {
       dateView.setText(R.string.ConversationItem_error_not_delivered);
-    } else if (messageRecord.isPendingInsecureSmsFallback()) {
-      dateView.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     } else {
       dateView.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
     }
@@ -135,10 +134,10 @@ public class ConversationItemFooter extends LinearLayout {
   }
 
   private void presentDeliveryStatus(@NonNull MessageRecord messageRecord) {
-    if (!messageRecord.isFailed() && !messageRecord.isPendingInsecureSmsFallback()) {
+    if (!messageRecord.isFailed()) {
       if      (!messageRecord.isOutgoing())  deliveryStatusView.setNone();
       else if (messageRecord.isPending())    deliveryStatusView.setPending();
-      else if (messageRecord.isRemoteRead()) deliveryStatusView.setRead();
+      else if (messageRecord.isRead())       deliveryStatusView.setRead();
       else if (messageRecord.isDelivered())  deliveryStatusView.setDelivered();
       else                                   deliveryStatusView.setSent();
     } else {

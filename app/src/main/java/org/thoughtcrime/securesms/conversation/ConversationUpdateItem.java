@@ -101,18 +101,13 @@ public class ConversationUpdateItem extends LinearLayout
 
     this.sender.addListener(this);
 
-    if      (messageRecord.isGroupAction())            setGroupRecord(messageRecord);
-    else if (messageRecord.isCallLog())                setCallRecord(messageRecord);
-    else if (messageRecord.isJoined())                 setJoinedRecord(messageRecord);
+    if (messageRecord.isCallLog())                setCallRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate())  setTimerRecord(messageRecord);
-    else if (messageRecord.isScreenshotExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
-    else if (messageRecord.isMediaSavedExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED);
-    else if (messageRecord.isEndSession())             setEndSessionRecord(messageRecord);
+    else if (messageRecord.isScreenshotNotification())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
+    else if (messageRecord.isMediaSavedNotification())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED);
     else if (messageRecord.isIdentityUpdate())         setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
              messageRecord.isIdentityDefault())        setIdentityVerifyUpdate(messageRecord);
-    else if (messageRecord.isLokiSessionRestoreSent()) setTextMessageRecord(messageRecord);
-    else if (messageRecord.isLokiSessionRestoreDone()) setTextMessageRecord(messageRecord);
     else                                               throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);

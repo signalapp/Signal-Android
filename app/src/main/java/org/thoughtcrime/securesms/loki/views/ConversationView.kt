@@ -73,7 +73,7 @@ class ConversationView : LinearLayout {
             !thread.isOutgoing -> statusIndicatorImageView.visibility = View.GONE
             thread.isFailed -> statusIndicatorImageView.setImageResource(R.drawable.ic_error)
             thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
-            thread.isRemoteRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
+            thread.isRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
         }
     }

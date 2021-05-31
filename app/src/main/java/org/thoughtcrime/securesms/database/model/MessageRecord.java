@@ -17,23 +17,21 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
 import org.session.libsession.messaging.utilities.UpdateMessageBuilder;
 import org.session.libsession.messaging.utilities.UpdateMessageData;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.NetworkFailure;
-
 import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 
 import java.util.List;
 
@@ -98,19 +96,9 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isExpirationTimerUpdate()) {
       int seconds = (int) (getExpiresIn() / 1000);
       return new SpannableString(UpdateMessageBuilder.INSTANCE.buildExpirationTimerMessage(context, seconds, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
-    } else if (isDataExtraction()) {
-      if (isScreenshotExtraction()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT, getIndividualRecipient().getAddress().serialize())));
-      else if (isMediaSavedExtraction()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED, getIndividualRecipient().getAddress().serialize())));
-    }
-    // TODO below lines are left here for compatibility with older group update messages, it can be deleted later on
-    else if (isGroupUpdate() && isOutgoing()) {
-      return new SpannableString(context.getString(R.string.MessageRecord_you_updated_group));
-    } else if (isGroupUpdate()) {
-      return new SpannableString(context.getString(R.string.MessageRecord_s_updated_group, getIndividualRecipient().toShortString()));
-    } else if (isGroupQuit() && isOutgoing()) {
-      return new SpannableString(context.getString(R.string.MessageRecord_left_group));
-    } else if (isGroupQuit()) {
-      return new SpannableString(context.getString(R.string.ConversationItem_group_action_left, getIndividualRecipient().toShortString()));
+    } else if (isDataExtractionNotification()) {
+      if (isScreenshotNotification()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT, getIndividualRecipient().getAddress().serialize())));
+      else if (isMediaSavedNotification()) return new SpannableString((UpdateMessageBuilder.INSTANCE.buildDataExtractionMessage(context, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED, getIndividualRecipient().getAddress().serialize())));
     }
 
     return new SpannableString(getBody());
@@ -163,8 +151,8 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isUpdate() {
-    return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() || isDataExtraction() ||
-           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() || isLokiSessionRestoreSent() || isLokiSessionRestoreDone();
+    return isExpirationTimerUpdate() || isCallLog() || isDataExtractionNotification() ||
+           isIdentityUpdate() || isIdentityVerified() || isIdentityDefault();
   }
 
   public boolean isMediaPending() {
