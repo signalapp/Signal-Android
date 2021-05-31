@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -28,8 +28,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
         val adapter = ConversationAdapter(this, cursor)
         adapter.setHasStableIds(true)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        conversationRecyclerView.adapter = adapter
+        conversationRecyclerView.layoutManager = LinearLayoutManager(this)
     }
     // endregion
 }

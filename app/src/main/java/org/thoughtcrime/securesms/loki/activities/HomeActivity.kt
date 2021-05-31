@@ -38,6 +38,7 @@ import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
@@ -345,13 +346,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
     }
 
     private fun openConversation(thread: ThreadRecord) {
-        val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, thread.recipient.address)
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, thread.threadId)
-        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, thread.distributionType)
-        intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis())
-        intent.putExtra(ConversationActivity.LAST_SEEN_EXTRA, thread.lastSeen)
-        intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1)
+        val intent = Intent(this, ConversationActivityV2::class.java)
+        intent.putExtra(ConversationActivityV2.THREAD_ID, thread.threadId)
         push(intent)
     }
 

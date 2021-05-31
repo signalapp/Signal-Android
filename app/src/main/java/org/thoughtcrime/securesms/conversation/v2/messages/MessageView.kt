@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.view_message.view.*
+import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MessageRecord
 
 class MessageView : LinearLayout {
@@ -21,13 +24,13 @@ class MessageView : LinearLayout {
     }
 
     private fun setUpViewHierarchy() {
-        // TODO: Implement
+        LayoutInflater.from(context).inflate(R.layout.view_message, this)
     }
     // endregion
 
     // region Updating
     fun bind(message: MessageRecord) {
-
+        testTextView.text = message.body
     }
 
     fun recycle() {
