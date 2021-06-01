@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
 
@@ -44,9 +46,33 @@ class VisibleMessageContentView : LinearLayout {
         background.colorFilter = filter
         setBackground(background)
         // Body
-        bodyTextView.text = message.body
-        // TODO: All the other things that can show up in a visible message, such as link previews,
-        //       attachments (incl. multiple at once), open group invitations, voice messages, etc.
+        if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
+            val linkPreviewView = LinkPreviewView(context)
+            mainContainer.addView(linkPreviewView)
+        } else if (message is MmsMessageRecord && message.quote != null) {
+            val quoteView = QuoteView(context)
+            mainContainer.addView(quoteView)
+        } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
+            val voiceMessageView = VoiceMessageView(context)
+            mainContainer.addView(voiceMessageView)
+        } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
+            val documentView = DocumentView(context)
+            mainContainer.addView(documentView)
+        } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
+            throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
+        } else {
+            val bodyTextView = getBodyTextView(message.body)
+            mainContainer.addView(bodyTextView)
+        }
+    }
+    // endregion
+
+    // region Convenience
+    private fun getBodyTextView(body: String): TextView {
+        val result = TextView(context)
+        result.text = body
+        // TODO: Styling
+        return result
     }
     // endregion
 }

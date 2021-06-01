@@ -59,6 +59,7 @@ class VisibleMessageView : LinearLayout {
         }
         // Date break
         dateBreakTextView.text = "The Ancient Past"
+        dateBreakTextView.visibility = View.GONE // TODO: Set this correctly
         // Margins
         val messageContentViewLayoutParams = messageContentView.layoutParams as LinearLayout.LayoutParams
         messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
