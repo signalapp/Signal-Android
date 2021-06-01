@@ -32,7 +32,7 @@ class ConversationAdapter(context: Context, cursor: Cursor) : CursorRecyclerView
 
     override fun getItemViewType(cursor: Cursor): Int {
         val message = getMessage(cursor)!!
-        if (message.isExpirationTimerUpdate) { return ViewType.Control.rawValue }
+        if (message.isControlMessage) { return ViewType.Control.rawValue }
         return ViewType.Visible.rawValue
     }
 
