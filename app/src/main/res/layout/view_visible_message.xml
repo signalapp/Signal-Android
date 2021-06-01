@@ -60,12 +60,10 @@
             android:maxLines="1"
             android:ellipsize="end" />
 
-        <LinearLayout
-            android:id="@+id/messageContentContainer"
+        <org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView
+            android:id="@+id/messageContentView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/message_bubble_background" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

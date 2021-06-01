@@ -53,7 +53,8 @@ class VisibleMessageView : LinearLayout {
             profilePictureContainer.visibility = View.GONE
             senderNameTextView.visibility = View.GONE
         }
-        // TODO: Populate content view
+        // Populate content view
+        messageContentView.bind(message)
     }
 
     fun recycle() {
