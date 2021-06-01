@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
@@ -28,6 +30,7 @@ class VisibleMessageView : LinearLayout {
 
     private fun setUpViewHierarchy() {
         LayoutInflater.from(context).inflate(R.layout.view_visible_message, this)
+        layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
     // endregion
 
@@ -40,8 +43,9 @@ class VisibleMessageView : LinearLayout {
         val thread = threadDB.getRecipientForThreadId(threadID)
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         val isGroupThread = (thread?.isGroupRecipient == true)
-        // Show profile picture and sender name if this is a group thread
-        if (isGroupThread) {
+        // Show profile picture and sender name if this is a group thread AND
+        // the message is incoming
+        if (isGroupThread && !message.isOutgoing) {
             profilePictureContainer.visibility = View.VISIBLE
             profilePictureView.publicKey = senderSessionID
             // TODO: Set glide on the profile picture view and update it
@@ -53,6 +57,13 @@ class VisibleMessageView : LinearLayout {
             profilePictureContainer.visibility = View.GONE
             senderNameTextView.visibility = View.GONE
         }
+        // Margins
+        val messageContentViewLayoutParams = messageContentView.layoutParams as LinearLayout.LayoutParams
+        messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
+        messageContentViewLayoutParams.rightMargin = if (message.isOutgoing) 0 else resources.getDimension(R.dimen.very_large_spacing).toInt()
+        messageContentView.layoutParams = messageContentViewLayoutParams
+        // Gravity
+        gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
         // Populate content view
         messageContentView.bind(message)
     }
