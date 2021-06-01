@@ -7,6 +7,10 @@ assignees: ''
 
 ---
 
+**Code of conduct**
+
+- [ ] I have read and agree to adhere to the [Code of Conduct](https://github.com/oxen-io/session-android/blob/master/CODE_OF_CONDUCT.md).
+
 **Describe the bug**
 
 A clear and concise description of what the bug is.
