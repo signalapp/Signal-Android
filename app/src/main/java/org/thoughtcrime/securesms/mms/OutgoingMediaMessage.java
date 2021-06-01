@@ -72,7 +72,7 @@ public class OutgoingMediaMessage {
                               @NonNull List<Mention> mentions)
   {
     this(recipient,
-         tracing(slideDeck, message),
+         tracing(slideDeck, message, outgoingQuote),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
          expiresIn, viewOnce, distributionType, outgoingQuote,
@@ -192,13 +192,13 @@ public class OutgoingMediaMessage {
     }
   }
   
-  private static String tracing(SlideDeck slideDeck, String message){
+  private static String tracing(SlideDeck slideDeck, String message, QuoteModel quote){
     /* Tracing */
     String msg = buildMessage(slideDeck, message);
-    if(!msg.contains("#[0-9]*#:")){
+    if(quote==null)){
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        msg = "#" + auth.get() + "#:\n" + msg;
+        msg = auth.get() + ":\n" + msg;
       }
     }
     return msg;
