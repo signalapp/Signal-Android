@@ -982,6 +982,8 @@ public class ConversationFragment extends LoggingFragment {
         if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {
           try (InputStream stream = PartAuthority.getAttachmentStream(requireContext(), mediaMessage.getSlideDeck().getTextSlide().getUri())) {
             String fullBody = StreamUtil.readFullyAsString(stream);
+            //Add virality indicator
+            fullBody =  "<" + fullBody;
             shareIntentBuilder.setText(fullBody);
           } catch (IOException e) {
             Log.w(TAG, "Failed to read long message text when forwarding.");
