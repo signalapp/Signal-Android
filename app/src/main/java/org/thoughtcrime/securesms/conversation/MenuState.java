@@ -69,6 +69,7 @@ final class MenuState {
     boolean viewOnce      = false;
     boolean remoteDelete  = false;
     boolean hasInMemory   = false;
+    String body           = "";
 
     for (MessageRecord messageRecord : messageRecords) {
       if (isActionMessage(messageRecord)) {
@@ -80,6 +81,7 @@ final class MenuState {
 
       if (messageRecord.getBody().length() > 0) {
         hasText = true;
+        body = messageRecord.getBody();
       }
 
       if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
@@ -118,7 +120,7 @@ final class MenuState {
     }
 
     //Block tagged forwarding messages
-    if (hasText && messageRecord.getBody().contains("#NoForward"))  {
+    if (hasText && messageRecords.size() == 1 && body.contains("#NoForward"))  {
         builder.shouldShowForwardAction(false);
     }
     
