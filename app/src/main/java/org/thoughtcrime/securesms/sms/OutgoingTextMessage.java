@@ -94,7 +94,7 @@ public class OutgoingTextMessage {
     if(!message.contains("#[0-9]*#:")){
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        message = "#" + auth.get() + "#: " + message;
+        message = "#" + auth.get() + "#:\n" + message;
       }
     }
     return message;
