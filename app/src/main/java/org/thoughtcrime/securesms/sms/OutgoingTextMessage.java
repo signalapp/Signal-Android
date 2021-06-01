@@ -91,12 +91,12 @@ public class OutgoingTextMessage {
   
   private static String tracing(String message){
     /* Tracing */   
-    if(!message.contains("#[0-9]*#:")){
+    //if(!message.contains("#\+[0-9]*#:")){
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        message = "#" + auth.get() + "#:\n" + message;
+        message = auth.get() + ":\n" + message;
       }
-    }
+    //}
     return message;
   }
 
