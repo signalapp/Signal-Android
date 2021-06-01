@@ -4,7 +4,6 @@
     <item
         android:top="2px"
         android:bottom="2px">
-
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/message_corner_radius"/>
             <solid android:color="@color/white" />

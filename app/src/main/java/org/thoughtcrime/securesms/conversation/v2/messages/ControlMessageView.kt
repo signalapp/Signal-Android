@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.view_visible_message.view.*
+import kotlinx.android.synthetic.main.view_control_message.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MessageRecord
 
@@ -30,7 +30,11 @@ class ControlMessageView : LinearLayout {
 
     // region Updating
     fun bind(message: MessageRecord) {
-        testTextView.text = "Control message: ${message.body}"
+        // TODO: Localize strings, make the view look better, handle closed group control messages
+        if (message.isExpirationTimerUpdate) { textView.text = "Expiration timer update" }
+        else if (message.isScreenshotNotification) { textView.text = "Screenshot notification" }
+        else if (message.isMediaSavedNotification) { textView.text = "Media saved notification" }
+        else { textView.text = "Control message not yet handled" }
     }
 
     fun recycle() {
