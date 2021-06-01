@@ -3,12 +3,11 @@ You can also preview your report before submitting it. You may remove sections t
 
 Before we begin, please note that this tracker is only for issues. It is not for questions, comments, or feature requests.
 
-
-If you are looking for support, please file an issue or:
-or email team@loki.network
+If you are looking for support, please file an issue or email team@oxen.io.
 
 Let's begin with a checklist: Replace the empty checkboxes [ ] below with checked ones [x] accordingly. -->
 
+- [ ] I have read and agree to adhere to the [Code of Conduct](https://github.com/oxen-io/session-android/blob/master/CODE_OF_CONDUCT.md).
 - [ ] I have searched open and closed issues for duplicates
 - [ ] I am submitting a bug report for existing functionality that does not work as intended
 - [ ] This isn't a feature request or a discussion topic
@@ -33,7 +32,6 @@ Describe here what should happen after you run the steps above (i.e. what would 
 
 ### Screenshots
 <!-- you can drag and drop images below -->
-
 
 ### Device info
 <!-- replace the examples with your info -->
