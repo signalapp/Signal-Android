@@ -1,69 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="bottom">
+    android:orientation="vertical" >
 
-    <!-- The linear layout below is marked as "useless", but this isn't the case. It's
-         convenient because it allows you to show or hide the profile picture plus the spacers
-         before and behind it in one go. -->
-
-    <LinearLayout
-        android:id="@+id/profilePictureContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="12dp"
-            android:layout_height="0dp" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
-                android:id="@+id/profilePictureView"
-                android:layout_width="@dimen/very_small_profile_picture_size"
-                android:layout_height="@dimen/very_small_profile_picture_size" />
-
-            <ImageView
-                android:id="@+id/moderatorIconImageView"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_crown"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true" />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="12dp"
-            android:layout_height="0dp" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/dateBreakTextView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/text"
+        android:textSize="@dimen/small_font_size"
+        android:textStyle="bold"
+        android:gravity="center" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/mainContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="bottom">
 
-        <TextView
-            android:id="@+id/senderNameTextView"
+        <!-- The linear layout below is marked as "useless", but this isn't the case. It's
+             convenient because it allows you to show or hide the profile picture plus the spacers
+             before and behind it in one go. -->
+
+        <LinearLayout
+            android:id="@+id/profilePictureContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:textColor="@color/text"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:ellipsize="end" />
+            android:orientation="horizontal">
 
-        <org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView
-            android:id="@+id/messageContentView"
+            <View
+                android:layout_width="12dp"
+                android:layout_height="0dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                    android:id="@+id/profilePictureView"
+                    android:layout_width="@dimen/very_small_profile_picture_size"
+                    android:layout_height="@dimen/very_small_profile_picture_size" />
+
+                <ImageView
+                    android:id="@+id/moderatorIconImageView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="0dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/senderNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/text"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView
+                android:id="@+id/messageContentView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -30,7 +30,6 @@ class ControlMessageView : LinearLayout {
 
     // region Updating
     fun bind(message: MessageRecord) {
-        // TODO: Make view look better
         textView.text = message.getDisplayBody(context)
     }
 

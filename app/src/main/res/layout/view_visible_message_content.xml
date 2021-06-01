@@ -10,6 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text"
-        android:textSize="@dimen/small_font_size" />
+        android:textSize="@dimen/medium_font_size" />
 
 </LinearLayout>

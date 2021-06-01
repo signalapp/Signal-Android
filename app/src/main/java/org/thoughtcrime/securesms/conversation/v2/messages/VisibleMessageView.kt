@@ -57,13 +57,17 @@ class VisibleMessageView : LinearLayout {
             profilePictureContainer.visibility = View.GONE
             senderNameTextView.visibility = View.GONE
         }
+        // Date break
+        dateBreakTextView.text = "The Ancient Past"
         // Margins
         val messageContentViewLayoutParams = messageContentView.layoutParams as LinearLayout.LayoutParams
         messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
         messageContentViewLayoutParams.rightMargin = if (message.isOutgoing) 0 else resources.getDimension(R.dimen.very_large_spacing).toInt()
         messageContentView.layoutParams = messageContentViewLayoutParams
+        // TODO: Inter-message spacing
         // Gravity
-        gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
+        val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
+        mainContainer.gravity = gravity or Gravity.BOTTOM
         // Populate content view
         messageContentView.bind(message)
     }
