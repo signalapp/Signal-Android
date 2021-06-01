@@ -117,6 +117,11 @@ final class MenuState {
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest));
     }
 
+    //Block tagged forwarding messages
+    if (hasText && messageRecord.getBody().contains("#NoForward"))  {
+        builder.shouldShowForwardAction(false);
+    }
+    
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
                   .shouldShowDeleteAction(!hasInMemory)
                   .build();
