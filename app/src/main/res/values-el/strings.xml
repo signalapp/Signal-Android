@@ -301,7 +301,7 @@
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">Μη έγκυρη συντόμευση</string>
     <!-- SingleRecipientNotificationBuilder -->
-    <string name="SingleRecipientNotificationBuilder_signal">Συνεδρία</string>
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
     <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
@@ -553,7 +553,7 @@
     <!-- Session -->
     <string name="continue_2">Συνέχεια</string>
     <string name="copy">Αντιγραφή</string>
-    <string name="invalid_url">Μη έγκυρη διεύθυνση URL</string>
+    <string name="invalid_url">Μη έγκυρη διεύθυνση</string>
     <string name="copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="next">Επόμενο</string>
     <string name="share">Διαμοιρασμός</string>
@@ -634,7 +634,7 @@
     <string name="activity_settings_invite_button_title">Πρόσκληση</string>
     <string name="activity_settings_recovery_phrase_button_title">Φράση Ανάκτησης</string>
     <string name="activity_settings_clear_all_data_button_title">Εκκαθάριση Δεδομένων</string>
-    <string name="activity_settings_help_translate_session">Βοηθήστε μας να μεταφράσουμε τη συνεδρία</string>
+    <string name="activity_settings_help_translate_session">Βοηθήστε μας να μεταφράσουμε τo Session</string>
     <string name="activity_notification_settings_title">Ειδοποιήσεις</string>
     <string name="activity_notification_settings_style_section_title">Στυλ ειδοποιήσεων</string>
     <string name="activity_notification_settings_content_section_title">Περιεχόμενο Ειδοποιήσεων</string>
@@ -696,6 +696,6 @@
     <string name="fragment_recovery_phrase_title">Φράση Ανάκτησης</string>
     <string name="activity_prompt_passphrase_session_locked">Το Session είναι κλειδωμένο</string>
     <string name="activity_prompt_passphrase_tap_to_unlock">Πατήστε για ξεκλείδωμα</string>
-    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
-    <string name="invalid_public_key">Invalid public key</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Εισαγωγή ψευδώνυμου</string>
+    <string name="invalid_public_key">Μη έγκυρο δημόσιο κλειδί</string>
 </resources>

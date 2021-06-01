@@ -4,11 +4,11 @@
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="delete">Eliminar</string>
-    <string name="ban">Ban</string>
+    <string name="ban">Banear</string>
     <string name="please_wait">Por favor, espera ...</string>
     <string name="save">Guardar</string>
     <string name="note_to_self">Notas personales</string>
-    <string name="version_s">Version %s</string>
+    <string name="version_s">Versión %s</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
     <!-- AlbumThumbnailView -->
@@ -37,7 +37,7 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session necesita acceso a los contactos en tu teléfono para adjuntar información de contactos en tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session necesita acceso a la cámara para tomar fotos y verificar las cifras de seguridad de tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Cámara».</string>
     <!-- AudioSlidePlayer -->
-    <string name="AudioSlidePlayer_error_playing_audio">¡Fallo al reproducir sonido!</string>
+    <string name="AudioSlidePlayer_error_playing_audio">¡Fallo al reproducir el audio!</string>
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Hoy</string>
     <string name="BucketedThreadMedia_Yesterday">Ayer</string>
@@ -61,11 +61,11 @@
     <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
     <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, ha habido un fallo al adjuntar el archivo.</string>
-    <string name="ConversationActivity_message">Message</string>
-    <string name="ConversationActivity_compose">Compose</string>
-    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
-    <string name="ConversationActivity_member_count">%1$d members</string>
-    <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
+    <string name="ConversationActivity_message">Mensaje</string>
+    <string name="ConversationActivity_compose">Escribir</string>
+    <string name="ConversationActivity_muted_until_date">Silenciado hasta %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d miembros</string>
+    <string name="ConversationActivity_open_group_guidelines">Normas de la Comunidad</string>
     <string name="ConversationActivity_invalid_recipient">¡Destinatario inválido!</string>
     <string name="ConversationActivity_added_to_home_screen">Añadido a la pantalla de inicio</string>
     <string name="ConversationActivity_leave_group">¿Abandonar grupo?</string>
@@ -77,9 +77,9 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el mensaje.</string>
     <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar la nota de voz!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para abrir este enlace.</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_invite_to_open_group">Añadir miembros</string>
+    <string name="ConversationActivity_join_open_group">Unirse a %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">¿Estás seguro de que quieres unirte al grupo abierto <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar notas de voz y hacer llamadas, permite a Session acceder al micrófono.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session necesita acceso al micrófono para enviar notas de voz. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Micrófono».</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y vídeos, permite el acceso de Session a la cámara.</string>
@@ -102,7 +102,7 @@
         <item quantity="one">Esto eliminará de forma permanente el mensaje seleccionado.</item>
         <item quantity="other">Esto eliminará de forma permanente los %1$d mensajes seleccionados.</item>
     </plurals>
-    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_ban_selected_user">¿Banear a este usuario?</string>
     <string name="ConversationFragment_save_to_sd_card">¿Guardar en el almacenamiento?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="one">Guardar este archivo multimedia en el almacenamiento del teléfono permitirá que cualquier otra aplicación en tu dispositivo acceda a él.\n\n¿Continuar?</item>
@@ -126,8 +126,8 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Eliminar</string>
     <string name="ConversationFragment_deleting_messages">Eliminando mensajes ...</string>
-    <string name="ConversationFragment_banning">Banning</string>
-    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_banning">Baneando</string>
+    <string name="ConversationFragment_banning_user">Baneando usuario…</string>
     <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
     <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
     <!-- ConversationListItem -->
@@ -234,14 +234,14 @@ de intercambio de claves!</string>
     <string name="ThreadRecord_s_is_on_signal">¡%s usa Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Desaparición de mensajes desactivada.</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">El tiempo de desaparición de mensajes se ha fijado en %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
-    <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s hizo una captura de pantalla.</string>
+    <string name="ThreadRecord_media_saved_by_s">Medios guardados por %s.</string>
     <string name="ThreadRecord_safety_number_changed">Las cifras de seguridad han cambiado</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Tus cifras de seguridad con %s han cambiado.</string>
     <string name="ThreadRecord_you_marked_verified">Marcado como verificado</string>
     <string name="ThreadRecord_you_marked_unverified">Marca de verificación retirada</string>
-    <string name="ThreadRecord_empty_message">This conversation is empty</string>
-    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <string name="ThreadRecord_empty_message">Esta conversación está vacía</string>
+    <string name="ThreadRecord_open_group_invitation">Abrir invitación del grupo</string>
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Actualizar Session</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Una nueva versión de Session está disponible. Toca para actualizar.</string>
@@ -354,11 +354,11 @@ de intercambio de claves!</string>
     <string name="audio_view__pause_accessibility_description">Pausa</string>
     <string name="audio_view__download_accessibility_description">Descargar</string>
     <!-- open_group_invitation_view -->
-    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
-    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
-    <string name="open_group_guidelines_pinned_message">Pinned message</string>
-    <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
-    <string name="open_group_guidelines_read">Read</string>
+    <string name="open_group_invitation_view__join_accessibility_description">Unirse</string>
+    <string name="open_group_invitation_view__open_group_invitation">Abrir invitación del grupo</string>
+    <string name="open_group_guidelines_pinned_message">Mensaje fijado</string>
+    <string name="open_group_guidelines_community_guidelines">Normas de la comunidad</string>
+    <string name="open_group_guidelines_read">Leer</string>
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Vídeo</string>
@@ -488,7 +488,7 @@ de intercambio de claves!</string>
     <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
     <string name="conversation_context__menu_copy_text">Copiar texto</string>
     <string name="conversation_context__menu_delete_message">Eliminar mensaje</string>
-    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_ban_user">Banear usuario</string>
     <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
     <string name="conversation_context__menu_reply_to_message">Responder al mensaje</string>
     <!-- conversation_context_image -->
@@ -548,7 +548,7 @@ de intercambio de claves!</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de inactividad para el bloqueo de pantalla</string>
     <string name="AppProtectionPreferenceFragment_none">Ninguno</string>
     <!-- Conversation activity -->
-    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <string name="activity_conversation_copy_public_key_button_title">Copiar clave pública</string>
     <!-- Session -->
     <string name="continue_2">Continuar</string>
     <string name="copy">Copiar</string>
@@ -589,15 +589,15 @@ de intercambio de claves!</string>
     <string name="activity_seed_title_2">Guarda tu frase de recuperación</string>
     <string name="activity_seed_explanation">Tu frase de recuperación es la llave maestra de tu ID de Session, puedes usarla para recuperar tu ID de Session en caso de pérdida de acceso a tu dispositivo. Guarda tu frase de recuperación en un lugar seguro y no se la digas a nadie.</string>
     <string name="activity_seed_reveal_button_title">Mantén pulsado para revelar</string>
-    <string name="view_seed_reminder_title">You\'re almost finished! 80%</string>
+    <string name="view_seed_reminder_title">¡Ya casi has terminado! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Protege tu cuenta guardando tu frase de recuperación</string>
     <string name="view_seed_reminder_subtitle_2">Toca y mantén presionadas las palabras redactadas para revelar tu frase de recuperación, después guárdala de manera segura para proteger tu ID de Session.</string>
     <string name="view_seed_reminder_subtitle_3">Asegúrate de guardar tu frase de recuperación en un lugar seguro</string>
     <string name="activity_path_title">Ruta</string>
     <string name="activity_path_explanation">Session oculta tu dirección IP haciendo rebotar tus mensajes a través de los Nodos de servicio de la red descentralizada de Session. Estos son los países por los que tu conexión está siendo rebotada actualmente.</string>
     <string name="activity_path_device_row_title">Tú</string>
-    <string name="activity_path_guard_node_row_title">Entry Node</string>
-    <string name="activity_path_service_node_row_title">Service Node</string>
+    <string name="activity_path_guard_node_row_title">Nodo de Entrada</string>
+    <string name="activity_path_service_node_row_title">Nodo de Servicio</string>
     <string name="activity_path_destination_row_title">Destino</string>
     <string name="activity_path_learn_more_button_title">Saber Más</string>
     <string name="activity_create_private_chat_title">Nueva Session</string>
@@ -614,8 +614,8 @@ de intercambio de claves!</string>
     <string name="activity_create_closed_group_empty_state_button_title">Empezar una Session</string>
     <string name="activity_create_closed_group_group_name_missing_error">Por favor, ingresa un nombre de grupo</string>
     <string name="activity_create_closed_group_group_name_too_long_error">Por favor, ingresa un nombre de grupo más corto</string>
-    <string name="activity_create_closed_group_not_enough_group_members_error">Please pick at least 1 group member</string>
-    <string name="activity_create_closed_group_too_many_group_members_error">A closed group cannot have more than 100 members</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Por favor, elige al menos 1 miembro del grupo</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">Un grupo cerrado no puede tener más de 100 miembros</string>
     <string name="activity_join_public_chat_title">Únete al grupo abierto</string>
     <string name="activity_join_public_chat_error">No te pudiste unir al grupo</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">URL de grupo abierto</string>
@@ -630,10 +630,10 @@ de intercambio de claves!</string>
     <string name="activity_settings_notifications_button_title">Notificaciones</string>
     <string name="activity_settings_chats_button_title">Chats</string>
     <string name="activity_settings_devices_button_title">Dispositivos</string>
-    <string name="activity_settings_invite_button_title">Invite</string>
+    <string name="activity_settings_invite_button_title">Invitar</string>
     <string name="activity_settings_recovery_phrase_button_title">Frase de recuperación</string>
     <string name="activity_settings_clear_all_data_button_title">Borrar datos</string>
-    <string name="activity_settings_help_translate_session">Help us Translate Session</string>
+    <string name="activity_settings_help_translate_session">Ayúdanos a traducir Session</string>
     <string name="activity_notification_settings_title">Notificaciones</string>
     <string name="activity_notification_settings_style_section_title">Estilo de Notificación</string>
     <string name="activity_notification_settings_content_section_title">Contenido de Notificación</string>
@@ -650,51 +650,51 @@ de intercambio de claves!</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">Ver mi código QR</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Escanear código QR</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">Escanea el código QR de una persona para comenzar una conversación con ella</string>
-    <string name="fragment_view_my_qr_code_title">Scan Me</string>
+    <string name="fragment_view_my_qr_code_title">Escanéame</string>
     <string name="fragment_view_my_qr_code_explanation">Este es tu código QR. Otros usuarios pueden escanearlo para empezar una sesión contigo.</string>
     <string name="fragment_view_my_qr_code_share_title">Compartir código QR</string>
     <string name="fragment_contact_selection_contacts_title">Contactos</string>
     <string name="fragment_contact_selection_closed_groups_title">Grupos cerrados</string>
     <string name="fragment_contact_selection_open_groups_title">Grupos abiertos</string>
-    <string name="fragment_contact_selection_empty_contacts">You don\'t have any contacts yet</string>
+    <string name="fragment_contact_selection_empty_contacts">Aún no tienes contactos</string>
     <!-- Next round of translation -->
-    <string name="menu_apply_button">Apply</string>
-    <string name="menu_done_button">Done</string>
-    <string name="activity_edit_closed_group_title">Edit Group</string>
-    <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
-    <string name="activity_edit_closed_group_edit_members">Members</string>
-    <string name="activity_edit_closed_group_add_members">Add members</string>
-    <string name="activity_edit_closed_group_group_name_missing_error">Group name can\'t be empty</string>
-    <string name="activity_edit_closed_group_group_name_too_long_error">Please enter a shorter group name</string>
-    <string name="activity_edit_closed_group_not_enough_group_members_error">Groups must have at least 1 group member</string>
-    <string name="fragment_edit_group_bottom_sheet_remove">Remove user from group</string>
-    <string name="activity_select_contacts_title">Select Contacts</string>
-    <string name="view_reset_secure_session_done_message">Secure session reset done</string>
-    <string name="dialog_ui_mode_title">Theme</string>
-    <string name="dialog_ui_mode_option_day">Day</string>
-    <string name="dialog_ui_mode_option_night">Night</string>
-    <string name="dialog_ui_mode_option_system_default">System default</string>
-    <string name="activity_conversation_menu_copy_session_id">Copy Session ID</string>
-    <string name="attachment">Attachment</string>
-    <string name="attachment_type_voice_message">Voice Message</string>
-    <string name="details">Details</string>
-    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
-    <string name="activity_backup_restore_title">Restore backup</string>
-    <string name="activity_backup_restore_select_file">Select a file</string>
-    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
-    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
-    <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
-    <string name="activity_link_device_link_device">Link a Device</string>
-    <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
-    <string name="activity_pn_mode_message_notifications">Message Notifications</string>
-    <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
-    <string name="activity_pn_mode_fast_mode">Fast Mode</string>
-    <string name="activity_pn_mode_slow_mode">Slow Mode</string>
-    <string name="activity_pn_mode_fast_mode_explanation">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
-    <string name="activity_pn_mode_slow_mode_explanation">Session will occasionally check for new messages in the background.</string>
-    <string name="fragment_recovery_phrase_title">Recovery Phrase</string>
-    <string name="activity_prompt_passphrase_session_locked">Session is Locked</string>
-    <string name="activity_prompt_passphrase_tap_to_unlock">Tap to Unlock</string>
-    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
-    <string name="invalid_public_key">Invalid public key</string>
+    <string name="menu_apply_button">Aplicar</string>
+    <string name="menu_done_button">Hecho</string>
+    <string name="activity_edit_closed_group_title">Editar grupo</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Ingresa el nombre del nuevo grupo</string>
+    <string name="activity_edit_closed_group_edit_members">Miembros</string>
+    <string name="activity_edit_closed_group_add_members">Añadir miembros</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">El nombre del grupo no puede estar vacío</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Por favor, ingresa un nombre de grupo más corto</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Los grupos deben tener al menos 1 miembro</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Eliminar usuario del grupo</string>
+    <string name="activity_select_contacts_title">Elegir contactos</string>
+    <string name="view_reset_secure_session_done_message">Reinicio seguro de sesión hecho</string>
+    <string name="dialog_ui_mode_title">Tema</string>
+    <string name="dialog_ui_mode_option_day">Día</string>
+    <string name="dialog_ui_mode_option_night">Noche</string>
+    <string name="dialog_ui_mode_option_system_default">Predeterminado del sistema</string>
+    <string name="activity_conversation_menu_copy_session_id">Copiar ID de Session</string>
+    <string name="attachment">Adjunto</string>
+    <string name="attachment_type_voice_message">Mensaje de voz</string>
+    <string name="details">Detalles</string>
+    <string name="dialog_backup_activation_failed">Error al activar las copias de seguridad. Por favor, inténtalo de nuevo o contacta con el soporte.</string>
+    <string name="activity_backup_restore_title">Restaurar copia de seguridad</string>
+    <string name="activity_backup_restore_select_file">Seleccionar archivo</string>
+    <string name="activity_backup_restore_explanation_1">Seleccione un archivo de copia de seguridad e introduzca la clave de acceso con la que fue creada.</string>
+    <string name="activity_backup_restore_passphrase">Clave de acceso de 30 dígitos</string>
+    <string name="activity_link_device_skip_prompt">Esto está tomando un tiempo, ¿te gustaría saltarlo?</string>
+    <string name="activity_link_device_link_device">Vincular un Dispositivo</string>
+    <string name="activity_join_public_chat_join_rooms">O únete a uno de estos…</string>
+    <string name="activity_pn_mode_message_notifications">Notificaciones de Mensajes</string>
+    <string name="activity_pn_mode_explanation">Hay dos maneras en las que Session puede notificarle de nuevos mensajes.</string>
+    <string name="activity_pn_mode_fast_mode">Modo Rápido</string>
+    <string name="activity_pn_mode_slow_mode">Modo Lento</string>
+    <string name="activity_pn_mode_fast_mode_explanation">Se le notificará de los nuevos mensajes de forma fiable e inmediata usando los servidores de notificaciones de Google.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Session comprobará ocasionalmente si hay nuevos mensajes en segundo plano.</string>
+    <string name="fragment_recovery_phrase_title">Frase de recuperación</string>
+    <string name="activity_prompt_passphrase_session_locked">Session está Bloqueado</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Toca para Desbloquear</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Escriba un apodo</string>
+    <string name="invalid_public_key">Clave pública no válida</string>
 </resources>
