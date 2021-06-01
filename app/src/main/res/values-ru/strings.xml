@@ -723,6 +723,6 @@
     <string name="fragment_recovery_phrase_title">Секретная фраза</string>
     <string name="activity_prompt_passphrase_session_locked">Session заблокирован</string>
     <string name="activity_prompt_passphrase_tap_to_unlock">Разблокировать</string>
-    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
-    <string name="invalid_public_key">Invalid public key</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Введите ник</string>
+    <string name="invalid_public_key">Неверный публичный ключ</string>
 </resources>
