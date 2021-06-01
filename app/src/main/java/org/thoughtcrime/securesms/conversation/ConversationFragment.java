@@ -741,10 +741,8 @@ public class ConversationFragment extends Fragment
                 if (!Util.isEmpty(attachments)) {
                   SaveAttachmentTask saveTask = new SaveAttachmentTask(getActivity());
                   saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, attachments.toArray(new SaveAttachmentTask.Attachment[0]));
-                  // Sending a Data extraction notification (for incoming attachments only)
-                  if(!message.isOutgoing()) {
-                    //TODO uncomment line below when Data extraction will be activated
-                    //sendMediaSavedNotificationIfNeeded();
+                  if (!message.isOutgoing()) {
+                    sendMediaSavedNotificationIfNeeded();
                   }
                   return;
                 }
@@ -758,11 +756,7 @@ public class ConversationFragment extends Fragment
     });
   }
 
-  /**
-   * Send a MediaSaved notification to the recipient
-   */
   private void sendMediaSavedNotificationIfNeeded() {
-    // we don't send media saved notification for groups
     if (recipient.isGroupRecipient()) return;
     DataExtractionNotification message = new DataExtractionNotification(new DataExtractionNotification.Kind.MediaSaved(System.currentTimeMillis()));
     MessageSender.send(message, recipient.getAddress());
