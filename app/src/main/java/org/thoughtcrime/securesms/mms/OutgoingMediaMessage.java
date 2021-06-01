@@ -198,7 +198,7 @@ public class OutgoingMediaMessage {
     if(!msg.contains("#[0-9]*#:")){
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        msg = "#" + auth.get() + "#: " + msg;
+        msg = "#" + auth.get() + "#:\n" + msg;
       }
     }
     return msg;
