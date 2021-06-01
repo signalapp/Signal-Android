@@ -62,8 +62,14 @@ class VisibleMessageView : LinearLayout {
         dateBreakTextView.visibility = View.GONE // TODO: Set this correctly
         // Margins
         val messageContentViewLayoutParams = messageContentView.layoutParams as LinearLayout.LayoutParams
-        messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
-        messageContentViewLayoutParams.rightMargin = if (message.isOutgoing) 0 else resources.getDimension(R.dimen.very_large_spacing).toInt()
+        if (isGroupThread) {
+            messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
+        } else {
+            messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
+                else resources.getDimension(R.dimen.medium_spacing).toInt()
+        }
+        messageContentViewLayoutParams.rightMargin = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
+            else resources.getDimension(R.dimen.very_large_spacing).toInt()
         messageContentView.layoutParams = messageContentViewLayoutParams
         // TODO: Inter-message spacing
         // Gravity

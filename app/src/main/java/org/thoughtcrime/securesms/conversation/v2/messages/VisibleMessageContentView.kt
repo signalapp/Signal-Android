@@ -2,12 +2,15 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import androidx.core.view.setMargins
+import androidx.core.view.setPadding
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
@@ -70,8 +73,10 @@ class VisibleMessageContentView : LinearLayout {
     // region Convenience
     private fun getBodyTextView(body: String): TextView {
         val result = TextView(context)
+        result.setPadding(resources.getDimension(R.dimen.small_spacing).toInt())
         result.text = body
-        // TODO: Styling
+        result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.medium_font_size))
+        // TODO: Further styling
         return result
     }
     // endregion
