@@ -62,6 +62,7 @@ public class PopupMegaphoneView extends FrameLayout {
     } else if (megaphone.getLottieRes() != 0) {
       image.setVisibility(VISIBLE);
       image.setAnimation(megaphone.getLottieRes());
+      image.playAnimation();
     } else {
       image.setVisibility(GONE);
     }
