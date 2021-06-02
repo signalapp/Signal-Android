@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -132,7 +133,7 @@ public final class Megaphones {
       case NOTIFICATIONS:
         return buildNotificationsMegaphone(context);
       case CHAT_COLORS:
-        return buildChatColorsMegaphone();
+        return buildChatColorsMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -304,11 +305,18 @@ public final class Megaphones {
                         .build();
   }
 
-  private static @NonNull Megaphone buildChatColorsMegaphone() {
-    return new Megaphone.Builder(Event.CHAT_COLORS, Megaphone.Style.POPUP)
+  private static @NonNull Megaphone buildChatColorsMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.CHAT_COLORS, Megaphone.Style.BASIC)
                         .setTitle(R.string.ChatColorsMegaphone__new_chat_colors)
                         .setBody(R.string.ChatColorsMegaphone__we_switched_up_chat_colors)
                         .setLottie(R.raw.color_bubble_64)
+                        .setActionButton(R.string.ChatColorsMegaphone__appearance, (megaphone, listener) -> {
+                          listener.onMegaphoneNavigationRequested(ChatWallpaperActivity.createIntent(context));
+                          listener.onMegaphoneCompleted(Event.CHAT_COLORS);
+                        })
+                        .setSecondaryButton(R.string.ChatColorsMegaphone__not_now, (megaphone, listener) -> {
+                          listener.onMegaphoneCompleted(Event.CHAT_COLORS);
+                        })
                         .build();
   }
 

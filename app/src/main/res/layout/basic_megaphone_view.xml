@@ -27,7 +27,7 @@
         android:paddingEnd="8dp"
         android:paddingBottom="8dp">
 
-      <ImageView
+      <com.airbnb.lottie.LottieAnimationView
           android:id="@+id/basic_megaphone_image"
           android:layout_width="64dp"
           android:layout_height="64dp"

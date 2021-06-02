@@ -3510,8 +3510,12 @@
     <string name="EditReactionsFragment_save">Save</string>
     <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto matches the color to the wallpaper</string>
     <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Drag to change the direction of the gradient</string>
+
+    <!-- ChatColorsMegaphone -->
     <string name="ChatColorsMegaphone__new_chat_colors">New Chat Colors</string>
     <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We switched up chat colors to give you more options and make chats easier to read.</string>
+    <string name="ChatColorsMegaphone__appearance">Appearance</string>
+    <string name="ChatColorsMegaphone__not_now">Not now</string>
 
     <!-- EOF -->
 
