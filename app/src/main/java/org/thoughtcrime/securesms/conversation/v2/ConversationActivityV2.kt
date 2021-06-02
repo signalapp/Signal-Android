@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
-import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -46,9 +45,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     private fun setUpToolbar() {
         backButton.setOnClickListener { onBackPressed() }
         conversationTitleView.text = thread.toShortString()
-        conversationSettingsButton.glide = glide
-        conversationSettingsButton.update(thread, threadID)
-        conversationSettingsButton.setOnClickListener { showConversationSettings() }
+        profilePictureView.glide = glide
+        profilePictureView.update(thread, threadID)
     }
     // endregion
 

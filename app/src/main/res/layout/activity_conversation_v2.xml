@@ -20,14 +20,29 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:src="?attr/homeAsUpIndicator"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:orientation="horizontal"
+                android:background="@drawable/conversation_back_button_background">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_baseline_arrow_back_compact_24"
+                    android:layout_marginRight="-2dp"
+                    android:layout_marginLeft="8dp" />
+
+                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                    android:id="@+id/profilePictureView"
+                    android:layout_width="@dimen/small_profile_picture_size"
+                    android:layout_height="@dimen/small_profile_picture_size" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/conversationTitleView"
@@ -35,18 +50,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="64dp"
+                android:layout_marginLeft="66dp"
                 android:text="Elon"
                 android:textColor="@color/text"
                 android:textStyle="bold"
                 android:textSize="@dimen/very_large_font_size" />
-
-            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
-                android:id="@+id/conversationSettingsButton"
-                android:layout_width="@dimen/small_profile_picture_size"
-                android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 
