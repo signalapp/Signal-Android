@@ -202,7 +202,7 @@ public class OutgoingMediaMessage {
     if(matcher.find()) {
       String currentCounter = matcher.group(1);
       int newCounter = Integer.parseInt(currentCounter) + 1;
-      String patternMatch = s.substring(matcher.start(),matcher.end());
+      String patternMatch = msg.substring(matcher.start(),matcher.end());
       String updatedCounter = patternMatch.replace("|" + currentCounter, "|" + String.valueOf(newCounter));
       msg = msg.replaceFirst(Pattern.quote(patternMatch),updatedCounter);      
     } else {            
