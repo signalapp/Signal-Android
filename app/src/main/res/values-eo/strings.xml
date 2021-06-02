@@ -833,6 +833,7 @@
   <string name="Megaphones_new_group">Nova grupo</string>
   <string name="Megaphones_invite_friends">Inviti amikojn</string>
   <string name="Megaphones_use_sms">Uzi SMS</string>
+  <string name="Megaphones_appearance">Aspekto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
@@ -2785,6 +2786,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CustomChatColorCreatorFragmentPage__save">Konservi</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Restarigi</string>
   <string name="EditReactionsFragment_save">Konservi</string>
   <!--EOF-->
 </resources>

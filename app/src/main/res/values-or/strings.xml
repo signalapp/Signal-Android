@@ -832,6 +832,7 @@
   <string name="Megaphones_new_group">ନୂତନ ଗୋଷ୍ଠୀ</string>
   <string name="Megaphones_invite_friends">ବନ୍ଧୁମାନଙ୍କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
   <string name="Megaphones_use_sms">ଏସ୍ଏମ୍ଏସ୍ ବ୍ୟବହାର କରନ୍ତୁ</string>
+  <string name="Megaphones_appearance">ଦୃଶ୍ୟ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal କଲ୍ ଚାଲୁଅଛି</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal କଲ୍ ସ୍ଥାପନ କରାଯାଉଛି</string>
@@ -2605,6 +2606,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="EditReactionsFragment_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--EOF-->
 </resources>

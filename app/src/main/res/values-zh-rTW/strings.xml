@@ -796,6 +796,7 @@
   <string name="Megaphones_new_group">新增群組</string>
   <string name="Megaphones_invite_friends">邀請好友</string>
   <string name="Megaphones_use_sms">使用 SMS</string>
+  <string name="Megaphones_appearance">介面設定</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -2877,9 +2878,8 @@
   <string name="ChatColorGradientTool_top_edge_selector">頂部邊緣選擇器</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">底部邊緣選擇器</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">編輯反應</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">點擊即可替換表情符號</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">重設表情符號</string> -->
+  <string name="EditReactionsFragment__reset">重設</string>
   <string name="EditReactionsFragment_save">儲存</string>
   <!--EOF-->
 </resources>

@@ -795,6 +795,7 @@
   <string name="Megaphones_new_group">新規グループ</string>
   <string name="Megaphones_invite_friends">友達を招待しましょう</string>
   <string name="Megaphones_use_sms">SMSを使用する</string>
+  <string name="Megaphones_appearance">デザイン</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
@@ -2729,6 +2730,7 @@
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者の秘匿化を用いて届けられたメッセージの詳細で、アイコンを表示します。</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">有効にすると、それ以降に作られた新しいチャットの中でやりとりしたメッセージは、閲覧後に消えます。</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャット内で新たに送受信されたメッセージは、閲覧後に消えます。</string>
   <string name="ExpireTimerSettingsFragment__off">オフ</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4週間</string>
@@ -2782,9 +2784,8 @@
   <string name="ChatColorGradientTool_top_edge_selector">上端セレクター</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">下端セレクター</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">リアクションの編集</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">タップすると絵文字を置き換えます</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">絵文字をリセット</string> -->
+  <string name="EditReactionsFragment__reset">リセットする</string>
   <string name="EditReactionsFragment_save">保存</string>
   <!--EOF-->
 </resources>

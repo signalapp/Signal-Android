@@ -841,6 +841,7 @@
   <string name="Megaphones_new_group">Nieuwe groep</string>
   <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
   <string name="Megaphones_use_sms">Sms gebruiken</string>
+  <string name="Megaphones_appearance">Uiterlijk</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Je zit nog in een Signal-oproep</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -2969,9 +2970,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatColorGradientTool_top_edge_selector">Schuifknop voor de bovenrand</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Schuifknop voor de onderrand</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Emoji-reactie-balk aanpassen</string> -->
+  <string name="EditReactionsFragment__customize_reactions">Reactie-balk personaliseren</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tik op een emoji om die te vervangen</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Standaardinstelling herstellen</string> -->
+  <string name="EditReactionsFragment__reset">Voor dit gesprek verwijderen</string>
   <string name="EditReactionsFragment_save">Opslaan</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">‘Auto’ betekent dat er automatisch een kleur wordt gekozen die past bij de achtergrond</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Sleep om de richting van het verloop te veranderen</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Nieuwe gesprekskleuren</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We hebben de kleuren van berichtenbubbels omgewisseld, zodat je meer mogelijkheden hebt om zelf kleuren te kiezen en zodat gesprekken makkelijker te lezen zijn.</string>
   <!--EOF-->
 </resources>

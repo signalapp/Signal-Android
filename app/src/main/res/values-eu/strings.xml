@@ -828,6 +828,7 @@
   <string name="Megaphones_new_group">Talde berria</string>
   <string name="Megaphones_invite_friends">Gonbidatu lagunak</string>
   <string name="Megaphones_use_sms">SMSa erabili</string>
+  <string name="Megaphones_appearance">Itxura</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Uneko Signal deia</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal deia finkatzen</string>
@@ -2590,6 +2591,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CustomChatColorCreatorFragmentPage__save">Gorde</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Berrabiarazi</string>
   <string name="EditReactionsFragment_save">Gorde</string>
   <!--EOF-->
 </resources>

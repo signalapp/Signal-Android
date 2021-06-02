@@ -840,6 +840,7 @@
   <string name="Megaphones_new_group">يېڭى گۇرۇپپا</string>
   <string name="Megaphones_invite_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
   <string name="Megaphones_use_sms">قىسقا ئۇچۇر ئىشلىتىش</string>
+  <string name="Megaphones_appearance">كۆرۈنۈش</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal چاقىرىشى داۋاملىشىۋاتىدۇ</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal چاقىرىشى قۇرۇلۇۋاتىدۇ</string>
@@ -2964,9 +2965,13 @@
   <string name="ChatColorGradientTool_top_edge_selector">ئۈستى قىر تاللىغۇچ</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ئاستى قىر تاللىغۇچ</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">ئىنكاس تەھرىر</string> -->
+  <string name="EditReactionsFragment__customize_reactions">ئىختىيارىچە ئىنكاس</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">چېكىلسە چىراي بەلگىنى ئالماشتۇرىدۇ</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">چىراي بەلگىنى ئەسلىگە قايتۇر</string> -->
+  <string name="EditReactionsFragment__reset">ئەسلىگە قايتۇر</string>
   <string name="EditReactionsFragment_save">ساقلا</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">تام قەغەز رەڭگىگە ئۆزلۈكىدىن ماسلىشىدۇ</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">گىرادۇس يۆنىلىشىنى ئۆزگەرتىش ئۈچۈن سۆرەڭ</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">يېڭى سۆھبەت رەڭگى</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">سۆھبەت رەڭگىنى ئۆزگەرتىش ئۈچۈن سىزگە تېخىمۇ كۆپ تاللاش بېرىپ ھەمدە سۆھبەت ئوقۇشنى تېخىمۇ قۇلايلاشتۇردۇق.</string>
   <!--EOF-->
 </resources>

@@ -608,7 +608,7 @@
   <string name="ManageGroupActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageGroupActivity_mentions">Αναφορές</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Χρώμα και Ταπετσαρία συνομιλίας</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Χρώμα και ταπετσαρία συνομιλίας</string>
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
   <string name="ManageGroupActivity_always">Πάντα</string>
   <string name="ManageGroupActivity_off">Ανενεργό</string>
@@ -835,6 +835,7 @@
   <string name="Megaphones_new_group">Νέα ομάδα</string>
   <string name="Megaphones_invite_friends">Πρόσκληση φίλων</string>
   <string name="Megaphones_use_sms">Χρήση SMS</string>
+  <string name="Megaphones_appearance">Εμφάνιση</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
@@ -1943,7 +1944,7 @@
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__chat_wallpaper">Ταπετσαρία συνομιλίας</string>
-  <string name="preferences__chat_color_and_wallpaper">Χρώμα και Ταπετσαρία συνομιλίας</string>
+  <string name="preferences__chat_color_and_wallpaper">Χρώμα και ταπετσαρία συνομιλίας</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
@@ -2825,9 +2826,13 @@
   <string name="ChatColorGradientTool_top_edge_selector">Επιλογή πάνω γωνίας</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Επιλογή κάτω γωνίας</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Επεξεργασία αντιδράσεων</string> -->
+  <string name="EditReactionsFragment__customize_reactions">Προσαρμογή αντιδράσεων</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Πάτα για αντικατάσταση ενός emoji</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Επαναφορά emoji</string> -->
+  <string name="EditReactionsFragment__reset">Επαναφορά</string>
   <string name="EditReactionsFragment_save">Αποθήκευση</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Αυτόματο ταίριασμα του χρώματος με την ταπετσαρία</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Σύρε για να αλλάξεις τη φορά της διαβάθμισης</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Χρώματα νέων συνομιλιών</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Βελτιώσαμε τα χρώματα των συνομιλιών για να σου δώσουμε περισσότερες επιλογές και για να κάνουμε τις συνομιλίες πιο ευανάγνωστες.</string>
   <!--EOF-->
 </resources>

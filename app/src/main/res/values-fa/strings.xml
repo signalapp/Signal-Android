@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">گروه جدید</string>
   <string name="Megaphones_invite_friends">دعوت دوستان</string>
   <string name="Megaphones_use_sms">استفاده از پیامک</string>
+  <string name="Megaphones_appearance">ظاهر برنامه</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس سیگنال در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
@@ -2963,9 +2964,8 @@
   <string name="ChatColorGradientTool_top_edge_selector">لبهٔ گزینش‌گر بالایی</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">لبهٔ گزینش‌گر پایینی</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">ویرایش واکنش‌ها</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">برای جایگزینی ایموجی ضربه بزنید</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">بازنشانی ایموجی</string> -->
+  <string name="EditReactionsFragment__reset">بازنشانی</string>
   <string name="EditReactionsFragment_save">ذخیره</string>
   <!--EOF-->
 </resources>

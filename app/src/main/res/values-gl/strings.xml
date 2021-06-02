@@ -829,6 +829,7 @@
   <string name="Megaphones_new_group">Novo grupo</string>
   <string name="Megaphones_invite_friends">Convidar amizades</string>
   <string name="Megaphones_use_sms">Utilizar SMS</string>
+  <string name="Megaphones_appearance">Aparencia</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
   <string name="NotificationBarManager__establishing_signal_call">Establecendo chamada Signal</string>
@@ -2680,6 +2681,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">Gardar</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Restablecer</string>
   <string name="EditReactionsFragment_save">Gardar</string>
   <!--EOF-->
 </resources>

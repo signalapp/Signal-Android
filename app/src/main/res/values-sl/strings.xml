@@ -922,6 +922,7 @@
   <string name="Megaphones_new_group">Nova skupina</string>
   <string name="Megaphones_invite_friends">Vabilo prijateljem/icam</string>
   <string name="Megaphones_use_sms">Uporabi SMS</string>
+  <string name="Megaphones_appearance">Izgled</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
@@ -2984,9 +2985,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatColorGradientTool_top_edge_selector">Gornji rob</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Spodnji rob</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Urejanje Odzivov</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tapnite za zamenjavo emojija</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Ponastavi emoji</string> -->
+  <string name="EditReactionsFragment__reset">Ponastavi</string>
   <string name="EditReactionsFragment_save">Shrani</string>
   <!--EOF-->
 </resources>

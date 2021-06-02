@@ -882,6 +882,7 @@
   <string name="Megaphones_new_group">Нова група</string>
   <string name="Megaphones_invite_friends">Позивница пријатељима</string>
   <string name="Megaphones_use_sms">Користи СМС</string>
+  <string name="Megaphones_appearance">Изглед</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
@@ -3049,9 +3050,8 @@
   <string name="ChatColorGradientTool_top_edge_selector">Селектор горње ивице</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Селектор доње ивице</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Променити реакције</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Пипните за промену емоџиа</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Рисетовати емоџи</string> -->
+  <string name="EditReactionsFragment__reset">Ресетуј</string>
   <string name="EditReactionsFragment_save">Сачувај</string>
   <!--EOF-->
 </resources>

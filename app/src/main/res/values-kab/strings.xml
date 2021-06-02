@@ -834,6 +834,7 @@
   <string name="Megaphones_new_group">Agraw amaynut</string>
   <string name="Megaphones_invite_friends">Snubget-d imdukkal</string>
   <string name="Megaphones_use_sms">Seqdec SMS</string>
+  <string name="Megaphones_appearance">Askan</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Asiwel seg Signal iteddu</string>
   <string name="NotificationBarManager__establishing_signal_call">Aqεad n usiwel n Signal</string>
@@ -2705,6 +2706,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="CustomChatColorCreatorFragmentPage__save">Sekles</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Wennez</string>
   <string name="EditReactionsFragment_save">Sekles</string>
   <!--EOF-->
 </resources>

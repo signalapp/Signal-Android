@@ -925,6 +925,7 @@
   <string name="Megaphones_new_group">Nauja grupė</string>
   <string name="Megaphones_invite_friends">Pakviesti draugus</string>
   <string name="Megaphones_use_sms">Naudokite SMS</string>
+  <string name="Megaphones_appearance">Išvaizda</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -3133,9 +3134,8 @@
   <string name="ChatColorGradientTool_top_edge_selector">Viršutinio krašto parinkiklis</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Apatinio krašto parinkiklis</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Taisyti reakcijas</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Bakstelėkite, norėdami pakeisti jaustuką</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Atstatyti jaustuką</string> -->
+  <string name="EditReactionsFragment__reset">Atstatyti</string>
   <string name="EditReactionsFragment_save">Įrašyti</string>
   <!--EOF-->
 </resources>

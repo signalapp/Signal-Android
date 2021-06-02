@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Grup nou</string>
   <string name="Megaphones_invite_friends">Convideu-hi amistats</string>
   <string name="Megaphones_use_sms">Usa SMS</string>
+  <string name="Megaphones_appearance">Aparença</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -2959,9 +2960,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatColorGradientTool_top_edge_selector">Selector de la vora de dalt</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector de la vora de baix</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Edita les reaccions</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Feu un toc per substituir l\'emoticona</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Restableix l\'emoticona</string> -->
+  <string name="EditReactionsFragment__reset">Restableix</string>
   <string name="EditReactionsFragment_save">Desa</string>
   <!--EOF-->
 </resources>

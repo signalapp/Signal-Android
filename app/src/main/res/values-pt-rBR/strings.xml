@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Novo grupo</string>
   <string name="Megaphones_invite_friends">Convidar amigos(as)</string>
   <string name="Megaphones_use_sms">Usar SMS</string>
+  <string name="Megaphones_appearance">Aparência</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
@@ -2831,6 +2832,7 @@
   <string name="PaymentsRecoveryEntryFragment__next">Próximo</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Palavra inválida</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Área de transferência limpa.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Exibir</string>
   <!--UnreadPayments-->
@@ -2941,9 +2943,13 @@
   <string name="ChatColorGradientTool_top_edge_selector">Selecionador da borda superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selecionador da borda inferior</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Editar as reações</string> -->
+  <string name="EditReactionsFragment__customize_reactions">Personalizar as reações</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toque para substituir um emoji</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Redefinir emojis</string> -->
+  <string name="EditReactionsFragment__reset">Redefinir</string>
   <string name="EditReactionsFragment_save">Salvar</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto combina a cor com o papel de parede</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arraste para mudar a direção do gradiente</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Novas cores de conversas</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mudamos as cores das conversas para oferecer mais opções e facilitar a leitura das conversas.</string>
   <!--EOF-->
 </resources>

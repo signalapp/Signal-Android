@@ -836,6 +836,7 @@
   <string name="Megaphones_new_group">Ny gruppe</string>
   <string name="Megaphones_invite_friends">Inviter venner</string>
   <string name="Megaphones_use_sms">Bruk SMS</string>
+  <string name="Megaphones_appearance">Utseende</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
@@ -2890,9 +2891,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatColorGradientTool_top_edge_selector">Øvre velger</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Nedre velger</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Rediger reaksjoner</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Trykk for å erstatte en emoji</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Tilbakestill emoji</string> -->
+  <string name="EditReactionsFragment__reset">Tilbakestill</string>
   <string name="EditReactionsFragment_save">Lagre</string>
   <!--EOF-->
 </resources>

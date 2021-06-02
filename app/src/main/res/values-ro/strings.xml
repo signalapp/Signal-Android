@@ -879,6 +879,7 @@
   <string name="Megaphones_new_group">Grup nou</string>
   <string name="Megaphones_invite_friends">Invită prieteni</string>
   <string name="Megaphones_use_sms">Utilizați SMS</string>
+  <string name="Megaphones_appearance">Aspect</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
@@ -2926,6 +2927,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatColorGradientTool_top_edge_selector">Selector margine superioară</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector margine inferioară</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Resetare</string>
   <string name="EditReactionsFragment_save">Salvează</string>
   <!--EOF-->
 </resources>

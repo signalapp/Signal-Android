@@ -790,6 +790,7 @@
   <string name="Megaphones_new_group">Grup baru</string>
   <string name="Megaphones_invite_friends">Undang teman</string>
   <string name="Megaphones_use_sms">Gunakan SMS</string>
+  <string name="Megaphones_appearance">Penampilan</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
@@ -2512,6 +2513,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="CustomChatColorCreatorFragmentPage__save">Simpan</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Atur ulang</string>
   <string name="EditReactionsFragment_save">Simpan</string>
   <!--EOF-->
 </resources>

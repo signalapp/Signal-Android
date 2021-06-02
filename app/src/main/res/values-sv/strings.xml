@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Ny grupp</string>
   <string name="Megaphones_invite_friends">Bjud in vänner</string>
   <string name="Megaphones_use_sms">Använd SMS</string>
+  <string name="Megaphones_appearance">Utseende</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -2959,9 +2960,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChatColorGradientTool_top_edge_selector">Övre kantväljare</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Nedre kantväljare</string>
   <!--EditReactionsFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Redigera reaktioner</string> -->
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryck för att ersätta en emoji</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Återställ emoji</string> -->
+  <string name="EditReactionsFragment__reset">Starta om</string>
   <string name="EditReactionsFragment_save">Spara</string>
   <!--EOF-->
 </resources>

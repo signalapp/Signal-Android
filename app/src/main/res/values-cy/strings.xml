@@ -926,6 +926,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="Megaphones_new_group">Grŵp newydd</string>
   <string name="Megaphones_invite_friends">Gwahodd ffrindiau</string>
   <string name="Megaphones_use_sms">Defnyddiwch SMS</string>
+  <string name="Megaphones_appearance">Golwg</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
@@ -3102,6 +3103,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CustomChatColorCreatorFragmentPage__save">Cadw</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Ailosod</string>
   <string name="EditReactionsFragment_save">Cadw</string>
   <!--EOF-->
 </resources>

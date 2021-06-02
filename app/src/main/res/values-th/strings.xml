@@ -794,6 +794,7 @@
   <string name="Megaphones_new_group">กลุ่มใหม่</string>
   <string name="Megaphones_invite_friends">เชิญเพื่อน</string>
   <string name="Megaphones_use_sms">ใช้ SMS</string>
+  <string name="Megaphones_appearance">หน้าตา</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">กำลังโทร Signal อยู่</string>
   <string name="NotificationBarManager__establishing_signal_call">กำลังต่อสาย Signal</string>
@@ -2785,6 +2786,7 @@
   <string name="CustomChatColorCreatorFragmentPage__edit_color">แก้สี</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">รีเซ็ต</string>
   <string name="EditReactionsFragment_save">บันทึก</string>
   <!--EOF-->
 </resources>
