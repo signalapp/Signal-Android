@@ -9,7 +9,7 @@
         <item name="home_gradient_end">#FFFFFFFF</item>
 
         <item name="message_received_background_color">#F5F5F5</item>
-        <item name="message_sent_background_color">?colorAccent</item>
+        <item name="message_sent_background_color">#00E076</item>
 
         <item name="android:statusBarColor">@android:color/black</item>
 

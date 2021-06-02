@@ -38,7 +38,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         val adapter = ConversationAdapter(this, cursor)
         adapter.setHasStableIds(true)
         conversationRecyclerView.adapter = adapter
-        conversationRecyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.reverseLayout = true
+        conversationRecyclerView.layoutManager = layoutManager
     }
 
     private fun setUpToolbar() {

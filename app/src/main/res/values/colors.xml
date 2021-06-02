@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <!-- Session -->
     <color name="accent">#00F782</color>
     <color name="accent_alpha50">#8000F782</color>
     <color name="text">#FFFFFF</color>
@@ -35,11 +33,8 @@
         <item>#f3c615</item>
         <item>#fcac5a</item>
     </array>
-    <!-- Session -->
 
-    <!-- Loki -->
     <color name="loki_darkest_gray">#0a0a0a</color>
-    <!-- Loki -->
 
     <color name="signal_primary">@color/accent</color>
     <color name="signal_primary_dark">@color/accent</color>
@@ -85,5 +80,4 @@
 
     <color name="default_background_start">#121212</color>
     <color name="default_background_end">#171717</color>
-
 </resources>

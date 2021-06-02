@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <!-- Session -->
     <color name="accent">#00E97B</color>
     <color name="accent_alpha50">#8000E97B</color>
     <color name="text">#000000</color>
@@ -22,14 +20,11 @@
     <color name="pn_option_background">#FCFCFC</color>
     <color name="open_group_chip_color">#0D000000</color>
 
-
     <color name="default_background_start">#ffffff</color>
     <color name="default_background_end">#fcfcfd</color>
     <color name="action_bar_background">#fcfcfd</color>
 
-
     <color name="app_icon_background">#333132</color>
     <color name="progress_bar_background">#0A000000</color>
     <color name="quote_not_found_background">#8000E97B</color>
-
 </resources>

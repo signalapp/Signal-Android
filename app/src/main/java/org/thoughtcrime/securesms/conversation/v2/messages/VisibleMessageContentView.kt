@@ -16,6 +16,9 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.loki.utilities.UiMode
+import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
@@ -64,19 +67,25 @@ class VisibleMessageContentView : LinearLayout {
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
         } else {
-            val bodyTextView = getBodyTextView(message.body)
+            val bodyTextView = getBodyTextView(message)
             mainContainer.addView(bodyTextView)
         }
     }
     // endregion
 
     // region Convenience
-    private fun getBodyTextView(body: String): TextView {
+    private fun getBodyTextView(message: MessageRecord): TextView {
         val result = TextView(context)
         result.setPadding(resources.getDimension(R.dimen.small_spacing).toInt())
-        result.text = body
+        result.text = message.body
         result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.medium_font_size))
-        // TODO: Further styling
+        val uiMode = UiModeUtilities.getUserSelectedUiMode(context)
+        val colorID = if (message.isOutgoing) {
+            if (uiMode == UiMode.NIGHT) R.color.black else R.color.white
+        } else {
+            if (uiMode == UiMode.NIGHT) R.color.white else R.color.black
+        }
+        result.setTextColor(resources.getColorWithID(colorID, context.theme))
         return result
     }
     // endregion
