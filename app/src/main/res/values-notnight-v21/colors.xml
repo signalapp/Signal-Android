@@ -18,6 +18,7 @@
     <color name="compose_view_background">#FCFCFC</color>
     <color name="compose_text_view_background">#EDEDED</color>
     <color name="new_conversation_button_collapsed_background">#F5F5F5</color>
+    <color name="new_conversation_button_shadow">#4D077C44</color>
     <color name="pn_option_background">#FCFCFC</color>
     <color name="open_group_chip_color">#0D000000</color>
 
