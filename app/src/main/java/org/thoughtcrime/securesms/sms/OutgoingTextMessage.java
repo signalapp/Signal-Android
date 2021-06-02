@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.sms;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.guava.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class OutgoingTextMessage {
 
