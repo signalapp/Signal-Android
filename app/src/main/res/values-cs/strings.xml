@@ -3131,5 +3131,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Výběr horní hrany</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Výběr spodní hrany</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Upravit reakce</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Klepněte pro nahrazení emoji</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Resetovat emoji</string> -->
+  <string name="EditReactionsFragment_save">Uložit</string>
   <!--EOF-->
 </resources>

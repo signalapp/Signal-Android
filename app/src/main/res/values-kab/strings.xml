@@ -2704,5 +2704,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Sekles</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Sekles</string>
   <!--EOF-->
 </resources>

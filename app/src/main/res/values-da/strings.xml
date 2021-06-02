@@ -2964,5 +2964,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Øverste kantvælger</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Nederste kantvælger</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Rediger reaktioner </string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryk for at skifte en emoji</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Nulstil emoji</string> -->
+  <string name="EditReactionsFragment_save">Gem</string>
   <!--EOF-->
 </resources>

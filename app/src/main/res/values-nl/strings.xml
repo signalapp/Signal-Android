@@ -329,7 +329,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signals ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gespreksverzoek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signals ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
@@ -2763,8 +2763,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatWallpaperFragment__reset">Voor dit gesprek verwijderen</string>
   <string name="ChatWallpaperFragment__clear">Verwijderen</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je de kleur voor alle gesprekken verwijderen?</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je de achtergrond voor alle gesprekken verwijderen?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wil je alleen de standaardkleur verwijderen of wil je de kleurinstellingen van alle gesprekken verwijderen?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wil je alleen de standaardachtergrond verwijderen of wil je alle achtergronden van alle gesprekken verwijderen?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Standaardkleur verwijderen</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Alle kleurinstellingen verwijderen</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">Standaardachtergrond verwijderen</string>
@@ -2774,7 +2774,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Kiezen vanuit galerij</string>
-  <string name="ChatWallpaperSelectionFragment__presets">Beschikbare standaard-achtergronden</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Reeds beschikbare achtergronden</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Gespreksachtergrond kiezen</string>
@@ -2968,5 +2968,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Schuifknop voor de bovenrand</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Schuifknop voor de onderrand</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Emoji-reactie-balk aanpassen</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tik op een emoji om die te vervangen</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Standaardinstelling herstellen</string> -->
+  <string name="EditReactionsFragment_save">Opslaan</string>
   <!--EOF-->
 </resources>

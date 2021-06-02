@@ -2966,5 +2966,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">حفظ</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">حفظ</string>
   <!--EOF-->
 </resources>

@@ -672,6 +672,7 @@
   <string name="ManageGroupActivity_mute_notifications">Izklop obvestil</string>
   <string name="ManageGroupActivity_custom_notifications">Obvestila po meri</string>
   <string name="ManageGroupActivity_mentions">Omembe</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Barva pogovora in ozadja</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Za vedno</string>
   <string name="ManageGroupActivity_off">Izklopljena</string>
@@ -1320,6 +1321,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Tu ni nikogar drugega</string>
   <string name="WebRtcCallView__s_is_in_this_call">Uporabnik/ca %1$s je v tem klicu</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Uporabnika/ci %1$s in %2$s sta v tem klicu</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s predstavlja</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">Uporabnika/ci  %1$s, %2$s, in še %3$d drug/a so v tem klicu</item>
     <item quantity="two">Uporabnika/ci  %1$s, %2$s, in še %3$d druga/i so v tem klicu</item>
@@ -1341,6 +1343,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ne morete prejemati zvoka in videa od uporabnika/ce %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To je zato, ker niso overili vašega spremenjenega varnostnega števila, ker je nek problem na njihovi napravi ali pa so vas blokirali.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Za ogled delitve zaslona podrsajte</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proksi strežnik</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Naslov proksi</string>
@@ -2099,6 +2102,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Ozadje pogovora</string>
+  <string name="preferences__chat_color_and_wallpaper">Barva pogovora in ozadja</string>
   <string name="preferences__disable_pin">Izklop PINa</string>
   <string name="preferences__enable_pin">Vklopi PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Z izklopom PINa boste ob ponovni prijavi v svoj račun Signal izgubili vse tam shranjene podatke, razen če prej sami ne ustvarite varnostne kopije. Brez PINa tudi ne morete vklopiti zaklepa registracije.</string>
@@ -2817,12 +2821,24 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatWallpaperActivity__chat_wallpaper">Ozadje pogovora</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Barva pogovora</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Ponastavi barve pogovorov</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Ponastavi barvo pogovora</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Želite ponastaviti barvo pogovora?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Določi ozadje</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Temna téma zatemni ozadje</string>
   <string name="ChatWallpaperFragment__contact_name">Ime stika</string>
   <string name="ChatWallpaperFragment__reset">Ponastavi</string>
   <string name="ChatWallpaperFragment__clear">Izbriši</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Predogled ozadja</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Želite povoziti vse barve pogovorov?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Želite povoziti vsa ozadja?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Ponastavi privzete barve</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Ponastavi vse barve</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Ponastavi privzeto ozadje</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Ponastavi vsa ozadja</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Ponastavi ozadja</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Ponastavi ozadje</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Ponastavim ozadje?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Izberi izmed fotografij</string>
   <string name="ChatWallpaperSelectionFragment__presets">Prednastavljeni</string>
@@ -2868,6 +2884,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">V tej skupini ni nikogar iz vašega imenika ali ljudi s katerimi si pošiljate sporočila. Pred potrditvijo dobro preverite prošnje, da se izognete neželeni pošti.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O prošnjah za pogovor</string>
   <string name="GroupsInCommonMessageRequest__okay">Okej</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Tu je predogled barve pogovora.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Barva je vidna samo vam.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Opis skupine</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2935,12 +2953,40 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Klici</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Avtomatično</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Uporabi barve po meri</string>
   <string name="ChatColorSelectionFragment__chat_color">Barva pogovora</string>
   <string name="ChatColorSelectionFragment__edit">Uredi</string>
+  <string name="ChatColorSelectionFragment__duplicate">Podvoji</string>
   <string name="ChatColorSelectionFragment__delete">Izbriši</string>
+  <string name="ChatColorSelectionFragment__delete_color">Izbriši barvo</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ta barva po meri je uporabljena v %1$d pogovoru. Jo želite izbrisati?</item>
+    <item quantity="two">Ta barva po meri je uporabljena v %1$d pogovorih. Jo želite izbrisati za oba pogovora?</item>
+    <item quantity="few">Ta barva po meri je uporabljena v %1$d pogovorih. Jo želite izbrisati za vse pogovore?</item>
+    <item quantity="other">Ta barva po meri je uporabljena v %1$d pogovorih. Jo želite izbrisati za vse pogovore?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Enotna</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Prelivajoča</string>
+  <string name="CustomChatColorCreatorFragment__hue">Odtenek</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Barvna nasičenost</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Shrani</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Uredi barvo</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ta barva po meri je uporabljena v %1$d pogovoru. Ali želite shraniti spremembe?</item>
+    <item quantity="two">Ta barva po meri je uporabljena v %1$d pogovorih. Ali želite shraniti spremembe za oba pogovora?</item>
+    <item quantity="few">Ta barva po meri je uporabljena v %1$d pogovorih. Ali želite shraniti spremembe za vse pogovore?</item>
+    <item quantity="other">Ta barva po meri je uporabljena v %1$d pogovorih. Ali želite shraniti spremembe za vse pogovore?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Gornji rob</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Spodnji rob</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Urejanje Odzivov</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tapnite za zamenjavo emojija</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Ponastavi emoji</string> -->
+  <string name="EditReactionsFragment_save">Shrani</string>
   <!--EOF-->
 </resources>

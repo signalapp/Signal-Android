@@ -2963,5 +2963,10 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">ئۈستى قىر تاللىغۇچ</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">ئاستى قىر تاللىغۇچ</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">ئىنكاس تەھرىر</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">چېكىلسە چىراي بەلگىنى ئالماشتۇرىدۇ</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">چىراي بەلگىنى ئەسلىگە قايتۇر</string> -->
+  <string name="EditReactionsFragment_save">ساقلا</string>
   <!--EOF-->
 </resources>

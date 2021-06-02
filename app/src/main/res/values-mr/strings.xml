@@ -2569,5 +2569,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">जतन करा</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">जतन करा</string>
   <!--EOF-->
 </resources>

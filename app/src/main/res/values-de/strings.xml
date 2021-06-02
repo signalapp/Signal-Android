@@ -894,7 +894,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s hat verschwindende Nachrichten deaktiviert.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du hast die Ablaufzeit verschwindender Nachrichten auf %1$s festgelegt.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s hat die Ablaufzeit verschwindender Nachrichten auf %2$s festgelegt.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Die Ablaufzeit für verschwindende Nachrichten wurde auf %1$s festgelegt.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Die Ablaufzeit verschwindender Nachrichten wurde auf %1$s festgelegt.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diese Gruppe wurde auf eine Gruppe neuen Typs aktualisiert.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du konntest der Gruppe neuen Typs nicht hinzugefügt werden und wurdest daher eingeladen, beizutreten.</string>
   <string name="MessageRecord_chat_session_refreshed">Unterhaltungssitzung aktualisiert</string>
@@ -1207,7 +1207,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
-  <string name="WebRtcCallView__s_is_presenting">%1$s überträgt gerade</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
     <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
@@ -1620,7 +1620,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Keine gemeinsamen Gruppen. Prüfe Anfragen sorgfältig.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Keine Kontakte in dieser Gruppe. Prüfe Anfragen sorgfältig.</string>
   <string name="ConversationUpdateItem_view">Anzeigen</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Die Zeit für verschwindende Nachrichten wird auf %1$s festgelegt, sobald du eine Nachricht sendest.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Die Ablaufzeit für verschwindende Nachrichten wird auf %1$s festgelegt, sobald du dem Nutzer eine Nachricht sendest.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
@@ -2617,7 +2617,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Abbrechen und dieses Gerät aktivieren</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB-Kontostand überweisen?</string>
-  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Dein Kontostand beträgt %1$s. Falls du vor dem Löschen deines Kontos dein Guthaben nicht an eine andere Wallet-Adresse überweist, wirst du es für immer verlieren.</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Dein Kontostand beträgt %1$s. Falls du vor Löschen deines Kontos dein Guthaben nicht an eine andere Wallet-Adresse überweist, wirst du es für immer verlieren.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Nicht überweisen</string>
   <string name="AdvancedPreferenceFragment__transfer">Überweisen</string>
   <!--RecipientBottomSheet-->
@@ -2851,7 +2851,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnreadPayments__d_new_payment_notifications">%1$d neue Zahlungsbenachrichtigungen</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Zahlung kann nicht gesendet werden</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Zum Senden einer Zahlung an diesen Nutzer muss dieser von dir eine Nachrichtenanfrage akzeptieren. Sende ihm eine Nachricht, um eine Nachrichtenanfrage zu stellen.</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Zum Senden einer Zahlung an diesen Nutzer muss er deine Nachrichtenanfrage akzeptieren. Sende ihm eine Nachricht, um eine Nachrichtenanfrage zu stellen.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Sende eine Nachricht</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Du hast keine gemeinsamen Gruppen mit dieser Person. Prüfe Anfragen vor dem Annehmen sorgfältig, um ungewollte Nachrichten zu vermeiden.</string>
@@ -2893,7 +2893,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, »Anrufe immer indirekt« und »Vertraulicher Absender«</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardzeit für neue Unterhaltungen</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardzeit für verschwindende Nachrichten für alle von dir begonnenen neuen Unterhaltungen fest.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten für alle von dir begonnenen neuen Unterhaltungen fest.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Statussymbol anzeigen</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Symbol unter »Nachrichtendetails« anzeigen bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden</string>
@@ -2953,5 +2953,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Auswahl oberer Rand</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Auswahl unterer Rand</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Reaktionen bearbeiten</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Antippen, um ein Emoji zu ersetzen</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Emojis zurücksetzen</string> -->
+  <string name="EditReactionsFragment_save">Speichern</string>
   <!--EOF-->
 </resources>

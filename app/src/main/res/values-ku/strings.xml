@@ -2432,5 +2432,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Tomar bike</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Tomar bike</string>
   <!--EOF-->
 </resources>

@@ -2508,5 +2508,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">सेव</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">सेव</string>
   <!--EOF-->
 </resources>

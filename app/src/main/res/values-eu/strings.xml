@@ -2589,5 +2589,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Gorde</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Gorde</string>
   <!--EOF-->
 </resources>

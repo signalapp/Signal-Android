@@ -611,6 +611,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silencia les notificacions</string>
   <string name="ManageGroupActivity_custom_notifications">Notificacions personalitzades</string>
   <string name="ManageGroupActivity_mentions">Mencions</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Color i fons de la conversa</string>
   <string name="ManageGroupActivity_until_s">Fins a %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Inactiu</string>
@@ -1207,6 +1208,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Aquí no hi ha ningú més.</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s és en aquesta trucada.</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s són en aquesta trucada.</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s fa la presentació</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
     <item quantity="other">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
@@ -1224,6 +1226,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del vostre número de seguretat, hi ha un problema al seu dispositiu o us han blocat.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Llisqueu per veure la compartició de pantalla</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Servidor intermediari</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adreça intermediària</string>
@@ -1959,6 +1962,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__appearance">Aparença</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Fons de la conversa</string>
+  <string name="preferences__chat_color_and_wallpaper">Color i fons de la conversa</string>
   <string name="preferences__disable_pin">Desactiva el PIN</string>
   <string name="preferences__enable_pin">Activa el PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
@@ -2740,12 +2744,24 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatWallpaperActivity__chat_wallpaper">Fons de la conversa</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Color de la conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Restableix els colors de la conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Restableix el color de la conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Voleu restablir el color de la conversa?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Estableix el fons</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">El mode fosc enfosqueix el fons.</string>
   <string name="ChatWallpaperFragment__contact_name">Nom de contacte</string>
   <string name="ChatWallpaperFragment__reset">Restableix</string>
   <string name="ChatWallpaperFragment__clear">Neteja</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Voleu substituir tots els colors de la conversa?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Voleu substituir tots els fons?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Restableix els colors per defecte</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Restableix tots els colors</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Restableix el fons per defecte</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Restableix els fons</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Restableix el fons</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Voleu restablir el fons?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Trieu des de les fotografies</string>
   <string name="ChatWallpaperSelectionFragment__presets">Valors per defecte</string>
@@ -2847,6 +2863,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Cap dels vostres contactes o persones amb qui converseu no forma part d\'aquest grup. Reviseu les sol·licituds amb atenció abans d’acceptar-les per evitar missatges no desitjats.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Quant a les sol·licituds de missatges</string>
   <string name="GroupsInCommonMessageRequest__okay">D\'acord</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aquí teniu una previsualització del color de la conversa.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">El color només el veieu vós.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Descripció del grup</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2914,12 +2932,36 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Trucades</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automàtic</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Usa els colors personalitzats</string>
   <string name="ChatColorSelectionFragment__chat_color">Color de la conversa</string>
   <string name="ChatColorSelectionFragment__edit">Edita</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplica</string>
   <string name="ChatColorSelectionFragment__delete">Suprimeix</string>
+  <string name="ChatColorSelectionFragment__delete_color">Suprimeix el color</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Aquest color personalitzat s\'usa en %1$d conversa. Voleu suprimir-lo per a totes?</item>
+    <item quantity="other">Aquest color personalitzat s\'usa en %1$d converses. Voleu suprimir-lo per a totes?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Sòlid</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Tonalitat</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturació</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Desa</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Edita el color</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Aquest color s\'usa en %1$d conversa. Voleu desar els canvis per a totes?</item>
+    <item quantity="other">Aquest color s\'usa en %1$d converses. Voleu desar els canvis per a totes?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Selector de la vora de dalt</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Selector de la vora de baix</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Edita les reaccions</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Feu un toc per substituir l\'emoticona</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Restableix l\'emoticona</string> -->
+  <string name="EditReactionsFragment_save">Desa</string>
   <!--EOF-->
 </resources>

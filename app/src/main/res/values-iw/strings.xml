@@ -3132,5 +3132,10 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">בוחר קצה עליון</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">בוחר קצה תחתון</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">ערוך תגובות</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">הקש כדי להחליף אימוג\'י</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">אפס אימוג\'י</string> -->
+  <string name="EditReactionsFragment_save">שמור</string>
   <!--EOF-->
 </resources>

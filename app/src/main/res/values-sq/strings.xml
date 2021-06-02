@@ -2968,5 +2968,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Përzgjedhësi i skajit të epërm</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Përzgjedhës i skajit të poshtëm</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Përpuno Reagime</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Prekeni që të zëvendësoni një emoxhi</string>
+  <string name="EditReactionsFragment_save">Ruaje</string>
   <!--EOF-->
 </resources>

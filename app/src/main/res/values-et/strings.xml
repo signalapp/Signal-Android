@@ -2797,5 +2797,7 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Ülemise ääre valija</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Alumise ääre valija</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Salvesta</string>
   <!--EOF-->
 </resources>

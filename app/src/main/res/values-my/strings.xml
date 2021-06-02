@@ -2779,5 +2779,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">သိမ်းမယ်</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">သိမ်းမယ်</string>
   <!--EOF-->
 </resources>

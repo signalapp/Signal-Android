@@ -2588,5 +2588,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">భద్రపరుచు</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">భద్రపరుచు</string>
   <!--EOF-->
 </resources>

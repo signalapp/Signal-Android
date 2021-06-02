@@ -3045,5 +3045,10 @@ broj telefona</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Birač na gornjem rubu</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Birač na donjem rubu</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Uredi reakciju</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite za zamjenu emotikona</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Poništi emotikon</string> -->
+  <string name="EditReactionsFragment_save">Spremi</string>
   <!--EOF-->
 </resources>

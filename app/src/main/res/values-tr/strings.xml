@@ -2906,5 +2906,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Kaydet</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Kaydet</string>
   <!--EOF-->
 </resources>

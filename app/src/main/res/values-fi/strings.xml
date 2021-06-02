@@ -2828,5 +2828,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Tallenna</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Tallenna</string>
   <!--EOF-->
 </resources>

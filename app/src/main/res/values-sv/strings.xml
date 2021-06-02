@@ -1766,7 +1766,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditAboutFragment_taking_a_break">Tar en rast</string>
   <string name="EditAboutFragment_working_on_something_new">Arbetar på något nytt</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group">Ändra grupp</string>
+  <string name="EditProfileFragment__edit_group">Redigera grupp</string>
   <string name="EditProfileFragment__group_name">Gruppnamn</string>
   <string name="EditProfileFragment__group_description">Gruppbeskrivning</string>
   <!--EditProfileNameFragment-->
@@ -2932,6 +2932,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Samtal</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automatiskt</string>
   <string name="ChatColorSelectionFragment__use_custom_colors">Använd anpassade färger</string>
   <string name="ChatColorSelectionFragment__chat_color">Chattfärg</string>
   <string name="ChatColorSelectionFragment__edit">Ändra</string>
@@ -2943,6 +2944,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">Denna anpassade färg används %1$d chattar. Vill du ta bort den för alla chattar?</item>
   </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
   <string name="CustomChatColorCreatorFragment__gradient">Lutning</string>
   <string name="CustomChatColorCreatorFragment__hue">Nyans</string>
   <string name="CustomChatColorCreatorFragment__saturation">Mättnad</string>
@@ -2954,5 +2956,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">Denna färg används i %1$d chattar. Vill du spara ändringar för alla chattar?</item>
   </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Övre kantväljare</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Nedre kantväljare</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Redigera reaktioner</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryck för att ersätta en emoji</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Återställ emoji</string> -->
+  <string name="EditReactionsFragment_save">Spara</string>
   <!--EOF-->
 </resources>

@@ -2984,6 +2984,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Самонестајуће поруке</string>
   <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирање снимка екрана у списку недавних апликација и унутар апликације</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Поруке и позиви преко Signal-а, увек преузмеравај позиве, запечаћени пошиљалац</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нове преписке</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -3035,6 +3036,7 @@
   <string name="CustomChatColorCreatorFragment__solid">Солидно</string>
   <string name="CustomChatColorCreatorFragment__gradient">Градијент</string>
   <string name="CustomChatColorCreatorFragment__hue">Нијанса</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Засићење боје</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Сачувај</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Променити боју</string>
@@ -3046,5 +3048,10 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Селектор горње ивице</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Селектор доње ивице</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Променити реакције</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Пипните за промену емоџиа</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Рисетовати емоџи</string> -->
+  <string name="EditReactionsFragment_save">Сачувај</string>
   <!--EOF-->
 </resources>

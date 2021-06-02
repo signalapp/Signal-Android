@@ -1347,6 +1347,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Negalima gauti garso ir vaizdo iš %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Taip gali būti dėl to, kad šis naudotojas nepatvirtino jūsų saugumo numerio pasikeitimo, atsirado problemų su naudotojo įrenginiu arba jis jus užblokavo.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Perbraukite, norėdami matyti ekrano bendrinimą</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Įgaliotasis serveris</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Įgaliotojo serverio adresas</string>
@@ -2917,11 +2918,16 @@
   <string name="ChatWallpaperFragment__reset_chat_color">Atstatyti pokalbio spalvą</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Atstatyti pokalbio spalvą?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Nustatyti foną</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tamsi veiksena pritemdo foną</string>
   <string name="ChatWallpaperFragment__contact_name">Adresato vardas</string>
   <string name="ChatWallpaperFragment__reset">Atstatyti</string>
   <string name="ChatWallpaperFragment__clear">Išvalyti</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Fono peržiūra</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Ar norėtumėte nustelbti visų pokalbių spalvas?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Ar norėtumėte nustelbti visus fonus?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Atstatyti numatytąsias spalvas</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Atstatyti visas spalvas</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Atstatyti numatytąjį foną</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Atstatyti visus fonus</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">Atstatyti fonus</string>
   <string name="ChatWallpaperFragment__reset_wallpaper">Atstatyti foną</string>
@@ -3096,16 +3102,40 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Skambučiai</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
   <string name="ChatColorSelectionFragment__use_custom_colors">Naudoti tinkintas spalvas</string>
   <string name="ChatColorSelectionFragment__chat_color">Pokalbio spalva</string>
   <string name="ChatColorSelectionFragment__edit">Taisyti</string>
   <string name="ChatColorSelectionFragment__duplicate">Dubliuoti</string>
   <string name="ChatColorSelectionFragment__delete">Ištrinti</string>
   <string name="ChatColorSelectionFragment__delete_color">Ištrinti spalvą</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ši tinkinta spalva yra naudojama %1$d pokalbyje. Ar norite ją ištrinti visuose pokalbiuose?</item>
+    <item quantity="few">Ši tinkinta spalva yra naudojama %1$d pokalbiuose. Ar norite ją ištrinti visuose pokalbiuose?</item>
+    <item quantity="many">Ši tinkinta spalva yra naudojama %1$d pokalbių. Ar norite ją ištrinti visuose pokalbiuose?</item>
+    <item quantity="other">Ši tinkinta spalva yra naudojama %1$d pokalbyje. Ar norite ją ištrinti visuose pokalbiuose?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Vientisa</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradientas</string>
+  <string name="CustomChatColorCreatorFragment__hue">Atspalvis</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Sodrumas</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Įrašyti</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Taisyti spalvą</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ši spalva yra naudojama %1$d pokalbyje. Ar norite įrašyti pakeitimus visuose pokalbiuose?</item>
+    <item quantity="few">Ši spalva yra naudojama %1$d pokalbiuose. Ar norite įrašyti pakeitimus visuose pokalbiuose?</item>
+    <item quantity="many">Ši spalva yra naudojama %1$d pokalbių. Ar norite įrašyti pakeitimus visuose pokalbiuose?</item>
+    <item quantity="other">Ši spalva yra naudojama %1$d pokalbyje. Ar norite įrašyti pakeitimus visuose pokalbiuose?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Viršutinio krašto parinkiklis</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Apatinio krašto parinkiklis</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Taisyti reakcijas</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Bakstelėkite, norėdami pakeisti jaustuką</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Atstatyti jaustuką</string> -->
+  <string name="EditReactionsFragment_save">Įrašyti</string>
   <!--EOF-->
 </resources>

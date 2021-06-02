@@ -2964,5 +2964,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selector límite superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector límite inferior</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Modificar reacciones</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toca para reemplazar un emoji</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Restaurar emoji</string> -->
+  <string name="EditReactionsFragment_save">Guardar</string>
   <!--EOF-->
 </resources>

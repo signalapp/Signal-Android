@@ -3101,5 +3101,7 @@ Send neges heb ei ddiogelu?</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Cadw</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Cadw</string>
   <!--EOF-->
 </resources>

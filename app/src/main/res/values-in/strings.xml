@@ -2511,5 +2511,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Simpan</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Simpan</string>
   <!--EOF-->
 </resources>

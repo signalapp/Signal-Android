@@ -2177,6 +2177,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Cerere</string>
+  <string name="CreatePaymentFragment__pay">Plătește</string>
+  <string name="CreatePaymentFragment__available_balance_s">Sold disponibil: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Comutare</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2198,6 +2201,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmPayment__balance_s">Sold: %1$s</string>
   <string name="ConfirmPayment__payment_complete">Plată finalizată</string>
   <string name="ConfirmPayment__payment_failed">Plata a eșuat</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Destinatar invalid</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s la %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2560,15 +2564,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransferSetup__turn_on_location_services">Activare servicii de localizare</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Nu se pot deschide setările de locație.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Activare Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Eroare la conectare </string>
   <string name="DeviceTransferSetup__retry">Încearcă din nou</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Trimiteți jurnalul de depanare</string>
   <string name="DeviceTransferSetup__verify_code">Verificare cod</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verificați dacă codul de mai jos se potrivește pe ambele dispozitive. Apoi selectați Continuare.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numerele nu se potrivesc</string>
   <string name="DeviceTransferSetup__continue">Continuă</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Numărul nu este același</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Dacă numerele de pe dispozitivele dvs. nu se potrivesc, este posibil să vă conectați la dispozitivul greșit. Pentru a remedia acest lucru, opriți transferul și încercați din nou și păstrați ambele dispozitive aproape.</string>
   <string name="DeviceTransferSetup__stop_transfer">Oprire transfer</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Vechiul dispozitiv nu a putut fi găsit</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Noul dispozitiv nu a putut fi găsit</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Asigurați-vă că următoarele permisiuni și servicii sunt activate:</string>
   <string name="DeviceTransferSetup__location_permission">Permisie locație</string>
   <string name="DeviceTransferSetup__location_services">Servicii locație</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
@@ -2581,6 +2589,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Atingeți Continuare pe celălalt dispozitiv pentru a începe transferul.</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Atingeți Continuă pe celălalt dispozitiv…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nu se poate transfera dintr-o versiune mai nouă de Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Se transmit datele</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Țineți ambele dispozitive unul lângă altul. Nu opriți dispozitivele și mențineți Signal deschis. Transferurile sunt criptate integral.</string>
@@ -2589,9 +2598,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransfer__try_again">Încercați din nou</string>
   <string name="DeviceTransfer__stop_transfer_question">Opriți transferul?</string>
   <string name="DeviceTransfer__stop_transfer">Oprire transfer</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Tot progresul transferului se va pierde.</string>
   <string name="DeviceTransfer__transfer_failed">Transfer eșuat</string>
+  <string name="DeviceTransfer__unable_to_transfer">Nu se poate transfera</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transfer cont</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Vă puteți transfera contul Signal când configurați Signal pe un dispozitiv Android nou. Înainte de a continua:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Descărcați Signal pe noul dispozitiv Android</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -2601,6 +2613,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="OldDeviceTransferInstructions__continue">Continuă</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Accesați noul dispozitiv</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Datele dvs. Signal au fost transferate pe noul dvs. dispozitiv. Pentru a finaliza procesul de transfer, trebuie să continuați înregistrarea pe noul dispozitiv.</string>
   <string name="OldDeviceTransferComplete__close">Închide</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Transferul a fost făcut cu succes</string>
@@ -2911,5 +2925,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selector margine superioară</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector margine inferioară</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Salvează</string>
   <!--EOF-->
 </resources>

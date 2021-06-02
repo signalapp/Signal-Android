@@ -2784,5 +2784,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">บันทึก</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">แก้สี</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">บันทึก</string>
   <!--EOF-->
 </resources>

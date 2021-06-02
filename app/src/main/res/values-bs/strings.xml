@@ -3053,5 +3053,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Birač za vrh</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Birač za dno</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Promijeni reakcije</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite da biste zamijenili emoji-sličicu</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Poništi emoji-sličicu</string> -->
+  <string name="EditReactionsFragment_save">Pohrani</string>
   <!--EOF-->
 </resources>

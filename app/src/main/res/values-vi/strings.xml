@@ -2539,5 +2539,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Lưu</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Lưu</string>
   <!--EOF-->
 </resources>

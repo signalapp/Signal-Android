@@ -2931,5 +2931,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Vista</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Vista</string>
   <!--EOF-->
 </resources>

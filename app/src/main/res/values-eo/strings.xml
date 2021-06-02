@@ -2784,5 +2784,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Konservi</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Konservi</string>
   <!--EOF-->
 </resources>

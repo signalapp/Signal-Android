@@ -2653,5 +2653,7 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">സംരക്ഷിക്കൂ</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">സംരക്ഷിക്കൂ</string>
   <!--EOF-->
 </resources>

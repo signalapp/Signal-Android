@@ -2963,5 +2963,10 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Seletor da borda superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Seletor da borda inferior</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Editar reações</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toque para substituir um emoji</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Repor emojis</string> -->
+  <string name="EditReactionsFragment_save">Guardar</string>
   <!--EOF-->
 </resources>

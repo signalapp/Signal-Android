@@ -3125,5 +3125,10 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Выбор верхней грани</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Выбор нижней грани</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Редактировать реакции</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Нажмите, чтобы заменить эмодзи</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Сбросить эмодзи</string> -->
+  <string name="EditReactionsFragment_save">Сохранить</string>
   <!--EOF-->
 </resources>

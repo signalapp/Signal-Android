@@ -2970,5 +2970,10 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Toppkantveljar</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Botnkantveljar</string>
+  <!--EditReactionsFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__edit_reactions">Endra Reaksjonar</string> -->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Trykk for å bytta ut ein emoji</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditReactionsFragment__reset_emoji">Nullstill emoji</string> -->
+  <string name="EditReactionsFragment_save">Lagra</string>
   <!--EOF-->
 </resources>

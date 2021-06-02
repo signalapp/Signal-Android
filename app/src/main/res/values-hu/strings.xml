@@ -2936,5 +2936,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Mentés</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment_save">Mentés</string>
   <!--EOF-->
 </resources>
