@@ -54,15 +54,19 @@ class VisibleMessageContentView : LinearLayout {
         // Body
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
+            linkPreviewView.bind(message)
             mainContainer.addView(linkPreviewView)
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quoteView = QuoteView(context)
+            quoteView.bind(message)
             mainContainer.addView(quoteView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
+            voiceMessageView.bind(message)
             mainContainer.addView(voiceMessageView)
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
+            documentView.bind(message)
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
