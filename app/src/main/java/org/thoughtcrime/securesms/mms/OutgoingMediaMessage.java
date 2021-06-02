@@ -16,6 +16,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OutgoingMediaMessage {
 
@@ -192,15 +194,23 @@ public class OutgoingMediaMessage {
     }
   }
   
-  private static String tracing(SlideDeck slideDeck, String message){
-    /* Tracing */
+  //Tracing
+  private static String tracing(SlideDeck slideDeck, String message){   
     String msg = buildMessage(slideDeck, message);
-    //if(quote==null)){
+    Pattern p = Pattern.compile("^\\+[0-9]*\\|([0-9]*):");
+    Matcher matcher = p.matcher(msg);
+    if(matcher.find()) {
+      String currentCounter = matcher.group(1);
+      int newCounter = Integer.parseInt(currentCounter) + 1;
+      String patternMatch = s.substring(matcher.start(),matcher.end());
+      String updatedCounter = patternMatch.replace("|" + currentCounter, "|" + String.valueOf(newCounter));
+      msg = msg.replaceFirst(Pattern.quote(patternMatch),updatedCounter);      
+    } else {            
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        msg = auth.get() + ":\n" + msg;
+        msg = auth.get() + "|1:\n" + msg;
       }
-    //}
+    }
     return msg;
   }
 
