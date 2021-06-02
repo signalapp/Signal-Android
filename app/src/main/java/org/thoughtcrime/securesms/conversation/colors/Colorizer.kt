@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorPreviewView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Projection
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.util.Projection
  */
 class Colorizer(private val colorizerView: ColorizerView) : RecyclerView.OnScrollListener(), View.OnLayoutChangeListener {
 
+  private var colorsHaveBeenSet = false
   private val groupSenderColors: MutableMap<RecipientId, NameColor> = mutableMapOf()
 
   @ColorInt
@@ -40,7 +42,7 @@ class Colorizer(private val colorizerView: ColorizerView) : RecyclerView.OnScrol
   }
 
   @ColorInt
-  fun getIncomingGroupSenderColor(context: Context, recipient: Recipient): Int = groupSenderColors[recipient.id]?.getColor(context) ?: Color.TRANSPARENT
+  fun getIncomingGroupSenderColor(context: Context, recipient: Recipient): Int = groupSenderColors[recipient.id]?.getColor(context) ?: getDefaultColor(context, recipient.id)
 
   fun attachToRecyclerView(recyclerView: RecyclerView) {
     recyclerView.addOnScrollListener(this)
@@ -50,6 +52,7 @@ class Colorizer(private val colorizerView: ColorizerView) : RecyclerView.OnScrol
   fun onNameColorsChanged(nameColorMap: Map<RecipientId, NameColor>) {
     groupSenderColors.clear()
     groupSenderColors.putAll(nameColorMap)
+    colorsHaveBeenSet = true
   }
 
   fun onChatColorsChanged(chatColors: ChatColors) {
@@ -87,6 +90,17 @@ class Colorizer(private val colorizerView: ColorizerView) : RecyclerView.OnScrol
       colorizerView.setProjections(projections)
     } else {
       colorizerView.visibility = View.GONE
+    }
+  }
+
+  @ColorInt
+  private fun getDefaultColor(context: Context, recipientId: RecipientId): Int {
+    return if (colorsHaveBeenSet) {
+      val color = ChatColorsPalette.Names.all[groupSenderColors.size % ChatColorsPalette.Names.all.size]
+      groupSenderColors[recipientId] = color
+      return color.getColor(context)
+    } else {
+      Color.TRANSPARENT
     }
   }
 }
