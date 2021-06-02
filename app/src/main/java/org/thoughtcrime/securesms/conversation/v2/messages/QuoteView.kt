@@ -24,7 +24,7 @@ class QuoteView : LinearLayout {
     }
 
     private fun setUpViewHierarchy() {
-        LayoutInflater.from(context).inflate(R.layout.view_link_preview, this)
+        LayoutInflater.from(context).inflate(R.layout.view_quote, this)
     }
     // endregion
 

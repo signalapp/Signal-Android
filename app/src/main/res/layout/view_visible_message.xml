@@ -21,10 +21,6 @@
         android:orientation="horizontal"
         android:gravity="bottom">
 
-        <!-- The linear layout below is marked as "useless", but this isn't the case. It's
-             convenient because it allows you to show or hide the profile picture plus the spacers
-             before and behind it in one go. -->
-
         <LinearLayout
             android:id="@+id/profilePictureContainer"
             android:layout_width="wrap_content"

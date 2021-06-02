@@ -24,7 +24,7 @@ class VoiceMessageView : LinearLayout {
     }
 
     private fun setUpViewHierarchy() {
-        LayoutInflater.from(context).inflate(R.layout.view_document, this)
+        LayoutInflater.from(context).inflate(R.layout.view_voice_message, this)
     }
     // endregion
 
