@@ -1306,6 +1306,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  private @NonNull Projection.Corners getBodyBubbleCorners(int topStart, int topEnd, int bottomEnd, int bottomStart) {
+    if (ViewUtil.isRtl(this)) {
+      return new Projection.Corners(topEnd, topStart, bottomStart, bottomEnd);
+    } else {
+      return new Projection.Corners(topStart, topEnd, bottomEnd, bottomStart);
+    }
+  }
+
   private void setMessageShape(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     int bigRadius   = readDimen(R.dimen.message_corner_radius);
     int smallRadius = readDimen(R.dimen.message_corner_collapse_radius);
@@ -1329,7 +1337,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_sent_start;
         setOutlinerRadii(outliner, bigRadius, bigRadius, smallRadius, bigRadius);
         setOutlinerRadii(pulseOutliner, bigRadius, bigRadius, smallRadius, bigRadius);
-        bodyBubbleCorners = new Projection.Corners(bigRadius, bigRadius, smallRadius, bigRadius);
+        bodyBubbleCorners = getBodyBubbleCorners(bigRadius, bigRadius, smallRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_start;
         setOutlinerRadii(outliner, bigRadius, bigRadius, bigRadius, smallRadius);
@@ -1341,7 +1349,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_sent_end;
         setOutlinerRadii(outliner, bigRadius, smallRadius, bigRadius, bigRadius);
         setOutlinerRadii(pulseOutliner, bigRadius, smallRadius, bigRadius, bigRadius);
-        bodyBubbleCorners = new Projection.Corners(bigRadius, smallRadius, bigRadius, bigRadius);
+        bodyBubbleCorners = getBodyBubbleCorners(bigRadius, smallRadius, bigRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_end;
         setOutlinerRadii(outliner, smallRadius, bigRadius, bigRadius, bigRadius);
@@ -1353,7 +1361,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         background = R.drawable.message_bubble_background_sent_middle;
         setOutlinerRadii(outliner, bigRadius, smallRadius, smallRadius, bigRadius);
         setOutlinerRadii(pulseOutliner, bigRadius, smallRadius, smallRadius, bigRadius);
-        bodyBubbleCorners = new Projection.Corners(bigRadius, smallRadius, smallRadius, bigRadius);
+        bodyBubbleCorners = getBodyBubbleCorners(bigRadius, smallRadius, smallRadius, bigRadius);
       } else {
         background = R.drawable.message_bubble_background_received_middle;
         setOutlinerRadii(outliner, smallRadius, bigRadius, bigRadius, smallRadius);
