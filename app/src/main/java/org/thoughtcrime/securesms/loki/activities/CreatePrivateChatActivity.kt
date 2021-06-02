@@ -7,35 +7,43 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
 import android.text.InputType
+import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_create_private_chat.loader
-import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
-import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.snode.SnodeAPI
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.DistributionTypes
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsignal.utilities.PublicKeyValidation
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.session.libsession.utilities.recipients.Recipient
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.PublicKeyValidation
-
 
 class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = CreatePrivateChatActivityAdapter(this)
+    private var isKeyboardShowing = false
+        set(value) {
+            val hasChanged = (field != value)
+            field = value
+            if (hasChanged) {
+                adapter.isKeyboardShowing = value
+            }
+        }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
@@ -47,11 +55,15 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
-    }
+        rootLayout.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_done, menu)
-        return true
+            override fun onGlobalLayout() {
+                val diff = rootLayout.rootView.height - rootLayout.height
+                val displayMetrics = this@CreatePrivateChatActivity.resources.displayMetrics
+                val estimatedKeyboardHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200.0f, displayMetrics)
+                this@CreatePrivateChatActivity.isKeyboardShowing = (diff > estimatedKeyboardHeight)
+            }
+        })
     }
     // endregion
 
@@ -73,13 +85,6 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     // endregion
 
     // region Interaction
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.doneButton -> adapter.enterPublicKeyFragment.createPrivateChatIfPossible()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun handleQRCodeScanned(hexEncodedPublicKey: String) {
         createPrivateChatIfPossible(hexEncodedPublicKey)
     }
@@ -122,6 +127,8 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
 // region Adapter
 private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatActivity) : FragmentPagerAdapter(activity.supportFragmentManager) {
     val enterPublicKeyFragment = EnterPublicKeyFragment()
+    var isKeyboardShowing = false
+        set(value) { field = value; enterPublicKeyFragment.isKeyboardShowing = isKeyboardShowing }
 
     override fun getCount(): Int {
         return 2
@@ -152,6 +159,8 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
 
 // region Enter Public Key Fragment
 class EnterPublicKeyFragment : Fragment() {
+    var isKeyboardShowing = false
+        set(value) { field = value; handleIsKeyboardShowingChanged() }
 
     private val hexEncodedPublicKey: String
         get() {
@@ -182,6 +191,10 @@ class EnterPublicKeyFragment : Fragment() {
         createPrivateChatButton.setOnClickListener { createPrivateChatIfPossible() }
     }
 
+    private fun handleIsKeyboardShowingChanged() {
+        optionalContentContainer.isVisible = !isKeyboardShowing
+    }
+
     private fun copyPublicKey() {
         val clipboard = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
@@ -197,9 +210,10 @@ class EnterPublicKeyFragment : Fragment() {
         startActivity(intent)
     }
 
-    fun createPrivateChatIfPossible() {
-        val hexEncodedPublicKey = publicKeyEditText.text?.trim().toString() ?: ""
-        (requireActivity() as CreatePrivateChatActivity).createPrivateChatIfPossible(hexEncodedPublicKey)
+    private fun createPrivateChatIfPossible() {
+        val hexEncodedPublicKey = publicKeyEditText.text?.trim().toString()
+        val activity = requireActivity() as CreatePrivateChatActivity
+        activity.createPrivateChatIfPossible(hexEncodedPublicKey)
     }
 }
 // endregion

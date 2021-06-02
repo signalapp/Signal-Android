@@ -15,10 +15,10 @@
         android:elevation="1dp" />
 
     <EditText
-        style="@style/SessionEditText"
+        style="@style/SmallSessionEditText"
         android:id="@+id/publicKeyEditText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="64dp"
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
@@ -26,7 +26,7 @@
         android:paddingBottom="0dp"
         android:gravity="center_vertical"
         android:inputType="textMultiLine"
-        android:maxLines="2"
+        android:maxLines="3"
         android:imeOptions="actionDone"
         android:hint="@string/fragment_enter_public_key_edit_text_hint" />
 
@@ -41,56 +41,65 @@
         android:alpha="0.6"
         android:textAlignment="center"
         android:text="@string/fragment_enter_public_key_explanation" />
-    
-    <org.thoughtcrime.securesms.loki.views.LabeledSeparatorView
-        android:id="@+id/separatorView"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginRight="@dimen/large_spacing" />
-
-    <TextView
-        android:id="@+id/publicKeyTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginRight="@dimen/large_spacing"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text"
-        android:fontFamily="@font/space_mono_regular"
-        android:textAlignment="center"
-        tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
 
     <LinearLayout
+        android:id="@+id/optionalContentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginRight="@dimen/large_spacing"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Button
-            style="@style/Widget.Session.Button.Common.UnimportantFilled"
-            android:id="@+id/copyButton"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/medium_button_height"
-            android:layout_weight="1"
-            android:text="@string/copy" />
+        <org.thoughtcrime.securesms.loki.views.LabeledSeparatorView
+            android:id="@+id/separatorView"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/large_spacing"
+            android:layout_marginRight="@dimen/large_spacing" />
 
-        <Button
-            style="@style/Widget.Session.Button.Common.UnimportantFilled"
-            android:id="@+id/shareButton"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/medium_button_height"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/medium_spacing"
-            android:text="@string/share" />
+        <TextView
+            android:id="@+id/publicKeyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/large_spacing"
+            android:layout_marginRight="@dimen/large_spacing"
+            android:textSize="@dimen/medium_font_size"
+            android:textColor="@color/text"
+            android:fontFamily="@font/space_mono_regular"
+            android:textAlignment="center"
+            tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/large_spacing"
+            android:layout_marginRight="@dimen/large_spacing"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/Widget.Session.Button.Common.UnimportantFilled"
+                android:id="@+id/copyButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_weight="1"
+                android:text="@string/copy" />
+
+            <Button
+                style="@style/Widget.Session.Button.Common.UnimportantFilled"
+                android:id="@+id/shareButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/medium_spacing"
+                android:text="@string/share" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <View
+        android:id="@+id/spacer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1" />
