@@ -103,6 +103,7 @@ public final class Megaphones {
       put(Event.GROUP_CALLING, shouldShowGroupCallingMegaphone() ? ALWAYS : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
+      put(Event.CHAT_COLORS, ALWAYS);
     }};
   }
 
@@ -130,6 +131,8 @@ public final class Megaphones {
         return buildOnboardingMegaphone();
       case NOTIFICATIONS:
         return buildNotificationsMegaphone(context);
+      case CHAT_COLORS:
+        return buildChatColorsMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -301,6 +304,14 @@ public final class Megaphones {
                         .build();
   }
 
+  private static @NonNull Megaphone buildChatColorsMegaphone() {
+    return new Megaphone.Builder(Event.CHAT_COLORS, Megaphone.Style.POPUP)
+                        .setTitle(R.string.ChatColorsMegaphone__new_chat_colors)
+                        .setBody(R.string.ChatColorsMegaphone__we_switched_up_chat_colors)
+                        .setLottie(R.raw.color_bubble_64)
+                        .build();
+  }
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
@@ -355,7 +366,8 @@ public final class Megaphones {
     DONATE("donate"),
     GROUP_CALLING("group_calling"),
     ONBOARDING("onboarding"),
-    NOTIFICATIONS("notifications");
+    NOTIFICATIONS("notifications"),
+    CHAT_COLORS("chat_colors");
 
     private final String key;
 

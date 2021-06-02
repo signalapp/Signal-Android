@@ -1,11 +1,15 @@
 package org.thoughtcrime.securesms.conversation.colors.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.TooltipPopup
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -83,6 +87,15 @@ class ChatColorSelectionAdapter(
 
       val mask = model.chatColors.asCircle()
       preview.setImageDrawable(mask.withFixedSize(ViewUtil.dpToPx(56)))
+
+      if (model.isAuto && SignalStore.chatColorsValues().shouldShowAutoTooltip) {
+        SignalStore.chatColorsValues().shouldShowAutoTooltip = false
+        TooltipPopup.forTarget(itemView)
+          .setText(R.string.ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper)
+          .setBackgroundTint(ContextCompat.getColor(context, R.color.signal_accent_primary))
+          .setTextColor(Color.WHITE)
+          .show(TooltipPopup.POSITION_BELOW)
+      }
     }
   }
 

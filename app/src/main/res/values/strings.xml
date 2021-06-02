@@ -977,6 +977,7 @@
     <string name="Megaphones_new_group">New group</string>
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_use_sms">Use SMS</string>
+    <string name="Megaphones_appearance">Appearance</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
@@ -3507,6 +3508,10 @@
     <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tap to replace an emoji</string>
     <string name="EditReactionsFragment__reset">Reset</string>
     <string name="EditReactionsFragment_save">Save</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto matches the color to the wallpaper</string>
+    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Drag to change the direction of the gradient</string>
+    <string name="ChatColorsMegaphone__new_chat_colors">New Chat Colors</string>
+    <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We switched up chat colors to give you more options and make chats easier to read.</string>
 
     <!-- EOF -->
 
