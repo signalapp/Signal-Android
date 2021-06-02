@@ -725,7 +725,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyBubble.setQuoteViewProjection(null);
     bodyBubble.setVideoPlayerProjection(null);
-    updateBackgroundDrawableProjections();
+    updateSelectedBackgroundDrawableProjections();
 
     if (eventListener != null && audioViewStub.resolved()) {
       Log.d(TAG, "setMediaAttributes: unregistering voice note callbacks for audio slide " + audioViewStub.get().getAudioSlideUri());
@@ -1469,7 +1469,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (mediaThumbnailStub != null && mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.get().showThumbnailView();
       bodyBubble.setVideoPlayerProjection(null);
-      updateBackgroundDrawableProjections();
+      updateSelectedBackgroundDrawableProjections();
     }
   }
 
@@ -1479,7 +1479,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.get().hideThumbnailView();
       mediaThumbnailStub.get().getDrawingRect(thumbnailMaskingRect);
       bodyBubble.setVideoPlayerProjection(Projection.relativeToViewWithCommonRoot(mediaThumbnailStub.get(), bodyBubble, null));
-      updateBackgroundDrawableProjections();
+      updateSelectedBackgroundDrawableProjections();
     }
   }
 
@@ -1558,10 +1558,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       projections.add(quoteView.getProjection((ViewGroup) getRootView()).translateX(bodyBubble.getTranslationX()));
     }
 
+    updateSelectedBackgroundDrawableProjections();
     return projections;
   }
 
-  private void updateBackgroundDrawableProjections() {
+  private void updateSelectedBackgroundDrawableProjections() {
     Set<Projection> projections = Stream.of(bodyBubble.getProjections())
                                         .map(p -> Projection.translateFromDescendantToParentCoords(p, bodyBubble, this))
                                         .collect(Collectors.toSet());
@@ -1570,7 +1571,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         !hasNoBubble(messageRecord) &&
         bodyBubbleCorners != null)
     {
-      projections.add(Projection.relativeToParent(this, bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX()));
+      projections.add(Projection.relativeToParent(this, bodyBubble, bodyBubbleCorners));
     }
 
     backgroundDrawable.setProjections(projections);
