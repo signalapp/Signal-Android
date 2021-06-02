@@ -81,7 +81,7 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Príloha presahuje limit veľkosti pre tento typ správy.</string>
     <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Vo vašom zariadení nie je aplikácia schopná otvoriť tento odkaz.</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
+    <string name="ConversationActivity_invite_to_open_group">Pridať členov</string>
     <string name="ConversationActivity_join_open_group">Join %s</string>
     <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pre posielanie zvukových správ potrebuje Session prístup k mikrofónu.</string>
@@ -158,7 +158,7 @@
     <string name="CustomDefaultPreference_none">Žiadna</string>
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Teraz</string>
-    <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_minutes_ago">%d minút</string>
     <string name="DateUtils_today">Dnes</string>
     <string name="DateUtils_yesterday">Včera</string>
     <!-- DeviceListItem -->
@@ -258,7 +258,7 @@ výmeny kľúčov.</string>
     <string name="ThreadRecord_s_is_on_signal">%s je na Sessione!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s urobil snímok obrazovky.</string>
     <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
     <string name="ThreadRecord_safety_number_changed">Bezpečnostné číslo sa zmenilo</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
@@ -380,7 +380,7 @@ výmeny kľúčov.</string>
     <string name="audio_view__pause_accessibility_description">Pozastaviť</string>
     <string name="audio_view__download_accessibility_description">Stiahnuť</string>
     <!-- open_group_invitation_view -->
-    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
+    <string name="open_group_invitation_view__join_accessibility_description">Pripojiť sa</string>
     <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
     <string name="open_group_guidelines_pinned_message">Pinned message</string>
     <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
@@ -516,7 +516,7 @@ výmeny kľúčov.</string>
     <string name="conversation_context__menu_message_details">Podrobnosti správy</string>
     <string name="conversation_context__menu_copy_text">Kopírovať text</string>
     <string name="conversation_context__menu_delete_message">Zmazať správu</string>
-    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_ban_user">Zablokovať užívateľa</string>
     <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string>
     <string name="conversation_context__menu_reply_to_message">Odpovedať na správu</string>
     <!-- conversation_context_image -->
@@ -578,14 +578,14 @@ výmeny kľúčov.</string>
     <!-- Conversation activity -->
     <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
     <!-- Session -->
-    <string name="continue_2">Continue</string>
-    <string name="copy">Copy</string>
-    <string name="invalid_url">Invalid URL</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="next">Next</string>
-    <string name="share">Share</string>
+    <string name="continue_2">Pokračovať</string>
+    <string name="copy">Kopírovať</string>
+    <string name="invalid_url">Neplatná URL adresa</string>
+    <string name="copied_to_clipboard">Skopírované do schránky</string>
+    <string name="next">Ďalej</string>
+    <string name="share">Zdieľať</string>
     <string name="invalid_session_id">Invalid Session ID</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Zrušiť</string>
     <string name="your_session_id">Your Session ID</string>
     <string name="activity_landing_title_2">Your Session begins here...</string>
     <string name="activity_landing_register_button_title">Create Session ID</string>

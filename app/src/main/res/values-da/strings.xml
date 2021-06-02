@@ -4,7 +4,7 @@
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
     <string name="delete">Slet</string>
-    <string name="ban">Ban</string>
+    <string name="ban">Udeluk</string>
     <string name="please_wait">Vent venligst...</string>
     <string name="save">Gem</string>
     <string name="note_to_self">Egen note</string>
@@ -18,7 +18,7 @@
         <item quantity="one">%d besked pr. samtale</item>
         <item quantity="other">%d beskeder pr. samtale</item>
     </plurals>
-    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder?</string>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder nu?</string>
     <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">Dette vil øjeblikkeligt reducere alle samtaler til den nyeste besked.</item>
         <item quantity="other">Dette vil øjeblikkeligt reducere alle samtaler til de %d nyeste beskeder</item>
@@ -61,11 +61,11 @@
     <string name="ConversationActivity_add_attachment">Vedhæft fil</string>
     <string name="ConversationActivity_select_contact_info">Vælg kontaktinformation</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, der opstod en fejl ved vedhæftning af fil</string>
-    <string name="ConversationActivity_message">Message</string>
-    <string name="ConversationActivity_compose">Compose</string>
-    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
-    <string name="ConversationActivity_member_count">%1$d members</string>
-    <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
+    <string name="ConversationActivity_message">Besked</string>
+    <string name="ConversationActivity_compose">Ny meddelelse</string>
+    <string name="ConversationActivity_muted_until_date">Lydløs indtil %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d medlemmer</string>
+    <string name="ConversationActivity_open_group_guidelines">Retningslinjer For Fællesskabet</string>
     <string name="ConversationActivity_invalid_recipient">Ugyldig modtager!</string>
     <string name="ConversationActivity_added_to_home_screen">Føjet til startskærm</string>
     <string name="ConversationActivity_leave_group">Forlad gruppe?</string>
@@ -77,14 +77,14 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Vedhæftningen overskrider max. grænsen for filstørrelser, for den type af meddelelse du sender</string>
     <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
+    <string name="ConversationActivity_invite_to_open_group">Tilføj medlemmer</string>
+    <string name="ConversationActivity_join_open_group">Tilmeld dig %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Er du sikker på, at du vil deltage i den åbne gruppe <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Session tilladelse til at tilgå mikrofonen</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\"</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Session kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder og optage video</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder eller optage video, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session kræver tilladelse til at tilgå kameraet, for at tage billeder og video</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session kræver tilladelse til at tilgå kameraet, for at kunne tage billeder eller videoer.</string>
     <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_search_position">%1$d af %2$d</string>
     <string name="ConversationActivity_no_results">Ingen resultater</string>
@@ -102,7 +102,7 @@
         <item quantity="one">Dette vil slette den valgte besked permanent.</item>
         <item quantity="other">Dette sletter %1$d valgte beskeder permanent</item>
     </plurals>
-    <string name="ConversationFragment_ban_selected_user">Ban this user?</string>
+    <string name="ConversationFragment_ban_selected_user">Udeluk denne bruger?</string>
     <string name="ConversationFragment_save_to_sd_card">Gem i hukommelsen?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="one">At gemme denne fil på disk vil tillade alle andre apps at tilgå den.\n\nFortsæt?</item>
@@ -126,8 +126,8 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Sletter</string>
     <string name="ConversationFragment_deleting_messages">Sletter beskeder...</string>
-    <string name="ConversationFragment_banning">Banning</string>
-    <string name="ConversationFragment_banning_user">Banning user…</string>
+    <string name="ConversationFragment_banning">Udelukker</string>
+    <string name="ConversationFragment_banning_user">Udelukker bruger…</string>
     <string name="ConversationFragment_quoted_message_not_found">Original besked blev ikke fundet</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original besked er ikke længere tilgængelig</string>
     <!-- ConversationListItem -->
@@ -140,7 +140,7 @@
     <string name="CustomDefaultPreference_none">Ingen</string>
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Nu</string>
-    <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_minutes_ago">%d min.</string>
     <string name="DateUtils_today">I dag</string>
     <string name="DateUtils_yesterday">I går</string>
     <!-- DeviceListItem -->
@@ -234,14 +234,14 @@ udveksel besked!</string>
     <string name="ThreadRecord_s_is_on_signal">%s er på Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiveret</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder udløber efter %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">%s took a screenshot.</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s tog et screenshot.</string>
     <string name="ThreadRecord_media_saved_by_s">Media saved by %s.</string>
     <string name="ThreadRecord_safety_number_changed">Sikkerhedsnummer ændret</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
     <string name="ThreadRecord_you_marked_verified">Markerét som verificeret</string>
     <string name="ThreadRecord_you_marked_unverified">Markerét som ubekræftet</string>
-    <string name="ThreadRecord_empty_message">This conversation is empty</string>
-    <string name="ThreadRecord_open_group_invitation">Open group invitation</string>
+    <string name="ThreadRecord_empty_message">Denne samtale er tom</string>
+    <string name="ThreadRecord_open_group_invitation">Åben gruppe invitation</string>
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Session opdatering</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Session er tilgængelig, tap for at opdatere</string>
@@ -283,7 +283,7 @@ udveksel besked!</string>
     <string name="NotificationChannel_messages">Standard</string>
     <string name="NotificationChannel_calls">Opkald</string>
     <string name="NotificationChannel_failures">Registrerede fejl</string>
-    <string name="NotificationChannel_backups">Backups</string>
+    <string name="NotificationChannel_backups">Sikkerhedskopier</string>
     <string name="NotificationChannel_locked_status">Låse status</string>
     <string name="NotificationChannel_app_updates">App opdateringer</string>
     <string name="NotificationChannel_other">Andet</string>
@@ -352,11 +352,11 @@ udveksel besked!</string>
     <!-- audio_view -->
     <string name="audio_view__play_accessibility_description">Spil</string>
     <string name="audio_view__pause_accessibility_description">Pause</string>
-    <string name="audio_view__download_accessibility_description">Download</string>
+    <string name="audio_view__download_accessibility_description">Hent</string>
     <!-- open_group_invitation_view -->
-    <string name="open_group_invitation_view__join_accessibility_description">Join</string>
-    <string name="open_group_invitation_view__open_group_invitation">Open group invitation</string>
-    <string name="open_group_guidelines_pinned_message">Pinned message</string>
+    <string name="open_group_invitation_view__join_accessibility_description">Deltag</string>
+    <string name="open_group_invitation_view__open_group_invitation">Åben gruppe invitation</string>
+    <string name="open_group_guidelines_pinned_message">Fastgjort besked</string>
     <string name="open_group_guidelines_community_guidelines">Community guidelines</string>
     <string name="open_group_guidelines_read">Read</string>
     <!-- QuoteView -->
@@ -448,7 +448,7 @@ udveksel besked!</string>
     <string name="preferences__red">Rød</string>
     <string name="preferences__blue">Blå</string>
     <string name="preferences__orange">Orange</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__cyan">Turkis</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Hvid</string>
     <string name="preferences__none">Ingen</string>
@@ -488,7 +488,7 @@ udveksel besked!</string>
     <string name="conversation_context__menu_message_details">Besked detaljer</string>
     <string name="conversation_context__menu_copy_text">Kopiér tekst</string>
     <string name="conversation_context__menu_delete_message">Slet besked</string>
-    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_ban_user">Udeluk bruger</string>
     <string name="conversation_context__menu_resend_message">Send besked igen</string>
     <string name="conversation_context__menu_reply_to_message">Svar på besked</string>
     <!-- conversation_context_image -->
@@ -548,28 +548,28 @@ udveksel besked!</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>
     <string name="AppProtectionPreferenceFragment_none">Ingen</string>
     <!-- Conversation activity -->
-    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <string name="activity_conversation_copy_public_key_button_title">Kopiér offentlig nøgle</string>
     <!-- Session -->
-    <string name="continue_2">Continue</string>
-    <string name="copy">Copy</string>
-    <string name="invalid_url">Invalid URL</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="next">Next</string>
-    <string name="share">Share</string>
-    <string name="invalid_session_id">Invalid Session ID</string>
-    <string name="cancel">Cancel</string>
-    <string name="your_session_id">Your Session ID</string>
+    <string name="continue_2">Fortsæt</string>
+    <string name="copy">Kopiér</string>
+    <string name="invalid_url">Ugyldig Webadresse</string>
+    <string name="copied_to_clipboard">Kopieret til udklipsholder</string>
+    <string name="next">Næste</string>
+    <string name="share">Del</string>
+    <string name="invalid_session_id">Ugyltigt Sessions-ID</string>
+    <string name="cancel">Annuller</string>
+    <string name="your_session_id">Dit Sessions-ID</string>
     <string name="activity_landing_title_2">Your Session begins here...</string>
-    <string name="activity_landing_register_button_title">Create Session ID</string>
+    <string name="activity_landing_register_button_title">Opret Session-ID</string>
     <string name="activity_landing_restore_button_title">Continue Your Session</string>
-    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
-    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
-    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
-    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
-    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
-    <string name="activity_register_title">Say hello to your Session ID</string>
+    <string name="view_fake_chat_bubble_1">Hvad er Session?</string>
+    <string name="view_fake_chat_bubble_2">Det er en decentraliseret, krypteret besked app</string>
+    <string name="view_fake_chat_bubble_3">Så den indsamler ikke mine personlige oplysninger eller min samtale metadata? Hvordan virker det?</string>
+    <string name="view_fake_chat_bubble_4">Ved hjælp af en kombination af avanceret anonym routing og end-to-end krypteringsteknologier.</string>
+    <string name="view_fake_chat_bubble_5">Venner lader ikke venner bruge usikre besked tjenester. Du er velkommen.</string>
+    <string name="activity_register_title">Sig hej til dit sessions-ID</string>
     <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
-    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_title">Gendan din konto</string>
     <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
     <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
     <string name="activity_display_name_title_2">Pick your display name</string>
