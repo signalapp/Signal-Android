@@ -911,13 +911,13 @@ public class Recipient {
   }
 
   public @NonNull ChatColors getChatColors() {
-    if (chatColors != null && chatColors.getId() instanceof ChatColors.Id.Custom) {
+    if (chatColors != null && !(chatColors.getId() instanceof ChatColors.Id.Auto)) {
       return chatColors;
-    } if (chatColors != null && chatColors.getId() instanceof ChatColors.Id.Auto) {
+    } if (chatColors != null) {
       return getAutoChatColor();
     } else {
       ChatColors global = SignalStore.chatColorsValues().getChatColors();
-      if (global != null && global.getId() instanceof ChatColors.Id.Custom) {
+      if (global != null && !(global.getId() instanceof ChatColors.Id.Auto)) {
         return global;
       } else {
         return getAutoChatColor();
