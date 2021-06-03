@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@color/signal_background_secondary"
+        android:background="@drawable/keyboard_bottom_bar_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">

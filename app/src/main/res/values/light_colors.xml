@@ -53,6 +53,7 @@
 
     <color name="signal_inverse_transparent">@color/transparent_black</color>
     <color name="signal_inverse_transparent_05">@color/transparent_black_05</color>
+    <color name="signal_inverse_transparent_08">@color/transparent_black_08</color>
     <color name="signal_inverse_transparent_10">@color/transparent_black_10</color>
     <color name="signal_inverse_transparent_15">@color/transparent_black_15</color>
     <color name="signal_inverse_transparent_20">@color/transparent_black_20</color>
@@ -139,7 +140,4 @@
     <color name="quote_view_background">@color/transparent_white_60</color>
     <color name="conversation_item_outgoing_footer_fg">@color/transparent_white_80</color>
     <color name="quote_preview_background">@color/core_grey_15</color>
-
-    <color name="keyboard_pager_fragment_selected">@color/core_grey_10</color>
-    <color name="keyboard_pager_fragment_category_selected">@color/transparent_black_05</color>
 </resources>
