@@ -588,7 +588,7 @@
     <string name="activity_seed_title_2">Das ist Ihr Wiederherstellungssatz.</string>
     <string name="activity_seed_explanation">Ihr Wiederherstellungssatz ist der Hauptschlüssel für Ihre Session ID. Mit diesem Satz können Sie Ihre Session ID wiederherstellen, wenn Sie den Zugriff auf Ihr Gerät verlieren. Bewahren Sie Ihren Wiederherstellungssatz an einem sicheren Ort auf und geben Sie ihn an niemandem weiter.</string>
     <string name="activity_seed_reveal_button_title">Zur Anzeige gedrückt halten</string>
-    <string name="view_seed_reminder_title">Du bist fast fertgi! 80%</string>
+    <string name="view_seed_reminder_title">Du bist fast fertig! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Sichern Sie Ihr Konto, indem Sie Ihren Wiederherstellungssatz speichern</string>
     <string name="view_seed_reminder_subtitle_2">Tippen und halten Sie die verborgenen Wörter, um Ihren Wiederherstellungssatz anzuzeigen, und speichern Sie ihn dann sicher, um Ihre Session ID zu sichern.</string>
     <string name="view_seed_reminder_subtitle_3">Bewahren Sie Ihren Wiederherstellungssatz an einem sicheren Ort auf.</string>
