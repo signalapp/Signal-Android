@@ -25,7 +25,7 @@ jobs:
       uses: gradle/wrapper-validation-action@v1
 
     - name: Build with Gradle
-      run: ./gradlew qa
+      run: ./gradlew qa --warning-mode=all
 
     - name: Archive reports for failed build
       if: ${{ failure() }}
