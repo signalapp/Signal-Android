@@ -128,6 +128,7 @@ public final class StorageSyncHelper {
                                                          .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
                                                          .setPayments(SignalStore.paymentsValues().mobileCoinPaymentsEnabled(), Optional.fromNullable(SignalStore.paymentsValues().getPaymentsEntropy()).transform(Entropy::getBytes).orNull())
                                                          .setPrimarySendsSms(Util.isDefaultSmsProvider(context))
+                                                         .setUniversalExpireTimer(SignalStore.settings().getUniversalExpireTimer())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
