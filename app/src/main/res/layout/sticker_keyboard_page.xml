@@ -6,5 +6,7 @@
     android:layout_height="match_parent"
     android:paddingStart="4dp"
     android:paddingEnd="4dp"
+    android:paddingBottom="56dp"
+    android:clipToPadding="false"
     android:scrollIndicators="top|bottom"
     tools:ignore="UnusedAttribute" />
